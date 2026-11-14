@@ -12,11 +12,12 @@ const guardEvidence='h3era.exe SHA256451e208cb2985bca75330f0e3c52f89f9219c0c3701
  * Missing creature identities/stats/layouts or unsupported upgrade behavior fail
  * the WHOLE corresponding object. Other independent definitions remain reviewable.
  */
-export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,levelBase,resolveArtifact,resolveResource,resolveBankLayout,upgradeMode,guardSlotsMode,extraRewardsMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,rmgPolicy='none',animationNamespace='tum-era/objects/',resolveDwellingRmg,includeLegacyDwellings=false,legacyDwellingOptions,baseSoundArchivePaths=[]}={}){
+export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,levelBase,resolveArtifact,resolveResource,resolveBankLayout,upgradeMode,guardSlotsMode,extraRewardsMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,rmgPolicy='none',animationNamespace='tum-era/objects/',resolveDwellingRmg,includeLegacyDwellings=false,legacyDwellingOptions,baseSoundArchivePaths=[],bankSourceOverride,additionalArchivePaths=[],scriptedBankIds=[]}={}){
  if(!['none','era-value-density'].includes(rmgPolicy))throw new ObjectBridgeError('INVALID_RMG_POLICY','Unknown object RMG adaptation policy');
  if(typeof animationNamespace!=='string'||!animationNamespace||animationNamespace.startsWith('/')||animationNamespace.split('/').some(p=>p==='..')||!animationNamespace.endsWith('/'))throw new ObjectBridgeError('INVALID_ASSET_NAMESPACE','A safe relative animation namespace ending in/ is required');
  const sourceAssetName=name=>name.startsWith(animationNamespace)?name.slice(animationNamespace.length):name;
  const archives=fs.readdirSync(path.join(sourceRoot,'Data')).filter(x=>x.endsWith('.pac')).sort().map(file=>({file,archive:readEraArchive(fs.readFileSync(path.join(sourceRoot,'Data',file)),{source:file})}));
+ for(const file of additionalArchivePaths)archives.push({file:path.basename(file),archive:readEraArchive(fs.readFileSync(file),{source:path.basename(file)})});
  const find=name=>{
   const matches=archives.filter(({archive})=>archive.names.some(n=>n.toLowerCase()===name.toLowerCase()));
   if(!matches.length)throw new ObjectBridgeError('MISSING_ASSET','Missing source asset '+name);
@@ -25,7 +26,8 @@ export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,
   return {bytes,archive:matches[0].file};
  };
  const json=file=>JSON.parse(fs.readFileSync(path.join(sourceRoot,'Lang',file+'.json'),'utf8'));
- const sourceBanks=json('TUM_CreatureBanks').RMG.objectGeneration['16'];
+ const sourceBanks=bankSourceOverride?.banks??json('TUM_CreatureBanks').RMG.objectGeneration['16'];
+ if(bankSourceOverride&&(!bankSourceOverride.source||!/^([a-f0-9]{64})$/.test(bankSourceOverride.sha256)))throw new ObjectBridgeError('MISSING_BANK_SOURCE_PROOF','Override bank data requires explicit source identity and SHA256');
  const names=json('TUM_Objects').era;
  const dwellingLines=Object.values(json('RMG_Dwellings').RMG.resound.properties).flat();
  const files=new Map(),compiled=[],diagnostics=[],assets=[],layoutSettings={};
@@ -70,12 +72,12 @@ export function prepareTumObjectImport({sourceRoot,resolveCreature,resolveStats,
    if(bank.troopPlacement&&layoutPolicy&&typeof layoutPolicy==='object'){layoutResult=compileEraTroopPlacement(bank.troopPlacement,layoutPolicy);layout=layoutResult.layoutId;sourceBank=structuredClone(bank);delete sourceBank.troopPlacement;}
    if(typeof layout!=='string'||!layout)throw new ObjectBridgeError('UNRESOLVED_LAYOUT','Explicit original-compatible bank layout resolver required');
    const soundAssets=[];if(sourceBank.sound){sourceBank=structuredClone(sourceBank);for(const[key,name]of Object.entries(sourceBank.sound))if(typeof name==='string'){const original=resolveSound(name),nativeName=animationNamespace+name;soundAssets.push({name:nativeName,...original});sourceBank.sound[key]=nativeName;}}
-   const result=compileTumBank(sourceBank,{source:'Lang/TUM_CreatureBanks.json',objectId:'eraBank'+id,nativeTemplates:templatesFor(bank.properties),guardsLayout:layout,resolveCreature,resolveArtifact,resolveResource,upgradeMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,resolveAnimation:name=>{find(name);return animationNamespace+name;},nativeRmg:rmgPolicy==='era-value-density'?compileEraBankRmg(bank):undefined,chanceMode:'era-fourth-state-remainder',guardSlotsMode,extraRewardsMode,disabledUpgradeEvidence:guardEvidence});
+   const result=compileTumBank(sourceBank,{source:bankSourceOverride?.source??'Lang/TUM_CreatureBanks.json',objectId:'eraBank'+id,nativeTemplates:templatesFor(bank.properties),guardsLayout:layout,resolveCreature,resolveArtifact,resolveResource,upgradeMode,resolveEraUpgrade,resolveNativeUpgrades,spellMode,spellCatalog,resolveSpell,emptyGuardMode,resolveNullSound,appearanceMode,resolveAnimation:name=>{find(name);return animationNamespace+name;},nativeRmg:rmgPolicy==='era-value-density'?compileEraBankRmg(bank):undefined,chanceMode:'era-fourth-state-remainder',guardSlotsMode,extraRewardsMode,sourcePlacement:scriptedBankIds.map(String).includes(id)?'scripted-object':'strict',disabledUpgradeEvidence:guardEvidence});
    add('bank',id,result,soundAssets);
    if(layoutResult)layoutSettings[layoutResult.layoutId]=layoutResult.layout;
   }catch(cause){error('bank',id,cause);}
  }
- return {files,compiled,diagnostics,assets,modPatch:Object.keys(layoutSettings).length?{settings:{combat:{layouts:layoutSettings}}}:{},activation:{enabled:false,reason:'Prepared native content; object interaction/RMG/replacement dependencies require integration validation'},source:{root:sourceRoot,animationNamespace,rmgPolicy,archives:archives.map(({file,archive})=>({file,sha256:archive.sha256}))}};
+ return {files,compiled,diagnostics,assets,modPatch:Object.keys(layoutSettings).length?{settings:{combat:{layouts:layoutSettings}}}:{},activation:{enabled:false,reason:'Prepared native content; object interaction/RMG/replacement dependencies require integration validation'},source:{root:sourceRoot,animationNamespace,rmgPolicy,...(bankSourceOverride?{bankSource:{source:bankSourceOverride.source,sha256:bankSourceOverride.sha256}}:{}),archives:archives.map(({file,archive})=>({file,sha256:archive.sha256}))}};
 }
 
 /** Write only a fresh explicit destination. No implicit overwrite/activation. */

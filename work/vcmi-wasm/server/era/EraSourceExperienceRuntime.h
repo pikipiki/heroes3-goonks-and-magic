@@ -86,7 +86,7 @@ public:
  void cast(const era_bridge::SourceXpCastRequest & request)
  {
   const auto & row=request.provenance;
-  if(!era_compat::SourceXpAdmissionPolicy::get().owns(row)||request.casterKind!=1)
+  if(!era_compat::sourceXpAnyOwns(row)||request.casterKind!=1)
      throw std::runtime_error("Unadmitted XP43 cast");
   const auto side=request.primaryQuerySide==0?BattleSide::ATTACKER:BattleSide::DEFENDER;
   if(supportsXpTimed(row.spell))castXpTimed(handler,battle,actor,target,row.spell,request.power,
@@ -116,27 +116,37 @@ public:
  }
 };
 // Access/lifecycle scope is installed by the containing original attack frame.
-inline bool runSourceExperience(CGameHandler & handler,const CBattleInfoCallback & battle,
- const CStack * actor,const CStack * target,era_bridge::SourceXpPhase phase)
+template<size_t N,typename Policy>
+inline bool runSourceExperienceRows(CGameHandler & handler,const CBattleInfoCallback & battle,
+ const CStack * actor,const CStack * target,era_bridge::SourceXpPhase phase,
+ const std::array<era_bridge::SourceXpProvenance,N>&rows,const Policy&policy)
 {
- if(!actor||!target||!era_compat::sourceXpBattleAdmitted(battle)||!sourceXpPrepared(handler,actor))return false;
  const auto & key=actor->creatureId().toCreature()->getJsonKey();
- const auto & policy=era_compat::SourceXpAdmissionPolicy::get();
- const auto first=std::find_if(era_bridge::sourceXpAdmissionRows.begin(),era_bridge::sourceXpAdmissionRows.end(),
+ const auto first=std::find_if(rows.begin(),rows.end(),
    [&](const auto & row){return row.nativeId==key&&policy.owns(row);});
- if(first==era_bridge::sourceXpAdmissionRows.end())return false;
- // Every candidate row for this actor must be admitted before any chance draw.
- for(const auto & row:era_bridge::sourceXpAdmissionRows)
+ if(first==rows.end())return false;
+ for(const auto & row:rows)
    if(row.sourceId==first->sourceId&&!row.existingSourceOwner&&!policy.owns(row))
      throw std::runtime_error("Whole actor XP permission required");
  const auto current=era_compat::confluxActiveSide(battle);
- if(current==BattleSide::NONE)throw std::runtime_error("XP43 CURRENT active side required");
+ if(current==BattleSide::NONE)throw std::runtime_error("Source XP CURRENT active side required");
  auto access=sourceXpTimedAccess(handler,battle);
  XpTimed184AccessScope accessScope(access);
  SourceExperienceSink sink(handler,battle,actor,target,current);
  const int rank=actor->base?actor->base->getExpRank():0;
- era_bridge::runSourceXpPhase(era_bridge::sourceXpAdmissionRows,era_bridge::SourceXpPermit::Admitted,
+ era_bridge::runSourceXpPhase(rows,era_bridge::SourceXpPermit::Admitted,
     phase,first->sourceId,key,rank,sink);
  return true;
+}
+inline bool runSourceExperience(CGameHandler & handler,const CBattleInfoCallback & battle,
+ const CStack * actor,const CStack * target,era_bridge::SourceXpPhase phase)
+{
+ if(!actor||!target||!era_compat::sourceXpBattleAdmitted(battle)||!sourceXpPrepared(handler,actor))return false;
+ if(runSourceExperienceRows(handler,battle,actor,target,phase,era_bridge::sourceXpAdmissionRows,
+    era_compat::SourceXpAdmissionPolicy::get()))return true;
+ if(runSourceExperienceRows(handler,battle,actor,target,phase,era_bridge::sourceBankXpRows,
+    era_compat::SourceBankXpPolicy::get()))return true;
+ return runSourceExperienceRows(handler,battle,actor,target,phase,era_bridge::sourceDwellingXpRows,
+    era_compat::SourceDwellingXpPolicy::get());
 }
 }

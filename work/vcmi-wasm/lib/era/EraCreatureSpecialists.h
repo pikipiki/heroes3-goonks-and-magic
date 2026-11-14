@@ -1,6 +1,7 @@
 /* TUM Third Upgrade Mod.erm tum_GetSpecMonsterStats, source-scoped battle bonuses. */
 #pragma once
 #include "EraSpecialistStats.h"
+#include "EraCaveBattleHealth.h"
 #include "../filesystem/Filesystem.h"
 #include "../CCreatureHandler.h"
 #include "../json/JsonNode.h"
@@ -23,7 +24,7 @@ inline std::optional<CreatureSpecialtyProgression> sourceCreatureSpecialty(const
             throw std::runtime_error("ERA specialist: invalid opt-in policy");
         return root["enabled"].Bool();
     }();
-    if(!enabled)return std::nullopt;
+    if(!enabled||caveBuilderSpecialty(hero))return std::nullopt;
     for(const auto & bonus:hero.getHeroType()->specialty)
     {
         if(bonus->type!=BonusType::STACKS_SPEED || bonus->val!=1)continue;

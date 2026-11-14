@@ -1,0 +1,186 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank26": {
+        "name": "Red Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avredtwr.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVBVV",
+              "VVAVV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:fireElemental",
+                "amount": 7,
+                "upgradeChance": 50
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 7
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 7
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 7
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 7
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:firebird",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:fireElemental",
+                "amount": 14,
+                "upgradeChance": 50
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 14
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 14
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 14
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 14
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:firebird",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:fireElemental",
+                "amount": 21,
+                "upgradeChance": 50
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 21
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 21
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 21
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 21
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:firebird",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:fireElemental",
+                "amount": 28,
+                "upgradeChance": 50
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 28
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 28
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 28
+              },
+              {
+                "type": "core:fireElemental",
+                "amount": 28
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:firebird",
+                "amount": 4
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/REDTWRVS.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/REDTWRLO.wav"
+          ]
+        }
+      }
+    }
+  }
+}

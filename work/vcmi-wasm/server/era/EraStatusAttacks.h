@@ -73,12 +73,12 @@ inline void emitSourceStatusRejection(CGameHandler & handler,const CBattleInfoCa
     handler.sendAndApply(packet);
 }
 inline bool selectSourceCStatus(CGameHandler & handler,const CBattleInfoCallback & battle,
-    const CStack * actor,const CStack * target,int sourceSpell)
+    const CStack * actor,const CStack * target,int sourceSpell,int chanceOverride=-1)
 {
     // 71D7A9 rolls before life checks; rank0 consumes no roll. Explicitly registered source c71/c75 actors only.
     const auto sourceActorId=StatusAttacks::get().id(actor->creatureId().toCreature()->getJsonKey());
     const int rank=std::clamp(statusRank(actor),0,10);
-    const auto chance=sourceSpell==71 && sourceActorId==354 ? std::min(95,rank*10) : rank*(sourceSpell==75?8:5);
+    const auto chance=chanceOverride>=0?chanceOverride:sourceSpell==71 && sourceActorId==354 ? std::min(95,rank*10) : rank*(sourceSpell==75?8:5);
     auto & rng=handler.getRandomGenerator();
     if(chance==0 || !era_bridge::statusRollAccepts(chance,rng.nextInt(1,100)))return false;
     if(!actor->alive() || !target || !target->alive())return false;
@@ -129,9 +129,9 @@ inline bool selectSourceCAge(CGameHandler & handler,const CBattleInfoCallback & 
     const CStack * actor,const CStack * target)
 {return selectSourceCStatus(handler,battle,actor,target,75);}
 inline int statusPrimaryAccuracy(const CBattleInfoCallback & battle,const CStack * actor,
-    const CStack * target,SpellID spell)
+    const CStack * target,SpellID spell,bool requireLiving=true)
 {
-    if(!target || !target->alive() || !statusLiving(target))return 0;
+    if(!target || !target->alive() || (requireLiving && !statusLiving(target)))return 0;
     const int sourceId=StatusAttacks::get().id(target->creatureId().toCreature()->getJsonKey());
     if(spell.num==71 && (sourceId==30 || sourceId==31))return 0;
     if(spell.num==75 && target->hasBonusOfType(BonusType::UNDEAD))return 0;
@@ -151,9 +151,9 @@ inline int statusPrimaryAccuracy(const CBattleInfoCallback & battle,const CStack
     return statusRawAccuracy(battle,target);
 }
 inline bool statusPrimaryAccepts(CGameHandler & handler,const CBattleInfoCallback & battle,
-    const CStack * actor,const CStack * target,SpellID spell)
+    const CStack * actor,const CStack * target,SpellID spell,bool requireLiving=true)
 {
-    const auto threshold=statusPrimaryAccuracy(battle,actor,target,spell);
+    const auto threshold=statusPrimaryAccuracy(battle,actor,target,spell,requireLiving);
     //5A8950 ALWAYS consumes this roll, including a zero probability/immunity.
     return era_bridge::statusRollAccepts(threshold,handler.getRandomGenerator().nextInt(1,100));
 }

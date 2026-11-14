@@ -1,0 +1,20 @@
+{
+  "file": "outputs/wog-priorities-0.4.147/adventure167/xp-admission-proposed-final13/bank-index.json",
+  "sha256": "c7410e332e5bd984edd46b429a539d6f00408c7d847eca3d2da2a37787e1dffe",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "Dedicated source bank XP6 exact proc rows: actual R10 actor and effective per-spell witness, separate from same-spell ordinary providers.",
+  "continuityReviews": [
+    {
+      "engineSha256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Dedicated source bank XP6 exact proc rows: actual R10 actor and effective per-spell witness, separate from same-spell ordinary providers.",
+      "notes": "Historical actual R10 cases retain their own engine. Final11 mobile local-load role restoration is outside battle proc execution. Final12 only added p276/p284 Weakness magnitude6; those two rows use independent actual Final12 witnesses. Historical other rows do not route through those new source IDs. No blanket whole-binary equivalence is claimed. Whole actor lifecycle signoffs and production gate bytes remain distinct requirements.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/era/EraSourceBankXpAdmission.h": "5f1a4a20820c0b485baa739f3117ae733b4a196f71b2b0a750f86bcfa921f214",
+        "work/vcmi-wasm/lib/era/EraWeakness45Rule.h": "9900abb3077926dcd8a5532736b1e686fbc006a20824becd2af594726996b592"
+      }
+    }
+  ]
+}

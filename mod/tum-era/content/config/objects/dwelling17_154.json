@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_154": {
+        "name": "Imperial Barracks",
+        "creatures": [
+          [
+            "tum-era:eraCreature340"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature340",
+            "amount": 12
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw57.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

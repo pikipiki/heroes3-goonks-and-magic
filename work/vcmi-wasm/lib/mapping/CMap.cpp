@@ -953,6 +953,11 @@ CGHeroInstance * CMap::tryGetFromHeroPool(HeroTypeID hero)
 	return heroesPool.at(hero.getNum()).get();
 }
 
+const CGHeroInstance * CMap::tryGetFromHeroPool(HeroTypeID hero) const
+{
+ return heroesPool.at(hero.getNum()).get();
+}
+
 std::shared_ptr<CGHeroInstance> CMap::tryTakeFromHeroPool(HeroTypeID hero)
 {
 	auto result = heroesPool.at(hero.getNum());

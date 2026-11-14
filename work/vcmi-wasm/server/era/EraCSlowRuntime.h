@@ -16,9 +16,9 @@ inline bool sourceCSlowExperienceImmunity(const CStack * target)
             if(target->hasBonus(xp.And(Selector::typeSubtype(type,BonusSubtypeID(school)))))return true;
     return false;
 }
-inline bool selectSourceCSlow(CGameHandler & handler,const CBattleInfoCallback & battle,const CStack * actor,const CStack * target)
+inline bool selectSourceCSlow(CGameHandler & handler,const CBattleInfoCallback & battle,const CStack * actor,const CStack * target,int chanceOverride=-1)
 {
-    era_bridge::CSlowSnapshot s;s.rank=statusRank(actor);s.actorAlive=actor->alive();s.targetAlive=target&&target->alive();
+    era_bridge::CSlowSnapshot s;s.chanceOverride=chanceOverride;s.rank=statusRank(actor);s.actorAlive=actor->alive();s.targetAlive=target&&target->alive();
     s.orbOfInhibition=statusEitherArtifact(battle,126);s.cursedGround=statusCursedGround(battle);s.orbOfVulnerability=statusEitherArtifact(battle,93);
     if(target)
     {

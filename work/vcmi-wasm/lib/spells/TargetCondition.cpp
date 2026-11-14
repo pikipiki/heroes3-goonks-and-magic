@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraDwellingCaster.h"
 
 #include "TargetCondition.h"
 #include "../era/EraBridgePolicies.h"
@@ -296,7 +297,8 @@ protected:
         // must hold during the253 preflight, not only its mass resistance loop.
         const auto * sourceCaster=dynamic_cast<const era_compat::ExperienceAttackCaster *>(m->caster);
         const bool sourceFangarm=m->getSpellIndex()==60 && sourceCaster && sourceCaster->usesSourceFangarmHypnotize();
-        const bool sourceHealth=m->isEraArtifactMassHypnotize() || sourceFangarm;
+        const bool sourceHealth=m->isEraArtifactMassHypnotize() || sourceFangarm
+            || era_compat::dwellingHypnotist(m->battle()->battleGetStackByID(m->caster->getCasterUnitId(),false));
         if(sourceHealth && target->hasBonus(
             Selector::source(BonusSource::SPELL_EFFECT,BonusSourceID(SpellID(36)))))return false;
 		// Original5A86C0..CC compares count*per-creature HP. Damage to the

@@ -1,0 +1,31 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_111": {
+        "name": "Treehouse",
+        "creatures": [
+          [
+            "tum-era:eraCreature270"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw11.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

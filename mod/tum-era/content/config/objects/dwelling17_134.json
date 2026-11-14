@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_134": {
+        "name": "Altar of Darkness",
+        "creatures": [
+          [
+            "tum-era:eraCreature306"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature306",
+            "amount": 6
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw37.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

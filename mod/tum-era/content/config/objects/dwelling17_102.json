@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_102": {
+        "name": "Giant Golden Pavilion",
+        "creatures": [
+          [
+            "tum-era:eraCreature319"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature319",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw02.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVBB",
+              "VVBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,6 +25,7 @@ class DLL_LINKAGE CRewardableConstructor : public AObjectTypeHandler
 	void initTypeData(const JsonNode & config) override;
 	
 	bool blockVisit = false;
+	bool mysteriousCave = false;
 
 public:
 	const JsonNode & getEraBankSpellPointsCap() const { return objectInfo.getParameters()["eraBankSpellPointsCap"]; }

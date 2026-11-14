@@ -1,0 +1,1350 @@
+{
+  "passed": true,
+  "privateOnly": true,
+  "originalSeedEquivalence": false,
+  "prng": "VCMI minstd_rand; object configuration uses the same native global stream",
+  "sourceProgramCount": 102,
+  "sourceProgramSha256": "be39741c0e26bdff0000a087c2c8224ee12342b388fe964e6f34ab22b03e5f61",
+  "sourcePairs": 36,
+  "sourceObjects": 320,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "39734a8d29118603",
+    "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+    "sha256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216,
+    "privateValidation": true,
+    "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+  },
+  "day1": {
+    "created": 101,
+    "markers": [
+      {
+        "name": "creatureBank_475_eraCB000_20_18_0_PO_N3",
+        "uid": 475,
+        "id": "000",
+        "x": 20,
+        "y": 18,
+        "z": 0,
+        "anchor": {
+          "x": 20,
+          "y": 18,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_476_eraCB002_60_18_0_PO_N3",
+        "uid": 476,
+        "id": "002",
+        "x": 60,
+        "y": 18,
+        "z": 0,
+        "anchor": {
+          "x": 61,
+          "y": 18,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_477_eraCB002_6_21_0_PO_N3",
+        "uid": 477,
+        "id": "002",
+        "x": 6,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 7,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_478_eraCB003_28_21_0_PO_N3",
+        "uid": 478,
+        "id": "003",
+        "x": 28,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 30,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_479_eraCB004_36_21_0_PO_N3",
+        "uid": 479,
+        "id": "004",
+        "x": 36,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 37,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_480_eraCB006_9_24_0_PO_N3",
+        "uid": 480,
+        "id": "006",
+        "x": 9,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 10,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_481_eraCB006_18_24_0_PO_N3",
+        "uid": 481,
+        "id": "006",
+        "x": 18,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 19,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_482_eraCB007_35_24_0_PO_N3",
+        "uid": 482,
+        "id": "007",
+        "x": 35,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 35,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_483_eraCB007_41_24_0_PO_N3",
+        "uid": 483,
+        "id": "007",
+        "x": 41,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 41,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_484_eraCB007_44_24_0_PO_N3",
+        "uid": 484,
+        "id": "007",
+        "x": 44,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 44,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_485_eraCB007_50_24_0_PO_N3",
+        "uid": 485,
+        "id": "007",
+        "x": 50,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 50,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_486_eraCB008_63_24_0_PO_N3",
+        "uid": 486,
+        "id": "008",
+        "x": 63,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 64,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_487_eraCB009_6_24_0_PO_N3",
+        "uid": 487,
+        "id": "009",
+        "x": 6,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 7,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_488_eraCB010_53_21_0_PO_N3",
+        "uid": 488,
+        "id": "010",
+        "x": 53,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 53,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_489_eraCB011_32_24_0_PO_N3",
+        "uid": 489,
+        "id": "011",
+        "x": 32,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 33,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_490_eraCB012_60_24_0_PO_N3",
+        "uid": 490,
+        "id": "012",
+        "x": 60,
+        "y": 24,
+        "z": 0,
+        "anchor": {
+          "x": 60,
+          "y": 24,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_491_eraCB012_15_27_0_PO_N3",
+        "uid": 491,
+        "id": "012",
+        "x": 15,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 15,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_492_eraCB014_54_18_0_PO_N3",
+        "uid": 492,
+        "id": "014",
+        "x": 54,
+        "y": 18,
+        "z": 0,
+        "anchor": {
+          "x": 55,
+          "y": 18,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_493_eraCB015_11_18_0_PO_N3",
+        "uid": 493,
+        "id": "015",
+        "x": 11,
+        "y": 18,
+        "z": 0,
+        "anchor": {
+          "x": 12,
+          "y": 19,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_494_eraCB016_39_18_0_PO_N3",
+        "uid": 494,
+        "id": "016",
+        "x": 39,
+        "y": 18,
+        "z": 0,
+        "anchor": {
+          "x": 40,
+          "y": 18,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_495_eraCB019_18_27_0_PO_N3",
+        "uid": 495,
+        "id": "019",
+        "x": 18,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 19,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_496_eraCB019_30_27_0_PO_N3",
+        "uid": 496,
+        "id": "019",
+        "x": 30,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 31,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_497_eraCB020_41_27_0_PO_N3",
+        "uid": 497,
+        "id": "020",
+        "x": 41,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 41,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_498_eraCB021_6_30_0_PO_N3",
+        "uid": 498,
+        "id": "021",
+        "x": 6,
+        "y": 30,
+        "z": 0,
+        "anchor": {
+          "x": 7,
+          "y": 30,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_499_eraCB021_9_30_0_PO_N3",
+        "uid": 499,
+        "id": "021",
+        "x": 9,
+        "y": 30,
+        "z": 0,
+        "anchor": {
+          "x": 10,
+          "y": 30,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_500_eraCB021_12_30_0_PO_N3",
+        "uid": 500,
+        "id": "021",
+        "x": 12,
+        "y": 30,
+        "z": 0,
+        "anchor": {
+          "x": 13,
+          "y": 30,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_501_eraCB021_18_30_0_PO_N3",
+        "uid": 501,
+        "id": "021",
+        "x": 18,
+        "y": 30,
+        "z": 0,
+        "anchor": {
+          "x": 19,
+          "y": 30,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_502_eraCB022_51_30_0_PO_N3",
+        "uid": 502,
+        "id": "022",
+        "x": 51,
+        "y": 30,
+        "z": 0,
+        "anchor": {
+          "x": 52,
+          "y": 30,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_503_eraCB028_39_33_0_PO_N3",
+        "uid": 503,
+        "id": "028",
+        "x": 39,
+        "y": 33,
+        "z": 0,
+        "anchor": {
+          "x": 39,
+          "y": 33,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_504_eraCB034_53_33_0_PO_N3",
+        "uid": 504,
+        "id": "034",
+        "x": 53,
+        "y": 33,
+        "z": 0,
+        "anchor": {
+          "x": 53,
+          "y": 33,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_505_eraCB035_60_21_0_PO_N3",
+        "uid": 505,
+        "id": "035",
+        "x": 60,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 62,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_506_eraCB035_63_21_0_PO_N3",
+        "uid": 506,
+        "id": "035",
+        "x": 63,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 65,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_507_eraCB039_37_27_0_PO_N3",
+        "uid": 507,
+        "id": "039",
+        "x": 37,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 39,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureBank_508_eraCB041_33_30_0_PO_N3",
+        "uid": 508,
+        "id": "041",
+        "x": 33,
+        "y": 30,
+        "z": 0,
+        "anchor": {
+          "x": 35,
+          "y": 32,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_509_eraCB100_8_36_0_PO_N3",
+        "uid": 509,
+        "id": "100",
+        "x": 8,
+        "y": 36,
+        "z": 0,
+        "anchor": {
+          "x": 9,
+          "y": 36,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_510_eraCB100_20_36_0_PO_N3",
+        "uid": 510,
+        "id": "100",
+        "x": 20,
+        "y": 36,
+        "z": 0,
+        "anchor": {
+          "x": 21,
+          "y": 36,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_511_eraCB103_21_27_0_PO_N3",
+        "uid": 511,
+        "id": "103",
+        "x": 21,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 22,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_512_eraCB103_27_27_0_PO_N3",
+        "uid": 512,
+        "id": "103",
+        "x": 27,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 28,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_513_eraCB104_44_27_0_PO_N3",
+        "uid": 513,
+        "id": "104",
+        "x": 44,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 44,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_514_eraCB104_62_27_0_PO_N3",
+        "uid": 514,
+        "id": "104",
+        "x": 62,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 62,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_515_eraCB109_5_39_0_PO_N3",
+        "uid": 515,
+        "id": "109",
+        "x": 5,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 5,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_516_eraCB112_17_39_0_PO_N3",
+        "uid": 516,
+        "id": "112",
+        "x": 17,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 17,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_517_eraCB112_29_39_0_PO_N3",
+        "uid": 517,
+        "id": "112",
+        "x": 29,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 29,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_518_eraCB113_35_39_0_PO_N3",
+        "uid": 518,
+        "id": "113",
+        "x": 35,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 35,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_519_eraCB114_23_39_0_PO_N3",
+        "uid": 519,
+        "id": "114",
+        "x": 23,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 23,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_520_eraCB114_32_39_0_PO_N3",
+        "uid": 520,
+        "id": "114",
+        "x": 32,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 32,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorSpecial_521_eraCB118_6_27_0_PO_N3",
+        "uid": 521,
+        "id": "118",
+        "x": 6,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 7,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorSpecial_522_eraCB118_9_27_0_PO_N3",
+        "uid": 522,
+        "id": "118",
+        "x": 9,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 10,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "mysteriousCave_523_eraCB71_63_36_0_PO_N3",
+        "uid": 523,
+        "id": "71",
+        "x": 63,
+        "y": 36,
+        "z": 0,
+        "anchor": {
+          "x": 64,
+          "y": 36,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_524_eraCB133_38_21_0_PO_N3",
+        "uid": 524,
+        "id": "133",
+        "x": 38,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 38,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_525_eraCB140_44_21_0_PO_N3",
+        "uid": 525,
+        "id": "140",
+        "x": 44,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 44,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_526_eraCB140_56_21_0_PO_N3",
+        "uid": 526,
+        "id": "140",
+        "x": 56,
+        "y": 21,
+        "z": 0,
+        "anchor": {
+          "x": 56,
+          "y": 21,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_527_eraCB141_33_27_0_PO_N3",
+        "uid": 527,
+        "id": "141",
+        "x": 33,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 34,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_528_eraCB141_39_27_0_PO_N3",
+        "uid": 528,
+        "id": "141",
+        "x": 39,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 40,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_529_eraCB143_17_42_0_PO_N3",
+        "uid": 529,
+        "id": "143",
+        "x": 17,
+        "y": 42,
+        "z": 0,
+        "anchor": {
+          "x": 17,
+          "y": 42,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_530_eraCB143_26_45_0_PO_N3",
+        "uid": 530,
+        "id": "143",
+        "x": 26,
+        "y": 45,
+        "z": 0,
+        "anchor": {
+          "x": 26,
+          "y": 45,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_531_eraCB143_44_45_0_PO_N3",
+        "uid": 531,
+        "id": "143",
+        "x": 44,
+        "y": 45,
+        "z": 0,
+        "anchor": {
+          "x": 44,
+          "y": 45,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_532_eraCB143_56_45_0_PO_N3",
+        "uid": 532,
+        "id": "143",
+        "x": 56,
+        "y": 45,
+        "z": 0,
+        "anchor": {
+          "x": 56,
+          "y": 45,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_533_eraCB143_20_42_0_PO_N3",
+        "uid": 533,
+        "id": "143",
+        "x": 20,
+        "y": 42,
+        "z": 0,
+        "anchor": {
+          "x": 20,
+          "y": 42,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_534_eraCB143_44_42_0_PO_N3",
+        "uid": 534,
+        "id": "143",
+        "x": 44,
+        "y": 42,
+        "z": 0,
+        "anchor": {
+          "x": 44,
+          "y": 42,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_535_eraCB143_53_45_0_PO_N3",
+        "uid": 535,
+        "id": "143",
+        "x": 53,
+        "y": 45,
+        "z": 0,
+        "anchor": {
+          "x": 53,
+          "y": 45,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_536_eraCB143_62_45_0_PO_N3",
+        "uid": 536,
+        "id": "143",
+        "x": 62,
+        "y": 45,
+        "z": 0,
+        "anchor": {
+          "x": 62,
+          "y": 45,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_537_eraCB145_12_48_0_PO_N3",
+        "uid": 537,
+        "id": "145",
+        "x": 12,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 13,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_538_eraCB145_15_48_0_PO_N3",
+        "uid": 538,
+        "id": "145",
+        "x": 15,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 16,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_539_eraCB145_18_48_0_PO_N3",
+        "uid": 539,
+        "id": "145",
+        "x": 18,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 19,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_540_eraCB145_24_48_0_PO_N3",
+        "uid": 540,
+        "id": "145",
+        "x": 24,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 25,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_541_eraCB148_57_48_0_PO_N3",
+        "uid": 541,
+        "id": "148",
+        "x": 57,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 58,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_542_eraCB148_63_48_0_PO_N3",
+        "uid": 542,
+        "id": "148",
+        "x": 63,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 64,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_543_eraCB149_63_18_0_PO_N3",
+        "uid": 543,
+        "id": "149",
+        "x": 63,
+        "y": 18,
+        "z": 0,
+        "anchor": {
+          "x": 64,
+          "y": 18,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_544_eraCB155_50_27_0_PO_N3",
+        "uid": 544,
+        "id": "155",
+        "x": 50,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 50,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_545_eraCB155_53_27_0_PO_N3",
+        "uid": 545,
+        "id": "155",
+        "x": 53,
+        "y": 27,
+        "z": 0,
+        "anchor": {
+          "x": 53,
+          "y": 27,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_546_eraCB158_41_51_0_PO_N3",
+        "uid": 546,
+        "id": "158",
+        "x": 41,
+        "y": 51,
+        "z": 0,
+        "anchor": {
+          "x": 41,
+          "y": 51,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_547_eraCB158_44_51_0_PO_N3",
+        "uid": 547,
+        "id": "158",
+        "x": 44,
+        "y": 51,
+        "z": 0,
+        "anchor": {
+          "x": 44,
+          "y": 51,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_548_eraCB158_50_51_0_PO_N3",
+        "uid": 548,
+        "id": "158",
+        "x": 50,
+        "y": 51,
+        "z": 0,
+        "anchor": {
+          "x": 50,
+          "y": 51,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_549_eraCB158_53_51_0_PO_N3",
+        "uid": 549,
+        "id": "158",
+        "x": 53,
+        "y": 51,
+        "z": 0,
+        "anchor": {
+          "x": 53,
+          "y": 51,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_550_eraCB158_56_51_0_PO_N3",
+        "uid": 550,
+        "id": "158",
+        "x": 56,
+        "y": 51,
+        "z": 0,
+        "anchor": {
+          "x": 56,
+          "y": 51,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_551_eraCB161_5_54_0_PO_N3",
+        "uid": 551,
+        "id": "161",
+        "x": 5,
+        "y": 54,
+        "z": 0,
+        "anchor": {
+          "x": 5,
+          "y": 54,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_552_eraCB164_59_54_0_PO_N3",
+        "uid": 552,
+        "id": "164",
+        "x": 59,
+        "y": 54,
+        "z": 0,
+        "anchor": {
+          "x": 59,
+          "y": 54,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_553_eraCB165_54_36_0_PO_N3",
+        "uid": 553,
+        "id": "165",
+        "x": 54,
+        "y": 36,
+        "z": 0,
+        "anchor": {
+          "x": 55,
+          "y": 36,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_554_eraCB166_34_57_0_PO_N3",
+        "uid": 554,
+        "id": "166",
+        "x": 34,
+        "y": 57,
+        "z": 0,
+        "anchor": {
+          "x": 36,
+          "y": 57,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_555_eraCB166_37_57_0_PO_N3",
+        "uid": 555,
+        "id": "166",
+        "x": 37,
+        "y": 57,
+        "z": 0,
+        "anchor": {
+          "x": 39,
+          "y": 57,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_556_eraCB168_60_57_0_PO_N3",
+        "uid": 556,
+        "id": "168",
+        "x": 60,
+        "y": 57,
+        "z": 0,
+        "anchor": {
+          "x": 61,
+          "y": 57,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_557_eraCB169_18_60_0_PO_N3",
+        "uid": 557,
+        "id": "169",
+        "x": 18,
+        "y": 60,
+        "z": 0,
+        "anchor": {
+          "x": 19,
+          "y": 60,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_558_eraCB169_21_60_0_PO_N3",
+        "uid": 558,
+        "id": "169",
+        "x": 21,
+        "y": 60,
+        "z": 0,
+        "anchor": {
+          "x": 22,
+          "y": 60,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_559_eraCB170_31_60_0_PO_N3",
+        "uid": 559,
+        "id": "170",
+        "x": 31,
+        "y": 60,
+        "z": 0,
+        "anchor": {
+          "x": 33,
+          "y": 60,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_560_eraCB170_40_60_0_PO_N3",
+        "uid": 560,
+        "id": "170",
+        "x": 40,
+        "y": 60,
+        "z": 0,
+        "anchor": {
+          "x": 42,
+          "y": 60,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_561_eraCB170_43_60_0_PO_N3",
+        "uid": 561,
+        "id": "170",
+        "x": 43,
+        "y": 60,
+        "z": 0,
+        "anchor": {
+          "x": 45,
+          "y": 60,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_562_eraCB170_43_39_0_PO_N3",
+        "uid": 562,
+        "id": "170",
+        "x": 43,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 45,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_563_eraCB170_46_39_0_PO_N3",
+        "uid": 563,
+        "id": "170",
+        "x": 46,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 48,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_564_eraCB170_55_39_0_PO_N3",
+        "uid": 564,
+        "id": "170",
+        "x": 55,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 57,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_565_eraCB170_64_39_0_PO_N3",
+        "uid": 565,
+        "id": "170",
+        "x": 64,
+        "y": 39,
+        "z": 0,
+        "anchor": {
+          "x": 66,
+          "y": 39,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_566_eraCB171_60_60_0_PO_N3",
+        "uid": 566,
+        "id": "171",
+        "x": 60,
+        "y": 60,
+        "z": 0,
+        "anchor": {
+          "x": 61,
+          "y": 60,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_567_eraCB171_12_63_0_PO_N3",
+        "uid": 567,
+        "id": "171",
+        "x": 12,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 13,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_568_eraCB172_33_63_0_PO_N3",
+        "uid": 568,
+        "id": "172",
+        "x": 33,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 34,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_569_eraCB172_36_63_0_PO_N3",
+        "uid": 569,
+        "id": "172",
+        "x": 36,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 37,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_570_eraCB172_39_63_0_PO_N3",
+        "uid": 570,
+        "id": "172",
+        "x": 39,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 40,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_571_eraCB172_60_48_0_PO_N3",
+        "uid": 571,
+        "id": "172",
+        "x": 60,
+        "y": 48,
+        "z": 0,
+        "anchor": {
+          "x": 61,
+          "y": 48,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_572_eraCB173_42_63_0_PO_N3",
+        "uid": 572,
+        "id": "173",
+        "x": 42,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 43,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_573_eraCB173_48_63_0_PO_N3",
+        "uid": 573,
+        "id": "173",
+        "x": 48,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 49,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_574_eraCB173_54_63_0_PO_N3",
+        "uid": 574,
+        "id": "173",
+        "x": 54,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 55,
+          "y": 63,
+          "z": 0
+        }
+      },
+      {
+        "name": "creatureGeneratorCommon_575_eraCB173_57_63_0_PO_N3",
+        "uid": 575,
+        "id": "173",
+        "x": 57,
+        "y": 63,
+        "z": 0,
+        "anchor": {
+          "x": 58,
+          "y": 63,
+          "z": 0
+        }
+      }
+    ],
+    "rng": {
+      "offset": 292048,
+      "value": "136337021"
+    }
+  },
+  "shared143NativeValidated": true,
+  "nativeDeterministicSeed": true,
+  "nativeReloadIdempotent": true,
+  "nativeDayOneOnly": true,
+  "nativeOffInert": true
+}

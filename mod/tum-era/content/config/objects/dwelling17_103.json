@@ -1,0 +1,31 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_103": {
+        "name": "Wineyard",
+        "creatures": [
+          [
+            "tum-era:eraCreature262"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw03.def",
+            "mask": [
+              "VVV",
+              "VBB",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_131": {
+        "name": "Training Tower",
+        "creatures": [
+          [
+            "tum-era:eraCreature301"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw34.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

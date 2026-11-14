@@ -1,0 +1,38 @@
+{
+  "dataOnly": true,
+  "sourceIds": [
+    253,
+    306,
+    330
+  ],
+  "beforeFiles": {
+    "content/config/source-bank-actors.candidate.json": "d8861acfe58a68be59c402643c813e123dc15115288f68d22f12810a5e08d2f2",
+    "content/config/source-dwelling-actors.candidate.json": "04126e9a3cd6b4c02c96c90c6d1865ba067f61f2b2be42e36089777b76ba8c82",
+    "registry-patches.json": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+    "union-review.json": "adb97f959977218ec02cc940a275977bb3abd2992058ac0610c60ec68b475f60"
+  },
+  "afterFiles": {
+    "content/config/source-bank-actors.candidate.json": "5d955bbd8424716437e021f49594858df1a304ab4b77bf8f6b9d2669f7f113f0",
+    "content/config/source-dwelling-actors.candidate.json": "13dfc93200f4693f3b21c56bdea8d8e9ec57f51557ce8bfb2de3cd40a3c13e81",
+    "registry-patches.json": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+    "union-review.json": "cd10e23904ca98bc7958768c9e00d1d8afbf5355bd68cc16628263644cdbd76b"
+  },
+  "profilesUnchanged": true,
+  "fearless330Unchanged": true,
+  "engineChanged": false,
+  "nativeValidated": false,
+  "definitionHashes": {
+    "253": {
+      "before": "0b7a0fa411133257d9a75579d7d138cfb7fa772803546a2babad56d988b2f3dc",
+      "after": "91e22c6e833a8d83ced6c5780e2786fa2e1c2922288f2f3b19135c4658177fd3"
+    },
+    "306": {
+      "before": "74fea19a5d37ca85f585842d76866a9903b0a94bdfe5477b5a8d6f676912db75",
+      "after": "26f3a0d690ee99ba4925f1f3726b70a6c9c4d6df8eef56410204a5bbd5d952d1"
+    },
+    "330": {
+      "before": "30df179fdb4e3300b5b794e4e4894ea5514932b805dce0fa38338de20e6f73a4",
+      "after": "0f2e4a2a168ac3e7bdca937b1b2258ce2adaa2539f31744c3ce01001662b7bc1"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_139": {
+        "name": "Rustic Habitation",
+        "creatures": [
+          [
+            "tum-era:eraCreature313"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature313",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw42.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVBB",
+              "VVAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

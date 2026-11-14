@@ -27,6 +27,7 @@
 #include "../mapObjects/CGDwelling.h"
 #include "../mapObjects/CGResource.h"
 #include "../mapObjects/CGMarket.h"
+#include "../mapObjects/CGMysteriousCave.h"
 #include "../mapObjects/CGPandoraBox.h"
 #include "../mapObjects/CGTownInstance.h"
 #include "../mapObjects/CQuest.h"
@@ -308,6 +309,8 @@ void registerTypes(Serializer &s)
 	s.template registerType<RefreshArtifactState>(265);
     s.template registerType<RefreshConfluxTome>(266);
     s.template registerType<ResetStackExperience>(267);
+    s.template registerType<CGMysteriousCave>(268);
+    s.template registerType<CaveBuilderAction>(269);
 }
 
 VCMI_LIB_NAMESPACE_END

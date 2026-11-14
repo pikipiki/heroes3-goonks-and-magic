@@ -15,6 +15,7 @@
 #include "../CGameHandler.h"
 #include "../era/EraWayfarerRuntime.h"
 #include "../era/EraDragonlingEvolutionRuntime.h"
+#include "../era/EraObjectReplacementRuntime.h"
 
 #include "../../lib/CPlayerState.h"
 #include "../../lib/era/EraBridgeArtifactPolicies.h"
@@ -785,6 +786,8 @@ void NewTurnProcessor::onNewTurn()
 	bool newMonth = gameHandler->gameInfo().getDate(Date::DAY_OF_MONTH) == 28;
 
 	gameHandler->sendAndApply(n);
+
+    era_compat::applyEraFirstDayObjectReplacements(*gameHandler,firstTurn);
 
 
 	if (newWeek)

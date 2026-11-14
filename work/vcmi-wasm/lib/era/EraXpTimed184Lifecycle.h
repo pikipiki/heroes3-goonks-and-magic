@@ -12,7 +12,7 @@ inline void replaceXpTimed184Local(CStack&unit,int spell,const era_bridge::xp184
 }
 inline void advanceXpTimed184Local(CStack&unit,bool tactics)
 {
- for(int spell:{42,49,50,51,52,54,59,60,62,70,73,74})
+ for(int spell:{42,49,50,51,52,54,59,60,61,62,70,73,74})
  {
   const auto old=readXpTimed184(unit,spell);if(!old.owned)continue;
   const auto change=era_bridge::xp184::round(old.state,unit.alive(),tactics);
@@ -26,7 +26,7 @@ inline void wakeXpTimed184Local(CStack&unit)
 inline void clearXpTimed184OnDeath(CStack&unit)
 {
  //443E40 removes positive durations only; persistent zero/negative debts survive.
- for(int spell:{42,49,50,51,52,54,59,60,62,70,73,74}){const auto old=readXpTimed184(unit,spell);if(old.owned&&old.state.removable())replaceXpTimed184Local(unit,spell,era_bridge::xp184::remove(old.state).state);}
+ for(int spell:{42,49,50,51,52,54,59,60,61,62,70,73,74}){const auto old=readXpTimed184(unit,spell);if(old.owned&&old.state.removable())replaceXpTimed184Local(unit,spell,era_bridge::xp184::remove(old.state).state);}
 }
 inline std::optional<SetStackEffect> removeXpTimed184Packet(BattleID battleID,const battle::Unit&unit,int spell)
 {

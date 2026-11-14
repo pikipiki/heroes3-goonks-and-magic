@@ -1,0 +1,7580 @@
+{
+  "schemaVersion": 1,
+  "contract": "source-object-replacements-v1",
+  "enabled": true,
+  "sourceArchiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "plans": [
+    {
+      "sourceKey": "Data/s/000_Beholders's Sanctuary (replacer).erm",
+      "parameterId": "000",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 21,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank21"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 85,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:shipwreck",
+            "type": "core:shipwreck"
+          },
+          "percentage": 25,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/001_Mansion (replacer).erm",
+      "parameterId": "001",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 24,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank24"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 55,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:mysticalGarden",
+            "type": "core:mysticalGarden"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/002_Spit (replacer).erm",
+      "parameterId": "002",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 25,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank25"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/003_Red Tower (replacer).erm",
+      "parameterId": "003",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 26,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank26"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 10,
+          "xOffset": 2
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/004_Black Tower (replacer).erm",
+      "parameterId": "004",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 27,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank27"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/005_Ivory Tower (replacer).erm",
+      "parameterId": "005",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 28,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank28"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/006_Churchyard (replacer).erm",
+      "parameterId": "006",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 29,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank29"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 84,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:crypt",
+            "type": "core:crypt"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/007_Experimental Shop (replacer).erm",
+      "parameterId": "007",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 30,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank30"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/008_Wolf Raider Picket (replacer).erm",
+      "parameterId": "008",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 31,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank31"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:cyclopsStockpile"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/009_Pantheon (replacer).erm",
+      "parameterId": "009",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 33,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank33"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 84,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:crypt",
+            "type": "core:crypt"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/010_Mithril Tower (replacer).erm",
+      "parameterId": "010",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 34,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank34"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/011_Experimental Factory (replacer).erm",
+      "parameterId": "011",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 35,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank35"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/012_Wolf Raider Gaol (replacer).erm",
+      "parameterId": "012",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 36,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank36"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:cyclopsStockpile"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/013_Blue Tower (replacer).erm",
+      "parameterId": "013",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 38,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank38"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 10,
+          "xOffset": 2
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/014_Lava Spit (replacer).erm",
+      "parameterId": "014",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 39,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank39"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/015_Monstrous Eyes' Sanctuary (replacer).erm",
+      "parameterId": "015",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 40,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank40"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 85,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:shipwreck",
+            "type": "core:shipwreck"
+          },
+          "percentage": 25,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/016_Haunted Mansion (replacer).erm",
+      "parameterId": "016",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 41,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank41"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 55,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:mysticalGarden",
+            "type": "core:mysticalGarden"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/017_Bone Pillar (replacer).erm",
+      "parameterId": "017",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 42,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank42"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/018_City of the Dead (replacer).erm",
+      "parameterId": "018",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 43,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank43"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/019_Sacred Temple (replacer).erm",
+      "parameterId": "019",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 44,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank44"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/020_Seminarium (replacer).erm",
+      "parameterId": "020",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 45,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank45"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/021_Phantom Ship (replacer).erm",
+      "parameterId": "021",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 46,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank46"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 24,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:derelictShip",
+            "type": "core:derelictShip"
+          },
+          "percentage": 50,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/022_Sorceress Castle (replacer).erm",
+      "parameterId": "022",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 47,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank47"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 25,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:dragonUtopia",
+            "type": "core:dragonUtopia"
+          },
+          "percentage": 15,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/023_Outpost of Souls (replacer).erm",
+      "parameterId": "023",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 48,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank48"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/024_Rotten Dragons Valley (replacer).erm",
+      "parameterId": "024",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 49,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank49"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 25,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:dragonUtopia",
+            "type": "core:dragonUtopia"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/025_Magical Utopia (replacer).erm",
+      "parameterId": "025",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 50,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank50"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 25,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:dragonUtopia",
+            "type": "core:dragonUtopia"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/026_Legendary Dragon Utopia (replacer).erm",
+      "parameterId": "026",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 51,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank51"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 25,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:dragonUtopia",
+            "type": "core:dragonUtopia"
+          },
+          "percentage": 3,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/027_Dreadnought Tower (replacer).erm",
+      "parameterId": "027",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 52,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank52"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 96,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:temple",
+            "type": "core:temple"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/028_Heaven's Door (replacer).erm",
+      "parameterId": "028",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 53,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank53"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 107,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfWar",
+            "type": "core:schoolOfWar"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/029_Forbidden Cliffs (replacer).erm",
+      "parameterId": "029",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 54,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank54"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/030_Olympus Forbidden (replacer).erm",
+      "parameterId": "030",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 55,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank55"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 107,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfWar",
+            "type": "core:schoolOfWar"
+          },
+          "percentage": 5,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/031_Sins Generator (replacer).erm",
+      "parameterId": "031",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 56,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank56"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 5,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/032_Dragon Mausoleum (replacer).erm",
+      "parameterId": "032",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 57,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank57"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 5,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/033_Dragon City (replacer).erm",
+      "parameterId": "033",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 58,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank58"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/034_Behemoth Ancient Crag (replacer).erm",
+      "parameterId": "034",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 59,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank59"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 41,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:libraryOfEnlightenment",
+            "type": "core:libraryOfEnlightenment"
+          },
+          "percentage": 5,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/035_Volcanic Well (replacer).erm",
+      "parameterId": "035",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 60,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank60"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/036_Supreme Pyre( replacer).erm",
+      "parameterId": "036",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 61,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank61"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 107,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfWar",
+            "type": "core:schoolOfWar"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/037_Elemental Stockpile (replacer).erm",
+      "parameterId": "037",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 62,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank62"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/038_Gargoyle Stonevault (replacer).erm",
+      "parameterId": "038",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 63,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank63"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/039_Halls of Temptation (replacer).erm",
+      "parameterId": "039",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 64,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank64"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 10,
+          "xOffset": 2
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/040_Royal Treasury (replacer).erm",
+      "parameterId": "040",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 65,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank65"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/041_Fire Dragon Castle (replacer).erm",
+      "parameterId": "041",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 66,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank66"
+      },
+      "enabled": true,
+      "allowRandomMap": true,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 25,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:dragonUtopia",
+            "type": "core:dragonUtopia"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/042_Ice Dragon Castle (replacer).erm",
+      "parameterId": "042",
+      "targetSourceType": 16,
+      "targetSourceSubtype": 67,
+      "target": {
+        "group": "core:creatureBank",
+        "type": "tum-era:eraBank67"
+      },
+      "enabled": true,
+      "allowRandomMap": true,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 25,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:dragonUtopia",
+            "type": "core:dragonUtopia"
+          },
+          "percentage": 3,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/100_Training Grounds with Archery (replacer).erm",
+      "parameterId": "100",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 101,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_101"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:trainingGrounds"
+          },
+          "percentage": 20,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/101_Giant Golden Pavilion (replacer).erm",
+      "parameterId": "101",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 102,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_102"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 36,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:goldenPavilion"
+          },
+          "percentage": 15,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 1,
+          "xOffset": 1
+        },
+        {
+          "slot": 2,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 1,
+          "xOffset": 1
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/102_Wineyard (replacer).erm",
+      "parameterId": "102",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 103,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_103"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 25,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/103_Alehouse (replacer).erm",
+      "parameterId": "103",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 105,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_105"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 25,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/104_Ziggurat [Fangarm] (replacer).erm",
+      "parameterId": "104",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 104,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_104"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 25,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/109_Order of Fire (replacer).erm",
+      "parameterId": "109",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 122,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_122"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 51,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:mercenaryCamp",
+            "type": "core:mercenaryCamp"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/110_Order of Ice (replacer).erm",
+      "parameterId": "110",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 123,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_123"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 96,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:temple",
+            "type": "core:temple"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/111_Dragon Slayer Tower (replacer).erm",
+      "parameterId": "111",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 124,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_124"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 107,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfWar",
+            "type": "core:schoolOfWar"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/112_Cursed Temple of Archers (replacer).erm",
+      "parameterId": "112",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 125,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_125"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 54,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:cursedTemple"
+          },
+          "percentage": 25,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/113_Bloody Temple (replacer).erm",
+      "parameterId": "113",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 126,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_126"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 54,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:cursedTemple"
+          },
+          "percentage": 25,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/114_Temple of Souls (replacer).erm",
+      "parameterId": "114",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 127,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_127"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 54,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:cursedTemple"
+          },
+          "percentage": 25,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/115_Legendary Cursed Temple (replacer).erm",
+      "parameterId": "115",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 128,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_128"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 54,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:cursedTemple"
+          },
+          "percentage": 5,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/116_Order of Thunder (replacer).erm",
+      "parameterId": "116",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 129,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_129"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 51,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:mercenaryCamp",
+            "type": "core:mercenaryCamp"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/117_Dragon Sanctuary (replacer).erm",
+      "parameterId": "117",
+      "targetSourceType": 20,
+      "targetSourceSubtype": 2,
+      "target": {
+        "group": "core:creatureGeneratorSpecial",
+        "type": "tum-era:eraDwelling20_2"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 107,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfWar",
+            "type": "core:schoolOfWar"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/118_Laboratory (replacer).erm",
+      "parameterId": "118",
+      "targetSourceType": 20,
+      "targetSourceSubtype": 3,
+      "target": {
+        "group": "core:creatureGeneratorSpecial",
+        "type": "tum-era:eraDwelling20_3"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:cyclopsStockpile"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/130_Black Tower (replacer).erm",
+      "parameterId": "70",
+      "targetSourceType": 20,
+      "targetSourceSubtype": 4,
+      "target": {
+        "group": "core:creatureGeneratorSpecial",
+        "type": "tum-era:eraDwelling20_4"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/131_Mysterious Cave (replacer).erm",
+      "parameterId": "71",
+      "targetSourceType": 63,
+      "targetSourceSubtype": 56,
+      "target": {
+        "group": "tum-era:mysteriousCave",
+        "type": "tum-era:mysteriousCave"
+      },
+      "enabled": true,
+      "allowRandomMap": true,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": 51,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:mercenaryCamp",
+            "type": "core:mercenaryCamp"
+          },
+          "percentage": 20,
+          "xOffset": 1
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/132_Cathedral (replacer).erm",
+      "parameterId": "132",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 110,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_110"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/133_Treehouse (replacer).erm",
+      "parameterId": "133",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 111,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_111"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/134_Dragon Factory (replacer).erm",
+      "parameterId": "134",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 112,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_112"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/135_Lust Chambers (replacer).erm",
+      "parameterId": "135",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 113,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_113"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/136_Wolf Cave (replacer).erm",
+      "parameterId": "136",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 114,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_114"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/137_Primeval Maw (replacer).erm",
+      "parameterId": "137",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 115,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_115"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 4,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:medusaStore"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/138_Ziggurat (replacer).erm",
+      "parameterId": "138",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 116,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_116"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:cyclopsStockpile"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/139_Coral Reef (replacer).erm",
+      "parameterId": "139",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 119,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_119"
+      },
+      "enabled": true,
+      "allowRandomMap": true,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 85,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:shipwreck",
+            "type": "core:shipwreck"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/140_Swamp Hut (replacer).erm",
+      "parameterId": "140",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 117,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_117"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/141_Drowned Hall (replacer).erm",
+      "parameterId": "141",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 118,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_118"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/142_Ancient Crypt (replacer).erm",
+      "parameterId": "142",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 120,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_120"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/143_Frigate of the fallen (replacer).erm",
+      "parameterId": "143",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 130,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_130"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 2,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 67,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:treetopTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/144_Defunct Treetop Tower (replacer).erm",
+      "parameterId": "143",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 130,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_130"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 2,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 67,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:treetopTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/145_Training Tower (replacer).erm",
+      "parameterId": "145",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 131,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_131"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 57,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:archersTower"
+          },
+          "percentage": 50,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/146_Peon Hut (replacer).erm",
+      "parameterId": "146",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 132,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_132"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/147_Mire (replacer).erm",
+      "parameterId": "147",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 133,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_133"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 4,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:arena",
+            "type": "core:arena"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/148_Altar of Darkness (replacer).erm",
+      "parameterId": "148",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 134,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_134"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 6,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dragonFlyHive"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/149_Butt Excavation (replacer).erm",
+      "parameterId": "149",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 135,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_135"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/150_ Black Alder (replacer).erm",
+      "parameterId": "150",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 136,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_136"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/151_Quaggy Relic (replacer).erm",
+      "parameterId": "151",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 137,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_137"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/152_Squalid Nide (replacer).erm",
+      "parameterId": "152",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 138,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_138"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/153_Rusty Habitation (replacer).erm",
+      "parameterId": "153",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 139,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_139"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 4,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:arena",
+            "type": "core:arena"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/154_Turquoise Passage (replacer).erm",
+      "parameterId": "154",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 140,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_140"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 61,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:starAxis",
+            "type": "core:starAxis"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/155_Baba Yaga's Hut (replacer).erm",
+      "parameterId": "155",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 141,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_141"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 2,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:griffinConservatory"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/156_Sparky Meadow (replacer).erm",
+      "parameterId": "156",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 142,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_142"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/157_Mysterious portal (replacer).erm",
+      "parameterId": "157",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 143,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_143"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:impCache"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/158_Lizard Soldier Den (replacer).erm",
+      "parameterId": "158",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 144,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_144"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 30,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:lizardDen"
+          },
+          "percentage": 50,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/159_Slith Pool (replacer).erm",
+      "parameterId": "159",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 145,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_145"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 23,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:marlettoTower",
+            "type": "core:marlettoTower"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/160_Illusory Dragon Shrine (replacer).erm",
+      "parameterId": "160",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 146,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_146"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 47,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:schoolOfMagic",
+            "type": "core:schoolOfMagic"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/161_Primitive stable (replacer).erm",
+      "parameterId": "161",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 147,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_147"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 6,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:centaurStables"
+          },
+          "percentage": 15,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/162_Ruins in Lava (replacer).erm",
+      "parameterId": "162",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 148,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_148"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 16,
+          "sourceSubtype": 1,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dwarvenTreasury"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/163_Evil Cathedral (replacer).erm",
+      "parameterId": "163",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 149,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_149"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 4,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:dragonVault"
+          },
+          "percentage": 15,
+          "xOffset": 2
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/164_Dark Shrine(replacer).erm",
+      "parameterId": "164",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 150,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_150"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 3,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:hallOfDarkness"
+          },
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/165_Black Pond(replacer).erm",
+      "parameterId": "165",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 151,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_151"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 51,
+          "sourceSubtype": 0,
+          "source": {
+            "group": "core:mercenaryCamp",
+            "type": "core:mercenaryCamp"
+          },
+          "percentage": 20,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/166_Gates of Tartarus(replacer).erm",
+      "parameterId": "166",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 152,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_152"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 14,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:fireLake"
+          },
+          "percentage": 10,
+          "xOffset": 2
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/167_Shadow Vault(replacer).erm",
+      "parameterId": "167",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 153,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_153"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 4,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:dragonVault"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/168_Imperial Barracks(replacer).erm",
+      "parameterId": "168",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 154,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_154"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 58,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:barracks"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/169_Green Dragon Nest(replacer).erm",
+      "parameterId": "169",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 155,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_155"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 24,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:dragonCliffs"
+          },
+          "percentage": 50,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": 16,
+          "sourceSubtype": 6,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dragonFlyHive"
+          },
+          "percentage": 10,
+          "xOffset": 1
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 10,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/170_Red Dragon Nest(replacer).erm",
+      "parameterId": "170",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 156,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_156"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 41,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:dragonCave"
+          },
+          "percentage": 50,
+          "xOffset": 2
+        },
+        {
+          "slot": 1,
+          "sourceType": 16,
+          "sourceSubtype": 4,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:medusaStore"
+          },
+          "percentage": 30,
+          "xOffset": 2
+        },
+        {
+          "slot": 2,
+          "sourceType": 16,
+          "sourceSubtype": 5,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:nagaBank"
+          },
+          "percentage": 30,
+          "xOffset": 2
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/171_Faerie Dragon Nest(replacer).erm",
+      "parameterId": "171",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 157,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_157"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 64,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:magicForest"
+          },
+          "percentage": 30,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": 16,
+          "sourceSubtype": 6,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dragonFlyHive"
+          },
+          "percentage": 7,
+          "xOffset": 1
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/172_Rust Dragon Nest(replacer).erm",
+      "parameterId": "172",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 158,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_158"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 65,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:sulfurousLair"
+          },
+          "percentage": 30,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": 16,
+          "sourceSubtype": 6,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dragonFlyHive"
+          },
+          "percentage": 7,
+          "xOffset": 1
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    },
+    {
+      "sourceKey": "Data/s/173_Azure Dragon Nest(replacer).erm",
+      "parameterId": "173",
+      "targetSourceType": 17,
+      "targetSourceSubtype": 159,
+      "target": {
+        "group": "core:creatureGeneratorCommon",
+        "type": "tum-era:eraDwelling17_159"
+      },
+      "enabled": true,
+      "allowRandomMap": false,
+      "functionMultiplicity": 1,
+      "rules": [
+        {
+          "slot": 0,
+          "sourceType": 17,
+          "sourceSubtype": 62,
+          "source": {
+            "group": "core:creatureGeneratorCommon",
+            "type": "core:frozenCliffs"
+          },
+          "percentage": 50,
+          "xOffset": 1
+        },
+        {
+          "slot": 1,
+          "sourceType": 16,
+          "sourceSubtype": 6,
+          "source": {
+            "group": "core:creatureBank",
+            "type": "core:dragonFlyHive"
+          },
+          "percentage": 5,
+          "xOffset": 1
+        },
+        {
+          "slot": 2,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 3,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 4,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 5,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        },
+        {
+          "slot": 6,
+          "sourceType": -1,
+          "sourceSubtype": -1,
+          "source": null,
+          "percentage": 0,
+          "xOffset": 0
+        }
+      ]
+    }
+  ]
+}

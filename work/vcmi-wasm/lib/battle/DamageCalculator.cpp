@@ -9,6 +9,9 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraDwellingServices.h"
+#include "../era/EraXpTimed184State.h"
+#include "../era/EraDwellingRule.h"
 #include "../era/EraSourceXpRetaliationFrame.h"
 #include "../era/EraBridgePolicies.h"
 #include "../era/EraDefenseReduction.h"
@@ -139,6 +142,10 @@ DamageRange DamageCalculator::getBaseDamageBlessCurse() const
 DamageRange DamageCalculator::getBaseDamageStack() const
 {
 	auto stackSize = info.attacker->getCount();
+    const auto forget=era_compat::readXpTimed184(*info.attacker,61);
+    if(info.shooting&&forget.owned)
+        stackSize=era_bridge::xp184::forgetfulShootingCount(stackSize,forget.state.duration,
+            info.attacker->hasBonusOfType(BonusType::SHOOTER));
 	auto baseDamage = getBaseDamageBlessCurse();
 	return {
 		baseDamage.min * stackSize,
@@ -321,7 +328,9 @@ double DamageCalculator::getAttackHateCreatureFactor() const
     const auto selector=[&](const Bonus * bonus)
     {
         if(bonus->subtype==nativeSubtype)return true;
-        if(!::era_bridge::sourceStrongholdHatePair(sourceAttacker,sourceTarget)
+        if((!::era_bridge::sourceStrongholdHatePair(sourceAttacker,sourceTarget)
+                && !(era_compat::BankActors::get().enabled()
+                    &&::era_bridge::bankSourceHatePair(sourceAttacker,sourceTarget)))
             || bonus->subtype!=BonusSubtypeID() || !bonus->parameters)return false;
         const auto & sourceIds=bonus->parameters->toVector();
         return sourceIds.size()==1 && sourceIds[0]==sourceTarget;
@@ -472,7 +481,9 @@ double DamageCalculator::getDefenseForgetfulnessFactor() const
 	{
 		//todo: set actual percentage in spell bonus configuration instead of just level; requires non trivial backward compatibility handling
 		//get list first, total value of 0 also counts
-		TConstBonusListPtr forgetfulList = info.attacker->getBonusesOfType(BonusType::FORGETFULL);
+		TConstBonusListPtr forgetfulList = info.attacker->getBonuses(
+            Selector::type()(BonusType::FORGETFULL).And([](const Bonus * b)
+            {return !era_compat::xpTimed184Owned(*b,61);}));
 
 		if(!forgetfulList->empty())
 		{
@@ -624,7 +635,11 @@ DamageEstimation DamageCalculator::calculateDmgRange() const
 	}
 
 	const auto personalBonuses = info.attacker->getBonusesOfType(BonusType::ERA_PERSONAL_HATE_DAMAGE);
-	const int personalHate = personalBonuses->valOfBonuses(Selector::subtype()(BonusSubtypeID(info.defender->creatureId())));
+	int personalHate = personalBonuses->valOfBonuses(Selector::subtype()(BonusSubtypeID(info.defender->creatureId())));
+    personalHate += era_bridge::dwellingDragonFlatDamage(
+      era_compat::DwellingServices::get().actor(200,info.attacker->unitType()->getJsonKey()),
+      era_compat::DwellingServices::get().actor(200,info.defender->unitType()->getJsonKey()),
+      info.attacker->hasBonusOfType(BonusType::DRAGON_NATURE),info.defender->hasBonusOfType(BonusType::DRAGON_NATURE));
 	double resultingFactor = attackFactorTotal * defenseFactorTotal;
 
 	int64_t cap = getDamageCap();

@@ -1,0 +1,125 @@
+TAP version 13
+# Subtest: whole dwelling closure includes all original targets and upgrade dependencies
+ok 1 - whole dwelling closure includes all original targets and upgrade dependencies
+  ---
+  duration_ms: 0.297708
+  ...
+# Subtest: source dwelling services require exact source actors and retain scoped runtime laws
+ok 2 - source dwelling services require exact source actors and retain scoped runtime laws
+  ---
+  duration_ms: 4.915292
+  ...
+# Subtest: all 44 non-bank actors are staged with exact assets and unresolved gates
+ok 3 - all 44 non-bank actors are staged with exact assets and unresolved gates
+  ---
+  duration_ms: 948.7295
+  ...
+# Subtest: native dwelling health/Ghost arithmetic and source summon rounding pass UBSan
+ok 4 - native dwelling health/Ghost arithmetic and source summon rounding pass UBSan
+  ---
+  duration_ms: 389.628542
+  ...
+# Subtest: new artifact mimic contracts reject source/target substitution
+ok 5 - new artifact mimic contracts reject source/target substitution
+  ---
+  duration_ms: 0.192625
+  ...
+# Subtest: original hypnotist modes retain mastery2 and count power, Fortune retains fixed duration6
+ok 6 - original hypnotist modes retain mastery2 and count power, Fortune retains fixed duration6
+  ---
+  duration_ms: 2.268334
+  ...
+# Subtest: intrinsic statuses and Toxic15 have exact source spells rather than broad immunity
+ok 7 - intrinsic statuses and Toxic15 have exact source spells rather than broad immunity
+  ---
+  duration_ms: 2.057667
+  ...
+# Subtest: bank XP cohort binds six exact source slots without changing the admitted43 cohort
+ok 8 - bank XP cohort binds six exact source slots without changing the admitted43 cohort
+  ---
+  duration_ms: 1.425625
+  ...
+# Subtest: actual bank XP dispatcher preserves phase, mastery, CURRENT power and rank-zero draws under UBSan
+ok 9 - actual bank XP dispatcher preserves phase, mastery, CURRENT power and rank-zero draws under UBSan
+  ---
+  duration_ms: 892.996167
+  ...
+# Subtest: bank XP header reproduces original archive rows and cache slots
+ok 10 - bank XP header reproduces original archive rows and cache slots
+  ---
+  duration_ms: 84.97875
+  ...
+# Subtest: dwelling XP keeps exact source slots and distinct intrinsic/XP stone/paralysis ownership
+ok 11 - dwelling XP keeps exact source slots and distinct intrinsic/XP stone/paralysis ownership
+  ---
+  duration_ms: 0.923708
+  ...
+# Subtest: dwelling XP header regenerates from pinned original archive
+ok 12 - dwelling XP header regenerates from pinned original archive
+  ---
+  duration_ms: 84.171917
+  ...
+# Subtest: production earthquake law preserves original allocation asymmetry and bounded RNG under UBSan
+ok 13 - production earthquake law preserves original allocation asymmetry and bounded RNG under UBSan
+  ---
+  duration_ms: 806.240459
+  ...
+# Subtest: level defaults precede universal default and actor; source ordinal is not cache slot
+ok 14 - level defaults precede universal default and actor; source ordinal is not cache slot
+  ---
+  duration_ms: 0.819333
+  ...
+# Subtest: universal default does not replace level code, modifier ignored
+ok 15 - universal default does not replace level code, modifier ignored
+  ---
+  duration_ms: 0.096083
+  ...
+# Subtest: ADHMSm overwrite first same code ignoring modifier; spell code rows append independently
+ok 16 - ADHMSm overwrite first same code ignoring modifier; spell code rows append independently
+  ---
+  duration_ms: 0.142
+  ...
+# Subtest: first inactive flag is slot sentinel, not code0 or end of first empty gap
+ok 17 - first inactive flag is slot sentinel, not code0 or end of first empty gap
+  ---
+  duration_ms: 0.090209
+  ...
+# Subtest: 14-slot saturation ignores extra rows but later overwrite still succeeds
+ok 18 - 14-slot saturation ignores extra rows but later overwrite still succeeds
+  ---
+  duration_ms: 0.0965
+  ...
+# Subtest: source writes unsigned byte modifier and11rank values; does not coalesce100percent or rank0
+ok 19 - source writes unsigned byte modifier and11rank values; does not coalesce100percent or rank0
+  ---
+  duration_ms: 0.101625
+  ...
+# Subtest: level7 default applies twice but matching codes are not duplicated
+ok 20 - level7 default applies twice but matching codes are not duplicated
+  ---
+  duration_ms: 0.049958
+  ...
+# Subtest: invalid bounded actor or level refuses undefined default memory
+ok 21 - invalid bounded actor or level refuses undefined default memory
+  ---
+  duration_ms: 0.092042
+  ...
+# Subtest: 37 original cache bindings, not CSV ordinals; inactive bound policy rejects slot/provenance tampering
+ok 22 - 37 original cache bindings, not CSV ordinals; inactive bound policy rejects slot/provenance tampering
+  ---
+  duration_ms: 7.158708
+  ...
+# Subtest: pure future C++ ledger preserves group-entry alive, current-primary power, slot ordering and private OFF gate
+ok 23 - pure future C++ ledger preserves group-entry alive, current-primary power, slot ordering and private OFF gate
+  ---
+  duration_ms: 892.88175
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1422.8625

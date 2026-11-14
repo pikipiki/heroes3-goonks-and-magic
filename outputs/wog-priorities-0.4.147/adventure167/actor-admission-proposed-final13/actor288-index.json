@@ -1,0 +1,52 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "scope": "Proposed whole source actor288 review: compiled source definition/runtime ownership plus actual rank0 identity and separately retained functional scopes. No unobserved native branch is asserted.",
+  "proofs": [
+    {
+      "file": "raw/mixed54--result.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "68d044bc2a8685f702dfe02788adb58ca255a544bcc1c7b8cb141cd31f4eeaee"
+    },
+    {
+      "file": "raw/creatures--artifact-mimic288-311.json",
+      "passed": true,
+      "engineSHA256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "proofSHA256": "2f5e1ec961706baeace75ea1ef8fbec4482d6696c8cea32b1703b928683a9a34"
+    },
+    {
+      "file": "raw/dwelling-xp17--actors282-288-292.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "47fd1087c8ef2ef28bb79f6fee3322baee0ac5da7a030806b33dfba0bf8ff50b"
+    },
+    {
+      "file": "raw/historical--fixed-casters-264-288.json",
+      "passed": true,
+      "engineSHA256": "39c2a5db82fcfa2e5d406938b67fb7aa78a4e5f1975ea182c32b2a4c424bd46e",
+      "proofSHA256": "789b8ffe81218ce441dac946841d7ea80102fd7684706a887d05d2da2a1075c8"
+    },
+    {
+      "file": "raw/creatures--periodic288-322.partial.json",
+      "checkpoint": true,
+      "scope": "Only explicitly selected successful periodic native cases; unfinished whole run not validated.",
+      "casePointers": [
+        "/report/periodic288"
+      ],
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "proofSHA256": "87fd1fa4cb4e8bac17e04dd93559e23b52725ed8f7f3988978ff06df5af2f7cb"
+    }
+  ],
+  "validatedSourceIds": [
+    288
+  ],
+  "sourceReview": {
+    "contractsFile": "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/whole54-contracts-final13.json",
+    "contractsSha256": "24a2a49faf1bea449677e4572419a999054079bdface1a854c570e8131ef579f",
+    "sourceId": 288,
+    "extraScopeEntries": [],
+    "definitionIsNotANativeRun": true,
+    "notes": "Root reviews compiled source/runtime mapping and reuse of already verified primitives. This draft deliberately does not infer whole actor validation from rank0."
+  }
+}

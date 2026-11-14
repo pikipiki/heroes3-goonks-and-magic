@@ -1,0 +1,30 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_132": {
+        "name": "Peon Hut",
+        "creatures": [
+          [
+            "tum-era:eraCreature303"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw35.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

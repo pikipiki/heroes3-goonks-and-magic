@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "report": {
+    "extras": {
+      "builderPool": {
+        "passed": true,
+        "days": [
+          {
+            "day": 2,
+            "remaining": 6
+          },
+          {
+            "day": 3,
+            "remaining": 5
+          },
+          {
+            "day": 4,
+            "remaining": 4
+          },
+          {
+            "day": 5,
+            "remaining": 3
+          },
+          {
+            "day": 6,
+            "remaining": 2
+          },
+          {
+            "day": 7,
+            "remaining": 0
+          },
+          {
+            "day": 8,
+            "remaining": 0
+          }
+        ],
+        "original": {
+          "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+          "icon": 6,
+          "name": "Ballista",
+          "sourceProgression": {
+            "attackDefense": 1,
+            "damage": 0,
+            "family": "Ballista",
+            "healthPercent": 10,
+            "warMachines": true
+          }
+        },
+        "rehired": {
+          "description": "Increases the Attack and Defense skill of any Ballista for each level attained after 4th level.",
+          "icon": 6,
+          "name": "Ballista",
+          "sourceProgression": {
+            "attackDefense": 1,
+            "damage": 0,
+            "family": "Ballista",
+            "healthPercent": 10,
+            "warMachines": true
+          }
+        }
+      },
+      "legacyMigration39": {
+        "passed": true,
+        "days": 6
+      },
+      "legacyMigration54": {
+        "passed": true,
+        "days": 6
+      },
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2"
+    },
+    "engineBytesVerified": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "39734a8d29118603",
+      "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+      "sha256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216,
+      "privateValidation": true,
+      "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+    }
+  }
+}

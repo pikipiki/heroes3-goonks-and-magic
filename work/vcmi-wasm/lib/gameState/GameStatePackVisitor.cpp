@@ -27,6 +27,7 @@
 #include "../entities/artifact/CArtifact.h"
 #include "../entities/artifact/CArtifactFittingSet.h"
 #include "../mapObjects/CGHeroInstance.h"
+#include "../mapObjects/CGMysteriousCave.h"
 #include "../mapObjects/CGMarket.h"
 #include "../mapObjects/CGTownInstance.h"
 #include "../mapObjects/CQuest.h"
@@ -1646,6 +1647,8 @@ void GameStatePackVisitor::visitSetRewardableConfiguration(SetRewardableConfigur
 		assert(rewardablePtr);
 		rewardablePtr->configuration = pack.configuration;
 		rewardablePtr->initializeGuards();
+		if(auto * cave = dynamic_cast<CGMysteriousCave *>(rewardablePtr))
+			cave->refreshAppearance();
 	}
 	else
 	{

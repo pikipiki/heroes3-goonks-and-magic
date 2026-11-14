@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "scope": "Six phone/tablet portrait/landscape layouts with real mobile.css/followup/cave CSS; ancestor touch-action:none retained; CDP touch gesture advances the first scroll container by141/142px;100 unchanged updates preserve DOM and scroll; one confirmation sends one command. No engine or gameplay mocked into production.",
+  "sourceHashes": {
+    "web/cave-builder.mjs": "b0df964d52ce67ebe4db62409b90022735eaadb8083644e465809b1b5ea9d6b9",
+    "web/cave-builder.css": "3fc748cb9a3d13697e6a9b36044526c54bb5979d1efc5c7656f46f3c30f6fd17",
+    "web/mobile.css": "769ff1a026c5d274fdb13301ce01f19add67fcf34d0f90ffaafc99fe869293ca",
+    "web/mobile-followup.css": "96d317c2c2bc2728c15d75c7ea151992c4c968c6ed88cabb70e324294ec10c96",
+    "work/browser-tests/cave-builder185-layout.mjs": "fc65a32423047bde0a9f85ee8ed3e1f97607e950b8a11f9876c4cbd1641198a6"
+  },
+  "gesture": "Input.synthesizeScrollGesture gestureSourceType=touch; touchScrollTop>0 asserted in all six viewports",
+  "notClaimed": "The fixture does not exercise a running native engine or all global town-screen selectors; it loads actual mobile style files and checks the relevant ancestor rule explicitly.",
+  "finding": "The ancestor touch-action:none does not prevent builder-scroll from handling its own pan; no CSS override was added."
+}

@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "contract": "source-bank-xp6-v1",
+  "archiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "cohortSha256": "34e54d347785e49ad1ebc674c6ab3f7ddd39567558390b3f0fbe2187549d8845",
+  "rows": [
+    {
+      "sourceId": 272,
+      "nativeId": "tum-era:eraCreature272",
+      "sourceLine": 1365,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "sourceId": 281,
+      "nativeId": "tum-era:eraCreature281",
+      "sourceLine": 1432,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "sourceId": 281,
+      "nativeId": "tum-era:eraCreature281",
+      "sourceLine": 1433,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "a",
+      "spell": 22,
+      "chances": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "sourceId": 289,
+      "nativeId": "tum-era:eraCreature289",
+      "sourceLine": 1501,
+      "sourceOrdinal": 6,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 21,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "sourceId": 290,
+      "nativeId": "tum-era:eraCreature290",
+      "sourceLine": 1508,
+      "sourceOrdinal": 6,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 16,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "sourceId": 330,
+      "nativeId": "tum-era:eraCreature330",
+      "sourceLine": 1717,
+      "sourceOrdinal": 6,
+      "cacheSlot": 11,
+      "code": "K",
+      "spell": 13,
+      "chances": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ]
+    }
+  ],
+  "enabled": true,
+  "mode": "validated-all6",
+  "nativeValidated": true,
+  "validation": {
+    "contractsSha256": "24a2a49faf1bea449677e4572419a999054079bdface1a854c570e8131ef579f",
+    "migrationSha256": "eb085af6454ea89c564a1e9757fe3ec391eb26a9ae390e0a91a34effe353c279",
+    "wholeActors": [
+      {
+        "sourceId": 253,
+        "nativeValidated": true,
+        "proofSha256": "1cb8f2caa1bb848d1017ac9628774ff13b36c52a5ad5facd4a83a04e45a9c7b7"
+      },
+      {
+        "sourceId": 272,
+        "nativeValidated": true,
+        "proofSha256": "62906e2838c6b91c6fb18136e390dbdb9717dd87a5f44136f364767ca4341eb0"
+      },
+      {
+        "sourceId": 281,
+        "nativeValidated": true,
+        "proofSha256": "3233fbc036340c72b7ad394657602cafb5d4e4c66d03021fa3dc843370d3d1f0"
+      },
+      {
+        "sourceId": 289,
+        "nativeValidated": true,
+        "proofSha256": "77f10727238a3c57333ce80a69fe47946d1b1cc4d0a2a8706302911cd15005f8"
+      },
+      {
+        "sourceId": 290,
+        "nativeValidated": true,
+        "proofSha256": "1f8fd957718510ab4b32faa49d10afdb6d858f516f7c9c4d8d13cd8cb6f681a6"
+      },
+      {
+        "sourceId": 301,
+        "nativeValidated": true,
+        "proofSha256": "746b20f851957a6d8589ad2eaba3f779489ddc333cec6f226efd16af4b110b30"
+      },
+      {
+        "sourceId": 302,
+        "nativeValidated": true,
+        "proofSha256": "a39b07fbff4ee501e7a7f8f5130394ecaa583a7be8a6f9f162b755d2c9910598"
+      },
+      {
+        "sourceId": 330,
+        "nativeValidated": true,
+        "proofSha256": "0022aab4eddf0b38d9afce9553053f1f1ebcd131efeea42690450e18824d17d9"
+      },
+      {
+        "sourceId": 340,
+        "nativeValidated": true,
+        "proofSha256": "293723ce89b0760bcb73ec3471f76fef54e604fda06a75ce0a7a5118a51b158c"
+      },
+      {
+        "sourceId": 358,
+        "nativeValidated": true,
+        "proofSha256": "68700ab194c9934f6d7165099f0c67a96096c7d30e0c45b497e9faa9a8d6eb60"
+      }
+    ]
+  }
+}

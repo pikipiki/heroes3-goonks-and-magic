@@ -50,3 +50,13 @@ test('provided native RMG policy is explicit and unknown policy fields still rej
  const b=native(compileTumBank(bank(),{...opts,nativeRmg:{value:2000,rarity:50,zoneLimit:1}}));assert.deepEqual(b.rmg,{value:2000,rarity:50,zoneLimit:1});
  failure(()=>compileTumBank(bank(),{...opts,nativeRmg:{guessDensity:100}}),'UNSUPPORTED_PROPERTY');
 });
+
+test('script-created banks preserve source disabled RMG without enabling generation',()=>{
+ const input=bank();input.enabled=false;
+ const result=compileTumBank(input,{...opts,sourcePlacement:'scripted-object'});
+ assert.equal(native(result).rmg,undefined);
+ assert.equal(result.report.sourceRmgMetadata.enabled,false);
+ assert.equal(result.report.sourcePlacement,'scripted-object');
+ failure(()=>compileTumBank(input,{...opts,sourcePlacement:'scripted-object',nativeRmg:{value:100,density:1}}),'SCRIPTED_SOURCE_RMG');
+ failure(()=>compileTumBank(input,{...opts,sourcePlacement:'strict'}),'DISABLED_SOURCE_BANK');
+});

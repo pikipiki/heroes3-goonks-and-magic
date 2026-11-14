@@ -1,0 +1,25 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "scope": "Independent native Sorceress316 zero-current-power, refresh, distinct-troop UI and summoned193 cases; no global engine equivalence.",
+  "proofs": [
+    {
+      "file": "sorceress-current-zero.json",
+      "passed": true,
+      "engineSHA256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "proofSHA256": "b17ae601cbb6167083884c988e6b682976775a2068c5140fa43cd9ffae635284"
+    },
+    {
+      "file": "sorceress-forgetfulness-and-touch.json",
+      "passed": true,
+      "engineSHA256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "proofSHA256": "d24695757c09703ee15a9751f8854869f84713767a07590b3b5229839ce56892"
+    },
+    {
+      "file": "creatures-summoned-sorceress193.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "42021316bc9e4cdab3f22a38133424de9b953dd69bed8a41ffee531f8f15c945"
+    }
+  ]
+}

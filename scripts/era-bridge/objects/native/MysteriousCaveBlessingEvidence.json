@@ -1,0 +1,32 @@
+{
+  "binarySHA256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+  "method": "local static disassembly; binary not executed or uploaded",
+  "setter": "746d4b calls755292; record20bytes at27fe810 stores(type,heroType,startDate,length,power)",
+  "startDateWrite": "75555b..75556b calls7103d2",
+  "durationWrite": "75556c..75557a copies third HE:Y parameter",
+  "dateFunction": "7103d2..71041c returns((month*4+week-5)*7)+day",
+  "dailyHookCalls": [
+    "70540b",
+    "7054ed"
+  ],
+  "ownerFilter": "755823..75582f compares hero.owner to current player",
+  "expiry": "75583d..75584c continues to payment if startDate+length>=currentDate; clears record only when strictly less",
+  "handlers": [
+    {
+      "type": 5,
+      "jumpIndex": 1,
+      "handler": "0x7559ba"
+    },
+    {
+      "type": 9,
+      "jumpIndex": 4,
+      "handler": "0x755972"
+    },
+    {
+      "type": 65,
+      "jumpIndex": 14,
+      "handler": "0x7559a6"
+    }
+  ],
+  "consequence": "Granted day1 with length7 pays on owning days2..8 inclusive; day9 clears before payment; no immediate resource/XP/movement application in7555a2 (only lock type2 handled)."
+}

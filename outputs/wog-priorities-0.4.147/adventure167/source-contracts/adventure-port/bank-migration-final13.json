@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "scope": "Dedicated source row ownership; source fixtures remain exact. Review input, no source row silently removed.",
+  "contract": "source-bank-xp6-v1",
+  "fixtureSha256": "9c9dff5b67ae9197343cc6ce4fe937da457cfe161b42c6513a4f599e8f407850",
+  "rows": [
+    {
+      "sourceId": 272,
+      "nativeId": "tum-era:eraCreature272",
+      "sourceLine": 1365,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "sourceId": 281,
+      "nativeId": "tum-era:eraCreature281",
+      "sourceLine": 1432,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "sourceId": 281,
+      "nativeId": "tum-era:eraCreature281",
+      "sourceLine": 1433,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "a",
+      "spell": 22,
+      "chances": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "sourceId": 289,
+      "nativeId": "tum-era:eraCreature289",
+      "sourceLine": 1501,
+      "sourceOrdinal": 6,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 21,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "sourceId": 290,
+      "nativeId": "tum-era:eraCreature290",
+      "sourceLine": 1508,
+      "sourceOrdinal": 6,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 16,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "sourceId": 330,
+      "nativeId": "tum-era:eraCreature330",
+      "sourceLine": 1717,
+      "sourceOrdinal": 6,
+      "cacheSlot": 11,
+      "code": "K",
+      "spell": 13,
+      "chances": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ]
+    }
+  ],
+  "owner": "SourceBankXpPolicy",
+  "ordinaryProfilePatchesSha256": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+  "generatorSourceHashes": {
+    "scripts/era-bridge/objects/stage-dwelling-closure.mjs": "8d0ceecd6a3129f681e3c57d1dec34779dcfbbda452892e36b8d5a8bd50ed0c8",
+    "scripts/era-bridge/objects/stage-six-banks.mjs": "b9ba8f8134d488a1b722df97c7bf7e4fe6f728bb8bbba2a1cf03d77b128bec91"
+  },
+  "lifecycleParticipants": [
+    253,
+    272,
+    281,
+    289,
+    290,
+    301,
+    302,
+    330,
+    340,
+    358
+  ],
+  "reviewStatus": "PENDING native row witnesses + reviewed whole actor ownership/lifecycle"
+}

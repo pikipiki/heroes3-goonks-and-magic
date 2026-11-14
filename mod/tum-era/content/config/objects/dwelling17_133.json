@@ -1,0 +1,31 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_133": {
+        "name": "Mire",
+        "creatures": [
+          [
+            "tum-era:eraCreature304"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw36.def",
+            "mask": [
+              "VVVV",
+              "VBBV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

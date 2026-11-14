@@ -1,0 +1,328 @@
+{
+  "file": "outputs/wog-priorities-0.4.147/adventure167/banks-admission-proposed-final13/index.json",
+  "sha256": "eb3b1244289589b635d0166c6125ac4fcee6b1514e01c2c6dfaf6bc87bad688a",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "All18states of original source banks48/51/64/65/66/67: exact guards/rewards, source upgrades, nonoverlap, revisit and state0 native save/reload.",
+  "continuityReviews": [
+    {
+      "engineSha256": "ef16a7433c55e9dd0849816d14a9e5256b323aee469d944f76cd96380d71a62f",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "All18states of original source banks48/51/64/65/66/67: exact guards/rewards, source upgrades, nonoverlap, revisit and state0 native save/reload.",
+      "notes": "Historical native state cases retain their actual engines. Later mobile local-save role restoration and Weakness45 source276/284 magnitude changes do not change bank constructors/source guardian slots/reward configuration. Historical cases remain scoped; additional actor bonuses and their combat effects require distinct actor proofs.",
+      "currentSourceHashes": {
+        "work/browser-tests/wog-six-banks185-native-e2e.mjs": "c2a25aaab7c9812fb00cd2e38bb9faf06862926f91540157befc67a2baac23a5",
+        "work/vcmi-wasm/lib/era/EraBankActors.h": "c831f4110c787facf1c5b49b0fe0bb45cbe721d9bed44de5a719fc7bf6921a5f"
+      }
+    }
+  ],
+  "attestations": {
+    "validatedBankIds": {
+      "reviewed": true,
+      "scope": "Each observed subject has at least one exact native state case; full18 coverage remains pending until all state cases finish.",
+      "evidence": [
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-0/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-1/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-2/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-3/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-0/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-1/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-2/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-3/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-0/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-1/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-2/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-3/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/65-0/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/65-1/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/65-2/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/65-3/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/66-0/passed",
+          "expected": true,
+          "bankId": 66,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/67-0/passed",
+          "expected": true,
+          "bankId": 67,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        }
+      ]
+    },
+    "revisitValidated": {
+      "reviewed": true,
+      "scope": "Each retained passing state case completed actual consumed-object revisit; native case code asserts no second battle/reward.",
+      "evidence": [
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-0/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-1/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-2/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-3/passed",
+          "expected": true,
+          "bankId": 48,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-0/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-1/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-2/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-3/passed",
+          "expected": true,
+          "bankId": 51,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-0/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-1/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-2/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-3/passed",
+          "expected": true,
+          "bankId": 64,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/65-0/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/65-1/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/65-2/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/65-3/passed",
+          "expected": true,
+          "bankId": 65,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/66-0/passed",
+          "expected": true,
+          "bankId": 66,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/67-0/passed",
+          "expected": true,
+          "bankId": 67,
+          "assertion": "This state case asserts exact source guards/footprints/rewards and a completed no-reward no-battle revisit; test runner statements31..32 are separately source-bound."
+        }
+      ]
+    },
+    "saveReloadValidated": {
+      "reviewed": true,
+      "scope": "Actual retained source-bank state0 native saves/reloads, with consumed state and resources/army/artifacts preserved.",
+      "evidence": [
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/48-0/nativeSave/consumedAfterLoad",
+          "expected": true,
+          "assertion": "This actual native reload retained rewards and the consumed bank state."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/51-0/nativeSave/consumedAfterLoad",
+          "expected": true,
+          "assertion": "This actual native reload retained rewards and the consumed bank state."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/64-0/nativeSave/consumedAfterLoad",
+          "expected": true,
+          "assertion": "This actual native reload retained rewards and the consumed bank state."
+        },
+        {
+          "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+          "pointer": "/report/65-0/nativeSave/consumedAfterLoad",
+          "expected": true,
+          "assertion": "This actual native reload retained rewards and the consumed bank state."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/66-0/nativeSave/consumedAfterLoad",
+          "expected": true,
+          "assertion": "This actual native reload retained rewards and the consumed bank state."
+        },
+        {
+          "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+          "pointer": "/report/67-0/nativeSave/consumedAfterLoad",
+          "expected": true,
+          "assertion": "This actual native reload retained rewards and the consumed bank state."
+        }
+      ]
+    }
+  }
+}

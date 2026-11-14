@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_153": {
+        "name": "Shadow Vault",
+        "creatures": [
+          [
+            "tum-era:eraCreature325"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature325",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw56.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

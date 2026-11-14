@@ -1,0 +1,186 @@
+{
+  "sourceDwellingDemonology315": {
+    "type": "ability",
+    "targetType": "CREATURE",
+    "name": "Demonology",
+    "school": {},
+    "level": 2,
+    "power": 50,
+    "defaultGainChance": 0,
+    "gainChance": {},
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "sounds": {
+      "cast": "RESURECT"
+    },
+    "graphics": {
+      "iconBook": "tum-era/demonology/resurrection-book.png",
+      "iconEffect": "tum-era/demonology/resurrection-effect.png",
+      "iconScenarioBonus": "tum-era/demonology/resurrection-scenariobonus.png",
+      "iconScroll": "tum-era/demonology/resurrection-scroll.png"
+    },
+    "levels": {
+      "base": {
+        "description": "Converts a fallen living allied troop into Brownies. Each caster supplies 50 hit points, capped by the corpse hit points and original troop count.",
+        "power": 40,
+        "cost": 1,
+        "targetModifier": {
+          "smart": true
+        },
+        "range": "0",
+        "battleEffects": {
+          "demonSummon": {
+            "id": "tum-era:eraCreature315",
+            "permanent": true,
+            "type": "core:demonSummon",
+            "eraDemonology": true
+          }
+        }
+      },
+      "none": {},
+      "basic": {},
+      "advanced": {},
+      "expert": {}
+    },
+    "flags": {
+      "rising": true,
+      "positive": true
+    },
+    "targetCondition": {}
+  },
+  "sourceDwellingDemonology60": {
+    "type": "ability",
+    "targetType": "CREATURE",
+    "name": "Demonology",
+    "school": {},
+    "level": 2,
+    "power": 50,
+    "defaultGainChance": 0,
+    "gainChance": {},
+    "animation": {
+      "affect": [
+        {
+          "defName": "C01SPE0",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "sounds": {
+      "cast": "RESURECT"
+    },
+    "graphics": {
+      "iconBook": "tum-era/demonology/resurrection-book.png",
+      "iconEffect": "tum-era/demonology/resurrection-effect.png",
+      "iconScenarioBonus": "tum-era/demonology/resurrection-scenariobonus.png",
+      "iconScroll": "tum-era/demonology/resurrection-scroll.png"
+    },
+    "levels": {
+      "base": {
+        "description": "Converts a fallen living allied troop into Wights. Each caster supplies 50 hit points, capped by the corpse hit points and original troop count.",
+        "power": 40,
+        "cost": 1,
+        "targetModifier": {
+          "smart": true
+        },
+        "range": "0",
+        "battleEffects": {
+          "demonSummon": {
+            "id": "core:wight",
+            "permanent": true,
+            "type": "core:demonSummon",
+            "eraDemonology": true
+          }
+        }
+      },
+      "none": {},
+      "basic": {},
+      "advanced": {},
+      "expert": {}
+    },
+    "flags": {
+      "rising": true,
+      "positive": true
+    },
+    "targetCondition": {}
+  },
+  "sourceSorceressDeathCloud": {
+    "type": "ability",
+    "school": {},
+    "power": 0,
+    "name": "Sorceress Death Cloud",
+    "targetType": "NO_TARGET",
+    "level": 0,
+    "animation": {
+      "hit": [
+        {
+          "defName": "tum-era/hit-effects/Burst17.def",
+          "transparency": 0.5
+        }
+      ]
+    },
+    "sounds": {
+      "cast": "tum-era/hit-effects/DEATHCLS.wav"
+    },
+    "levels": {
+      "none": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      },
+      "basic": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      },
+      "advanced": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      },
+      "expert": {
+        "description": "",
+        "cost": 0,
+        "power": 0,
+        "range": "0-1",
+        "battleEffects": {
+          "damage": {
+            "type": "core:damage",
+            "ignoreImmunity": true
+          }
+        }
+      }
+    },
+    "flags": {
+      "indifferent": true,
+      "nonMagical": true
+    },
+    "targetCondition": {}
+  }
+}

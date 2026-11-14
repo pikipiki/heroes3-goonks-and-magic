@@ -1,0 +1,31 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_113": {
+        "name": "Lust Chambers",
+        "creatures": [
+          [
+            "tum-era:eraCreature272"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw13.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

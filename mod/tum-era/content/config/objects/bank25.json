@@ -1,0 +1,152 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank25": {
+        "name": "Spit",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avbone02.def",
+            "mask": [
+              "VVVV",
+              "VVBB",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "swamp"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank25OriginalStockLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:basilisk",
+                "amount": 4
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 4
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 4
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 4
+              }
+            ],
+            "resources": {
+              "gold": 3000
+            }
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:basilisk",
+                "amount": 6
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 6
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 6
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 6
+              }
+            ],
+            "resources": {
+              "gold": 4500
+            }
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:basilisk",
+                "amount": 8
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 8
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 8
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 8
+              }
+            ],
+            "resources": {
+              "gold": 6000
+            }
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:basilisk",
+                "amount": 12
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 12
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 12
+              },
+              {
+                "type": "core:basilisk",
+                "amount": 12
+              }
+            ],
+            "resources": {
+              "gold": 9000
+            }
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPBASI.wav"
+          ]
+        }
+      }
+    }
+  }
+}

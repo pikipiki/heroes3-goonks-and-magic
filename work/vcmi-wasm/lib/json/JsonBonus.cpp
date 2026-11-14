@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "../era/EraExperienceMagicReduction.h"
+#include "../era/EraBankActorRule.h"
 #include "JsonBonus.h"
 
 #include "JsonValidator.h"
@@ -247,9 +248,12 @@ static TBonusParametersPtr loadBonusAddInfo(BonusType type, const JsonNode & val
             // requested until that source creature has actually been ported.
             if(value.getModScope()=="tum-era" && value.isStruct()
                 && value.Struct().size()==2
-                && value["contract"].String()=="source-stronghold-creature-spell-immunity-v1"
                 && value["sourceCreatureId"].isNumber()
-                && (value["sourceCreatureId"].Float()==274 || value["sourceCreatureId"].Float()==282))
+                && value["sourceCreatureId"].Float()==value["sourceCreatureId"].Integer()
+                && ((value["contract"].String()=="source-stronghold-creature-spell-immunity-v1"
+                        && (value["sourceCreatureId"].Integer()==274 || value["sourceCreatureId"].Integer()==282))
+                    ||(value["contract"].String()=="source-bank-hate-v1"
+                        && ::era_bridge::bankSourceHateTarget(value["sourceCreatureId"].Integer()))))
                 var=std::vector<int32_t>{static_cast<int32_t>(value["sourceCreatureId"].Integer())};
             else
             {

@@ -70,6 +70,7 @@ public:
 	void visitGiveHero(GiveHero & pack) override;
 	void visitInfoWindow(InfoWindow & pack) override;
 	void visitSetObjectProperty(SetObjectProperty & pack) override;
+	void visitSetRewardableConfiguration(SetRewardableConfiguration & pack) override;
 	void visitHeroLevelUp(HeroLevelUp & pack) override;
 	void visitCommanderLevelUp(CommanderLevelUp & pack) override;
 	void visitBlockingDialog(BlockingDialog & pack) override;

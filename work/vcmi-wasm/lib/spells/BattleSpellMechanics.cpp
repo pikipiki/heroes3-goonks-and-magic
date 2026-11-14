@@ -8,6 +8,9 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraDwellingCaster.h"
+#include "../era/EraSourceDwellingXpAdmission.h"
+#include "../era/EraBankRush.h"
 #include "../era/EraWeakness45Generic.h"
 #include "../era/EraWeakness45State.h"
 #include "../era/EraSourceXpObstacle.h"
@@ -333,6 +336,14 @@ bool BattleSpellMechanics::canBeCastAt(const Target & target, Problem & problem)
 	if(!canBeCast(problem))
 		return false;
 
+    if(getSpell()->getJsonKey()=="tum-era:sourceLordRush")
+    {
+        if(target.empty())return false;
+        const auto * primary=target.front().unitValue?target.front().unitValue
+            :battle()->battleGetUnitByPos(target.front().hexValue,true);
+        return era_compat::bankRushTargetAllowed(*this,primary);
+    }
+
     if(const int original=era_compat::xpObstacleOriginal(getSpell());original>=0)
         return !target.empty() && era_compat::xpObstacleTargetAllowed(*battle(),caster,casterSide,target.front().unitValue,original);
     if(era_compat::ConfluxPolicies::get().enabled()
@@ -561,7 +572,14 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
 	std::vector <const battle::Unit *> resisted;
 
 	resistantUnitIds.clear();
-    const bool sourceMassTimed=isMassive() && ((eraExperiencePreAttack && getSpellIndex()==50)
+    const bool sourceDwellingManual=mode==Mode::CREATURE_ACTIVE && getSpellIndex()==60
+        && era_compat::dwellingHypnotist(battle()->battleGetStackByID(caster->getCasterUnitId(),false));
+    const bool sourceMassDamage25=eraExperiencePreAttack && getSpellIndex()==25;
+    const auto * dwellingCaster=battle()->battleGetStackByID(caster->getCasterUnitId(),false);
+    const bool sourceDwellingMass=eraExperiencePreAttack && dwellingCaster
+        && era_compat::SourceDwellingXpPolicy::get().ownsActor(dwellingCaster->creatureId().toCreature()->getJsonKey())
+        && (getSpellIndex()==42||getSpellIndex()==52);
+    const bool sourceMassTimed=isMassive() && ((eraExperiencePreAttack && getSpellIndex()==50) || sourceDwellingMass
         || (eraArtifactMassHypnotize && getSpellIndex()==60));
 	if(isNegativeSpell() && isMagicalEffect())
 	{
@@ -604,10 +622,10 @@ void BattleSpellMechanics::beforeCast(BattleSpellCast & sc, vstd::RNG & rng, con
             //5A0C9A..0D3B contains no further draw. Partial resistance therefore
             //does not randomly prevent this automatic cast.
         }
-		else if(eraExperiencePreAttack || eraArtifactMassHypnotize)
+		else if(eraExperiencePreAttack || eraArtifactMassHypnotize || sourceDwellingManual)
         {
             battle::Units sourceTargets;
-            if(sourceMassTimed)
+            if(sourceMassTimed || sourceMassDamage25)
             {
                 sourceTargets=battle()->battleGetUnitsIf([](const battle::Unit * unit){return unit->sourceMassSlot()!=-2;});
                 // Original5A69E0 scans side then slot, including dead stacks,

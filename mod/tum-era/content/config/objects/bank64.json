@@ -1,0 +1,167 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank64": {
+        "name": "Halls of Temptation",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB32.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VABV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "lava"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 5,
+                "upgradeChance": 100
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 5
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 5
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 5
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:devil",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 10,
+                "upgradeChance": 100
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 10
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 10
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:devil",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 15,
+                "upgradeChance": 100
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 15
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 15
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 15
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:devil",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 20,
+                "upgradeChance": 100
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature272",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:devil",
+                "amount": 4
+              }
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 5000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

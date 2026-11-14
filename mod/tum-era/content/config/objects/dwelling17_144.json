@@ -1,0 +1,31 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_144": {
+        "name": "Lizard Soldier Den",
+        "creatures": [
+          [
+            "tum-era:eraCreature326"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw47.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

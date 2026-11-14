@@ -1,0 +1,33 @@
+{
+  "nativeValidated": true,
+  "passed": true,
+  "scope": "Native original Fear253R0/306R0, absent330R0 control and trained330R10:40 rounds each; remainingShots isolates actual archer skips from zero-damage rounding and new summons.",
+  "pending": [],
+  "proofs": [
+    {
+      "file": "r0-checkpoint.json",
+      "proofSHA256": "8ff18a0a7a1ba3343df4cfd9171e1308a0bbac88e3b094a9286c5a95c74b25e8",
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "caseAttestation": true,
+      "reviewed": true,
+      "scope": "Only completed253R0,306R0,330R0 cases; raw wrapper remains globallyfalse; subsequent330 training is excluded.",
+      "casePointers": [
+        "/report/fear/0",
+        "/report/fear/1",
+        "/report/fear/2"
+      ],
+      "excludedFailureReason": "The subsequent330R10 training precondition failed because the private400HP target awarded only200XP shared with the anchor, leaving330 atR7. None of the three completed R0 cases uses training. The later separate R10 run uses700HP and actually reaches342XP/R10. No whole-run success is claimed for this raw checkpoint."
+    },
+    {
+      "file": "r10-result.json",
+      "proofSHA256": "f3794ae871ccbde87d98df69ea1182c4db6d48f47d6d46b6832807f288b3a415",
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "No calibration of the10% probability distribution from a40-round seeded scenario",
+    "No independent native causal test of every biological fear exclusion",
+    "R0 checkpoint whole-run validation is explicitly false; only selected passed case objects are attested"
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "viewport": "320x568",
+    "bounds": {
+      "x": 12,
+      "y": 22,
+      "width": 298,
+      "height": 538
+    },
+    "stableDom": true,
+    "stableScroll": true,
+    "ancestorTouchAction": "none",
+    "touchScrollTop": 142,
+    "realTouchScroll": true,
+    "oneCommand": true
+  },
+  {
+    "viewport": "568x320",
+    "bounds": {
+      "x": 12,
+      "y": 6,
+      "width": 546,
+      "height": 306
+    },
+    "stableDom": true,
+    "stableScroll": true,
+    "ancestorTouchAction": "none",
+    "touchScrollTop": 142,
+    "realTouchScroll": true,
+    "oneCommand": true
+  },
+  {
+    "viewport": "390x844",
+    "bounds": {
+      "x": 12,
+      "y": 214,
+      "width": 368,
+      "height": 622
+    },
+    "stableDom": true,
+    "stableScroll": true,
+    "ancestorTouchAction": "none",
+    "touchScrollTop": 141,
+    "realTouchScroll": true,
+    "oneCommand": true
+  },
+  {
+    "viewport": "844x390",
+    "bounds": {
+      "x": 180,
+      "y": 6,
+      "width": 652,
+      "height": 376
+    },
+    "stableDom": true,
+    "stableScroll": true,
+    "ancestorTouchAction": "none",
+    "touchScrollTop": 142,
+    "realTouchScroll": true,
+    "oneCommand": true
+  },
+  {
+    "viewport": "768x1024",
+    "bounds": {
+      "x": 134,
+      "y": 394,
+      "width": 622,
+      "height": 622
+    },
+    "stableDom": true,
+    "stableScroll": true,
+    "ancestorTouchAction": "none",
+    "touchScrollTop": 142,
+    "realTouchScroll": true,
+    "oneCommand": true
+  },
+  {
+    "viewport": "1024x768",
+    "bounds": {
+      "x": 360,
+      "y": 138,
+      "width": 652,
+      "height": 622
+    },
+    "stableDom": true,
+    "stableScroll": true,
+    "ancestorTouchAction": "none",
+    "touchScrollTop": 142,
+    "realTouchScroll": true,
+    "oneCommand": true
+  }
+]

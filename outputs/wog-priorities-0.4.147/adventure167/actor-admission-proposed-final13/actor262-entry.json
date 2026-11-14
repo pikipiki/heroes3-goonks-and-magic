@@ -1,0 +1,63 @@
+{
+  "sourceId": 262,
+  "file": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor262-index.json",
+  "sha256": "a6afcd1b91e30fa896334dc39c62d8151eb2543f1025e46f883b0e1cbb55e70d",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "Proposed whole source actor262 review: compiled source definition/runtime ownership plus actual rank0 identity and separately retained functional scopes. No unobserved native branch is asserted.",
+  "continuityReviews": [
+    {
+      "engineSha256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Proposed whole source actor262 review: compiled source definition/runtime ownership plus actual rank0 identity and separately retained functional scopes. No unobserved native branch is asserted.",
+      "notes": "Root explicitly reviewed source/runtime translation for the50actors outside285/312/314/330, and later330 after isolated K13/intrinsic FireWall controls plus285/312 after isolated source XP causality controls and314 after real touch wall-target validation in two orientations on Final13, using pinned CFG/EXP compiler ledger, C++ kernel tests, actual54mixed/nativeextras. Current54 definitions and all registry sections reproduce exactly from source. Reused native primitives transfer their existing behavior; this does not assert every branch was replayed natively. Historical cases retain their own engines; Final11 mobile-load roles, Final12 Weakness p276/284 and Final13 CATAPULT DTO affect only their scoped contracts. Required dedicated cases remain separate pending gates.",
+      "currentSourceHashes": {
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/whole54-contracts-final13.json": "24a2a49faf1bea449677e4572419a999054079bdface1a854c570e8131ef579f",
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/source-reproduction-final13.json": "639dbc2adde91c999f7686a958b6a0c27b6ae0f0a38e5ced9cf6d181a11ed396",
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/source-kernel-tests-final13.json": "1c054b1bc655b2d4316c8996dfd6312dea5e11a25df1ea38697eb6dc5c14c4b6"
+      }
+    },
+    {
+      "engineSha256": "39c2a5db82fcfa2e5d406938b67fb7aa78a4e5f1975ea182c32b2a4c424bd46e",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Proposed whole source actor262 review: compiled source definition/runtime ownership plus actual rank0 identity and separately retained functional scopes. No unobserved native branch is asserted.",
+      "notes": "Root explicitly reviewed source/runtime translation for the50actors outside285/312/314/330, and later330 after isolated K13/intrinsic FireWall controls plus285/312 after isolated source XP causality controls and314 after real touch wall-target validation in two orientations on Final13, using pinned CFG/EXP compiler ledger, C++ kernel tests, actual54mixed/nativeextras. Current54 definitions and all registry sections reproduce exactly from source. Reused native primitives transfer their existing behavior; this does not assert every branch was replayed natively. Historical cases retain their own engines; Final11 mobile-load roles, Final12 Weakness p276/284 and Final13 CATAPULT DTO affect only their scoped contracts. Required dedicated cases remain separate pending gates.",
+      "currentSourceHashes": {
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/whole54-contracts-final13.json": "24a2a49faf1bea449677e4572419a999054079bdface1a854c570e8131ef579f",
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/source-reproduction-final13.json": "639dbc2adde91c999f7686a958b6a0c27b6ae0f0a38e5ced9cf6d181a11ed396",
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/source-kernel-tests-final13.json": "1c054b1bc655b2d4316c8996dfd6312dea5e11a25df1ea38697eb6dc5c14c4b6"
+      }
+    }
+  ],
+  "attestations": {
+    "validatedSourceIds": {
+      "reviewed": true,
+      "scope": "Source translation/ownership review + exact retained native identity/case witnesses for actor262",
+      "evidence": [
+        {
+          "file": "raw/mixed54--result.json",
+          "pointer": "/report/actor262R0Load/passed",
+          "expected": true,
+          "assertion": "Native mixed-army loading, rank0, Goonk coexistence and non-overlapping footprints; individual services have separate proofs",
+          "sourceId": 262
+        },
+        {
+          "file": "raw/historical--fixed-caster-262.json",
+          "pointer": "/report/actor262R0Load/passed",
+          "expected": true,
+          "assertion": "Native loading, rank0 and coexistence with a Goonk troop; this alone does not validate every actor service",
+          "sourceId": 262
+        },
+        {
+          "file": "raw/historical--fixed-caster-262.json",
+          "pointer": "/report/fixedCaster262/passed",
+          "expected": true,
+          "assertion": "Named native case; Root must review applicability and completeness",
+          "sourceId": 262
+        }
+      ]
+    }
+  }
+}

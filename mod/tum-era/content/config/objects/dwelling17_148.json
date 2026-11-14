@@ -1,0 +1,35 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_148": {
+        "name": "Ruins in lava",
+        "creatures": [
+          [
+            "tum-era:eraCreature330"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature330",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw51.def",
+            "mask": [
+              "VVV",
+              "BAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

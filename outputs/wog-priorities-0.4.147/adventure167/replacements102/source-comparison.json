@@ -1,0 +1,37 @@
+{
+  "unchangedSourceComparison": {
+    "historicalBuild": "work/downloads/wog-port185/root/private-engine185-final8/artifact-provenance.json",
+    "files": [
+      {
+        "path": "work/vcmi-wasm/lib/era/EraObjectReplacementRule.h",
+        "historicalSha256": "0f97197005ebdaf4c458312f43b909217c42cc507ff700731d5512050d5bbd11",
+        "currentSha256": "0f97197005ebdaf4c458312f43b909217c42cc507ff700731d5512050d5bbd11"
+      },
+      {
+        "path": "work/vcmi-wasm/server/era/EraObjectReplacementRuntime.h",
+        "historicalSha256": "c8ce7664491773268f4115f850296b8536264fe2449bb1cafe232e64e5a26537",
+        "currentSha256": "c8ce7664491773268f4115f850296b8536264fe2449bb1cafe232e64e5a26537"
+      },
+      {
+        "path": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
+        "historicalSha256": "692c26205b0de9d82566a83f8a9be57ab23bf6f5cc7a44b73e37e7be387bd4bd",
+        "currentSha256": "692c26205b0de9d82566a83f8a9be57ab23bf6f5cc7a44b73e37e7be387bd4bd"
+      },
+      {
+        "path": "work/vcmi-wasm/server/CGameHandler.cpp",
+        "historicalSha256": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df",
+        "currentSha256": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df"
+      },
+      {
+        "path": "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h",
+        "historicalSha256": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "currentSha256": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e"
+      }
+    ]
+  },
+  "replacementAdmission": {
+    "sourceProgramSha256": "be39741c0e26bdff0000a087c2c8224ee12342b388fe964e6f34ab22b03e5f61",
+    "nativeTestEngineSha256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+    "wholeRunProofSHA256": "ee909416b40c165044283a77d3cbdfcb4701ac3465a6ac144c092626c9bd88c2"
+  }
+}

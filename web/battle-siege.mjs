@@ -1,4 +1,5 @@
 export function siegeTargets(state){return (state.battleCells||[]).filter(c=>c.siegeTarget&&c.actionLabel==='Attack').map((cell,index)=>({...cell,enemy:true,name:'Wall section '+(index+1),count:'',siege:true}));}
+export function siegePickerTargets(state,units,{allies=false}={}){const walls=allies||state.spellTargeting||state.creatureSpellTargeting?[]:siegeTargets(state);return !walls.length?units:state.activeUnit?.key==='core:catapult'?walls:[...units,...walls];}
 export function paintSiegeTargets(ctx,state,project){
  for(const target of siegeTargets(state)){const p=project(target);ctx.save();ctx.strokeStyle='#05090c';ctx.lineWidth=6;ctx.beginPath();ctx.arc(p.x,p.y,11,0,Math.PI*2);ctx.stroke();ctx.strokeStyle='#ff7465';ctx.lineWidth=2;ctx.stroke();ctx.beginPath();ctx.moveTo(p.x-16,p.y);ctx.lineTo(p.x+16,p.y);ctx.moveTo(p.x,p.y-16);ctx.lineTo(p.x,p.y+16);ctx.stroke();ctx.restore();}
 }

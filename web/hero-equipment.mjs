@@ -41,7 +41,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const combat=combatStats.length?`<dl class="hero-combat-stats">${combatStats.map(([name,stat])=>`<div>
    <dt>${name}</dt><dd>${heroIcon(stat.icon)}${stat.value}</dd>
   </div>`).join('')}</dl>`:'';
-  return `${specialty}${combat}<section class="hero-secondary">
+  return `${specialty}${hero.caveEffects?`<section class="hero-specialty"><div><h3>Grotte mystérieuse</h3><p>${description(hero.caveEffects)}</p></div></section>`:''}${combat}<section class="hero-secondary">
    <h3>Secondary skills</h3>${hero.skills?.length?`<ul>${hero.skills.map(skill=>`<li>
     ${heroIcon(skill.icon)}<div><h4>${esc(skill.name)} <span>${esc(skill.mastery)}</span></h4><p>${description(skill.description)}</p></div>
    </li>`).join('')}</ul>`:'<p>No secondary skills learned.</p>'}

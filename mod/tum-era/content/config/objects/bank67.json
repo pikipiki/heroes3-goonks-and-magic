@@ -1,0 +1,100 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank67": {
+        "name": "Ice Dragon Castle",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB101.def",
+            "mask": [
+              "VVVVVV",
+              "VVVVVV",
+              "VVVBVV",
+              "VVBABV",
+              "VVBBBV",
+              "VVVVVV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank67OriginalLayout",
+        "onGuardedMessage": "You have arrived in a forbidden floating land where the Fire Dragon sect is located, entering the castle is certain death if you don't have a powerful army behind you. Do you wish to raid the castle?",
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:azureDragon",
+                "amount": 45
+              },
+              {
+                "type": "core:azureDragon",
+                "amount": 45
+              },
+              {
+                "type": "tum-era:eraCreature347",
+                "amount": 3
+              },
+              {
+                "type": "wake-of-gods.creatures:arcticSharpshooter",
+                "amount": 280
+              },
+              {
+                "type": "wake-of-gods.creatures:arcticSharpshooter",
+                "amount": 280
+              },
+              {
+                "type": "tum-era:eraCreature290",
+                "amount": 225
+              },
+              {
+                "type": "tum-era:eraCreature290",
+                "amount": 225
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:gold",
+                "amount": 300000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 30
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature347",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/PLAYTURN.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPDRGNCSTL.wav"
+          ]
+        },
+        "rmg": {
+          "value": 15000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

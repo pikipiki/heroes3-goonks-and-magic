@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraDwellingArtifactMimic.h"
 #include "../era/EraGooseReflectionRuntime.h"
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "CGHeroInstance.h"
@@ -1281,6 +1282,7 @@ std::vector<BonusSourceID> CGHeroInstance::getSourcesForSpell(const SpellID & sp
 			sources.emplace_back(bonus->sid);
 	}
 
+    if(era_compat::dwellingArtifactSpell(*this,spellId.getNum()))sources.emplace_back(ArtifactID(123));
     const BonusSourceID mimicSource(ArtifactID(135));
     if(spellId==SpellID(57) && era_compat::originalArmyMimicsArtifact(*this,135)
         && std::find(sources.begin(),sources.end(),mimicSource)==sources.end())

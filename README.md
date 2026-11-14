@@ -1,6 +1,6 @@
 # Heroes Goonk
 
-Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.166, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
+Heroes III dans le navigateur, avec le château Goonk, ses sept familles de peluches et leurs évolutions. Version 0.4.167, moteur VCMI 1.7.3 / Emscripten 4.0.23. Sources et provenance : `UPSTREAM.json` et `WOG-UPSTREAM.json`.
 
 ## Jouer sur ce Mac
 
@@ -728,3 +728,11 @@ La Libellule chaotique241 reçoit sa définition source complète, ses100 ripost
 Les preuves comprennent60 scénarios natifs,36 comparaisons au rang0, dix victoires réelles pour les profils164/165 et cinq combats sur le moteur public sans réactivation de test. Une sauvegarde de test0.4.161 conserve ses sept troupes, leur expérience et leurs bannières, ses ressources et ses neuf villesT8 sous le moteur final. Le Dragon de glace347 passe aussi une nouvelle sauvegarde/recharge et un second combat. Téléphone et iPad sont contrôlés en portrait et paysage, avec commandes d’au moins44px et éléments DOM stables pendant les mises à jour.
 
 Les exceptions aux valeurs extrêmes Win32 sont documentées : les invocations dont le compte signé déborde vers une valeur non positive ne créent pas de troupe invalide, et un soin négatif est rejeté avant mutation. Le rythme visuel du ralentissement reste celui des réglages VCMI/Goonk. Ce lot termine les sorts d’expérience du périmètre épinglé ; il ne constitue pas un interpréteur de tous les scripts ERM. Preuves et empreintes : `outputs/wog-priorities-0.4.147/checkpoint166-validation.json` et `source-xp-complete166/`.
+
+### Exploration WoG — 0.4.167
+
+Les102 programmes de remplacement au premier jour, les six banques manquantes et les45 résultats de la Grotte mystérieuse utilisent leurs identités et règles source. La Grotte comprend le Bâtisseur, les occupants des bâtiments, la récupération du Graal, les neuf factions reconstruites, les visites à distance et les bonus temporaires. Son panneau tactile distingue coûts, matériaux et pertes lors d’une mise en ruine ; les mises à jour identiques conservent le défilement et les éléments DOM.
+
+Les deux cartes Trésors de WoG conservent leurs objectifs. Chaque royaume reçoit29 repaires, une Grotte, un fort, des Ailes d’ange gardées et33 lieux de recrutement donnant accès aux44 nouvelles créatures par leurs évolutions d’origine. Cinq autres habitations suivent les probabilités de transformation originales. Le port ajoute séparément6 lignes d’expérience de banques et17 d’habitations, sans réattribuer les43 lignes déjà publiées. Les capacités déclarées mais dormantes dans la source ne reçoivent pas d’activation inventée.
+
+La reprise mobile conserve les noms et les rôles humains/IA d’une sauvegarde locale, y compris les parties hotseat. Les fiches de combat distinguent deux troupes de la même créature et affichent leurs effets propres. Périmètre, adaptations et preuves : [port aventure](docs/wog-adventure-port.md) et `outputs/wog-priorities-0.4.147/adventure167/`.

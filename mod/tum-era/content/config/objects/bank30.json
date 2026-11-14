@@ -1,0 +1,203 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank30": {
+        "name": "Experimental Shop",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/AVXbnk90.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "sand",
+              "grass",
+              "swamp",
+              "rough",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          },
+          "base1": {
+            "animation": "tum-era/objects/AVXbnk9s.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "snow"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:stoneGolem",
+                "amount": 8
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 8
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 8
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 8
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 8
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:giant",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:stoneGolem",
+                "amount": 16
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 16
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 16
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 16
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 16
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:giant",
+                "amount": 2
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:stoneGolem",
+                "amount": 24
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 24
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 24
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 24
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 24
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:giant",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:stoneGolem",
+                "amount": 32
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 32
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 32
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 32
+              },
+              {
+                "type": "core:stoneGolem",
+                "amount": 32
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:giant",
+                "amount": 4
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPEXSH.wav"
+          ]
+        }
+      }
+    }
+  }
+}

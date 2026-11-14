@@ -181,7 +181,7 @@ export function buildCompatibilityInventory({projectRoot, sourceRoot, bindings})
     }
   }
   const scriptsSummary=scripts.map(script=>({file:script.file,sha256:sourceFiles.get(script.file).sha256,
-    triggers:script.triggerCount,events:script.events.length,statusCounts:countBy(events.filter(e=>e.source.file===script.file),'status')}));
+    triggers:script.triggerCount,postTriggers:script.postTriggerCount,events:script.events.length,statusCounts:countBy(events.filter(e=>e.source.file===script.file),'status')}));
   const limitations=[
     'Reference source is the supplied TUM3.5 tree plus the installed VCMI WoG port. No complete original WoG/ERA script-pack source has been supplied to this inventory.',
     'Unassessed means no exact semantic proof binding in this inventory; it does not mean absent, broken or disabled.',
@@ -202,7 +202,7 @@ export function buildCompatibilityInventory({projectRoot, sourceRoot, bindings})
       unassessed:'No exact proof binding; existing behavior may cover this rule.',
       'availability-only':'Definition is registered; behavior parity is a separate question.'},
     summary:{sourceScripts:scripts.length,triggerDeclarations:scripts.reduce((n,s)=>n+s.triggerCount,0),
-      initializationSections:events.filter(e=>e.kind==='initialization').length,eventStatuses:countBy(events,'status'),
+      postTriggerDeclarations:scripts.reduce((n,s)=>n+s.postTriggerCount,0),initializationSections:events.filter(e=>e.kind==='initialization').length,eventStatuses:countBy(events,'status'),
       sourceCreatures:creatures.length,creatureConfigs:creatureConfigs.length,creaturePropertyRules:creatureRules.length,
       globalConfigs:globalConfigs.length,globalConfigRules:globalConfigRules.length,sourcePlugins:plugins.length,
       resolvedCreatureConfigs:creatureConfigs.filter(c=>c.nativeId).length,experienceRules:xpRules.length,xpStatuses:countBy(xpRules,'status'),

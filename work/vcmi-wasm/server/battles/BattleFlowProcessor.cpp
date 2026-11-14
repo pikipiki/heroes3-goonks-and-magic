@@ -20,6 +20,10 @@
 #include "BattleFlowProcessor.h"
 #include "../era/EraPrimordialStateRuntime.h"
 #include "../era/EraPrimordialTurnRuntime.h"
+#include "../era/EraBankSwordmaster.h"
+#include "../era/EraBankPeriodicSummons.h"
+#include "../era/EraDwellingPeriodicSummons.h"
+#include "../era/EraMysteriousCaveBattle.h"
 #include "../era/EraImposedSpells.h"
 #include "../era/EraRoundTwoDemons.h"
 #include "../era/EraDemilichSummonRuntime.h"
@@ -185,6 +189,8 @@ void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
     {
         applyEraImposedSpells(*gameHandler, battle, stack);
     }
+
+    era_compat_server::initializeMysteriousCaveBattle(*gameHandler,battle);
 
 	tryPlaceMoats(battle);
 
@@ -426,6 +432,8 @@ void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, boo
 			stackEnchantedTrigger(battle, stack);
             applyEraRoundTwoDemons(*gameHandler,battle,stack);
             applyEraDemilichSummon(*gameHandler,battle,stack);
+            applyEraBankPeriodicSummon(*gameHandler,battle,stack);
+            applyEraDwellingPeriodicSummons(*gameHandler,battle,stack);
             applyEraConfluxRoundTwo(*gameHandler,battle,stack);
         }
 	}
@@ -442,7 +450,7 @@ const CStack * BattleFlowProcessor::getNextStack(const CBattleInfoCallback & bat
 	if(q.front().empty())
 		return nullptr;
 
-	const auto * next = q.front().front();
+	const auto * next = dynamic_cast<const CStack *>(era_compat_server::bankSwordmasterBeforeActivation(*gameHandler,battle,q.front().front()));
 	const auto * stack = dynamic_cast<const CStack *>(next);
     // Original464DFD→446B50 clears initial347DEFENDING before regeneration/Fear.
     era_compat_server::activatePrimordialDefending(*gameHandler,battle,next);
@@ -985,7 +993,8 @@ void BattleFlowProcessor::onActionMade(const CBattleInfoCallback & battle, const
 		assert(activeStack != nullptr);
 		assert(actedStack != nullptr);
 
-		const auto primordialTurn=era_compat_server::primordialAfterAction(
+		era_compat_server::bankSwordmasterAfterAction(*gameHandler,battle,actedStack,ba.actionType);
+        const auto primordialTurn=era_compat_server::primordialAfterAction(
             *gameHandler,battle,actedStack,ba.actionType);
         if (primordialTurn.has_value()?*primordialTurn:rollGoodMorale(battle, actedStack))
 		{
@@ -1226,6 +1235,7 @@ void BattleFlowProcessor::stackTurnTrigger(const CBattleInfoCallback & battle, c
 
 void BattleFlowProcessor::setActiveStack(const CBattleInfoCallback & battle, const battle::Unit * stack, BattleUnitTurnReason reason)
 {
+    stack=era_compat_server::bankSwordmasterBeforeActivation(*gameHandler,battle,stack);
 	assert(stack);
 
 	BattleSetActiveStack sas;

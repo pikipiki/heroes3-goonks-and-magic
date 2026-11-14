@@ -1,0 +1,20 @@
+{
+  "file": "outputs/wog-priorities-0.4.147/adventure167/mixed54/index-final13.json",
+  "sha256": "2b83a942f2348115f75fd5f9117b4551cd1ad9959c5136c2a99f728d369b6fa7",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "All54 exact native identities loaded at rank0 in nine mixed armies; this scope does not by itself establish every ability.",
+  "continuityReviews": [
+    {
+      "engineSha256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "All54 exact native identities loaded at rank0 in nine mixed armies; this scope does not by itself establish every ability.",
+      "notes": "Actual mixed-army rank0 evidence retains its Final10 engine. Later engine changes restored mobile saved player roles and added Weakness45 p276/p284 magnitude6, outside rank0 identities/loading. Final13 changes only DTO wall-target eligibility via CATAPULT bonus, outside this R0 scope. Later data corrections change H+309/310 rank1+ carriers and canonical Fear253/306/330 effect ownership; they do not change these54 identities or asset bindings. Their effects are independently validated, not inferred from this historical load.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/era/EraDwellingServices.h": "2af922025ae287a660fa407c346709e7c6a6853c2ca217cddf9fb614bb70e211",
+        "work/vcmi-wasm/lib/era/EraBankActors.h": "c831f4110c787facf1c5b49b0fe0bb45cbe721d9bed44de5a719fc7bf6921a5f"
+      }
+    }
+  ]
+}

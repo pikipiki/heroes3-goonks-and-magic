@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraDwellingArtifactMimic.h"
 #include "TurnInfo.h"
 
 #include "../IGameSettings.h"
@@ -109,6 +110,7 @@ TurnInfo::TurnInfo(TurnInfoCache * sharedCache, const CGHeroInstance * target, i
 		const auto & bonuses = sharedCache->waterWalking.getBonusList(target, selector);
 		waterWalkingTest = bonuses->getFirst(daySelector) != nullptr;
 		waterWalkingValue = bonuses->valOfBonuses(daySelector);
+        if(era_compat::dwellingWaterWalking(*target)){waterWalkingTest=true;waterWalkingValue=0;}
 	}
 
 	{

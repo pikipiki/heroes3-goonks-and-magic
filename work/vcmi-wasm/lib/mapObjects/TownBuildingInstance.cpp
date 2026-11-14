@@ -73,6 +73,10 @@ TownRewardableBuildingInstance::TownRewardableBuildingInstance(CGTownInstance * 
 	configuration = generateConfiguration(gameRandomizer);
 }
 
+TownRewardableBuildingInstance::TownRewardableBuildingInstance(CGTownInstance * town, const BuildingID & index)
+	: TownBuildingInstance(town, index)
+{}
+
 void TownRewardableBuildingInstance::assignBonuses(std::vector<std::shared_ptr<Bonus>> & bonuses) const
 {
 	const auto & building = town->getTown()->buildings.at(getBuildingType());

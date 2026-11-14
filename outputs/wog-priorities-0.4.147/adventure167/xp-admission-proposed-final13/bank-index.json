@@ -1,0 +1,30 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "scope": "Dedicated source bank XP6 exact proc rows: actual R10 actor and effective per-spell witness, separate from same-spell ordinary providers.",
+  "proofs": [
+    {
+      "file": "raw/bank-98efad0b05d9519af278aac86c352c33300508cc8dc84ede0a6cb7a8e7d972ef.json",
+      "checkpoint": true,
+      "scope": "Only completed exact source bank XP row cases selected by JSON pointers; no unselected case is admitted.",
+      "casePointers": [
+        "/report/xp272",
+        "/report/xp281",
+        "/report/xp289",
+        "/report/xp290"
+      ],
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "proofSHA256": "98efad0b05d9519af278aac86c352c33300508cc8dc84ede0a6cb7a8e7d972ef"
+    },
+    {
+      "file": "raw/bank-1c562518e0443c6830d221dcdd2102f1926fdbea7887b8469df959b23036bf01.json",
+      "checkpoint": true,
+      "scope": "Only completed exact source bank XP row cases selected by JSON pointers; no unselected case is admitted.",
+      "casePointers": [
+        "/report/bank330XpFirewall"
+      ],
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "proofSHA256": "1c562518e0443c6830d221dcdd2102f1926fdbea7887b8469df959b23036bf01"
+    }
+  ]
+}

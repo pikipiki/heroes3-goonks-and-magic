@@ -5,6 +5,7 @@
 #pragma once
 #include "EraStatusAttacks.h"
 #include "../../lib/era/EraPrimordialPolicies.h"
+#include "../../lib/era/EraDwellingServices.h"
 #include "../../lib/era/EraConfluxCaster.h"
 #include "../../lib/era/EraExperienceAttackSpells.h"
 #include <array>
@@ -59,6 +60,11 @@ inline void primordialDirectEventCast(CGameHandler & handler,const CBattleInfoCa
 inline void primordialAfterMelee(CGameHandler & handler,const CBattleInfoCallback & battle,
     const CStack * actor,const CStack * target)
 {
+    if(actor && era_compat::DwellingServices::get().actor(360,actor->unitType()->getJsonKey()))
+    {
+        for(int spell:{50,52})if(target && target->alive())primordialDirectEventCast(handler,battle,actor,target,spell,true);
+        return;
+    }
     const int source=primordialActorSource(actor);
     if(!source || !target)return;
     // No actor-alive test: original441C01/441B62 only checks target alive,

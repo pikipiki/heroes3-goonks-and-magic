@@ -1,0 +1,35 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_128": {
+        "name": "Legendary Cursed Temple",
+        "creatures": [
+          [
+            "tum-era:eraCreature298"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature298",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw29.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

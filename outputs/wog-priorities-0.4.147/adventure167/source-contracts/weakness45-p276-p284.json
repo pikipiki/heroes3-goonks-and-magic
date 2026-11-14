@@ -1,0 +1,73 @@
+{
+  "contract": "source-dwelling-weakness45-extension-v1",
+  "rows": [
+    {
+      "sourceId": 276,
+      "nativeId": "tum-era:eraCreature276",
+      "sourceLine": 1393,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 45,
+      "chances": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "existingSourceOwner": false
+    },
+    {
+      "sourceId": 284,
+      "nativeId": "tum-era:eraCreature284",
+      "sourceLine": 1457,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 45,
+      "chances": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "existingSourceOwner": false
+    }
+  ],
+  "sourceMastery": {
+    "code": "p",
+    "mastery": 3,
+    "existingClosedDispatcher": "lib/era/EraOrderedExperienceRule.h::sourceXpMastery",
+    "sourceService": "71D939 before-attack p group"
+  },
+  "descriptor": {
+    "initialTable": "0x6854a0",
+    "spell45Flags": 262213,
+    "magnitudes": [
+      3,
+      3,
+      6,
+      6
+    ],
+    "sptraitsSha256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9",
+    "baseArchiveSha256": "774cbfa7cfed6713ec80c48f8619a258dac14260e4f85faeebb29c053950a5a8"
+  },
+  "magnitudeEvidence": "444885 stores descriptor/mastery magnitude in+46C. For kind1 the direct casterHero isNULL, so optional4E6260 bonus branch is not used.4448A6..C2 clamps magnitude to current stored attack+C8 then subtracts it immediately.",
+  "implementationScope": "Only p276/p284 admitted, exact expert magnitude6. Existing J60/J261/k241 unchanged; all other IDs/codes throw.",
+  "test": "node --test tests/era-source-weakness45.test.mjs: PASS, C++17 UBSan; explicit other IDs and all other codes refused",
+  "nativeStatus": "Requires new build and rerun p276/p284; first real success on Final10 exposed prior missing admission."
+}

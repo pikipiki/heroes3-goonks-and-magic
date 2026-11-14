@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraDwellingArtifactMimic.h"
 #include "MiscObjects.h"
 
 #include "../bonuses/Propagators.h"
@@ -621,7 +622,7 @@ void CGWhirlpool::teleportDialogAnswered(IGameEventCallback & gameEvents, const 
 
 bool CGWhirlpool::isProtected(const CGHeroInstance * h)
 {
-	return h->hasBonusOfType(BonusType::WHIRLPOOL_PROTECTION)
+	return era_compat::dwellingWhirlpoolProtection(*h) || h->hasBonusOfType(BonusType::WHIRLPOOL_PROTECTION)
 		|| (h->stacksCount() == 1 && h->Slots().begin()->second->getCount() == 1)
 		|| (h->stacksCount() == 0 && h->getCommander() && h->getCommander()->alive);
 }

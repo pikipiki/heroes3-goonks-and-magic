@@ -369,6 +369,7 @@
 		"templates" : { },
 		"battleground" : { },
 		"sounds" : { },
+		"eraMysteriousCave" : { "type":"boolean", "description":"Source Mysterious Cave instance with persistent native events" },
 		"eraBankSpellPointsCap" : {
 			"type" : "integer",
 			"enum" : [999],

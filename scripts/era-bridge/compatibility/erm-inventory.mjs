@@ -20,7 +20,7 @@ export function inventoryErm(text, file) {
     const c = text[offset];
     if (c === '\n') { line++; offset++; eligible = true; continue; }
     if (eligible && /[\t\r \uFEFF]/.test(c)) { offset++; continue; }
-    if (!eligible || !/^![!?#]/.test(text.slice(offset, offset + 2))) {
+    if (!eligible || !/^![!?#$]/.test(text.slice(offset, offset + 2))) {
       eligible = false; offset++; continue;
     }
     const start = offset, startLine = line, kind = text[offset + 1];
@@ -38,16 +38,16 @@ export function inventoryErm(text, file) {
       statement, sha256:rawHash(statement)});
     eligible = terminated;
   }
-  const triggers = tokens.filter(t => t.kind === '?');
+  const triggers = tokens.filter(t => t.kind === '?' || t.kind === '$');
   const sections = [];
   if (!triggers.length || tokens.some(t => t.offset < triggers[0].offset)) {
     sections.push({line:1, offset:0, statement:'<initialization>', kind:'initialization'});
   }
-  sections.push(...triggers.map(t => ({...t, kind:'trigger'})));
+  sections.push(...triggers.map(t => ({...t, kind:t.kind === '$' ? 'post-trigger' : 'trigger'})));
   const events = sections.map((trigger, i) => {
     const endOffset = sections[i + 1]?.offset ?? text.length;
     const own = tokens.filter(t => t.offset >= trigger.offset && t.offset < endOffset);
-    const commands = own.filter(t => t.kind !== '?');
+    const commands = own.filter(t => t.kind !== '?' && t.kind !== '$');
     const receivers = {};
     for (const command of commands) {
       const receiver = command.statement.slice(2).match(/^[A-Za-z]{2}/)?.[0] ?? '?';
@@ -64,7 +64,7 @@ export function inventoryErm(text, file) {
       platformDependencies:[...(/!!UN[^;]*:C/.test(maskedCode)?['windows-memory']:[]),
         ...(/!!SN[^;]*:[EK]/.test(maskedCode)?['native-call-or-memory-copy']:[])]};
   });
-  return {file, sha256:sha256(bytes), triggerCount:triggers.length,
+  return {file, sha256:sha256(bytes), triggerCount:triggers.filter(t=>t.kind==='?').length, postTriggerCount:triggers.filter(t=>t.kind==='$').length,
     tokenCount:tokens.length, events, diagnostics};
 }
 

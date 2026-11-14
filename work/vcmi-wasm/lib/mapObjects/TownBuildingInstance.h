@@ -78,6 +78,7 @@ public:
 	void blockingDialogAnswered(IGameEventCallback & gameEvents, const CGHeroInstance *hero, int32_t answer) const override;
 	
 	TownRewardableBuildingInstance(CGTownInstance * town, const BuildingID & index, IGameRandomizer & gameRandomizer);
+	TownRewardableBuildingInstance(CGTownInstance * town, const BuildingID & index);
 	TownRewardableBuildingInstance(IGameInfoCallback *cb);
 	
 	template <typename Handler> void serialize(Handler &h)

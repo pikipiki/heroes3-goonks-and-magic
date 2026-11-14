@@ -1,6 +1,13 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {siegeTargets,paintVerticalFortifications} from '../web/battle-siege.mjs';
+import {siegeTargets,siegePickerTargets,paintVerticalFortifications} from '../web/battle-siege.mjs';
+test('wall-capable troops retain creature targets and keep walls out of ally and spell choices',()=>{
+ const enemy={key:'core:gnoll',enemy:true},state={activeUnit:{key:'tum-era:eraCreature314'},battleCells:[{hex:12,siegeTarget:true,actionLabel:'Attack'}]};
+ assert.deepEqual(siegePickerTargets(state,[enemy]).map(t=>t.siege?'wall':t.key),['core:gnoll','wall']);
+ assert.deepEqual(siegePickerTargets({...state,activeUnit:{key:'core:catapult'}},[enemy]).map(t=>t.hex),[12]);
+ for(const flags of[{spellTargeting:true},{creatureSpellTargeting:true}])assert.deepEqual(siegePickerTargets({...state,...flags},[enemy]),[enemy]);
+ assert.deepEqual(siegePickerTargets(state,[enemy],{allies:true}),[enemy]);
+});
 test('catapult targets include only wall sections with a native legal attack',()=>{
  const cells=[{hex:12,siegeTarget:true,actionLabel:'Attack'},{hex:62,siegeTarget:true},{hex:94,actionLabel:'Attack'}];
  assert.deepEqual(siegeTargets({battleCells:cells}).map(c=>c.hex),[12]);

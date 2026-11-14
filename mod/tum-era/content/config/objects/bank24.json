@@ -1,0 +1,204 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank24": {
+        "name": "Mansion",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avmnsion.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:vampireLord",
+                "amount": 8
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 8
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 8
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 8
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 8
+              }
+            ],
+            "resources": {
+              "mercury": 2,
+              "sulfur": 2,
+              "crystal": 2,
+              "gems": 2,
+              "gold": 2500
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:vampireLord",
+                "amount": 12
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 12
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 12
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 12
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 12
+              }
+            ],
+            "resources": {
+              "mercury": 3,
+              "sulfur": 3,
+              "crystal": 3,
+              "gems": 3,
+              "gold": 5000
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:vampireLord",
+                "amount": 16
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 16
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 16
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 16
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 16
+              }
+            ],
+            "resources": {
+              "mercury": 4,
+              "sulfur": 4,
+              "crystal": 4,
+              "gems": 4,
+              "gold": 7500
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:vampireLord",
+                "amount": 20
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 20
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 20
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 20
+              },
+              {
+                "type": "core:vampireLord",
+                "amount": 20
+              }
+            ],
+            "resources": {
+              "mercury": 5,
+              "sulfur": 5,
+              "crystal": 5,
+              "gems": 5,
+              "gold": 10000
+            },
+            "artifacts": [
+              {
+                "class": "MAJOR"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/mansionv.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPMANS.wav"
+          ]
+        }
+      }
+    }
+  }
+}

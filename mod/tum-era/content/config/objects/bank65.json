@@ -1,0 +1,177 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank65": {
+        "name": "Royal Treasury",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB33.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature301",
+                "amount": 25
+              },
+              {
+                "type": "tum-era:eraCreature302",
+                "amount": 25
+              },
+              {
+                "type": "tum-era:eraCreature301",
+                "amount": 25
+              },
+              {
+                "type": "tum-era:eraCreature302",
+                "amount": 25
+              },
+              {
+                "type": "tum-era:eraCreature301",
+                "amount": 25
+              }
+            ],
+            "resources": {
+              "gold": 4000
+            },
+            "artifacts": [
+              "core:endlessPurseOfGold"
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature301",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature302",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature301",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature302",
+                "amount": 50
+              },
+              {
+                "type": "tum-era:eraCreature301",
+                "amount": 50
+              }
+            ],
+            "resources": {
+              "gold": 8000
+            },
+            "artifacts": [
+              "core:endlessBagOfGold"
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "core:crusader",
+                "amount": 50
+              },
+              {
+                "type": "third-upgrades:tumInquisitor",
+                "amount": 50
+              },
+              {
+                "type": "core:crusader",
+                "amount": 50
+              },
+              {
+                "type": "third-upgrades:tumInquisitor",
+                "amount": 50
+              },
+              {
+                "type": "core:crusader",
+                "amount": 50
+              }
+            ],
+            "resources": {
+              "gold": 12000
+            },
+            "artifacts": [
+              "tum-era:artifact179"
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "tum-era:eraCreature340",
+                "amount": 120
+              },
+              {
+                "type": "tum-era:eraCreature340",
+                "amount": 120
+              },
+              {
+                "type": "tum-era:eraCreature340",
+                "amount": 120
+              },
+              {
+                "type": "tum-era:eraCreature340",
+                "amount": 120
+              },
+              {
+                "type": "tum-era:eraCreature340",
+                "amount": 120
+              }
+            ],
+            "resources": {
+              "gold": 20000
+            },
+            "artifacts": [
+              "tum-era:artifact179"
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 8000,
+          "rarity": 100
+        }
+      }
+    }
+  }
+}

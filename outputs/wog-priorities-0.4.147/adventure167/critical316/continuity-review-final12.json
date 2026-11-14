@@ -1,0 +1,31 @@
+{
+  "file": "outputs/wog-priorities-0.4.147/adventure167/critical316/index-final12.json",
+  "sha256": "7072060818f979be073f07d874c7a2d33528afd2220a1058abb105226ba25efc",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "Independent native Sorceress316 zero-current-power, refresh, distinct-troop UI and summoned193 cases; no global engine equivalence.",
+  "continuityReviews": [
+    {
+      "engineSha256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "finalEngineSha256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "reviewed": true,
+      "scope": "Independent native Sorceress316 zero-current-power, refresh, distinct-troop UI and summoned193 cases; no global engine equivalence.",
+      "notes": "Retained runs use their actual engines. Sorceress scoped RAII and marker contracts are unchanged since the Final9 correction. Subsequent Cave UI availability, mobile load-role restoration and Weakness45 p276/p284 magnitude changes are outside these316 selection/refresh/summon contracts. Current source anchors are bound explicitly; no new replay or whole-binary equivalence is claimed.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/server/era/EraSorceress316.h": "cd53e91b298c380805dc67ce9a00b9df7e62e0cc0bbb992d8644c22a5f060312",
+        "work/vcmi-wasm/server/era/EraPetrification.h": "0ef3f9d819bf8f7787af47c8f07a45ce9cd08d090baf5f17dffa3cbce543d287"
+      }
+    },
+    {
+      "engineSha256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "finalEngineSha256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "reviewed": true,
+      "scope": "Independent native Sorceress316 zero-current-power, refresh, distinct-troop UI and summoned193 cases; no global engine equivalence.",
+      "notes": "Retained runs use their actual engines. Sorceress scoped RAII and marker contracts are unchanged since the Final9 correction. Subsequent Cave UI availability, mobile load-role restoration and Weakness45 p276/p284 magnitude changes are outside these316 selection/refresh/summon contracts. Current source anchors are bound explicitly; no new replay or whole-binary equivalence is claimed.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/server/era/EraSorceress316.h": "cd53e91b298c380805dc67ce9a00b9df7e62e0cc0bbb992d8644c22a5f060312",
+        "work/vcmi-wasm/server/era/EraPetrification.h": "0ef3f9d819bf8f7787af47c8f07a45ce9cd08d090baf5f17dffa3cbce543d287"
+      }
+    }
+  ]
+}

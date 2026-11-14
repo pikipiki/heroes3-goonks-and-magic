@@ -1,6 +1,8 @@
 /* Independent XP43 permission. Production DEFEND tags cannot enable these hooks. */
 #pragma once
 #include "EraSourceXpAdmissionRows.h"
+#include "EraSourceBankXpAdmission.h"
+#include "EraSourceDwellingXpAdmission.h"
 #include "../json/JsonNode.h"
 #include "../filesystem/Filesystem.h"
 #include "../bonuses/Bonus.h"
@@ -42,20 +44,24 @@ public:
  bool ownsActor(std::string_view key)const{if(!active)return false;for(const auto&r:era_bridge::sourceXpAdmissionRows)if(r.nativeId==key&&owns(r))return true;return false;}
  static const SourceXpAdmissionPolicy&get(){static const SourceXpAdmissionPolicy value;return value;}
 };
+inline bool sourceXpAnyOwns(const era_bridge::SourceXpProvenance&r){return SourceXpAdmissionPolicy::get().owns(r)||SourceBankXpPolicy::get().owns(r)||SourceDwellingXpPolicy::get().owns(r);}
+inline bool sourceXpAnyOwnsActor(std::string_view key){return SourceXpAdmissionPolicy::get().ownsActor(key)||SourceBankXpPolicy::get().ownsActor(key)||SourceDwellingXpPolicy::get().ownsActor(key);}
+inline Bonus sourceDwellingXpEnrollment(){Bonus b(BonusDuration::PERMANENT,BonusType::PRIMARY_SKILL,BonusSource::OTHER,0,BonusSourceID(),BonusSubtypeID(PrimarySkill::DEFENSE));b.stacking=sourceDwellingXpTag();b.parameters=std::make_shared<BonusParameters>(std::vector<int32_t>{sourceDwellingXpSignature,1});return b;}
+inline Bonus sourceBankXpEnrollment(){Bonus b(BonusDuration::PERMANENT,BonusType::PRIMARY_SKILL,BonusSource::OTHER,0,BonusSourceID(),BonusSubtypeID(PrimarySkill::DEFENSE));b.stacking=sourceBankXpTag();b.parameters=std::make_shared<BonusParameters>(std::vector<int32_t>{sourceBankXpSignature,1});return b;}
 inline Bonus sourceXpAdmissionEnrollment(){Bonus b(BonusDuration::PERMANENT,BonusType::PRIMARY_SKILL,BonusSource::OTHER,0,BonusSourceID(),BonusSubtypeID(PrimarySkill::DEFENSE));b.stacking=sourceXpAdmissionTag();b.parameters=std::make_shared<BonusParameters>(std::vector<int32_t>{sourceXpAdmissionSignature,1});return b;}
 // Permission/lifecycle only. Source71C16D XP module/count/actualcommander/rank
 // preparation remains with the router; DEFEND enrollment is never consulted.
 inline bool sourceXpBattleAdmitted(const CBattleInfoCallback & battle)
 {
- const auto & policy=SourceXpAdmissionPolicy::get();if(!policy.enabled())return false;
+ const auto & policy=SourceXpAdmissionPolicy::get();const auto & banks=SourceBankXpPolicy::get();const auto & dwellings=SourceDwellingXpPolicy::get();if(!policy.enabled()&&!banks.enabled()&&!dwellings.enabled())return false;
  for(const auto * stack:battle.battleGetAllStacks())
  {
   const auto bonuses=stack->getBonuses(Selector::typeSubtype(BonusType::PRIMARY_SKILL,BonusSubtypeID(PrimarySkill::DEFENSE)));
   for(const auto & bonus:*bonuses)
-   if(bonus->stacking==sourceXpAdmissionTag())
+   if((policy.enabled()&&bonus->stacking==sourceXpAdmissionTag())||(banks.enabled()&&bonus->stacking==sourceBankXpTag())||(dwellings.enabled()&&bonus->stacking==sourceDwellingXpTag()))
    {
     if(bonus->source!=BonusSource::OTHER||bonus->val!=0||bonus->duration!=BonusDuration::PERMANENT
-       ||!bonus->parameters||bonus->parameters->toVector()!=std::vector<int32_t>{sourceXpAdmissionSignature,1}
+       ||!bonus->parameters||bonus->parameters->toVector()!=std::vector<int32_t>{bonus->stacking==sourceXpAdmissionTag()?sourceXpAdmissionSignature:bonus->stacking==sourceBankXpTag()?sourceBankXpSignature:sourceDwellingXpSignature,1}
        ||bonus->valType!=BonusValueType::ADDITIVE_VALUE||bonus->effectRange!=BonusLimitEffect::NO_LIMIT
        ||bonus->limiter||bonus->updater||bonus->propagator||bonus->propagationUpdater)
       throw std::runtime_error("Invalid independent XP admission marker");

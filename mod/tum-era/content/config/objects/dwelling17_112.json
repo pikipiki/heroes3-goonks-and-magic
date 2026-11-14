@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_112": {
+        "name": "Dragon Factory",
+        "creatures": [
+          [
+            "tum-era:eraCreature271"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature271",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw12.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

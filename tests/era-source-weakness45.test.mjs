@@ -15,6 +15,9 @@ int main(){
  assert(weakness45RemovalIdentity("goonk",{},0,tag,{},0)==false);
  assert(weakness45RemovalIdentity(tag,{},0,"eraSourceWeakness45:loss:v1",{},0)==false);
  assert(weakness45XpMagnitude('J',60)==6&&weakness45XpMagnitude('J',261)==6&&weakness45XpMagnitude('k',241)==3);
+ assert(weakness45XpMagnitude('p',276)==6&&weakness45XpMagnitude('p',284)==6);
+ for(int id: {275,277,283,285,60,261,241}){bool refused=false;try{(void)weakness45XpMagnitude('p',id);}catch(const std::invalid_argument&){refused=true;}assert(refused);}
+ for(char code: {'a','J','j','K','k'})for(int id:{276,284}){bool refused=false;try{(void)weakness45XpMagnitude(code,id);}catch(const std::invalid_argument&){refused=true;}assert(refused);}
  const int rawC8=1,frenzyDefense=30,bloodlustOnlyMelee=6,precisionOnlyRanged=3;
  assert(rawC8+frenzyDefense+bloodlustOnlyMelee==37&&rawC8+precisionOnlyRanged==4);
  auto frenzied=weakness45Apply({},rawC8,4,2,6);assert(frenzied.attackDelta==-1&&frenzied.state.magnitude==1);

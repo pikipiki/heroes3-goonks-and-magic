@@ -162,6 +162,7 @@ set(lib_MAIN_SRCS
 	mapObjects/TownBuildingInstance.cpp
 	mapObjects/CGTownInstance.cpp
 	mapObjects/CQuest.cpp
+	mapObjects/CGMysteriousCave.cpp
 	mapObjects/CRewardableObject.cpp
 	mapObjects/FlaggableMapObject.cpp
 	mapObjects/IMarket.cpp
@@ -597,6 +598,7 @@ set(lib_MAIN_HEADERS
 	mapObjects/CGResource.h
 	mapObjects/CGTownInstance.h
 	mapObjects/CQuest.h
+	mapObjects/CGMysteriousCave.h
 	mapObjects/CRewardableObject.h
 	mapObjects/FlaggableMapObject.h
 	mapObjects/IMarket.h

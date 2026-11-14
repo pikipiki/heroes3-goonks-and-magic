@@ -1,0 +1,867 @@
+{
+  "union": "/tmp/goonk-replacement185-union-recruiting",
+  "files": {
+    "content/config/source-dwelling-actors.candidate.json": "04126e9a3cd6b4c02c96c90c6d1865ba067f61f2b2be42e36089777b76ba8c82",
+    "registry-patches.json": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+    "union-review.json": "adb97f959977218ec02cc940a275977bb3abd2992058ac0610c60ec68b475f60"
+  },
+  "definitions": {
+    "eraCreature309": {
+      "name": {
+        "singular": "Forest Dragon",
+        "plural": "Forest Dragons"
+      },
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 235
+      },
+      "fightValue": 357,
+      "aiValue": 364,
+      "growth": 7,
+      "hitPoints": 25,
+      "speed": 7,
+      "attack": 7,
+      "defense": 7,
+      "damage": {
+        "min": 3,
+        "max": 6
+      },
+      "advMapAmount": {
+        "min": 12,
+        "max": 25
+      },
+      "abilities": {
+        "amethyst_flag_1": {
+          "type": "FLYING",
+          "val": 0
+        },
+        "amethyst_flag_31": {
+          "type": "DRAGON_NATURE",
+          "val": 0
+        },
+        "amethystBiology": {
+          "type": "LIVING"
+        },
+        "sourceSkeletonTarget": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "subtype": "core:skeleton"
+        }
+      },
+      "doubleWide": true,
+      "level": 3,
+      "upgrades": [
+        "tum-era:eraCreature310"
+      ],
+      "description": "Fly. Dragon.",
+      "faction": "core:neutral",
+      "shots": 0,
+      "hasDoubleWeek": false,
+      "stackExperience": [
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMax",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMin",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.attack",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.defence",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "ATTACKS_ALL_ADJACENT"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "ADDITIONAL_RETALIATION",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 1,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 2,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 4,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 5,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 7,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 8,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 10,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 11,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 13,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 14,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      ],
+      "graphics": {
+        "timeBetweenFidgets": 1,
+        "animationTime": {
+          "walk": 0.77,
+          "attack": 1,
+          "idle": 10
+        },
+        "animation": "tum-era/creatures/309/CR309",
+        "map": "tum-era/creatures/309/AVWCR309.def",
+        "mapMask": [
+          "VV",
+          "VA"
+        ],
+        "iconSmall": "tum-era/creatures/309/small",
+        "iconLarge": "tum-era/creatures/309/large"
+      },
+      "sound": {
+        "attack": "tum-era/creatures/309/S309ATTK.wav",
+        "defend": "tum-era/creatures/309/S309DFND.wav",
+        "killed": "tum-era/creatures/309/S309KILL.wav",
+        "move": "tum-era/creatures/309/S309MOVE.wav",
+        "wince": "tum-era/creatures/309/S309WNCE.wav"
+      }
+    },
+    "eraCreature310": {
+      "name": {
+        "singular": "Swamp Dragon",
+        "plural": "Swamp Dragons"
+      },
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 280
+      },
+      "fightValue": 397,
+      "aiValue": 404,
+      "growth": 7,
+      "hitPoints": 25,
+      "speed": 9,
+      "attack": 7,
+      "defense": 9,
+      "damage": {
+        "min": 3,
+        "max": 6
+      },
+      "advMapAmount": {
+        "min": 12,
+        "max": 20
+      },
+      "abilities": {
+        "amethyst_flag_1": {
+          "type": "FLYING",
+          "val": 0
+        },
+        "amethyst_flag_31": {
+          "type": "DRAGON_NATURE",
+          "val": 0
+        },
+        "amethystBiology": {
+          "type": "LIVING"
+        },
+        "amethyst_StrikeAndReturn": {
+          "type": "RETURN_AFTER_STRIKE",
+          "val": 0
+        },
+        "sourceSkeletonTarget": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "subtype": "core:skeleton"
+        }
+      },
+      "doubleWide": true,
+      "level": 3,
+      "description": "Fly. Dragon.\nStrike and Return.\nVenomous.",
+      "faction": "core:neutral",
+      "shots": 0,
+      "hasDoubleWeek": false,
+      "stackExperience": [
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMax",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMin",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.attack",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.defence",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "ATTACKS_ALL_ADJACENT"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "ADDITIONAL_RETALIATION",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 1,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 2,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 4,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 5,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 7,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 8,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 10,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 11,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 13,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NONE",
+            "val": 14,
+            "hidden": true,
+            "valueType": "ADDITIVE_VALUE",
+            "stacking": "sourceDwellingFlatHealth:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      ],
+      "graphics": {
+        "timeBetweenFidgets": 1,
+        "animationTime": {
+          "walk": 0.77,
+          "attack": 1,
+          "idle": 10
+        },
+        "animation": "tum-era/creatures/310/CR310",
+        "map": "tum-era/creatures/310/AVWCR310.def",
+        "mapMask": [
+          "VV",
+          "VA"
+        ],
+        "iconSmall": "tum-era/creatures/310/small",
+        "iconLarge": "tum-era/creatures/310/large"
+      },
+      "sound": {
+        "attack": "tum-era/creatures/310/S310ATTK.wav",
+        "defend": "tum-era/creatures/310/S310DFND.wav",
+        "killed": "tum-era/creatures/310/S310KILL.wav",
+        "move": "tum-era/creatures/310/S310MOVE.wav",
+        "wince": "tum-era/creatures/310/S310WNCE.wav"
+      }
+    }
+  },
+  "profiles": {
+    "tum-era:eraCreature309": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 52500,
+      "battlePercent": 40,
+      "rank11Extra": 26250
+    },
+    "tum-era:eraCreature310": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 52500,
+      "battlePercent": 40,
+      "rank11Extra": 26250
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "proofs": [
+    {
+      "file": "native-final8.json",
+      "passed": true,
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "proofSHA256": "ee909416b40c165044283a77d3cbdfcb4701ac3465a6ac144c092626c9bd88c2"
+    },
+    {
+      "file": "mobile-integration-final11.json",
+      "passed": true,
+      "engineSHA256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "proofSHA256": "24ffd6ae76be68ff966c1885b4e00bde27b5b399e5a92fe874120ee1919534d3"
+    }
+  ],
+  "scope": "One original whole102 native run on Final8, plus distinct Final11 authored-map/save/role integration. Native seed reproducibility and shared143 were observed on Final8; this index does not assert a Final11 replay of all102 programs or whole-binary equivalence.",
+  "sourceProgramSha256": "be39741c0e26bdff0000a087c2c8224ee12342b388fe964e6f34ab22b03e5f61",
+  "currentPolicySha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b"
+}

@@ -84,6 +84,8 @@ inline Weakness45Change weakness45Round(Weakness45State state,bool alive,bool ta
 inline int weakness45XpMagnitude(char sourceCode,int sourceId)
 {
     if(sourceCode=='J'&&(sourceId==60||sourceId==261))return 6;
+    // Reviewed dwelling XP rows p276/p284 use mastery3; pinned SPTRAITS45[3]=6.
+    if(sourceCode=='p'&&(sourceId==276||sourceId==284))return 6;
     if(sourceCode=='k'&&sourceId==241)return 3;
     throw std::invalid_argument("Unreviewed source45 XP row");
 }

@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_104": {
+        "name": "Ziggurat",
+        "creatures": [
+          [
+            "tum-era:eraCreature263"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature263",
+            "amount": 9
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw04.def",
+            "mask": [
+              "VVV",
+              "VBV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

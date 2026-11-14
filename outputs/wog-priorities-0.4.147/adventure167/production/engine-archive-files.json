@@ -1,0 +1,46 @@
+{
+  "build": "Final13",
+  "files": {
+    "dialogs.js": {
+      "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+      "bytes": 5613
+    },
+    "dosvcmi.png": {
+      "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
+      "bytes": 62083
+    },
+    "game.html": {
+      "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
+      "bytes": 14311
+    },
+    "mini-lz4.js": {
+      "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+      "bytes": 9804
+    },
+    "opfs-worker.js": {
+      "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7",
+      "bytes": 18829
+    },
+    "vcmiclient.data": {
+      "sha256": "3128062c4db06e35bc1b1470d94f71f16fd1f0ba2ff6b643fb9a06c1d697e80b",
+      "bytes": 8444866
+    },
+    "vcmiclient.data.js": {
+      "sha256": "9436f11b9671dc1eba6ff6a6bd8049be8e13a96c7e9cea48b8f32661beb8e237",
+      "bytes": 62978
+    },
+    "vcmiclient.js": {
+      "sha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923",
+      "bytes": 278566
+    },
+    "vcmiclient.js.symbols": {
+      "sha256": "b6cb47955386934f53134f87b069eeb4edc7b3f57b672bf9c4a50edb6ff8b8d1",
+      "bytes": 7058946
+    },
+    "vcmiclient.wasm": {
+      "sha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "bytes": 9907199
+    }
+  },
+  "scope": "Files extracted from the verified Final13 engine archive before build-site applies its data-loader adaptation and hashed public filenames."
+}

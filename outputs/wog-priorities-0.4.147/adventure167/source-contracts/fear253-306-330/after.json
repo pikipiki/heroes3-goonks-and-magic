@@ -1,0 +1,998 @@
+{
+  "files": {
+    "content/config/source-bank-actors.candidate.json": "5d955bbd8424716437e021f49594858df1a304ab4b77bf8f6b9d2669f7f113f0",
+    "content/config/source-dwelling-actors.candidate.json": "13dfc93200f4693f3b21c56bdea8d8e9ec57f51557ce8bfb2de3cd40a3c13e81",
+    "registry-patches.json": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+    "union-review.json": "cd10e23904ca98bc7958768c9e00d1d8afbf5355bd68cc16628263644cdbd76b"
+  },
+  "definitions": {
+    "253": {
+      "name": {
+        "singular": "Tiamat",
+        "plural": "Tiamats"
+      },
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 7,
+        "gems": 0,
+        "gold": 12000
+      },
+      "fightValue": 30000,
+      "aiValue": 29500,
+      "growth": 1,
+      "hitPoints": 800,
+      "speed": 16,
+      "attack": 35,
+      "defense": 40,
+      "damage": {
+        "min": 55,
+        "max": 70
+      },
+      "advMapAmount": {
+        "min": 1,
+        "max": 3
+      },
+      "abilities": {
+        "amethyst_flag_1": {
+          "type": "FLYING",
+          "val": 0
+        },
+        "amethyst_flag_10": {
+          "type": "MIND_IMMUNITY",
+          "val": 0
+        },
+        "amethyst_flag_16": {
+          "type": "BLOCKS_RETALIATION",
+          "val": 0
+        },
+        "amethyst_flag_17": {
+          "type": "NO_MORALE",
+          "val": 0
+        },
+        "amethyst_flag_19": {
+          "type": "ATTACKS_ALL_ADJACENT",
+          "val": 0
+        },
+        "amethyst_flag_31": {
+          "type": "DRAGON_NATURE",
+          "val": 0
+        },
+        "amethystKing": {
+          "type": "KING",
+          "val": 3
+        },
+        "amethystBiology": {
+          "type": "LIVING"
+        },
+        "amethyst_Fearless": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "amethyst_JoustingImmune": {
+          "type": "CHARGE_IMMUNITY",
+          "val": 0
+        },
+        "amethyst_Sktransformer": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "val": 0,
+          "subtype": "core:boneDragon"
+        },
+        "sourceFear": {
+          "type": "FEARFUL",
+          "val": 10,
+          "valueType": "INDEPENDENT_MAX",
+          "propagator": "BATTLE_WIDE",
+          "propagationUpdater": "BONUS_OWNER_UPDATER",
+          "limiters": [
+            "OPPOSITE_SIDE",
+            [
+              "noneOf",
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NO_MORALE"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "UNDEAD"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NON_LIVING"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "MECHANICAL"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "SIEGE_WEAPON"
+              }
+            ]
+          ],
+          "stacking": "eraSourceFear:253:v1"
+        },
+        "sourceMagicAura": {
+          "type": "SPELL_RESISTANCE_AURA",
+          "val": 25,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "sourceMagicMirror": {
+          "type": "MAGIC_MIRROR",
+          "val": 20,
+          "valueType": "INDEPENDENT_MAX"
+        },
+        "sourceSkeletonTarget": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "subtype": "core:boneDragon"
+        }
+      },
+      "doubleWide": true,
+      "level": 7,
+      "description": "Attacks all adjacent enemies. Fear. \nFearless. No Enemy retaliation. \nSlayer. Bloodlust. Prayer.",
+      "faction": "core:neutral",
+      "shots": 0,
+      "hasDoubleWeek": false,
+      "stackExperience": [
+        {
+          "bonus": {
+            "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+            "valueType": "ADDITIVE_VALUE",
+            "hidden": true
+          },
+          "values": [
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.attack",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            2,
+            2,
+            4,
+            7,
+            7,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.defence",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            1,
+            3,
+            3,
+            5,
+            5,
+            5,
+            6,
+            6,
+            8
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMax",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            2,
+            2,
+            4,
+            4,
+            4,
+            6,
+            7,
+            9,
+            9
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMin",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            4,
+            4,
+            4,
+            4,
+            6,
+            6,
+            7,
+            7
+          ]
+        },
+        {
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        {
+          "bonus": {
+            "type": "ADDITIONAL_ATTACK",
+            "val": 1
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "DEATH_STARE",
+            "subtype": "deathStareGorgon",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            5,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            24,
+            28,
+            30
+          ]
+        }
+      ],
+      "graphics": {
+        "timeBetweenFidgets": 1,
+        "animationTime": {
+          "walk": 0.6,
+          "attack": 1,
+          "idle": 10
+        },
+        "animation": "tum-era/creatures/253/CR253",
+        "map": "tum-era/creatures/253/AVWCR253.def",
+        "mapMask": [
+          "VV",
+          "VA"
+        ],
+        "iconSmall": "tum-era/creatures/253/small",
+        "iconLarge": "tum-era/creatures/253/large"
+      },
+      "sound": {
+        "attack": "tum-era/creatures/253/S253ATTK.wav",
+        "defend": "tum-era/creatures/253/S253DFND.wav",
+        "killed": "tum-era/creatures/253/S253KILL.wav",
+        "move": "tum-era/creatures/253/S253MOVE.wav",
+        "wince": "tum-era/creatures/253/S253WNCE.wav"
+      }
+    },
+    "306": {
+      "name": {
+        "singular": "Dark Elemental",
+        "plural": "Dark Elementals"
+      },
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 0,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 1450
+      },
+      "fightValue": 1850,
+      "aiValue": 2160,
+      "growth": 2,
+      "hitPoints": 90,
+      "speed": 11,
+      "attack": 16,
+      "defense": 12,
+      "damage": {
+        "min": 20,
+        "max": 30
+      },
+      "advMapAmount": {
+        "min": 4,
+        "max": 8
+      },
+      "abilities": {
+        "amethyst_flag_1": {
+          "type": "FLYING",
+          "val": 0
+        },
+        "amethyst_flag_10": {
+          "type": "MIND_IMMUNITY",
+          "val": 0
+        },
+        "amethyst_flag_16": {
+          "type": "BLOCKS_RETALIATION",
+          "val": 0
+        },
+        "amethyst_flag_17": {
+          "type": "NO_MORALE",
+          "val": 0
+        },
+        "amethystBiology": {
+          "type": "ERA_SOURCE_INANIMATE"
+        },
+        "sourceFear": {
+          "type": "FEARFUL",
+          "val": 10,
+          "valueType": "INDEPENDENT_MAX",
+          "propagator": "BATTLE_WIDE",
+          "propagationUpdater": "BONUS_OWNER_UPDATER",
+          "limiters": [
+            "OPPOSITE_SIDE",
+            [
+              "noneOf",
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NO_MORALE"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "UNDEAD"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NON_LIVING"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "MECHANICAL"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "SIEGE_WEAPON"
+              }
+            ]
+          ],
+          "stacking": "eraSourceFear:306:v1"
+        },
+        "sourceSkeletonTarget": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "subtype": "core:skeleton"
+        }
+      },
+      "doubleWide": false,
+      "level": 6,
+      "description": "No retaliation. Fear. Mind Spell Immunity.",
+      "faction": "core:neutral",
+      "shots": 0,
+      "hasDoubleWeek": false,
+      "stackExperience": [
+        {
+          "bonus": {
+            "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+            "valueType": "ADDITIVE_VALUE",
+            "hidden": true
+          },
+          "values": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.attack",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.defence",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMax",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            8,
+            9
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMin",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NEGATIVE_EFFECTS_IMMUNITY",
+            "subtype": "spellSchool.fire"
+          },
+          "values": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "NEGATIVE_EFFECTS_IMMUNITY",
+            "subtype": "spellSchool.earth"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ],
+      "graphics": {
+        "timeBetweenFidgets": 1,
+        "animationTime": {
+          "walk": 1,
+          "attack": 1,
+          "idle": 10
+        },
+        "animation": "tum-era/creatures/306/CR306",
+        "map": "tum-era/creatures/306/AVWCR306.def",
+        "mapMask": [
+          "VV",
+          "VA"
+        ],
+        "iconSmall": "tum-era/creatures/306/small",
+        "iconLarge": "tum-era/creatures/306/large"
+      },
+      "sound": {
+        "attack": "tum-era/creatures/306/S306ATTK.wav",
+        "defend": "tum-era/creatures/306/S306DFND.wav",
+        "killed": "tum-era/creatures/306/S306KILL.wav",
+        "move": "tum-era/creatures/306/S306MOVE.wav",
+        "wince": "tum-era/creatures/306/S306WNCE.wav"
+      }
+    },
+    "330": {
+      "name": {
+        "singular": "Crimson Dragon",
+        "plural": "Crimson Dragons"
+      },
+      "cost": {
+        "wood": 0,
+        "mercury": 0,
+        "ore": 0,
+        "sulfur": 8,
+        "crystal": 0,
+        "gems": 0,
+        "gold": 12000
+      },
+      "fightValue": 12132,
+      "aiValue": 12731,
+      "growth": 1,
+      "hitPoints": 500,
+      "speed": 19,
+      "attack": 30,
+      "defense": 30,
+      "damage": {
+        "min": 40,
+        "max": 60
+      },
+      "advMapAmount": {
+        "min": 2,
+        "max": 5
+      },
+      "abilities": {
+        "amethyst_Hate0132": {
+          "type": "ERA_PERSONAL_HATE_DAMAGE",
+          "val": 100,
+          "subtype": "core:azureDragon"
+        },
+        "amethyst_flag_1": {
+          "type": "FLYING",
+          "val": 0
+        },
+        "amethyst_flag_2": {
+          "type": "SHOOTER",
+          "val": 0
+        },
+        "amethyst_flag_3": {
+          "type": "TWO_HEX_ATTACK_BREATH",
+          "val": 0
+        },
+        "amethyst_flag_12": {
+          "type": "NO_MELEE_PENALTY",
+          "val": 0
+        },
+        "amethyst_flag_14": {
+          "type": "SPELL_SCHOOL_IMMUNITY",
+          "val": 0,
+          "subtype": "spellSchool.fire"
+        },
+        "amethyst_flag_31": {
+          "type": "DRAGON_NATURE",
+          "val": 0
+        },
+        "amethystKing": {
+          "type": "KING",
+          "val": 0
+        },
+        "amethystBiology": {
+          "type": "LIVING"
+        },
+        "amethyst_Sktransformer": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "val": 0,
+          "subtype": "core:boneDragon"
+        },
+        "amethyst_Fire_shield": {
+          "type": "FIRE_SHIELD",
+          "val": 30
+        },
+        "bankHate1712": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 132
+          },
+          "val": 50
+        },
+        "sourceFireballShot": {
+          "type": "SPELL_LIKE_ATTACK",
+          "subtype": "core:fireball"
+        },
+        "sourceSkeletonTarget": {
+          "type": "SKELETON_TRANSFORMER_TARGET",
+          "subtype": "core:boneDragon"
+        }
+      },
+      "doubleWide": true,
+      "level": 7,
+      "description": "Fireball Attack. Fire Shield. Immune to all spells. Hates Azure Dragons.",
+      "faction": "core:neutral",
+      "shots": 5,
+      "hasDoubleWeek": false,
+      "stackExperience": [
+        {
+          "bonus": {
+            "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+            "valueType": "ADDITIVE_VALUE",
+            "hidden": true
+          },
+          "values": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.attack",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "bonus": {
+            "type": "PRIMARY_SKILL",
+            "subtype": "primarySkill.defence",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMax",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "bonus": {
+            "type": "CREATURE_DAMAGE",
+            "subtype": "creatureDamageMin",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "bonus": {
+            "type": "STACKS_SPEED",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "bonus": {
+            "type": "FEARFUL",
+            "val": 10,
+            "valueType": "INDEPENDENT_MAX",
+            "propagator": "BATTLE_WIDE",
+            "propagationUpdater": "BONUS_OWNER_UPDATER",
+            "limiters": [
+              "OPPOSITE_SIDE",
+              [
+                "noneOf",
+                {
+                  "type": "HAS_ANOTHER_BONUS_LIMITER",
+                  "bonusType": "NO_MORALE"
+                },
+                {
+                  "type": "HAS_ANOTHER_BONUS_LIMITER",
+                  "bonusType": "UNDEAD"
+                },
+                {
+                  "type": "HAS_ANOTHER_BONUS_LIMITER",
+                  "bonusType": "NON_LIVING"
+                },
+                {
+                  "type": "HAS_ANOTHER_BONUS_LIMITER",
+                  "bonusType": "MECHANICAL"
+                },
+                {
+                  "type": "HAS_ANOTHER_BONUS_LIMITER",
+                  "bonusType": "SIEGE_WEAPON"
+                }
+              ]
+            ],
+            "stacking": "eraSourceFear:330:v1"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "FEARFUL",
+            "val": 0,
+            "valueType": "INDEPENDENT_MIN"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "RECEPTIVE"
+          },
+          "values": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "bonus": {
+            "type": "SHOTS",
+            "valueType": "ADDITIVE_VALUE"
+          },
+          "values": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            5
+          ]
+        },
+        {
+          "bonus": {
+            "type": "HATE",
+            "valueType": "ADDITIVE_VALUE",
+            "addInfo": {
+              "contract": "source-bank-hate-v1",
+              "sourceCreatureId": 132
+            }
+          },
+          "values": [
+            20,
+            40,
+            60,
+            80,
+            100,
+            120,
+            140,
+            160,
+            180,
+            200
+          ]
+        }
+      ],
+      "graphics": {
+        "timeBetweenFidgets": 1,
+        "animationTime": {
+          "walk": 0.6,
+          "attack": 1,
+          "idle": 10
+        },
+        "missile": {
+          "offset": {
+            "upperX": 41,
+            "upperY": -92,
+            "middleX": 58,
+            "middleY": -79,
+            "lowerX": 29,
+            "lowerY": -14
+          },
+          "frameAngles": [
+            90,
+            72,
+            45,
+            27,
+            0,
+            -27,
+            -45,
+            -72,
+            -90,
+            0,
+            0,
+            0
+          ],
+          "attackClimaxFrame": 0,
+          "projectile": "tum-era/creatures/330/SHOT330.def"
+        },
+        "animation": "tum-era/creatures/330/CR330",
+        "map": "tum-era/creatures/330/AVWCR330.def",
+        "mapMask": [
+          "VV",
+          "VA"
+        ],
+        "iconSmall": "tum-era/creatures/330/small",
+        "iconLarge": "tum-era/creatures/330/large"
+      },
+      "sound": {
+        "attack": "tum-era/creatures/330/S330ATTK.wav",
+        "defend": "tum-era/creatures/330/S330DFND.wav",
+        "killed": "tum-era/creatures/330/S330KILL.wav",
+        "move": "tum-era/creatures/330/S330MOVE.wav",
+        "wince": "tum-era/creatures/330/S330WNCE.wav",
+        "shoot": "tum-era/creatures/330/S330SHOT.wav"
+      }
+    }
+  },
+  "profiles": {
+    "253": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    },
+    "306": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 105000,
+      "battlePercent": 25,
+      "rank11Extra": 21000
+    },
+    "330": {
+      "experienceMultiplier": 1,
+      "upgradeMultiplier": 0.75,
+      "fullRank10": 147000,
+      "battlePercent": 20,
+      "rank11Extra": 14700
+    }
+  }
+}

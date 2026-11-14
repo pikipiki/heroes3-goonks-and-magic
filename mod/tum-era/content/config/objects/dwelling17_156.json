@@ -1,0 +1,34 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_156": {
+        "name": "Red Dragon Nest",
+        "creatures": [
+          [
+            "tum-era:eraCreature342"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw59.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVABV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

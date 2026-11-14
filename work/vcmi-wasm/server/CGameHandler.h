@@ -233,6 +233,7 @@ public:
 	bool buildStructure(ObjectInstanceID tid, BuildingID bid, bool force=false);//force - for events: no cost, no checkings
 	bool visitTownBuilding(ObjectInstanceID tid, BuildingID bid);
 	bool razeStructure(ObjectInstanceID tid, BuildingID bid);
+ bool caveBuilderAction(ObjectInstanceID hero,ObjectInstanceID town,int operation,int selection,bool option);
 	bool spellResearch(ObjectInstanceID tid, SpellID spellAtSlot, bool accepted);
 	bool disbandCreature( ObjectInstanceID id, SlotID pos );
 	bool arrangeStacks( ObjectInstanceID id1, ObjectInstanceID id2, ui8 what, SlotID p1, SlotID p2, si32 val, PlayerColor player);

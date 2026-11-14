@@ -9,8 +9,8 @@ namespace era_bridge::xp184
 inline std::int32_t signed32(std::uint32_t v){return v<0x80000000u?static_cast<std::int32_t>(v):static_cast<std::int32_t>(std::int64_t(v)-0x100000000LL);}
 inline std::int32_t add(std::int32_t a,std::int32_t b){return signed32(std::uint32_t(a)+std::uint32_t(b));}
 inline std::int32_t sub(std::int32_t a,std::int32_t b){return signed32(std::uint32_t(a)-std::uint32_t(b));}
-inline bool supports(int id){switch(id){case 42:case 49:case 50:case 51:case 52:case 54:case 59:case 60:case 62:case 70:case 73:case 74:return true;default:return false;}}
-inline bool mass(int spell,int mastery){return mastery==3&&(spell==42||spell==49||spell==50||spell==51||spell==52||spell==54);}
+inline bool supports(int id){switch(id){case 42:case 49:case 50:case 51:case 52:case 54:case 59:case 60:case 61:case 62:case 70:case 73:case 74:return true;default:return false;}}
+inline bool mass(int spell,int mastery){return mastery==3&&(spell==42||spell==49||spell==50||spell==51||spell==52||spell==54||spell==61);}
 inline bool positive(int spell){return spell==49||spell==51;}
 struct State
 {
@@ -38,6 +38,7 @@ inline Change cast(State state,int spell,int duration,int mastery,std::int32_t r
   case 54:if(!siege){s.magnitude=mastery>=2?50:75;result.counter=53;}break;
   case 59:s.magnitude=0;result.counter=60;break;
   case 60:s.magnitude=mastery;result.counter=59;break;
+  case 61:s.magnitude=mastery;break; //444D56 stores first application4C4
   case 62:{constexpr int pct[]={50,50,25,0};s.magnitude=pct[mastery];break;}
   case 70:case 74:s.magnitude=0;break;
   case 73:{const auto a=std::min<std::int32_t>(2,rawAttack),d=std::min<std::int32_t>(2,rawDefense);
@@ -67,6 +68,10 @@ inline std::optional<int> speed(int storedC4,const State &s,bool siege)
  if(!(value>=-2147483648.0f&&value<2147483648.0f))throw std::runtime_error("Source Slow ftol outside defined domain");
  return std::max(1,static_cast<int>(value));
 }
+//442E86 only positive duration halves the shooter count, minimum one.
+//4426D2, in contrast, treats negative duration as active for the >=2 block.
+inline int forgetfulShootingCount(int count,int duration,bool shooter)
+{return duration>0&&shooter?std::max(1,count/2):count;}
 inline bool removeOnPhysicalHit(int spell){return spell==62||spell==70||spell==74;}
 struct AttackFrame{bool rememberedBlind=false,rememberedParalyze=false,intrinsicSuppress=false;int blindRetaliationPercent=100;};
 inline bool normalRetaliationAllowed(const AttackFrame &f,bool alive,int counters,bool currentStone,bool attackerBlocks,bool overrideNoReply)

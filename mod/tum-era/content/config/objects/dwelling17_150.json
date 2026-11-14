@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_150": {
+        "name": "Dark Shrine",
+        "creatures": [
+          [
+            "tum-era:eraCreature333"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature333",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw53.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

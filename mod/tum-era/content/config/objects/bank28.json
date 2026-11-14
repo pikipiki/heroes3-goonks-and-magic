@@ -1,0 +1,202 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank28": {
+        "name": "Ivory Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avivtow1.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "snow"
+            ],
+            "zIndex": 0
+          },
+          "base1": {
+            "animation": "tum-era/objects/avivtow2.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "sand"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:archMage",
+                "amount": 7
+              },
+              {
+                "type": "core:archMage",
+                "amount": 7
+              },
+              {
+                "type": "core:archMage",
+                "amount": 7
+              },
+              {
+                "type": "core:archMage",
+                "amount": 7
+              },
+              {
+                "type": "core:archMage",
+                "amount": 7
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:enchanter",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:archMage",
+                "amount": 10
+              },
+              {
+                "type": "core:archMage",
+                "amount": 10
+              },
+              {
+                "type": "core:archMage",
+                "amount": 10
+              },
+              {
+                "type": "core:archMage",
+                "amount": 10
+              },
+              {
+                "type": "core:archMage",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:enchanter",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:archMage",
+                "amount": 13
+              },
+              {
+                "type": "core:archMage",
+                "amount": 13
+              },
+              {
+                "type": "core:archMage",
+                "amount": 13
+              },
+              {
+                "type": "core:archMage",
+                "amount": 13
+              },
+              {
+                "type": "core:archMage",
+                "amount": 13
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:enchanter",
+                "amount": 9
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:archMage",
+                "amount": 16
+              },
+              {
+                "type": "core:archMage",
+                "amount": 16
+              },
+              {
+                "type": "core:archMage",
+                "amount": 16
+              },
+              {
+                "type": "core:archMage",
+                "amount": 16
+              },
+              {
+                "type": "core:archMage",
+                "amount": 16
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:enchanter",
+                "amount": 12
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/IVORYTOW.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/IVORTWLO.wav"
+          ]
+        }
+      }
+    }
+  }
+}

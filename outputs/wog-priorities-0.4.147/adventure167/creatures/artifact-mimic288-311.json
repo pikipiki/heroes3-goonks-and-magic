@@ -1,0 +1,1725 @@
+{
+  "passed": true,
+  "errors": [],
+  "report": {
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "39734a8d29118603",
+      "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+      "sha256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216,
+      "privateValidation": true,
+      "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+    },
+    "core:peasant": {
+      "passed": true,
+      "scope": "Original army artifact queries only; spell availability and water path, no physical artifact supplied",
+      "before": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 15,
+                "attack": 1,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  10,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 1,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 15,
+                "growth": 25,
+                "health": 1,
+                "icon": "",
+                "id": 139,
+                "key": "core:peasant",
+                "name": "Peasant",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 10
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 10
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1960,
+            "movementLimit": 1960,
+            "name": "Christian"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": -1,
+            "y": 2
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1960,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20800,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34070848,
+        "worldView": false
+      },
+      "spells": [
+        {
+          "cost": 2,
+          "description": "{View earth}\n\nReveals the location of all resources to the caster.\n",
+          "enabled": true,
+          "h": 78,
+          "id": 3,
+          "level": 1,
+          "name": "View Earth",
+          "w": 65,
+          "x": 106,
+          "y": 53
+        }
+      ],
+      "pathState": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 15,
+                "attack": 1,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  10,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 1,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 15,
+                "growth": 25,
+                "health": 1,
+                "icon": "",
+                "id": 139,
+                "key": "core:peasant",
+                "name": "Peasant",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 10
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 10
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1960,
+            "movementLimit": 1960,
+            "name": "Christian"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": 3,
+            "y": 2
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1960,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20800,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34070848,
+        "worldView": false
+      }
+    },
+    "tum-era:eraCreature288": {
+      "passed": true,
+      "scope": "Original army artifact queries only; spell availability and water path, no physical artifact supplied",
+      "before": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 459,
+                "attack": 8,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  350,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 9,
+                "damageMin": 6,
+                "defense": 12,
+                "description": "Immune to water damage spells. Cast Fortune.+500 movement in the sea. \nWhirlpool Protection.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 442,
+                "growth": 5,
+                "health": 30,
+                "icon": "tum-era/creatures/288/large",
+                "id": 303,
+                "key": "tum-era:eraCreature288",
+                "name": "Mermaid",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 10
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 10
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1960,
+            "movementLimit": 1960,
+            "name": "Christian"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": -1,
+            "y": 2
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1960,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20800,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34070848,
+        "worldView": false
+      },
+      "spells": [
+        {
+          "cost": 2,
+          "description": "{View earth}\n\nReveals the location of all resources to the caster.\n",
+          "enabled": true,
+          "h": 78,
+          "id": 3,
+          "level": 1,
+          "name": "View Earth",
+          "w": 65,
+          "x": 106,
+          "y": 53
+        },
+        {
+          "cost": 8,
+          "description": "{Summon Boat}\n\nSummons an existing, friendly, unoccupied boat from anywhere in the world to your location.\n\nChances for success are 50%.\n",
+          "enabled": true,
+          "h": 78,
+          "id": 0,
+          "level": 1,
+          "name": "Summon Boat",
+          "w": 65,
+          "x": 191,
+          "y": 53
+        },
+        {
+          "cost": 8,
+          "description": "{Scuttle Boat}\n\nDestroys a boat you own.  Use with caution, the effects are permanent.\n\nChances for success are 50%.\n",
+          "enabled": true,
+          "h": 78,
+          "id": 1,
+          "level": 2,
+          "name": "Scuttle Boat",
+          "w": 65,
+          "x": 276,
+          "y": 53
+        }
+      ],
+      "pathState": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 459,
+                "attack": 8,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  350,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 9,
+                "damageMin": 6,
+                "defense": 12,
+                "description": "Immune to water damage spells. Cast Fortune.+500 movement in the sea. \nWhirlpool Protection.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 442,
+                "growth": 5,
+                "health": 30,
+                "icon": "tum-era/creatures/288/large",
+                "id": 303,
+                "key": "tum-era:eraCreature288",
+                "name": "Mermaid",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 10
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 10
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1960,
+            "movementLimit": 1960,
+            "name": "Christian"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": 3,
+            "y": 2
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1960,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20800,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34070848,
+        "worldView": false
+      }
+    },
+    "tum-era:eraCreature311": {
+      "passed": true,
+      "scope": "Original army artifact queries only; spell availability and water path, no physical artifact supplied",
+      "before": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 330,
+                "attack": 8,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  240,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 7,
+                "damageMin": 3,
+                "defense": 9,
+                "description": "Mind Spell Immunity.\nWater Walk.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 365,
+                "growth": 7,
+                "health": 35,
+                "icon": "tum-era/creatures/311/large",
+                "id": 323,
+                "key": "tum-era:eraCreature311",
+                "name": "Moss Thrall",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": true,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 10
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 10
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1960,
+            "movementLimit": 1960,
+            "name": "Christian"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": -1,
+            "y": 2
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1960,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20800,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34070848,
+        "worldView": false
+      },
+      "spells": [
+        {
+          "cost": 2,
+          "description": "{View earth}\n\nReveals the location of all resources to the caster.\n",
+          "enabled": true,
+          "h": 78,
+          "id": 3,
+          "level": 1,
+          "name": "View Earth",
+          "w": 65,
+          "x": 106,
+          "y": 53
+        }
+      ],
+      "pathState": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 1,
+            "name": "Christian",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 330,
+                "attack": 8,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  240,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 7,
+                "damageMin": 3,
+                "defense": 9,
+                "description": "Mind Spell Immunity.\nWater Walk.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 365,
+                "growth": 7,
+                "health": 35,
+                "icon": "tum-era/creatures/311/large",
+                "id": 323,
+                "key": "tum-era:eraCreature311",
+                "name": "Moss Thrall",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": true,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 10
+              },
+              {
+                "aiValue": 700,
+                "attack": 10,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  330,
+                  0
+                ],
+                "count": 3,
+                "damageMax": 12,
+                "damageMin": 8,
+                "defense": 12,
+                "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 700,
+                "growth": 6,
+                "health": 50,
+                "icon": "goonk/fart-large.png",
+                "id": 248,
+                "key": "goonk:bubu",
+                "name": "Bubu",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 10
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "hasPath": true,
+        "heroHasSpellbook": true,
+        "heroId": 1,
+        "heroMana": 200,
+        "heroManaLimit": 200,
+        "heroMoving": false,
+        "heroName": "Christian",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1,
+            "index": 0,
+            "mana": 200,
+            "manaLimit": 200,
+            "movement": 1960,
+            "movementLimit": 1960,
+            "name": "Christian"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": 3,
+            "y": 2
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1960,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "pathTurns": 0,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20800,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34070848,
+        "worldView": false
+      }
+    }
+  }
+}

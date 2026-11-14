@@ -1,0 +1,392 @@
+{
+  "preparedOnly": true,
+  "nativeValidated": false,
+  "sourceRuntimeApproval": {
+    "reviewer": "Root",
+    "approvedIds": [
+      200,
+      239,
+      253,
+      262,
+      264,
+      270,
+      272,
+      274,
+      276,
+      277,
+      279,
+      281,
+      282,
+      284,
+      285,
+      288,
+      289,
+      290,
+      292,
+      296,
+      298,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      319,
+      322,
+      323,
+      325,
+      326,
+      327,
+      328,
+      330,
+      333,
+      334,
+      335,
+      336,
+      340,
+      358,
+      360,
+      362
+    ],
+    "excludedIds": [],
+    "scope": "Pinned compiler CFG/EXP translation, C++ kernels, native54mixed+extras; generic native primitives reused without claiming native replay of eachbranch."
+  },
+  "actors": [
+    {
+      "sourceId": 200,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor200-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 239,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor239-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 253,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor253-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 262,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor262-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 264,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor264-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 270,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor270-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 272,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor272-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 4
+    },
+    {
+      "sourceId": 274,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor274-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 276,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor276-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 277,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor277-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 279,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor279-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 281,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor281-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 4
+    },
+    {
+      "sourceId": 282,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor282-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 284,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor284-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 285,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor285-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 288,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor288-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 5
+    },
+    {
+      "sourceId": 289,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor289-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 5
+    },
+    {
+      "sourceId": 290,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor290-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 4
+    },
+    {
+      "sourceId": 292,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor292-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 296,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor296-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 298,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor298-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 301,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor301-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 302,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor302-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 303,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor303-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 304,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor304-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 305,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor305-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 306,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor306-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 307,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor307-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 308,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor308-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 309,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor309-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 310,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor310-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 311,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor311-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 312,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor312-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 4
+    },
+    {
+      "sourceId": 313,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor313-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 314,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor314-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 315,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor315-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 316,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor316-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 5
+    },
+    {
+      "sourceId": 317,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor317-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 319,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor319-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 322,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor322-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 323,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor323-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 325,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor325-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 326,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor326-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 327,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor327-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 328,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor328-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 330,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor330-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 5
+    },
+    {
+      "sourceId": 333,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor333-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 1
+    },
+    {
+      "sourceId": 334,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor334-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 335,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor335-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 336,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor336-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 340,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor340-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 358,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor358-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 2
+    },
+    {
+      "sourceId": 360,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor360-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    },
+    {
+      "sourceId": 362,
+      "entry": "outputs/wog-priorities-0.4.147/adventure167/actor-admission-proposed-final13/actor362-entry.json",
+      "pending": [],
+      "actualNativeReportCount": 3
+    }
+  ],
+  "scope": "54 source-bound proposed indexes requiring peractor review. Required native gaps are explicit. No production gate is activated."
+}

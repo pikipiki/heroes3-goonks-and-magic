@@ -37,7 +37,7 @@ function atPointer(value,pointer){if(!pointer)return value;if(!pointer.startsWit
 export function compileTumBank(input,{
  source='<TUM_CreatureBanks.json>',pointer='',objectId,nativeTemplates,guardsLayout,
  resolveCreature,resolveArtifact,resolveResource,nativeRmg,
- chanceMode='percent',guardSlotsMode='strict',extraRewardsMode='strict',disabledUpgradeEvidence,upgradeMode='strict',resolveEraUpgrade,resolveNativeUpgrades,spellMode='strict',spellCatalog,resolveSpell,emptyGuardMode='strict',resolveNullSound,appearanceMode='strict',resolveAnimation,
+ sourcePlacement='strict',chanceMode='percent',guardSlotsMode='strict',extraRewardsMode='strict',disabledUpgradeEvidence,upgradeMode='strict',resolveEraUpgrade,resolveNativeUpgrades,spellMode='strict',spellCatalog,resolveSpell,emptyGuardMode='strict',resolveNullSound,appearanceMode='strict',resolveAnimation,
 }={}){
  const parsed=typeof input==='string'?parseTumBanks(input,{source}):input&&own(input,'document')&&own(input,'locations')?structuredClone(input):{document:structuredClone(input),source,locations:{}};
  const root=atPointer(parsed.document,pointer),diagnostics=[],provenance=[];
@@ -62,6 +62,8 @@ export function compileTumBank(input,{
  }
  if(typeof guardsLayout!=='string'||!guardsLayout.trim())error(pointer,'MISSING_GUARDS_LAYOUT','Explicit verified native guardsLayout is required');
  if(!['strict','era-original'].includes(extraRewardsMode))error(pointer,'INVALID_EXTRA_REWARDS_MODE','Unknown bank extra rewards mode');
+ if(!['strict','scripted-object'].includes(sourcePlacement))error(pointer,'INVALID_SOURCE_PLACEMENT','Explicit strict or scripted-object placement required');
+ if(sourcePlacement==='scripted-object'&&nativeRmg!==undefined)error(pointer,'SCRIPTED_SOURCE_RMG','Scripted object placement cannot enable random-map generation');
  if(!['strict','era-first-occupied-slot'].includes(upgradeMode))error(pointer,'INVALID_UPGRADE_MODE','Unknown bank upgrade mode');
  if(!['percent','relative','era-fourth-state-remainder'].includes(chanceMode))error(pointer,'INVALID_CHANCE_MODE','chanceMode must be percent, relative or era-fourth-state-remainder');
  if(!keys(root,['name','states','properties','sound','text','density','value','enabled'],pointer)){fail();}
@@ -71,7 +73,7 @@ export function compileTumBank(input,{
  const states=Array.isArray(root.states)?root.states:[];
  if(own(root,'properties')){if(array(root.properties,join(pointer,'properties'))&&root.properties.some(v=>typeof v!=='string'))error(join(pointer,'properties'),'INVALID_TEMPLATE_METADATA','Source properties must be strings');note(join(pointer,'properties'),'opaque ERA object-template lines retained in report; native templates supplied explicitly');}
  for(const k of ['density','value'])if(own(root,k)){integer(root[k],join(pointer,k));note(join(pointer,k),'ERA RMG metadata retained; no automatic distribution equivalence claimed');}
- if(own(root,'enabled')){if(typeof root.enabled!=='boolean')error(join(pointer,'enabled'),'INVALID_BOOLEAN','enabled must be boolean');if(root.enabled===false)error(join(pointer,'enabled'),'DISABLED_SOURCE_BANK','Cannot emit a playable bank from a disabled ERA definition');note(join(pointer,'enabled'),'source bank enabled gate');}
+ if(own(root,'enabled')){if(typeof root.enabled!=='boolean')error(join(pointer,'enabled'),'INVALID_BOOLEAN','enabled must be boolean');if(root.enabled===false&&sourcePlacement!=='scripted-object')error(join(pointer,'enabled'),'DISABLED_SOURCE_BANK','Cannot emit a playable bank from a disabled ERA definition');note(join(pointer,'enabled'),'source bank enabled gate');}
  const definition={name:root.name,templates:structuredClone(nativeTemplates||{}),visitMode:'once',selectMode:'selectFirst',guardsLayout,onGuardedMessage:32,onVisitedMessage:33,rewards:[]};
  try{const slots=compileEraBankGuardSlots(root,{mode:guardSlotsMode});if(slots){definition.eraBankGuardSlots=slots;note(pointer,'Native original guardian slots policy; no source holes compacted','h3era.exe0x47A717..0x47A721 copies7types/counts; count4 bypasses split0x47A824..0x47A83C');}}catch(cause){error(pointer,cause.code||'GUARD_SLOTS_FAILED',cause.message);}
  if(own(root,'sound')&&keys(root.sound,['enter','loop'],join(pointer,'sound'))){definition.sounds={};for(const [key,native]of [['enter','visit'],['loop','ambient']])if(own(root.sound,key)){const p=join(join(pointer,'sound'),key);if(root.sound[key]===null&&typeof resolveNullSound==='function'){let policy;try{policy=resolveNullSound(key);}catch(cause){error(p,'NULL_SOUND_RESOLVER_FAILED',cause.message);}if(!policy||!['inherit','silence'].includes(policy.mode)||!policy.evidence)error(p,'UNVERIFIED_NULL_SOUND','Null sound policy requires verified inherit/silence mode and evidence');else{if(policy.mode==='silence')definition.sounds[native]=[];note(p,'verified ERA null sound '+policy.mode,policy.evidence);}}else if(typeof root.sound[key]!=='string'||!root.sound[key])error(p,'INVALID_SOUND','Expected sound resource name');else{definition.sounds[native]=[root.sound[key]];note(p,'native '+native+' sound');}}}
@@ -168,5 +170,5 @@ export function compileTumBank(input,{
   if(artifacts.length)reward.artifacts=artifacts;
   if(weights[i]>0||chanceMode==='era-fourth-state-remainder')definition.rewards.push(reward);
  }
- fail();return {definition:{'core:creatureBank':{types:{[objectId]:definition}}},provenance,report:{source:parsed.source||source,pointer,sourceTemplateLines:structuredClone(root.properties||[]),sourceRmgMetadata:Object.fromEntries(['density','value','enabled'].filter(k=>own(root,k)).map(k=>[k,root[k]])),nativeRmgProvided:nativeRmg!==undefined,unsupportedScope:['ERM day-one map-object replacement probabilities and offsets','Plugin behavior outside the selected declarative reward state'],chanceMode,upgradeMode,sourceWeightTotal,effectiveWeights:weights}};
+ fail();return {definition:{'core:creatureBank':{types:{[objectId]:definition}}},provenance,report:{source:parsed.source||source,pointer,sourceTemplateLines:structuredClone(root.properties||[]),sourceRmgMetadata:Object.fromEntries(['density','value','enabled'].filter(k=>own(root,k)).map(k=>[k,root[k]])),nativeRmgProvided:nativeRmg!==undefined,sourcePlacement,unsupportedScope:['ERM day-one map-object replacement probabilities and offsets','Plugin behavior outside the selected declarative reward state'],chanceMode,upgradeMode,sourceWeightTotal,effectiveWeights:weights}};
 }

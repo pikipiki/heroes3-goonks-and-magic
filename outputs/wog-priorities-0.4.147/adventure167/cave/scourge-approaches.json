@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "report": {
+    "extras": {
+      "approachEnemy": {
+        "passed": true,
+        "mask": 247,
+        "refused": true
+      },
+      "approachAlly": {
+        "passed": true,
+        "mask": 247,
+        "refused": true
+      },
+      "engineSHA256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa"
+    },
+    "engineBytesVerified": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "39734a8d29118603",
+      "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+      "sha256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216,
+      "privateValidation": true,
+      "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+    }
+  }
+}

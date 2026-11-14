@@ -8,8 +8,11 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraDwellingCaster.h"
+#include "../era/EraDwellingHealth.h"
 #include "../era/EraWeakness45State.h"
 #include "../era/EraSourceXpOwnHealth.h"
+#include "../era/EraCaveBattleHealth.h"
 #include "../era/EraXpTimed184Lifecycle.h"
 #include "../era/EraSourceDefendState.h"
 
@@ -486,6 +489,7 @@ int32_t CUnitState::getEffectPower(const spells::Spell * spell) const
 
 int32_t CUnitState::getEnchantPower(const spells::Spell * spell) const
 {
+	if(era_compat::dwellingHypnotist(this))return getCount();
 	int32_t res = valOfBonuses(BonusType::CREATURE_ENCHANT_POWER);
 	if(res <= 0)
 		res = 3;//default for creatures
@@ -623,8 +627,9 @@ uint32_t CUnitState::getMaxHealth() const
         int experienced=hasBonusOfType(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)
             ? ::era_bridge::sourceExperienceHealth(value,valOfBonuses(BonusType::ERA_EXPERIENCE_HEALTH_PERCENT)) : value;
         experienced=era_compat::sourceXpOwnHealth(*this,experienced);
+        experienced=era_compat::applyDwellingFlatHealth(*this,experienced);
         const int percentage=valOfBonuses(BonusType::ERA_SPECIALIST_HEALTH_PERCENT);
-        return ::era_bridge::sourceSpecialistHealth(experienced,percentage);
+        return era_compat::caveInitializedHealth(*this,::era_bridge::sourceSpecialistHealth(experienced,percentage));
     };
     if(!era_compat::sourceStatusUsesProfile(*this))
         return std::max(1,applyExperience(bonusCache.getBonusValue(UnitBonusValuesProxy::STACK_HEALTH)));

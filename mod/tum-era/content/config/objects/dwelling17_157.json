@@ -1,0 +1,39 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_157": {
+        "name": "Faerie Dragon Nest",
+        "creatures": [
+          [
+            "tum-era:eraCreature343"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature343",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw60.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

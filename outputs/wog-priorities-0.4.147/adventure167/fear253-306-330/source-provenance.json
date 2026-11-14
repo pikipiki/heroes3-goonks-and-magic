@@ -1,0 +1,25 @@
+{
+  "scope": "Native Fear ability with original10% chance unchanged; consumed native archer ammunition witnesses skipped turns independently of HP rounding and new summons.",
+  "engineSha256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+  "files": {
+    "work/browser-tests/wog-dwelling185-fear-native-e2e.mjs": "2fa198c4588eeba690d397b9cc74c16ec6c06fd06342ae59f3708b60f84f9d84",
+    "work/browser-tests/dwelling185-fear-cases.mjs": "d80acdf89de864cc22d193aac03c24096429bb384178c223ddee2b72e0565c29",
+    "work/browser-tests/dwelling185-candidate-overlay.mjs": "f7802c735fe7296ac3cbdfafca3bcc414788a46267b3436207a9b3d406cd5eee",
+    "scripts/era-bridge/objects/source-fear-aura.mjs": "b5f467e52cb0b674c66119723114092c234c19dd7bb4426772a5f5a314abe965",
+    "work/vcmi-wasm/server/era/EraSourceFear.h": "2d0fd6dcb766ac83b919562077cb6624ac5b84cd64ce5fd818ee905260dd87ee"
+  },
+  "rawFiles": {
+    "r0-checkpoint.json": "8ff18a0a7a1ba3343df4cfd9171e1308a0bbac88e3b094a9286c5a95c74b25e8",
+    "r10-result.json": "f3794ae871ccbde87d98df69ea1182c4db6d48f47d6d46b6832807f288b3a415"
+  },
+  "currentHarnessNote": "Current harness has trainingHP700. The R0 checkpoint was recorded before that private training-only edit, with trainingHP400; its three completed cases have no training. Its subsequent R10 training reached onlyR7 and is excluded, never relabelled. The separate R10 result uses700HP and real342XP at the342 fullRank10 threshold (native cap; private target700HP provides sufficient XP).",
+  "checkpointGlobalPassed": false,
+  "checkpointWholeRunValidated": false,
+  "checkpointCasePointers": [
+    "/report/fear/0/passed",
+    "/report/fear/1/passed",
+    "/report/fear/2/passed"
+  ],
+  "nativeResultPointer": "/report/fear/0/passed",
+  "limitations": "Fixed seeded40-round scenario validates effective aura dispatch and rank0/R10 admission, not statistical calibration of its10% distribution or independent positive/negative targets for every biological exclusion."
+}

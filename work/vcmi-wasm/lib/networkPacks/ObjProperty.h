@@ -47,7 +47,11 @@ enum class ObjProperty : int8_t
 
 	//object with reward
 	REWARD_SELECT,
-	REWARD_CLEARED
+	REWARD_CLEARED,
+
+	// Appended: preserve all existing wire identifiers.
+	ERA_CAVE_TOWN_FACTION,
+	ERA_CAVE_TOWN_DAMAGE
 };
 
 class NumericID : public StaticIdentifier<NumericID>

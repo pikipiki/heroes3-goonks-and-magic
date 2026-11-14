@@ -1,0 +1,51 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "scope": "All18states of original source banks48/51/64/65/66/67: exact guards/rewards, source upgrades, nonoverlap, revisit and state0 native save/reload.",
+  "proofs": [
+    {
+      "file": "raw/5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1.json",
+      "checkpoint": true,
+      "scope": "Selected completed source bank state cases only",
+      "casePointers": [
+        "/report/48-0",
+        "/report/48-1",
+        "/report/48-2",
+        "/report/48-3",
+        "/report/51-0",
+        "/report/51-1",
+        "/report/51-2",
+        "/report/51-3",
+        "/report/64-0",
+        "/report/64-1",
+        "/report/64-2",
+        "/report/64-3",
+        "/report/65-0",
+        "/report/65-1"
+      ],
+      "engineSHA256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "proofSHA256": "5bf74a0aae3ddcb8f783cf996ac20a0d1538021e0c4f6d6bb6b428ba29704ac1"
+    },
+    {
+      "file": "raw/69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e.json",
+      "checkpoint": true,
+      "scope": "Selected completed source bank state cases only",
+      "casePointers": [
+        "/report/65-2",
+        "/report/65-3",
+        "/report/66-0",
+        "/report/67-0"
+      ],
+      "engineSHA256": "ef16a7433c55e9dd0849816d14a9e5256b323aee469d944f76cd96380d71a62f",
+      "proofSHA256": "69c1e09aaa8e4e8fb8518fc69ee0655d63fedb15d71ec9348605b512afc9bf5e"
+    }
+  ],
+  "validatedBankIds": [
+    48,
+    51,
+    64,
+    65,
+    66,
+    67
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "report": {
+    "extras": {
+      "occupantsVictory": {
+        "passed": true,
+        "occupants": 16,
+        "gold": 100
+      },
+      "occupantsRetreat": {
+        "passed": true,
+        "occupants": 16,
+        "secondFightStarted": true
+      },
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2"
+    },
+    "engineBytesVerified": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "39734a8d29118603",
+      "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+      "sha256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216,
+      "privateValidation": true,
+      "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+    }
+  }
+}

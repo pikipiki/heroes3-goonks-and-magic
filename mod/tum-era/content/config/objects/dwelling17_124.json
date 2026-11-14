@@ -1,0 +1,32 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_124": {
+        "name": "Dragon Slayer Tower",
+        "creatures": [
+          [
+            "tum-era:eraCreature200"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw24.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VABV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

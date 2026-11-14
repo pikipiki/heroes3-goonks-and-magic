@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_101": {
+        "name": "Training Grounds with archery",
+        "creatures": [
+          [
+            "tum-era:eraCreature318"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature318",
+            "amount": 9
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw01.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "BAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

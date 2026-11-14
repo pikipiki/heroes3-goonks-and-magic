@@ -11,6 +11,7 @@ struct CSlowSnapshot
     bool mirrorActive=false,alreadySlowed=false;
     int mirrorThreshold=0,heroResistance=0,creatureResistance=0;
     bool negativeExperienceImmunity=false,artifact134=false,foreignNativeRejected=false;
+    int chanceOverride=-1;
 };
 inline bool sourceCSlowExcluded(int id)
 {
@@ -22,7 +23,7 @@ inline int sourceCSlowRacialResistance(int id)
 template<class Uniform> bool selectSourceCSlow(const CSlowSnapshot & s,Uniform && uniform,int * rejectionEffect=nullptr)
 {
     if(rejectionEffect)*rejectionEffect=0;
-    const int chance=3*std::clamp(s.rank,0,10);
+    const int chance=s.chanceOverride>=0?s.chanceOverride:3*std::clamp(s.rank,0,10);
     if(!chance || uniform(1,100)>chance)return false;
     if(!s.actorAlive || !s.targetAlive || s.orbOfInhibition || s.cursedGround)return false;
     if(s.targetSourceId>=160 && s.targetSourceId<=167)

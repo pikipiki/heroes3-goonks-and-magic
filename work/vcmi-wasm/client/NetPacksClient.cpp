@@ -42,6 +42,8 @@
 #include "../lib/CConfigHandler.h"
 #include "../lib/mapObjects/MiscObjects.h"
 #include "../lib/mapObjects/CGMarket.h"
+#include "../lib/mapObjects/CGMysteriousCave.h"
+#include "../lib/mapObjects/ObjectTemplate.h"
 #include "../lib/mapObjects/CGTownInstance.h"
 #include "../lib/gameState/CGameState.h"
 #include "../lib/CStack.h"
@@ -675,6 +677,20 @@ void ApplyClientNetPackVisitor::visitInfoWindow(InfoWindow & pack)
 
 void ApplyFirstClientNetPackVisitor::visitSetObjectProperty(SetObjectProperty & pack)
 {
+ if(pack.what==ObjProperty::ERA_CAVE_TOWN_DAMAGE||pack.what==ObjProperty::ERA_CAVE_TOWN_FACTION)
+ {
+  const auto * town=dynamic_cast<const CGTownInstance *>(gs.getObjInstance(pack.id));
+  if(town&&ENGINE)
+  {
+   const auto desired=CGMysteriousCave::townDemolitionAnimation(town);
+   pack.eraCaveAppearanceChanged=pack.what==ObjProperty::ERA_CAVE_TOWN_FACTION?
+    town->getFactionID().getNum()!=pack.identifier.getNum():
+    (desired.empty()?town->appearance->animationFile.getOriginalName().find("tum-era/objects/avc")==0:
+     town->appearance->animationFile!=AnimationPath::builtin(desired));
+   if(pack.eraCaveAppearanceChanged)GAME->map().onObjectInstantRemove(town,town->getOwner());
+  }
+ }
+
 	//inform all players that see this object
 	for(auto it = cl.playerint.cbegin(); it != cl.playerint.cend(); ++it)
 	{
@@ -691,8 +707,26 @@ void ApplyFirstClientNetPackVisitor::visitSetObjectProperty(SetObjectProperty & 
 	}
 }
 
+void ApplyClientNetPackVisitor::visitSetRewardableConfiguration(SetRewardableConfiguration & pack)
+{
+ auto * cave=dynamic_cast<const CGMysteriousCave *>(gs.getObjInstance(pack.objectID));
+ if(cave&&cave->takeAppearanceChange()&&ENGINE)
+ {
+  // Both original Cave appearances have the same footprint. Refresh only on a
+  // real weekly/visited graphic change, never on shared-counter updates.
+  GAME->map().onObjectInstantRemove(cave,cave->getOwner());
+  GAME->map().onObjectInstantAdd(cave,cave->getOwner());
+ }
+}
+
 void ApplyClientNetPackVisitor::visitSetObjectProperty(SetObjectProperty & pack)
 {
+ if(pack.eraCaveAppearanceChanged&&ENGINE)
+ {
+  const auto * town=gs.getObjInstance(pack.id);
+  GAME->map().onObjectInstantAdd(town,town->getOwner());
+ }
+
 	//inform all players that see this object
 	for(auto it = cl.playerint.cbegin(); it != cl.playerint.cend(); ++it)
 	{

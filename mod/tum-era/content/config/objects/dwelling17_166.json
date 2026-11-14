@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_166": {
+        "name": "Holy Peaks",
+        "creatures": [
+          [
+            "tum-era:eraCreature362"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature362",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw69.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,686 @@
+{
+  "scope": "Completed production map cases only",
+  "report": {
+    "scope": "Actual production manifest/assets, both adventure maps, delivered000 native combat, native save/reload, names/roles and real solo/hotseat turn transitions; no private overlay or installed asset write.",
+    "origin": "http://127.0.0.1:8860/",
+    "engineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+    "productionOnly": true,
+    "localPreviewCspBypassed": true,
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "nativeHotseat": false,
+        "saveReloadValidated": true,
+        "saveSha256": "31ca85a6df3d32612621c21c7d6f243d00eac4b952e48b7fb9cf53772705de3d",
+        "before": {
+          "day": 1,
+          "currentPlayer": 0,
+          "players": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            10,
+            10,
+            10,
+            20000,
+            0
+          ],
+          "heroes": [
+            {
+              "id": 471,
+              "name": "Goonk Guardian",
+              "movement": 1700,
+              "mana": 10,
+              "manaLimit": 10
+            }
+          ],
+          "towns": [
+            {
+              "id": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "armies": [
+            {
+              "id": 0,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            },
+            {
+              "id": 471,
+              "slots": [
+                {
+                  "key": "goonk:paingpaing",
+                  "count": 20,
+                  "xp": 0,
+                  "rank": 0
+                },
+                {
+                  "key": "goonk:bobope",
+                  "count": 3,
+                  "xp": 0,
+                  "rank": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "resumedTurnCycle": {
+          "passed": true,
+          "roles": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "observations": [
+            {
+              "day": 1,
+              "currentPlayer": 0
+            },
+            {
+              "day": 2,
+              "currentPlayer": 0
+            }
+          ]
+        },
+        "initialAssets": {
+          "passed": true,
+          "files": {
+            "Mods/tum-era/mod.json": {
+              "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+              "size": 19900
+            },
+            "Mods/tum-era/era-identities.json": {
+              "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+              "size": 4210
+            },
+            "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+              "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+              "size": 25960
+            },
+            "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+              "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+              "size": 506
+            },
+            "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+              "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+              "size": 176693
+            },
+            "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+              "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+              "size": 4314
+            },
+            "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+              "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+              "size": 9712
+            },
+            "Maps/000-Goonk.vmap": {
+              "sha256": "f381979117a4a68f2ef384f5a4d42380f7c472269873fceae7673f08d58318ef",
+              "size": 2299
+            },
+            "Maps/003-Goonks-WoG.vmap": {
+              "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+              "size": 31409
+            },
+            "Maps/004-Goonks-WoG-Online.vmap": {
+              "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+              "size": 31104
+            }
+          },
+          "gates": {
+            "primaryXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all43",
+              "rows": 43
+            },
+            "dwellingServices": {
+              "enabled": true,
+              "actors": 44
+            },
+            "replacement": {
+              "enabled": true,
+              "programs": 102
+            },
+            "bankXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all6",
+              "rows": 6
+            },
+            "dwellingXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all17",
+              "rows": 17
+            }
+          }
+        },
+        "reloadedAssets": {
+          "passed": true,
+          "files": {
+            "Mods/tum-era/mod.json": {
+              "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+              "size": 19900
+            },
+            "Mods/tum-era/era-identities.json": {
+              "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+              "size": 4210
+            },
+            "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+              "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+              "size": 25960
+            },
+            "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+              "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+              "size": 506
+            },
+            "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+              "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+              "size": 176693
+            },
+            "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+              "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+              "size": 4314
+            },
+            "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+              "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+              "size": 9712
+            },
+            "Maps/000-Goonk.vmap": {
+              "sha256": "f381979117a4a68f2ef384f5a4d42380f7c472269873fceae7673f08d58318ef",
+              "size": 2299
+            },
+            "Maps/003-Goonks-WoG.vmap": {
+              "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+              "size": 31409
+            },
+            "Maps/004-Goonks-WoG-Online.vmap": {
+              "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+              "size": 31104
+            }
+          },
+          "gates": {
+            "primaryXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all43",
+              "rows": 43
+            },
+            "dwellingServices": {
+              "enabled": true,
+              "actors": 44
+            },
+            "replacement": {
+              "enabled": true,
+              "programs": 102
+            },
+            "bankXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all6",
+              "rows": 6
+            },
+            "dwellingXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all17",
+              "rows": 17
+            }
+          }
+        },
+        "afterAssets": {
+          "passed": true,
+          "files": {
+            "Mods/tum-era/mod.json": {
+              "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+              "size": 19900
+            },
+            "Mods/tum-era/era-identities.json": {
+              "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+              "size": 4210
+            },
+            "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+              "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+              "size": 25960
+            },
+            "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+              "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+              "size": 506
+            },
+            "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+              "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+              "size": 176693
+            },
+            "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+              "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+              "size": 4314
+            },
+            "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+              "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+              "size": 9712
+            },
+            "Maps/000-Goonk.vmap": {
+              "sha256": "f381979117a4a68f2ef384f5a4d42380f7c472269873fceae7673f08d58318ef",
+              "size": 2299
+            },
+            "Maps/003-Goonks-WoG.vmap": {
+              "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+              "size": 31409
+            },
+            "Maps/004-Goonks-WoG-Online.vmap": {
+              "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+              "size": 31104
+            }
+          },
+          "gates": {
+            "primaryXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all43",
+              "rows": 43
+            },
+            "dwellingServices": {
+              "enabled": true,
+              "actors": 44
+            },
+            "replacement": {
+              "enabled": true,
+              "programs": 102
+            },
+            "bankXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all6",
+              "rows": 6
+            },
+            "dwellingXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all17",
+              "rows": 17
+            }
+          }
+        }
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "nativeHotseat": true,
+        "saveReloadValidated": true,
+        "saveSha256": "5155548f965d86f95446b3c62d672e3a86294c0ca822b29d63c5549da4e0706d",
+        "before": {
+          "day": 1,
+          "currentPlayer": 0,
+          "players": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": true,
+              "name": "Player 2"
+            }
+          ],
+          "resources": [
+            20,
+            10,
+            20,
+            14,
+            10,
+            10,
+            20000,
+            0
+          ],
+          "heroes": [
+            {
+              "id": 460,
+              "name": "Damacon",
+              "movement": 1560,
+              "mana": 10,
+              "manaLimit": 10
+            }
+          ],
+          "towns": [
+            {
+              "id": 0,
+              "name": "Goonkbourg"
+            }
+          ],
+          "armies": [
+            {
+              "id": 0,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            },
+            {
+              "id": 460,
+              "slots": [
+                {
+                  "key": "core:troglodyte",
+                  "count": 40,
+                  "xp": 0,
+                  "rank": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "resumedTurnCycle": {
+          "passed": true,
+          "roles": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": true,
+              "name": "Player 2"
+            }
+          ],
+          "observations": [
+            {
+              "day": 1,
+              "currentPlayer": 0
+            },
+            {
+              "day": 1,
+              "currentPlayer": 1
+            },
+            {
+              "day": 2,
+              "currentPlayer": 0
+            }
+          ]
+        },
+        "initialAssets": {
+          "passed": true,
+          "files": {
+            "Mods/tum-era/mod.json": {
+              "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+              "size": 19900
+            },
+            "Mods/tum-era/era-identities.json": {
+              "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+              "size": 4210
+            },
+            "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+              "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+              "size": 25960
+            },
+            "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+              "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+              "size": 506
+            },
+            "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+              "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+              "size": 176693
+            },
+            "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+              "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+              "size": 4314
+            },
+            "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+              "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+              "size": 9712
+            },
+            "Maps/000-Goonk.vmap": {
+              "sha256": "f381979117a4a68f2ef384f5a4d42380f7c472269873fceae7673f08d58318ef",
+              "size": 2299
+            },
+            "Maps/003-Goonks-WoG.vmap": {
+              "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+              "size": 31409
+            },
+            "Maps/004-Goonks-WoG-Online.vmap": {
+              "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+              "size": 31104
+            }
+          },
+          "gates": {
+            "primaryXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all43",
+              "rows": 43
+            },
+            "dwellingServices": {
+              "enabled": true,
+              "actors": 44
+            },
+            "replacement": {
+              "enabled": true,
+              "programs": 102
+            },
+            "bankXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all6",
+              "rows": 6
+            },
+            "dwellingXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all17",
+              "rows": 17
+            }
+          }
+        },
+        "reloadedAssets": {
+          "passed": true,
+          "files": {
+            "Mods/tum-era/mod.json": {
+              "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+              "size": 19900
+            },
+            "Mods/tum-era/era-identities.json": {
+              "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+              "size": 4210
+            },
+            "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+              "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+              "size": 25960
+            },
+            "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+              "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+              "size": 506
+            },
+            "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+              "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+              "size": 176693
+            },
+            "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+              "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+              "size": 4314
+            },
+            "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+              "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+              "size": 9712
+            },
+            "Maps/000-Goonk.vmap": {
+              "sha256": "f381979117a4a68f2ef384f5a4d42380f7c472269873fceae7673f08d58318ef",
+              "size": 2299
+            },
+            "Maps/003-Goonks-WoG.vmap": {
+              "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+              "size": 31409
+            },
+            "Maps/004-Goonks-WoG-Online.vmap": {
+              "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+              "size": 31104
+            }
+          },
+          "gates": {
+            "primaryXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all43",
+              "rows": 43
+            },
+            "dwellingServices": {
+              "enabled": true,
+              "actors": 44
+            },
+            "replacement": {
+              "enabled": true,
+              "programs": 102
+            },
+            "bankXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all6",
+              "rows": 6
+            },
+            "dwellingXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all17",
+              "rows": 17
+            }
+          }
+        },
+        "afterAssets": {
+          "passed": true,
+          "files": {
+            "Mods/tum-era/mod.json": {
+              "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+              "size": 19900
+            },
+            "Mods/tum-era/era-identities.json": {
+              "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+              "size": 4210
+            },
+            "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+              "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+              "size": 25960
+            },
+            "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+              "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+              "size": 506
+            },
+            "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+              "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+              "size": 176693
+            },
+            "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+              "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+              "size": 4314
+            },
+            "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+              "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+              "size": 9712
+            },
+            "Maps/000-Goonk.vmap": {
+              "sha256": "f381979117a4a68f2ef384f5a4d42380f7c472269873fceae7673f08d58318ef",
+              "size": 2299
+            },
+            "Maps/003-Goonks-WoG.vmap": {
+              "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+              "size": 31409
+            },
+            "Maps/004-Goonks-WoG-Online.vmap": {
+              "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+              "size": 31104
+            }
+          },
+          "gates": {
+            "primaryXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all43",
+              "rows": 43
+            },
+            "dwellingServices": {
+              "enabled": true,
+              "actors": 44
+            },
+            "replacement": {
+              "enabled": true,
+              "programs": 102
+            },
+            "bankXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all6",
+              "rows": 6
+            },
+            "dwellingXp": {
+              "enabled": true,
+              "nativeValidated": true,
+              "mode": "validated-all17",
+              "rows": 17
+            }
+          }
+        }
+      }
+    ],
+    "limitations": [
+      "Local preview bypasses CSP only for127.0.0.1/localhost: this tests delivered assets and gameplay, not production CSP. Public startup must be checked separately without bypass after deployment.",
+      "No old161 fixture profile or legacy-save override is applied; that compatibility proof is retained separately.",
+      "The online-authored map runs locally in native hotseat, not a realtime network session.",
+      "This smoke does not replace combat,54actor,XP or Cave functional proofs."
+    ],
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "d208e1d94b3cad21",
+      "wasm": "vcmiclient.b6a786523601c42d.wasm",
+      "sha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "actualFetchedWasmSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+    "manifestSha256": "5675da9e37075a10dc0641601f64d05bb1b61433b6c98c4627acb00f2117c7e4"
+  }
+}

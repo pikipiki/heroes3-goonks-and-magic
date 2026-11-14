@@ -1,0 +1,22 @@
+{
+  "scope": "Current source compiler reproduction versus actual candidate union. Static data/assets proof, not a native runtime test.",
+  "nativeValidated": false,
+  "sets": [
+    {
+      "kind": "dwelling",
+      "actors": 44,
+      "differentDefinitions": [],
+      "differentRegistrySections": [],
+      "sourceDefinitionSha256": "13dfc93200f4693f3b21c56bdea8d8e9ec57f51557ce8bfb2de3cd40a3c13e81",
+      "unionDefinitionSha256": "13dfc93200f4693f3b21c56bdea8d8e9ec57f51557ce8bfb2de3cd40a3c13e81"
+    },
+    {
+      "kind": "bank",
+      "actors": 10,
+      "differentDefinitions": [],
+      "differentRegistrySections": [],
+      "sourceDefinitionSha256": "5d955bbd8424716437e021f49594858df1a304ab4b77bf8f6b9d2669f7f113f0",
+      "unionDefinitionSha256": "5d955bbd8424716437e021f49594858df1a304ab4b77bf8f6b9d2669f7f113f0"
+    }
+  ]
+}

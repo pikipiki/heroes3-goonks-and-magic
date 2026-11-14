@@ -1,0 +1,39 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_159": {
+        "name": "Azure Dragon Nest",
+        "creatures": [
+          [
+            "tum-era:eraCreature345"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature345",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw62.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

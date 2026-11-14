@@ -1,0 +1,73 @@
+{
+  "file": "outputs/wog-priorities-0.4.147/adventure167/replacements102/index.json",
+  "sha256": "70566219d05e82f032ff3ff28c89b1b4f1c418e5793974359328700e27e7e49e",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "Source replacement ordering/cursor/probability/save-once contract. Full102 evidence remains on its actual Final8 engine; scoped source continuity and the new authored-map/save/control checks bridge to Final11.",
+  "continuityReviews": [
+    {
+      "engineSha256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "finalEngineSha256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "reviewed": true,
+      "scope": "The ordered replacement kernel, native map adapter and NewTurn day0\u21921 hook; not all game/combat/GUI behavior.",
+      "notes": "All five listed implementation files have exactly the same SHA256 as their retained Final8 full-touch build source ledger. Final9 changed Sorceress combat context and dwelling XP participation; Final10 changed only Cave Grail web availability; Final11 changed only mobile local-load role restoration and player state publication. Those changes are outside the replacement kernel/day-one callback. Final11 authored maps independently observed three/five replacements at the allowed sites, unchanged on reload, and actual solo/hotseat next-turn control. The historical Final8 101-object/8-shared143 and seed-reproducibility observations remain Final8-only; no equal RNG sequence across builds or original WoG seed equivalence is claimed. New supplementary recruitment placements alter initial map content and may alter RNG draw outcomes; their full template envelope is checked separately.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/era/EraObjectReplacementRule.h": "0f97197005ebdaf4c458312f43b909217c42cc507ff700731d5512050d5bbd11",
+        "work/vcmi-wasm/server/era/EraObjectReplacementRuntime.h": "c8ce7664491773268f4115f850296b8536264fe2449bb1cafe232e64e5a26537",
+        "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "692c26205b0de9d82566a83f8a9be57ab23bf6f5cc7a44b73e37e7be387bd4bd",
+        "work/vcmi-wasm/server/CGameHandler.cpp": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e"
+      },
+      "coveredBy": [
+        {
+          "file": "native-final8.json",
+          "pointer": "/nativeDayOneOnly",
+          "expected": true,
+          "assertion": "The actual Final8 run advanced to day2 and retained exactly the initial native object markers."
+        },
+        {
+          "file": "native-final8.json",
+          "pointer": "/nativeReloadIdempotent",
+          "expected": true,
+          "assertion": "The actual Final8 reload retained object identities and native RNG state."
+        },
+        {
+          "file": "native-final8.json",
+          "pointer": "/shared143NativeValidated",
+          "expected": true,
+          "assertion": "The actual Final8 run created eight objects through the original shared143 callbacks."
+        },
+        {
+          "file": "native-final8.json",
+          "pointer": "/nativeDeterministicSeed",
+          "expected": true,
+          "assertion": "Two fresh Final8 starts retained every native identity/order/physical anchor with the same native seed."
+        },
+        {
+          "file": "native-final8.json",
+          "pointer": "/nativeOffInert",
+          "expected": true,
+          "assertion": "The actual Final8 policy-off control created no replacement objects."
+        },
+        {
+          "file": "mobile-integration-final11.json",
+          "pointer": "/mapSaveReloadValidated",
+          "expected": true,
+          "assertion": "Both enriched authored maps started and reloaded on actual Final11 with their native replacement marker sets unchanged."
+        },
+        {
+          "file": "mobile-integration-final11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Actual Final11 preserved solo and hotseat human/AI roles and player names."
+        },
+        {
+          "file": "mobile-integration-final11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Actual controlled turn transitions verified red\u2192AI\u2192red and red\u2192blue\u2192red after reload on Final11."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "multiRunIndex": true,
+  "engineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+  "scope": "Actual unmodified production bundle, two delivered-map save/load and turn cycles, and separate native BattleStart positive round. This is an evidence aggregate, not one native run.",
+  "nativeValidated": true,
+  "mapSaveReloadValidated": true,
+  "playerRolesPreserved": true,
+  "actualResumedTurnTransitionsValidated": true,
+  "nativeProductionPolicyParsingValidated": true,
+  "trackedProductionAssetsUnchanged": true,
+  "localPreviewCspBypassed": true,
+  "proofs": [
+    {
+      "file": "maps-checkpoint.json",
+      "scope": "Only the two completed maps from the checkpoint; the later attempt to select hidden000 was not successful and is not part of this attestation.",
+      "proofSHA256": "9578c246489b621f168de246e9babf135d5e64e6b40245e46fa94b4b7d72cfa8",
+      "engineSHA256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "passed": true,
+      "checkpoint": true,
+      "casePointers": [
+        "/report/maps/0",
+        "/report/maps/1"
+      ]
+    },
+    {
+      "file": "combat-result.json",
+      "scope": "Separate complete run on real003 using standard native movement/reveal cheats; positive battle round proves production policies parsed. No victory or new54 ability claim.",
+      "proofSHA256": "e4f36c782ceaa12734256b770ac7f5dcaf756cb77cc846be75c179fead2c2c3d",
+      "engineSHA256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Localhost preview bypasses CSP for unchanged production-domain script URLs; real public startup is verified separately after deployment.",
+    "Online-authored map tested in local hotseat; no realtime network session claimed."
+  ],
+  "pending": []
+}

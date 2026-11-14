@@ -1,0 +1,37 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_146": {
+        "name": "Illusory Dragon Shrine",
+        "creatures": [
+          [
+            "tum-era:eraCreature322"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature322",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw49.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

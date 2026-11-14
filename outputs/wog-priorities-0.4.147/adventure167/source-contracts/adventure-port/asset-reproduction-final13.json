@@ -1,0 +1,2355 @@
+{
+  "scope": "Source compiler generated assets compared byte-for-byte to candidate union; separate from native visual/runtime validation.",
+  "nativeGameRuntime": false,
+  "cohorts": [
+    {
+      "name": "dwelling",
+      "assetFiles": 452,
+      "missing": [],
+      "different": [],
+      "assets": [
+        {
+          "path": "content/Sounds/tum-era/creatures/200/S200ATTK.wav",
+          "sha256": "ab63bafcf75c5af1f18e6b564ec1b79aaa95a6560b80a72923609d98a058967c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/200/S200DFND.wav",
+          "sha256": "b1c58604b85e08ad4cb301214700af4389926305a66f2de610b011c23b9bd5aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/200/S200KILL.wav",
+          "sha256": "8d2bde20870a4f9e4520dee2c098abcdf886faa37ec0918f12ac8c2a9df11ca5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/200/S200MOVE.wav",
+          "sha256": "18a6e1d95d9fbe645de14356485b7591e5ec917bd217be9a34b80f06dde3c84e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/200/S200WNCE.wav",
+          "sha256": "741a7d64b2c7c60ac027fcec147619bec0cfc3fc4488b9a06f721e0fd497c36a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/239/S239ATTK.wav",
+          "sha256": "ce35f787fd2e0ee79547dd3d7d7e9b5392f12c62ce46c4103d5201413e4ff2ff"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/239/S239DFND.wav",
+          "sha256": "4f43fc52c04617a86424318b7c1a35af12f02a51f5829b54c98df61f565b4fc8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/239/S239KILL.wav",
+          "sha256": "a72eebe26a050aa1c071103c583d1c87ec02d77d62c3b7b850d9aa2f1b48d6f4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/239/S239MOVE.wav",
+          "sha256": "bc058f6b82bc986e99e50645df43a4783692ec6ef7f5496896974f20c8c9a5e5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/239/S239WNCE.wav",
+          "sha256": "77cc853cb1360d36427b96ea9bc361e0ec780f50aaf71bea3bb212fd0274f72f"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/262/S262ATTK.wav",
+          "sha256": "c6710daca4a354a6758df3e866c3adea8a96b42afcc9d2a373cd3d7e94d368ca"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/262/S262DFND.wav",
+          "sha256": "9a3ff95432b53dfaad89fe89e5edee0f6105d7dfa8356e04f22ab30d8a305143"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/262/S262KILL.wav",
+          "sha256": "0a6084e3f79a89809a7e546d1fe90ba60c4023ca7b568051700cd973536239e1"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/262/S262MOVE.wav",
+          "sha256": "185ccc1ecfe60cbd155d0fc1f77ffbbbfcc3bb273545105e4d451875a73d5ecb"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/262/S262WNCE.wav",
+          "sha256": "42059d948144457f17ea1896065981b9f533b3bac818ffbcf507a98b07cf21ff"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/264/S264ATTK.wav",
+          "sha256": "2691f9787782fe1af16fe45d7fc46ccb1b1f0d96fd29aff3e7f2b985939999a7"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/264/S264DFND.wav",
+          "sha256": "a08ae11b10bfa28431458a8054ceda903dc96ef9bcf6a159c80e32d5e01ccd48"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/264/S264KILL.wav",
+          "sha256": "7577d4067ff2207307b1efb2c10ae5b8be8b75284e9013d3bb77291bb954e5ae"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/264/S264MOVE.wav",
+          "sha256": "6b15a769925f44dbb3db42d131dbec633003ceb99d0e3ad04fa9bba8af539a1c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/264/S264WNCE.wav",
+          "sha256": "c045b78d63069bbc060c8a9b57001385979c21781b91deba44d36491ee6b4636"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/270/S270ATTK.wav",
+          "sha256": "107104cf25e09e0eccbc1f5105cdfee3bf7c6810b7524e4055264e42f77ba337"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/270/S270DFND.wav",
+          "sha256": "c8451c7eb7a0fbcd5697a53a4b46c3d1e8e87bc28abd8ab4bc78bc07c08cc9a6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/270/S270KILL.wav",
+          "sha256": "44e71fee36b1eea2dd85c997ea41198d91fa5f5ba87839311bdb260ab7650963"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/270/S270MOVE.wav",
+          "sha256": "e744917c26714fe78919eb9a3ef65224adc87bca64ce20334fd9da81c0b9024d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/270/S270WNCE.wav",
+          "sha256": "bc79ba0bfb93705ce82326e83a03100b359abbc14c196ed01749cb8a7947d4da"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/274/S274ATTK.wav",
+          "sha256": "619827ebb81141118cceffb1562bd489d5901fe96c05a30d4bd6a924e04504de"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/274/S274DFND.wav",
+          "sha256": "c1ddfd7ce8628a156caa2836ebe4204d0e2843fd58de901ea4235d867e7642c3"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/274/S274KILL.wav",
+          "sha256": "0cdc9c6347ca0020b4c91a3f26b8bcbcd432ff796aa4f331395dd199bb80823a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/274/S274MOVE.wav",
+          "sha256": "f404c4c4fd96e7e89cde73109164936df47299ebc4867da5689c7e58aaaf3741"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/274/S274WNCE.wav",
+          "sha256": "758103122977e0ef22c56f62518f156ff3a40b6aff883faf40abbf7fe916517c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/276/S276ATTK.wav",
+          "sha256": "668ae32cf740dbf6ec3cf9a09ce703330b55af3474a533bb815c2e3684e35f3b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/276/S276DFND.wav",
+          "sha256": "9624e0f68b57fcf1fbcd625e5fe43d4c48a0773d499283614708ee1268ba67cd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/276/S276KILL.wav",
+          "sha256": "4990662c6668e8f26a69c08594cf9538447a65d24ebf41117173fe01e53d2632"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/276/S276MOVE.wav",
+          "sha256": "f04428b75c420f7a06e0ffb5ec042904402f80c6b0ee17d8b6068385b01077c4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/276/S276SHOT.wav",
+          "sha256": "44dcba8502767715cdd86def9606104f1f1fa6db314a0aac94025bcdb97781c6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/276/S276WNCE.wav",
+          "sha256": "4ecb9f4005f4898119c5e468a00cd123d3db5a8b3c3fd9723ecf2513b6124664"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/277/S277ATTK.wav",
+          "sha256": "6253490fd99a4cf8320c97fd707301a42ee0a8ed9f68f2cf7d62f42987644cb8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/277/S277DFND.wav",
+          "sha256": "72d29d8df5e445f1033ec28c79f3a0378206a8075cbeb5bc214a40f44e99b1a0"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/277/S277KILL.wav",
+          "sha256": "7664ae6fdf0bc6a62fd36840b4815869f62401eeb42fb2559cbdafaf2aeda311"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/277/S277MOVE.wav",
+          "sha256": "c6224e887f1f359e5b09f93ef0f70f12f16638c3e82e33e8ed3d2a52fa5a6d3c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/277/S277WNCE.wav",
+          "sha256": "6cee7b6bd94913783f5aa5ccc8938a4f386d4609f93b00520ed4e6db91169641"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/279/S279ATTK.wav",
+          "sha256": "107104cf25e09e0eccbc1f5105cdfee3bf7c6810b7524e4055264e42f77ba337"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/279/S279DFND.wav",
+          "sha256": "c8451c7eb7a0fbcd5697a53a4b46c3d1e8e87bc28abd8ab4bc78bc07c08cc9a6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/279/S279KILL.wav",
+          "sha256": "44e71fee36b1eea2dd85c997ea41198d91fa5f5ba87839311bdb260ab7650963"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/279/S279MOVE.wav",
+          "sha256": "e744917c26714fe78919eb9a3ef65224adc87bca64ce20334fd9da81c0b9024d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/279/S279WNCE.wav",
+          "sha256": "bc79ba0bfb93705ce82326e83a03100b359abbc14c196ed01749cb8a7947d4da"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/282/S282ATTK.wav",
+          "sha256": "619827ebb81141118cceffb1562bd489d5901fe96c05a30d4bd6a924e04504de"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/282/S282DFND.wav",
+          "sha256": "c1ddfd7ce8628a156caa2836ebe4204d0e2843fd58de901ea4235d867e7642c3"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/282/S282KILL.wav",
+          "sha256": "0cdc9c6347ca0020b4c91a3f26b8bcbcd432ff796aa4f331395dd199bb80823a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/282/S282MOVE.wav",
+          "sha256": "f404c4c4fd96e7e89cde73109164936df47299ebc4867da5689c7e58aaaf3741"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/282/S282WNCE.wav",
+          "sha256": "758103122977e0ef22c56f62518f156ff3a40b6aff883faf40abbf7fe916517c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/284/S284ATTK.wav",
+          "sha256": "668ae32cf740dbf6ec3cf9a09ce703330b55af3474a533bb815c2e3684e35f3b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/284/S284DFND.wav",
+          "sha256": "9624e0f68b57fcf1fbcd625e5fe43d4c48a0773d499283614708ee1268ba67cd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/284/S284KILL.wav",
+          "sha256": "4990662c6668e8f26a69c08594cf9538447a65d24ebf41117173fe01e53d2632"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/284/S284MOVE.wav",
+          "sha256": "f04428b75c420f7a06e0ffb5ec042904402f80c6b0ee17d8b6068385b01077c4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/284/S284SHOT.wav",
+          "sha256": "44dcba8502767715cdd86def9606104f1f1fa6db314a0aac94025bcdb97781c6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/284/S284WNCE.wav",
+          "sha256": "4ecb9f4005f4898119c5e468a00cd123d3db5a8b3c3fd9723ecf2513b6124664"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/285/S285ATTK.wav",
+          "sha256": "6253490fd99a4cf8320c97fd707301a42ee0a8ed9f68f2cf7d62f42987644cb8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/285/S285DFND.wav",
+          "sha256": "72d29d8df5e445f1033ec28c79f3a0378206a8075cbeb5bc214a40f44e99b1a0"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/285/S285KILL.wav",
+          "sha256": "7664ae6fdf0bc6a62fd36840b4815869f62401eeb42fb2559cbdafaf2aeda311"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/285/S285MOVE.wav",
+          "sha256": "c6224e887f1f359e5b09f93ef0f70f12f16638c3e82e33e8ed3d2a52fa5a6d3c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/285/S285WNCE.wav",
+          "sha256": "6cee7b6bd94913783f5aa5ccc8938a4f386d4609f93b00520ed4e6db91169641"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/288/S288ATTK.wav",
+          "sha256": "b2ea4eeaed38ab6a638930028e5b815bc7558f9787486864e3059cc246310fff"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/288/S288DFND.wav",
+          "sha256": "701b4183165c74a50d42ab7e3d62f106449cd5b65dbd1a4ef40521b356bae9aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/288/S288KILL.wav",
+          "sha256": "36a426dbdd2f6771a0c36f1b14304fa66c0919f7605312446a9d7f9fcbfa47db"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/288/S288MOVE.wav",
+          "sha256": "ed9fa1e865bf9e48a83de48c8dfd68fcdd19bd84418bc95dbaaa925de70a0b5f"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/288/S288WNCE.wav",
+          "sha256": "465105b0e0429c80f7ffc1a22d88981bbec4d10e9df300d9c43d1689e1dd34e8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/292/S292ATTK.wav",
+          "sha256": "ab63bafcf75c5af1f18e6b564ec1b79aaa95a6560b80a72923609d98a058967c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/292/S292DFND.wav",
+          "sha256": "b1c58604b85e08ad4cb301214700af4389926305a66f2de610b011c23b9bd5aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/292/S292KILL.wav",
+          "sha256": "8d2bde20870a4f9e4520dee2c098abcdf886faa37ec0918f12ac8c2a9df11ca5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/292/S292MOVE.wav",
+          "sha256": "18a6e1d95d9fbe645de14356485b7591e5ec917bd217be9a34b80f06dde3c84e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/292/S292WNCE.wav",
+          "sha256": "741a7d64b2c7c60ac027fcec147619bec0cfc3fc4488b9a06f721e0fd497c36a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/296/S296ATTK.wav",
+          "sha256": "bf2c7946e1f0f14e7654d41868b55252ff9c39b867783004d93a76a64b4bb4a8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/296/S296DFND.wav",
+          "sha256": "b387ec8868879eefff91a3f795c3527a62320f15013a7b54ab01e20492f16e36"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/296/S296KILL.wav",
+          "sha256": "7463ecb1e30f5d6d35bee6cb1a2ba76203b1f68f9df038e616afd42970365577"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/296/S296MOVE.wav",
+          "sha256": "1f68ac93150935106f0a016b770b9c9bec5afff8ef0ee05570edd8e23d54a366"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/296/S296WNCE.wav",
+          "sha256": "c360d17c2f2a6f79eaf7f0fd2999bc66edfe61a7200200a618b2e2023b5c3e5b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/298/S298ATTK.wav",
+          "sha256": "bf2c7946e1f0f14e7654d41868b55252ff9c39b867783004d93a76a64b4bb4a8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/298/S298DFND.wav",
+          "sha256": "973b4807998d1f1dbacdca688476aa80c95806b9700d93b64fb7fd900df6ff3e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/298/S298KILL.wav",
+          "sha256": "7463ecb1e30f5d6d35bee6cb1a2ba76203b1f68f9df038e616afd42970365577"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/298/S298MOVE.wav",
+          "sha256": "1f68ac93150935106f0a016b770b9c9bec5afff8ef0ee05570edd8e23d54a366"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/298/S298WNCE.wav",
+          "sha256": "ce6e30508a9b372feab8eeb775ae0566f0fd533192363fe418e70af6970b5226"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/303/S303ATTK.wav",
+          "sha256": "4849316f958fceba62bb5103f009fe77f64c26bfee2d87f136c22c37eb4c2d56"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/303/S303DFND.wav",
+          "sha256": "ccf5944a4c40da17ce145a1a6e3822100b933262074232a4c4aa7e1c3346c3fa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/303/S303KILL.wav",
+          "sha256": "adfbe61861c58757cb4e4d0ef081bc0cf7f42f1d5b5643595362f8f02f4d87b5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/303/S303MOVE.wav",
+          "sha256": "f039ecb30460ee777f3f8040c591061942fedbb5f4b918ed4b680581cfe32983"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/303/S303WNCE.wav",
+          "sha256": "7ab20c210e329a28ee20d96c52cb13375e0cdafdafd0b8867f14d50cc183213a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/304/S304ATTK.wav",
+          "sha256": "51c1b26d565d563258e4ca7bd85e4c22dbebbb6412992a73bd3bb0a08aaf552b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/304/S304DFND.wav",
+          "sha256": "3121e6bd282d40c483e41f6ebf9b13f79f7e17a0ac68bc502230718a5ec3cd10"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/304/S304KILL.wav",
+          "sha256": "1b2ae085f497b7e801a4bfc18d2b61ab7afa6a5e44530d25b5f1793bc55b734d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/304/S304MOVE.wav",
+          "sha256": "7d7813ebb70a7a839358f8d3011c1af258b4039ce5751390b4bf1db7f200c664"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/304/S304WNCE.wav",
+          "sha256": "b3f2bd5ff551d299abf61846005ff2dc13be2e26347a16c07418fe43f45f250f"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/305/S305ATTK.wav",
+          "sha256": "51c1b26d565d563258e4ca7bd85e4c22dbebbb6412992a73bd3bb0a08aaf552b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/305/S305DFND.wav",
+          "sha256": "3121e6bd282d40c483e41f6ebf9b13f79f7e17a0ac68bc502230718a5ec3cd10"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/305/S305KILL.wav",
+          "sha256": "1b2ae085f497b7e801a4bfc18d2b61ab7afa6a5e44530d25b5f1793bc55b734d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/305/S305MOVE.wav",
+          "sha256": "7d7813ebb70a7a839358f8d3011c1af258b4039ce5751390b4bf1db7f200c664"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/305/S305WNCE.wav",
+          "sha256": "b3f2bd5ff551d299abf61846005ff2dc13be2e26347a16c07418fe43f45f250f"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/306/S306ATTK.wav",
+          "sha256": "a6fb473fb602aba251b15e4ed02ce4ffd0ed0462f2aebc0a0f6d40f283344dd9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/306/S306DFND.wav",
+          "sha256": "e77b0d40a0849874b2faaec292d778e9889421ee729c057de4f253f334f73263"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/306/S306KILL.wav",
+          "sha256": "900650bdb30286997b871f721a1fba52adef63b33f9bcf1c8f2106c24235cff9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/306/S306MOVE.wav",
+          "sha256": "6fa4199f81676205f35f7aa933ceedfabd4fa36e387ef2c1c9fbdee4f4e4f6f5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/306/S306WNCE.wav",
+          "sha256": "b7d7ec4bd6fb8ec08b7f0a5c69aa27a0f7a2f07fa5a5957da04fd794efcb5f2a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/307/S307ATTK.wav",
+          "sha256": "c738e61bec1a1c07c98d54053abddb49d1c85a2ebde5626b3a1158161bdb1fcd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/307/S307DFND.wav",
+          "sha256": "da276b1356ddfc8fd473b5fc8c46b24c8dee3f6050fe348c09b12af815db7b5c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/307/S307KILL.wav",
+          "sha256": "86d225a0348af6bb81cd6e15e16c3dccb404bb9d48e56b12cc4373914378c00d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/307/S307MOVE.wav",
+          "sha256": "ac1d5455b24a843e771dfee3a73e54685844efe97a0272b55410fd2fa3734780"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/307/S307WNCE.wav",
+          "sha256": "a3fb8dd70f6ebab3a1e9d9ba4cd217dd8474d8e496e2728eb98a39d43be691e1"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/308/S308ATTK.wav",
+          "sha256": "c738e61bec1a1c07c98d54053abddb49d1c85a2ebde5626b3a1158161bdb1fcd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/308/S308DFND.wav",
+          "sha256": "da276b1356ddfc8fd473b5fc8c46b24c8dee3f6050fe348c09b12af815db7b5c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/308/S308KILL.wav",
+          "sha256": "86d225a0348af6bb81cd6e15e16c3dccb404bb9d48e56b12cc4373914378c00d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/308/S308MOVE.wav",
+          "sha256": "a0e03b6afb573a3e86d1a73120b5a6169449011856f6e281d8cbabc00add0445"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/308/S308WNCE.wav",
+          "sha256": "a3fb8dd70f6ebab3a1e9d9ba4cd217dd8474d8e496e2728eb98a39d43be691e1"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/309/S309ATTK.wav",
+          "sha256": "5b5740217fcc9ba97f425492ebc9cae71e15c694bff2481299eaf7fdac8df48d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/309/S309DFND.wav",
+          "sha256": "52ddb74e23b586f14dfbb709459faf27747c720c669b0aaeded6489949342164"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/309/S309KILL.wav",
+          "sha256": "e63fec19b15f06c826e0fbd7864d56a497a4f3a5f5654271ea85fb5d2aaa9fdd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/309/S309MOVE.wav",
+          "sha256": "bb7b871c72126be9c305c1aba184ce7fc830d48676cf78c6541fbab5276f41fd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/309/S309WNCE.wav",
+          "sha256": "6a870201393c5a99121e025fbe8a2d13410011d4da9a6e6791b515ef16340eb0"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/310/S310ATTK.wav",
+          "sha256": "4a525594e59d87fb5ad63c170f78e07654e7a258f4bb93258fb7929e1fa75b5d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/310/S310DFND.wav",
+          "sha256": "52ddb74e23b586f14dfbb709459faf27747c720c669b0aaeded6489949342164"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/310/S310KILL.wav",
+          "sha256": "8a8003567b7881a08debd101f3a9587b1ab01b04a4029d2e9573caa5edbf8911"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/310/S310MOVE.wav",
+          "sha256": "bb7b871c72126be9c305c1aba184ce7fc830d48676cf78c6541fbab5276f41fd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/310/S310WNCE.wav",
+          "sha256": "d8be6eb1a17dcd2e7d46672dcbe9011c1519070b401ec1da93b9a0cb3246fda6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/311/S311ATTK.wav",
+          "sha256": "abcbf3b694d864946845c5db9a265b28fa74f2a5e9e5611472173d0043896ea5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/311/S311DFND.wav",
+          "sha256": "f2c87df540cac247c4beb7b315bdbf1f2b77fac5c08f01ac7f9df0e40fb8ba78"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/311/S311KILL.wav",
+          "sha256": "5b118d569030ad66e29324bb759c6979650cde0fc24167ea2814a181c9b6087d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/311/S311MOVE.wav",
+          "sha256": "bb1e8de5dd0672e42b1128a3e4fc9f04070676b1aa978675d2ce9e42c41a9419"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/311/S311WNCE.wav",
+          "sha256": "9da3e72fc21a34296d72e87cc5a70e2df55b8b67005e5118f2b1a6a53e706980"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/312/S312ATTK.wav",
+          "sha256": "da5ce1b01c88add01ee1077be74989777c0174b6fdb881c9b7fcaf8559fda4b8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/312/S312DFND.wav",
+          "sha256": "bd4eeb5cfe834b8fe69ce5930835029a02f785b0dc71a1d23bbef53427a7eca2"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/312/S312KILL.wav",
+          "sha256": "116830eab22e38f0be7a93b3d97e219f6562afe81b718bccad7262918871d2e0"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/312/S312MOVE.wav",
+          "sha256": "cf4bb8a691ec924e14829031d53f4c93492ee57f6e39c6c3de9e206662755c13"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/312/S312WNCE.wav",
+          "sha256": "470a1086b85ca6870a5a7d4398916e7c69f69aea4951deb9ef4fdf4613f6f801"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/313/S313ATTK.wav",
+          "sha256": "162cf7191e9163a1548ab1a19915a3f13c82c8cdc3e4309602dac1948f6e2051"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/313/S313DFND.wav",
+          "sha256": "d369051844ee4f8f761f6ee3112b6c9b6f5762627bbcbd306fcb426209e43a87"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/313/S313KILL.wav",
+          "sha256": "a0008be5f68aa36539380cf1b7f60416af801ee42e4dcc44b74fb11b883614af"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/313/S313MOVE.wav",
+          "sha256": "a0dac8e56a9db61a1a0a92fdefda8c781c56002e878f1fb24b53cddd66a76a55"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/313/S313WNCE.wav",
+          "sha256": "3b228bb29cdca68b531bb6c6a0acf108d8e83ff874b6577a7a5189defffe44e6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/314/S314ATTK.wav",
+          "sha256": "162cf7191e9163a1548ab1a19915a3f13c82c8cdc3e4309602dac1948f6e2051"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/314/S314DFND.wav",
+          "sha256": "d369051844ee4f8f761f6ee3112b6c9b6f5762627bbcbd306fcb426209e43a87"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/314/S314KILL.wav",
+          "sha256": "a0008be5f68aa36539380cf1b7f60416af801ee42e4dcc44b74fb11b883614af"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/314/S314MOVE.wav",
+          "sha256": "a0dac8e56a9db61a1a0a92fdefda8c781c56002e878f1fb24b53cddd66a76a55"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/314/S314SHOT.wav",
+          "sha256": "2c274d4049b48815242f10c5872ae52c026c4162870a1c733af94160f577ab98"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/314/S314WNCE.wav",
+          "sha256": "3b228bb29cdca68b531bb6c6a0acf108d8e83ff874b6577a7a5189defffe44e6"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/315/S315ATTK.wav",
+          "sha256": "b719e199d63618bd533f454a69e91bfa055756247695e2460ed0e3cf89390b9c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/315/S315DFND.wav",
+          "sha256": "ea1e5dee00595e97b89c1ea64dabda3e284fe6a6da873486f766ef1415b3619d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/315/S315KILL.wav",
+          "sha256": "be56fd9393261c25a489816f59ee7624ff66a255c6240fc8c895d988018039bd"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/315/S315MOVE.wav",
+          "sha256": "56496bb93d565757907603a336d34a5d3757e0e5f3934ff5bbb2fdb45d36b5ba"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/315/S315WNCE.wav",
+          "sha256": "2b00e7f0ea7b841018f01b91279a8d75c8fb8cbe35dfc2f3492918f595970623"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/316/S316ATTK.wav",
+          "sha256": "0597de618b611e23be871e16924900c318058f20ac468f1824704c4ab8573ac9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/316/S316DFND.wav",
+          "sha256": "51d4876838714d59692cd70094ad862978c155697aee9d6d4026c9fdd643f761"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/316/S316KILL.wav",
+          "sha256": "6a6008c1acda276bde060044dc2bf97855c19bd0e17631d048579775368e3665"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/316/S316MOVE.wav",
+          "sha256": "22d08a492807939496034942efa133bcb755729453c1d86e1b3c32c58145bba3"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/316/S316SHOT.wav",
+          "sha256": "3bc5446f1f16c830919436d9338740198a4ef923821427ad80acece62631e0b7"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/316/S316WNCE.wav",
+          "sha256": "3cc5118889caeb5252cdbac881b7836873b262f467cc68f32107e41f54290f9a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/317/S317ATTK.wav",
+          "sha256": "d91afb296f8f0b278c95e0885b8ceaba29ea426436fe57ee7c41d712c339a491"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/317/S317DFND.wav",
+          "sha256": "77bd476d4d6e138487c79d10fab1924ac3e3555bfffe864c998c5f3464d1f641"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/317/S317KILL.wav",
+          "sha256": "4d30d2b1d27ada3dfe0ea9e4c9046914a343d4d1a082d4d8a00af8c34a6224a4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/317/S317MOVE.wav",
+          "sha256": "d8b479fc1a3812f0003fc8c6fe5551ddd7e24ec2993c725322b5f9da1f24c526"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/317/S317WNCE.wav",
+          "sha256": "13a50a13814d8aa6c9d6951bc7570a8df9525dabd1b7cfb952b4598aca5c20ee"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/319/S319ATTK.wav",
+          "sha256": "dd224a0ae481eb231b07c3a72fdd2a54ad0086299189d1362932f9cde00d9636"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/319/S319DFND.wav",
+          "sha256": "c5d9c7f2b4e26fe4582eb648f550d5093c2ec503a4b661bf95be0169070a8198"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/319/S319KILL.wav",
+          "sha256": "7f0ef2089cff31e65e7a4faa731eaea0f88bc55a8f46c9cce9a93a026d76ebe8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/319/S319MOVE.wav",
+          "sha256": "0a5d534254aa48ade71068d229a6c7c35381ee4343895128e696d15e7219865b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/319/S319WNCE.wav",
+          "sha256": "9539c4635aef37bc0ee41a961c511222307b823127499271462b5f52e6f229cf"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/322/S322ATTK.wav",
+          "sha256": "047b6e7968fca7c97e37b92ad1e3ef6d2d3c56a14386bd5bc9d10b4fe9b19433"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/322/S322DFND.wav",
+          "sha256": "1a92e6cc1e176340b6045c229b0658979719cb787659598fc07ef24d9d5ccc0b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/322/S322KILL.wav",
+          "sha256": "44d73e2d66717123d0892d79c2355cfb1695bdfba4ac3b8c3bbaba27c35f518b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/322/S322MOVE.wav",
+          "sha256": "406e36d449797183a2eda3ca506418f0862541b564ad684549182cc8fcac7265"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/322/S322WNCE.wav",
+          "sha256": "299127920793c43bd7b3fa4e0d5a679df8adf9e7cc7c1638ae984046a0f1b3e1"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/323/S323ATTK.wav",
+          "sha256": "047b6e7968fca7c97e37b92ad1e3ef6d2d3c56a14386bd5bc9d10b4fe9b19433"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/323/S323DFND.wav",
+          "sha256": "1a92e6cc1e176340b6045c229b0658979719cb787659598fc07ef24d9d5ccc0b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/323/S323KILL.wav",
+          "sha256": "44d73e2d66717123d0892d79c2355cfb1695bdfba4ac3b8c3bbaba27c35f518b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/323/S323MOVE.wav",
+          "sha256": "406e36d449797183a2eda3ca506418f0862541b564ad684549182cc8fcac7265"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/323/S323WNCE.wav",
+          "sha256": "299127920793c43bd7b3fa4e0d5a679df8adf9e7cc7c1638ae984046a0f1b3e1"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/325/S325ATTK.wav",
+          "sha256": "7ef8371801ccc63a5272b657898f6ceccdb24d7c47dee9cfcacbe7854f2ad3da"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/325/S325DFND.wav",
+          "sha256": "109fe82c843748de4d03a306fdf41e7672ff9f4488e01207c1143122ebaefd32"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/325/S325KILL.wav",
+          "sha256": "9679cf6aa75bc14b219234c3c078b5e89451fe41b468ec337c7ff2c7613c5315"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/325/S325MOVE.wav",
+          "sha256": "59ea6ccc58f3197a5b042dfafd2d323c4b96d47e9769e36a313a6399bcee9dfc"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/325/S325WNCE.wav",
+          "sha256": "7673bc96b2c2fbb11cea640f09a0789dbd1fa4952cf668ec0beb0ab40cbd6fed"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/326/S326ATTK.wav",
+          "sha256": "a9bc663ed139e6714ade4e3502708c26fefdb00f83b976c63dcbae3317a064ec"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/326/S326DFND.wav",
+          "sha256": "0f5e218d19ddfff13f74f7910f29e811008d96b2e1f0d094b16534c79bc0a13d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/326/S326KILL.wav",
+          "sha256": "a65462d0650ad89a468475bfd6437e3a1ea906188cf9304c11f4c66b9d1b4aab"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/326/S326MOVE.wav",
+          "sha256": "a47eb87fed2401eeeaae0e9c15560272e18ded220cc039c6e287a264f46d1a1e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/326/S326WNCE.wav",
+          "sha256": "12e72713d32962774851a4bc2d6efc773a3273e9c19e412afcedea8c710608b3"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/327/S327ATTK.wav",
+          "sha256": "4d60dc6efcb3188b15dd82698c3f3e6e0ac41579c4b6af75c8c693dd48ccbc79"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/327/S327DFND.wav",
+          "sha256": "0f5e218d19ddfff13f74f7910f29e811008d96b2e1f0d094b16534c79bc0a13d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/327/S327KILL.wav",
+          "sha256": "f9c7744ef0fd5dea73e1fbda6366045473640f4c8be3f76eef844c798510ccf2"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/327/S327MOVE.wav",
+          "sha256": "1c93a9db8457fb316e088bc1a89e350b60ca6d638b205fad1ef5feac9bd57ac5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/327/S327SHOT.wav",
+          "sha256": "254f7f7344c1f823763295851cbc2cf246f51a7b665a1b08645ca33563b15fc2"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/327/S327WNCE.wav",
+          "sha256": "12e72713d32962774851a4bc2d6efc773a3273e9c19e412afcedea8c710608b3"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/328/S328ATTK.wav",
+          "sha256": "c6819bf74ce051b2842651d6e748f46ef6674ddb2a5f4874779f8240f3e35203"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/328/S328DFND.wav",
+          "sha256": "176569ff3f0d4b0b710390e0c908057c30a95b2c1053938ac9e8fbbe07b31408"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/328/S328KILL.wav",
+          "sha256": "921ee72675413da55f815e8692f0e75035fe6476961963e55a3ec6ccb80dedef"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/328/S328MOVE.wav",
+          "sha256": "bf319d5d012b68e9da5e922bc172e80d99810b4aafc6529d3583f090f2fbb52a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/328/S328SHOT.wav",
+          "sha256": "2beb6c416b86014ab3bd0c0670180df884db35b4304344c92c173db668d4515b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/328/S328WNCE.wav",
+          "sha256": "a751dced0288cfdd527b467821c647f6a307b00033906d18253c1682a2e2b584"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/333/S333ATTK.wav",
+          "sha256": "c6819bf74ce051b2842651d6e748f46ef6674ddb2a5f4874779f8240f3e35203"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/333/S333DFND.wav",
+          "sha256": "e5a4f20e29527e0bc7c94ae54e573635f1d19b5d3dce0f05b2376c73fba410ed"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/333/S333KILL.wav",
+          "sha256": "dbf212c2ee2ae0f53ab32d0d5beab9be3d79535b8543e3cbed85451f99e3273e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/333/S333MOVE.wav",
+          "sha256": "5039b3097da2377a7aafc7eba7178a345ff7a5bdc14b4c354b25a557e010c482"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/333/S333WNCE.wav",
+          "sha256": "42e6cd9aae1443a002f055bb160538bb496a3fcf4b72f30df7e1fb24df6afcf5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/334/S334ATTK.wav",
+          "sha256": "c6819bf74ce051b2842651d6e748f46ef6674ddb2a5f4874779f8240f3e35203"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/334/S334DFND.wav",
+          "sha256": "e5a4f20e29527e0bc7c94ae54e573635f1d19b5d3dce0f05b2376c73fba410ed"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/334/S334KILL.wav",
+          "sha256": "dbf212c2ee2ae0f53ab32d0d5beab9be3d79535b8543e3cbed85451f99e3273e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/334/S334MOVE.wav",
+          "sha256": "5039b3097da2377a7aafc7eba7178a345ff7a5bdc14b4c354b25a557e010c482"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/334/S334WNCE.wav",
+          "sha256": "42e6cd9aae1443a002f055bb160538bb496a3fcf4b72f30df7e1fb24df6afcf5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/335/S335ATTK.wav",
+          "sha256": "047b6e7968fca7c97e37b92ad1e3ef6d2d3c56a14386bd5bc9d10b4fe9b19433"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/335/S335DFND.wav",
+          "sha256": "1a92e6cc1e176340b6045c229b0658979719cb787659598fc07ef24d9d5ccc0b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/335/S335KILL.wav",
+          "sha256": "921ee72675413da55f815e8692f0e75035fe6476961963e55a3ec6ccb80dedef"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/335/S335MOVE.wav",
+          "sha256": "11e0a50d24d11fd07553a8da46e9692a14e20d822605603dfcde07a09559b4e9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/335/S335WNCE.wav",
+          "sha256": "6b9a64c4b2c1d7fbd544be0fd9df327d637c397a51dae845c96a897fec7298dc"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/336/S336ATTK.wav",
+          "sha256": "047b6e7968fca7c97e37b92ad1e3ef6d2d3c56a14386bd5bc9d10b4fe9b19433"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/336/S336DFND.wav",
+          "sha256": "1a92e6cc1e176340b6045c229b0658979719cb787659598fc07ef24d9d5ccc0b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/336/S336KILL.wav",
+          "sha256": "921ee72675413da55f815e8692f0e75035fe6476961963e55a3ec6ccb80dedef"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/336/S336MOVE.wav",
+          "sha256": "11e0a50d24d11fd07553a8da46e9692a14e20d822605603dfcde07a09559b4e9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/336/S336WNCE.wav",
+          "sha256": "6b9a64c4b2c1d7fbd544be0fd9df327d637c397a51dae845c96a897fec7298dc"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/360/S360ATTK.wav",
+          "sha256": "fd5884329d59cccb4356f757c785ab2fe3e9ee4b999dd97575b6aef032d0e1ff"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/360/S360DFND.wav",
+          "sha256": "12370d3d09fa545f58f936412af001899fa0b59190d6964bfd45409864bf3029"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/360/S360KILL.wav",
+          "sha256": "32ff89da91db84c9358eebddb3ae9b45c3d3b569e06b492d1ddd6dc158723628"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/360/S360MOVE.wav",
+          "sha256": "10ce4011add69a995e16064dd0edd054007ffdf57d0fffaaa3613a14f4e3bd2b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/360/S360WNCE.wav",
+          "sha256": "d71c1405aee7e93064df1cbbc52a051d690f9782804ea34b5cde1144f0edefc1"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/362/S362ATTK.wav",
+          "sha256": "047b6e7968fca7c97e37b92ad1e3ef6d2d3c56a14386bd5bc9d10b4fe9b19433"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/362/S362DFND.wav",
+          "sha256": "1a92e6cc1e176340b6045c229b0658979719cb787659598fc07ef24d9d5ccc0b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/362/S362KILL.wav",
+          "sha256": "44d73e2d66717123d0892d79c2355cfb1695bdfba4ac3b8c3bbaba27c35f518b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/362/S362MOVE.wav",
+          "sha256": "406e36d449797183a2eda3ca506418f0862541b564ad684549182cc8fcac7265"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/362/S362WNCE.wav",
+          "sha256": "299127920793c43bd7b3fa4e0d5a679df8adf9e7cc7c1638ae984046a0f1b3e1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/200/AVWCR200.def",
+          "sha256": "7cddab657ea169509d7468a7cae1fe5fa2f135994157ce451c3d0a8ff1b6863d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/200/AVWCR200.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/200/CR200.def",
+          "sha256": "1dee29597ab5bb2678873eb31da91e792ed7409e9dcdf19b51e1e452ed443492"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/200/large.png",
+          "sha256": "39a526615be8d38a2d707bf3862e5e39f61df98a0664f9d61787f7a1bd7b5778"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/200/small.png",
+          "sha256": "82da922bf28c0b12c401f3500be93fde84751ee1c572d0c5035d8ea8e487d46e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/239/AVWCR239.def",
+          "sha256": "e3ef82e73f4629a734be79c39f4ecee0ce780a8276320fb1ac4232e2c94d16fe"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/239/AVWCR239.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/239/CR239.def",
+          "sha256": "f701bde12fbaf0ded5a27219dbf5b34d25e0d41933fb6d860cc7eeca0e0ba7db"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/239/large.png",
+          "sha256": "c64a53317a57714aad3ec72dd48409cb9ea2696a4995c2bbd791d13629591401"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/239/small.png",
+          "sha256": "6c56144988efb6eaae0383fc30302e6aaa00bedc88ad72102ab0bd370e56b0e9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/262/AVWCR262.def",
+          "sha256": "28e48518d6a32332d3a9b3b280aa0c9207f9f1ceeb94dc3a86e415d06c063cd8"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/262/AVWCR262.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/262/CR262.def",
+          "sha256": "680db76e33598977f3b0767b67252d2b80001d2b0571216ea2750218a394d010"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/262/large.png",
+          "sha256": "fb6ed07fcc59332cb40121285c4c3f9479b03c90cf7729ff63d5fd7634731d29"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/262/small.png",
+          "sha256": "611c7d9bbbfad2dc90a0d679a5299f355c38b31dd07a53ed8316a82cabdfec3d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/264/AVWCR264.def",
+          "sha256": "69540d4a03d18efb51c9708f476cffcb4e2e65c3a140f1d18a77cc9034c51b99"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/264/AVWCR264.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/264/CR264.def",
+          "sha256": "9bfad22b4f0d7d9ec5e4a0f3c7ff382e49f4257be0f4b40256a491bb25579872"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/264/large.png",
+          "sha256": "e2e1808c54845e7e982d3d31b615f57bb57c84b836f795c7585de5d453780541"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/264/small.png",
+          "sha256": "c73d8777f4e71a805fbd449c953e6bc93764b2fd5dc593634988532120b96556"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/270/AVWCR270.def",
+          "sha256": "2c07bcf20323f212296244b3be1fa93f01e145e3bde443e9f7382ce2eedb41b3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/270/AVWCR270.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/270/CR270.def",
+          "sha256": "67bddec4354ead1c86dbb24b8f7b8da42667c5fcb4b8f5f4495c4e12ccd3b78e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/270/large.png",
+          "sha256": "9efa89525614fa253b39a109d7813db72dbee7058e736937ac51c4f46f35e28e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/270/small.png",
+          "sha256": "42364ae04c58f4b3989d69cedae7dea0690cb16724197e9a39010ebd339eee57"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/274/AVWCR274.def",
+          "sha256": "670c10fc1fabc42810f4acbc20bac5b7d8cb7674aabf544d8a94522a22fe9f3b"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/274/AVWCR274.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/274/CR274.def",
+          "sha256": "e591e7ee9374851915af14ace4d98556aae76a47d90762da8ec764cfd215c5ba"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/274/large.png",
+          "sha256": "32988b16b4812890981294cc998ed7509528cd4fcc0d38c0d5d1677665d6dc01"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/274/small.png",
+          "sha256": "2cc843de8eadb0867b98a0edff9d8e12391a0175813d31565e1ae735baefc772"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/276/AVWCR276.def",
+          "sha256": "029622020a5d0f36ac4f48d0802e64424d8678583f1e05fe8f653cff3bfaa4b7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/276/AVWCR276.msk",
+          "sha256": "3f21e3822ddbcbd44dda64c031ee2cc14ed55fad383c627d601de0ef10c1d390"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/276/CR276.def",
+          "sha256": "a0f2928a92d4724871479e2f0f54191e16979a0d36e6a08bb3ee97af0099b249"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/276/SHOT276.def",
+          "sha256": "942fe022d19fdefa3db90fb6f61933b29ca3f888b6b1b5cb05c70cc8cdefccb3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/276/large.png",
+          "sha256": "f0f59e2b7d14db30bde3d1d5fa035976d4b211a86562afef2c190528b0a413c4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/276/small.png",
+          "sha256": "32297264b347d689947eece381e8f74691b6887decbe058c6df4ef09530c3cb6"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/277/AVWCR277.def",
+          "sha256": "4242ba466b4aed2563cd2bd2a7985a854fd9158b230bb9cadebe2edefbb1bf73"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/277/AVWCR277.msk",
+          "sha256": "544359ffcab49c1bea8f02e607bf52607c5a6890aa7bd7dc624fb6d3b0f3548a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/277/CR277.def",
+          "sha256": "dd51d2614abf61dc44a48a0484f2c057f4d35170d3506389ceed7689ef9d7f58"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/277/large.png",
+          "sha256": "ea13f44b861a2994981cac3cacb65cc2b8ab6c11fb3886a6566c25eac1cd5b2c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/277/small.png",
+          "sha256": "83cfee06ce968654bccdc943c527f84dc4f8c58f4f8388ee2a409f3bc337ac9f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/279/AVWCR279.def",
+          "sha256": "a7f2189311deb8be3df80ae8d303b2e43559cb34a9e886dba17e227c7ecf3b8d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/279/AVWCR279.msk",
+          "sha256": "66fac4f1b44814c39172af0f822300f5b894d366a435e9bf699bd446f45d3995"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/279/CR279.def",
+          "sha256": "ab68c1de2e3985a587b73822d23373b0affe795878b89bcef9615c607292fdf5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/279/large.png",
+          "sha256": "f74ac436f429ca870e578e66ec6ae5302ea931706057c4bd51137ee6c8e03993"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/279/small.png",
+          "sha256": "ea7285e7957864302efc8416419dc0be819f8db3b9dca6956bedf429bda49b1a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/282/AVWCR282.def",
+          "sha256": "512036eeae840edd607def6df09780bc3e55ed93937ebe1903dabc466bd99841"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/282/AVWCR282.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/282/CR282.def",
+          "sha256": "d5d6c191478ff11caa4d8b8462dc4e78966947f3a22126dbcc3c2a4553e25cd8"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/282/large.png",
+          "sha256": "3c4d139db2666cd3c573a67bbbec6bb14c32b69f0601e2312434b87daecdb46d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/282/small.png",
+          "sha256": "cdcd66041e763d318780d2c66517e0a8142feb3c87fdfa30b0a585172cb2dbfb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/284/AVWCR284.def",
+          "sha256": "324316ecbdd75f3dbfd63882bfe3aa178dbe7c72c1edf050af4b943156c473fc"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/284/AVWCR284.msk",
+          "sha256": "e518c68cce25f5b579648236008a9241dde284e45f7c303d6c59e965e546cd80"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/284/CR284.def",
+          "sha256": "6f251cfbece199cc9ca45fe734143d44c295601b9308174714d87be195e52d32"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/284/SHOT284.def",
+          "sha256": "942fe022d19fdefa3db90fb6f61933b29ca3f888b6b1b5cb05c70cc8cdefccb3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/284/large.png",
+          "sha256": "ffe24bcef35423b072b54d45b6fbb9d9da179c2192090fb008f762747ef98d27"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/284/small.png",
+          "sha256": "820efe322986dd7bb42fdd9fba230cf7f9ccb9e800e1d028a7491e009b78a1b2"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/285/AVWCR285.def",
+          "sha256": "19dda6939b8d79a635444723115b9a61ebd82541ac1a5cae559a3830901581eb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/285/AVWCR285.msk",
+          "sha256": "eb3d35d1bffd6b098c5ede0524404516e3462b6773cf371850fc47f42386d360"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/285/CR285.def",
+          "sha256": "6fb3a17738429cb82c4b0f2661d82450bc9933de9d6f58b87c82e00cc4e2ecb1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/285/large.png",
+          "sha256": "737d229ac1348a15a8857985e0d3f62c9fb025f4ef9e7a34d552884eda26b3f6"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/285/small.png",
+          "sha256": "e3ceff8cd246eb661aeb3cc42da3658040e472b695f4274b97d7a3c4236161d7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/288/AVWCR288.def",
+          "sha256": "f01259e2e97c9a225e94d2c22465ccabb4485256c46b9bcf5dec0ba24a2c6133"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/288/AVWCR288.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/288/CR288.def",
+          "sha256": "533f8e9a6295037c7159c8b338a2cf9245dcbae039e04a38e6a9e4b5c5914bee"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/288/large.png",
+          "sha256": "80949535259295f6e65bf2d60037556c8a75a8cd6416cceef980a9913b183544"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/288/small.png",
+          "sha256": "098e0ae5a49bba995ba29d99cf4bdfc46404b1bfeb6752dbbeef7e02fec7d866"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/292/AVWCR292.def",
+          "sha256": "4f44738914f8ca28693992fd5407c1361221e4fd2c419a896573a04556fc0ab8"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/292/AVWCR292.msk",
+          "sha256": "544359ffcab49c1bea8f02e607bf52607c5a6890aa7bd7dc624fb6d3b0f3548a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/292/CR292.def",
+          "sha256": "00bbf63416f05be7a5ff83765e458b7862d78e2407a6b9d6553ae1c02a635e73"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/292/large.png",
+          "sha256": "d126182e46834c3dc40b34886e7714aebece616bf2e24f8b89260554bbf24b4c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/292/small.png",
+          "sha256": "379c48448fb042a06421d4991263ce533a89044f041d48f3a1ef3ef79d8bfe0f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/296/AVWCR296.def",
+          "sha256": "e786a1e87b377e730e94441bc7bd3cc15d5ee7602214d45f44166f4e009dd429"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/296/AVWCR296.msk",
+          "sha256": "ce580bb91fd4b1be050f36c443858f62442838dc408b1c0b83b4cbc828ed7fd1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/296/CR296.def",
+          "sha256": "62ff33262f1ce9cc0bccfb32565fbc0adf7279d8d6590b8d9339808ecea2f0c1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/296/large.png",
+          "sha256": "a86e7a6a089f9eae62593d4caee2e2451096a8cd1de86ebaa1d11b4bfac5e277"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/296/small.png",
+          "sha256": "fc317e8e406e666253e3c08f213e2a2d496bd7637db977071290962b2665a5c8"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/298/AVWCR298.def",
+          "sha256": "1b8d4da587ef9985ef9505b532966cfa7a0804c648413ce3f21f3023513af9f5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/298/AVWCR298.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/298/CR298.def",
+          "sha256": "60aa5cec30b894ecdfe4fcbeb5034f76479d1125bc1c9bd2856c963a9e4b1e6f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/298/large.png",
+          "sha256": "35ec84c6d1ec84466eff59cbd74ef4e0432d7a3f4a760170820200aefc66411b"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/298/small.png",
+          "sha256": "1c39ead3bf3a28a35c8b3bc8e9f9ecc19f5bdcba57be00ce6dacf426a87122c7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/303/AVWCR303.def",
+          "sha256": "f8771d709f167f1512e3ea3a945cab64ee8842675b80a486c267583b6d9e0054"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/303/AVWCR303.msk",
+          "sha256": "ce580bb91fd4b1be050f36c443858f62442838dc408b1c0b83b4cbc828ed7fd1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/303/CR303.def",
+          "sha256": "8a20d93983210c58241910b4286f1d6058becc40913338e78a40cc9bd49c7277"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/303/large.png",
+          "sha256": "60ec811396150c54d2e1b13cb68481e775de549e8f6931a74bdb0b25b1d0d47f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/303/small.png",
+          "sha256": "794333a0e415999b90682c9d6548231a6b2ac94a7d5a8eb4c85f6a5496af4d38"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/304/AVWCR304.def",
+          "sha256": "0f1507343f7b6604d6f3b5adb082b009f03c64a401aee0346414f74dc406e999"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/304/AVWCR304.msk",
+          "sha256": "f9985a05c4b9268f89ff1980abb109e9335d7cfc62e93a77212e23c7c96deb45"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/304/CR304.def",
+          "sha256": "acb66794f0177c229915f825ff37b2800346b924a76b39c57365e9ab5432e2b8"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/304/large.png",
+          "sha256": "3b500caaa4c5c24fa067ff665ad70ef96ab8deced3274ef19355a47098c3bf84"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/304/small.png",
+          "sha256": "88c1f91f4b5bfaff02873de0638e44fe963aaf26926bdc1ebf36f18602d0ca82"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/305/AVWCR305.def",
+          "sha256": "a364a8207a9026bc68cfefa58c1628af417966557d01c95f70fca40e7c53ad65"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/305/AVWCR305.msk",
+          "sha256": "f9985a05c4b9268f89ff1980abb109e9335d7cfc62e93a77212e23c7c96deb45"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/305/CR305.def",
+          "sha256": "dc43c4b2f420c87b60061d9187f125a81c5f16fda82a3896465d4d967ef4d93a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/305/large.png",
+          "sha256": "e6b1e870373f3052977e848492ad6c0c8d5069a0d9639d85ce93e2320ca3fbf2"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/305/small.png",
+          "sha256": "d81d145f62dcf42684074ee9e35167939e2a2ea692094be9dfcfce6798d009a3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/306/AVWCR306.def",
+          "sha256": "e9b746adcf570d13758c76d543d2c93260d95bf7b3ca3b4f4470e92164d47e67"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/306/AVWCR306.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/306/CR306.def",
+          "sha256": "4629ba03d739802eeccd4c7d59970c7d983c7650ac1591b391187ca3c313c00a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/306/large.png",
+          "sha256": "b346ad54a1894990498a150ee9bb6d64c57f0fb5241674f80ac5aecf4adfa9af"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/306/small.png",
+          "sha256": "0f0d7c19c63165e4d19d707086d5b250e1dddea30b9f0d831b3c39ea7362ec02"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/307/AVWCR307.def",
+          "sha256": "93bb481f0a65a740921ae712efe8386435f65214798ee063bf3da64a4b7a1e49"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/307/AVWCR307.msk",
+          "sha256": "e518c68cce25f5b579648236008a9241dde284e45f7c303d6c59e965e546cd80"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/307/CR307.def",
+          "sha256": "6f0cb7a4a295fb2f7231e0e920858c93c2f7d6240edb9e612322c1c0ebda2d35"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/307/large.png",
+          "sha256": "59969c9182a3f8855f574d6bd15cb83908078d373a74ed5eb2dd97b1dd961d35"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/307/small.png",
+          "sha256": "8af2d6509b7eb3f2bba9a7e5afb70ef23b3216c98e002f00afe8c39b81a5807a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/308/AVWCR308.def",
+          "sha256": "641885e62521bb34c4db3ce905965e178a59f1ceb41513e418a2747efa4b2cf3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/308/AVWCR308.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/308/CR308.def",
+          "sha256": "6ed02b8aacea40f196a5516e75e5791ace107311251f6871ea88c00a2514037f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/308/large.png",
+          "sha256": "a604cdd66b68783ffe4a929e55aebeb0bb43b1ec13463b3158c61dabc153c12d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/308/small.png",
+          "sha256": "98fe888b48f49394e8c88a43226eefd7b8f0e2d97d21a4ea7f4c95f929c28c40"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/309/AVWCR309.def",
+          "sha256": "641df1821f576fb7396f7275df6882e35b3d82ce166117aa00ba1a50f89d8225"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/309/AVWCR309.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/309/CR309.def",
+          "sha256": "a012fd824a55da305e10c2c9c3af88d87a0d3de511cff9e5758ef138d7a36e43"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/309/large.png",
+          "sha256": "666232d2df9f0b2fec920d32f7064e59ef2e3d8ade7e4965f3fb5d5af345c8c9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/309/small.png",
+          "sha256": "b3bd08f8747c62a1b400d586382cf631ef4e40d8b6114e5699c88145d266100d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/310/AVWCR310.def",
+          "sha256": "3442f34925a2174051296c2a659f1b813b035630c8723b4d19d991b6aa104ff9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/310/AVWCR310.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/310/CR310.def",
+          "sha256": "f32b0d7d29442c9c927781f6bfe84ce71e5f9b5256f0fe74bffe552dd88f1deb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/310/large.png",
+          "sha256": "b87d16228410cf2e953d73ea4601b8a842e1b0ec20c9369ea06c4a63e252874e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/310/small.png",
+          "sha256": "90810b8b47cdb9f11fc1a255398efd7be077e7a8c49f3956bb46a284280290eb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/311/AVWCR311.def",
+          "sha256": "2c1c5cfa6564fc8b712a2540beeaf547c95cebeb217ab6aa5d5b943bed3b358c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/311/AVWCR311.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/311/CR311.def",
+          "sha256": "1e9ead805db132cbcac4a0a35f5b74a0a9dc952d02f4442379290daf5ef88cd3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/311/large.png",
+          "sha256": "d28f9d19a475a23d54bb010155198cdb9a5f375759821facd6f3369041ddf05b"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/311/small.png",
+          "sha256": "2c8f02473dad2c8744d8c85d4829222e14ebeb3a3d724263877cc28efdfa2e40"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/312/AVWCR312.def",
+          "sha256": "7e8a6f8d81bca27bd422f3d3b3bb76ac65a3daaeb62a90b49b6166a4ef512c39"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/312/AVWCR312.msk",
+          "sha256": "e518c68cce25f5b579648236008a9241dde284e45f7c303d6c59e965e546cd80"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/312/CR312.def",
+          "sha256": "880fb1b7ef00f0a1d2add4deb7359cfd766f87ca7b18d8587f7449d48df0d6f5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/312/large.png",
+          "sha256": "8450089b8a046812a99d68de2de8672c28bce957ab27455480e3bf8b9d252be9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/312/small.png",
+          "sha256": "03472706916105341479a7764ff79bce471c88cd70ff25b0b876ced23b748b3f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/313/AVWCR313.def",
+          "sha256": "1675482cf0a80ee3d640961fd42a12039e99788ab79332b437c61c971afc1236"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/313/AVWCR313.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/313/CR313.def",
+          "sha256": "0d283c951daeb72125a25fa2d7fab1664ca7a5f895626f105f9df3b02888ddbe"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/313/large.png",
+          "sha256": "2d214c05e4a3510ae3fcd07ca70dcbd1da33465d123fb2c7a52b0469cf6ec67e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/313/small.png",
+          "sha256": "b3d562ce61723dcd60ed84b1ea79509f62922a0c9d0ff3dd67d9c551430f2ec1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/314/AVWCR314.def",
+          "sha256": "3af9dd0f7d74bb02955e60e2155d9e60e8316c163b2eed5d68647e7673ad8778"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/314/AVWCR314.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/314/CR314.def",
+          "sha256": "0243df6bdfef9777a01d3b995c35d586892d1a3dd6f0d99a625b9d473d23ae4b"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/314/SHOT314.def",
+          "sha256": "2b91c1eb16f954ab213388c3ddd51c38d6d83124c8858aa436c52e9419f7d6e7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/314/large.png",
+          "sha256": "e2af49dabbd490c930e903c1acf222215b5c0c5cb968a739617252a3a4d234c1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/314/small.png",
+          "sha256": "8d82f34b1b5d4c07bef5e6a608f5beab303501e2d8ff4ab614f7b0bc6fd200fa"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/315/AVWCR315.def",
+          "sha256": "4956fda7f6adb279fa51925c52cf8f99d662182a44b73338f651c0a820b8e3c9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/315/AVWCR315.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/315/CR315.def",
+          "sha256": "6ef38399f5b5200261c3c96c044240036adce705508a0536353c7507f3f69a00"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/315/large.png",
+          "sha256": "e5ac8bc069682da3a79a89a9afa56bd8c54eccd254ebaff27df9251ab85694f4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/315/small.png",
+          "sha256": "c8ee33220da4f278f91a2db84f9d068da07e542eae798d742d567d2ca00cca07"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/316/AVWCR316.def",
+          "sha256": "06c77145a4733a160c3d380108e05cf2cf730d22530befda59018ec0a482f341"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/316/AVWCR316.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/316/CR316.def",
+          "sha256": "3f1281af967f6cd8059af5e100be2b5a852db5a6756ec1c1e68d3cae764d5eda"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/316/SHOT316.def",
+          "sha256": "56bee71921e83b0cd91ae17a8b54642a8db068e4cfbe06d23b1cd5cb335de2ae"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/316/large.png",
+          "sha256": "e9e2d5634561b3b3255ea26fdf4c07a698b38bf7f9eddaa48c3460e586267bf9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/316/small.png",
+          "sha256": "d99b8601814f6e47cd2269eedae7c4996d27b9a16f5d7706609dcd9ea87908ed"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/317/AVWCR317.def",
+          "sha256": "7e0fec18f968dbb51cbbb12d2573b1686e12db7c4f514bc8fe7911517957c311"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/317/AVWCR317.msk",
+          "sha256": "ce580bb91fd4b1be050f36c443858f62442838dc408b1c0b83b4cbc828ed7fd1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/317/CR317.def",
+          "sha256": "9cc0015d9b50696edbc2fb258a460444be0a9738ebdf1eee962037862c00bd71"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/317/large.png",
+          "sha256": "ffe715e1908c3a03151a3c7275b6fd265cd99ee165f0fc1e413057c06a8daf19"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/317/small.png",
+          "sha256": "082213f92421c5965875a812aec57683d6cbe76660ec5694125da4db5b71b6d3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/319/AVWCR319.def",
+          "sha256": "c90b3ef56e1c39bcaad6e97c91bb1e4456427381127b35ea948962efe12f23b6"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/319/AVWCR319.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/319/CR319.def",
+          "sha256": "83a8ee3230ba0cafc2f9cb235fc595219055732dad9605c44d09c8f2bb44c6f1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/319/large.png",
+          "sha256": "25b63bb7a9567171bb9f8597a5eb44369de31b07cf2765eeefa6d07aa46593f6"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/319/small.png",
+          "sha256": "e5502ee07bd23014ecac3b16a1e004386708e6a5a5ffc5fbf4130db9d20424e7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/322/AVWCR322.def",
+          "sha256": "20a7454cb3b53293000010a93952c04d30a0d8cd83149cb6f6788e6e1ca8ad2e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/322/AVWCR322.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/322/CR322.def",
+          "sha256": "6191962ea4c112845555a632a9173dd04e100141e9d284dee5f33361a19a944e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/322/large.png",
+          "sha256": "927c7452ba5f388a9320986234351821dd5f2c1a5ab7df0142595005df86b3d5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/322/small.png",
+          "sha256": "b882b85f3f4a80bf82603d8dae4ba5097c4fad2a4841057b5dddcb2b4a1586a6"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/323/AVWCR323.def",
+          "sha256": "e68fc417d68030845428a2039f7d6e951c1c881865ede193e1901d709d54f686"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/323/AVWCR323.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/323/CR323.def",
+          "sha256": "4236cc9c15c09a16647857bcbb47168cca23d595cb0d7ea49a705c9951c63c48"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/323/large.png",
+          "sha256": "fa4016352390cf3690fc049922d335d72b2ec4ef819241f86f97eb25acd71f15"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/323/small.png",
+          "sha256": "5288c8b83ae2478054478cbbf5f25957107e290d96e07091cdc6734c2d01d76c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/325/AVWCR325.def",
+          "sha256": "0e78410ac9c02f357dc78a827ed15017e0f6476706424bcc4a74d2b56d353eb4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/325/AVWCR325.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/325/CR325.def",
+          "sha256": "4624c9aa58b66771ad59a439132636ef1b058af0fca81cd2af126eb2f47659cf"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/325/large.png",
+          "sha256": "ae33179f86f3f35772cc0bbce2615f2f11a6e2bf6df3fe75985a0da38f36f0ce"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/325/small.png",
+          "sha256": "a73d376c86c3fbac099e29cd712ea30549b5c39d990e026a6bbc97799c9d4495"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/326/AVWCR326.def",
+          "sha256": "2ad82d456de548dd2c667198bffabdd09d763500e542e5d6ff3b1d0d511d3b26"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/326/AVWCR326.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/326/CR326.def",
+          "sha256": "39e2fd7d8cf70f46eeb63126c26d79f7790b1373fbe592455d323ab0a6fa2efc"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/326/large.png",
+          "sha256": "314cc989bb444e03aae9706f5d65f381bad5663526e31b04fa16157d004f0467"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/326/small.png",
+          "sha256": "2b7e56664dc6901197ac2e0115622455734380dbca7b560ddaf815202d2edb4b"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/327/AVWCR327.def",
+          "sha256": "56cb8c11fde46adcf14af10db00eeee6b059e891c4fe2a0e5b6960cd2be9b0a6"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/327/AVWCR327.msk",
+          "sha256": "ce580bb91fd4b1be050f36c443858f62442838dc408b1c0b83b4cbc828ed7fd1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/327/CR327.def",
+          "sha256": "40ecafea1e2a41e929dfcabdbb2869badeee45c74073fb6d85fa89d0079106c0"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/327/SHOT327.def",
+          "sha256": "f2f44309eb2a58bd2ce47f8a957edcb915744244b7a4b0591cb2774fd84d2ac4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/327/large.png",
+          "sha256": "0d5e2a2df933c4c5a0d83aae5615ee8012ba3f99f51f8d234cccf124882400bd"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/327/small.png",
+          "sha256": "61a00033849f7db0ffd670ac4ea6023e4418163a0fb722a66e2dd0906e2cabbe"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/328/AVWCR328.def",
+          "sha256": "39642985706be0764de1b1c7822ded2707156a84f3b23486e77abd8087738a62"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/328/AVWCR328.msk",
+          "sha256": "898fa7e687574898f95ccd9878c46ef4e9de19430f69e018611a78fbecb66bcb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/328/CR328.def",
+          "sha256": "326015b1c8fae61caf322c6c3132d1a6bd4d7b4b78f800915d981849e43fb772"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/328/SHOT328.def",
+          "sha256": "f2f44309eb2a58bd2ce47f8a957edcb915744244b7a4b0591cb2774fd84d2ac4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/328/large.png",
+          "sha256": "0544f253a2c817dcb3c22502e4e379b119c6a727edef329e8dfbc34b53f6b42a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/328/small.png",
+          "sha256": "4bf25a49e80d2aef2e372bcc1035a135ab787f22b57921136f492aff9fb0fffa"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/333/AVWCR333.def",
+          "sha256": "aa1ab3a163220751ab57754caa001f19f5b724bbb23422b2489de3e91f5cf07e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/333/AVWCR333.msk",
+          "sha256": "b4f89504cb0210db708d37ab50f007a80130ee57f9a2dc70991cdd1d0bc56b3d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/333/CR333.def",
+          "sha256": "f66fd4b0261f79c820ba4255ed071794414db1c4470221968c09daaeb85bd4db"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/333/large.png",
+          "sha256": "efdc33ccbc7d2ec10262411419ddba25091119ce991d48d1951a80c29671f69c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/333/small.png",
+          "sha256": "19162d5b76b52d2a2fef0473d5b88883ec973a2062ce2c313f59df533fea9968"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/334/AVWCR334.def",
+          "sha256": "50c66bf7c509032a0218e89f8996a27dfd13e855366237fe30890b7fcfff785f"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/334/AVWCR334.msk",
+          "sha256": "b4f89504cb0210db708d37ab50f007a80130ee57f9a2dc70991cdd1d0bc56b3d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/334/CR334.def",
+          "sha256": "24a2fa2117b0d00e28ca83b8f5049018f6481d9a90e2ea2a72a63587057e15cc"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/334/large.png",
+          "sha256": "1bef519318055551468b5b9d32901c3336462443a573b80b33ec7158cda63f48"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/334/small.png",
+          "sha256": "0b8775f10dbe8f66cf55584f750dcb0cad5aa7166ab3f9f269709f5de718ffd1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/335/AVWCR335.def",
+          "sha256": "ef0f185ffbd25b60d435a3127426e0f5633b85a130fa3e2fa44a7a0b1965f328"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/335/AVWCR335.msk",
+          "sha256": "0d744c6238da2330f79f9ccb5d70040299b699625be572c6e159814eeee7be03"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/335/CR335.def",
+          "sha256": "c424aad47ed74fd7293936b39ff5af3447625f118588892d1734fc4f1d3dcd6e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/335/large.png",
+          "sha256": "bc3490d5bfe538261b0b772307f3a2f4f468cdf03f023c89543a9f2e870de207"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/335/small.png",
+          "sha256": "ad43a1e349ab7262d8861fd63c4f32ed33320565a469162ab6ab01038e6e1f6a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/336/AVWCR336.def",
+          "sha256": "d0dceb734814c5f59db40c4e0daac303e66bc6a78c7147322a9655180df432ad"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/336/AVWCR336.msk",
+          "sha256": "898fa7e687574898f95ccd9878c46ef4e9de19430f69e018611a78fbecb66bcb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/336/CR336.def",
+          "sha256": "798732ea94619a23bcd5ec8ef4d9883439db6e7f500a756dee919440c8a95a9a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/336/large.png",
+          "sha256": "9d32d8786382cfd53c1429e328af820d09c2affcee68296d9ce3455b73b00751"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/336/small.png",
+          "sha256": "df0ef617982f9ba7a9a58f576c0b5827ef8629d3006db0bd038a5894c86e9b50"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/360/AVWCR360.def",
+          "sha256": "9478849ae814cbf0bb8cdfac2de04990f4323d008562713ae80d40f7d36fb2ce"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/360/AVWCR360.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/360/CR360.def",
+          "sha256": "c1d5d63195d85228ba2bcad84f3d9b6621cdb31324aac6f123f778721487854a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/360/large.png",
+          "sha256": "99fc0bbc138b6807badf59fdf0e2505c22942f64059d984d2b43a9141b3be5a3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/360/small.png",
+          "sha256": "0fc5738f410b4c2f40b87fd4f71f397277e47c35e2e7b6458ec178bb009fa642"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/362/AVWCR362.def",
+          "sha256": "cd1887114bf6e3e9de9320f168b264172a2b21acaa998314f7447c82cd0ccb72"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/362/AVWCR362.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/362/CR362.def",
+          "sha256": "7c1ae6a42c35e62f746da7424ff96e2bf720204012a789f1cf13f7cf7dad4527"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/362/large.png",
+          "sha256": "3b6ff29752844509f29119172bd166cb499c121c2aa9b055ee50972def248bd7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/362/small.png",
+          "sha256": "b69754d35f046875b644fafa9e15329ebd1e651016be91ac7daf7a0b6833cce0"
+        }
+      ]
+    },
+    {
+      "name": "bank",
+      "assetFiles": 131,
+      "missing": [],
+      "different": [],
+      "assets": [
+        {
+          "path": "content/Sounds/tum-era/banks/rushtrgt.wav",
+          "sha256": "e1c05a761423205fc12c2c1e22dbe5719874aa399191c478d5fdfdfdba3605af"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/253/S253ATTK.wav",
+          "sha256": "ece83738ea1e36473ae57523f1296d2ce03817f3f182c022417d476501403f8c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/253/S253DFND.wav",
+          "sha256": "625828bfabb37144aafbfb9444b1e43e7c8610f33e26081be7b47374b99f0ca7"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/253/S253KILL.wav",
+          "sha256": "8e334b0f67b64ce2cefaf57329c8d17f813b7a9fcfe39111841497a5d94e864e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/253/S253MOVE.wav",
+          "sha256": "d86a8d0437629547d9ad59b34b343fec081d9ff68c746c78a6bcb56162c6eb96"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/253/S253WNCE.wav",
+          "sha256": "0e1920984b7a2f194ed3bee86745216956a7e61566bf720e00eaf1e949eec617"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/272/S272ATTK.wav",
+          "sha256": "4dec1fc1fc28e0b2c08f89157a263a49a52040799c8018b4201e5e58982685e4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/272/S272DFND.wav",
+          "sha256": "fc3cc2ce8b25c79dbbfe4a44b2725da18e4d84f9d21ca2502f37023db0408cb9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/272/S272KILL.wav",
+          "sha256": "7c7e82b869d2c13edd007a101f8d9b4907eed2335c3fa4eb6306081b839ac1e0"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/272/S272MOVE.wav",
+          "sha256": "a62fd4b7a072b12a45a591a35e5a37eea76d8757423f08039634991591b2844e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/272/S272SHOT.wav",
+          "sha256": "b48dd46a49d77334dfc169dd2e0a86748a02505bfe3cd7bcf62103d31988d85d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/272/S272WNCE.wav",
+          "sha256": "b98d774204805f599d0e76cb627be56882d93ef6df182e6139561157969f043d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/281/S281ATTK.wav",
+          "sha256": "4dec1fc1fc28e0b2c08f89157a263a49a52040799c8018b4201e5e58982685e4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/281/S281DFND.wav",
+          "sha256": "fc3cc2ce8b25c79dbbfe4a44b2725da18e4d84f9d21ca2502f37023db0408cb9"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/281/S281KILL.wav",
+          "sha256": "7c7e82b869d2c13edd007a101f8d9b4907eed2335c3fa4eb6306081b839ac1e0"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/281/S281MOVE.wav",
+          "sha256": "a62fd4b7a072b12a45a591a35e5a37eea76d8757423f08039634991591b2844e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/281/S281SHOT.wav",
+          "sha256": "b48dd46a49d77334dfc169dd2e0a86748a02505bfe3cd7bcf62103d31988d85d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/281/S281WNCE.wav",
+          "sha256": "b98d774204805f599d0e76cb627be56882d93ef6df182e6139561157969f043d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/289/S289ATTK.wav",
+          "sha256": "ab63bafcf75c5af1f18e6b564ec1b79aaa95a6560b80a72923609d98a058967c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/289/S289DFND.wav",
+          "sha256": "b1c58604b85e08ad4cb301214700af4389926305a66f2de610b011c23b9bd5aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/289/S289KILL.wav",
+          "sha256": "8d2bde20870a4f9e4520dee2c098abcdf886faa37ec0918f12ac8c2a9df11ca5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/289/S289MOVE.wav",
+          "sha256": "18a6e1d95d9fbe645de14356485b7591e5ec917bd217be9a34b80f06dde3c84e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/289/S289WNCE.wav",
+          "sha256": "741a7d64b2c7c60ac027fcec147619bec0cfc3fc4488b9a06f721e0fd497c36a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/290/S290ATTK.wav",
+          "sha256": "ab63bafcf75c5af1f18e6b564ec1b79aaa95a6560b80a72923609d98a058967c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/290/S290DFND.wav",
+          "sha256": "b1c58604b85e08ad4cb301214700af4389926305a66f2de610b011c23b9bd5aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/290/S290KILL.wav",
+          "sha256": "8d2bde20870a4f9e4520dee2c098abcdf886faa37ec0918f12ac8c2a9df11ca5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/290/S290MOVE.wav",
+          "sha256": "18a6e1d95d9fbe645de14356485b7591e5ec917bd217be9a34b80f06dde3c84e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/290/S290WNCE.wav",
+          "sha256": "741a7d64b2c7c60ac027fcec147619bec0cfc3fc4488b9a06f721e0fd497c36a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/301/S301ATTK.wav",
+          "sha256": "a9bc663ed139e6714ade4e3502708c26fefdb00f83b976c63dcbae3317a064ec"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/301/S301DFND.wav",
+          "sha256": "cf9b3457e49e2c3b30d83cf225f11437609ba1b2e12a8df18cb9161f7a86cc8d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/301/S301KILL.wav",
+          "sha256": "44e8874a368be29472d4ab1b10550f72b16a3ae63adfb6fbae543411923431de"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/301/S301MOVE.wav",
+          "sha256": "c73d6bcf85871390d2c65163fc5d6b9b92796f067948738eec0f8f93dfcb61d8"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/301/S301WNCE.wav",
+          "sha256": "aabafc6fa04ba1b354efd2ba9176594eb70974445658b109366a114ab8d1a17b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/302/S302ATTK.wav",
+          "sha256": "a9bc663ed139e6714ade4e3502708c26fefdb00f83b976c63dcbae3317a064ec"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/302/S302DFND.wav",
+          "sha256": "cf9b3457e49e2c3b30d83cf225f11437609ba1b2e12a8df18cb9161f7a86cc8d"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/302/S302KILL.wav",
+          "sha256": "44e8874a368be29472d4ab1b10550f72b16a3ae63adfb6fbae543411923431de"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/302/S302MOVE.wav",
+          "sha256": "37d2e50b28ccfe0af1abab347fd92ca127236af2e839327d0d1acda4bcdb0652"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/302/S302WNCE.wav",
+          "sha256": "aabafc6fa04ba1b354efd2ba9176594eb70974445658b109366a114ab8d1a17b"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/330/S330ATTK.wav",
+          "sha256": "c32b73549f4903a3526bf88ffe0b099f85a1d5586bbfc75acf8aaaf413f54423"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/330/S330DFND.wav",
+          "sha256": "9c095ff3b133a76213161d912bd143a4d4a30f96ef4806be4883fbed10d1aec4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/330/S330KILL.wav",
+          "sha256": "aa320e5dbb64b676141f5f15f8cc815ca4bb76a689726f28d4ae76b97cb7d743"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/330/S330MOVE.wav",
+          "sha256": "d3bc904a3f12d8255f46e775c0ca37697398ec2bf6be207cd4f97118dba33fbf"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/330/S330SHOT.wav",
+          "sha256": "4dec1fc1fc28e0b2c08f89157a263a49a52040799c8018b4201e5e58982685e4"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/330/S330WNCE.wav",
+          "sha256": "9454c9888714e744484460a782ae525257d4fdab1af46c0de8197f618970aa4e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/340/S340ATTK.wav",
+          "sha256": "ab63bafcf75c5af1f18e6b564ec1b79aaa95a6560b80a72923609d98a058967c"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/340/S340DFND.wav",
+          "sha256": "b1c58604b85e08ad4cb301214700af4389926305a66f2de610b011c23b9bd5aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/340/S340KILL.wav",
+          "sha256": "8d2bde20870a4f9e4520dee2c098abcdf886faa37ec0918f12ac8c2a9df11ca5"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/340/S340MOVE.wav",
+          "sha256": "18a6e1d95d9fbe645de14356485b7591e5ec917bd217be9a34b80f06dde3c84e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/340/S340WNCE.wav",
+          "sha256": "741a7d64b2c7c60ac027fcec147619bec0cfc3fc4488b9a06f721e0fd497c36a"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/358/S358ATTK.wav",
+          "sha256": "a9bc663ed139e6714ade4e3502708c26fefdb00f83b976c63dcbae3317a064ec"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/358/S358DFND.wav",
+          "sha256": "b1c58604b85e08ad4cb301214700af4389926305a66f2de610b011c23b9bd5aa"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/358/S358KILL.wav",
+          "sha256": "44e8874a368be29472d4ab1b10550f72b16a3ae63adfb6fbae543411923431de"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/358/S358MOVE.wav",
+          "sha256": "18a6e1d95d9fbe645de14356485b7591e5ec917bd217be9a34b80f06dde3c84e"
+        },
+        {
+          "path": "content/Sounds/tum-era/creatures/358/S358WNCE.wav",
+          "sha256": "aabafc6fa04ba1b354efd2ba9176594eb70974445658b109366a114ab8d1a17b"
+        },
+        {
+          "path": "content/Sounds/tum-era/objects/DRAGON.wav",
+          "sha256": "dc708864df8b58627da3f32bdb2d6670eafb43ee03f3b8317dc7e685e67a944a"
+        },
+        {
+          "path": "content/Sounds/tum-era/objects/LOOPDRAG.wav",
+          "sha256": "ae9d80d9d4abb0b47637d30660f00620392b0929019f60cb4e816cb8355ce7b6"
+        },
+        {
+          "path": "content/Sounds/tum-era/objects/LOOPDRGNCSTL.wav",
+          "sha256": "d6c968e5d2bccae03e4d59f846fbf14dd6778c2a5d8474a410f98e752a3b2891"
+        },
+        {
+          "path": "content/Sounds/tum-era/objects/PLAYTURN.wav",
+          "sha256": "92f3da65fbd22577a2ed97e8ae1f189434468731cd9dfa090d8d00164316871e"
+        },
+        {
+          "path": "content/Sprites/tum-era/banks/rush-book.png",
+          "sha256": "8e034a38759564b4e7cd3f29e78f1dbbe96c4a572a1657f21839f8a738c02e13"
+        },
+        {
+          "path": "content/Sprites/tum-era/banks/rush-effect.png",
+          "sha256": "bfb6ee2cf8a20283580b03f33ed1ee38e3fa1c931b8ed7ec41e568a89d208208"
+        },
+        {
+          "path": "content/Sprites/tum-era/banks/rush-scenariobonus.png",
+          "sha256": "8f18e770443a1551beffb8c400919cbe2a71e37794d64c32b7c437502af265fa"
+        },
+        {
+          "path": "content/Sprites/tum-era/banks/rush-scroll.png",
+          "sha256": "ef429fbbbb8bba2c5193980e9746c5260ad3813c68e8d5a37e45a078c593b70a"
+        },
+        {
+          "path": "content/Sprites/tum-era/banks/rushtrgt.def",
+          "sha256": "b4348223bc5e9eb5055d8c3ad9bf0ed6a8f5008310c2bb82a2e931c06afacfd0"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/253/AVWCR253.def",
+          "sha256": "61efe9a5dc8bd408fec4413701b4cabffddc11aede990b676a5887aa5a91d5d5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/253/AVWCR253.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/253/CR253.def",
+          "sha256": "7a8ae4ae11e1013573903fff3716f66b4fcb53e4dade20ff801a1ad0434f8e74"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/253/large.png",
+          "sha256": "3df1f232aa7ad7a825c5d0722a500fd14dfa973c551c27aba865316cf8d5f5c7"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/253/small.png",
+          "sha256": "df2d46b75c7774b72b537b70132f2f336a8ec07103a838788f4fc58cd04137bf"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/272/AVWCR272.def",
+          "sha256": "d681dc9fcf350ba70cc3cd38e7f9a876e28672b70560f2c7491be0a037397f7e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/272/AVWCR272.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/272/CR272.def",
+          "sha256": "cf175c42472c9f7495587a7421471853c42f21b01360eea0925718681c1f93df"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/272/SHOT272.def",
+          "sha256": "eda16f6e9ad2f63cdd580343beea22a3781f5942bfe81fe42a3009340cb207ce"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/272/large.png",
+          "sha256": "c52a1cf85c504abf0d58e5d74488042222e43b198c3cded7c8b807f0bf209c12"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/272/small.png",
+          "sha256": "230e937fd854185b83c120f8300a9cb52f4cebdc560441c82d58ecd44a4c219e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/281/AVWCR281.def",
+          "sha256": "d4b781e3291ac227408fbad17724a6c0b044e66602ff466c99526e862f0ae2e5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/281/AVWCR281.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/281/CR281.def",
+          "sha256": "b2e8c345eecf8635f7d173cd9f431aececc8317d3ce404c5c9877d66b7bba02e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/281/SHOT281.def",
+          "sha256": "eda16f6e9ad2f63cdd580343beea22a3781f5942bfe81fe42a3009340cb207ce"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/281/large.png",
+          "sha256": "0b521a908fc8698075909defe7e9920c41d8a22412d5ab230585a59ca3835a53"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/281/small.png",
+          "sha256": "b1753e2673f94ed77878a1c838243cd334cf58263be3140b47b19adc1f8cc810"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/289/AVWCR289.def",
+          "sha256": "46a3498d535a777af41c28a46694ef2d7e9a5be5c8752ae377544804bb9aedf1"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/289/AVWCR289.msk",
+          "sha256": "898fa7e687574898f95ccd9878c46ef4e9de19430f69e018611a78fbecb66bcb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/289/CR289.def",
+          "sha256": "005d83e1d04d4c4623d574068e27e2c0a0089dd723e4c69fa31594287f54bbaa"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/289/large.png",
+          "sha256": "20f8f25fc1e8c2f1a64fd82e3e4a0df5fd00e2cfc1ab3d1cb4aa03f80531f1d9"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/289/small.png",
+          "sha256": "1ef799b8fe5ddeb853c3fa1f4ea25fe7fbed736a29e59698696e50a8e1e02f64"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/290/AVWCR290.def",
+          "sha256": "ccd9efcaa21c3b21fef6b25edbace0c80978c31d17a90cb72a6c418212052440"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/290/AVWCR290.msk",
+          "sha256": "3f21e3822ddbcbd44dda64c031ee2cc14ed55fad383c627d601de0ef10c1d390"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/290/CR290.def",
+          "sha256": "5ffb3394050a16b0ff63808e5d20966e2f4683dd24fb53422fcbe70839a3b2c5"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/290/large.png",
+          "sha256": "c37ead94b4fc10ac1f1f6c0850dfb5502e298efad0602cecaf557a12f59f2efd"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/290/small.png",
+          "sha256": "7f2dd70ca3e02ee207a36c3888a59144862d6180d510c783ddac06dd80c91d66"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/301/AVWCR301.def",
+          "sha256": "20cf11dd30f8825aaeb03a97722e04208fe3510b98b4ee39300c254ee001e368"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/301/AVWCR301.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/301/CR301.def",
+          "sha256": "9f61bcdf720f9bdcaa08fb2ac279c5044118755a94c32227254e0a7055bf1c9e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/301/large.png",
+          "sha256": "a8e88b0a5c234ab3e3ef1913e4f1eabfb30ee5a81c595b1fab6517f686e14b6e"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/301/small.png",
+          "sha256": "e9429a0da8b957f44f9a4d04cd2887816a57d383d1313bf7436c35a6be9e993c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/302/AVWCR302.def",
+          "sha256": "8766ce45e4deb12081af3dc83e3c2d40b451758c3c26712d36305954dcfab24a"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/302/AVWCR302.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/302/CR302.def",
+          "sha256": "e505ba831b753f923d964ab558859cae72c2ce4278315fcdfbb85cf51f6b3dd4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/302/large.png",
+          "sha256": "f797c9d11bce0267d7ec56ab6a7d2781e6b3c67a7b95aee92f6fa4c2a9213120"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/302/small.png",
+          "sha256": "28d5cebceb9f090c9d6717f8eb62479fc6bb1fc7d0d3d596e273afb1206175eb"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/330/AVWCR330.def",
+          "sha256": "c4c5550be63b0c4c5cceae1064b0782ecbd504a2c17bd6f3a06e5994286c19f3"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/330/AVWCR330.msk",
+          "sha256": "94ba3e9f3307dc30931de13a4e164e3b091e9389a53230862fe29bd11b1bc40c"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/330/CR330.def",
+          "sha256": "0e064846239aee69442df1ec704d69c358745b8222d4f807020987a8437b28ce"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/330/SHOT330.def",
+          "sha256": "933a6e0c5ebd160d6f73f677302d0673c591f9b2e6695326d99e9acbe2f57455"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/330/large.png",
+          "sha256": "5e06c6f5595357f939b94d0e4a566e832f99dfecfdcdf60aba2dd882b9d60dc4"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/330/small.png",
+          "sha256": "30ac870c1559330a62805a79b89a381fd38ca792140b47dd3a929f8c6469cc5b"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/340/AVWCR340.def",
+          "sha256": "778ed75b4fb479f8981da1813822e050a8ac00d9c88bf4e97d6d57e9cf3f921d"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/340/AVWCR340.msk",
+          "sha256": "d6e0004c2c8f25245ec98c9dd2dde7758acd4e262cefa1eee4e5a963da162523"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/340/CR340.def",
+          "sha256": "60875eac36f8de1e238140ba51bc62548e8210c8a0a109740d42ce577a662790"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/340/large.png",
+          "sha256": "6b2f60e4d7cbc6523b0c4d8fab667b9762fe70d33a120352bed51f6b71b928bc"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/340/small.png",
+          "sha256": "9842740447e8c836a4a8c7e74b49895c556b7b7f66b82ac7abfebe456def0f49"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/358/AVWCR358.def",
+          "sha256": "4e550a0998ca239873fb44f44440d196323c22d2275f1e39bdcf395495f3d583"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/358/AVWCR358.msk",
+          "sha256": "0aab6df3a6525b25b3112580fce82f592f6f6e16b1752871f3079904ad220811"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/358/CR358.def",
+          "sha256": "dfd0b643995cfa2a44f55c1eb43cac911ddf1672fdb2464c3054e759c9a8e1dd"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/358/large.png",
+          "sha256": "7ec8c8a823602c4aa2b97843359337baded9fa83fee5224d6a9e3b461a50f581"
+        },
+        {
+          "path": "content/Sprites/tum-era/creatures/358/small.png",
+          "sha256": "4d0f76866c577de5126f07800aaa3dbc37cb1f94202356ec1ed550a70371a6b8"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB100.def",
+          "sha256": "c756b34cf90371bf72aaf7c9fc0b59255fbd1e8add1900aa14576f1f93bbe408"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB100.msk",
+          "sha256": "c2bd4d05977751ad690ab2712d27b5a92ea87a99f77b3bc88fe9840f8c779fb8"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB101.def",
+          "sha256": "1202099e39bad379414f35e78482b1d60f26b9b48fd8a2f756c869b6db9dbdeb"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB101.msk",
+          "sha256": "c2bd4d05977751ad690ab2712d27b5a92ea87a99f77b3bc88fe9840f8c779fb8"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB16.def",
+          "sha256": "e6376b67c2b6586d63d86fd1bbeb03ea201ea742e62fca6e467a236c646b0fde"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB16.msk",
+          "sha256": "0bf02769d6ab932c61791ffbe0d17c27fa32e593d1ea4dc1561d4781ff934a54"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB17.def",
+          "sha256": "56f97072894d99e6bca7b4491a64c954d26c6903bb307f5df0e43d56ac4f454a"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB18.def",
+          "sha256": "2d59323f284f9411f4cee07608bf5d04766de3b3fa167ee2f671b3042db88b55"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB19.def",
+          "sha256": "6593a6ca56239bb9a58cbc31a1250949186235048c39ceb4f4c2e37568bd11b4"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB32.def",
+          "sha256": "588d93a00663ca5a51299adb3dbf5b3ae4909b34e40c900967c32f10642238de"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB32.msk",
+          "sha256": "81343e32fc2617660d346fa536d63d068d7eacff9392d010a5c8a7de8d528cc1"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB33.def",
+          "sha256": "8667f576699528db81a7ad972821979cf07a663a66ece7dc6b1d235449295d45"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/CB33.msk",
+          "sha256": "579af9644135fce3c96834f5011b55e9dd7db2ad0392badaf5f93a38c7be56de"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/avsutop3.def",
+          "sha256": "3183937034c5a78e5ab3e95b270ba5b6677834a1e169ae8d69f75ca6675bd703"
+        },
+        {
+          "path": "content/Sprites/tum-era/objects/avsutop3.msk",
+          "sha256": "dce760f1091dd583b016b9fb406e6d4d5285649546876cfe325df198d17e30b5"
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

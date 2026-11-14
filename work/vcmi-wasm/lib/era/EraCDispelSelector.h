@@ -18,11 +18,12 @@ struct CDispelSnapshot
     bool hasListedBuff=false,alreadyHasDispelHelpful=false;
     int defendingHeroResistance=0;
     bool sphereOfPermanence=false,artifact134=false;
+    int chanceOverride=-1;
 };
 template<class Uniform> bool selectSourceCDispel(const CDispelSnapshot & s,Uniform && uniform,int * rejectionEffect=nullptr)
 {
     if(rejectionEffect)*rejectionEffect=0;
-    const int chance=5*std::clamp(s.rank,0,10);
+    const int chance=s.chanceOverride>=0?s.chanceOverride:5*std::clamp(s.rank,0,10);
     if(!chance || uniform(1,100)>chance)return false; //71D8B0 BEFORE life checks.
     if(!s.actorAlive || !s.targetAlive)return false;
     if(s.orbOfInhibition || s.cursedGround)return false;

@@ -10,6 +10,9 @@
 #include "StdInc.h"
 #include "../era/EraDragonFly241AdmissionRuntime.h"
 #include "../era/EraSourceExperienceRuntime.h"
+#include "../era/EraBankDeathStare.h"
+#include "../era/EraDwellingGhost.h"
+#include "../era/EraDwellingAfterShot.h"
 #include "../era/EraSourceXpNativeRuntime.h"
 #include "../../lib/era/EraSourceXpRetaliationFrame.h"
 #include "../era/EraSourceXpDispel78LegacyLate.h"
@@ -546,7 +549,9 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 	//ranged counterattack
 	if (!emptyTileAreaAttack
 		&& destinationStack->hasBonusOfType(BonusType::RANGED_RETALIATION)
-		&& !stack->hasBonusOfType(BonusType::BLOCKS_RANGED_RETALIATION)
+        && (era_compat::BankActors::get().sourceId(destinationStack->unitType()->getJsonKey())==281
+            ? era_compat::StatusAttacks::get().id(stack->unitType()->getJsonKey())!=149
+            : !stack->hasBonusOfType(BonusType::BLOCKS_RANGED_RETALIATION))
 		&& destinationStack->ableToRetaliate()
 		&& battle.battleCanShoot(destinationStack, stack->getPosition())
 		&& stack->alive()) //attacker may have died (fire shield)
@@ -574,6 +579,7 @@ bool BattleActionProcessor::doShootAction(const CBattleInfoCallback & battle, co
 		}
 	}
 
+    era_compat_server::dwellingAfterShot(*gameHandler,battle,stack,destinationStack);
     petrification.flush(*gameHandler,battle);
     era_compat_server::finishSourceXpPrimaryAttack(*gameHandler,battle,stack);
     // Same46453E service accepts primary action7, never ranged retaliation.
@@ -1471,7 +1477,7 @@ void BattleActionProcessor::makeAttack(const CBattleInfoCallback & battle, const
                 || sourcePolicy.physicalBlock(targetKey).has_value()
                 || era_compat::ConfluxPolicies::get().owns(targetKey)
                 || era_compat_server::DragonFly241AttackFrame::handles(attacker,defender)
-                || (era_compat::sourceXpBattleAdmitted(battle)&&era_compat::SourceXpAdmissionPolicy::get().ownsActor(targetKey));
+                || (era_compat::sourceXpBattleAdmitted(battle)&&era_compat::sourceXpAnyOwnsActor(targetKey));
             if(!sourceDirect)
             {
                 if(actorOwner)
@@ -1535,6 +1541,8 @@ void BattleActionProcessor::attackCasting(const CBattleInfoCallback & battle, bo
     if(attacker->hasBonusOfType(attackMode)||late66)
     {
         TConstBonusListPtr spells = attacker->getBonuses(Selector::type()(attackMode));
+        if(filter==AttackCastFilter::NativeOnly&&attackMode==BonusType::SPELL_AFTER_ATTACK)
+            spells=era_compat_server::sorceress193WithoutLegacyCopies(spells,attacker);
         const bool split241=attackMode==BonusType::SPELL_AFTER_ATTACK&&filter!=AttackCastFilter::SourceOnly
             &&era_compat_server::DragonFly241AttackFrame::handles(attacker,defender);
         if(split241)spells=era_compat_server::source241WithoutOwnedNativeDispel(spells,attacker,defender);
@@ -1778,10 +1786,15 @@ void BattleActionProcessor::handleDeathStare(const CBattleInfoCallback & battle,
 	int singleCreatureKillChancePercent = attacker->valOfBonuses(BonusType::DEATH_STARE, subtype);
 	double chanceToKill = singleCreatureKillChancePercent / 100.0;
 	vstd::amin(chanceToKill, 1); //cap at 100%
-	int killedCreatures = gameHandler->getRandomGenerator().nextBinomialInt(attacker->getCount(), chanceToKill);
-
-	int maxToKill = vstd::divideAndCeil(attacker->getCount() * singleCreatureKillChancePercent, 100);
-	vstd::amin(killedCreatures, maxToKill);
+    const auto sourceKills=era_compat_server::bankDeathStareKills(ranged,attacker,defender,gameHandler->getRandomGenerator());
+    int killedCreatures=0;
+    if(sourceKills)killedCreatures=*sourceKills;
+    else
+    {
+        killedCreatures=gameHandler->getRandomGenerator().nextBinomialInt(attacker->getCount(),chanceToKill);
+        const int maxToKill=vstd::divideAndCeil(attacker->getCount()*singleCreatureKillChancePercent,100);
+        vstd::amin(killedCreatures,maxToKill);
+    }
 
 	killedCreatures += (attacker->level() * attacker->valOfBonuses(BonusType::DEATH_STARE, BonusCustomSubtype::deathStareCommander)) / defender->level();
 
@@ -2004,6 +2017,8 @@ void BattleActionProcessor::applyBattleEffects(const CBattleInfoCallback & battl
         if(!sourcePhysicalBlocked&&era_compat::sourceXpBattleAdmitted(battle))
             bsa.newState.data["eraSourceXpDamageEntered"].Bool()=true;
 	}
+
+    healInfo += applyEraDwellingGhost(*attackerState,*def,static_cast<int32_t>(std::min<int64_t>(sourcePhysicalBlocked?0:rawDamageBeforeDeflection,INT32_MAX)),bsa.killedAmount);
 
 	//life drain handling
     const bool sourceVampire=era_compat::Policies::get().vampireDrain(attackerState->creatureId().toCreature()->getJsonKey());

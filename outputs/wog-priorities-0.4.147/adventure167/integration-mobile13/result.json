@@ -1,0 +1,2158 @@
+{
+  "passed": true,
+  "privateOnly": true,
+  "engineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+  "oldSaveSha256": "343b69f8267ea698e64057ee2cfcdfdaa97c796ce8ffabde76a4828cb758ce87",
+  "oldExpectedSha256": "78ddbdcb57bed151512e4ec5805ba785a6864562efeb69adcba86a20db2493f0",
+  "maps": [
+    {
+      "name": "003-Goonks-WoG.vmap",
+      "sourceSha256": "7d4505207d2b0c3203b11a6592ab7d8587377e415a33fa0130bb6113193c345b",
+      "nativeHotseat": false,
+      "passed": true,
+      "saveReloadValidated": true,
+      "saveSha256": "9a524d22cbefcb330a6c5b214d7e77e4c6209596818142007cea4966b73f91d3",
+      "reloadedSha256": "e862b3e64c7c0c8a1bb5929dbed667b4a547b6bcf3a0592c8b77b874f9c7a9c0",
+      "replacementMarkers": 3,
+      "nativeSourceReplacements": [
+        {
+          "name": "creatureGeneratorCommon_155_eraCB113_6_9_0_PO_N3",
+          "source": "wogRecruit_36_0",
+          "program": "113",
+          "position": {
+            "x": 6,
+            "y": 9,
+            "z": 0
+          }
+        },
+        {
+          "name": "creatureGeneratorCommon_156_eraCB114_137_134_0_PO_N3",
+          "source": "wogRecruit_36_1",
+          "program": "114",
+          "position": {
+            "x": 137,
+            "y": 134,
+            "z": 0
+          }
+        },
+        {
+          "name": "creatureGeneratorCommon_157_eraCB145_43_136_0_PO_N3",
+          "source": "wogRecruit_35_0",
+          "program": "145",
+          "position": {
+            "x": 43,
+            "y": 136,
+            "z": 0
+          }
+        }
+      ],
+      "resumedTurnCycle": {
+        "passed": true,
+        "roles": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "observations": [
+          {
+            "day": 1,
+            "currentPlayer": 0
+          },
+          {
+            "day": 2,
+            "currentPlayer": 0
+          }
+        ],
+        "scope": "Actual AI turn and return to the sole human next day"
+      },
+      "before": {
+        "day": 1,
+        "currentPlayer": 0,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20600,
+          0
+        ],
+        "heroes": [
+          {
+            "id": 471,
+            "name": "Vokial",
+            "movement": 1500,
+            "mana": 10,
+            "manaLimit": 10
+          }
+        ],
+        "towns": [
+          {
+            "id": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "armies": [
+          {
+            "id": 0,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "id": 471,
+            "slots": [
+              {
+                "key": "core:skeleton",
+                "count": 28,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:walkingDead",
+                "count": 6,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:wight",
+                "count": 5,
+                "xp": 0,
+                "rank": 0
+              },
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "004-Goonks-WoG-Online.vmap",
+      "sourceSha256": "f693ffbdc2981c17fe0244cdcc984cd27225661af6b20da86ecfac2d458f60a4",
+      "nativeHotseat": true,
+      "passed": true,
+      "saveReloadValidated": true,
+      "saveSha256": "b428b45fafd9a999e776bc0abdb86bc243cbe382524a1471073890e0658bc177",
+      "reloadedSha256": "d32ecd02b8a7fca6cdbcb280169f0afab65a23040b80c150cb50c53eee9dfae3",
+      "replacementMarkers": 5,
+      "nativeSourceReplacements": [
+        {
+          "name": "creatureGeneratorCommon_155_eraCB100_136_65_0_PO_N3",
+          "source": "wogRecruit_33_1",
+          "program": "100",
+          "position": {
+            "x": 136,
+            "y": 65,
+            "z": 0
+          }
+        },
+        {
+          "name": "creatureGeneratorCommon_156_eraCB100_7_78_0_PO_N3",
+          "source": "wogRecruit_33_0",
+          "program": "100",
+          "position": {
+            "x": 7,
+            "y": 78,
+            "z": 0
+          }
+        },
+        {
+          "name": "creatureGeneratorCommon_157_eraCB145_102_7_0_PO_N3",
+          "source": "wogRecruit_35_1",
+          "program": "145",
+          "position": {
+            "x": 102,
+            "y": 7,
+            "z": 0
+          }
+        },
+        {
+          "name": "creatureGeneratorCommon_158_eraCB145_43_136_0_PO_N3",
+          "source": "wogRecruit_35_0",
+          "program": "145",
+          "position": {
+            "x": 43,
+            "y": 136,
+            "z": 0
+          }
+        },
+        {
+          "name": "creatureGeneratorCommon_159_eraCB161_104_136_0_PO_N3",
+          "source": "wogRecruit_37_1",
+          "program": "161",
+          "position": {
+            "x": 104,
+            "y": 136,
+            "z": 0
+          }
+        }
+      ],
+      "resumedTurnCycle": {
+        "passed": true,
+        "roles": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": true,
+            "name": "Player 2"
+          }
+        ],
+        "observations": [
+          {
+            "day": 1,
+            "currentPlayer": 0
+          },
+          {
+            "day": 1,
+            "currentPlayer": 1
+          },
+          {
+            "day": 2,
+            "currentPlayer": 0
+          }
+        ],
+        "scope": "Actual red-to-blue human handoff, then back next day"
+      },
+      "before": {
+        "day": 1,
+        "currentPlayer": 0,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": true,
+            "name": "Player 2"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20600,
+          0
+        ],
+        "heroes": [
+          {
+            "id": 460,
+            "name": "Vokial",
+            "movement": 1500,
+            "mana": 10,
+            "manaLimit": 10
+          }
+        ],
+        "towns": [
+          {
+            "id": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "armies": [
+          {
+            "id": 0,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "id": 460,
+            "slots": [
+              {
+                "key": "core:skeleton",
+                "count": 28,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:walkingDead",
+                "count": 6,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:wight",
+                "count": 5,
+                "xp": 0,
+                "rank": 0
+              },
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Online-authored map starts in native hotseat and reloads through the supported mobile Load action (Emscripten SINGLE load mode); this does not claim a realtime network session.",
+    "This runner does not supply R0mix54, critical316 or XP17 proofs; final integration aggregation must reference their distinct native results."
+  ],
+  "replacementGeometrySafety": {
+    "passed": true,
+    "proofKind": "static-full-replacement-envelope",
+    "policySha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+    "catalogueSha256": "20bf87ffb550fee9b5a7e8cb4ab8f638b99eac0c6bfed64656730c0966d96ba9",
+    "sourcePrograms": 102,
+    "sourcePairs": [
+      "core:arena|core:arena",
+      "core:creatureBank|core:cyclopsStockpile",
+      "core:creatureBank|core:dragonFlyHive",
+      "core:creatureBank|core:dwarvenTreasury",
+      "core:creatureBank|core:griffinConservatory",
+      "core:creatureBank|core:impCache",
+      "core:creatureBank|core:medusaStore",
+      "core:creatureBank|core:nagaBank",
+      "core:creatureGeneratorCommon|core:archersTower",
+      "core:creatureGeneratorCommon|core:barracks",
+      "core:creatureGeneratorCommon|core:centaurStables",
+      "core:creatureGeneratorCommon|core:cursedTemple",
+      "core:creatureGeneratorCommon|core:dragonCave",
+      "core:creatureGeneratorCommon|core:dragonCliffs",
+      "core:creatureGeneratorCommon|core:dragonVault",
+      "core:creatureGeneratorCommon|core:fireLake",
+      "core:creatureGeneratorCommon|core:frozenCliffs",
+      "core:creatureGeneratorCommon|core:goldenPavilion",
+      "core:creatureGeneratorCommon|core:hallOfDarkness",
+      "core:creatureGeneratorCommon|core:lizardDen",
+      "core:creatureGeneratorCommon|core:magicForest",
+      "core:creatureGeneratorCommon|core:sulfurousLair",
+      "core:creatureGeneratorCommon|core:trainingGrounds",
+      "core:creatureGeneratorCommon|core:treetopTower",
+      "core:crypt|core:crypt",
+      "core:derelictShip|core:derelictShip",
+      "core:dragonUtopia|core:dragonUtopia",
+      "core:libraryOfEnlightenment|core:libraryOfEnlightenment",
+      "core:marlettoTower|core:marlettoTower",
+      "core:mercenaryCamp|core:mercenaryCamp",
+      "core:mysticalGarden|core:mysticalGarden",
+      "core:schoolOfMagic|core:schoolOfMagic",
+      "core:schoolOfWar|core:schoolOfWar",
+      "core:shipwreck|core:shipwreck",
+      "core:starAxis|core:starAxis",
+      "core:temple|core:temple"
+    ],
+    "maps": [
+      {
+        "file": "/tmp/goonk-maps185-recruiting/003-Goonks-WoG.vmap",
+        "name": "Goonks — Trésors de WoG",
+        "objectCount": 471,
+        "catalogueSites": 76,
+        "possibleTemplateOutcomes": 92,
+        "protectedOriginalObjects": 395,
+        "sourceEnvelopeBfsPassed": true,
+        "reachableBefore": [
+          19804,
+          19804
+        ],
+        "reachableWorstCase": [
+          19800,
+          19800
+        ],
+        "sha256": "7d4505207d2b0c3203b11a6592ab7d8587377e415a33fa0130bb6113193c345b",
+        "sourceMatches": 10,
+        "sourceSites": [
+          "wogRecruit_33_0",
+          "wogRecruit_33_1",
+          "wogRecruit_34_0",
+          "wogRecruit_34_1",
+          "wogRecruit_35_0",
+          "wogRecruit_35_1",
+          "wogRecruit_36_0",
+          "wogRecruit_36_1",
+          "wogRecruit_37_0",
+          "wogRecruit_37_1"
+        ]
+      },
+      {
+        "file": "/tmp/goonk-maps185-recruiting/004-Goonks-WoG-Online.vmap",
+        "name": "Goonks — Trésors de WoG en ligne",
+        "objectCount": 460,
+        "catalogueSites": 76,
+        "possibleTemplateOutcomes": 92,
+        "protectedOriginalObjects": 384,
+        "sourceEnvelopeBfsPassed": true,
+        "reachableBefore": [
+          19837,
+          19837
+        ],
+        "reachableWorstCase": [
+          19833,
+          19833
+        ],
+        "sha256": "f693ffbdc2981c17fe0244cdcc984cd27225661af6b20da86ecfac2d458f60a4",
+        "sourceMatches": 10,
+        "sourceSites": [
+          "wogRecruit_33_0",
+          "wogRecruit_33_1",
+          "wogRecruit_34_0",
+          "wogRecruit_34_1",
+          "wogRecruit_35_0",
+          "wogRecruit_35_1",
+          "wogRecruit_36_0",
+          "wogRecruit_36_1",
+          "wogRecruit_37_0",
+          "wogRecruit_37_1"
+        ]
+      }
+    ],
+    "nativeProofClaimed": false,
+    "scope": "The ten original source habitats are intentional. Their unchanged probabilities and all current target templates fit the checked blocking envelope. Original objectives and reachable approaches remain protected; no original-seed equivalence is claimed."
+  },
+  "engineMetadata": {
+    "memoryVersion": 1,
+    "runtimeVersion": "39734a8d29118603",
+    "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+    "sha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216,
+    "privateValidation": true,
+    "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+  },
+  "loadRoleObservations": [
+    {
+      "saveSha256": "343b69f8267ea698e64057ee2cfcdfdaa97c796ce8ffabde76a4828cb758ce87",
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": true,
+          "name": "Player 2"
+        }
+      ],
+      "currentPlayer": 0
+    },
+    {
+      "saveSha256": "9a524d22cbefcb330a6c5b214d7e77e4c6209596818142007cea4966b73f91d3",
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "currentPlayer": 0
+    },
+    {
+      "saveSha256": "b428b45fafd9a999e776bc0abdb86bc243cbe382524a1471073890e0658bc177",
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": true,
+          "name": "Player 2"
+        }
+      ],
+      "currentPlayer": 0
+    }
+  ],
+  "registrySaveCompatibility": {
+    "passed": true,
+    "oldEngine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "cdf8c212842b92ed",
+      "wasm": "vcmiclient.fa15aeca15d528a5.wasm",
+      "sha256": "fa15aeca15d528a5bf8e6da6f0846fcd789328bf4a14a49928800d8b6b6bc775",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "newEngine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "39734a8d29118603",
+      "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+      "sha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216,
+      "privateValidation": true,
+      "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+    },
+    "numericTypeIds": {
+      "old": [
+        305,
+        310,
+        298,
+        258,
+        248,
+        245,
+        83
+      ],
+      "new": [
+        358,
+        363,
+        348,
+        258,
+        248,
+        245,
+        83
+      ]
+    },
+    "bannerTypeIds": {
+      "old": [
+        177,
+        177,
+        177,
+        177,
+        177,
+        177,
+        177
+      ],
+      "new": [
+        177,
+        177,
+        177,
+        177,
+        177,
+        177,
+        177
+      ]
+    },
+    "oldSaveSHA256": "343b69f8267ea698e64057ee2cfcdfdaa97c796ce8ffabde76a4828cb758ce87",
+    "before": {
+      "day": 1,
+      "resources": [
+        27,
+        10,
+        27,
+        11,
+        10,
+        10,
+        20000,
+        0
+      ],
+      "army": [
+        {
+          "slot": 0,
+          "key": "tum-era:eraCreature350",
+          "count": 2,
+          "xp": 114,
+          "rank": 6,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 1,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 1,
+          "key": "tum-era:eraCreature355",
+          "count": 3,
+          "xp": 171,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 2,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 2,
+          "key": "tum-era:eraCreature339",
+          "count": 4,
+          "xp": 228,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 3,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 3,
+          "key": "goonk:paingpaing",
+          "count": 5,
+          "xp": 285,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 4,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 4,
+          "key": "goonk:bubu",
+          "count": 6,
+          "xp": 342,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 5,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 5,
+          "key": "goonk:bobope",
+          "count": 7,
+          "xp": 399,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 6,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 6,
+          "key": "core:blackDragon",
+          "count": 8,
+          "xp": 456,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 7,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        }
+      ],
+      "heroItems": [
+        {
+          "slot": 16,
+          "name": "Catapult"
+        },
+        {
+          "slot": 17,
+          "name": "Spell Book"
+        }
+      ],
+      "towns": [
+        {
+          "id": 2,
+          "faction": "core:castle",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            16,
+            21,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:pikeman",
+              "count": 14
+            },
+            {
+              "level": 1,
+              "key": "core:archer",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:griffin",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:swordsman",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:monk",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:cavalier",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature269",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 2,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "faction": "core:rampart",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:centaur",
+              "count": 14
+            },
+            {
+              "level": 1,
+              "key": "core:dwarf",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:woodElf",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:pegasus",
+              "count": 5
+            },
+            {
+              "level": 4,
+              "key": "core:dendroidGuard",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:unicorn",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature349",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 3,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "faction": "core:tower",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:gremlin",
+              "count": 16
+            },
+            {
+              "level": 1,
+              "key": "core:stoneGargoyle",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:ironGolem",
+              "count": 6
+            },
+            {
+              "level": 3,
+              "key": "core:mage",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:genie",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:naga",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature271",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 4,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "faction": "core:inferno",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:imp",
+              "count": 15
+            },
+            {
+              "level": 1,
+              "key": "core:gog",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:hellHound",
+              "count": 5
+            },
+            {
+              "level": 3,
+              "key": "core:demon",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:pitFiend",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:efreet",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature337",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 5,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "faction": "core:necropolis",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:skeleton",
+              "count": 12
+            },
+            {
+              "level": 1,
+              "key": "core:walkingDead",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:wight",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:vampire",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:lich",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:blackKnight",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature331",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 6,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "faction": "core:dungeon",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:troglodyte",
+              "count": 14
+            },
+            {
+              "level": 1,
+              "key": "core:harpy",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:beholder",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:medusa",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:minotaur",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:manticore",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature351",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 7,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "faction": "core:stronghold",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:goblin",
+              "count": 15
+            },
+            {
+              "level": 1,
+              "key": "core:goblinWolfRider",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:orc",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:ogre",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:roc",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:cyclop",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature275",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 8,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "faction": "core:fortress",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:gnoll",
+              "count": 12
+            },
+            {
+              "level": 1,
+              "key": "core:lizardman",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:serpentFly",
+              "count": 8
+            },
+            {
+              "level": 3,
+              "key": "core:basilisk",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:gorgon",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:wyvern",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature353",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 9,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "faction": "core:conflux",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:pixie",
+              "count": 20
+            },
+            {
+              "level": 1,
+              "key": "core:airElemental",
+              "count": 6
+            },
+            {
+              "level": 2,
+              "key": "core:waterElemental",
+              "count": 6
+            },
+            {
+              "level": 3,
+              "key": "core:fireElemental",
+              "count": 5
+            },
+            {
+              "level": 4,
+              "key": "core:earthElemental",
+              "count": 4
+            },
+            {
+              "level": 5,
+              "key": "core:psychicElemental",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature355",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 10,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "registry": {
+        "version": "0.4.0",
+        "source346": null,
+        "source347": null,
+        "source278": false,
+        "source350": "tum-era:eraCreature350",
+        "source355": "tum-era:eraCreature355",
+        "source339": "tum-era:eraCreature339",
+        "creatureDefinitionCount": 141,
+        "artifactDefinitionCount": 109
+      }
+    },
+    "after": {
+      "day": 1,
+      "resources": [
+        27,
+        10,
+        27,
+        11,
+        10,
+        10,
+        20000,
+        0
+      ],
+      "army": [
+        {
+          "slot": 0,
+          "key": "tum-era:eraCreature350",
+          "count": 2,
+          "xp": 114,
+          "rank": 6,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 1,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 1,
+          "key": "tum-era:eraCreature355",
+          "count": 3,
+          "xp": 171,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 2,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 2,
+          "key": "tum-era:eraCreature339",
+          "count": 4,
+          "xp": 228,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 3,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 3,
+          "key": "goonk:paingpaing",
+          "count": 5,
+          "xp": 285,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 4,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 4,
+          "key": "goonk:bubu",
+          "count": 6,
+          "xp": 342,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 5,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 5,
+          "key": "goonk:bobope",
+          "count": 7,
+          "xp": 399,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 6,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        },
+        {
+          "slot": 6,
+          "key": "core:blackDragon",
+          "count": 8,
+          "xp": 456,
+          "rank": 0,
+          "equipped": {
+            "description": "{Warlord’s Banner — Attack}\n\nAdds 2 Attack, then +10% total Attack (native rounding). One worn item per troop.",
+            "icon": 182,
+            "id": 7,
+            "name": "Warlord’s Banner — Attack",
+            "typeId": 177
+          }
+        }
+      ],
+      "numericTypeIds": [
+        358,
+        363,
+        348,
+        258,
+        248,
+        245,
+        83
+      ],
+      "heroItems": [
+        {
+          "slot": 16,
+          "name": "Catapult"
+        },
+        {
+          "slot": 17,
+          "name": "Spell Book"
+        }
+      ],
+      "towns": [
+        {
+          "id": 2,
+          "faction": "core:castle",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            16,
+            21,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:pikeman",
+              "count": 14
+            },
+            {
+              "level": 1,
+              "key": "core:archer",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:griffin",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:swordsman",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:monk",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:cavalier",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature269",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 2,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "faction": "core:rampart",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:centaur",
+              "count": 14
+            },
+            {
+              "level": 1,
+              "key": "core:dwarf",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:woodElf",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:pegasus",
+              "count": 5
+            },
+            {
+              "level": 4,
+              "key": "core:dendroidGuard",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:unicorn",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature349",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 3,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "faction": "core:tower",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:gremlin",
+              "count": 16
+            },
+            {
+              "level": 1,
+              "key": "core:stoneGargoyle",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:ironGolem",
+              "count": 6
+            },
+            {
+              "level": 3,
+              "key": "core:mage",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:genie",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:naga",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature271",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 4,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "faction": "core:inferno",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:imp",
+              "count": 15
+            },
+            {
+              "level": 1,
+              "key": "core:gog",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:hellHound",
+              "count": 5
+            },
+            {
+              "level": 3,
+              "key": "core:demon",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:pitFiend",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:efreet",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature337",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 5,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "faction": "core:necropolis",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:skeleton",
+              "count": 12
+            },
+            {
+              "level": 1,
+              "key": "core:walkingDead",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:wight",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:vampire",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:lich",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:blackKnight",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature331",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 6,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "faction": "core:dungeon",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:troglodyte",
+              "count": 14
+            },
+            {
+              "level": 1,
+              "key": "core:harpy",
+              "count": 8
+            },
+            {
+              "level": 2,
+              "key": "core:beholder",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:medusa",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:minotaur",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:manticore",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature351",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 7,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "faction": "core:stronghold",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:goblin",
+              "count": 15
+            },
+            {
+              "level": 1,
+              "key": "core:goblinWolfRider",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:orc",
+              "count": 7
+            },
+            {
+              "level": 3,
+              "key": "core:ogre",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:roc",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:cyclop",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature275",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 8,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "faction": "core:fortress",
+          "built": [
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:gnoll",
+              "count": 12
+            },
+            {
+              "level": 1,
+              "key": "core:lizardman",
+              "count": 9
+            },
+            {
+              "level": 2,
+              "key": "core:serpentFly",
+              "count": 8
+            },
+            {
+              "level": 3,
+              "key": "core:basilisk",
+              "count": 4
+            },
+            {
+              "level": 4,
+              "key": "core:gorgon",
+              "count": 3
+            },
+            {
+              "level": 5,
+              "key": "core:wyvern",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature353",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 9,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "faction": "core:conflux",
+          "built": [
+            0,
+            5,
+            7,
+            10,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            150
+          ],
+          "recruits": [
+            {
+              "level": 0,
+              "key": "core:pixie",
+              "count": 20
+            },
+            {
+              "level": 1,
+              "key": "core:airElemental",
+              "count": 6
+            },
+            {
+              "level": 2,
+              "key": "core:waterElemental",
+              "count": 6
+            },
+            {
+              "level": 3,
+              "key": "core:fireElemental",
+              "count": 5
+            },
+            {
+              "level": 4,
+              "key": "core:earthElemental",
+              "count": 4
+            },
+            {
+              "level": 5,
+              "key": "core:psychicElemental",
+              "count": 2
+            },
+            {
+              "level": 7,
+              "key": "tum-era:eraCreature355",
+              "count": 1
+            }
+          ],
+          "armies": [
+            {
+              "id": 10,
+              "slots": [
+                {
+                  "key": "goonk:bubu",
+                  "count": 2,
+                  "xp": 0
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "registry": {
+        "version": "0.4.0",
+        "source346": "tum-era:eraCreature346",
+        "source347": "tum-era:eraCreature347",
+        "source278": true,
+        "source350": "tum-era:eraCreature350",
+        "source355": "tum-era:eraCreature355",
+        "source339": "tum-era:eraCreature339",
+        "creatureDefinitionCount": 195,
+        "artifactDefinitionCount": 110
+      }
+    }
+  },
+  "legacy161SaveValidated": true,
+  "integrationSmokeValidated": true,
+  "mapSaveReloadValidated": true,
+  "playerRolesPreserved": true,
+  "actualResumedTurnTransitionsValidated": true,
+  "errors": []
+}

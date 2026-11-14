@@ -1,0 +1,36 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "scope": "Proposed whole source actor285 review: compiled source definition/runtime ownership plus actual rank0 identity and separately retained functional scopes. No unobserved native branch is asserted.",
+  "proofs": [
+    {
+      "file": "raw/mixed54--result.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "68d044bc2a8685f702dfe02788adb58ca255a544bcc1c7b8cb141cd31f4eeaee"
+    },
+    {
+      "file": "raw/dwelling-xp17--actors285-312-isolated.json",
+      "passed": true,
+      "engineSHA256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "proofSHA256": "b069b66b8d583b340273677751326c6411de740e765e5b450de8ee09e0ec2ba1"
+    },
+    {
+      "file": "raw/dwelling-xp17--actors277-285-306.partial.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "97b68f0c87edc0648dedf02aac3a17586a3b31b0bd24ce588a8ab587bbd7b859"
+    }
+  ],
+  "validatedSourceIds": [
+    285
+  ],
+  "sourceReview": {
+    "contractsFile": "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/whole54-contracts-final13.json",
+    "contractsSha256": "24a2a49faf1bea449677e4572419a999054079bdface1a854c570e8131ef579f",
+    "sourceId": 285,
+    "extraScopeEntries": [],
+    "definitionIsNotANativeRun": true,
+    "notes": "Root reviews compiled source/runtime mapping and reuse of already verified primitives. This draft deliberately does not infer whole actor validation from rank0."
+  }
+}

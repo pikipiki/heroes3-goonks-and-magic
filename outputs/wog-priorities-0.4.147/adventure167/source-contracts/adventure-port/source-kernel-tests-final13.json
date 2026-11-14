@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "nativeGameRuntime": false,
+  "scope": "23 compiler/source-runtime kernel tests; separate from actual browser/WebAssembly gameplay evidence.",
+  "tests": 23,
+  "command": "node --test tests/era-dwelling-closure.test.mjs tests/era-dwelling-extra-services.test.mjs tests/era-source-bank-xp.test.mjs tests/era-source-dwelling-xp.test.mjs tests/era-source-xp-runtime-model.test.mjs tests/era-source-xp-cache14.test.mjs",
+  "testFileSha256": {
+    "tests/era-dwelling-closure.test.mjs": "830c6e6d50c871f3447576991cffc3c5f5b194cac68deb7a07f44590406ceafa",
+    "tests/era-dwelling-extra-services.test.mjs": "e6c008749750bb94f4f9ff889e53943bf83b9b5c87578ede270468874eabae83",
+    "tests/era-source-bank-xp.test.mjs": "5a2f0c4ed864b404135f18071e388ab8c1d14fc163e909b5fc1fcb7e4ac88a8c",
+    "tests/era-source-dwelling-xp.test.mjs": "b8e1914c8b248dee96a6fa2dd6826ea8f0426357be392edd43ff5a62d32ee5b9",
+    "tests/era-source-xp-runtime-model.test.mjs": "9453f7969cf5ae4f3c5c426818fc8085a10af094e8aa7f2eb144b1317ff6d209",
+    "tests/era-source-xp-cache14.test.mjs": "a8ae10f4c62fbb400c210f077f1072155466df5493c460391daff94b37f256e2"
+  },
+  "log": "source-kernel-tests-final13.tap",
+  "logSha256": "b4ac11ea583f1a0b1c83e6b6fde3bc7514ff4cfe54663ed75d539ccf4fb551d5"
+}

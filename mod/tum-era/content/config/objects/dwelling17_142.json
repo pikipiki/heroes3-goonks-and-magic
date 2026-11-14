@@ -1,0 +1,32 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_142": {
+        "name": "Sparky Meadow",
+        "creatures": [
+          [
+            "tum-era:eraCreature317"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw45.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -396,7 +396,295 @@
     },
     "tum-era:eraCreature347": {
       "allSpellImmunity": {}
-    }
+    },
+    "tum-era:eraCreature253": {
+      "imposedSpells": [
+        {
+          "spell": "core:slayer",
+          "mastery": 3
+        },
+        {
+          "spell": "core:bloodlust",
+          "mastery": 0
+        },
+        {
+          "spell": "core:prayer",
+          "mastery": 3
+        }
+      ],
+      "regeneration": {
+        "hitPoints": 200,
+        "chancePercent": 100
+      },
+      "rebirth": {
+        "chance": 1,
+        "fraction": 1,
+        "guaranteedFraction": 1
+      }
+    },
+    "tum-era:eraCreature289": {
+      "physicalDeflection": {
+        "modifier": 125,
+        "values": [
+          0,
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      }
+    },
+    "tum-era:eraCreature290": {
+      "physicalDeflection": {
+        "modifier": 125,
+        "values": [
+          0,
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      }
+    },
+    "tum-era:eraCreature330": {
+      "allSpellImmunity": {}
+    },
+    "tum-era:eraCreature358": {
+      "physicalDeflection": {
+        "modifier": 64,
+        "values": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20
+        ]
+      }
+    },
+    "tum-era:eraCreature200": {
+      "deathBlowCRT": {}
+    },
+    "tum-era:eraCreature239": {},
+    "tum-era:eraCreature262": {},
+    "tum-era:eraCreature264": {},
+    "tum-era:eraCreature270": {
+      "regeneration": {
+        "hitPoints": 10,
+        "chancePercent": 100
+      }
+    },
+    "tum-era:eraCreature274": {},
+    "tum-era:eraCreature276": {
+      "regeneration": {
+        "hitPoints": 15,
+        "chancePercent": 100
+      }
+    },
+    "tum-era:eraCreature277": {},
+    "tum-era:eraCreature279": {
+      "regeneration": {
+        "hitPoints": 10,
+        "chancePercent": 100
+      }
+    },
+    "tum-era:eraCreature282": {},
+    "tum-era:eraCreature284": {
+      "regeneration": {
+        "hitPoints": 15,
+        "chancePercent": 100
+      }
+    },
+    "tum-era:eraCreature285": {},
+    "tum-era:eraCreature288": {
+      "artifactMimic": {
+        "artifact": 123
+      }
+    },
+    "tum-era:eraCreature292": {
+      "physicalDeflection": {
+        "modifier": 125,
+        "values": [
+          0,
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
+          42,
+          48,
+          54,
+          60
+        ]
+      }
+    },
+    "tum-era:eraCreature296": {
+      "vampireDrain": {},
+      "rebirth": {
+        "chance": 1,
+        "fraction": 0.3,
+        "guaranteedFraction": 0.5
+      }
+    },
+    "tum-era:eraCreature298": {},
+    "tum-era:eraCreature303": {
+      "dailyResources": {
+        "resource": "core:gold",
+        "amount": 0,
+        "goldPerCreature": 25
+      }
+    },
+    "tum-era:eraCreature304": {},
+    "tum-era:eraCreature305": {},
+    "tum-era:eraCreature306": {},
+    "tum-era:eraCreature307": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature308": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature309": {},
+    "tum-era:eraCreature310": {},
+    "tum-era:eraCreature311": {
+      "artifactMimic": {
+        "artifact": 90
+      }
+    },
+    "tum-era:eraCreature312": {
+      "regeneration": {
+        "hitPoints": 10,
+        "chancePercent": 100
+      }
+    },
+    "tum-era:eraCreature313": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature314": {},
+    "tum-era:eraCreature315": {},
+    "tum-era:eraCreature316": {
+      "dailyResources": {
+        "resource": "core:mercury",
+        "amount": 1,
+        "goldPerCreature": 0
+      }
+    },
+    "tum-era:eraCreature317": {
+      "armySpellCost": {}
+    },
+    "tum-era:eraCreature319": {
+      "deathBlowCRT": {}
+    },
+    "tum-era:eraCreature322": {},
+    "tum-era:eraCreature323": {},
+    "tum-era:eraCreature325": {},
+    "tum-era:eraCreature326": {
+      "deathBlowCRT": {}
+    },
+    "tum-era:eraCreature327": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature328": {},
+    "tum-era:eraCreature333": {},
+    "tum-era:eraCreature334": {},
+    "tum-era:eraCreature335": {},
+    "tum-era:eraCreature336": {
+      "physicalDeflection": {
+        "modifier": 49,
+        "values": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    },
+    "tum-era:eraCreature360": {},
+    "tum-era:eraCreature362": {}
   },
   "artifacts": {
     "tum-era:artifact218": {

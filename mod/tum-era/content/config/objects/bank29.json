@@ -1,0 +1,122 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank29": {
+        "name": "Churchyard",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avcmetry.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          },
+          "base1": {
+            "animation": "tum-era/objects/avcmetrs.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "snow"
+            ],
+            "zIndex": 0
+          },
+          "base2": {
+            "animation": "tum-era/objects/avcmetrh.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "grass",
+              "swamp",
+              "rough"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank29OriginalStockLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              },
+              {
+                "type": "core:zombieLord",
+                "amount": 15
+              }
+            ],
+            "resources": {
+              "gold": 2500
+            },
+            "artifacts": [
+              {
+                "class": "MINOR"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/CEMETRY.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPCMTR.wav"
+          ]
+        }
+      }
+    }
+  }
+}

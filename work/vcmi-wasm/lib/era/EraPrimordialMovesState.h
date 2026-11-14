@@ -4,9 +4,13 @@
 #pragma once
 #include "EraPrimordialMovesRule.h"
 #include "EraPrimordialPolicies.h"
+#include "EraBankActors.h"
 #include "../battle/CBattleInfoCallback.h"
 #include "../battle/IBattleState.h"
 #include "../bonuses/BonusParameters.h"
+#include "../bonuses/IBonusBearer.h"
+#include "../bonuses/BonusList.h"
+#include "../bonuses/Bonus.h"
 #include "../bonuses/BonusSelector.h"
 #include "../constants/EntityIdentifiers.h"
 #include <stdexcept>
@@ -14,10 +18,13 @@ VCMI_LIB_NAMESPACE_BEGIN
 namespace era_compat
 {
 inline bool primordialMovesEnabled()
-{return PrimordialPolicies::get().is347("tum-era:eraCreature347");}
+{return PrimordialPolicies::get().is347("tum-era:eraCreature347")
+    || BankActors::get().owns("tum-era:eraCreature340");}
 
 inline BonusSourceID primordialMovesSource()
-{return BonusSourceID(CreatureID(CreatureID::decode("tum-era:eraCreature347")));}
+{return BonusSourceID(CreatureID(CreatureID::decode(
+    PrimordialPolicies::get().is347("tum-era:eraCreature347")
+        ?"tum-era:eraCreature347":"tum-era:eraCreature340")));}
 
 inline const Bonus * primordialMovesMarker(const CBattleInfoCallback & battle)
 {

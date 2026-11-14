@@ -1,0 +1,177 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank31": {
+        "name": "Wolf Raider Picket",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/AVXbnk80.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank31MixedLayout",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 10
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 10
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 10
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 10
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 10
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:cyclop",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 15
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 15
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 15
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 15
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 15
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:cyclop",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 20
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 20
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 20
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 20
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 20
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:cyclop",
+                "amount": 8
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 30
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 30
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 30
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 30
+              },
+              {
+                "type": "core:hobgoblinWolfRider",
+                "amount": 30
+              }
+            ],
+            "creatures": [
+              {
+                "type": "core:cyclop",
+                "amount": 12
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "ambient": [
+            "tum-era/objects/LOOPPICK.wav"
+          ]
+        }
+      }
+    }
+  }
+}

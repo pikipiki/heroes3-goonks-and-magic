@@ -15,6 +15,7 @@ namespace era_compat
 struct XpTimed184NativeAccess
 {
  bool admitted=false;
+ bool allowSorceressForgetfulness=false;
  std::function<bool(const spells::Mechanics&,const battle::Unit&)> originalApplication;
  std::function<int(const battle::Unit&)> storedAttack,storedDefense;
  std::function<bool(const battle::Unit&,int,const std::vector<Bonus>&)> preserveNativeCoexistence;
@@ -34,6 +35,7 @@ inline bool applyNativeXpTimed184(ServerCallback*server,const spells::Mechanics*
 {
  const auto*access=xpTimed184NativeAccess;const int spell=m->getSpellIndex();
  if(!access||!access->admitted||!access->originalApplication||!access->originalApplication(*m,target)||!era_bridge::xp184::supports(spell))return false;
+ if(spell==61&&!access->allowSorceressForgetfulness&&!readXpTimed184(target,61).owned)return false;
  XpTimed184OriginalApplication proof;proof.originalProviderObserved=true;proof.mastery=m->getEffectLevel();proof.remainingDuration=duration;proof.nativeDuration=duration;
  if(spell==59)proof.remainingDuration=255;
  if(spell==73)

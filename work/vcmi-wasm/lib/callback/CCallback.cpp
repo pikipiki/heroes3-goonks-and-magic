@@ -219,6 +219,14 @@ void CCallback::eraseArtifactByClient(const ArtifactLocation & al)
 	sendRequest(ea);
 }
 
+bool CCallback::caveBuilderAction(ObjectInstanceID hero,ObjectInstanceID town,int operation,int selection,bool option)
+{
+ const auto * h=getHero(hero);const auto * t=getTown(town);
+ if(!h||!t||h->getOwner()!=getPlayerID()||t->getOwner()!=getPlayerID()||operation<0||operation>2)return false;
+ CaveBuilderAction pack;pack.hero=hero;pack.town=town;pack.operation=operation;pack.selection=selection;pack.option=option;
+ sendRequest(pack);return true;
+}
+
 bool CCallback::buildBuilding(const CGTownInstance *town, BuildingID buildingID)
 {
 	if(town->tempOwner!=getPlayerID())

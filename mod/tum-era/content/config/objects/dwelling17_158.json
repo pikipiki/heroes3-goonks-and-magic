@@ -1,0 +1,39 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_158": {
+        "name": "Rust Dragon Nest",
+        "creatures": [
+          [
+            "tum-era:eraCreature344"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature344",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw61.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

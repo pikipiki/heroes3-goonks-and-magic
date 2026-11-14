@@ -1,0 +1,101 @@
+{
+  "sourceScriptSHA256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+  "nativeValidated": true,
+  "pending": [],
+  "proofs": [
+    {
+      "file": "rewards45.json",
+      "passed": true,
+      "engineSHA256": "6d84a7f3d4d74833aa35f6e810f6c886bb5d9de743fb1ec2cb4f1bcb7f594d3b",
+      "proofSHA256": "7874f06547d88840bd3b67cffeaaa8142bee2e47b725d8332ea440123ca4109c"
+    },
+    {
+      "file": "combat.json",
+      "passed": true,
+      "engineSHA256": "3ad6057cfc3d4bb57021531939575d2140a03ad099beca0f373e70586dca2f8e",
+      "proofSHA256": "f3528f39ff4cca8997fadd91fbd68338b8fa4e3d29369223460ebcd24e4893ee"
+    },
+    {
+      "file": "pool-and-migration.json",
+      "passed": true,
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "proofSHA256": "3346184fbf21cc0b1b92a9be1b68d1aa945053a7dfe0e42277a2067ba317db10"
+    },
+    {
+      "file": "extended-town.json",
+      "passed": true,
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "proofSHA256": "def9947546d8028e8caca42136f7fdf2ccc74f3609531258448a5799d81a7cc8"
+    },
+    {
+      "file": "occupants.json",
+      "passed": true,
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "proofSHA256": "c61aa0f4c35150e737ce5cfee4356b1d0978d2c75e695e1e7230659742ae7b04"
+    },
+    {
+      "file": "remote-visits7.json",
+      "passed": true,
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "proofSHA256": "74627e9e49c283ea0c4bf2be027464d20c084fa7dbf9b0a86a1875ba3e8aa173"
+    },
+    {
+      "file": "scourge-timers.json",
+      "passed": true,
+      "engineSHA256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "proofSHA256": "77c90be54f2dc4cf5b6667060c2f4c4d457eff5347a469e050d07dfd1140c4e1"
+    },
+    {
+      "file": "scourge-approaches.json",
+      "passed": true,
+      "engineSHA256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "proofSHA256": "ee47d842a449d91e287942cdd95d0aa69907d9286da936a43597a838e1de43ea"
+    },
+    {
+      "file": "grail-recovery-and-capacity.json",
+      "passed": true,
+      "engineSHA256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "proofSHA256": "516304e762c42312ffc88056c281cb740e90cb07fba82d95a3a41aae1af68723"
+    },
+    {
+      "file": "blessing-bounds.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "a81f881902a9b8c257d4afecfe684ad33ae872fdc46db2f03133ad982f0984f6"
+    },
+    {
+      "file": "factions9.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "41431b5b149b117dc8ce3f59e5cab3aab0c3c11d7470e7ae01ac94ea3f9dea93"
+    },
+    {
+      "file": "grail-web-availability.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "3f6ce70935d6b2a3e56dc60dbd283d8ea409ebe7059a78e351551aa9fabd7fab"
+    },
+    {
+      "file": "neutral-loot-retreat.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "00eecd3912a489c67f821770d0ca3b842045ca4cf20b32aeff3c34af558961f0"
+    },
+    {
+      "file": "integration-mobile11.json",
+      "passed": true,
+      "engineSHA256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "proofSHA256": "24ffd6ae76be68ff966c1885b4e00bde27b5b399e5a92fe874120ee1919534d3"
+    }
+  ],
+  "scope": "Original source gameplay in supplied distribution. Each retained proof records the actual engine bytes fetched; engines differ across iterations and later proofs cover changed behavior. No save files or local preferences retained.",
+  "finalCaveEngineSHA256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+  "sourceContract": "scripts/era-bridge/objects/SOURCE-MYSTERIOUS-CAVE.md",
+  "sourceBlessingEvidence": "scripts/era-bridge/objects/native/MysteriousCaveBlessingEvidence.json",
+  "presentation": "Native dialogs and summarized text; original UN:A table edits and SN:P snippets not reproduced.",
+  "publicRelease": "0.4.167",
+  "evidenceRoot": "outputs/wog-priorities-0.4.147/adventure167/cave",
+  "continuityReviewFile": "continuity-review.json",
+  "continuityScope": "Explicit Cave-scoped review of six historical native engines plus the Final12→13 change toward Final13; no historical native report is relabelled. Weakness45 p276/p284 and siegeTarget DTO changes are outside Cave runtime coverage.",
+  "integrationRoleProof": "integration-mobile11.json"
+}

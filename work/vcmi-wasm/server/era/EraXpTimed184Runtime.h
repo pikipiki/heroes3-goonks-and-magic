@@ -257,7 +257,7 @@ inline bool counterXpTimed(CGameHandler&handler,const CBattleInfoCallback&battle
 }
 inline void roundXpTimed(CGameHandler &handler,const CBattleInfoCallback &battle,const battle::Unit&target,bool tactics)
 {
- requireXpTimed184Access();for(int spell:{42,49,50,51,52,54,59,60,62,70,73,74})
+ requireXpTimed184Access();for(int spell:{42,49,50,51,52,54,59,60,61,62,70,73,74})
  {const auto old=era_compat::readXpTimed184(target,spell);if(!old.owned)continue;const auto change=era_bridge::xp184::round(old.state,target.alive(),tactics);if(change.removed||change.state.duration!=old.state.duration)writeXpTimed184(handler,battle,target,old,change.state);}
 }
 // Generic35/78 and Cure must consume this before their native bonus selector.

@@ -583,6 +583,11 @@ void DisbandCreature::visitTyped(ICPackVisitor & visitor)
 	visitor.visitDisbandCreature(*this);
 }
 
+void CaveBuilderAction::visitTyped(ICPackVisitor & visitor)
+{
+ visitor.visitCaveBuilderAction(*this);
+}
+
 void BuildStructure::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitBuildStructure(*this);

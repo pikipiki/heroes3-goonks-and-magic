@@ -59,7 +59,10 @@
     "config/reviewed-fangarm263.json",
     "config/source-sulfide-dragon.json",
     "config/source-primordial-dragons.json",
-    "config/source-chaotic-dragonfly.json"
+    "config/source-chaotic-dragonfly.json",
+    "config/source-bank-actors.json",
+    "config/source-dwelling-actors.json",
+    "config/source-mummy360-upgrade.json"
   ],
   "factions": [
     "config/necropolis.json",
@@ -147,7 +150,75 @@
     "config/objects/bank45.json",
     "config/objects/bank34.json",
     "config/objects/bank35.json",
-    "config/objects/bank50.json"
+    "config/objects/bank50.json",
+    "config/objects/dwelling17_101.json",
+    "config/objects/dwelling17_102.json",
+    "config/objects/dwelling17_103.json",
+    "config/objects/dwelling17_104.json",
+    "config/objects/dwelling17_105.json",
+    "config/objects/dwelling17_110.json",
+    "config/objects/dwelling17_111.json",
+    "config/objects/dwelling17_112.json",
+    "config/objects/dwelling17_113.json",
+    "config/objects/dwelling17_114.json",
+    "config/objects/dwelling17_115.json",
+    "config/objects/dwelling17_116.json",
+    "config/objects/dwelling17_117.json",
+    "config/objects/dwelling17_118.json",
+    "config/objects/dwelling17_119.json",
+    "config/objects/dwelling17_120.json",
+    "config/objects/dwelling17_122.json",
+    "config/objects/dwelling17_123.json",
+    "config/objects/dwelling17_124.json",
+    "config/objects/dwelling17_126.json",
+    "config/objects/dwelling17_128.json",
+    "config/objects/dwelling17_129.json",
+    "config/objects/dwelling17_131.json",
+    "config/objects/dwelling17_132.json",
+    "config/objects/dwelling17_133.json",
+    "config/objects/dwelling17_134.json",
+    "config/objects/dwelling17_135.json",
+    "config/objects/dwelling17_136.json",
+    "config/objects/dwelling17_137.json",
+    "config/objects/dwelling17_138.json",
+    "config/objects/dwelling17_139.json",
+    "config/objects/dwelling17_140.json",
+    "config/objects/dwelling17_141.json",
+    "config/objects/dwelling17_142.json",
+    "config/objects/dwelling17_143.json",
+    "config/objects/dwelling17_144.json",
+    "config/objects/dwelling17_145.json",
+    "config/objects/dwelling17_146.json",
+    "config/objects/dwelling17_147.json",
+    "config/objects/dwelling17_148.json",
+    "config/objects/dwelling17_149.json",
+    "config/objects/dwelling17_150.json",
+    "config/objects/dwelling17_151.json",
+    "config/objects/dwelling17_152.json",
+    "config/objects/dwelling17_153.json",
+    "config/objects/dwelling17_154.json",
+    "config/objects/dwelling17_155.json",
+    "config/objects/dwelling17_156.json",
+    "config/objects/dwelling17_157.json",
+    "config/objects/dwelling17_158.json",
+    "config/objects/dwelling17_159.json",
+    "config/objects/bank48.json",
+    "config/objects/bank51.json",
+    "config/objects/bank64.json",
+    "config/objects/bank65.json",
+    "config/objects/bank66.json",
+    "config/objects/bank67.json",
+    "config/objects/bank21.json",
+    "config/objects/bank24.json",
+    "config/objects/bank25.json",
+    "config/objects/bank26.json",
+    "config/objects/bank27.json",
+    "config/objects/bank28.json",
+    "config/objects/bank29.json",
+    "config/objects/bank30.json",
+    "config/objects/bank31.json",
+    "config/objects/mysterious-cave.json",
+    "config/objects/dwelling17_166.json"
   ],
   "settings": {
     "combat": {
@@ -463,6 +534,150 @@
             87,
             8
           ]
+        },
+        "eraBank51MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            86,
+            8
+          ]
+        },
+        "eraBank66OriginalLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            86,
+            89,
+            92,
+            53,
+            56,
+            121,
+            124
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            100,
+            11,
+            181,
+            7,
+            177
+          ]
+        },
+        "eraBank67OriginalLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            86,
+            89,
+            92,
+            53,
+            56,
+            121,
+            124
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            100,
+            11,
+            181,
+            7,
+            177
+          ]
+        },
+        "eraBank25OriginalStockLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            100,
+            87,
+            8,
+            178,
+            15,
+            185,
+            172
+          ]
+        },
+        "eraBank29OriginalStockLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            172,
+            2,
+            8,
+            178,
+            100
+          ]
+        },
+        "eraBank31MixedLayout": {
+          "tacticsAllowed": false,
+          "obstaclesAllowed": false,
+          "attackerCommander": 94,
+          "defenderCommander": 8,
+          "attackerUnits": [
+            57,
+            61,
+            90,
+            93,
+            96,
+            125,
+            129
+          ],
+          "defenderUnits": [
+            15,
+            185,
+            171,
+            1,
+            100,
+            87,
+            8
+          ]
         }
       }
     }
@@ -495,7 +710,8 @@
       "translation/source-horn266-french.json",
       "translation/reviewed-sulfide-dragon-french.json",
       "translation/reviewed-primordial-dragons-french.json",
-      "translation/eye278-french.json"
+      "translation/eye278-french.json",
+      "config/source-bank-french.json"
     ],
     "name": "TUM — évolutions et expérience"
   },
@@ -506,7 +722,9 @@
     "config/source-dungeon-spells.json",
     "config/source-conflux-spells.json",
     "config/reviewed-horn266-spells.json",
-    "config/source-xp-geometry-spells.json"
+    "config/source-xp-geometry-spells.json",
+    "config/source-bank-spells.json",
+    "config/source-dwelling-spells.json"
   ],
   "skills": [
     "config/source-necromancy-skill.json"

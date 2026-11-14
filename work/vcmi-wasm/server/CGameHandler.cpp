@@ -9,6 +9,8 @@
  */
 #include "StdInc.h"
 #include "../lib/era/EraEye278Native.h"
+#include "../lib/era/EraBankActors.h"
+#include "../lib/mapObjects/CGMysteriousCave.h"
 #include "../lib/era/EraSkeletonTransformations.h"
 #include "../lib/era/EraExperienceProgression.h"
 #include "../lib/era/EraExperienceDistribution.h"
@@ -656,6 +658,7 @@ void CGameHandler::onPlayerTurnStarted(PlayerColor which)
 	events::PlayerGotTurn::defaultExecute(serverEventBus.get(), which);
 	turnTimerHandler->onPlayerGetTurn(which);
 	newTurnProcessor->onPlayerTurnStarted(which);
+    CGMysteriousCave::onPlayerTurnStart(*this,gameInfo(),which);
 }
 
 void CGameHandler::onPlayerTurnEnded(PlayerColor which)
@@ -938,6 +941,10 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 		return false;
 	};
 
+	if(const auto * defendedHero=dynamic_cast<const CGHeroInstance *>(objectToVisit))
+		if(defendedHero!=h && CGMysteriousCave::preventsHostileApproach(defendedHero,h->getOwner()))
+			return complainRet("Ce héros est protégé par la Grotte mystérieuse.");
+
 	if (guardian && getVisitingHero(guardian) != nullptr)
 		return complainRet("You cannot move your hero there. Simultaneous turns are active and another player is interacting with this wandering monster!");
 
@@ -1023,6 +1030,8 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 
 		tmh.result = result;
 		sendAndApply(tmh);
+        if(result!=TryMoveHero::FAILED&&leavingTile==LEAVING_TILE)
+            CGMysteriousCave::onHeroMoved(*this,h);
 
 		if (visitDest == VISIT_DEST && objectToVisit && objectToVisit->id == h->id)
 		{ // Hero should be always able to visit any object he is staying on even if there are guards around
@@ -1442,6 +1451,7 @@ void CGameHandler::giveHero(ObjectInstanceID id, PlayerColor player, ObjectInsta
 
 	//Reveal fow around new hero, especially released from Prison
 	const auto * h = gameInfo().getHero(id);
+	CGMysteriousCave::onHeroActivated(*this,h);
 	changeFogOfWar(h->getSightCenter(), h->getSightRadius(), player, ETileVisibility::REVEALED);
 }
 
@@ -2163,9 +2173,16 @@ bool CGameHandler::hasBothPlayersAtSameConnection(PlayerColor left, PlayerColor 
 bool CGameHandler::disbandCreature(ObjectInstanceID id, SlotID pos)
 {
 	const auto * s1 = dynamic_cast<const CArmedInstance *>(gameInfo().getObjInstance(id));
-	if (!vstd::contains(s1->stacks,pos))
+	if (!s1 || !vstd::contains(s1->stacks,pos))
 	{
 		complain("Illegal call to disbandCreature - no such stack in army!");
+		return false;
+	}
+
+	const auto * stack=s1->getStackPtr(pos);
+	if(era_compat::BankActors::get().sourceId(stack->getCreature()->getJsonKey())==340)
+	{
+		complain("This creature cannot be dismissed.");
 		return false;
 	}
 
@@ -2374,6 +2391,23 @@ bool CGameHandler::visitTownBuilding(ObjectInstanceID tid, BuildingID bid)
 	}
 
 	return true;
+}
+
+bool CGameHandler::caveBuilderAction(ObjectInstanceID heroID,ObjectInstanceID townID,int operation,int selection,bool option)
+{
+ const auto * hero=gameInfo().getHero(heroID);const auto * town=gameInfo().getTown(townID);
+ if(!hero||!town||hero->getOwner()!=town->getOwner()||!turnOrder->isPlayerMakingTurn(hero->getOwner()))return false;
+ if(queries->topQuery(hero->getOwner())||gameState().getBattle(hero->getOwner()))return false;
+ if(operation==0)return CGMysteriousCave::builderDemolish(*this,hero,town,selection,selection==26&&option,selection!=26&&option);
+ if(operation==2)return CGMysteriousCave::builderRebuild(*this,*randomizer,hero,town,selection);
+ if(operation!=1)return false;
+ const auto * cave=CGMysteriousCave::controller(gameInfo());
+ if(!cave||getVisitingHero(cave))return false;
+ const auto query=std::make_shared<MapObjectVisitQuery>(this,cave,hero);
+ queries->addQuery(query);
+ const bool started=CGMysteriousCave::builderFightOccupants(*this,hero,town,selection);
+ if(!started)queries->popQuery(query);
+ return started;
 }
 
 bool CGameHandler::razeStructure (ObjectInstanceID tid, BuildingID bid)
@@ -3833,6 +3867,8 @@ void CGameHandler::getVictoryLossMessage(PlayerColor player, const EVictoryLossC
 
 bool CGameHandler::dig(const CGHeroInstance *h)
 {
+	if(CGMysteriousCave::hasDailyMovementBlessing(h))
+		COMPLAIN_RET("La bénédiction de mouvement empêche de creuser aujourd’hui.");
 	if (h->diggingStatus() != EDiggingStatus::CAN_DIG) //checks for terrain and movement
 		COMPLAIN_RETF("Hero cannot dig (error code %d)!", static_cast<int>(h->diggingStatus()));
 

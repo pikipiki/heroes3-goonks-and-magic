@@ -1,0 +1,172 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank27": {
+        "name": "Black Tower",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avblktwr.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "dirt",
+              "sand",
+              "rough",
+              "subterra",
+              "lava"
+            ],
+            "zIndex": 0
+          },
+          "base1": {
+            "animation": "tum-era/objects/avblktgr.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "grass",
+              "swamp"
+            ],
+            "zIndex": 0
+          },
+          "base2": {
+            "animation": "tum-era/objects/avblktsn.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVVV",
+              "VVAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "allowedTerrains": [
+              "snow"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "default",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:greenDragon",
+                "amount": 1
+              }
+            ],
+            "resources": {
+              "gold": 2000
+            },
+            "artifacts": [
+              {
+                "class": "MINOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:goldDragon",
+                "amount": 1
+              }
+            ],
+            "resources": {
+              "gold": 2250
+            },
+            "artifacts": [
+              {
+                "class": "MINOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:redDragon",
+                "amount": 1
+              }
+            ],
+            "resources": {
+              "gold": 3500
+            },
+            "artifacts": [
+              {
+                "class": "MINOR"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:blackDragon",
+                "amount": 1
+              }
+            ],
+            "resources": {
+              "gold": 3750
+            },
+            "artifacts": [
+              {
+                "class": "MINOR"
+              }
+            ]
+          }
+        ],
+        "eraBankGuardSlots": [
+          1
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/BLCKTWRS.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/BLCKTWRL.wav"
+          ]
+        }
+      }
+    }
+  }
+}

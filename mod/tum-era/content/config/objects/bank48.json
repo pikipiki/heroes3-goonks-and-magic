@@ -1,0 +1,260 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank48": {
+        "name": "Outpost of Souls",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/CB16.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VBAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "creatureBankNarrow",
+        "onGuardedMessage": 32,
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 25
+            },
+            "guards": [
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 20
+              }
+            ],
+            "resources": [
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 2
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature286",
+                "amount": 2
+              }
+            ],
+            "artifacts": [
+              "tum-era:artifact227"
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 25,
+              "max": 50
+            },
+            "guards": [
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 25
+              }
+            ],
+            "resources": [
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 4
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature286",
+                "amount": 4
+              }
+            ],
+            "artifacts": [
+              "tum-era:artifact228"
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 50,
+              "max": 75
+            },
+            "guards": [
+              {
+                "type": "core:powerLich",
+                "amount": 30,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 30
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 30
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 30
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 30
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 30
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 30
+              }
+            ],
+            "resources": [
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 6
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature286",
+                "amount": 6
+              }
+            ],
+            "artifacts": [
+              "tum-era:artifact229"
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 75,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:powerLich",
+                "amount": 35,
+                "upgradeChance": 100
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 35
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 35
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 35
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 35
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 35
+              },
+              {
+                "type": "core:powerLich",
+                "amount": 35
+              }
+            ],
+            "resources": [
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 8
+              }
+            ],
+            "creatures": [
+              {
+                "type": "tum-era:eraCreature286",
+                "amount": 8
+              }
+            ],
+            "artifacts": [
+              "tum-era:artifact230"
+            ]
+          }
+        ],
+        "rmg": {
+          "value": 7500,
+          "rarity": 100
+        },
+        "eraBankAppearance": {
+          "chances": [
+            25,
+            25,
+            25,
+            10
+          ],
+          "animations": [
+            "tum-era/objects/CB16.def",
+            "tum-era/objects/CB17.def",
+            "tum-era/objects/CB18.def",
+            "tum-era/objects/CB19.def"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -133,6 +133,7 @@ public:
 	virtual void visitBulkSplitAndRebalanceStack(BulkSplitAndRebalanceStack & pack) {}
 	virtual void visitDisbandCreature(DisbandCreature & pack) {}
 	virtual void visitBuildStructure(BuildStructure & pack) {}
+ virtual void visitCaveBuilderAction(CaveBuilderAction & pack) {}
 	virtual void visitVisitTownBuilding(VisitTownBuilding & pack) {}
 	virtual void visitRazeStructure(RazeStructure & pack) {}
 	virtual void visitSpellResearch(SpellResearch & pack) {}

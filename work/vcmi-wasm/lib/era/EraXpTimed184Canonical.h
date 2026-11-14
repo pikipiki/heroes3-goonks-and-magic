@@ -45,6 +45,7 @@ inline std::optional<era_bridge::xp184::State> canonicalXpTimed184State(int spel
    case 54:allowed=b.type==BonusType::STACKS_SPEED&&b.val==(evidence.mastery>=2?-50:-25)&&b.valType==BonusValueType::PERCENT_TO_ALL;break;
    case 59:allowed=b.type==BonusType::ATTACKS_NEAREST_CREATURE;break;
    case 60:allowed=b.type==BonusType::HYPNOTIZED&&b.val==evidence.mastery;break;
+   case 61:allowed=b.type==BonusType::FORGETFULL&&b.val==evidence.mastery&&b.valType==BonusValueType::ADDITIVE_VALUE;break;
    case 62:allowed=(b.type==BonusType::NOT_ACTIVE&&b.val==0)||(b.type==BonusType::NO_RETALIATION&&b.val==0&&evidence.mastery==3)||(b.type==BonusType::GENERAL_ATTACK_REDUCTION&&(b.val==0||b.val==25||b.val==50||b.val==75||b.val==100));break;
    case 70:allowed=(b.type==BonusType::NOT_ACTIVE&&b.val==0)||(b.type==BonusType::NO_RETALIATION&&b.val==0)||(b.type==BonusType::GENERAL_DAMAGE_REDUCTION&&b.val==50);break;
    case 74:allowed=(b.type==BonusType::NOT_ACTIVE&&b.val==0)||(b.type==BonusType::NO_RETALIATION&&b.val==0)||(b.type==BonusType::GENERAL_ATTACK_REDUCTION&&b.val==75);break;

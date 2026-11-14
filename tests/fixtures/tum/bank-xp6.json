@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "contract": "source-bank-xp6-v1",
+  "archiveSha256": "452c833214b4c6df2a5e430bf4dd526ccd71792ede166ac2d77646516322731c",
+  "cohortSha256": "34e54d347785e49ad1ebc674c6ab3f7ddd39567558390b3f0fbe2187549d8845",
+  "rows": [
+    {
+      "sourceId": 272,
+      "nativeId": "tum-era:eraCreature272",
+      "sourceLine": 1365,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "sourceId": 281,
+      "nativeId": "tum-era:eraCreature281",
+      "sourceLine": 1432,
+      "sourceOrdinal": 2,
+      "cacheSlot": 7,
+      "code": "p",
+      "spell": 21,
+      "chances": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50
+      ]
+    },
+    {
+      "sourceId": 281,
+      "nativeId": "tum-era:eraCreature281",
+      "sourceLine": 1433,
+      "sourceOrdinal": 3,
+      "cacheSlot": 8,
+      "code": "a",
+      "spell": 22,
+      "chances": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "sourceId": 289,
+      "nativeId": "tum-era:eraCreature289",
+      "sourceLine": 1501,
+      "sourceOrdinal": 6,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 21,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "sourceId": 290,
+      "nativeId": "tum-era:eraCreature290",
+      "sourceLine": 1508,
+      "sourceOrdinal": 6,
+      "cacheSlot": 9,
+      "code": "a",
+      "spell": 16,
+      "chances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "sourceId": 330,
+      "nativeId": "tum-era:eraCreature330",
+      "sourceLine": 1717,
+      "sourceOrdinal": 6,
+      "cacheSlot": 11,
+      "code": "K",
+      "spell": 13,
+      "chances": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ]
+    }
+  ]
+}

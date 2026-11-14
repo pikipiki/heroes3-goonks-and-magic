@@ -32,6 +32,7 @@
 #include "../../lib/gameState/CGameState.h"
 #include "../../lib/mapping/CMap.h"
 #include "../../lib/mapObjects/CGTownInstance.h"
+#include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/networkPacks/PacksForClientBattle.h"
 #include "../../lib/spells/CSpellHandler.h"
 
@@ -372,6 +373,9 @@ void BattleResultProcessor::endBattleConfirm(const CBattleInfoCallback & battle)
 		if (winnerHero)
 			gameHandler->giveExperience(winnerHero, battleResult->exp[finishingBattle->winnerSide]);
 	}
+
+	if(!finishingBattle->isDraw() && finishingBattle->winnerSide==BattleSide::ATTACKER && attackerHero && !defenderHero)
+		CGMysteriousCave::grantNeutralLoot(*gameHandler,attackerHero);
 
 	// Add statistics
 	if(!finishingBattle->isDraw())

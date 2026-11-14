@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "scope": "Local final automated suite and package checks; native gameplay and mobile scopes remain in their separate retained reports.",
+  "tests": {
+    "tests": 736,
+    "pass": 703,
+    "fail": 0,
+    "skipped": 33
+  },
+  "wasmSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+  "engineArchiveSha256": "18979d953d41ae61529ab019122ed71bb146c0e4807b197bce98fa8525a5164c",
+  "webBuildPassed": true,
+  "webVerificationPassed": true,
+  "productionSourcePreflightPassed": true,
+  "nativeProductionEvidence": "index.json"
+}

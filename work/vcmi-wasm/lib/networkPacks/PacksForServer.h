@@ -270,6 +270,20 @@ struct DLL_LINKAGE BuildStructure : public CPackForServer
 	}
 };
 
+struct DLL_LINKAGE CaveBuilderAction : public CPackForServer
+{
+ ObjectInstanceID hero;
+ ObjectInstanceID town;
+ int32_t operation=0;
+ int32_t selection=0;
+ bool option=false;
+ void visitTyped(ICPackVisitor & visitor) override;
+ template<typename Handler> void serialize(Handler & h)
+ {
+  h & static_cast<CPackForServer &>(*this);h & hero;h & town;h & operation;h & selection;h & option;
+ }
+};
+
 struct DLL_LINKAGE VisitTownBuilding : public CPackForServer
 {
 	VisitTownBuilding() = default;

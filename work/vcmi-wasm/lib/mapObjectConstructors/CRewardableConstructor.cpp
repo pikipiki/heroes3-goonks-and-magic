@@ -13,6 +13,7 @@
 #include "../json/JsonUtils.h"
 #include "../json/JsonRandom.h"
 #include "../mapObjects/CRewardableObject.h"
+#include "../mapObjects/CGMysteriousCave.h"
 #include "../texts/CGeneralTextHandler.h"
 #include "../CConfigHandler.h"
 #include "../GameLibrary.h"
@@ -25,6 +26,7 @@ void CRewardableConstructor::initTypeData(const JsonNode & config)
 	objectInfo.init(config, getBaseTextID());
 	eraBankAppearance = config["eraBankAppearance"];
 	blockVisit = config["blockedVisitable"].Bool();
+	mysteriousCave = config["eraMysteriousCave"].Bool();
 
 	if (!config["name"].isNull())
 		LIBRARY->generaltexth->registerString( config.getModScope(), getNameTextID(), config["name"]);
@@ -41,7 +43,9 @@ bool CRewardableConstructor::hasNameTextID() const
 
 std::shared_ptr<CGObjectInstance> CRewardableConstructor::create(IGameInfoCallback * cb, std::shared_ptr<const ObjectTemplate> tmpl) const
 {
-	auto ret = std::make_shared<CRewardableObject>(cb);
+	std::shared_ptr<CRewardableObject> ret;
+	if(mysteriousCave)ret=std::make_shared<CGMysteriousCave>(cb);
+	else ret=std::make_shared<CRewardableObject>(cb);
 	preInitObject(ret.get());
 	ret->appearance = tmpl;
 	ret->blockVisit = blockVisit;

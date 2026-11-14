@@ -4,6 +4,8 @@
 #include "EraSulfideDragon.h"
 #include "EraSulfideDragonRule.h"
 #include "EraFortressCounterstrikes.h"
+#include "EraBankActors.h"
+#include "EraDwellingServices.h"
 #include "EraBridgeRuntime.h"
 #include "../filesystem/Filesystem.h"
 #include "../GameLibrary.h"
@@ -219,7 +221,9 @@ public:
                     const int artifact=integer(operation.second["artifact"],71,135);
                     const bool source354 = artifact==71 && creature.first=="tum-era:eraCreature354"
                         && FortressCounterstrikes::get().twice(creature.first);
-                    if(artifact!=129 && artifact!=135 && !source354)
+                    const bool dwellingMimic=(artifact==90 && creature.first=="tum-era:eraCreature311")
+                        || (artifact==123 && creature.first=="tum-era:eraCreature288");
+                    if(artifact!=129 && artifact!=135 && !source354 && !dwellingMimic)
                         throw std::runtime_error("ERA bridge: unproven creature artifact mimic");
                     artifactMimicPolicies.emplace(creature.first,artifact);
                 }
@@ -244,7 +248,7 @@ public:
                 else if(operation.first == "vampireDrain")
                 {
                     fields(operation.second, {});
-                    if(creature.first!="tum-era:redBonesDragon")
+                    if(creature.first!="tum-era:redBonesDragon" && !DwellingServices::get().actor(296,creature.first))
                         throw std::runtime_error("ERA bridge: unproven vampire selector actor");
                     vampireDrainPolicies.emplace(creature.first,true);
                 }
@@ -274,8 +278,9 @@ public:
                 {
                     fields(operation.second, {});
                     if(creature.first != "tum-era:eraCreature318" && creature.first != "tum-era:eraCreature319"
-                        && creature.first != "tum-era:ancestralBehemoth" && creature.first != "tum-era:eraCreature361")
-                        throw std::runtime_error("ERA bridge: unaudited DeathBlow CRT actor");
+                        && creature.first != "tum-era:ancestralBehemoth" && creature.first != "tum-era:eraCreature361"
+                        && !DwellingServices::get().actor(200,creature.first) && !DwellingServices::get().actor(326,creature.first))
+                        throw std::runtime_error("ERA bridge: unaudited DeathBlow CRT actor " + creature.first);
                     deathBlowCrtPolicies.emplace(creature.first, true);
                 }
                 else if(operation.first == "petrification")
@@ -320,6 +325,8 @@ public:
     std::optional<std::vector<int>> physicalBlock(const std::string & creature) const
     {
         const auto found=physicalBlockPolicies.find(creature);
+        if(found==physicalBlockPolicies.end()&&BankActors::get().sourceId(creature)==340)
+            return std::vector<int>(era_bridge::bankLordBlock.begin(),era_bridge::bankLordBlock.end());
         return found==physicalBlockPolicies.end()?std::nullopt:std::optional<std::vector<int>>(found->second);
     }
     std::optional<RebirthPolicy> rebirth(const std::string & creature) const
@@ -365,7 +372,7 @@ public:
     }
     bool deathBlowCRT(const std::string & creature) const
     {
-        return deathBlowCrtPolicies.count(creature) != 0;
+        return deathBlowCrtPolicies.count(creature) != 0||BankActors::get().sourceId(creature)==340;
     }
     bool petrification(const std::string & creature) const
     {

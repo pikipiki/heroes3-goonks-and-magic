@@ -8,9 +8,9 @@ namespace era_compat_server
 // the physical hit and its resulting78 marker goes in the SAME target EC queue
 // as intrinsic Blind62; a successful later intrinsic proc overwrites this marker.
 inline bool selectSourceCDispel(CGameHandler & handler,const CBattleInfoCallback & battle,
-    const CStack * actor,const CStack * target)
+    const CStack * actor,const CStack * target,int chanceOverride=-1)
 {
-    era_bridge::CDispelSnapshot s;
+    era_bridge::CDispelSnapshot s;s.chanceOverride=chanceOverride;
     s.rank=statusRank(actor);s.actorAlive=actor->alive();s.targetAlive=target && target->alive();
     s.orbOfInhibition=statusEitherArtifact(battle,126);
     s.cursedGround=statusCursedGround(battle);

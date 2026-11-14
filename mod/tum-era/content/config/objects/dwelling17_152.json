@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_152": {
+        "name": "Gate of Tartarus",
+        "creatures": [
+          [
+            "tum-era:eraCreature337"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature337",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw55.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "ABV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

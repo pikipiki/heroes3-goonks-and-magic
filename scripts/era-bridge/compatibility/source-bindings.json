@@ -1053,6 +1053,21 @@
       "evidence": [
         "outputs/wog-priorities-0.4.147/native-machine-specialists.json"
       ]
+    },
+    {
+      "id": "adventure-port167",
+      "name": "Aventures WoG et dépendances — lot167",
+      "status": "validated-native-scoped",
+      "scope": "102 remplacements natifs au premier jour ;18 états des six banques ;45 résultats de Grotte ;54 acteurs et23 lignes XP supplémentaires, avec scopes natifs, transferts de primitives et continuités explicités. Les43 contrats historiques restent distincts.",
+      "implementation": [
+        "work/vcmi-wasm/server/era/EraObjectReplacementRuntime.h",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp",
+        "work/vcmi-wasm/lib/era/EraSourceBankXpAdmission.h",
+        "work/vcmi-wasm/lib/era/EraSourceDwellingXpAdmission.h"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/descriptor-final13.json"
+      ]
     }
   ],
   "dwellingParser": "scripts/era-bridge/objects/objects.mjs",
@@ -1061,46 +1076,32 @@
       "priority": 1,
       "id": "semantic-binding",
       "title": "Rapprocher les événements et règles sans preuve exacte",
-      "scope": "Événements, propriétés CFG, statistiques et lignes XP hors 43 ; enrichir les liens sans déclarer les contenus absents.",
+      "scope": "Événements, propriétés CFG, statistiques et lignes XP sans liaison sémantique individuelle ; les43 contrats historiques et les23 nouveaux contrats du lot167 ont des preuves séparées. Ne pas déclarer les contenus absents.",
       "acceptance": "Une preuve et un périmètre explicites par règle, ou une lacune identifiée avec contre-exemple."
     },
     {
       "priority": 2,
-      "id": "day-one-replacement",
-      "title": "Remplacements d’objets au premier jour",
-      "scope": "Compilateur et interpréteur hors moteur disponibles ; pas d’admission d’un hook de production dans cet inventaire.",
-      "acceptance": "Ordre source, RNG, collisions d’identifiants, objets créés, options et sauvegarde vérifiés dans le moteur."
-    },
-    {
-      "priority": 3,
-      "id": "mysterious-cave",
-      "title": "Événements de Mysterious Cave",
-      "scope": "Quêtes, fonctions, choix, semaines et interactions héros/ville sans liaison native recensée ici.",
-      "acceptance": "Rapprocher chaque bloc, puis tester les branches et l’état persistant."
-    },
-    {
-      "priority": 4,
       "id": "ecosystem-hooks",
       "title": "Interopérabilité Reborn, ERA Scripts et Advanced Classes",
       "scope": "Références ES_*, AC_*, tum_reborn et conditions de dépendances dans les scripts Archer/TUM.",
       "acceptance": "Définir les packs de référence, importer leurs sources et valider chaque condition utile."
     },
     {
-      "priority": 5,
+      "priority": 3,
       "id": "options-ui",
       "title": "Options de WoGification et dialogues",
       "scope": "Le compilateur de roster couvre quatre blocs ; les autres options et interactions ne sont pas globalement validées.",
       "acceptance": "Combinaisons supportées, interface tactile, persistance et effets sur les cartes vérifiés."
     },
     {
-      "priority": 6,
+      "priority": 4,
       "id": "original-maps",
       "title": "Cartes et campagnes originales WoG",
       "scope": "Sous-mod Maps déclaré keepDisabled ; les cartes Goonk de démonstration ne prouvent pas la compatibilité des scénarios originaux.",
       "acceptance": "Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire."
     },
     {
-      "priority": 7,
+      "priority": 5,
       "id": "era-platform",
       "title": "Étendre la référence à une distribution ERA figée",
       "scope": "Le dépôt source fourni est TUM3.5, pas tous les packs WoG/ERA et leurs plugins Windows.",

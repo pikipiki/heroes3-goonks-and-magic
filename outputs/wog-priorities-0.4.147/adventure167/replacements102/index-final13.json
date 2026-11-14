@@ -1,0 +1,27 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "proofs": [
+    {
+      "file": "native-final8.json",
+      "passed": true,
+      "engineSHA256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "proofSHA256": "ee909416b40c165044283a77d3cbdfcb4701ac3465a6ac144c092626c9bd88c2"
+    },
+    {
+      "file": "mobile-integration-final11.json",
+      "passed": true,
+      "engineSHA256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "proofSHA256": "24ffd6ae76be68ff966c1885b4e00bde27b5b399e5a92fe874120ee1919534d3"
+    },
+    {
+      "file": "mobile-integration-final12.json",
+      "passed": true,
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "proofSHA256": "bb11fb1af4ee4e82c00da4afddc0fbb9a22e4ab7266040a3b0476df78e0d5253"
+    }
+  ],
+  "scope": "One original whole102 native run on Final8, plus distinct Final11 authored-map/save/role integration. Native seed reproducibility and shared143 were observed on Final8; this index does not assert a Final11 replay of all102 programs or whole-binary equivalence. Scoped source review extends to Final12; neither historical raw report is relabelled or replayed on Final12. Actual integration12 is retained separately; source-only continuity to Final13 changes DTO wall targeting, without claiming a Final13 integration run.",
+  "sourceProgramSha256": "be39741c0e26bdff0000a087c2c8224ee12342b388fe964e6f34ab22b03e5f61",
+  "currentPolicySha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b"
+}

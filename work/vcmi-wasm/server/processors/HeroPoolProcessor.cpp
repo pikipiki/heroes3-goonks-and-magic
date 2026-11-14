@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "HeroPoolProcessor.h"
+#include "../../lib/mapObjects/CGMysteriousCave.h"
 
 #include "TurnOrderProcessor.h"
 #include "../CGameHandler.h"
@@ -237,6 +238,7 @@ bool HeroPoolProcessor::hireHero(const ObjectInstanceID & objectID, const HeroTy
 
 	// apply netpack -> this will remove hired hero from pool
 	gameHandler->sendAndApply(hr);
+	CGMysteriousCave::onHeroActivated(*gameHandler,recruitedHero);
 
 	if(recruitableHeroes[0] == recruitedHero)
 		selectNewHeroForSlot(player, TavernHeroSlot::NATIVE, false, false, nextHero);

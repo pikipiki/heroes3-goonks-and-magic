@@ -1,0 +1,78 @@
+{
+  "mysteriousCave": {
+    "name": "Mysterious Cave",
+    "handler": "configurable",
+    "types": {
+      "mysteriousCave": {
+        "name": "Mysterious Cave",
+        "description": "A weekly encounter. Some discoveries grant gifts; merchants and the Builder role ask for confirmation.",
+        "eraMysteriousCave": true,
+        "blockedVisitable": false,
+        "visitMode": "unlimited",
+        "selectMode": "selectFirst",
+        "canRefuse": false,
+        "rewards": [
+          {}
+        ],
+        "variables": {
+          "number": {
+            "caveAllOpen": 0,
+            "caveWatcher": 0,
+            "caveInitiallyVisited": 0
+          }
+        },
+        "templates": {
+          "default": {
+            "animation": "tum-era/objects/zyzop2.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      },
+      "mysteriousCaveVisited": {
+        "name": "Mysterious Cave",
+        "description": "A weekly encounter. Some discoveries grant gifts; merchants and the Builder role ask for confirmation.",
+        "eraMysteriousCave": true,
+        "blockedVisitable": false,
+        "visitMode": "unlimited",
+        "selectMode": "selectFirst",
+        "canRefuse": false,
+        "rewards": [
+          {}
+        ],
+        "variables": {
+          "number": {
+            "caveAllOpen": 0,
+            "caveWatcher": 0,
+            "caveInitiallyVisited": 15
+          }
+        },
+        "templates": {
+          "default": {
+            "animation": "tum-era/objects/zyzop1.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_119": {
+        "name": "Coral Reef",
+        "creatures": [
+          [
+            "tum-era:eraCreature288"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw19.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

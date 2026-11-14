@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../era/EraDwellingServices.h"
 
 #include "UnitEffect.h"
 #include "../../CCreatureHandler.h"
@@ -269,7 +270,9 @@ bool UnitEffect::isValidTarget(const Mechanics * m, const battle::Unit * unit) c
 
 bool UnitEffect::isReceptive(const Mechanics * m, const battle::Unit * unit) const
 {
-    if(m->getSpell()->getJsonKey()=="tum-era:necrossDeathCloud")
+    if(m->getSpell()->getJsonKey()=="tum-era:necrossDeathCloud"
+        ||(m->getSpell()->getJsonKey()=="tum-era:sourceSorceressDeathCloud"
+            &&era_compat::DwellingServices::get().enabled(316)))
     {
         // ShotType2 source43FCDC tests the ERA ALIVE flag, not VCMI's
         // current biological/construct classification. Primarytarget is added

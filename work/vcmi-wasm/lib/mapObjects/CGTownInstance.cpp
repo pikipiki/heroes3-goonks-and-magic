@@ -10,6 +10,8 @@
 
 #include "StdInc.h"
 #include "CGTownInstance.h"
+#include "ObjectTemplate.h"
+#include "CGMysteriousCave.h"
 #include "../era/EraEighthTownSaveCompatibility.h"
 
 #include "TownBuildingInstance.h"
@@ -58,6 +60,33 @@ void CGTownInstance::setPropertyDer(ObjProperty what, ObjPropertyID identifier)
 ///this is freakin' overcomplicated solution
 	switch (what)
 	{
+		case ObjProperty::ERA_CAVE_TOWN_FACTION:
+		{
+			const int faction = identifier.getNum();
+			if(faction < 0 || (faction >= 9 && faction != FactionID::decode("goonk:goonk")))
+				throw std::runtime_error("Invalid Cave town faction");
+			setType(MapObjectID::TOWN, MapObjectSubID(faction));
+			rewardableBuildings.clear();
+			for(const auto & entry : getTown()->buildings)
+				if(!entry.second->rewardableObjectInfo.getParameters().isNull())
+					rewardableBuildings[entry.first] = std::make_unique<TownRewardableBuildingInstance>(this, entry.first);
+			for(auto & level : creatures)
+				level.second.clear();
+			creatures.resize(getTown()->creatures.size() + (townEnvisagesBuilding(BuildingSubID::PORTAL_OF_SUMMONING) ? 1 : 0));
+			for(int level = 0; level < getTown()->creatures.size(); ++level)
+			{
+				BuildingID building(BuildingID::getDwellingFromLevel(level, 0));
+				for(int upgrade = 0; getTown()->buildings.count(building); ++upgrade, BuildingID::advanceDwelling(building))
+					if(hasBuilt(building) && getTown()->creatures[level].size() > upgrade)
+						creatures[level].second.push_back(getTown()->creatures[level][upgrade]);
+			}
+			recreateBuildingsBonuses();
+			updateAppearance();
+			break;
+		}
+		case ObjProperty::ERA_CAVE_TOWN_DAMAGE:
+			updateAppearance();
+			break;
 		case ObjProperty::STRUCTURE_ADD_VISITING_HERO:
 			rewardableBuildings.at(identifier.getNum())->setProperty(ObjProperty::VISITORS, getVisitingHero()->id);
 			break;
@@ -710,6 +739,13 @@ void CGTownInstance::updateAppearance()
 	auto app = getObjectHandler()->getOverride(terrain, this);
 	if (app)
 		appearance = app;
+	const auto demolition = CGMysteriousCave::townDemolitionAnimation(this);
+	if(!demolition.empty())
+	{
+		auto damaged = std::make_shared<ObjectTemplate>(*appearance);
+		damaged->animationFile = AnimationPath::builtin(demolition);
+		appearance = damaged;
+	}
 }
 
 std::string CGTownInstance::nodeName() const

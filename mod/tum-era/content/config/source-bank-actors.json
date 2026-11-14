@@ -1,0 +1,2702 @@
+{
+  "eraCreature253": {
+    "name": {
+      "singular": "Tiamat",
+      "plural": "Tiamats"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 7,
+      "gems": 0,
+      "gold": 12000
+    },
+    "fightValue": 30000,
+    "aiValue": 29500,
+    "growth": 1,
+    "hitPoints": 800,
+    "speed": 16,
+    "attack": 35,
+    "defense": 40,
+    "damage": {
+      "min": 55,
+      "max": 70
+    },
+    "advMapAmount": {
+      "min": 1,
+      "max": 3
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_10": {
+        "type": "MIND_IMMUNITY",
+        "val": 0
+      },
+      "amethyst_flag_16": {
+        "type": "BLOCKS_RETALIATION",
+        "val": 0
+      },
+      "amethyst_flag_17": {
+        "type": "NO_MORALE",
+        "val": 0
+      },
+      "amethyst_flag_19": {
+        "type": "ATTACKS_ALL_ADJACENT",
+        "val": 0
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 3
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "amethyst_JoustingImmune": {
+        "type": "CHARGE_IMMUNITY",
+        "val": 0
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "core:boneDragon"
+      },
+      "sourceFear": {
+        "type": "FEARFUL",
+        "val": 10,
+        "valueType": "INDEPENDENT_MAX",
+        "propagator": "BATTLE_WIDE",
+        "propagationUpdater": "BONUS_OWNER_UPDATER",
+        "limiters": [
+          "OPPOSITE_SIDE",
+          [
+            "noneOf",
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NO_MORALE"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "UNDEAD"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "NON_LIVING"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "MECHANICAL"
+            },
+            {
+              "type": "HAS_ANOTHER_BONUS_LIMITER",
+              "bonusType": "SIEGE_WEAPON"
+            }
+          ]
+        ],
+        "stacking": "eraSourceFear:253:v1"
+      },
+      "sourceMagicAura": {
+        "type": "SPELL_RESISTANCE_AURA",
+        "val": 25,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "sourceMagicMirror": {
+        "type": "MAGIC_MIRROR",
+        "val": 20,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:boneDragon"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "description": "Attacks all adjacent enemies. Fear. \nFearless. No Enemy retaliation. \nSlayer. Bloodlust. Prayer.",
+    "faction": "core:neutral",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90,
+          100
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          2,
+          4,
+          7,
+          7,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          3,
+          3,
+          5,
+          5,
+          5,
+          6,
+          6,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          2,
+          2,
+          4,
+          4,
+          4,
+          6,
+          7,
+          9,
+          9
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          4,
+          4,
+          4,
+          4,
+          6,
+          6,
+          7,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ADDITIONAL_ATTACK",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "DEATH_STARE",
+          "subtype": "deathStareGorgon",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          5,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          24,
+          28,
+          30
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.6,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/253/CR253",
+      "map": "tum-era/creatures/253/AVWCR253.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/253/small",
+      "iconLarge": "tum-era/creatures/253/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/253/S253ATTK.wav",
+      "defend": "tum-era/creatures/253/S253DFND.wav",
+      "killed": "tum-era/creatures/253/S253KILL.wav",
+      "move": "tum-era/creatures/253/S253MOVE.wav",
+      "wince": "tum-era/creatures/253/S253WNCE.wav"
+    }
+  },
+  "eraCreature272": {
+    "name": {
+      "singular": "Succubus",
+      "plural": "Succubi"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 275
+    },
+    "fightValue": 481,
+    "aiValue": 490,
+    "growth": 4,
+    "hitPoints": 25,
+    "speed": 7,
+    "attack": 12,
+    "defense": 7,
+    "damage": {
+      "min": 5,
+      "max": 8
+    },
+    "advMapAmount": {
+      "min": 10,
+      "max": 20
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_2": {
+        "type": "SHOOTER",
+        "val": 0
+      },
+      "amethyst_flag_12": {
+        "type": "NO_MELEE_PENALTY",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 4,
+    "faction": "core:inferno",
+    "upgrades": [
+      "tum-era:eraCreature281"
+    ],
+    "description": "Fly. No melee penalty.",
+    "shots": 8,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:protectFire",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NO_DISTANCE_PENALTY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 277
+          }
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 285
+          }
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.8,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "offset": {
+          "upperX": 37,
+          "upperY": -98,
+          "middleX": 62,
+          "middleY": -53,
+          "lowerX": 28,
+          "lowerY": 3
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 8,
+        "projectile": "tum-era/creatures/272/SHOT272.def"
+      },
+      "animation": "tum-era/creatures/272/CR272",
+      "map": "tum-era/creatures/272/AVWCR272.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/272/small",
+      "iconLarge": "tum-era/creatures/272/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/272/S272ATTK.wav",
+      "defend": "tum-era/creatures/272/S272DFND.wav",
+      "killed": "tum-era/creatures/272/S272KILL.wav",
+      "move": "tum-era/creatures/272/S272MOVE.wav",
+      "wince": "tum-era/creatures/272/S272WNCE.wav",
+      "shoot": "tum-era/creatures/272/S272SHOT.wav"
+    }
+  },
+  "eraCreature281": {
+    "name": {
+      "singular": "Lilim",
+      "plural": "Lilims"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 400
+    },
+    "fightValue": 600,
+    "aiValue": 623,
+    "growth": 4,
+    "hitPoints": 30,
+    "speed": 11,
+    "attack": 12,
+    "defense": 9,
+    "damage": {
+      "min": 5,
+      "max": 10
+    },
+    "advMapAmount": {
+      "min": 10,
+      "max": 20
+    },
+    "abilities": {
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_2": {
+        "type": "SHOOTER",
+        "val": 0
+      },
+      "amethyst_flag_12": {
+        "type": "NO_MELEE_PENALTY",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceRangedRetaliation": {
+        "type": "RANGED_RETALIATION"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 4,
+    "faction": "core:inferno",
+    "description": "Fly. No melee penalty. Fireball attack. Range Retaliation.",
+    "shots": 8,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ENCHANTED",
+          "subtype": "core:protectFire",
+          "valueType": "INDEPENDENT_MAX",
+          "val": 1
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "NO_DISTANCE_PENALTY"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 277
+          }
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 285
+          }
+        },
+        "values": [
+          0,
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.8,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "offset": {
+          "upperX": 37,
+          "upperY": -98,
+          "middleX": 62,
+          "middleY": -53,
+          "lowerX": 28,
+          "lowerY": 3
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 8,
+        "projectile": "tum-era/creatures/281/SHOT281.def"
+      },
+      "animation": "tum-era/creatures/281/CR281",
+      "map": "tum-era/creatures/281/AVWCR281.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/281/small",
+      "iconLarge": "tum-era/creatures/281/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/281/S281ATTK.wav",
+      "defend": "tum-era/creatures/281/S281DFND.wav",
+      "killed": "tum-era/creatures/281/S281KILL.wav",
+      "move": "tum-era/creatures/281/S281MOVE.wav",
+      "wince": "tum-era/creatures/281/S281WNCE.wav",
+      "shoot": "tum-era/creatures/281/S281SHOT.wav"
+    }
+  },
+  "eraCreature289": {
+    "name": {
+      "singular": "Fire Paladin",
+      "plural": "Fire Paladins"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 840
+    },
+    "fightValue": 920,
+    "aiValue": 920,
+    "growth": 2,
+    "hitPoints": 50,
+    "speed": 8,
+    "attack": 15,
+    "defense": 13,
+    "damage": {
+      "min": 10,
+      "max": 12
+    },
+    "advMapAmount": {
+      "min": 8,
+      "max": 14
+    },
+    "abilities": {
+      "amethyst_flag_14": {
+        "type": "SPELL_SCHOOL_IMMUNITY",
+        "val": 0,
+        "subtype": "spellSchool.fire"
+      },
+      "amethyst_flag_15": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 1
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "amethyst_Fire_shield": {
+        "type": "FIRE_SHIELD",
+        "val": 20
+      },
+      "sourceVulnerability16": {
+        "type": "MORE_DAMAGE_FROM_SPELL",
+        "subtype": "core:iceBolt",
+        "val": 100
+      },
+      "sourceVulnerability20": {
+        "type": "MORE_DAMAGE_FROM_SPELL",
+        "subtype": "core:frostRing",
+        "val": 100
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "tum-era:eraCreature361"
+      }
+    },
+    "doubleWide": false,
+    "level": 5,
+    "description": "Fire Shield. Attack Twice. \nFire Immunity. Fire Wall.\nHates Thunder Warriors.",
+    "faction": "core:neutral",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 292
+          }
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.95,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/289/CR289",
+      "map": "tum-era/creatures/289/AVWCR289.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/289/small",
+      "iconLarge": "tum-era/creatures/289/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/289/S289ATTK.wav",
+      "defend": "tum-era/creatures/289/S289DFND.wav",
+      "killed": "tum-era/creatures/289/S289KILL.wav",
+      "move": "tum-era/creatures/289/S289MOVE.wav",
+      "wince": "tum-era/creatures/289/S289WNCE.wav"
+    }
+  },
+  "eraCreature290": {
+    "name": {
+      "singular": "Ice Knight",
+      "plural": "Ice Knights"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 800
+    },
+    "fightValue": 915,
+    "aiValue": 915,
+    "growth": 2,
+    "hitPoints": 50,
+    "speed": 8,
+    "attack": 13,
+    "defense": 15,
+    "damage": {
+      "min": 10,
+      "max": 12
+    },
+    "advMapAmount": {
+      "min": 8,
+      "max": 14
+    },
+    "abilities": {
+      "amethyst_flag_15": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 1
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "bankColdImmunity16": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:iceBolt"
+      },
+      "bankColdImmunity20": {
+        "type": "SPELL_IMMUNITY",
+        "subtype": "core:frostRing"
+      },
+      "sourceVulnerability21": {
+        "type": "MORE_DAMAGE_FROM_SPELL",
+        "subtype": "core:fireball",
+        "val": 100
+      },
+      "sourceVulnerability22": {
+        "type": "MORE_DAMAGE_FROM_SPELL",
+        "subtype": "core:inferno",
+        "val": 100
+      },
+      "sourceVulnerability26": {
+        "type": "MORE_DAMAGE_FROM_SPELL",
+        "subtype": "core:armageddon",
+        "val": 100
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "tum-era:eraCreature361"
+      }
+    },
+    "doubleWide": false,
+    "level": 5,
+    "description": "Attack Twice. Ice Bolt attack.\nCold spells Immunity.\nHates Fire Paladins.",
+    "faction": "core:neutral",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 289
+          }
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.95,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/290/CR290",
+      "map": "tum-era/creatures/290/AVWCR290.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/290/small",
+      "iconLarge": "tum-era/creatures/290/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/290/S290ATTK.wav",
+      "defend": "tum-era/creatures/290/S290DFND.wav",
+      "killed": "tum-era/creatures/290/S290KILL.wav",
+      "move": "tum-era/creatures/290/S290MOVE.wav",
+      "wince": "tum-era/creatures/290/S290WNCE.wav"
+    }
+  },
+  "eraCreature301": {
+    "name": {
+      "singular": "Squire",
+      "plural": "Squires"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 210
+    },
+    "fightValue": 335,
+    "aiValue": 335,
+    "growth": 7,
+    "hitPoints": 30,
+    "speed": 5,
+    "attack": 7,
+    "defense": 7,
+    "damage": {
+      "min": 3,
+      "max": 7
+    },
+    "advMapAmount": {
+      "min": 12,
+      "max": 25
+    },
+    "abilities": {
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 3,
+    "faction": "core:castle",
+    "upgrades": [
+      "tum-era:eraCreature302"
+    ],
+    "description": " ",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_DEFENSE_REDUCTION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.87,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/301/CR301",
+      "map": "tum-era/creatures/301/AVWCR301.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/301/small",
+      "iconLarge": "tum-era/creatures/301/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/301/S301ATTK.wav",
+      "defend": "tum-era/creatures/301/S301DFND.wav",
+      "killed": "tum-era/creatures/301/S301KILL.wav",
+      "move": "tum-era/creatures/301/S301MOVE.wav",
+      "wince": "tum-era/creatures/301/S301WNCE.wav"
+    }
+  },
+  "eraCreature302": {
+    "name": {
+      "singular": "Man at Arms",
+      "plural": "Men at Arms"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 245
+    },
+    "fightValue": 365,
+    "aiValue": 330,
+    "growth": 7,
+    "hitPoints": 30,
+    "speed": 6,
+    "attack": 8,
+    "defense": 9,
+    "damage": {
+      "min": 3,
+      "max": 7
+    },
+    "advMapAmount": {
+      "min": 12,
+      "max": 20
+    },
+    "abilities": {
+      "amethyst_flag_16": {
+        "type": "BLOCKS_RETALIATION",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 3,
+    "faction": "core:castle",
+    "upgrades": [
+      "tum-era:eraCreature358"
+    ],
+    "description": "No retaliation.",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_DEFENSE_REDUCTION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.87,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/302/CR302",
+      "map": "tum-era/creatures/302/AVWCR302.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/302/small",
+      "iconLarge": "tum-era/creatures/302/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/302/S302ATTK.wav",
+      "defend": "tum-era/creatures/302/S302DFND.wav",
+      "killed": "tum-era/creatures/302/S302KILL.wav",
+      "move": "tum-era/creatures/302/S302MOVE.wav",
+      "wince": "tum-era/creatures/302/S302WNCE.wav"
+    }
+  },
+  "eraCreature330": {
+    "name": {
+      "singular": "Crimson Dragon",
+      "plural": "Crimson Dragons"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 8,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 12000
+    },
+    "fightValue": 12132,
+    "aiValue": 12731,
+    "growth": 1,
+    "hitPoints": 500,
+    "speed": 19,
+    "attack": 30,
+    "defense": 30,
+    "damage": {
+      "min": 40,
+      "max": 60
+    },
+    "advMapAmount": {
+      "min": 2,
+      "max": 5
+    },
+    "abilities": {
+      "amethyst_Hate0132": {
+        "type": "ERA_PERSONAL_HATE_DAMAGE",
+        "val": 100,
+        "subtype": "core:azureDragon"
+      },
+      "amethyst_flag_1": {
+        "type": "FLYING",
+        "val": 0
+      },
+      "amethyst_flag_2": {
+        "type": "SHOOTER",
+        "val": 0
+      },
+      "amethyst_flag_3": {
+        "type": "TWO_HEX_ATTACK_BREATH",
+        "val": 0
+      },
+      "amethyst_flag_12": {
+        "type": "NO_MELEE_PENALTY",
+        "val": 0
+      },
+      "amethyst_flag_14": {
+        "type": "SPELL_SCHOOL_IMMUNITY",
+        "val": 0,
+        "subtype": "spellSchool.fire"
+      },
+      "amethyst_flag_31": {
+        "type": "DRAGON_NATURE",
+        "val": 0
+      },
+      "amethystKing": {
+        "type": "KING",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "core:boneDragon"
+      },
+      "amethyst_Fire_shield": {
+        "type": "FIRE_SHIELD",
+        "val": 30
+      },
+      "bankHate1712": {
+        "type": "HATE",
+        "valueType": "ADDITIVE_VALUE",
+        "addInfo": {
+          "contract": "source-bank-hate-v1",
+          "sourceCreatureId": 132
+        },
+        "val": 50
+      },
+      "sourceFireballShot": {
+        "type": "SPELL_LIKE_ATTACK",
+        "subtype": "core:fireball"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:boneDragon"
+      }
+    },
+    "doubleWide": true,
+    "level": 7,
+    "description": "Fireball Attack. Fire Shield. Immune to all spells. Hates Azure Dragons.",
+    "faction": "core:neutral",
+    "shots": 5,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 10,
+          "valueType": "INDEPENDENT_MAX",
+          "propagator": "BATTLE_WIDE",
+          "propagationUpdater": "BONUS_OWNER_UPDATER",
+          "limiters": [
+            "OPPOSITE_SIDE",
+            [
+              "noneOf",
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NO_MORALE"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "UNDEAD"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "NON_LIVING"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "MECHANICAL"
+              },
+              {
+                "type": "HAS_ANOTHER_BONUS_LIMITER",
+                "bonusType": "SIEGE_WEAPON"
+              }
+            ]
+          ],
+          "stacking": "eraSourceFear:330:v1"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "RECEPTIVE"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "SHOTS",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "bonus": {
+          "type": "HATE",
+          "valueType": "ADDITIVE_VALUE",
+          "addInfo": {
+            "contract": "source-bank-hate-v1",
+            "sourceCreatureId": 132
+          }
+        },
+        "values": [
+          20,
+          40,
+          60,
+          80,
+          100,
+          120,
+          140,
+          160,
+          180,
+          200
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.6,
+        "attack": 1,
+        "idle": 10
+      },
+      "missile": {
+        "offset": {
+          "upperX": 41,
+          "upperY": -92,
+          "middleX": 58,
+          "middleY": -79,
+          "lowerX": 29,
+          "lowerY": -14
+        },
+        "frameAngles": [
+          90,
+          72,
+          45,
+          27,
+          0,
+          -27,
+          -45,
+          -72,
+          -90,
+          0,
+          0,
+          0
+        ],
+        "attackClimaxFrame": 0,
+        "projectile": "tum-era/creatures/330/SHOT330.def"
+      },
+      "animation": "tum-era/creatures/330/CR330",
+      "map": "tum-era/creatures/330/AVWCR330.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/330/small",
+      "iconLarge": "tum-era/creatures/330/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/330/S330ATTK.wav",
+      "defend": "tum-era/creatures/330/S330DFND.wav",
+      "killed": "tum-era/creatures/330/S330KILL.wav",
+      "move": "tum-era/creatures/330/S330MOVE.wav",
+      "wince": "tum-era/creatures/330/S330WNCE.wav",
+      "shoot": "tum-era/creatures/330/S330SHOT.wav"
+    }
+  },
+  "eraCreature340": {
+    "name": {
+      "singular": "Swordmaster",
+      "plural": "Swordmasters"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 1000
+    },
+    "fightValue": 800,
+    "aiValue": 800,
+    "growth": 4,
+    "hitPoints": 60,
+    "speed": 8,
+    "attack": 15,
+    "defense": 15,
+    "damage": {
+      "min": 12,
+      "max": 12
+    },
+    "advMapAmount": {
+      "min": 10,
+      "max": 16
+    },
+    "abilities": {
+      "amethyst_flag_15": {
+        "type": "ADDITIONAL_ATTACK",
+        "val": 1
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Sktransformer": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "val": 0,
+        "subtype": "tum-era:eraCreature361"
+      },
+      "sourceLordRush": {
+        "type": "SPELLCASTER",
+        "subtype": "tum-era:sourceLordRush",
+        "val": 0
+      },
+      "sourcePositiveMorale": {
+        "type": "MORALE",
+        "val": 1,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "tum-era:eraCreature361"
+      }
+    },
+    "doubleWide": false,
+    "level": 5,
+    "faction": "core:castle",
+    "description": "Always Morale. Strikes twice. \nIn Rank 'Ace' Grants additional turn to allies by casting it, and double turn in combat.",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6,
+          7,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          5,
+          6,
+          6,
+          7
+        ]
+      },
+      {
+        "bonus": {
+          "type": "FEARFUL",
+          "val": 0,
+          "valueType": "INDEPENDENT_MIN"
+        },
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CASTS",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "bonus": {
+          "type": "DOUBLE_DAMAGE_CHANCE",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.95,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/340/CR340",
+      "map": "tum-era/creatures/340/AVWCR340.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/340/small",
+      "iconLarge": "tum-era/creatures/340/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/340/S340ATTK.wav",
+      "defend": "tum-era/creatures/340/S340DFND.wav",
+      "killed": "tum-era/creatures/340/S340KILL.wav",
+      "move": "tum-era/creatures/340/S340MOVE.wav",
+      "wince": "tum-era/creatures/340/S340WNCE.wav"
+    }
+  },
+  "eraCreature358": {
+    "name": {
+      "singular": "Veteran",
+      "plural": "Veterans"
+    },
+    "cost": {
+      "wood": 0,
+      "mercury": 0,
+      "ore": 0,
+      "sulfur": 0,
+      "crystal": 0,
+      "gems": 0,
+      "gold": 265
+    },
+    "fightValue": 405,
+    "aiValue": 370,
+    "growth": 7,
+    "hitPoints": 30,
+    "speed": 8,
+    "attack": 9,
+    "defense": 11,
+    "damage": {
+      "min": 3,
+      "max": 7
+    },
+    "advMapAmount": {
+      "min": 12,
+      "max": 20
+    },
+    "abilities": {
+      "amethyst_flag_16": {
+        "type": "BLOCKS_RETALIATION",
+        "val": 0
+      },
+      "amethystBiology": {
+        "type": "LIVING"
+      },
+      "amethyst_Fearless": {
+        "type": "FEARFUL",
+        "val": 0,
+        "valueType": "INDEPENDENT_MIN"
+      },
+      "sourcePositiveMorale": {
+        "type": "MORALE",
+        "val": 1,
+        "valueType": "INDEPENDENT_MAX"
+      },
+      "sourceSkeletonTarget": {
+        "type": "SKELETON_TRANSFORMER_TARGET",
+        "subtype": "core:skeleton"
+      }
+    },
+    "doubleWide": false,
+    "level": 2,
+    "faction": "core:castle",
+    "description": "No retaliation. Has Morals. Fearless.",
+    "shots": 0,
+    "hasDoubleWeek": false,
+    "stackExperience": [
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_HEALTH_PERCENT",
+          "valueType": "ADDITIVE_VALUE",
+          "hidden": true
+        },
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.attack",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "PRIMARY_SKILL",
+          "subtype": "primarySkill.defence",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMax",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "bonus": {
+          "type": "CREATURE_DAMAGE",
+          "subtype": "creatureDamageMin",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "bonus": {
+          "type": "STACKS_SPEED",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "bonus": {
+          "type": "ERA_EXPERIENCE_DEFENSE_REDUCTION",
+          "valueType": "ADDITIVE_VALUE"
+        },
+        "values": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40
+        ]
+      }
+    ],
+    "graphics": {
+      "timeBetweenFidgets": 1,
+      "animationTime": {
+        "walk": 0.82,
+        "attack": 1,
+        "idle": 10
+      },
+      "animation": "tum-era/creatures/358/CR358",
+      "map": "tum-era/creatures/358/AVWCR358.def",
+      "mapMask": [
+        "VV",
+        "VA"
+      ],
+      "iconSmall": "tum-era/creatures/358/small",
+      "iconLarge": "tum-era/creatures/358/large"
+    },
+    "sound": {
+      "attack": "tum-era/creatures/358/S358ATTK.wav",
+      "defend": "tum-era/creatures/358/S358DFND.wav",
+      "killed": "tum-era/creatures/358/S358KILL.wav",
+      "move": "tum-era/creatures/358/S358MOVE.wav",
+      "wince": "tum-era/creatures/358/S358WNCE.wav"
+    }
+  }
+}

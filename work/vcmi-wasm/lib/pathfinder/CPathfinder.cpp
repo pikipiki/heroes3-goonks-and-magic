@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraDwellingArtifactMimic.h"
 #include "CPathfinder.h"
 
 #include "INodeStorage.h"
@@ -509,7 +510,7 @@ CPathfinderHelper::CPathfinderHelper(const IGameInfoCallback & gameInfo, const C
 	updateTurnInfo();
 	initializePatrol();
 
-	whirlpoolProtection = Hero->hasBonusOfType(BonusType::WHIRLPOOL_PROTECTION);
+	whirlpoolProtection = Hero->hasBonusOfType(BonusType::WHIRLPOOL_PROTECTION) || era_compat::dwellingWhirlpoolProtection(*Hero);
 
 	if (options.canUseCast)
 	{

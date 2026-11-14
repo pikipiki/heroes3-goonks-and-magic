@@ -1,0 +1,30 @@
+{
+  "nativeValidated": true,
+  "pending": [],
+  "scope": "Proposed whole source actor284 review: compiled source definition/runtime ownership plus actual rank0 identity and separately retained functional scopes. No unobserved native branch is asserted.",
+  "proofs": [
+    {
+      "file": "raw/mixed54--result.json",
+      "passed": true,
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "proofSHA256": "68d044bc2a8685f702dfe02788adb58ca255a544bcc1c7b8cb141cd31f4eeaee"
+    },
+    {
+      "file": "raw/dwelling-xp17--actors276-284-312-360-362.json",
+      "passed": true,
+      "engineSHA256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "proofSHA256": "30ade4614f1a63d93635e700e9ecb14ef5449e7267c66885ca33c3d111485806"
+    }
+  ],
+  "validatedSourceIds": [
+    284
+  ],
+  "sourceReview": {
+    "contractsFile": "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/whole54-contracts-final13.json",
+    "contractsSha256": "24a2a49faf1bea449677e4572419a999054079bdface1a854c570e8131ef579f",
+    "sourceId": 284,
+    "extraScopeEntries": [],
+    "definitionIsNotANativeRun": true,
+    "notes": "Root reviews compiled source/runtime mapping and reuse of already verified primitives. This draft deliberately does not infer whole actor validation from rank0."
+  }
+}

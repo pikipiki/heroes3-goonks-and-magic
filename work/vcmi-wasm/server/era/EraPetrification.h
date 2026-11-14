@@ -5,6 +5,9 @@
 #include "EraPrimordialCastRuntime.h"
 #include "EraCDispelRuntime.h"
 #include "EraCSlowRuntime.h"
+#include "EraSorceress316.h"
+#include "EraDwellingStatus.h"
+#include "EraDwellingExperienceSelectors.h"
 #include "../../lib/CStack.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/battle/CBattleInfoCallback.h"
@@ -69,10 +72,22 @@ public:
             pending.markSpell(target->unitId(),actor->unitId(),78);
             statusOwners[target->unitId()]=battle.battleGetOwner(actor);
         }
+        const int dwellingSpell=era_compat_server::selectDwellingExperienceSpell(handler,battle,actor,target);
+        if(dwellingSpell>=0){pending.markSpell(target->unitId(),actor->unitId(),dwellingSpell);statusOwners[target->unitId()]=battle.battleGetOwner(actor);}
+        // Original75C979 follows the ordinary intrinsic selector, for action7
+        // only. One weighted spell overwrites the same target0xEC marker.
+        if(!meleeAction && actor && target && era_compat_server::sorceress316Actor(actor))
+        {
+            const int selected=era_compat_server::selectSorceress316(handler,battle,actor,target);
+            if(selected>=0){pending.markSpell(target->unitId(),actor->unitId(),selected);
+                statusOwners[target->unitId()]=battle.battleGetOwner(actor);}
+        }
         // Original75CA39..75CA76 runs after the ordinary intrinsic selector.
         // It writes13 before movement/first strike, only for action6. Later
         // successful queued selectors replace the same per-target marker.
-        if(meleeAction && target && era_compat_server::primordialActorSource(actor)==346)
+        const int bankFirewall=actor?era_compat::BankActors::get().sourceId(actor->unitType()->getJsonKey()):-1;
+        if(meleeAction && target && (era_compat_server::primordialActorSource(actor)==346
+            ||bankFirewall==289||bankFirewall==330))
         {
             pending.markSpell(target->unitId(),actor->unitId(),13);
             statusOwners[target->unitId()]=battle.battleGetOwner(actor);
@@ -94,6 +109,16 @@ public:
                     pending.markSpell(primary->unitId(),attacker->unitId(),80);
                     statusOwners[primary->unitId()]=battle.battleGetOwner(attacker);
                 }
+            }
+            return;
+        }
+        const int dwellingSpell=era_compat_server::dwellingIntrinsicStatus(attacker);
+        if(dwellingSpell>=0)
+        {
+            if(era_compat_server::selectDwellingIntrinsicStatus(handler,battle,attacker,primary,dwellingSpell))
+            {
+                pending.markSpell(primary->unitId(),attacker->unitId(),dwellingSpell);
+                statusOwners[primary->unitId()]=battle.battleGetOwner(attacker);
             }
             return;
         }
@@ -176,6 +201,11 @@ public:
                 cast.setSpellLevel(0);cast.setEffectPower(power);cast.setEffectDuration(power);
                 spells::Target destination;destination.emplace_back(target);
                 cast.cast(handler.spellcastEnvironment(),destination);
+                continue;
+            }
+            if((era_compat_server::sorceress316Actor(attacker) || era_compat_server::dwellingIntrinsicStatus(attacker)>=0) && statusOwners.count(target->unitId()))
+            {
+                era_compat_server::applySorceress316Queued(handler,battle,attacker,target,queuedSpell,statusOwners.at(target->unitId()));
                 continue;
             }
             if(queuedSpell.num==54 && statusOwners.count(target->unitId()))

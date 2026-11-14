@@ -68,6 +68,8 @@ inline std::vector<Bonus> xpTimed184Projection(const era_bridge::xp184::State&s)
   case 54:{if(s.magnitude==0){auto b=xpTimed184Bonus(s,BonusType::PRIMARY_SKILL,0,"effect");b.subtype=BonusSubtypeID(PrimarySkill::ATTACK);result.push_back(b);break;}auto b=xpTimed184Bonus(s,BonusType::STACKS_SPEED,s.magnitude-100,"effect");b.valType=BonusValueType::PERCENT_TO_ALL;result.push_back(b);break;}
   case 59:result.push_back(xpTimed184Bonus(s,BonusType::ATTACKS_NEAREST_CREATURE,0,"effect"));break;
   case 60:result.push_back(xpTimed184Bonus(s,BonusType::HYPNOTIZED,s.mastery,"effect"));break;
+  case 61:{if(s.duration>0||s.magnitude>=2)result.push_back(xpTimed184Bonus(s,BonusType::FORGETFULL,s.magnitude,"effect"));
+   else{auto b=xpTimed184Bonus(s,BonusType::PRIMARY_SKILL,0,"effect");b.subtype=BonusSubtypeID(PrimarySkill::ATTACK);result.push_back(b);}break;}
   case 62:case 70:case 74:{auto b=xpTimed184Bonus(s,BonusType::NOT_ACTIVE,0,"effect");b.subtype=BonusSubtypeID(SpellID(s.spell));result.push_back(b);if(s.spell==70)result.push_back(xpTimed184Bonus(s,BonusType::GENERAL_DAMAGE_REDUCTION,50,"stoneDamage"));break;}
   case 73:{auto b=xpTimed184Bonus(s,BonusType::PRIMARY_SKILL,0,"effect");b.subtype=BonusSubtypeID(PrimarySkill::ATTACK);result.push_back(b);break;}
   default:break;

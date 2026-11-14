@@ -1,0 +1,30 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_126": {
+        "name": "Bloody Temple",
+        "creatures": [
+          [
+            "tum-era:eraCreature296"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw27.def",
+            "mask": [
+              "VVV",
+              "VBA"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

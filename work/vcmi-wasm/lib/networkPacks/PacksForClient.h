@@ -1254,6 +1254,8 @@ struct DLL_LINKAGE SetObjectProperty : public CPackForClient
 
 	ObjPropertyID identifier;
 
+	bool eraCaveAppearanceChanged = false; // Local renderer bookkeeping; deliberately not serialized.
+
 	SetObjectProperty() = default;
 
 	void visitTyped(ICPackVisitor & visitor) override;

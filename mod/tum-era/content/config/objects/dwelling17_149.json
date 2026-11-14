@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_149": {
+        "name": "Evil Cathedral",
+        "creatures": [
+          [
+            "tum-era:eraCreature331"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature331",
+            "amount": 3
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw52.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VABV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

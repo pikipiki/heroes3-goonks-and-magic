@@ -1,0 +1,36 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_135": {
+        "name": "Butt Excavation",
+        "creatures": [
+          [
+            "tum-era:eraCreature307"
+          ]
+        ],
+        "guards": [
+          {
+            "type": "tum-era:eraCreature307",
+            "amount": 9
+          }
+        ],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw38.def",
+            "mask": [
+              "VVVV",
+              "VVVV",
+              "VVAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

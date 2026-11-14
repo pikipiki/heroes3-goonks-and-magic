@@ -1,0 +1,434 @@
+{
+  "file": "outputs/wog-priorities-0.4.147/adventure167/cave/index.json",
+  "sha256": "fffe721079a661464d8c313f93e9a8e37638e0320a2078b17b1967eecd898ce5",
+  "multiRunIndex": true,
+  "nativeValidated": true,
+  "scope": "Cave supplied-source gameplay:45 effective reward choices accumulated across historical engines, with later targeted tests for changed persistence/combat/HO/demolition/reconstruction/Grail behavior; final engine is Final13. Historical SHA identities are preserved.",
+  "continuityReviews": [
+    {
+      "engineSha256": "6d84a7f3d4d74833aa35f6e810f6c886bb5d9de743fb1ec2cb4f1bcb7f594d3b",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Historical Final3 supplied-distribution Cave reward choices20..64: effective before/after rewards, original tome price, Commander first-missing-skill order, Goonk Builder reconstruction, next-day blessings and weekly speed/reset observations. Not a Final10 replay of all45 choices.",
+      "notes": "The retained rewards45.json is evidence for this actual historical wasm only. Later Cave work replaced object-instance timer keys with stable hero-type JSON keys and added pool ticking/reactivation/migration; introduced persistent per-colour HO masks and broader approach guarding; purged native extended buildings/stock at ruin; fixed demolition battle carrier/pending cleanup after retreat; and finally gated the Grail recovery availability on dependencies. Later reports listed in coveredBy exercise these changed areas. Direct combat38/39/40/51 was added in a different later engine (combat.json), not established by the original reward-only cases. No complete historical C++ source snapshot/digest set is retained here, so currentSourceHashes are present-day review anchors and must never be attributed to this old binary. Unchanged-looking instant reward branches were reviewed in the current dispatcher; they were not all dynamically replayed on Final10. This is scoped continuity review, not global binary/source equivalence. Final11 subsequently changes only MobileBridge.cpp mobile save-resume role/name restoration according to the build record. Its separate integration-mobile11.json validates saved roles and actual resumed solo/hotseat transitions; it is not a rerun of this historical Cave matrix. Previously recorded current Cave/source review anchors still match; the present MobileBridge fingerprint is updated explicitly, never attributed to the historical binary. Final12 subsequently changes the shared Weakness45 application for the source p276/p284 path; recorded Cave source review anchors are unchanged. This Cave review does not validate Weakness45 or its cross-feature battle combinations. Current web wording now says Mat\u00e9riaux r\u00e9cup\u00e9r\u00e9s and is covered by the separate real-CSS/touch layout evidence; the updated current UI fingerprint is not attributed to the historical binary. Final13 subsequently changes only the MobileBridge siegeTarget DTO condition from the literal catapult key to the CATAPULT bonus, according to the build record. The Cave source/rules/battle anchors checked here remain unchanged; siege targeting is outside this Cave evidence. Current MobileBridge hash is updated as a present-day anchor only, not attributed to any historical engine.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/lib/mapping/CMap.cpp": "ece399685d7b4e2975c83bb04369e53b0d7e1cd5444a256e6686a7feed1b20f4",
+        "work/vcmi-wasm/lib/mapping/CMap.h": "a6ca3df7383bb24fbaa246c123a26a212aba4610f359ae17987f98170cfc068c",
+        "work/vcmi-wasm/server/processors/HeroPoolProcessor.cpp": "4a703bc77c6b7fc1c668a3304a432c8f7f2c73fae47fc449236e96776cab6a06",
+        "work/vcmi-wasm/server/CGameHandler.cpp": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df",
+        "work/vcmi-wasm/server/era/EraMysteriousCaveBattle.h": "e8502001d939a6de8e83834b5be10e5502e9c2265e920973f179ae5fef29001e",
+        "work/vcmi-wasm/lib/era/EraCaveBattleHealth.h": "7e2999f14df9a07a3aafb7f5003628a69e6ff8b2bbf4c321bf275cf03477044a",
+        "work/vcmi-wasm/lib/battle/CUnitState.cpp": "94b01318ab1e3e922782ab7662618d50e630021eff00e538064c680fe35399a7",
+        "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "684ed60efab7c0d1734c3925e0d69e45c82a55935d141b40ed430ce1c17cfa16",
+        "work/vcmi-wasm/lib/mapObjects/CGTownInstance.cpp": "f255ced63e450439a8dcedfcef9a96c1a86a750920f50545924b0b4fff70216e",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876"
+      },
+      "coveredBy": [
+        {
+          "file": "pool-and-migration.json",
+          "pointer": "/report/extras/builderPool/passed",
+          "expected": true,
+          "assertion": "Final8 real dismissal, day4 native reload, pool counter progression, day7 lock release and real tavern recruitment; prototype specialty label/sourceProgression and suppression-marker removal checked. No Ballista combat-stat sample was recorded in this scenario."
+        },
+        {
+          "file": "pool-and-migration.json",
+          "pointer": "/report/extras/legacyMigration39/passed",
+          "expected": true,
+          "assertion": "Final8 loads old native choice39 save, observes7, advances a real player turn and asserts canonical version2/counter6."
+        },
+        {
+          "file": "extended-town.json",
+          "pointer": "/report/extras/extendedTownRuin/passed",
+          "expected": true,
+          "assertion": "Final8 keeps native50/57 until the final Hall ruin, clears all buildings, then reconstructs Castle. Initial tier7 stock2 is cleared by required earlier evacuation."
+        },
+        {
+          "file": "occupants.json",
+          "pointer": "/report/extras/occupantsRetreat/secondFightStarted",
+          "expected": true,
+          "assertion": "Final8 retreat releases carrier/pending lock even with removed hero; real rehire permits another battle and retreat."
+        },
+        {
+          "file": "scourge-approaches.json",
+          "pointer": "/report/extras/approachAlly/passed",
+          "expected": true,
+          "assertion": "Final9 last-human Green/real AI turn establishes mask247, then Red allied approach is refused; sibling approachEnemy case also passes."
+        },
+        {
+          "file": "blessing-bounds.json",
+          "pointer": "/report/extras/blessingBounds48/passed",
+          "expected": true,
+          "assertion": "Final10 movement pays through day8, stopsday9, and preserves state across native day7 reload;46/47 sibling cases cover resources/XP."
+        },
+        {
+          "file": "grail-web-availability.json",
+          "pointer": "/report/extras/grailAvailability/passed",
+          "expected": true,
+          "assertion": "Final10 real web actions: recovery unavailable while dwelling30 dependency exists, available after evacuation, then recovered through selection/confirmation."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Independent Final11 integration report validates saved player names/human-AI roles on old161 and both current maps; it does not replay the full Cave reward matrix."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Independent Final11 integration report performs actual resumed solo AI-return and red-to-blue hotseat human handoffs; roles are not inferred from static snapshots alone."
+        }
+      ]
+    },
+    {
+      "engineSha256": "3ad6057cfc3d4bb57021531939575d2140a03ad099beca0f373e70586dca2f8e",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Historical Final6r2 isolated actual battles: control, enchantments38, speed39, doubled/healed health40, and neutral base-health gold51. Reports observe real stats and spell durations, not only timers.",
+      "notes": "combat.json retains this exact wasm SHA. Subsequent full synchronization found later CGameHandler and Sorceress316 changes absent from earlier partial builds; Final8 synchronized98 source files and rebuilt411 units. The Cave activation/move/pool hooks received later direct lifecycle and HO evidence. Sorceress316 was then corrected in Final9; it is outside these isolated Cave actors and is not covered by this review. Final10 changed only the Grail availability guard in Cave.cpp according to the recorded build coordination. Current Cave battle initialization/health/loot code was reviewed, and Final10 retreat directly tests the no-loot defeat branch. The38/39/40 combat stat matrix was not rerun on Final10; present hashes do not prove what the older binary compiled, and no global equivalence is asserted. Final11 subsequently changes only MobileBridge.cpp mobile save-resume role/name restoration according to the build record. Its separate integration-mobile11.json validates saved roles and actual resumed solo/hotseat transitions; it is not a rerun of this historical Cave matrix. Previously recorded current Cave/source review anchors still match; the present MobileBridge fingerprint is updated explicitly, never attributed to the historical binary. Final12 subsequently changes the shared Weakness45 application for the source p276/p284 path; recorded Cave source review anchors are unchanged. This Cave review does not validate Weakness45 or its cross-feature battle combinations. Current web wording now says Mat\u00e9riaux r\u00e9cup\u00e9r\u00e9s and is covered by the separate real-CSS/touch layout evidence; the updated current UI fingerprint is not attributed to the historical binary. Final13 subsequently changes only the MobileBridge siegeTarget DTO condition from the literal catapult key to the CATAPULT bonus, according to the build record. The Cave source/rules/battle anchors checked here remain unchanged; siege targeting is outside this Cave evidence. Current MobileBridge hash is updated as a present-day anchor only, not attributed to any historical engine.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/server/era/EraMysteriousCaveBattle.h": "e8502001d939a6de8e83834b5be10e5502e9c2265e920973f179ae5fef29001e",
+        "work/vcmi-wasm/lib/era/EraCaveBattleHealth.h": "7e2999f14df9a07a3aafb7f5003628a69e6ff8b2bbf4c321bf275cf03477044a",
+        "work/vcmi-wasm/lib/battle/CUnitState.cpp": "94b01318ab1e3e922782ab7662618d50e630021eff00e538064c680fe35399a7",
+        "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "684ed60efab7c0d1734c3925e0d69e45c82a55935d141b40ed430ce1c17cfa16",
+        "work/vcmi-wasm/server/CGameHandler.cpp": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876"
+      },
+      "coveredBy": [
+        {
+          "file": "pool-and-migration.json",
+          "pointer": "/report/extras/builderPool/passed",
+          "expected": true,
+          "assertion": "Final8 real dismissal, day4 native reload, pool counter progression, day7 lock release and real tavern recruitment; prototype specialty label/sourceProgression and suppression-marker removal checked. No Ballista combat-stat sample was recorded in this scenario."
+        },
+        {
+          "file": "scourge-approaches.json",
+          "pointer": "/report/extras/approachAlly/passed",
+          "expected": true,
+          "assertion": "Final9 last-human Green/real AI turn establishes mask247, then Red allied approach is refused; sibling approachEnemy case also passes."
+        },
+        {
+          "file": "neutral-loot-retreat.json",
+          "pointer": "/report/extras/neutralLootRetreat/gold",
+          "expected": 0,
+          "assertion": "Final10 real neutral-battle retreat awards no Cave gold; this closes the defeat side of the winner-only loot hook."
+        },
+        {
+          "file": "grail-web-availability.json",
+          "pointer": "/report/extras/grailAvailability/passed",
+          "expected": true,
+          "assertion": "Final10 real web actions: recovery unavailable while dwelling30 dependency exists, available after evacuation, then recovered through selection/confirmation."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Independent Final11 integration report validates saved player names/human-AI roles on old161 and both current maps; it does not replay the full Cave reward matrix."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Independent Final11 integration report performs actual resumed solo AI-return and red-to-blue hotseat human handoffs; roles are not inferred from static snapshots alone."
+        }
+      ]
+    },
+    {
+      "engineSha256": "f5538c4b5068603fc16924411d28730564b2d44d7e3831f7593ca2f805a7a4b2",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Historical Final8 targeted Cave persistence/migration, native T8 ruin, dwelling-occupant victory/retreat/retry, and seven remote-visit families with physical no-repeat checks.",
+      "notes": "These four retained reports all embed the actual Final8 wasm SHA. Subsequent Final9 changed the unrelated Sorceress316 path; no Cave source change was requested for that fix. Final10 then added a single Cave snapshot condition combining Grail recovery availability with the computed demolition reason; server rejection/effect rules already existed. Final10 grail-web-availability.json directly exercises that changed presentation gate, blessing-bounds.json checks current persistence/end bounds, and factions9.json checks current reconstruction plus reload. Final9 separately exercises actual HO approaches. Pool/T8/occupant/remote matrices were not each replayed on Final10. The notes record scoped implementation/build history, not a reconstructed historical source hash set; currentSourceHashes bind only the present reviewed files. No global engine equivalence is claimed. Final11 subsequently changes only MobileBridge.cpp mobile save-resume role/name restoration according to the build record. Its separate integration-mobile11.json validates saved roles and actual resumed solo/hotseat transitions; it is not a rerun of this historical Cave matrix. Previously recorded current Cave/source review anchors still match; the present MobileBridge fingerprint is updated explicitly, never attributed to the historical binary. Final12 subsequently changes the shared Weakness45 application for the source p276/p284 path; recorded Cave source review anchors are unchanged. This Cave review does not validate Weakness45 or its cross-feature battle combinations. Current web wording now says Mat\u00e9riaux r\u00e9cup\u00e9r\u00e9s and is covered by the separate real-CSS/touch layout evidence; the updated current UI fingerprint is not attributed to the historical binary. Final13 subsequently changes only the MobileBridge siegeTarget DTO condition from the literal catapult key to the CATAPULT bonus, according to the build record. The Cave source/rules/battle anchors checked here remain unchanged; siege targeting is outside this Cave evidence. Current MobileBridge hash is updated as a present-day anchor only, not attributed to any historical engine.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/lib/mapping/CMap.cpp": "ece399685d7b4e2975c83bb04369e53b0d7e1cd5444a256e6686a7feed1b20f4",
+        "work/vcmi-wasm/lib/mapping/CMap.h": "a6ca3df7383bb24fbaa246c123a26a212aba4610f359ae17987f98170cfc068c",
+        "work/vcmi-wasm/server/processors/HeroPoolProcessor.cpp": "4a703bc77c6b7fc1c668a3304a432c8f7f2c73fae47fc449236e96776cab6a06",
+        "work/vcmi-wasm/server/CGameHandler.cpp": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df",
+        "work/vcmi-wasm/lib/mapObjects/CGTownInstance.cpp": "f255ced63e450439a8dcedfcef9a96c1a86a750920f50545924b0b4fff70216e",
+        "work/vcmi-wasm/server/era/EraMysteriousCaveBattle.h": "e8502001d939a6de8e83834b5be10e5502e9c2265e920973f179ae5fef29001e",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876"
+      },
+      "coveredBy": [
+        {
+          "file": "scourge-approaches.json",
+          "pointer": "/report/extras/approachAlly/passed",
+          "expected": true,
+          "assertion": "Final9 last-human Green/real AI turn establishes mask247, then Red allied approach is refused; sibling approachEnemy case also passes."
+        },
+        {
+          "file": "blessing-bounds.json",
+          "pointer": "/report/extras/blessingBounds48/passed",
+          "expected": true,
+          "assertion": "Final10 movement pays through day8, stopsday9, and preserves state across native day7 reload;46/47 sibling cases cover resources/XP."
+        },
+        {
+          "file": "grail-web-availability.json",
+          "pointer": "/report/extras/grailAvailability/passed",
+          "expected": true,
+          "assertion": "Final10 real web actions: recovery unavailable while dwelling30 dependency exists, available after evacuation, then recovered through selection/confirmation."
+        },
+        {
+          "file": "factions9.json",
+          "pointer": "/report/extras/rebuildFactions/8/key",
+          "expected": "core:conflux",
+          "assertion": "Final10 rebuilds all nine source factions and reloads each native save before checkpointing."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Independent Final11 integration report validates saved player names/human-AI roles on old161 and both current maps; it does not replay the full Cave reward matrix."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Independent Final11 integration report performs actual resumed solo AI-return and red-to-blue hotseat human handoffs; roles are not inferred from static snapshots alone."
+        }
+      ]
+    },
+    {
+      "engineSha256": "6fc1a0c362e0c88e4f8ac20f6eedfe67c39c2fc77ec45e9b181f74a2dc45b4fa",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Historical Final9 Scourge AI masks/expiry/legacy migration and actual enemy/allied refusals; Grail recovery and configured backpack-capacity0 server refusal.",
+      "notes": "These reports retain their real Final9 wasm SHA. The sole later engine change was the Cave snapshot Grail availability guard: previously the action could be offered while a dwelling dependency still made the server reject it. Final10 grail-web-availability.json directly verifies absence before prerequisites, availability afterwards, and recovery via actual web controls. The server recovery/capacity rules were not changed by that guard. Final10 blessing/faction/retreat reports provide additional current-engine coverage, not a replay of every Final9 scenario. Later web wording now distinguishes demolition materials from Grail recovery; historical screenshots are not claimed to show those later words. Current hashes describe the files reviewed now, never the bytes of the earlier compilation. No global equivalence is claimed. Final11 subsequently changes only MobileBridge.cpp mobile save-resume role/name restoration according to the build record. Its separate integration-mobile11.json validates saved roles and actual resumed solo/hotseat transitions; it is not a rerun of this historical Cave matrix. Previously recorded current Cave/source review anchors still match; the present MobileBridge fingerprint is updated explicitly, never attributed to the historical binary. Final12 subsequently changes the shared Weakness45 application for the source p276/p284 path; recorded Cave source review anchors are unchanged. This Cave review does not validate Weakness45 or its cross-feature battle combinations. Current web wording now says Mat\u00e9riaux r\u00e9cup\u00e9r\u00e9s and is covered by the separate real-CSS/touch layout evidence; the updated current UI fingerprint is not attributed to the historical binary. Final13 subsequently changes only the MobileBridge siegeTarget DTO condition from the literal catapult key to the CATAPULT bonus, according to the build record. The Cave source/rules/battle anchors checked here remain unchanged; siege targeting is outside this Cave evidence. Current MobileBridge hash is updated as a present-day anchor only, not attributed to any historical engine.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/lib/entities/artifact/ArtifactUtils.cpp": "0187a54234262e01958f2b36bee3a3616bd09a4d803112c4f47d23622fe297bc",
+        "work/vcmi-wasm/server/CGameHandler.cpp": "0709bf629ff697316014f25fb94bbfa62e16fac669183d761aa5cbd8622ff7df",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876",
+        "web/cave-builder.mjs": "b0df964d52ce67ebe4db62409b90022735eaadb8083644e465809b1b5ea9d6b9"
+      },
+      "coveredBy": [
+        {
+          "file": "grail-web-availability.json",
+          "pointer": "/report/extras/grailAvailability/passed",
+          "expected": true,
+          "assertion": "Final10 real web actions: recovery unavailable while dwelling30 dependency exists, available after evacuation, then recovered through selection/confirmation."
+        },
+        {
+          "file": "blessing-bounds.json",
+          "pointer": "/report/extras/blessingBounds48/passed",
+          "expected": true,
+          "assertion": "Final10 movement pays through day8, stopsday9, and preserves state across native day7 reload;46/47 sibling cases cover resources/XP."
+        },
+        {
+          "file": "neutral-loot-retreat.json",
+          "pointer": "/report/extras/neutralLootRetreat/gold",
+          "expected": 0,
+          "assertion": "Final10 real neutral-battle retreat awards no Cave gold; this closes the defeat side of the winner-only loot hook."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Independent Final11 integration report validates saved player names/human-AI roles on old161 and both current maps; it does not replay the full Cave reward matrix."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Independent Final11 integration report performs actual resumed solo AI-return and red-to-blue hotseat human handoffs; roles are not inferred from static snapshots alone."
+        }
+      ]
+    },
+    {
+      "engineSha256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Historical Final10 Cave blessing bounds7/8/9 with day7 reload, all nine faction rebuilds with reload, real web Grail availability/recovery, and neutral-loot retreat. Final11 mobile role-resume integration is separately scoped.",
+      "notes": "Final10 reports remain bound to their real9b1f44... engine. Root build coordination identifies MobileBridge.cpp as the sole engine source change10\u219211: action23 previously converted saved Blue human to AI in local resume; Final11 restores saved human/AI roles and names. The previously recorded Final10 continuity-review fingerprints for Cave.cpp, Cave headers/rules, battle initializer and other Cave-relevant source files still match the current working tree; only MobileBridge fingerprint differs. Those are review fingerprints, not independent reconstruction of historical compilation inputs. integration-mobile11.json is copied byte-for-byte from the retained separate integration run and validates actual names/roles and real turn transitions in solo and hotseat plus old161 save compatibility. It does not dynamically rerun all Cave options or every multiplayer combination. No global binary equivalence or relabelling of historical results is asserted. Final12 subsequently changes the shared Weakness45 application for the source p276/p284 path; recorded Cave source review anchors are unchanged. This Cave review does not validate Weakness45 or its cross-feature battle combinations. Current web wording now says Mat\u00e9riaux r\u00e9cup\u00e9r\u00e9s and is covered by the separate real-CSS/touch layout evidence; the updated current UI fingerprint is not attributed to the historical binary. Final13 subsequently changes only the MobileBridge siegeTarget DTO condition from the literal catapult key to the CATAPULT bonus, according to the build record. The Cave source/rules/battle anchors checked here remain unchanged; siege targeting is outside this Cave evidence. Current MobileBridge hash is updated as a present-day anchor only, not attributed to any historical engine.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/server/era/EraMysteriousCaveBattle.h": "e8502001d939a6de8e83834b5be10e5502e9c2265e920973f179ae5fef29001e",
+        "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "684ed60efab7c0d1734c3925e0d69e45c82a55935d141b40ed430ce1c17cfa16",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876"
+      },
+      "coveredBy": [
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Independent Final11 integration report validates saved player names/human-AI roles on old161 and both current maps; it does not replay the full Cave reward matrix."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Independent Final11 integration report performs actual resumed solo AI-return and red-to-blue hotseat human handoffs; roles are not inferred from static snapshots alone."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/maps/0/resumedTurnCycle/passed",
+          "expected": true,
+          "assertion": "Final11 actual AI turn followed by next-day sole human return on003-Goonks-WoG."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/maps/1/resumedTurnCycle/passed",
+          "expected": true,
+          "assertion": "Final11 actual red-to-blue human hotseat handoff followed by next-day return on004-Goonks-WoG-Online; not a realtime-network claim."
+        }
+      ]
+    },
+    {
+      "engineSha256": "5a9cec2cc3739cae52e37076a56465cdef2273fd84af31aefe7f1c69f915b671",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Final11 mobile names/roles and real solo/hotseat save-resume integration; continued Cave-only source review through Final12 toward Final13, without a new Cave runtime rerun.",
+      "notes": "Build coordination identifies the engine11\u219212 change as shared Weakness45 handling for source p276/p284. Cave.cpp, its rules, Cave battle helper and all previously recorded Cave-relevant source review anchors still match; At the prior Final12 review, MobileBridge also matched11; its present13 fingerprint includes the later siege predicate change described below. The new spell handling is not generated by the Cave reward dispatcher and its native validation is owned by separate Weakness/XP cases. This statement does not imply that armies which visited a Cave cannot later participate in a battle using Weakness45; those cross-feature combinations are outside this review. integration-mobile11.json retains its actual Final11 wasm hash, not Final12, and its role/transition coverage is not relabelled as a new run. Current source hashes bind only the files reviewed now. No global engine equivalence is claimed. Final13 subsequently changes only the MobileBridge siegeTarget DTO condition from the literal catapult key to the CATAPULT bonus, according to the build record. The Cave source/rules/battle anchors checked here remain unchanged; siege targeting is outside this Cave evidence. Current MobileBridge hash is updated as a present-day anchor only, not attributed to any historical engine.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/server/era/EraMysteriousCaveBattle.h": "e8502001d939a6de8e83834b5be10e5502e9c2265e920973f179ae5fef29001e",
+        "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "684ed60efab7c0d1734c3925e0d69e45c82a55935d141b40ed430ce1c17cfa16",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876",
+        "work/vcmi-wasm/lib/spells/effects/Timed.cpp": "f417b488e25ddf6463f3a1c4b1d9c59ccd678b025436df2ee08be280da42f130",
+        "work/vcmi-wasm/lib/era/EraWeakness45Generic.h": "873ba720a6a01458442b1a220509e3a56b2b1627b8e490603f1df3b9a19717e5"
+      },
+      "coveredBy": [
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/playerRolesPreserved",
+          "expected": true,
+          "assertion": "Existing Final11 role restoration coverage retained with its original engine hash; no claim of a Final12 runtime replay."
+        },
+        {
+          "file": "integration-mobile11.json",
+          "pointer": "/actualResumedTurnTransitionsValidated",
+          "expected": true,
+          "assertion": "Existing actual solo/hotseat transitions from Final11; Cave-only source anchors unchanged on12."
+        }
+      ],
+      "outsideScopeChange": {
+        "file": "outputs/wog-priorities-0.4.147/adventure167/source-contracts/weakness45-p276-p284.json",
+        "sha256": "870c9aab45a06a023e4654b4862c87981e9e5f0ac60c2ed3190080754a060bdb",
+        "kind": "static source contract; native Weakness validation is separate"
+      }
+    },
+    {
+      "engineSha256": "45c017d97edf656320949d21c4b53d84b133e4b9b47c04d47d4eee6988af4162",
+      "finalEngineSha256": "b6a786523601c42d9f696543122051859a5df3e663ff447a217dcd98b3b512bf",
+      "reviewed": true,
+      "scope": "Explicit Final12\u2192Final13 code continuity for Cave-only behavior; no retained Cave native report runs on12 and no new Cave runtime replay is claimed.",
+      "notes": "Build coordination identifies the only13 engine change as the MobileBridge siegeTarget DTO predicate (literal catapult key\u2192CATAPULT bonus). All recorded Cave implementation/rules/battle anchors were checked unchanged. The condition affects siege wall targeting, outside the Cave scenarios retained here; separate native siege validation and integration are owned elsewhere. This review does not claim global binary equivalence, nor reattribute historical report hashes to13.",
+      "currentSourceHashes": {
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6",
+        "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.h": "816bac17ed027ef32fd98efaeec6c9d6e436a3e47684393f63e0a89fbdb7f14e",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveRules.h": "a935390957b69df6144f65cf676d49c81b234bf16caac655a1baa069caf9d333",
+        "work/vcmi-wasm/lib/era/EraMysteriousCaveDemolition.h": "42b71649ceae24ccaacfd990301b0e162bdd547d3a623796b4d32ee6d48a46e2",
+        "work/vcmi-wasm/server/era/EraMysteriousCaveBattle.h": "e8502001d939a6de8e83834b5be10e5502e9c2265e920973f179ae5fef29001e",
+        "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "684ed60efab7c0d1734c3925e0d69e45c82a55935d141b40ed430ce1c17cfa16",
+        "work/vcmi-wasm/client/MobileBridge.cpp": "6ca12f4cd32b657cd7a5fe4d05b2867d98e872a585fc87c1b060feb5de36a876",
+        "work/vcmi-wasm/lib/spells/effects/Timed.cpp": "f417b488e25ddf6463f3a1c4b1d9c59ccd678b025436df2ee08be280da42f130",
+        "work/vcmi-wasm/lib/era/EraWeakness45Generic.h": "873ba720a6a01458442b1a220509e3a56b2b1627b8e490603f1df3b9a19717e5"
+      }
+    }
+  ],
+  "attestations": {
+    "saveReloadValidated": {
+      "reviewed": true,
+      "scope": "Real native save/reload for pooled Builder, old-key migration39/54, three blessing end bounds and nine reconstructed factions; reviewer attestation based on retained fields plus executed harness assertions, not an invented engine boolean.",
+      "evidence": [
+        {
+          "file": "pool-and-migration.json",
+          "pointer": "/report/extras/builderPool/passed",
+          "expected": true,
+          "assertion": "Harness-derived pass, not an engine saveReloadValidated flag: cave185-extras.mjs line37 calls save/close/boot(bytes) on day4 while the Builder is dismissed, then continues counter assertions and real rehire at line38."
+        },
+        {
+          "file": "pool-and-migration.json",
+          "pointer": "/report/extras/legacyMigration39/passed",
+          "expected": true,
+          "assertion": "Harness-derived pass: line39 boots the retained old native39 save, observes counter7, advances actual day2 and asserts canonical version2/counter6."
+        },
+        {
+          "file": "pool-and-migration.json",
+          "pointer": "/report/extras/legacyMigration54/passed",
+          "expected": true,
+          "assertion": "Harness-derived pass: the same line39 loop actually loads old native54 save and checks post-load migration/counter progression."
+        },
+        {
+          "file": "blessing-bounds.json",
+          "pointer": "/report/extras/blessingBounds46/passed",
+          "expected": true,
+          "assertion": "Harness-derived pass: lines79..81 save native state on day7, close page, boot(saved), and assert XP/resources/movement equal before continuing through days8/9. Report contains observed payments but no separate native reload flag."
+        },
+        {
+          "file": "blessing-bounds.json",
+          "pointer": "/report/extras/blessingBounds47/passed",
+          "expected": true,
+          "assertion": "Harness-derived pass: lines79..81 save native state on day7, close page, boot(saved), and assert XP/resources/movement equal before continuing through days8/9. Report contains observed payments but no separate native reload flag."
+        },
+        {
+          "file": "blessing-bounds.json",
+          "pointer": "/report/extras/blessingBounds48/passed",
+          "expected": true,
+          "assertion": "Harness-derived pass: lines79..81 save native state on day7, close page, boot(saved), and assert XP/resources/movement equal before continuing through days8/9. Report contains observed payments but no separate native reload flag."
+        },
+        {
+          "file": "factions9.json",
+          "pointer": "/report/extras/rebuildFactions/8/key",
+          "expected": "core:conflux",
+          "assertion": "The nine-row loop at line57 saves each reconstructed town, closes/boots its native save, then asserts the loaded townFaction equals the pre-save value before checkpointing. The last retained row plus overall passed indicates all preceding reload assertions completed; row itself is not a native reload flag."
+        },
+        {
+          "file": "factions9.json",
+          "pointer": "/passed",
+          "expected": true,
+          "assertion": "Overall harness success occurs only after all nine faction save/reload assertions have completed. No saveReloadValidated boolean is present in the native report."
+        }
+      ]
+    }
+  },
+  "reviewProvenance": {
+    "kind": "manual scoped continuity review",
+    "historicalSourceDigestSetsRetained": false,
+    "currentSourceHashesMeaning": "Present working-tree source bytes reviewed now; they are not asserted to be historical build inputs.",
+    "harness": {
+      "file": "work/browser-tests/cave185-extras.mjs",
+      "sha256": "370ca0af715f00bf367ed641fba4111f8548dc078d862c131e76d29b0fb5b999",
+      "historicalHarnessDigestRetained": false,
+      "meaning": "Current assertion locations explaining the retained run outcomes; not a claim of an archived byte-identical historical harness."
+    },
+    "revisitBoundary": "remote-visits7.json records physical no-repeat visits after remote rewards and a second Cave visit after authored save rearming. rewards45.json weekly reset verifies day8 availability counters, not a subsequent naturally reset Cave reward. No broad weekly-Cave revisit attestation is made.",
+    "limits": [
+      "Historical reports are scoped observations, not an exhaustive branch/hero/faction matrix or a current-engine replay of every reward.",
+      "Remote physical visits record no additional stats/cost after native visited markers. No independent positive-eligibility control for every physical object is retained in these reports.",
+      "Builder pool scenario checks counter state, actual rehire, specialty presentation and removal of suppression marker; it does not independently sample Ballista combat stats after restoration."
+    ],
+    "final11IntegrationSource": {
+      "file": "outputs/wog-priorities-0.4.147/adventure167/integration-mobile11/result.json",
+      "sha256": "24ffd6ae76be68ff966c1885b4e00bde27b5b399e5a92fe874120ee1919534d3",
+      "copiedTo": "integration-mobile11.json",
+      "byteForByteCopy": true,
+      "scope": "Local mobile saved names/roles and real solo/hotseat turn transitions; no full Cave matrix rerun."
+    },
+    "currentTouchLayoutEvidence": {
+      "file": "outputs/wog-priorities-0.4.147/adventure167/mobile-builder/source-provenance.json",
+      "sha256": "911a7722dbe169bc3d909f1c257446a1402e9aab547d5b9047ff2850b576aefe",
+      "scope": "Real CSS plus CDP touch gestures in six viewports; no native engine rerun or new CSS override."
+    }
+  }
+}

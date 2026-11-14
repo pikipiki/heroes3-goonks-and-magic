@@ -1,0 +1,34 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_155": {
+        "name": "Green Dragon Nest",
+        "creatures": [
+          [
+            "tum-era:eraCreature341"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw58.def",
+            "mask": [
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVVVV",
+              "VVBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

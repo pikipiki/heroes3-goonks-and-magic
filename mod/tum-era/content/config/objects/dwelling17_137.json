@@ -1,0 +1,32 @@
+{
+  "core:creatureGeneratorCommon": {
+    "types": {
+      "eraDwelling17_137": {
+        "name": "Quaggy Relic",
+        "creatures": [
+          [
+            "tum-era:eraCreature311"
+          ]
+        ],
+        "guards": [],
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/Crdw40.def",
+            "mask": [
+              "VVV",
+              "VVV",
+              "VVV",
+              "VAB"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "dataOnly": true,
+  "changedSourceIds": [
+    309,
+    310
+  ],
+  "before": {
+    "content/config/source-dwelling-actors.candidate.json": "0e988b39968f0568d27f8ebefceec3ecc2178bc21c0b45f8930a8aa73a3096d2",
+    "registry-patches.json": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+    "union-review.json": "25100cbf5ff1cc2decea1626c73f7d0fb1bab6579e788f81458bbbf6b5b9af07"
+  },
+  "after": {
+    "content/config/source-dwelling-actors.candidate.json": "04126e9a3cd6b4c02c96c90c6d1865ba067f61f2b2be42e36089777b76ba8c82",
+    "registry-patches.json": "29b643471cf5ec10ab3ab9e4496f6a293e3ee08f0f04044cd37050571871d2c7",
+    "union-review.json": "adb97f959977218ec02cc940a275977bb3abd2992058ac0610c60ec68b475f60"
+  },
+  "definitions": {
+    "eraCreature309": {
+      "beforeSha256": "0da42671175e8a44d8b3993a0fa885cb0944d1918c64e5372ab442e9543744cb",
+      "afterSha256": "c283cb7ba6f9456344a3f66054c2559a001e5c538db51cebf66719775a4055b0"
+    },
+    "eraCreature310": {
+      "beforeSha256": "48c739f04339baa0b1284659fd211c1cb934b73736796d1a0e4e45a24290ce78",
+      "afterSha256": "8c619e38c90450e4e0e49e49556e6103f1cd81421bc8d878d602fc123a5586a9"
+    }
+  },
+  "profilesUnchanged": true,
+  "engineChanged": false,
+  "nativeValidated": false
+}

@@ -147,6 +147,14 @@ void ApplyGhNetPackVisitor::visitDisbandCreature(DisbandCreature & pack)
 	result = gh.disbandCreature(pack.id, pack.pos);
 }
 
+void ApplyGhNetPackVisitor::visitCaveBuilderAction(CaveBuilderAction & pack)
+{
+ gh.throwIfWrongOwner(connection,&pack,pack.hero);
+ gh.throwIfWrongOwner(connection,&pack,pack.town);
+ gh.throwIfPlayerNotActive(connection,&pack);
+ result=gh.caveBuilderAction(pack.hero,pack.town,pack.operation,pack.selection,pack.option);
+}
+
 void ApplyGhNetPackVisitor::visitBuildStructure(BuildStructure & pack)
 {
 	gh.throwIfWrongOwner(connection, &pack, pack.tid);

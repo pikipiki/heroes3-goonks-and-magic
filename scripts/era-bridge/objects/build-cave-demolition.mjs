@@ -1,0 +1,10 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import {readEraArchive} from '../resources.mjs';
+const [archivePath,outputPath]=process.argv.slice(2);
+if(!archivePath||!outputPath)throw Error('STOCK_ARCHIVE OUTPUT_HEADER required');
+const archive=readEraArchive(fs.readFileSync(archivePath));
+const b=archive.extract('ztbuild.txt');
+const common=archive.extract('ztcommn.txt').toString('latin1').split(/\r?\n/).map(line=>line.split('\t'));
+if(common[2].slice(1).filter(Boolean).map(Number).join(',')!=='0,1000,2000,5000'||Number(common[4][1])!==10000)throw Error('Unexpected original demolition common values');
+const rows=b.toString('latin1').split(/\r?\n/).map(x=>x.split('\t')).filter(x=>/^\d+$/.test(x[0])&&x.length>=13);if(rows.length!==396)throw Error(rows.length);
+let out='#pragma once\n#include <array>\n#include <cstdint>\nnamespace era {\n// Original hmm35wog.pac::ztbuild.txt SHA256 '+crypto.createHash('sha256').update(b).digest('hex')+'\n// Generated from all 9 factions × 44 buildings; dependencies index source building IDs.\nstruct CaveDemolitionRule { std::array<int,6> salvage; int gold; std::uint64_t dependencies; };\ninline constexpr std::array<std::array<CaveDemolitionRule,44>,9> caveDemolitionRules = {{\n';
+for(let f=0;f<9;f++){out+=' {{\n';for(let i=0;i<44;i++){let r=rows[f*44+i];if(+r[0]!==i||! /^[01]{44}$/.test(r[10]))throw Error('row');let mask=0n;for(let j=0;j<44;j++)if(r[10][j]==='1')mask|=1n<<BigInt(j);out+='  {{{'+r.slice(1,7).map(Number).join(',')+'}},'+Number(r[9])+',UINT64_C(0x'+mask.toString(16)+')},\n';}out+=' }},\n';}out+='}};\n// Effective surcharge loaded from original ztcommn.txt, expanded to ten by Cave CD:D10.\ninline constexpr std::array<int,10> caveDemolitionSurcharges={{0,1000,2000,5000,0,0,0,0,0,0}};\n}\n';fs.writeFileSync(outputPath,out);

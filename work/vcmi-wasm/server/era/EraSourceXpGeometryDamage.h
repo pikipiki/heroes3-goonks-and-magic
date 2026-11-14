@@ -15,11 +15,12 @@
 #include "../../lib/battle/CObstacleInstance.h"
 #include "../../lib/networkPacks/PacksForClientBattle.h"
 #include "../../lib/spells/TargetCondition.h"
+#include "EraSourceXpEarthquake.h"
 namespace era_compat_server
 {
 inline bool supportsXpGeometryDamage(int spell)
 {
-    switch(spell){case 10:case 11:case 13:case 16:case 17:case 19:case 21:case 22:case 66:case 67:case 68:return true;default:return false;}
+    switch(spell){case 10:case 11:case 13:case 14:case 16:case 17:case 19:case 21:case 22:case 25:case 66:case 67:case 68:return true;default:return false;}
 }
 inline void initializeXpElementalBookkeeping(CGameHandler & handler,const CBattleInfoCallback & battle)
 {
@@ -37,6 +38,8 @@ inline int queryXpGeometryDamage(const CBattleInfoCallback & battle,const CStack
     era_compat::ConfluxSideScope current(currentSide,1);
     era_compat::ConfluxResistanceScope side(true,querySide);
     if(!era_compat::sourceSpellContextAllows(battle,target,spell))return 0;
+    //44A384 checks original UNDEAD before Orb negation or racial resistance.
+    if(spellId==25&&!target->hasBonusOfType(BonusType::UNDEAD))return 0;
     // XP5A8950 ignores physical/friendly side; do not invoke smart ownership
     // target filters or the source Faerie/CFG FLOAT prequery here.
     era_compat::ExperienceAttackCaster ability(actor,battle.sideToPlayer(querySide),3);
@@ -137,6 +140,7 @@ inline void castXpGeometryDamage(CGameHandler & handler,const CBattleInfoCallbac
     if(!supportsXpGeometryDamage(spell)||!actor||!target||mastery<0||mastery>3)
         throw std::runtime_error("Invalid source XP geometry/damage dispatch");
     era_compat::ConfluxSideScope current(currentSide,1);
+    if(spell==14){castSourceXpEarthquake(handler,battle,actor,mastery);return;}
     if(spell>=66&&spell<=68){xpElementalSummon(handler,battle,actor,spell,mastery,power,currentSide);return;}
     if(spell==10||spell==11||spell==13)
     {

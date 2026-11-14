@@ -176,6 +176,7 @@ public:
 
 	/// Attempts to access hero of specified identity in pool. Returns nullptr on failure
 	CGHeroInstance * tryGetFromHeroPool(HeroTypeID hero);
+	const CGHeroInstance * tryGetFromHeroPool(HeroTypeID hero) const;
 
 	/// Returns list of identities of heroes currently present in pool
 	std::vector<HeroTypeID> getHeroesInPool() const;

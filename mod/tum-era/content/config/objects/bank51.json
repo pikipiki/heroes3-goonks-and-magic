@@ -1,0 +1,367 @@
+{
+  "core:creatureBank": {
+    "types": {
+      "eraBank51": {
+        "name": "Legendary Dragon Utopia",
+        "templates": {
+          "base0": {
+            "animation": "tum-era/objects/avsutop3.def",
+            "mask": [
+              "VVVVVVV",
+              "VVVVVVV",
+              "VBBBBBB",
+              "VBBBBBB",
+              "VVVBBAV"
+            ],
+            "visitableFrom": [
+              "---",
+              "+-+",
+              "+++"
+            ],
+            "zIndex": 0
+          }
+        },
+        "visitMode": "once",
+        "selectMode": "selectFirst",
+        "guardsLayout": "eraBank51MixedLayout",
+        "onGuardedMessage": "You approach an imposing Dragon Utopia, in the distance you see that Legendary Dragons live there that in your life you would have imagined living in a massive condominium. Do you want to test your powerful skills in this extreme place?",
+        "onVisitedMessage": 33,
+        "rewards": [
+          {
+            "mapDice": 0,
+            "appearChance": {
+              "min": 0,
+              "max": 30
+            },
+            "guards": [
+              {
+                "type": "core:azureDragon",
+                "amount": 5
+              },
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 8
+              },
+              {
+                "type": "tum-era:eraCreature268",
+                "amount": 2
+              },
+              {
+                "type": "tum-era:eraCreature339",
+                "amount": 6
+              },
+              {
+                "type": "tum-era:eraCreature253",
+                "amount": 1
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:wood",
+                "amount": 15
+              },
+              {
+                "type": "core:mercury",
+                "amount": 15
+              },
+              {
+                "type": "core:ore",
+                "amount": 15
+              },
+              {
+                "type": "core:sulfur",
+                "amount": 15
+              },
+              {
+                "type": "core:crystal",
+                "amount": 15
+              },
+              {
+                "type": "core:gems",
+                "amount": 20
+              },
+              {
+                "type": "core:gold",
+                "amount": 50000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 10
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 1,
+            "appearChance": {
+              "min": 30,
+              "max": 60
+            },
+            "guards": [
+              {
+                "type": "core:azureDragon",
+                "amount": 10
+              },
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 16
+              },
+              {
+                "type": "tum-era:eraCreature268",
+                "amount": 4
+              },
+              {
+                "type": "tum-era:eraCreature339",
+                "amount": 12
+              },
+              {
+                "type": "tum-era:eraCreature253",
+                "amount": 2
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:wood",
+                "amount": 25
+              },
+              {
+                "type": "core:mercury",
+                "amount": 25
+              },
+              {
+                "type": "core:ore",
+                "amount": 25
+              },
+              {
+                "type": "core:sulfur",
+                "amount": 25
+              },
+              {
+                "type": "core:crystal",
+                "amount": 25
+              },
+              {
+                "type": "core:gems",
+                "amount": 25
+              },
+              {
+                "type": "core:gold",
+                "amount": 75000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 10
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 2,
+            "appearChance": {
+              "min": 60,
+              "max": 90
+            },
+            "guards": [
+              {
+                "type": "core:azureDragon",
+                "amount": 20
+              },
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 32
+              },
+              {
+                "type": "tum-era:eraCreature268",
+                "amount": 8
+              },
+              {
+                "type": "tum-era:eraCreature339",
+                "amount": 24
+              },
+              {
+                "type": "tum-era:eraCreature253",
+                "amount": 4
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:wood",
+                "amount": 35
+              },
+              {
+                "type": "core:mercury",
+                "amount": 35
+              },
+              {
+                "type": "core:ore",
+                "amount": 35
+              },
+              {
+                "type": "core:sulfur",
+                "amount": 35
+              },
+              {
+                "type": "core:crystal",
+                "amount": 35
+              },
+              {
+                "type": "core:gems",
+                "amount": 35
+              },
+              {
+                "type": "core:gold",
+                "amount": 90000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 20
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          },
+          {
+            "mapDice": 3,
+            "appearChance": {
+              "min": 90,
+              "max": 100
+            },
+            "guards": [
+              {
+                "type": "core:azureDragon",
+                "amount": 40
+              },
+              {
+                "type": "tum-era:eraCreature258",
+                "amount": 64
+              },
+              {
+                "type": "tum-era:eraCreature268",
+                "amount": 16
+              },
+              {
+                "type": "tum-era:eraCreature339",
+                "amount": 48
+              },
+              {
+                "type": "tum-era:eraCreature253",
+                "amount": 8
+              },
+              {
+                "type": "tum-era:necrossDragon",
+                "amount": 4
+              }
+            ],
+            "resources": [
+              {
+                "type": "core:wood",
+                "amount": 50
+              },
+              {
+                "type": "core:mercury",
+                "amount": 50
+              },
+              {
+                "type": "core:ore",
+                "amount": 50
+              },
+              {
+                "type": "core:sulfur",
+                "amount": 50
+              },
+              {
+                "type": "core:crystal",
+                "amount": 50
+              },
+              {
+                "type": "core:gems",
+                "amount": 50
+              },
+              {
+                "type": "core:gold",
+                "amount": 120000
+              },
+              {
+                "type": "wake-of-gods.mithril:mithril",
+                "amount": 30
+              }
+            ],
+            "artifacts": [
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              },
+              {
+                "class": "RELIC"
+              }
+            ]
+          }
+        ],
+        "sounds": {
+          "visit": [
+            "tum-era/objects/DRAGON.wav"
+          ],
+          "ambient": [
+            "tum-era/objects/LOOPDRAG.wav"
+          ]
+        },
+        "rmg": {
+          "value": 15000,
+          "rarity": 10
+        }
+      }
+    }
+  }
+}

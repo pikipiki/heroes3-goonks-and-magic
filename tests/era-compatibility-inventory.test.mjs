@@ -35,6 +35,14 @@ test('legacy bytes keep distinct code hashes and UTF8 BOM does not hide a trigge
   assert.equal(bom.triggerCount,1);
 });
 
+test('post-visit ERM callbacks have their own source scope rather than joining the prior event',()=>{
+  const result=inventoryErm('!?OB63/56;\n!!VRv1:S1;\n!$OB63/56&1000;\n!!VRv2:S2;','cave.erm');
+  assert.equal(result.triggerCount,1);
+  assert.equal(result.postTriggerCount,1);
+  assert.deepEqual(result.events.map(e=>e.kind),['trigger','post-trigger']);
+  assert.deepEqual(result.events.map(e=>e.commandCount),[1,1]);
+});
+
 const example=()=>inventoryErm('!?FU(Same);\n!!UN:C123/4/5;','one.erm').events;
 const mapping=()=>({id:'named-part',file:'one.erm',line:1,codeSha256:example()[0].source.codeSha256,
   status:'partial',scope:'One named behavior only',implementation:['native.cpp'],evidence:['proof.json']});
@@ -62,6 +70,8 @@ test('committed compatibility inventory accounts for every row and regenerates i
   assert.equal(report.fullEraCompatibility,false);
   assert.equal(report.summary.sourceScripts,109);
   assert.equal(report.summary.triggerDeclarations,484);
+  assert.equal(report.summary.postTriggerDeclarations,1);
+  assert.equal(report.events.filter(e=>e.kind==='post-trigger').length,1);
   assert.equal(report.events.filter(e=>e.kind==='trigger').length,484);
   assert.equal(new Set(report.events.map(e=>e.id)).size,report.events.length);
   assert.equal(report.experienceRules.filter(r=>r.status==='validated-source-contract').length,43);

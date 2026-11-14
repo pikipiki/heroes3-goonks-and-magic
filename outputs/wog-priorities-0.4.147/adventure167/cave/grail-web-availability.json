@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "report": {
+    "extras": {
+      "grailAvailability": {
+        "passed": true,
+        "initialAvailable": false,
+        "afterDependencies": true,
+        "recoveredViaWeb": true,
+        "gold": 11000
+      },
+      "engineSHA256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901"
+    },
+    "engineBytesVerified": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "39734a8d29118603",
+      "wasm": "vcmiclient.872f8f6104d40b66.wasm",
+      "sha256": "9b1f44cedbb2ff2d2cb327c50018cb02117b2ec03bf4de557ac73d7bd03af901",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216,
+      "privateValidation": true,
+      "loaderSha256": "fb98dbca05ce631cee448aaf632eabc212c23110feaeee249fe9f22926cef923"
+    }
+  }
+}
