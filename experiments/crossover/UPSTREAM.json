@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/heiner/openbw.git",
+  "commit": "469d2037e2fd03085dac4729912f4188bc2a778b",
+  "sourceTreeSha256": "4ded02c19dd23bc0507b1634ee11bc8728fa69cdb7bec16e5a6bb4b3fca96cf7",
+  "sourceLocation": "vendor/openbw",
+  "license": "Unspecified upstream; no license grant is asserted here.",
+  "reuseAssumption": "Development continues at the user’s explicit request to assume authorization; this does not establish an upstream license.",
+  "sdk": "https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-33",
+  "map": "Weave_v1.scx, Alexandre Coderre-Chabot, CC BY 4.0; see vendor/openbw/web/maps/ATTRIBUTION.md",
+  "compilerVersion": "clang version 22.1.0-wasi-sdk (https://github.com/llvm/llvm-project 4434dabb69916856b824f68a64b029c67175e532)",
+  "sdkArchive": {
+    "url": "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-33/wasi-sdk-33.0-arm64-macos.tar.gz",
+    "sha256": "85c997a2665ead91673b5bb88b7d0df3fc8900df3bfa244f720d478187bbdc78"
+  }
+}

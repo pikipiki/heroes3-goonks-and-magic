@@ -1,9 +1,11 @@
+import type {CrossoverWindow, NativeSample, HeroesObservation} from './native-bridge.js';
 /** Read-only v1 bridge. No battle execution or state mutation is implemented. */
 export type EngineId = 'heroes' | 'starcraft';
 export type EngineStatus = {
   engine: EngineId;
   state: 'unavailable' | 'waiting' | 'observed';
   reason: string;
+  native?: NativeSample;
   observation?: { sequence: number; mode: string; receivedAt: number };
 };
 export interface EngineAdapter {
@@ -84,11 +86,43 @@ export class HeroesObserver implements EngineAdapter {
     this.sequence = 0;
   }
 }
-export class UnavailableStarCraft implements EngineAdapter {
+export class StarCraftObserver implements EngineAdapter {
   readonly id = 'starcraft' as const;
-  status(): EngineStatus {
-    return {engine: this.id, state: 'unavailable',
-      reason: 'Intégration suspendue : licence de réutilisation OpenBW non établie.'};
+  private target?: CrossoverWindow;
+  private native?: NativeSample;
+  private sequence = 0;
+  private receivedAt = 0;
+  constructor(private onChange: (status: EngineStatus) => void = () => {}) {}
+  private record = (value: unknown): void => {
+    if (!value || typeof value !== 'object') return;
+    const v = value as Record<string, unknown>;
+    if (!Number.isSafeInteger(v.frame) || Number(v.frame) < 0 || !Number.isSafeInteger(v.checksum) || !Number.isSafeInteger(v.outcome) ||
+        Number(v.checksum) < 0 || Number(v.checksum) > 0xffffffff || ![0, 1, 2].includes(Number(v.outcome))) return;
+    this.native = {frame: Number(v.frame), checksum: Number(v.checksum), outcome: Number(v.outcome)};
+    this.sequence++; this.receivedAt = Date.now();
+    this.onChange(this.status());
+  };
+  private listener = (event: Event): void => {
+    const detail = (event as CustomEvent).detail;
+    if (detail?.version === 1) this.record(detail);
+  };
+  attach(target: CrossoverWindow): void {
+    this.dispose(); this.target = target;
+    target.addEventListener('openbw-state', this.listener);
+    if (target.openbwCrossover) this.record(target.openbwCrossover.sample());
   }
-  dispose(): void {}
+  forwardHeroes(observation: HeroesObservation): NativeSample {
+    const api = this.target?.openbwCrossover;
+    if (!api) throw Error('StarCraft attend ses archives et son démarrage.');
+    return api.receiveHeroes(observation);
+  }
+  status(): EngineStatus {
+    return {engine: this.id, state: this.native ? 'observed' : 'waiting',
+      reason: this.native ? 'État natif OpenBW reçu.' : 'Importe les archives puis lance StarCraft.',
+      ...(this.native ? {native: {...this.native}, observation: {sequence: this.sequence, mode: 'running', receivedAt: this.receivedAt}} : {})};
+  }
+  dispose(): void {
+    this.target?.removeEventListener('openbw-state', this.listener);
+    this.target = undefined; this.native = undefined; this.sequence = 0; this.receivedAt = 0;
+  }
 }

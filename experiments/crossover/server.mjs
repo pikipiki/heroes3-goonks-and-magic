@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root = fileURLToPath(new URL('./public/', import.meta.url));
-const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css'};
+const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.wasm':'application/wasm','.json':'application/json'};
 const upstream = new URL(process.env.HEROES_ORIGIN || 'http://127.0.0.1:8765');
 if (upstream.protocol !== 'http:') throw Error('Preview upstream must use HTTP');
 http.createServer((req, res) => {

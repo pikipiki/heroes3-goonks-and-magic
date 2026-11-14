@@ -3,11 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node scripts/generate-host.mjs",
     "test": "node --test tests/*.test.mjs",
     "start": "node server.mjs",
     "package": "node package.mjs",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs",
+    "build:engine": "node scripts/build-engine.mjs",
+    "test:starcraft-browser": "node tests/starcraft-browser.mjs",
+    "test:real-game": "node tests/real-game-browser.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3"

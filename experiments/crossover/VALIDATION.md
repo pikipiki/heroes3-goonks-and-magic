@@ -1,23 +1,21 @@
 # Validation exécutée — 14 novembre 2026
 
-Résultats du checkout indépendant, basé sur `062afb00750ff3833b8251b467718f31dcc04413` :
-
-| Contrôle | Résultat / portée |
+| Contrôle | Résultat / portée exacte |
 | --- | --- |
-| `npm ci --prefix experiments/crossover` puis `npm run build --prefix experiments/crossover` | TypeScript 5.9.3 depuis le lockfile ; compilation stricte réussie |
-| `npm test --prefix experiments/crossover` | 4 tests réussis : statuts dans les deux directions, contrats invalides/sessions périmées, observation/désinscription/reconnexion, inscription explicite |
-| `npm test` à la racine | 737 tests : 691 réussis, 46 ignorés, aucun échec. Certains contrôles nécessitent des données source privées absentes de ce checkout. |
-| `npm run prepare:web` | Artefacts moteur et données reconstitués depuis les sources versionnées |
-| `GOONK_TEST_ORIGIN=http://127.0.0.1:8778 npm run build:web` puis `npm run verify:web` | Construction statique et vérification de l’ABI, des données et des empreintes réussies |
-| `node experiments/crossover/package.mjs` | Lanceur ajouté ; packaging idempotent, CSP limitée à `/crossover/*` dans les en-têtes générés |
-| Chromium, bundle statique sur 8778 | Véritable VCMI WebAssembly démarré, premier événement natif `menu` observé ; commande native `20` exécutée, transition réelle vers le lobby et nouvel événement observé ; arrêt et rechargement du lanceur réussis, aucune erreur JS de page |
-| Chromium, préfixe `/heroes-goonk/` sur 8779 | Lanceur, modules et liens relatifs accessibles ; moteur non lancé dans ce contrôle de préfixe |
-| 390×844, 844×390 et 1280×900 | Lanceur sans débordement horizontal, captures inspectées |
+| TypeScript 5.9.3 strict + génération du port adapté | Réussite ; pas de modification des sources C++ VCMI ou OpenBW |
+| Build natif OpenBW, WASI-SDK 33.0 / Clang 22.1.0 | Réussite, module 1 379 622 octets ; deux builds locaux identiques : `f2a4d72a8b9a6920a3d390d548432d655395e7d7548a07d19053f7d28d68231f` |
+| 10 tests du laboratoire | Réussite : enveloppes/sessions, observations/désinscription, validation MPQ, adaptation de message natif sur fixtures de contrat, vrai module WASM instancié avec WASI et ABI vérifiée |
+| `npm test` à la racine | 737 tests : 691 réussis, 46 ignorés, aucun échec ; certains contrôles demandent des sources privées absentes de ce checkout |
+| `npm run prepare:web`, build statique et `npm run verify:web` | Réussite pour les artefacts existants Heroes ; ABI, données et empreintes vérifiées. Packaging expérimental ajouté ensuite et vérification du site répétée avec succès |
+| Chromium : deux interfaces chargées | Véritable VCMI démarré ; événement natif `menu` reçu ; commande native 20 ouvre le lobby ; nouvel événement observé ; arrêt et rechargement du lanceur réussis. OpenBW reste à l’écran d’import sans MPQ |
+| Chromium : OpenBW et import local | Vrai WASM téléchargé et compilé avec CSP active ; import partiel/complet, persistance IndexedDB après reload, rejet d’import invalide sans perte des anciennes archives, blocage sur empreinte altérée et récupération après réimportation |
+| Formats 390×844, 844×390, 1024×768 / 1280×900 | Lanceur et panneau d’import accessibles sans débordement horizontal ; captures inspectées |
+| Réseau pendant l’import | Aucune requête vers un tiers, aucun upload et aucune erreur JS de page |
 
-Les résultats navigateur condensés sont versionnés dans `evidence/`. Les captures et journaux locaux complets sont dans `/private/tmp/heroes-crossover-isolated-review/` et `/private/tmp/heroes-crossover-prefix-review/`. Le test native utilise le repli temporaire existant du stockage pour éviter d’importer tout OPFS dans un contexte éphémère. Il ne remplace pas la simulation, ne réinjecte pas d’état et ne désactive pas CSP. Son audio est coupé par le helper du dépôt.
+Les fixtures d’import ne contiennent que des en-têtes MPQ synthétiques, jamais utilisés pour lancer la simulation. Les fixtures d’adaptateur sont explicitement identifiées comme telles. L’instanciation du vrai WASM vérifie un réacteur non initialisé ; elle ne prouve pas une partie StarCraft. Les tests navigateur sont silencieux. Le test VCMI utilise le repli temporaire de stockage existant, sans désactiver CSP ni injecter d’état de simulation.
 
-L’essai initial dans le checkout partagé donnait 707 réussites, 33 ignorés et 2 échecs d’inventaire d’empreintes, sur des fichiers déjà modifiés par un autre travail. Les changements ont été laissés sur `main` et aucun d’eux n’est dans ce lot. Les résultats du checkout indépendant ci-dessus constituent la référence de cette branche.
+Résultats condensés : `evidence/browser-native.json` et `evidence/starcraft-import.json`. Captures/journaux locaux : `/private/tmp/heroes-crossover-two-frames-review/` et `/private/tmp/heroes-starcraft-import-review/`. Les preuves du premier lot restent dans l’historique Git.
 
-L’aperçu de développement initial a également révélé un 404 sur `vcmiclient.data.<hash>.js` ; le proxy expérimental normalise ce chemin sans modifier le serveur existant. Un test statique sur une origine locale non autorisée échouait à cause de la politique CSP existante : le build final autorise explicitement l’origine de test avec `GOONK_TEST_ORIGIN`. La politique de production est conservée.
+`tests/real-game-browser.mjs` est prêt : il exige les trois véritables MPQ, puis vérifie le démarrage des deux simulations, les événements Heroes appliqués au journal C++ OpenBW et les échantillons natifs retournés, la production d’un SCV via la carte de commandes et la sérialisation d’un replay. **Non exécuté : aucun MPQ n’est disponible dans les dossiers inspectés.** Le script a seulement passé sa vérification syntaxique. Aucune affirmation de jouabilité StarCraft ne repose sur son existence.
 
-Non vérifiés / non réalisés : recompilation C++/WASM complète avec Emscripten, partie Heroes jusqu’au combat, StarCraft interactif, échanges entre deux simulations, pertes appliquées à VCMI, sauvegarde/reprise crossover, persistance OPFS de cette intégration, Worker, WebRTC et déploiement hébergé. L’absence de licence établie pour OpenBW bloque sa réutilisation conformément aux consignes du projet.
+Restent non validés : déplacement/combat/production dans une vraie partie StarCraft, IA, échanges entre deux simulations actives, application de pertes à VCMI, sauvegarde/reprise de simulation, Workers, WebRTC, WebKit et déploiement hébergé. Le jeu Heroes n’a pas été recompilé en C++ dans ce lot. Aucun MPQ, sauvegarde personnelle ou identifiant n’est versionné.

@@ -1,44 +1,71 @@
-import {HeroesObserver, ReadonlyBridge, UnavailableStarCraft} from './bridge.js';
+import {HeroesObserver, ReadonlyBridge, StarCraftObserver} from './bridge.js';
+import type {HeroesObservation} from './native-bridge.js';
 const status = document.querySelector<HTMLElement>('#status')!;
 const detail = document.querySelector<HTMLElement>('#detail')!;
+const scStatus = document.querySelector<HTMLElement>('#sc-status')!;
+const scDetail = document.querySelector<HTMLElement>('#sc-detail')!;
+const transfer = document.querySelector<HTMLElement>('#transfer')!;
 const launch = document.querySelector<HTMLButtonElement>('#observe')!;
 const holder = document.querySelector<HTMLElement>('#engine')!;
 let bridge: ReadonlyBridge | undefined;
-let frame: HTMLIFrameElement | undefined;
+let frames: HTMLIFrameElement[] = [];
 function stop(): void {
   bridge?.dispose(); bridge = undefined;
-  frame?.remove(); frame = undefined;
+  for (const frame of frames) frame.remove(); frames = [];
   holder.hidden = true;
   status.textContent = 'Observation arrêtée.';
-  detail.textContent = 'Aucune modification des armées ou des sauvegardes.';
+  detail.textContent = 'Les armées restent gérées par VCMI.';
+  scStatus.textContent = 'StarCraft arrêté.'; scDetail.textContent = '';
+  transfer.textContent = 'Aucun échange en cours.';
   launch.disabled = false;
 }
 launch.addEventListener('click', () => {
-  stop();
-  launch.disabled = true;
-  bridge = new ReadonlyBridge(crypto.randomUUID());
-  const observer = new HeroesObserver(snapshot => {
-    status.textContent = snapshot.reason;
-    detail.textContent = `État ${snapshot.observation!.sequence} · mode ${snapshot.observation!.mode} · ${new Date(snapshot.observation!.receivedAt).toLocaleTimeString('fr-FR')}`;
-  });
-  bridge.register(observer);
-  bridge.register(new UnavailableStarCraft());
-  status.textContent = 'Chargement de Heroes Goonk…';
-  detail.textContent = 'Le premier état peut attendre la fin du chargement du moteur.';
-  holder.hidden = false;
-  frame = document.createElement('iframe');
-  frame.title = 'Heroes Goonk — observation en lecture seule';
-  frame.src = '../game.html?mobile=1';
-  frame.addEventListener('load', () => {
+  stop(); launch.disabled = true;
+  const session = crypto.randomUUID();
+  bridge = new ReadonlyBridge(session);
+  let pending: HeroesObservation | undefined, lastSent = 0, transferSequence = 0;
+  const forward = (): void => {
+    if (!pending || pending.sequence <= lastSent || starcraft.status().state !== 'observed') return;
+    // Set before calling: the native acknowledgement is dispatched synchronously.
+    lastSent = pending.sequence;
     try {
-      // Capture only the existing native bridge events in this same-origin frame.
-      observer.attach(frame!.contentWindow!);
-      status.textContent = observer.status().reason;
-    } catch {
-      status.textContent = 'Observation impossible : la page Heroes doit être sur la même origine.';
-    }
+      const native = starcraft.forwardHeroes(pending);
+      const reply = bridge!.request({version: 1, session, id: 'heroes-' + lastSent,
+        source: 'heroes', target: 'starcraft', type: 'engine.status'});
+      transfer.textContent = `Heroes #${lastSent} (${pending.mode}) → journal natif StarCraft ; retour frame ${native.frame}, empreinte ${reply.payload.native!.checksum}.`;
+    } catch (e) { transfer.textContent = String(e); }
+  };
+  const starcraft = new StarCraftObserver(snapshot => {
+    scStatus.textContent = snapshot.reason;
+    scDetail.textContent = `Frame ${snapshot.native!.frame} · empreinte ${snapshot.native!.checksum} · résultat ${snapshot.native!.outcome} (0 : partie en cours)`;
+    forward();
   });
-  holder.append(frame);
+  const heroes = new HeroesObserver(snapshot => {
+    status.textContent = snapshot.reason;
+    const observation = snapshot.observation!;
+    detail.textContent = `État ${observation.sequence} · mode ${observation.mode} · ${new Date(observation.receivedAt).toLocaleTimeString('fr-FR')}`;
+    // Publish meaningful mode transitions, not VCMI's repeated heartbeat snapshots.
+    if (pending?.mode !== observation.mode) pending = {version: 1, session, sequence: ++transferSequence, mode: observation.mode};
+    forward();
+  });
+  bridge.register(heroes); bridge.register(starcraft);
+  status.textContent = 'Chargement de Heroes Goonk…';
+  detail.textContent = 'En attente du premier événement natif.';
+  scStatus.textContent = starcraft.status().reason;
+  transfer.textContent = 'Les événements réels Heroes seront transmis après le démarrage de StarCraft.';
+  holder.hidden = false;
+  const attach = (title: string, src: string, container: string, listen: (target: Window) => void): void => {
+    const frame = document.createElement('iframe');
+    frame.title = title; frame.src = src; frames.push(frame);
+    frame.addEventListener('load', () => {
+      if (!frames.includes(frame)) return;
+      try { listen(frame.contentWindow!); }
+      catch (e) { transfer.textContent = 'Connexion aux moteurs impossible : ' + String(e); }
+    });
+    document.querySelector(container)!.append(frame);
+  };
+  attach('Heroes Goonk — moteur VCMI', '../game.html?mobile=1', '#heroes-frame', target => heroes.attach(target));
+  attach('StarCraft — moteur OpenBW', './starcraft/index.html', '#starcraft-frame', target => { lastSent = 0; starcraft.attach(target); });
 });
 document.querySelector('#stop')!.addEventListener('click', stop);
 window.addEventListener('pagehide', stop);

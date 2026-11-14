@@ -18,7 +18,7 @@ try {
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(process.env.CROSSOVER_URL || 'http://127.0.0.1:8774/crossover/');
   await page.locator('#observe').waitFor();
-  assert.equal(await page.getByRole('button',{name:'Indisponible pour le moment'}).isDisabled(),true);
+  assert.equal(await page.getByRole('link',{name:'Jouer à StarCraft'}).getAttribute('href'),'./starcraft/index.html');
   assert.equal(await page.getByRole('link',{name:'Jouer à Heroes Goonk'}).getAttribute('href'),'../game.html');
   assert.equal(await page.locator('iframe').count(),0);
   for(const viewport of [{width:390,height:844},{width:844,height:390},{width:1280,height:900}]){
@@ -26,9 +26,10 @@ try {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   }
   await page.screenshot({path:out+'/launcher.png',fullPage:true});
-  result.cases.push('Three modes rendered; StarCraft disabled; no engine loaded before action; phone/landscape/desktop fit');
+  result.cases.push('Three modes rendered; StarCraft link present; no engine loaded before action; phone/landscape/desktop fit');
   if(process.env.CROSSOVER_LAUNCHER_ONLY!=='1'){
   await page.locator('#observe').click();
+  assert.equal(await page.locator('iframe').count(),2);
   await page.waitForFunction(()=>document.querySelector('#status').textContent==='État VCMI reçu en lecture seule.',null,{timeout:180000});
   const first=await page.locator('#detail').textContent();
   assert.match(first,/mode /);

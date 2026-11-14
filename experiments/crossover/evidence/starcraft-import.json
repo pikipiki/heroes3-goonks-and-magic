@@ -1,0 +1,12 @@
+{
+  "scope": "Actual Chromium: local archive import, IndexedDB, WASM compilation. Header-only test fixtures; no simulation started.",
+  "cases": [
+    "Real OpenBW module fetched and compiled under active CSP; Start disabled without archives",
+    "Partial then complete local import updates missing archives and enables Start",
+    "IndexedDB import survives reload and integrity is rechecked",
+    "Rejected import preserves all previous archives and playable gate",
+    "Corrupted cached data blocks Start; reimport restores it",
+    "Phone/landscape/desktop import reachable; no remote request, upload or JS page error"
+  ],
+  "passed": true
+}
