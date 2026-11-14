@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none'; base-uri 'self'; frame-src 'self'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Heroes × StarCraft — laboratoire</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">HEROES GOONK · BRANCHE EXPÉRIMENTALE</p>
+      <h1>Deux univers.<br>Une passerelle à construire.</h1>
+      <p>Heroes III × StarCraft: Brood War</p>
+    </header>
+    <div class="modes">
+      <section><span class="label">01 · HEROES ENGINE</span><h2>Heroes III</h2>
+        <p>Retrouve Heroes Goonk et son moteur VCMI dans le navigateur.</p>
+        <a class="button" href="../game.html">Jouer à Heroes Goonk</a>
+      </section>
+      <section><span class="label">02 · STARCRAFT ENGINE</span><h2>StarCraft</h2>
+        <p>Le moteur OpenBW reste à intégrer après clarification de sa licence de réutilisation.</p>
+        <button disabled>Indisponible pour le moment</button>
+        <a href="https://github.com/OpenBW/openbw/issues/17" target="_blank" rel="noopener">Suivre la question de licence ↗</a>
+      </section>
+      <section><span class="label">03 · CROSSOVER BRIDGE</span><h2>Crossover</h2>
+        <p>Observe les états réels de VCMI. Les batailles StarCraft et le transfert de pertes restent à développer.</p>
+        <button id="observe">Observer Heroes</button>
+      </section>
+    </div>
+    <section class="observation" aria-label="État de la passerelle">
+      <div><h2>Observation en direct</h2><p id="status" role="status">Aucun moteur observé.</p>
+        <p id="detail">Aucun événement de simulation synthétique n’est généré.</p></div>
+      <button id="stop">Arrêter l’observation</button>
+    </section>
+    <div id="engine" hidden></div>
+    <footer>Prototype de lecture seule · Aucun résultat de combat n’est appliqué · Pas de données StarCraft distribuées</footer>
+  </main>
+</body>
+</html>
