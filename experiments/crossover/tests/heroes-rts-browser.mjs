@@ -1,4 +1,5 @@
 import {chromium} from '../../../work/browser-tests/node_modules/playwright-core/index.mjs';
+import {battleView} from '../public/shared-field.js';
 import {silenceTestAudio} from '../../../work/browser-tests/silent-audio.mjs';
 import assert from 'node:assert/strict';import fs from 'node:fs';
 const out='/private/tmp/heroes-starcraft-adventure-review';fs.mkdirSync(out,{recursive:true});
@@ -32,6 +33,7 @@ try{
  assert(initial.stacks.some(row=>row.creature==='heroes-starcraft:marine'));
  await hero.waitForFunction(()=>Number(document.querySelector('#crossover-field')?.dataset.heroesUnits)>0&&Number(document.querySelector('#crossover-field')?.dataset.starcraftUnits)>0&&document.querySelector('#crossover-field')?.dataset.background==='heroes');
  const census=await sc.evaluate(()=>window.openbwCrossover.census());
+ const view=battleView(census.units.filter(u=>u.stackId>=0),await sc.evaluate(()=>window.openbwCrossover.camera()));
  for(const row of initial.stacks.filter(row=>!row.creature.startsWith('heroes-starcraft:'))){const units=census.units.filter(unit=>unit.stackId===row.id);assert.equal(units.length,row.count);assert(units.every(unit=>unit.heroes&&unit.maxHp===row.health));}
  await page.setViewportSize({width:844,height:390});await page.waitForTimeout(200);
  const fieldBox=await hero.locator('#crossover-field').boundingBox();assert(Math.abs(fieldBox.width/fieldBox.height-1.6)<0.01,'Canvas proportions preserve touch coordinates in phone landscape');
@@ -42,7 +44,7 @@ try{
  await hero.locator('#crossover-attack').click();
  const point=await sc.evaluate(()=>{const api=window.openbwCrossover,unit=api.census().units.find(u=>u.stackId===1),layer=api.layer();return {id:unit.id,x:unit.x-layer.x,y:unit.y-layer.y};});
  const box=await hero.locator('#crossover-field').boundingBox();
- await hero.locator('#crossover-field').click({position:{x:point.x*box.width/800,y:point.y*box.height/500}});
+ await hero.locator('#crossover-field').click({position:{x:(point.x*view.zoom+view.x)*box.width/800,y:(point.y*view.zoom+view.y)*box.height/500}});
  const selection=await hero.locator('#crossover-field').getAttribute('data-selection');assert.equal(selection,initial.stacks.find(row=>row.id===1).name);report.selection=selection;save();
  await hero.locator('#crossover-field').click({position:{x:760*box.width/800,y:440*box.height/500}});
  report.afterMove=await sc.evaluate(()=>window.openbwCrossover.census());save();

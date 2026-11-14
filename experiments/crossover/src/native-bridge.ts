@@ -13,11 +13,14 @@ export type NativeBridge = {
   battle(): BattleState | null;
   attack(): void;
   start(): void;
+  camera():{x:number;y:number};
+  sprite(id:number):Uint8ClampedArray;
   layer():{pixels:Uint8ClampedArray;x:number;y:number;width:number;height:number};
   order(stack:number,x:number,y:number,attack:boolean):void;
 };
 export type CrossoverWindow = Window & {openbwCrossover?: NativeBridge};
 type NativeExports = {
+  openbw_crossover_sprite?(id:number):number;
   openbw_crossover_layer?():number;
   openbw_crossover_camera_x?():number;openbw_crossover_camera_y?():number;
   openbw_crossover_order?(stack:number,x:number,y:number,attack:number):void;
@@ -78,6 +81,12 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
     return state;
   };
   const api: NativeBridge = {
+    camera(){if(closed||!x.openbw_crossover_camera_x||!x.openbw_crossover_camera_y)throw Error('Caméra indisponible.');return {x:x.openbw_crossover_camera_x(),y:x.openbw_crossover_camera_y()};},
+    sprite(id){
+      if(closed||!x.openbw_crossover_sprite||!Number.isSafeInteger(id)||id<1||id>65535)throw Error('Sprite indisponible.');
+      const pointer=x.openbw_crossover_sprite(id);if(!pointer)throw Error('Unité indisponible.');
+      return new Uint8ClampedArray(memory.buffer,pointer,96*96*4).slice();
+    },
     layer(){
       if(closed||!x.openbw_crossover_layer)throw Error('Rendu partagé indisponible.');
       const pointer=x.openbw_crossover_layer();if(!pointer)throw Error('Bataille non initialisée.');
