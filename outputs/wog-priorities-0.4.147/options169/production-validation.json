@@ -1,0 +1,3101 @@
+{
+  "passed": true,
+  "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+  "origin": "http://127.0.0.1:8860/",
+  "engineSha256": "a787c46e666f999a1a0c6e6bca766d91142ba7bed506f7741d54a13158518248",
+  "productionOnly": true,
+  "combatOnly": false,
+  "localPreviewCspBypassed": true,
+  "maps": [
+    {
+      "name": "003-Goonks-WoG.vmap",
+      "passed": true,
+      "nativeHotseat": false,
+      "saveReloadValidated": true,
+      "saveSha256": "1970e78a9ea317bc2ac524283d6e380480cc04e216a9d15b67e4f27a5b1fba97",
+      "before": {
+        "day": 1,
+        "currentPlayer": 0,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "heroes": [
+          {
+            "id": 471,
+            "name": "Pasis",
+            "movement": 1830,
+            "mana": 10,
+            "manaLimit": 10
+          }
+        ],
+        "towns": [
+          {
+            "id": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "armies": [
+          {
+            "id": 0,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "id": 471,
+            "slots": [
+              {
+                "key": "core:pixie",
+                "count": 16,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:airElemental",
+                "count": 5,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:airElemental",
+                "count": 3,
+                "xp": 0,
+                "rank": 0
+              },
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ]
+      },
+      "resumedTurnCycle": {
+        "passed": true,
+        "roles": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "observations": [
+          {
+            "day": 1,
+            "currentPlayer": 0
+          },
+          {
+            "day": 2,
+            "currentPlayer": 0
+          }
+        ]
+      },
+      "initialAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      },
+      "reloadedAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      },
+      "afterAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      }
+    },
+    {
+      "name": "004-Goonks-WoG-Online.vmap",
+      "passed": true,
+      "nativeHotseat": true,
+      "saveReloadValidated": true,
+      "saveSha256": "fbb3c820743c9f9d1b579d5fde3c992ca4e3f18d0d807ca109471062a35eb3a1",
+      "before": {
+        "day": 1,
+        "currentPlayer": 0,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": true,
+            "name": "Player 2"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          15,
+          20000,
+          0
+        ],
+        "heroes": [
+          {
+            "id": 460,
+            "name": "Thane",
+            "movement": 1560,
+            "mana": 20,
+            "manaLimit": 20
+          }
+        ],
+        "towns": [
+          {
+            "id": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "armies": [
+          {
+            "id": 0,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "id": 460,
+            "slots": [
+              {
+                "key": "core:gremlin",
+                "count": 31,
+                "xp": 0,
+                "rank": 0
+              },
+              {
+                "key": "core:stoneGargoyle",
+                "count": 4,
+                "xp": 0,
+                "rank": 0
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ]
+      },
+      "resumedTurnCycle": {
+        "passed": true,
+        "roles": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": true,
+            "name": "Player 2"
+          }
+        ],
+        "observations": [
+          {
+            "day": 1,
+            "currentPlayer": 0
+          },
+          {
+            "day": 1,
+            "currentPlayer": 1
+          },
+          {
+            "day": 2,
+            "currentPlayer": 0
+          }
+        ]
+      },
+      "initialAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      },
+      "reloadedAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      },
+      "afterAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Local preview bypasses CSP only for127.0.0.1/localhost: this tests delivered assets and gameplay, not production CSP. Public startup must be checked separately without bypass after deployment.",
+    "No old161 fixture profile or legacy-save override is applied; that compatibility proof is retained separately.",
+    "The online-authored map runs locally in native hotseat, not a realtime network session.",
+    "This smoke does not replace combat,54actor,XP or Cave functional proofs."
+  ],
+  "engineMetadata": {
+    "memoryVersion": 1,
+    "runtimeVersion": "532a45467012637f",
+    "wasm": "vcmiclient.a787c46e666f999a.wasm",
+    "sha256": "a787c46e666f999a1a0c6e6bca766d91142ba7bed506f7741d54a13158518248",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "actualFetchedWasmSha256": "a787c46e666f999a1a0c6e6bca766d91142ba7bed506f7741d54a13158518248",
+  "manifestSha256": "a20d2ebc16f478abbccc3c38883ccf61bb90a88404682eb5af68274a42ad1dda",
+  "productionAdmissionCombat": {
+    "passed": true,
+    "map": "003-Goonks-WoG.vmap",
+    "fixtures": "none",
+    "installedAssetWrites": false,
+    "nativeMovementRevealCheatsUsed": true,
+    "nativeCheats": [
+      {
+        "action": 29,
+        "parameter": 2,
+        "command": "vcmimap"
+      },
+      {
+        "action": 29,
+        "parameter": 1,
+        "command": "vcmimove"
+      }
+    ],
+    "positiveRoundPolicyCompleted": true,
+    "observedRound": 1,
+    "battleOutcomeValidated": false,
+    "originalTarget": {
+      "instanceName": "flightCache",
+      "x": 27,
+      "y": 36,
+      "key": "core:royalGriffin",
+      "count": 20
+    },
+    "scope": "Actual delivered map/army and positive native battle round demonstrate successful BattleStart through initializeSourceXpAdmission, which loads all three production XP policies before checking participating actors. No victory, new54 ability, or new54 admission-enrollment claim. The battle is closed after the positive-round snapshot.",
+    "sourcePath": "work/vcmi-wasm/server/era/EraSourceXpAdmissionRuntime.h; BattleFlowProcessor.cpp onBattleStarted",
+    "before": {
+      "anyHeroCanMove": true,
+      "armies": [
+        {
+          "id": 0,
+          "name": "Garnison",
+          "needsLastStack": false,
+          "slots": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": 471,
+          "name": "Mirlanda",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 56,
+              "attack": 3,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 17,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 5,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 6,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 6,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "speed": 4
+            },
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "armyTownId": 0,
+      "audioMuted": false,
+      "autosaveAllowed": true,
+      "backpackCount": 0,
+      "cheatReady": true,
+      "cheatsAllowed": true,
+      "currentPlayer": 0,
+      "day": 1,
+      "equipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        },
+        {
+          "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+          "icon": 0,
+          "name": "Spell Book",
+          "slot": 17
+        }
+      ],
+      "heroHasSpellbook": true,
+      "heroId": 471,
+      "heroMana": 20,
+      "heroManaLimit": 20,
+      "heroMoving": false,
+      "heroName": "Mirlanda",
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 471,
+          "index": 0,
+          "mana": 20,
+          "manaLimit": 20,
+          "movement": 1560,
+          "movementLimit": 1560,
+          "name": "Mirlanda"
+        }
+      ],
+      "mapOverview": {
+        "height": 144,
+        "level": 0,
+        "rect": {
+          "h": 144,
+          "w": 144,
+          "x": 630,
+          "y": 26
+        },
+        "view": {
+          "h": 546,
+          "w": 594,
+          "x": 7,
+          "y": 7
+        },
+        "viewport": {
+          "h": 19,
+          "w": 20,
+          "x": 6,
+          "y": 8
+        },
+        "width": 144
+      },
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "map",
+      "movement": 1560,
+      "musicVolume": 88,
+      "onlineGame": false,
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "rect": {
+        "h": 600,
+        "w": 800,
+        "x": 0,
+        "y": 0
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        20900,
+        0
+      ],
+      "sessionState": 6,
+      "soundVolume": 88,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "turn": true,
+      "windowToken": 29876784,
+      "worldView": false
+    },
+    "afterNativeCheats": {
+      "anyHeroCanMove": true,
+      "armies": [
+        {
+          "id": 0,
+          "name": "Garnison",
+          "needsLastStack": false,
+          "slots": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": 471,
+          "name": "Mirlanda",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 56,
+              "attack": 3,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 17,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 5,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 6,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 6,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "speed": 4
+            },
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "armyTownId": 0,
+      "audioMuted": false,
+      "autosaveAllowed": true,
+      "backpackCount": 0,
+      "cheatReady": true,
+      "cheatsAllowed": true,
+      "currentPlayer": 0,
+      "day": 1,
+      "equipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        },
+        {
+          "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+          "icon": 0,
+          "name": "Spell Book",
+          "slot": 17
+        }
+      ],
+      "heroHasSpellbook": true,
+      "heroId": 471,
+      "heroMana": 20,
+      "heroManaLimit": 20,
+      "heroMoving": false,
+      "heroName": "Mirlanda",
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 471,
+          "index": 0,
+          "mana": 20,
+          "manaLimit": 20,
+          "movement": 1000000,
+          "movementLimit": 1560,
+          "name": "Mirlanda"
+        }
+      ],
+      "mapOverview": {
+        "height": 144,
+        "level": 0,
+        "rect": {
+          "h": 144,
+          "w": 144,
+          "x": 630,
+          "y": 26
+        },
+        "view": {
+          "h": 546,
+          "w": 594,
+          "x": 7,
+          "y": 7
+        },
+        "viewport": {
+          "h": 19,
+          "w": 20,
+          "x": 6,
+          "y": 8
+        },
+        "width": 144
+      },
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "map",
+      "movement": 1000000,
+      "musicVolume": 88,
+      "onlineGame": false,
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "rect": {
+        "h": 600,
+        "w": 800,
+        "x": 0,
+        "y": 0
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        20900,
+        0
+      ],
+      "sessionState": 6,
+      "soundVolume": 88,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "turn": true,
+      "windowToken": 29876784,
+      "worldView": false
+    },
+    "battle": {
+      "anyHeroCanMove": true,
+      "armies": [
+        {
+          "id": 471,
+          "name": "Mirlanda",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 56,
+              "attack": 3,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 17,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 5,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 6,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 6,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "speed": 4
+            },
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "audioMuted": false,
+      "autoCombat": false,
+      "autosaveAllowed": false,
+      "backpackCount": 0,
+      "battleCamera": {
+        "active": false,
+        "kind": "",
+        "label": "",
+        "sequence": 0
+      },
+      "battleCells": [
+        {
+          "hex": 1,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 112
+        },
+        {
+          "hex": 2,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 112
+        },
+        {
+          "hex": 3,
+          "kind": 0,
+          "reachable": false,
+          "x": 190,
+          "y": 112
+        },
+        {
+          "hex": 4,
+          "kind": 0,
+          "reachable": false,
+          "x": 234,
+          "y": 112
+        },
+        {
+          "hex": 5,
+          "kind": 0,
+          "reachable": false,
+          "x": 278,
+          "y": 112
+        },
+        {
+          "hex": 6,
+          "kind": 0,
+          "reachable": false,
+          "x": 322,
+          "y": 112
+        },
+        {
+          "hex": 7,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 112
+        },
+        {
+          "hex": 8,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 112
+        },
+        {
+          "hex": 9,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 112
+        },
+        {
+          "hex": 10,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 112
+        },
+        {
+          "hex": 11,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 112
+        },
+        {
+          "hex": 12,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 112
+        },
+        {
+          "hex": 13,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 112
+        },
+        {
+          "hex": 14,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 112
+        },
+        {
+          "hex": 15,
+          "kind": 0,
+          "reachable": false,
+          "x": 718,
+          "y": 112
+        },
+        {
+          "hex": 18,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 154
+        },
+        {
+          "hex": 19,
+          "kind": 0,
+          "reachable": false,
+          "x": 124,
+          "y": 154
+        },
+        {
+          "hex": 20,
+          "kind": 0,
+          "reachable": false,
+          "x": 168,
+          "y": 154
+        },
+        {
+          "hex": 21,
+          "kind": 0,
+          "reachable": false,
+          "x": 212,
+          "y": 154
+        },
+        {
+          "hex": 22,
+          "kind": 0,
+          "reachable": false,
+          "x": 256,
+          "y": 154
+        },
+        {
+          "hex": 23,
+          "kind": 0,
+          "reachable": false,
+          "x": 300,
+          "y": 154
+        },
+        {
+          "hex": 24,
+          "kind": 0,
+          "reachable": false,
+          "x": 344,
+          "y": 154
+        },
+        {
+          "hex": 25,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 154
+        },
+        {
+          "hex": 26,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 154
+        },
+        {
+          "hex": 27,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 154
+        },
+        {
+          "hex": 28,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 154
+        },
+        {
+          "hex": 29,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 154
+        },
+        {
+          "hex": 30,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 154
+        },
+        {
+          "hex": 31,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 154
+        },
+        {
+          "hex": 32,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 154
+        },
+        {
+          "hex": 35,
+          "kind": 1,
+          "reachable": false,
+          "x": 102,
+          "y": 196
+        },
+        {
+          "hex": 36,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 196
+        },
+        {
+          "hex": 37,
+          "kind": 0,
+          "reachable": false,
+          "x": 190,
+          "y": 196
+        },
+        {
+          "hex": 38,
+          "kind": 0,
+          "reachable": false,
+          "x": 234,
+          "y": 196
+        },
+        {
+          "hex": 39,
+          "kind": 0,
+          "reachable": false,
+          "x": 278,
+          "y": 196
+        },
+        {
+          "hex": 40,
+          "kind": 0,
+          "reachable": false,
+          "x": 322,
+          "y": 196
+        },
+        {
+          "hex": 41,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 196
+        },
+        {
+          "hex": 42,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 196
+        },
+        {
+          "hex": 43,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 196
+        },
+        {
+          "hex": 44,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 196
+        },
+        {
+          "hex": 45,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 196
+        },
+        {
+          "hex": 46,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 196
+        },
+        {
+          "hex": 47,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 196
+        },
+        {
+          "hex": 48,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 196
+        },
+        {
+          "hex": 49,
+          "kind": 0,
+          "reachable": false,
+          "x": 718,
+          "y": 196
+        },
+        {
+          "hex": 52,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 238
+        },
+        {
+          "hex": 53,
+          "kind": 0,
+          "reachable": false,
+          "x": 124,
+          "y": 238
+        },
+        {
+          "hex": 54,
+          "kind": 0,
+          "reachable": false,
+          "x": 168,
+          "y": 238
+        },
+        {
+          "hex": 55,
+          "kind": 0,
+          "reachable": false,
+          "x": 212,
+          "y": 238
+        },
+        {
+          "hex": 56,
+          "kind": 0,
+          "reachable": false,
+          "x": 256,
+          "y": 238
+        },
+        {
+          "hex": 57,
+          "kind": 0,
+          "reachable": false,
+          "x": 300,
+          "y": 238
+        },
+        {
+          "hex": 58,
+          "kind": 0,
+          "reachable": false,
+          "x": 344,
+          "y": 238
+        },
+        {
+          "hex": 59,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 238
+        },
+        {
+          "hex": 60,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 238
+        },
+        {
+          "hex": 61,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 238
+        },
+        {
+          "hex": 62,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 238
+        },
+        {
+          "hex": 63,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 238
+        },
+        {
+          "hex": 64,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 238
+        },
+        {
+          "hex": 65,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 238
+        },
+        {
+          "hex": 66,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 238
+        },
+        {
+          "hex": 69,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 280
+        },
+        {
+          "hex": 70,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 280
+        },
+        {
+          "hex": 71,
+          "kind": 1,
+          "reachable": false,
+          "x": 190,
+          "y": 280
+        },
+        {
+          "hex": 72,
+          "kind": 0,
+          "reachable": false,
+          "x": 234,
+          "y": 280
+        },
+        {
+          "hex": 73,
+          "kind": 0,
+          "reachable": false,
+          "x": 278,
+          "y": 280
+        },
+        {
+          "hex": 74,
+          "kind": 0,
+          "reachable": false,
+          "x": 322,
+          "y": 280
+        },
+        {
+          "hex": 75,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 280
+        },
+        {
+          "hex": 76,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 280
+        },
+        {
+          "hex": 77,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 280
+        },
+        {
+          "hex": 78,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 280
+        },
+        {
+          "hex": 79,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 280
+        },
+        {
+          "hex": 80,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 280
+        },
+        {
+          "hex": 81,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 280
+        },
+        {
+          "hex": 82,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 280
+        },
+        {
+          "hex": 83,
+          "kind": 0,
+          "reachable": false,
+          "x": 718,
+          "y": 280
+        },
+        {
+          "hex": 86,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 322
+        },
+        {
+          "hex": 87,
+          "kind": 0,
+          "reachable": false,
+          "x": 124,
+          "y": 322
+        },
+        {
+          "hex": 88,
+          "kind": 2,
+          "reachable": false,
+          "x": 168,
+          "y": 322
+        },
+        {
+          "hex": 89,
+          "kind": 2,
+          "reachable": false,
+          "x": 212,
+          "y": 322
+        },
+        {
+          "hex": 90,
+          "kind": 2,
+          "reachable": false,
+          "x": 256,
+          "y": 322
+        },
+        {
+          "hex": 91,
+          "kind": 2,
+          "reachable": false,
+          "x": 300,
+          "y": 322
+        },
+        {
+          "hex": 92,
+          "kind": 0,
+          "reachable": false,
+          "x": 344,
+          "y": 322
+        },
+        {
+          "hex": 93,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 322
+        },
+        {
+          "hex": 94,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 322
+        },
+        {
+          "hex": 95,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 322
+        },
+        {
+          "hex": 96,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 322
+        },
+        {
+          "hex": 97,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 322
+        },
+        {
+          "hex": 98,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 322
+        },
+        {
+          "hex": 99,
+          "kind": 1,
+          "reachable": false,
+          "x": 652,
+          "y": 322
+        },
+        {
+          "hex": 100,
+          "kind": 1,
+          "reachable": false,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "hex": 103,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 364
+        },
+        {
+          "hex": 104,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 364
+        },
+        {
+          "hex": 105,
+          "kind": 2,
+          "reachable": false,
+          "x": 190,
+          "y": 364
+        },
+        {
+          "hex": 106,
+          "kind": 2,
+          "reachable": false,
+          "x": 234,
+          "y": 364
+        },
+        {
+          "hex": 107,
+          "kind": 2,
+          "reachable": false,
+          "x": 278,
+          "y": 364
+        },
+        {
+          "hex": 108,
+          "kind": 2,
+          "reachable": false,
+          "x": 322,
+          "y": 364
+        },
+        {
+          "hex": 109,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 364
+        },
+        {
+          "hex": 110,
+          "kind": 2,
+          "reachable": false,
+          "x": 410,
+          "y": 364
+        },
+        {
+          "hex": 111,
+          "kind": 2,
+          "reachable": false,
+          "x": 454,
+          "y": 364
+        },
+        {
+          "hex": 112,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 364
+        },
+        {
+          "hex": 113,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 364
+        },
+        {
+          "hex": 114,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 364
+        },
+        {
+          "hex": 115,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 364
+        },
+        {
+          "hex": 116,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 364
+        },
+        {
+          "hex": 117,
+          "kind": 0,
+          "reachable": false,
+          "x": 718,
+          "y": 364
+        },
+        {
+          "hex": 120,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 406
+        },
+        {
+          "hex": 121,
+          "kind": 0,
+          "reachable": false,
+          "x": 124,
+          "y": 406
+        },
+        {
+          "hex": 122,
+          "kind": 0,
+          "reachable": false,
+          "x": 168,
+          "y": 406
+        },
+        {
+          "hex": 123,
+          "kind": 0,
+          "reachable": false,
+          "x": 212,
+          "y": 406
+        },
+        {
+          "hex": 124,
+          "kind": 0,
+          "reachable": false,
+          "x": 256,
+          "y": 406
+        },
+        {
+          "hex": 125,
+          "kind": 0,
+          "reachable": false,
+          "x": 300,
+          "y": 406
+        },
+        {
+          "hex": 126,
+          "kind": 0,
+          "reachable": false,
+          "x": 344,
+          "y": 406
+        },
+        {
+          "hex": 127,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 406
+        },
+        {
+          "hex": 128,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 406
+        },
+        {
+          "hex": 129,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 406
+        },
+        {
+          "hex": 130,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 406
+        },
+        {
+          "hex": 131,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 406
+        },
+        {
+          "hex": 132,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 406
+        },
+        {
+          "hex": 133,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 406
+        },
+        {
+          "hex": 134,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 406
+        },
+        {
+          "hex": 137,
+          "kind": 1,
+          "reachable": false,
+          "x": 102,
+          "y": 448
+        },
+        {
+          "hex": 138,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 448
+        },
+        {
+          "hex": 139,
+          "kind": 0,
+          "reachable": false,
+          "x": 190,
+          "y": 448
+        },
+        {
+          "hex": 140,
+          "kind": 0,
+          "reachable": false,
+          "x": 234,
+          "y": 448
+        },
+        {
+          "hex": 141,
+          "kind": 0,
+          "reachable": false,
+          "x": 278,
+          "y": 448
+        },
+        {
+          "hex": 142,
+          "kind": 0,
+          "reachable": false,
+          "x": 322,
+          "y": 448
+        },
+        {
+          "hex": 143,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 448
+        },
+        {
+          "hex": 144,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 448
+        },
+        {
+          "hex": 145,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 448
+        },
+        {
+          "hex": 146,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 448
+        },
+        {
+          "hex": 147,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 448
+        },
+        {
+          "hex": 148,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 448
+        },
+        {
+          "hex": 149,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 448
+        },
+        {
+          "hex": 150,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 448
+        },
+        {
+          "hex": 151,
+          "kind": 0,
+          "reachable": false,
+          "x": 718,
+          "y": 448
+        },
+        {
+          "hex": 154,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 490
+        },
+        {
+          "hex": 155,
+          "kind": 0,
+          "reachable": false,
+          "x": 124,
+          "y": 490
+        },
+        {
+          "hex": 156,
+          "kind": 0,
+          "reachable": false,
+          "x": 168,
+          "y": 490
+        },
+        {
+          "hex": 157,
+          "kind": 0,
+          "reachable": false,
+          "x": 212,
+          "y": 490
+        },
+        {
+          "hex": 158,
+          "kind": 0,
+          "reachable": false,
+          "x": 256,
+          "y": 490
+        },
+        {
+          "hex": 159,
+          "kind": 0,
+          "reachable": false,
+          "x": 300,
+          "y": 490
+        },
+        {
+          "hex": 160,
+          "kind": 0,
+          "reachable": false,
+          "x": 344,
+          "y": 490
+        },
+        {
+          "hex": 161,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 490
+        },
+        {
+          "hex": 162,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 490
+        },
+        {
+          "hex": 163,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 490
+        },
+        {
+          "hex": 164,
+          "kind": 2,
+          "reachable": false,
+          "x": 520,
+          "y": 490
+        },
+        {
+          "hex": 165,
+          "kind": 2,
+          "reachable": false,
+          "x": 564,
+          "y": 490
+        },
+        {
+          "hex": 166,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 490
+        },
+        {
+          "hex": 167,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 490
+        },
+        {
+          "hex": 168,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 490
+        },
+        {
+          "hex": 171,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 532
+        },
+        {
+          "hex": 172,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 532
+        },
+        {
+          "hex": 173,
+          "kind": 0,
+          "reachable": false,
+          "x": 190,
+          "y": 532
+        },
+        {
+          "hex": 174,
+          "kind": 0,
+          "reachable": false,
+          "x": 234,
+          "y": 532
+        },
+        {
+          "hex": 175,
+          "kind": 0,
+          "reachable": false,
+          "x": 278,
+          "y": 532
+        },
+        {
+          "hex": 176,
+          "kind": 0,
+          "reachable": false,
+          "x": 322,
+          "y": 532
+        },
+        {
+          "hex": 177,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 532
+        },
+        {
+          "hex": 178,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 532
+        },
+        {
+          "hex": 179,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 532
+        },
+        {
+          "hex": 180,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 532
+        },
+        {
+          "hex": 181,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 532
+        },
+        {
+          "hex": 182,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 532
+        },
+        {
+          "hex": 183,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 532
+        },
+        {
+          "hex": 184,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 532
+        },
+        {
+          "hex": 185,
+          "kind": 0,
+          "reachable": false,
+          "x": 718,
+          "y": 532
+        }
+      ],
+      "battlePlayerAttacks": true,
+      "battleUnits": [
+        {
+          "aiValue": 448,
+          "armySlot": 0,
+          "attack": 10,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            240,
+            0
+          ],
+          "count": 20,
+          "currentHealth": 25,
+          "damageMax": 6,
+          "damageMin": 3,
+          "defense": 10,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 364,
+          "growth": 7,
+          "health": 25,
+          "icon": "",
+          "id": 5,
+          "key": "core:royalGriffin",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 25,
+          "morale": 0,
+          "name": "Royal Griffin",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            99,
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 10,
+          "spellEffects": [],
+          "stackId": 2,
+          "x": 652,
+          "y": 322
+        },
+        {
+          "aiValue": 156,
+          "armySlot": -2,
+          "attack": 5,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            140,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 40,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 6,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 2,
+          "experience": 85,
+          "experiencePerUnit": 85,
+          "experienceRank": 1,
+          "fightValue": 130,
+          "growth": 9,
+          "health": 40,
+          "icon": "commanders/CPrL181n",
+          "id": 241,
+          "key": "wake-of-gods.commanders:shaman1",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 40,
+          "morale": 1,
+          "name": "Shaman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            71
+          ],
+          "remainingCasts": 1,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 24,
+          "speed": 4,
+          "spellEffects": [],
+          "stackId": 3,
+          "x": 190,
+          "y": 280
+        },
+        {
+          "aiValue": 56,
+          "armySlot": 0,
+          "attack": 3,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            0
+          ],
+          "count": 17,
+          "currentHealth": 6,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 6,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 70,
+          "growth": 12,
+          "health": 6,
+          "icon": "",
+          "id": 98,
+          "key": "core:gnoll",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 6,
+          "morale": 1,
+          "name": "Gnoll",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            35
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 4,
+          "spellEffects": [],
+          "stackId": 0,
+          "x": 102,
+          "y": 196
+        },
+        {
+          "aiValue": 126,
+          "armySlot": 1,
+          "attack": 5,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            110,
+            0
+          ],
+          "count": 6,
+          "currentHealth": 14,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 7,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 1,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 14,
+          "icon": "",
+          "id": 100,
+          "key": "core:lizardman",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 14,
+          "morale": 1,
+          "name": "Lizardman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            137
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 12,
+          "shooter": true,
+          "shots": 12,
+          "speed": 4,
+          "spellEffects": [],
+          "stackId": 1,
+          "x": 102,
+          "y": 448
+        }
+      ],
+      "canAct": false,
+      "canAutoCombat": true,
+      "canEndTactics": false,
+      "canQueueAutoCombat": false,
+      "canRetreat": false,
+      "canUseMagic": false,
+      "cheatReady": false,
+      "cheatsAllowed": true,
+      "creatureCanCast": false,
+      "creatureSpellTargeting": false,
+      "currentPlayer": 0,
+      "day": 1,
+      "equipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        },
+        {
+          "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+          "icon": 0,
+          "name": "Spell Book",
+          "slot": 17
+        }
+      ],
+      "heroCanCast": true,
+      "heroHasSpellbook": true,
+      "heroId": 471,
+      "heroMana": 20,
+      "heroManaLimit": 20,
+      "heroMoving": false,
+      "heroName": "Mirlanda",
+      "heroSpellCastLimitReached": false,
+      "heroSpellPower": {
+        "effective": 2,
+        "interference": false,
+        "original": 2
+      },
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 471,
+          "index": 0,
+          "mana": 20,
+          "manaLimit": 20,
+          "movement": 1000000,
+          "movementLimit": 1560,
+          "name": "Mirlanda"
+        }
+      ],
+      "manualControl": true,
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "battle",
+      "movement": 1000000,
+      "musicVolume": 88,
+      "onlineGame": false,
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "rect": {
+        "h": 600,
+        "w": 800,
+        "x": 0,
+        "y": 0
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        20,
+        10,
+        20,
+        10,
+        10,
+        10,
+        20900,
+        0
+      ],
+      "round": 1,
+      "sessionState": 6,
+      "soundVolume": 88,
+      "spellTargeting": false,
+      "tacticsMode": false,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "turn": true,
+      "windowToken": 30636816
+    },
+    "initialAssets": {
+      "passed": true,
+      "files": {
+        "Mods/tum-era/mod.json": {
+          "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+          "size": 19900
+        },
+        "Mods/tum-era/era-identities.json": {
+          "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+          "size": 4210
+        },
+        "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+          "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+          "size": 25960
+        },
+        "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+          "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+          "size": 506
+        },
+        "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+          "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+          "size": 176693
+        },
+        "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+          "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+          "size": 4314
+        },
+        "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+          "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+          "size": 9712
+        },
+        "Maps/003-Goonks-WoG.vmap": {
+          "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+          "size": 31409
+        },
+        "Maps/004-Goonks-WoG-Online.vmap": {
+          "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+          "size": 31104
+        }
+      },
+      "gates": {
+        "primaryXp": {
+          "enabled": true,
+          "nativeValidated": true,
+          "mode": "validated-all43",
+          "rows": 43
+        },
+        "dwellingServices": {
+          "enabled": true,
+          "actors": 44
+        },
+        "replacement": {
+          "enabled": true,
+          "programs": 102
+        },
+        "bankXp": {
+          "enabled": true,
+          "nativeValidated": true,
+          "mode": "validated-all6",
+          "rows": 6
+        },
+        "dwellingXp": {
+          "enabled": true,
+          "nativeValidated": true,
+          "mode": "validated-all17",
+          "rows": 17
+        }
+      }
+    },
+    "afterAssets": {
+      "passed": true,
+      "files": {
+        "Mods/tum-era/mod.json": {
+          "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+          "size": 19900
+        },
+        "Mods/tum-era/era-identities.json": {
+          "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+          "size": 4210
+        },
+        "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+          "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+          "size": 25960
+        },
+        "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+          "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+          "size": 506
+        },
+        "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+          "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+          "size": 176693
+        },
+        "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+          "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+          "size": 4314
+        },
+        "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+          "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+          "size": 9712
+        },
+        "Maps/003-Goonks-WoG.vmap": {
+          "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+          "size": 31409
+        },
+        "Maps/004-Goonks-WoG-Online.vmap": {
+          "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+          "size": 31104
+        }
+      },
+      "gates": {
+        "primaryXp": {
+          "enabled": true,
+          "nativeValidated": true,
+          "mode": "validated-all43",
+          "rows": 43
+        },
+        "dwellingServices": {
+          "enabled": true,
+          "actors": 44
+        },
+        "replacement": {
+          "enabled": true,
+          "programs": 102
+        },
+        "bankXp": {
+          "enabled": true,
+          "nativeValidated": true,
+          "mode": "validated-all6",
+          "rows": 6
+        },
+        "dwellingXp": {
+          "enabled": true,
+          "nativeValidated": true,
+          "mode": "validated-all17",
+          "rows": 17
+        }
+      }
+    }
+  },
+  "nativePolicyParsingAtBattleStartValidated": true,
+  "productionSmokeValidated": true,
+  "mapSaveReloadValidated": true,
+  "playerRolesPreserved": true,
+  "actualResumedTurnTransitionsValidated": true,
+  "trackedProductionAssetsUnchanged": true,
+  "errors": []
+}

@@ -1,0 +1,39 @@
+{
+  "scope": "Read-only, hash-bound syntax review. No original script is executed; rejected syntax is not evidence that the original game rejects it.",
+  "parsedCampaignSources": 132,
+  "unsupportedSources": [
+    {
+      "id": "zc1.vcmp!z_-~-_02e.vmap!map.zc1:3.event.3.description",
+      "sha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+      "message": "zc1.vcmp!z_-~-_02e.vmap!map.zc1:3.event.3.description: line4 ERM: Receiver before first trigger"
+    },
+    {
+      "id": "zc2.vcmp!samaritan1mod.vmap!map.zc2:0.event.6.description",
+      "sha256": "8c4a286b4473d3dd3d5c2445b7510d737a6c440ae3a3c0c06eb0c1609cb25231",
+      "message": "zc2.vcmp!samaritan1mod.vmap!map.zc2:0.event.6.description: line285 ERM: Unsupported operand \"1+1\""
+    },
+    {
+      "id": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.3.description",
+      "sha256": "e0645fc091b592f2bf4db6db18d928ee9a0986c6c36bf403f440a633b4d8de27",
+      "message": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.3.description: line3 ERM: Unsupported operand \"6v1\""
+    },
+    {
+      "id": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.11.description",
+      "sha256": "10fdccc80fb2fde9c190665d1ff3611f8369e4cf0e192ebcc0d68b728344d5fb",
+      "message": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.11.description: line5 ERM: Unsupported operand \"1\\n!!IF\""
+    },
+    {
+      "id": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.31.description",
+      "sha256": "a7feeeba4b505caf980926de5562cdc5209d14adc68b3c29b451ee24a2546748",
+      "message": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.31.description: line26 ERM: Unsupported operand \"!!\""
+    }
+  ],
+  "cave": {
+    "sources": 22,
+    "triggers": 48,
+    "initializers": 1,
+    "programSha256": "ad5a760af435ad4178a7d0424fc190fe11f22e4c14f49139c836fa14cc9bf9b5"
+  },
+  "runtimeComplete": false,
+  "originalScenariosEnabled": false
+}

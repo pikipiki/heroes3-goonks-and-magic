@@ -1,0 +1,888 @@
+{
+  "reference": "operator-supplied Third Upgrade Mod3.5 Data/s only; not all ERA packs",
+  "format": "Literal UN:P references, including initialization, queries, diagnostics and dormant commented source. Presence is not proof of a missing feature.",
+  "sourceFiles": [
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "sha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "references": 31
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "sha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "references": 17
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "sha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "references": 7
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "sha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "references": 9
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "sha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "references": 11
+    }
+  ],
+  "namedDefinitions": [
+    {
+      "file": "Data/s/1000 tum - consts.erm",
+      "line": 319,
+      "symbol": "WOG_OPT_4TH_UPGRADES",
+      "id": 300
+    },
+    {
+      "file": "Data/s/1000 tum - consts.erm",
+      "line": 320,
+      "symbol": "WOG_OPT_8TH_MONSTERS",
+      "id": 301
+    },
+    {
+      "file": "Data/s/1000 tum - consts.erm",
+      "line": 321,
+      "symbol": "WOG_OPT_DWELLING_BANKS",
+      "id": 302
+    }
+  ],
+  "activeReferencedOptions": [
+    "(WOG_OPT_4TH_UPGRADES)",
+    "(WOG_OPT_8TH_MONSTERS)",
+    "(WOG_OPT_DISABLE_COMMANDERS)",
+    "(WOG_OPT_STACK_EXPERIENCE)",
+    "102",
+    "125",
+    "149",
+    "173",
+    "174",
+    "176",
+    "177",
+    "188",
+    "195",
+    "20",
+    "226",
+    "227",
+    "228",
+    "234",
+    "236",
+    "238",
+    "241",
+    "243",
+    "281",
+    "3",
+    "301",
+    "350",
+    "37",
+    "41",
+    "45",
+    "46",
+    "50",
+    "67",
+    "71",
+    "727",
+    "740",
+    "750",
+    "755",
+    "758",
+    "759",
+    "761",
+    "762",
+    "781",
+    "792",
+    "820",
+    "822",
+    "904",
+    "905",
+    "96",
+    "97",
+    "994",
+    "996",
+    "997"
+  ],
+  "forcedOffByTUM": [
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 115,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "37",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P37/0;                             [DISABLE Rebalanced Creatures]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 116,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "50",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P50/0;                             [DISABLE Enhanced Monsters]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 117,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "67",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P67/0;                             [DISABLE Neutral Town]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 118,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "125",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P125/0;                            [DISABLE Upg level 7 become level 8]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 119,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "173",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P173/0;                            [DISABLE Extended Upgrades]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 120,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "188",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P188/0;                            [Disable Rampart Farie Dragon]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 121,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "281",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P281/0;                            [DISABLE buckler of Beelzebub]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 122,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "740",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P740/0;                            [DISABLE Enhanced Creature Specialists]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 123,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "45",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P45/0;                             [DISABLE Castle Upgrading]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 125,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "820",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P820/0;                            [DISABLE Additional Upgrades]"
+    }
+  ],
+  "references": [
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 191,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "20",
+      "valueOrQuery": "?(weekOfMonsters:y)",
+      "active": true,
+      "source": "!!UN:P20/?(weekOfMonsters:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 195,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "41",
+      "valueOrQuery": "?(battExtender:y)",
+      "active": true,
+      "source": "!!UN:P41/?(battExtender:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 236,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "46",
+      "valueOrQuery": "?(berserkerFlies:y)",
+      "active": true,
+      "source": "!!UN:P46/?(berserkerFlies:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 249,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "46",
+      "valueOrQuery": "?(berserkerFlies:y)",
+      "active": true,
+      "source": "!!UN:P46/?(berserkerFlies:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 280,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "174",
+      "valueOrQuery": "?(wogOption:y)",
+      "active": true,
+      "source": "!!UN:P174/?(wogOption:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 311,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "174",
+      "valueOrQuery": "?(wogOption:y)",
+      "active": true,
+      "source": "!!UN:P174/?(wogOption:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 365,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "350",
+      "valueOrQuery": "?(lizardRangedRetal:y)",
+      "active": true,
+      "source": "!!UN:P350/?(lizardRangedRetal:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 378,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "727",
+      "valueOrQuery": "?(backpackArtifacts:y)",
+      "active": true,
+      "source": "!!UN:P727/?(backpackArtifacts:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 383,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "750",
+      "valueOrQuery": "?(demonicRage:y)",
+      "active": true,
+      "source": "!!UN:P750/?(demonicRage:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 396,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "758",
+      "valueOrQuery": "?(cutthroat:y)",
+      "active": true,
+      "source": "!!UN:P758/?(cutthroat:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 409,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "759",
+      "valueOrQuery": "?(devilsSacrifice:y)",
+      "active": true,
+      "source": "!!UN:P759/?(devilsSacrifice:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 418,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "761",
+      "valueOrQuery": "?(dwarvesReinforcement:y)",
+      "active": true,
+      "source": "!!UN:P761/?(dwarvesReinforcement:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 431,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "762",
+      "valueOrQuery": "?(ghoulFleshEater:y)",
+      "active": true,
+      "source": "!!UN:P762/?(ghoulFleshEater:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 444,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "822",
+      "valueOrQuery": "?(wraithBlock:y)",
+      "active": true,
+      "source": "!!UN:P822/?(wraithBlock:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 456,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "781",
+      "valueOrQuery": "?(confluxBalancing:y)",
+      "active": true,
+      "source": "!!UN:P781/?(confluxBalancing:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 478,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "996",
+      "valueOrQuery": "?(gnollStrikeFirst:y)",
+      "active": true,
+      "source": "!!UN:P996/?(gnollStrikeFirst:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 490,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "997",
+      "valueOrQuery": "?(elfGrandManeuvre:y)",
+      "active": true,
+      "source": "!!UN:P997/?(elfGrandManeuvre:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 592,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "994",
+      "valueOrQuery": "?(wogOption:y)",
+      "active": true,
+      "source": "!!UN:P994/?(wogOption:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1133,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "(WOG_OPT_STACK_EXPERIENCE)",
+      "valueOrQuery": "?(stackExp:y)",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_STACK_EXPERIENCE)/?(stackExp:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1278,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "46",
+      "valueOrQuery": "?i^wog_46_enabled^",
+      "active": true,
+      "source": "!!UN:P46/?i^wog_46_enabled^;"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1371,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "176",
+      "valueOrQuery": "?(artBanned:y)",
+      "active": true,
+      "source": "!!UN:P176/?(artBanned:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1373,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "226",
+      "valueOrQuery": "?(artBanned)",
+      "active": true,
+      "source": "!!UN:P226/?(artBanned);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1375,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "227",
+      "valueOrQuery": "?(artBanned)",
+      "active": true,
+      "source": "!!UN:P227/?(artBanned);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1379,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "(WOG_OPT_DISABLE_COMMANDERS)",
+      "valueOrQuery": "?(commanderOff:y)",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_DISABLE_COMMANDERS)/?(commanderOff:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1380,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "238",
+      "valueOrQuery": "?(commArtBanned:y)",
+      "active": true,
+      "source": "!!UN:P238/?(commArtBanned:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1388,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "177",
+      "valueOrQuery": "?(artBanned:y)",
+      "active": true,
+      "source": "!!UN:P177/?(artBanned:y);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1390,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "234",
+      "valueOrQuery": "?(artBanned)",
+      "active": true,
+      "source": "!!UN:P234/?(artBanned);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1392,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "236",
+      "valueOrQuery": "?(artBanned)",
+      "active": true,
+      "source": "!!UN:P236/?(artBanned);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1394,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "241",
+      "valueOrQuery": "?(artBanned)",
+      "active": true,
+      "source": "!!UN:P241/?(artBanned);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1396,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "243",
+      "valueOrQuery": "?(artBanned)",
+      "active": true,
+      "source": "!!UN:P243/?(artBanned);"
+    },
+    {
+      "file": "Data/s/-1000 tum - Archer.erm",
+      "line": 1500,
+      "fileSha256": "57a0f834e50e5f67f97b834048bca5da379145304f6da4d1757b53c53e06fe7e",
+      "option": "(WOG_OPT_STACK_EXPERIENCE)",
+      "valueOrQuery": "?(stackExp:y)",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_STACK_EXPERIENCE)/?(stackExp:y);"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 56,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "301",
+      "valueOrQuery": "?(eighthMon:y)",
+      "active": true,
+      "source": "!!UN:P301/?(eighthMon:y);"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 88,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "195",
+      "valueOrQuery": "?i^tum_replaceObj_on^",
+      "active": true,
+      "source": "!!UN:P195/?i^tum_replaceObj_on^;"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 115,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "37",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P37/0;                             [DISABLE Rebalanced Creatures]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 116,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "50",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P50/0;                             [DISABLE Enhanced Monsters]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 117,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "67",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P67/0;                             [DISABLE Neutral Town]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 118,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "125",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P125/0;                            [DISABLE Upg level 7 become level 8]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 119,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "173",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P173/0;                            [DISABLE Extended Upgrades]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 120,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "188",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P188/0;                            [Disable Rampart Farie Dragon]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 121,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "281",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P281/0;                            [DISABLE buckler of Beelzebub]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 122,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "740",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P740/0;                            [DISABLE Enhanced Creature Specialists]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 123,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "45",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P45/0;                             [DISABLE Castle Upgrading]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 124,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "124",
+      "valueOrQuery": "0",
+      "active": false,
+      "source": "*#UN:P124/0;                            [DISABLE Capitol can be built in every town]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 125,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "820",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN:P820/0;                            [DISABLE Additional Upgrades]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 127,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "143",
+      "valueOrQuery": "0",
+      "active": false,
+      "source": "*#UN&i^tum_isRandMap^:P143/0;           [DISABLE New Artifacts in random maps (as WoG artifacts now generate on the map natually)]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 128,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "792",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!#UN&i^tum_emerald_on^:P792/0;          [DISABLE Not a Place for People (as it makes the game even more laggy with emerald)]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 754,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "228",
+      "valueOrQuery": "?i^buildTwice^",
+      "active": true,
+      "source": "!!UN:P228/?i^buildTwice^;                       [Check if Build Twice a Day option is enabled]"
+    },
+    {
+      "file": "Data/s/1000 tum - stdlib.erm",
+      "line": 756,
+      "fileSha256": "2ac2c14c0208ce8316d97f98a4f0689e97e1c5a9586da09f6d6531b8cf42c8e4",
+      "option": "228",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!!UN:P228/0;                                    [Disable wog option behaviour]"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 287,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "3",
+      "valueOrQuery": "?y2",
+      "active": true,
+      "source": "!!UN:P3/?y2; check if commanders enabled"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 986,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "904",
+      "valueOrQuery": "1",
+      "active": true,
+      "source": "!!UN:P904/1; turn errors off"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 987,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "905",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!!UN:P905/0; clear error flag"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 989,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "904",
+      "valueOrQuery": "0",
+      "active": true,
+      "source": "!!UN:P904/0; turn on errors showing"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 990,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "905",
+      "valueOrQuery": "?y9",
+      "active": true,
+      "source": "!!UN:P905/?y9; get error flag to y9"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 1181,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "4",
+      "valueOrQuery": "1",
+      "active": false,
+      "source": "*!UN:P4/1;                              [set to no demolition - disabled by Archer]"
+    },
+    {
+      "file": "Data/s/Mysterious Cave.erm",
+      "line": 1186,
+      "fileSha256": "d4b9286b930cfc32a742571f21513170fdd243f3bccf08d9a84b14dd53c13c97",
+      "option": "4",
+      "valueOrQuery": "0",
+      "active": false,
+      "source": "*!UN:P4/0;                              [set to demolition]"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 111,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_4TH_UPGRADES)",
+      "valueOrQuery": "?(fourthUpgOn:y)",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_4TH_UPGRADES)/?(fourthUpgOn:y);"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 312,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_4TH_UPGRADES)",
+      "valueOrQuery": "?(fourthUpgOn:y)",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_4TH_UPGRADES)/?(fourthUpgOn:y);"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 401,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "228",
+      "valueOrQuery": "?(buildTwice:y)",
+      "active": true,
+      "source": "!!UN:P228/?(buildTwice:y);"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 537,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_4TH_UPGRADES)",
+      "valueOrQuery": "?(fourthUpgOn:y)",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_4TH_UPGRADES)/?(fourthUpgOn:y);"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 1327,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "727",
+      "valueOrQuery": "?(backpackArt:y)",
+      "active": true,
+      "source": "!!UN:P727/?(backpackArt:y);             [Check Backpack Artifact option of Era Scripts]"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2244,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_4TH_UPGRADES)",
+      "valueOrQuery": "?y99",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_4TH_UPGRADES)/?y99;"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2259,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_4TH_UPGRADES)",
+      "valueOrQuery": "?y99",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_4TH_UPGRADES)/?y99;"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2273,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_8TH_MONSTERS)",
+      "valueOrQuery": "?y99",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_8TH_MONSTERS)/?y99;"
+    },
+    {
+      "file": "Data/s/Third Upgrade Mod.erm",
+      "line": 2288,
+      "fileSha256": "0dbb2a4498de1ab57492fd506ffd5f177abb6455af6037e42d274d0a3ea8a315",
+      "option": "(WOG_OPT_8TH_MONSTERS)",
+      "valueOrQuery": "?y99",
+      "active": true,
+      "source": "!!UN:P(WOG_OPT_8TH_MONSTERS)/?y99;"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 9,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "67",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P67/?y1;  !#SN:W^opt_67_Neutral_Conflux^/y1;                               �������� �� ������ 67 - ���������� ���������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 10,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "71",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P71/?y1;  !#SN:W^opt_71_Commander_art^/y1;                                 �������� �� ������ 71 - ��������� ����������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 11,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "102",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P102/?y1; !#SN:W^opt_102_art_boost_76^/y1;                                 [Check if Artifact Boost is enabled in WoGify Options]"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 12,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "149",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P149/?y1; !#SN:W^opt_149_mythril^/y1;                                      �������� �� ������ 149 - ������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 13,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "174",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P174/?y1; !#SN:W^opt_174_universal_upgrade^/y1;                            �������� �� ������������� ��������� �������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 14,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "188",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P188/?y1; !#SN:W^opt_188_Ramp_fairy_dragon^/y1;                            �������� �� ������ 188 - Rampart Faerie Dragon"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 15,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "195",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P195/?y1; !#SN:W^opt_195_obj_replacing^/y1;                                �������� �� ������ 195 - ������ ��������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 16,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "755",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P755/?y1; !#SN:W^opt_755_limited_mines^/y1;                                �������� �� ������ 755 - ������������ �����"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 17,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "781",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P781/?y1; !#SN:W^opt_781_Balance_Conflux^/y1;                              �������� �� ������ 78 - ���������� ������ ����������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 18,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "96",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P96/?y1;  !#SN:W^opt_96_Blind_reduce^/y1;                                  �������� �� ������ �������"
+    },
+    {
+      "file": "Data/s/options_library.erm",
+      "line": 19,
+      "fileSha256": "b112a12dee2777d2bb8d2fa25ef3e31a7b4a36f892336ac3327fc6f9cf4a5915",
+      "option": "97",
+      "valueOrQuery": "?y1",
+      "active": true,
+      "source": "!#UN:P97/?y1;  !#SN:W^opt_97_Conserva^/y1;                                      �������� �� ���� ������ �������"
+    }
+  ],
+  "boundedNegativeResults": {
+    "additionalERSDeclarations": "Only Third Upgrade Mod.ers is present in reference Data/s. It declares300 and301.302 exists only as a constant in examined scripts.",
+    "stackExperienceNumericId": "WOG_OPT_STACK_EXPERIENCE is referenced but not numerically defined in this source reference; do not invent a numeric mapping."
+  },
+  "optionDeclarationFiles": [
+    {
+      "file": "Data/s/Third Upgrade Mod.ers",
+      "sha256": "63ac00c5b464c491f6139fff4ff6667bc1e614e0acc904532ea1d08a31929043"
+    },
+    {
+      "file": "Data/s/1000 tum - consts.erm",
+      "sha256": "cf39435c763439482ce6a96fc7d589abd27c96779de04e719678c2ec0db82d76"
+    }
+  ]
+}

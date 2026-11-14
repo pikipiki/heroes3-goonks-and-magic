@@ -13,6 +13,7 @@
 #include "ObjectTemplate.h"
 #include "CGMysteriousCave.h"
 #include "../era/EraEighthTownSaveCompatibility.h"
+#include "../era/EraWogOptions.h"
 
 #include "TownBuildingInstance.h"
 
@@ -80,6 +81,7 @@ void CGTownInstance::setPropertyDer(ObjProperty what, ObjPropertyID identifier)
 					if(hasBuilt(building) && getTown()->creatures[level].size() > upgrade)
 						creatures[level].second.push_back(getTown()->creatures[level][upgrade]);
 			}
+			filterWogRecruitment();
 			recreateBuildingsBonuses();
 			updateAppearance();
 			break;
@@ -519,6 +521,7 @@ void CGTownInstance::initObj(IGameRandomizer & gameRandomizer) ///initialize tow
 				creatures[level].second.push_back(getTown()->creatures[level][upgradeNum]);
 		}
 	}
+    filterWogRecruitment();
 	initializeConfigurableBuildings(gameRandomizer);
 	initializeNeutralTownGarrison(gameRandomizer.getDefault());
 	recreateBuildingsBonuses();
@@ -1289,6 +1292,24 @@ void CGTownInstance::fillUpgradeInfo(UpgradeInfo & info, const CStackInstance &s
 	}
 }
 
+bool CGTownInstance::wogRecruitAllowed(std::size_t tier,CreatureID creature) const
+{
+    if(!cb || !creature.hasValue())return true;
+    return era_bridge::wogTownRecruitAllowed(getFaction()->getJsonKey(),tier,
+        creature.toCreature()->getJsonKey(),
+        era_bridge::wogOptionEnabled(*cb,era_bridge::WogOption::FourthUpgrades,true),
+        era_bridge::wogOptionEnabled(*cb,era_bridge::WogOption::EighthCreatures,true));
+}
+
+void CGTownInstance::filterWogRecruitment()
+{
+    if(!cb || !getFactionID().hasValue())return;
+    era_bridge::filterWogTownStock(creatures,getFaction()->getJsonKey(),
+        era_bridge::wogOptionEnabled(*cb,era_bridge::WogOption::FourthUpgrades,true),
+        era_bridge::wogOptionEnabled(*cb,era_bridge::WogOption::EighthCreatures,true),
+        [](CreatureID creature){return creature.hasValue()?creature.toCreature()->getJsonKey():std::string{};});
+}
+
 void CGTownInstance::postDeserialize()
 {
 	for(auto & building : rewardableBuildings)
@@ -1307,6 +1328,7 @@ void CGTownInstance::postDeserialize()
         era_compat::EighthTownSaveCompatibility::get().restore(creatures,
             getFaction()->getJsonKey(),getTown()->creatures.size(),
             townEnvisagesBuilding(BuildingSubID::PORTAL_OF_SUMMONING));
+        filterWogRecruitment();
 	}
 }
 

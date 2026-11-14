@@ -125,6 +125,8 @@ public:
 	std::string nodeName() const override;
 	void updateMoraleBonusFromArmy() override;
 	void postDeserialize();
+    void filterWogRecruitment();
+    bool wogRecruitAllowed(std::size_t tier,CreatureID creature) const;
 	void recreateBuildingsBonuses();
 	void setVisitingHero(CGHeroInstance *h);
 	void setGarrisonedHero(CGHeroInstance *h);

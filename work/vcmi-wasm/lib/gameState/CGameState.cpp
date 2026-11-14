@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
+#include "../era/EraWogOptions.h"
 #include "CGameState.h"
 
 #include "EVictoryLossCheckResult.h"
@@ -199,6 +200,22 @@ void CGameState::init(const IMapService * mapService, StartInfo * si, IGameRando
 		return;
 	}
 	logGlobal->info("Map loaded!");
+
+    // Explicit new-game choices override this map only. Inherit (-1) retains
+    // authored/RMG settings; GameSettings serializes the resulting overrides.
+    const auto & wogChoices=scenarioOps->extraOptionsInfo.wogOptions;
+    const auto overrideBoolean=[&](era_bridge::WogOption option,EGameSettings setting)
+    {
+        const auto choice=wogChoices[static_cast<std::size_t>(option)];
+        if(choice>=0){JsonNode value;value.Bool()=choice==1;map->overrideGameSetting(setting,value);}
+    };
+    overrideBoolean(era_bridge::WogOption::Commanders,EGameSettings::MODULE_COMMANDERS);
+    overrideBoolean(era_bridge::WogOption::StackExperience,EGameSettings::MODULE_STACK_EXPERIENCE);
+    if(const auto choice=wogChoices[static_cast<std::size_t>(era_bridge::WogOption::BuildTwice)];choice>=0)
+    {
+        JsonNode value;value.Integer()=choice==1?2:1;
+        map->overrideGameSetting(EGameSettings::TOWNS_BUILDINGS_PER_TURN_CAP,value);
+    }
 
 	day = 0;
 

@@ -54,7 +54,7 @@ CCreature::CreatureQuantityId CStackInstance::getQuantityID() const
 
 int CStackInstance::getExpRank() const
 {
-	if(!LIBRARY->engineSettings()->getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE))
+	if(!canGainExperience())
 		return 0;
     if(const auto * era = era_compat::ExperienceProgressions::get().find(getType()->getJsonKey()))
         return getAverageExperience() > 0 ? era->rank(getAverageExperience()) : 0;
@@ -198,7 +198,7 @@ float CStackInstance::getExperienceUpgradeMultiplier() const
 
 bool CStackInstance::canGainExperience() const
 {
-	return cb->getSettings().getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE);
+	return (cb ? cb->getSettings() : *LIBRARY->engineSettings()).getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE);
 }
 
 void CStackInstance::setType(const CreatureID & creID)
@@ -219,7 +219,7 @@ void CStackInstance::setType(const CCreature * c, bool preserveExperience)
 	if(getCreature())
 	{
 		detachFromSource(*getCreature());
-        if(!preserveExperience && LIBRARY->engineSettings()->getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE))
+        if(!preserveExperience && canGainExperience())
         {
             const auto * oldEra = era_compat::ExperienceProgressions::get().find(getCreature()->getJsonKey());
             const auto * newEra = c ? era_compat::ExperienceProgressions::get().find(c->getJsonKey()) : nullptr;

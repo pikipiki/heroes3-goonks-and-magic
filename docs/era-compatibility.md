@@ -1,6 +1,6 @@
 # Inventaire de compatibilité WoG / ERA
 
-Référence : **TUM 3.5.0 fourni**, port WoG VCMI **9.1.82**, jeu **0.4.168**.
+Référence : **TUM 3.5.0 fourni**, port WoG VCMI **9.1.82**, jeu **0.4.169**.
 
 Cet inventaire couvre toutes les déclarations des fichiers source recensés. Il ne certifie pas la compatibilité intégrale ERA. « À rapprocher » indique l’absence d’un lien de preuve sémantique précis dans cet inventaire ; cela ne signifie pas que la fonctionnalité est absente du jeu.
 
@@ -48,13 +48,13 @@ Critère de clôture : Définir les packs de référence, importer leurs sources
 
 ### 3. Options de WoGification et dialogues
 
-Le compilateur de roster couvre quatre blocs ; les autres options et interactions ne sont pas globalement validées.
+Lot169 : six règles par partie disponibles et testées, avec héritage auteur, persistance, effets natifs et défilement tactile. Les dix options forcées OFF par TUM restent exclues ; les options conditionnées par ERA Scripts/Reborn/Advanced Classes dépendent de ces packs externes.
 
 Critère de clôture : Combinaisons supportées, interface tactile, persistance et effets sur les cartes vérifiés.
 
 ### 4. Cartes et campagnes originales WoG
 
-Sous-mod Maps déclaré keepDisabled ; les cartes Goonk de démonstration ne prouvent pas la compatibilité des scénarios originaux.
+Quatre campagnes, onze scénarios et Cave inventoriés avec empreintes ; importeur syntaxique vérifié, hôte natif et validation des victoires non terminés. Sous-mod Maps maintenu désactivé. État détaillé : outputs/wog-priorities-0.4.147/campaigns169/README.md.
 
 Critère de clôture : Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire.
 
@@ -74,6 +74,7 @@ Critère de clôture : Manifeste versionné des packs, options, scripts, plugins
 | Chaîne Topaze → Saphir | historical-native-contract | Évolutions, paiement et effets propres aux cinq étapes. [checkpoint157-validation.json](../outputs/wog-priorities-0.4.147/checkpoint157-validation.json) |
 | Spécialistes des machines | historical-native-contract | Preuves existantes des spécialistes ; inventaire ERM événementiel encore à rapprocher. [native-machine-specialists.json](../outputs/wog-priorities-0.4.147/native-machine-specialists.json) |
 | Aventures WoG et dépendances — lot167 | validated-native-scoped | 102 remplacements natifs au premier jour ;18 états des six banques ;45 résultats de Grotte ;54 acteurs et23 lignes XP supplémentaires, avec scopes natifs, transferts de primitives et continuités explicités. Les43 contrats historiques restent distincts. [descriptor-final13.json](../outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/descriptor-final13.json) |
+| Options de partie WoG — lot169 | validated-native-scoped | Six choix par partie avec héritage par option ; commandants, XP,195,228,300,301. Effets natifs ON/OFF, sauvegardes/rechargement et sauvegarde168 vérifiés ; six formats tactiles et stabilité des panneaux. Les options de packs externes restent hors de cette référence. [native-validation.json](../outputs/wog-priorities-0.4.147/options169/native-validation.json), [mobile-ui-validation.json](../outputs/wog-priorities-0.4.147/options169/mobile-ui-validation.json), [source-option-references.json](../outputs/wog-priorities-0.4.147/options169/source-option-references.json) |
 
 Les 49 liaisons événementielles détaillées dans le JSON couvrent notamment les artefacts238,259,260,197,266,261,264/265,220,262/263,268,269/270/271 et les quatre blocs de roster. Les preuves historiques gardent leur moteur d’origine : leur présence ne constitue pas une nouvelle exécution de tous les tests sur la version courante.
 

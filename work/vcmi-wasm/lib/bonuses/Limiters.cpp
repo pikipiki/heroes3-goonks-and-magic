@@ -497,6 +497,11 @@ ILimiter::EDecision RankRangeLimiter::limit(const BonusLimitationContext &contex
 	{
 		if (csi->getNodeType() == BonusNodeType::COMMANDER) //no stack exp bonuses for commander creatures
 			return ILimiter::EDecision::DISCARD;
+        // Per-map XP OFF must also remove rank0 source carriers. Foreign rank
+        // limiters retain their existing behavior; intrinsic creature bonuses
+        // do not have STACK_EXPERIENCE provenance.
+        if(context.b.source==BonusSource::STACK_EXPERIENCE && !csi->canGainExperience())
+            return ILimiter::EDecision::DISCARD;
 		const bool sourceProfile = era_compat::ExperienceProgressions::get().find(csi->getType()->getJsonKey()) != nullptr;
 		if (::era_bridge::sourceRankRangeAccepts(csi->getExpRank(), minRank, maxRank, sourceProfile))
 			return ILimiter::EDecision::ACCEPT;

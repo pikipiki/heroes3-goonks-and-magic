@@ -1,0 +1,133 @@
+{
+  "passed": true,
+  "scope": "Mock bridge UI and actual mobile modules; no native engine behavior claim",
+  "cases": [
+    {
+      "width": 320,
+      "height": 568,
+      "target": {
+        "x": 204.328125,
+        "y": 368.875,
+        "width": 76.65625,
+        "height": 52.890625
+      },
+      "stable": {
+        "sameInput": true,
+        "focused": true,
+        "sameScroll": true,
+        "open": true,
+        "mutations": 0
+      },
+      "touchScroll": {
+        "top": 105,
+        "range": 1507
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "target": {
+        "x": 211,
+        "y": 235.9375,
+        "width": 86,
+        "height": 52.890625
+      },
+      "stable": {
+        "sameInput": true,
+        "focused": true,
+        "sameScroll": true,
+        "open": true,
+        "mutations": 0
+      },
+      "touchScroll": {
+        "top": 105,
+        "range": 1142
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "target": {
+        "x": 251,
+        "y": 649.1875,
+        "width": 100,
+        "height": 52.890625
+      },
+      "stable": {
+        "sameInput": true,
+        "focused": true,
+        "sameScroll": true,
+        "open": true,
+        "mutations": 0
+      },
+      "touchScroll": {
+        "top": 105,
+        "range": 1031
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "target": {
+        "x": 393.15625,
+        "y": 302.109375,
+        "width": 175.078125,
+        "height": 52.890625
+      },
+      "stable": {
+        "sameInput": true,
+        "focused": true,
+        "sameScroll": true,
+        "open": true,
+        "mutations": 0
+      },
+      "touchScroll": {
+        "top": 105,
+        "range": 954
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "target": {
+        "x": 503,
+        "y": 829.234375,
+        "width": 226,
+        "height": 52.890625
+      },
+      "stable": {
+        "sameInput": true,
+        "focused": true,
+        "sameScroll": true,
+        "open": true,
+        "mutations": 0
+      },
+      "touchScroll": {
+        "top": 105,
+        "range": 624
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "target": {
+        "x": 478.359375,
+        "y": 680.34375,
+        "width": 217.6875,
+        "height": 52.890625
+      },
+      "stable": {
+        "sameInput": true,
+        "focused": true,
+        "sameScroll": true,
+        "open": true,
+        "mutations": 0
+      },
+      "touchScroll": {
+        "top": 105,
+        "range": 552
+      }
+    }
+  ],
+  "errors": []
+}

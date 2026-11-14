@@ -1,6 +1,7 @@
 /* Source TUM first-day replacement adapters. No ERM or Windows code executes. */
 #pragma once
 #include "../../lib/era/EraObjectReplacementRule.h"
+#include "../../lib/era/EraWogOptions.h"
 #include "../CGameHandler.h"
 #include "../../lib/gameState/CGameState.h"
 #include "../../lib/filesystem/Filesystem.h"
@@ -188,7 +189,7 @@ inline void applyEraFirstDayObjectReplacements(CGameHandler & handler,bool first
 {
     // The transition0→1 is serialized by the standard NewTurn packet. Loading
     // an existing day1 save never re-enters this branch or consumes RNG again.
-    if(!firstTurn)return;
+    if(!firstTurn || !era_bridge::wogOptionEnabled(handler.gameInfo(),era_bridge::WogOption::Replacements,true))return;
     const auto & plans=ObjectReplacementPolicy::get().getPlans();
     if(plans.empty())return;
     ObjectReplacementAdapter adapter(handler);

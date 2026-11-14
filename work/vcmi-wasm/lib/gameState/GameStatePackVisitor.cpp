@@ -594,6 +594,7 @@ void GameStatePackVisitor::visitSetAvailableCreatures(SetAvailableCreatures & pa
 	auto * dw = dynamic_cast<CGDwelling *>(gs.getObjInstance(pack.tid));
 	assert(dw);
 	dw->creatures = pack.creatures;
+    if(auto * town=dynamic_cast<CGTownInstance *>(dw))town->filterWogRecruitment();
 }
 
 void GameStatePackVisitor::visitSetHeroesInTown(SetHeroesInTown & pack)

@@ -1,0 +1,23 @@
+{
+  "engine": "0.4.169",
+  "wasmSha256": "a787c46e666f999a1a0c6e6bca766d91142ba7bed506f7741d54a13158518248",
+  "allMatched": true,
+  "sourceCount": 13,
+  "sourceHashes": {
+    "client/MobileBridge.cpp": "e32a716301264698a6bac0d77ceb83d3e184d0ba6d909847724680cd7c10457b",
+    "lib/ExtraOptionsInfo.cpp": "0910d1c0ec689490dcbdc462787543fd2561c1d56e91339e3f263da915f7ec7f",
+    "lib/ExtraOptionsInfo.h": "5d53016f792ee3e2ddb162aa92c549cf0f87c13173c9bc20a305590ffb97a888",
+    "lib/bonuses/Limiters.cpp": "ebdd9029a2762b1e50e26ec882b06ab74baa68dd310dd2773e57c01566848e0d",
+    "lib/callback/CGameInfoCallback.cpp": "534bc9135a90507f7585624de584ac99db7403f68e9ac04cd78153720399121b",
+    "lib/gameState/CGameState.cpp": "3c7c03e09738b978ff9969fb4c61dfb6dd4517b3ae69da3bbd35cf373e445acb",
+    "lib/gameState/GameStatePackVisitor.cpp": "3d9a7dd032a180cde99d1fac0609ce1d2d13c41aab03b07f04d8ab3f246227ba",
+    "lib/mapObjects/CGTownInstance.cpp": "5be9c75e75943f6e37935eb1ceef9f0d7a5a1234ddb9cbc0b5048640e0767010",
+    "lib/mapObjects/CGTownInstance.h": "274a1972aa7b5d49ba55c2ee0ff7ada3510015a23f9581562cb1b9f9c145792f",
+    "lib/mapObjects/army/CStackInstance.cpp": "9006ee2823d05336182baee9c7c97584a31d15d7cd2cc7a1eb3fb8d71baff072",
+    "lib/serializer/ESerializationVersion.h": "f9c8f160b8c7994875e1ead3de5bfac4e37e8a97f76fad721adcbe06c361a0f9",
+    "server/era/EraObjectReplacementRuntime.h": "9ac603ff7a46ac59f55358f2d3e0a89dccf2224259b8bf6a18a434c5b17c7dad",
+    "lib/era/EraWogOptions.h": "4053bde47814238dfb6e891bde5f61bef68109234ea7bc5e7f97961ded3606b0"
+  },
+  "archiveSha256": "494f608ee498cd427e2f084c046d317ed2fc8c88b22fdb3da4eba6519dcaa534",
+  "command": "ninja -j32 html5"
+}

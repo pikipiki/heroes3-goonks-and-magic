@@ -897,6 +897,12 @@ void publishMobileState(){
  {
   auto & server=GAME->server();
   n["mode"].String()=server.inLobbyRoom()?"online-lobby":server.screenType==ESelectionScreen::loadGame?"load":server.screenType==ESelectionScreen::campaignList?"campaign":"lobby";
+  if(server.si)
+  {
+   n["wogOptionsEditable"].Bool()=!server.inLobbyRoom()&&server.screenType==ESelectionScreen::newGame&&server.getState()==EClientState::LOBBY;
+   for(const auto choice:server.si->extraOptionsInfo.wogOptions)
+    n["wogOptions"].Vector().emplace_back(double(choice));
+  }
   if(server.inLobbyRoom())
   {
    n["onlineMatch"].Bool()=true;
@@ -1591,6 +1597,20 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiOnlineRoomAction(int action, const char
 }
 
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
+ if(action==109)
+ {
+  if(!GAME)return;
+  auto & server=GAME->server();
+  if(ENGINE->windows().topWindow<CLobbyScreen>()&&!server.inLobbyRoom()&&server.si
+     &&server.getState()==EClientState::LOBBY&&server.screenType==ESelectionScreen::newGame
+     &&a>=0&&a<int(server.si->extraOptionsInfo.wogOptions.size())&&b>=-1&&b<=1)
+  {
+   auto options=server.si->extraOptionsInfo;
+   options.wogOptions[a]=static_cast<int8_t>(b);
+   server.setExtraOptionsInfo(options);
+  }
+  return;
+ }
  if(action>=98&&action<=100)
  {
   const auto player=GAME?GAME->interface():nullptr;

@@ -62,9 +62,11 @@ enum class ESerializationVersion : int32_t
 	DISABLE_TACTICS, // disable tactics
 	REWARDABLE_EXTENSIONS_2, // movement points limiter for rewardables
 	BONUS_TRIGGER, // bonus that allows triggered effects in combat
+	GOONK_WOG_OPTIONS, // per-game, map-inheriting WoG options
+	GOONK_SOURCE_CAMPAIGNS, // persisted source scenario scripts and continuations
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = BONUS_TRIGGER,
+	CURRENT = GOONK_WOG_OPTIONS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

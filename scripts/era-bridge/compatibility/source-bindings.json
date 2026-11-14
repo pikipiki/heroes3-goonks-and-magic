@@ -1068,6 +1068,22 @@
       "evidence": [
         "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/descriptor-final13.json"
       ]
+    },
+    {
+      "id": "game-options169",
+      "name": "Options de partie WoG — lot169",
+      "status": "validated-native-scoped",
+      "scope": "Six choix par partie avec héritage par option ; commandants, XP,195,228,300,301. Effets natifs ON/OFF, sauvegardes/rechargement et sauvegarde168 vérifiés ; six formats tactiles et stabilité des panneaux. Les options de packs externes restent hors de cette référence.",
+      "implementation": [
+        "work/vcmi-wasm/lib/ExtraOptionsInfo.h",
+        "work/vcmi-wasm/lib/era/EraWogOptions.h",
+        "web/wog-options.mjs"
+      ],
+      "evidence": [
+        "outputs/wog-priorities-0.4.147/options169/native-validation.json",
+        "outputs/wog-priorities-0.4.147/options169/mobile-ui-validation.json",
+        "outputs/wog-priorities-0.4.147/options169/source-option-references.json"
+      ]
     }
   ],
   "dwellingParser": "scripts/era-bridge/objects/objects.mjs",
@@ -1090,14 +1106,14 @@
       "priority": 3,
       "id": "options-ui",
       "title": "Options de WoGification et dialogues",
-      "scope": "Le compilateur de roster couvre quatre blocs ; les autres options et interactions ne sont pas globalement validées.",
+      "scope": "Lot169 : six règles par partie disponibles et testées, avec héritage auteur, persistance, effets natifs et défilement tactile. Les dix options forcées OFF par TUM restent exclues ; les options conditionnées par ERA Scripts/Reborn/Advanced Classes dépendent de ces packs externes.",
       "acceptance": "Combinaisons supportées, interface tactile, persistance et effets sur les cartes vérifiés."
     },
     {
       "priority": 4,
       "id": "original-maps",
       "title": "Cartes et campagnes originales WoG",
-      "scope": "Sous-mod Maps déclaré keepDisabled ; les cartes Goonk de démonstration ne prouvent pas la compatibilité des scénarios originaux.",
+      "scope": "Quatre campagnes, onze scénarios et Cave inventoriés avec empreintes ; importeur syntaxique vérifié, hôte natif et validation des victoires non terminés. Sous-mod Maps maintenu désactivé. État détaillé : outputs/wog-priorities-0.4.147/campaigns169/README.md.",
       "acceptance": "Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire."
     },
     {

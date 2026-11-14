@@ -1,0 +1,16 @@
+{
+  "version": "0.4.169",
+  "scope": "Priority5 standalone source options, with external-pack options and forced-OFF source constraints explicitly separate",
+  "native": "native-validation.json",
+  "mobile": "mobile-ui-validation.json",
+  "compiledSources": "engine-source-sync.json",
+  "unitTests": {
+    "total": 743,
+    "pass": 710,
+    "fail": 0,
+    "skip": 33
+  },
+  "campaignPriority6Complete": false,
+  "campaignStatus": "Original11 scenarios plus Cave inventoried; receiver execution and complete victory validation are unfinished. Original maps submod remains disabled.",
+  "productionMaps": "production-validation.json"
+}

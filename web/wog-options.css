@@ -1,0 +1,12 @@
+#mobile-app .wog-options{min-width:0}
+#mobile-app .wog-options summary{min-height:44px;box-sizing:border-box;cursor:pointer;padding:10px 12px;font-weight:700}
+#mobile-app .wog-rules{display:grid;gap:12px;min-width:0}
+#mobile-app .wog-rules fieldset{min-width:0;margin:0;padding:8px;border:1px solid var(--line,#584365);border-radius:8px}
+#mobile-app .wog-rules legend{padding:0 4px;font-weight:700;font-size:15px}
+#mobile-app .wog-rule-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}
+#mobile-app .wog-rule-choices label{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;min-height:44px;width:auto;margin:0;padding:4px;box-sizing:border-box;border:1px solid var(--line,#584365);border-radius:6px;cursor:pointer;color:inherit}
+#mobile-app .wog-rule-choices label:has(:checked){border-color:var(--gold,#f9d897);background:#584023}
+#mobile-app .wog-rule-choices label:has(:focus-visible){outline:2px solid var(--gold,#f9d897);outline-offset:2px}
+#mobile-app .wog-rule-choices input{width:18px;height:18px;margin:0;accent-color:var(--gold,#f9d897);flex:none}
+#mobile-app .wog-options-status:empty{display:none}
+#mobile-app .wog-options [disabled]{opacity:.65}

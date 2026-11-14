@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reference": {
     "label": "TUM3.5 supplied source + installed VCMI WoG",
-    "release": "0.4.168",
+    "release": "0.4.169",
     "tumMetadata": {
       "caption": {
         "en_US": "Third Upgrade Mod",
@@ -138168,7 +138168,7 @@
       "implementation": [
         {
           "file": "work/vcmi-wasm/server/era/EraObjectReplacementRuntime.h",
-          "sha256": "c8ce7664491773268f4115f850296b8536264fe2449bb1cafe232e64e5a26537"
+          "sha256": "9ac603ff7a46ac59f55358f2d3e0a89dccf2224259b8bf6a18a434c5b17c7dad"
         },
         {
           "file": "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp",
@@ -138187,6 +138187,40 @@
         {
           "file": "outputs/wog-priorities-0.4.147/adventure167/source-contracts/adventure-port/descriptor-final13.json",
           "sha256": "61707776f3f3e755d0fd8c3878a21093d642acfd1024af5471079f347856b625"
+        }
+      ]
+    },
+    {
+      "id": "game-options169",
+      "name": "Options de partie WoG — lot169",
+      "status": "validated-native-scoped",
+      "scope": "Six choix par partie avec héritage par option ; commandants, XP,195,228,300,301. Effets natifs ON/OFF, sauvegardes/rechargement et sauvegarde168 vérifiés ; six formats tactiles et stabilité des panneaux. Les options de packs externes restent hors de cette référence.",
+      "implementation": [
+        {
+          "file": "work/vcmi-wasm/lib/ExtraOptionsInfo.h",
+          "sha256": "5d53016f792ee3e2ddb162aa92c549cf0f87c13173c9bc20a305590ffb97a888"
+        },
+        {
+          "file": "work/vcmi-wasm/lib/era/EraWogOptions.h",
+          "sha256": "4053bde47814238dfb6e891bde5f61bef68109234ea7bc5e7f97961ded3606b0"
+        },
+        {
+          "file": "web/wog-options.mjs",
+          "sha256": "90cfcc0a5a4d2183e08265080845da2273ee3194c489e95be2e9fc7e0cf781f3"
+        }
+      ],
+      "evidence": [
+        {
+          "file": "outputs/wog-priorities-0.4.147/options169/native-validation.json",
+          "sha256": "583ff7b42dea0fc78d17d2fabcefa354701f6cc3613695aecdb70f2f096b0ba0"
+        },
+        {
+          "file": "outputs/wog-priorities-0.4.147/options169/mobile-ui-validation.json",
+          "sha256": "846486558b911f148cc244175ff87b1512efb1e77d4bb4b6d7aa705e296ec038"
+        },
+        {
+          "file": "outputs/wog-priorities-0.4.147/options169/source-option-references.json",
+          "sha256": "70fc0a17c86f340cd4a031662ec20882b4deaa23231b46f03281b1dbc49a1cbf"
         }
       ]
     }
@@ -138210,14 +138244,14 @@
       "priority": 3,
       "id": "options-ui",
       "title": "Options de WoGification et dialogues",
-      "scope": "Le compilateur de roster couvre quatre blocs ; les autres options et interactions ne sont pas globalement validées.",
+      "scope": "Lot169 : six règles par partie disponibles et testées, avec héritage auteur, persistance, effets natifs et défilement tactile. Les dix options forcées OFF par TUM restent exclues ; les options conditionnées par ERA Scripts/Reborn/Advanced Classes dépendent de ces packs externes.",
       "acceptance": "Combinaisons supportées, interface tactile, persistance et effets sur les cartes vérifiés."
     },
     {
       "priority": 4,
       "id": "original-maps",
       "title": "Cartes et campagnes originales WoG",
-      "scope": "Sous-mod Maps déclaré keepDisabled ; les cartes Goonk de démonstration ne prouvent pas la compatibilité des scénarios originaux.",
+      "scope": "Quatre campagnes, onze scénarios et Cave inventoriés avec empreintes ; importeur syntaxique vérifié, hôte natif et validation des victoires non terminés. Sous-mod Maps maintenu désactivé. État détaillé : outputs/wog-priorities-0.4.147/campaigns169/README.md.",
       "acceptance": "Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire."
     },
     {

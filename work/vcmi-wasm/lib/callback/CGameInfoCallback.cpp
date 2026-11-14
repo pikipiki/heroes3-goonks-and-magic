@@ -538,6 +538,17 @@ EBuildingState CGameInfoCallback::canBuildStructure( const CGTownInstance *t, Bu
 	if(t->hasBuilt(ID))	//already built
 		return EBuildingState::ALREADY_PRESENT;
 
+    // WoG300/301 affect only the admitted nine-town fourth/eighth roster.
+    // Never mutate the shared faction definitions or another mod's dwellings.
+    if(ID.isDwelling())
+    {
+        const auto tier=BuildingID::getLevelIndexFromDwelling(ID);
+        const auto upgrade=BuildingID::getUpgradeNoFromDwelling(ID);
+        const auto & roster=t->getTown()->creatures;
+        if(tier<roster.size() && upgrade<roster[tier].size()
+            && !t->wogRecruitAllowed(tier,roster[tier][upgrade]))return EBuildingState::FORBIDDEN;
+    }
+
 	//can we build it?
 	if(vstd::contains(t->forbiddenBuildings, ID))
 		return EBuildingState::FORBIDDEN; //forbidden
