@@ -1,5 +1,6 @@
 import {campaignDialogDraft,renderCampaignDialogForm,sendCampaignDialogReply,sendCampaignDialogDraft} from './campaign-dialog-form.mjs';
 import {plainGameText} from './game-text.mjs';
+import {closeCampaignMediaViewer} from './campaign-media.mjs';
 import {renderCommanderTree} from './commander-tree.mjs';
 import {getLanguage} from './i18n.mjs';
 import {createProgressionChoices} from './progression-choices.mjs';
@@ -44,8 +45,8 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}
   state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&next.dialogPresentation;
   panel.hidden=!data;root.toggleAttribute('data-dialog-presentation',!!data);
-  if(!data){key=undefined;icons=[];hasSnapshot=false;campaignDraft=null;return;}
-  const nextKey=JSON.stringify(data);if(nextKey===key)return;key=nextKey;
+  if(!data){closeCampaignMediaViewer();key=undefined;icons=[];hasSnapshot=false;campaignDraft=null;return;}
+  const nextKey=JSON.stringify(data);if(nextKey===key)return;closeCampaignMediaViewer();key=nextKey;
   const scroll=panel.querySelector('.commander-tree')?.scrollTop||0;
   const previous=panel.querySelector('[data-dialog-choice]:focus')?.dataset.dialogChoice;
   panel.replaceChildren();panel.dataset.kind=next.dialogKind||'message';panel.dataset.tree=String(treeOpen&&!!data.commanderTree);panel.dataset.selectable=String((data.choices||[]).some(c=>c.selectable||c.inspectable));panel.dataset.choices=String((data.choices||[]).length);panel.dataset.detailed=String((data.choices||[]).some(c=>c.selectable&&c.label?.length>35));

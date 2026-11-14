@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave ; la 0.4.171 ajoute les formulaires natifs avec saisie et choix multiples, et la 0.4.172 raccorde une première forme de combat scripté, et la 0.4.173 une récompense en créatures avec répartition d’armée. Ces étapes ne constituent pas le port intégral des campagnes.
+Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. La version 0.4.170 ajoute un premier raccordement natif à Cave ; la 0.4.171 ajoute les formulaires natifs avec saisie et choix multiples, et la 0.4.172 raccorde une première forme de combat scripté, et la 0.4.173 une récompense en créatures avec répartition d’armée. La 0.4.174 restaure les illustrations et corrige les prérequis de zc1 depuis les archives H3C originales. Ces étapes ne constituent pas le port intégral des campagnes.
 
 ## Ce qui est implémenté
 
@@ -80,8 +80,20 @@ Le [relevé 173](../outputs/wog-priorities-0.4.147/campaign-runtime/native-army-
 1. Les autres branches de Cave et son parcours complet jusqu’à une victoire native.
 2. Les adaptations natives des commandes d’aventure, de combat et de minuterie des onze scénarios des campagnes, et leur raccordement aux événements du jeu.
 3. Le raccordement des formulaires aux quêtes complètes, aux médias externes et aux récompenses/combats de ces scénarios. Les formulaires avec saisie et choix multiples sont implémentés, mais leur validation isolée ne couvre pas ces parcours.
-4. La correction vérifiée du graphe d’accès de zc1, les transferts entre scénarios, puis les parcours de quêtes, combats, sauvegardes et victoires sur les cartes originales.
+4. Les transferts originaux de héros et de données entre scénarios, puis les parcours de quêtes, combats, sauvegardes et victoires sur les cartes originales.
 
 Les fichiers incomplets des adaptations précédentes restent conservés dans le répertoire de travail indiqué par le [relevé précédent](../outputs/wog-priorities-0.4.147/campaigns169/README.md). Ils ne sont pas utilisés par ce raccordement. La compilation d’un script et la sérialisation de la VM ne constituent pas une preuve que sa quête ou sa campagne fonctionne dans le jeu.
 
 Les contrats des commandes sont rapprochés de la documentation primaire [IF](https://h3era.github.io/ERM-Help/Rec/IF.htm), [VR](https://h3era.github.io/ERM-Help/Rec/VR.htm), [FU](https://h3era.github.io/ERM-Help/Rec/FU.htm) et [DO](https://h3era.github.io/ERM-Help/Rec/DO.htm), et des sources embarquées dont les empreintes sont conservées par l’importeur.
+
+## Archives originales, graphe et illustrations en 0.4.174
+
+Les quatre archives H3C de WoG 3.58f ont été extraites statiquement de la distribution liée par Acid Cave, sans exécuter son installateur. Le lecteur vérifie les empreintes, limites, membres gzip et CRC. Les 137 scripts correspondent aux textes convertis après décodage Windows-1252 et normalisation des fins de ligne. Les fixtures et leur provenance figurent dans `tests/fixtures/wog-campaigns/original358f/`.
+
+Le graphe converti de zc1 conservait des indices de régions physiques alors que deux régions vides avaient été supprimées. Les prérequis corrigés sont `[[2], [], [1]]`. Le chargeur applique cette réparation uniquement si l’en-tête complet correspond à l’original attendu ; les archives et les campagnes personnalisées restent intactes. Les trois autres graphes étaient déjà corrects. Le moteur réel confirme les déblocages 1 → 2 → 0 avec des victoires contrôlées au deuxième jour. Ce test retire les événements scriptés des copies privées : il valide le graphe et les transitions natives, pas les quêtes, conditions de victoire originales ou transferts ERM entre scénarios.
+
+Les 78 images et quatre petits fichiers AVI de `main4.wog` sont importés sans modification et liés à leurs empreintes. Les chemins Windows `..\Data\Zvs\Cmp.res\…` et les portraits PCX sont résolus comme ressources virtuelles. Seules les images effectivement fournies par mapSupport obtiennent un équivalent DOM ; une image remplacée par un autre mod conserve son rendu natif. Le formulaire tactile propose un agrandissement à la résolution d’origine, hors de la surface SDL qui bloque les gestes. Fermer une illustration ne répond pas à la quête.
+
+Les 78 bitmaps se décodent dans Chromium et WebKit. Sept formats couvrent les petits téléphones et iPad, portrait et paysage, avec commandes à droite en paysage, panoramique tactile réel, clavier isolé et fermeture sans réponse de quête. Le dialogue original de choix du portrait de zc1 est exécuté par le moteur : ses quatre images sont chargées, agrandies, puis la réponse reprend la VM.
+
+Les AVI sont conservés comme ressources ; leur lecture via IF:B reste à porter. La référence `21a.bmp` n’existe dans aucun des huit lots de la distribution examinée ; aucune illustration de remplacement n’est inventée. Les campagnes originales restent désactivées.

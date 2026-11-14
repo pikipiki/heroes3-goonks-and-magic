@@ -15,10 +15,12 @@
 #include "../../lib/era/EraSourceCreatureLevels.h"
 #include "../../lib/era/EraCampaignDialogs.h"
 #include "../../lib/era/EraCampaignPictures.h"
+#include "../../lib/era/EraCampaignMedia.h"
 #include "../../lib/GameLibrary.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/modding/IdentifierStorage.h"
 #include "../../lib/modding/ModScope.h"
+#include "../../lib/modding/CModHandler.h"
 #include "../../lib/filesystem/Filesystem.h"
 namespace
 {
@@ -62,9 +64,16 @@ CSourceCampaignDialog::CSourceCampaignDialog(QueryID query,const JsonNode & desc
  else for(std::size_t index=0;index<model["pictures"].Vector().size();++index)
  {
   const auto & picture=model["pictures"].Vector()[index];if(picture["file"].String().empty())continue;
-  const auto path=ImagePath::builtin("Maps/"+picture["file"].String());
-  if(CResourceHandler::get()->existsResource(path))
-  {auto image=std::make_shared<CPicture>(path,20+int(customPictures.size())*140,260);image->scaleTo(Point(100,100));customPictures.emplace_back(index,image);}
+  for(const auto & candidate:era_campaign_media::candidates(picture["file"].String()))
+  {
+   const auto path=ImagePath::builtin(candidate.resource);if(!CResourceHandler::get()->existsResource(path))continue;
+   auto image=std::make_shared<CPicture>(path,20+int(index)*140,260);
+   const double scale=std::min({1.0,100.0/image->pos.w,100.0/image->pos.h});
+   image->scaleTo(Point(std::max(1,int(image->pos.w*scale)),std::max(1,int(image->pos.h*scale))));
+   image->moveBy(Point((100-image->pos.w)/2,(100-image->pos.h)/2));customPictures.emplace_back(index,image);
+   if(LIBRARY->modh->findResourceOrigin(ResourcePath(candidate.resource,EResType::IMAGE))=="wake-of-gods.mapsupport")model["pictures"].Vector()[index]["mediaKey"].String()=candidate.key;
+   break;
+  }
  }
  selection=kind=="checklist"?int(model["initial"].Integer()):model["choices"].Vector().empty()?0:int(model["choices"].Vector().front()["value"].Integer());
  for(std::size_t i=0;i<model["choices"].Vector().size();++i)

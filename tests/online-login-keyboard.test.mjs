@@ -4,7 +4,7 @@ import {guardOnlineNameKeyboard} from '../web/online-login.mjs';
 
 test('The mobile name input keeps native typing before game keyboard handlers', () => {
   const window = new EventTarget();
-  window.document = {activeElement: {matches: () => true}};
+  window.document = {querySelector: () => null, activeElement: {matches: () => true}};
   guardOnlineNameKeyboard(window);
   const gameEvents = [];
   for (const type of ['keydown', 'keypress', 'keyup']) {
@@ -21,4 +21,7 @@ test('The mobile name input keeps native typing before game keyboard handlers', 
   window.document.activeElement = null;
   window.dispatchEvent(new Event('keydown', {cancelable: true}));
   assert.deepEqual(gameEvents, ['keydown']);
+  window.document.querySelector = selector => selector === '.campaign-media-viewer[open]' ? {} : null;
+  const escape = new Event('keydown', {cancelable: true});window.dispatchEvent(escape);
+  assert.equal(escape.defaultPrevented, false);assert.deepEqual(gameEvents, ['keydown']);
 });

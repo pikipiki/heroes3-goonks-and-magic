@@ -1,6 +1,7 @@
 #include "Global.h"
 #include "era/EraCampaignJson.h"
 #include "era/EraCampaignRuntime.h"
+#include "era/EraCampaignMetadata.h"
 #include "era/EraCampaignDialogs.h"
 #include "era/EraCampaignPictures.h"
 #include <limits>
@@ -98,5 +99,18 @@ int main()
  const auto daily=era_campaign_pictures::component(6,-200,creatureId);assert(daily->type==ComponentType::RESOURCE_PER_DAY&&daily->value==200);
  const auto loss=era_campaign_pictures::component(36,-100200,creatureId);assert(loss->type==ComponentType::RESOURCE&&loss->value==-200);
  assert(!era_campaign_pictures::component(-1,-1,creatureId));
+ JsonNode header;header["name"].String()="Exact source header";
+ for(int i=0;i<3;++i){JsonNode s;s["map"].String()="map"+std::to_string(i);if(i!=1)s["preconditions"].Vector()={JsonNode(i==0?3:2)};header["scenarios"].Vector().push_back(s);}
+ const JsonNode original(header);JsonNode config;config["schemaVersion"].Integer()=1;config["contract"].String()="source-campaign-metadata-v1";config["enabled"].Bool()=true;
+ JsonNode rule;rule["expectedHeader"]=original;
+ for(int i:{0,2}){JsonNode patch;patch["index"].Integer()=i;patch["map"]=original["scenarios"].Vector()[i]["map"];patch["originalRequires"]=original["scenarios"].Vector()[i]["preconditions"];patch["requires"].Vector()={JsonNode(i==0?2:1)};rule["patches"].Vector().push_back(patch);}
+ config["rules"].Vector().push_back(rule);
+ assert(era_campaign_metadata::apply(header,config));assert(header["scenarios"].Vector()[0]["preconditions"].Vector()[0].Integer()==2);assert(header["scenarios"].Vector()[2]["preconditions"].Vector()[0].Integer()==1);
+ assert(!era_campaign_metadata::apply(header,config));JsonNode custom(original);custom["name"].String()="Another campaign";const JsonNode customCopy(custom);assert(!era_campaign_metadata::apply(custom,config)&&custom==customCopy);
+ JsonNode bad(config),unchanged(original);bad["rules"].Vector()[0]["patches"].Vector()[1]["requires"].Vector()={JsonNode(2)};
+ rejects([&]{era_campaign_metadata::apply(unchanged,bad);});assert(unchanged==original);
+ bad=config;bad["rules"].Vector()[0]["patches"].Vector()[1]["requires"].Vector()={JsonNode(1.5)};
+ rejects([&]{era_campaign_metadata::apply(unchanged,bad);});assert(unchanged==original);
+ bad=config;bad["enabled"].Bool()=false;assert(!era_campaign_metadata::apply(unchanged,bad)&&unchanged==original);
 
 }

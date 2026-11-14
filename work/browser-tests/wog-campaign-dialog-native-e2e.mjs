@@ -21,6 +21,12 @@ if(mode==='input'||mode==='reward'){
  const operation=command.operations.find(o=>o.code==='G'),target=operation.args[1].number,indices=operation.args.slice(3).map(a=>a.number);
  for(const index of indices){const original=all.find(c=>c.receiver==='VR'&&c.selectors[0]?.space==='z'&&c.selectors[0].index.number===index&&c.operations[0]?.code==='S'&&c.operations[0].args[0]?.kind==='string');assert(original,'Original choice label '+index);initializers.push({...original,conditions:[]});}
  fixtureCommands=[{...command,conditions:[]},message('Native dialog result: %V'+target)];expected=mode==='checklist'?/Native dialog result: 13/:/Native dialog result: 4/;
+}else if(mode==='artwork'){
+ const archive=compileNativeCampaign('mod/wake-of-gods/Mods/maps/content/maps/zc1.vcmp');sourceArchiveSha256=archive.sourceArchiveSha256;
+ const source=archive.scenarios.find(s=>s.member==='z_-~-_01e.vmap'),all=[...source.program.initializers,...source.program.blocks.flatMap(b=>b.commands)];
+ initializers=all.filter(c=>c.receiver==='VR'&&c.selectors[0]?.space==='z'&&((c.selectors[0].index.number>=100&&c.selectors[0].index.number<=110)||c.selectors[0].index.number===199)&&c.operations[0]?.code==='S'&&c.operations[0]?.args[0]?.kind==='string').map(c=>({...c,conditions:[]}));
+ const definition=all.find(c=>c.receiver==='IF'&&c.operations.some(o=>o.code==='D'&&o.args[0]?.number===1));assert(definition);
+ fixtureCommands=[definition,{receiver:'IF',selectors:[],conditions:[],operations:[{code:'E',args:[n(901),n(1)]}]},message('Native original artwork completed: %V901')];expected=/Native original artwork completed: 1/;
 }else if(mode==='pictures'){
  const command=commands.find(c=>c.receiver==='IF'&&c.operations.some(o=>o.code==='Q'&&o.args.at(-2)?.number===7));assert(command);
  fixtureCommands=[set(v('y',1),6),set(v('y',2),7),set(v('y',5),3),set(v('z',161),'First artifact'),set(v('z',162),'Second artifact'),command,message('Native picture answer: %F162')];expected=/Native picture answer: 0/;
@@ -130,6 +136,12 @@ try{
   if(process.env.CAMPAIGN_EXPECT_DRAFT)assert.equal(await page.locator('[data-campaign-input]').inputValue(),process.env.CAMPAIGN_EXPECT_DRAFT,'Typed draft restored by native save');
   await page.evaluate(()=>window.savedCampaignInput=document.querySelector('[data-campaign-input]'));
   await page.locator('[data-campaign-input]').fill(process.env.CAMPAIGN_TEXT||(process.env.CAMPAIGN_ANSWER==='wrong'?'Not the spell':'rUsT dRaGoNs NoT cRuSt DrAgOnS cOmE aNd JoIn'));
+ }
+ else if(mode==='artwork'){
+  assert.deepEqual(pending.dialogPresentation.scriptDialog.pictures.map(p=>p.mediaKey),['cmp.res/11_901.bmp','cmp.res/11_902.bmp','cmp.res/11_903.bmp','cmp.res/11_904.bmp']);
+  assert.equal(await page.locator('.campaign-media-thumbnail img').count(),4);
+  await page.locator('.campaign-media-thumbnail').first().tap();await page.locator('.campaign-media-viewer img').evaluate(img=>img.decode());await page.locator('.campaign-media-viewer header button').tap();
+  await page.locator('[data-campaign-input]').fill('Native hero');await page.locator('[data-campaign-choice="1"]').check();
  }
  else if(mode==='checklist')for(const value of [1,4,8])await page.locator(`[data-campaign-choice="${value}"]`).check();
  else if(mode==='radio')await page.locator('[data-campaign-choice="4"]').check();

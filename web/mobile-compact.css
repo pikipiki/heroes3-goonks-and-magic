@@ -159,3 +159,14 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
  #mobile-app .hero-exchange-page[data-troops-only=true]{grid-template-rows:auto minmax(0,1fr)}
  #mobile-app .hero-exchange-page[data-troops-only=true] .exchange-detail{grid-row:2}
 }
+/* The full-size original illustration lives outside the SDL touch surface. */
+#mobile-app .campaign-media-thumbnail{padding:4px;min-width:44px;min-height:44px;background:#241d31;border:1px solid #b7a079;border-radius:8px}
+#mobile-app .campaign-media-thumbnail img{display:block;max-width:160px;max-height:112px;width:auto;height:auto;object-fit:contain}
+.campaign-media-viewer{position:fixed;inset:0;box-sizing:border-box;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));border:0;background:#191521;color:#fff;overflow:hidden;touch-action:pan-x pan-y pinch-zoom}
+.campaign-media-viewer[open]{display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px}
+.campaign-media-viewer header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.campaign-media-viewer h2{font:600 18px system-ui;margin:0}
+.campaign-media-viewer button{font:600 16px system-ui;color:#fff;background:#463650;border:1px solid #cbb58b;border-radius:8px;min-height:44px;min-width:72px;padding:8px 12px;touch-action:manipulation}
+.campaign-media-scroll{overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;-webkit-overflow-scrolling:touch;min-width:0;min-height:0}
+.campaign-media-scroll img{display:block;max-width:none;max-height:none;object-fit:contain;margin:auto}
+@media(orientation:landscape){.campaign-media-viewer[open]{grid-template-columns:minmax(0,1fr) 112px;grid-template-rows:minmax(0,1fr)}.campaign-media-viewer header{grid-column:2;grid-row:1;flex-direction:column;justify-content:space-between;align-items:stretch}.campaign-media-scroll{grid-column:1;grid-row:1}}

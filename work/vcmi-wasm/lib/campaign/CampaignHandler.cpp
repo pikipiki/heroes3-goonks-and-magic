@@ -27,6 +27,7 @@
 #include "../modding/ModScope.h"
 #include "../texts/CGeneralTextHandler.h"
 #include "../texts/TextOperations.h"
+#include "../era/EraCampaignMetadata.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
 
@@ -50,6 +51,9 @@ void CampaignHandler::readCampaign(Campaign * ret, const std::vector<ui8> & inpu
 	else // text format (json)
 	{
 		JsonNode jsonCampaign(reinterpret_cast<const std::byte*>(input.data()), input.size(), filename);
+  const auto metadata=JsonPath::builtin("config/era-campaigns/metadata.json");
+  if(CResourceHandler::get()->existsResource(metadata))
+  {const JsonNode rules(metadata);era_campaign_metadata::apply(jsonCampaign,rules);}
 		readHeaderFromJson(*ret, jsonCampaign, filename, modName, encoding);
 
 		for(auto & scenario : jsonCampaign["scenarios"].Vector())

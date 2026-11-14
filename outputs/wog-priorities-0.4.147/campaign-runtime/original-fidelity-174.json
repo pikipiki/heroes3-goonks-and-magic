@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.174",
+  "engineSha256": "0b723e3e354c4c9951f2da146007d23ee3db94ae48fec65ea5c59b1b163ed439",
+  "originalCampaignsEnabled": false,
+  "originalMetadata": {
+    "source": "original-metadata.json",
+    "allOriginalScriptTextsMatch": 137,
+    "zc1CorrectedRequires": [
+      [
+        2
+      ],
+      [],
+      [
+        1
+      ]
+    ],
+    "nativeControlledScenarioOrder": [
+      1,
+      2,
+      0
+    ],
+    "scope": "Original metadata and controlled day-two victories only; no original quest or victory condition validation"
+  },
+  "media": {
+    "unchangedBitmaps": 78,
+    "unchangedMovies": 4,
+    "moviesPlayable": false,
+    "nativeOriginalPortraitDialogPassed": true,
+    "browserEngines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1180,
+        820
+      ]
+    ],
+    "realTouchPan": true,
+    "escapeDoesNotReachSDL": true,
+    "closingDoesNotSubmitQuest": true
+  },
+  "nativeRegressions": {
+    "goonk003And004": true,
+    "previousPartialArmyRewardSave": true,
+    "previousCaveLeverSaveAndSubsequentDays": true
+  },
+  "checks": {
+    "ninjaHtml5": true,
+    "nativeJsonCodecASanUBSan": true,
+    "siteBuildAndVerification": true
+  },
+  "limitations": [
+    "Original quests and victory conditions are not validated by controlled day-two campaign transitions.",
+    "Original ERM cross-scenario variables and hero transfers remain to be verified.",
+    "Original IF:B movies are retained but playback is not implemented.",
+    "21a.bmp was not found in the original distribution; no substitute artwork is invented.",
+    "The native source host still admits Cave only; the eleven campaign programs remain disabled."
+  ]
+}

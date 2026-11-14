@@ -1,5 +1,6 @@
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
+import {campaignMediaPicture} from './campaign-media.mjs';
 export function campaignDialogDraft(model){return{queryId:model.queryId,selection:model.draft?.selection??model.selection??model.initial??model.choices?.[0]?.value??0,text:model.draft?.text||''};}
 export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>{}}){
  const form=document.createElement('form');form.className='campaign-dialog-form';form.dataset.kind=model.kind;
@@ -11,7 +12,7 @@ export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>
  }
  const pictures=document.createElement('div');pictures.className='campaign-dialog-pictures';
  for(const [index,picture]of (model.pictures||[]).entries())if(picture.rect&&(model.kind!=='pictures'||index>=model.choices.length)){
-  const frame=document.createElement('figure'),canvas=document.createElement('canvas');canvas.width=96;canvas.height=96;canvas.setAttribute('aria-label',picture.hint||picture.label||'');frame.append(canvas);pictures.append(frame);icons.push({canvas,rect:picture.rect});
+  const frame=document.createElement('figure'),original=campaignMediaPicture(picture);if(original)frame.append(original);else{const canvas=document.createElement('canvas');canvas.width=96;canvas.height=96;canvas.setAttribute('aria-label',picture.hint||picture.label||'');frame.append(canvas);icons.push({canvas,rect:picture.rect});}pictures.append(frame);
  }
  if(pictures.childElementCount)form.append(pictures);
  if(model.choices?.length){
