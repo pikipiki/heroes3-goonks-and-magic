@@ -87,3 +87,8 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu]>.mobile-play { gr
 }
 #crossover-arena[hidden]{display:none!important}
 @media(orientation:landscape){#mobile-app[data-mode=menu] .mobile-menu>.crossover-menu-status{grid-row:6}}
+#crossover-arena #crossover-attack[aria-pressed=true]{background:#733829;border-color:#ffb29b;box-shadow:inset 0 0 0 2px #ff987e;color:#fff2dc}
+#crossover-field[data-attack-mode=armed]{cursor:crosshair;outline:3px solid #f7986d;outline-offset:-3px}
+#crossover-arena .battle-selection[data-feedback=armed]{color:#ffd1a3;font-weight:700}
+#crossover-arena .battle-selection[data-feedback=confirmed]{color:#b4eeb9;font-weight:700}
+#crossover-arena #crossover-sound{grid-column:1/-1;min-height:44px}

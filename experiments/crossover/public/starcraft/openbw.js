@@ -1090,6 +1090,14 @@ async function boot(session) {
     updateBanner();
   };
   crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };
+  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
+  crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
+  crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
+  crossoverApi.acknowledge=kind=>{
+    ensureAudio();if(!audioCtx||muted)return;
+    const t=audioCtx.currentTime,notes=kind==='attack'?[740,990]:kind==='armed'?[520,740]:kind==='stop'?[440,330]:kind==='select'?[660]:[660,880];
+    notes.forEach((frequency,index)=>{const oscillator=audioCtx.createOscillator(),gain=audioCtx.createGain(),at=t+index*.065;oscillator.type='sine';oscillator.frequency.value=frequency;gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.13,at+.008);gain.gain.exponentialRampToValueAtTime(.001,at+.065);oscillator.connect(gain).connect(masterGain);oscillator.start(at);oscillator.stop(at+.07);});
+  };
   pauseBtn.onclick = () => {
     paused = !paused;
     // On resume, forget the wall-clock debt from the pause so the step loop doesn't

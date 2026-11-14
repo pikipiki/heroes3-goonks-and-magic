@@ -127,7 +127,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.id = 'crossover-arena';
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
-        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe pour lui donner un ordre.</p><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. « Attaquer » prépare une attaque vers le prochain point choisi. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre.</p></details></aside>';
+        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe pour lui donner un ordre.</p><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. « Attaquer » prépare une attaque vers le prochain point choisi. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre.</p></details></aside>';
         panel.hidden = true;
         doc.body.append(panel);
         panel.querySelector('iframe').remove();
@@ -137,6 +137,11 @@ export function installAdventure(target, base, onExit, trial = false) {
         warmPromise = undefined;
         const activePanel = panel, activeFrame = frame, activePlan = plan, canvas = panel.querySelector('#crossover-field');
         const status = panel.querySelector('#crossover-battle-status'), start = panel.querySelector('#crossover-start'), attack = panel.querySelector('#crossover-attack'), stop = panel.querySelector('#crossover-stop'), all = panel.querySelector('#crossover-select-all'), progress = panel.querySelector('progress'), selection = panel.querySelector('#crossover-selection');
+        const sound = panel.querySelector('#crossover-sound');
+        const audio = () => { const api = activeFrame.contentWindow.openbwCrossover; void api?.enableAudio?.().catch(() => { sound.textContent = 'Activer le son'; selection.textContent = 'Touche « Activer le son » pour autoriser les sons du combat.'; }); };
+        activePanel.addEventListener('pointerdown', audio, { capture: true });
+        sound.onclick = () => { const api = activeFrame.contentWindow.openbwCrossover; api?.setMuted?.(!api.audioState?.().muted); audio(); updateSound(); };
+        const updateSound = () => { const muted = activeFrame.contentWindow.openbwCrossover?.audioState?.().muted ?? false; sound.textContent = muted ? 'Son coupé' : 'Son activé'; sound.setAttribute('aria-pressed', String(!muted)); sound.setAttribute('aria-label', muted ? 'Activer les sons du combat' : 'Couper les sons du combat'); };
         const roster = panel.querySelector('#crossover-roster'), cards = new Map();
         let ready = false, chosen;
         for (const row of plan.stacks.filter(row => row.side === 0)) {
@@ -163,12 +168,12 @@ export function installAdventure(target, base, onExit, trial = false) {
         roster.append(enemy);
         const updateSelection = () => { for (const [id, { button }] of cards)
             button.setAttribute('aria-pressed', String(chosen !== undefined && (chosen < 0 || chosen === id))); attack.disabled = stop.disabled = !ready || chosen === undefined; };
-        canvas.addEventListener('crossover-selection', event => { const data = event.detail; chosen = data.id; selection.textContent = data.name; updateSelection(); });
-        canvas.addEventListener('crossover-order-issued', event => { attack.setAttribute('aria-pressed', 'false'); selection.textContent = event.detail; });
+        canvas.addEventListener('crossover-selection', event => { const data = event.detail; chosen = data.id; selection.dataset.feedback = attack.getAttribute('aria-pressed') === 'true' ? 'armed' : ''; selection.textContent = data.name + (attack.getAttribute('aria-pressed') === 'true' ? ' · choisis une cible.' : ''); updateSelection(); });
+        canvas.addEventListener('crossover-order-issued', event => { attack.setAttribute('aria-pressed', 'false'); attack.textContent = 'Attaquer'; selection.dataset.feedback = 'confirmed'; selection.textContent = event.detail + (start.hidden ? '' : ' · appuie sur « Commencer le combat » pour exécuter cet ordre.'); });
         all.onclick = () => canvas.dispatchEvent(new Event('crossover-select-all'));
-        attack.onclick = () => { const active = attack.getAttribute('aria-pressed') !== 'true'; attack.setAttribute('aria-pressed', String(active)); canvas.dispatchEvent(new CustomEvent('crossover-command-mode', { detail: active ? 'attack' : 'move' })); selection.textContent = active ? 'Choisis un ennemi ou un point à attaquer.' : 'Choisis un point où déplacer la sélection.'; };
+        attack.onclick = () => { const active = attack.getAttribute('aria-pressed') !== 'true'; attack.setAttribute('aria-pressed', String(active)); attack.textContent = active ? 'Choisir une cible' : 'Attaquer'; selection.dataset.feedback = active ? 'armed' : ''; canvas.dispatchEvent(new CustomEvent('crossover-command-mode', { detail: active ? 'attack' : 'move' })); selection.textContent = active ? 'Mode attaque : touche un ennemi ou un point du terrain pour confirmer.' : 'Choisis un point où déplacer la sélection.'; };
         stop.onclick = () => canvas.dispatchEvent(new Event('crossover-stop-selection'));
-        start.onclick = () => { try {
+        start.onclick = () => { audio(); try {
             frame.contentWindow.openbwCrossover.start();
             start.hidden = true;
         }
@@ -189,7 +194,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                 progress.hidden = true;
                 status.textContent = 'Prêt · contrôle manuel';
                 ready = true;
-                start.disabled = all.disabled = false;
+                start.disabled = all.disabled = sound.disabled = false;
+                updateSound();
                 for (const { button } of cards.values())
                     button.disabled = false;
                 sceneDispose = sharedField(win, canvas, sc.openbwCrossover, activePlan);

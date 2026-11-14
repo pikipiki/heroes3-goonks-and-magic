@@ -19,6 +19,16 @@ replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(
 replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
 replace('let paused = false, waiting = false, stepMs = 42;', 'let paused = !!session.crossover, waiting = false, stepMs = 42;');
 replace('  pauseBtn.onclick = () => {', '  crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };\n  pauseBtn.onclick = () => {');
+replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
+  crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
+  crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
+  crossoverApi.acknowledge=kind=>{
+    ensureAudio();if(!audioCtx||muted)return;
+    const t=audioCtx.currentTime,notes=kind==='attack'?[740,990]:kind==='armed'?[520,740]:kind==='stop'?[440,330]:kind==='select'?[660]:[660,880];
+    notes.forEach((frequency,index)=>{const oscillator=audioCtx.createOscillator(),gain=audioCtx.createGain(),at=t+index*.065;oscillator.type='sine';oscillator.frequency.value=frequency;gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.13,at+.008);gain.gain.exponentialRampToValueAtTime(.001,at+.065);oscillator.connect(gain).connect(masterGain);oscillator.start(at);oscillator.stop(at+.07);});
+  };
+  pauseBtn.onclick = () => {`);
+
 replace("if (location.hash.startsWith('#i=')) {",'if (false) { // P2P not enabled in this milestone.');
 replace("if (/(\\?|&)relay\\b/.test(location.search)) {",'if (false) { // Relay not enabled in this milestone.');
 const multiplayerStart=js.indexOf('// --- multiplayer: 1v1');

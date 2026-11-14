@@ -13,6 +13,10 @@ export type NativeBridge = {
   battle(): BattleState | null;
   attack(): void;
   start(): void;
+  enableAudio?():Promise<void>;
+  setMuted?(muted:boolean):void;
+  audioState?():{state:string;muted:boolean};
+  acknowledge?(kind:'select'|'armed'|'attack'|'move'|'stop'):void;
   stop(stack:number):void;
   target(stack:number,id:number):void;
   camera():{x:number;y:number};

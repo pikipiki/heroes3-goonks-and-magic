@@ -19,6 +19,8 @@ export function sharedField(win, canvas, api, plan) {
     canvas.setAttribute('aria-label', 'Champ de bataille Heroes III : unités Heroes et StarCraft en temps réel');
     const sc = sprite.getContext('2d'), previous = new Map();
     let request = 0, closed = false, last = 0, selected, attackMode = false, units = [], view;
+    let marker;
+    const hits = new Map();
     const draw = (now) => {
         if (closed)
             return;
@@ -73,12 +75,40 @@ export function sharedField(win, canvas, api, plan) {
                 context.drawImage(sprite, x - 120, y + 5 - 200, 240, 240);
                 context.imageSmoothingEnabled = false;
             }
-            previous.set(u.id, { x: u.x, y: u.y, moving });
+            if (old && u.hp < old.hp)
+                hits.set(u.id, now + 220);
+            if ((hits.get(u.id) || 0) > now) {
+                context.strokeStyle = '#fff0be';
+                context.lineWidth = 4;
+                context.beginPath();
+                context.ellipse(x, y - 42, 28, 45, 0, 0, Math.PI * 2);
+                context.stroke();
+            }
+            previous.set(u.id, { x: u.x, y: u.y, moving, hp: u.hp });
             const width = 22, barY = y - (u.heroes ? 96 : 76), hp = Math.max(0, Math.min(1, u.hp / (u.maxHp || u.hp)));
             context.fillStyle = '#121009';
             context.fillRect(x - width / 2 - 1, barY - 1, width + 2, 8);
             context.fillStyle = u.owner === 0 ? '#88e460' : '#ff7665';
             context.fillRect(x - width / 2, barY, width * hp, 6);
+        }
+        if (marker && now - marker.at < 1000) {
+            const target = units.find(unit => unit.id === marker.target), mx = target ? target.x - camera.x : marker.x, my = target ? target.y - camera.y - 30 : marker.y;
+            const age = (now - marker.at) / 1000, r = 14 + Math.sin(age * Math.PI * 4) * 4;
+            context.globalAlpha = 1 - age * .7;
+            context.strokeStyle = marker.attack ? '#ff735f' : '#9feeab';
+            context.lineWidth = 3;
+            context.beginPath();
+            context.arc(mx, my, r, 0, Math.PI * 2);
+            context.moveTo(mx - r - 8, my);
+            context.lineTo(mx - 5, my);
+            context.moveTo(mx + 5, my);
+            context.lineTo(mx + r + 8, my);
+            context.moveTo(mx, my - r - 8);
+            context.lineTo(mx, my - 5);
+            context.moveTo(mx, my + 5);
+            context.lineTo(mx, my + r + 8);
+            context.stroke();
+            context.globalAlpha = 1;
         }
         context.setTransform(1, 0, 0, 1, 0, 0);
         canvas.dataset.heroesUnits = String(units.filter(u => u.heroes).length);
@@ -103,18 +133,25 @@ export function sharedField(win, canvas, api, plan) {
             api.target(selected, nearby.id);
         else
             api.order(selected, Math.max(0, Math.min(799, x)), Math.max(0, Math.min(499, y)), attackMode);
-        canvas.dispatchEvent(new CustomEvent('crossover-order-issued', { detail: nearby?.owner === 1 || attackMode ? 'Ordre d’attaque donné.' : 'Déplacement ordonné.' }));
+        const attacking = nearby?.owner === 1 || attackMode;
+        marker = { x, y, target: nearby?.owner === 1 ? nearby.id : undefined, attack: attacking, at: win.performance.now() };
+        canvas.dataset.orderFeedback = attacking ? 'attack' : 'move';
+        api.acknowledge?.(attacking ? 'attack' : 'move');
+        const name = selected < 0 ? 'Toute l’armée' : plan.stacks.find(row => row.id === selected)?.name || 'Sélection';
+        canvas.dispatchEvent(new CustomEvent('crossover-order-issued', { detail: attacking ? name + ' · ordre d’attaque envoyé' + (nearby?.owner === 1 ? ' sur l’ennemi.' : ' vers ce point.') : name + ' · déplacement ordonné.' }));
         attackMode = false;
+        canvas.dataset.attackMode = '';
     };
     const notifySelection = () => { const name = selected === undefined ? 'Sélectionne une troupe pour lui donner un ordre.' : selected < 0 ? 'Toute l’armée sélectionnée' : (plan.stacks.find(row => row.id === selected)?.name || 'Troupe') + ' sélectionnés'; canvas.dataset.selection = selected === undefined ? '' : selected < 0 ? 'Toute l’armée' : plan.stacks.find(row => row.id === selected)?.name || ''; canvas.dispatchEvent(new CustomEvent('crossover-selection', { detail: { id: selected, name } })); };
     const select = (id) => { if (id >= 0 && !plan.stacks.some(row => row.id === id && row.side === 0))
-        return; selected = id; notifySelection(); };
+        return; selected = id; notifySelection(); api.acknowledge?.('select'); };
     const selectAll = () => select(-1);
     const selectGroup = (event) => { const id = event.detail; if (Number.isSafeInteger(id))
         select(id); };
-    const mode = (event) => { attackMode = event.detail === 'attack'; };
+    const mode = (event) => { attackMode = event.detail === 'attack'; canvas.dataset.attackMode = attackMode ? 'armed' : ''; if (attackMode)
+        api.acknowledge?.('armed'); };
     const stop = () => { if (selected === undefined)
-        return; api.stop(selected); attackMode = false; canvas.dispatchEvent(new CustomEvent('crossover-order-issued', { detail: 'Ordres annulés. La sélection reste inactive.' })); };
+        return; api.stop(selected); attackMode = false; marker = undefined; canvas.dataset.attackMode = ''; canvas.dataset.orderFeedback = 'stop'; api.acknowledge?.('stop'); canvas.dispatchEvent(new CustomEvent('crossover-order-issued', { detail: 'Ordres annulés. La sélection reste inactive.' })); };
     canvas.addEventListener('crossover-select-all', selectAll);
     canvas.addEventListener('crossover-select-group', selectGroup);
     canvas.addEventListener('crossover-command-mode', mode);
