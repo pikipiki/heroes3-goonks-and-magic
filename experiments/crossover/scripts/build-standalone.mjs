@@ -23,8 +23,9 @@ fs.copyFileSync(output+'/index.html',output+'/laboratoire.html');
 let heroesPage=fs.readFileSync(output+'/game.html','utf8');
 heroesPage=heroesPage.replace('</body>','<script type="module" src="./adventure-entry.js"></script></body>');
 fs.writeFileSync(output+'/game.html',heroesPage);
-fs.writeFileSync(output+'/heroes-entry.js',"const entry=new URL(location.href);entry.searchParams.set('mobile','1');entry.searchParams.set('skip-autoresume','1');history.replaceState(null,'',entry);import('./hosting-bootstrap.mjs');\n");
-fs.writeFileSync(output+'/index.html','<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heroes Goonk</title><script type="module" src="./heroes-entry.js"></script></head><body><p id="hosting-status">Chargement de Heroes Goonk…</p><button id="hosting-retry" hidden>Réessayer</button></body></html>');
+fs.writeFileSync(output+'/heroes-entry.js',"const entry=new URL(location.href);entry.searchParams.set('mobile','1');entry.searchParams.set('skip-autoresume','1');history.replaceState(null,'',entry);import('./crossover-hosting.mjs');\n");
+fs.writeFileSync(output+'/index.html','<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heroes Goonk</title><script type="module" src="./crossover-hosting.mjs"></script></head><body><p id="hosting-status">Chargement de Heroes Goonk…</p><button id="hosting-retry" hidden>Réessayer</button></body></html>');
+fs.copyFileSync(output+'/index.html',output+'/launch.html');
 fs.writeFileSync(output+'/robots.txt','User-agent: *\nDisallow: /\n');
 fs.writeFileSync(output+'/netlify.toml','[build]\n  publish = "."\n');
 console.log('Separate publish directory: '+output);
@@ -40,7 +41,9 @@ for(const entry of fs.readdirSync(output,{recursive:true,withFileTypes:true})){
 const hashes=Object.fromEntries([...files].sort().map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(output,decodeURIComponent(file)))).digest('base64')]));
 const worker=fs.readFileSync(path.join(root,'web/coi-serviceworker.js'),'utf8');
 const id=crypto.createHash('sha256').update(worker).update(JSON.stringify(hashes)).digest('hex').slice(0,24);
-fs.writeFileSync(output+'/coi-serviceworker.js',worker.replace('/* OFFLINE_RELEASE */ null',JSON.stringify({id,files:hashes,htmlVersions:{}})));
+fs.writeFileSync(output+'/coi-serviceworker.js',worker.replace('/* OFFLINE_RELEASE */ null',JSON.stringify({id,files:hashes,htmlVersions:{},lazy:true})));
+
+fs.copyFileSync(output+'/coi-serviceworker.js',output+'/crossover-serviceworker.js');
 
 if(process.env.GOONK_PAGES==='1'){
  for(const file of ['vcmiclient.js.symbols','_headers','netlify.toml'])fs.rmSync(path.join(output,file),{force:true});
