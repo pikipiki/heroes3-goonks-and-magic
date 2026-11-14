@@ -42,7 +42,24 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
   const auto id=ObjectInstanceID(campaignInteger(change["object"]));
   auto * object=gs.getObjInstance(id);
   if(!object)throw std::runtime_error("Original campaign mutation target missing");
-  if(kind=="heroPatrol")
+  if(kind=="heroText")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);
+   const int field=campaignInteger(change["field"]);
+   if(!hero||(field!=0&&field!=1)||!change["text"].isString())throw std::runtime_error("Invalid original hero text mutation");
+   auto & target=field==0?hero->nameCustomTextId:hero->biographyCustomTextId;
+   const auto & text=change["text"].String();
+   if(text.empty())target.clear();
+   else target=mapRegisterLocalizedString("map",gs.getMap(),TextIdentifier("map","sourceCampaign","heroes",id.getNum(),field==0?"name":"biography"),text,"english");
+  }
+  else if(kind=="heroGender")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);
+   const int gender=campaignInteger(change["gender"]);
+   if(!hero||(gender!=0&&gender!=1))throw std::runtime_error("Invalid original hero gender mutation");
+   hero->gender=static_cast<EHeroGender>(gender);
+  }
+  else if(kind=="heroPatrol")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);
    if(!hero)throw std::runtime_error("Original campaign patrol target is not a hero");

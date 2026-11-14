@@ -39,6 +39,8 @@
 #include "../../lib/modding/ModScope.h"
 #include "../../lib/bonuses/Bonus.h"
 #include "../../lib/battle/BattleLayout.h"
+#include "../../lib/texts/CGeneralTextHandler.h"
+#include "../../lib/entities/hero/CHero.h"
 
 using namespace era_campaign;
 namespace
@@ -467,7 +469,27 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(op.code=="O")
   {arity(op,1);const int owner=value(h?h->getOwner().getNum():-1,args[0]);if(!query(op)&&h)gh.setOwner(h,PlayerColor(owner));return Step::Continue;}
   require(h!=nullptr,"source hero missing");
-  if(op.code=="P")
+  if(op.code=="B")
+  {
+   arity(op,2);require(args[0].access==Access::Read,"hero text field must be a value");
+   const int field=number(args[0]);require(field==0||field==1||field==3,"unsupported hero text field");
+   const auto old=field==0?(h->nameCustomTextId.empty()?std::string():h->getNameTranslated()):field==1?(h->biographyCustomTextId.empty()?std::string():h->getBiographyTranslated()):LIBRARY->generaltexth->translate(h->getHeroType()->getBiographyTextID());
+   if(args[1].access==Access::Write)writeText(args[1],vm,context,old);
+   else
+   {
+    require(field!=3&&args[1].access==Access::Read,"hero text requires set or get access");
+    auto change=mutation("heroText",h->id);change["field"].Integer()=field;change["text"].String()=readText(args[1],vm,context);persist(change);
+   }
+  }
+  else if(op.code=="N")
+  {arity(op,1);require(query(op),"hero identity is read-only");value(h->getHeroTypeID().getNum(),args[0]);}
+  else if(op.code=="R")
+  {
+   arity(op,2);require(args[0].access==Access::Read&&number(args[0])==2,"unsupported hero status field");
+   const int changed=value(static_cast<int>(h->gender),args[1]);
+   if(!query(op)){require(changed==0||changed==1,"invalid hero gender");auto change=mutation("heroGender",h->id);change["gender"].Integer()=changed;persist(change);}
+  }
+  else if(op.code=="P")
   {
    arity(op,3);const auto old=h->visitablePos();const int3 pos(value(old.x,args[0]),value(old.y,args[1]),value(old.z,args[2]));
    if(!query(op))require(gh.moveHero(h->id,h->convertFromVisitablePos(pos),EMovementMode::MONOLITH),"hero teleport failed");

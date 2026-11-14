@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.177",
+  "engineSha256": "cc54c64fd6b0e4f1c97430088973e916729b2015708f52df1d45b6d73b75dbb3",
+  "scope": "Dormant native host: HE:B0/B1/B3 and HE:N/R2, with original portrait/name form on controlled Cave hero106. No original quest or victory claimed.",
+  "originalCampaignsEnabled": false,
+  "sourceContract": "https://h3era.github.io/ERM-Help/Rec/HE.htm",
+  "nativeChecks": [
+    {
+      "case": "identity-fresh-r2",
+      "passed": true,
+      "resultSha256": "6a34ba328122eb463241f52049dcb91ddd6e6a5f0d083017fc89ec84272ec133",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "cba44179e77c1c7167de04c14fc5c0a270cab156731a70fadc1e97c1d8f9a961",
+      "identity": true,
+      "loadedPending": false,
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 4,
+          "text": [
+            "Native weekly timer: 1; portrait: 4; name: Native Voyager; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 5,
+          "text": [
+            "Native daily timer: 12; red: 0; control: 0; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 6,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 7,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 20123
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 30,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 31,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 36,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 21357
+        }
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "identity-reload",
+      "passed": true,
+      "resultSha256": "64aa31d8602f4f7f3e2a08decafd8336d6460cc6922dd4f586b953b4fb9afccc",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "cba44179e77c1c7167de04c14fc5c0a270cab156731a70fadc1e97c1d8f9a961",
+      "identity": true,
+      "loadedPending": true,
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 8,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 9,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 20123
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 32,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 33,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 38,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2; hero: Native Voyager; id: 106; sex: 1; bio: A voyager from the original campaign name form."
+          ],
+          "gold": 21357
+        }
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "old-form",
+      "passed": true,
+      "resultSha256": "c737530cb3e9c904ff3e970b8f12c03f57ae203ab7f84f266c1391ff4a3043b3",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "a86b7fdbdff80b26689d281a60d8b98eb759337511449985c9bb84d2069bd46a",
+      "identity": false,
+      "loadedPending": true,
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 5,
+          "text": [
+            "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 6,
+          "text": [
+            "Native weekly timer: 1; portrait: 4; name: Native Voyager"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 7,
+          "text": [
+            "Native daily timer: 12; red: 0; control: 0"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 8,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 9,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 20123
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 30,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 31,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 36,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2"
+          ],
+          "gold": 21357
+        }
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "production",
+      "passed": true,
+      "resultSha256": "13c06f13c9fc706340b69bd4b8d5fdfef7909d55b934421079bfa88e810bd1bb",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "fixtureSha256": null,
+      "identity": null,
+      "loadedPending": null,
+      "markers": null,
+      "mapFlashes": null,
+      "errors": []
+    },
+    {
+      "case": "reward",
+      "passed": true,
+      "resultSha256": "9f18363b9908245c9048fdbe1d6d457b3960a12354fe2ea38b24a67ed44eb3b1",
+      "scope": "Complete original FU31 riddle instructions, including the real three-rust-dragon reward, at a private Cave event. No original scenario victory.",
+      "fixtureSha256": "fd66883d6107dd1799c1519f8b9f5fc43148419d09b499ce38f6c0854666a4dc",
+      "identity": null,
+      "loadedPending": null,
+      "markers": null,
+      "mapFlashes": null,
+      "errors": []
+    }
+  ],
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 761,
+      "passed": 727,
+      "skipped": 34,
+      "failed": 0
+    },
+    "siteBuildAndVerification": true,
+    "unchangedSaveVersion": 903,
+    "previous176PublicStartupCspAndWasmVerified": true
+  },
+  "limitations": [
+    "HE:L5 custom portraits still require native rendering integration.",
+    "Other hero subcommands and eleven campaign admissions remain incomplete.",
+    "No original scenario victory or campaign carryover validated."
+  ]
+}
