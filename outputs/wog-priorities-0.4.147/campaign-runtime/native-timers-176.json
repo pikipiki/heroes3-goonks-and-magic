@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.176",
+  "engineSha256": "d25dd0facf385d203213af6032e05c1bf9e3a8f6b1493f8a83539261d8ea9310",
+  "originalCampaignsEnabled": false,
+  "scope": "Native TM settings, turn scheduling, resumable dialogs and global rewards. Controlled private programs on actual Cave map; no original scenario or campaign victory claimed.",
+  "nativeChecks": [
+    {
+      "case": "fresh-r6",
+      "resultSha256": "46c7861677f2483ed38bd9eada902804d8af91489d4bfa1b56b4d83eef7b8f0d",
+      "passed": true,
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "92348471541ff44510717c8e5f7610d45dd12fb22758946e031d57be810dd8eb",
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 3,
+          "text": [
+            "Native initialization pending."
+          ],
+          "gold": 20900
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 4,
+          "text": [
+            "Native weekly timer: 1"
+          ],
+          "gold": 20900
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 5,
+          "text": [
+            "Native daily timer: 12; red: 0; control: 0"
+          ],
+          "gold": 20900
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 6,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20900
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 7,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 21023
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 30,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1"
+          ],
+          "gold": 21757
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 31,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 21757
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 36,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2"
+          ],
+          "gold": 22257
+        }
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "portrait-reload-r6",
+      "resultSha256": "6b74131c974f226cc3c714e4f3bbd68ca6b395e4aa071041563018d27ca16ce4",
+      "passed": true,
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "a86b7fdbdff80b26689d281a60d8b98eb759337511449985c9bb84d2069bd46a",
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 5,
+          "text": [
+            "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 6,
+          "text": [
+            "Native weekly timer: 1; portrait: 4; name: Native Voyager"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 7,
+          "text": [
+            "Native daily timer: 12; red: 0; control: 0"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 8,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 9,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 20123
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 30,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 31,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 36,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2"
+          ],
+          "gold": 21357
+        }
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "global-reload-r6",
+      "resultSha256": "b97dfa4fe01e9c9f7311761a1b597621d118f944473062dadf351aa1b4a7f2d4",
+      "passed": true,
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "92348471541ff44510717c8e5f7610d45dd12fb22758946e031d57be810dd8eb",
+      "markers": [
+        {
+          "day": 1,
+          "turn": false,
+          "query": 10,
+          "text": [
+            "Native global 666: 124"
+          ],
+          "gold": 20000
+        },
+        {
+          "day": 1,
+          "turn": false,
+          "query": 11,
+          "text": [
+            "Native global 667: 1245"
+          ],
+          "gold": 20123
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 32,
+          "text": [
+            "Native daily timer: 12452; red: 0; control: 1"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 2,
+          "turn": false,
+          "query": 33,
+          "text": [
+            "Native one-time timer: 124523"
+          ],
+          "gold": 20857
+        },
+        {
+          "day": 3,
+          "turn": false,
+          "query": 38,
+          "text": [
+            "Native daily timer: 1245232; red: 0; control: 2"
+          ],
+          "gold": 21357
+        }
+      ],
+      "mapFlashes": [],
+      "errors": []
+    },
+    {
+      "case": "lever-r6",
+      "resultSha256": "cedd3022ee182de0a087a46645caa77ff9f331d1754b28d5a6d825fc750ad45d",
+      "passed": true,
+      "scope": "Real native pending-query save/reload and selected Cave lever continuation",
+      "fixtureSha256": null,
+      "markers": null,
+      "mapFlashes": null,
+      "errors": []
+    },
+    {
+      "case": "reward-r6",
+      "resultSha256": "9de2982f65070e4987f0025b16817a2f9d136a976f640215b40613b3f3efa6d9",
+      "passed": true,
+      "scope": "Complete original FU31 riddle instructions, including the real three-rust-dragon reward, at a private Cave event. No original scenario victory.",
+      "fixtureSha256": "fd66883d6107dd1799c1519f8b9f5fc43148419d09b499ce38f6c0854666a4dc",
+      "markers": null,
+      "mapFlashes": null,
+      "errors": []
+    },
+    {
+      "case": "production-r6",
+      "resultSha256": "f8f9c61fabfb67edeb8f4eed0f4d27a0618a3aa3246d820a89658c724d0aacb1",
+      "passed": true,
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "fixtureSha256": null,
+      "markers": null,
+      "mapFlashes": null,
+      "errors": []
+    },
+    {
+      "case": "original-maze-r6",
+      "resultSha256": "7ee4464ae1bc9949917fb8cb36c1a8c2d62f08ef0b9c50dd427b96dbffc0d1e9",
+      "passed": true,
+      "scope": "Controlled hero relocation, original maze goal, Crown pickup, native quest guard and lever continuation; full map victory not validated",
+      "heroStartOverride": [
+        15,
+        10,
+        0
+      ],
+      "errors": []
+    }
+  ],
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 761,
+      "passed": 727,
+      "skipped": 34,
+      "failed": 0
+    },
+    "timerProductionFunctionsASanUBSan": true,
+    "siteBuildAndVerification": true,
+    "formChromiumAndWebKitSevenSizes": true,
+    "transitionFramesPreserveDraftFocusAndPanel": 12
+  },
+  "limitations": [
+    "Only the dormant Cave program is admitted.",
+    "Original full quests, battle hooks, movies and campaign carryover remain incomplete.",
+    "Zero-period active timer raises explicit runtime error in place of the original CPU divide fault. All 51 original campaign TM:S instructions use positive periods."
+  ]
+}

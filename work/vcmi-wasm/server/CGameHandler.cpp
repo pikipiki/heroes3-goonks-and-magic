@@ -660,7 +660,6 @@ void CGameHandler::onPlayerTurnStarted(PlayerColor which)
 	events::PlayerGotTurn::defaultExecute(serverEventBus.get(), which);
 	turnTimerHandler->onPlayerGetTurn(which);
 	newTurnProcessor->onPlayerTurnStarted(which);
-    CGMysteriousCave::onPlayerTurnStart(*this,gameInfo(),which);
 }
 
 void CGameHandler::onPlayerTurnEnded(PlayerColor which)

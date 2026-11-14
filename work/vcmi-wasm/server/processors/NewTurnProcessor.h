@@ -15,6 +15,7 @@
 
 VCMI_LIB_NAMESPACE_BEGIN
 class CGTownInstance;
+class CMapEvent;
 class ResourceSet;
 struct SetAvailableCreatures;
 struct SetMovePoints;
@@ -49,5 +50,8 @@ public:
 
 	void onNewTurn();
 	void onPlayerTurnStarted(PlayerColor color);
+	void preparePlayerTurnStarted(PlayerColor color);
+	void finishPlayerTurnStarted(PlayerColor color);
+	void applyTimeEvent(const CMapEvent & event,PlayerColor color);
 	void onPlayerTurnEnded(PlayerColor color);
 };

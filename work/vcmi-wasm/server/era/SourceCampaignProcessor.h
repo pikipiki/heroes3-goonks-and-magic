@@ -21,6 +21,8 @@ public:
  bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool visit(const CGObjectInstance * object,const CGHeroInstance * hero);
+ bool beginTurn(PlayerColor player);
+ bool turnPending(PlayerColor player);
  bool timedEvent(const CMapEvent & event,PlayerColor player);
  MetaString eventMessage(const CMapEvent & event) const;
 };

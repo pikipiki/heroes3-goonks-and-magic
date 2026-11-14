@@ -77,6 +77,7 @@ class TurnOrderProcessor : boost::noncopyable
 	bool isPlayerAwaitsNewDay(PlayerColor which) const;
 
 public:
+ void resumePlayerTurnStarted(PlayerColor which);
 	TurnOrderProcessor(CGameHandler * owner);
 
 	bool isContactAllowed(PlayerColor left, PlayerColor right) const;

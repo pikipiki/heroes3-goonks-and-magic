@@ -85,7 +85,7 @@ CSourceCampaignDialog::CSourceCampaignDialog(QueryID query,const JsonNode & desc
  auto confirm=std::make_shared<CButton>(Point(420,465),AnimationPath::builtin("IOKAY.DEF"),CButton::tooltip(),[this](){this->confirm();});confirm->assignedKey=EShortcut::GLOBAL_RETURN;buttons.push_back(confirm);
  if(model["canCancel"].Bool())
  {auto cancel=std::make_shared<CButton>(Point(520,465),AnimationPath::builtin("ICANCEL.DEF"),CButton::tooltip(),[this](){submit(model["kind"].String()=="extended"?-1:0,input?input->getText():std::string());});cancel->assignedKey=EShortcut::GLOBAL_CANCEL;buttons.push_back(cancel);}
- if(model["draft"].isStruct())selection=model["draft"]["selection"].Integer();
+ if(model["draft"].isStruct()&&model["draft"]["selection"].isNumber())selection=model["draft"]["selection"].Integer();
  model["selection"].Integer()=selection;
  if(input){input->setText(model["draft"]["text"].String());input->setCallback([this](const std::string & text){draft(selection,text);});}
  center();choose(kind=="checklist"&&model["multiple"].Bool()?0:selection);ready=true;

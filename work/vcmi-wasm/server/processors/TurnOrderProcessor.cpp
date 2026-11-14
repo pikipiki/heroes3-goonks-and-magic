@@ -14,6 +14,7 @@
 #include "../queries/QueriesProcessor.h"
 #include "../queries/MapQueries.h"
 #include "../CGameHandler.h"
+#include "../era/SourceCampaignProcessor.h"
 #include "../CVCMIServer.h"
 
 #include "../../lib/CPlayerState.h"
@@ -283,6 +284,12 @@ void TurnOrderProcessor::doStartPlayerTurn(PlayerColor which)
 
 	actingPlayers.insert(which);
 	awaitingPlayers.erase(which);
+	resumePlayerTurnStarted(which);
+}
+
+void TurnOrderProcessor::resumePlayerTurnStarted(PlayerColor which)
+{
+	if(!actingPlayers.count(which)||gameHandler->sourceCampaigns->turnPending(which))return;
 
 	PlayerStartsTurn pst;
 	pst.player = which;

@@ -2,6 +2,8 @@
 #include "StdInc.h"
 #include "SourceCampaignProcessor.h"
 #include "../CGameHandler.h"
+#include "../processors/NewTurnProcessor.h"
+#include "../processors/TurnOrderProcessor.h"
 #include "../queries/CQuery.h"
 #include "../queries/BattleQueries.h"
 #include "../queries/MapQueries.h"
@@ -12,6 +14,7 @@
 #include "../../lib/era/EraCampaignDialogs.h"
 #include "../../lib/era/EraCampaignPictures.h"
 #include "../../lib/era/EraCampaignObjectAccess.h"
+#include "../../lib/era/EraCampaignTimers.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
 #include "../../lib/GameLibrary.h"
 #include "../../lib/CPlayerState.h"
@@ -27,6 +30,7 @@
 #include "../../lib/mapObjects/army/CStackInstance.h"
 #include "../../lib/networkPacks/SourceCampaignChange.h"
 #include "../../lib/networkPacks/PacksForClient.h"
+#include "../../lib/networkPacks/PacksForServer.h"
 #include "../../lib/networkPacks/ArtifactLocation.h"
 #include "../../lib/networkPacks/StackLocation.h"
 #include "../../lib/filesystem/Filesystem.h"
@@ -68,6 +72,13 @@ public:
  {require(std::dynamic_pointer_cast<CGarrisonDialogQuery>(previous)!=nullptr,"army exchange ended without its query");owner->popQuery(*this);}
  void onRemoval(PlayerColor)override{continuation();}
 };
+class CampaignTurnQuery final:public CQuery
+{
+public:
+ CampaignTurnQuery(CGameHandler & game,PlayerColor player):CQuery(&game){addPlayer(player);}
+ bool blocksPack(const CPackForServer * packet)const override{return dynamic_cast<const AdvInterfaceReady *>(packet)==nullptr;}
+ void onExposure(QueryPtr)override{}
+};
 }
 struct SourceCampaignProcessor::Impl final:Host
 {
@@ -81,6 +92,8 @@ struct SourceCampaignProcessor::Impl final:Host
  PlayerColor player=PlayerColor::NEUTRAL;
  std::optional<QueryID> shown;
  std::optional<bool> comparison;
+ bool pumping=false;
+ std::map<PlayerColor,QueryPtr> turnBarriers;
  explicit Impl(CGameHandler & game):gh(game){}
  int number(const Operand & o)const{return readNumber(o,vm,context);}
  int value(int old,const Operand & o)
@@ -149,7 +162,7 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   state["contract"].String()="source-campaign-state-v1";
   state["vm"]=era_campaign_json::writeState(vm);
-  state["running"].Bool()=!vm.continuations.empty();
+  state["running"].Bool()=!vm.continuations.empty()||!state["turnQueue"].Vector().empty();
   state["hero"].Integer()=heroId.getNum();state["object"].Integer()=objectId.getNum();state["player"].Integer()=player.getNum();state["pending"]=pending;
   SourceCampaignChange packet;packet.state=state;packet.changes.Vector();
   if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
@@ -184,6 +197,8 @@ struct SourceCampaignProcessor::Impl final:Host
    program=era_campaign_json::readProgram(source);state=saved;
    if(state.isNull())state["programId"].String()=entry["id"].String();
    vm=era_campaign_json::readState(state["vm"]);pending=state["pending"];
+   if(vm.programSha256.empty())vm.programSha256=program.sha256;
+   if(!state["turnQueue"].isNull())era_campaign_json::array(state["turnQueue"]);
    if(state["hero"].isNumber())heroId=ObjectInstanceID(state["hero"].Integer());
    if(state["object"].isNumber())objectId=ObjectInstanceID(state["object"].Integer());
    if(state["player"].isNumber())player=PlayerColor(state["player"].Integer());
@@ -198,6 +213,95 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int32_t random(int32_t maximum,bool)override{return gh.randomizer->getDefault().nextInt(maximum);}
  Step execute(const Command &,const Operation &,State &,const Context &)override;
+ era_campaign_timers::Settings timer(int id)const
+ {
+  const auto & values=state["timers"][std::to_string(id)];if(values.isNull())return {};
+  const auto & array=era_campaign_json::array(values);require(array.size()==4,"invalid saved timer settings");
+  era_campaign_timers::Settings result{};
+  for(int i=0;i<4;++i){const int value=era_campaign_json::integer(array[i]);require(value>=0&&value<=65535,"invalid saved timer word");result[i]=value;}
+  return result;
+ }
+ void setTimer(int id,const era_campaign_timers::Settings & settings)
+ {
+  auto & values=state["timers"][std::to_string(id)].Vector();values.clear();for(const auto word:settings)values.push_back(JsonNode(int(word)));persist();
+ }
+ void ensureTurnBarriers()
+ {
+  if(state["turnQueue"].isNull())return;
+  const auto & queue=era_campaign_json::array(state["turnQueue"]);require(queue.size()<=32,"excessive turn queue");
+  for(const auto & item:queue)if(item["kind"].String()=="finish")
+  {
+   const PlayerColor who(era_campaign_json::integer(item["player"]));require(who.isValidPlayer(),"invalid queued turn player");
+   if(!turnBarriers.count(who)){auto barrier=std::make_shared<CampaignTurnQuery>(gh,who);turnBarriers.emplace(who,barrier);gh.queries->addQuery(barrier);}
+  }
+ }
+ void completeTurnEvent()
+ {
+  if(state["activeTurnEvent"].isNull())return;
+  const auto completed=state["activeTurnEvent"];state["activeTurnEvent"]=JsonNode();persist();
+  if(completed["kind"].String()=="global")
+  {
+   const int index=era_campaign_json::integer(completed["index"]);const auto & events=gh.gameState().getMap().events;
+   require(index>=0&&index<int(events.size()),"saved global event outside map");
+   gh.newTurnProcessor->applyTimeEvent(events[index],PlayerColor(era_campaign_json::integer(completed["player"])));
+  }
+ }
+ void pumpTurns()
+ {
+  if(pumping||!vm.initialized||!vm.continuations.empty())return;
+  pumping=true;
+  try
+  {
+   ensureTurnBarriers();auto & queue=state["turnQueue"].Vector();
+   while(!queue.empty()&&vm.continuations.empty())
+   {
+    auto & pass=queue.front();const auto kind=pass["kind"].String();
+    player=PlayerColor(era_campaign_json::integer(pass["player"]));require(player.isValidPlayer(),"invalid turn queue player");
+    require(era_campaign_json::integer(pass["day"])==int(gh.gameState().day),"queued source turn changed day");
+    heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;updateContext();
+    if(kind=="prepare")
+    {
+     const auto who=player;queue.erase(queue.begin());persist();gh.newTurnProcessor->preparePlayerTurnStarted(who);
+    }
+    else if(kind=="timers")
+    {
+     bool dispatched=false;int cursor=era_campaign_json::integer(pass["cursor"]);require(cursor>=1&&cursor<=101,"invalid timer cursor");
+     for(;cursor<=100;++cursor)
+     {
+      pass["cursor"].Integer()=cursor+1;
+      if(!era_campaign_timers::due(timer(cursor),context.day,player.getNum()))continue;
+      state["activeTurnEvent"]["kind"].String()="timer";
+      Executor executor(program,vm,context,*this);executor.dispatch("TM",{cursor});run();dispatched=true;break;
+     }
+     if(!dispatched){queue.erase(queue.begin());persist();}
+    }
+    else if(kind=="globals")
+    {
+     const auto & events=gh.gameState().getMap().events;int cursor=era_campaign_json::integer(pass["cursor"]);
+     require(cursor>=0&&cursor<=int(events.size()),"invalid global event cursor");bool dispatched=false;
+     for(;cursor<int(events.size());++cursor)
+     {
+      pass["cursor"].Integer()=cursor+1;const auto & event=events[cursor];
+      if(!event.occursToday(gh.gameState().day)||!event.affectsDifficulty(gh.gameInfo().getStartInfo()->getDifficulty())||!event.affectsPlayer(player,gh.gameInfo().getPlayerState(player)->isHuman()))continue;
+      const auto message=event.message.toString();if(message.rfind("ZVSE",0)==0)continue;
+      int id=-1;try{id=std::stoi(message);}catch(const std::exception &){gh.newTurnProcessor->applyTimeEvent(event,player);continue;}
+      auto & current=state["activeTurnEvent"];current["kind"].String()="global";current["index"].Integer()=cursor;current["player"].Integer()=player.getNum();
+      Executor executor(program,vm,context,*this);executor.dispatch("GE",{id});run();dispatched=true;break;
+     }
+     if(!dispatched){queue.erase(queue.begin());persist();}
+    }
+    else if(kind=="finish")
+    {
+     const auto who=player;queue.erase(queue.begin());persist();const auto found=turnBarriers.find(who);
+     require(found!=turnBarriers.end()&&gh.queries->topQuery(who)==found->second,"source turn barrier missing");
+     const auto barrier=found->second;turnBarriers.erase(found);gh.queries->popQuery(barrier);gh.newTurnProcessor->finishPlayerTurnStarted(who);gh.turnOrder->resumePlayerTurnStarted(who);
+    }
+    else throw std::runtime_error("Original campaign: invalid queued turn stage");
+   }
+   pumping=false;
+  }
+  catch(...){pumping=false;throw;}
+ }
  void run()
  {
   require(!executing,"recursive event entry");executing=true;
@@ -207,6 +311,7 @@ struct SourceCampaignProcessor::Impl final:Host
    if(!done){show();return;}
    const auto completedObject=objectId,completedHero=heroId;
    heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;pending=JsonNode();persist();
+   completeTurnEvent();
    if(completedObject!=ObjectInstanceID::NONE)
    {
     const auto * obj=gh.gameState().getObj(completedObject);
@@ -215,6 +320,7 @@ struct SourceCampaignProcessor::Impl final:Host
     // mountain passage, for example, grants morale before moving the hero.
     if(obj&&h&&allowsObject(obj,h)&&!consumeEmptyMonster(obj,h))obj->onHeroVisit(gh,h);
    }
+   pumpTurns();
   }
   catch(...){executing=false;throw;}
  }
@@ -291,8 +397,13 @@ struct SourceCampaignProcessor::Impl final:Host
  bool onReady(PlayerColor who)
  {
   bind();if(!active)return false;
+  ensureTurnBarriers();
   if(!vm.initialized&&!vm.initializing)
   {
+   // Initial ERM dialogs belong to the human interface, even when an AI is
+   // first in turn order. AI-only games may initialize on their first callback.
+   for(const auto & [color,participant]:gh.gameState().players)
+    if(color.isValidPlayer()&&participant.isHuman()){if(color!=who)return false;break;}
    player=who;updateContext();Executor executor(program,vm,context,*this);executor.initialize();run();
   }
   if(!pending.isNull()&&who==player&&!shown)
@@ -434,6 +545,16 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   require(op.code=="T"||op.code=="U","unsupported source object operation");value(obj?(op.code=="T"?obj->ID.getNum():obj->subID.getNum()):-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
  }
+ if(c.receiver=="TM")
+ {
+  require(c.selectors.size()==1,"timer needs one ID");const int id=number(c.selectors[0]);require(id>=1&&id<=100,"timer ID outside 1..100");auto settings=timer(id);
+  if(op.code=="S")
+  {arity(op,4);for(int i=0;i<4;++i)settings[i]=era_campaign_timers::word(value(settings[i],args[i]));}
+  else if(op.code=="D"||op.code=="E")
+  {arity(op,1);require(args[0].access==Access::Read,"timer access needs a player value");era_campaign_timers::access(settings,op.code=="E",number(args[0]));}
+  else throw std::runtime_error("Original campaign: unsupported timer operation "+op.code);
+  setTimer(id,settings);return Step::Continue;
+ }
  if(c.receiver=="MO")
  {
   const auto * monster=dynamic_cast<const CGCreature *>(object(c,Obj::MONSTER));
@@ -563,6 +684,25 @@ bool SourceCampaignProcessor::reply(QueryID query,int selection,const std::strin
  return impl->gh.queryReply(query,selection,player);
 }
 bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero){return impl->visit(object,hero);}
+bool SourceCampaignProcessor::beginTurn(PlayerColor player)
+{
+ impl->bind();if(!impl->active)return false;
+ require(player.isValidPlayer(),"invalid source turn player");const auto day=int(impl->gh.gameState().day);
+ auto & previous=impl->state["queuedTurnDays"][std::to_string(player.getNum())];
+ if(previous.isNumber()&&era_campaign_json::integer(previous)==day)return true;
+ previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=28,"excessive queued source turns");
+ for(const auto & kind:{"prepare","timers","globals","finish"})
+ {
+  JsonNode pass;pass["kind"].String()=kind;pass["player"].Integer()=player.getNum();pass["day"].Integer()=day;pass["cursor"].Integer()=std::string(kind)=="timers"?1:0;queue.push_back(std::move(pass));
+ }
+ impl->ensureTurnBarriers();impl->persist();impl->pumpTurns();return true;
+}
+bool SourceCampaignProcessor::turnPending(PlayerColor player)
+{
+ impl->bind();if(!impl->active||impl->state["turnQueue"].isNull())return false;
+ for(const auto & pass:era_campaign_json::array(impl->state["turnQueue"]))if(pass["kind"].String()=="finish"&&era_campaign_json::integer(pass["player"])==player.getNum())return true;
+ return false;
+}
 bool SourceCampaignProcessor::timedEvent(const CMapEvent & event,PlayerColor player)
 {
  impl->bind();if(!impl->active)return false;

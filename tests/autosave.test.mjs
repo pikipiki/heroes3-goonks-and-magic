@@ -12,3 +12,11 @@ test('The online checkpoint waits for its own save to be persisted',()=>{
  controller.persisted({path:'/Saves/Goonk-online-auto.vsgm1',ok:true});
  assert.equal(status.phase,'saved');
 });
+
+test('An owned source dialog can checkpoint before the player turn starts',async()=>{
+ const requests=[],controller=createAutosave({request:id=>requests.push(id)});
+ controller.update({mode:'dialog',dialogKind:'source-campaign',turn:false,autosaveAllowed:true,heroMoving:false});
+ await Promise.resolve();assert.deepEqual(requests,[1]);
+ controller.update({mode:'dialog',dialogKind:'source-campaign',turn:false,autosaveAllowed:true});
+ controller.tick();assert.deepEqual(requests,[1],'The pending checkpoint still prevents overlapping writes');
+});

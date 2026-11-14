@@ -19,6 +19,7 @@
 #include "../era/EraObjectReplacementRuntime.h"
 
 #include "../../lib/CPlayerState.h"
+#include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/era/EraBridgeArtifactPolicies.h"
 #include "../../lib/era/EraBridgePolicies.h"
 #include "../../lib/entities/artifact/CArtifact.h"
@@ -63,29 +64,34 @@ void NewTurnProcessor::handleTimeEvents(PlayerColor color)
 			continue;
 		if(gameHandler->sourceCampaigns->timedEvent(event,color))
 			continue;
-
-		InfoWindow iw;
-		iw.player = color;
-		iw.text = gameHandler->sourceCampaigns->eventMessage(event);
-
-		//give resources
-		if (!event.resources.empty())
-		{
-			gameHandler->giveResources(color, event.resources);
-			for (GameResID i : LIBRARY->resourceTypeHandler->getAllObjects())
-				if (event.resources[i])
-					iw.components.emplace_back(ComponentType::RESOURCE, i, event.resources[i]);
-		}
-
-		//remove objects specified by event
-		for(const ObjectInstanceID objectIdToRemove : event.deletedObjectsInstances)
-		{
-			const auto * objectInstance = gameHandler->gameInfo().getObj(objectIdToRemove, false);
-			if(objectInstance != nullptr)
-				gameHandler->removeObject(objectInstance, PlayerColor::NEUTRAL);
-		}
-		gameHandler->sendAndApply(iw); //show dialog
+		applyTimeEvent(event,color);
 	}
+}
+
+
+void NewTurnProcessor::applyTimeEvent(const CMapEvent & event,PlayerColor color)
+{
+	InfoWindow iw;
+	iw.player = color;
+	iw.text = gameHandler->sourceCampaigns->eventMessage(event);
+
+	//give resources
+	if (!event.resources.empty())
+	{
+		gameHandler->giveResources(color, event.resources);
+		for (GameResID i : LIBRARY->resourceTypeHandler->getAllObjects())
+			if (event.resources[i])
+				iw.components.emplace_back(ComponentType::RESOURCE, i, event.resources[i]);
+	}
+
+	//remove objects specified by event
+	for(const ObjectInstanceID objectIdToRemove : event.deletedObjectsInstances)
+	{
+		const auto * objectInstance = gameHandler->gameInfo().getObj(objectIdToRemove, false);
+		if(objectInstance != nullptr)
+			gameHandler->removeObject(objectInstance, PlayerColor::NEUTRAL);
+	}
+	gameHandler->sendAndApply(iw); //show dialog
 }
 
 void NewTurnProcessor::handleTownEvents(const CGTownInstance * town)
@@ -151,6 +157,14 @@ void NewTurnProcessor::handleTownEvents(const CGTownInstance * town)
 }
 
 void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
+{
+	if(gameHandler->sourceCampaigns->beginTurn(which))return;
+	preparePlayerTurnStarted(which);
+	handleTimeEvents(which);
+	finishPlayerTurnStarted(which);
+}
+
+void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
 {
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
     applyEraWayfarerDay(*gameHandler,*playerState);
@@ -222,7 +236,11 @@ void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
     // Era ProcessErm fires native event handlers before the ERM trigger body.
     applyEraDragonlingEvolutionDay(*gameHandler,*playerState);
 
-	handleTimeEvents(which);
+}
+
+void NewTurnProcessor::finishPlayerTurnStarted(PlayerColor which)
+{
+	const auto * playerState = gameHandler->gameState().getPlayerState(which);
 	for (const auto * t : playerState->getTowns())
 		handleTownEvents(t);
 
@@ -235,6 +253,7 @@ void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 		if (t->getVisitingHero() != nullptr)
 			gameHandler->objectVisited(t, t->getVisitingHero());
 	}
+    CGMysteriousCave::onPlayerTurnStart(*gameHandler,gameHandler->gameInfo(),which);
 }
 
 void NewTurnProcessor::onPlayerTurnEnded(PlayerColor which)

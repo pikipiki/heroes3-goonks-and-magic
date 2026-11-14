@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "reference": {
+    "distributionUrl": "https://www.vault.acidcave.net/download.php?id=22",
+    "distributionSha256": "8f210d789c8c3f799549bc67a5d48ee346036ded726c298ddfb95301e3cfc41a",
+    "member": "main2.wog/h3wog.exe",
+    "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+    "analysis": "Static Hopper analysis through reverse-engineer-anything; the Windows binary was not executed.",
+    "primaryDocumentation": "https://h3era.github.io/ERM-Help/Rec/TM.htm",
+    "documentationSha256": "434d87ac6b0f7f42dbb07939503a5ddf3bbdbc4ae297e219ac0f2fcd9730d523"
+  },
+  "observations": [
+    {
+      "question": "Settings representation and admitted timer IDs",
+      "status": "answered-static",
+      "function": "0x732820",
+      "evidence": "ev_7f2e5ba0e87d37f39431760ed7eddfcee1298e97fa3256634fc6362f8520dfb3",
+      "facts": [
+        "IDs are checked against 1..100.",
+        "S transfers four arguments to words at base + ID*8 + 0/2/4/6.",
+        "Reads clear the upper bits before loading each word; writes retain the low word.",
+        "D/E clear/set the selected color bit."
+      ]
+    },
+    {
+      "question": "Due calculation and traversal order",
+      "status": "answered-static",
+      "function": "0x74a0b0",
+      "evidence": "ev_2de4173ff114dba604c32efa19595c363b50c329513946c05eef4a054abf04b5",
+      "facts": [
+        "Loop indices 0..99 address source IDs 1..100 in ascending order.",
+        "Mask, first day, last day and period are loaded with zero extension on every iteration.",
+        "Mask bit must match the current player.",
+        "First and last day bounds are inclusive.",
+        "The signed remainder of (day-firstDay)/zeroExtendedPeriod must be zero.",
+        "All skip branches and the success path share the single increment at 0x74a0eb; pseudocode displays misleading duplicate increments.",
+        "Later timer settings are read after earlier trigger bodies finish."
+      ]
+    },
+    {
+      "question": "Placement relative to ordinary map events",
+      "status": "answered-static-derived",
+      "functions": [
+        "0x7053d0",
+        "0x7054e0",
+        "0x4cd5d0",
+        "0x4cd3d0"
+      ],
+      "evidence": [
+        "ev_750fce4ec8574c1e1da4222f43e7c48b3d9d94a41bcf15b12b509cf6ad187497",
+        "ev_76fdd665d36b1dc2cf22d6480f716480ee6d155b40e184376cc2a9171cc4c02d",
+        "ev_7e3bb04b32f9c794f36954ea74ebc90271ced88011f781502973382ff2caa5b2",
+        "ev_092b99c00700b839100b743b47c87687a3ac4c3ba6914c186842efb7888b0699"
+      ],
+      "facts": [
+        "Both wrappers call the timer dispatcher before the original function at 0x4cd5d0.",
+        "That original function checks event date, player flags and occurrence intervals.",
+        "Its apply routine at 0x4cd3d0 changes the seven player resources and presents the event text.",
+        "Identifying that pair as ordinary map-event scheduling/application is an inference from the combined operations."
+      ]
+    }
+  ],
+  "documentedException": {
+    "setting": "A due timer with zero interval",
+    "originalObservation": "The original executes idiv without checking zero after date/mask checks; this would fault on a zero divisor.",
+    "portBehavior": "Explicit runtime error instead of an uncontrolled CPU division fault. Disabled or out-of-range timers do not divide.",
+    "sourceCohort": "All 51 S instructions in the eleven bundled campaign programs specify a positive literal interval."
+  },
+  "limits": [
+    "Static analysis establishes instructions and call order; it does not observe Windows execution.",
+    "Hopper does not report complete function body ranges; exact relevant instruction addresses are retained.",
+    "This contract does not validate the complete original quests or campaign wins."
+  ]
+}
