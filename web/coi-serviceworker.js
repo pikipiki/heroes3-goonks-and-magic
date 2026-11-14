@@ -13,7 +13,7 @@ const cacheKey = (file, digest) => {
 };
 
 self.addEventListener('install', event => {
-  if (!release) return;
+  if (!release || release.lazy) return;
   event.waitUntil((async () => {
     const current = await caches.open(cacheName);
     const oldCaches = await Promise.all((await caches.keys())
@@ -52,6 +52,16 @@ self.addEventListener('install', event => {
 // A launch may opt in before starting the game. Keep the existing release
 // while another window in this scope could be playing or starting a game.
 self.addEventListener('message', event => {
+  if (release?.lazy && event.data?.type === 'crossover.activate-launch') {
+    event.waitUntil((async () => {
+      const source = event.source?.url && new URL(event.source.url);
+      if (!source || !['index.html', 'launch.html', ''].some(file => fileURL(file).pathname === source.pathname)) return;
+      const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
+      if (windows.some(client => client.id !== event.source.id && new URL(client.url).pathname === fileURL('game.html').pathname)) return;
+      await self.skipWaiting();
+    })());
+    return;
+  }
   if (event.data?.type !== 'goonk.apply-offline-release' || !event.ports[0]) return;
   event.waitUntil((async () => {
     const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
@@ -66,9 +76,11 @@ self.addEventListener('message', event => {
 });
 
 self.addEventListener('activate', event => event.waitUntil((async () => {
-  for (const name of await caches.keys()) {
-    if (name.startsWith(prefix) && name !== cacheName) await caches.delete(name);
-  }
+  try {
+    for (const name of await caches.keys()) {
+      if (name.startsWith(prefix) && name !== cacheName) await caches.delete(name);
+    }
+  } catch (error) { if (!release?.lazy) throw error; }
   await self.clients.claim();
 })()));
 
@@ -113,11 +125,18 @@ self.addEventListener('fetch', event => {
   const digest = shell.get(file);
   event.respondWith((async () => {
     if (digest && !request.headers.has('range')) {
-      const response = await caches.match(cacheKey(file, digest), {cacheName});
-      if (response) return isolated(response);
+      try {
+        const response = await caches.match(cacheKey(file, digest), {cacheName});
+        if (response) return isolated(response);
+      } catch (error) { if (!release?.lazy) throw error; }
     }
     try {
-      return isolated(await fetch(request));
+      const response = await fetch(request, digest && release?.lazy ? {integrity: 'sha256-' + digest} : undefined);
+      if (digest && release?.lazy && response.ok && !request.headers.has('range')) {
+        const copy = response.clone();
+        event.waitUntil(caches.open(cacheName).then(cache => cache.put(cacheKey(file, digest), copy)).catch(() => {}));
+      }
+      return isolated(response);
     } catch (error) {
       if (request.destination === 'image' && file.startsWith('assets/data/')) {
         const response = await readInstalledImage(file).catch(() => null);
