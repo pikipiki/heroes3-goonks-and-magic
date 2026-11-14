@@ -127,10 +127,16 @@ export async function readArchives(): Promise<(Uint8Array | null)[]> {
     return await Promise.all(ARCHIVES.map(async (name, i) => {
       const row = records[i];
       if (!row) return null;
-      if (!(row.bytes instanceof ArrayBuffer)) throw Error('Stockage MPQ invalide : ' + name);
       const expected = manifest?.[i];
+      if (!(row.bytes instanceof ArrayBuffer)) {
+        if (expected) return null;
+        throw Error('Stockage MPQ invalide : ' + name);
+      }
       if (expected && (row.sha256 !== expected.sha256 || row.bytes.byteLength !== expected.size)) return null;
-      if (row.name !== name || await digest(row.bytes) !== row.sha256) throw Error('Archive altérée : ' + name + '. Réimporte ce fichier.');
+      if (row.name !== name || await digest(row.bytes) !== row.sha256) {
+        if (expected) return null; // Automatic download replaces only the damaged archive.
+        throw Error('Archive altérée : ' + name + '. Réimporte ce fichier.');
+      }
       const bytes = new Uint8Array(row.bytes);
       validateArchive(bytes);
       return bytes;

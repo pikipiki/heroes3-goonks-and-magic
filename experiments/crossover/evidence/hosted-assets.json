@@ -3,6 +3,7 @@
   "cases": [
     "Fresh phone browser downloads real MPQ chunks automatically, verifies hashes, enables Start without file selection",
     "Reload rechecks cached MPQs and downloads no chunks; legacy cache absent",
+    "Corrupted cached MPQ is rejected and downloaded again automatically without a file picker",
     "Tampered chunk rejected before persistence or engine launch"
   ],
   "passed": true
