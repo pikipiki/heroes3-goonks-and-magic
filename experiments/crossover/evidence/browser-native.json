@@ -1,0 +1,17 @@
+{
+  "scope": "Actual Chromium, launcher and existing VCMI WASM. No StarCraft simulation.",
+  "cases": [
+    "Three modes rendered; StarCraft disabled; no engine loaded before action; phone/landscape/desktop fit",
+    {
+      "name": "Actual native WASM event observed in same-origin iframe",
+      "detail": "État 1 · mode menu · 13:19:41",
+      "engine": {
+        "wasm": true,
+        "mode": "menu"
+      }
+    },
+    "Native command 20 opens the real Heroes lobby and the observer receives its new mode",
+    "Stop removes engine; reload does not fabricate or restore a simulation"
+  ],
+  "passed": true
+}
