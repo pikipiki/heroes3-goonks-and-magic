@@ -141,3 +141,28 @@ OPENBW_EXPORT(openbw_crossover_order) void openbw_crossover_order(int stack,int 
   cmd.order(attack?bwgame::Orders::AttackMove:bwgame::Orders::Move,target,0,false);g_ui->apply_commands(0,bytes.data(),bytes.size());
  }
 }
+
+// Isolated native sprites let the shared view enlarge each creature without
+// enlarging formations or duplicating neighbouring units from a cropped layer.
+OPENBW_EXPORT(openbw_crossover_sprite) const uint8_t* openbw_crossover_sprite(int requested) {
+ if(!g_ui || crossover_battle<0 || requested<1 || requested>65535)return nullptr;
+ bwgame::unit_t* unit=nullptr;
+ for(const auto& group:crossover_groups)if(!group.heroes)for(auto id:group.ids)if(id.raw_value==requested && crossover_live(id,group.owner))unit=g_ui->get_unit(id);
+ if(!unit)return nullptr;
+ constexpr int width=96,height=96;
+ std::array<uint8_t,width*height> indexed{};
+ const auto camera=g_ui->screen_pos;
+ const int vw=g_ui->view_width,vh=g_ui->view_height,sw=g_ui->screen_width,sh=g_ui->screen_height;
+ const auto selection=g_ui->current_selection_sprites_set.at(unit->sprite->index);
+ g_ui->current_selection_sprites_set.at(unit->sprite->index)=nullptr;
+ g_ui->screen_pos=unit->sprite->position-bwgame::xy(48,64);
+ g_ui->view_width=g_ui->screen_width=width;g_ui->view_height=g_ui->screen_height=height;
+ g_ui->draw_sprite(unit->sprite,indexed.data(),width);
+ g_ui->screen_pos=camera;g_ui->view_width=vw;g_ui->view_height=vh;g_ui->screen_width=sw;g_ui->screen_height=sh;
+ g_ui->current_selection_sprites_set.at(unit->sprite->index)=selection;
+ static std::array<uint8_t,width*height*4> pixels;
+ for(size_t i=0;i<indexed.size();i++){
+  const auto color=indexed[i];for(int channel=0;channel<3;channel++)pixels[i*4+channel]=g_ui->tileset_img.wpe[color*4+channel];pixels[i*4+3]=color?255:0;
+ }
+ return pixels.data();
+}

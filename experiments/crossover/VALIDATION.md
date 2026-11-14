@@ -20,7 +20,9 @@ Preuve : [evidence/heroes-rts.json](./evidence/heroes-rts.json). Le test utilise
 
 La version actuelle passe **10 cas de parcours réel**, dont le lancement depuis une aventure existante avec sa sauvegarde dédiée, la sélection/déplacement au format 844×390 et le défilement de la colonne de commandes. Ce contrôle est effectué dans Chromium avec une petite fenêtre ; il ne remplace pas un test matériel iPhone/Safari.
 
-Capture du champ mixte : [evidence/mixed-field-landscape.png](./evidence/mixed-field-landscape.png).
+Le parcours a été réexécuté avec le cadrage resserré et les unités agrandies : sélection, ordre natif Move, résolution réelle, sauvegarde/relecture et annulation réussissent. Le rendu isolé des sprites est compilé avec WASI SDK 33.0 ; la vérification `ninja -j32 html5` de VCMI reste réussie.
+
+Capture du champ mixte agrandi : [evidence/mixed-field-landscape.png](./evidence/mixed-field-landscape.png).
 
 ## Constructions et régressions
 
