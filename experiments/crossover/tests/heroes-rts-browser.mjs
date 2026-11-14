@@ -7,7 +7,7 @@ const report={scope:'Published trial map, native Heroes attack, real OpenBW comb
 const save=()=>fs.writeFileSync(out+'/result.json',JSON.stringify(report,null,2)+'\n');
 const record=value=>{report.cases.push(value);save();console.log(value.name||value);};
 fs.writeFileSync(out+'/console.log','');
-const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:1180,height:760}});await silenceTestAudio(page);
+const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true});await silenceTestAudio(page);
 await page.addInitScript(()=>{
  sessionStorage.setItem('heroes-goonk.storage-failed','true');
  window.addEventListener('goonk-crossover-submitted',e=>window.testCrossoverSubmission=structuredClone(e.detail));
@@ -18,6 +18,21 @@ const cmd=async(...args)=>hero.evaluate(args=>Module._vcmiMobileCommand(...args)
 try{
  await page.goto('http://127.0.0.1:8779/index.html');hero=page;
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
+ assert.equal(await page.locator('#crossover-tools').count(),0);
+ assert(await page.locator('#mobile-app .mobile-menu #crossover-demo').isVisible(),'Demo belongs to the Heroes home menu');
+ assert(await page.locator('#mobile-app .mobile-menu #game-menu-toggle').isVisible(),'Options belongs to the same menu');
+ assert.equal(await page.locator('#mobile-app .mobile-top').isVisible(),false);
+ await page.locator('#game-menu-toggle').click();await page.locator('#game-menu[open]').waitFor();await page.locator('#game-menu [data-menu="close"]').click();
+
+ await page.screenshot({path:out+'/menu-portrait.png',fullPage:true});
+ await page.setViewportSize({width:844,height:390});await page.waitForTimeout(150);
+ const menuButton=await page.locator('#crossover-demo').boundingBox();assert(menuButton.x>=0&&menuButton.x+menuButton.width<=844);
+ const buttons=await page.locator('#mobile-app .mobile-menu > button:visible').all();const bounds=await Promise.all(buttons.map(button=>button.boundingBox()));
+ for(let i=0;i<bounds.length;i++)for(let j=i+1;j<bounds.length;j++){const a=bounds[i],b=bounds[j];assert(a.x+a.width<=b.x+1||b.x+b.width<=a.x+1||a.y+a.height<=b.y+1||b.y+b.height<=a.y+1,'Home menu buttons never overlap');}
+
+ await page.screenshot({path:out+'/menu-landscape.png',fullPage:true});
+ record({name:'Demo is integrated in the Heroes home menu in portrait and landscape, with no floating overlay'});
+ await page.setViewportSize({width:390,height:844});
  await page.locator('#crossover-demo').click();
  await page.waitForFunction(()=>!!window.goonkMobileState?.crossover,null,{timeout:180000});
  record({name:'Demo button inside Heroes launches the published trial and a real native Heroes attack'});
@@ -35,22 +50,56 @@ try{
  const census=await sc.evaluate(()=>window.openbwCrossover.census());
  const view=battleView(census.units.filter(u=>u.stackId>=0),await sc.evaluate(()=>window.openbwCrossover.camera()));
  for(const row of initial.stacks.filter(row=>!row.creature.startsWith('heroes-starcraft:'))){const units=census.units.filter(unit=>unit.stackId===row.id);assert.equal(units.length,row.count);assert(units.every(unit=>unit.heroes&&unit.maxHp===row.health));}
+ const portraitField=await hero.locator('#crossover-field').boundingBox(),portraitAside=await hero.locator('#crossover-arena aside').boundingBox();
+ assert(portraitField.width>380&&portraitAside.y>=portraitField.y+portraitField.height-1,'Portrait uses full width and commands below the battlefield');
+ await page.screenshot({path:out+'/mixed-field-portrait.png',fullPage:true});
  await page.setViewportSize({width:844,height:390});await page.waitForTimeout(200);
- const fieldBox=await hero.locator('#crossover-field').boundingBox();assert(Math.abs(fieldBox.width/fieldBox.height-1.6)<0.01,'Canvas proportions preserve touch coordinates in phone landscape');
- const aside=hero.locator('#crossover-arena aside');await aside.hover();await page.mouse.wheel(0,500);await hero.waitForFunction(()=>document.querySelector('#crossover-arena aside').scrollTop>0);await page.mouse.wheel(0,-1000);await hero.waitForFunction(()=>document.querySelector('#crossover-arena aside').scrollTop===0);
- record({name:'Phone landscape 844×390 keeps exact battlefield proportions and the right command panel scrolls'});
+ const fieldBox=await hero.locator('#crossover-field').boundingBox(),landscapeAside=await hero.locator('#crossover-arena aside').boundingBox();assert(Math.abs(fieldBox.width/fieldBox.height-1.6)<0.01);assert(landscapeAside.x>fieldBox.x+fieldBox.width-2);
+ const aside=hero.locator('#crossover-arena aside');await aside.hover();await page.mouse.wheel(0,600);await hero.waitForFunction(()=>document.querySelector('#crossover-arena aside').scrollTop>0);await page.mouse.wheel(0,-1200);await hero.waitForFunction(()=>document.querySelector('#crossover-arena aside').scrollTop===0);
+ const cdp=await page.context().newCDPSession(page),rail=await aside.boundingBox(),tx=rail.x+rail.width/2,ty=rail.y+rail.height-24;
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:tx,y:ty}]});
+ for(let step=1;step<=8;step++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:tx,y:ty-step*14}]});await page.waitForTimeout(25);}
+ await page.waitForTimeout(100);await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ await hero.waitForFunction(()=>document.querySelector('#crossover-arena aside').scrollTop>0);
+ await aside.hover();await page.mouse.wheel(0,-1200);await hero.waitForFunction(()=>document.querySelector('#crossover-arena aside').scrollTop===0);await cdp.detach();
+ record({name:'Portrait uses lower controls; landscape right rail supports real touch scrolling with a visible exit'});
+ await page.setViewportSize({width:768,height:1024});await page.waitForTimeout(100);
+ const ipadPortraitField=await hero.locator('#crossover-field').boundingBox(),ipadPortraitRail=await aside.boundingBox();assert(ipadPortraitRail.y>=ipadPortraitField.y+ipadPortraitField.height-1);
+ await page.setViewportSize({width:1024,height:768});await page.waitForTimeout(100);
+ const ipadLandscapeField=await hero.locator('#crossover-field').boundingBox(),ipadLandscapeRail=await aside.boundingBox();assert(ipadLandscapeRail.x>=ipadLandscapeField.x+ipadLandscapeField.width-1);
+ record({name:'Tablet portrait 768×1024 and landscape 1024×768 preserve the same responsive command placement'});
+ await page.setViewportSize({width:844,height:390});await page.waitForTimeout(100);
+
  await page.screenshot({path:out+'/mixed-field-ready.png',fullPage:true});
  record({name:'One visible Heroes battlefield contains original Heroes troops and native StarCraft Marines; Heroes HP are preserved',census});
- await hero.locator('#crossover-attack').click();
- const point=await sc.evaluate(()=>{const api=window.openbwCrossover,unit=api.census().units.find(u=>u.stackId===1),layer=api.layer();return {id:unit.id,x:unit.x-layer.x,y:unit.y-layer.y};});
+ await hero.locator('#crossover-start').click();
+ await sc.waitForFunction(()=>window.openbwCrossover.battle().frame>=36,null,{timeout:5000});
+ const initialAllies=census.units.filter(unit=>unit.owner===0),initialEnemies=census.units.filter(unit=>unit.owner===1);
+ const passive=await sc.evaluate(()=>window.openbwCrossover.census());
+ for(const unit of passive.units.filter(unit=>unit.owner===0)){const original=initialAllies.find(row=>row.id===unit.id);assert(original);assert.equal(unit.x,original.x);assert.equal(unit.y,original.y);assert.equal(unit.order,original.order);assert.equal(unit.cooldown,0);}
+ assert(passive.units.some(unit=>unit.owner===1&&initialEnemies.some(row=>row.id===unit.id&&(row.x!==unit.x||row.y!==unit.y))),'Enemy AI moves without player input');
+ await sc.waitForFunction(initial=>{const allies=window.openbwCrossover.census().units.filter(unit=>unit.owner===0);return allies.length<initial||allies.some(unit=>unit.hp<unit.maxHp);},initialAllies.length,{timeout:15000});
+ const underFire=await sc.evaluate(()=>window.openbwCrossover.census());
+ for(const unit of underFire.units.filter(unit=>unit.owner===1))assert.equal(unit.hp,initialEnemies.find(row=>row.id===unit.id).hp,'No retaliation without an explicit attack');
+ for(const unit of underFire.units.filter(unit=>unit.owner===0)){assert.equal(unit.order,initialAllies.find(row=>row.id===unit.id).order);assert.equal(unit.cooldown,0);}
+ record({name:'Starting only advances time: Heroes stay idle even under enemy fire; Marines retain their AI'});
+ const point=await sc.evaluate(()=>{const api=window.openbwCrossover,unit=api.census().units.find(u=>u.stackId===1),camera=api.camera();return {id:unit.id,x:unit.x-camera.x,y:unit.y-camera.y};});
  const box=await hero.locator('#crossover-field').boundingBox();
- await hero.locator('#crossover-field').click({position:{x:(point.x*view.zoom+view.x)*box.width/800,y:(point.y*view.zoom+view.y)*box.height/500}});
- const selection=await hero.locator('#crossover-field').getAttribute('data-selection');assert.equal(selection,initial.stacks.find(row=>row.id===1).name);report.selection=selection;save();
+ const clickWorld=async point=>hero.locator('#crossover-field').click({position:{x:(point.x*view.zoom+view.x)*box.width/800,y:(point.y*view.zoom+view.y)*box.height/500}});
+ await clickWorld(point);
+ const selection=await hero.locator('#crossover-field').getAttribute('data-selection');assert.equal(selection,initial.stacks.find(row=>row.id===1).name);
  await hero.locator('#crossover-field').click({position:{x:760*box.width/800,y:440*box.height/500}});
- report.afterMove=await sc.evaluate(()=>window.openbwCrossover.census());save();
  await sc.waitForFunction(()=>window.openbwCrossover.census().units.some(unit=>unit.stackId===1&&unit.order===6),null,{timeout:5000});
- record({name:'Touch selection and ground order reach the native OpenBW Move command for a Heroes troop'});
- await hero.locator('#crossover-select-all').click();await hero.locator('#crossover-attack').click();
+ await hero.locator('#crossover-stop').click();
+ await sc.waitForFunction(order=>window.openbwCrossover.census().units.filter(unit=>unit.stackId===1).every(unit=>unit.order===order),initialAllies.find(row=>row.stackId===1).order,{timeout:5000});
+ record({name:'Manual touch movement and Stop reach native orders and return the troop to passive stance'});
+ await hero.locator('#crossover-select-all').click();
+ const target=await sc.evaluate(()=>{const api=window.openbwCrossover,unit=api.census().units.find(u=>u.owner===1),camera=api.camera();return {id:unit.id,hp:unit.hp,x:unit.x-camera.x,y:unit.y-camera.y};});
+ await clickWorld(target);
+ await sc.waitForFunction(target=>{const unit=window.openbwCrossover.census().units.find(row=>row.id===target.id);return !unit||unit.hp<target.hp;},target,{timeout:12000});
+ record({name:'Clicking a Marine issues an explicit native attack on that enemy'});
+ await hero.locator('#crossover-attack').click();
+ const camera=await sc.evaluate(()=>window.openbwCrossover.camera());await clickWorld({x:initialEnemies[0].x-camera.x,y:initialEnemies[0].y-camera.y});
  await hero.waitForFunction(()=>window.testCrossoverSubmission,null,{timeout:120000});
  const submission=await hero.evaluate(()=>window.testCrossoverSubmission);report.submission=submission;save();
  assert(submission.result.finished);assert(submission.result.groups.some(row=>row.survivors<row.initial));
@@ -84,7 +133,7 @@ try{
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
  await cmd(20,1);await hero.waitForFunction(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady,null,{timeout:60000});await cmd(111);await hero.waitForFunction(()=>goonkMobileState.selectedMap==='Crossover - duel StarCraft'&&goonkMobileState.lobbyReady);await cmd(22);
  await hero.waitForFunction(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn,null,{timeout:120000});
- await page.locator('#crossover-demo').click();
+ await page.locator('#game-menu-toggle').click();await page.locator('#crossover-demo-menu').click();
  await hero.waitForFunction(()=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Avant-demo-StarCraft.vsgm1').size>100000;}catch{return false;}},null,{timeout:60000});
  record({name:'Launching the demo from an existing Heroes adventure first writes its dedicated native checkpoint'});
  await hero.locator('#crossover-arena').waitFor({timeout:180000});

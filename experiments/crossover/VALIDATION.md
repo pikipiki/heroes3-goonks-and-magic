@@ -18,11 +18,13 @@ Preuve : [evidence/heroes-rts.json](./evidence/heroes-rts.json). Le test utilise
 
 `tests/rts-battle-browser.mjs` vérifie séparément un affrontement OpenBW de 38 unités, depuis la frame 0 jusqu’à l’élimination d’un camp : [evidence/rts-battle.json](./evidence/rts-battle.json). Les résultats peuvent varier selon les commandes et leur frame ; aucun nombre de survivants prédéterminé n’est imposé.
 
-La version actuelle passe **10 cas de parcours réel**, dont le lancement depuis une aventure existante avec sa sauvegarde dédiée, la sélection/déplacement au format 844×390 et le défilement de la colonne de commandes. Ce contrôle est effectué dans Chromium avec une petite fenêtre ; il ne remplace pas un test matériel iPhone/Safari.
+La version actuelle passe **14 cas de parcours réel**, dont le lancement depuis une aventure existante avec sa sauvegarde dédiée, la sélection/déplacement au format 844×390 et le défilement de la colonne de commandes. Ce contrôle est effectué dans Chromium avec une petite fenêtre ; il ne remplace pas un test matériel iPhone/Safari.
 
-Le parcours a été réexécuté avec le cadrage resserré et les unités agrandies : sélection, ordre natif Move, résolution réelle, sauvegarde/relecture et annulation réussissent. Le rendu isolé des sprites est compilé avec WASI SDK 33.0 ; la vérification `ninja -j32 html5` de VCMI reste réussie.
+Le parcours a été réexécuté avec l’accueil intégré, les commandes manuelles et le cadrage agrandi. Vérifications : absence de panneau superposé, Options dans le même menu, boutons sans chevauchement en paysage ; commandes en dessous en portrait et à droite en paysage ; geste tactile réel sur la colonne de commandes ; formats téléphone 390×844 / 844×390 et tablette 768×1024 / 1024×768. Le test vérifie ensuite que commencer n’envoie aucun ordre : les alliés gardent leurs positions et ne blessent pas les Marines, même lorsqu’ils sont touchés. Un déplacement, un arrêt et une attaque explicite fonctionnent, puis le bilan, la sauvegarde/relecture et l’annulation restent valides. Le rendu isolé des sprites est compilé avec WASI SDK 33.0 ; la vérification `ninja -j32 html5` de VCMI reste réussie.
 
-Capture du champ mixte agrandi : [evidence/mixed-field-landscape.png](./evidence/mixed-field-landscape.png).
+Captures : [accueil portrait](./evidence/menu-portrait.png), [accueil paysage](./evidence/menu-landscape.png), [combat portrait](./evidence/mixed-field-portrait.png).
+
+Capture du champ mixte en paysage : [evidence/mixed-field-landscape.png](./evidence/mixed-field-landscape.png).
 
 ## Constructions et régressions
 

@@ -13,6 +13,8 @@ export type NativeBridge = {
   battle(): BattleState | null;
   attack(): void;
   start(): void;
+  stop(stack:number):void;
+  target(stack:number,id:number):void;
   camera():{x:number;y:number};
   sprite(id:number):Uint8ClampedArray;
   layer():{pixels:Uint8ClampedArray;x:number;y:number;width:number;height:number};
@@ -20,6 +22,8 @@ export type NativeBridge = {
 };
 export type CrossoverWindow = Window & {openbwCrossover?: NativeBridge};
 type NativeExports = {
+  openbw_crossover_stop?(stack:number):void;
+  openbw_crossover_target?(stack:number,id:number):void;
   openbw_crossover_sprite?(id:number):number;
   openbw_crossover_layer?():number;
   openbw_crossover_camera_x?():number;openbw_crossover_camera_y?():number;
@@ -81,6 +85,8 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
     return state;
   };
   const api: NativeBridge = {
+    stop(stack){if(closed||!x.openbw_crossover_stop)throw Error('Arrêt indisponible.');x.openbw_crossover_stop(stack);},
+    target(stack,id){if(closed||!x.openbw_crossover_target||!Number.isSafeInteger(id)||id<1||id>65535)throw Error('Cible indisponible.');x.openbw_crossover_target(stack,id);},
     camera(){if(closed||!x.openbw_crossover_camera_x||!x.openbw_crossover_camera_y)throw Error('Caméra indisponible.');return {x:x.openbw_crossover_camera_x(),y:x.openbw_crossover_camera_y()};},
     sprite(id){
       if(closed||!x.openbw_crossover_sprite||!Number.isSafeInteger(id)||id<1||id>65535)throw Error('Sprite indisponible.');
