@@ -29,3 +29,13 @@ test('uneven snapshot delivery does not reset the presentation tween, and pauses
  time.receive(5,10042,42);assert.equal(time.sample(10042).frame,4);
  time.receive(0,11000,42);assert.equal(time.sample(11000).frame,0);
 });
+
+test('direct enemy tapping includes the visible Marine head and wins over overlapping friendly bodies',async()=>{
+ const {battlePick}=await import('../public/shared-field.js');
+ const friendly={...unit(100,90),id:1,owner:0,heroes:true};
+ const enemy={...unit(100,100),id:2,owner:1,heroes:false};const positions=new Map(),camera={x:0,y:0};
+ assert.equal(battlePick([enemy],positions,{x:100,y:15},camera,true)?.id,2,'head tap targets the enlarged Marine');
+ assert.equal(battlePick([friendly,enemy],positions,{x:100,y:90},camera,true)?.id,2,'selected army attacks the enemy rather than reselecting an overlapping ally');
+ assert.equal(battlePick([friendly],positions,{x:100,y:90},camera,false)?.id,1);
+ assert.equal(battlePick([friendly,enemy],positions,{x:700,y:450},camera,true),undefined,'empty ground stays a move order');
+});

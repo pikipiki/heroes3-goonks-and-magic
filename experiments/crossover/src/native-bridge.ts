@@ -1,5 +1,6 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
 import {validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
+export type CreatureSoundKind='attack'|'hit'|'death';
 export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;order?:number;cooldown?:number; x: number; y: number};
 export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
 export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
@@ -16,6 +17,9 @@ export type NativeBridge = {
   attack(): void;
   start(): void;
   enableAudio?():Promise<void>;
+  prepareCreatureSounds?(rows:{id:number;bytes:Uint8Array;kind?:CreatureSoundKind}[]):Promise<void>;
+  playCreatureAttack?(stack:number):boolean;
+  playCreatureSound?(stack:number,kind:CreatureSoundKind):boolean;
   setMuted?(muted:boolean):void;
   audioState?():{state:string;muted:boolean};
   acknowledge?(kind:'select'|'armed'|'attack'|'move'|'stop'):void;

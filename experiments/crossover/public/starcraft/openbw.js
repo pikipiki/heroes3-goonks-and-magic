@@ -5,7 +5,7 @@ import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
 
 // Build id — CI replaces the placeholder with the commit SHA for cache-busting.
-const BUILD = 'openbw-469d2037-crossover-2';
+const BUILD = 'openbw-bd9898339a12f23b';
 
 // Any build whose SHA wasn't stamped in by CI is a local/dev build. CI's stamp is a
 // GLOBAL sed of the placeholder, which also rewrites comparisons that spell it out —
@@ -600,11 +600,11 @@ async function boot(session) {
   // wasm caching so rebuilds are picked up. In production we want the opposite:
   // let the browser cache and reuse the compiled module across visits.
   // Any build whose SHA wasn't stamped in by CI is a local/dev build — including one served
-  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-469d2037-crossover-2
+  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-bd9898339a12f23b
   // cache-buster is a constant locally, so a plain fetch would serve a stale, skewed wasm).
   // BUILD is replaced by CI with the commit SHA (see .github/workflows/pages.yml), so a
   // new deploy fetches a fresh wasm URL instead of a stale cached one. Locally it stays
-  // the 'openbw-469d2037-crossover-2' placeholder and we cache-bust per load instead.
+  // the 'openbw-bd9898339a12f23b' placeholder and we cache-bust per load instead.
   // vs-Computer loads a bot-enabled module (sandbox + BWAPI server + the chosen bot);
   // each exports the same surface plus openbw_bot_*, so everything else is identical.
   const wasmName = session.bot ? session.bot.module : 'openbw.wasm';
@@ -1093,6 +1093,17 @@ async function boot(session) {
   crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
+  const creatureSounds=new Map(),creaturePlayed=new Map();
+  crossoverApi.prepareCreatureSounds=async rows=>{
+    const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
+    await Promise.all(rows.map(async row=>{const buffer=await decoder.decodeAudioData(new Uint8Array(row.bytes).buffer);creatureSounds.set(row.id+':'+(row.kind||'attack'),buffer);}));
+  };
+  crossoverApi.playCreatureSound=(stack,kind)=>{
+    const key=stack+':'+kind,buffer=creatureSounds.get(key);if(!buffer||muted||!audioCtx)return false;
+    const time=audioCtx.currentTime;if(time-(creaturePlayed.get(key)??-1)<.055)return false;
+    creaturePlayed.set(key,time);const source=audioCtx.createBufferSource(),gain=audioCtx.createGain();source.buffer=buffer;gain.gain.value=.75;source.connect(gain).connect(masterGain);source.onended=()=>{source.disconnect();gain.disconnect();};source.start();return true;
+  };
+  crossoverApi.playCreatureAttack=stack=>crossoverApi.playCreatureSound(stack,'attack');
   crossoverApi.acknowledge=kind=>{
     ensureAudio();if(!audioCtx||muted)return;
     const t=audioCtx.currentTime,notes=kind==='attack'?[740,990]:kind==='armed'?[520,740]:kind==='stop'?[440,330]:kind==='select'?[660]:[660,880];

@@ -153,7 +153,7 @@ self.addEventListener('fetch', event => {
       } catch (error) { if (!release?.lazy) throw error; }
     }
     try {
-      const response = await (digest ? fetchShell(request, release?.lazy ? {integrity: 'sha256-' + digest} : undefined) : fetch(request));
+      const response = await (digest ? fetchShell(request, release?.lazy ? {integrity: 'sha256-' + digest, cache: 'reload'} : undefined) : fetch(request));
       if (digest && release?.lazy && response.ok && !request.headers.has('range')) {
         const copy = response.clone();
         event.waitUntil(caches.open(cacheName).then(cache => cache.put(cacheKey(file, digest), copy)).catch(() => {}));

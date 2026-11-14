@@ -1,10 +1,28 @@
 // Native crossover scenario and rendering DTOs; upstream source remains unchanged.
+#include "../vendor/openbw/web/sandbox.h"
+namespace bwgame {
+bool crossover_hero_sound(const unit_t* unit,xy position);
+struct crossover_play_ui : play_ui {
+ using play_ui::play_ui;
+ void play_sound(int id,xy position,const unit_t* unit,bool race) override {
+  if(crossover_hero_sound(unit,position))return;
+  play_ui::play_sound(id,position,unit,race);
+ }
+};
+}
+// Keep the audited upstream entry unchanged, substituting only the UI subclass
+// so Heroes sounds are not doubled by their simulation stand-ins' SC sounds.
+#define play_ui crossover_play_ui
 #include "../vendor/openbw/web/wasm_main.cpp"
+#undef play_ui
 
 namespace { bwgame::a_string crossover_census; }
 namespace {
 struct CrossoverGroup { int stack; int owner; bool heroes; bwgame::a_vector<bwgame::unit_id> ids; };
 bwgame::a_vector<CrossoverGroup> crossover_groups;
+struct SoundOrigin { bwgame::xy position;bool heroes; };
+bwgame::a_vector<SoundOrigin> crossover_sound_origins;
+void remember_crossover_sounds(){crossover_sound_origins.clear();if(!g_ui)return;for(const auto & group:crossover_groups)for(auto id:group.ids){const auto unit=g_ui->get_unit(id);if(unit&&unit->sprite)crossover_sound_origins.push_back({unit->sprite->position,group.heroes});}}
 int crossover_battle=-1;
 bwgame::a_string crossover_result;
 std::array<bwgame::unit_type_t,32> crossover_types;
@@ -26,6 +44,17 @@ void crossover_attack_owner(int owner) {
     g_ui->apply_commands(owner,bytes.data(),bytes.size());
   }
 }
+}
+bool bwgame::crossover_hero_sound(const unit_t* source,xy position){
+ if(!g_ui)return false;
+ int nearest=32*32;bool hero=false;
+ const auto consider=[&](xy at,bool heroes){const int dx=at.x-position.x,dy=at.y-position.y,distance=dx*dx+dy*dy;if(distance<nearest){nearest=distance;hero=heroes;}};
+ for(const auto & group:crossover_groups)for(auto id:group.ids){const auto unit=g_ui->get_unit(id);if(unit==source&&source)return group.heroes;if(!source&&unit&&unit->sprite)consider(unit->sprite->position,group.heroes);}
+ if(source||position==xy())return false;
+ // iscript supplies a bare sprite position, including death sounds. Prefer the
+ // nearest live actor; the previous tick covers a just-removed Heroes proxy.
+ for(const auto & origin:crossover_sound_origins)consider(origin.position,origin.heroes);
+ return hero;
 }
 OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int count) {
   if(!g_ui || count<2 || count>32 || (g_inbuf.size()!=size_t(count*16) && g_inbuf.size()!=size_t(count*48)))return 0;
@@ -82,10 +111,11 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
     crossover_groups.push_back(std::move(group));
   }
   g_ui->screen_pos=origin-bwgame::xy(g_ui->view_width/3,g_ui->view_height/3);
-  crossover_attack_owner(1);
+  remember_crossover_sounds();crossover_attack_owner(1);
   return 1;
 }
 OPENBW_EXPORT(openbw_crossover_ai_tick) void openbw_crossover_ai_tick() {
+  remember_crossover_sounds();
   if(g_ui && crossover_battle>=0 && g_ui->st.current_frame%96==0)crossover_attack_owner(1);
 }
 OPENBW_EXPORT(openbw_crossover_attack) void openbw_crossover_attack() { crossover_attack_owner(0); }

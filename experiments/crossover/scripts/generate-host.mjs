@@ -22,6 +22,17 @@ replace('  pauseBtn.onclick = () => {', '  crossoverApi.tickDuration = () => ste
 replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
+  const creatureSounds=new Map(),creaturePlayed=new Map();
+  crossoverApi.prepareCreatureSounds=async rows=>{
+    const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
+    await Promise.all(rows.map(async row=>{const buffer=await decoder.decodeAudioData(new Uint8Array(row.bytes).buffer);creatureSounds.set(row.id+':'+(row.kind||'attack'),buffer);}));
+  };
+  crossoverApi.playCreatureSound=(stack,kind)=>{
+    const key=stack+':'+kind,buffer=creatureSounds.get(key);if(!buffer||muted||!audioCtx)return false;
+    const time=audioCtx.currentTime;if(time-(creaturePlayed.get(key)??-1)<.055)return false;
+    creaturePlayed.set(key,time);const source=audioCtx.createBufferSource(),gain=audioCtx.createGain();source.buffer=buffer;gain.gain.value=.75;source.connect(gain).connect(masterGain);source.onended=()=>{source.disconnect();gain.disconnect();};source.start();return true;
+  };
+  crossoverApi.playCreatureAttack=stack=>crossoverApi.playCreatureSound(stack,'attack');
   crossoverApi.acknowledge=kind=>{
     ensureAudio();if(!audioCtx||muted)return;
     const t=audioCtx.currentTime,notes=kind==='attack'?[740,990]:kind==='armed'?[520,740]:kind==='stop'?[440,330]:kind==='select'?[660]:[660,880];
@@ -53,7 +64,8 @@ js=js.slice(0,debugStart)+js.slice(debugEnd);
 replace('if (stepped && debugResourcesPending) { x.openbw_debug_resources(2000, 1000); debugResourcesPending = false; }','');
 replace("const isDebug = /(\\?|&)debug\\b/.test(location.search);", 'const isDebug = false;');
 js=js.replace(/  const CHEATS = \{[\s\S]*?\n  \};/, '  const CHEATS = {};');
-js=js.replaceAll('__BUILD__','openbw-469d2037-crossover-2');
+const engine=JSON.parse(fs.readFileSync(root+'public/starcraft/engine-build.json','utf8'));
+js=js.replaceAll('__BUILD__','openbw-'+engine.sha256.slice(0,16));
 js=js.replace(/\/\/ Responsibilities:[\s\S]*?(?=\/\/ Build id)/, '// Local adaptation: player-owned archives from IndexedDB; no remote game data.\n\n');
 js=`import {loadArchives, installArchiveImport} from '../local-assets.js';\nimport {installNativeBridge, setupNativeBattle} from '../native-bridge.js';\n`+js+`\nconst archivesReady=installArchiveImport();\nlet prepared;\nfunction prepareCrossover(){return prepared??=(async()=>{await archivesReady;const assets=await loadAssets(MAP_LOCAL);const response=await fetch('./openbw.wasm?v='+BUILD);if(!response.ok)throw Error('Moteur StarCraft indisponible.');const module=await WebAssembly.compileStreaming(response);return {assets,module};})().catch(error=>{prepared=undefined;throw error;});}\nwindow.openbwPrepareCrossover=prepareCrossover;\nwindow.openbwLaunchCrossover=async(plan)=>{await prepareCrossover();document.getElementById('controls').style.display='none';document.getElementById('opt-resign').hidden=true;await runLocalGame({slots:[{slot:0,race:1},{slot:1,race:1}],mySlot:0,delay:0,mapFile:MAP_LOCAL,crossover:plan});if(!window.openbwCrossover)throw Error(document.getElementById('msg').textContent);};\n`;
 if(js.includes('https://archive.org')||js.includes('https://raw.githubusercontent.com'))throw Error('Unexpected remote data source');

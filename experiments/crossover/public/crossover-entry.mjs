@@ -46,7 +46,9 @@ try{
   status.textContent='Vérification des données installées…';
   await downloadArchives((text,loaded,total)=>{status.textContent=text;progress.max=total;progress.value=loaded;});
   status.textContent='Préparation du moteur et de la carte…';
-  const files=['starcraft/index.html','starcraft/openbw.js','starcraft/net.js','starcraft/openbw.wasm?v=openbw-469d2037-crossover-2','starcraft/maps/Weave_v1.scx','native-bridge.js','battle.js','shared-field.js','adventure.js','adventure.css'];
+  const engineResponse=await fetch(new URL('starcraft/engine-build.json',location.href));if(!engineResponse.ok)throw Error('Moteur indisponible. Touche Réessayer.');
+  const engine=await engineResponse.json();if(!/^[a-f0-9]{64}$/.test(engine.sha256))throw Error('Moteur non vérifié.');
+  const files=['starcraft/index.html','starcraft/openbw.js','starcraft/net.js','starcraft/openbw.wasm?v=openbw-'+engine.sha256.slice(0,16),'starcraft/maps/Weave_v1.scx','native-bridge.js','battle.js','shared-field.js','adventure.js','adventure.css'];
   await Promise.all(files.map(async file=>{const response=await fetch(new URL(file,location.href));if(!response.ok)throw Error('Préchargement interrompu. Touche Réessayer.');await response.arrayBuffer();}));
   status.textContent='Données prêtes · ouverture de Heroes…';
   const game=new URL(launchPage?'./'+launchFile:'./game.html',location.href);game.search=location.search;

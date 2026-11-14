@@ -19,6 +19,8 @@
 #include <emscripten/emscripten.h>
 #include <SDL_timer.h>
 #include <SDL_surface.h>
+#include <SDL_audio.h>
+#include <SDL_rwops.h>
 #include "render/Canvas.h"
 #include "render/IImage.h"
 #include "render/CAnimation.h"
@@ -85,6 +87,7 @@
 #include "../lib/json/JsonNode.h"
 #include "../lib/CConfigHandler.h"
 #include "../lib/filesystem/Filesystem.h"
+#include "../lib/filesystem/CInputStream.h"
 #include "../lib/CCreatureHandler.h"
 #include "../lib/CBonusTypeHandler.h"
 #include "../lib/mapObjects/army/CCommanderInstance.h"
@@ -655,8 +658,47 @@ void publishMobileSiegeAtlas(BattleInterface & battle){
  MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const n=$1;const w=$2;const h=$3;try{window.goonkSiegePieces=Array.from({length:n},(_,i)=>{const row=Array.from(HEAP32.subarray(ptr/4+i*5,ptr/4+i*5+5));return {index:row[0],x:row[1],y:row[2],w:row[3],h:row[4]};});const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*20,ptr+n*20+w*h*4)),w,h),0,0);window.goonkSiegeAtlas=c;}finally{_free(ptr);}},packet,geometry.size()/5,width,height);}
  SDL_FreeSurface(rgba);
 }
+// Share the original creature attack/shoot samples already installed in VCMI.
+// The RTS host decodes these before revealing the battlefield, so combat needs
+// no extra network requests and follows each creature/mod's own sound definition.
+void publishCrossoverSounds(const BattleInfo & battle){
+ static std::string previous;
+ std::string signature=std::to_string(battle.battleID.getNum());
+ for(const auto & stack:battle.stacks)signature+="/"+std::to_string(stack->unitId())+":"+stack->unitType()->getJsonKey();
+ if(previous==signature)return;
+ MAIN_THREAD_ASYNC_EM_ASM({window.goonkCrossoverSounds=({battleId:$0,rows:[]});},battle.battleID.getNum());
+ for(const auto & stack:battle.stacks){
+  const auto creature=stack->unitType();if(creature->getJsonKey().starts_with("heroes-starcraft:"))continue;
+  auto attack=stack->hasBonusOfType(BonusType::SHOOTER)?creature->sounds.shoot:creature->sounds.attack;if(attack.empty())attack=creature->sounds.attack;
+  auto hit=creature->sounds.wince;if(hit.empty())hit=creature->sounds.defend;
+  auto death=creature->sounds.killed;if(death.empty())death=hit;
+  const std::array<std::pair<const char*,AudioPath>,3> clips={{{"attack",attack},{"hit",hit},{"death",death}}};
+  for(const auto & clip:clips){const auto & sound=clip.second;if(sound.empty())continue;
+  try{
+   const auto stream=CResourceHandler::get()->load(sound.addPrefix("SOUNDS/"));
+   if(stream->getSize()<12||stream->getSize()>4*1024*1024)continue;
+   auto data=stream->readAll();SDL_AudioSpec spec{};Uint8 * decoded=nullptr;Uint32 length=0;
+   if(!SDL_LoadWAV_RW(SDL_RWFromConstMem(data.first.get(),static_cast<int>(data.second)),1,&spec,&decoded,&length))throw std::runtime_error(SDL_GetError());
+   if(!length||length>4*1024*1024){SDL_FreeWAV(decoded);continue;}
+   const int size=44+length;auto packet=static_cast<uint8_t*>(malloc(size));if(!packet){SDL_FreeWAV(decoded);continue;}
+   const int bits=SDL_AUDIO_BITSIZE(spec.format),sampleBytes=bits/8;
+   memcpy(packet,"RIFF",4);memcpy(packet+8,"WAVEfmt ",8);memcpy(packet+36,"data",4);
+   const auto put16=[&](int offset,uint16_t value){packet[offset]=value&255;packet[offset+1]=value>>8;};
+   const auto put32=[&](int offset,uint32_t value){for(int i=0;i<4;i++)packet[offset+i]=(value>>(i*8))&255;};
+   put32(4,size-8);put32(16,16);put16(20,SDL_AUDIO_ISFLOAT(spec.format)?3:1);put16(22,spec.channels);put32(24,spec.freq);put32(28,spec.freq*spec.channels*sampleBytes);put16(32,spec.channels*sampleBytes);put16(34,bits);put32(40,length);
+   memcpy(packet+44,decoded,length);SDL_FreeWAV(decoded);
+   if(SDL_AUDIO_ISBIGENDIAN(spec.format))for(unsigned offset=44;offset+sampleBytes<=unsigned(size);offset+=sampleBytes)std::reverse(packet+offset,packet+offset+sampleBytes);
+   if(!SDL_AUDIO_ISFLOAT(spec.format)){if(bits==8&&SDL_AUDIO_ISSIGNED(spec.format))for(int offset=44;offset<size;offset++)packet[offset]^=0x80;
+    else if(bits>8&&!SDL_AUDIO_ISSIGNED(spec.format))for(int offset=44+sampleBytes-1;offset<size;offset+=sampleBytes)packet[offset]^=0x80;}
+   MAIN_THREAD_ASYNC_EM_ASM({try{if(window.goonkCrossoverSounds?.battleId===$2)window.goonkCrossoverSounds.rows.push({id:$3,kind:UTF8ToString($4),bytes:new Uint8Array(HEAPU8.slice($0,$0+$1))});}finally{_free($0);}},packet,size,battle.battleID.getNum(),stack->unitId(),clip.first);
+  }catch(const std::exception & error){logGlobal->warn("Crossover creature sound %s: %s",sound.getOriginalName(),error.what());}
+  }
+ }
+ previous=signature;
+}
 // Reuse original Heroes DEF frames in the shared real-time battlefield.
 void publishCrossoverArt(const BattleInfo & battle){
+ publishCrossoverSounds(battle);
  static int previous=-1;if(previous==battle.battleID.getNum())return;
  std::vector<const CStack*> units;for(const auto & stack:battle.stacks)if(!stack->unitType()->getJsonKey().starts_with("heroes-starcraft:"))units.push_back(stack.get());
  constexpr int cell=128,columns=8,frames=8,poses=3;
