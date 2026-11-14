@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.181",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive includes changes later than3.58f. Bounded assembly below corroborates the selected rules in the original3.58f binary."
+  },
+  "analysis": "New evidence is ordinary address-bounded LLVM objdump and PE byte/reference inspection, not newly returned REA dossiers or original execution. Hopper could not launch its local bridge (Connection is invalid); its retained180 evidence was exported, but cleanup acknowledgement was unavailable. No reinstall, external binary upload or Windows execution was attempted.",
+  "contracts": [
+    "https://h3era.github.io/ERM-Help/Rec/OB.htm"
+  ],
+  "boundedAssemblySha256": {
+    "objectReceiverAndRecords": "94fb37fab2f2ef16afdefa014959bef9de9b36d883bd962678459916803451a7",
+    "hintRead": "04bf7d76eb173bd48441c0622884bbf6f4ed75867f455c96045ddca8181e9e83"
+  },
+  "observations": [
+    {
+      "address": "0x733844..0x733850",
+      "fact": "Non-T/U/C object operations obtain a coordinate record via0x732e60."
+    },
+    {
+      "address": "0x733a30..0x733a44",
+      "fact": "H applies the operand to the two-byte hint index at record offset1; it stores a string reference, not a frozen string copy."
+    },
+    {
+      "address": "0x74a314..0x74a330 and0x74a42a..0x74a455",
+      "fact": "Description read finds the coordinate record, reads its hint word, resolves the current z-index storage and expands it before copying to the512-byte destination buffer."
+    },
+    {
+      "address": "0x733a49..0x733a52",
+      "fact": "B calls record deletion0x732f50, not just a hint-word write."
+    },
+    {
+      "address": "0x732f77..0x732fb9",
+      "fact": "Record deletion clears Used, hint word, all eight Disabled flags and the implemented-in-original automatic message slots."
+    },
+    {
+      "address": "0x7339b0..0x7339ff",
+      "fact": "D/E owner-1 resolves to the current source player, then writes the per-player disabled flag."
+    }
+  ],
+  "implementation": [
+    "Coordinate hint references0..1000, including direct z operands, numeric setters, queries and H0.",
+    "Object access flags persist by coordinate across native deletion/recreation. Older ID-keyed saves retain a fallback and migrate on writes/removal.",
+    "B clears coordinate hint/access and any old ID-keyed mask on that object. UN:O flag1 deletes the record at its exact supplied coordinate.",
+    "Mobile inspection opens one persistent ordinary native message window, exposed through the existing scrollable HTML dialog. Desktop retains a right-click popup.",
+    "The original511 source character limit is adapted to511 UTF-8 codepoints to keep imported accented text intact."
+  ],
+  "limitations": [
+    "External hint string tables above1000, HT/type and dynamic fallback records, hero hints, saturation of the original1000-record registry, hover-path parity and hints in fog are not fully ported or validated.",
+    "Only the coordinate access/hint fields implemented in this host are represented; original automatic message slots remain unported.",
+    "No original scenario quest, victory or carryover is established by these controls. Original campaigns and Cave remain disabled."
+  ],
+  "originalCampaignInventory": {
+    "obHCommands": 177,
+    "staticIndices": 177,
+    "maximumReferencedIndex": 432,
+    "dynamicIndices": 0
+  }
+}

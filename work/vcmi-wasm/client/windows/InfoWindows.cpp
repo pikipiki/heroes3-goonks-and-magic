@@ -31,6 +31,13 @@
 
 #include "../../lib/CConfigHandler.h"
 #include "../../lib/callback/CCallback.h"
+#include "../../lib/gameState/CGameState.h"
+#include "../../lib/CPlayerState.h"
+#include "../../lib/mapping/CMap.h"
+#include "../../lib/era/EraCampaignHints.h"
+#ifdef VCMI_HTML5_BUILD
+#include "../MobileBridge.h"
+#endif
 #include "../../lib/gameState/InfoAboutArmy.h"
 #include "../../lib/mapObjects/CGCreature.h"
 #include "../../lib/mapObjects/CGHeroInstance.h"
@@ -216,6 +223,24 @@ void CRClickPopup::createAndPush(const std::string & txt, const std::shared_ptr<
 
 void CRClickPopup::createAndPush(const CGObjectInstance * obj, const Point & p, ETextAlignment alignment)
 {
+	std::optional<std::string> sourceHint;
+	if(obj && GAME && GAME->interface() && GAME->interface()->cb)
+	{
+		const auto & game = static_cast<const IGameInfoCallback &>(*GAME->interface()->cb).gameState();
+		const auto * hero = GAME->interface()->localState->getCurrentHero();
+		const auto * owner = game.getPlayerState(GAME->interface()->playerID);
+		sourceHint = era_campaign_hints::text(game.getMap().sourceCampaignState, obj->visitablePos(), game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman());
+	}
+	if(sourceHint)
+	{
+#ifdef VCMI_HTML5_BUILD
+		if(isMobilePresentationActive())
+			CInfoWindow::showInfoDialog(*sourceHint, {}, GAME->interface()->playerID);
+		else
+#endif
+			CRClickPopup::createAndPush(*sourceHint);
+		return;
+	}
 	auto iWin = createCustomInfoWindow(p, obj); //try get custom infowindow for this obj
 	if(iWin)
 	{

@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.181",
+  "engineSha256": "bdc81f669896149054f92bf560591cb00299c9f4f8ad4860e9ce62270ea630ad",
+  "originalCampaignsEnabled": false,
+  "scope": "Dormant native coordinate hint/access control, private Goonk-derived resource map. No original quest, scenario victory or carryover.",
+  "sourceContract": "hint-source-contract-181.json",
+  "controls": {
+    "targetResource": [
+      19,
+      18,
+      0
+    ],
+    "descriptionZIndex": 901,
+    "nativeSourcePlayerForD": -1,
+    "createdResourceGold": 500,
+    "pendingSaveVersion": 903,
+    "pendingSaveSha256": "6b726f633c0723c655b40053629d6bf05163ec897dd4e8213005881ed0925d3f",
+    "hintsAreLiveTextReferences": true,
+    "h0KeepsNativeResourceSuppressed": true,
+    "bRestoresNative500GoldCollection": true,
+    "nativePopupReleaseAfter1700msDoesNotCloseReadingPanel": true,
+    "viewportSizes": [
+      [
+        320,
+        568
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        820,
+        1180
+      ]
+    ],
+    "stableContentNodeAndScroll": true,
+    "oneVisibleExitInEveryViewport": true
+  },
+  "nativeChecks": [
+    {
+      "case": "hints-fresh-r2",
+      "passed": true,
+      "resultSha256": "cc598418d0821f73b29c3cd17742e1ff8e93fed39ac51b594a680ad01310e390",
+      "scope": "Private Goonk-derived native control: OB:H live z reference and index query, coordinate persistence after UN:O/I and pending save/load, H0 keeps disabled visits, B clears both hint and access and restores a real500gold collection, native touch dialog stability and seven viewport layouts. No original quest or victory.",
+      "fixtureSha256": "8f491f81bc1b9c2ab78684329ea31d467143e3d36750096f7925bf3eb6b2afc8",
+      "loadedPending": false,
+      "errors": [],
+      "initial": {
+        "day": 1,
+        "lines": [
+          "Native hint initial. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. "
+        ]
+      },
+      "updated": {
+        "day": 1,
+        "lines": [
+          "Native hint updated index: 901"
+        ]
+      },
+      "updatedPopup": {
+        "day": 1,
+        "lines": [
+          "Native hint updated. The same text reference now describes a rebuilt gate. Read at your own pace, rotate the screen, and use the visible close button. The same text reference now describes a rebuilt gate. Read at your own pace, rotate the screen, and use the visible close button. The same text reference now describes a rebuilt gate. Read at your own pace, rotate the screen, and use the visible close button. "
+        ]
+      },
+      "disabled": {
+        "day": 2,
+        "lines": [
+          "Native hint position: 18/19/0; target: 79"
+        ]
+      },
+      "zeroStillDisabled": {
+        "day": 3,
+        "lines": [
+          "Native hint position: 20/19/0; target: 79"
+        ]
+      },
+      "deletedEnabled": {
+        "day": 4,
+        "lines": [
+          "Native hint position: 20/19/0; target: -1"
+        ]
+      },
+      "mapSha256": "1a9bf1f6eebbe967f6ff52ad085e5ecffd049fc13b09a88807357f21237c6f58",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 234,
+            "scrollHeight": 457,
+            "clientHeight": 223,
+            "rect": {
+              "x": 18,
+              "y": 166.1015625,
+              "w": 284,
+              "h": 226.796875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 234,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 400.8984375,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 169,
+            "scrollHeight": 459,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 169,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 75,
+            "scrollHeight": 394,
+            "clientHeight": 319,
+            "rect": {
+              "x": 18,
+              "y": 255.8046875,
+              "w": 354,
+              "h": 323.390625
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 75,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 587.1953125,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 30,
+            "scrollHeight": 372,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 30,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 289,
+            "clientHeight": 289,
+            "rect": {
+              "x": 18,
+              "y": 362.75,
+              "w": 732,
+              "h": 293
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 663.75,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 268,
+            "clientHeight": 268,
+            "rect": {
+              "x": 18,
+              "y": 452.140625,
+              "w": 784,
+              "h": 272
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 732.140625,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "hints-reload",
+      "passed": true,
+      "resultSha256": "ec27c85c87ffa29ab828b165bed89de1b46a6bd3f0097239d0eb5f9d40fd0473",
+      "scope": "Private Goonk-derived native control: OB:H live z reference and index query, coordinate persistence after UN:O/I and pending save/load, H0 keeps disabled visits, B clears both hint and access and restores a real500gold collection, native touch dialog stability and seven viewport layouts. No original quest or victory.",
+      "fixtureSha256": "8f491f81bc1b9c2ab78684329ea31d467143e3d36750096f7925bf3eb6b2afc8",
+      "loadedPending": true,
+      "errors": [],
+      "updated": {
+        "day": 1,
+        "lines": [
+          "Native hint updated index: 901"
+        ]
+      },
+      "updatedPopup": {
+        "day": 1,
+        "lines": [
+          "Native hint updated. The same text reference now describes a rebuilt gate. Read at your own pace, rotate the screen, and use the visible close button. The same text reference now describes a rebuilt gate. Read at your own pace, rotate the screen, and use the visible close button. The same text reference now describes a rebuilt gate. Read at your own pace, rotate the screen, and use the visible close button. "
+        ]
+      },
+      "disabled": {
+        "day": 2,
+        "lines": [
+          "Native hint position: 18/19/0; target: 79"
+        ]
+      },
+      "zeroStillDisabled": {
+        "day": 3,
+        "lines": [
+          "Native hint position: 20/19/0; target: 79"
+        ]
+      },
+      "deletedEnabled": {
+        "day": 4,
+        "lines": [
+          "Native hint position: 20/19/0; target: -1"
+        ]
+      },
+      "mapSha256": "1a9bf1f6eebbe967f6ff52ad085e5ecffd049fc13b09a88807357f21237c6f58",
+      "layouts": []
+    },
+    {
+      "case": "old-object",
+      "passed": true,
+      "resultSha256": "b295cd2666b8aca25eef266f6353538b30bd84d82da35667db254b6da394236d",
+      "scope": "Private native OB coordinate/type/subtype order, persistent S suppression, repeat scripts and R native interaction restoration; no original quest or victory claimed.",
+      "fixtureSha256": "5c58c7c384357e4eedb84eb135f00dde03e4aa5e569235eb36a2283932e1330d",
+      "loadedPending": true,
+      "errors": []
+    },
+    {
+      "case": "old-world",
+      "passed": true,
+      "resultSha256": "f7747de60304f1a0cbeb2b539f8fc0ed29f9795108f09810dbc19ac5844106bb",
+      "scope": "Private Goonk-derived map: anchor removal, current object removed before default reward, UN:I 5/6/7/8/9 arguments, mapped dwelling identity including loaded reference, original monster/gold defaults, repeated native local event, native gate/tent, pending save/reload and positive battle round. No original quest or victory.",
+      "fixtureSha256": "b0cadefb914edf22949bea46d31d7806225c50805890beb44c7985f5ac35cc71",
+      "loadedPending": true,
+      "errors": []
+    },
+    {
+      "case": "production",
+      "passed": true,
+      "resultSha256": "42cb1f112c573512fc185f2370905b04530d55195bc030d9dbb3e13f8bbe90fe",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "fixtureSha256": null,
+      "loadedPending": null,
+      "errors": []
+    }
+  ],
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 761,
+      "passed": 727,
+      "skipped": 34,
+      "failed": 0
+    },
+    "siteBuildAndVerification": true
+  },
+  "limitations": [
+    "Private coordinate hint/resource controls do not validate all177 source hint placements, external string tables or all original presentation paths.",
+    "The first exploratory gate-based access assertion was discarded: entering a gate depends on its native passability/key and is not an independent proof of suppression of an object effect. The retained resource controls measure actual native reward suppression and restoration.",
+    "Production smoke checks delivered003/004, save/load and positive BattleStart; no original campaign quest or victory is claimed.",
+    "Original campaigns and Cave remain disabled."
+  ]
+}

@@ -14,6 +14,7 @@
 #include "../../lib/era/EraCampaignDialogs.h"
 #include "../../lib/era/EraCampaignPictures.h"
 #include "../../lib/era/EraCampaignObjectAccess.h"
+#include "../../lib/era/EraCampaignHints.h"
 #include "../../lib/era/EraCampaignTimers.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
 #include "../../lib/GameLibrary.h"
@@ -135,13 +136,17 @@ struct SourceCampaignProcessor::Impl final:Host
   const auto source=era_bridge::sourceCreatureIdForLevel(id.toCreature()->getJsonKey());
   require(source.has_value(),"foreign creature cannot be represented by original source ID");return *source;
  }
- const CGObjectInstance * object(const Command & c,MapObjectID type=MapObjectID())const
+ int3 position(const Command & c)const
  {
   require(c.selectors.size()==3||(c.receiver=="OB"&&c.selectors.size()==1),"object needs three coordinates or an OB coordinate variable");
   int3 pos;
   if(c.selectors.size()==1){const int index=number(c.selectors[0]);require(index>=1&&index<=9998,"invalid OB coordinate variable");pos=int3(lookup(vm.v,index),lookup(vm.v,index+1),lookup(vm.v,index+2));}
   else pos=int3(number(c.selectors[0]),number(c.selectors[1]),number(c.selectors[2]));
-  const auto & map=gh.gameState().getMap();if(!map.isInTheMap(pos))return nullptr;
+  return pos;
+ }
+ const CGObjectInstance * object(const Command & c,MapObjectID type=MapObjectID())const
+ {
+  const auto pos=position(c);const auto & map=gh.gameState().getMap();if(!map.isInTheMap(pos))return nullptr;
   for(const auto id:map.getTile(pos).visitableObjects)
   {
    const auto * obj=gh.gameState().getObj(id);
@@ -160,6 +165,11 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  std::uint8_t objectMask(ObjectInstanceID id)const
  {
+  if(const auto * obj=gh.gameState().getObj(id))
+  {
+   const auto & byPosition=state["objectAccessPositions"][era_campaign_hints::positionKey(obj->visitablePos())];
+   if(!byPosition.isNull()){const int mask=era_campaign_json::integer(byPosition);require(mask>=0&&mask<=255,"invalid saved coordinate object access mask");return mask;}
+  }
   const auto & node=state["objectAccess"][std::to_string(id.getNum())];if(node.isNull())return 255;
   const int mask=era_campaign_json::integer(node);require(mask>=0&&mask<=255,"invalid saved object access mask");return mask;
  }
@@ -493,8 +503,8 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const CGObjectInstance * target=nullptr;
    for(const auto & obj:map.objects)if(obj&&obj->anchorPos()==anchor&&obj->ID!=Obj::HERO)
    {require(target==nullptr,"ambiguous object anchor needs source selection validation");target=obj.get();}
-   if(clearDescription&&!state["objectDescriptions"].isNull())state["objectDescriptions"].Struct().erase(std::to_string(anchor.x)+"/"+std::to_string(anchor.y)+"/"+std::to_string(anchor.z));
-   if(target){const auto removed=target->id;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
+   if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
+   if(clearDescription)for(const auto & field:{"objectDescriptions","objectAccessPositions"})if(!state[field].isNull())state[field].Struct().erase(era_campaign_hints::positionKey(anchor));
    persist();return Step::Continue;
   }
   if(args.size()==9)require(number(args[8])==1,"deferred object refresh not admitted");
@@ -645,12 +655,30 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  }
  if(c.receiver=="OB")
  {
-  arity(op,1);const auto * obj=object(c);
+  const auto pos=position(c);require(gh.gameState().getMap().isInTheMap(pos),"object position outside map");const auto key=era_campaign_hints::positionKey(pos);const auto * obj=object(c);
+  if(op.code=="B")
+  {
+   require(args.empty()||(args.size()==1&&args[0].kind==Kind::Default),"object hint removal takes no value");
+   for(const auto & field:{"objectDescriptions","objectAccessPositions"})if(!state[field].isNull())state[field].Struct().erase(key);
+   if(obj&&!state["objectAccess"].isNull())state["objectAccess"].Struct().erase(std::to_string(obj->id.getNum()));persist();return Step::Continue;
+  }
+  arity(op,1);
+  if(op.code=="H")
+  {
+   const auto & argument=resolveMacro(args[0],vm);const auto & saved=state["objectDescriptions"][key];
+   const int previous=saved.isNull()?0:era_campaign_json::integer(saved);
+   int changed;
+   if(argument.kind==Kind::Variable&&argument.space=='z'){require(argument.access==Access::Read&&argument.index!=nullptr,"unsupported hint string reference");changed=number(*argument.index);}
+   else changed=value(previous,args[0]);
+   require(changed>=0&&changed<=1000,"external hint string table is not admitted");
+   if(!query(op)){state["objectDescriptions"][key].Integer()=changed;persist();}return Step::Continue;
+  }
   if(op.code=="S"||op.code=="R"||op.code=="D"||op.code=="E")
   {
-   require(obj!=nullptr,"object access target missing");
    const bool all=op.code=="S"||op.code=="R";require(all?args[0].kind==Kind::Default:args[0].access==Access::Read,"unsupported object access argument");
-   state["objectAccess"][std::to_string(obj->id.getNum())].Integer()=era_campaign_object_access::change(objectMask(obj->id),op.code[0],all?0:number(args[0]));persist();return Step::Continue;
+   const auto & saved=state["objectAccessPositions"][key];const int old=saved.isNull()?(obj?objectMask(obj->id):255):era_campaign_json::integer(saved);require(old>=0&&old<=255,"invalid coordinate object access mask");
+   int owner=all?0:number(args[0]);if(owner==-1)owner=player.getNum();
+   state["objectAccessPositions"][key].Integer()=era_campaign_object_access::change(old,op.code[0],owner);if(obj&&!state["objectAccess"].isNull())state["objectAccess"].Struct().erase(std::to_string(obj->id.getNum()));persist();return Step::Continue;
   }
   require(op.code=="T"||op.code=="U","unsupported source object operation");const auto source=obj?identity(obj):ObjectTypeIdentifier{Obj::NOTHING,-1};value(obj?(op.code=="T"?int(source.ID):source.subID):-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
  }
