@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "status": "native-kernel-verified-campaign-port-incomplete",
+  "campaignsEnabled": false,
+  "gameVersion": "0.4.169",
+  "checks": {
+    "repositoryTests": {
+      "total": 748,
+      "passed": 714,
+      "skipped": 34,
+      "failed": 0
+    },
+    "linuxProductionJsonCodec": {
+      "total": 1,
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0,
+      "sanitizers": [
+        "address",
+        "undefined"
+      ],
+      "test": "tests/era-campaign-runtime.test.mjs"
+    },
+    "wasmBuild": {
+      "command": "ninja -j32 html5",
+      "result": "passed",
+      "sha256": "a787c46e666f999a1a0c6e6bca766d91142ba7bed506f7741d54a13158518248",
+      "unchangedPublicExecutable": true
+    },
+    "originalInstructions": {
+      "source": "zc4/wog_camp4a/FU844",
+      "inputCases": 152,
+      "caveScope": "Witch event prefix only; flag mask and first message"
+    },
+    "fullQuestAndVictoryValidation": false
+  },
+  "limitations": [
+    "No native adventure/battle event registration in this change",
+    "VM JSON roundtrip is not a real game save/victory proof",
+    "Maps submod remains disabled",
+    "Public WASM unchanged because unused interpreter code is removed by linking"
+  ]
+}

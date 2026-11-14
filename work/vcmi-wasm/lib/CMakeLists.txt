@@ -50,6 +50,8 @@ endif()
 
 set(lib_MAIN_SRCS
 
+	era/EraCampaignRuntime.cpp
+
 	battle/AccessibilityInfo.cpp
 	battle/BattleAction.cpp
 	battle/BattleAttackInfo.cpp

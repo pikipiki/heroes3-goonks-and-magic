@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "status": "compiled-with-explicit-exceptions-not-playable",
+  "executionValidated": false,
+  "scenarios": [
+    {
+      "campaign": "zc1",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "member": "z_-~-_02e.vmap",
+      "mapSha256": "23df05834b181481e8415355870dfd2123118da171c9b546b9abcfe31a43f735",
+      "programSha256": "a601abc5c771904dd20857e4b0da7755d350a1b33b18e14945e6d91d69f2fa93",
+      "sources": [
+        {
+          "id": "zc1.vcmp!z_-~-_02e.vmap!map.zc1:3.event.3.description",
+          "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+          "compiledSha256": "64af97a3b3d876f6f90f4fd3553a8add581401520ede904a3abac717ef729ae7",
+          "firstOccurrence": 671,
+          "eventIndex": 3,
+          "exceptions": [
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 4,
+              "instructionSha256": "69d7e8478794efa7a6982588b31a0744ff88a8787fa9ed928724c66ace0c73a6",
+              "statement": "!!FU110:P;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 5,
+              "instructionSha256": "17fec467a3369a08bdcb97bb6d0014bb72ca293c8669b99863e5dcfd47fb434c",
+              "statement": "!!IF&v11=0:Q1/21/168/1^And it seems that we should find a town or garrison as soon as possible.^;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 6,
+              "instructionSha256": "e801f3bad13209dcc86aa290af51e5ba70c97cd961529a6a0a1eac2752f06b3a",
+              "statement": "!!VRv11:+1;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 9,
+              "instructionSha256": "69d7e8478794efa7a6982588b31a0744ff88a8787fa9ed928724c66ace0c73a6",
+              "statement": "!!FU110:P;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 10,
+              "instructionSha256": "98cca8d1ace13c12135822b4b517a2c833246c577ac3b2e71645c959b549f4b5",
+              "statement": "!!IF&v11=0:Q1/21/168/1^Hey. How long are you going to sleep?\nWe have no time!\nLET'S GO!!!^;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 13,
+              "instructionSha256": "e801f3bad13209dcc86aa290af51e5ba70c97cd961529a6a0a1eac2752f06b3a",
+              "statement": "!!VRv11:+1;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 16,
+              "instructionSha256": "69d7e8478794efa7a6982588b31a0744ff88a8787fa9ed928724c66ace0c73a6",
+              "statement": "!!FU110:P;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 21,
+              "instructionSha256": "913fb0c1dfb96fa700f0661c31ee17871436b9173ddad13c2157d84e214e50db",
+              "statement": "!!IF:Q1/21/8/1^Hello, stranger.\nHow did you get here? This place is closed...\n...never mind.\nAren't you that pesky knight that stole our treasure?\nDamn you!^;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 26,
+              "instructionSha256": "5c048d063c67e4a0d3599dabcefa1736f61b06160565e7faa45d94d5a3836570",
+              "statement": "!!UN:O41/65/0;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 27,
+              "instructionSha256": "7d4ebbb4d2840405b81783bf93b3c26dff08c8c4314f256a13940087582dfc95",
+              "statement": "!!TM1:S0/0/100/64;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 28,
+              "instructionSha256": "2732326656545f420f740b394620baa86d2a885e640a6612ba857712536037ca",
+              "statement": "!!TM2:Sc/999/1/64;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 29,
+              "instructionSha256": "08b8574b205948adca0276b68790b28582a118e15969004e4e44e194ccd8cb96",
+              "statement": "!!VRv14:S1;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 30,
+              "instructionSha256": "d85fa79af373d1f9c72f30a637c622c566c642ceae46c38f77ae0e81cccc068f",
+              "statement": "!!VRv10:S11;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 30,
+              "instructionSha256": "b589f3a32ef9b90ef2828f84c04b731a7b5f7a56962204449d93aba68aa92562",
+              "statement": "!!VRv11:S0;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 31,
+              "instructionSha256": "69d7e8478794efa7a6982588b31a0744ff88a8787fa9ed928724c66ace0c73a6",
+              "statement": "!!FU110:P;"
+            },
+            {
+              "kind": "detached-disabled-receiver",
+              "originalSha256": "71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f",
+              "line": 32,
+              "instructionSha256": "f0e53fa68b7997bbbd682ac0468d599c62677b41663a67739a5e179e4ddcec34",
+              "statement": "!!IF:Q1/21/168/1^If I meet this meat again, I'll eaten it!\nI mean monk.\nAnyway, I can't see much of our surroundings anymore.^;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "campaign": "zc2",
+      "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "member": "samaritan1mod.vmap",
+      "mapSha256": "ef7cc535929913855580a8108c0154cb2d48e40a96a2a72a519b4fd0798e9071",
+      "programSha256": "3a53ecd11ae070434c87bcec3e76ced449cce76b327ecf0fc93b2f74509b428d",
+      "sources": [
+        {
+          "id": "zc2.vcmp!samaritan1mod.vmap!map.zc2:0.event.6.description",
+          "originalSha256": "8c4a286b4473d3dd3d5c2445b7510d737a6c440ae3a3c0c06eb0c1609cb25231",
+          "compiledSha256": "a048cac38a6adb10ad46b8d0fd5dc892eeca63db8b216603a9b9c476a47d0460",
+          "firstOccurrence": 671,
+          "eventIndex": 6,
+          "exceptions": [
+            {
+              "kind": "syntax-repair",
+              "originalSha256": "8c4a286b4473d3dd3d5c2445b7510d737a6c440ae3a3c0c06eb0c1609cb25231",
+              "from": "!!VRv533&v536=1+1;",
+              "to": "!!VRv533&v536=1:+1;",
+              "reason": "Missing receiver colon in the fourth of four adjacent completed-task counter increments."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "campaign": "zc3",
+      "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+      "member": "g_-~-_01e.vmap",
+      "mapSha256": "78e3327bfef73d9fb07a5e3d916c08e9963efbd9b5c6994fcf3559c6fb97e614",
+      "programSha256": "93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a",
+      "sources": [
+        {
+          "id": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.3.description",
+          "originalSha256": "e0645fc091b592f2bf4db6db18d928ee9a0986c6c36bf403f440a633b4d8de27",
+          "compiledSha256": "a0e6816a4222e202658c518b78866e54019261fbdf2735ce4fabe3a0d3fcb960",
+          "firstOccurrence": 499,
+          "eventIndex": 3,
+          "exceptions": [
+            {
+              "kind": "syntax-repair",
+              "originalSha256": "e0645fc091b592f2bf4db6db18d928ee9a0986c6c36bf403f440a633b4d8de27",
+              "from": "!!IF&6v1=1:M",
+              "to": "!!IF&v1=1:M",
+              "reason": "Malformed quest condition; the surrounding Shrubbery quest stores its states0/1/2/3 in v1 and never sets flag6."
+            }
+          ]
+        },
+        {
+          "id": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.11.description",
+          "originalSha256": "10fdccc80fb2fde9c190665d1ff3611f8369e4cf0e192ebcc0d68b728344d5fb",
+          "compiledSha256": "992d6001cb4113570e91374354b3c479d1848e7e822f9ef4f3dee7a43bb970ad",
+          "firstOccurrence": 499,
+          "eventIndex": 11,
+          "exceptions": [
+            {
+              "kind": "syntax-repair",
+              "originalSha256": "10fdccc80fb2fde9c190665d1ff3611f8369e4cf0e192ebcc0d68b728344d5fb",
+              "from": "!?OB58/61/1\n",
+              "to": "!?OB58/61/1;\n",
+              "reason": "Missing trigger terminator before the explicit portal interaction message."
+            }
+          ]
+        },
+        {
+          "id": "zc3.vcmp!g_-~-_01e.vmap!map.zc3:0.event.31.description",
+          "originalSha256": "a7feeeba4b505caf980926de5562cdc5209d14adc68b3c29b451ee24a2546748",
+          "compiledSha256": "3d7e04bba24bb634ba2cbf2317617ebc0d4ae3901be829adb807385b1ccaaf7d",
+          "firstOccurrence": 499,
+          "eventIndex": 31,
+          "exceptions": [
+            {
+              "kind": "syntax-repair",
+              "originalSha256": "a7feeeba4b505caf980926de5562cdc5209d14adc68b3c29b451ee24a2546748",
+              "from": "!!OB66/22/1:S\n",
+              "to": "!!OB66/22/1:S;\n",
+              "reason": "Missing receiver terminator before the separate hero teleport command."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

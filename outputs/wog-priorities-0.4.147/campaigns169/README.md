@@ -1,5 +1,7 @@
 # Priorité6 : cartes et campagnes originales — non terminée
 
+Suite du travail : [noyau natif, compilation des137 sources et limites d’activation](../../../docs/wog-original-campaign-runtime.md). Le présent relevé conserve l’état du parseur strict initial ; les corrections de sources sont appliquées par un compilateur distinct et consignées individuellement.
+
 Périmètre disponible : quatre campagnesVCMP, onze scénariosVMAP et la carte originale **Cave of Gerfrex**. Les empreintes sont conservées dans `inventory.json` et dans l’importeur strict. Les campagnes contiennent137 sources embarquées ; Cave en contient22. Le relevé général trouve808 déclencheurs et6690 commandes, sur35 noms de receivers (casse source conservée dans le relevé).
 
 Le port des quêtes n’est **pas terminé** et aucun de ces scénarios n’est activé par ce lot. Le sous-mod original conserve `keepDisabled:true`. Les noms des fichiers et leurs conditions de victoire natives ne suffisent pas à établir que leurs histoires sont jouables.

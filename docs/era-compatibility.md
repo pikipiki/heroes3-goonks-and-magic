@@ -54,7 +54,7 @@ Critère de clôture : Combinaisons supportées, interface tactile, persistance 
 
 ### 4. Cartes et campagnes originales WoG
 
-Quatre campagnes, onze scénarios et Cave inventoriés avec empreintes ; importeur syntaxique vérifié, hôte natif et validation des victoires non terminés. Sous-mod Maps maintenu désactivé. État détaillé : outputs/wog-priorities-0.4.147/campaigns169/README.md.
+Quatre campagnes, onze scénarios et Cave inventoriés ; les 137 sources des campagnes compilent avec exceptions documentées. Noyau natif de fonctions, boucles et reprise après sérialisation vérifié ; adaptations des événements, quêtes et combats et validation des victoires non terminées. Sous-mod Maps maintenu désactivé. État détaillé : docs/wog-original-campaign-runtime.md.
 
 Critère de clôture : Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire.
 
