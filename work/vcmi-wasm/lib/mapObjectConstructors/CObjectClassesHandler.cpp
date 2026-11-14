@@ -124,6 +124,7 @@ std::vector<JsonNode> CObjectClassesHandler::loadLegacyData()
 
 		std::pair key(tmpl->id, tmpl->subid);
 		legacyTemplates.insert(std::make_pair(key, tmpl));
+		originalTemplates.insert(std::make_pair(key, tmpl));
 	}
 
 	mapObjectTypes.resize(256);
@@ -355,6 +356,15 @@ void CObjectClassesHandler::removeSubObject(MapObjectID ID, MapObjectSubID subID
 {
 	assert(mapObjectTypes.at(ID.getNum()));
 	mapObjectTypes.at(ID.getNum())->objectTypeHandlers.at(subID.getNum()) = nullptr;
+}
+
+std::vector<std::shared_ptr<const ObjectTemplate>> CObjectClassesHandler::getOriginalTemplates(MapObjectID type, MapObjectSubID subtype) const
+{
+	std::vector<std::shared_ptr<const ObjectTemplate>> result;
+	const auto range = originalTemplates.equal_range(std::make_pair(type, subtype));
+	for(auto it = range.first; it != range.second; ++it)
+		result.push_back(it->second);
+	return result;
 }
 
 TObjectTypeHandler CObjectClassesHandler::getHandlerFor(MapObjectID type, MapObjectSubID subtype) const

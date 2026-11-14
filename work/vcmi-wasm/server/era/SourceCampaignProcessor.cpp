@@ -41,6 +41,12 @@
 #include "../../lib/battle/BattleLayout.h"
 #include "../../lib/texts/CGeneralTextHandler.h"
 #include "../../lib/entities/hero/CHero.h"
+#include "../../lib/mapping/MapFormatSettings.h"
+#include "../../lib/mapObjectConstructors/CObjectClassesHandler.h"
+#include "../../lib/mapObjectConstructors/AObjectTypeHandler.h"
+#include "../../lib/mapObjectConstructors/CommonConstructors.h"
+#include "../../lib/mapObjects/CGResource.h"
+#include "../../lib/mapObjects/ObjectTemplate.h"
 
 using namespace era_campaign;
 namespace
@@ -143,6 +149,15 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   return nullptr;
  }
+ ObjectTypeIdentifier identity(const CGObjectInstance * object)const
+ {
+  const auto & saved=state["objectIdentities"][std::to_string(object->id.getNum())];
+  if(!saved.isNull()){const auto & pair=era_campaign_json::array(saved);require(pair.size()==2,"invalid source object identity");return {Obj(era_campaign_json::integer(pair[0])),era_campaign_json::integer(pair[1])};}
+  if(object->ID==Obj::MONSTER)
+   if(const auto source=era_bridge::sourceCreatureIdForLevel(CreatureID(object->subID.getNum()).toCreature()->getJsonKey()))return {Obj::MONSTER,*source};
+  const ObjectTypeIdentifier native{Obj(object->ID.getNum()),object->subID.getNum()};
+  const auto source=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).originalObject(native);return source.value_or(native);
+ }
  std::uint8_t objectMask(ObjectInstanceID id)const
  {
   const auto & node=state["objectAccess"][std::to_string(id.getNum())];if(node.isNull())return 255;
@@ -180,7 +195,7 @@ struct SourceCampaignProcessor::Impl final:Host
   for(const auto & entry:registry["programs"].Vector())
   {
    if(!entry["enabled"].Bool())continue;
-   // Only the closed six-receiver Cave host is admitted by this implementation.
+   // The pinned Cave admission remains the only validated host entry point.
    if(entry["id"].String()!="cave-gerfrex")continue;
    const JsonNode source(JsonPath::builtin(entry["resource"].String()));
    const auto & saved=map.sourceCampaignState;
@@ -436,7 +451,8 @@ struct SourceCampaignProcessor::Impl final:Host
   if(obj->ID!=Obj::EVENT)
   {
    Executor executor(program,vm,context,*this);
-   if(executor.dispatchAny("OB",{{pos.x,pos.y,pos.z},{obj->ID.getNum(),obj->subID.getNum()},{obj->ID.getNum()}})){run();return true;}
+   const auto source=identity(obj);
+   if(executor.dispatchAny("OB",{{pos.x,pos.y,pos.z},{int(source.ID),source.subID},{int(source.ID)}})){run();return true;}
    const bool handled=!allowsObject(obj,h)||consumeEmptyMonster(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
   }
   const auto * local=dynamic_cast<const CGEvent *>(obj);
@@ -462,6 +478,46 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    return Step::Continue;
   }
   pending=std::move(prompt);return Step::Suspend;
+ }
+ if(c.receiver=="UN")
+ {
+  require(c.selectors.empty(),"universal receiver does not take selectors");
+  require(op.code=="O"||op.code=="I","unsupported universal operation "+op.code);
+  require(op.code=="O"?(args.size()>=3&&args.size()<=5):(args.size()>=5&&args.size()<=9),"unsupported universal object arity");
+  for(const auto & arg:args)require(arg.access==Access::Read,"object mutation needs value arguments");
+  const int3 anchor(number(args[0]),number(args[1]),number(args[2]));const auto & map=gh.gameState().getMap();require(map.isInTheMap(anchor),"object anchor outside map");
+  if(op.code=="O")
+  {
+   const int clearDescription=args.size()>3?number(args[3]):0,refresh=args.size()>4?number(args[4]):1;
+   require(clearDescription==0||clearDescription==1,"invalid description removal flag");require(refresh==1,"deferred object refresh not admitted");
+   const CGObjectInstance * target=nullptr;
+   for(const auto & obj:map.objects)if(obj&&obj->anchorPos()==anchor&&obj->ID!=Obj::HERO)
+   {require(target==nullptr,"ambiguous object anchor needs source selection validation");target=obj.get();}
+   if(clearDescription&&!state["objectDescriptions"].isNull())state["objectDescriptions"].Struct().erase(std::to_string(anchor.x)+"/"+std::to_string(anchor.y)+"/"+std::to_string(anchor.z));
+   if(target){const auto removed=target->id;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
+   persist();return Step::Continue;
+  }
+  if(args.size()==9)require(number(args[8])==1,"deferred object refresh not admitted");
+  int source=number(args[3]),subtype=number(args[4]);require(source>=0&&source!=static_cast<int>(Obj::HERO),"unsupported source object type");
+  int visual=args.size()>6?number(args[5]):source,visualSubtype=args.size()>6?number(args[6]):subtype;
+  if(source==76){if(visual==source&&visualSubtype==subtype){subtype=random(6,false);source=79;visual=source;visualSubtype=subtype;}else{source=79;subtype=random(6,false);}}
+  require(visual==source&&visualSubtype==subtype,"different source object appearance not admitted");
+  require(!(source==17&&subtype==93),"messenger dwelling variant requires original selection validation");
+  const int surface=args.size()==6?number(args[5]):args.size()>7?number(args[7]):-1;require(surface>=-1&&surface<=8,"source surface outside -1..8");
+  const auto mapped=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remapObject({Obj(source),subtype});
+  const MapObjectID type(mapped.ID);const MapObjectSubID sub(mapped.subID);
+  require(LIBRARY->objtypeh->knownObjects().count(type)&&LIBRARY->objtypeh->knownSubObjects(type).count(sub),"unbound source object identity");
+  const auto handler=LIBRARY->objtypeh->getHandlerFor(type,sub);
+  const auto wanted=source==124?map.getTile(anchor).getTerrainID():surface>=0?LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(TerrainId(surface)):TerrainId::NONE;
+  auto templates=LIBRARY->objtypeh->getOriginalTemplates(type,sub);const bool originalTemplate=!templates.empty();
+  if(templates.empty())templates=handler->getTemplates();
+  if(wanted!=TerrainId::NONE)templates.erase(std::remove_if(templates.begin(),templates.end(),[&](const auto & item){return !item->canBePlacedAt(wanted);}),templates.end());
+  require(!templates.empty(),"source object has no template for its surface");
+  auto created=handler->create(&gh.gameInfo(),nullptr);handler->configureObject(created.get(),*gh.randomizer);gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=originalTemplate?templates.back():templates.front();created->setAnchorPos(anchor);
+  if(auto monster=std::dynamic_pointer_cast<CGCreature>(created)){monster->initialCharacter=CGCreature::Character::SAVAGE;monster->neverFlees=true;monster->notGrowingTeam=false;monster->gainedArtifact=ArtifactID::NONE;monster->resources=TResources{};monster->message.clear();monster->clearSlots();monster->putStack(SlotID(0),std::make_unique<CStackInstance>(&gh.gameInfo(),CreatureID(sub.getNum()),5));}
+  if(auto resource=std::dynamic_pointer_cast<CGResource>(created)){resource->clearSlots();resource->setAmount(5*resource->getResourceHandler()->getAmountMultiplier());}
+  if(auto event=std::dynamic_pointer_cast<CGEvent>(created)){event->humanActivate=true;event->computerActivate=false;event->removeAfterVisit=false;event->availableFor.clear();for(int color=0;color<8;++color)event->availableFor.insert(PlayerColor(color));event->configuration.info.clear();event->configuration.info.emplace_back();event->configuration.info.back().visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;}
+  gh.newObject(created,player);auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
  if(c.receiver=="OW")
  {
@@ -564,11 +620,11 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    arity(op,4);const int mode=number(args[0]),selector=number(args[1]);require(mode==0||mode==1,"unsupported Cave army mode");
    std::vector<SlotID> slots;
    if(mode==0){require(selector>=0&&selector<7,"invalid army slot");slots.push_back(SlotID(selector));}
-   else for(const auto & slot:h->Slots())if(sourceCreature(slot.second->getId())==selector)slots.push_back(slot.first);
+   else {const auto selected=creature(selector);for(const auto & slot:h->Slots())if(slot.second->getId()==selected)slots.push_back(slot.first);}
    if(slots.empty()&&query(op)){value(0,args[2]);value(0,args[3]);}
    for(const auto slot:slots)
    {
-    const auto * stack=h->getStackPtr(slot);const int type=value(stack?sourceCreature(stack->getId()):-1,args[2]);const int count=value(stack?stack->getCount():0,args[3]);
+    const auto * stack=h->getStackPtr(slot);const int type=args[2].access==Access::Read?number(args[2]):value(stack?sourceCreature(stack->getId()):-1,args[2]);const int count=value(stack?stack->getCount():0,args[3]);
     if(query(op))continue;
     if(type<0||count<=0){if(stack)gh.eraseStack({h->id,slot},true);}
     else if(!stack)gh.insertNewStack({h->id,slot},creature(type).toCreature(),count);
@@ -596,7 +652,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const bool all=op.code=="S"||op.code=="R";require(all?args[0].kind==Kind::Default:args[0].access==Access::Read,"unsupported object access argument");
    state["objectAccess"][std::to_string(obj->id.getNum())].Integer()=era_campaign_object_access::change(objectMask(obj->id),op.code[0],all?0:number(args[0]));persist();return Step::Continue;
   }
-  require(op.code=="T"||op.code=="U","unsupported source object operation");value(obj?(op.code=="T"?obj->ID.getNum():obj->subID.getNum()):-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
+  require(op.code=="T"||op.code=="U","unsupported source object operation");const auto source=obj?identity(obj):ObjectTypeIdentifier{Obj::NOTHING,-1};value(obj?(op.code=="T"?int(source.ID):source.subID):-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
  }
  if(c.receiver=="TM")
  {

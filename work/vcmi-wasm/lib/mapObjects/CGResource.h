@@ -44,6 +44,8 @@ public:
 
 	GameResID resourceID() const;
 	uint32_t getAmount() const;
+	/// Set an explicit amount before initialization (which randomizes zero).
+	void setAmount(uint32_t value) { amount = value; }
 
 	template <typename Handler> void serialize(Handler &h)
 	{

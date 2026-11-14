@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.180",
+  "engineSha256": "2820d9222da401f91acf8b6df33b62ce5e059ebe1da892b4c56c33fc0d1ed5fa",
+  "originalCampaignsEnabled": false,
+  "scope": "Dormant native UN:O/I and legacy object identity host, controlled private Goonk-derived map; no original quest or victory.",
+  "sourceContract": "world-object-source-contract-180.json",
+  "controls": {
+    "authoredGoonk003Sha256": "7d4505207d2b0c3203b11a6592ab7d8587377e415a33fa0130bb6113193c345b",
+    "nativeGoonkHero": "goonk:gardienGoonk",
+    "initialCreatures": [
+      "goonk:paingpaing",
+      "goonk:bobope"
+    ],
+    "createdMonster": {
+      "source": [
+        54,
+        7
+      ],
+      "key": "core:crusader",
+      "count": 5,
+      "anchor": [
+        28,
+        24,
+        0
+      ]
+    },
+    "createdDwelling": {
+      "source": [
+        17,
+        94
+      ],
+      "key": "wake-of-gods.creatures:lostFriary",
+      "anchor": [
+        32,
+        20,
+        0
+      ],
+      "entrance": [
+        31,
+        20,
+        0
+      ]
+    },
+    "loadedReferenceDwelling": {
+      "anchor": [
+        35,
+        20,
+        0
+      ],
+      "entrance": [
+        34,
+        20,
+        0
+      ]
+    },
+    "createdGold": {
+      "source": [
+        79,
+        6
+      ],
+      "rawCount": 5,
+      "amount": 500,
+      "anchor": [
+        26,
+        22,
+        0
+      ]
+    },
+    "createdRepeatEvent": {
+      "source": [
+        26,
+        0
+      ],
+      "anchor": [
+        25,
+        22,
+        0
+      ]
+    },
+    "gateAnchor": [
+      20,
+      18,
+      0
+    ],
+    "gateEntrance": [
+      19,
+      18,
+      0
+    ],
+    "removedCurrentResource": [
+      19,
+      20,
+      0
+    ],
+    "pendingSaveVersion": 903,
+    "pendingSaveSha256": "c1af8b4507821993c0c17bc1af3316f18704d6912436a0701187c9af3e74051f"
+  },
+  "nativeChecks": [
+    {
+      "case": "world-fresh-r6",
+      "passed": true,
+      "resultSha256": "51cb7031f3d0668724bda07430050e37d0e63751c41e8dbff26b26b492b5ce07",
+      "scope": "Private Goonk-derived map: anchor removal, current object removed before default reward, UN:I 5/6/7/8/9 arguments, mapped dwelling identity including loaded reference, original monster/gold defaults, repeated native local event, native gate/tent, pending save/reload and positive battle round. No original quest or victory.",
+      "fixtureSha256": "b0cadefb914edf22949bea46d31d7806225c50805890beb44c7985f5ac35cc71",
+      "mapSha256": "599e2d763b910d51378d8877067c3111f140aa8162970dda565eb35c708b0b63",
+      "loadedPending": false,
+      "errors": [],
+      "firstBlocked": {
+        "day": 1,
+        "lines": [
+          "\"No one told me of your coming,\" says the Border Guard.  \"I cannot let you pass.  Perhaps you should first seek a Keymaster's Tent.\""
+        ]
+      },
+      "removed": {
+        "day": 1,
+        "lines": [
+          "Native world removed: -1/-1; monster: 5; dwelling: 17/94; reference: 17/94"
+        ]
+      },
+      "emptyGate": {
+        "day": 2,
+        "lines": [
+          "Native key position: 19/18/0; key: 0/0; dwelling: 17/94"
+        ]
+      },
+      "restoredBlocked": {
+        "day": 2,
+        "lines": [
+          "\"No one told me of your coming,\" says the Border Guard.  \"I cannot let you pass.  Perhaps you should first seek a Keymaster's Tent.\""
+        ]
+      },
+      "outside": {
+        "day": 3,
+        "lines": [
+          "Native key position: 20/19/0; key: 0/0; dwelling: 17/94"
+        ]
+      },
+      "nativeTent": {
+        "day": 3,
+        "lines": [
+          "The caretaker of this Keymaster's Tent seems happy to see you.  \"Ah, finally someone worthy,\" he says.  \"I shall send word immediately to the Border Guard that you be allowed to pass.\""
+        ]
+      },
+      "firstEvent": {
+        "day": 3,
+        "lines": [
+          "Native created event: 1"
+        ]
+      },
+      "secondEvent": {
+        "day": 3,
+        "lines": [
+          "Native created event: 2"
+        ]
+      },
+      "atGold": {
+        "day": 4,
+        "lines": [
+          "Native key position: 25/22/0; key: 1/0; dwelling: 17/94"
+        ]
+      },
+      "openedGate": {
+        "day": 5,
+        "lines": [
+          "Native key position: 19/18/0; key: 1/0; dwelling: 17/94"
+        ]
+      },
+      "initialArmy": [
+        {
+          "slots": [
+            {
+              "key": "goonk:paingpaing",
+              "count": 20
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "nativeGoldAmount": 500,
+      "battle": {
+        "round": 1,
+        "units": [
+          {
+            "key": "core:crusader",
+            "count": 3,
+            "enemy": true
+          },
+          {
+            "key": "core:crusader",
+            "count": 2,
+            "enemy": true
+          },
+          {
+            "key": "wake-of-gods.commanders:paladin1",
+            "count": 1,
+            "enemy": false
+          },
+          {
+            "key": "core:archangel",
+            "count": 2500,
+            "enemy": false
+          }
+        ]
+      }
+    },
+    {
+      "case": "world-reload-r2",
+      "passed": true,
+      "resultSha256": "88dea91eb20e7605406433d04461b22c0b3896b1e3bfa88e48c1314ac8d72458",
+      "scope": "Private Goonk-derived map: anchor removal, current object removed before default reward, UN:I 5/6/7/8/9 arguments, mapped dwelling identity including loaded reference, original monster/gold defaults, repeated native local event, native gate/tent, pending save/reload and positive battle round. No original quest or victory.",
+      "fixtureSha256": "b0cadefb914edf22949bea46d31d7806225c50805890beb44c7985f5ac35cc71",
+      "mapSha256": "599e2d763b910d51378d8877067c3111f140aa8162970dda565eb35c708b0b63",
+      "loadedPending": true,
+      "errors": [],
+      "removed": {
+        "day": 1,
+        "lines": [
+          "Native world removed: -1/-1; monster: 5; dwelling: 17/94; reference: 17/94"
+        ]
+      },
+      "emptyGate": {
+        "day": 2,
+        "lines": [
+          "Native key position: 19/18/0; key: 0/0; dwelling: 17/94"
+        ]
+      },
+      "restoredBlocked": {
+        "day": 2,
+        "lines": [
+          "\"No one told me of your coming,\" says the Border Guard.  \"I cannot let you pass.  Perhaps you should first seek a Keymaster's Tent.\""
+        ]
+      },
+      "outside": {
+        "day": 3,
+        "lines": [
+          "Native key position: 20/19/0; key: 0/0; dwelling: 17/94"
+        ]
+      },
+      "nativeTent": {
+        "day": 3,
+        "lines": [
+          "The caretaker of this Keymaster's Tent seems happy to see you.  \"Ah, finally someone worthy,\" he says.  \"I shall send word immediately to the Border Guard that you be allowed to pass.\""
+        ]
+      },
+      "firstEvent": {
+        "day": 3,
+        "lines": [
+          "Native created event: 1"
+        ]
+      },
+      "secondEvent": {
+        "day": 3,
+        "lines": [
+          "Native created event: 2"
+        ]
+      },
+      "atGold": {
+        "day": 4,
+        "lines": [
+          "Native key position: 25/22/0; key: 1/0; dwelling: 17/94"
+        ]
+      },
+      "openedGate": {
+        "day": 5,
+        "lines": [
+          "Native key position: 19/18/0; key: 1/0; dwelling: 17/94"
+        ]
+      },
+      "initialArmy": [],
+      "nativeGoldAmount": 500,
+      "battle": {
+        "round": 1,
+        "units": [
+          {
+            "key": "core:crusader",
+            "count": 3,
+            "enemy": true
+          },
+          {
+            "key": "core:crusader",
+            "count": 2,
+            "enemy": true
+          },
+          {
+            "key": "wake-of-gods.commanders:paladin1",
+            "count": 1,
+            "enemy": false
+          },
+          {
+            "key": "core:archangel",
+            "count": 2500,
+            "enemy": false
+          }
+        ]
+      }
+    },
+    {
+      "case": "old-keys-final",
+      "passed": true,
+      "resultSha256": "a5b0416c13158ac5aa4e115559d21f6d758908893013720bcb3a46502f1ddd98",
+      "scope": "Private Goonk-derived map with original gate/tent templates: native blocked and open tile, scripted grant/revoke, isolated player flags, save/reload and native tent interoperability. No original quest or victory.",
+      "fixtureSha256": "e2febe4203eaacb5bc7fd929a00866689f16afdd76e7db1eba5c66bebc3eae4f",
+      "mapSha256": "3a552bb8003bc8dac0205ce5bbb25ecabcda9703276f2f626e868f18bf5ed413",
+      "loadedPending": true,
+      "errors": []
+    },
+    {
+      "case": "old-resources-final",
+      "passed": true,
+      "resultSha256": "93641e79564f646d3579a4b74fbf3d382644d2a570941b8a4d89a4e507ab795c",
+      "scope": "Private native scheduler: initialization/timer/global suspension, live D0 mask change, ordered source/global rewards, actual resumed turn starts and days2/3; no original quest or victory.",
+      "fixtureSha256": "821e417f685eb6e5b6ac6e2285d347906886c768f35083dd0a05197ce4318836",
+      "mapSha256": null,
+      "loadedPending": true,
+      "errors": []
+    },
+    {
+      "case": "production-final-r2",
+      "passed": true,
+      "resultSha256": "5c85467aa63360051315a986c136f06c0426a1593fcb9d915ceeb0a16159a371",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "fixtureSha256": null,
+      "mapSha256": null,
+      "loadedPending": null,
+      "errors": []
+    }
+  ],
+  "checks": {
+    "ninjaHtml5": true,
+    "unitTests": {
+      "total": 761,
+      "passed": 727,
+      "skipped": 34,
+      "failed": 0
+    },
+    "siteBuildAndVerification": true
+  },
+  "limitations": [
+    "The initial source army is deliberately replaced by2500 Archangels in this private control to expose original neverFlees and aggression defaults; this is not original campaign balance.",
+    "The battle proof stops at a positive round. No victory is claimed.",
+    "Template variants, object-specific initialization outside these controls, explicit mismatched appearances, deferred refresh0, original17/93 variant selection and hero/overlap removal selection remain incomplete or unvalidated.",
+    "Original campaigns, original quests and victories, campaign carryover and further source receivers remain disabled or incomplete."
+  ]
+}

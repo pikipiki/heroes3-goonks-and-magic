@@ -58,6 +58,9 @@ class DLL_LINKAGE CObjectClassesHandler : public IHandlerBase
 	/// container with H3 templates, used only during loading, no need to serialize it
 	using TTemplatesContainer = std::multimap<std::pair<MapObjectID, MapObjectSubID>, std::shared_ptr<const ObjectTemplate>>;
 	TTemplatesContainer legacyTemplates;
+	/// Original table order is meaningful to ERM object placement. Keep this
+	/// read-only view after the loading worklist above has been consumed.
+	TTemplatesContainer originalTemplates;
 
 	TObjectTypeHandler loadSubObjectFromJson(const std::string & scope, const std::string & identifier, const JsonNode & entry, ObjectClass * obj, size_t index);
 
@@ -73,6 +76,7 @@ public:
 	~CObjectClassesHandler();
 
 	std::vector<JsonNode> loadLegacyData() override;
+	std::vector<std::shared_ptr<const ObjectTemplate>> getOriginalTemplates(MapObjectID type, MapObjectSubID subtype) const;
 
 	void loadObject(std::string scope, std::string name, const JsonNode & data) override;
 	void loadObject(std::string scope, std::string name, const JsonNode & data, size_t index) override;

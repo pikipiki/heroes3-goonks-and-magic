@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.180",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Static Hopper dossiers and bounded LLVM objdump. The original Windows executable was not executed or uploaded.",
+  "contracts": [
+    "https://h3era.github.io/ERM-Help/Rec/UN.htm",
+    "https://h3era.github.io/ERM-Help/Rec/OB.htm"
+  ],
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Historical archive also includes later 2005/2006 and 2017 changes. It is navigation evidence, not an exact 3.58f source release. Rules below were corroborated against the pinned original binary."
+  },
+  "dossierSha256": "5fb833f72e99ff1b50511950812beb2ab8b27b7e2205ebad22bb6a708a022bb9",
+  "evidence": {
+    "placeObject": "ev_a54fafdf4a12734d36017c9cc3aa03ea2dd6b8f726ab3a61abbb20964a017112",
+    "addStrObjectDispatcher": "ev_302a6fc4b86e0ea6001ff2e8fdc9cbda8f65b33a3e437bcfee1359d09b844b87",
+    "addStrObjectSwitchTable": "ev_5b0670bd01ba0b02998f38f3419e98424c3b33c97723fec6b1efe17ea2411708"
+  },
+  "boundedAssembly": {
+    "un-i-arm": "4b6dcdf9c54baa30866a57f66b569941c73b584fdfaa5f12d764bfc3fba7e200",
+    "monster-defaults": "6a74291c26d8431e9fba94bf8b9a9e04f166fd18689c4da52950f5b5b6f83a9e",
+    "event-defaults": "6d65c17dd565c3e7761746152f44f735e77159c3d3d4819e59853a081317b3e0",
+    "resource-defaults": "2047dead1ef76b3c13facc1a8fa55feb8c30aabd350f0d10e82d843afb7a1372",
+    "native-place-graphics": "af5bd8637adaeb0cfb6148c02d7ee0272905547744160ab71e1fdc4babb2e951",
+    "template-finder": "f757e22e54f49d72e7def8d9ab9c812abd1b73c179c4dc293b64361ab8c97ac3"
+  },
+  "observations": [
+    {
+      "address": "0x72de9c..0x72e050",
+      "fact": "UN:I admits 5..9 parameters: six adds surface, seven is an explicit visual type/subtype pair, eight adds surface to that pair, nine adds refresh. Surface defaults to -1, refresh to1."
+    },
+    {
+      "address": "0x4c95de / patched byte0x4c95df",
+      "fact": "Normal placement passes -1 as template terrain unless ERM overrides that byte. Hole124 has a separate actual-terrain path."
+    },
+    {
+      "address": "0x5065b1..0x50661c",
+      "fact": "The original template finder scans the per-type list backwards, matches subtype and, unless terrain=-1, tests the requested terrain bit."
+    },
+    {
+      "address": "0x713212..0x71324b",
+      "fact": "Monster count=5, aggression=10, neverFlees=1, notGrowing=0."
+    },
+    {
+      "address": "0x712bd6..0x712be8",
+      "fact": "Resource type79 stores raw amount5, not a randomized amount."
+    },
+    {
+      "address": "0x7139e4",
+      "fact": "Event setup word0x03fc00 enables all eight players, human activation, no computer activation, and repeat visits."
+    }
+  ],
+  "implementationBoundaries": [
+    "Source UN:I rejects different logical/visual identities, refresh0 and original17/93 messenger variant selection until their native behavior is validated.",
+    "A terrain with no admitted template fails explicitly instead of selecting an unrelated graphic.",
+    "UN:O currently removes a unique non-hero object by anchor; overlap/hero selection and right-click description deletion require further original validation.",
+    "Core Objects.txt template order is retained for script placement; mapped WoG-only handlers use their bound native templates. This is not exhaustive validation of all original visual definitions or all object-specific initialization.",
+    "Original campaigns, quests, battles, victory conditions and carryover remain disabled or unvalidated."
+  ]
+}

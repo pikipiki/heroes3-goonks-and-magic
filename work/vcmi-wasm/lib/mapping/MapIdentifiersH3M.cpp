@@ -83,6 +83,7 @@ void MapIdentifiersH3M::loadMapping(const JsonNode & mapping)
 				ObjectTypeIdentifier h3mID{Obj(entryValues[0].Integer()), int32_t(entryValues[1].Integer())};
 				ObjectTypeIdentifier vcmiID{Obj(handler->getIndex()), handler->getSubIndex()};
 				mappingObjectIndex[h3mID] = vcmiID;
+				objectBindings.emplace_back(h3mID, vcmiID);
 			}
 		}
 		else
@@ -93,6 +94,7 @@ void MapIdentifiersH3M::loadMapping(const JsonNode & mapping)
 			ObjectTypeIdentifier h3mID{Obj(entryValues[0].Integer()), int32_t(entryValues[1].Integer())};
 			ObjectTypeIdentifier vcmiID{Obj(handler->getIndex()), handler->getSubIndex()};
 			mappingObjectIndex[h3mID] = vcmiID;
+			objectBindings.emplace_back(h3mID, vcmiID);
 		}
 	}
 
@@ -117,6 +119,39 @@ void MapIdentifiersH3M::loadMapping(const JsonNode & mapping)
 	loadMapping(mappingArtifact, mapping["artifacts"], "artifact");
 	loadMapping(mappingSecondarySkill, mapping["skills"], "skill");
 	loadMapping(mappingCampaignRegions, mapping["campaignRegions"], "campaignRegion");
+}
+
+ObjectTypeIdentifier MapIdentifiersH3M::remapObject(ObjectTypeIdentifier input) const
+{
+	const auto found = mappingObjectIndex.find(input);
+	return remapObjectEntities(found == mappingObjectIndex.end() ? input : found->second);
+}
+
+ObjectTypeIdentifier MapIdentifiersH3M::remapObjectEntities(ObjectTypeIdentifier result) const
+{
+	if(result.ID == Obj::TOWN || result.ID == Obj::RANDOM_DWELLING_FACTION)
+		result.subID = remap(FactionID(result.subID)).getNum();
+	if(result.ID == Obj::MONSTER)
+		result.subID = remap(CreatureID(result.subID)).getNum();
+	if(result.ID == Obj::ARTIFACT)
+		result.subID = remap(ArtifactID(result.subID)).getNum();
+	return result;
+}
+
+std::optional<ObjectTypeIdentifier> MapIdentifiersH3M::originalObject(ObjectTypeIdentifier native) const
+{
+	std::set<ObjectTypeIdentifier> candidates;
+	for(const auto & binding : objectBindings)
+	{
+		const auto target = remapObjectEntities(binding.second);
+		if(target.ID == native.ID && target.subID == native.subID)
+			candidates.insert(binding.first);
+	}
+	if(candidates.size() == 1)
+		return *candidates.begin();
+	if(candidates.count(native))
+		return native;
+	return std::nullopt;
 }
 
 void MapIdentifiersH3M::remapTemplate(ObjectTemplate & objectTemplate)

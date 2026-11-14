@@ -9,6 +9,8 @@
  */
 
 #pragma once
+#include <optional>
+#include <vector>
 
 #include "../GameConstants.h"
 #include "../filesystem/ResourcePath.h"
@@ -49,6 +51,8 @@ class DLL_LINKAGE MapIdentifiersH3M
 
 	std::map<AnimationPath, AnimationPath> mappingObjectTemplate;
 	std::map<ObjectTypeIdentifier, ObjectTypeIdentifier> mappingObjectIndex;
+	std::vector<std::pair<ObjectTypeIdentifier, ObjectTypeIdentifier>> objectBindings;
+	ObjectTypeIdentifier remapObjectEntities(ObjectTypeIdentifier input) const;
 
 	JsonNode formatSettings;
 
@@ -58,6 +62,10 @@ public:
 	void loadMapping(const JsonNode & mapping);
 
 	void remapTemplate(ObjectTemplate & objectTemplate);
+	/// Resolve a source object identity without the template loader's fallback
+	/// for missing types/subtypes. Script hosts must validate the returned pair.
+	ObjectTypeIdentifier remapObject(ObjectTypeIdentifier input) const;
+	std::optional<ObjectTypeIdentifier> originalObject(ObjectTypeIdentifier native) const;
 
 	AudioPath remapCampaignMusic(int index) const;
 	std::pair<VideoPath, VideoPath> remapCampaignVideo(int index) const;
