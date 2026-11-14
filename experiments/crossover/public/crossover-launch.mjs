@@ -2,18 +2,20 @@ const status=document.querySelector('#hosting-status');
 const retry=document.querySelector('#hosting-retry');
 const retryKey='heroes-starcraft.isolation.'+location.pathname;
 retry.onclick=()=>{sessionStorage.removeItem(retryKey);location.reload();};
+const workerURL=new URL('./crossover-launch-worker.js',location.href).href;
+const controlled=()=>navigator.serviceWorker.controller?.scriptURL===workerURL;
+const launchFile=location.pathname.split('/').at(-1);
+const launchPage=['start.html','launch.html'].includes(launchFile);
 let timer;
 try{
  if(!isSecureContext)throw Error('Ouvre le jeu en HTTPS.');
- if(!crossOriginIsolated){
+ if(!crossOriginIsolated || (launchPage && !controlled())){
   if(!('serviceWorker' in navigator))throw Error('Ce navigateur ne permet pas de préparer le jeu. Ouvre ce lien dans Safari.');
   if(Number(sessionStorage.getItem(retryKey)||0)>=2)throw Error('Le navigateur bloque le démarrage. Ferme les autres onglets du jeu puis touche Réessayer.');
   status.textContent='Préparation du jeu…';
-  const workerURL=new URL('./crossover-serviceworker.js',location.href).href;
-  const controlled=()=>navigator.serviceWorker.controller?.scriptURL===workerURL;
   await Promise.race([
    (async()=>{
-    const registration=await navigator.serviceWorker.register(workerURL,{scope:'./',updateViaCache:'none'});
+    const registration=await navigator.serviceWorker.register(workerURL,{scope:launchPage?'./'+launchFile:'./',updateViaCache:'none'});
     const activate=()=>registration.waiting?.postMessage({type:'crossover.activate-launch'});
     activate();
     registration.addEventListener('updatefound',()=>registration.installing?.addEventListener('statechange',activate));
@@ -29,7 +31,8 @@ try{
   location.reload();
  }else{
   sessionStorage.removeItem(retryKey);
-  const game=new URL('./game.html',location.href);game.search=location.search;
+  const game=new URL(launchPage?'./'+launchFile:'./game.html',location.href);game.search=location.search;
+  if(launchPage)game.searchParams.set('play','1');
   game.searchParams.set('mobile','1');game.searchParams.set('skip-autoresume','1');
   location.replace(game);
  }

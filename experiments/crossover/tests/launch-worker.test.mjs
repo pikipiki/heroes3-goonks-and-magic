@@ -23,3 +23,17 @@ test('cold launch activates and serves an isolated page when CacheStorage is una
  assert.equal(page.headers.get('Cross-Origin-Embedder-Policy'),'require-corp');
  assert.equal(options.integrity,'sha256-digest');
 });
+test('independent start scope serves the native game and isolates its root assets',async()=>{
+ const handlers={},scope='https://example.test/heroes-starcraft/start.html',fetched=[];
+ const release={id:'test',lazy:true,files:{'game.html':'game-digest'},htmlVersions:{}};
+ vm.runInNewContext(source.replace('/* OFFLINE_RELEASE */ null',JSON.stringify(release)),{
+  self:{registration:{scope},addEventListener:(name,fn)=>{handlers[name]=fn;}},URL,Headers,Response,Map,
+  fetch:async(url,options)=>{fetched.push([String(url),options]);return new Response('native game');}
+ });
+ let result;
+ handlers.fetch({request:{url:scope+'?play=1',method:'GET',mode:'navigate',headers:new Headers()},respondWith:promise=>{result=promise;}});
+ assert.equal(await(await result).text(),'native game');assert.equal(fetched[0][0],'https://example.test/heroes-starcraft/game.html');
+ assert.equal(fetched[0][1].integrity,'sha256-game-digest');
+ handlers.fetch({request:new Request('https://example.test/heroes-starcraft/web/mobile-render.mjs'),respondWith:promise=>{result=promise;}});
+ assert.equal((await result).headers.get('Cross-Origin-Embedder-Policy'),'require-corp');
+});

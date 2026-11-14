@@ -1,14 +1,14 @@
 // Cold-start regression for GitHub Pages (no native COOP/COEP headers).
 import {chromium,webkit} from '../../../work/browser-tests/node_modules/playwright-core/index.mjs';
 import assert from 'node:assert/strict';
-const entry=process.env.CROSSOVER_URL||'http://127.0.0.1:8784/heroes-starcraft/launch.html';
+const entry=process.env.CROSSOVER_URL||'http://127.0.0.1:8784/heroes-starcraft/start.html';
 for(const [name,type] of Object.entries({chromium,webkit})){
  const browser=await type.launch({headless:true});
  try{
   const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   await page.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
   const started=Date.now();await page.goto(entry);
-  await page.waitForFunction(()=>crossOriginIsolated&&location.pathname.endsWith('/game.html'),null,{timeout:15000});
+  await page.waitForFunction(()=>crossOriginIsolated&&(location.pathname.endsWith('/game.html')||location.search.includes('play=1')),null,{timeout:15000});
   console.log(name+': isolated game launch in '+(Date.now()-started)+' ms');
   await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:600000});
   await page.locator('#crossover-demo').click();

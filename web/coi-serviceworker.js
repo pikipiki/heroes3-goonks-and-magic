@@ -2,6 +2,7 @@
 // The game's large data files are already installed in OPFS.
 const release = /* OFFLINE_RELEASE */ null;
 const scope = new URL(self.registration.scope);
+const resourceScope = release?.lazy ? new URL('./', scope) : scope;
 const prefix = 'heroes-goonk-shell:' + scope.pathname + ':';
 const cacheName = prefix + release?.id;
 const shell = new Map(Object.entries(release?.files || {}));
@@ -71,7 +72,7 @@ self.addEventListener('message', event => {
   if (release?.lazy && event.data?.type === 'crossover.activate-launch') {
     event.waitUntil((async () => {
       const source = event.source?.url && new URL(event.source.url);
-      if (!source || !['index.html', 'launch.html', ''].some(file => fileURL(file).pathname === source.pathname)) return;
+      if (!source || !['index.html', 'launch.html', 'start.html', ''].some(file => fileURL(file).pathname === source.pathname)) return;
       const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
       if (windows.some(client => client.id !== event.source.id && new URL(client.url).pathname === fileURL('game.html').pathname)) return;
       await self.skipWaiting();
@@ -134,10 +135,15 @@ async function readInstalledImage(file) {
 self.addEventListener('fetch', event => {
   const {request} = event;
   const url = new URL(request.url);
-  if (request.method !== 'GET' || url.origin !== scope.origin || !url.pathname.startsWith(scope.pathname)) return;
+  if (request.method !== 'GET' || url.origin !== scope.origin || !url.pathname.startsWith(resourceScope.pathname)) return;
   if (request.cache === 'only-if-cached' && request.mode !== 'same-origin') return;
 
-  const file = url.pathname.slice(scope.pathname.length) || 'index.html';
+  const file = url.pathname.slice(resourceScope.pathname.length) || 'index.html';
+  // A separate launch scope can recover while an older root installation is stuck.
+  if (release?.lazy && ['launch.html', 'start.html'].some(name => scope.pathname.endsWith('/' + name)) && url.pathname === scope.pathname && url.searchParams.get('play') === '1' && request.mode === 'navigate') {
+    event.respondWith(fetch(fileURL('game.html'), {integrity: 'sha256-' + shell.get('game.html')}).then(isolated));
+    return;
+  }
   const digest = shell.get(file);
   event.respondWith((async () => {
     if (digest && !request.headers.has('range')) {
