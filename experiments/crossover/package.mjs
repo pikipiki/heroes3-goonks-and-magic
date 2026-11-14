@@ -7,5 +7,5 @@ fs.cpSync(new URL('./public/', import.meta.url), dist + 'crossover', {recursive:
 const headers = dist + '_headers';
 const marker = '# crossover experiment';
 const existing = fs.readFileSync(headers, 'utf8').split(marker)[0].trimEnd();
-fs.writeFileSync(headers, existing + '\n' + marker + '\n' + `/crossover/*\n  Content-Security-Policy: script-src 'self'; object-src 'none'; base-uri 'self'; frame-src 'self'\n`);
+fs.writeFileSync(headers, existing + '\n' + marker + '\n' + `/crossover/*\n  Content-Security-Policy: script-src 'self' 'wasm-unsafe-eval'; object-src 'none'; base-uri 'self'; frame-src 'self'\n`);
 console.log('Experimental launcher added to dist/crossover/index.html');

@@ -76,11 +76,56 @@ export class HeroesObserver {
         this.sequence = 0;
     }
 }
-export class UnavailableStarCraft {
+export class StarCraftObserver {
+    onChange;
     id = 'starcraft';
-    status() {
-        return { engine: this.id, state: 'unavailable',
-            reason: 'Intégration suspendue : licence de réutilisation OpenBW non établie.' };
+    target;
+    native;
+    sequence = 0;
+    receivedAt = 0;
+    constructor(onChange = () => { }) {
+        this.onChange = onChange;
     }
-    dispose() { }
+    record = (value) => {
+        if (!value || typeof value !== 'object')
+            return;
+        const v = value;
+        if (!Number.isSafeInteger(v.frame) || Number(v.frame) < 0 || !Number.isSafeInteger(v.checksum) || !Number.isSafeInteger(v.outcome) ||
+            Number(v.checksum) < 0 || Number(v.checksum) > 0xffffffff || ![0, 1, 2].includes(Number(v.outcome)))
+            return;
+        this.native = { frame: Number(v.frame), checksum: Number(v.checksum), outcome: Number(v.outcome) };
+        this.sequence++;
+        this.receivedAt = Date.now();
+        this.onChange(this.status());
+    };
+    listener = (event) => {
+        const detail = event.detail;
+        if (detail?.version === 1)
+            this.record(detail);
+    };
+    attach(target) {
+        this.dispose();
+        this.target = target;
+        target.addEventListener('openbw-state', this.listener);
+        if (target.openbwCrossover)
+            this.record(target.openbwCrossover.sample());
+    }
+    forwardHeroes(observation) {
+        const api = this.target?.openbwCrossover;
+        if (!api)
+            throw Error('StarCraft attend ses archives et son démarrage.');
+        return api.receiveHeroes(observation);
+    }
+    status() {
+        return { engine: this.id, state: this.native ? 'observed' : 'waiting',
+            reason: this.native ? 'État natif OpenBW reçu.' : 'Importe les archives puis lance StarCraft.',
+            ...(this.native ? { native: { ...this.native }, observation: { sequence: this.sequence, mode: 'running', receivedAt: this.receivedAt } } : {}) };
+    }
+    dispose() {
+        this.target?.removeEventListener('openbw-state', this.listener);
+        this.target = undefined;
+        this.native = undefined;
+        this.sequence = 0;
+        this.receivedAt = 0;
+    }
 }

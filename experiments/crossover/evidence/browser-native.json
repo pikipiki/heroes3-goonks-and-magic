@@ -1,10 +1,10 @@
 {
   "scope": "Actual Chromium, launcher and existing VCMI WASM. No StarCraft simulation.",
   "cases": [
-    "Three modes rendered; StarCraft disabled; no engine loaded before action; phone/landscape/desktop fit",
+    "Three modes rendered; StarCraft link present; no engine loaded before action; phone/landscape/desktop fit",
     {
       "name": "Actual native WASM event observed in same-origin iframe",
-      "detail": "État 1 · mode menu · 13:19:41",
+      "detail": "État 1 · mode menu · 13:40:17",
       "engine": {
         "wasm": true,
         "mode": "menu"

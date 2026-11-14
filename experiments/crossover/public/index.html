@@ -20,22 +20,23 @@
         <a class="button" href="../game.html">Jouer à Heroes Goonk</a>
       </section>
       <section><span class="label">02 · STARCRAFT ENGINE</span><h2>StarCraft</h2>
-        <p>Le moteur OpenBW reste à intégrer après clarification de sa licence de réutilisation.</p>
-        <button disabled>Indisponible pour le moment</button>
-        <a href="https://github.com/OpenBW/openbw/issues/17" target="_blank" rel="noopener">Suivre la question de licence ↗</a>
+        <p>Le véritable moteur OpenBW en WebAssembly. Importe tes archives locales pour jouer en bac à sable.</p>
+        <a class="button" href="./starcraft/index.html">Jouer à StarCraft</a>
+
       </section>
       <section><span class="label">03 · CROSSOVER BRIDGE</span><h2>Crossover</h2>
-        <p>Observe les états réels de VCMI. Les batailles StarCraft et le transfert de pertes restent à développer.</p>
-        <button id="observe">Observer Heroes</button>
+        <p>Fais cohabiter les deux moteurs. Les événements Heroes passent dans le journal natif StarCraft, qui renvoie son état réel.</p>
+        <button id="observe">Lancer les deux moteurs</button>
       </section>
     </div>
     <section class="observation" aria-label="État de la passerelle">
       <div><h2>Observation en direct</h2><p id="status" role="status">Aucun moteur observé.</p>
         <p id="detail">Aucun événement de simulation synthétique n’est généré.</p></div>
-      <button id="stop">Arrêter l’observation</button>
+      <button id="stop">Arrêter les moteurs</button>
     </section>
-    <div id="engine" hidden></div>
-    <footer>Prototype de lecture seule · Aucun résultat de combat n’est appliqué · Pas de données StarCraft distribuées</footer>
+    <section class="observation" aria-label="État StarCraft"><div><h2>StarCraft en direct</h2><p id="sc-status" role="status">Aucun moteur observé.</p><p id="sc-detail"></p><p id="transfer" role="status">Aucun échange en cours.</p></div></section>
+    <div id="engine" hidden><section><h2>Heroes III</h2><div id="heroes-frame"></div></section><section><h2>StarCraft</h2><div id="starcraft-frame"></div></section></div>
+    <footer>Passerelle expérimentale · Aucun transfert de pertes entre les jeux · Archives StarCraft importées localement</footer>
   </main>
 </body>
 </html>

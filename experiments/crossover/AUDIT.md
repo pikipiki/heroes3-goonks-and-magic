@@ -1,47 +1,46 @@
-# Audit technique — 14 novembre 2026
+# Audit technique actualisé — 14 novembre 2026
 
-## Périmètre et méthode
+Le propriétaire a demandé de poursuivre en supposant la réutilisation autorisée. Le précédent arrêt sur la licence est donc levé pour le développement de cette branche. Ce choix est enregistré dans `UPSTREAM.json` ; la licence générale OpenBW reste non spécifiée, sans attribution d’une fausse licence.
 
-Inspection du checkout Heroes `062afb00750ff3833b8251b467718f31dcc04413` (version 0.4.168) et du checkout OpenBW voisin `469d2037e2fd03085dac4729912f4188bc2a778b`, origin `https://github.com/heiner/openbw.git`. Lecture des AGENTS, README, UPSTREAM, scripts build/verify/prepare, tests, MobileBridge et sources Web OpenBW. Consultation des dépôts officiels ci-dessous. Une affirmation dans un README tiers est distinguée d’un résultat exécuté ici.
+## Sources réutilisées
 
-## Heroes Engine : réutilisable
+Heroes est basé sur `062afb00750ff3833b8251b467718f31dcc04413` (0.4.168), avec VCMI 1.7.3 / Emscripten 4.0.23. Les sources et notices moteur GPL-2.0-or-later restent dans `work/vcmi-wasm/`. Le packaging, les données, l’OPFS et les commandes natives existantes sont réutilisés. Le moteur Heroes n’est pas modifié dans ce lot ; sa recompilation complète avec `ninja -j32 html5` n’est pas exécutée. Les artefacts précompilés sont préparés et leur ABI vérifiée par les scripts du dépôt.
 
-- VCMI 1.7.3 / Emscripten 4.0.23 annoncés dans README et UPSTREAM ; code C++ présent, artefact WASM local présent. Licence moteur GPL-2.0-or-later, fichier `work/vcmi-wasm/license.txt`. L’intégration devra conserver les sources et obligations de cette licence, ainsi que les notices des dépendances.
-- `scripts/build-site.mjs` produit les noms de runtime par empreinte, le manifeste de données et les pages index/game/storage. `scripts/verify-site.mjs` vérifie l’ABI ERA et les empreintes. La compilation et la vérification du site sont exécutées pour ce lot ; ce n’est pas une recompilation du C++.
-- OPFS, montage à la demande et installation sont présents dans `web/game-storage.mjs`, `web/game-mount.mjs`, `web/install.mjs` ; `web/temporary-startup.mjs` fournit le démarrage temporaire. Les tests existants couvrent ces modules, mais aucune sauvegarde/reprise crossover n’existe.
-- `MobileBridge.cpp` publie déjà des instantanés JSON via `goonk-state`, avec acquittement et déduplication. Ils exposent des modes, armées et batailles à l’interface. Ils ne fournissent pas un contrat pour suspendre une bataille et appliquer un résultat externe : une API native autoritaire dédiée sera nécessaire.
-- Des modules de lobby, transport et notifications existent. Leur présence ne certifie pas un multijoueur P2P WebRTC opérationnel ; aucun essai réseau multijoueur n’est exécuté ici.
-- Le build moteur prescrit reste `ninja -j32 html5` dans `work/vcmi-wasm/emscripten`. Aucun `build.ninja` n’y est présent dans ce checkout. Aucune modification C++ n’est faite ; reproductibilité de la compilation WASM complète non vérifiée dans ce lot.
+OpenBW vient du fork `https://github.com/heiner/openbw.git`, révision `469d2037e2fd03085dac4729912f4188bc2a778b`. Un snapshot original de 4,9 Mo est conservé dans `vendor/openbw/`, avec une empreinte de tout l’arbre source. Il contient le véritable moteur (`bwgame.h`, `actions.h`, etc.), ses dépendances de compilation et le port Web original. Les notices existantes, dont Boost Software License pour Asio, sont conservées.
 
-## StarCraft : comparaison des candidats
+Les adaptations d’hôte sont générées par `scripts/generate-host.mjs`. Les fichiers C++ originaux restent inchangés. Le build WASI-SDK 33.0/Clang 22.1.0 emploie C++17 parce que le port contient déjà des initialisations `if` de cette version du langage. Il produit un module de 1 379 622 octets, compilé et instancié sans données de jeu. Les avertissements amont de dépréciation et de `memcpy` restent présents ; ils ne sont pas masqués. Deux builds locaux ont produit exactement la même empreinte.
 
-| Candidat | Réutilisation / Web | Écart ou blocage |
-| --- | --- | --- |
-| [OpenBW officiel](https://github.com/OpenBW/openbw) | Sources C++ de simulation, actions, chargement, replay et UI ; intégration BWAPI séparée | Aucune licence générale trouvée ; [issue officielle #17](https://github.com/OpenBW/openbw/issues/17) ouverte. Ne pas assimiler code public à autorisation de réutilisation. Version interactive navigateur non exécutée ici. |
-| Fork local heiner/openbw, SHA ci-dessus | `web/wasm_main.cpp`, `sandbox.h`, `wasm_backend.cpp`, `openbw.js`, build WASI et flux de commandes ; rendu canvas et entrées présents. Le code inclut pathfinding/combat via le moteur existant. | Aucun fichier de licence générale suivi ; seule licence Asio trouvée. Aucun WASM local à lancer. Build WASI-SDK 33, pas Emscripten ; chemin SDK par défaut propre à une autre machine. Tests/README du fork affirment des parties et bots, non reproduits ici. |
-| [OpenBW/bwapi](https://github.com/OpenBW/bwapi) | Interface BWAPI et couche serveur utilisées par le fork pour les bots | Ni BWAPI autonome ni moteur Web indépendant ; n’élimine pas le blocage OpenBW. Audit de licences bots et dépendances à faire séparément. |
-| [Stargus](https://github.com/Wargus/stargus) + Stratagus | Scripts/importateur, fichier COPYING présent ; moteur Stratagus différent | Ne conserve pas la simulation Brood War originale. Le [site du projet](https://stargus.sourceforge.net/) le dit explicitement. Port Emscripten interactif et licences de chaque composant non validés ici ; candidat écarté pour cet objectif, sans copier de code. |
+## Comparaison des moteurs inspectés
 
-La liste n’est pas un recensement exhaustif de tous les ports. Aucun candidat inspecté ne réunit aujourd’hui une preuve de réutilisation autorisée et une partie Brood War navigateur exécutée dans cet audit. L’intégration StarCraft est donc suspendue au périmètre inspecté ; aucune simulation de remplacement n’est créée.
+| Candidat | Décision et limites |
+| --- | --- |
+| [OpenBW officiel](https://github.com/OpenBW/openbw) | Cœur C++ de simulation, combat, actions, chargement et replay. Licence générale non trouvée ; [question #17](https://github.com/OpenBW/openbw/issues/17) connue. La poursuite actuelle relève de l’hypothèse explicitement demandée. |
+| Fork heiner/OpenBW épinglé | Réutilisé : rendu canvas, clavier/souris/tactile, commandes déterministes et simulation WASM. Version navigateur assemblée, compilation vérifiée ; partie interactive non exécutée faute de MPQ. |
+| [OpenBW/bwapi](https://github.com/OpenBW/bwapi) | Interface de contrôle et support bots ; pas un moteur Web autonome. Les modules bots ne sont pas inclus ni activés dans cette étape. |
+| [Stargus](https://github.com/Wargus/stargus) | Écarté pour cet objectif : utilise Stratagus et ne conserve pas la simulation originale Brood War. Aucun code copié. |
 
-Le port local utilise WASI avec des imports JS de fichiers et un framebuffer. Il pourrait rester un module WASM autonome avec hôte JS, sans forcer un port Emscripten supplémentaire, si l’exigence Emscripten est assouplie. Une build reproductible doit épingler SDK, compilateur, révisions du moteur et bots (le README bot reconnaît que les révisions vendues restent à épingler). Le confinement dans un Worker exige d’abord une vérification des accès DOM/canvas et de la temporisation du moteur ; pas d’activation présumée.
+L’inspection ne constitue pas un recensement exhaustif de tous les ports. La priorité est donnée au port existant du moteur plutôt qu’à une réimplémentation.
 
-## Données et redistribution
+## Intégration actuelle
 
-Le fork local tente de télécharger les MPQ depuis Internet Archive et une icône propriétaire à distance. Ce mécanisme ne doit pas être repris : aucun droit de redistribution n’est établi ici. Prévoir l’import local de `StarDat.mpq`, `BrooDat.mpq`, `Patch_rt.mpq` et d’une carte avec validation, conservation OPFS et repli IndexedDB. La disponibilité d’une URL ne vaut pas permission. Le fichier `web/maps/ATTRIBUTION.md` cite CC BY 4.0 pour une carte ; cette notice ne couvre ni le moteur ni les MPQ. Bots : auditer chaque licence et épingler chaque source avant d’activer une distribution.
+Heroes normal et OpenBW indépendant ont chacun leur page. Le mode Crossover affiche deux iframes de même origine. Leurs adaptateurs TypeScript ne partagent pas de structures C++.
 
-Heroes distribue déjà des données propriétaires, selon les consignes existantes. Ce lot ne les ajoute pas et ne valide pas les droits annoncés par le dépôt. Le lanceur indépendant n’inclut aucun octet de jeu.
+Le bridge écoute les événements natifs VCMI. Une transition de mode devient un message dans le journal natif OpenBW via ses exports existants, après validation de la version, session et séquence. Le retour échantillonne `openbw_frame`, `openbw_checksum` et `openbw_outcome`. Le bridge de statuts possède des enveloppes versionnées et des réponses corrélées ; aucun résultat de combat n’est fabriqué. Les mécanismes sont testés sur des fixtures de contrat ; leur exécution entre deux simulations reste à valider avec les MPQ.
 
-## Architecture progressive
+VCMI expose déjà les modes et unités via `MobileBridge.cpp`, mais pas l’autorité nécessaire pour suspendre une bataille, valider un résultat externe et l’appliquer atomiquement. Écrire seulement dans le JSON de présentation ne serait pas une application de résultat. Cette API native reste à réaliser et devra être compilée avec les contrôles WASM du dépôt.
 
-Un adaptateur Heroes observe l’API existante. Un adaptateur StarCraft futur encapsulera ses exports WASM ; il devra exposer un état issu de la simulation, des commandes validées et des résultats identifiés. Le bridge transporte des DTO versionnés, jamais des pointeurs/structures internes. Première version livrée : état en lecture seule, session et corrélation. Aucun mapping de créatures n’est inventé.
+## Ressources, stockage et hébergement
 
-Pour une bataille déléguée, l’autorité VCMI devra vérifier l’identifiant de bataille, l’état initial, les pertes bornées par les effectifs et les règles victoire/fuite ; la validation et la mutation seront atomiques et idempotentes. Ne jamais écrire seulement dans le JSON de l’interface. Conserver un checkpoint moteur avant transfert, puis un journal de résultat appliqué, et gérer annulation/rechargement avant les interactions simultanées.
+Les téléchargements Internet Archive, cartes distantes et icônes propriétaires du port original sont retirés de l’hôte généré. Le joueur importe ses trois MPQ localement. Les en-têtes et bornes sont contrôlés, l’écriture IndexedDB est transactionnelle, les empreintes SHA-256 sont vérifiées à la relecture. Les archives sont retenues après un rechargement, sans envoi au serveur. Une erreur d’import ne remplace pas les anciennes données. Aucun MPQ n’est ajouté au dépôt ni au site.
 
-## Priorités suivantes
+Seule la carte Weave d’Alexandre Coderre-Chabot est fournie, avec sa notice CC BY 4.0 et sa provenance conservées. Les données Heroes distribuées par le projet préexistant ne sont pas modifiées par ce lot.
 
-1. Établir une licence/autorisation vérifiable sur la révision OpenBW et le port Web ; sans cela, aucune copie, compilation intégrée ou redistribution.
-2. Épingler et compiler le module autonome ; remplacer les téléchargements propriétaires par un import local ; vérifier une partie réelle, mouvement, attaque, pathfinding, IA et persistance dans Chromium/WebKit.
-3. Ajouter un adaptateur StarCraft pour événements réels ; tester l’aller-retour avec les deux moteurs et les interruptions, puis la compatibilité Worker.
-4. Ajouter une API native VCMI de bataille externe, des mappings explicites et une application idempotente ; tests natifs, WASM, sauvegarde/reprise et scénario jouable.
-5. Étudier seulement ensuite carte commune, fusion graphique, temps réel et WebRTC P2P.
+Le site reste statique. Le packaging ajoute `/crossover/` et une politique de scripts/WASM de même origine. Les tests d’import ne font aucune requête vers un tiers. Les mécanismes de cache hors ligne Heroes restent distincts ; l’installation hors ligne du nouveau moteur n’est pas validée. L’hôte OpenBW dépend du DOM/canvas ; le déplacement vers un Worker n’est pas présumé compatible.
+
+## Étapes suivantes
+
+1. Fournir les trois MPQ locaux et exécuter `tests/real-game-browser.mjs` : partie réelle, commandes, frames, replay et aller-retour d’événements.
+2. Vérifier les interactions sur les trois races et une vraie bataille, puis sélectionner/épingler un adversaire IA et ses sources. Le bac à sable actuel ne contient aucun adversaire IA.
+3. Ajouter une API VCMI autoritaire de bataille externe et des mappings de créatures explicites : checkpoint initial, pertes bornées par les effectifs, résultat idempotent et restauration après interruption.
+4. Tester sauvegarde/reprise de la simulation, interruptions, versions incompatibles, WebKit et chargement hébergé.
+5. Étudier ensuite Worker, carte commune, synchronisation simultanée et WebRTC, sans remplacer les règles des moteurs.

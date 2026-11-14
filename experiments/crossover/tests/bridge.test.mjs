@@ -1,12 +1,12 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {HeroesObserver, ReadonlyBridge, UnavailableStarCraft} from '../public/bridge.js';
+import {HeroesObserver, ReadonlyBridge, StarCraftObserver} from '../public/bridge.js';
 const request = (overrides={}) => ({version:1, session:'test-session', id:'request-1', source:'heroes', target:'starcraft', type:'engine.status', ...overrides});
 test('contract round trips both directions, without claiming engine execution', () => {
   const bridge = new ReadonlyBridge('test-session');
-  bridge.register(new HeroesObserver()); bridge.register(new UnavailableStarCraft());
+  bridge.register(new HeroesObserver()); bridge.register(new StarCraftObserver());
   const starcraft = bridge.request(request());
-  assert.equal(starcraft.payload.state, 'unavailable');
+  assert.equal(starcraft.payload.state, 'waiting');
   assert.equal(starcraft.replyTo, 'request-1');
   assert.equal(starcraft.target, 'heroes');
   assert.equal(bridge.request(request({source:'starcraft',target:'heroes'})).payload.state,'waiting');

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022", "module": "ES2022", "moduleResolution": "bundler",
-    "strict": true, "lib": ["ES2022", "DOM"], "rootDir": "src", "outDir": "public",
+    "strict": true, "lib": ["ES2022", "DOM", "DOM.Iterable"], "rootDir": "src", "outDir": "public",
     "noEmitOnError": true
   },
   "include": ["src/*.ts"]
