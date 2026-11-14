@@ -45,6 +45,7 @@ export class HeroesObserver {
     id = 'heroes';
     observation;
     sequence = 0;
+    preparationRequested = false;
     target;
     listener = (event) => {
         const detail = event.detail;
@@ -64,6 +65,22 @@ export class HeroesObserver {
         this.target = target;
         target.addEventListener('goonk-state', this.listener);
     }
+    prepareFromStarCraft(sample) {
+        if (!Number.isSafeInteger(sample?.frame) || sample.frame < 1 || !Number.isSafeInteger(sample.checksum) ||
+            sample.checksum < 0 || sample.checksum > 0xffffffff || ![0, 1, 2].includes(sample.outcome))
+            throw Error('État natif StarCraft invalide.');
+        if (this.preparationRequested)
+            return false;
+        if (this.observation?.mode !== 'menu')
+            throw Error('La préparation nécessite le menu Heroes.');
+        const module = this.target?.Module;
+        if (!module?._vcmiMobileCommand)
+            throw Error('Commande native VCMI indisponible.');
+        // Existing C++ action checks the actual engine/window state before opening the lobby.
+        module._vcmiMobileCommand(20, 1, 0, 0, 0, 0);
+        this.preparationRequested = true;
+        return true;
+    }
     status() {
         return { engine: this.id, state: this.observation ? 'observed' : 'waiting',
             reason: this.observation ? 'État VCMI reçu en lecture seule.' : 'En attente du premier état VCMI.',
@@ -72,6 +89,7 @@ export class HeroesObserver {
     dispose() {
         this.target?.removeEventListener('goonk-state', this.listener);
         this.target = undefined;
+        this.preparationRequested = false;
         this.observation = undefined;
         this.sequence = 0;
     }
@@ -93,7 +111,12 @@ export class StarCraftObserver {
         if (!Number.isSafeInteger(v.frame) || Number(v.frame) < 0 || !Number.isSafeInteger(v.checksum) || !Number.isSafeInteger(v.outcome) ||
             Number(v.checksum) < 0 || Number(v.checksum) > 0xffffffff || ![0, 1, 2].includes(Number(v.outcome)))
             return;
-        this.native = { frame: Number(v.frame), checksum: Number(v.checksum), outcome: Number(v.outcome) };
+        const cohort = v.cohort;
+        if (cohort && (!Number.isSafeInteger(cohort.initial) || !Number.isSafeInteger(cohort.present) || !Number.isSafeInteger(cohort.missing) ||
+            cohort.initial < 0 || cohort.present < 0 || cohort.missing < 0 || cohort.present + cohort.missing !== cohort.initial ||
+            !Array.isArray(cohort.missingIds) || cohort.missingIds.length !== cohort.missing || !cohort.missingIds.every(id => Number.isSafeInteger(id) && id > 0)))
+            return;
+        this.native = { frame: Number(v.frame), checksum: Number(v.checksum), outcome: Number(v.outcome), ...(cohort ? { cohort: structuredClone(cohort) } : {}) };
         this.sequence++;
         this.receivedAt = Date.now();
         this.onChange(this.status());
@@ -119,7 +142,7 @@ export class StarCraftObserver {
     status() {
         return { engine: this.id, state: this.native ? 'observed' : 'waiting',
             reason: this.native ? 'État natif OpenBW reçu.' : 'Importe les archives puis lance StarCraft.',
-            ...(this.native ? { native: { ...this.native }, observation: { sequence: this.sequence, mode: 'running', receivedAt: this.receivedAt } } : {}) };
+            ...(this.native ? { native: structuredClone(this.native), observation: { sequence: this.sequence, mode: 'running', receivedAt: this.receivedAt } } : {}) };
     }
     dispose() {
         this.target?.removeEventListener('openbw-state', this.listener);
