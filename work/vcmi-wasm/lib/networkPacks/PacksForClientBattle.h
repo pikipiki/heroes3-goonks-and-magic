@@ -32,6 +32,7 @@ struct DLL_LINKAGE BattleStart : public CPackForClient
 {
 	BattleID battleID = BattleID::NONE;
 	std::unique_ptr<BattleInfo> info;
+ bool crossover=false;
 
 	void visitTyped(ICPackVisitor & visitor) override;
 
@@ -39,6 +40,7 @@ struct DLL_LINKAGE BattleStart : public CPackForClient
 	{
 		h & battleID;
 		h & info;
+  h & crossover;
 		assert(battleID != BattleID::NONE);
 	}
 };

@@ -5,7 +5,7 @@
       "name": "Both native engines running; actual Heroes menu event reaches native OpenBW log; native state returns to bridge",
       "sample": {
         "frame": 25,
-        "checksum": 3151022330,
+        "checksum": 22380666,
         "outcome": 0,
         "cohort": {
           "initial": 5,
@@ -20,15 +20,15 @@
       "name": "Native SCV production completes, queue empties and exactly 50 minerals are spent",
       "before": {
         "workers": 4,
-        "frame": 34,
+        "frame": 35,
         "minerals": 50
       },
       "queued": {
-        "frame": 37,
+        "frame": 38,
         "minerals": 0
       },
       "completed": {
-        "frame": 338,
+        "frame": 339,
         "workers": 5
       }
     },
@@ -36,16 +36,16 @@
       "name": "Real Move command changes native worker position through engine pathfinding",
       "target": {
         "world": {
-          "x": 1200,
-          "y": 328
+          "x": 400,
+          "y": 1128
         },
         "screen": {
-          "x": 558,
-          "y": 328
+          "x": 400,
+          "y": 359
         },
         "camera": {
-          "x": 642,
-          "y": 0,
+          "x": 0,
+          "y": 769,
           "width": 1116,
           "height": 718
         }
@@ -53,17 +53,17 @@
       "before": {
         "id": 3664,
         "type": "SCV",
-        "owner": 0,
-        "x": 1104,
-        "y": 264,
+        "owner": 3,
+        "x": 304,
+        "y": 1064,
         "order": 2
       },
       "after": {
         "id": 3664,
         "type": "SCV",
-        "owner": 0,
-        "x": 1121,
-        "y": 280,
+        "owner": 3,
+        "x": 321,
+        "y": 1080,
         "order": 6
       }
     },
@@ -72,11 +72,11 @@
       "target": 3665,
       "beforeWorkers": 5,
       "after": {
-        "frame": 457,
+        "frame": 462,
         "workers": 4,
         "sample": {
-          "frame": 457,
-          "checksum": 174973496,
+          "frame": 462,
+          "checksum": 532191965,
           "outcome": 0,
           "cohort": {
             "initial": 5,
@@ -111,12 +111,12 @@
           },
           {
             "id": 471,
-            "name": "Sonic Keeper",
+            "name": "Solmyr",
             "needsLastStack": true,
             "slots": [
               {
-                "aiValue": 84,
-                "attack": 5,
+                "aiValue": 44,
+                "attack": 3,
                 "cost": [
                   0,
                   0,
@@ -124,24 +124,24 @@
                   0,
                   0,
                   0,
-                  70,
+                  30,
                   0
                 ],
-                "count": 16,
-                "damageMax": 4,
-                "damageMin": 2,
-                "defense": 5,
-                "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+                "count": 36,
+                "damageMax": 2,
+                "damageMin": 1,
+                "defense": 3,
+                "description": "",
                 "experience": 0,
                 "experiencePerUnit": 0,
                 "experienceRank": 0,
-                "fightValue": 84,
+                "fightValue": 55,
                 "growth": 16,
-                "health": 12,
-                "icon": "goonk/pink-large.png",
-                "id": 258,
-                "key": "goonk:paingpaing",
-                "name": "Paingpaing",
+                "health": 4,
+                "icon": "",
+                "id": 28,
+                "key": "core:gremlin",
+                "name": "Gremlin",
                 "nativeFlags": {
                   "attacksAllAdjacent": false,
                   "blocksRetaliation": false,
@@ -155,11 +155,11 @@
                 },
                 "shooter": false,
                 "shots": 0,
-                "speed": 5
+                "speed": 4
               },
               {
-                "aiValue": 378,
-                "attack": 9,
+                "aiValue": 165,
+                "attack": 6,
                 "cost": [
                   0,
                   0,
@@ -167,40 +167,82 @@
                   0,
                   0,
                   0,
-                  220,
+                  130,
                   0
                 ],
-                "count": 3,
-                "damageMax": 9,
-                "damageMin": 6,
-                "defense": 7,
-                "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
+                "count": 5,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 6,
+                "description": "",
                 "experience": 0,
                 "experiencePerUnit": 0,
                 "experienceRank": 0,
-                "fightValue": 378,
-                "growth": 8,
-                "health": 30,
-                "icon": "goonk/archer-large.png",
-                "id": 264,
-                "key": "goonk:zinzeclair",
-                "name": "Sonic",
+                "fightValue": 150,
+                "growth": 9,
+                "health": 16,
+                "icon": "",
+                "id": 30,
+                "key": "core:stoneGargoyle",
+                "name": "Stone Gargoyle",
                 "nativeFlags": {
                   "attacksAllAdjacent": false,
                   "blocksRetaliation": false,
                   "chargeImmune": false,
-                  "flying": false,
-                  "living": true,
+                  "flying": true,
+                  "living": false,
                   "mindImmune": false,
                   "noMorale": false,
                   "nonLiving": false,
                   "undead": false
                 },
-                "shooter": true,
-                "shots": 16,
+                "shooter": false,
+                "shots": 0,
                 "speed": 6
               },
-              null,
+              {
+                "aiValue": 250,
+                "attack": 7,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  150,
+                  0
+                ],
+                "count": 2,
+                "damageMax": 5,
+                "damageMin": 4,
+                "defense": 10,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 339,
+                "growth": 6,
+                "health": 30,
+                "icon": "",
+                "id": 32,
+                "key": "core:ironGolem",
+                "name": "Stone Golem",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": false,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": true,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 3
+              },
               null,
               null,
               null,
@@ -213,12 +255,12 @@
     },
     {
       "name": "VCMI serializes an actual local save while the StarCraft simulation continues",
-      "bytes": 534367
+      "bytes": 442369
     },
     {
       "name": "Native replay serialization produces bytes (not a save/resume test)",
-      "length": 23274,
-      "frame": 516
+      "length": 23278,
+      "frame": 518
     }
   ],
   "passed": true

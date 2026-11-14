@@ -1255,6 +1255,7 @@ void GameStatePackVisitor::visitBattleStart(BattleStart & pack)
 	assert(pack.battleID == gs.nextBattleID);
 
 	pack.info->battleID = gs.nextBattleID;
+ pack.info->crossover=pack.crossover;
 	pack.info->localInit();
 
 	if (pack.info->getDefendedTown() && pack.info->getSide(BattleSide::DEFENDER).heroID.hasValue())

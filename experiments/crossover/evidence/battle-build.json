@@ -1,0 +1,12 @@
+{
+  "vcmi": {
+    "archive": "outputs/vcmi-wasm-heroes-starcraft-engine.tar.gz",
+    "sha256": "69c8fbea7b97689398970b06b7e360124adb58113b9d3c4e3ab5ba938dcaa01f",
+    "verification": "ninja -j32 html5, Emscripten 4.0.23"
+  },
+  "openbw": {
+    "sha256": "9e111ad714eff2bb38ae784aecf7b16f046ecaa3d1bc6e206551ac42c450f6a4",
+    "adapterSha256": "5e9ed6045a9dbccfe0dfcb7d117dca1d619f872a56835282a7aad91c95ef50f9",
+    "sdk": "wasi-sdk-33.0"
+  }
+}

@@ -1,3 +1,15 @@
+/** Stable product API over the real OpenBW exports, installed only after native init. */
+import { validateBattlePlan } from './battle.js';
+export function setupNativeBattle(x, memory, plan) {
+    validateBattlePlan(plan);
+    if (!x.openbw_crossover_setup)
+        throw Error('Passerelle native de combat absente.');
+    const rows = new Int32Array(plan.stacks.flatMap(row => [row.id, row.side, row.unit, row.count]));
+    const pointer = x.openbw_in_ptr(rows.byteLength);
+    new Uint8Array(memory.buffer, pointer, rows.byteLength).set(new Uint8Array(rows.buffer));
+    if (x.openbw_crossover_setup(plan.battleId, plan.stacks.length) !== 1)
+        throw Error('Placement des armées StarCraft impossible. Reprends le combat Heroes.');
+}
 export function validateHeroes(value) {
     if (!value || typeof value !== 'object')
         throw Error('Événement Heroes invalide.');
@@ -45,6 +57,21 @@ export function installNativeBridge(x, memory, target = window) {
         return state;
     };
     const api = {
+        start() { if (closed)
+            throw Error('Moteur StarCraft fermé.'); },
+        battle() {
+            if (closed || !x.openbw_crossover_battle_state)
+                return null;
+            const pointer = x.openbw_crossover_battle_state(), bytes = new Uint8Array(memory.buffer);
+            let end = pointer;
+            while (end < bytes.length && end - pointer < 65536 && bytes[end])
+                end++;
+            if (end === bytes.length || bytes[end] !== 0)
+                throw Error('Résultat natif invalide.');
+            return JSON.parse(new TextDecoder().decode(bytes.subarray(pointer, end)));
+        },
+        attack() { if (closed || !x.openbw_crossover_attack)
+            throw Error('Combat StarCraft indisponible.'); x.openbw_crossover_attack(); },
         sample,
         census,
         receiveHeroes(input) {

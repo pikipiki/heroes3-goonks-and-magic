@@ -41,6 +41,8 @@ public:
 	ObjectInstanceID townID; //used during town siege, nullptr if this is not a siege (note that fortless town IS also a siege)
 	int3 tile; //for background and bonuses
 	bool replayAllowed;
+ // Transient delegation, intentionally not part of adventure saves. Loading resumes native Heroes combat.
+ bool crossover=false;
 	std::vector<std::unique_ptr<CStack>> stacks;
 	std::vector<std::shared_ptr<CObstacleInstance> > obstacles;
 	SiegeInfo si;

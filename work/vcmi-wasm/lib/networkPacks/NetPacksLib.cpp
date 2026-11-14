@@ -598,6 +598,8 @@ void DisbandCreature::visitTyped(ICPackVisitor & visitor)
 	visitor.visitDisbandCreature(*this);
 }
 
+void CrossoverBattleCommand::visitTyped(ICPackVisitor & visitor) { visitor.visitCrossoverBattleCommand(*this); }
+
 void CaveBuilderAction::visitTyped(ICPackVisitor & visitor)
 {
  visitor.visitCaveBuilderAction(*this);

@@ -317,6 +317,7 @@ void registerTypes(Serializer &s)
     s.template registerType<SourceCampaignChange>(270);
     s.template registerType<SourceCampaignReply>(271);
     s.template registerType<SourceCampaignDeployTroops>(272);
+    s.template registerType<CrossoverBattleCommand>(273);
 }
 
 VCMI_LIB_NAMESPACE_END

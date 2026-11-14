@@ -1,0 +1,56 @@
+{
+  "scope": "Real OpenBW combat, scenario initialization only; no health or outcome injection",
+  "snapshots": [
+    {
+      "battleId": 17,
+      "frame": 0,
+      "groups": [
+        {
+          "id": 0,
+          "side": 0,
+          "initial": 12,
+          "survivors": 12
+        },
+        {
+          "id": 1,
+          "side": 0,
+          "initial": 6,
+          "survivors": 6
+        },
+        {
+          "id": 2,
+          "side": 1,
+          "initial": 20,
+          "survivors": 20
+        }
+      ],
+      "finished": false
+    },
+    {
+      "battleId": 17,
+      "frame": 233,
+      "groups": [
+        {
+          "id": 0,
+          "side": 0,
+          "initial": 12,
+          "survivors": 9
+        },
+        {
+          "id": 1,
+          "side": 0,
+          "initial": 6,
+          "survivors": 1
+        },
+        {
+          "id": 2,
+          "side": 1,
+          "initial": 20,
+          "survivors": 0
+        }
+      ],
+      "finished": true
+    }
+  ],
+  "passed": true
+}
