@@ -12,5 +12,13 @@ int main(){
  rejected=false;try{access(mask,true,8);}catch(const std::runtime_error &){rejected=true;}assert(rejected);
  // The caller visits timer IDs in ascending order and checks live settings.
  std::array<Settings,3> timers{{Settings{1,999,1,1},Settings{1,999,1,1},Settings{1,999,1,1}}};int visited=0;
- for(int id=0;id<3;++id)if(due(timers[id],1,0)){visited=visited*10+id+1;if(id==0)access(timers[1],false,0);}assert(visited==13);
+ for(int id=0;id<3;++id)
+ {
+  if(due(timers[id],1,0))
+  {
+   visited=visited*10+id+1;
+   if(id==0)access(timers[1],false,0);
+  }
+ }
+ assert(visited==13);
 }
