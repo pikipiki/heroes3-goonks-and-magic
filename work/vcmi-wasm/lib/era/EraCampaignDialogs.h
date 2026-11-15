@@ -32,6 +32,17 @@ public:
  JsonNode execute(const Operation & operation)
  {
   const auto & args=operation.args;
+  if(operation.code=="B")
+  {
+   arity(operation,3);require(number(args[2])==1,"Only single static source bitmap presentation is admitted");
+   auto & dialog=definition(number(args[0]));auto & pictures=dialog["pictures"].Vector();if(pictures.empty())pictures.resize(1);
+   pictures[0]["file"].String()=cell(args[1]);dialog["bitmapRepeat"].Integer()=1;return {};
+  }
+  if(operation.code=="P")
+  {
+   arity(operation,1);const auto & dialog=definition(number(args[0]));require(dialog["pictures"].isVector()&&!dialog["pictures"].Vector().empty()&&!dialog["pictures"].Vector()[0]["file"].String().empty(),"Source bitmap shown before definition");
+   auto pending=base("bitmap","");pending["pictures"].Vector().push_back(dialog["pictures"].Vector()[0]);pending["choices"].Vector();pending["canCancel"].Bool()=false;return pending;
+  }
   if(operation.code=="D")
   {
    arity(operation,16);auto & dialog=definition(number(args[0]));
@@ -94,6 +105,7 @@ public:
  {
   require(entered.size()<=2048&&entered.find('\0')==std::string::npos,"Invalid campaign text answer");
   const auto & kind=pending["kind"].String();
+  if(kind=="bitmap"){require(selection==0&&entered.empty(),"Invalid source bitmap acknowledgement");return;}
   if(kind=="extended")
   {
    bool allowed=selection==0&&pending["choices"].Vector().empty();

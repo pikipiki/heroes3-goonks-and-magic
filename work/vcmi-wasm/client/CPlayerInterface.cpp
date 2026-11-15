@@ -1116,7 +1116,7 @@ void CPlayerInterface::showBlockingDialog(const std::string &text, const std::ve
  const auto & pending=script["pending"];const auto & kind=pending["kind"].String();
  if(script["player"].isNumber()&&script["player"].Integer()==playerID.getNum()
     &&pending["contract"].String()=="source-campaign-dialog-v1"&&pending["text"].String()==text
-    &&(kind=="extended"||kind=="checklist"||kind=="pictures"))
+    &&(kind=="extended"||kind=="checklist"||kind=="pictures"||kind=="bitmap"))
  {
   showingDialog->setBusy();ENGINE->windows().createAndPushWindow<CSourceCampaignDialog>(askID,pending);return;
  }

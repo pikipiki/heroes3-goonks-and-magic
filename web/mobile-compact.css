@@ -135,6 +135,11 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 }
 
 #mobile-app .campaign-dialog-form{display:grid;gap:16px;min-width:0;touch-action:pan-y}
+#mobile-app .campaign-dialog-form[data-kind=bitmap]{display:flex;min-height:0;height:100%;align-items:center;justify-content:center}
+#mobile-app .campaign-dialog-form[data-kind=bitmap] .campaign-dialog-pictures{display:flex;min-height:0;max-height:100%;width:100%;align-items:center;justify-content:center}
+#mobile-app .campaign-dialog-form[data-kind=bitmap] figure{margin:0;min-width:0;max-width:100%;max-height:100%}
+#mobile-app .campaign-dialog-form[data-kind=bitmap] .campaign-media-thumbnail{display:block;padding:0;width:100%;max-height:100%}
+#mobile-app .campaign-dialog-form[data-kind=bitmap] img{display:block;width:100%;height:auto;max-width:100%;max-height:100%;object-fit:contain}
 #mobile-app .campaign-dialog-form>label{display:grid;gap:8px;min-width:0}
 #mobile-app .campaign-dialog-form input[type=text]{box-sizing:border-box;min-height:48px;width:100%;min-width:0;font:inherit;font-size:16px;padding:10px;color:#fff0c5;background:#160e08;border:2px ridge #d3ad5e;border-radius:6px;touch-action:manipulation}
 #mobile-app .campaign-dialog-form fieldset{margin:0;padding:10px;min-width:0;border:2px ridge #907039;display:grid;gap:8px}

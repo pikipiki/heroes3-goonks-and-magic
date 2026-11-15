@@ -67,14 +67,17 @@ CSourceCampaignDialog::CSourceCampaignDialog(QueryID query,const JsonNode & desc
   for(const auto & candidate:era_campaign_media::candidates(picture["file"].String()))
   {
    const auto path=ImagePath::builtin(candidate.resource);if(!CResourceHandler::get()->existsResource(path))continue;
-   auto image=std::make_shared<CPicture>(path,20+int(index)*140,260);
-   const double scale=std::min({1.0,100.0/image->pos.w,100.0/image->pos.h});
+   const bool bitmap=kind=="bitmap";const int width=bitmap?580:100,height=bitmap?420:100;
+   auto image=std::make_shared<CPicture>(path,20+int(index)*140,bitmap?20:260);
+   const double scale=std::min({1.0,double(width)/image->pos.w,double(height)/image->pos.h});
    image->scaleTo(Point(std::max(1,int(image->pos.w*scale)),std::max(1,int(image->pos.h*scale))));
-   image->moveBy(Point((100-image->pos.w)/2,(100-image->pos.h)/2));customPictures.emplace_back(index,image);
+   image->moveBy(Point((width-image->pos.w)/2,(height-image->pos.h)/2));customPictures.emplace_back(index,image);
    if(LIBRARY->modh->findResourceOrigin(ResourcePath(candidate.resource,EResType::IMAGE))=="wake-of-gods.mapsupport")model["pictures"].Vector()[index]["mediaKey"].String()=candidate.key;
    break;
   }
  }
+ if(kind=="bitmap")
+ {if(customPictures.empty())throw std::runtime_error("Original source bitmap asset unavailable");addUsedEvents(KEYBOARD);}
  selection=kind=="checklist"?int(model["initial"].Integer()):model["choices"].Vector().empty()?0:int(model["choices"].Vector().front()["value"].Integer());
  for(std::size_t i=0;i<model["choices"].Vector().size();++i)
  {
@@ -106,6 +109,11 @@ void CSourceCampaignDialog::draft(int value,const std::string & answer)
  GAME->interface()->cb->sourceCampaignReply(ID,value,answer,false);
 }
 void CSourceCampaignDialog::confirm(){submit(selection,input?input->getText():std::string());}
+void CSourceCampaignDialog::keyPressed(EShortcut key)
+{
+ if(model["kind"].String()=="bitmap"&&(key==EShortcut::GLOBAL_RETURN||key==EShortcut::GLOBAL_CANCEL)){confirm();return;}
+ CInfoWindow::keyPressed(key);
+}
 void CSourceCampaignDialog::submit(int value,const std::string & answer)
 {
  if(submitted||!GAME->interface()||answer.size()>2048)return;

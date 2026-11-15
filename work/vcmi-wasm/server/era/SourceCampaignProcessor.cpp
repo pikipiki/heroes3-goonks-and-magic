@@ -144,7 +144,9 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int3 position(const Command & c)const
  {
-  require(c.selectors.size()==3||((c.receiver=="OB"||c.receiver=="TR")&&c.selectors.size()==1),"object needs three coordinates or a coordinate variable");
+  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE";
+  const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4&&c.selectors[3].access==Access::Read&&number(c.selectors[3])==1;
+  require(c.selectors.size()==3||(indirect&&c.selectors.size()==1)||dynamicMonster,"object needs three coordinates or a coordinate variable");
   int3 pos;
   if(c.selectors.size()==1){const int index=number(c.selectors[0]);require(index>=1&&index<=9998,"invalid OB coordinate variable");pos=int3(lookup(vm.v,index),lookup(vm.v,index+1),lookup(vm.v,index+2));}
   else pos=int3(number(c.selectors[0]),number(c.selectors[1]),number(c.selectors[2]));
@@ -556,6 +558,12 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    arity(op,1);require(args[0].access==Access::Read,"redraw mode needs a value");const int mode=number(args[0]);require(mode==1||mode==2,"unsupported source redraw mode");
    auto change=mutation("mapRefresh",ObjectInstanceID::NONE);change["mode"].Integer()=mode;change["player"].Integer()=player.getNum();persist(change);return Step::Continue;
   }
+  if(op.code=="S")
+  {
+   arity(op,5);require(!query(op),"reveal arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const PlayerColor owner(number(args[3]));const int radius=number(args[4]);
+   require(gh.gameState().getMap().isInTheMap(center)&&owner.isValidPlayer()&&gh.gameInfo().getPlayerState(owner,false)&&radius>=0,"invalid source reveal area");
+   gh.changeFogOfWar(center,radius,owner,ETileVisibility::REVEALED);return Step::Continue;
+  }
   if(op.code=="K"||op.code=="M")
   {
    require(!args.empty()&&args[0].access==Access::Read,"calendar mode needs a value");
@@ -738,7 +746,18 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   else if(op.code=="M")
   {arity(op,2);const SpellID spell(number(args[0]));const int changed=value(h->spellbookContainsSpell(spell)?1:0,args[1]);if(!query(op))gh.changeSpells(h,changed!=0,{spell});}
   else if(op.code=="S")
-  {arity(op,2);const SecondarySkill skill(number(args[0]));const int changed=value(h->getSecSkillLevel(skill),args[1]);if(!query(op))gh.changeSecSkill(h,skill,changed,ChangeValueMode::ABSOLUTE);}
+  {
+   arity(op,2);require(args[0].access==Access::Read,"secondary skill needs an original index");const int source=number(args[0]);require(source>=0&&source<28,"original secondary skill outside0..27");
+   const auto skill=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(SecondarySkill(source));require(skill.toSkill()!=nullptr,"unbound source secondary skill");const int old=h->getSecSkillLevel(skill),level=value(old,args[1]);
+   if(!query(op))
+   {
+    require(level>=0&&level<=3,"source secondary skill outside standard levels0..3");
+    require(old!=0||level==0||h->secSkills.size()<8,"hidden source skills beyond eight visible slots are not admitted");
+    gh.changeSecSkill(h,skill,level,ChangeValueMode::ABSOLUTE);
+   }
+  }
+  else if(op.code=="K")
+  {arity(op,1);require(args[0].kind==Kind::Default,"hero removal takes no argument");require(gh.removeObject(h,player),"source hero removal failed");}
   else if(op.code=="F")
   {arity(op,4);for(int i=0;i<4;++i){const auto skill=static_cast<PrimarySkill>(i);const int changed=value(h->getPrimSkillLevel(skill),args[i]);if(!query(op))gh.changePrimSkill(h,skill,args[i].access==Access::Relative?number(args[i]):changed,args[i].access==Access::Relative?ChangeValueMode::RELATIVE:ChangeValueMode::ABSOLUTE);}}
   else if(op.code=="U")
@@ -872,8 +891,9 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   const auto * monster=dynamic_cast<const CGCreature *>(object(c,Obj::MONSTER));
   if(!monster)return Step::Continue; // Original MO permits a defeated/missing stack.
   arity(op,1);auto change=mutation("monster",monster->id);
-  if(op.code=="M")change["message"].String()=readText(args[0],vm,context);
-  else if(op.code=="O")change["notGrowing"].Bool()=value(monster->notGrowingTeam?1:0,args[0])==1;
+  if(op.code=="M")change["message"].String()=args[0].kind==Kind::Number&&args[0].number==-1?std::string():readText(args[0],vm,context);
+  else if(op.code=="O")change["notGrowing"].Bool()=(static_cast<std::uint32_t>(value(monster->notGrowingTeam?1:0,args[0]))&1u)!=0;
+  else if(op.code=="U")change["neverFlees"].Bool()=(static_cast<std::uint32_t>(value(monster->neverFlees?1:0,args[0]))&1u)!=0;
   else if(op.code=="R")change["aggression"].Integer()=number(args[0])==0?-4:10; // Original one-argument R: join / never join.
   else if(op.code=="G")
   {
@@ -892,8 +912,23 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   require(info!=config.info.end(),"local event has no native reward");auto & reward=info->reward;
   if(op.code=="M")
   {
-   arity(op,1);const auto text=readText(args[0],vm,context);auto change=mutation("event",event->id);change["message"].String()=text;
+   require(args.size()==1||args.size()==2,"invalid source event message arity");std::string text;
+   const auto & argument=resolveMacro(args.back(),vm);
+   if(args.size()==2)
+   {
+    require(args[0].access==Access::Read&&number(args[0])==1,"unsupported source event message mode");
+    if(argument.access==Access::Write){writeText(argument,vm,context,event->message.toString());return Step::Continue;}
+    require(argument.access==Access::Read,"event message needs a string reference");
+    if(argument.kind==Kind::Variable&&argument.space=='z')text=readText(argument,vm,context);
+    else{const int index=number(argument);require(index==-1||(index>=1&&index<=1000)||(index>=-10&&index<=-2),"external event message strings are not admitted");if(index!=-1)text=lookup(vm.z,index);}
+   }
+   else text=argument.kind==Kind::Number&&argument.number==-1?std::string():readText(argument,vm,context);
+   auto change=mutation("event",event->id);change["message"].String()=text;
    for(auto & item:config.info)if(item.visitType==Rewardable::EEventType::EVENT_FIRST_VISIT){item.message.clear();item.message.appendRawString(text);}persist(change,event,&config);return Step::Continue;
+  }
+  if(op.code=="L"||op.code=="I")
+  {
+   arity(op,1);require(args[0].access==Access::Read,"event switch needs a value");auto change=mutation("event",event->id);change[op.code=="L"?"removeAfterVisit":"computer"].Bool()=(static_cast<std::uint32_t>(number(args[0]))&1u)!=0;persist(change);return Step::Continue;
   }
   if(op.code=="D")
   {

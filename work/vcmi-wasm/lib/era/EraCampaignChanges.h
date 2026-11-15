@@ -176,6 +176,7 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    if(!monster)throw std::runtime_error("Original campaign monster target invalid");
    if(change["message"].isString()){monster->message.clear();monster->message.appendRawString(change["message"].String());}
    if(change["notGrowing"].isBool())monster->notGrowingTeam=change["notGrowing"].Bool();
+   if(change["neverFlees"].isBool())monster->neverFlees=change["neverFlees"].Bool();
    if(change["aggression"].isNumber())monster->agression=campaignInteger(change["aggression"]);
    if(change["count"].isNumber())
    {
@@ -197,7 +198,11 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    }
    if(change["human"].isBool())event->humanActivate=change["human"].Bool();
    if(change["computer"].isBool())event->computerActivate=change["computer"].Bool();
-   if(change["removeAfterVisit"].isBool())event->removeAfterVisit=change["removeAfterVisit"].Bool();
+   if(change["removeAfterVisit"].isBool())
+   {
+    event->removeAfterVisit=change["removeAfterVisit"].Bool();
+    for(auto & reward:event->configuration.info)reward.reward.removeObject=event->removeAfterVisit;
+   }
   }
   else if(kind=="eventGuards")
   {

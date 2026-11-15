@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.189",
+  "engineSha256": "3f20f3ed5becf8af029158febd0fbb406a34cef5dc0e9efe83ee99a094929878",
+  "sourceContract": "quest-rules-source-contract-189.json",
+  "originalCampaignsEnabled": false,
+  "nativeChecks": [
+    {
+      "case": "quest-rules-final2",
+      "passed": true,
+      "resultSha256": "206e960b9dcf315cdd3d5189a5fd7564594a2fd988a23cbd7670a30b56b81381",
+      "loadedPending": false,
+      "errors": [],
+      "fixtureSha256": "319c83bb860b6a5795cc03c75de1fa32be5c68087a04565ac27c88e6bc89c0ad",
+      "mapSha256": "587cd9bc11848f652be6448f3c2fa37350a8e0e8b7c183aed993117397b6c833",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 152,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 152,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 98
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 152,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 152,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 150
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 152,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 152,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 528
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 152,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 152,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "hidden": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "revealed": [
+        0,
+        65,
+        0,
+        255
+      ],
+      "fatal": false,
+      "configured": {
+        "cancel": false,
+        "lines": [
+          "Native quest rules skills 1/1/1/1; fleeing 0/1; removed -1; text Original local event message"
+        ],
+        "queryId": 3,
+        "title": "Game message"
+      },
+      "skills": [
+        {
+          "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+          "icon": 9,
+          "mastery": "Basic",
+          "name": "Leadership"
+        },
+        {
+          "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+          "icon": 10,
+          "mastery": "Basic",
+          "name": "Archery"
+        },
+        {
+          "description": "{Basic Fire Magic}\n\nBasic Fire Magic allows your hero to cast Fire spells at reduced cost.",
+          "icon": 11,
+          "mastery": "Basic",
+          "name": "Fire Magic"
+        },
+        {
+          "description": "{Basic Air Magic}\n\nBasic Air Magic allows your hero to cast Air spells at reduced cost.",
+          "icon": 12,
+          "mastery": "Basic",
+          "name": "Air Magic"
+        },
+        {
+          "description": "{Basic Water Magic}\n\nBasic Water Magic allows your hero to cast Water spells at reduced cost.",
+          "icon": 13,
+          "mastery": "Basic",
+          "name": "Water Magic"
+        },
+        {
+          "description": "{Basic Earth Magic}\n\nBasic Earth Magic allows your hero to cast Earth spells at reduced cost.",
+          "icon": 14,
+          "mastery": "Basic",
+          "name": "Earth Magic"
+        }
+      ],
+      "counter": {
+        "cancel": false,
+        "lines": [
+          "Native one-use count 1"
+        ],
+        "queryId": 13,
+        "title": "Game message",
+        "visitedObject": "Gold"
+      },
+      "repeated": {
+        "cancel": false,
+        "lines": [
+          "Native one-use count 1"
+        ],
+        "queryId": 22,
+        "title": "Game message",
+        "visitedObject": "Gold"
+      },
+      "battleUnits": [
+        {
+          "key": "core:peasant",
+          "count": 1,
+          "enemy": true
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "count": 1,
+          "enemy": false
+        },
+        {
+          "key": "core:archangel",
+          "count": 2500,
+          "enemy": false
+        },
+        {
+          "key": "core:archer",
+          "count": 7,
+          "enemy": false
+        }
+      ],
+      "dialogs": [
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native quest rules skills 1/1/1/1; fleeing 0/1; removed -1; text Original local event message"
+            ],
+            "queryId": 3,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native one-use count 1"
+            ],
+            "queryId": 13,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native one-use count 1"
+            ],
+            "queryId": 22,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native reveal done"
+            ],
+            "queryId": 27,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        }
+      ]
+    },
+    {
+      "case": "quest-rules-reload",
+      "passed": true,
+      "resultSha256": "3d08e1effaff75b7da958bd781fb6716045ec9d2d9294b4726b2682851b6051b",
+      "loadedPending": true,
+      "errors": [],
+      "fixtureSha256": "319c83bb860b6a5795cc03c75de1fa32be5c68087a04565ac27c88e6bc89c0ad",
+      "mapSha256": "587cd9bc11848f652be6448f3c2fa37350a8e0e8b7c183aed993117397b6c833",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "hidden": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "revealed": [
+        0,
+        65,
+        0,
+        255
+      ],
+      "fatal": false,
+      "skills": [
+        {
+          "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+          "icon": 9,
+          "mastery": "Basic",
+          "name": "Leadership"
+        },
+        {
+          "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+          "icon": 10,
+          "mastery": "Basic",
+          "name": "Archery"
+        },
+        {
+          "description": "{Basic Fire Magic}\n\nBasic Fire Magic allows your hero to cast Fire spells at reduced cost.",
+          "icon": 11,
+          "mastery": "Basic",
+          "name": "Fire Magic"
+        },
+        {
+          "description": "{Basic Air Magic}\n\nBasic Air Magic allows your hero to cast Air spells at reduced cost.",
+          "icon": 12,
+          "mastery": "Basic",
+          "name": "Air Magic"
+        },
+        {
+          "description": "{Basic Water Magic}\n\nBasic Water Magic allows your hero to cast Water spells at reduced cost.",
+          "icon": 13,
+          "mastery": "Basic",
+          "name": "Water Magic"
+        },
+        {
+          "description": "{Basic Earth Magic}\n\nBasic Earth Magic allows your hero to cast Earth spells at reduced cost.",
+          "icon": 14,
+          "mastery": "Basic",
+          "name": "Earth Magic"
+        }
+      ],
+      "counter": {
+        "cancel": false,
+        "lines": [
+          "Native one-use count 1"
+        ],
+        "queryId": 15,
+        "title": "Game message",
+        "visitedObject": "Gold"
+      },
+      "repeated": {
+        "cancel": false,
+        "lines": [
+          "Native one-use count 1"
+        ],
+        "queryId": 24,
+        "title": "Game message",
+        "visitedObject": "Gold"
+      },
+      "battleUnits": [
+        {
+          "key": "core:peasant",
+          "count": 1,
+          "enemy": true
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "count": 1,
+          "enemy": false
+        },
+        {
+          "key": "core:archangel",
+          "count": 2500,
+          "enemy": false
+        },
+        {
+          "key": "core:archer",
+          "count": 5,
+          "enemy": false
+        }
+      ],
+      "dialogs": [
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native one-use count 1"
+            ],
+            "queryId": 15,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native one-use count 1"
+            ],
+            "queryId": 24,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native reveal done"
+            ],
+            "queryId": 29,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        }
+      ]
+    },
+    {
+      "case": "quest-fatal-reload",
+      "passed": true,
+      "resultSha256": "9b8076b1acd0030963ab3949a53524230e0754ff217929b04c8f0c1f613346c4",
+      "loadedPending": true,
+      "errors": [],
+      "fixtureSha256": "8fa823477a022818da2ea309f81e1f266a56feff8195225d3063aa7ec72957ab",
+      "mapSha256": "bf007970d83380fe54f68fd54534dcf1159476c1bc215ccde01b4030101124c2",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fatal": true,
+      "dialogs": [
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "The hero, Orrin, has suffered defeat - your quest is over!"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "You have been eliminated from the game!"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        }
+      ]
+    },
+    {
+      "case": "original-intro-reload",
+      "passed": true,
+      "resultSha256": "c3eec31c6cd8cd3690a6d3a4e67d25e8b0ea2e0224be3d9d158edc8624ba1707",
+      "loadedPending": null,
+      "errors": [],
+      "layouts": [],
+      "dialogs": []
+    },
+    {
+      "case": "production-final",
+      "passed": true,
+      "resultSha256": "792b4b18363ae634fd16587de316a90da70090a841c1edbb1111b6903f5a2e29",
+      "loadedPending": null,
+      "errors": [],
+      "actualFetchedWasmSha256": "3f20f3ed5becf8af029158febd0fbb406a34cef5dc0e9efe83ee99a094929878",
+      "productionSmokeValidated": true,
+      "mapSaveReloadValidated": true,
+      "playerRolesPreserved": true,
+      "actualResumedTurnTransitionsValidated": true
+    },
+    {
+      "case": "old-saves",
+      "passed": true,
+      "resultSha256": "3027290f9e17d9e8dc2df1a1b24b170026c21abc9a1b6aa309741d4c725d7b86",
+      "errors": []
+    },
+    {
+      "case": "original-encounters",
+      "passed": true,
+      "resultSha256": "7cbb0fb4c201de3ca33b614233e544f8893a049f6a04b82cbbee1ce19f5eb51b",
+      "errors": [],
+      "dialogs": [
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nThis was your home not long ago. \nBut time flies and now you are on your quest for glory. \n"
+          ],
+          "queryId": 14,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_001.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_001.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 14,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nThis was your home not long ago. \nBut time flies and now you are on your quest for glory. \n"
+          },
+          "title": "Game message",
+          "visitedObject": "Thatched Hut"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nYour friend, Dan, has decided to accompany you in your quest.  \nLook for him in your army. \n"
+          ],
+          "queryId": 18,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_002.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_002.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 18,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nYour friend, Dan, has decided to accompany you in your quest.  \nLook for him in your army. \n"
+          },
+          "title": "Game message",
+          "visitedObject": "Thatched Hut"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Your horse stumbles over a stone.\nA bad omen..."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Event"
+        }
+      ],
+      "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "targets": [
+        [
+          17,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          20,
+          26
+        ]
+      ]
+    },
+    {
+      "case": "quest-rules-ui-final",
+      "passed": true,
+      "resultSha256": "2b5d680c684341abec45b75aaba1020203e53bbe3a53202f64832231c0ef3093",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "hiddenEventEditorIconAbsent": true,
+      "zoomEscapeKeepsNativeQuery": true,
+      "loadedPending": true,
+      "errors": []
+    }
+  ],
+  "unitTests": {
+    "total": 763,
+    "passed": 729,
+    "skipped": 34,
+    "failed": 0
+  },
+  "nativeSanitizers": {
+    "campaignRuntime": true,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limitations": [
+    "Repeated/video media, external string tables and unsupported IF:B modes remain unadmitted.",
+    "Hidden secondary skills beyond eight visible slots, nonstandard skill levels and skill-slot reordering are not implemented.",
+    "Global-message-number copying in MO:M/LE:M and all-player UN:S owner selectors remain unadmitted.",
+    "These private native controls and the three initial original encounters do not validate complete original quests, combat scripts, wins or transfers. All original campaigns remain disabled."
+  ]
+}

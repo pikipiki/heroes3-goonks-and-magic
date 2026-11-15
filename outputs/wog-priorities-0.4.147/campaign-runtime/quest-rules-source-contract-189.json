@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.189",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Bounded static LLVM disassembly and historical navigation sources; no Windows executable execution or upload.",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive contains later changes; only the observations explicitly tied to addresses below are corroborated against the pinned binary."
+  },
+  "boundedAssemblySha256": {
+    "bitmap": "0ce9e1817de9c4406ed74405e1704fc1d9fc51941c7f229f253c609a4bb40515",
+    "monster": "f80a03079a92ce2f9c159c7526f03dfc6ab8202f6b97322693f97770f48dc0e0"
+  },
+  "observations": [
+    {
+      "address": "0x743ed3..0x743f94",
+      "fact": "IF:B requires three arguments and resolves positive/negative string-cell references before passing the path and repeat value to the custom-picture definition."
+    },
+    {
+      "address": "0x73fec2..0x73ff90",
+      "fact": "MO:O and MO:U use distinct one-bit fields. Assignment retains the low bit; numeric2 is false and3 true."
+    }
+  ],
+  "navigationContracts": [
+    "erm decoded NewMesMan: numeric-1 clears a monster/event message. LE:M1 supports source string-cell read/write.",
+    "erm decoded HE:S: standard two-argument source skill index0..27 and byte level; this port admits only visible standard levels0..3.",
+    "erm decoded HE:K: default no-argument native hero removal.",
+    "erm decoded UN:S / common ShowArea: native fog reveal by position, owner and radius.",
+    "erm decoded LE:L/I and structs: one-visit/computer activation bits."
+  ],
+  "implementation": [
+    "IF:B/P static illustrations use the existing native query, media lookup and responsive form; one acknowledgement, zoom closure isolated from the underlying query.",
+    "HE:S resolves original skills through the WoG bridge, queries native levels and updates native secondary skills. HE:K uses native removal and configured loss checks.",
+    "MO:U updates real flight policy; MO:O low-bit assignment is corrected. One-argument M-1 clears messages. MO four-coordinate form with the original ignored flag1 is admitted.",
+    "LE:M1 reads/writes actual event text; LE:L updates both removeAfterVisit and reward.removeObject so native completion really consumes the event. LE:I updates computer activation.",
+    "UN:S with an explicit existing player reveals native fog and updates the real minimap."
+  ],
+  "limitations": [
+    "Repeated/video media, external string tables and unsupported IF:B modes remain unadmitted.",
+    "Hidden secondary skills beyond eight visible slots, nonstandard skill levels and skill-slot reordering are not implemented.",
+    "Global-message-number copying in MO:M/LE:M and all-player UN:S owner selectors remain unadmitted.",
+    "These private native controls and the three initial original encounters do not validate complete original quests, combat scripts, wins or transfers. All original campaigns remain disabled."
+  ]
+}

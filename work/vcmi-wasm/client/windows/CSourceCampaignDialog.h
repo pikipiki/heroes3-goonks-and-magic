@@ -20,5 +20,6 @@ public:
  void submit(int value,const std::string & answer);
  void confirm();
  void draft(int value,const std::string & answer);
+ void keyPressed(EShortcut key) override;
  JsonNode presentation() const;
 };

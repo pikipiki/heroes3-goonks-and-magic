@@ -93,6 +93,20 @@ int main()
  dialogs.reply(pictures,0,"");assert(!dialogue.flags[2]);dialogs.reply(pictures,1,"");assert(dialogue.flags[2]);
  rejects([&]{dialogs.reply(pictures,2,"");});
 
+ // Static IF:B/P shares the first source picture with IF:D and survives JSON state copies.
+ dialogue.z[398]="cmp.res\\11_015.bmp";
+ dialogs.execute({"B",{n(100),n(398),n(1)}});
+ auto bitmap=dialogs.execute({"P",{n(100)}});
+ assert(bitmap["kind"].String()=="bitmap"&&!bitmap["canCancel"].Bool());
+ assert(bitmap["pictures"].Vector().size()==1&&bitmap["pictures"].Vector()[0]["file"].String()==dialogue.z[398]);
+ JsonNode definitionCopy(definitions);era_campaign_dialogs::Dialogs restoredDialogs(definitionCopy,dialogue,dc);
+ assert(restoredDialogs.execute({"P",{n(100)}})==bitmap);
+ const auto unchangedV=dialogue.v;const auto unchangedZ=dialogue.z;
+ restoredDialogs.reply(JsonNode(bitmap),0,"");assert(dialogue.v==unchangedV&&dialogue.z==unchangedZ);
+ rejects([&]{dialogs.reply(bitmap,1,"");});rejects([&]{dialogs.reply(bitmap,0,"unexpected");});
+ rejects([&]{dialogs.execute({"B",{n(100),n(398),n(2)}});});
+ rejects([&]{dialogs.execute({"P",{n(99)}});});
+
  const auto creatureId=[](int source){return CreatureID(source+1000);};
  const auto packed=era_campaign_pictures::component(21,5*65536+6,creatureId);assert(packed->subType.as<CreatureID>().getNum()==1006&&packed->value==5);
  const auto skill=era_campaign_pictures::component(20,15,creatureId);assert(skill->subType.as<SecondarySkill>().getNum()==4&&skill->value==1);
