@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "engineSha256": "3876a171eefba0748261009897863b235400531f70df50396a51abd33ea977c5",
+  "ordinaryGarrison": true,
+  "ownedMine": true,
+  "splitAndMerge": true,
+  "sixLayouts": true,
+  "errors": [],
+  "nodeTests": {
+    "passed": 744,
+    "skipped": 34,
+    "failed": 0
+  },
+  "layoutBrowsers": [
+    "Chromium",
+    "WebKit"
+  ],
+  "layoutCasesPerBrowser": 14,
+  "nativeCases": [
+    "ordinary owned garrison without campaign VM",
+    "owned mine without campaign VM",
+    "partial deposit and withdrawal",
+    "six phone/iPad viewports",
+    "close returns to adventure map"
+  ],
+  "wasmBuild": "ninja -j32 html5",
+  "siteBuild": true,
+  "siteVerification": true,
+  "physicalDeviceTest": false,
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.200-mobile-ui-engine.tar.gz"
+}

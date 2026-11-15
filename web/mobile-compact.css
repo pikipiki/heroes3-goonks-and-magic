@@ -179,3 +179,38 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 /* Separate dwelling troops fit without a horizontal swipe on small screens. */
 #mobile-app[data-mode=recruit] .recruit-variants[data-separate-creatures=true]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px;overflow:visible;touch-action:pan-y}
 #mobile-app[data-mode=recruit] .recruit-variants[data-separate-creatures=true] button{width:100%;max-width:none;box-sizing:border-box;min-width:0;min-height:44px;overflow-wrap:anywhere;white-space:normal}
+
+/* Adventure garrisons use the same large, stable roster as the town Army view. */
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-inventories{grid-template-columns:minmax(0,1fr);align-content:start;gap:10px;min-height:0}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-inventory{padding:0 6px 8px}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-inventory>header{position:static}
+.exchange-troop-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding-top:6px}
+#mobile-app .exchange-troop-grid .exchange-slot{display:flex;flex-direction:column;align-items:center;justify-content:start;gap:4px;min-width:44px;min-height:88px;margin:0;padding:4px;border-image:none;border:1px solid #80643c;background:#2b1d12;text-align:center;touch-action:pan-y}
+#mobile-app .exchange-troop-grid .exchange-slot>span:last-child{font-size:12px;line-height:15px;min-width:0;overflow-wrap:anywhere}
+.exchange-troop-art{display:flex;position:relative;align-items:center;justify-content:center;width:min(100%,80px);aspect-ratio:1;padding:4px 4px 10px;box-sizing:border-box;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),50% 100%,0 calc(100% - 8px));background:linear-gradient(#d5b67a,#77502c)}
+#mobile-app .exchange-troop-art :is(canvas,.unit-portrait){display:block;width:100%;height:100%;object-fit:contain;background:radial-gradient(#55432b,#20170e)}
+.exchange-inventory:nth-child(2) .exchange-troop-art{background:linear-gradient(#bac9df,#596785)}
+.exchange-troop-count{position:absolute;bottom:9px;right:3px;min-width:20px;padding:0 3px;background:#24180e;border:1px solid #d4ad62;color:#fff0ad;font:700 15px/18px Georgia,serif;text-shadow:1px 1px #000}
+#mobile-app .exchange-troop-grid .exchange-slot>span[aria-hidden]{display:grid;place-content:center;min-height:54px;width:100%;color:#c5ab78;background:repeating-linear-gradient(135deg,#271d14 0 5px,#332619 5px 7px)}
+#mobile-app .exchange-troop-grid .exchange-slot:disabled{opacity:.65}
+#mobile-app .exchange-troop-grid .exchange-slot.can-receive{border:2px solid #e6c57d;background:#49371b;box-shadow:inset 0 0 0 1px #786035}
+#mobile-app .exchange-troop-grid .exchange-slot[aria-pressed=true]{border:2px solid #fff0ad;background:#682c1e;outline:1px solid #fff0ad;outline-offset:-4px}
+#mobile-app .hero-exchange-page{touch-action:pan-y}
+#mobile-app .hero-exchange-page .exchange-quantity input{min-height:44px;width:72px}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hero-exchange-page,#mobile-app .hero-exchange-page[data-troops-only=true]{grid-template-columns:minmax(0,1fr) minmax(180px,28%);grid-template-rows:auto auto minmax(0,1fr)}
+ #mobile-app .hero-exchange-page .exchange-toolbar{grid-area:1/2;grid-template-columns:minmax(0,1fr) auto;align-content:start;align-items:start;border-inline-start:1px solid var(--line)}
+ #mobile-app .hero-exchange-page .exchange-toolbar h2{grid-column:1/-1;font-size:18px;padding:4px 0}
+ #mobile-app .hero-exchange-page .exchange-tabs{grid-area:2/2;border-inline-start:1px solid var(--line)}
+ #mobile-app .hero-exchange-page .exchange-inventories{grid-area:1/1/4/2;min-height:0}
+ #mobile-app .hero-exchange-page .exchange-detail,#mobile-app .hero-exchange-page[data-troops-only=true] .exchange-detail{grid-area:3/2;min-height:0;overflow:auto;touch-action:pan-y;grid-template-rows:minmax(44px,1fr) auto}
+ #mobile-app .hero-exchange-page[data-army-view=true] .exchange-inventories{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+ #mobile-app .hero-exchange-page .exchange-actions{grid-template-columns:minmax(0,1fr)}
+ #mobile-app .hero-exchange-page .exchange-quantity{grid-column:auto}
+ #mobile-app .hero-exchange-page[data-troops-only=true] .exchange-detail{grid-row:2/4}
+}
+#mobile-app .exchange-troop-grid .exchange-slot>span:last-child strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+
+@container goonk-viewport (orientation:landscape) and (max-width:700px){
+ .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

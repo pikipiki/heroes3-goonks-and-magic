@@ -216,12 +216,14 @@ bool mobileCampaignExchange(const CPlayerInterface & player,const CGarrisonWindo
  return pending["kind"].String()=="army-exchange"&&pending["army"].isNumber()&&pending["hero"].isNumber()
   &&window->getMobileArmy(0)->id.getNum()==pending["army"].Integer()&&window->getMobileArmy(1)->id.getNum()==pending["hero"].Integer();
 }
-bool mobileSourceGarrison(const CPlayerInterface & player,const CGarrisonWindow * window)
+bool mobileGarrisonExchange(const CPlayerInterface & player,const CGarrisonWindow * window)
 {
- if(!window||!dynamic_cast<const CGGarrison *>(window->getMobileArmy(0)))return false;
+ if(!window||!window->getMobileArmy(0))return false;
  const auto * hero=dynamic_cast<const CGHeroInstance *>(window->getMobileArmy(1));if(!hero||hero->getOwner()!=player.playerID)return false;
- const auto & saved=static_cast<const IGameInfoCallback &>(*player.cb).gameState().getSourceCampaignState();
- return saved["vm"]["initialized"].Bool()&&era_campaign_admission::programAdmitted(saved["programId"].String(),saved["vm"]["programSha256"].String());
+ // Mines and other owned adventure objects also open Leave Guards.
+ // Campaign rewards retain their separate admission and ownership rules.
+ const auto * upper=window->getMobileArmy(0);
+ return dynamic_cast<const CGGarrison *>(upper)||upper->getOwner()==player.playerID;
 }
 JsonNode creature(const CCreature * c,int count){portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
 
@@ -872,7 +874,7 @@ void publishMobileState(){
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
  const auto exchangeWindow=mobileEnabled?ENGINE->windows().topWindow<CExchangeWindow>():nullptr;
  const auto garrisonWindow=mobileEnabled?ENGINE->windows().topWindow<CGarrisonWindow>():nullptr;
- const bool sourceArmyWindow=p&&(mobileCampaignExchange(*p,garrisonWindow.get())||mobileSourceGarrison(*p,garrisonWindow.get()));
+ const bool sourceArmyWindow=p&&(mobileCampaignExchange(*p,garrisonWindow.get())||mobileGarrisonExchange(*p,garrisonWindow.get()));
  const bool openTownHall=mobileEnabled&&townWindow&&mobileTownHall==townWindow->town->id.getNum();
  if(openTownHall)n["openTownHall"].Bool()=true;
  else if(townWindow||!p)mobileTownHall.reset();
@@ -1356,7 +1358,7 @@ void publishMobileState(){
    n["heroExchange"]=mobileExchange(*exchangeWindow,*p);
   else if(sourceArmyWindow)
   {
-   auto & exchange=n["heroExchange"];exchange["classicOnly"].Bool()=false;exchange["troopsOnly"].Bool()=true;const bool nativeGarrison=mobileSourceGarrison(*p,garrisonWindow.get());exchange["garrison"].Bool()=nativeGarrison;
+   auto & exchange=n["heroExchange"];exchange["classicOnly"].Bool()=false;exchange["troopsOnly"].Bool()=true;const bool nativeGarrison=mobileGarrisonExchange(*p,garrisonWindow.get());exchange["garrison"].Bool()=nativeGarrison;
    for(int side=0;side<2;++side)
    {
     const auto * current=garrisonWindow->getMobileArmy(side);JsonNode entry;
@@ -2061,7 +2063,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  }
  if(action==92 || action==93 || action==94)
  {
-  if(const auto window=ENGINE->windows().topWindow<CGarrisonWindow>();mobileCampaignExchange(*p,window.get())||mobileSourceGarrison(*p,window.get()))
+  if(const auto window=ENGINE->windows().topWindow<CGarrisonWindow>();mobileCampaignExchange(*p,window.get())||mobileGarrisonExchange(*p,window.get()))
   {
    if(action==93){shortcut(EShortcut::GLOBAL_ACCEPT);lastPublished=0;return;}
    if(action!=94||!p->makingTurn||a<0||a>3||b<0||b>=7||c<0||c>=7)return;
@@ -2069,7 +2071,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    if(from==to&&source==destination)return;
    const auto creature=from->getCreature(source);if(!creature||creature->getId().getNum()!=e)return;
    const auto target=to->getCreature(destination);const auto count=from->getStackCount(source);const bool swap=target&&target!=creature;
-   if(mobileSourceGarrison(*p,window.get()))
+   if(mobileGarrisonExchange(*p,window.get()))
    {
     if(from->getOwner()!=p->playerID||(swap&&to->getOwner()!=p->playerID))return;
     if(from!=to)
