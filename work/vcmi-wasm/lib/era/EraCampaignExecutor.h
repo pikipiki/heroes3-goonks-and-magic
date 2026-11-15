@@ -157,8 +157,11 @@ public:
  {
   if(!state.continuations.empty())throw std::runtime_error("Campaign event entered while a dialog is suspended");
   std::vector<std::size_t> blocks;
-  for(const auto & candidate:selectors){const auto found=matching(receiver,candidate,post,allBlocks);blocks.insert(blocks.end(),found.begin(),found.end());}
-  std::sort(blocks.begin(),blocks.end());blocks.erase(std::unique(blocks.begin(),blocks.end()),blocks.end());
+  // The caller supplies source dispatch priority (type, subtype, coordinate).
+  // Keep script order inside each group and never replay a repeated selector.
+  for(const auto & candidate:selectors)
+   for(const auto index:matching(receiver,candidate,post,allBlocks))
+    if(std::find(blocks.begin(),blocks.end(),index)==blocks.end())blocks.push_back(index);
   if(blocks.empty())return false;
   Continuation call;call.programSha256=program.sha256;call.blocks=std::move(blocks);state.continuations.push_back(std::move(call));return true;
  }

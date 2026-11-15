@@ -501,7 +501,7 @@ struct SourceCampaignProcessor::Impl final:Host
   {require(heroId==h->id&&lookup(vm.v,998)==position.x&&lookup(vm.v,999)==position.y&&lookup(vm.v,1000)==position.z,"another plot tile visited while a script is suspended");return true;}
   heroId=h->id;objectId=ObjectInstanceID::NONE;player=h->getOwner();updateContext();vm.v[998]=position.x;vm.v[999]=position.y;vm.v[1000]=position.z;
   Executor executor(program,vm,context,*this);
-  if(executor.dispatchAny("OB",{{position.x,position.y,position.z},{int(source->ID),source->subID},{int(source->ID)}})){run();return true;}
+  if(executor.dispatchAny("OB",{{int(source->ID)},{int(source->ID),source->subID},{position.x,position.y,position.z}})){run();return true;}
   heroId=ObjectInstanceID::NONE;return false;
  }
  bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
@@ -522,8 +522,18 @@ struct SourceCampaignProcessor::Impl final:Host
   if(obj->ID!=Obj::EVENT)
   {
    Executor executor(program,vm,context,*this);
-   const auto source=identity(obj);
-   if(executor.dispatchAny("OB",{{pos.x,pos.y,pos.z},{int(source.ID),source.subID},{int(source.ID)}})){run();return true;}
+   const auto * target=dynamic_cast<const CGHeroInstance *>(obj);
+   if(target&&target->id!=h->id)
+   {
+    // HE identifies the encountered hero; HE-1 and source variables still
+    // refer to the visiting hero saved above, including after a dialog reload.
+    if(executor.dispatchAny("HE",{{target->getHeroTypeID().getNum()}})){run();return true;}
+   }
+   else
+   {
+    const auto source=identity(obj);
+    if(executor.dispatchAny("OB",{{int(source.ID)},{int(source.ID),source.subID},{pos.x,pos.y,pos.z}})){run();return true;}
+   }
    const bool handled=!allowsObject(obj,h)||consumeEmptyMonster(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
   }
   const auto * local=dynamic_cast<const CGEvent *>(obj);

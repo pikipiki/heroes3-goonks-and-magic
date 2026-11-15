@@ -14,7 +14,7 @@ const initialHint='Native hero hint initial. '+('This knight guards a story enco
 const updatedHint='Native hero hint updated. '+('The same hero now has a new story description, while the native exchange remains locked. ').repeat(4);
 assert(initialHint.length<=511&&updatedHint.length<=511);
 const fixture={originalMessages:['ZVSE private native hero interaction control'],initializers:[command('VR',[z(408)],'S',[text(initialHint)]),ho('S'),ho('H',[z(408)]),command('VR',[z(409)],'S',[text('Underlying object description')]),command('OB',[n(21),n(18),n(0)],'H',[z(409)])],blocks:[
- {kind:'trigger',receiver:'OB',selectors:[n(21),n(18),n(0)],conditions:[],commands:[message('Native hero approached')]},
+ {kind:'trigger',receiver:'HE',selectors:[n(2)],conditions:[],commands:[message('Native hero approached')]},
  {kind:'trigger',receiver:'OB',selectors:[n(19),n(20),n(0)],conditions:[],commands:[command('VR',[z(408)],'S',[text(updatedHint)]),ho('H',[v(850,'write')]),message('Native hero updated index: %V850')]},
  {kind:'trigger',receiver:'OB',selectors:[n(23),n(20),n(0)],conditions:[],commands:[ho('H',[n(0)]),message('Native hero zero hint')]},
  {kind:'trigger',receiver:'OB',selectors:[n(25),n(20),n(0)],conditions:[],commands:[ho('E',[n(0)]),message('Native hero exchange restored')]}

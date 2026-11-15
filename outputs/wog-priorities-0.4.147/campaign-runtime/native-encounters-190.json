@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.190",
+  "engineSha256": "dedb42fff96bf22aa1963f212b2e25689b9ac2a49ec8603506b7468ddaac5e05",
+  "sourceContract": "encounter-source-contract-190.json",
+  "originalCampaignsEnabled": false,
+  "nativeChecks": [
+    {
+      "case": "hero-meeting",
+      "passed": true,
+      "resultSha256": "473114028c0ba075ce6c7f0046cc3f5b9b1f62b94b576d6c9732e3ea530cc9eb",
+      "fixtureSha256": "44d2b185515f30959a4e2233de230b1f12cd31d81a290e8bd50bc3167286fbfe",
+      "mapSha256": "2e3fd24f26d073a3d214dea03738ecaad44be3e703465798cc4973de5b9f4917",
+      "loadedPending": false,
+      "errors": [],
+      "first": {
+        "cancel": false,
+        "lines": [
+          "Native hero encounter 1 visitor 0 target 2 tile 21/18 coordinate 0"
+        ],
+        "queryId": 8,
+        "title": "Game message",
+        "visitedObject": "Edric the Knight"
+      },
+      "continuation": {
+        "cancel": false,
+        "lines": [
+          "Native hero continuation 1"
+        ],
+        "queryId": 9,
+        "title": "Game message",
+        "visitedObject": "Edric the Knight"
+      },
+      "second": {
+        "cancel": false,
+        "lines": [
+          "Native hero encounter 2 visitor 0 target 2 tile 21/18 coordinate 0"
+        ],
+        "queryId": 16,
+        "title": "Game message",
+        "visitedObject": "Edric the Knight"
+      },
+      "resumed": {
+        "cancel": false,
+        "lines": [
+          "Native hero continuation 2"
+        ],
+        "queryId": 17,
+        "title": "Game message",
+        "visitedObject": "Edric the Knight"
+      },
+      "blocked": null,
+      "exchangeHeroes": [
+        "Orrin",
+        "Edric"
+      ],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 417,
+            "clientHeight": 417,
+            "rect": {
+              "x": 18,
+              "y": 73,
+              "w": 284,
+              "h": 421
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 290,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 693,
+            "clientHeight": 693,
+            "rect": {
+              "x": 18,
+              "y": 73,
+              "w": 354,
+              "h": 697
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 342,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 870,
+            "clientHeight": 870,
+            "rect": {
+              "x": 18,
+              "y": 76.5,
+              "w": 732,
+              "h": 873.5
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 1024,
+            "clientHeight": 1024,
+            "rect": {
+              "x": 18,
+              "y": 78.28125,
+              "w": 784,
+              "h": 1027.71875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "hero-meeting-reload",
+      "passed": true,
+      "resultSha256": "c5f10d3a5ace6133a2568c7bc4c797904283b89b4eaa1fceb5162a5663334cf6",
+      "fixtureSha256": "44d2b185515f30959a4e2233de230b1f12cd31d81a290e8bd50bc3167286fbfe",
+      "mapSha256": "2e3fd24f26d073a3d214dea03738ecaad44be3e703465798cc4973de5b9f4917",
+      "loadedPending": true,
+      "errors": [],
+      "first": {
+        "cancel": false,
+        "lines": [
+          "Native hero encounter 1 visitor 0 target 2 tile 21/18 coordinate 0"
+        ],
+        "queryId": 10,
+        "title": "Game message"
+      },
+      "continuation": {
+        "cancel": false,
+        "lines": [
+          "Native hero continuation 1"
+        ],
+        "queryId": 11,
+        "title": "Game message"
+      },
+      "second": {
+        "cancel": false,
+        "lines": [
+          "Native hero encounter 2 visitor 0 target 2 tile 21/18 coordinate 0"
+        ],
+        "queryId": 18,
+        "title": "Game message",
+        "visitedObject": "Edric the Knight"
+      },
+      "resumed": {
+        "cancel": false,
+        "lines": [
+          "Native hero continuation 2"
+        ],
+        "queryId": 19,
+        "title": "Game message",
+        "visitedObject": "Edric the Knight"
+      },
+      "blocked": null,
+      "exchangeHeroes": [
+        "Orrin",
+        "Edric"
+      ],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 417,
+            "clientHeight": 417,
+            "rect": {
+              "x": 18,
+              "y": 73,
+              "w": 284,
+              "h": 421
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 290,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 693,
+            "clientHeight": 693,
+            "rect": {
+              "x": 18,
+              "y": 73,
+              "w": 354,
+              "h": 697
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 342,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 870,
+            "clientHeight": 870,
+            "rect": {
+              "x": 18,
+              "y": 76.5,
+              "w": 732,
+              "h": 873.5
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 1024,
+            "clientHeight": 1024,
+            "rect": {
+              "x": 18,
+              "y": 78.28125,
+              "w": 784,
+              "h": 1027.71875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "plot-order-final",
+      "passed": true,
+      "resultSha256": "979b50dda8fe365fe2a4ebdacdb2027f19f11299ac78fc1467bbb69120415457",
+      "fixtureSha256": "c09bc5e98c9a8b386e9f9c0bacd03e420214d9ac5b7ff0fc40dc1ea4ab87eb42",
+      "mapSha256": "7ce55111061667428cf03415aa5f08367838672f62a0afa990a58da3fcf9f5e8",
+      "loadedPending": false,
+      "errors": [],
+      "first": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 1 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 17,
+        "title": "Game message"
+      },
+      "second": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 2 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 23,
+        "title": "Game message"
+      },
+      "blocked": {
+        "cancel": false,
+        "lines": [
+          "Native blocking plot 63/3 hero 0 at 24/18; tile 25/18"
+        ],
+        "queryId": 29,
+        "title": "Game message"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 61,
+            "scrollHeight": 284,
+            "clientHeight": 223,
+            "rect": {
+              "x": 18,
+              "y": 166.1015625,
+              "w": 284,
+              "h": 226.796875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 61,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 400.8984375,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 81,
+            "scrollHeight": 371,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 81,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 242,
+            "clientHeight": 242,
+            "rect": {
+              "x": 18,
+              "y": 294.5,
+              "w": 354,
+              "h": 246
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 548.5,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 342,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 137,
+            "clientHeight": 137,
+            "rect": {
+              "x": 18,
+              "y": 438.75,
+              "w": 732,
+              "h": 141
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 587.75,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 116,
+            "clientHeight": 116,
+            "rect": {
+              "x": 18,
+              "y": 528.140625,
+              "w": 784,
+              "h": 120
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 656.140625,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "sourceOrderMessages": [
+        {
+          "cancel": false,
+          "lines": [
+            "Native source order 123"
+          ],
+          "queryId": 18,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Native source order 123123"
+          ],
+          "queryId": 24,
+          "title": "Game message"
+        }
+      ]
+    },
+    {
+      "case": "plot-order-reload",
+      "passed": true,
+      "resultSha256": "6ddcb407225cdeac9b450d361005815abacaa836dcadbac9e8bc6f35ba407e10",
+      "fixtureSha256": "c09bc5e98c9a8b386e9f9c0bacd03e420214d9ac5b7ff0fc40dc1ea4ab87eb42",
+      "mapSha256": "7ce55111061667428cf03415aa5f08367838672f62a0afa990a58da3fcf9f5e8",
+      "loadedPending": true,
+      "errors": [],
+      "first": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 1 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 18,
+        "title": "Game message"
+      },
+      "second": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 2 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 24,
+        "title": "Game message"
+      },
+      "blocked": {
+        "cancel": false,
+        "lines": [
+          "Native blocking plot 63/3 hero 0 at 24/18; tile 25/18"
+        ],
+        "queryId": 30,
+        "title": "Game message"
+      },
+      "layouts": [],
+      "sourceOrderMessages": [
+        {
+          "cancel": false,
+          "lines": [
+            "Native source order 123"
+          ],
+          "queryId": 19,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Native source order 123123"
+          ],
+          "queryId": 25,
+          "title": "Game message"
+        }
+      ]
+    },
+    {
+      "case": "hero-access",
+      "passed": true,
+      "resultSha256": "5aac8140585bacab8db3844ae174bb55160e07099ecc0d43d02d533abddd61b7",
+      "fixtureSha256": "b84409c634ef78c532d62f4c849d628830b5dc26cdd05a2dea663a8c0a07d075",
+      "mapSha256": "53f890d4be6ae233e7471f8b696c4bea5f1b2a906963f4ffb04665634f586b0d",
+      "loadedPending": false,
+      "errors": [],
+      "exchangeHeroes": [
+        "Orrin",
+        "Edric"
+      ],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 82,
+            "scrollHeight": 305,
+            "clientHeight": 223,
+            "rect": {
+              "x": 18,
+              "y": 166.1015625,
+              "w": 284,
+              "h": 226.796875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 82,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 400.8984375,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 93,
+            "scrollHeight": 383,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 93,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 242,
+            "clientHeight": 242,
+            "rect": {
+              "x": 18,
+              "y": 294.5,
+              "w": 354,
+              "h": 246
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 548.5,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 342,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 137,
+            "clientHeight": 137,
+            "rect": {
+              "x": 18,
+              "y": 438.75,
+              "w": 732,
+              "h": 141
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 587.75,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 137,
+            "clientHeight": 137,
+            "rect": {
+              "x": 18,
+              "y": 517.640625,
+              "w": 784,
+              "h": 141
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 666.640625,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "production",
+      "passed": true,
+      "resultSha256": "21d3379afc0e625b4db25d5857ff5061b82391aed575619e8873bb7d4658b8d2",
+      "fixtureSha256": null,
+      "mapSha256": null,
+      "loadedPending": null,
+      "errors": [],
+      "actualFetchedWasmSha256": "dedb42fff96bf22aa1963f212b2e25689b9ac2a49ec8603506b7468ddaac5e05",
+      "productionSmokeValidated": true,
+      "mapSaveReloadValidated": true,
+      "playerRolesPreserved": true,
+      "actualResumedTurnTransitionsValidated": true
+    },
+    {
+      "case": "original-first-objective",
+      "passed": true,
+      "resultSha256": "9ad5dd7f7969f0313bb1b824ed6c1e30eda6e9b3b1b91a7dedb826209f4bfc2b",
+      "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "saveSha256": "a047c35d44587de06a89f9dc2d5e448980ea7d33055f8f45afe89f744b7ef358",
+      "targets": [
+        [
+          17,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          20,
+          26
+        ],
+        [
+          26,
+          27
+        ]
+      ],
+      "dialogs": [
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nThis was your home not long ago. \nBut time flies and now you are on your quest for glory. \n"
+          ],
+          "queryId": 14,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_001.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_001.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 14,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nThis was your home not long ago. \nBut time flies and now you are on your quest for glory. \n"
+          },
+          "title": "Game message",
+          "visitedObject": "Thatched Hut"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nYour friend, Dan, has decided to accompany you in your quest.  \nLook for him in your army. \n"
+          ],
+          "queryId": 18,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_002.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_002.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 18,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nYour friend, Dan, has decided to accompany you in your quest.  \nLook for him in your army. \n"
+          },
+          "title": "Game message",
+          "visitedObject": "Thatched Hut"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Your horse stumbles over a stone.\nA bad omen..."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "You, scoundrel, get back to work!"
+          ],
+          "queryId": 31,
+          "title": "Game message",
+          "visitedObject": "Crusaders"
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "unitTests": {
+    "total": 763,
+    "passed": 729,
+    "skipped": 34,
+    "failed": 0
+  },
+  "limitations": [
+    "Self-hero underlay and post-events remain unvalidated.",
+    "Private controls prove source dispatch and native exchange, not complete original quests, battles, wins or transfers."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.190",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Bounded ordinary LLVM disassembly, corroborated by historical ERM2Object navigation source. No original Windows execution, binary upload or new Hopper result.",
+  "boundedAssemblySha256": "4ed6a19a26a276d778b7b2d88fc15d4704f1800d05afbf07df205fc2e80fc70a",
+  "observations": [
+    {
+      "address": "0x74996c..0x749999",
+      "fact": "ERM2Object stores the visiting hero pointer as source current hero and derives the coordinate context from the visited position."
+    },
+    {
+      "address": "0x7499c1..0x749a36;0x749ac6..0x749af0",
+      "fact": "For a non-hero object, ProcessERM is called for the object type, then type/subtype, then packed coordinates, in separate priority groups."
+    },
+    {
+      "address": "0x749af4..0x749b42",
+      "fact": "A distinct encountered hero selects setup hero number+30100 rather than the coordinate object trigger. The visiting hero pointer remains the current hero."
+    }
+  ],
+  "implementation": [
+    "Preserve priority supplied to dispatchAny, preserve source file order within each group, deduplicate repeated group selectors and serialize the ordered continuation unchanged.",
+    "Pass type, type/subtype, coordinates in original order for physical objects and synthetic source plot tiles.",
+    "Distinct hero contacts dispatch HE for the encountered hero type; HE-1 remains the visitor. Scripted HO native restrictions still gate exchange or combat after completion."
+  ],
+  "limitations": [
+    "Self-hero underlay reconstruction, the complete post-event lifecycle and remaining original receivers are not validated by this lot.",
+    "The private native meeting and trigger controls do not establish complete original quests, battles, victories or campaign transfers. Original campaigns remain disabled."
+  ]
+}
