@@ -292,7 +292,9 @@ struct SourceCampaignProcessor::Impl final:Host
   const auto * owner=gh.gameInfo().getPlayerState(who,false);if(!owner)return false;
   const auto raw=era_campaign_town_clock_json::read(state,who.getNum());if(!raw)return false;
   const auto key=std::to_string(who.getNum());
-  if(!owner->getTowns().empty())
+  const auto ownedTowns=owner->getTowns();
+  const bool hasStandingTown=std::any_of(ownedTowns.begin(),ownedTowns.end(),[](const CGTownInstance * town){return !CGMysteriousCave::sourceTownRuin(town);});
+  if(hasStandingTown)
   {
    // The original checker restores the byte255, rather than forgetting the
    // source clock. Its first subsequent positive countdown starts at the next
@@ -303,7 +305,11 @@ struct SourceCampaignProcessor::Impl final:Host
   int next=advance?era_campaign_town_clock::tick(*raw):*raw;
   // The original loss checker initializes its255 sentinel to the default7.
   if(next==255)next=7;
-  const auto shadow=era_campaign_town_clock::shadow(next);
+  // CasDem relinquishes ruins in its next daily scan without calling the
+  // original loss checker. VCMI checks after moves and again at end turn,
+  // before that scan: those extra checks must not overwrite the OW:D value
+  // written by the post-demolition quest while the ruin is still owned.
+  const auto shadow=ownedTowns.empty()?era_campaign_town_clock::shadow(next):std::nullopt;
   if(next!=*raw||owner->daysWithoutCastle!=shadow)
   {state["townClocks"][key].Integer()=next;persist(townClockMutation(who,next));}
   return true;

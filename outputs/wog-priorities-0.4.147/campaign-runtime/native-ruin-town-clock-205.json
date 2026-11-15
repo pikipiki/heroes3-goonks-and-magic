@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "scope": "Original zc1-2 Rampart success followed by ten real end turns, plus WebKit continuation and finite-clock controls. No second-scenario victory.",
+  "engineSha256": "72083f9c4bf7bed0620ffe57594d6cbc3685299bc5c581fd313d9309a58a3088",
+  "engineDelivery": "whole delivered205 package, no JS/WASM replacement",
+  "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "sourceArchiveModified": false,
+  "questFlagsModified": false,
+  "movementOrArmyCheatsUsed": false,
+  "negativeControl204": {
+    "engineSha256": "839170f423919544570768d52b5c63319f0f625c482cf7c49ce2eafd0fba2b76",
+    "observation": "After the original Rampart praise and OW:D6/254, real end turns produced the native last-day warning and elimination.",
+    "source": "goonk-campaign204-seven-imp2 private native journey; source archive unchanged"
+  },
+  "demolition": {
+    "nativeRemovedBuildings": [
+      8,
+      7,
+      10
+    ],
+    "ruined": true,
+    "originalPositiveDialogue": [
+      [
+        "There's a good boy!\nI am proud of you."
+      ]
+    ]
+  },
+  "originalSurvivingDays": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "survivalSaveSha256": "977e0cbbc21e027c8ead092f6b08a751c4aecf26270836e427fcff9994e8e5bb",
+  "webkitReload": {
+    "inputSaveSha256": "977e0cbbc21e027c8ead092f6b08a751c4aecf26270836e427fcff9994e8e5bb",
+    "survivingDays": [
+      44,
+      45,
+      46
+    ],
+    "outputSaveSha256": "7da14dfcc2b0fc128b7c442e630c7cc20cfb9172c8fd9cbb79bfce7a3005a4e8"
+  },
+  "finiteControls": {
+    "fourDayExpiry": true,
+    "restored254Survives": true,
+    "webkitReloadFourDayExpiry": true,
+    "expiryWarningDays": [
+      10,
+      11,
+      12,
+      13
+    ]
+  },
+  "errors": [],
+  "limitations": [
+    "All public campaign admissions remain false.",
+    "Fortress, Necropolis, second-scenario victory and original final scenario remain pending."
+  ],
+  "productionIntegration": {
+    "passed": true,
+    "productionOnly": true,
+    "actualFetchedWasmSha256": "72083f9c4bf7bed0620ffe57594d6cbc3685299bc5c581fd313d9309a58a3088",
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "nativeHotseat": false,
+        "saveReloadValidated": true,
+        "turnsPassed": true
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "nativeHotseat": true,
+        "saveReloadValidated": true,
+        "turnsPassed": true
+      }
+    ],
+    "errors": []
+  }
+}
