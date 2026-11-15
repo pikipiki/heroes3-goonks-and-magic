@@ -39,10 +39,46 @@
       "iconLarge": "crossover/marine.png",
       "timeBetweenFidgets": 10,
       "animationTime": {
-        "walk": 1,
-        "attack": 1,
-        "idle": 10
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              240,
+              170,
+              255
+            ],
+            "end": [
+              255,
+              175,
+              60,
+              255
+            ]
+          }
+        ]
       }
-    }
+    },
+    "sound": {
+      "attack": "crossover/marine-attack.wav",
+      "shoot": "crossover/marine-attack.wav"
+    },
+    "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics."
   }
 }

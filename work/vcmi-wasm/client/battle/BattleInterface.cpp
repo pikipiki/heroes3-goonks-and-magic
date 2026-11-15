@@ -204,9 +204,10 @@ void BattleInterface::redrawBattlefield()
 	ENGINE->windows().totalRedraw();
 }
 
-void BattleInterface::stackReset(const CStack * stack)
+void BattleInterface::stackReset(const CStack * stack,bool crossoverResume)
 {
-	stacksController->stackReset(stack);
+	stacksController->stackReset(stack,crossoverResume);
+ if(crossoverResume)ENGINE->windows().totalRedraw();
 }
 
 void BattleInterface::stackAdded(const CStack * stack)

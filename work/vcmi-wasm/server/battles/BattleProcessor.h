@@ -14,6 +14,7 @@
 #include "../../lib/battle/BattleSide.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
+struct SetStackEffect;
 class CGHeroInstance;
 class CGTownInstance;
 class CArmedInstance;
@@ -56,7 +57,7 @@ class BattleProcessor : boost::noncopyable
 
 void startBattlePrepared(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile, const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town);
 public:
- bool crossoverCommand(PlayerColor player,int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors);
+ bool crossoverCommand(PlayerColor player,int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors,const std::string & resumeState="",std::shared_ptr<SetStackEffect> resumeEffects=nullptr);
 	explicit BattleProcessor(CGameHandler * gameHandler);
 	~BattleProcessor();
 

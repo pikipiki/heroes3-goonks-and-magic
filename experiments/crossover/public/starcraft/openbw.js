@@ -5,7 +5,7 @@ import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
 
 // Build id — CI replaces the placeholder with the commit SHA for cache-busting.
-const BUILD = 'openbw-6b870ff3f7692260';
+const BUILD = 'openbw-46770cc65619bc61';
 
 // Any build whose SHA wasn't stamped in by CI is a local/dev build. CI's stamp is a
 // GLOBAL sed of the placeholder, which also rewrites comparisons that spell it out —
@@ -600,11 +600,11 @@ async function boot(session) {
   // wasm caching so rebuilds are picked up. In production we want the opposite:
   // let the browser cache and reuse the compiled module across visits.
   // Any build whose SHA wasn't stamped in by CI is a local/dev build — including one served
-  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-6b870ff3f7692260
+  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-46770cc65619bc61
   // cache-buster is a constant locally, so a plain fetch would serve a stale, skewed wasm).
   // BUILD is replaced by CI with the commit SHA (see .github/workflows/pages.yml), so a
   // new deploy fetches a fresh wasm URL instead of a stale cached one. Locally it stays
-  // the 'openbw-6b870ff3f7692260' placeholder and we cache-bust per load instead.
+  // the 'openbw-46770cc65619bc61' placeholder and we cache-bust per load instead.
   // vs-Computer loads a bot-enabled module (sandbox + BWAPI server + the chosen bot);
   // each exports the same surface plus openbw_bot_*, so everything else is identical.
   const wasmName = session.bot ? session.bot.module : 'openbw.wasm';

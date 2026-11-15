@@ -107,7 +107,7 @@ public:
 	bool shouldRotate(const CStack * stack, const BattleHex & oldPos, const BattleHex & nextHex) const;
 	bool facingRight(const CStack * stack) const;
 
-	void stackReset(const CStack * stack);
+	void stackReset(const CStack * stack, bool crossoverResume=false);
 	void stackAdded(const CStack * stack, bool instant); //new stack appeared on battlefield
 	void stackRemoved(uint32_t stackID); //stack disappeared from batlefiled
 	void stackActivated(const CStack *stack); //active stack has been changed

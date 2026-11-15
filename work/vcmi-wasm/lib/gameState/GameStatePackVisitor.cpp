@@ -1754,7 +1754,11 @@ void BattleStatePackVisitor::visitStacksInjured(StacksInjured & pack)
 
 void BattleStatePackVisitor::visitBattleUnitsChanged(BattleUnitsChanged & pack)
 {
+ if(pack.crossoverHeroCasts>=0)if(auto * battle=dynamic_cast<BattleInfo*>(&battleState))battle->getSide(BattleSide::ATTACKER).castSpellsCount=pack.crossoverHeroCasts;
  if(pack.crossoverMode>=0)if(auto * battle=dynamic_cast<BattleInfo*>(&battleState)){battle->crossover=pack.crossoverMode!=0;battle->crossoverFromClassic=pack.crossoverMode==2;}
+ // A crossover snapshot relocates the whole formation simultaneously. In
+ // particular, a resurrection must be checked at its destination, not its old hex.
+ if(pack.crossoverMode==0)if(auto * battle=dynamic_cast<BattleInfo*>(&battleState))for(const auto & elem:pack.changedStacks)if(elem.operation==BattleChanges::EOperation::RESET_STATE)if(auto * stack=battle->getStack(elem.id,false))stack->position=BattleHex(elem.data["state"]["position"].Integer());
 	for(auto & elem : pack.changedStacks)
 	{
 		switch(elem.operation)

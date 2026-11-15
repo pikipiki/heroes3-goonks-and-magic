@@ -730,14 +730,14 @@ void CPlayerInterface::battleUnitsChanged(const BattleID & battleID, const std::
 		{
 		case UnitChanges::EOperation::RESET_STATE:
 			{
-				const CStack * stack = cb->getBattle(battleID)->battleGetStackByID(info.id );
+				const CStack * stack = cb->getBattle(battleID)->battleGetStackByID(info.id,false);
 
 				if(!stack)
 				{
 					logGlobal->error("Invalid unit ID %d", info.id);
 					continue;
 				}
-				battleInt->stackReset(stack);
+				battleInt->stackReset(stack,info.data["crossoverResume"].Bool());
 			}
 			break;
 		case UnitChanges::EOperation::REMOVE:

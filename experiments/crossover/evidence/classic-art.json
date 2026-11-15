@@ -1,0 +1,138 @@
+{
+  "marine": {
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 3
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 3
+      },
+      "death": {
+        "count": 12,
+        "distinct": 7
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "firebat": {
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 8
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 6
+      },
+      "death": {
+        "count": 12,
+        "distinct": 8
+      }
+    },
+    "sounds": []
+  },
+  "zergling": {
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 8
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 5
+      },
+      "death": {
+        "count": 12,
+        "distinct": 6
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "hydralisk": {
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 7
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 3
+      },
+      "death": {
+        "count": 12,
+        "distinct": 7
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "zealot": {
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 8
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 5
+      },
+      "death": {
+        "count": 12,
+        "distinct": 6
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "dragoon": {
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 7
+      },
+      "move": {
+        "count": 8,
+        "distinct": 8
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 5
+      },
+      "death": {
+        "count": 12,
+        "distinct": 6
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  }
+}

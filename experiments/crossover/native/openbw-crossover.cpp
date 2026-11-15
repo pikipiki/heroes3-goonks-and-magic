@@ -124,7 +124,7 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
     if(stride>=12 || group.owner==0){
       auto& type=crossover_types[i];type=*definition;
       // The campaign map may override unit HP; crossover health comes from the live battle.
-      if(stride>=12)type.hitpoints=bwgame::fp8::integer(row[5]);
+      if(stride>=12)type.hitpoints=bwgame::fp8::integer(std::max(1,row[5]-(type.has_shield?type.shield_points:0)));
       if(group.heroes){
         // Private definitions preserve Heroes stats without editing SC types.
         auto& weapon=crossover_weapons[i];weapon=*definition->ground_weapon;
@@ -209,8 +209,8 @@ OPENBW_EXPORT(openbw_crossover_apply_magic) int openbw_crossover_apply_magic(int
   const bool newGroup=group->initial==0&&group->ids.empty();
   auto& d=crossover_magic_definitions[group->stack];bwgame::a_vector<bwgame::unit_t*> live;for(auto id:group->ids)if(crossover_live(id,group->owner))live.push_back(g_ui->get_unit(id));
   if(!d.base){d.base=live.empty()?g_ui->get_unit_type(bwgame::UnitTypes(r[21])):live.front()->unit_type;d.baseDamage=group->initial?d.base->ground_weapon->damage_amount:(r[7]+r[8]+1)/2;d.baseArmor=group->initial||!group->heroes?d.base->armor:r[6]/4;d.attack=r[5];d.speed=std::max(1,r[9]);d.type=*d.base;d.weapon=*d.base->ground_weapon;d.flingy=*g_ui->get_flingy_type(d.base->flingy);}
-  const int maximum=r[4];
-  int oldHealth=0;for(auto* unit:live)oldHealth+=unit->hp.integer_part();const int oldMaximum=live.empty()?r[4]:live.front()->unit_type->hitpoints.integer_part();int absorbed=0;if(r[18]<0&&!group->heroes){int remaining=-r[18];for(auto* unit:live)if(remaining>0&&unit->unit_type->has_shield){const int amount=std::min(remaining,unit->shield_points.integer_part());if(amount>0){unit->shield_points-=bwgame::fp8::integer(amount);g_ui->create_shield_damage_effect(unit,bwgame::direction_t());absorbed+=amount;remaining-=amount;}}}const int desiredHealth=r[20]?0:newGroup?r[3]:std::max(0,int(int64_t(oldHealth)*maximum/std::max(1,oldMaximum))+r[18]+absorbed);const int desiredCount=r[20]?0:newGroup?r[2]:std::min(128,int(live.size())+r[19]);
+  const int shieldMaximum=!group->heroes&&d.base->has_shield?d.base->shield_points:0;
+  const int maximum=std::max(1,r[4]-shieldMaximum),desiredHealth=r[20]?0:r[3],desiredCount=r[20]?0:r[2];
   d.type.hitpoints=bwgame::fp8::integer(maximum);d.type.armor=d.baseArmor;d.weapon.damage_amount=d.baseDamage;d.weapon.damage_bonus=group->heroes?0:d.base->ground_weapon->damage_bonus;d.weapon.damage_type=d.base->ground_weapon->damage_type;
   if(!r[10])d.weapon.max_range=std::min(32,d.base->ground_weapon->max_range);
   else d.weapon.max_range=d.base->ground_weapon->max_range;
@@ -219,8 +219,14 @@ OPENBW_EXPORT(openbw_crossover_apply_magic) int openbw_crossover_apply_magic(int
   std::sort(live.begin(),live.end(),[](auto* a,auto* b){return a->hp<b->hp;});
   while(int(live.size())>desiredCount){g_ui->unit_deal_damage(live.front(),live.front()->hp,nullptr,~0);live.erase(live.begin());}
   while(int(live.size())<desiredCount){const auto at=crossover_camera+bwgame::xy(std::clamp(r[11]+int(live.size()%4)*16,0,799),std::clamp(r[12]+int(live.size()/4)*16,0,499));auto* unit=g_ui->trigger_create_unit(&d.type,at,r[1]);if(!unit)return 0;group->ids.push_back(g_ui->get_unit_id(unit));live.push_back(unit);if(r[1]==0)g_ui->issue_order(unit,false,g_ui->get_order_type(bwgame::Orders::Nothing),{});}
-  int health=0;for(auto* unit:live){unit->unit_type=&d.type;unit->flingy_type=&d.flingy;if(unit->owner!=r[1])g_ui->set_unit_owner(unit,r[1],false);unit->lockdown_timer=d.disabled?255:0;if(group->heroes)unit->status_flags&=~(bwgame::unit_t::status_flag_speed_upgrade|bwgame::unit_t::status_flag_cooldown_upgrade);g_ui->update_unit_speed(unit);if(oldMaximum!=maximum)unit->hp=bwgame::fp8::integer(std::max(1,int(int64_t(unit->hp.integer_part())*maximum/std::max(1,oldMaximum))));if(unit->hp>d.type.hitpoints)unit->hp=d.type.hitpoints;health+=unit->hp.integer_part();if(r[14])g_ui->move_unit(unit,crossover_camera+bwgame::xy(r[11],r[12]));}
-  int delta=desiredHealth-health;for(auto* unit:live){if(delta<0){const int damage=std::min(-delta,unit->hp.integer_part());if(damage)g_ui->unit_deal_damage(unit,bwgame::fp8::integer(damage),nullptr,~0);delta+=damage;}else if(delta>0){const int heal=std::min(delta,maximum-unit->hp.integer_part());unit->hp+=bwgame::fp8::integer(heal);delta-=heal;}}
+  // The Heroes cohort has one wounded member. Repack aggregate durability
+  // without healing or dropping distributed damage when switching simulations.
+  for(size_t i=0;i<live.size();i++){auto* unit=live[i];unit->unit_type=&d.type;unit->flingy_type=&d.flingy;if(unit->owner!=r[1])g_ui->set_unit_owner(unit,r[1],false);unit->lockdown_timer=d.disabled?255:0;
+   if(group->heroes)unit->status_flags&=~(bwgame::unit_t::status_flag_speed_upgrade|bwgame::unit_t::status_flag_cooldown_upgrade);g_ui->update_unit_speed(unit);
+   const int available=i? r[4]:desiredHealth-(desiredCount-1)*r[4],hp=std::min(maximum,std::max(1,available)),shields=std::clamp(available-maximum,0,shieldMaximum);
+   if(shieldMaximum&&shields<unit->shield_points.integer_part())g_ui->create_shield_damage_effect(unit,bwgame::direction_t());unit->hp=bwgame::fp8::integer(hp);unit->shield_points=bwgame::fp8::integer(shields);
+   if(r[14])g_ui->move_unit(unit,crossover_camera+bwgame::xy(r[11],r[12]));
+  }
  }
  return 1;
 }
@@ -299,7 +305,12 @@ OPENBW_EXPORT(openbw_crossover_order) void openbw_crossover_order(int stack,int 
 OPENBW_EXPORT(openbw_crossover_sprite) const uint8_t* openbw_crossover_sprite(int requested) {
  if(!g_ui || crossover_battle<0 || requested<1 || requested>65535)return nullptr;
  bwgame::unit_t* unit=nullptr;
- for(const auto& group:crossover_groups)if(!group.heroes)for(auto id:group.ids)if(id.raw_value==requested && g_ui->get_unit(id) && g_ui->get_unit(id)->sprite)unit=g_ui->get_unit(id);
+ for(const auto& group:crossover_groups)if(!group.heroes)for(auto id:group.ids)if(id.raw_value==requested){
+  // Dead units leave the live lookup before their original death script ends.
+  // Only render the same generation; never resolve a recycled unit slot.
+  auto* candidate=id.index()?g_ui->st.units_container.try_get(id.index()-1):nullptr;
+  if(candidate&&g_ui->get_unit_id(candidate)==id&&candidate->sprite)unit=candidate;
+ }
  if(!unit||!unit->sprite)return nullptr;
  constexpr int width=96,height=96;
  std::array<uint8_t,width*height> indexed{};

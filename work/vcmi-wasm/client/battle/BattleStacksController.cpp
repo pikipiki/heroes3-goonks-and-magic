@@ -147,8 +147,9 @@ void BattleStacksController::collectRenderableObjects(BattleRenderer & renderer)
 	}
 }
 
-void BattleStacksController::stackReset(const CStack * stack)
+void BattleStacksController::stackReset(const CStack * stack,bool crossoverResume)
 {
+ if(crossoverResume&&!stackAnimation.count(stack->unitId()))stackAdded(stack,true);
 	auto iter = stackAnimation.find(stack->unitId());
 
 	if(iter == stackAnimation.end())
@@ -158,6 +159,7 @@ void BattleStacksController::stackReset(const CStack * stack)
 	}
 
 	auto animation = iter->second;
+ if(crossoverResume){animation->pos.moveTo(getStackPositionAtHex(stack->getPosition(),stack));animation->setType(stack->alive()?ECreatureAnimType::HOLDING:ECreatureAnimType::DEAD);return;}
 
 	if(stack->alive() && animation->isDeadOrDying())
 	{

@@ -33,18 +33,53 @@
       }
     },
     "graphics": {
-      "animation": "crossover/marine",
-      "map": "crossover/marine-map",
-      "iconSmall": "crossover/marine.png",
-      "iconLarge": "crossover/marine.png",
+      "animation": "crossover/firebat",
+      "map": "crossover/firebat-map",
+      "iconSmall": "crossover/firebat.png",
+      "iconLarge": "crossover/firebat.png",
       "timeBetweenFidgets": 10,
       "animationTime": {
-        "walk": 1,
-        "attack": 1,
-        "idle": 10
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
       }
     },
-    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+    "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics.",
+    "sound": {
+      "attack": "crossover/firebat-attack.wav",
+      "shoot": "crossover/firebat-attack.wav"
+    }
   },
   "zergling": {
     "name": {
@@ -60,7 +95,7 @@
     "hitPoints": 35,
     "attack": 8,
     "defense": 3,
-    "shots": 32,
+    "shots": 0,
     "damage": {
       "min": 8,
       "max": 8
@@ -76,18 +111,22 @@
     "excludeFromRandomization": true,
     "abilities": {},
     "graphics": {
-      "animation": "crossover/marine",
-      "map": "crossover/marine-map",
-      "iconSmall": "crossover/marine.png",
-      "iconLarge": "crossover/marine.png",
+      "animation": "crossover/zergling",
+      "map": "crossover/zergling-map",
+      "iconSmall": "crossover/zergling.png",
+      "iconLarge": "crossover/zergling.png",
       "timeBetweenFidgets": 10,
       "animationTime": {
-        "walk": 1,
-        "attack": 1,
-        "idle": 10
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
       }
     },
-    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+    "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics.",
+    "sound": {
+      "attack": "crossover/zergling-attack.wav",
+      "shoot": "crossover/zergling-attack.wav"
+    }
   },
   "hydralisk": {
     "name": {
@@ -123,18 +162,53 @@
       }
     },
     "graphics": {
-      "animation": "crossover/marine",
-      "map": "crossover/marine-map",
-      "iconSmall": "crossover/marine.png",
-      "iconLarge": "crossover/marine.png",
+      "animation": "crossover/hydralisk",
+      "map": "crossover/hydralisk-map",
+      "iconSmall": "crossover/hydralisk.png",
+      "iconLarge": "crossover/hydralisk.png",
       "timeBetweenFidgets": 10,
       "animationTime": {
-        "walk": 1,
-        "attack": 1,
-        "idle": 10
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              155,
+              255,
+              100,
+              255
+            ],
+            "end": [
+              40,
+              160,
+              25,
+              255
+            ]
+          }
+        ]
       }
     },
-    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+    "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics.",
+    "sound": {
+      "attack": "crossover/hydralisk-attack.wav",
+      "shoot": "crossover/hydralisk-attack.wav"
+    }
   },
   "zealot": {
     "name": {
@@ -147,10 +221,10 @@
       "gold": 500
     },
     "speed": 8,
-    "hitPoints": 100,
+    "hitPoints": 160,
     "attack": 11,
     "defense": 4,
-    "shots": 32,
+    "shots": 0,
     "damage": {
       "min": 11,
       "max": 11
@@ -166,18 +240,22 @@
     "excludeFromRandomization": true,
     "abilities": {},
     "graphics": {
-      "animation": "crossover/marine",
-      "map": "crossover/marine-map",
-      "iconSmall": "crossover/marine.png",
-      "iconLarge": "crossover/marine.png",
+      "animation": "crossover/zealot",
+      "map": "crossover/zealot-map",
+      "iconSmall": "crossover/zealot.png",
+      "iconLarge": "crossover/zealot.png",
       "timeBetweenFidgets": 10,
       "animationTime": {
-        "walk": 1,
-        "attack": 1,
-        "idle": 10
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
       }
     },
-    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+    "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics. Protoss shields are included in total Heroes hit points so damage is conserved across combat modes.",
+    "sound": {
+      "attack": "crossover/zealot-attack.wav",
+      "shoot": "crossover/zealot-attack.wav"
+    }
   },
   "dragoon": {
     "name": {
@@ -190,7 +268,7 @@
       "gold": 500
     },
     "speed": 6,
-    "hitPoints": 100,
+    "hitPoints": 180,
     "attack": 26,
     "defense": 4,
     "shots": 32,
@@ -213,17 +291,52 @@
       }
     },
     "graphics": {
-      "animation": "crossover/marine",
-      "map": "crossover/marine-map",
-      "iconSmall": "crossover/marine.png",
-      "iconLarge": "crossover/marine.png",
+      "animation": "crossover/dragoon",
+      "map": "crossover/dragoon-map",
+      "iconSmall": "crossover/dragoon.png",
+      "iconLarge": "crossover/dragoon.png",
       "timeBetweenFidgets": 10,
       "animationTime": {
-        "walk": 1,
-        "attack": 1,
-        "idle": 10
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              225,
+              245,
+              255,
+              255
+            ],
+            "end": [
+              70,
+              130,
+              255,
+              255
+            ]
+          }
+        ]
       }
     },
-    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+    "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics. Protoss shields are included in total Heroes hit points so damage is conserved across combat modes.",
+    "sound": {
+      "attack": "crossover/dragoon-attack.wav",
+      "shoot": "crossover/dragoon-attack.wav"
+    }
   }
 }

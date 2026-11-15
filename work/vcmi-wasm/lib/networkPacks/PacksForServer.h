@@ -12,6 +12,7 @@
 #include "ArtifactLocation.h"
 #include "NetPacksBase.h"
 #include "TradeItem.h"
+#include "SetStackEffect.h"
 
 #include "../int3.h"
 #include "../battle/BattleAction.h"
@@ -276,9 +277,11 @@ struct DLL_LINKAGE CrossoverBattleCommand : public CPackForServer
  int32_t operation=0;
  BattleID battleID=BattleID::NONE;
  std::vector<std::pair<uint32_t,int32_t>> survivors;
+ std::string resumeState;
+ std::shared_ptr<SetStackEffect> resumeEffects;
  void visitTyped(ICPackVisitor & visitor) override;
  template<typename Handler> void serialize(Handler & h)
- { h & static_cast<CPackForServer &>(*this);h & operation;h & battleID;h & survivors; }
+ { h & static_cast<CPackForServer &>(*this);h & operation;h & battleID;h & survivors;h & resumeState;h & resumeEffects; }
 };
 
 struct DLL_LINKAGE CaveBuilderAction : public CPackForServer

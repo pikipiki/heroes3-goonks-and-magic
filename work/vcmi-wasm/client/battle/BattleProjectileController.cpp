@@ -362,6 +362,13 @@ void BattleProjectileController::createProjectile(const CStack * shooter, Point 
 	}
 
 
+ // Malformed creature data must not dereference an empty projectile in battle.
+ if(!projectile){
+  logAnim->error("Creature '%s' has no usable projectile; using a visible fallback ray",shooterInfo.getNameSingularTranslated());
+  auto ray=std::make_shared<ProjectileRay>();ray->rayConfig.push_back({ColorRGBA(255,225,160,255),ColorRGBA(255,130,70,255)});
+  ray->speed=std::min(computeProjectileFlightTime(from,dest,AnimationControls::getRayProjectileSpeed()),1.0f/0.35f);projectile=ray;
+ }
+
  projectile->mobileAnchored=shooter->getPosition().isValid()&&target&&target->getPosition().isValid();
  if(projectile->mobileAnchored){
   projectile->mobileFromAnchor=owner.fieldController->hexPositionAbsolute(shooter->getPosition()).center();

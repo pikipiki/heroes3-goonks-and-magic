@@ -34,6 +34,7 @@
 #include "../../lib/modding/IdentifierStorage.h"
 #include "../../lib/networkPacks/PacksForClient.h"
 #include "../../lib/networkPacks/PacksForClientBattle.h"
+#include "../../lib/networkPacks/SetStackEffect.h"
 #include "../../lib/CPlayerState.h"
 #include <vstd/RNG.h>
 
@@ -149,7 +150,7 @@ void BattleProcessor::startBattlePrepared(const CArmedInstance *army1, const CAr
 		gameHandler->queries->addQuery(newBattleQuery);
 	}
 
-	if(!battle->crossover)flowProcessor->onBattleStarted(*battle);
+	flowProcessor->onBattleStarted(*battle);
 }
 
 void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInstance *army2)
@@ -309,7 +310,7 @@ bool BattleProcessor::makePlayerBattleAction(const BattleID & battleID, PlayerCo
 	return result;
 }
 
-bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors)
+bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID battleID,const std::vector<std::pair<uint32_t,int32_t>> & survivors,const std::string & resumeState,std::shared_ptr<SetStackEffect> resumeEffects)
 {
 #ifndef __EMSCRIPTEN__
  return false;
@@ -335,6 +336,33 @@ bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID
   BattleUnitsChanged change;change.battleID=battleID;change.crossoverMode=2;gameHandler->sendAndApply(change);battle->replayAllowed=false;return true;
  }
  if(!battle->crossover)return false;
+ if(operation==4&&survivors.empty()){
+  const auto reject=[&](const char * reason){gameHandler->complain(std::string("Retour classique refusé : ")+reason);return false;};
+  if(resumeState.empty()||resumeState.size()>2*1024*1024)return reject("état de combat manquant ou trop volumineux");
+  const JsonNode snapshot(resumeState.data(),resumeState.size(),"crossover return");const auto & rows=snapshot["stacks"].Vector();
+  const int mana=snapshot["mana"].Integer(),casts=snapshot["heroCasts"].Integer();const auto hero=battle->battleGetFightingHero(BattleSide::ATTACKER);
+  if(rows.empty()||rows.size()>128||mana<0||(hero?mana>hero->mana:mana!=0)||casts<0||casts>128)return reject("mana ou nombre de groupes incohérent");
+  std::set<uint32_t> seen;int totals[2]={0,0};BattleUnitsChanged additions,changes;additions.battleID=changes.battleID=battleID;SetStackEffect effects;effects.battleID=battleID;
+  for(const auto & row:rows){const int id=row["id"].Integer(),side=row["side"].Integer(),count=row["count"].Integer(),hp=row["hp"].Integer(),maximum=row["maxHp"].Integer();
+   if(id<0||id>100000||!seen.insert(id).second||side<0||side>1||count<0||count>128||maximum<1||maximum>10000||hp<0||hp>count*maximum||(count&&hp<=(count-1)*maximum))return reject("identifiant, effectif ou points de vie invalides");
+   const auto & serialized=row["unitState"];const auto & state=serialized["state"];if(state["health"]["fullUnits"].Integer()!=(count?count-1:0)||state["health"]["firstHPleft"].Integer()!=(count?hp-(count-1)*maximum:0))return reject("blessure de groupe incohérente");
+   const auto original=battle->getStack(id,false);if(original){if(row["type"].Integer()!=original->creatureId().getNum()||side!=(original->unitSide()==BattleSide::ATTACKER?0:1)||(!original->summoned&&!original->cloned&&count>std::max<int>(original->unitBaseAmount(),original->getCount())))return reject("le groupe ne correspond pas à l’armée de départ");}
+   else {if(!row["temporary"].Bool()||(!row["info"]["newUnitInfo"]["summoned"].Bool()&&!state["cloned"].Bool())||count==0)continue;const CreatureID type(row["type"].Integer());if(type.getNum()<0||type.getNum()>=LIBRARY->creh->objects.size())return reject("créature invoquée inconnue");UnitChanges add(id,UnitChanges::EOperation::ADD);add.data=row["info"];additions.changedStacks.push_back(add);}
+   if(count&&!BattleHex(state["position"].Integer()).isValid())return reject("position de combat invalide");totals[side]+=count;
+   UnitChanges change(id,UnitChanges::EOperation::RESET_STATE);change.data=serialized;change.data["crossoverResume"].Bool()=true;change.healthDelta=hp-(original?original->getAvailableHealth():0);changes.changedStacks.push_back(change);
+   std::vector<Bonus> remove;if(original)for(const auto & bonus:original->getExportedBonusList())if(bonus->source==BonusSource::SPELL_EFFECT)remove.push_back(*bonus);
+   effects.toRemove.emplace_back(id,remove);
+  }
+  for(const auto & stack:battle->stacks)if(!seen.count(stack->unitId()))return reject("groupe initial absent du transfert");if(totals[0]>128||totals[1]>128)return reject("effectif trop élevé");
+  if(!resumeEffects||resumeEffects->battleID!=battleID||!resumeEffects->toRemove.empty()||!resumeEffects->toUpdate.empty()||resumeEffects->toAdd.size()>128)return reject("état des sorts incohérent");
+  std::set<uint32_t> effectIDs;for(const auto & entry:resumeEffects->toAdd){if(!seen.count(entry.first)||!effectIDs.insert(entry.first).second||entry.second.size()>256)return reject("effets de groupe incohérents");for(const auto & bonus:entry.second)if(bonus.source!=BonusSource::SPELL_EFFECT)return reject("source de sort invalide");if(battle->getStack(entry.first,false)||std::any_of(additions.changedStacks.begin(),additions.changedStacks.end(),[&](const UnitChanges & add){return add.id==entry.first;}))effects.toAdd.push_back(entry);}
+  BattleObstaclesChanged removeObstacles,addObstacles;removeObstacles.battleID=addObstacles.battleID=battleID;std::set<int> obstacleIDs;
+  for(const auto & obstacle:battle->obstacles)if(dynamic_cast<const SpellCreatedObstacle*>(obstacle.get()))removeObstacles.changes.emplace_back(obstacle->uniqueID,ObstacleChanges::EOperation::REMOVE);else obstacleIDs.insert(obstacle->uniqueID);
+  if(snapshot["obstacles"].Vector().size()>512)return reject("trop d’obstacles");for(const auto & row:snapshot["obstacles"].Vector()){const int id=row["id"].Integer();if(id<0||id>100000||!obstacleIDs.insert(id).second)return reject("obstacle de sort invalide");ObstacleChanges change(id,ObstacleChanges::EOperation::ADD);change.data=row["data"];addObstacles.changes.push_back(change);}
+  if(!removeObstacles.changes.empty())gameHandler->sendAndApply(removeObstacles);if(!addObstacles.changes.empty())gameHandler->sendAndApply(addObstacles);
+  if(!additions.changedStacks.empty())gameHandler->sendAndApply(additions);gameHandler->sendAndApply(effects);changes.crossoverMode=0;changes.crossoverHeroCasts=casts;gameHandler->sendAndApply(changes);
+  if(hero&&mana!=hero->mana){SetMana update(hero->id,mana,ChangeValueMode::ABSOLUTE);gameHandler->sendAndApply(update);}battle->replayAllowed=false;flowProcessor->resumeCrossover(*battle);return true;
+ }
  if(operation==2 && survivors.empty()){
   if(battle->crossoverFromClassic){BattleUnitsChanged change;change.battleID=battleID;change.crossoverMode=0;gameHandler->sendAndApply(change);}else{battle->crossover=false;flowProcessor->onBattleStarted(*battle);}return true;
  }

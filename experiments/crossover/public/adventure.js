@@ -28,7 +28,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     const modeStatus = doc.createElement('p');
     modeStatus.className = 'crossover-mode-status';
     modeStatus.setAttribute('role', 'status');
-    let latestBattleId = -1, canSwitch = false, switchPending = false;
+    let latestBattleId = -1, canSwitch = false, switchPending = false, returningToClassic = false;
     const menuDemo = makeButton('crossover-demo-menu', 'Démo Heroes × StarCraft', 'demo');
     const toggle = makeButton('crossover-toggle', 'Combats en temps réel : activés', 'toggle');
     toggle.setAttribute('aria-pressed', 'true');
@@ -48,6 +48,8 @@ export function installAdventure(target, base, onExit, trial = false) {
         if (warmPromise)
             return warmPromise;
         assetsReady = false;
+        realTime.disabled = true;
+        realTime.textContent = 'Préparation…';
         hint('Préparation de StarCraft…');
         warmFrame = doc.createElement('iframe');
         warmFrame.dataset.crossoverEngine = '';
@@ -66,6 +68,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                     if (disposed)
                         return;
                     assetsReady = true;
+                    realTime.disabled = !canSwitch || switchPending;
+                    realTime.textContent = '▶ Temps réel';
                     hint('');
                     demo.disabled = latestOnline || latestMode !== 'menu' || trial;
                     menuDemo.disabled = latestOnline || checkpoint || !latestTurn;
@@ -146,7 +150,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         realTime.disabled = !canSwitch || !assetsReady;
         modeStatus.textContent = 'Ce combat ne permet pas le passage en temps réel.';
     } }, 6000); };
-    const closePanel = () => { const nativeApp = doc.querySelector('#mobile-app'); if (nativeApp)
+    const closePanel = () => { returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app'); if (nativeApp)
         nativeApp.inert = false; sceneDispose?.(); sceneDispose = undefined; if (timer !== undefined)
         win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (!disposed)
         void prepareEngine().catch(() => { }); };
@@ -160,7 +164,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.id = 'crossover-arena';
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
-        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="command-console"><div class="precombat-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-loadout" disabled>Préparer 5 sorts</button></div><div class="battle-actions sc-command-grid"><button id="crossover-move" disabled>↗<small>Déplacer</small></button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>■<small>Arrêter</small></button><button class="quick-slot" data-quick-slot="0" disabled><kbd>1</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 1</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="1" disabled><kbd>2</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 2</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="2" disabled><kbd>3</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 3</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="3" disabled><kbd>4</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 4</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="4" disabled><kbd>5</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 5</small><span class="quick-cost"></span></button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><div class="console-utility"><button id="crossover-spells" disabled>Tous les sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-loadout-slots" hidden></div><div id="crossover-spell-options"></div><div id="crossover-friendly-targets" hidden></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><p>Terrans, Zergs et Protoss : armes et armures 3/3, boucliers 3.</p><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis un sort du héros ou d’une créature, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
+        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Continuer ce combat au tour par tour">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="command-console"><div class="precombat-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-loadout" disabled>Préparer 5 sorts</button></div><div class="battle-actions sc-command-grid"><button id="crossover-move" disabled>↗<small>Déplacer</small></button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>■<small>Arrêter</small></button><button class="quick-slot" data-quick-slot="0" disabled><kbd>1</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 1</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="1" disabled><kbd>2</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 2</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="2" disabled><kbd>3</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 3</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="3" disabled><kbd>4</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 4</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="4" disabled><kbd>5</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 5</small><span class="quick-cost"></span></button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><div class="console-utility"><button id="crossover-spells" disabled>Tous les sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-loadout-slots" hidden></div><div id="crossover-spell-options"></div><div id="crossover-friendly-targets" hidden></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><p>Terrans, Zergs et Protoss : armes et armures 3/3, boucliers 3.</p><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis un sort du héros ou d’une créature, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
         panel.hidden = true;
         doc.body.append(panel);
         const nativeApp = doc.querySelector('#mobile-app');
@@ -469,7 +473,13 @@ export function installAdventure(target, base, onExit, trial = false) {
         catch (e) {
             status.textContent = String(e);
         } };
-        panel.querySelector('#crossover-cancel').onclick = () => { cancelled.add(activePlan.battleId); command(2, activePlan.battleId); closePanel(); hint('Combat repris dans Heroes, sans appliquer les pertes du test annulé.'); };
+        panel.querySelector('#crossover-cancel').onclick = () => { if (returningToClassic || !ready)
+            return; api().pause(); returningToClassic = true; activePanel.dataset.transferring = 'true'; status.textContent = 'Transfert des unités et des blessures vers le combat classique…'; void (async () => { while (magic.busy())
+            await new Promise(resolve => win.setTimeout(resolve, 16)); await magic.sync(); command(4, activePlan.battleId); win.setTimeout(() => { if (returningToClassic) {
+            returningToClassic = false;
+            delete activePanel.dataset.transferring;
+            status.textContent = 'Le transfert n’a pas été confirmé. Le combat reste en pause ; réessaie.';
+        } }, 10000); })().catch(error => { returningToClassic = false; delete activePanel.dataset.transferring; status.textContent = String(error); }); };
         void (async () => {
             try {
                 const sc = await prepared;
@@ -504,6 +514,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                     return;
                 panel.hidden = false;
                 timer = win.setInterval(() => {
+                    if (returningToClassic)
+                        return;
                     try {
                         const native = sc.openbwCrossover?.battle();
                         if (!native)
@@ -627,6 +639,10 @@ export function installAdventure(target, base, onExit, trial = false) {
         if (autoAttack && state.mode === 'map' && state.turn && state.crossoverEnabled) {
             autoAttack = false;
             win.Module?._vcmiMobileCommand?.(112, 0, 0, 0, 0, 0);
+        }
+        if (returningToClassic && !state.crossover && state.mode === 'battle') {
+            closePanel();
+            hint('Combat classique repris avec les mêmes unités et blessures.');
         }
         if (state.crossover) {
             try {

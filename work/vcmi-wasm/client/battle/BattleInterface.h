@@ -211,7 +211,7 @@ public:
 
 	//call-ins
 	void startAction(const BattleAction & action);
-	void stackReset(const CStack * stack);
+	void stackReset(const CStack * stack, bool crossoverResume=false);
 	void stackAdded(const CStack * stack); //new stack appeared on battlefield
 	void stackRemoved(uint32_t stackID); //stack disappeared from batlefiled
 	void stackActivated(const CStack *stack); //active stack has been changed

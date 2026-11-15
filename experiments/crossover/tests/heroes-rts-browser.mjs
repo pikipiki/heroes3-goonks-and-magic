@@ -129,7 +129,7 @@ try{
  const restored=await hero.evaluate(()=>goonkMobileState.armies.find(row=>row.slots.some(Boolean)));
  assert.deepEqual(restored.slots.map(row=>row&&[row.key,row.count]),army.slots.map(row=>row&&[row.key,row.count]));
  record({name:'Native save and reload preserve exactly the post-RTS Heroes army',saveBytes,restored:restored.slots.map(row=>row&&[row.key,row.count])});
- // A second fresh adventure exercises the product's cancellation path.
+ // A second fresh adventure exercises the product's classic continuation path.
  await page.goto(process.env.CROSSOVER_URL||'http://127.0.0.1:8779/index.html');hero=page;
  await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:180000});
  await cmd(20,1);await hero.waitForFunction(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady,null,{timeout:60000});await cmd(111);await hero.waitForFunction(()=>goonkMobileState.selectedMap==='Crossover - duel StarCraft'&&goonkMobileState.lobbyReady);await cmd(22);
@@ -142,7 +142,7 @@ try{
  await hero.waitForFunction(()=>goonkMobileState.mode==='battle'&&!goonkMobileState.crossover&&goonkMobileState.canAutoCombat,null,{timeout:60000});
  await cmd(44,1);await hero.waitForFunction(()=>goonkMobileState.dialogKind==='battle-result',null,{timeout:120000});
  assert.equal(await hero.evaluate(()=>window.testCrossoverSubmission),undefined);
- record('Cancellation resumes a real native Heroes fight through completion without submitting any RTS casualties');
+ record('Classic continuation resumes a real native Heroes fight through completion without submitting an RTS victory');
  assert.deepEqual(pageErrors,[],'No browser runtime exceptions');report.passed=true;save();
 }catch(e){report.passed=false;report.error=String(e);report.heroes=await hero?.evaluate(()=>goonkMobileState).catch(()=>null);save();await page.screenshot({path:out+'/failure.png',fullPage:true}).catch(()=>{});process.exitCode=1;}
 finally{await browser.close();}

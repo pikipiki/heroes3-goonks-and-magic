@@ -4,10 +4,10 @@
   "sdk": "wasi-sdk-33.0",
   "compiler": "clang version 22.1.0-wasi-sdk (https://github.com/llvm/llvm-project 4434dabb69916856b824f68a64b029c67175e532)",
   "sourceTreeSha256": "4ded02c19dd23bc0507b1634ee11bc8728fa69cdb7bec16e5a6bb4b3fca96cf7",
-  "adapterSha256": "f35b9c53f9f778c1d49c46356c0437a30a0cdbde2a0bb4b63d9745f95037ca80",
+  "adapterSha256": "e67a2d6ecb8bde7aec8ac5895c428b36f00c4f5f6254cc054699ced777dcfea5",
   "buildScriptSha256": "ab738bf01213266f0808c231ce90832c325aac0a4dfa1709422eee8ccf673f8a",
-  "sha256": "6b870ff3f769226065bab6eb4dbf7f7713a8191755ad560532c332c434dbdc21",
-  "bytes": 1427994,
+  "sha256": "46770cc65619bc61674c4da438e7f0409fe2c22b2634f50bd2e7510025545d07",
+  "bytes": 1427410,
   "exports": [
     "memory",
     "_initialize",

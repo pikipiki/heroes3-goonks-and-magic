@@ -56,6 +56,7 @@
 #include "../../lib/mapObjects/army/CStackInstance.h"
 #include "../../lib/battle/CBattleInfoCallback.h"
 #include "../../lib/battle/IBattleState.h"
+#include "../../lib/battle/BattleInfo.h"
 #include "../../lib/bonuses/BonusParameters.h"
 #include "../../lib/callback/GameRandomizer.h"
 #include "../../lib/entities/building/TownFortifications.h"
@@ -168,6 +169,15 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 		auto target = spells::Target();
 		cast.cast(gameHandler->spellcastEnvironment(), target);
 	}
+}
+
+void BattleFlowProcessor::resumeCrossover(const CBattleInfoCallback & battle)
+{
+ if(owner->checkBattleStateChanges(battle))return;
+ if(battle.getBattle()->getRound()<1){onBattleStarted(battle);return;}
+ const auto active=battle.battleActiveUnit();
+ if(active&&active->alive()&&active->canMove())setActiveStack(battle,active,BattleUnitTurnReason::HERO_SPELLCAST);
+ else activateNextStack(battle);
 }
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
@@ -424,7 +434,11 @@ void BattleFlowProcessor::onTacticsEnded(const CBattleInfoCallback & battle)
 		return;
 
 	if(startNextRound(battle, true))return;
-	activateNextStack(battle);
+ // Initialize the same Heroes battle in both modes; only initiative waits
+ // while its live combat is delegated to the real-time controller.
+ const auto * info=dynamic_cast<const BattleInfo*>(battle.getBattle());
+ if(!info||!info->crossover)activateNextStack(battle);
+
 }
 
 bool BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, bool isFirstRound)

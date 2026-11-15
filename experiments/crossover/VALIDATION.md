@@ -1,5 +1,15 @@
 # Validation — 14 novembre 2026
 
+## Continuité bidirectionnelle et unités classiques — 15 novembre 2026
+
+- `tests/roundtrip-browser.mjs` réussi dans Chromium et WebKit, au format tactile paysage 844×390 : mêmes six types StarCraft, santé de départ identique, vrais sorts sur un Dragoon et un Behemoth, invocation native, retour classique, deux rounds d’attaques classiques, puis retour RTS. Vérification exacte de la santé totale de chaque groupe dans les deux directions, ainsi que des invocations et de la mana ; aucune modification artificielle de PV dans le test.
+- `tests/classic-turns-browser.mjs` réussi dans Chromium et WebKit, au format tactile portrait 390×844 : trois rounds manuels, munitions Marines dépensées, blessures Heroes réelles, stabilité du tour sans action, puis combat natif complet jusqu’au résultat sans exception navigateur.
+- Les Zealots et Dragoons partagent une santé canonique incluant les boucliers (160 et 180). La consolidation des blessures utilise la règle Heroes d’un membre blessé par groupe ; le total est conservé.
+- Export original pour six créatures : animations distinctes de marche, attaque et mort, WAV d’attaque, palette transparente compatible VCMI. Les tireurs possèdent un projectile et un déclenchement natifs Heroes. `tests/classic-assets.test.mjs` valide les données et les palettes ; preuve de diversité des images : `evidence/classic-art.json`.
+- Compilation VCMI `ninja -j32 html5` et compilation de l’adaptateur OpenBW réussies. Tests Heroes : 740, dont 694 réussis et 46 ignorés ; tests crossover : 36 réussis. `verify:web` et TypeScript strict réussis.
+- Bundle Pages final : 999 144 535 octets, sous la limite de 1 Go.
+- Le retour « Classique » continue maintenant le même combat ; les anciennes preuves d’annulation ci-dessous décrivent le comportement historique.
+
 ## Passage classique → temps réel et rendu mobile — 15 novembre 2026
 
 - VCMI : compilation `ninja -j32 html5` réussie ; archive dédiée mise à jour.

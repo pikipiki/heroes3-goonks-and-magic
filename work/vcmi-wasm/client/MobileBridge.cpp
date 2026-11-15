@@ -1045,7 +1045,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePreviewAtlasAck(){previewAtlasPen
 namespace { bool mobileCrossoverEnabled=false; int mobileCrossoverSuppressed=-1; }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiCrossoverCommand(int operation,int battleID,const int32_t * rows,int count)
 {
- if(!ENGINE || count<0 || count>64 || (count&&!rows) || operation<0 || operation>3)return;
+ if(!ENGINE || count<0 || count>64 || (count&&!rows) || operation<0 || operation>4)return;
  std::vector<std::pair<uint32_t,int32_t>> survivors;
  for(int i=0;i<count;i++){if(rows[i*2]<0 || rows[i*2+1]<0)return;survivors.emplace_back(rows[i*2],rows[i*2+1]);}
  ENGINE->dispatchMainThread([operation,battleID,survivors](){
@@ -1062,7 +1062,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiCrossoverCommand(int operation,int batt
    // Presentation flag only. Authoritative combat resumes after the server accepts cancellation.
    const_cast<BattleInfo*>(active)->crossover=false;mobileCrossoverSuppressed=battleID;
   }
-  player->cb->crossoverCommand(operation,BattleID(battleID),survivors);lastPublished=0;
+  player->cb->crossoverCommand(operation,BattleID(battleID),survivors,operation==4?crossoverResumeSnapshot():std::string(),operation==4?crossoverResumeEffects():nullptr);lastPublished=0;
  });
 }
 
@@ -1836,7 +1836,7 @@ void publishMobileState(){
  n["crossoverEnabled"].Bool()=mobileCrossoverEnabled;
  if(p && battleWindow && CPlayerInterface::battleInt){
   const auto info=dynamic_cast<const BattleInfo*>(CPlayerInterface::battleInt->getBattle()->getBattle());
-  if(info && info->crossover && info->battleID.getNum()!=mobileCrossoverSuppressed){
+  if(info && info->crossover && info->getRound()>=1 && info->battleID.getNum()!=mobileCrossoverSuppressed){
    publishCrossoverArt(prepareCrossoverMagic(*info));
    auto & data=n["crossover"];data["battleId"].Integer()=info->battleID.getNum();data["fromClassic"].Bool()=info->crossoverFromClassic;data["magic"]=crossoverMagicCatalogue(*info);
    for(const auto & stack:info->stacks){

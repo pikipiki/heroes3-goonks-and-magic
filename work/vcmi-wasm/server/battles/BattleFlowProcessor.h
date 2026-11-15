@@ -67,6 +67,7 @@ class BattleFlowProcessor : boost::noncopyable
 public:
 	explicit BattleFlowProcessor(BattleProcessor * owner, CGameHandler * newGameHandler);
 
+	void resumeCrossover(const CBattleInfoCallback & battle);
 	void onBattleStarted(const CBattleInfoCallback & battle);
 	void onTacticsEnded(const CBattleInfoCallback & battle);
 	void onActionMade(const CBattleInfoCallback & battle, const BattleAction & ba);
