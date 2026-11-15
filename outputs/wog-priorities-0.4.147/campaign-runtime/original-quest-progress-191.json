@@ -1,0 +1,774 @@
+{
+  "schemaVersion": 1,
+  "engineSha256": "dedb42fff96bf22aa1963f212b2e25689b9ac2a49ec8603506b7468ddaac5e05",
+  "originalCampaignsEnabled": false,
+  "scope": "Unmodified original first scenario, actual journeys and native source dialogue choices; no original victory or transfer yet.",
+  "stages": [
+    {
+      "case": "kirr-final",
+      "passed": true,
+      "resultSha256": "8ac1ef9760fb1ccbb33611dbf54e99a55a4d14a945b288a7552d8a99a154bf33",
+      "saveSha256": "68f1736f46dc6e1ab21d79481c732f13bbe8e260cadb7109cb51ec1ef1d76ed7",
+      "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "lastDay": 3,
+      "targets": [
+        [
+          23,
+          26
+        ],
+        [
+          20,
+          24
+        ],
+        [
+          18,
+          23
+        ],
+        [
+          18,
+          21
+        ],
+        [
+          15,
+          20
+        ],
+        [
+          14,
+          17
+        ]
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+          ],
+          "queryId": 36,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Peasants",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "Those guards look so scary. \nBut we are not afraid... \nRight?"
+          ],
+          "queryId": 37,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "Hey! Stay where you are!\nWe're coming!"
+          ],
+          "queryId": 43,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+          ],
+          "queryId": 57,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Peasants",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "I have been thinking of those guards. \nMaybe there is another easy way out."
+          ],
+          "queryId": 58,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "What an ugly building.\nWhat could it be?\n"
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            "When you knock on the door, you get no answer. \nSuch a strange place.  \nIt has obviously been abandoned long ago."
+          ],
+          "queryId": 67,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_011.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_011.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 67,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": "When you knock on the door, you get no answer. \nSuch a strange place.  \nIt has obviously been abandoned long ago."
+          },
+          "title": "Game message",
+          "visitedObject": "Object (doesn't work yet)"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nYou search every corner of the abandoned house and find a note: \n\"You will probably find this note, Native hero! \nYou are not the first who tried his luck.  \nTake this book and find some help.\" \n**Kirr**  \nThe note is glued to an old book.  \nJust a bible, maybe... \n"
+          ],
+          "queryId": 68,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_011.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_011.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 68,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nYou search every corner of the abandoned house and find a note: \n\"You will probably find this note, Native hero! \nYou are not the first who tried his luck.  \nTake this book and find some help.\" \n**Kirr**  \nThe note is glued to an old book.  \nJust a bible, maybe... \n"
+          },
+          "title": "Game message"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "melnik-final",
+      "passed": true,
+      "resultSha256": "feb045c1d31758e899e4f5e17a593b3bd2a2f4a13628da731e9815bb1e957991",
+      "saveSha256": "48f4771de17532b4e2fdb29a6ce85089adc748ef6bd122412cfb79de5653bae0",
+      "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "lastDay": 5,
+      "targets": [
+        [
+          18,
+          21
+        ],
+        [
+          19,
+          19
+        ],
+        [
+          23,
+          20
+        ],
+        [
+          23,
+          23
+        ],
+        [
+          23,
+          26
+        ],
+        [
+          22,
+          29
+        ]
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+          ],
+          "queryId": 80,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Peasants",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "I remember Kirr. But... \nnot that good. You know, we were so young then."
+          ],
+          "queryId": 81,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "Hey! Stay where you are!\nWe're coming!"
+          ],
+          "queryId": 98,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+          ],
+          "queryId": 108,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Peasants",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Oh, the bible.\nDon't you think that it's a sin to take someone's bible. \nWhat? Ah, for that...\nYes, that's a good idea."
+          ],
+          "queryId": 109,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Monks",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "God bless you, Native hero. \nAllow me to help you one day."
+          ],
+          "queryId": 112,
+          "title": "Game message",
+          "visitedObject": "Scholar"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Monks",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 345
+              }
+            }
+          ],
+          "lines": [
+            "Yes, I knew him. God knows, he was a righteous man. \nKirr left his home long ago and no one has seen him since.  \nNo one knows what happened to him... \nMaybe Melnik has heard news of him."
+          ],
+          "queryId": 113,
+          "title": "Game message",
+          "visitedObject": "Scholar"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Hello, Native hero, how are you?"
+          ],
+          "queryId": 127,
+          "title": "Game message",
+          "visitedObject": "Water Wheel"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Kirr... I am not sure... \nPerhaps that knight knows more about him. \nDid you talk to him? \nHis name? Well... I could be mistaken... Ratibor."
+          ],
+          "queryId": 128,
+          "title": "Game message",
+          "visitedObject": "Water Wheel"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "ratibor",
+      "passed": true,
+      "resultSha256": "941de08cc8ffd1f4053e71417bd6fd9d7f171ab87db120251b580a790e02a64d",
+      "saveSha256": "a5ec69f834dae4cd2efcdacebb5d2417f5bef8cc9ee660dc3abeff16dbe84e79",
+      "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "lastDay": 7,
+      "targets": [
+        [
+          21,
+          26
+        ],
+        [
+          18,
+          25
+        ],
+        [
+          15,
+          22
+        ],
+        [
+          13,
+          20
+        ],
+        [
+          10,
+          17
+        ],
+        [
+          8,
+          14
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          16
+        ]
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+          ],
+          "queryId": 135,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Peasants",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 345
+              }
+            }
+          ],
+          "lines": [
+            "Wow, a brave knight! \nI am sure he will help us. \nWhat was his name...  \n... oh, yea, Ratibor! \nSuch a fine name... \nHe is definitely a nice man... \nso strong... so gentle... \n"
+          ],
+          "queryId": 136,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "Hey! Stay where you are!\nWe're coming!"
+          ],
+          "queryId": 140,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+          ],
+          "queryId": 157,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Get yourself gone, peasant!"
+          ],
+          "queryId": 167,
+          "title": "Game message",
+          "visitedObject": "Ratibor the Knight"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "How do you know my name? \nAh, Melnik.\nThat peaceful guy, but too weak to be a warrior..."
+          ],
+          "queryId": 168,
+          "title": "Game message",
+          "visitedObject": "Ratibor the Knight"
+        },
+        {
+          "cancel": false,
+          "choices": [],
+          "lines": [
+            "Ratibor looks very irritable. \nIt doesn't seem safe to talk to him. \nAnd he certainly has no humor. \nBut not talking to him will get you nowhere."
+          ],
+          "queryId": 169,
+          "scriptDialog": {
+            "canCancel": false,
+            "choiceLabel": "So you decide to say:",
+            "choices": [
+              {
+                "hint": "Why don't you ask the monks for some spiritual guidance!",
+                "label": "Monks",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 420
+                },
+                "value": 1
+              },
+              {
+                "hint": "Why don't you ask the Crusaders to help you?",
+                "label": "Crusaders",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 306,
+                  "y": 420
+                },
+                "value": 2
+              },
+              {
+                "hint": "Why don't you take a rest at Kirr's cottage, old man?",
+                "label": "Kirr's cottage",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 502,
+                  "y": 420
+                },
+                "value": 3
+              },
+              {
+                "hint": "Why don't you ask Dan to teach you a pitchfork fighting. Better than that heavy sword.",
+                "label": "Dan's pitchfork",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 468
+                },
+                "value": 4
+              }
+            ],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_009.bmp",
+                "hint": "Why don't you ask the monks for some spiritual guidance!",
+                "mediaKey": "cmp.res/11_009.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 131,
+                  "y": 318
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_010.bmp",
+                "hint": "Why don't you ask the Crusaders to help you?",
+                "mediaKey": "cmp.res/11_010.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 271,
+                  "y": 318
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_011.bmp",
+                "hint": "Why don't you take a rest at Kirr's cottage, old man?",
+                "mediaKey": "cmp.res/11_011.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 390,
+                  "y": 300
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_012.bmp",
+                "hint": "Why don't you ask Dan to teach you a pitchfork fighting. Better than that heavy sword.",
+                "mediaKey": "cmp.res/11_012.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 551,
+                  "y": 318
+                }
+              }
+            ],
+            "queryId": 169,
+            "resultVariable": 1,
+            "selection": 1,
+            "text": "Ratibor looks very irritable. \nIt doesn't seem safe to talk to him. \nAnd he certainly has no humor. \nBut not talking to him will get you nowhere."
+          },
+          "title": "Game message",
+          "visitedObject": "Ratibor the Knight"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Great! I need new forces! March, march!"
+          ],
+          "queryId": 170,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Crusaders",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "Oh no, Ratibor, \nWe can't take your offer. \nWe are under orders to stay here and see to it that  \nthose dumb peasants keep working hard! \n"
+          ],
+          "queryId": 174,
+          "title": "Game message",
+          "visitedObject": "Pikemen"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Pikemen",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 281
+              }
+            }
+          ],
+          "lines": [
+            "I am too old to follow Ratibor. \nWith you... well... if you don't move too fast."
+          ],
+          "queryId": 175,
+          "title": "Game message",
+          "visitedObject": "Pikemen"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Pikeman with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 177,
+          "title": "Game message",
+          "visitedObject": "Pikemen"
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "checkpointCorrection": "The first experimental Kirr export copied a partially written file. The retained final checkpoint waits for goonk-save-persisted, then successfully loads in the next native journey. Production autosave already waits for this closed-file notification."
+}

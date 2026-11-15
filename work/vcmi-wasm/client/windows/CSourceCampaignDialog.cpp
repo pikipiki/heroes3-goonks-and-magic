@@ -64,6 +64,16 @@ CSourceCampaignDialog::CSourceCampaignDialog(QueryID query,const JsonNode & desc
  else for(std::size_t index=0;index<model["pictures"].Vector().size();++index)
  {
   const auto & picture=model["pictures"].Vector()[index];if(picture["file"].String().empty())continue;
+  if(const auto * movie=era_campaign_media::movie(picture["file"].String()))
+  {
+   const int width=kind=="bitmap"?580:100,height=kind=="bitmap"?420:100;
+   const double scale=std::min({1.0,double(width)/movie->width,double(height)/movie->height});
+   const int w=std::max(1,int(movie->width*scale)),h=std::max(1,int(movie->height*scale));
+   const Rect target(20+int(index)*140+(width-w)/2,(kind=="bitmap"?20:260)+(height-h)/2,w,h);
+   auto image=std::make_shared<CAnimImage>(AnimationPath::builtin(movie->animation),0,target);
+   if(image->size()!=movie->frames)throw std::runtime_error("Original source movie frames unavailable");
+   moviePictures.push_back({index,image,movie,0});model["pictures"].Vector()[index]["mediaKey"].String()=movie->key;addUsedEvents(TIME);continue;
+  }
   for(const auto & candidate:era_campaign_media::candidates(picture["file"].String()))
   {
    const auto path=ImagePath::builtin(candidate.resource);if(!CResourceHandler::get()->existsResource(path))continue;
@@ -77,12 +87,12 @@ CSourceCampaignDialog::CSourceCampaignDialog(QueryID query,const JsonNode & desc
   }
  }
  if(kind=="bitmap")
- {if(customPictures.empty())throw std::runtime_error("Original source bitmap asset unavailable");addUsedEvents(KEYBOARD);}
+ {if(customPictures.empty()&&moviePictures.empty())throw std::runtime_error("Original source bitmap asset unavailable");addUsedEvents(KEYBOARD);}
  selection=kind=="checklist"?int(model["initial"].Integer()):model["choices"].Vector().empty()?0:int(model["choices"].Vector().front()["value"].Integer());
  for(std::size_t i=0;i<model["choices"].Vector().size();++i)
  {
   const auto & choice=model["choices"].Vector()[i];const int value=choice["value"].Integer();
-  auto button=std::make_shared<CButton>(Point(20+int(i%3)*196,(!illustrations.empty()||!customPictures.empty()?380:260)+int(i/3)*48),AnimationPath::builtin("settingsWindow/button190"),CButton::tooltip(choice["hint"].String()),[this,value](){choose(value);});
+  auto button=std::make_shared<CButton>(Point(20+int(i%3)*196,(!illustrations.empty()||!customPictures.empty()||!moviePictures.empty()?380:260)+int(i/3)*48),AnimationPath::builtin("settingsWindow/button190"),CButton::tooltip(choice["hint"].String()),[this,value](){choose(value);});
   button->setTextOverlay(choice["label"].String(),FONT_SMALL,Colors::WHITE);choiceButtons.push_back(button);
  }
  auto confirm=std::make_shared<CButton>(Point(420,465),AnimationPath::builtin("IOKAY.DEF"),CButton::tooltip(),[this](){this->confirm();});confirm->assignedKey=EShortcut::GLOBAL_RETURN;buttons.push_back(confirm);
@@ -114,6 +124,16 @@ void CSourceCampaignDialog::keyPressed(EShortcut key)
  if(model["kind"].String()=="bitmap"&&(key==EShortcut::GLOBAL_RETURN||key==EShortcut::GLOBAL_CANCEL)){confirm();return;}
  CInfoWindow::keyPressed(key);
 }
+void CSourceCampaignDialog::tick(uint32_t milliseconds)
+{
+ movieElapsed+=milliseconds;bool changed=false;
+ for(auto & movie:moviePictures)
+ {
+  const auto frame=era_campaign_media::movieFrame(*movie.source,movieElapsed);
+  if(frame!=movie.frame){movie.frame=frame;movie.image->setFrame(frame);changed=true;}
+ }
+ if(changed)redraw();
+}
 void CSourceCampaignDialog::submit(int value,const std::string & answer)
 {
  if(submitted||!GAME->interface()||answer.size()>2048)return;
@@ -127,6 +147,7 @@ JsonNode CSourceCampaignDialog::presentation()const
  auto result=model;result["queryId"].Integer()=ID.getNum();
  for(std::size_t i=0;i<illustrations.size()&&i<result["pictures"].Vector().size();++i)result["pictures"].Vector()[i]["rect"]=bounds(illustrations[i]->image?illustrations[i]->image->pos:illustrations[i]->pos);
  for(const auto & image:customPictures)result["pictures"].Vector()[image.first]["rect"]=bounds(image.second->pos);
+ for(const auto & movie:moviePictures)result["pictures"].Vector()[movie.index]["rect"]=bounds(movie.image->pos);
  for(std::size_t i=0;i<choiceButtons.size();++i)result["choices"].Vector()[i]["rect"]=bounds(choiceButtons[i]->pos);
  return result;
 }

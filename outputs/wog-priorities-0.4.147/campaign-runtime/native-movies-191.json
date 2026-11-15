@@ -1,0 +1,1443 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.191",
+  "engineSha256": "6e965eeaeae7e8b3707064082fbcc6420212e45d533d90d9af7e1b436ef94664",
+  "sourceContract": "movie-source-contract-191.json",
+  "originalCampaignsEnabled": false,
+  "nativeChecks": [
+    {
+      "case": "movie-sun",
+      "passed": true,
+      "resultSha256": "c616c49600e39e4320fdb89178d731a6d20b6bc464e3de24a0847921c8adffcf",
+      "loadedPending": false,
+      "errors": [],
+      "movie": "cmp.res/11_sun.avi",
+      "animation": {
+        "nativeFrameHashes": [
+          "dd405b6d0b586baf28aa78ac9ad5075008f3f0b1879322bcdf0e3271979ad7d0",
+          "6173218b346193086f6ce1c09654f0df2d807ee0122557b90cbe460fbc534072",
+          "73f307189bc1f11a7e0159659417300fd618762846c1aeff67c9afb5a0e3a856",
+          "222d16657f95f98658169a52e048eeecfee10636a8b3b5422591e70a4a153e45",
+          "a5e8c0b46d26c941b677a09c0de06dcb0b65fca0d153a44e6bf1652a6837e798"
+        ],
+        "browserScreenshotHashes": [
+          "646b6816d14d3371cdcaf5c6998af08aa65e2d6ca56fe20b8cebb51c976e1a49",
+          "ff186109679f59d16816c88d7ec4425d5a007ff523b2d588f2dcf1e4f058ae4c",
+          "a77745c0bab5ea0cf3bcd7eabfb595f1854710aabb1710b9627ab7ce2a829e0f",
+          "e075a3b765c1b70fbcfeddf7a88bf07700030fafa7df2d2b1454717136847663"
+        ],
+        "fps": 15,
+        "frameCount": 5,
+        "decodedRgbaSha256": "1d86b437616c1eef5a8987562a6dd2f9fbea1c28cb2748f1175a616b2c9caddc"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "aef81c85bc886c61d736e37d8617ec0f5ebd27726c3329d3b938a321ff562489",
+      "mapSha256": "367e83c01cc746b14904d8cfcff9a1c82308d6fcbb1653cb56b747faf42317de"
+    },
+    {
+      "case": "movie-shield",
+      "passed": true,
+      "resultSha256": "6989203761cf7e90a8a4d8f2be70424246fdb33925edf46260cb5640015ddc02",
+      "loadedPending": false,
+      "errors": [],
+      "movie": "cmp.res/11_shield.avi",
+      "animation": {
+        "nativeFrameHashes": [
+          "d2152163c0dbf18e2004af4a29732e0e3fe93746484da7aa292b071b8d5f3228",
+          "2750a60d50360822bd7be028cd1b30e095c57d42be7fd70854d18aa1ce9273f8",
+          "f71fff210bfb095b464e5321c1ec9a51c7e9bc05798bee09ef5c0887180f009c",
+          "c9d5b3abe360c755b152dfa6f96ccd5f4a911dfce97cbf5438f6aeadc928abaf",
+          "172dd72041fa8f8f33ed8a3a32fd9b7ebb0cec4ca00fc7f76feab4ff18942300",
+          "c3795bd44b2669553200356b48e9b6c3098e073113af0be7fe18e358ae6828df",
+          "be1760375a0eab3711be288d8816f5b4fe10efd8e0c9fbf92f83c066e261f348",
+          "0723bd198d9c70f1fd3ee38b5cc7c327e26e00312261b2ff97fc0ede7e2d5d67",
+          "3515d5fe2448ae2d7541af417f58c017d2266f04ecd84e2fdda6cab1fc983083",
+          "86dd9e0e2208f3c875e750a1f517251278a2f268b63a873fbe88657ff820c098",
+          "90121b20efb0b1c5caac89a7fde8a9dcbcfe4ef5e55ac94ff4abaabc9902dcc6",
+          "75ccfb08445854ea70ec86c43587a7c5459a43b26883acc9ad363bd1aabbe764",
+          "929af0d02265dd26adcda7eae7b6e785576b9ef93079689a513d12d2be39f1d2",
+          "d3be6148092806cef9092edfd70301525efd747924f0073ba6af1c8d73590bab",
+          "26978903bca7a6b2fc0da1d608955db84ef566fa2a37d2fa8191549434456d88",
+          "fe9a80e5c4ddf9f9bad599d41237087f4bc2d5bab51ba3e83176b5f1c38e847e",
+          "6af46d592213895d714c6af1aabca246907f7a470eec788b3f142b0c18536415",
+          "0dcd3990a6dab20e17485b681f277a6f77ba3babe63e1953373899581c5f783f"
+        ],
+        "browserScreenshotHashes": [
+          "e1c0e217c96abdc18e52edd71795123808f34ab832332bf14c477a3396fa6dd4",
+          "3f2113891aec5f771e8b318866a11578bea5fb9a6dfdbeebd118b1fa398f8130",
+          "65d5e014c073625477880f3b8e3910b96dec3962a175d3cc16cbfe85af1a8819",
+          "c1c712d6ffe61b6b5814ebd6436c890a0dda20272fa8732c9d089a40dc807e85"
+        ],
+        "fps": 15,
+        "frameCount": 21,
+        "decodedRgbaSha256": "6449939fe204cfe265c3b8065dcfe2a143bc1e5f9926f313fab78ed6843f7c7c"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "9bbb3c8346e3e51dca0e5a6c60f02b6466c379d0b8566624862f0cb08b713121",
+      "mapSha256": "589080d37ad11ed99ed3907322ee8c6d7350b5c6311ab58a14e702a93854b04e"
+    },
+    {
+      "case": "movie-sword",
+      "passed": true,
+      "resultSha256": "1407970721eeb23f5a244ac753a842960d0fdc7ecb5ce3e6befb27e170f3925b",
+      "loadedPending": false,
+      "errors": [],
+      "movie": "cmp.res/11_sword.avi",
+      "animation": {
+        "nativeFrameHashes": [
+          "caf5af8d7cc0255ad59c9364c0a0a174d252b469fca9810b57f8d298047c1a5a",
+          "9621f0df97f04f434ffac6cf656234d0925f4d93711dddc0f24e52d5211a659e",
+          "77fa7b13e56791c91c0a9dc286c6b63fb8fe442a2b4b9661600caa7443a0ab9f",
+          "413590424261b0f820d9a42dd4bfc4080cd30e19044cb3960a30bd88c9a04911",
+          "0ec7ba575653aedce4bbf615c75273297be5e36d7bc6784b97d56ca452a9f1b5",
+          "4a4b51d5648ec1e0bded6c1704cfbbcbd73222eaba7ae37066c63773acabeadd",
+          "7640ba497f42b6a154ec945232950cccce4bf158648bac92ad3835a496dcb080",
+          "b39b6cf0c1e8fb81aae2504c9c12a912d8db6314071f74115f42cd9ced21dfbc"
+        ],
+        "browserScreenshotHashes": [
+          "51ab24eb4068cacdca415462a03f263cd43001002de9d040410259a48de98219",
+          "ee5d00b39428597a4ab628c8d6c69a9addb4a711a60050d153cb3944df29da13",
+          "93fbc490092b53443cbcaac2cbf51c9410d45d0633d284242f73f90e5b0c58f1"
+        ],
+        "fps": 15,
+        "frameCount": 8,
+        "decodedRgbaSha256": "7e8fee641b8be8896ad3dc5468dc0366aefd2b4a11f67c1d27e677b4ba871793"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 74,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 74,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 22,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 22,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "93ed31c9ee78e442fbf1dc2e4d098172e2cba95b177196e151f919e48cb78824",
+      "mapSha256": "be171569a8028a86d36f4964b3e31debeae7ab0b97748ef686e88969a0a281b1"
+    },
+    {
+      "case": "movie-out",
+      "passed": true,
+      "resultSha256": "3d992441466e73ef411d33c58d7f83231fb974a087a09da33c3878c1c9f0f95e",
+      "loadedPending": false,
+      "errors": [],
+      "movie": "cmp.res/11_out.avi",
+      "animation": {
+        "nativeFrameHashes": [
+          "0645e5486fe71405fd17348f962e3ac50b7feb347af76bf76a651b701aa4016f",
+          "6e34cd477ef94b6589529d1da03e8863667c6b9f2ea556e55cb54de98300fd9a",
+          "7caba9bc6920a00927f7747db39463fc869db15f496c0bce3b3893ed823cd4e8",
+          "7ef2c30214c03595af4710d94a2cd29648874f869116acc329d7e358e9b8ffed",
+          "6eb99ca41c497f1982605ed619c78f010be40ad48d523db538a92d29ad4b3feb",
+          "dcc1588d951ce6d83ccb7e3472f3af4b504f9bd8c4daf62cba7041f172da363f"
+        ],
+        "browserScreenshotHashes": [
+          "71aba6ea04617c3e25df823e3fdece3a96e2336b06b5269e2c877b51e99467a3",
+          "892fd37decc874fac3734d7f8bdfbba5c8abbefe517d78511bc0ddeae49e082f",
+          "6e4d979c3de26ee65f072a767c923588b75401f66a342aa59006aa13c21122b5"
+        ],
+        "fps": 15,
+        "frameCount": 6,
+        "decodedRgbaSha256": "499d06a5f7730c7d352238e18834bbf0f1ecbb745e2a0c164a055c46c05fd962"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "f050ce082748abbb570450a56311dd5b6b7ea0b008336f43ce78d928c6f93c1a",
+      "mapSha256": "194ec9e4941a64bff5b9d92a5ea25289228f578888b665b163dc024c099ef0d7"
+    },
+    {
+      "case": "movie-webkit-reload",
+      "passed": true,
+      "resultSha256": "8766ee722969e273594fa339eb3b6ffde550f48ba5d39ade340d16f896aa06cd",
+      "loadedPending": true,
+      "errors": [],
+      "movie": "cmp.res/11_sun.avi",
+      "animation": {
+        "nativeFrameHashes": [
+          "222d16657f95f98658169a52e048eeecfee10636a8b3b5422591e70a4a153e45",
+          "73f307189bc1f11a7e0159659417300fd618762846c1aeff67c9afb5a0e3a856",
+          "a5e8c0b46d26c941b677a09c0de06dcb0b65fca0d153a44e6bf1652a6837e798",
+          "6173218b346193086f6ce1c09654f0df2d807ee0122557b90cbe460fbc534072",
+          "dd405b6d0b586baf28aa78ac9ad5075008f3f0b1879322bcdf0e3271979ad7d0"
+        ],
+        "browserScreenshotHashes": [
+          "0180938433735ee68caad490785949aab2dce8fe83263c3d067ee2f29c492923",
+          "b92103a98fd0338f966ddbc7e90a1e8b6fd3f3d7e927810d7159b3512e933f9f",
+          "efe4573fcdfebe92e1f41081d80ffca4e4d69e68d3f520786e5a2a0b196eb658"
+        ],
+        "fps": 15,
+        "frameCount": 5,
+        "decodedRgbaSha256": "1d86b437616c1eef5a8987562a6dd2f9fbea1c28cb2748f1175a616b2c9caddc"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 668.984375
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 777.984375,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.234375,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.234375,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 846
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 1000
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "aef81c85bc886c61d736e37d8617ec0f5ebd27726c3329d3b938a321ff562489",
+      "mapSha256": "367e83c01cc746b14904d8cfcff9a1c82308d6fcbb1653cb56b747faf42317de",
+      "browser": "WebKit"
+    },
+    {
+      "case": "movie-keyboard-webkit",
+      "passed": true,
+      "resultSha256": "9fe5a5373038346dcfd76ecd83bd83695d1f0e68dc2d9be2c32504afccf7a8a5",
+      "loadedPending": true,
+      "errors": [],
+      "movie": "cmp.res/11_sun.avi",
+      "animation": {
+        "nativeFrameHashes": [
+          "222d16657f95f98658169a52e048eeecfee10636a8b3b5422591e70a4a153e45",
+          "73f307189bc1f11a7e0159659417300fd618762846c1aeff67c9afb5a0e3a856",
+          "a5e8c0b46d26c941b677a09c0de06dcb0b65fca0d153a44e6bf1652a6837e798",
+          "dd405b6d0b586baf28aa78ac9ad5075008f3f0b1879322bcdf0e3271979ad7d0",
+          "6173218b346193086f6ce1c09654f0df2d807ee0122557b90cbe460fbc534072"
+        ],
+        "browserScreenshotHashes": [
+          "efe4573fcdfebe92e1f41081d80ffca4e4d69e68d3f520786e5a2a0b196eb658",
+          "2cc53ad876674affc3cf579f8a8b32a5397130980af802cfc2ed6c3031504a5e",
+          "408c9066735586d323ab2aae9628b65fa6bdd6ac377482bf975eccbf9e286ab5",
+          "0180938433735ee68caad490785949aab2dce8fe83263c3d067ee2f29c492923",
+          "b92103a98fd0338f966ddbc7e90a1e8b6fd3f3d7e927810d7159b3512e933f9f"
+        ],
+        "fps": 15,
+        "frameCount": 5,
+        "decodedRgbaSha256": "1d86b437616c1eef5a8987562a6dd2f9fbea1c28cb2748f1175a616b2c9caddc"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 668.984375
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 777.984375,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.234375,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.234375,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 846
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 1000
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "aef81c85bc886c61d736e37d8617ec0f5ebd27726c3329d3b938a321ff562489",
+      "mapSha256": "367e83c01cc746b14904d8cfcff9a1c82308d6fcbb1653cb56b747faf42317de",
+      "browser": "WebKit",
+      "keyboardZoomPreservesNativeQuery": true
+    },
+    {
+      "case": "static-quest-reload",
+      "passed": true,
+      "resultSha256": "8cb090e8e2877125f7c83f20e817a31e7a64f142ba9d43ce0a451f64be460a1e",
+      "loadedPending": true,
+      "errors": [],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "fixtureSha256": "319c83bb860b6a5795cc03c75de1fa32be5c68087a04565ac27c88e6bc89c0ad",
+      "mapSha256": "587cd9bc11848f652be6448f3c2fa37350a8e0e8b7c183aed993117397b6c833"
+    },
+    {
+      "case": "production",
+      "passed": true,
+      "resultSha256": "2d4051057247dad6a11ef0e60c3b6664ed689c7ca68d6db2ac99342929364aab",
+      "loadedPending": null,
+      "errors": [],
+      "actualFetchedWasmSha256": "6e965eeaeae7e8b3707064082fbcc6420212e45d533d90d9af7e1b436ef94664",
+      "productionSmokeValidated": true,
+      "mapSaveReloadValidated": true,
+      "playerRolesPreserved": true,
+      "actualResumedTurnTransitionsValidated": true
+    },
+    {
+      "case": "movie-final-reload",
+      "passed": true,
+      "resultSha256": "0961a4cd9ad3b6a79354264614940929a22538f997ead4884d62d971eae8a096",
+      "loadedPending": true,
+      "keyboardZoomPreservesNativeQuery": true,
+      "animation": {
+        "nativeFrameHashes": [
+          "7caba9bc6920a00927f7747db39463fc869db15f496c0bce3b3893ed823cd4e8",
+          "dcc1588d951ce6d83ccb7e3472f3af4b504f9bd8c4daf62cba7041f172da363f",
+          "6e34cd477ef94b6589529d1da03e8863667c6b9f2ea556e55cb54de98300fd9a",
+          "0645e5486fe71405fd17348f962e3ac50b7feb347af76bf76a651b701aa4016f",
+          "6eb99ca41c497f1982605ed619c78f010be40ad48d523db538a92d29ad4b3feb",
+          "7ef2c30214c03595af4710d94a2cd29648874f869116acc329d7e358e9b8ffed"
+        ],
+        "browserScreenshotHashes": [
+          "71aba6ea04617c3e25df823e3fdece3a96e2336b06b5269e2c877b51e99467a3",
+          "281902da19d6148dfa0f5ceb71b05994c4c78e4180538327a75ffb5f4602b851"
+        ],
+        "fps": 15,
+        "frameCount": 6,
+        "decodedRgbaSha256": "499d06a5f7730c7d352238e18834bbf0f1ecbb745e2a0c164a055c46c05fd962"
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 0,
+            "w": 256,
+            "h": 393
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 0,
+            "w": 248,
+            "h": 250
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "w": 326,
+            "h": 669
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "w": 499.25,
+            "h": 302
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "w": 704,
+            "h": 845.5
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "w": 627.046875,
+            "h": 680
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "w": 756,
+            "h": 999.71875
+          },
+          "after": {
+            "stable": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "unitTests": {
+    "total": 764,
+    "passed": 730,
+    "skipped": 34,
+    "failed": 0
+  },
+  "limitations": [
+    "Only the four original silent clips and source loop mode1 are admitted. Other formats, audio, external movie files and other loop modes remain disabled.",
+    "Original quests, battle branches and campaign transfers are still incomplete. In particular, the first scenario needs the original leave-creatures-on-map action; original campaigns remain disabled."
+  ]
+}

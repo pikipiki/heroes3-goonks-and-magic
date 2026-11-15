@@ -34,7 +34,7 @@ public:
   const auto & args=operation.args;
   if(operation.code=="B")
   {
-   arity(operation,3);require(number(args[2])==1,"Only single static source bitmap presentation is admitted");
+   arity(operation,3);require(number(args[2])==1,"Only source picture loop mode1 is admitted");
    auto & dialog=definition(number(args[0]));auto & pictures=dialog["pictures"].Vector();if(pictures.empty())pictures.resize(1);
    pictures[0]["file"].String()=cell(args[1]);dialog["bitmapRepeat"].Integer()=1;return {};
   }

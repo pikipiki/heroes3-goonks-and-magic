@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {execFileSync} from 'node:child_process';
 import {mediaManifest,mediaRoot,collectCampaignMedia,mediaCohortSha256} from '../scripts/era-bridge/campaigns/import-media.mjs';
+import {checkCampaignMovies} from '../scripts/era-bridge/campaigns/convert-movies.mjs';import {campaignMovieMedia} from '../web/campaign-movie-data.mjs';
 import {publishCampaignMedia} from '../scripts/publish-campaign-media.mjs';import {campaignMedia} from '../web/campaign-media-data.mjs';import {sha256} from '../scripts/era-bridge/campaigns/importer.mjs';
 import {buildNativeMetadata,metadataFile} from '../scripts/era-bridge/campaigns/build-native-metadata.mjs';
 test('original artwork cohort and browser index retain all original image bytes',()=>{
@@ -21,3 +22,5 @@ test('native media path lookup resolves only virtual assets and rejects traversa
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-media-paths-'));
  try{const binary=path.join(dir,'test');execFileSync(process.env.CXX||'c++',['-std=c++17','-Wall','-Wextra','-Werror','tests/native/EraCampaignMedia.test.cpp','-o',binary]);execFileSync(binary);}finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
+
+test('four original silent animations retain pinned dimensions, all native frames and browser hashes',()=>{const manifest=checkCampaignMovies();assert.deepEqual(campaignMovieMedia,Object.fromEntries(manifest.movies.map(m=>[m.key,{url:m.browser.url,width:m.width,height:m.height,frames:m.frameCount,fps:15}])));assert.deepEqual(manifest.movies.map(m=>m.frameCount),[6,21,5,8]);const dir=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-campaign-movies-'));try{publishCampaignMedia(dir);for(const m of manifest.movies){assert.equal(sha256(fs.readFileSync(path.join(dir,'web',m.browser.url))),m.browser.sha256);assert(m.frames.every(f=>/^[a-f0-9]{64}$/.test(f.rgbaSha256)));}}finally{fs.rmSync(dir,{recursive:true,force:true});}});

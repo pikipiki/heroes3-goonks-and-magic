@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.191",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Static source navigation and bounded LLVM disassembly; original AVI decoding with FFmpeg. The Windows executable was neither executed nor uploaded.",
+  "boundedAssemblySha256": {
+    "pictureDispatch": "8f44ed50edfc64247dffc01668b60fa5c7938053e6de228aec184b947606a58b",
+    "customPicture": "7702871570d990c2f0d9e41768aeec4da1eeed43334bc4e0adbbb567ade9f120"
+  },
+  "observations": [
+    {
+      "address": "0x743e10..0x743e1b",
+      "fact": "IF:P passes its picture definition id and startup0 to the custom-picture routine0x770580."
+    },
+    {
+      "address": "0x77062d..0x77068d",
+      "fact": "The routine resolves the first picture path, copies the low byte of the stored loop field into the presentation descriptor, then calls the original picture presenter indirectly."
+    }
+  ],
+  "media": [
+    {
+      "key": "cmp.res/11_out.avi",
+      "sourceSha256": "d7eabee297417c26b9d4eb658342469f248c8161d66ba185ee5ee8c6adee034b",
+      "width": 160,
+      "height": 120,
+      "frameCount": 6,
+      "fpsNumerator": 15,
+      "fpsDenominator": 1,
+      "audioStreams": 0,
+      "decodedRgbaSha256": "499d06a5f7730c7d352238e18834bbf0f1ecbb745e2a0c164a055c46c05fd962"
+    },
+    {
+      "key": "cmp.res/11_shield.avi",
+      "sourceSha256": "b9e6d55cdcdb698df5256b5aac1eb358ab9e21f861d77169b7c0eba018e46e6b",
+      "width": 150,
+      "height": 112,
+      "frameCount": 21,
+      "fpsNumerator": 15,
+      "fpsDenominator": 1,
+      "audioStreams": 0,
+      "decodedRgbaSha256": "6449939fe204cfe265c3b8065dcfe2a143bc1e5f9926f313fab78ed6843f7c7c"
+    },
+    {
+      "key": "cmp.res/11_sun.avi",
+      "sourceSha256": "768af29155a2917af424a289f5b3a9811df6be74ca2c646ac8cf6f1198f7999e",
+      "width": 80,
+      "height": 80,
+      "frameCount": 5,
+      "fpsNumerator": 15,
+      "fpsDenominator": 1,
+      "audioStreams": 0,
+      "decodedRgbaSha256": "1d86b437616c1eef5a8987562a6dd2f9fbea1c28cb2748f1175a616b2c9caddc"
+    },
+    {
+      "key": "cmp.res/11_sword.avi",
+      "sourceSha256": "13190933f82f69f6a74ba495ab0ea880ee1c3df9b0ab65a82e3d4d48153bdc4d",
+      "width": 55,
+      "height": 200,
+      "frameCount": 8,
+      "fpsNumerator": 15,
+      "fpsDenominator": 1,
+      "audioStreams": 0,
+      "decodedRgbaSha256": "7e8fee641b8be8896ad3dc5468dc0366aefd2b4a11f67c1d27e677b4ba871793"
+    }
+  ],
+  "implementation": [
+    "All four pinned original clips contain video only, at15fps. Every decoded original RGBA frame is retained in native PNG assets; browser APNG decoding is checked byte-for-byte against original decoded RGBA output.",
+    "Native windows select frame floor(milliseconds*15/1000)%frameCount. Browser APNG frame controls are verified as1/15 second with infinite looping.",
+    "The script stays suspended until its original acknowledgement. A restored native query restarts only the visual animation; it never replays the source instruction or its quest changes.",
+    "Native and mobile presentations use the same original media keys and dimensions. Stable form nodes, scroll and one exit are verified on seven layouts, including native WebKit and keyboard enlargement isolation."
+  ],
+  "limitations": [
+    "Only the four original silent clips and source loop mode1 are admitted. Other formats, audio, external movie files and other loop modes remain disabled.",
+    "Original quests, battle branches and campaign transfers are still incomplete. In particular, the first scenario needs the original leave-creatures-on-map action; original campaigns remain disabled."
+  ]
+}

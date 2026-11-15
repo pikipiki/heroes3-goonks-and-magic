@@ -8,7 +8,7 @@ test('native original campaign registry is reproducible, bound to all original s
  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-campaign-registry-'));
  try{
   const registry=buildNativeCampaignRegistry(temp);
-  assert.deepEqual(fs.readdirSync(temp).sort(),fs.readdirSync(folder).filter(file=>!['media.json','metadata.json'].includes(file)).sort());
+  assert.deepEqual(fs.readdirSync(temp).sort(),fs.readdirSync(folder).filter(file=>!['media.json','metadata.json','movies.json'].includes(file)).sort());
   for(const file of fs.readdirSync(temp))assert.deepEqual(fs.readFileSync(path.join(temp,file)),fs.readFileSync(path.join(folder,file)),file);
   assert.equal(registry.programs.length,12);assert(registry.programs.every(entry=>entry.enabled===false));
   const bundle=JSON.parse(fs.readFileSync(path.join(temp,'cave-gerfrex.json'))),expected=compileCaveFile();
