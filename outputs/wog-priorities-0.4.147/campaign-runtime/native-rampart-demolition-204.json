@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "scope": "Original zc1-2 Rampart demolition and positive source continuation only; not a scenario victory.",
+  "engineSha256": "839170f423919544570768d52b5c63319f0f625c482cf7c49ce2eafd0fba2b76",
+  "engineDelivery": "whole delivered204 package; no JS/WASM replacement",
+  "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "sourceArchiveModified": false,
+  "questFlagsModified": false,
+  "movementOrArmyCheatsUsed": false,
+  "originalTown": "Strongglen",
+  "heroId": 345,
+  "nativeBuildingRemovals": [
+    {
+      "building": 8,
+      "day": 33,
+      "goldBefore": 21200,
+      "goldAfter": 20200
+    },
+    {
+      "building": 7,
+      "day": 33,
+      "goldBefore": 20200,
+      "goldAfter": 17700
+    },
+    {
+      "building": 10,
+      "day": 33,
+      "goldBefore": 17700,
+      "goldAfter": 15200
+    }
+  ],
+  "villageHallRuined": true,
+  "originalPositiveDialogue": [
+    [
+      "There's a good boy!\nI am proud of you."
+    ]
+  ],
+  "nextNativeSaveSha256": "d594494348661968da5c925df88d4d95ae15f182e33905d1b537a10662b10c5f",
+  "errors": [],
+  "testCorrections": [
+    "Read-only hero inspection and loading no longer resume an old preview path.",
+    "After a town is captured the visitor explicitly re-enters before demolishing.",
+    "Enabled native dependencies are demolished before the village hall, retaining the existing open builder panel.",
+    "Requested demolition and expected source success text are asserted."
+  ],
+  "limitations": [
+    "Fortress, Necropolis, second-scenario victory and finale remain unvalidated.",
+    "All original campaign admissions remain disabled."
+  ]
+}
