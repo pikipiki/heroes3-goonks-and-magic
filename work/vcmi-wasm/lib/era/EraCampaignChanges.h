@@ -51,6 +51,14 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    else player->visitedObjectsGlobal.erase({Obj::KEYMASTER,MapObjectSubID(key)});
    continue;
   }
+  if(kind=="playerTownDays")
+  {
+   const PlayerColor color(campaignInteger(change["player"]));if(!color.isValidPlayer())throw std::runtime_error("Invalid original countdown owner");
+   auto * player=gs.getPlayerState(color,false);if(!player)throw std::runtime_error("Original countdown owner missing");
+   if(change["days"].isNull())player->daysWithoutCastle=std::nullopt;
+   else{const int days=campaignInteger(change["days"]);if(days<0||days>7)throw std::runtime_error("Invalid original countdown shadow");player->daysWithoutCastle=static_cast<std::uint8_t>(days);}
+   continue;
+  }
   if(kind=="playerResource")
   {
    const PlayerColor color(campaignInteger(change["player"]));

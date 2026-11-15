@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.185",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive includes later changes; selected rules were corroborated in the pinned original binary."
+  },
+  "analysis": "Ordinary bounded LLVM disassembly, not execution of the original Windows binary. No external binary upload. Existing REA/Hopper bridge was unavailable; retained earlier evidence is unchanged.",
+  "contracts": [
+    "https://h3era.github.io/ERM-Help/Rec/OW.htm"
+  ],
+  "boundedAssemblySha256": {
+    "receiver": "ff1cc6f36836b45b04a395842fbeb3aff047ec41721e1bb5fb799ebbfb7cc2ea",
+    "tick": "f64f81f6bdb53c86eeb6bda1b5e0ce03a7f12e971cb17a6d19f5aed05db0b495",
+    "lossChecker": "0fb45880199a036a82806a3ba1e0d5a1c4b48db61e184b2e224a0e8377a9a9eb"
+  },
+  "observations": [
+    {
+      "address": "0x733e30..0x733eb0",
+      "fact": "OW:D writes the selected player byte directly; value conversion wraps modulo256."
+    },
+    {
+      "address": "0x4c6df3..0x4c6e07",
+      "fact": "Native end-turn uses signed-positive comparison before decrement:1..127 tick;128..254 remain immortal."
+    },
+    {
+      "address": "0x4f34fb..0x4f3575;0x4f3614",
+      "fact": "Loss checker initializes255 to standard7; zero eliminates; owning a town restores255."
+    }
+  ],
+  "implementation": [
+    "Map-local replicated and serialized per-player byte; native daysWithoutCastle shadow and native defeat event retain ordinary engine loss processing.",
+    "Finite clock decrements once on actual end turn; client warning displays remaining source days. Native seven-day behavior stays unchanged on maps without a source clock.",
+    "All15 original OW:D calls use valid explicit players and values254/4. Global owner-2, not used by these scripts, remains unadmitted."
+  ],
+  "limitations": [
+    "Native tests cover real expiry, restoring immortality and pending save/reload; acquiring a town clears the source override in implementation but this transition has not independently been proved in a native scenario.",
+    "Controls use the exact original standardDefeat event, on a private flat map with one human hero and a remote AI town. They do not prove an original quest or campaign victory."
+  ]
+}

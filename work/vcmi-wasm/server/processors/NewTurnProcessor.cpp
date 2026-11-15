@@ -265,6 +265,8 @@ void NewTurnProcessor::onPlayerTurnEnded(PlayerColor which)
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
 	assert(playerState->status == EPlayerStatus::INGAME);
 
+ if(!gameHandler->sourceCampaigns->townClockEnded(which))
+ {
 	if (playerState->getTowns().empty())
 	{
 		DaysWithoutTown pack;
@@ -283,9 +285,9 @@ void NewTurnProcessor::onPlayerTurnEnded(PlayerColor which)
 		}
 	}
 
-	// check for 7 days without castle
+ }
+	// Both ordinary and source-controlled countdowns use the native loss check.
 	gameHandler->checkVictoryLossConditionsForPlayer(which);
-
 	bool newWeek = gameHandler->gameInfo().getDate(Date::DAY_OF_WEEK) == 7; // end of 7th day
 
 	if (newWeek) //new heroes in tavern

@@ -3749,6 +3749,7 @@ void CGameHandler::checkVictoryLossConditionsForPlayer(PlayerColor player)
 	const PlayerState * p = gameInfo().getPlayerState(player);
 
 	if(!p || p->status != EPlayerStatus::INGAME) return;
+	if(sourceCampaigns)sourceCampaigns->syncTownClock(player);
 
 	if(gameState().getMap().battleOnly)
 	{

@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "CPlayerInterface.h"
+#include "../lib/era/EraCampaignTownClockJson.h"
 
 #include <vcmi/Artifact.h>
 
@@ -377,6 +378,17 @@ void CPlayerInterface::acceptTurn(QueryID queryID, bool hotseatWait)
 
 		const auto & optDaysWithoutCastle = cb->getPlayerState(playerColor)->daysWithoutCastle;
 
+  const auto sourceClock=era_campaign_town_clock_json::read(static_cast<const IGameInfoCallback &>(*cb).gameState().getSourceCampaignState(),playerColor.getNum());
+  if(sourceClock)
+  {
+   if(const auto days=era_campaign_town_clock::warningDays(*sourceClock);days&&*days>0)
+   {
+    text.appendLocalString(EMetaText::ARRAY_TXT,*days==1?129:128);text.replaceName(playerColor);
+    if(*days!=1)text.replaceNumber(*days);
+    showInfoDialogAndWait(components,text);
+   }
+  }
+  else
 		if(optDaysWithoutCastle)
 		{
 			auto daysWithoutCastle = optDaysWithoutCastle.value();

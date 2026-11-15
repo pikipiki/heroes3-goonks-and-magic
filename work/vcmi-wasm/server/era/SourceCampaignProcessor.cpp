@@ -25,6 +25,7 @@
 #include "../../lib/campaign/CampaignState.h"
 #include "../../lib/era/EraCampaignCarryover.h"
 #include "../../lib/era/EraCampaignCalendarJson.h"
+#include "../../lib/era/EraCampaignTownClockJson.h"
 #include "../../lib/gameState/CGameState.h"
 #include "../../lib/mapping/CMap.h"
 #include "../../lib/mapping/CCastleEvent.h"
@@ -200,6 +201,29 @@ struct SourceCampaignProcessor::Impl final:Host
   if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
   if(event&&reward)packet.rewardConfigurations.emplace(event->id,*reward);
   gh.sendAndApply(packet);
+ }
+ JsonNode townClockMutation(PlayerColor who,int raw)const
+ {
+  auto change=mutation("playerTownDays",ObjectInstanceID::NONE);change["player"].Integer()=who.getNum();change["days"]=JsonNode();
+  const auto * owner=gh.gameInfo().getPlayerState(who,false);
+  if(owner&&owner->getTowns().empty())if(const auto shadow=era_campaign_town_clock::shadow(raw))change["days"].Integer()=*shadow;
+  return change;
+ }
+ bool syncClock(PlayerColor who,bool advance)
+ {
+  if(!active||!who.isValidPlayer())return false;
+  const auto * owner=gh.gameInfo().getPlayerState(who,false);if(!owner)return false;
+  const auto raw=era_campaign_town_clock_json::read(state,who.getNum());if(!raw)return false;
+  const auto key=std::to_string(who.getNum());
+  if(!owner->getTowns().empty())
+  {state["townClocks"].Struct().erase(key);persist(townClockMutation(who,255));return false;}
+  int next=advance?era_campaign_town_clock::tick(*raw):*raw;
+  // The original loss checker initializes its255 sentinel to the default7.
+  if(next==255)next=7;
+  const auto shadow=era_campaign_town_clock::shadow(next);
+  if(next!=*raw||owner->daysWithoutCastle!=shadow)
+  {state["townClocks"][key].Integer()=next;persist(townClockMutation(who,next));}
+  return true;
  }
  void bind()
  {
@@ -563,6 +587,12 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   require(!args.empty()&&args[0].access==Access::Read,"player needs a color value");
   const int selected=number(args[0]);const PlayerColor who(selected==-1?player.getNum():selected);require(who.isValidPlayer(),"player outside 0..7");
   const auto * owner=gh.gameInfo().getPlayerState(who,false);
+  if(op.code=="D")
+  {
+   arity(op,2);require(owner!=nullptr&&args[1].access==Access::Read,"town countdown needs an owner and a byte value");
+   const int raw=era_campaign_town_clock::byte(number(args[1]));state["townClocks"][std::to_string(who.getNum())].Integer()=raw;
+   persist(townClockMutation(who,raw));return Step::Continue;
+  }
   if(op.code=="I")
   {
    require(args.size()==2||args.size()==3,"invalid player controller arity");
@@ -905,6 +935,10 @@ bool SourceCampaignProcessor::beginTurn(PlayerColor player)
  }
  impl->ensureTurnBarriers();impl->persist();impl->pumpTurns();return true;
 }
+void SourceCampaignProcessor::syncTownClock(PlayerColor player)
+{impl->bind();impl->syncClock(player,false);}
+bool SourceCampaignProcessor::townClockEnded(PlayerColor player)
+{impl->bind();return impl->syncClock(player,true);}
 bool SourceCampaignProcessor::turnPending(PlayerColor player)
 {
  impl->bind();if(!impl->active||impl->state["turnQueue"].isNull())return false;

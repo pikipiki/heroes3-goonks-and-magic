@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.185",
+  "engineSha256": "46a0a9cb4e0109ea38b49e916a7c2309cdff6d1e6daf96299708f0d7dc7e6092",
+  "originalCampaignsEnabled": false,
+  "sourceContract": "town-clock-source-contract-185.json",
+  "nativeChecks": [
+    {
+      "case": "expiry-r3",
+      "passed": true,
+      "resultSha256": "a9dec4c3749fa39be793b4f6df6a6b4b644314dfe43025df3894064f7ebfa1c9",
+      "restore": false,
+      "loadedPending": false,
+      "fixtureSha256": "0bde5adafcdf40b903105235ecf7eeec08b5c32d3e7260d35cc7dfa0395acfe9",
+      "mapSha256": "0c4a4d521cdee5b90c8ede2f2e281a156ec6aec79ebd02f2bf4446cf6530194c",
+      "turns": [
+        {
+          "day": 1,
+          "heroCount": 1
+        },
+        {
+          "day": 2,
+          "heroCount": 1
+        },
+        {
+          "day": 3,
+          "heroCount": 1
+        },
+        {
+          "day": 4,
+          "heroCount": 1
+        },
+        {
+          "day": 5,
+          "heroCount": 1
+        },
+        {
+          "day": 6,
+          "heroCount": 1
+        },
+        {
+          "day": 7,
+          "heroCount": 1
+        },
+        {
+          "day": 8,
+          "heroCount": 1
+        },
+        {
+          "day": 9,
+          "heroCount": 1
+        },
+        {
+          "day": 10,
+          "heroCount": 1
+        },
+        {
+          "day": 11,
+          "heroCount": 1
+        },
+        {
+          "day": 12,
+          "heroCount": 1
+        },
+        {
+          "day": 13,
+          "heroCount": 1
+        }
+      ],
+      "deadlineWarnings": [
+        {
+          "day": 10,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 4 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 11,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 3 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 12,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 2 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 13,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, this is your last day to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        }
+      ],
+      "nativeLossDialogs": [
+        {
+          "day": 13,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, your heroes abandon you, and you are banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 13,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "You have been eliminated from the game!"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        }
+      ]
+    },
+    {
+      "case": "restore-r3",
+      "passed": true,
+      "resultSha256": "55d3e358597557928554e12b186e3f0fb403baa5163c2c75c359e51124b3c509",
+      "restore": true,
+      "loadedPending": false,
+      "fixtureSha256": "ab462bf681347b3e766d96c5da2d8b80aae084e768aa6eef76d9ac64124518c5",
+      "mapSha256": "d9c28fec3c27fe8bb7d19fe17cdae07cd9615d79881d0b4d76ed6441b6e9e30c",
+      "turns": [
+        {
+          "day": 1,
+          "heroCount": 1
+        },
+        {
+          "day": 2,
+          "heroCount": 1
+        },
+        {
+          "day": 3,
+          "heroCount": 1
+        },
+        {
+          "day": 4,
+          "heroCount": 1
+        },
+        {
+          "day": 5,
+          "heroCount": 1
+        },
+        {
+          "day": 6,
+          "heroCount": 1
+        },
+        {
+          "day": 7,
+          "heroCount": 1
+        },
+        {
+          "day": 8,
+          "heroCount": 1
+        },
+        {
+          "day": 9,
+          "heroCount": 1
+        },
+        {
+          "day": 10,
+          "heroCount": 1
+        },
+        {
+          "day": 11,
+          "heroCount": 1
+        },
+        {
+          "day": 12,
+          "heroCount": 1
+        },
+        {
+          "day": 13,
+          "heroCount": 1
+        },
+        {
+          "day": 14,
+          "heroCount": 1
+        },
+        {
+          "day": 15,
+          "heroCount": 1
+        },
+        {
+          "day": 16,
+          "heroCount": 1
+        }
+      ],
+      "deadlineWarnings": [
+        {
+          "day": 10,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 4 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 11,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 3 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 12,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 2 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        }
+      ],
+      "nativeLossDialogs": []
+    },
+    {
+      "case": "reload-r2",
+      "passed": true,
+      "resultSha256": "83e0ddd11a6b1d14649e01950e43cd342cfd40799a2a0982e3978fb935ec0adb",
+      "restore": false,
+      "loadedPending": true,
+      "fixtureSha256": "0bde5adafcdf40b903105235ecf7eeec08b5c32d3e7260d35cc7dfa0395acfe9",
+      "mapSha256": "0c4a4d521cdee5b90c8ede2f2e281a156ec6aec79ebd02f2bf4446cf6530194c",
+      "turns": [
+        {
+          "day": 10,
+          "heroCount": 1
+        },
+        {
+          "day": 11,
+          "heroCount": 1
+        },
+        {
+          "day": 12,
+          "heroCount": 1
+        },
+        {
+          "day": 13,
+          "heroCount": 1
+        }
+      ],
+      "deadlineWarnings": [
+        {
+          "day": 10,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 4 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 11,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 3 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 12,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, you only have 2 days left to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 13,
+          "player": 0,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, this is your last day to capture a town or you will be banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        }
+      ],
+      "nativeLossDialogs": [
+        {
+          "day": 13,
+          "presentation": {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Red",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 281
+                }
+              }
+            ],
+            "lines": [
+              "Red, your heroes abandon you, and you are banished from this land."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 13,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "You have been eliminated from the game!"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        }
+      ]
+    }
+  ],
+  "regressions": [
+    {
+      "case": "production-solo-hotseat",
+      "passed": true,
+      "resultSha256": "0ddb699567c2ee2b29ee80b32535f99a19b009045043d0d503df77d4eefe1765"
+    },
+    {
+      "case": "original-Gerfrex-save903",
+      "passed": true,
+      "resultSha256": "055c3585f66bac5fb21770b35f38df95035ff084262c7eb59e11b0296a1db4c0"
+    }
+  ],
+  "unitTests": {
+    "passed": 728,
+    "skipped": 34,
+    "failed": 0,
+    "resultSha256": "0b0b87acf4fb50933bfc7aa8006246d5c26bcc2ffc5a51c68dfde9cba6a31ee2"
+  },
+  "implementationSha256": {
+    "work/vcmi-wasm/lib/era/EraCampaignTownClock.h": "e4fa5042ab1382fce58e76cce875b9259be2e1d5886bbe2a3a92768b94fac9c3",
+    "work/vcmi-wasm/lib/era/EraCampaignTownClockJson.h": "89d2417d270af82f353a965ee9bf626f42127ac09475a33c2e0b3e936dd6832a",
+    "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "99d8e1b5d517ef5d96e5bbc614a5f745cf7a8ff25a784acecfb8f2554e786a89",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "8b6b242e2b98dd5b2b971986bde30e30745f1941436768be1c0df479a5c02053",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "243c9f930790d257e62ec140850f5b045bd1ab3544eb9cf178cc061df74f026e",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d5dd6b5c003360f12a23be18d3927bb733ec99e9110388828a691237c3adf01f",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "81e822b9cc903b7b44a72111804446880a3b7306096afca6d8ff05110ec2cb18",
+    "work/vcmi-wasm/client/CPlayerInterface.cpp": "9e89b1d8d0f8e8ef10686b507b273cbdf59e3b5c8d23d8de95156c6bac129616"
+  },
+  "scope": "Only OW:D per-player clock support. Original campaign quests/combat/victories remain incomplete; registry remains disabled."
+}
