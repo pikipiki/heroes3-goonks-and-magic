@@ -179,3 +179,10 @@ Sur mobile, l’inspection d’une description ouvre une seule fenêtre native p
 Le contrôle natif retenu utilise une ressource réelle : après `D-1`, elle ne donne pas d’or, même après sa suppression/recréation. `H0` garde cette interdiction. `B` permet ensuite de collecter réellement ses 500 pièces et de supprimer la ressource native. Le parcours neuf et la reprise du dialogue sauvegardé passent. Les anciennes sauvegardes de restrictions du lot 175 et d’objets du lot 180 passent également, ainsi que les deux cartes publiées et un tour positif de combat.
 
 [Le contrat de source](../outputs/wog-priorities-0.4.147/campaign-runtime/hint-source-contract-181.json) distingue les lectures d’assembleur des sources historiques plus récentes. [Les preuves natives](../outputs/wog-priorities-0.4.147/campaign-runtime/native-hints-181.json) précisent la portée des contrôles. Les hints globaux `HT`, les descriptions de héros et sous brouillard, le chemin de survol et la saturation du registre d’origine restent à porter ou valider. Les quêtes, dialogues/médias, combats et victoires originaux complets et les transferts de campagne restent inachevés. Les campagnes et Cave restent désactivés.
+
+
+## Contrôle original de Gerfrex après 0.4.181
+
+La rencontre originale de Gerfrex passe dans le moteur natif avec les réponses non/oui/non : les dialogues d’origine s’enchaînent, puis les sept Faerie Dragons rejoignent réellement Lydorie. L’armée initiale conserve tous ses effectifs : le moteur fusionne deux piles de gobelins pour libérer une des sept places. Une reprise du checkpoint pris après les réponses confirme que le nombre et le comportement amical du dragon persistent. Les scripts, leurs conditions et leurs récompenses ne sont pas remplacés ; seule la position initiale du héros est contrôlée, avec les commandes natives de révélation et de mouvement.
+
+[La preuve](../outputs/wog-priorities-0.4.147/campaign-runtime/native-original-gerfrex-181.json) distingue cette étape des branches hostiles, de la vérification indépendante du sort Clone et de la victoire complète encore absentes. Ce contrôle ne suffit pas à activer Cave ni les campagnes.

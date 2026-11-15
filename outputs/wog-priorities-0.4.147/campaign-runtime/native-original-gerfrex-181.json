@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.181",
+  "scope": "Original Cave Gerfrex friendly dialogue and native recruitment, with a controlled hero start and ordinary native reveal/movement cheats. No original quest source/reward replacement, battle victory or full map completion.",
+  "sourceMapSha256": "3d7dbf2835db47991ee9dad4f7cdef3dde93f98086670594bf21668d2c033c50",
+  "programSha256": "ad5a760af435ad4178a7d0424fc190fe11f22e4c14f49139c836fa14cc9bf9b5",
+  "answers": [
+    false,
+    true,
+    false
+  ],
+  "nativeCreatureKey": "core:fairieDragon",
+  "joinedCount": 7,
+  "existingTroopTotalsPreserved": true,
+  "nativeFullArmyMergeVerified": true,
+  "friendlyCheckpointSha256": "8865e5b01ecfc50642921974582dfaf44f0396517246f160fe12ebb64af0bbb9",
+  "checks": [
+    {
+      "case": "gerfrex-r3",
+      "passed": true,
+      "resultSha256": "d4f913ad34ae2b6925b01889168ce80aa03b30557ea71ca60dcc5e0810cd218f",
+      "engineSha256": "bdc81f669896149054f92bf560591cb00299c9f4f8ad4860e9ce62270ea630ad",
+      "controlledHeroStart": [
+        15,
+        17,
+        1
+      ],
+      "loadedFriendly": false,
+      "dialogLines": [
+        [
+          "Are you one of Zarachodar's new women, come to torment me?\" inquires Gerfrex the faerie dragon, batting her eyelids adorably."
+        ],
+        [
+          "Well then, are you here to rescue me?"
+        ],
+        [
+          "\"And do you expect me to give you my hoard of dragon treasure as your reward?\""
+        ],
+        [
+          "\"Good!\" replies Gerfrex. \"Because it's MINE. But I'm feeling generous today, so you can have it anyway. I plan to start a new treasure hoard somewhere nicer. Now let me come with you and we'll kill Zarachodar, the evil necromancer who's kept me imprisoned in this tiny cave."
+        ],
+        [
+          "Before your eyes, Gerfrex weaves a powerful enchantment and suddenly there are seven of her!"
+        ],
+        [
+          "Gerfrex and her six clones eagerly join you, anxious to toast a vile necromancer named Zarachodar.\n\n\"I think Zarachodar is a bit afraid of me,\" sniggers Gerfrex. \"That's probably why he left me with my hoard while waiting for the Dark Sun and working on his transformation spell. That stupid old bag of bones!\"\n\nGerfrex offers to teach you a temporary version of the Clone spell she's used on herself. \"Very useful. Much fun!\" she chortles."
+        ],
+        [
+          "{Followers}\n\nA group of Faerie Dragons with a desire for greater glory wish to join you. Do you accept? "
+        ]
+      ],
+      "beforeArmy": [
+        {
+          "key": "core:goblin",
+          "count": 25
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 15
+        },
+        {
+          "key": "core:goblin",
+          "count": 28
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 17
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 10
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        }
+      ],
+      "afterArmy": [
+        {
+          "key": "core:fairieDragon",
+          "count": 7
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 15
+        },
+        {
+          "key": "core:goblin",
+          "count": 53
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 17
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 10
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "gerfrex-reload-r2",
+      "passed": true,
+      "resultSha256": "e84e91763580e6d9415c564be7d5893a496f8e6640c804a2850b0f702f825a54",
+      "engineSha256": "bdc81f669896149054f92bf560591cb00299c9f4f8ad4860e9ce62270ea630ad",
+      "controlledHeroStart": null,
+      "loadedFriendly": true,
+      "dialogLines": [
+        [
+          "Gerfrex and her six clones eagerly join you, anxious to toast a vile necromancer named Zarachodar.\n\n\"I think Zarachodar is a bit afraid of me,\" sniggers Gerfrex. \"That's probably why he left me with my hoard while waiting for the Dark Sun and working on his transformation spell. That stupid old bag of bones!\"\n\nGerfrex offers to teach you a temporary version of the Clone spell she's used on herself. \"Very useful. Much fun!\" she chortles."
+        ],
+        [
+          "{Followers}\n\nA group of Faerie Dragons with a desire for greater glory wish to join you. Do you accept? "
+        ]
+      ],
+      "beforeArmy": [
+        {
+          "key": "core:goblin",
+          "count": 25
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 15
+        },
+        {
+          "key": "core:goblin",
+          "count": 28
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 17
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 10
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        }
+      ],
+      "afterArmy": [
+        {
+          "key": "core:fairieDragon",
+          "count": 7
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 15
+        },
+        {
+          "key": "core:goblin",
+          "count": 53
+        },
+        {
+          "key": "core:hobgoblin",
+          "count": 17
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 10
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        },
+        {
+          "key": "core:hobgoblinWolfRider",
+          "count": 12
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "limitations": [
+    "Source Clone grant is executed, but its presence in the native spellbook is not independently asserted here.",
+    "Hostile, refusal and greed branches are not covered by this control.",
+    "The original program and registry remain disabled in production; this is one quest step, not proof of full Cave or campaign victory."
+  ]
+}

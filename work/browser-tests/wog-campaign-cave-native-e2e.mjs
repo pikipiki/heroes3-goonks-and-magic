@@ -95,7 +95,7 @@ try{
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,240000);
  await page.waitForTimeout(500);
- if(process.env.CAVE_LOAD_SAVE){
+ if(process.env.CAVE_LOAD_SAVE&&!process.env.CAVE_GERFREX_RESUME){
   const bytes=fs.readFileSync(process.env.CAVE_LOAD_SAVE);
   await page.evaluate(b=>{Module.FS.mkdirTree('/home/web_user/.local/share/vcmi/Saves');Module.FS.writeFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1',Uint8Array.from(b));},[...bytes]);
   await cmd(23);await wait(()=>goonkMobileState.mode==='load'&&goonkMobileState.lobbyReady&&goonkMobileState.maps?.length);
@@ -106,11 +106,16 @@ try{
   const lever=await finishLever(resumed);assert.deepEqual(errors,[]);
   fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,scope:'Real native pending-query save/reload and selected Cave lever continuation',engine,cases:{lever},errors},null,2));
  }else{
+ if(process.env.CAVE_GERFREX_RESUME){
+  assert(process.env.CAVE_LOAD_SAVE);await page.evaluate(b=>{Module.FS.mkdirTree('/home/web_user/.local/share/vcmi/Saves');Module.FS.writeFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1',Uint8Array.from(b));},[...fs.readFileSync(process.env.CAVE_LOAD_SAVE)]);
+  await cmd(23);await wait(()=>goonkMobileState.mode==='load'&&goonkMobileState.lobbyReady&&goonkMobileState.maps?.length);const entry=(await state()).maps.find(e=>/Goonk-auto/i.test(e.name+' '+e.file));assert(entry);await cmd(27,entry.index);await cmd(22);
+ }else{
  await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);
  const maps=(await state()).maps;fs.writeFileSync(path.join(out,'maps.json'),JSON.stringify(maps,null,2));
  const chosen=maps.find(m=>/Cave of Gerfrex/i.test(m.name));assert(chosen,'Original Cave is discoverable');
  await page.locator('#mobile-map-select').selectOption(String(chosen.index),{force:true});await wait(()=>/Cave of Gerfrex/i.test(goonkMobileState.selectedMap));
  await page.locator('[data-ui=begin]').tap();
+ }
  const dialogs=[];
  for(let n=0;n<10;n++){
   await wait(()=>['map','dialog'].includes(goonkMobileState.mode),null,180000);
@@ -202,6 +207,21 @@ try{
   else assert.equal(army.filter(a=>a.key==='core:troglodyte').length,2,'Exactly two real stacks transformed');
   await saveAs('cave-after-witch',174);cases.witch={branch,story,before,after};
  }
+ if(process.env.CAVE_CASE==='gerfrex'){
+  const before=await state(),story=[];if(!process.env.CAVE_GERFREX_RESUME){await goTo(16,17,/Zarachodar.s new women/i);
+  for(const [pattern,answer]of [[/Zarachodar.s new women/i,0],[/here to rescue me/i,1],[/hoard of dragon treasure/i,0]]){
+   await wait(()=>goonkMobileState.mode==='dialog'&&!!goonkMobileState.dialogPresentation);
+   const question=await state();assert(pattern.test(JSON.stringify(question.dialogPresentation)));story.push(question.dialogPresentation);await cmd(answer);await page.waitForTimeout(250);
+  }
+  for(let step=0;step<30;step++){await wait(()=>goonkMobileState.mode==='dialog'||goonkMobileState.mode==='map'&&!goonkMobileState.campaignPending);const current=await state();if(current.mode==='map')break;story.push(current.dialogPresentation);await cmd(1);await page.waitForTimeout(200);}
+  await wait(()=>goonkMobileState.mode==='map'&&!goonkMobileState.campaignPending);await saveAs('cave-gerfrex-friendly',182);}
+  await goTo(18,17,/Gerfrex|join|dragon/i);
+  for(let step=0;step<40;step++){const current=await state();if(current.mode==='map'&&!current.heroMoving&&!current.campaignPending&&current.armies?.find(a=>a.id===current.heroId)?.slots.some(u=>u?.key==='core:fairieDragon'&&u.count===7))break;if(current.mode==='dialog'){story.push(current.dialogPresentation);await cmd(1);}else if(current.mode==='battle')throw Error('Friendly original Gerfrex must join instead of fighting');await page.waitForTimeout(200);}
+  const after=await state(),army=after.armies.find(a=>a.id===after.heroId).slots;
+  assert.equal(army.filter(u=>u?.key==='core:fairieDragon').reduce((sum,u)=>sum+u.count,0),7,'Seven actual original Faerie Dragons join the real hero');
+  const totals=slots=>{const result={};for(const u of slots)if(u?.key!=='core:fairieDragon')result[u.key]=(result[u.key]||0)+u.count;return result;};assert.deepEqual(totals(army),totals(before.armies.find(a=>a.id===before.heroId).slots),'Joining merges stacks without losing any existing troop');
+  await saveAs('cave-after-gerfrex',182);await page.screenshot({path:path.join(out,'native-original-gerfrex-recruited.png')});cases.gerfrex={resumedFriendly:!!process.env.CAVE_GERFREX_RESUME,before,story,after};
+ }
  if(process.env.CAVE_CASE==='tomb'){
   await goTo(22,20,/protector of the dead/i);
   const question=await state();assert.equal(question.dialogKind,'source-campaign');await cmd(0);await page.waitForTimeout(300);
@@ -228,7 +248,7 @@ try{
  }
 
  assert.deepEqual(errors,[]);
- fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,scope:cases.witch?'Controlled hero relocation, real witch choice, native army/resource/artifact effects; full victory not validated':cases.tomb?'Controlled hero relocation, actual tomb dialogue, mana removal and scripted guard battle; battle outcome not validated':cases.lever?'Controlled hero relocation, original maze goal, Crown pickup, native quest guard and lever continuation; full map victory not validated':'Original Cave startup and native state save only',engine,heroStartOverride:heroStart||null,dialogs,cases,errors},null,2));
+ fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,scope:cases.gerfrex?'Controlled hero relocation, original Gerfrex dialogue and seven native Faerie Dragons recruited; full map victory not validated':cases.witch?'Controlled hero relocation, real witch choice, native army/resource/artifact effects; full victory not validated':cases.tomb?'Controlled hero relocation, actual tomb dialogue, mana removal and scripted guard battle; battle outcome not validated':cases.lever?'Controlled hero relocation, original maze goal, Crown pickup, native quest guard and lever continuation; full map victory not validated':'Original Cave startup and native state save only',engine,heroStartOverride:heroStart||null,dialogs,cases,errors},null,2));
  }
 }catch(error){
  fs.writeFileSync(path.join(out,'failure-state.json'),JSON.stringify(await state().catch(()=>null),null,2));
