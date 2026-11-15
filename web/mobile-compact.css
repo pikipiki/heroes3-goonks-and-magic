@@ -175,3 +175,7 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 .campaign-media-scroll{overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;-webkit-overflow-scrolling:touch;min-width:0;min-height:0}
 .campaign-media-scroll img{display:block;max-width:none;max-height:none;object-fit:contain;margin:auto}
 @media(orientation:landscape){.campaign-media-viewer[open]{grid-template-columns:minmax(0,1fr) 112px;grid-template-rows:minmax(0,1fr)}.campaign-media-viewer header{grid-column:2;grid-row:1;flex-direction:column;justify-content:space-between;align-items:stretch}.campaign-media-scroll{grid-column:1;grid-row:1}}
+
+/* Separate dwelling troops fit without a horizontal swipe on small screens. */
+#mobile-app[data-mode=recruit] .recruit-variants[data-separate-creatures=true]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px;overflow:visible;touch-action:pan-y}
+#mobile-app[data-mode=recruit] .recruit-variants[data-separate-creatures=true] button{width:100%;max-width:none;box-sizing:border-box;min-width:0;min-height:44px;overflow-wrap:anywhere;white-space:normal}

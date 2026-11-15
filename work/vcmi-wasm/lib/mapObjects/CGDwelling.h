@@ -46,6 +46,7 @@ public:
 
 	const IOwnableObject * asOwnable() const final;
 	ResourceSet dailyIncome() const override;
+ bool sourceCampaignRecruits() const;
 	std::vector<CreatureID> providedCreatures() const override;
 	AnimationPath getKingdomOverviewImage() const;
 

@@ -1,7 +1,7 @@
 /** Explicit source repairs for the four shipped campaign archives.
  * Original archives remain unchanged; every repair is pinned and recorded.
  */
-import {compileErm, tokenizeErm} from './parser.mjs';
+import {compileErm} from './parser.mjs';
 import {readOriginalCampaign, sha256} from './importer.mjs';
 
 const repairs = new Map([
@@ -22,7 +22,7 @@ const repairs = new Map([
   reason: 'Missing receiver terminator before the separate hero teleport command.',
  }],
 ]);
-const detachedSource = '71bd544f3809aaf38ecae9d85abad4d14716fa3e4111870af7fafe4d7d2efc7f';
+
 
 export function compileNativeSource(source) {
  const original = source.bytes, originalSha256 = sha256(original);
@@ -35,20 +35,6 @@ export function compileNativeSource(source) {
   if (at < 0 || text.indexOf(repair.from, at + 1) >= 0) throw Error('Pinned campaign repair no longer unique');
   text = text.slice(0, at) + repair.to + text.slice(at + repair.from.length);
   exceptions.push({kind: 'syntax-repair', originalSha256, ...repair});
- }
- if (originalSha256 === detachedSource) {
-  const bytes = Buffer.from(text), tokens = tokenizeErm(bytes, {source: source.id});
-  const first = tokens.find(token => token.statement.startsWith('!?'));
-  if (!first) throw Error('Missing first active source trigger');
-  const detached = tokens.filter(token => token.offset < first.offset && token.statement.startsWith('!!'));
-  if (!detached.length) throw Error('Missing pinned detached campaign receivers');
-  // The four source trigger headings are explicitly commented out. Keep their
-  // receiver bodies inactive while retaining the independent !# initializer.
-  for (const token of detached) {
-   for (let at = token.offset; at < token.endOffset; at++) if (bytes[at] !== 10 && bytes[at] !== 13) bytes[at] = 32;
-   exceptions.push({kind: 'detached-disabled-receiver', originalSha256, line: token.line, instructionSha256: token.sha256, statement: token.statement});
-  }
-  text = bytes.toString('utf8');
  }
  const program = compileErm(Buffer.from(text), {source: source.id});
  return {...program, originalSha256, exceptions};

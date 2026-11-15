@@ -1082,7 +1082,7 @@ void publishMobileState(){
  if(top&&(fortWindow||recruitWindow||creatureWindow))mobilePreviews(top.get(),n["previewUnits"]);
  if(recruitWindow&&recruitWindow->dwelling)for(auto & unit:n["previewUnits"].Vector())
   for(const auto & family:recruitWindow->dwelling->creatures)for(size_t rank=0;rank<family.second.size();++rank)
-   if(family.second[rank].getNum()==unit["id"].Integer())unit["upgradeRank"].Integer()=rank+1;
+   if(family.second.size()>1&&family.second[rank].getNum()==unit["id"].Integer())unit["upgradeRank"].Integer()=rank+1;
  if(creatureWindow && (n["mode"].String()=="creature" || n["dialogKind"].String()=="commander" || n["dialogKind"].String()=="commander-level-up") && creatureWindow->getMobileCreature()){
   auto item=creature(creatureWindow->getMobileCreature(),creatureWindow->getMobileCount());
   for(const auto & description : creatureWindow->getMobileAbilities())

@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "CGTownInstance.h"
+#include "../era/EraCampaignAdmission.h"
 #include "ObjectTemplate.h"
 #include "CGMysteriousCave.h"
 #include "../era/EraEighthTownSaveCompatibility.h"
@@ -132,6 +133,13 @@ int CGTownInstance::hallLevel() const // -1 - none, 0 - village, 1 - town, 2 - c
 
 int CGTownInstance::mageGuildLevel() const
 {
+ if(cb)
+ {
+  const auto & map=cb->gameState().getMap();const auto & vm=map.sourceCampaignState;const auto & world=map.sourceCampaignWorld;
+  if((vm["vm"]["initialized"].Bool()||vm["vm"]["initializing"].Bool())&&era_campaign_admission::programAdmitted(vm["programId"].String(),vm["vm"]["programSha256"].String())&&era_campaign_admission::worldMatches(vm,world))
+  {const auto & level=world["towns"][std::to_string(id.getNum())]["guildLevel"];if(level.isNumber())return level.Integer();}
+ }
+
 	if (hasBuilt(BuildingID::MAGES_GUILD_5))
 		return 5;
 	if (hasBuilt(BuildingID::MAGES_GUILD_4))

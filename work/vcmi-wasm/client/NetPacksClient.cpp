@@ -143,6 +143,14 @@ void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange &
     ENGINE->windows().totalRedraw();
    }
   }
+  if(item["kind"].String()=="townBuilding")
+   if(const auto * town=cl.gameInfo().getTown(ObjectInstanceID(item["object"].Integer())))
+   {
+    const int mode=item["mode"].Integer();
+    if(mode<=2)callInterfaceIfPresent(cl,town->getOwner(),&IGameEventsReceiver::buildChanged,town,BuildingID(item["building"].Integer()),mode);
+    if(mode==2&&item["lower"].Integer()>=0)callInterfaceIfPresent(cl,town->getOwner(),&IGameEventsReceiver::buildChanged,town,BuildingID(item["lower"].Integer()),1);
+    if(ENGINE){GAME->map().onObjectInstantRemove(town,town->getOwner());GAME->map().onObjectInstantAdd(town,town->getOwner());}
+   }
   if(item["kind"].String()=="heroAppearance")
    if(const auto * hero=cl.gameInfo().getHero(ObjectInstanceID(item["object"].Integer())))callAllInterfaces(cl,&IGameEventsReceiver::heroAppearanceChanged,hero);
  }

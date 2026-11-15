@@ -29,17 +29,19 @@ test('all eleven campaign programs compile with explicit source-bound exceptions
  assert.equal(scenarios, 11);
  assert.equal(sources, 137);
  assert.equal(exceptions.filter(e => e.kind === 'syntax-repair').length, 4);
- assert.equal(exceptions.filter(e => e.kind === 'detached-disabled-receiver').length, 16);
- assert.equal(new Set(exceptions.map(e => e.originalSha256)).size, 5);
+ assert.equal(exceptions.filter(e => e.kind === 'detached-disabled-receiver').length, 0);
+ assert.equal(new Set(exceptions.map(e => e.originalSha256)).size, 4);
 });
 
-test('canonical repairs preserve independent initializers and reject altered source identity', () => {
+test('source headings preceded by decoration remain active and source identity is verified', () => {
  const campaign = readOriginalCampaign('mod/wake-of-gods/Mods/maps/content/maps/zc1.vcmp');
  const source = campaign.maps.flatMap(map => map.sources).find(s => s.sha256.startsWith('71bd544f'));
  const program = compileNativeSource(source);
  assert(program.initializers.some(c => c.receiver === 'OB' && c.selectors.map(v => v.number).join('/') === '41/65/0'));
  assert.throws(() => compileNativeSource({...source, bytes: Buffer.concat([source.bytes, Buffer.from(' ')])}), /identity/);
  const changed = Buffer.from(source.bytes.toString().replace('ZVSE', 'ZVSE\n'));
- assert.throws(() => compileNativeSource({...source, sha256: sha256(changed), bytes: changed}), /Receiver before first trigger/,
-  'A similar but unpinned source does not inherit the exception');
+ const rescanned=compileNativeSource({...source,sha256:sha256(changed),bytes:changed});
+ assert.equal(rescanned.exceptions.length,0);
+ assert(rescanned.blocks.some(b=>b.receiver==='FU'&&b.selectors[0]?.number===111));
+ assert(program.blocks.some(b=>b.receiver==='FU'&&b.selectors[0]?.number===113));
 });

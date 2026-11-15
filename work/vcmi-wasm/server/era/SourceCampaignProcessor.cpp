@@ -18,6 +18,7 @@
 #include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignArtifactRule.h"
 #include "../../lib/era/EraCampaignChestRule.h"
+#include "../../lib/era/EraCampaignTownRule.h"
 #include "../../lib/era/EraCampaignTerrainRule.h"
 #include "../../lib/era/EraCampaignDemolition.h"
 #include "../../lib/entities/artifact/CArtifact.h"
@@ -39,6 +40,7 @@
 #include "../../lib/mapObjects/CGHeroInstance.h"
 #include "../../lib/mapObjects/CGPandoraBox.h"
 #include "../../lib/mapObjects/CGCreature.h"
+#include "../../lib/mapObjects/CGDwelling.h"
 #include "../../lib/mapObjects/CGTownInstance.h"
 #include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/mapObjects/army/CStackInstance.h"
@@ -55,6 +57,7 @@
 #include "../../lib/battle/BattleLayout.h"
 #include "../../lib/texts/CGeneralTextHandler.h"
 #include "../../lib/entities/hero/CHero.h"
+#include "../../lib/entities/faction/CTown.h"
 #include "../../lib/entities/hero/CHeroHandler.h"
 #include "../../lib/mapping/MapFormatSettings.h"
 #include "../../lib/mapObjectConstructors/CObjectClassesHandler.h"
@@ -150,11 +153,11 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   if(id==CreatureID::NONE)return -1;
   const auto source=era_bridge::sourceCreatureIdForLevel(id.toCreature()->getJsonKey());
-  require(source.has_value(),"foreign creature cannot be represented by original source ID");return *source;
+  require(source.has_value(),"foreign creature cannot be represented by original source ID: "+id.toCreature()->getJsonKey());return *source;
  }
  int3 position(const Command & c)const
  {
-  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH";
+  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH"||c.receiver=="DW";
   const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4&&c.selectors[3].access==Access::Read&&number(c.selectors[3])==1;
   require(c.selectors.size()==3||(indirect&&c.selectors.size()==1)||dynamicMonster,"object needs three coordinates or a coordinate variable");
   int3 pos;
@@ -361,6 +364,11 @@ struct SourceCampaignProcessor::Impl final:Host
   const auto * h=gh.gameState().getHero(heroId);context.currentHero=h?h->getHeroTypeID().getNum():-1;
   context.builtinFlag=[this](int flag){if(flag==1000)return gh.gameInfo().getPlayerState(player)->isHuman();if(flag==999)return false;return false;};
  }
+ Step sourceCommandError(const Command & command,const std::string & message)
+ {
+  const auto pos=position(command);JsonNode warning;warning["receiver"].String()=command.receiver;warning["position"].String()=pos.toString();warning["message"].String()=message;state["sourceErrors"].Vector().push_back(warning);
+  pending["kind"].String()="message";pending["text"].String()="Original script error: !!"+command.receiver+": "+message+" at "+pos.toString()+". This command is skipped; the following commands continue.";pending["flag"].Integer()=0;return Step::SuspendCommand;
+ }
  int32_t random(int32_t maximum,bool)override{return gh.randomizer->getDefault().nextInt(maximum);}
  Step execute(const Command &,const Operation &,State &,const Context &)override;
  era_campaign_timers::Settings timer(int id)const
@@ -471,6 +479,10 @@ struct SourceCampaignProcessor::Impl final:Host
     if(obj&&h&&allowsObject(obj,h)&&!consumeEmptyMonster(obj,h)&&!consumeLeftTroop(obj,h))obj->onHeroVisit(gh,h);
    }
    pumpTurns();
+  }
+  catch(const std::exception & error)
+  {
+   logGlobal->error("Original campaign %s (%s) stopped: %s",state["programId"].String(),program.sha256,error.what());executing=false;throw;
   }
   catch(...){executing=false;throw;}
  }
@@ -673,10 +685,103 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 {
  const auto & args=op.args;
  comparison.reset();
+ if(c.receiver=="CA")
+ {
+  const auto * town=dynamic_cast<const CGTownInstance *>(object(c,Obj::TOWN));if(!town)return sourceCommandError(c,"not a town");
+  auto world=era_campaign_admission::bindWorld(state,gh.gameState().getMap().sourceCampaignWorld);
+  auto & settings=world["towns"][std::to_string(town->id.getNum())];
+  if(op.code=="O")
+  {
+   arity(op,1);const int changed=value(town->getOwner().isValidPlayer()?town->getOwner().getNum():-1,args[0]);
+   if(!query(op)){require(changed>=-1&&changed<8,"source town owner outside-1..7");gh.setOwner(town,changed<0?PlayerColor::NEUTRAL:PlayerColor(changed));}
+  }
+  else if(op.code=="T")
+  {arity(op,1);require(query(op),"source town faction writes are not admitted");value(identity(town).subID,args[0]);}
+  else if(op.code=="N")
+  {
+   arity(op,1);if(args[0].access==Access::Write)writeText(args[0],vm,context,town->getNameTranslated());
+   else {require(args[0].access==Access::Read&&textOperand(args[0],vm),"source town name needs text");auto change=mutation("townName",town->id);change["text"].String()=readText(args[0],vm,context);persist(change);}
+  }
+  else if(op.code=="G")
+  {
+   arity(op,1);const int changed=value(town->mageGuildLevel(),args[0]);
+   if(!query(op)){require(changed>=0&&changed<=5,"source guild level outside0..5");settings["guildLevel"].Integer()=changed;persist(JsonNode(),nullptr,nullptr,world);}
+  }
+  else if(op.code=="M")
+  {
+   arity(op,4);require(number(args[0])==2,"source town army mode is not admitted");const int index=number(args[1]);require(index>=0&&index<7,"source town guard slot outside0..6");
+   const SlotID slot(index);const auto * stack=town->getStackPtr(slot);const auto & empty=settings["emptyGuards"][std::to_string(index)];
+   const int type=value(stack?sourceCreature(stack->getId()):-1,args[2]),count=value(stack?stack->getCount():empty.isNull()?0:era_campaign_json::integer(empty),args[3]);
+   if(!query(op))
+   {
+    require(count>=0,"negative source town guard count is not admitted");
+    if(type<0||count==0){if(stack)gh.eraseStack({town->id,slot},true);settings["emptyGuards"][std::to_string(index)].Integer()=count;}
+    else {if(!stack)gh.insertNewStack({town->id,slot},creature(type).toCreature(),count);else{gh.changeStackType({town->id,slot},creature(type).toCreature());gh.changeStackCount({town->id,slot},count,ChangeValueMode::ABSOLUTE);}settings["emptyGuards"].Struct().erase(std::to_string(index));}
+    persist(JsonNode(),nullptr,nullptr,world);
+   }
+  }
+  else if(op.code=="B")
+  {
+   arity(op,2);require(!query(op),"source building operation takes values");const int mode=number(args[0]),source=number(args[1]);require(source>=0&&source<44,"original building outside0..43");const BuildingID building(source);
+   if(mode==3)writeFlag(1,vm,town->hasBuilt(building));
+   else
+   {
+    require(mode>=1&&mode<=5,"source building mode outside1..5");
+    if(mode<=2&&settings["guildLevel"].isNull())settings["guildLevel"].Integer()=town->mageGuildLevel();
+    auto change=mutation("townBuilding",town->id);change["mode"].Integer()=mode;change["building"].Integer()=source;
+    const int lower=era_campaign_town::lowerBuilding(source);change["lower"].Integer()=lower;
+    if(mode==1||(mode==2&&lower>=0))require(town->getTown()->buildings.count(mode==1?building:BuildingID(lower))!=0,"unbound source town building");
+    persist(change,nullptr,nullptr,world);
+   }
+  }
+  else throw std::runtime_error("Original campaign: unsupported town operation "+op.code);
+  return Step::Continue;
+ }
+ if(c.receiver=="DW")
+ {
+  const auto * target=object(c,Obj::CREATURE_GENERATOR1);if(!target)target=object(c,Obj::CREATURE_GENERATOR4);const auto * dwelling=dynamic_cast<const CGDwelling *>(target);
+  if(!dwelling)return sourceCommandError(c,"not a dwelling");
+  if(op.code=="M")
+  {
+   arity(op,3);const int index=number(args[0]);require(index>=0&&index<4,"original dwelling recruit slot outside0..3");
+   require(static_cast<std::size_t>(index)<=dwelling->creatures.size(),"sparse dwelling recruit slots are not admitted");
+   const bool present=static_cast<std::size_t>(index)<dwelling->creatures.size();
+   const int oldType=present&&!dwelling->creatures[index].second.empty()?sourceCreature(dwelling->creatures[index].second.front()):-1;
+   const int type=value(oldType,args[1]),count=value(present?era_campaign_town::recruitQuery(dwelling->creatures[index].first):0,args[2]);
+   if(!query(op))
+   {
+    require(type>=0,"empty source dwelling recruit types are not admitted");
+    SetAvailableCreatures change;change.tid=dwelling->id;change.creatures=dwelling->creatures;
+    if(!present)change.creatures.resize(index+1);
+    change.creatures[index]={era_campaign_town::recruitWord(count),{creature(type)}};gh.sendAndApply(change);state["dwellings"][std::to_string(dwelling->id.getNum())]["configured"].Bool()=true;persist();
+   }
+  }
+  else if(op.code=="G")
+  {
+   arity(op,3);const int index=number(args[0]);require(index>=0&&index<7,"source dwelling guard slot outside0..6");
+   const SlotID slot(index);const auto * stack=dwelling->getStackPtr(slot);
+   const int type=value(stack?sourceCreature(stack->getId()):-1,args[1]),count=value(stack?stack->getCount():0,args[2]);
+   if(!query(op))
+   {
+    require(count>=0,"negative source dwelling guard count is not admitted");
+    if(type<0||count==0){if(stack)gh.eraseStack({dwelling->id,slot},true);}
+    else if(!stack)gh.insertNewStack({dwelling->id,slot},creature(type).toCreature(),count);
+    else {gh.changeStackType({dwelling->id,slot},creature(type).toCreature());gh.changeStackCount({dwelling->id,slot},count,ChangeValueMode::ABSOLUTE);}
+   }
+  }
+  else if(op.code=="O")
+  {
+   arity(op,1);const int old=dwelling->getOwner().isValidPlayer()?dwelling->getOwner().getNum():-1,changed=value(old,args[0]);
+   if(!query(op)){require(changed>=-1&&changed<8,"source dwelling owner outside-1..7");gh.setOwner(dwelling,changed<0?PlayerColor::NEUTRAL:PlayerColor(changed));}
+  }
+  else throw std::runtime_error("Original campaign: unsupported dwelling operation "+op.code);
+  return Step::Continue;
+ }
  if(c.receiver=="CH")
  {
   arity(op,1);require(op.code=="S"||op.code=="B"||op.code=="A","unadmitted chest operation");
-  const auto * chest=dynamic_cast<const CRewardableObject *>(object(c,Obj::TREASURE_CHEST));require(chest!=nullptr,"source chest target missing");
+  const auto * chest=dynamic_cast<const CRewardableObject *>(object(c,Obj::TREASURE_CHEST));
+  if(!chest)return sourceCommandError(c,"not a chest");
   auto & data=state["chests"][std::to_string(chest->id.getNum())];
   if(data.isNull())
   {
@@ -863,7 +968,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   require(c.selectors.size()==1,"Cave hero selector");const auto * h=hero(number(c.selectors[0]));
   if(op.code=="O")
   {arity(op,1);const int owner=value(h?h->getOwner().getNum():-1,args[0]);if(!query(op)&&h)gh.setOwner(h,PlayerColor(owner));return Step::Continue;}
-  require(h!=nullptr,"source hero missing");
+  require(h!=nullptr,"source hero missing for HE"+std::to_string(number(c.selectors[0]))+":"+op.code);
   if(op.code=="B")
   {
    arity(op,2);require(args[0].access==Access::Read,"hero text field must be a value");
@@ -1250,6 +1355,7 @@ SourceCampaignProcessor::~SourceCampaignProcessor()=default;
 bool SourceCampaignProcessor::demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building){return impl->demolitionFight(hero,town,building);}
 void SourceCampaignProcessor::demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnding(attacker,defender,won);}
 void SourceCampaignProcessor::demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnded(attacker,defender,won);}
+bool SourceCampaignProcessor::preservesAuthoredObjects(){impl->bind();return impl->active;}
 bool SourceCampaignProcessor::onReady(PlayerColor player){return impl->onReady(player);}
 bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
 {

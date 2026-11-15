@@ -839,7 +839,10 @@ void NewTurnProcessor::onNewTurn()
 
 	gameHandler->sendAndApply(n);
 
-    era_compat::applyEraFirstDayObjectReplacements(*gameHandler,firstTurn);
+    // Authored original campaign scripts address their exact source objects.
+    // TUM's optional random first-day replacement pass would remove those targets.
+    if(!firstTurn||!gameHandler->sourceCampaigns->preservesAuthoredObjects())
+     era_compat::applyEraFirstDayObjectReplacements(*gameHandler,firstTurn);
 
 
 	if (newWeek)

@@ -58,12 +58,12 @@ export function parseOperations(body,receiver){
  return result;
 }
 export function tokenizeErm(bytes,{encoding='utf-8',source='ERM'}={}){
- bytes=Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes);const text=bytes.toString('latin1'),decoder=new TextDecoder(encoding),tokens=[];let i=0,line=1,eligible=true;
- while(i<text.length){const c=text[i];if(c==='\n'){i++;line++;eligible=true;continue;}if(eligible&&/[\t\r ]/.test(c)){i++;continue;}if(!eligible||!/^![!?#$]/.test(text.slice(i,i+2))){eligible=false;i++;continue;}
+ bytes=Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes);const text=bytes.toString('latin1'),decoder=new TextDecoder(encoding),tokens=[];let i=0,line=1;
+ while(i<text.length){const c=text[i];if(c==='\n'){i++;line++;continue;}if(!/^![!?#$][A-Za-z]{2}/.test(text.slice(i,i+4))){i++;continue;}
   const offset=i,firstLine=line;let quoted=false,terminated=false;i+=2;
   while(i<text.length){const ch=text[i++];if(ch==='\n')line++;if(ch==='^')quoted=!quoted;if(ch===';'&&!quoted){terminated=true;break;}}
   if(!terminated)fail('Unterminated instruction at line'+firstLine,source);
-  const raw=bytes.subarray(offset,i);tokens.push({statement:decoder.decode(raw),offset,endOffset:i,line:firstLine,sha256:sha(raw)});eligible=true;
+  const raw=bytes.subarray(offset,i);tokens.push({statement:decoder.decode(raw),offset,endOffset:i,line:firstLine,sha256:sha(raw)});
  }
  return tokens;
 }

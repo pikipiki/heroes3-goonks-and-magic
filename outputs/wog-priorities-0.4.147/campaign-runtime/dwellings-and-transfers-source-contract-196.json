@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.196",
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "method": "Bounded static inspection of pinned original PE, corroborated by later source; no Windows execution claimed.",
+  "observations": [
+    {
+      "range": "0x736c00..0x736f80",
+      "behavior": "DW:M stores four native recruit rows, creature32/count16; count query is signed16. DW:G uses native guards; valid slots0..6 admitted."
+    },
+    {
+      "range": "0x70d400..0x70e080; table0x78a194",
+      "behavior": "CA:B2 lower-building bits are explicit table entries. Town name, owner, garrison and independent guild level use native state."
+    },
+    {
+      "range": "0x4a1520..0x4a1cc0",
+      "behavior": "Original dwelling visit iterates all four rows, collects level1 recruits free, then opens paid recruitment for remaining rows."
+    },
+    {
+      "range": "0x746811..0x74681f; scanner0x73af30..0x73afb8",
+      "behavior": "Original scanner searches ! anywhere; asterisk prefixes do not disable valid triggers or commands."
+    },
+    {
+      "range": "0x4863e5..0x486447; patch triple at0x7840ac",
+      "behavior": "Pinned patch {0x4863fe,197,4} extends creature keep check. Mask at+0x7c for creature160..196 overlaps artifact bitmap at+0x90, mapping to artifact0..36."
+    }
+  ],
+  "definedOriginalBehaviorPreserved": [
+    "Signed dwelling count queries retain raw16bit words.",
+    "Campaign creature160..196 carry selection reads the corresponding declared artifact permission bit through a safe bounded mapping.",
+    "Timers remain before global events; missing source command targets display error then abandon that command and resume following commands."
+  ],
+  "admittedScope": [
+    "DW:M/G/O and pinned CA:O/T(query)/N/M(mode2)/G(single level)/B(modes1..5). Sparse recruit rows and original out-of-bounds guard slot7 are not admitted.",
+    "Native multi-row recruitment and creature bitmap extension are restricted to bound admitted source campaigns. Ordinary maps retain their existing rules.",
+    "Source-authored objects are excluded from optional first-day random TUM replacement only in admitted original campaign programs."
+  ],
+  "compilerCorrection": {
+    "zc1-2": "5f47e04085c8e6761235bc96683c8fb6f170f80e11c5f8d37050da693331ee73",
+    "zc2-0": "683f5d5bcaa7f8ec4cf2a3d0cc4c18f8dbda5fe70ae9697d90fbe6deacdd8d5d",
+    "otherProgramsUnchanged": 10,
+    "archivesUnchanged": true,
+    "supersedes": "Earlier heading-comment assumption and detachedSource exception; four explicit syntax repairs remain."
+  },
+  "remaining": "All campaigns remain disabled. Actual next-scenario transfer reaches unsupported TR:T; optional branches and later victories are not validated."
+}

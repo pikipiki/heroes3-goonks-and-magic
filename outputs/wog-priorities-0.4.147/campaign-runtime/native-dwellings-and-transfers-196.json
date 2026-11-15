@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.196",
+  "passed": true,
+  "engineSha256": "998666a80cb6bb3f189d2d5d69cef27b827b0a8ee22a82098132cd3a230284d7",
+  "scope": "Native dwelling/town controls and bounded carryover, not complete original campaign validation.",
+  "freshDwelling": {
+    "passed": true,
+    "saveSha256": "e651482f46e4243db90fcb67c1be719a49f57b8409c96e23abe9d362c5fc8e86",
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      }
+    ],
+    "checks": [
+      "Real guard battle",
+      "14 level1 skeletons join free",
+      "4 paid ghosts cost2000 gold",
+      "Source guild level0 despite underlying guild building",
+      "Four independent paid recruit rows"
+    ]
+  },
+  "webkitReload": {
+    "passed": true,
+    "loadedSaveSha256": "e651482f46e4243db90fcb67c1be719a49f57b8409c96e23abe9d362c5fc8e86",
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stableControls": true,
+        "confirmWithinViewport": true,
+        "singleClose": true
+      }
+    ],
+    "errors": [],
+    "touchTargets": "At least44px height/width, fill two grid columns, controls retain DOM identity and confirm/one close stay in viewport."
+  },
+  "controlledCarry": {
+    "passed": true,
+    "controlledVictories": 2,
+    "enteredScenarios": [
+      1,
+      2,
+      0
+    ],
+    "companions": [
+      {
+        "selected": 2,
+        "units": [
+          {
+            "key": "wake-of-gods.creatures:gorynych",
+            "count": 1
+          },
+          {
+            "key": "wake-of-gods.creatures:nightmare",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "selected": 0,
+        "units": [
+          {
+            "key": "wake-of-gods.creatures:gorynych",
+            "count": 0
+          },
+          {
+            "key": "wake-of-gods.creatures:nightmare",
+            "count": 0
+          }
+        ]
+      }
+    ],
+    "experience": "Negative500 carried through all three maps, level1 retained."
+  },
+  "actualOriginalTransfer": {
+    "firstVictoryReached": true,
+    "nextScenarioPendingSaveSha256": "09ff1a4b303544fc0b8bf64099e8f8b49555f5ead4d66c75adecf2a2170abab4",
+    "saveVersion": 906,
+    "result": "Hero/Gorynych retained, original timer continues, stops at unsupported TR:T in GE1. Not a full second-scenario pass."
+  },
+  "productionSmoke": {
+    "passed": true,
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "saveSha256": "e03222c121329d864a347ca82770cc9db7fbbffae5d313948e7bd94ff2fd5456"
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "saveSha256": "30f8d0410468f5d595640feab97d6b4d40f5c6084e1b3144b2d8fa8f501652d3"
+      }
+    ],
+    "positiveNativeBattleStart": true
+  },
+  "unitTests": {
+    "passed": 739,
+    "skipped": 34,
+    "failed": 0
+  },
+  "allOriginalCampaignsEnabled": false
+}

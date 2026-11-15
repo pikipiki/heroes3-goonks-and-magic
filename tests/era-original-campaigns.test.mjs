@@ -30,9 +30,9 @@ test('eleven original scenarios retain source order and explicit unsupported syn
     }
   }
   assert.equal(scenarios, 11);
-  assert.equal(parsed, 132);
-  assert.equal(rejected.length, 5);
-  const expected = JSON.parse(fs.readFileSync('outputs/wog-priorities-0.4.147/campaigns169/parser-review.json', 'utf8'));
+  assert.equal(parsed, 133);
+  assert.equal(rejected.length, 4);
+  const expected = JSON.parse(fs.readFileSync('outputs/wog-priorities-0.4.147/campaign-runtime/parser-review-196.json', 'utf8'));
   assert.deepEqual(rejected, expected.unsupportedSources, 'Unknown syntax must not be silently dropped or repaired');
 });
 
@@ -41,6 +41,8 @@ test('campaign tokenizer keeps semicolons and line breaks inside source text', (
   assert.equal(tokens.length, 3);
   assert.equal(tokens[1].statement, '!!IF:M^One;\ntwo^;');
   assert.equal(tokens[2].line, 5);
+  const decorated=compileErm('ZVSE\n*** !?TM3&v13=2;\n!!VRv1:S7;\n*** !?FU113;\n!!VRv2:S8;\n! !IF:M^!!!!!!!^;\n!!VRv3:S9;');
+  assert.equal(decorated.blocks.length,2);assert.equal(decorated.blocks[0].receiver,'TM');assert.equal(decorated.blocks[0].commands.length,1);assert.equal(decorated.blocks[1].commands.length,2);
   assert.throws(() => compileErm('ZVSE\n!?LE1/2/0;\n!!SN:E0;'), /Unbound receiver/);
 });
 

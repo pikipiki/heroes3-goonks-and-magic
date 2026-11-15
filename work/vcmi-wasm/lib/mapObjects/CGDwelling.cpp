@@ -10,6 +10,8 @@
 
 #include "StdInc.h"
 #include "CGDwelling.h"
+#include "../era/EraCampaignAdmission.h"
+#include "../gameState/CGameState.h"
 #include "../callback/IGameInfoCallback.h"
 #include "../callback/IGameEventCallback.h"
 #include "../callback/IGameRandomizer.h"
@@ -434,11 +436,22 @@ void CGDwelling::updateGuards(IGameEventCallback & gameEvents) const
 	}
 }
 
+bool CGDwelling::sourceCampaignRecruits() const
+{
+ if(!cb||(ID!=Obj::CREATURE_GENERATOR1&&ID!=Obj::CREATURE_GENERATOR4))return false;
+ const auto & vm=cb->gameState().getSourceCampaignState();
+ return era_campaign_admission::admitted(vm)&&vm["dwellings"][std::to_string(id.getNum())]["configured"].Bool();
+}
+
 void CGDwelling::heroAcceptsCreatures(IGameEventCallback & gameEvents, const CGHeroInstance *h) const
 {
-	CreatureID crid = creatures[0].second[0];
+ const bool multiple=sourceCampaignRecruits()&&creatures.size()>1;
+ bool paid=false;
+ for(std::size_t index=0;index<(multiple?creatures.size():1);++index)
+ {
+ CreatureID crid = creatures[index].second[0];
 	auto *crs = crid.toCreature();
-	TQuantity count = creatures[0].first;
+	TQuantity count = creatures[index].first;
 
 	if(crs->getLevel() == 1  &&  ID != Obj::REFUGEE_CAMP) //first level - creatures are for free
 	{
@@ -474,7 +487,7 @@ void CGDwelling::heroAcceptsCreatures(IGameEventCallback & gameEvents, const CGH
 				SetAvailableCreatures sac;
 				sac.tid = id;
 				sac.creatures = creatures;
-				sac.creatures[0].first = 0;
+				sac.creatures[index].first = 0;
 
 
 				InfoWindow iw;
@@ -499,9 +512,11 @@ void CGDwelling::heroAcceptsCreatures(IGameEventCallback & gameEvents, const CGH
 			gameEvents.sendAndApply(iw);
 		}
 	}
-	else
-	{
-		if(ID == Obj::WAR_MACHINE_FACTORY) //pick available War Machines
+ else paid=true;
+ }
+ if(paid)
+ {
+  if(ID == Obj::WAR_MACHINE_FACTORY) //pick available War Machines
 		{
 			//there is 1 war machine available to recruit if hero doesn't have one
 			SetAvailableCreatures sac;
@@ -521,7 +536,7 @@ void CGDwelling::heroAcceptsCreatures(IGameEventCallback & gameEvents, const CGH
 			gameEvents.sendAndApply(sac);
 		}
 
-		auto windowMode = (ID == Obj::CREATURE_GENERATOR1 || ID == Obj::REFUGEE_CAMP) ? EOpenWindowMode::RECRUITMENT_FIRST : EOpenWindowMode::RECRUITMENT_ALL;
+		auto windowMode = (!multiple&&(ID == Obj::CREATURE_GENERATOR1 || ID == Obj::REFUGEE_CAMP)) ? EOpenWindowMode::RECRUITMENT_FIRST : EOpenWindowMode::RECRUITMENT_ALL;
 		gameEvents.showObjectWindow(this, windowMode, h, true);
 	}
 }

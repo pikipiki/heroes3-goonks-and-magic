@@ -2503,6 +2503,7 @@ bool CGameHandler::recruitCreatures(ObjectInstanceID objid, ObjectInstanceID dst
 	const auto * c = crid.toCreature();
 
 	const bool warMachine = c->warMachine != ArtifactID::NONE;
+ COMPLAIN_RET_FALSE_IF(dwelling&&dwelling->sourceCampaignRecruits()&&dwelling->creatures.size()>1&&c->getLevel()==1,"Original source first-level troops join on the dwelling visit.");
 
 	//TODO: check if hero is actually visiting object
 

@@ -574,6 +574,7 @@ void GameStatePackVisitor::visitNewStructures(NewStructures & pack)
 	{
 		assert(t->getTown()->buildings.at(id) != nullptr);
 		t->addBuilding(id);
+  if(id.getNum()>=0&&id.getNum()<=4&&std::as_const(gs.getMap().sourceCampaignWorld)["contract"].String()=="source-campaign-world-v1"){auto & settings=gs.getMap().sourceCampaignWorld["towns"][std::to_string(t->id.getNum())];if(settings.isStruct())settings.Struct().erase("guildLevel");}
 	}
 	t->updateAppearance();
 	t->built = pack.built;
@@ -586,6 +587,7 @@ void GameStatePackVisitor::visitRazeStructures(RazeStructures & pack)
 	for(const auto & id : pack.bid)
 	{
 		t->removeBuilding(id);
+  if(id.getNum()>=0&&id.getNum()<=4&&std::as_const(gs.getMap().sourceCampaignWorld)["contract"].String()=="source-campaign-world-v1"){auto & settings=gs.getMap().sourceCampaignWorld["towns"][std::to_string(t->id.getNum())];if(settings.isStruct())settings.Struct().erase("guildLevel");}
 
 		t->updateAppearance();
 	}

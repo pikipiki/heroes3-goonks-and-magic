@@ -279,6 +279,9 @@ void CRecruitmentWindow::availableCreaturesChanged()
 		if(level >= 0 && i != level)
 			continue;
 
+  // Original source dwellings grant every first-level row before opening paid recruitment.
+  if(level<0&&dwelling->sourceCampaignRecruits()&&dwelling->creatures.size()>1&&!dwelling->creatures[i].second.empty()&&dwelling->creatures[i].second.front().toCreature()->getLevel()==1)continue;
+
 		int amount = dwelling->creatures[i].first;
 
 		//create new cards

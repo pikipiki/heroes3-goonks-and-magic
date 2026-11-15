@@ -9,6 +9,10 @@
  */
 #include "StdInc.h"
 #include "CGameStateCampaign.h"
+#include "../era/EraCampaignAdmission.h"
+#include "../era/EraCampaignCreatureCarryRule.h"
+#include "../era/EraSourceCreatureLevels.h"
+#include "../mapping/MapFormatSettings.h"
 
 #include "CGameState.h"
 #include "QuestInfo.h"
@@ -177,12 +181,18 @@ void CGameStateCampaign::trimCrossoverHeroesParameters(vstd::RNG & randomGenerat
 		}
 	}
 
+ const auto & carriedSource=gameState->getStartInfo()->campState->getSourceCampaignVariables();
+ const bool sourceProfile=era_campaign_admission::programAdmitted(carriedSource["sourceExperienceProgramId"].String(),carriedSource["sourceExperienceProgramSha256"].String());
 	//trimming creatures
 	for(auto & hero : campaignHeroReplacements)
 	{
 		auto shouldSlotBeErased = [&](CStackInstance & j) -> bool
 		{
 			CreatureID crid = j.getCreatureID();
+   if(sourceProfile)
+    if(const auto source=era_bridge::sourceCreatureIdForLevel(j.getCreature()->getJsonKey()))
+     if(const auto artifact=era_campaign_creature_carry::artifactMaskIndex(*source))
+      return !travelOptions.artifactsKeptByHero.count(LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(*artifact)));
 			return !travelOptions.monstersKeptByHero.count(crid);
 		};
 

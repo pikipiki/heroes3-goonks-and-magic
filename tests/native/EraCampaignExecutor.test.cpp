@@ -18,6 +18,7 @@ struct Recorder:Host
  int prompts=0,replies=0;
  Step execute(const Command&,const Operation&o,State&s,const Context&)override
  {
+  if(o.code=="StopCommand"){++prompts;return Step::SuspendCommand;}
   if(o.code=="Prompt"){++prompts;s.flags[1]=false;return Step::Suspend;}
   if(o.code=="Reply"){++replies;++s.v[2];return Step::Continue;}
   throw std::runtime_error("Unexpected test host operation");
@@ -33,6 +34,8 @@ int main()
  p.blocks={block("LE",{num(1)},{cmd("VR",{var('v',1)},"S",{num(30)}),cmd("FU",{num(7)},"P",{num(33),var('v',1,Access::Write)})}),
   block("FU",{num(7)},{cmd("VR",{var('v',2)},"S",{var('x',2)}),cmd("VR",{var('x',2)},"S",{var('x',1)}),cmd("VR",{var('x',2)},"+",{num(10)}),cmd("FU",{},"E"),cmd("VR",{var('x',2)},"+",{num(1)})})};
  State s;Executor e(p,s,context,host);e.dispatch("LE",{1});assert(e.run());assert(s.v[1]==43&&s.v[2]==1);assert(s.frames.size()==1);
+ // A known original command error abandons that command, then resumes the trigger after acknowledgement.
+ Program recover;recover.sha256="recover";Command failed;failed.receiver="CH";failed.operations={{"StopCommand",{}},{"Reply",{}}};recover.initializers={failed,cmd("VR",{var('v',7)},"S",{num(123)})};State rs;Recorder errorHost;Executor re(recover,rs,context,errorHost);re.initialize();assert(!re.run());assert(errorHost.prompts==1&&errorHost.replies==0);State savedError=rs;Executor rerun(recover,savedError,context,errorHost);assert(rerun.run());assert(errorHost.prompts==1&&errorHost.replies==0&&savedError.v[7]==123&&savedError.initialized);
  // Initializers may call only functions declared before that instruction.
  Program init;init.sha256="initializers";auto early=cmd("FU",{num(1)},"P");early.visibleBlocks=0;auto late=early;late.visibleBlocks=1;
  init.initializers={early,late};init.blocks={block("FU",{num(1)},{cmd("VR",{var('v',1)},"+",{num(1)})})};

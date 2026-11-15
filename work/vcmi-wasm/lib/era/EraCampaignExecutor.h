@@ -7,7 +7,7 @@
 
 namespace era_campaign
 {
-enum class Step { Continue, Suspend };
+enum class Step { Continue, Suspend, SuspendCommand };
 struct Host
 {
  virtual ~Host()=default;
@@ -243,7 +243,9 @@ public:
     }
     continue;
    }
-   if(host.execute(command,op,state,context)==Step::Suspend)return false;
+   const auto result=host.execute(command,op,state,context);
+   if(result==Step::SuspendCommand){call.operation=command.operations.size();return false;}
+   if(result==Step::Suspend)return false;
   }
   return true;
  }

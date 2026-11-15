@@ -133,6 +133,21 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    if(!hero||(gender!=0&&gender!=1))throw std::runtime_error("Invalid original hero gender mutation");
    hero->gender=static_cast<EHeroGender>(gender);
   }
+  else if(kind=="townName")
+  {
+   auto * town=dynamic_cast<CGTownInstance *>(object);if(!town||!change["text"].isString())throw std::runtime_error("Invalid source town name");town->setCustomName(change["text"].String());
+  }
+  else if(kind=="townBuilding")
+  {
+   auto * town=dynamic_cast<CGTownInstance *>(object);const int mode=campaignInteger(change["mode"]),source=campaignInteger(change["building"]),lower=campaignInteger(change["lower"]);
+   if(!town||mode<1||mode>5||mode==3||source<0||source>=44||lower< -1||lower>=44)throw std::runtime_error("Invalid source town building mutation");
+   const BuildingID building(source);
+   if(mode==1)town->addBuilding(building);
+   if(mode==2){town->removeBuilding(building);if(lower>=0)town->addBuilding(BuildingID(lower));}
+   if(mode==4)town->forbiddenBuildings.erase(building);
+   if(mode==5)town->forbiddenBuildings.insert(building);
+   town->updateAppearance();town->recreateBuildingsBonuses();
+  }
   else if(kind=="heroPatrol")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);
