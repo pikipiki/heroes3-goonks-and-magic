@@ -1,5 +1,16 @@
 # Validation — 14 novembre 2026
 
+## Blocage des changements de mode — 15 novembre 2026
+
+- Reproduction ciblée : remplacer uniquement la préparation audio par une promesse suspendue bloquait la simulation lors de sa synchronisation périodique. Le délai de réponse était supprimé avant l’achèvement de ce traitement et le contrôleur restait occupé. Aucun PV ou résultat n’est fabriqué.
+- Correction : décodage audio indépendant des transferts, déduplication des décodages en cours, délai maintenu jusqu’à la fin de la réponse, rejet des réponses dupliquées et des achèvements après fermeture. Une réponse périodique ne peut pas reprendre RTS pendant le retour classique. Les temporisateurs appartiennent au panneau qui les a créés.
+- L’ancien hôte dispose explicitement de sa minuterie native, son rendu, sa passerelle et son contexte audio avant le retrait de l’iframe ; la fermeture est idempotente.
+- `STALL_SOUND=1 node experiments/crossover/tests/switch-stress-browser.mjs` : huit allers-retours actifs dans chacun des navigateurs Chromium et WebKit, avec doubles clics, préparation audio suspendue à partir du deuxième passage, actions classiques, vues classique/verticale et rotations portrait/paysage. Aucun blocage ni erreur de synchronisation ; un seul hôte préparé après chaque retour.
+- `CLICK_ON_SYNC=1 STALL_SOUND=1 SWITCH_CYCLES=2 node experiments/crossover/tests/switch-stress-browser.mjs` : deux allers-retours par navigateur déclenchés au moment précis de la réponse native. Aucun redémarrage RTS pendant le transfert ; ancienne passerelle explicitement fermée à chaque fois.
+- `tests/roundtrip-browser.mjs` réexécuté avec succès sous Chromium et WebKit sur la version finale : santé exacte dans les deux sens, blessures classiques supplémentaires, mana, morts et invocations conservées.
+- Trois tests de cycle de vie ajoutés pour l’expiration pendant un traitement suspendu, la fermeture/réponse dupliquée et le refus d’une réconciliation. Total crossover : 39 réussis. Tests Heroes : 694 réussis, 46 ignorés sur 740. TypeScript strict, `verify:web` et `ninja -j32 html5` réussis.
+- Bundle Pages final : 999 146 257 octets. La validation navigateur sur ordinateur ne remplace pas un essai sur l’appareil physique.
+
 ## Continuité bidirectionnelle et unités classiques — 15 novembre 2026
 
 - `tests/roundtrip-browser.mjs` réussi dans Chromium et WebKit, au format tactile paysage 844×390 : mêmes six types StarCraft, santé de départ identique, vrais sorts sur un Dragoon et un Behemoth, invocation native, retour classique, deux rounds d’attaques classiques, puis retour RTS. Vérification exacte de la santé totale de chaque groupe dans les deux directions, ainsi que des invocations et de la mana ; aucune modification artificielle de PV dans le test.

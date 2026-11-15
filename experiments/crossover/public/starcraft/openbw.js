@@ -1053,12 +1053,15 @@ async function boot(session) {
   // eventually makes the next boot's `new AudioContext()` fail. Also stop the step timer
   // so no catch-up burst fires mid-teardown, and drop the debug handle to help the GC
   // reclaim the (large) wasm memory sooner.
-  addEventListener('pagehide', () => {
-    clearTimeout(stepTimer);
-    try { if (audioCtx) audioCtx.close(); } catch {}
+  let crossoverDisposed=false;
+  const disposeCrossover=()=>{
+    if(crossoverDisposed)return;crossoverDisposed=true;paused=true;clearTimeout(stepTimer);clearTimeout(resizeTimer);
+    try { if (audioCtx) void audioCtx.close().catch(()=>{}); } catch {}
     try { if (link) link.close(); } catch {}
     crossoverApi.close();
-  });
+  };
+  window.openbwDisposeCrossover=disposeCrossover;
+  addEventListener('pagehide',disposeCrossover,{once:true});
 
   // Pause/resume, shown like a video player (⏸ while running, ▶ while paused). The
   // ︎ text selector keeps the glyphs monochrome. A big "Paused" banner also shows.
@@ -1094,11 +1097,18 @@ async function boot(session) {
   crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
-  const creatureSounds=new Map(),creaturePlayed=new Map();
+  const creatureSounds=new Map(),creaturePlayed=new Map(),creatureSoundLoads=new Map();
   crossoverApi.prepareCreatureSounds=async rows=>{
-    rows=rows.filter(row=>!creatureSounds.has(row.id+':'+(row.kind||'attack')));if(!rows.length)return;
-    const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
-    await Promise.all(rows.map(async row=>{const buffer=await decoder.decodeAudioData(new Uint8Array(row.bytes).buffer);creatureSounds.set(row.id+':'+(row.kind||'attack'),buffer);}));
+    const key=row=>row.id+':'+(row.kind||'attack');
+    const fresh=rows.filter(row=>!creatureSounds.has(key(row))&&!creatureSoundLoads.has(key(row)));
+    if(fresh.length){
+      const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
+      for(const row of fresh){const id=key(row);if(creatureSoundLoads.has(id))continue;
+        const task=decoder.decodeAudioData(new Uint8Array(row.bytes).buffer).then(buffer=>{creatureSounds.set(id,buffer);}).finally(()=>creatureSoundLoads.delete(id));
+        creatureSoundLoads.set(id,task);
+      }
+    }
+    await Promise.all(rows.map(row=>creatureSoundLoads.get(key(row))));
   };
   crossoverApi.playCreatureSound=(stack,kind)=>{
     const key=stack+':'+kind,buffer=creatureSounds.get(key);if(!buffer||muted||!audioCtx)return false;
@@ -1457,7 +1467,7 @@ async function boot(session) {
 
   let renderedCrossoverFrame=-1;
   function frame() {
-    if(session.crossover){const current=x.openbw_frame();if(current!==renderedCrossoverFrame){x.openbw_render(performance.now());renderedCrossoverFrame=current;}requestAnimationFrame(frame);return;}
+    if(session.crossover){if(crossoverDisposed)return;const current=x.openbw_frame();if(current!==renderedCrossoverFrame){x.openbw_render(performance.now());renderedCrossoverFrame=current;}requestAnimationFrame(frame);return;}
     x.openbw_render(performance.now());
     const w = x.openbw_framebuffer_width(), h = x.openbw_framebuffer_height(), ptr = x.openbw_framebuffer();
     if (w && h && ptr) {

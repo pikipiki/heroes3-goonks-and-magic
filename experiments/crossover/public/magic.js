@@ -8,13 +8,15 @@ export function magicController(win, api, plan, onEffects) {
     const toField = (x) => mirrored ? 799 - x : x;
     const positions = new Map();
     let reconciling = false;
+    // Keep the deadline active until presentation finishes, not just until the native reply arrives.
     const receive = (event) => {
         const response = event.detail;
-        if (!pending || response.sequence !== pending.sequence)
+        if (!pending || response.sequence !== pending.sequence || pending.received)
             return;
         const request = pending;
-        win.clearTimeout(request.timer);
+        request.received = true;
         if (!response.ok) {
+            win.clearTimeout(request.timer);
             pending = undefined;
             request.reject(Error(response.error || 'Sort refusé.'));
             return;
@@ -40,8 +42,8 @@ export function magicController(win, api, plan, onEffects) {
             }
             const actual = api.census().units;
             const differs = response.groups.some(g => actual.filter(u => u.stackId === g.id && u.hp > 0).length !== g.count);
-            void Promise.resolve(onEffects(response)).then(async () => { if (pending === request)
-                pending = undefined; if (differs && !reconciling) {
+            void Promise.resolve(onEffects(response)).then(async () => { if (closed || pending !== request)
+                return; win.clearTimeout(request.timer); pending = undefined; if (differs && !reconciling) {
                 reconciling = true;
                 try {
                     await send(undefined);
@@ -49,10 +51,11 @@ export function magicController(win, api, plan, onEffects) {
                 finally {
                     reconciling = false;
                 }
-            } request.resolve(response); }).catch(error => { if (pending === request)
+            } request.resolve(response); }).catch(error => { win.clearTimeout(request.timer); if (pending === request)
                 pending = undefined; request.reject(error); });
         }
         catch (e) {
+            win.clearTimeout(request.timer);
             if (pending === request)
                 pending = undefined;
             request.reject(e instanceof Error ? e : Error(String(e)));

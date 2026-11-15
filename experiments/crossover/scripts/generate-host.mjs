@@ -15,6 +15,12 @@ const oppStart=js.indexOf('const OPPONENTS = {'),oppEnd=js.indexOf('const slotsB
 js=js.slice(0,oppStart)+"const OPPONENTS = {};\nconst DEFAULT_OPP = 'none';\n"+js.slice(oppEnd);
 replace('if (DEV) window.__bw = { x, memory, lockstep, link };   // dev-only debugging handle','const crossoverApi = installNativeBridge(x, memory);');
 replace('if (DEV) window.__bw = null;','crossoverApi.close();');
+// An iframe can be detached without pagehide on mobile. Stop native work and
+// audio explicitly before its owner releases the frame.
+replace("  addEventListener('pagehide', () => {\n    clearTimeout(stepTimer);", "  let crossoverDisposed=false;\n  const disposeCrossover=()=>{\n    if(crossoverDisposed)return;crossoverDisposed=true;paused=true;clearTimeout(stepTimer);clearTimeout(resizeTimer);");
+replace('try { if (audioCtx) audioCtx.close(); } catch {}', 'try { if (audioCtx) void audioCtx.close().catch(()=>{}); } catch {}');
+replace("    crossoverApi.close();\n  });", "    crossoverApi.close();\n  };\n  window.openbwDisposeCrossover=disposeCrossover;\n  addEventListener('pagehide',disposeCrossover,{once:true});");
+
 replace("  hb('boot:engine-init');\n  x._initialize();", "  hb('boot:engine-init');\n  x._initialize();\n  x.openbw_crossover_arena?.(session.crossover?1:0);");
 replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(x,memory,session.crossover);\n  hb('boot:engine-ready');");
 replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
@@ -23,11 +29,18 @@ replace('  pauseBtn.onclick = () => {', '  crossoverApi.pause=()=>{paused=true;a
 replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
-  const creatureSounds=new Map(),creaturePlayed=new Map();
+  const creatureSounds=new Map(),creaturePlayed=new Map(),creatureSoundLoads=new Map();
   crossoverApi.prepareCreatureSounds=async rows=>{
-    rows=rows.filter(row=>!creatureSounds.has(row.id+':'+(row.kind||'attack')));if(!rows.length)return;
-    const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
-    await Promise.all(rows.map(async row=>{const buffer=await decoder.decodeAudioData(new Uint8Array(row.bytes).buffer);creatureSounds.set(row.id+':'+(row.kind||'attack'),buffer);}));
+    const key=row=>row.id+':'+(row.kind||'attack');
+    const fresh=rows.filter(row=>!creatureSounds.has(key(row))&&!creatureSoundLoads.has(key(row)));
+    if(fresh.length){
+      const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
+      for(const row of fresh){const id=key(row);if(creatureSoundLoads.has(id))continue;
+        const task=decoder.decodeAudioData(new Uint8Array(row.bytes).buffer).then(buffer=>{creatureSounds.set(id,buffer);}).finally(()=>creatureSoundLoads.delete(id));
+        creatureSoundLoads.set(id,task);
+      }
+    }
+    await Promise.all(rows.map(row=>creatureSoundLoads.get(key(row))));
   };
   crossoverApi.playCreatureSound=(stack,kind)=>{
     const key=stack+':'+kind,buffer=creatureSounds.get(key);if(!buffer||muted||!audioCtx)return false;
@@ -58,7 +71,7 @@ replace('try {\n    ({ instance } = await WebAssembly.instantiateStreaming(wasmR
 // per simulation tick, without copying its hidden framebuffer or HUD at 60 Hz.
 replace('  function frame() {\n    x.openbw_render(performance.now());', `  let renderedCrossoverFrame=-1;
   function frame() {
-    if(session.crossover){const current=x.openbw_frame();if(current!==renderedCrossoverFrame){x.openbw_render(performance.now());renderedCrossoverFrame=current;}requestAnimationFrame(frame);return;}
+    if(session.crossover){if(crossoverDisposed)return;const current=x.openbw_frame();if(current!==renderedCrossoverFrame){x.openbw_render(performance.now());renderedCrossoverFrame=current;}requestAnimationFrame(frame);return;}
     x.openbw_render(performance.now());`);
 const debugStart=js.indexOf('  // Debug (?debug in the URL)'),debugEnd=js.indexOf('  // Chat (Enter to open)',debugStart);
 if(debugStart<0||debugEnd<0)throw Error('Upstream debug section changed');

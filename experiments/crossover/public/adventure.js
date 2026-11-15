@@ -151,7 +151,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         modeStatus.textContent = 'Ce combat ne permet pas le passage en temps réel.';
     } }, 6000); };
     const closePanel = () => { returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app'); if (nativeApp)
-        nativeApp.inert = false; sceneDispose?.(); sceneDispose = undefined; if (timer !== undefined)
+        nativeApp.inert = false; sceneDispose?.(); sceneDispose = undefined; const host = frame?.contentWindow; host?.openbwDisposeCrossover?.(); if (timer !== undefined)
         win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (!disposed)
         void prepareEngine().catch(() => { }); };
     const begin = (value) => {
@@ -183,7 +183,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         sound.onclick = () => { const api = activeFrame.contentWindow.openbwCrossover; api?.setMuted?.(!api.audioState?.().muted); audio(); updateSound(); };
         const updateSound = () => { const muted = activeFrame.contentWindow.openbwCrossover?.audioState?.().muted ?? false; sound.textContent = muted ? 'Son coupé' : 'Son activé'; sound.setAttribute('aria-pressed', String(!muted)); sound.setAttribute('aria-label', muted ? 'Activer les sons du combat' : 'Couper les sons du combat'); };
         const roster = panel.querySelector('#crossover-roster'), cards = new Map();
-        let ready = false, chosen;
+        let ready = false, chosen, returnTimer;
         for (const row of plan.stacks.filter(row => row.side === 0)) {
             const button = doc.createElement('button');
             button.className = 'army-card';
@@ -253,7 +253,9 @@ export function installAdventure(target, base, onExit, trial = false) {
             button.onclick = () => { const living = api().census().units.filter(u => u.stackId === row.id && u.hp > 0), point = magic.position(row.id) || { x: 400, y: 250 }; canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { stack: row.id, owner: 0, hp: living.reduce((sum, u) => sum + u.hp, 0), x: point.x, y: point.y } })); };
             friendlyTargets.append(button);
         } };
-        const onMagicResponse = async (response) => { catalogue = response.catalogue; for (const group of response.groups) {
+        // Sound decoding is presentation work: it must never hold a combat transfer open.
+        const onMagicResponse = (response) => { if (panel !== activePanel)
+            return; catalogue = response.catalogue; for (const group of response.groups) {
             effectiveOwners.set(group.id, group.owner);
             const original = activePlan.stacks.find(s => s.id === group.id);
             if (group.owner === 0 && !cards.has(group.id) && group.count > 0) {
@@ -276,7 +278,7 @@ export function installAdventure(target, base, onExit, trial = false) {
             if (opposing)
                 opposing.parentElement.hidden = group.owner === 0;
         } const sounds = win.goonkCrossoverSounds; if (sounds?.battleId === activePlan.battleId)
-            await api().prepareCreatureSounds?.(sounds.rows).catch(() => { }); for (const event of response.events || []) {
+            void api().prepareCreatureSounds?.(sounds.rows).catch(() => { }); for (const event of response.events || []) {
             api().playCreatureSound?.(event.caster, `spell:${event.id}`);
             canvas.dispatchEvent(new CustomEvent('crossover-spell-effect', { detail: { id: event.id, caster: event.caster, targets: event.targets || [], x: event.x ?? (event.hex % 17 - 1) * 800 / 15 + 26, y: event.y ?? Math.floor(event.hex / 17) * 500 / 11 + 22 } }));
         } canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: response.obstacles || [] })); canvas.dispatchEvent(new Event('crossover-native-changed')); };
@@ -284,7 +286,8 @@ export function installAdventure(target, base, onExit, trial = false) {
         const oldDispose = sceneDispose;
         sceneDispose = () => { stopKeys(); magic?.dispose(); oldDispose?.(); };
         const available = () => (catalogue?.spells || []).filter(s => s.caster < 0 || chosen === undefined || chosen < 0 || s.caster === chosen);
-        const finishChoice = (cast) => { choosingSpell = false; bookRoot.hidden = true; activePanel.classList.remove('choosing-spell', 'using-shortcut'); editing = false; editingSlot = undefined; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; armedSpell = undefined; teleportTarget = undefined; picker.hidden = true; friendlyTargets.hidden = true; activePanel.querySelector('aside').scrollTop = 0; delete canvas.dataset.spellMode; delete canvas.dataset.spellTarget; if (cast || !wasPaused) {
+        const finishChoice = (cast) => { if (panel !== activePanel || returningToClassic)
+            return; choosingSpell = false; bookRoot.hidden = true; activePanel.classList.remove('choosing-spell', 'using-shortcut'); editing = false; editingSlot = undefined; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; armedSpell = undefined; teleportTarget = undefined; picker.hidden = true; friendlyTargets.hidden = true; activePanel.querySelector('aside').scrollTop = 0; delete canvas.dataset.spellMode; delete canvas.dataset.spellTarget; if (cast || !wasPaused) {
             api().start();
             start.hidden = true;
         } updateSelection(); };
@@ -332,8 +335,8 @@ export function installAdventure(target, base, onExit, trial = false) {
         spellButton.onclick = () => { if (!ready)
             return; editing = false; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; picker.querySelector('h3').textContent = 'Combat en pause'; picker.querySelector('p').textContent = 'Choisis un sort, puis sa cible sur le terrain.'; if (!choosingSpell)
             wasPaused = !start.hidden; api().pause(); choosingSpell = true; activePanel.classList.add('choosing-spell'); canvas.dataset.spellMode = 'choose'; picker.hidden = false; options.replaceChildren(); armedSpell = undefined; selection.textContent = 'Combat en pause · ouverture du livre de sorts…'; updateSelection(); void (async () => { while (magic.busy() && choosingSpell)
-            await new Promise(resolve => win.setTimeout(resolve, 16)); if (!choosingSpell)
-            return; await magic.sync(); if (!choosingSpell)
+            await new Promise(resolve => win.setTimeout(resolve, 16)); if (!choosingSpell || returningToClassic || panel !== activePanel)
+            return; await magic.sync(); if (!choosingSpell || returningToClassic || panel !== activePanel)
             return; renderBook(); selection.textContent = `Combat en pause · choisis un sort (${catalogue?.mana ?? 0} mana).`; })().catch(error => { selection.textContent = 'Pause · ' + String(error); }); };
         cancelSpell.onclick = () => { if (editing) {
             if (editingSlot !== undefined) {
@@ -362,10 +365,10 @@ export function installAdventure(target, base, onExit, trial = false) {
             wasPaused = false; api().pause(); choosingSpell = true; activePanel.classList.add('choosing-spell', 'using-shortcut'); picker.hidden = false; options.hidden = true; slotOverview.hidden = true; cancelSpell.textContent = 'Annuler le sort'; picker.querySelector('h3').textContent = 'Combat en pause'; picker.querySelector('p').textContent = 'Choisis la cible sur le terrain.'; armedSpell = undefined; canvas.dataset.spellMode = 'choose'; updateSelection(); try {
             while (magic.busy() && choosingSpell)
                 await new Promise(resolve => win.setTimeout(resolve, 16));
-            if (!choosingSpell)
+            if (!choosingSpell || returningToClassic || panel !== activePanel)
                 return;
             await magic.sync();
-            if (!choosingSpell)
+            if (!choosingSpell || returningToClassic || panel !== activePanel)
                 return;
             const spell = resolveSpell(loadout?.[index] || null, catalogue?.spells || [], activePlan, api().frame());
             if (!spell)
@@ -467,7 +470,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         attack.onclick = () => { const active = attack.getAttribute('aria-pressed') !== 'true'; attack.setAttribute('aria-pressed', String(active)); attack.textContent = active ? 'Choisir un point' : 'Avancer et attaquer'; selection.dataset.feedback = active ? 'armed' : ''; canvas.dispatchEvent(new CustomEvent('crossover-command-mode', { detail: active ? 'attack' : 'move' })); selection.textContent = active ? 'Touche un point du terrain pour avancer en attaquant. Un ennemi se cible directement.' : 'Choisis un point où déplacer la sélection.'; };
         stop.onclick = () => canvas.dispatchEvent(new Event('crossover-stop-selection'));
         start.onclick = () => { audio(); try {
-            frame.contentWindow.openbwCrossover.start();
+            activeFrame.contentWindow.openbwCrossover.start();
             start.hidden = true;
         }
         catch (e) {
@@ -475,11 +478,14 @@ export function installAdventure(target, base, onExit, trial = false) {
         } };
         panel.querySelector('#crossover-cancel').onclick = () => { if (returningToClassic || !ready)
             return; api().pause(); returningToClassic = true; activePanel.dataset.transferring = 'true'; status.textContent = 'Transfert des unités et des blessures vers le combat classique…'; void (async () => { while (magic.busy())
-            await new Promise(resolve => win.setTimeout(resolve, 16)); await magic.sync(); command(4, activePlan.battleId); win.setTimeout(() => { if (returningToClassic) {
+            await new Promise(resolve => win.setTimeout(resolve, 16)); if (panel !== activePanel)
+            return; api().pause(); await magic.sync(); if (panel !== activePanel)
+            return; command(4, activePlan.battleId); returnTimer = win.setTimeout(() => { if (panel === activePanel && returningToClassic) {
             returningToClassic = false;
             delete activePanel.dataset.transferring;
             status.textContent = 'Le transfert n’a pas été confirmé. Le combat reste en pause ; réessaie.';
-        } }, 10000); })().catch(error => { returningToClassic = false; delete activePanel.dataset.transferring; status.textContent = String(error); }); };
+        } }, 10000); })().catch(error => { if (panel !== activePanel)
+            return; returningToClassic = false; delete activePanel.dataset.transferring; status.textContent = String(error); }); };
         void (async () => {
             try {
                 const sc = await prepared;
@@ -491,7 +497,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                     await magic.sync();
                 const sounds = win.goonkCrossoverSounds;
                 if (sounds?.battleId === activePlan.battleId && sounds.rows.length)
-                    await sc.openbwCrossover.prepareCreatureSounds?.(sounds.rows);
+                    void sc.openbwCrossover.prepareCreatureSounds?.(sounds.rows).catch(() => { });
                 if (disposed || panel !== activePanel || frame !== activeFrame || plan !== activePlan)
                     return;
                 if (timer !== undefined)
@@ -508,7 +514,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                     sc.openbwCrossover.start();
                     start.hidden = true;
                 }
-                sceneDispose = () => { stopKeys(); magic.dispose(); disposeField(); };
+                sceneDispose = () => { if (returnTimer !== undefined)
+                    win.clearTimeout(returnTimer); stopKeys(); magic.dispose(); disposeField(); };
                 await new Promise(resolve => win.requestAnimationFrame(() => win.requestAnimationFrame(() => resolve())));
                 if (panel !== activePanel)
                     return;
@@ -524,8 +531,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                             lastMagicRound = Math.floor(native.frame / 96);
                             const paused = api().isPaused();
                             api().pause();
-                            void magic.sync().then(() => { if (!paused && !choosingSpell)
-                                api().start(); }).catch(error => { status.textContent = String(error); if (!paused && !choosingSpell)
+                            void magic.sync().then(() => { if (panel === activePanel && !returningToClassic && !paused && !choosingSpell)
+                                api().start(); }).catch(error => { status.textContent = String(error); if (panel === activePanel && !returningToClassic && !paused && !choosingSpell)
                                 api().start(); });
                         }
                         if (native.finished && !observedFinish) {
