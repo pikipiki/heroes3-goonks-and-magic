@@ -32,6 +32,8 @@ namespace PathfinderUtil
 		{
 		case ELayer::LAND:
 		case ELayer::SAIL:
+			if(tinfo.sourceForceBlocked && tinfo.sourceForceVisitable && tinfo.visitableObjects.empty())
+				return EPathAccessibility::BLOCKVIS;
 			if(tinfo.visitable())
 			{
 				if (tinfo.visitableObjects.size() > 1)

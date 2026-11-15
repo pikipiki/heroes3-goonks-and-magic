@@ -39,6 +39,9 @@
 #include "../CPlayerInterface.h"
 
 #include "../../lib/mapping/CMap.h"
+#include "../../lib/gameState/CGameState.h"
+#include "../../lib/CPlayerState.h"
+#include "../../lib/era/EraCampaignHints.h"
 #include "../../lib/GameLibrary.h"
 #include "../../lib/IGameSettings.h"
 #include "../../lib/StartInfo.h"
@@ -856,6 +859,23 @@ void AdventureMapInterface::onTileRightClicked(const int3 &mapPos)
 #endif
 
 	const CGObjectInstance * obj = getActiveObject(mapPos);
+	// Plot cells can have a source description even when the visible scenery
+	// is deliberately neither blocked nor a native visitable object.
+	if(!dynamic_cast<const CGHeroInstance *>(obj))
+	{
+		const auto & game = static_cast<const IGameInfoCallback &>(*GAME->interface()->cb).gameState();
+		const auto * hero = GAME->interface()->localState->getCurrentHero();
+		const auto * owner = game.getPlayerState(GAME->interface()->playerID);
+		if(const auto hint = era_campaign_hints::text(game.getMap().sourceCampaignState, mapPos, game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman()))
+		{
+#ifdef VCMI_HTML5_BUILD
+			if(isMobilePresentationActive())CInfoWindow::showInfoDialog(*hint, {}, GAME->interface()->playerID);
+			else
+#endif
+				CRClickPopup::createAndPush(*hint);
+			return;
+		}
+	}
 	if(!obj)
 	{
 		// Bare or undiscovered terrain

@@ -194,7 +194,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void useScholarSkill(ObjectInstanceID hero1, ObjectInstanceID hero2);
 	void setPortalDwelling(const CGTownInstance * town, bool forced, bool clear);
-	void visitObjectOnTile(const TerrainTile &t, const CGHeroInstance * h);
+	void visitObjectOnTile(const TerrainTile &t, const CGHeroInstance * h, const int3 & position);
 	bool teleportHero(ObjectInstanceID hid, ObjectInstanceID dstid, ui8 source, PlayerColor asker = PlayerColor::NEUTRAL);
 	void visitCastleObjects(const CGTownInstance * obj, const CGHeroInstance * hero) override;
 	void visitCastleObjects(const CGTownInstance * obj, const std::vector<const CGHeroInstance * > & visitors);

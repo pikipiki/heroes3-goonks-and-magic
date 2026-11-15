@@ -1,0 +1,1529 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.188",
+  "engineSha256": "267e4b396909d86c98f865b736c399cc41699e36522a2256cfbd9653900d2799",
+  "originalCampaignsEnabled": false,
+  "sourceContract": "plot-source-contract-188.json",
+  "nativeChecks": [
+    {
+      "case": "plot-final",
+      "passed": true,
+      "resultSha256": "fb02ff997ad8a6e93b142169242f75239d3664a933ee52c6c39652283efa98f6",
+      "fixtureSha256": "f6f62290e2527974960bc246c676303cedf36a731cf847b44c095c6f68c48b88",
+      "mapSha256": "7ce55111061667428cf03415aa5f08367838672f62a0afa990a58da3fcf9f5e8",
+      "loadedPending": false,
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 61,
+            "scrollHeight": 284,
+            "clientHeight": 223,
+            "rect": {
+              "x": 18,
+              "y": 166.1015625,
+              "w": 284,
+              "h": 226.796875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 61,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 400.8984375,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 81,
+            "scrollHeight": 371,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 81,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 242,
+            "clientHeight": 242,
+            "rect": {
+              "x": 18,
+              "y": 294.5,
+              "w": 354,
+              "h": 246
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 548.5,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 342,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 137,
+            "clientHeight": 137,
+            "rect": {
+              "x": 18,
+              "y": 438.75,
+              "w": 732,
+              "h": 141
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 587.75,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 116,
+            "clientHeight": 116,
+            "rect": {
+              "x": 18,
+              "y": 528.140625,
+              "w": 784,
+              "h": 120
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 656.140625,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "wordProbe": {
+        "cancel": false,
+        "lines": [
+          "Native signed plot -1/-32768"
+        ],
+        "queryId": 3,
+        "title": "Game message"
+      },
+      "first": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 1 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 17,
+        "title": "Game message"
+      },
+      "second": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 2 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 22,
+        "title": "Game message"
+      },
+      "blocked": {
+        "cancel": false,
+        "lines": [
+          "Native blocking plot 63/3 hero 0 at 24/18; tile 25/18"
+        ],
+        "queryId": 27,
+        "title": "Game message"
+      }
+    },
+    {
+      "case": "plot-final-reload",
+      "passed": true,
+      "resultSha256": "951fecc74a127f03dabeb193c1b3f9e177fe348a7a9dc9f7c9397582fb47c370",
+      "fixtureSha256": "f6f62290e2527974960bc246c676303cedf36a731cf847b44c095c6f68c48b88",
+      "mapSha256": "7ce55111061667428cf03415aa5f08367838672f62a0afa990a58da3fcf9f5e8",
+      "loadedPending": true,
+      "layouts": [],
+      "wordProbe": null,
+      "first": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 1 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 18,
+        "title": "Game message"
+      },
+      "second": {
+        "cancel": false,
+        "lines": [
+          "Native plot 63/2 count 2 hero 0 at 21/18; tile 21/18"
+        ],
+        "queryId": 23,
+        "title": "Game message"
+      },
+      "blocked": {
+        "cancel": false,
+        "lines": [
+          "Native blocking plot 63/3 hero 0 at 24/18; tile 25/18"
+        ],
+        "queryId": 28,
+        "title": "Game message"
+      }
+    }
+  ],
+  "unchangedOriginalIntroChecks": [
+    {
+      "case": "original-intro-r2",
+      "passed": true,
+      "resultSha256": "e079e637fadbe26d1990dd23364b2f2e9e2877eaafc9a3dcbf37099776f3685a",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "loadedVersion": null,
+      "pendingSaveSha256": "a1fd71ac2580a7c169e549ac962267442850e9e26f78898250197a117720a982",
+      "readySaveSha256": null,
+      "layouts": [
+        {
+          "label": "original-name",
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 264,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 264,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 407,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 407,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 258,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 258,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 41,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 41,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 138,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 164,
+                "y": 502,
+                "w": 138,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 184,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 184,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 203,
+                "w": 244,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 173,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 199,
+                "y": 778,
+                "w": 173,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 31,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 31,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 264,
+                "w": 244.75,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 362,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 388,
+                "y": 958,
+                "w": 362,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 144.46875,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 857.515625,
+                "y": 698,
+                "w": 144.484375,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 388,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 414,
+                "y": 1114,
+                "w": 388,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        }
+      ],
+      "images": [
+        {
+          "media": [
+            "cmp.res/11_901.bmp",
+            "cmp.res/11_902.bmp",
+            "cmp.res/11_903.bmp",
+            "cmp.res/11_904.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            }
+          ]
+        },
+        {
+          "media": [
+            "cmp.res/11_015.bmp",
+            "cmp.res/11_014.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 100,
+              "height": 100
+            },
+            {
+              "width": 100,
+              "height": 56
+            }
+          ]
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [
+            "cmp.res/11_904.bmp",
+            "cmp.res/11_012.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            }
+          ]
+        }
+      ],
+      "ready": {
+        "mode": "map",
+        "turn": true,
+        "day": 1,
+        "currentPlayer": 6,
+        "campaignPending": false,
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 144,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1500,
+            "movementLimit": 1500,
+            "name": "Native hero"
+          }
+        ]
+      },
+      "army": [
+        {
+          "key": "core:peasant",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "case": "original-intro-reload904-r2",
+      "passed": true,
+      "resultSha256": "4ea372519e2839b3d5ac56b40e86aa0a963e275ff1b42b8ef440e5029d0f2abb",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "loadedVersion": 904,
+      "pendingSaveSha256": "5cf9283512aa2cbbf1e07a6d4747214281a9de5165aaf7242125170b18da12b6",
+      "readySaveSha256": null,
+      "layouts": [],
+      "images": [
+        {
+          "media": [
+            "cmp.res/11_901.bmp",
+            "cmp.res/11_902.bmp",
+            "cmp.res/11_903.bmp",
+            "cmp.res/11_904.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            }
+          ]
+        },
+        {
+          "media": [
+            "cmp.res/11_015.bmp",
+            "cmp.res/11_014.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 100,
+              "height": 100
+            },
+            {
+              "width": 100,
+              "height": 56
+            }
+          ]
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [
+            "cmp.res/11_904.bmp",
+            "cmp.res/11_012.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            }
+          ]
+        }
+      ],
+      "ready": {
+        "mode": "map",
+        "turn": true,
+        "day": 1,
+        "currentPlayer": 6,
+        "campaignPending": false,
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 144,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1500,
+            "movementLimit": 1500,
+            "name": "Native hero"
+          }
+        ]
+      },
+      "army": [
+        {
+          "key": "core:peasant",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "case": "original-intro-reload905-r2",
+      "passed": true,
+      "resultSha256": "03f1995822f4093f51d1409ceba6362e6d170f886d3fe9d7a7e2fe3b10df3cc3",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "loadedVersion": 905,
+      "pendingSaveSha256": "92e3fd927c4c2125f2588d14ffbdf0bba6cff191abd2779d611ac8a641a89e0a",
+      "readySaveSha256": null,
+      "layouts": [],
+      "images": [
+        {
+          "media": [
+            "cmp.res/11_015.bmp",
+            "cmp.res/11_014.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 100,
+              "height": 100
+            },
+            {
+              "width": 100,
+              "height": 56
+            }
+          ]
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [
+            "cmp.res/11_904.bmp",
+            "cmp.res/11_012.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            }
+          ]
+        }
+      ],
+      "ready": {
+        "mode": "map",
+        "turn": true,
+        "day": 1,
+        "currentPlayer": 6,
+        "campaignPending": false,
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 144,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1500,
+            "movementLimit": 1500,
+            "name": "Native hero"
+          }
+        ]
+      },
+      "army": [
+        {
+          "key": "core:peasant",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "case": "original-intro-ready-save",
+      "passed": true,
+      "resultSha256": "570a79857c57eaa5e645cf0e6953491aa294bba6002736a29efa738e4c13ae14",
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "loadedVersion": 905,
+      "pendingSaveSha256": "92e3fd927c4c2125f2588d14ffbdf0bba6cff191abd2779d611ac8a641a89e0a",
+      "readySaveSha256": "5c454366c00ab800a75273f6294e9068001157ea320e89a68968765dfa400d45",
+      "layouts": [],
+      "images": [
+        {
+          "media": [
+            "cmp.res/11_015.bmp",
+            "cmp.res/11_014.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 100,
+              "height": 100
+            },
+            {
+              "width": 100,
+              "height": 56
+            }
+          ]
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [],
+          "dimensions": []
+        },
+        {
+          "media": [
+            "cmp.res/11_904.bmp",
+            "cmp.res/11_012.bmp"
+          ],
+          "dimensions": [
+            {
+              "width": 58,
+              "height": 64
+            },
+            {
+              "width": 58,
+              "height": 64
+            }
+          ]
+        }
+      ],
+      "ready": {
+        "mode": "map",
+        "turn": true,
+        "day": 1,
+        "currentPlayer": 6,
+        "campaignPending": false,
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 144,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1500,
+            "movementLimit": 1500,
+            "name": "Native hero"
+          }
+        ]
+      },
+      "army": [
+        {
+          "key": "core:peasant",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "regressions": [
+    {
+      "case": "hero-access-final",
+      "passed": true,
+      "resultSha256": "2063bdd6d6a38eda9ec4b62ca55ffdc71a9106e339509bfb4cdd97836880bbff"
+    },
+    {
+      "case": "terrain905-final",
+      "passed": true,
+      "resultSha256": "d8fb32cb425a82e5f9cdc254529620473ee551b5835893285e287b2005b7922f"
+    },
+    {
+      "case": "production-final",
+      "passed": true,
+      "resultSha256": "ef0784930cef04cfd461258c4897ca846770c1edbae97506dfc3f9baaca6278b"
+    }
+  ],
+  "unitTests": {
+    "passed": 729,
+    "skipped": 34,
+    "failed": 0,
+    "resultSha256": "ae5be07a1cb498ad806244fbee615620a7fee1e9c90a2ad36fc3128f01cfaee8"
+  },
+  "implementationSha256": {
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "e65891c2bbecb308060f25a602b51b0cd37f5cd8182ee19ad9007ebb1037fc34",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "f5f30dd9490d783ed56565de7dca5578550bf17c76128c11c3d1075fa8d376b0",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "36089a1ea382fba4eadb692c67006fd09bf8a9cddbf105de0c65ac392fd52b62",
+    "work/vcmi-wasm/server/CGameHandler.h": "c8c11fbbf56c41ecdce10f9497b3e726f24f215e27d5cc9c98e3ccc958257145",
+    "work/vcmi-wasm/server/queries/MapQueries.cpp": "c96867dafaab8292789df0d055f7c0b61755cae42b3fcc30913f837fe250b30f",
+    "work/vcmi-wasm/lib/pathfinder/PathfinderUtil.h": "09b23560626f735fbb5d3b5abcc23245638013d6ede3a71196b0a2e0a90f8dd1",
+    "work/vcmi-wasm/lib/pathfinder/PathfindingRules.cpp": "2fe748c33aec323009865f32bc2ccd5d26b575e641d3d321fe1bc6a2e78907b8",
+    "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "7a87d53c9ab214ee8363d4b53fc748458e49132804299b67f98bf866829730aa",
+    "work/vcmi-wasm/client/NetPacksClient.cpp": "39bf132c46f9abc8aa777d19574d6d976ded47952bdf20a3dab4e68603ca3caf",
+    "work/vcmi-wasm/client/adventureMap/AdventureMapInterface.cpp": "8e5e361d18dee4c309edf897c0df7898aa29e7f0d4f3be9b78c79e619c1772a2"
+  },
+  "scope": "Disabled-default plot retyping, native encounters and original day-one introduction only. Full original quests/combat/victories remain incomplete; registry remains disabled."
+}

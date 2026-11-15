@@ -190,6 +190,8 @@ void DestinationActionRule::process(
 					action = EPathNodeAction::VISIT;
 			}
 		}
+		else if(destination.tile->sourceForceBlocked && destination.tile->sourceForceVisitable)
+			action = EPathNodeAction::BLOCKING_VISIT;
 		else if(destination.guarded)
 			action = EPathNodeAction::BATTLE;
 

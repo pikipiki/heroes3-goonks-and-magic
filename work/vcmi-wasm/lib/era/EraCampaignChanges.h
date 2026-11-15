@@ -43,6 +43,12 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="mapRefresh")
+  {
+   const int mode=campaignInteger(change["mode"]);const PlayerColor player(campaignInteger(change["player"]));
+   if((mode!=1&&mode!=2)||!player.isValidPlayer())throw std::runtime_error("Invalid original redraw request");
+   continue;
+  }
   if(kind=="terrainAccess")
   {
    const int3 position(campaignInteger(change["x"]),campaignInteger(change["y"]),campaignInteger(change["z"]));

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.188",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive includes later changes; selected instructions are corroborated by bounded original3.58f disassembly."
+  },
+  "analysis": "Ordinary bounded LLVM disassembly, not original Windows execution. No binary upload. Earlier REA evidence is retained; Hopper bridge was unavailable.",
+  "boundedAssemblySha256": {
+    "objectWords": "27149d30fe80fa8b53869e70cd4993a803c077ddd5e5d6e31bfdd6524b4b4f6b",
+    "signedWordRead": "90cc714220effca44e66cde621e3f4ee20d9c16d6148f4592c87f0d4abcfe317",
+    "redraw": "2a0ed7c301298567eefc2e855261e5bf82daffb7e5010fdef023bd11503327c9"
+  },
+  "observations": [
+    {
+      "address": "0x7337f3..0x733823",
+      "fact": "OB:T/U apply independent two-byte map-cell type/subtype fields; appearance is not rewritten by these operations."
+    },
+    {
+      "address": "0x73e53c",
+      "fact": "GetVal(size2) sign-extends the stored short; the port stores low16 bits but returns signed values for queries."
+    },
+    {
+      "address": "0x72dbbd..0x72dc04",
+      "fact": "UN:R dispatches mode1/2 to separate map/resource redraw routines; original campaign scripts contain10 mode1 and4 mode2 calls."
+    }
+  ],
+  "implementation": [
+    "Map-local logical cell identities, guarded by disabled native default effects. Native source OB dispatch supports both real visitable objects and synthetic scenery cells.",
+    "Passable plot cells trigger after the hero enters; forced blocked plot cells trigger from the adjacent tile. Original current-hero and v998/v999/v1000 context are preserved, including pending save/reload.",
+    "Coordinate descriptions work even when native scenery is passable and non-visitable. Existing hero-specific descriptions retain priority.",
+    "UN:R1/R2 dispatch native redraw/resource updates without changing gameplay data. Native story forms keep stable DOM/scroll and separate source-authorized confirm/cancel actions."
+  ],
+  "originalScenarioEvidence": {
+    "program": "zc1-1",
+    "programSha256": "af10bd72c945d90635dc55109806bca2c8ce19a38cd6a48a8a3d5b2a2e083b62",
+    "initializers": 158,
+    "completeInitialNarrativeReached": true,
+    "nativeDayOneReady": true,
+    "heroName": "Native hero",
+    "initialArmy": "one core:peasant"
+  },
+  "limitations": [
+    "Retyped plots with enabled native default effects, OB:C raw setup data, and native hero/monster/event/town class retyping remain unadmitted.",
+    "Original initialization/narrative readiness does not establish any original quest completion, combat or victory. Campaigns remain disabled.",
+    "Private diagnostic pauses used to localize the old UN:R stop were never added to published scripts or engine code. The recorded successful original-intro proof uses the unchanged original archive and script program, with private registry admission only."
+  ]
+}

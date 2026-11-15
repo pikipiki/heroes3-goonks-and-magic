@@ -1,6 +1,7 @@
 /* Original campaign event host; GPL-2.0-or-later. */
 #pragma once
 #include "../../lib/constants/EntityIdentifiers.h"
+#include "../../lib/int3.h"
 #include <memory>
 #include <string>
 class CGameHandler;
@@ -21,6 +22,7 @@ public:
  bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool visit(const CGObjectInstance * object,const CGHeroInstance * hero);
+ bool visitPosition(const int3 & position,const CGHeroInstance * hero);
  bool beginTurn(PlayerColor player);
  bool turnPending(PlayerColor player);
  void syncTownClock(PlayerColor player);

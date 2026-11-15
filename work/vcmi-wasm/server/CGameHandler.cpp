@@ -1039,7 +1039,7 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 
 		if (visitDest == VISIT_DEST && objectToVisit && objectToVisit->id == h->id)
 		{ // Hero should be always able to visit any object he is staying on even if there are guards around
-			visitObjectOnTile(t, h);
+			visitObjectOnTile(t, h, hmpos);
 		}
 		else if (lookForGuards == CHECK_FOR_GUARDS && gameInfo().isInTheMap(guardPos))
 		{
@@ -1049,7 +1049,7 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 		}
 		else if (visitDest == VISIT_DEST)
 		{
-			visitObjectOnTile(t, h);
+			visitObjectOnTile(t, h, hmpos);
 		}
 
 		queries->popIfTop(moveQuery);
@@ -1060,6 +1060,8 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 	//interaction with blocking object (like resources)
 	auto blockingVisit = [&]() -> bool
 	{
+		if(t.sourceForceBlocked && t.sourceForceVisitable && t.visitableObjects.empty())
+			return doMove(TryMoveHero::BLOCKING_VISIT, IGNORE_GUARDS, VISIT_DEST, REMAINING_ON_TILE);
 		for (ObjectInstanceID objectID : t.visitableObjects)
 		{
 			const CGObjectInstance * object = gameInfo().getObj(objectID);
@@ -3915,16 +3917,17 @@ bool CGameHandler::dig(const CGHeroInstance *h)
 	return true;
 }
 
-void CGameHandler::visitObjectOnTile(const TerrainTile &t, const CGHeroInstance * h)
+void CGameHandler::visitObjectOnTile(const TerrainTile &t, const CGHeroInstance * h, const int3 & position)
 {
 	if (!t.visitableObjects.empty())
 	{
 		//to prevent self-visiting heroes on space press
 		if (t.visitableObjects.back() != h->id)
-			objectVisited(gameState().getObjInstance(t.visitableObjects.back()), h);
+		{objectVisited(gameState().getObjInstance(t.visitableObjects.back()), h);return;}
 		else if (t.visitableObjects.size() > 1)
-			objectVisited(gameState().getObjInstance(*(t.visitableObjects.end()-2)),h);
+		{objectVisited(gameState().getObjInstance(*(t.visitableObjects.end()-2)),h);return;}
 	}
+	if(t.sourceForceVisitable)sourceCampaigns->visitPosition(position,h);
 }
 
 bool CGameHandler::sacrificeCreatures(const IMarket * market, const CGHeroInstance * hero, const std::vector<SlotID> & slot, const std::vector<ui32> & count)

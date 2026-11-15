@@ -161,8 +161,15 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   return nullptr;
  }
+ std::optional<ObjectTypeIdentifier> tileIdentity(const int3 & position)const
+ {
+  const auto & node=state["tileIdentities"][era_campaign_hints::positionKey(position)];if(node.isNull())return std::nullopt;
+  const auto & pair=era_campaign_json::array(node);require(pair.size()==2,"invalid source tile identity");const int type=era_campaign_json::integer(pair[0]),sub=era_campaign_json::integer(pair[1]);
+  require(type>=0&&type<=65535&&sub>=-1&&sub<=65535,"invalid source tile identity word");return ObjectTypeIdentifier{Obj(type),sub};
+ }
  ObjectTypeIdentifier identity(const CGObjectInstance * object)const
  {
+  if(const auto tile=tileIdentity(object->visitablePos()))return *tile;
   const auto & saved=state["objectIdentities"][std::to_string(object->id.getNum())];
   if(!saved.isNull()){const auto & pair=era_campaign_json::array(saved);require(pair.size()==2,"invalid source object identity");return {Obj(era_campaign_json::integer(pair[0])),era_campaign_json::integer(pair[1])};}
   if(object->ID==Obj::MONSTER)
@@ -483,6 +490,18 @@ struct SourceCampaignProcessor::Impl final:Host
   const auto * h=pending["hero"].isNumber()?gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer())):nullptr;
   return who==player||(h&&h->getOwner()==who);
  }
+ bool visitPosition(const int3 & position,const CGHeroInstance * h)
+ {
+  bind();if(!active||!vm.initialized)return false;const auto source=tileIdentity(position);if(!source)return false;
+  require(source->subID>=0,"plot tile subtype is incomplete");const auto key=era_campaign_hints::positionKey(position);
+  require(!state["objectAccessPositions"][key].isNull()&&era_campaign_json::integer(state["objectAccessPositions"][key])==0,"native default effect of a retyped plot tile is not admitted");
+  if(!vm.continuations.empty())
+  {require(heroId==h->id&&lookup(vm.v,998)==position.x&&lookup(vm.v,999)==position.y&&lookup(vm.v,1000)==position.z,"another plot tile visited while a script is suspended");return true;}
+  heroId=h->id;objectId=ObjectInstanceID::NONE;player=h->getOwner();updateContext();vm.v[998]=position.x;vm.v[999]=position.y;vm.v[1000]=position.z;
+  Executor executor(program,vm,context,*this);
+  if(executor.dispatchAny("OB",{{position.x,position.y,position.z},{int(source->ID),source->subID},{int(source->ID)}})){run();return true;}
+  heroId=ObjectInstanceID::NONE;return false;
+ }
  bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
   bind();if(!active)return false;
@@ -532,6 +551,11 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  if(c.receiver=="UN")
  {
   require(c.selectors.empty(),"universal receiver does not take selectors");
+  if(op.code=="R")
+  {
+   arity(op,1);require(args[0].access==Access::Read,"redraw mode needs a value");const int mode=number(args[0]);require(mode==1||mode==2,"unsupported source redraw mode");
+   auto change=mutation("mapRefresh",ObjectInstanceID::NONE);change["mode"].Integer()=mode;change["player"].Integer()=player.getNum();persist(change);return Step::Continue;
+  }
   if(op.code=="K"||op.code=="M")
   {
    require(!args.empty()&&args[0].access==Access::Read,"calendar mode needs a value");
@@ -562,6 +586,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    for(const auto & obj:map.objects)if(obj&&obj->anchorPos()==anchor&&obj->ID!=Obj::HERO)
    {require(target==nullptr,"ambiguous object anchor needs source selection validation");target=obj.get();}
    if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
+   if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(anchor));
    if(clearDescription)for(const auto & field:{"objectDescriptions","objectAccessPositions"})if(!state[field].isNull())state[field].Struct().erase(era_campaign_hints::positionKey(anchor));
    persist();return Step::Continue;
   }
@@ -585,7 +610,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(auto monster=std::dynamic_pointer_cast<CGCreature>(created)){monster->initialCharacter=CGCreature::Character::SAVAGE;monster->neverFlees=true;monster->notGrowingTeam=false;monster->gainedArtifact=ArtifactID::NONE;monster->resources=TResources{};monster->message.clear();monster->clearSlots();monster->putStack(SlotID(0),std::make_unique<CStackInstance>(&gh.gameInfo(),CreatureID(sub.getNum()),5));}
   if(auto resource=std::dynamic_pointer_cast<CGResource>(created)){resource->clearSlots();resource->setAmount(5*resource->getResourceHandler()->getAmountMultiplier());}
   if(auto event=std::dynamic_pointer_cast<CGEvent>(created)){event->humanActivate=true;event->computerActivate=false;event->removeAfterVisit=false;event->availableFor.clear();for(int color=0;color<8;++color)event->availableFor.insert(PlayerColor(color));event->configuration.info.clear();event->configuration.info.emplace_back();event->configuration.info.back().visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;}
-  gh.newObject(created,player);auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
+  gh.newObject(created,player);if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
  if(c.receiver=="OW")
  {
@@ -795,6 +820,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   const auto pos=position(c);require(gh.gameState().getMap().isInTheMap(pos),"object position outside map");const auto key=era_campaign_hints::positionKey(pos);const auto * obj=object(c);
   if(op.code=="B")
   {
+   require(!tileIdentity(pos),"native default effect of a retyped plot tile is not admitted");
    require(args.empty()||(args.size()==1&&args[0].kind==Kind::Default),"object hint removal takes no value");
    for(const auto & field:{"objectDescriptions","objectAccessPositions"})if(!state[field].isNull())state[field].Struct().erase(key);
    if(obj&&!state["objectAccess"].isNull())state["objectAccess"].Struct().erase(std::to_string(obj->id.getNum()));persist();return Step::Continue;
@@ -815,9 +841,21 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const bool all=op.code=="S"||op.code=="R";require(all?args[0].kind==Kind::Default:args[0].access==Access::Read,"unsupported object access argument");
    const auto & saved=state["objectAccessPositions"][key];const int old=saved.isNull()?(obj?objectMask(obj->id):255):era_campaign_json::integer(saved);require(old>=0&&old<=255,"invalid coordinate object access mask");
    int owner=all?0:number(args[0]);if(owner==-1)owner=player.getNum();
-   state["objectAccessPositions"][key].Integer()=era_campaign_object_access::change(old,op.code[0],owner);if(obj&&!state["objectAccess"].isNull())state["objectAccess"].Struct().erase(std::to_string(obj->id.getNum()));persist();return Step::Continue;
+   const int changed=era_campaign_object_access::change(old,op.code[0],owner);require(!tileIdentity(pos)||changed==0,"native default effect of a retyped plot tile is not admitted");
+   state["objectAccessPositions"][key].Integer()=changed;if(obj&&!state["objectAccess"].isNull())state["objectAccess"].Struct().erase(std::to_string(obj->id.getNum()));persist();return Step::Continue;
   }
-  require(op.code=="T"||op.code=="U","unsupported source object operation");const auto source=obj?identity(obj):ObjectTypeIdentifier{Obj::NOTHING,-1};value(obj?(op.code=="T"?int(source.ID):source.subID):-1,args[0]);require(query(op),"object type mutation not admitted");return Step::Continue;
+  require(op.code=="T"||op.code=="U","unsupported source object operation");auto source=tileIdentity(pos).value_or(obj?identity(obj):ObjectTypeIdentifier{Obj::NOTHING,-1});
+  const bool present=obj||tileIdentity(pos).has_value();const int raw=present?(op.code=="T"?int(source.ID):source.subID):-1;
+  // Original Apply(size2) reads a signed short, then writes the low16 bits.
+  const int old=raw>=32768?raw-65536:raw;const int changed=value(old,args[0]);
+  if(!query(op))
+  {
+   const auto & access=state["objectAccessPositions"][key];require(!access.isNull()&&era_campaign_json::integer(access)==0,"retyping requires disabled native object effects");
+   require(!obj||(obj->ID!=Obj::HERO&&obj->ID!=Obj::MONSTER&&obj->ID!=Obj::EVENT&&obj->ID!=Obj::TOWN),"retyping this native object class is not admitted");
+   if(op.code=="T")source.ID=Obj(era_campaign_timers::word(changed));else source.subID=era_campaign_timers::word(changed);
+   state["tileIdentities"][key].Vector()={JsonNode(int(source.ID)),JsonNode(source.subID)};persist();
+  }
+  return Step::Continue;
  }
  if(c.receiver=="TM")
  {
@@ -958,6 +996,7 @@ bool SourceCampaignProcessor::reply(QueryID query,int selection,const std::strin
  return impl->gh.queryReply(query,selection,player);
 }
 bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero){return impl->visit(object,hero);}
+bool SourceCampaignProcessor::visitPosition(const int3 & position,const CGHeroInstance * hero){return impl->visitPosition(position,hero);}
 bool SourceCampaignProcessor::beginTurn(PlayerColor player)
 {
  impl->bind();if(!impl->active)return false;
