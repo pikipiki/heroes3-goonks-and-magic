@@ -1,0 +1,35 @@
+# Generated and binary game data are not useful code-navigation inputs.
+graphify-out/
+outputs/
+dist/
+game-data/
+maps/
+work/game-data/
+work/public-data/
+work/downloads/
+work/campaign196-legacy/
+work/vcmi-wasm/emscripten/
+work/vcmi-wasm/AI/FuzzyLite/
+.codex/
+.agents/
+**/node_modules/
+**/__pycache__/
+**/Saves/
+**/saves/
+**/.env
+**/.env.*
+**/*.vsgm1
+**/*.vcgm1
+**/*.wasm
+**/*.lod
+**/*.bin
+**/*.tar.gz
+**/*.zip
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.wav
+**/*.mp3
+**/*.ogg
+# Generated native audit records; their source scripts remain indexed.
+work/tum-native-proofs/
