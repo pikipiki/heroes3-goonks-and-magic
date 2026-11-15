@@ -1,9 +1,12 @@
 /* Source tile masks retain the hidden object's identity for later restoration. */
 #pragma once
 #include <algorithm>
+#include <cstdint>
 #include <vector>
 namespace era_campaign_terrain
 {
+inline constexpr std::uint8_t byteWord(int value){return static_cast<std::uint8_t>(value);}
+inline constexpr int byteQuery(int value){const auto word=byteWord(value);return word<128?word:static_cast<int>(word)-256;}
 // TR:E writes the inverse of the native activation bit0x10.
 inline int entranceValue(bool visitable){return visitable?0:1;}
 inline bool entranceVisitable(int value){return value==0;}

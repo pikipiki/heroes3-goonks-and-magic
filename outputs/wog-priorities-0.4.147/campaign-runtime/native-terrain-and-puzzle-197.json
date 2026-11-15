@@ -1,0 +1,707 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.197",
+  "passed": true,
+  "engineSha256": "85864713ba89e564d3456237feaedb4ab862a3ca019d66f43989b1fc4e91237b",
+  "scope": "Terrain command, original puzzle and Grail progression; no second-scenario victory.",
+  "terrain": {
+    "fresh": true,
+    "fixtureSha256": "bd792ad0d84617d936162f3cb033f7464445f6a11e7116bf0f4f573cc0946b7e",
+    "mapSha256": "bc729df2749497e09b97e061478fd36bc796ac23077743ea762a7b6061a3c948",
+    "saveSha256": "45cce0adcca3c0c8a26280cbdf67c54036962ae12dc707444bfb757ec18d80d7",
+    "checks": [
+      "Water closes only native land route",
+      "Grass opens actual route",
+      "Default fields unchanged",
+      "Relative mirror change130+1 yields signed query-125",
+      "Native day2 queries confirm saved terrain/frame/road/mirror"
+    ]
+  },
+  "webkitReload": {
+    "passed": true,
+    "inputSaveSha256": "45cce0adcca3c0c8a26280cbdf67c54036962ae12dc707444bfb757ec18d80d7",
+    "outputSaveSha256": "2d8f639403ea7cdb531ed48b95c4631e38b2c72bd7d7365341cf09ede1e0f35b",
+    "errors": []
+  },
+  "originalPuzzleControl": {
+    "passed": true,
+    "originalProgramSha256": "5f47e04085c8e6761235bc96683c8fb6f170f80e11c5f8d37050da693331ee73",
+    "fixtureSha256": "dfa277bc682f868f70317f87990a4c7f9b01ffe03178337bdaa6dd14ae963016",
+    "nativeQueries": 400,
+    "rows": [
+      {
+        "label": "initial",
+        "grid": [
+          [
+            2,
+            4,
+            4,
+            6,
+            5
+          ],
+          [
+            3,
+            3,
+            2,
+            5,
+            3
+          ],
+          [
+            4,
+            2,
+            3,
+            4,
+            2
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            6,
+            2,
+            6
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation0",
+        "grid": [
+          [
+            3,
+            5,
+            5,
+            2,
+            6
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            5,
+            3,
+            4,
+            5,
+            3
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            6,
+            2,
+            6
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation1",
+        "grid": [
+          [
+            4,
+            6,
+            6,
+            3,
+            2
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            6,
+            4,
+            5,
+            6,
+            4
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            6,
+            2,
+            6
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation2",
+        "grid": [
+          [
+            5,
+            2,
+            2,
+            4,
+            3
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            2,
+            5,
+            6,
+            2,
+            5
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            6,
+            2,
+            6
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation3",
+        "grid": [
+          [
+            6,
+            3,
+            3,
+            5,
+            4
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            3,
+            6,
+            2,
+            3,
+            6
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            6,
+            2,
+            6
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation4",
+        "grid": [
+          [
+            6,
+            3,
+            3,
+            5,
+            4
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            4,
+            2,
+            3,
+            4,
+            2
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            2,
+            6,
+            2,
+            3,
+            2
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation5",
+        "grid": [
+          [
+            6,
+            3,
+            3,
+            5,
+            4
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            5,
+            3,
+            4,
+            5,
+            3
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            3,
+            2,
+            3,
+            4,
+            3
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "rotation6",
+        "grid": [
+          [
+            6,
+            3,
+            3,
+            5,
+            4
+          ],
+          [
+            4,
+            4,
+            3,
+            6,
+            4
+          ],
+          [
+            6,
+            4,
+            5,
+            6,
+            4
+          ],
+          [
+            5,
+            6,
+            5,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            4,
+            5,
+            4
+          ]
+        ],
+        "masks": [
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "originalSecondScenario": {
+    "passed": true,
+    "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+    "inputSaveSha256": "97de5c3e494f5d41d947d7a86881ac16900bee19b46b6df5423c0299f06822f2",
+    "saveSha256": "69deedb52bdd4daf35115acf59f3c833a5c2708560905ae3ef2c6502fb55f7f9",
+    "journey": "gorynych-puzzle",
+    "dialogs": [
+      [
+        "It looks like a chess..."
+      ],
+      [
+        "Hey! You can change this!"
+      ],
+      [
+        "Great!\nThat wasn't so easy, right?"
+      ],
+      [
+        "Another week has passed"
+      ],
+      [
+        "Finally!\nYou are such clever knight! Even more clever than knight should be..."
+      ],
+      [
+        "You trip over the Grail, dust it off, and stick it in your pack."
+      ]
+    ],
+    "validation": "Native original monk quest and entry checkpoint, seven source rotations including the guard activated during the final approach, actual passage, success event and native Grail pickup. No quest flag or army patched.",
+    "limitations": [
+      "No second-scenario victory",
+      "Town creation after returning with Grail remains to validate",
+      "First-scenario optional branches and later scenarios remain unvalidated"
+    ],
+    "errors": []
+  },
+  "productionSmoke": {
+    "passed": true,
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "saveSha256": "e4adb63258ae2db66c766018531fee80998534757948f91b0fef75d0ad5a3907"
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "saveSha256": "faf419d4fb02b1737874599f8ea2fb7b64f97df0c10d5a985872da1388ba303c"
+      }
+    ],
+    "positiveNativeBattleStart": true
+  },
+  "unitTests": {
+    "passed": 739,
+    "skipped": 34,
+    "failed": 0
+  },
+  "allOriginalCampaignsEnabled": false
+}

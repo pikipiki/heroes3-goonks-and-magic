@@ -59,6 +59,18 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    if((mode!=1&&mode!=2)||!player.isValidPlayer())throw std::runtime_error("Invalid original redraw request");
    continue;
   }
+  if(kind=="terrainAppearance")
+  {
+   const int3 position(campaignInteger(change["x"]),campaignInteger(change["y"]),campaignInteger(change["z"]));
+   if(!gs.getMap().isInTheMap(position))throw std::runtime_error("Invalid original terrain appearance position");
+   auto & tile=gs.getMap().getTile(position);
+   if(!change["terrain"].isNull())tile.terrainType=TerrainId(campaignInteger(change["terrain"]));
+   if(!change["frame"].isNull())tile.terView=era_campaign_terrain::byteWord(campaignInteger(change["frame"]));
+   if(!change["road"].isNull())tile.roadType=RoadId(campaignInteger(change["road"]));
+   if(!change["mirror"].isNull())tile.extTileFlags=era_campaign_terrain::byteWord(campaignInteger(change["mirror"]));
+   gs.getMap().calculateGuardingGreaturePositions(position-int3(1,1,0),position+int3(1,1,0));
+   continue;
+  }
   if(kind=="terrainAccess")
   {
    const int3 position(campaignInteger(change["x"]),campaignInteger(change["y"]),campaignInteger(change["z"]));

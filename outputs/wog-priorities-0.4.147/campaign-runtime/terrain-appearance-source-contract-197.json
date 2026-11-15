@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.197",
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "method": "Bounded static original PE inspection, corroborated by later source; no Windows execution.",
+  "observations": [
+    {
+      "range": "0x73823d..0x738318",
+      "behavior": "TR:T requires8 arguments and applies one byte to offsets4,5,6,7,8,7,12,13 in that order. Argument5 aliases river frame, not road frame."
+    },
+    {
+      "range": "0x73e4d0..0x73e54d; signed byte read0x73e547",
+      "behavior": "Apply(size1) reads a signed byte. Writes retain the low8 bits."
+    }
+  ],
+  "admittedScope": [
+    "TR:T terrain0..9, terrain frame, road0..3 and full mirror byte. Query/comparison and relative update use existing source operand rules.",
+    "Pinned campaigns leave river fields, argument5 and object attributes unchanged. Mutations to those four fields are explicitly rejected pending native validation.",
+    "Native tile fields persist in existing save906. Server/client apply the same closed mutation, recalculate adjacent guarding positions, invalidate native paths and refresh native map tiles."
+  ],
+  "sourceArchivesAndProgramsUnchanged": true,
+  "nativeValidation": [
+    "Controlled water blocks the only land route; grass reopens actual path.",
+    "Signed mirror byte query, relative change, default fields and pending WebKit reload.",
+    "Exact original FU100..105, seven rotations and400 native terrain/passability queries.",
+    "Real original second scenario reaches monk, solves puzzle, triggers success and collects Grail."
+  ],
+  "remaining": "No second-scenario victory or later campaign validation. All original campaigns remain disabled."
+}

@@ -1156,8 +1156,36 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  }
  if(c.receiver=="TR")
  {
-  require(op.code=="P"||op.code=="E","unsupported terrain operation "+op.code);arity(op,1);
   const auto pos=position(c);require(gh.gameState().getMap().isInTheMap(pos),"terrain position outside map");const auto & tile=gh.gameState().getMap().getTile(pos);
+  if(op.code=="T")
+  {
+   arity(op,8);
+   // Pinned campaigns change terrain/frame/road/mirror only. The other
+   // fields stay native; in particular argument5 aliases the river frame
+   // in the original PE, so it must not be silently mapped to roadDir.
+   for(const int index:{2,3,5,7})require(unchangedOperand(args[index]),"unadmitted terrain river/attribute field");
+   int sourceTerrain=-1;const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+   for(int i=0;i<10;++i)if(mapping.remap(TerrainId(i))==tile.getTerrainID()){sourceTerrain=i;break;}
+   require(sourceTerrain>=0,"terrain has no original type");
+   const std::array<int,4> indices={{0,1,4,6}};
+   const std::array<int,4> current={{sourceTerrain,tile.terView,tile.getRoadID().getNum(),tile.extTileFlags}};
+   auto change=mutation("terrainAppearance",ObjectInstanceID::NONE);bool changed=false;
+   change["x"].Integer()=pos.x;change["y"].Integer()=pos.y;change["z"].Integer()=pos.z;
+   const std::array<std::string,4> fields={{"terrain","frame","road","mirror"}};
+   for(std::size_t i=0;i<indices.size();++i)
+   {
+    const auto & arg=args[indices[i]];if(unchangedOperand(arg))continue;
+    const int result=value(era_campaign_terrain::byteQuery(current[i]),arg);
+    if(arg.access==Access::Write||arg.access==Access::Compare)continue;
+    const int raw=era_campaign_terrain::byteWord(result);
+    if(i==0)require(raw<10,"unadmitted terrain type");
+    if(i==2)require(raw<=3,"unadmitted road type");
+    change[fields[i]].Integer()=i==0?mapping.remap(TerrainId(raw)).getNum():raw;changed=true;
+   }
+   if(changed)persist(change);
+   return Step::Continue;
+  }
+  require(op.code=="P"||op.code=="E","unsupported terrain operation "+op.code);arity(op,1);
   const int old=op.code=="P"?!tile.blocked():era_campaign_terrain::entranceValue(tile.visitable());const int changed=value(old,args[0]);
   if(!query(op))
   {

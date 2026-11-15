@@ -5,6 +5,8 @@ static_assert(static_cast<int>(ESerializationVersion::GOONK_CAMPAIGN_TERRAIN)==s
 int main()
 {
  using namespace era_campaign_terrain;
+ for(int value=-1024;value<=1024;++value){const auto raw=byteWord(value);assert(byteWord(byteQuery(value))==raw);assert(byteQuery(value)>=-128&&byteQuery(value)<=127);}
+ assert(byteWord(256)==0&&byteQuery(255)==-1&&byteQuery(128)==-128&&byteQuery(127)==127);
  assert(entranceValue(true)==0&&entranceValue(false)==1);
  assert(entranceVisitable(0)&&!entranceVisitable(1)&&!entranceVisitable(-1));
  std::vector<int> active{3,1},hidden;
