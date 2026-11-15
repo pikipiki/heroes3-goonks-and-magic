@@ -1,3 +1,4 @@
+import { waitForBattleArt } from './media.js';
 import { LOADOUT_KEY, parseLoadout, defaultLoadout, resolveSpell, spellRef, assignSlot } from './loadout.js';
 import { magicController } from './magic.js';
 import { sharedField } from './shared-field.js';
@@ -16,7 +17,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     doc.head.append(style);
     const makeButton = (id, label, action) => { const button = doc.createElement('button'); button.id = id; button.type = 'button'; button.textContent = label; button.dataset.crossoverAction = action; button.setAttribute('translate', 'no'); return button; };
     const demo = makeButton('crossover-demo', 'Démo Heroes × StarCraft', 'demo');
-    demo.innerHTML = '<span>Démo Heroes × StarCraft</span><small>7 × 5 troupes finales · 12 StarCraft max</small>';
+    demo.innerHTML = '<span>Démo Heroes × StarCraft</span><small>7 créatures Heroes · 12 StarCraft max</small>';
     demo.disabled = true;
     const realTime = doc.createElement('button');
     realTime.type = 'button';
@@ -183,8 +184,9 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
         panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Continuer ce combat au tour par tour">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="command-console"><div class="precombat-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-loadout" disabled>Préparer 5 sorts</button></div><div class="battle-actions sc-command-grid"><button id="crossover-move" disabled>↗<small>Déplacer</small></button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>■<small>Arrêter</small></button><button class="quick-slot" data-quick-slot="0" disabled><kbd>1</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 1</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="1" disabled><kbd>2</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 2</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="2" disabled><kbd>3</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 3</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="3" disabled><kbd>4</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 4</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="4" disabled><kbd>5</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 5</small><span class="quick-cost"></span></button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><div class="console-utility"><button id="crossover-spells" disabled>Tous les sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-loadout-slots" hidden></div><div id="crossover-spell-options"></div><div id="crossover-friendly-targets" hidden></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><p>Terrans, Zergs et Protoss : armes et armures 3/3, boucliers 3.</p><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis un sort du héros ou d’une créature, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
-        panel.hidden = true;
+        panel.hidden = false;
         doc.body.append(panel);
+        panel.querySelector('#crossover-field').hidden = true;
         const nativeApp = doc.querySelector('#mobile-app');
         if (nativeApp)
             nativeApp.inert = true;
@@ -193,6 +195,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         frame = warmFrame;
         warmFrame = undefined;
         warmPromise = undefined;
+        const mediaAbort = new AbortController();
         const activePanel = panel, activeFrame = frame, activePlan = plan, canvas = panel.querySelector('#crossover-field');
         const status = panel.querySelector('#crossover-battle-status'), start = panel.querySelector('#crossover-start'), attack = panel.querySelector('#crossover-attack'), stop = panel.querySelector('#crossover-stop'), all = panel.querySelector('#crossover-select-all'), progress = panel.querySelector('progress'), selection = panel.querySelector('#crossover-selection');
         const sound = panel.querySelector('#crossover-sound');
@@ -272,7 +275,7 @@ export function installAdventure(target, base, onExit, trial = false) {
             friendlyTargets.append(button);
         } };
         // Sound decoding is presentation work: it must never hold a combat transfer open.
-        const onMagicResponse = (response) => { if (panel !== activePanel)
+        const onMagicResponse = async (response) => { if (panel !== activePanel)
             return; catalogue = response.catalogue; for (const group of response.groups) {
             effectiveOwners.set(group.id, group.owner);
             const original = activePlan.stacks.find(s => s.id === group.id);
@@ -296,13 +299,17 @@ export function installAdventure(target, base, onExit, trial = false) {
             if (opposing)
                 opposing.parentElement.hidden = group.owner === 0;
         } const sounds = win.goonkCrossoverSounds; if (sounds?.battleId === activePlan.battleId)
-            void api().prepareCreatureSounds?.(sounds.rows).catch(() => { }); for (const event of response.events || []) {
-            api().playCreatureSound?.(event.caster, `spell:${event.id}`);
+            void api().prepareCreatureSounds?.(sounds.rows.filter(row => !row.kind?.startsWith('spell:'))).catch(() => { }); for (const event of response.events || []) {
+            if (sounds?.battleId === activePlan.battleId) {
+                const host = api();
+                void Promise.resolve(host.prepareCreatureSounds?.(sounds.rows.filter(row => row.id === event.caster && row.kind === `spell:${event.id}`))).then(() => { if (panel === activePanel)
+                    host.playCreatureSound?.(event.caster, `spell:${event.id}`); }).catch(() => { });
+            }
             canvas.dispatchEvent(new CustomEvent('crossover-spell-effect', { detail: { id: event.id, caster: event.caster, targets: event.targets || [], x: event.x ?? (event.hex % 17 - 1) * 800 / 15 + 26, y: event.y ?? Math.floor(event.hex / 17) * 500 / 11 + 22 } }));
-        } canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: response.obstacles || [] })); canvas.dispatchEvent(new Event('crossover-native-changed')); };
+        } canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: response.obstacles || [] })); await waitForBattleArt(win, activePlan.battleId, mediaAbort.signal); canvas.dispatchEvent(new Event('crossover-native-changed')); };
         let stopKeys = () => { };
         const oldDispose = sceneDispose;
-        sceneDispose = () => { stopKeys(); magic?.dispose(); oldDispose?.(); };
+        sceneDispose = () => { mediaAbort.abort(); stopKeys(); magic?.dispose(); oldDispose?.(); };
         const available = () => (catalogue?.spells || []).filter(s => s.caster < 0 || chosen === undefined || chosen < 0 || s.caster === chosen);
         const finishChoice = (cast) => { if (panel !== activePanel || returningToClassic)
             return; choosingSpell = false; bookRoot.hidden = true; activePanel.classList.remove('choosing-spell', 'using-shortcut'); editing = false; editingSlot = undefined; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; armedSpell = undefined; teleportTarget = undefined; picker.hidden = true; friendlyTargets.hidden = true; activePanel.querySelector('aside').scrollTop = 0; delete canvas.dataset.spellMode; delete canvas.dataset.spellTarget; if (cast || !wasPaused) {
@@ -494,8 +501,13 @@ export function installAdventure(target, base, onExit, trial = false) {
         catch (e) {
             status.textContent = String(e);
         } };
-        panel.querySelector('#crossover-cancel').onclick = () => { if (returningToClassic || !ready)
-            return; api().pause(); returningToClassic = true; activePanel.dataset.transferring = 'true'; status.textContent = 'Transfert des unités et des blessures vers le combat classique…'; void (async () => { while (magic.busy())
+        panel.querySelector('#crossover-cancel').onclick = () => { if (returningToClassic)
+            return; if (!ready) {
+            cancelled.add(activePlan.battleId);
+            command(2, activePlan.battleId);
+            closePanel();
+            return;
+        } api().pause(); returningToClassic = true; activePanel.dataset.transferring = 'true'; status.textContent = 'Transfert des unités et des blessures vers le combat classique…'; void (async () => { while (magic.busy())
             await new Promise(resolve => win.setTimeout(resolve, 16)); if (panel !== activePanel)
             return; api().pause(); await magic.sync(); if (panel !== activePanel)
             return; command(4, activePlan.battleId); returnTimer = win.setTimeout(() => { if (panel === activePanel && returningToClassic) {
@@ -509,13 +521,16 @@ export function installAdventure(target, base, onExit, trial = false) {
                 const sc = await prepared;
                 if (!sc.openbwLaunchCrossover)
                     throw Error('Chargement de StarCraft incomplet.');
+                await waitForBattleArt(win, activePlan.battleId, mediaAbort.signal, (done, total) => { status.textContent = `Préparation des animations : ${done}/${total}`; progress.max = Math.max(1, total); progress.value = done; });
+                if (panel !== activePanel)
+                    return;
                 await sc.openbwLaunchCrossover(activePlan);
                 magic = magicController(win, sc.openbwCrossover, activePlan, onMagicResponse);
                 if (activePlan.fromClassic)
                     await magic.sync();
                 const sounds = win.goonkCrossoverSounds;
                 if (sounds?.battleId === activePlan.battleId && sounds.rows.length)
-                    void sc.openbwCrossover.prepareCreatureSounds?.(sounds.rows).catch(() => { });
+                    void sc.openbwCrossover.prepareCreatureSounds?.(sounds.rows.filter(row => !row.kind?.startsWith('spell:'))).catch(() => { });
                 if (disposed || panel !== activePanel || frame !== activeFrame || plan !== activePlan)
                     return;
                 if (timer !== undefined)
@@ -532,11 +547,12 @@ export function installAdventure(target, base, onExit, trial = false) {
                     sc.openbwCrossover.start();
                     start.hidden = true;
                 }
-                sceneDispose = () => { if (returnTimer !== undefined)
+                sceneDispose = () => { mediaAbort.abort(); if (returnTimer !== undefined)
                     win.clearTimeout(returnTimer); stopKeys(); magic.dispose(); disposeField(); };
                 await new Promise(resolve => win.requestAnimationFrame(() => win.requestAnimationFrame(() => resolve())));
                 if (panel !== activePanel)
                     return;
+                canvas.hidden = false;
                 panel.hidden = false;
                 timer = win.setInterval(() => {
                     if (returningToClassic)
@@ -600,6 +616,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                 }, 200);
             }
             catch (e) {
+                if (panel !== activePanel)
+                    return;
                 activePanel.hidden = false;
                 progress.hidden = true;
                 status.textContent = String(e) + ' Tu peux reprendre le combat classique.';

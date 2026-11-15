@@ -94,10 +94,12 @@ export async function downloadArchives(progress) {
                 if (await digest(bytes.buffer) !== row.sha256)
                     throw Error('Archive téléchargée altérée : ' + row.name);
                 await importArchives([new File([bytes], row.name)]);
+                cached[i] = bytes;
                 await Promise.all(row.chunks.map(chunk => chunks?.delete(new URL(chunk.url, MANIFEST_URL).href).catch(() => { })));
             }
+            return cached;
         })().finally(() => { downloading = undefined; });
-        await downloading;
+        return await downloading;
     }
     finally {
         listeners.delete(progress);
@@ -228,20 +230,23 @@ export async function installArchiveImport() {
     const status = document.querySelector('#archive-status');
     const start = document.querySelector('#start-game');
     const custom = document.querySelector('#map-file');
-    async function refresh() {
-        const rows = await readArchives();
+    async function refresh(snapshot) {
+        const rows = snapshot || await readArchives();
         const missing = ARCHIVES.filter((_, i) => !rows[i]);
         start.disabled = custom.disabled = missing.length > 0;
         status.textContent = missing.length ? 'À importer : ' + missing.join(', ') : 'Trois archives vérifiées et conservées sur cet appareil.';
+        return missing.length ? undefined : rows;
     }
     start.disabled = custom.disabled = true;
+    let installed;
     try {
+        let snapshot;
         if (await hostedManifest()) {
             input.hidden = true;
             document.querySelector('label[for="archive-files"]').textContent = 'Données StarCraft vérifiées — téléchargement automatique';
-            await downloadArchives(text => { status.textContent = text; });
+            snapshot = await downloadArchives(text => { status.textContent = text; });
         }
-        await refresh();
+        installed = await refresh(snapshot);
     }
     catch (e) {
         status.textContent = String(e);
@@ -265,4 +270,5 @@ export async function installArchiveImport() {
             input.value = '';
         }
     });
+    return installed;
 }

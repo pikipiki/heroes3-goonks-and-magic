@@ -232,6 +232,7 @@ export function sharedField(win, canvas, api, plan) {
                 if (unit.heroes && art?.battleId === plan.battleId) {
                     const row = art.rows.find(row => row.id === unit.stackId);
                     if (row) {
+                        const atlas = row.canvas || art.canvas;
                         let animation = heroAnimation(visualFrame, moving, unit.cooldown || 0, cycles.get(unit.id));
                         const deadAt = deathTimes.get(unit.id), hitUntil = hits.get(unit.id) || 0, castUntil = castTimes.get(unit.stackId) || 0;
                         if (deadAt !== undefined) {
@@ -262,16 +263,16 @@ export function sharedField(win, canvas, api, plan) {
                             const heroContext = heroBlend.getContext('2d');
                             heroContext.clearRect(0, 0, cell, cell);
                             heroContext.globalAlpha = 1 - animation.mix;
-                            heroContext.drawImage(art.canvas, animation.frame * cell, (row.row + animation.pose) * cell, cell, cell, 0, 0, cell, cell);
+                            heroContext.drawImage(atlas, animation.frame * cell, (row.row + animation.pose) * cell, cell, cell, 0, 0, cell, cell);
                             heroContext.globalCompositeOperation = 'lighter';
                             heroContext.globalAlpha = animation.mix;
-                            heroContext.drawImage(art.canvas, animation.next * cell, (row.row + animation.pose) * cell, cell, cell, 0, 0, cell, cell);
+                            heroContext.drawImage(atlas, animation.next * cell, (row.row + animation.pose) * cell, cell, cell, 0, 0, cell, cell);
                             heroContext.globalCompositeOperation = 'source-over';
                             blendedHeroes.set(blendKey, heroBlend);
                         }
                         let bounds = heroBounds.get(unit.stackId);
                         if (!bounds) {
-                            bounds = opaqueBounds(art.canvas.getContext('2d').getImageData(0, row.row * cell, cell, cell).data, cell, cell);
+                            bounds = opaqueBounds(atlas.getContext('2d').getImageData(0, row.row * cell, cell, cell).data, cell, cell);
                             heroBounds.set(unit.stackId, bounds);
                         }
                         const place = spritePlacement(bounds);

@@ -1,5 +1,20 @@
 # Validation — 14 novembre 2026
 
+## Démarrage automatique et nouvelle armée — 15 novembre 2026
+
+- Démo actualisée : sept créatures finales Heroes, une par groupe, face aux douze StarCraft avec leurs améliorations maximales. La carte et le libellé d’accueil ont été régénérés ; le scénario réel fournit bien 7 acteurs Heroes et 12 acteurs StarCraft.
+- Les images Heroes gardent leurs six poses et leurs huit frames par pose à définition identique. Une seule planche par troupe est produite et envoyée à la fois, avec accusé de réception. Pour les sept groupes de la démo, le plus gros transfert RGBA passe de 49 545 216 à 7 077 888 octets. Les planches de 1536×1152 évitent la texture unique de 1536×8064.
+- Le moteur RTS n’est instancié qu’une fois les images Heroes prêtes. Le catalogue conserve 60 sorts du héros ; aucune animation de sort n’est chargée en masse à l’ouverture. Les effets sont préparés lorsqu’ils sont réellement lancés, avec un cache de huit sorts récents. Leurs sons sont décodés à l’utilisation ; les attaques/blessures/morts des créatures restent préparées, y compris pour les invocations.
+- Les trois MPQ restent SHA-256 vérifiés, mais le même instantané vérifié est réutilisé par l’hôte au lieu de relire les fichiers pour chaque étape. L’hôte effectue trois lectures IndexedDB, une par archive. La production des atlas mobiles classiques est suspendue pendant RTS.
+- `tests/startup-browser.mjs` : Chromium et WebKit, portrait 390×844 à DPR 3, lancement automatique natif, combat actif puis retour classique sans navigation/redémarrage. Maximal mesuré : 1 769 472 pixels par transfert, 7 planches Heroes, 0 planche de sort préchargée, 60 icônes. Espaces mémoire Wasm relevés après préparation : VCMI 268 435 456 octets ; OpenBW 66 781 184 octets (ces tailles ne mesurent pas la RAM totale du navigateur).
+- `ABORT_PREP=1 tests/startup-browser.mjs` : annulation pendant la préparation, reprise classique jouable avant toute instanciation RTS, puis lancement manuel et retour classique. Réussi dans les deux navigateurs. Les règles d’ouverture ne sont pas réappliquées lors de cette annulation.
+- `tests/universal-magic-browser.mjs` : parcours Chromium réussi avec les nouveaux effectifs, choix des cinq raccourcis et 60 sorts, Hâte, vrais dégâts/mort par Cercle de glace, résurrection par le héros, invocation de 48 acteurs, animations Heroes et StarCraft, perte de boucliers et santé Protoss exacte.
+- `tests/roundtrip-browser.mjs` : Chromium et WebKit, vrais dégâts et invocations, retour classique, dégâts classiques supplémentaires puis retour RTS ; santé et mana conservées.
+- Régressions finales sous Chromium et WebKit : Hâte/Lenteur et Dissipation via le livre, puis deux bascules déclenchées à la réponse native avec audio volontairement suspendu ; aucun redémarrage, état bloqué ou reprise RTS pendant le transfert.
+- `tests/hosted-assets-browser.mjs` : téléchargement automatique vérifié, cache relu sans retéléchargement, réparation d’une archive altérée et refus d’un morceau corrompu. Aucun téléversement ni origine externe.
+- TypeScript strict, `verify:web` et `ninja -j32 html5` réussis. Tests crossover : 42 réussis ; tests Heroes : 694 réussis et 46 ignorés. Bundle Pages : 999 153 831 octets.
+- Le démarrage sur appareil physique reste à confirmer ; les allocations inutiles identifiées sont supprimées et les limites ci-dessus sont vérifiées sur les navigateurs de test.
+
 ## Hâte/Lenteur et mémoire des bascules — 15 novembre 2026
 
 - Correction du chemin de vitesse OpenBW : les unités à déplacement iscript ignoraient la seule modification de `flingy.top_speed`. Le multiplicateur Heroes est maintenant appliqué au calcul natif de chaque déplacement, après les améliorations StarCraft. Le code amont épinglé reste inchangé ; le hook est injecté dans la copie de construction vérifiée.

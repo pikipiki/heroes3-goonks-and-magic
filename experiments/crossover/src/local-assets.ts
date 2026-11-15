@@ -29,9 +29,10 @@ export function hostedManifest(): Promise<HostedArchive[] | null> {
   })();
 }
 export type ArchiveProgress = (text:string,loaded:number,total:number)=>void;
-let downloading:Promise<void>|undefined;
+type ArchiveSnapshot=(Uint8Array|null)[];
+let downloading:Promise<ArchiveSnapshot|undefined>|undefined;
 const listeners=new Set<ArchiveProgress>();
-export async function downloadArchives(progress:ArchiveProgress):Promise<void>{
+export async function downloadArchives(progress:ArchiveProgress):Promise<ArchiveSnapshot|undefined>{
   listeners.add(progress);
   try{
     downloading ??= (async()=>{
@@ -67,11 +68,12 @@ export async function downloadArchives(progress:ArchiveProgress):Promise<void>{
         }));
         const failed=workers.find((row):row is PromiseRejectedResult=>row.status==='rejected');if(failed)throw failed.reason;
         if(await digest(bytes.buffer)!==row.sha256)throw Error('Archive téléchargée altérée : '+row.name);
-        await importArchives([new File([bytes],row.name)]);
+        await importArchives([new File([bytes],row.name)]);cached[i]=bytes;
         await Promise.all(row.chunks.map(chunk=>chunks?.delete(new URL(chunk.url,MANIFEST_URL).href).catch(()=>{})));
       }
+      return cached;
     })().finally(()=>{downloading=undefined;});
-    await downloading;
+    return await downloading;
   }finally{listeners.delete(progress);}
 }
 export function archiveName(name: string): ArchiveName {
@@ -173,25 +175,28 @@ export async function loadArchives(): Promise<Uint8Array[]> {
   if (missing.length) throw Error('Données manquantes : ' + missing.join(', ') + '. Recharge pour télécharger les archives vérifiées.');
   return rows as Uint8Array[];
 }
-export async function installArchiveImport(): Promise<void> {
+export async function installArchiveImport(): Promise<Uint8Array[]|undefined> {
   const input = document.querySelector<HTMLInputElement>('#archive-files')!;
   const status = document.querySelector<HTMLElement>('#archive-status')!;
   const start = document.querySelector<HTMLButtonElement>('#start-game')!;
   const custom = document.querySelector<HTMLInputElement>('#map-file')!;
-  async function refresh(): Promise<void> {
-    const rows = await readArchives();
+  async function refresh(snapshot?:ArchiveSnapshot): Promise<Uint8Array[]|undefined> {
+    const rows = snapshot||await readArchives();
     const missing = ARCHIVES.filter((_, i) => !rows[i]);
     start.disabled = custom.disabled = missing.length > 0;
     status.textContent = missing.length ? 'À importer : ' + missing.join(', ') : 'Trois archives vérifiées et conservées sur cet appareil.';
+    return missing.length?undefined:rows as Uint8Array[];
   }
   start.disabled = custom.disabled = true;
+  let installed:Uint8Array[]|undefined;
   try {
+    let snapshot:ArchiveSnapshot|undefined;
     if (await hostedManifest()) {
       input.hidden = true;
       document.querySelector('label[for="archive-files"]')!.textContent = 'Données StarCraft vérifiées — téléchargement automatique';
-      await downloadArchives(text => { status.textContent = text; });
+      snapshot=await downloadArchives(text => { status.textContent = text; });
     }
-    await refresh();
+    installed=await refresh(snapshot);
   } catch (e) { status.textContent = String(e); }
   input.addEventListener('change', async () => {
     input.disabled = start.disabled = custom.disabled = true;
@@ -203,4 +208,5 @@ export async function installArchiveImport(): Promise<void> {
     }
     finally { input.disabled = false; input.value = ''; }
   });
+  return installed;
 }

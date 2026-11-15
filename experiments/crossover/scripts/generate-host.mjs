@@ -10,7 +10,7 @@ js=js.slice(0,iconsStart)+js.slice(iconsEnd);
 const assetsStart=js.indexOf('const ARCHIVE_BASE'),assetsEnd=js.indexOf('const TILESETS',assetsStart);
 js=js.slice(0,assetsStart)+`const MAPS = [{ name: 'Weave', file: './maps/Weave_v1.scx', starts: 4, w: 64, h: 64, tileset: 'Desert' }];\n`+js.slice(assetsEnd);
 const cacheStart=js.indexOf('// IndexedDB cache for the MPQs'),cacheEnd=js.indexOf('// WASI shim',cacheStart);
-js=js.slice(0,cacheStart)+`// Player-owned data; no remote archive fallback.\nasync function loadAssets(mapFile = MAP_LOCAL) {\n  const archives = await loadArchives();\n  setMsg('Loading local game data…');\n  const map = await fetchMap(mapFile);\n  setBar(1);\n  return [...archives, map];\n}\n\n// ---------------------------------------------------------------------------\n`+js.slice(cacheEnd);
+js=js.slice(0,cacheStart)+`// Player-owned data; no remote archive fallback.\nasync function loadAssets(mapFile = MAP_LOCAL) {\n  const archives = await archivesReady || await loadArchives();\n  setMsg('Loading local game data…');\n  const map = await fetchMap(mapFile);\n  setBar(1);\n  return [...archives, map];\n}\n\n// ---------------------------------------------------------------------------\n`+js.slice(cacheEnd);
 const oppStart=js.indexOf('const OPPONENTS = {'),oppEnd=js.indexOf('const slotsBox',oppStart);
 js=js.slice(0,oppStart)+"const OPPONENTS = {};\nconst DEFAULT_OPP = 'none';\n"+js.slice(oppEnd);
 replace('if (DEV) window.__bw = { x, memory, lockstep, link };   // dev-only debugging handle','const crossoverApi = installNativeBridge(x, memory);');

@@ -724,7 +724,7 @@ void publishCrossoverSounds(const BattleInfo & battle){
    if(SDL_AUDIO_ISBIGENDIAN(spec.format))for(unsigned offset=44;offset+sampleBytes<=unsigned(size);offset+=sampleBytes)std::reverse(packet+offset,packet+offset+sampleBytes);
    if(!SDL_AUDIO_ISFLOAT(spec.format)){if(bits==8&&SDL_AUDIO_ISSIGNED(spec.format))for(int offset=44;offset<size;offset++)packet[offset]^=0x80;
     else if(bits>8&&!SDL_AUDIO_ISSIGNED(spec.format))for(int offset=44+sampleBytes-1;offset<size;offset+=sampleBytes)packet[offset]^=0x80;}
-   MAIN_THREAD_ASYNC_EM_ASM({try{if(window.goonkCrossoverSounds?.battleId===$2)window.goonkCrossoverSounds.rows.push({id:$3,kind:UTF8ToString($0+$1),bytes:new Uint8Array(HEAPU8.slice($0,$0+$1))});}finally{_free($0);}},packet,size,battle.battleID.getNum(),actor.id);
+   MAIN_THREAD_ASYNC_EM_ASM({try{if(window.goonkCrossoverSounds?.battleId===$2)window.goonkCrossoverSounds.rows.push({id:$3,kind:UTF8ToString($0+$1),bytes:HEAPU8.slice($0,$0+$1)});}finally{_free($0);}},packet,size,battle.battleID.getNum(),actor.id);
   }catch(const std::exception & error){logGlobal->warn("Crossover creature sound %s: %s",sound.getOriginalName(),error.what());}
   }
  }
@@ -734,7 +734,7 @@ void publishCrossoverSpellClip(int id,const std::string & kind,const AnimationPa
    const auto animation=ENGINE->renderHandler().loadAnimation(path,EImageBlitMode::SIMPLE);const int count=animation->size(0);if(!count)return;
    constexpr int cell=128,frames=16;auto surface=SDL_CreateRGBSurfaceWithFormat(0,cell*frames,cell,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
    {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(int frame=0;frame<frames;frame++){const auto image=animation->getImage(frame*count/frames,0);if(!image)continue;const auto rect=image->contentRect();auto scratch=SDL_CreateRGBSurfaceWithFormat(0,std::max(1,rect.w),std::max(1,rect.h),32,SDL_PIXELFORMAT_ARGB8888);SDL_FillRect(scratch,nullptr,0);{auto from=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);from.draw(image,Point(0,0),rect);const double scale=std::min(1.,std::min(double(cell)/std::max(1,rect.w),double(cell)/std::max(1,rect.h)));const Point size(std::max(1,int(rect.w*scale)),std::max(1,int(rect.h*scale)));canvas.drawScaled(from,Point(frame*cell+(cell-size.x)/2,cell-size.y),size);}SDL_FreeSurface(scratch);}}
-   auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;const int bytes=cell*frames*cell*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto name=strdup(kind.c_str());MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=2048;c.height=128;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+2048*128*4)),2048,128),0,0);window.goonkCrossoverSpellArt?.rows.push({id:$2,kind:UTF8ToString($1),canvas:c,frames:16});}finally{_free($0);_free($1);}},packet,name,id);}SDL_FreeSurface(rgba);
+   auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;const int bytes=cell*frames*cell*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto name=strdup(kind.c_str());MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=2048;c.height=128;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+2048*128*4).buffer),2048,128),0,0);window.goonkCrossoverSpellArt?.rows.push({id:$2,kind:UTF8ToString($1),canvas:c,frames:16});}finally{_free($0);_free($1);}},packet,name,id);}SDL_FreeSurface(rgba);
  }catch(const std::exception & e){logGlobal->warn("Crossover spell art %s: %s",path.getOriginalName(),e.what());}
 }
 void publishCrossoverSpellIcons(const std::set<SpellID> & ids,int battle){
@@ -743,20 +743,29 @@ void publishCrossoverSpellIcons(const std::set<SpellID> & ids,int battle){
  auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;const int bytes=width*height*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto text=strdup(metadata.toCompactString().c_str());MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkCrossoverSpellIcons=({battleId:$4,canvas:c,rows:JSON.parse(UTF8ToString($3))});}finally{_free($0);_free($3);}},packet,width,height,text,battle);}SDL_FreeSurface(rgba);
 }
 void publishCrossoverSpellArt(const BattleInfo & battle){
- static std::string previous;std::set<SpellID> ids;
- for(const auto & s:battle.stacks)for(auto type:{BonusType::SPELLCASTER,BonusType::SPELL_AFTER_ATTACK})for(const auto & bonus:*s->getBonusesOfType(type))ids.insert(bonus->subtype.as<SpellID>());
+ static std::string previous;static int previousBattle=-1;std::set<SpellID> ids;
+ for(const auto & stack:battle.stacks)for(auto type:{BonusType::SPELLCASTER,BonusType::SPELL_AFTER_ATTACK})for(const auto & bonus:*stack->getBonusesOfType(type))ids.insert(bonus->subtype.as<SpellID>());
  if(const auto hero=battle.battleGetFightingHero(BattleSide::ATTACKER);hero&&hero->hasSpellbook())for(const auto & spell:LIBRARY->spellh->objects)if(spell->isCombat()&&hero->canCastThisSpell(spell.get()))ids.insert(spell->id);
  std::string signature=std::to_string(battle.battleID.getNum());for(auto id:ids)signature+="/"+std::to_string(id.getNum());if(signature==previous)return;
  publishCrossoverSpellIcons(ids,battle.battleID.getNum());
- MAIN_THREAD_ASYNC_EM_ASM({window.goonkCrossoverSpellArt=({battleId:$0,rows:[]});},battle.battleID.getNum());
- for(auto id:ids){const auto spell=id.toSpell();std::vector<std::pair<std::string,AnimationPath>> clips;
-  for(const auto & item:spell->animationInfo.cast)if(!item.resourceName.empty())clips.emplace_back("cast",item.resourceName);
-  for(const auto & item:spell->animationInfo.hit)if(!item.resourceName.empty())clips.emplace_back("hit",item.resourceName);
-  for(const auto & item:spell->animationInfo.affect)if(!item.resourceName.empty())clips.emplace_back("affect",item.resourceName);
-  if(!spell->animationInfo.projectile.empty())clips.emplace_back("projectile",spell->animationInfo.projectile.front().resourceName);
-  for(const auto & [kind,path]:clips)publishCrossoverSpellClip(id.getNum(),kind,path);
+ if(previousBattle!=battle.battleID.getNum()){
+  MAIN_THREAD_ASYNC_EM_ASM({for(const row of window.goonkCrossoverSpellArt?.rows||[]){row.canvas.width=0;row.canvas.height=0;}window.goonkCrossoverSpellArt=({battleId:$0,rows:[]});},battle.battleID.getNum());
+  previousBattle=battle.battleID.getNum();
  }
  previous=signature;
+}
+void publishCrossoverSpellEffects(SpellID id,int battle){
+ static int previousBattle=-1;static std::vector<SpellID> recent;
+ if(previousBattle!=battle){recent.clear();previousBattle=battle;}
+ const auto existing=std::find(recent.begin(),recent.end(),id);if(existing!=recent.end()){recent.erase(existing);recent.push_back(id);return;}
+ if(recent.size()>=8){const int removed=recent.front().getNum();recent.erase(recent.begin());MAIN_THREAD_ASYNC_EM_ASM({const art=window.goonkCrossoverSpellArt;if(art){for(const row of art.rows)if(row.id===$0){row.canvas.width=0;row.canvas.height=0;}art.rows=art.rows.filter(row=>row.id!==$0);}},removed);}
+ recent.push_back(id);
+ const auto spell=id.toSpell();std::vector<std::pair<std::string,AnimationPath>> clips;
+ for(const auto & item:spell->animationInfo.cast)if(!item.resourceName.empty())clips.emplace_back("cast",item.resourceName);
+ for(const auto & item:spell->animationInfo.hit)if(!item.resourceName.empty())clips.emplace_back("hit",item.resourceName);
+ for(const auto & item:spell->animationInfo.affect)if(!item.resourceName.empty())clips.emplace_back("affect",item.resourceName);
+ if(!spell->animationInfo.projectile.empty())clips.emplace_back("projectile",spell->animationInfo.projectile.front().resourceName);
+ for(const auto & [kind,path]:clips)publishCrossoverSpellClip(id.getNum(),kind,path);
 }
 void publishCrossoverObstacleArt(const BattleInfo & battle){
  static std::map<int,std::string> previous;
@@ -766,20 +775,26 @@ void publishCrossoverObstacleArt(const BattleInfo & battle){
  }
 }
 // Reuse original Heroes DEF frames in the shared real-time battlefield.
+std::atomic_bool crossoverArtPending{false};
 void publishCrossoverArt(const BattleInfo & battle){
  publishCrossoverSounds(battle);publishCrossoverSpellArt(battle);publishCrossoverObstacleArt(battle);
- static std::string previous;std::string signature=std::to_string(battle.battleID.getNum());for(const auto & s:battle.stacks)signature+="/"+std::to_string(s->unitId())+":"+s->unitType()->getJsonKey();if(previous==signature)return;
+ if(crossoverArtPending.load())return;
+ static std::string previous;static size_t cursor=0;static int generation=0;std::string signature=std::to_string(battle.battleID.getNum());for(const auto & s:battle.stacks)signature+="/"+std::to_string(s->unitId())+":"+s->unitType()->getJsonKey();
  std::vector<const CStack*> units;for(const auto & stack:battle.stacks)if(!stack->unitType()->getJsonKey().starts_with("heroes-starcraft:"))units.push_back(stack.get());
  constexpr int columns=8,frames=8,poses=6;
  // Preserve original creature detail, keeping each mobile atlas below 16M pixels.
  const int cell=std::clamp(int(std::sqrt(16000000.0/(std::max<size_t>(1,units.size())*frames*poses)))/16*16,80,192);
- const int width=columns*cell,height=std::max(1,int(units.size()))*poses*cell;
+ if(previous!=signature){
+  previous=signature;cursor=0;++generation;
+  MAIN_THREAD_ASYNC_EM_ASM({const old=window.goonkCrossoverArt;for(const row of old?.rows||[]){const c=row.canvas||old.canvas;if(c){c.width=0;c.height=0;}}window.goonkCrossoverArt=({battleId:$0,cell:$1,generation:$2,expected:$3,rows:[],ready:$3===0});},battle.battleID.getNum(),cell,generation,units.size());
+ }
+ if(cursor>=units.size())return;
+ const int width=columns*cell,height=poses*cell;
  auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
- JsonNode metadata;bool ready=true;
+ bool ready=true;
  {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);
- for(size_t i=0;i<units.size();i++){
+ for(size_t i=cursor;i<cursor+1;i++){
   const auto animation=ENGINE->renderHandler().loadAnimation(units[i]->unitType()->animDefName,EImageBlitMode::SIMPLE);
-  JsonNode row;row["id"].Integer()=units[i]->unitId();row["row"].Integer()=i*poses;
   const int groups[6]={2,0,units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12,3,5,animation->size(31)?31:animation->size(18)?18:units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12};
   int left=100000,top=100000,right=0,bottom=0;
   for(int pose=0;pose<poses;pose++){const int group=animation->size(groups[pose])?groups[pose]:2;for(size_t f=0;f<animation->size(group);++f)if(const auto image=animation->getImage(f,group)){const auto r=image->contentRect();left=std::min(left,r.x);top=std::min(top,r.y);right=std::max(right,r.x+r.w);bottom=std::max(bottom,r.y+r.h);}}
@@ -789,15 +804,16 @@ void publishCrossoverArt(const BattleInfo & battle){
    for(int frame=0;frame<frames;frame++){
     const auto image=count?animation->getImage(frame*count/frames,group):nullptr;if(!image){ready=false;continue;}const auto rect=image->contentRect();
     auto scratch=SDL_CreateRGBSurfaceWithFormat(0,std::max(1,rect.w),std::max(1,rect.h),32,SDL_PIXELFORMAT_ARGB8888);if(!scratch)continue;SDL_FillRect(scratch,nullptr,0);
-    {auto from=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);from.draw(image,Point(0,0),rect);const Point size(std::max(1,int(rect.w*scale)),std::max(1,int(rect.h*scale)));const Point at(frame*cell+int((cell-(right-left)*scale)/2+(rect.x-left)*scale),(int(i)*poses+pose)*cell+cell-int((bottom-rect.y)*scale));canvas.drawScaled(from,at,size);}SDL_FreeSurface(scratch);
+    {auto from=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);from.draw(image,Point(0,0),rect);const Point size(std::max(1,int(rect.w*scale)),std::max(1,int(rect.h*scale)));const Point at(frame*cell+int((cell-(right-left)*scale)/2+(rect.x-left)*scale),pose*cell+cell-int((bottom-rect.y)*scale));canvas.drawScaled(from,at,size);}SDL_FreeSurface(scratch);
    }
   }
-  metadata.Vector().push_back(row);
  }}
  auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
- const int bytes=width*height*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto text=strdup(metadata.toCompactString().c_str());
- MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkCrossoverArt=({battleId:$4,cell:$5,canvas:c,rows:JSON.parse(UTF8ToString($3))});}finally{_free($0);_free($3);}},packet,width,height,text,battle.battleID.getNum(),cell);
- if(ready)previous=signature;}
+ if(!ready){SDL_FreeSurface(rgba);return;}
+ const int bytes=width*height*4;auto packet=malloc(bytes);if(!packet){SDL_FreeSurface(rgba);return;}memcpy(packet,rgba->pixels,bytes);SDL_FreeSurface(rgba);
+ crossoverArtPending.store(true);const int id=units[cursor]->unitId();++cursor;
+ MAIN_THREAD_ASYNC_EM_ASM({try{const art=window.goonkCrossoverArt;if(art?.generation===$4){const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4).buffer),$1,$2),0,0);art.rows.push({id:$3,row:0,canvas:c});art.canvas ||= c;art.ready=art.rows.length===art.expected;window.dispatchEvent(new Event('goonk-crossover-art'));}}finally{_free($0);Module._vcmiCrossoverArtAck();}},packet,width,height,id,generation);
+ if(cursor<units.size())return;
  // Keep a dedicated backdrop: the normal mobile battle listener clears its
  // own plane cache on entry, after the first native render notification.
  if(CPlayerInterface::battleInt){
@@ -809,11 +825,11 @@ void publishCrossoverArt(const BattleInfo & battle){
    SDL_FreeSurface(color);}
   }
  }
- SDL_FreeSurface(rgba);
 }
 void publishMobileVerticalPlanes(BattleInterface & battle){
  const auto crossover=dynamic_cast<const BattleInfo*>(battle.getBattle()->getBattle());
- if(!mobileVerticalBattle && !(crossover && crossover->crossover))return;
+ if(crossover&&crossover->crossover)return;
+ if(!mobileVerticalBattle)return;
  publishMobileSiegeAtlas(battle);
  constexpr int width=400,height=300;
  static SDL_Surface * scratch=SDL_CreateRGBSurfaceWithFormat(0,800,600,32,SDL_PIXELFORMAT_ARGB8888);
@@ -830,6 +846,7 @@ void publishMobileBattleAtlas(){
  if(!mobileEnabled||!ENGINE||!GAME||atlasPending.load()||SDL_GetTicks()-last<(mobileVerticalBattle?50:83))return;
  const auto battle=CPlayerInterface::battleInt;
  if(!battle||!ENGINE->windows().topWindow<BattleWindow>())return;
+ if(const auto info=dynamic_cast<const BattleInfo*>(battle->getBattle()->getBattle());info&&info->crossover)return;
  last=SDL_GetTicks();
  publishMobileVerticalPlanes(*battle);
  std::vector<const CStack *> units;size_t total=0;for(const auto stack:battle->getBattle()->battleGetAllStacks())if(stack->getPosition().isValid()){++total;if(units.size()<64)units.push_back(stack);}std::vector<std::array<int32_t,7>> geometry(units.size());
@@ -875,6 +892,7 @@ void publishMobileBattleAtlas(){
 // Version of native ERA services actually linked into this engine.
 extern "C" int EMSCRIPTEN_KEEPALIVE vcmiEraBridgeVersion(){return 2;}
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileAtlasAck(){atlasPending.store(false);}
+extern "C" void EMSCRIPTEN_KEEPALIVE vcmiCrossoverArtAck(){crossoverArtPending.store(false);}
 static const CMarketBase * mobileResourceMarket()
 {
  if(auto window=ENGINE->windows().topWindow<CMarketWindow>())

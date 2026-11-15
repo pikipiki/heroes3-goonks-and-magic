@@ -364,7 +364,7 @@ bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID
   if(hero&&mana!=hero->mana){SetMana update(hero->id,mana,ChangeValueMode::ABSOLUTE);gameHandler->sendAndApply(update);}battle->replayAllowed=false;flowProcessor->resumeCrossover(*battle);return true;
  }
  if(operation==2 && survivors.empty()){
-  if(battle->crossoverFromClassic){BattleUnitsChanged change;change.battleID=battleID;change.crossoverMode=0;gameHandler->sendAndApply(change);}else{battle->crossover=false;flowProcessor->onBattleStarted(*battle);}return true;
+  BattleUnitsChanged change;change.battleID=battleID;change.crossoverMode=0;gameHandler->sendAndApply(change);flowProcessor->resumeCrossover(*battle);return true;
  }
  int manaSpent=0;std::vector<std::pair<uint32_t,int32_t>> survivorsOnly;
  for(const auto & row:survivors){if(row.first==2147483647u){if(row.second<0)return false;manaSpent=row.second;}else survivorsOnly.push_back(row);}

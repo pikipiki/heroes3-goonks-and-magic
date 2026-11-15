@@ -155,3 +155,5 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu]>.mobile-play { gr
 #crossover-friendly-targets button{min-height:44px;font-size:11px;padding:5px;overflow-wrap:anywhere}
 
 #crossover-arena[data-transferring] :is(.field,aside,#crossover-cancel){pointer-events:none;opacity:.65}
+
+#crossover-field[hidden]{display:none}

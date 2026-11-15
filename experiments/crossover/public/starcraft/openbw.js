@@ -71,7 +71,7 @@ const setMsg = (m) => { $('msg').textContent = m; };
 // ---------------------------------------------------------------------------
 // Player-owned data; no remote archive fallback.
 async function loadAssets(mapFile = MAP_LOCAL) {
-  const archives = await loadArchives();
+  const archives = await archivesReady || await loadArchives();
   setMsg('Loading local game data…');
   const map = await fetchMap(mapFile);
   setBar(1);
