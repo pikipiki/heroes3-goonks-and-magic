@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "scope": "Private native messenger dwelling controls, not original campaign victory or production activation",
+  "freshChromium": {
+    "passed": true,
+    "fixtureSha256": "16ce3bae97e34cb4ef3bd25e0365ee49d27954a08cb555b97012ab090fcd6784",
+    "engineSha256": "0be6df25add0f691e4741ad78230f300f5ea31cf0e4da695e4903ac39d8a31c4",
+    "privateByteRoute": false,
+    "observations": [
+      {
+        "day": 1,
+        "lines": [
+          "MESSENGER visit 1: 165/7 guard 165/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 2,
+        "lines": [
+          "MESSENGER visit 2: 166/3 guard 166/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 3,
+        "lines": [
+          "MESSENGER visit 3: 167/3 guard 167/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 4,
+        "lines": [
+          "MESSENGER visit 4: 164/3 guard 164/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 5,
+        "lines": [
+          "MESSENGER visit 5: 165/3 guard 165/10 extra 0/2"
+        ]
+      }
+    ],
+    "positiveBattleRound": 1,
+    "enemies": [
+      {
+        "key": "wake-of-gods.messengersandemissaries:earthMessenger",
+        "count": 10
+      },
+      {
+        "key": "core:pikeman",
+        "count": 2
+      }
+    ],
+    "errors": []
+  },
+  "pendingReloadWebKit": {
+    "passed": true,
+    "fixtureSha256": "16ce3bae97e34cb4ef3bd25e0365ee49d27954a08cb555b97012ab090fcd6784",
+    "engineSha256": "0be6df25add0f691e4741ad78230f300f5ea31cf0e4da695e4903ac39d8a31c4",
+    "privateByteRoute": false,
+    "observations": [
+      {
+        "day": 2,
+        "lines": [
+          "MESSENGER visit 2: 166/3 guard 166/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 3,
+        "lines": [
+          "MESSENGER visit 3: 167/3 guard 167/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 4,
+        "lines": [
+          "MESSENGER visit 4: 164/3 guard 164/10 extra 0/2"
+        ]
+      },
+      {
+        "day": 5,
+        "lines": [
+          "MESSENGER visit 5: 165/3 guard 165/10 extra 0/2"
+        ]
+      }
+    ],
+    "positiveBattleRound": 1,
+    "enemies": [
+      {
+        "key": "wake-of-gods.messengersandemissaries:earthMessenger",
+        "count": 10
+      },
+      {
+        "key": "core:pikeman",
+        "count": 2
+      }
+    ],
+    "errors": []
+  },
+  "pendingSaveSha256": "d3ba57c84204c21fcb87283c83436161cfc960d071c75a7d3ead138821fb802b",
+  "creation": "UN:I 17/93 creates Fire Messenger recruit stock2 immediately",
+  "guardRegression": "Native positive battle round has exactly10 Earth Messengers and the2 script-configured Pikemen; no duplicated native guard stack",
+  "build": "ninja -j32 html5 passed; complete clean package including committed mobile garrison bridge",
+  "unitTests": {
+    "passed": 741,
+    "skipped": 34,
+    "failed": 0
+  },
+  "limitations": [
+    "Private fixture uses2500 Archangels to observe native guard creation; this does not establish a balanced original quest victory.",
+    "Source registry gates remain disabled pending original quest, victory and transfer validation.",
+    "The new second-scenario finale test is prepared but has not yet reached or validated that victory."
+  ],
+  "release": "0.4.201",
+  "productionSmoke": {
+    "passed": true,
+    "scope": "Two delivered Goonk maps, actual solo/hotseat roles and turns, save/reload, positive BattleStart round. Native reveal/move used for combat reachability; no mod, map or engine data substituted."
+  }
+}

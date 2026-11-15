@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "feature": "Original campaign UN:I 17/93 and visit correction",
+  "evidenceType": "Static analysis of pinned supplied WoG 3.58f PE; no Windows execution",
+  "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "observations": [
+    {
+      "address": "0x784874",
+      "claim": "Patch record redirects dwelling reward table at 0x4b85a3 to 0x7b370c",
+      "words": [
+        "0x4b85a3",
+        "0x7b370c",
+        4
+      ]
+    },
+    {
+      "address": "0x784c10",
+      "claim": "Patch record sets DwMonster[93] to source creature164 Fire Messenger",
+      "words": [
+        "0x7b3880",
+        164,
+        4
+      ]
+    },
+    {
+      "range": "0x7059e0..0x705a6d",
+      "claim": "For subtype93, before the ERM object handler: recruit[0].type and guard[0].type become 164+absoluteDay%4; guard[0].count becomes10. Recruit count and other guard slots are untouched."
+    },
+    {
+      "range": "0x705aeb..0x705b05",
+      "claim": "Correction called for object17 before ERM2Object"
+    },
+    {
+      "range": "0x70f8b0..0x70f900",
+      "claim": "Absolute day = ((month*4+week-5)*7)+dayOfWeek, starting at1."
+    },
+    {
+      "range": "0x4b8560..0x4b85ee -> 0x4b8760..0x4b87e5",
+      "claim": "Creation initializes each recruit count from the base creature growth word at monster data offset0x44; guardians for level5+ use three base growths. Source-created native dwellings now receive that recruit stock immediately instead of waiting until the next weekly turn."
+    }
+  ],
+  "nativeEngineFinding": {
+    "file": "lib/mapObjectConstructors/DwellingInstanceConstructor.cpp",
+    "claim": "randomizeObject appends guards; CGDwelling::initObj configures the object during newObject. Calling configureObject before newObject added a second guard stack. Source-created type17/20 now uses the single native initialization."
+  },
+  "exceptions": [],
+  "limitations": [
+    "This does not attest the rest of the final original scenario or its victory.",
+    "Existing authored guard slots are preserved; older private fixture saves containing duplicated guards are not silently rewritten."
+  ]
+}

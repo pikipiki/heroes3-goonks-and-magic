@@ -717,6 +717,18 @@ struct SourceCampaignProcessor::Impl final:Host
   if(executor.dispatchAny("OB",{{int(source->ID)},{int(source->ID),source->subID},{position.x,position.y,position.z}})){run();return true;}
   heroId=ObjectInstanceID::NONE;return false;
  }
+ // WoG 3.58f 0x7059e0 runs before ERM2Object: the same dwelling
+ // changes its recruit type with the absolute day and restores guard slot 0.
+ void correctMessengerDwelling(const CGObjectInstance * obj)
+ {
+  const auto source=identity(obj);if(source.ID!=Obj(17)||source.subID!=93)return;
+  const auto * dwelling=dynamic_cast<const CGDwelling *>(obj);require(dwelling&&!dwelling->creatures.empty(),"messenger dwelling recruit slot missing");
+  const auto selected=creature(164+gh.gameState().day%4);
+  SetAvailableCreatures stock;stock.tid=dwelling->id;stock.creatures=dwelling->creatures;stock.creatures[0].second={selected};gh.sendAndApply(stock);
+  const SlotID slot(0);const auto * guard=dwelling->getStackPtr(slot);
+  if(!guard)gh.insertNewStack({dwelling->id,slot},selected.toCreature(),10);
+  else {gh.changeStackType({dwelling->id,slot},selected.toCreature());gh.changeStackCount({dwelling->id,slot},10,ChangeValueMode::ABSOLUTE);}
+ }
  bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
   bind();if(!active)return false;
@@ -731,6 +743,7 @@ struct SourceCampaignProcessor::Impl final:Host
    require(heroId==h->id&&objectId==obj->id,"another object visited while a script is suspended");return true;
   }
   heroId=h->id;objectId=obj->id;player=h->getOwner();updateContext();
+  correctMessengerDwelling(obj);
   const auto pos=obj->visitablePos();vm.v[998]=pos.x;vm.v[999]=pos.y;vm.v[1000]=pos.z;
   if(obj->ID!=Obj::EVENT)
   {
@@ -1027,9 +1040,15 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(source==76){if(visual==source&&visualSubtype==subtype){subtype=random(6,false);source=79;visual=source;visualSubtype=subtype;}else{source=79;subtype=random(6,false);}}
   const bool customTown=source==98&&subtype==0&&visual==63&&visualSubtype==1;
   require((visual==source&&visualSubtype==subtype)||customTown,"different source object appearance not admitted");
-  require(!(source==17&&subtype==93),"messenger dwelling variant requires original selection validation");
   const int surface=args.size()==6?number(args[5]):args.size()>7?number(args[7]):-1;require(surface>=-1&&surface<=8,"source surface outside -1..8");
-  const auto mapped=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remapObject({Obj(source),subtype});
+  auto mapped=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remapObject({Obj(source),subtype});
+  if(source==17&&subtype==93)
+  {
+   // AddStrObject initializes the original DwMonster[93] entry to Fire.
+   // The date-dependent correction happens at the next visit, not creation.
+   const auto fire=LIBRARY->objtypeh->getHandlerFor("wake-of-gods.messengersandemissaries","core:creatureGeneratorCommon","naturalCalamityFire");
+   mapped={Obj(fire->getIndex()),fire->getSubIndex()};
+  }
   const MapObjectID type(mapped.ID);const MapObjectSubID sub(mapped.subID);
   require(LIBRARY->objtypeh->knownObjects().count(type)&&LIBRARY->objtypeh->knownSubObjects(type).count(sub),"unbound source object identity");
   const auto handler=LIBRARY->objtypeh->getHandlerFor(type,sub);
@@ -1041,7 +1060,11 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(templates.empty())templates=visualHandler->getTemplates();
   if(wanted!=TerrainId::NONE)templates.erase(std::remove_if(templates.begin(),templates.end(),[&](const auto & item){return !item->canBePlacedAt(wanted);}),templates.end());
   require(!templates.empty(),"source object has no template for its surface");
-  auto created=handler->create(&gh.gameInfo(),nullptr);handler->configureObject(created.get(),*gh.randomizer);gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=originalTemplate?templates.back():templates.front();created->setAnchorPos(anchor);
+  auto created=handler->create(&gh.gameInfo(),nullptr);
+  // CGDwelling::initObj configures its recruit rows and guards in newObject.
+  // Configuring it here as well appends a second native guard army.
+  if(source!=17&&source!=20)handler->configureObject(created.get(),*gh.randomizer);
+  gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=originalTemplate?templates.back():templates.front();created->setAnchorPos(anchor);
   if(auto monster=std::dynamic_pointer_cast<CGCreature>(created)){monster->initialCharacter=CGCreature::Character::SAVAGE;monster->neverFlees=true;monster->notGrowingTeam=false;monster->gainedArtifact=ArtifactID::NONE;monster->resources=TResources{};monster->message.clear();monster->clearSlots();monster->putStack(SlotID(0),std::make_unique<CStackInstance>(&gh.gameInfo(),CreatureID(sub.getNum()),5));}
   if(auto resource=std::dynamic_pointer_cast<CGResource>(created)){resource->clearSlots();resource->setAmount(5*resource->getResourceHandler()->getAmountMultiplier());}
   if(auto event=std::dynamic_pointer_cast<CGEvent>(created)){event->humanActivate=true;event->computerActivate=false;event->removeAfterVisit=false;event->availableFor.clear();for(int color=0;color<8;++color)event->availableFor.insert(PlayerColor(color));event->configuration.info.clear();event->configuration.info.emplace_back();event->configuration.info.back().visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;}
@@ -1050,7 +1073,17 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    created->id=ObjectInstanceID(map.objects.size());auto world=era_campaign_admission::bindWorld(state,map.sourceCampaignWorld);auto & setting=world["towns"][std::to_string(created->id.getNum())];
    setting["visualType"].Integer()=visualMapped.ID.getNum();setting["visualSubtype"].Integer()=visualMapped.subID;persist(JsonNode(),nullptr,nullptr,world);
   }
-  gh.newObject(created,player);if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
+  gh.newObject(created,player);
+  if(source==17||source==20)
+  {
+   // Original 0x4b8760 fills recruit stock with one base weekly growth
+   // immediately, including a dwelling created in the middle of the week.
+   const auto dwelling=std::dynamic_pointer_cast<CGDwelling>(created);require(dwelling!=nullptr,"created dwelling type mismatch");
+   SetAvailableCreatures stock;stock.tid=dwelling->id;stock.creatures=dwelling->creatures;
+   for(auto & row:stock.creatures)if(!row.second.empty())row.first=row.second.front().toCreature()->getGrowth();
+   gh.sendAndApply(stock);
+  }
+  if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
  if(c.receiver=="OW")
  {
