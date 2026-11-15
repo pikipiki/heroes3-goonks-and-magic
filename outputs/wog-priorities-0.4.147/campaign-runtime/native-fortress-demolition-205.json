@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "scope": "Original zc1-2 Fortress battle, capture, demolition and positive quest continuation. Not a scenario victory.",
+  "engineSha256": "72083f9c4bf7bed0620ffe57594d6cbc3685299bc5c581fd313d9309a58a3088",
+  "engineDelivery": "whole delivered205 package; no JS/WASM replacement",
+  "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "sourceArchiveModified": false,
+  "questFlagsModified": false,
+  "movementOrArmyCheatsUsed": false,
+  "town": "Backwater",
+  "demolitionSteps": [
+    {
+      "building": 8,
+      "day": 52,
+      "goldBefore": 18100,
+      "goldAfter": 17100
+    },
+    {
+      "building": 7,
+      "day": 52,
+      "goldBefore": 17100,
+      "goldAfter": 14600
+    },
+    {
+      "building": 10,
+      "day": 52,
+      "goldBefore": 14600,
+      "goldAfter": 12100
+    }
+  ],
+  "originalPositiveDialogue": [
+    [
+      "Right! You did it!"
+    ]
+  ],
+  "nativeOpponentElimination": [
+    [
+      "Blue's heroes have abandoned him, and he is banished from this land."
+    ]
+  ],
+  "survivingArmy": [
+    {
+      "key": "wake-of-gods.creatures:gorynych",
+      "count": 1
+    },
+    {
+      "key": "wake-of-gods.creatures:ghost",
+      "count": 175
+    }
+  ],
+  "day": 52,
+  "saveSha256": "4fccb6f6f4aa728356b2f6801f314d65bfa73221fc6954ba5ff1919e60313d70",
+  "errors": [],
+  "testCorrection": "Survival guard distinguishes the human color from a legitimately eliminated opponent. The earlier run reached the same original success but its final assertion mistakenly rejected the Blue elimination message.",
+  "limitations": [
+    "Crypt, Necropolis, second-scenario victory, finale and other campaigns remain pending.",
+    "All public original campaign admissions remain false."
+  ]
+}
