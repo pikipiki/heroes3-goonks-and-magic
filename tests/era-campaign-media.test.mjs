@@ -24,3 +24,10 @@ test('native media path lookup resolves only virtual assets and rejects traversa
 });
 
 test('four original silent animations retain pinned dimensions, all native frames and browser hashes',()=>{const manifest=checkCampaignMovies();assert.deepEqual(campaignMovieMedia,Object.fromEntries(manifest.movies.map(m=>[m.key,{url:m.browser.url,width:m.width,height:m.height,frames:m.frameCount,fps:15}])));assert.deepEqual(manifest.movies.map(m=>m.frameCount),[6,21,5,8]);const dir=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-campaign-movies-'));try{publishCampaignMedia(dir);for(const m of manifest.movies){assert.equal(sha256(fs.readFileSync(path.join(dir,'web',m.browser.url))),m.browser.sha256);assert(m.frames.every(f=>/^[a-f0-9]{64}$/.test(f.rgbaSha256)));}}finally{fs.rmSync(dir,{recursive:true,force:true});}});
+test('decoded movie assets are indexed with their exact case and bytes', {skip:!fs.existsSync('.git')},()=>{
+ for(const movie of checkCampaignMovies().movies)for(const asset of [movie.nativeDefinition,...movie.frames,movie.browser]){
+  const file=mediaRoot+'/'+asset.path;
+  const indexed=execFileSync('git',['show',':'+file]);
+  assert.equal(sha256(indexed),asset.sha256,'Generated movie asset must be indexed with exact casing: '+file);
+ }
+});

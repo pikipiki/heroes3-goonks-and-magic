@@ -1431,13 +1431,15 @@
     }
   ],
   "unitTests": {
-    "total": 764,
-    "passed": 730,
+    "total": 765,
+    "passed": 731,
     "skipped": 34,
     "failed": 0
   },
   "limitations": [
     "Only the four original silent clips and source loop mode1 are admitted. Other formats, audio, external movie files and other loop modes remain disabled.",
     "Original quests, battle branches and campaign transfers are still incomplete. In particular, the first scenario needs the original leave-creatures-on-map action; original campaigns remain disabled."
-  ]
+  ],
+  "assetIndexVerified": true,
+  "packagingCorrection": "First Pages build failed before deployment because native PNG assets were missing from the Git index under the canonical Sprites case. All44 native assets are now indexed with exact-case paths and hashes, checked by an additional regression test."
 }

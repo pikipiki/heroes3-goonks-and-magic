@@ -16,38 +16,38 @@
       "animation": "era-campaign/movies/11_out",
       "frames": [
         {
-          "path": "sprites/era-campaign/movies/11_out/000.png",
+          "path": "Sprites/era-campaign/movies/11_out/000.png",
           "sha256": "4d11a9d65f9ed798ca2cb03b259bbb7abb9c64500eeb4b394c93a3df9d8993df",
           "rgbaSha256": "6eb99ca41c497f1982605ed619c78f010be40ad48d523db538a92d29ad4b3feb"
         },
         {
-          "path": "sprites/era-campaign/movies/11_out/001.png",
+          "path": "Sprites/era-campaign/movies/11_out/001.png",
           "sha256": "3463738fdc3532be607e66e438b0f0ba2e926a1ce3c372f92fa331d7ea07b048",
           "rgbaSha256": "7ef2c30214c03595af4710d94a2cd29648874f869116acc329d7e358e9b8ffed"
         },
         {
-          "path": "sprites/era-campaign/movies/11_out/002.png",
+          "path": "Sprites/era-campaign/movies/11_out/002.png",
           "sha256": "3a69a52911c9bdc2700244c51471c38e1a57797e0321202a208708cd9eace0fe",
           "rgbaSha256": "6e34cd477ef94b6589529d1da03e8863667c6b9f2ea556e55cb54de98300fd9a"
         },
         {
-          "path": "sprites/era-campaign/movies/11_out/003.png",
+          "path": "Sprites/era-campaign/movies/11_out/003.png",
           "sha256": "fa61278c4d4365fecb7abb459e56a03226f9223fcfe0fa15ec4ed4450dfbbf33",
           "rgbaSha256": "dcc1588d951ce6d83ccb7e3472f3af4b504f9bd8c4daf62cba7041f172da363f"
         },
         {
-          "path": "sprites/era-campaign/movies/11_out/004.png",
+          "path": "Sprites/era-campaign/movies/11_out/004.png",
           "sha256": "ae98dabd3d2b4643138d7d1d6e544df305d4d7936fef17a0eb1d5dde6f7c1b32",
           "rgbaSha256": "0645e5486fe71405fd17348f962e3ac50b7feb347af76bf76a651b701aa4016f"
         },
         {
-          "path": "sprites/era-campaign/movies/11_out/005.png",
+          "path": "Sprites/era-campaign/movies/11_out/005.png",
           "sha256": "e4efd78b53bf32e951fcb9d201aa226a16d9948cf174603ffabd8f85c5cbc732",
           "rgbaSha256": "7caba9bc6920a00927f7747db39463fc869db15f496c0bce3b3893ed823cd4e8"
         }
       ],
       "nativeDefinition": {
-        "path": "sprites/era-campaign/movies/11_out.json",
+        "path": "Sprites/era-campaign/movies/11_out.json",
         "sha256": "67521165b7086d5dac8f359e0c569e83bac9a0818afaafa73e85ff35831da1c1"
       },
       "browser": {
@@ -69,113 +69,113 @@
       "animation": "era-campaign/movies/11_shield",
       "frames": [
         {
-          "path": "sprites/era-campaign/movies/11_shield/000.png",
+          "path": "Sprites/era-campaign/movies/11_shield/000.png",
           "sha256": "01ba8e44d0f7108af417a7f1ff379672fd3aa10b2c030436e331ada06afb6629",
           "rgbaSha256": "0723bd198d9c70f1fd3ee38b5cc7c327e26e00312261b2ff97fc0ede7e2d5d67"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/001.png",
+          "path": "Sprites/era-campaign/movies/11_shield/001.png",
           "sha256": "79d33678377a8d6ca3b829898f11a150e79416edb50a3732fd6e4087d5e3c433",
           "rgbaSha256": "fe9a80e5c4ddf9f9bad599d41237087f4bc2d5bab51ba3e83176b5f1c38e847e"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/002.png",
+          "path": "Sprites/era-campaign/movies/11_shield/002.png",
           "sha256": "eb4cf4c65927f82ed15b5e891d9edce7ef0e6e87850f25c02f8be518bd0c4d6b",
           "rgbaSha256": "3515d5fe2448ae2d7541af417f58c017d2266f04ecd84e2fdda6cab1fc983083"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/003.png",
+          "path": "Sprites/era-campaign/movies/11_shield/003.png",
           "sha256": "d87fc5520243f56c868ee96e118531362acc55d9fa096d7b938aa535f0238acc",
           "rgbaSha256": "6af46d592213895d714c6af1aabca246907f7a470eec788b3f142b0c18536415"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/004.png",
+          "path": "Sprites/era-campaign/movies/11_shield/004.png",
           "sha256": "fd985ef5f8f39c8001f6e7cb75b7804df55641529e874af0045e7b73ef3428ee",
           "rgbaSha256": "d2152163c0dbf18e2004af4a29732e0e3fe93746484da7aa292b071b8d5f3228"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/005.png",
+          "path": "Sprites/era-campaign/movies/11_shield/005.png",
           "sha256": "dfb08cd7743d7a99ed738dae1d84b26333d3e3ea238a2913f8d1b6989051f02d",
           "rgbaSha256": "a2da902f990f3e19dc1b4a0d10798a06b9b20b9c053199ba2d2e3601221ecc80"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/006.png",
+          "path": "Sprites/era-campaign/movies/11_shield/006.png",
           "sha256": "dc31d020bf0a647d820651f968691153e535b294e113ac71d019cb7567214228",
           "rgbaSha256": "d3be6148092806cef9092edfd70301525efd747924f0073ba6af1c8d73590bab"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/007.png",
+          "path": "Sprites/era-campaign/movies/11_shield/007.png",
           "sha256": "7148ddf0c3690f9229a990aad27b408dacd514f7431a795254f7f7fd6d3d8a34",
           "rgbaSha256": "86dd9e0e2208f3c875e750a1f517251278a2f268b63a873fbe88657ff820c098"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/008.png",
+          "path": "Sprites/era-campaign/movies/11_shield/008.png",
           "sha256": "49e9d53dafb101fef85edcde5e8624f863aaf4dd578916497e9a3dcdfb9ee482",
           "rgbaSha256": "2750a60d50360822bd7be028cd1b30e095c57d42be7fd70854d18aa1ce9273f8"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/009.png",
+          "path": "Sprites/era-campaign/movies/11_shield/009.png",
           "sha256": "57bbbce711325e208d921b6e49fb4ec8dc33402ab0ef9c9b527d76ff329bcae9",
           "rgbaSha256": "11546e19adc6624de88762777dec93abaed7ae86b721847d0a44295fb82024ff"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/010.png",
+          "path": "Sprites/era-campaign/movies/11_shield/010.png",
           "sha256": "9485d573114639c5576e8a120c81cc0866416f9e190c5bb63b5a3fa996742333",
           "rgbaSha256": "f71fff210bfb095b464e5321c1ec9a51c7e9bc05798bee09ef5c0887180f009c"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/011.png",
+          "path": "Sprites/era-campaign/movies/11_shield/011.png",
           "sha256": "a12b67ca64f950f062a50a0d3f7b12506bf86958617e908e49a7b8ff7be09df1",
           "rgbaSha256": "9e1cf0649ede64517ea0b4673a996f1ce7a538fea54b0bd8b8ab0ec37b5391b2"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/012.png",
+          "path": "Sprites/era-campaign/movies/11_shield/012.png",
           "sha256": "883a5ad3dbc212cf8494b3ddc400d878a1436b3b118f8b895ea68ab553219456",
           "rgbaSha256": "c9d5b3abe360c755b152dfa6f96ccd5f4a911dfce97cbf5438f6aeadc928abaf"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/013.png",
+          "path": "Sprites/era-campaign/movies/11_shield/013.png",
           "sha256": "ed1583257e37bb2d598f4ba6b5b7ee5bd333bb17a6358d05f5b0971330e45022",
           "rgbaSha256": "0dcd3990a6dab20e17485b681f277a6f77ba3babe63e1953373899581c5f783f"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/014.png",
+          "path": "Sprites/era-campaign/movies/11_shield/014.png",
           "sha256": "c60b54dab622ddff6ed2ce34ed10b0dd8c73019b8c04cbabe2c874e6f79aff5d",
           "rgbaSha256": "90121b20efb0b1c5caac89a7fde8a9dcbcfe4ef5e55ac94ff4abaabc9902dcc6"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/015.png",
+          "path": "Sprites/era-campaign/movies/11_shield/015.png",
           "sha256": "94116db123a110c7ee81146525d6feb3ea353cd81bf71173fd654a64092a6e16",
           "rgbaSha256": "172dd72041fa8f8f33ed8a3a32fd9b7ebb0cec4ca00fc7f76feab4ff18942300"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/016.png",
+          "path": "Sprites/era-campaign/movies/11_shield/016.png",
           "sha256": "e61307d5ca0a26ddbdb03894944e9633fd8cc6a7874f508745fabd40a27a3296",
           "rgbaSha256": "75ccfb08445854ea70ec86c43587a7c5459a43b26883acc9ad363bd1aabbe764"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/017.png",
+          "path": "Sprites/era-campaign/movies/11_shield/017.png",
           "sha256": "ef66ea87363daa792007da50fb3690e910ebf083bb839119e442429cee5934ce",
           "rgbaSha256": "c3795bd44b2669553200356b48e9b6c3098e073113af0be7fe18e358ae6828df"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/018.png",
+          "path": "Sprites/era-campaign/movies/11_shield/018.png",
           "sha256": "979207bb19aedb4aa889bc660c7cfdd978e7168575578e32f2b4c327d0fde819",
           "rgbaSha256": "929af0d02265dd26adcda7eae7b6e785576b9ef93079689a513d12d2be39f1d2"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/019.png",
+          "path": "Sprites/era-campaign/movies/11_shield/019.png",
           "sha256": "856a8e7c5f37945b94dd54899e91e8452fa29c5cf102ed761b3a211df9b45938",
           "rgbaSha256": "be1760375a0eab3711be288d8816f5b4fe10efd8e0c9fbf92f83c066e261f348"
         },
         {
-          "path": "sprites/era-campaign/movies/11_shield/020.png",
+          "path": "Sprites/era-campaign/movies/11_shield/020.png",
           "sha256": "ccac34c148c5642da14d4d08b18a0be850d0015dc8704597e3f8d16591bfa3c3",
           "rgbaSha256": "26978903bca7a6b2fc0da1d608955db84ef566fa2a37d2fa8191549434456d88"
         }
       ],
       "nativeDefinition": {
-        "path": "sprites/era-campaign/movies/11_shield.json",
+        "path": "Sprites/era-campaign/movies/11_shield.json",
         "sha256": "d40f54886e5ab608a830a9e72464f98aa45fece293db2f3521089ab5e32b1a4d"
       },
       "browser": {
@@ -197,33 +197,33 @@
       "animation": "era-campaign/movies/11_sun",
       "frames": [
         {
-          "path": "sprites/era-campaign/movies/11_sun/000.png",
+          "path": "Sprites/era-campaign/movies/11_sun/000.png",
           "sha256": "3b2960ea79e81ad8913c484a3f741fbf698362eb5a6136a74006268152423313",
           "rgbaSha256": "dd405b6d0b586baf28aa78ac9ad5075008f3f0b1879322bcdf0e3271979ad7d0"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sun/001.png",
+          "path": "Sprites/era-campaign/movies/11_sun/001.png",
           "sha256": "27ebff4392b4013c6a1f5a583c363b383d66f81ad70a6d8d3581cf8ba79b63ba",
           "rgbaSha256": "222d16657f95f98658169a52e048eeecfee10636a8b3b5422591e70a4a153e45"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sun/002.png",
+          "path": "Sprites/era-campaign/movies/11_sun/002.png",
           "sha256": "c7458b3623a268c628d6a736c44936c41a0043d44dcaed1d3495e80b114095cb",
           "rgbaSha256": "6173218b346193086f6ce1c09654f0df2d807ee0122557b90cbe460fbc534072"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sun/003.png",
+          "path": "Sprites/era-campaign/movies/11_sun/003.png",
           "sha256": "b5ed666feb70ac4ad43b1547c9390289e7e8659b257f2cffcf3f20c879f01f3f",
           "rgbaSha256": "73f307189bc1f11a7e0159659417300fd618762846c1aeff67c9afb5a0e3a856"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sun/004.png",
+          "path": "Sprites/era-campaign/movies/11_sun/004.png",
           "sha256": "2499442114f97bbd6bfd0dd73bec766297e531e4c2f1dd139eda46fc53b41209",
           "rgbaSha256": "a5e8c0b46d26c941b677a09c0de06dcb0b65fca0d153a44e6bf1652a6837e798"
         }
       ],
       "nativeDefinition": {
-        "path": "sprites/era-campaign/movies/11_sun.json",
+        "path": "Sprites/era-campaign/movies/11_sun.json",
         "sha256": "67022d9034b307968d5fa8af1194043cd004a294629febbcdfeba1f331915c39"
       },
       "browser": {
@@ -245,48 +245,48 @@
       "animation": "era-campaign/movies/11_sword",
       "frames": [
         {
-          "path": "sprites/era-campaign/movies/11_sword/000.png",
+          "path": "Sprites/era-campaign/movies/11_sword/000.png",
           "sha256": "ebd8ecba3a02ad395a17e25a40d6443e485ee4fc4e3fbb26801b7b3daab1030a",
           "rgbaSha256": "b39b6cf0c1e8fb81aae2504c9c12a912d8db6314071f74115f42cd9ced21dfbc"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/001.png",
+          "path": "Sprites/era-campaign/movies/11_sword/001.png",
           "sha256": "ce846e286ef33349fdb4c977730b4823c363531b3edca1403d76c88ee340a6b6",
           "rgbaSha256": "77fa7b13e56791c91c0a9dc286c6b63fb8fe442a2b4b9661600caa7443a0ab9f"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/002.png",
+          "path": "Sprites/era-campaign/movies/11_sword/002.png",
           "sha256": "d91717278b151082900117fec3a2962fa7cff1706585c8cd869ccdb2cdf4caf6",
           "rgbaSha256": "7640ba497f42b6a154ec945232950cccce4bf158648bac92ad3835a496dcb080"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/003.png",
+          "path": "Sprites/era-campaign/movies/11_sword/003.png",
           "sha256": "e6932bcb9243a7b3358be84a71594b9a961321ce1058b82f2da460da80a356db",
           "rgbaSha256": "413590424261b0f820d9a42dd4bfc4080cd30e19044cb3960a30bd88c9a04911"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/004.png",
+          "path": "Sprites/era-campaign/movies/11_sword/004.png",
           "sha256": "4b8a4025ee09366e68b31fcd8b1577c6c9cd55c146bad1449cbac902ba697b2f",
           "rgbaSha256": "caf5af8d7cc0255ad59c9364c0a0a174d252b469fca9810b57f8d298047c1a5a"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/005.png",
+          "path": "Sprites/era-campaign/movies/11_sword/005.png",
           "sha256": "08b27b0afd42f3fdabb33d8062bbf94e6f11381cd327dccffd37f66966796409",
           "rgbaSha256": "0ec7ba575653aedce4bbf615c75273297be5e36d7bc6784b97d56ca452a9f1b5"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/006.png",
+          "path": "Sprites/era-campaign/movies/11_sword/006.png",
           "sha256": "1897eea688a4f512afce16e97c547380124672b00e07e2bfa58e2541a2f8543b",
           "rgbaSha256": "4a4b51d5648ec1e0bded6c1704cfbbcbd73222eaba7ae37066c63773acabeadd"
         },
         {
-          "path": "sprites/era-campaign/movies/11_sword/007.png",
+          "path": "Sprites/era-campaign/movies/11_sword/007.png",
           "sha256": "00a205841fe51ef26e0e62ec124d3e197ca5da4b893c60ec15e1655195546bc1",
           "rgbaSha256": "9621f0df97f04f434ffac6cf656234d0925f4d93711dddc0f24e52d5211a659e"
         }
       ],
       "nativeDefinition": {
-        "path": "sprites/era-campaign/movies/11_sword.json",
+        "path": "Sprites/era-campaign/movies/11_sword.json",
         "sha256": "d791003d0f12e23aea5dcc9068caa92db284a4a8b3b6d4f5b525fd14a3ffdc02"
       },
       "browser": {
