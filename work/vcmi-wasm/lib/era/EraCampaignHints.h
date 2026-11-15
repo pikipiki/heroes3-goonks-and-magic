@@ -11,10 +11,9 @@ namespace era_campaign_hints
 inline std::string positionKey(const int3 & position)
 {return std::to_string(position.x)+"/"+std::to_string(position.y)+"/"+std::to_string(position.z);}
 
-inline std::optional<std::string> text(const JsonNode & root,const int3 & position,int day,int hero,bool human)
+inline std::optional<std::string> format(const JsonNode & root,const JsonNode & binding,int day,int hero,bool human)
 {
  if(root["contract"].String()!="source-campaign-state-v1")return std::nullopt;
- const auto & binding=root["objectDescriptions"][positionKey(position)];
  if(binding.isNull())return std::nullopt;
  const int index=era_campaign_json::integer(binding);if(index==0)return std::nullopt;
  if(index<1||index>1000)throw std::runtime_error("External source hint string table is not admitted");
@@ -28,5 +27,9 @@ inline std::optional<std::string> text(const JsonNode & root,const int3 & positi
  if(count>511)TextOperations::trimRightUnicode(result,count-511);
  return result;
 }
+inline std::optional<std::string> text(const JsonNode & root,const int3 & position,int day,int hero,bool human)
+{return format(root,root["objectDescriptions"][positionKey(position)],day,hero,human);}
+inline std::optional<std::string> heroText(const JsonNode & root,int target,int day,int hero,bool human)
+{return format(root,root["heroDescriptions"][std::to_string(target)],day,hero,human);}
 }
 VCMI_LIB_NAMESPACE_END

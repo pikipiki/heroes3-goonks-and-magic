@@ -229,7 +229,11 @@ void CRClickPopup::createAndPush(const CGObjectInstance * obj, const Point & p, 
 		const auto & game = static_cast<const IGameInfoCallback &>(*GAME->interface()->cb).gameState();
 		const auto * hero = GAME->interface()->localState->getCurrentHero();
 		const auto * owner = game.getPlayerState(GAME->interface()->playerID);
-		sourceHint = era_campaign_hints::text(game.getMap().sourceCampaignState, obj->visitablePos(), game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman());
+		const auto * target = dynamic_cast<const CGHeroInstance *>(obj);
+		if(target && target->ID == Obj::HERO)
+			sourceHint = era_campaign_hints::heroText(game.getMap().sourceCampaignState, target->getHeroTypeID().getNum(), game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman());
+		else
+			sourceHint = era_campaign_hints::text(game.getMap().sourceCampaignState, obj->visitablePos(), game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman());
 	}
 	if(sourceHint)
 	{

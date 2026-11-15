@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.186",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive contains later changes. Bounded assembly corroborates the selected original3.58f rules."
+  },
+  "analysis": "Ordinary bounded LLVM disassembly; no original Windows execution or binary upload. Earlier REA evidence remains retained; Hopper bridge was unavailable.",
+  "boundedAssemblySha256": {
+    "receiver": "3da55ff5f62d4012d2dcebc8b09a61668bc052344d22820ce0ea6b66eecde693",
+    "contact": "ceea2685fbdb36394e10ed54aea50d602deedabd567a73ad5c9083a5ca331153",
+    "hint": "835c9bd723eb339059015d58f2588ed551e31c7a2ef95a2af93a63ed9e837fcb"
+  },
+  "observations": [
+    {
+      "address": "0x733b0f..0x733b3e",
+      "fact": "Original hero interaction table is indexed by hero number0..155, independently of whether the hero is currently on the map."
+    },
+    {
+      "address": "0x733b6e..0x733c24",
+      "fact": "D/E select the player disabled byte; S/R assign all eight bytes; they do not delete the hero or its script trigger."
+    },
+    {
+      "address": "0x733c26..0x733c3f",
+      "fact": "H uses the two-byte per-hero hint index through Apply."
+    },
+    {
+      "address": "0x7498b3..0x7498cc",
+      "fact": "Native interaction disabled lookup reads the selected hero/player byte."
+    },
+    {
+      "address": "0x74a1fc..0x74a244",
+      "fact": "When the selected square is the hero, hint uses that hero table. A zero hero hint returns no custom hint immediately instead of falling through to coordinate object text."
+    }
+  ],
+  "originalUsage": {
+    "S": 2,
+    "H": 1,
+    "hints": [
+      "zc1-1 hero2 z408"
+    ],
+    "disabledHeroes": [
+      "zc1-1 hero2",
+      "zc1-2 hero132"
+    ]
+  },
+  "implementation": [
+    "Map-local serialized hero access mask and live z hint reference, keyed by original hero identity. Native hero exchange/battle is gated through the existing source visit completion path.",
+    "HO:S/R/D/E use the previously tested access-mask primitive; H accepts local z references and index query/reset.",
+    "Mobile hints reuse the stable existing native text presentation, including scroll and a single exit. No new panel or polling UI is introduced."
+  ],
+  "limitations": [
+    "Native control proves friendly hero exchange suppression/restoration, not all hostile battle branches.",
+    "External hint tables above1000 remain unadmitted; these original campaigns use local z408.",
+    "An unchanged privately admitted original scenario still stops during initialization with unsupported host work remaining. The full campaign registry stays disabled."
+  ]
+}

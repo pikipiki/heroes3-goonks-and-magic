@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.186",
+  "engineSha256": "65538a52453f3fb3f54dcb7f8c20b0b66f83e53bb2d32356e150c085243b79b8",
+  "originalCampaignsEnabled": false,
+  "sourceContract": "hero-access-source-contract-186.json",
+  "nativeChecks": [
+    {
+      "case": "hero-access-final",
+      "passed": true,
+      "resultSha256": "1c82c5cc5b52136d2367c40a7c10cd6e2b39c91b4db93034ee97fbd3736e4dc7",
+      "loadedPending": false,
+      "fixtureSha256": "488bd46f380d2e279a283787242c8bca72b2f45b8a9eb9e0934b6d902164bd26",
+      "mapSha256": "53f890d4be6ae233e7471f8b696c4bea5f1b2a906963f4ffb04665634f586b0d",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 82,
+            "scrollHeight": 305,
+            "clientHeight": 223,
+            "rect": {
+              "x": 18,
+              "y": 166.1015625,
+              "w": 284,
+              "h": 226.796875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 82,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 400.8984375,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 93,
+            "scrollHeight": 383,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 93,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 242,
+            "clientHeight": 242,
+            "rect": {
+              "x": 18,
+              "y": 294.5,
+              "w": 354,
+              "h": 246
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 548.5,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 342,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 137,
+            "clientHeight": 137,
+            "rect": {
+              "x": 18,
+              "y": 438.75,
+              "w": 732,
+              "h": 141
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 587.75,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 137,
+            "clientHeight": 137,
+            "rect": {
+              "x": 18,
+              "y": 517.640625,
+              "w": 784,
+              "h": 141
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 666.640625,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "exchangedHeroes": [
+        "Orrin",
+        "Edric"
+      ],
+      "blockedStageModes": {
+        "stillBlocked": "map",
+        "zeroBlocked": "map"
+      },
+      "clearedHintMode": "dialog"
+    },
+    {
+      "case": "hero-access-final-reload",
+      "passed": true,
+      "resultSha256": "a6b9027b57a4ef47438a810dab082fe5dbe21d4a4a6b58eae5da921a0d1d30d0",
+      "loadedPending": true,
+      "fixtureSha256": "488bd46f380d2e279a283787242c8bca72b2f45b8a9eb9e0934b6d902164bd26",
+      "mapSha256": "53f890d4be6ae233e7471f8b696c4bea5f1b2a906963f4ffb04665634f586b0d",
+      "layouts": [],
+      "exchangedHeroes": [
+        "Orrin",
+        "Edric"
+      ],
+      "blockedStageModes": {
+        "stillBlocked": "map",
+        "zeroBlocked": "map"
+      },
+      "clearedHintMode": "dialog"
+    }
+  ],
+  "regressions": [
+    {
+      "case": "hints-final",
+      "passed": true,
+      "resultSha256": "c7b43155f0554f1179ca419a79865cb00f7533c82b6f8f63871b25c015608e37"
+    },
+    {
+      "case": "production-final",
+      "passed": true,
+      "resultSha256": "be654c671e0eefec652342f612fa1a8314502994efda0be0b81463fdfdab4f05"
+    }
+  ],
+  "unitTests": {
+    "passed": 728,
+    "skipped": 34,
+    "failed": 0,
+    "resultSha256": "538dddcb47a94d8ad74dca6cd94a61c82552a63009e0e773889cbaf010e84912"
+  },
+  "implementationSha256": {
+    "work/vcmi-wasm/lib/era/EraCampaignHints.h": "aceb9200c28ae4979204083e3c216a0d856a04c1ff9937b1c0040800970dbbb7",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "3d0678b35b60221d014999398b32102a6fcdb4d4a6c609cb68a4dd2861249f8a",
+    "work/vcmi-wasm/client/windows/InfoWindows.cpp": "daeeee9b74cf280dc6f64fcf9d2ec6111886f7419227f121e24de8ec359bf038"
+  },
+  "scope": "Hero interaction/hint subset only. Original quest/combat/victory initialization remains incomplete. All original campaigns remain disabled."
+}

@@ -180,7 +180,14 @@ struct SourceCampaignProcessor::Impl final:Host
   const int mask=era_campaign_json::integer(node);require(mask>=0&&mask<=255,"invalid saved object access mask");return mask;
  }
  bool allowsObject(const CGObjectInstance * obj,const CGHeroInstance * h)const
- {return era_campaign_object_access::allows(objectMask(obj->id),h->getOwner().getNum());}
+ {
+  if(const auto * target=dynamic_cast<const CGHeroInstance *>(obj);target&&target->ID==Obj::HERO)
+  {
+   const auto & node=state["heroAccess"][std::to_string(target->getHeroTypeID().getNum())];
+   if(!node.isNull()){const int mask=era_campaign_json::integer(node);require(mask>=0&&mask<=255,"invalid source hero access mask");return era_campaign_object_access::allows(mask,h->getOwner().getNum());}
+  }
+  return era_campaign_object_access::allows(objectMask(obj->id),h->getOwner().getNum());
+ }
  bool consumeEmptyMonster(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
   const auto * monster=dynamic_cast<const CGCreature *>(obj);if(!monster||monster->getStackCount(SlotID(0))!=0)return false;
@@ -753,6 +760,23 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   else throw std::runtime_error("Original campaign: unsupported Cave hero operation "+op.code);
   return Step::Continue;
+ }
+ if(c.receiver=="HO")
+ {
+  require(c.selectors.size()==1,"hero interaction needs a hero number");const int target=number(c.selectors[0]);require(target>=0&&target<156,"original hero interaction number outside0..155");
+  const auto key=std::to_string(target);arity(op,1);
+  if(op.code=="H")
+  {
+   const auto & argument=resolveMacro(args[0],vm);const auto & saved=state["heroDescriptions"][key];const int previous=saved.isNull()?0:era_campaign_json::integer(saved);int changed;
+   if(argument.kind==Kind::Variable&&argument.space=='z'){require(argument.access==Access::Read&&argument.index!=nullptr,"unsupported hero hint reference");changed=number(*argument.index);}
+   else changed=value(previous,args[0]);
+   require(changed>=0&&changed<=1000,"external hero hint table is not admitted");
+   if(!query(op)){state["heroDescriptions"][key].Integer()=changed;persist();}return Step::Continue;
+  }
+  require(op.code=="S"||op.code=="R"||op.code=="D"||op.code=="E","unsupported hero interaction operation");
+  const bool all=op.code=="S"||op.code=="R";require(all?args[0].kind==Kind::Default:args[0].access==Access::Read,"unsupported hero access argument");
+  const auto & saved=state["heroAccess"][key];const int old=saved.isNull()?255:era_campaign_json::integer(saved);require(old>=0&&old<=255,"invalid source hero access mask");int owner=all?0:number(args[0]);if(owner==-1)owner=player.getNum();
+  state["heroAccess"][key].Integer()=era_campaign_object_access::change(old,op.code[0],owner);persist();return Step::Continue;
  }
  if(c.receiver=="OB")
  {
