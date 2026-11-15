@@ -21,6 +21,11 @@ export function battlePick(units:NativeUnit[],positions:Map<number,{x:number;y:n
  const candidates=units.filter(unit=>unit.hp>0&&distance(unit)<28).sort((a,b)=>distance(a)-distance(b));
  return (selected?candidates.find(unit=>unit.owner===1):undefined)||candidates[0];
 }
+export function obstacleVisual(tiles:{x:number;y:number}[]):{x:number;y:number;size:number}|undefined {
+ if(!tiles.length)return;
+ const xs=tiles.map(tile=>tile.x),ys=tiles.map(tile=>tile.y),left=Math.min(...xs),right=Math.max(...xs),bottom=Math.max(...ys);
+ return {x:(left+right)/2,y:bottom+20,size:Math.max(100,right-left+44,bottom-Math.min(...ys)+36)};
+}
 // Both engines supply their original art. All positions/HP/orders come from
 // OpenBW; this compositor never advances combat or invents an outcome.
 export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge,plan:BattlePlan):()=>void {
@@ -88,6 +93,11 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    context.drawImage(backdrop,0,0,portrait?500:800,portrait?800:500);
   }
   const transform=portrait?{zoom:1,x:0,y:0}:view||{zoom:1,x:0,y:0};if(portrait)context.setTransform(0,(mirrorBackground?1:-1)*transform.zoom*density,transform.zoom*density,0,transform.y*density,(mirrorBackground?transform.x:800-transform.x)*density);else context.setTransform(transform.zoom*density,0,0,transform.zoom*density,transform.x*density,transform.y*density);context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
+  const spellArt=source.goonkCrossoverSpellArt;
+  const drawClip=(clip:SpellClip,x:number,y:number,age:number,size=150):void=>{context.save();context.translate(x,y);upright();x=y=0;const position=Math.min(clip.frames-1,Math.max(0,age/950*(clip.frames-1))),index=Math.floor(position),mix=position-index;context.globalAlpha=1-mix;context.drawImage(clip.canvas,index*128,0,128,128,x-size/2,y-size,size,size);if(mix>0){context.globalAlpha=mix;context.drawImage(clip.canvas,Math.min(clip.frames-1,index+1)*128,0,128,128,x-size/2,y-size,size,size);}context.globalAlpha=1;context.restore();};
+  // Draw complete obstacle artwork once, behind combatants. The tiles remain
+  // exclusively the native footprint for collision and spell triggers.
+  for(const obstacle of obstacles){const clip=spellArt?.rows.find(c=>c.id===100000+obstacle.id&&c.kind==='obstacle'),place=obstacleVisual(obstacle.tiles);if(clip&&place)drawClip(clip,place.x,place.y,(nativeFrame*42)%950,place.size);}
   const art=source.goonkCrossoverArt,cell=art?.cell||128;if(art?.canvas!==previousArt){previousArt=art?.canvas;heroBounds.clear();heroCanvases.clear();}
   const blendedHeroes=new Map<string,HTMLCanvasElement>();
   for(const unit of [...corpses.values(),...units].filter(u=>!revivedBodies.has(u.id)).sort((a,b)=>portrait?(mirrorBackground?1:-1)*((positions.get(a.id)||a).x-(positions.get(b.id)||b).x):(positions.get(a.id)||a).y-(positions.get(b.id)||b).y)){
@@ -129,10 +139,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    const target=marker.target===undefined?undefined:positions.get(marker.target),mx=target?target.x-camera.x:marker.x,my=target?target.y-camera.y-(portrait?0:45):marker.y;
    const age=(now-marker.at)/1000,r=14+Math.sin(age*Math.PI*4)*4;context.globalAlpha=1-age*.7;context.strokeStyle=marker.attack?'#ff735f':'#9feeab';context.lineWidth=3;context.beginPath();context.arc(mx,my,r,0,Math.PI*2);context.moveTo(mx-r-8,my);context.lineTo(mx-5,my);context.moveTo(mx+5,my);context.lineTo(mx+r+8,my);context.moveTo(mx,my-r-8);context.lineTo(mx,my-5);context.moveTo(mx,my+5);context.lineTo(mx,my+r+8);context.stroke();context.globalAlpha=1;
   }
-  const spellArt=source.goonkCrossoverSpellArt;
-  const drawClip=(clip:SpellClip,x:number,y:number,age:number,size=150):void=>{context.save();context.translate(x,y);upright();x=y=0;const position=Math.min(clip.frames-1,Math.max(0,age/950*(clip.frames-1))),index=Math.floor(position),mix=position-index;context.globalAlpha=1-mix;context.drawImage(clip.canvas,index*128,0,128,128,x-size/2,y-size,size,size);if(mix>0){context.globalAlpha=mix;context.drawImage(clip.canvas,Math.min(clip.frames-1,index+1)*128,0,128,128,x-size/2,y-size,size,size);}context.globalAlpha=1;context.restore();};
   while(shots.length&&now-shots[0].at>380)shots.shift();for(const shot of shots){const age=now-shot.at,t=Math.min(1,age/180),x=shot.from.x+(shot.to.x-shot.from.x)*t,y=shot.from.y+(shot.to.y-shot.from.y)*t;const clip=spellArt?.rows.find(c=>c.id===200000+shot.stack&&c.kind==='weapon');if(clip)drawClip(clip,x,y,age*2,100);}
-  for(const obstacle of obstacles){const clip=spellArt?.rows.find(c=>c.id===100000+obstacle.id&&c.kind==='obstacle');if(clip)for(const tile of obstacle.tiles)drawClip(clip,tile.x,tile.y+20,(nativeFrame*42)%950,100);}
   while(spellEffects.length&&now-spellEffects[0].at>1200)spellEffects.shift();
   for(const effect of spellEffects){const age=now-effect.at,actors=[...units,...corpses.values()],caster=actors.find(u=>u.stackId===effect.caster),from=caster?bodyPoint(caster):{x:mirrorBackground?750:50,y:280};const targets=actors.filter(u=>effect.targets.includes(u.stackId!));
    for(const clip of spellArt?.rows.filter(c=>c.id===effect.id)||[]){

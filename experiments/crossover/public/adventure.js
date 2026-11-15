@@ -555,8 +555,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                     return;
                 await sc.openbwLaunchCrossover(activePlan);
                 magic = magicController(win, sc.openbwCrossover, activePlan, onMagicResponse);
-                if (activePlan.fromClassic)
-                    await magic.sync();
+                const openingMagic = await magic.sync();
                 const sounds = win.goonkCrossoverSounds;
                 if (sounds?.battleId === activePlan.battleId && sounds.rows.length)
                     void sc.openbwCrossover.prepareCreatureSounds?.(sounds.rows.filter(row => !row.kind?.startsWith('spell:'))).catch(() => { });
@@ -572,6 +571,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                 for (const { button } of cards.values())
                     button.disabled = false;
                 const disposeField = sharedField(win, canvas, sc.openbwCrossover, activePlan);
+                canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: openingMagic.obstacles || [] }));
                 if (activePlan.fromClassic) {
                     sc.openbwCrossover.start();
                     start.hidden = true;

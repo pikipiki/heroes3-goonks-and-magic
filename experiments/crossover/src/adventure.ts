@@ -138,12 +138,12 @@ for(const [id,{button}] of cards)button.setAttribute('aria-pressed',String(chose
    try{
     const sc=await prepared;if(!sc.openbwLaunchCrossover)throw Error('Chargement de StarCraft incomplet.');
     await waitForBattleArt(win,activePlan.battleId,mediaAbort.signal,(done,total)=>{status.textContent=`Préparation des animations : ${done}/${total}`;progress.max=Math.max(1,total);progress.value=done;});
-    if(panel!==activePanel)return;await sc.openbwLaunchCrossover(activePlan);magic=magicController(win,sc.openbwCrossover!,activePlan,onMagicResponse);if(activePlan.fromClassic)await magic.sync();
+    if(panel!==activePanel)return;await sc.openbwLaunchCrossover(activePlan);magic=magicController(win,sc.openbwCrossover!,activePlan,onMagicResponse);const openingMagic=await magic.sync();
     const sounds=win.goonkCrossoverSounds;if(sounds?.battleId===activePlan.battleId&&sounds.rows.length)void sc.openbwCrossover!.prepareCreatureSounds?.(sounds.rows.filter(row=>!row.kind?.startsWith('spell:'))).catch(()=>{});
     if(disposed||panel!==activePanel||frame!==activeFrame||plan!==activePlan)return;
     if(timer!==undefined)win.clearInterval(timer);progress.hidden=true;status.textContent='Prêt · contrôle manuel';ready=true;start.disabled=all.disabled=sound.disabled=false;updateSound();
     for(const {button} of cards.values())button.disabled=false;
-    const disposeField=sharedField(win,canvas,sc.openbwCrossover!,activePlan);if(activePlan.fromClassic){sc.openbwCrossover!.start();start.hidden=true;}sceneDispose=()=>{mediaAbort.abort();if(returnTimer!==undefined)win.clearTimeout(returnTimer);stopKeys();magic.dispose();disposeField();};
+    const disposeField=sharedField(win,canvas,sc.openbwCrossover!,activePlan);canvas.dispatchEvent(new CustomEvent('crossover-obstacles',{detail:openingMagic.obstacles||[]}));if(activePlan.fromClassic){sc.openbwCrossover!.start();start.hidden=true;}sceneDispose=()=>{mediaAbort.abort();if(returnTimer!==undefined)win.clearTimeout(returnTimer);stopKeys();magic.dispose();disposeField();};
     await new Promise<void>(resolve=>win.requestAnimationFrame(()=>win.requestAnimationFrame(()=>resolve())));
     if(panel!==activePanel)return;canvas.hidden=false;panel.hidden=false;
     timer=win.setInterval(()=>{

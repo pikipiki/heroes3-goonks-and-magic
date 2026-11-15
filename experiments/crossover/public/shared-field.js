@@ -17,6 +17,12 @@ export function battlePick(units, positions, point, camera, selected, portrait =
     const candidates = units.filter(unit => unit.hp > 0 && distance(unit) < 28).sort((a, b) => distance(a) - distance(b));
     return (selected ? candidates.find(unit => unit.owner === 1) : undefined) || candidates[0];
 }
+export function obstacleVisual(tiles) {
+    if (!tiles.length)
+        return;
+    const xs = tiles.map(tile => tile.x), ys = tiles.map(tile => tile.y), left = Math.min(...xs), right = Math.max(...xs), bottom = Math.max(...ys);
+    return { x: (left + right) / 2, y: bottom + 20, size: Math.max(100, right - left + 44, bottom - Math.min(...ys) + 36) };
+}
 // Both engines supply their original art. All positions/HP/orders come from
 // OpenBW; this compositor never advances combat or invents an outcome.
 export function sharedField(win, canvas, api, plan) {
@@ -219,6 +225,18 @@ export function sharedField(win, canvas, api, plan) {
             context.setTransform(transform.zoom * density, 0, 0, transform.zoom * density, transform.x * density, transform.y * density);
         context.imageSmoothingEnabled = true;
         context.imageSmoothingQuality = 'high';
+        const spellArt = source.goonkCrossoverSpellArt;
+        const drawClip = (clip, x, y, age, size = 150) => { context.save(); context.translate(x, y); upright(); x = y = 0; const position = Math.min(clip.frames - 1, Math.max(0, age / 950 * (clip.frames - 1))), index = Math.floor(position), mix = position - index; context.globalAlpha = 1 - mix; context.drawImage(clip.canvas, index * 128, 0, 128, 128, x - size / 2, y - size, size, size); if (mix > 0) {
+            context.globalAlpha = mix;
+            context.drawImage(clip.canvas, Math.min(clip.frames - 1, index + 1) * 128, 0, 128, 128, x - size / 2, y - size, size, size);
+        } context.globalAlpha = 1; context.restore(); };
+        // Draw complete obstacle artwork once, behind combatants. The tiles remain
+        // exclusively the native footprint for collision and spell triggers.
+        for (const obstacle of obstacles) {
+            const clip = spellArt?.rows.find(c => c.id === 100000 + obstacle.id && c.kind === 'obstacle'), place = obstacleVisual(obstacle.tiles);
+            if (clip && place)
+                drawClip(clip, place.x, place.y, (nativeFrame * 42) % 950, place.size);
+        }
         const art = source.goonkCrossoverArt, cell = art?.cell || 128;
         if (art?.canvas !== previousArt) {
             previousArt = art?.canvas;
@@ -389,11 +407,6 @@ export function sharedField(win, canvas, api, plan) {
             context.stroke();
             context.globalAlpha = 1;
         }
-        const spellArt = source.goonkCrossoverSpellArt;
-        const drawClip = (clip, x, y, age, size = 150) => { context.save(); context.translate(x, y); upright(); x = y = 0; const position = Math.min(clip.frames - 1, Math.max(0, age / 950 * (clip.frames - 1))), index = Math.floor(position), mix = position - index; context.globalAlpha = 1 - mix; context.drawImage(clip.canvas, index * 128, 0, 128, 128, x - size / 2, y - size, size, size); if (mix > 0) {
-            context.globalAlpha = mix;
-            context.drawImage(clip.canvas, Math.min(clip.frames - 1, index + 1) * 128, 0, 128, 128, x - size / 2, y - size, size, size);
-        } context.globalAlpha = 1; context.restore(); };
         while (shots.length && now - shots[0].at > 380)
             shots.shift();
         for (const shot of shots) {
@@ -401,12 +414,6 @@ export function sharedField(win, canvas, api, plan) {
             const clip = spellArt?.rows.find(c => c.id === 200000 + shot.stack && c.kind === 'weapon');
             if (clip)
                 drawClip(clip, x, y, age * 2, 100);
-        }
-        for (const obstacle of obstacles) {
-            const clip = spellArt?.rows.find(c => c.id === 100000 + obstacle.id && c.kind === 'obstacle');
-            if (clip)
-                for (const tile of obstacle.tiles)
-                    drawClip(clip, tile.x, tile.y + 20, (nativeFrame * 42) % 950, 100);
         }
         while (spellEffects.length && now - spellEffects[0].at > 1200)
             spellEffects.shift();

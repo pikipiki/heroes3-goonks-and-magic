@@ -111,3 +111,9 @@ Pas de validation sur un iPhone/iPad physique. Les tests WebKit sont exécutés 
 - Chromium et WebKit : mort réelle sous Anneau de froid, sélection « Mort · Réanimer », Résurrection du héros, invocations, boucliers Protoss et animations de dégâts. Blessures et mana conservés après des tours classiques réels ; le test attend la réception du paquet de mana du serveur.
 - Chromium et WebKit mobiles DPR 3 : préparation annulable et reprise ; pas de transfert d’image de plus de 1 769 472 pixels, pas de chargement massif des effets de sorts, une lecture de chaque MPQ par hôte.
 - La reprise automatique d’une interruption audio respecte le silence choisi, l’arrière-plan et la destruction du contexte ; test de régression unitaire.
+
+## Obstacles répétés — 15 novembre 2026
+
+Le rendu utilisait la liste des cases de collision pour redessiner l’image complète de l’obstacle sur chacune d’elles. Le terrain RTS dessine maintenant une seule image par obstacle, dimensionnée sur son emprise, derrière les combattants. La synchronisation initiale transmet les obstacles au rendu avant d’afficher le terrain, y compris lors du premier lancement de la démo.
+
+`tests/obstacles-browser.mjs` vérifie avec Chromium et WebKit qu’un véritable obstacle de huit cases est dessiné une seule fois par image et qu’il est présent dès l’image native zéro, avant l’affichage du terrain. Portrait et paysage inspectés ; les 43 tests du crossover, `verify:web` et le parcours complet de magie sous Chromium passent.
