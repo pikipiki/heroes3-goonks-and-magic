@@ -48,8 +48,10 @@ async function fetchBinary(url, size, start, end) {
  throw Error('Fichier du jeu indisponible ou incomplet : ' + new URL(url, location.href).pathname);
 }
 
+// Leave room for WebAssembly, decoded battle animations and audio on iPhone.
+// Transport bytes are reloadable; retaining hundreds of MiB can evict the tab.
 export function createTemporaryAssetReader({
- read = readBinary, fetchBlock = fetchBinary, maxBytes = 448 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
+ read = readBinary, fetchBlock = fetchBinary, maxBytes = 64 * 1024 * 1024, blockBytes = 512 * 1024, onFetch = () => {},
 } = {}) {
  const cache = new Map(), downloads = new Map();
  let cachedBytes = 0;

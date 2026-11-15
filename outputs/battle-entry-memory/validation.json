@@ -1,0 +1,227 @@
+{
+  "passed": true,
+  "scope": "Reduce measured asset-cache pressure associated with the reported iPhone tab reload/closure at battle entry. The physical iPhone termination was not reproduced on desktop.",
+  "battleReadyCacheBeforeBytes": 459660715,
+  "battleReadyCacheAfterBytes": 66069042,
+  "savedCacheBytes": 393591673,
+  "temporaryCacheBudgetBytes": 67108864,
+  "persistentAssetCacheBudgetBytes": 16777216,
+  "before": {
+    "browser": "webkit",
+    "fresh": false,
+    "samples": [
+      {
+        "label": "menu",
+        "mode": "menu",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 469762048,
+          "cachedBytes": 438264320,
+          "entries": 272
+        },
+        "canvases": 3587200
+      },
+      {
+        "label": "adventure",
+        "mode": "map",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 469762048,
+          "cachedBytes": 454998025,
+          "entries": 282
+        },
+        "canvases": 3717760
+      },
+      {
+        "label": "battle-start",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 469762048,
+          "cachedBytes": 459660715,
+          "entries": 286
+        },
+        "canvases": 4038400
+      },
+      {
+        "label": "battle-ready",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 469762048,
+          "cachedBytes": 459660715,
+          "entries": 286
+        },
+        "canvases": 3486160
+      },
+      {
+        "label": "after-first-action",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 469762048,
+          "cachedBytes": 459660715,
+          "entries": 286
+        },
+        "canvases": 3486160
+      }
+    ],
+    "errors": [],
+    "crashed": false,
+    "passed": true
+  },
+  "afterWebKit": {
+    "browser": "webkit",
+    "fresh": true,
+    "samples": [
+      {
+        "label": "menu",
+        "mode": "menu",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 65581018,
+          "entries": 38
+        },
+        "canvases": 3587200
+      },
+      {
+        "label": "adventure",
+        "mode": "map",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 64490361,
+          "entries": 24
+        },
+        "canvases": 3717760
+      },
+      {
+        "label": "battle-start",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 66069042,
+          "entries": 27
+        },
+        "canvases": 4038400
+      },
+      {
+        "label": "battle-ready",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 66069042,
+          "entries": 27
+        },
+        "canvases": 3486160
+      },
+      {
+        "label": "after-first-action",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 66069042,
+          "entries": 27
+        },
+        "canvases": 3486160
+      }
+    ],
+    "errors": [],
+    "crashed": false,
+    "passed": true
+  },
+  "afterChromium": {
+    "browser": "chromium",
+    "fresh": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "0a09ab20e4358e8c",
+      "wasm": "vcmiclient.72083f9c4bf7bed0.wasm",
+      "sha256": "72083f9c4bf7bed0620ffe57594d6cbc3685299bc5c581fd313d9309a58a3088",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "samples": [
+      {
+        "label": "menu",
+        "mode": "menu",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 65581018,
+          "entries": 38
+        },
+        "jsBytes": 131000000,
+        "canvases": 3587200
+      },
+      {
+        "label": "adventure",
+        "mode": "map",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 64490361,
+          "entries": 24
+        },
+        "jsBytes": 131000000,
+        "canvases": 3717760
+      },
+      {
+        "label": "battle-start",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 66069042,
+          "entries": 27
+        },
+        "jsBytes": 131000000,
+        "canvases": 4038400
+      },
+      {
+        "label": "battle-ready",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 66069042,
+          "entries": 27
+        },
+        "jsBytes": 131000000,
+        "canvases": 3484600
+      },
+      {
+        "label": "after-first-action",
+        "mode": "battle",
+        "wasmBytes": 268435456,
+        "temporary": {
+          "maxBytes": 67108864,
+          "cachedBytes": 66069042,
+          "entries": 27
+        },
+        "jsBytes": 131000000,
+        "canvases": 3484600
+      }
+    ],
+    "errors": [],
+    "crashed": false,
+    "passed": true
+  },
+  "nodeTests": {
+    "passed": 751,
+    "skipped": 34,
+    "failed": 0
+  },
+  "targetedCacheTests": 18,
+  "siteBuild": true,
+  "siteVerification": true,
+  "physicalDeviceTest": false,
+  "instrumentation": "Native test instruments the reader through a browser route only; production source contains no memory-probe code."
+}

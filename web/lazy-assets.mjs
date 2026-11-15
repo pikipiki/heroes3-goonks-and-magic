@@ -13,41 +13,50 @@ export function readBlobBlock(blob){
   return bytes;
  }finally{URL.revokeObjectURL(url);}
 }
-export function createAssetBlockCache({maxBytes=64*1024*1024,blockBytes=64*1024,read=readBlobBlock}={}){
+export function createAssetBlockCache({maxBytes=16*1024*1024,blockBytes=64*1024,read=readBlobBlock}={}){
  if(blockBytes<1||maxBytes<blockBytes)throw Error('Invalid asset cache budget');
- const blocks=new Map(),ids=new WeakMap(),wholeFiles=new WeakMap();let nextId=0,bytes=0;
+ const blocks=new Map(),ids=new WeakMap(),prefetches=new WeakMap();let nextId=0,bytes=0,prefetchQueue=Promise.resolve();
  const stats={maxBytes,blockBytes,residentBytes:0,peakBytes:0,hits:0,misses:0};
- function block(file,index){
-  if(!ids.has(file))ids.set(file,++nextId);const key=ids.get(file)+':'+index;
-  if(blocks.has(key)){const value=blocks.get(key);blocks.delete(key);blocks.set(key,value);stats.hits++;return value;}
-  stats.misses++;const value=read(file.slice(index*blockBytes,Math.min(file.size,(index+1)*blockBytes)));
-  while(bytes+value.length>maxBytes&&blocks.size){const oldest=blocks.keys().next().value;bytes-=blocks.get(oldest).length;blocks.delete(oldest);}
-  blocks.set(key,value);bytes+=value.length;stats.residentBytes=bytes;stats.peakBytes=Math.max(stats.peakBytes,bytes);return value;
+ const prefix=file=>{if(!ids.has(file))ids.set(file,++nextId);return ids.get(file)+':';};
+ function touch(key){const part=blocks.get(key);if(part){blocks.delete(key);blocks.set(key,part);}return part;}
+ function remove(key){const part=blocks.get(key);if(part){bytes-=part.length;blocks.delete(key);}}
+ function remember(key,part){
+  if(part.length>maxBytes)return;
+  remove(key);
+  while(bytes+part.length>maxBytes&&blocks.size)remove(blocks.keys().next().value);
+  blocks.set(key,part);bytes+=part.length;stats.residentBytes=bytes;stats.peakBytes=Math.max(stats.peakBytes,bytes);
  }
- async function prefetch(file){
-  if(!file||wholeFiles.has(file))return;
-  try{
+ function rememberWhole(file,part){
+  if(part.length>maxBytes)return;
+  const base=prefix(file);for(const key of blocks.keys())if(key.startsWith(base))remove(key);
+  remember(base+'whole',part);
+ }
+ function block(file,index){
+  const key=prefix(file)+index,hot=touch(key);
+  if(hot){stats.hits++;return hot;}
+  stats.misses++;const part=read(file.slice(index*blockBytes,Math.min(file.size,(index+1)*blockBytes)));
+  remember(key,part);return part;
+ }
+ function prefetch(file){
+  if(!file||!Number.isFinite(file.size)||file.size>maxBytes||touch(prefix(file)+'whole'))return Promise.resolve();
+  if(prefetches.has(file))return prefetches.get(file);
+  // Serialize prefetch buffers as well as bounding residency: parallel whole
+  // audio reads must not temporarily multiply the memory budget on iPhone.
+  const task=prefetchQueue.then(async()=>{
+   if(touch(prefix(file)+'whole'))return;
    const buffer=await file.arrayBuffer?.();
-   if(buffer){
-    const part=new Uint8Array(buffer);
-    wholeFiles.set(file,part);
-   }
-  }catch{}
+   if(buffer&&buffer.byteLength===file.size)rememberWhole(file,new Uint8Array(buffer));
+  }).catch(()=>{});
+  prefetches.set(file,task);prefetchQueue=task.finally(()=>prefetches.delete(file));return task;
  }
  return {stats,prefetch,read(file,target,offset,length,position){
   const count=Math.max(0,Math.min(length,file.size-position));let copied=0;
-  if(wholeFiles.has(file)){
-   const whole=wholeFiles.get(file);
-   target.set(whole.subarray(position,position+count),offset);
-   stats.hits++;
-   return count;
-  }
+  if(!count)return 0;
+  const whole=touch(prefix(file)+'whole');
+  if(whole){target.set(whole.subarray(position,position+count),offset);stats.hits++;return count;}
   if(count>blockBytes*2){
-   const part=read(file.slice(position,position+count));
-   target.set(part,offset);
-   if(position===0&&count===file.size&&count<=8*1024*1024){
-    wholeFiles.set(file,part);
-   }
+   const part=read(file.slice(position,position+count));target.set(part,offset);
+   if(position===0&&count===file.size&&count<=8*1024*1024)rememberWhole(file,part);
    return count;
   }
   while(copied<count){const at=position+copied,index=Math.floor(at/blockBytes),part=block(file,index),start=at%blockBytes,n=Math.min(count-copied,part.length-start);if(n<=0)throw Error('Invalid asset block');target.set(part.subarray(start,start+n),offset+copied);copied+=n;}

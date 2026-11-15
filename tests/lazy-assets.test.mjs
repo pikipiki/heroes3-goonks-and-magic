@@ -27,3 +27,27 @@ test('Prefetched file arrayBuffer satisfies reads with zero synchronous block re
  assert.deepEqual(out,data);
  assert.equal(reads,0);
 });
+
+test('Prefetched complete files share the bounded LRU with ordinary blocks',async()=>{
+ let reads=0;const file=value=>({size:64,arrayBuffer:async()=>new Uint8Array(64).fill(value).buffer,slice:(a,b)=>new Uint8Array(b-a).fill(value)}),[a,b,c]=[file(11),file(22),file(33)];
+ const cache=createAssetBlockCache({maxBytes:128,blockBytes:16,read:p=>{reads++;return p;}}),out=new Uint8Array(64);
+ await cache.prefetch(a);await cache.prefetch(b);assert.equal(cache.stats.residentBytes,128);
+ await cache.prefetch(c);assert(cache.stats.peakBytes<=128);cache.read(b,out,0,64,0);assert.equal(reads,0);assert(out.every(v=>v===22));
+ cache.read(a,out,0,64,0);assert.equal(reads,1,'The evicted whole file is read again');assert(out.every(v=>v===11));assert(cache.stats.residentBytes<=128);
+});
+test('Whole files cached by large synchronous reads are accounted and evicted',()=>{
+ let reads=0;const file=value=>({size:96,slice:(a,b)=>new Uint8Array(b-a).fill(value)}),a=file(4),b=file(5),out=new Uint8Array(96),cache=createAssetBlockCache({maxBytes:128,blockBytes:16,read:p=>{reads++;return p;}});
+ cache.read(a,out,0,96,0);assert.equal(cache.stats.residentBytes,96);cache.read(b,out,0,96,0);cache.read(a,out,0,96,0);assert.equal(reads,3);assert(out.every(v=>v===4));assert(cache.stats.peakBytes<=128);
+});
+test('Oversized prefetches allocate no complete file buffer and duplicate requests coalesce',async()=>{
+ let loads=0;const cache=createAssetBlockCache({maxBytes:128,blockBytes:16,read:p=>p});
+ await cache.prefetch({size:129,arrayBuffer:async()=>{loads++;return new ArrayBuffer(129);}});assert.equal(loads,0);
+ const file={size:64,arrayBuffer:async()=>{loads++;await new Promise(r=>setTimeout(r,5));return new ArrayBuffer(64);}};
+ await Promise.all([cache.prefetch(file),cache.prefetch(file)]);assert.equal(loads,1);assert.equal(cache.stats.residentBytes,64);
+});
+
+test('Distinct audio prefetches do not allocate several complete buffers concurrently',async()=>{
+ let active=0,peak=0;const cache=createAssetBlockCache({maxBytes:128,blockBytes:16,read:p=>p});
+ const files=Array.from({length:4},()=>({size:64,arrayBuffer:async()=>{active++;peak=Math.max(peak,active);await new Promise(r=>setTimeout(r,5));active--;return new ArrayBuffer(64);}}));
+ await Promise.all(files.map(f=>cache.prefetch(f)));assert.equal(peak,1);assert(cache.stats.peakBytes<=128);
+});
