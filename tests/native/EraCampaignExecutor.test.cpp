@@ -3,6 +3,7 @@
 #include "../../work/vcmi-wasm/lib/era/EraCampaignCarryover.h"
 #include "../../work/vcmi-wasm/lib/serializer/ESerializationVersion.h"
 #include "../../work/vcmi-wasm/lib/era/EraCampaignCalendar.h"
+#include "../../work/vcmi-wasm/lib/era/EraCampaignHeroExperienceRule.h"
 #include <cassert>
 #include <climits>
 #include <vector>
@@ -28,6 +29,12 @@ struct Recorder:Host
 static_assert(static_cast<int>(ESerializationVersion::GOONK_CAMPAIGN_CARRYOVER)==static_cast<int>(ESerializationVersion::GOONK_SOURCE_CAMPAIGNS)+1);
 int main()
 {
+ const auto required=[](int level)->std::uint32_t{return level==1?0:level==2?1000:level==3?2000:3200;};
+ assert(era_campaign_hero_experience::levelWord(65535)==-1&&era_campaign_hero_experience::levelWord(65537)==1);
+ assert(era_campaign_hero_experience::levelFor(-1,4,required)==0&&era_campaign_hero_experience::levelFor(INT_MIN,4,required)==0);
+ assert(era_campaign_hero_experience::levelFor(0,4,required)==1&&era_campaign_hero_experience::levelFor(999,4,required)==1);
+ assert(era_campaign_hero_experience::levelFor(1000,4,required)==2&&era_campaign_hero_experience::levelFor(2000,4,required)==3);
+ assert(era_campaign_hero_experience::levelFor(INT_MAX,4,required)==4);
  Context context;Recorder host;
  // Original VCMI ERM_FU regression: output parameters and immediate FU:E.
  Program p;p.sha256="functions";
@@ -44,7 +51,15 @@ int main()
  Program loop;loop.sha256="loops";auto skip=cmd("FU",{},"E");Predicate q;q.left=var('x',16);q.comparison="=";q.right=num(1);skip.conditions={{q}};
  loop.blocks={block("LE",{}, {cmd("DO",{num(2),num(0),num(3),num(1)},"P",{num(99)})}),
   block("FU",{num(2)},{skip,cmd("VR",{var('v',1)},"+",{var('x',16)}),cmd("VR",{var('x',1)},"+",{num(1)}),cmd("VR",{var('v',2)},"+",{var('x',1)})})};
- State ls;Executor le(loop,ls,context,host);le.dispatch("LE");assert(le.run());assert(ls.v[1]==5&&ls.v[2]==300&&ls.frames.size()==1);
+ State ls;Executor le(loop,ls,context,host);le.dispatch("LE");assert(le.run());assert(ls.v[1]==5&&ls.v[2]==303&&ls.frames.size()==1);
+ // Pinned WoG DO keeps y locals and unpassed x scratch cells through every
+ // iteration, nested FU calls and a suspended native dialog. Caller y survives.
+ Program locals;locals.sha256="loop-locals";auto prompt=cmd("IF",{},"Prompt");Predicate second;second.left=var('x',16);second.comparison="=";second.right=num(2);prompt.conditions={{second}};
+ locals.blocks={block("LE",{}, {cmd("VR",{var('y',1)},"S",{num(700)}),cmd("DO",{num(7),num(1),num(3),num(1)},"P")}),
+  block("FU",{num(7)},{cmd("VR",{var('y',1)},"+",{num(1)}),cmd("VR",{var('x',8)},"+",{num(10)}),cmd("FU",{num(8)},"P"),prompt,cmd("VR",{var('v',1)},"+",{var('y',1)}),cmd("VR",{var('v',2)},"+",{var('x',8)})}),
+  block("FU",{num(8)},{cmd("VR",{var('y',1)},"S",{num(999)})})};
+ State localState;Recorder localHost;Executor localLoop(locals,localState,context,localHost);localLoop.dispatch("LE");assert(!localLoop.run());assert(localState.frames.back().y.at(1)==2&&localState.frames.back().x.at(8)==20);
+ State reloadedLocals=localState;Executor resumeLocals(locals,reloadedLocals,context,localHost);assert(resumeLocals.run());assert(reloadedLocals.v[1]==6&&reloadedLocals.v[2]==60&&reloadedLocals.frames.size()==1&&reloadedLocals.frames[0].y.at(1)==700);
  // A suspended command keeps its already-accepted condition and exact PC.
  Program dialog;dialog.sha256="dialog";Command sequence;sequence.receiver="IF";sequence.operations={{"Prompt",{}},{"Reply",{}}};Predicate flag;flag.isFlag=true;flag.flag=1;sequence.conditions={{flag}};
  dialog.blocks={block("LE",{}, {sequence})};State ds;ds.flags[1]=true;Executor de(dialog,ds,context,host);de.dispatch("LE");assert(!de.run());assert(host.prompts==1&&host.replies==0&&!ds.flags[1]);

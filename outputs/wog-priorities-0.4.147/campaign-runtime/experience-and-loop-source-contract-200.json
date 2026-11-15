@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.200",
+  "reference": {
+    "file": "h3wog.exe",
+    "sha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+    "evidence": "Static bounded PE inspection with LLVM; no execution of the Windows binary. Later source corroborates the same branches.",
+    "anchors": {
+      "0x742aa7": "83f945",
+      "0x742ac9": "6a02",
+      "0x742ad1": "83c055",
+      "0x742af0": "6a04",
+      "0x742af8": "83c251",
+      "0x742b12": "83bdf4fbffff007405",
+      "0x742b27": "e834f3fcff",
+      "0x4daf18": "66895355",
+      "0x729cbb": "c70485d8c9570200000000",
+      "0x729d0c": "8b0dd4c95702038d8cfcffff890dd4c95702"
+    }
+  },
+  "heroExperience": {
+    "receiver": "HE:E",
+    "handler": "0x742aa0..0x742b3a",
+    "experienceField": {
+      "offset": "0x51",
+      "bits": 32,
+      "signed": true
+    },
+    "levelField": {
+      "offset": "0x55",
+      "bits": 16,
+      "signed": true
+    },
+    "applyOrder": [
+      "optional level",
+      "experience"
+    ],
+    "anyLevelOperandSuppressesAddExp": true,
+    "addExpWrapper": "0x711e60",
+    "nativeLevelRoutine": "0x4da990",
+    "nativeDownwardLevelStore": "0x4daf18",
+    "negativeExperienceComputedLevel": 0,
+    "levelReductionDoesNotRemoveSkills": true,
+    "commanderExperienceIsNotGrantedByThisReceiver": true,
+    "sourceOperations": [
+      {
+        "id": "zc1-0",
+        "programSha256": "1e984bbcb3ecd03d048bcd2f59e64b81bd1908113ed31b522cac2fa7f53b0a14",
+        "operations": [
+          {
+            "selectors": [
+              "x1"
+            ],
+            "args": [
+              "?y1"
+            ]
+          },
+          {
+            "selectors": [
+              "x1"
+            ],
+            "args": [
+              "y3"
+            ]
+          },
+          {
+            "selectors": [
+              "x2"
+            ],
+            "args": [
+              "y2"
+            ]
+          },
+          {
+            "selectors": [
+              "x1"
+            ],
+            "args": [
+              "?y9"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zc2-0",
+        "programSha256": "683f5d5bcaa7f8ec4cf2a3d0cc4c18f8dbda5fe70ae9697d90fbe6deacdd8d5d",
+        "operations": [
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "d+1000"
+            ]
+          },
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "d+500"
+            ]
+          },
+          {
+            "selectors": [
+              "21"
+            ],
+            "args": [
+              "d+500"
+            ]
+          },
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "d+2000"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zc2-2",
+        "programSha256": "33a5eed68c382c040145c128918771542f747f97fd99c130a7fec628c051e900",
+        "operations": [
+          {
+            "selectors": [
+              "x16"
+            ],
+            "args": [
+              "d82000"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zc4-0",
+        "programSha256": "14ecebd8c965de6024aa2c3ba02f6e3d28d471c261838d3e7dd01f24213b19f3",
+        "operations": [
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "?y1"
+            ]
+          },
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "d2000"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zc4-2",
+        "programSha256": "a8a9dfef1ccd7bbc3587d1a2bdad12e4c9a15e182d77d3948fd2199a36940fa9",
+        "operations": [
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "?y4",
+              "?y5"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zc4-3",
+        "programSha256": "0af533997bff0571d40528dd17b644b18c0af8614d89a8c3c74d80f058606f73",
+        "operations": [
+          {
+            "selectors": [
+              "v352"
+            ],
+            "args": [
+              "d100"
+            ]
+          },
+          {
+            "selectors": [
+              "v362"
+            ],
+            "args": [
+              "d100"
+            ]
+          },
+          {
+            "selectors": [
+              "-1"
+            ],
+            "args": [
+              "dy1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "doLoops": {
+    "handler": "0x729b45..0x729fdb",
+    "yClearOnceBeforeLoop": "0x729c91..0x729cc6",
+    "loopBackedge": "0x729d0c..0x729d2a",
+    "plainXInputsAndScratchPersist": true,
+    "yLocalsPersist": true,
+    "admittedOriginalCalls": 51,
+    "readOnlyInputOperands": 39,
+    "scope": "Original campaign DO operands are all ordinary read inputs; this change does not claim independent validation of unused ERA loop-reference forms."
+  },
+  "freshWorldBinding": {
+    "problem": "The first native day could bind the fire world to null state.vm.programSha256 before ERM initialization; strict packet validation then rejected the new campaign.",
+    "fix": "Bind state.contract and serialized VM identity immediately after program binding, before any world mutation. Packet identity validation remains strict."
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.200",
+  "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+  "saveVersion": 906,
+  "scope": "Native source-receiver controls, fresh original start, real village/ruin/ghost journey and ordinary Goonk regressions. No complete campaign victory is claimed.",
+  "nativeControls": {
+    "fixtureSha256": "1fc5d103e281cc4ec952e7e91b5cdd83c2c3b5280faefb3b5bd7f9a61451e688",
+    "privateEngineRoutes": 0,
+    "heroLevelChoices": 2,
+    "initialAndMixedAndSignedWordCases": true,
+    "completedHero": {
+      "experience": 0,
+      "level": 1
+    },
+    "loopMidpointSaveSha256": "112f3d833954c6512c81b9b67c952b79564c13db14386590d6b60859d04a6137",
+    "completedSaveSha256": "0981ab4420680eb4546c4353c9b177374c9468042dd262fbbe66063f3b1a1505",
+    "webkitReload": {
+      "passed": true,
+      "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+      "privateEngineRoutes": 0,
+      "completedSaveSha256": "96c318faf3b140dd8a04d2ea354dfa7e442825ac838dc85312cbb6a6a7666f96",
+      "continuedIterations": [
+        [
+          "LOOP 2 2 101 20"
+        ],
+        [
+          "LOOP 3 3 102 30"
+        ],
+        [
+          "HE:E complete; caller 700"
+        ]
+      ]
+    },
+    "errors": []
+  },
+  "freshOriginalStart": {
+    "passed": true,
+    "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+    "program": "zc1-1",
+    "pendingSaveSha256": "e1e316a246a7ad2ce235d18704a1cab7f17c2347f543b2e3667916802e3000a2",
+    "originalPortraitChoices": {
+      "text": "Native hero",
+      "selection": 4
+    },
+    "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+    "errors": []
+  },
+  "originalJourney": {
+    "ruinRecruitment": {
+      "passed": true,
+      "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+      "saveSha256": "bcdbe1fd72876c9a171060ee102d3a27399bf174d81399512f657c1d00e8e6c4",
+      "ghostsRecruited": 5,
+      "stockBefore": 5,
+      "stockAfter": 0,
+      "goldBefore": 20500,
+      "goldAfter": 18000,
+      "sixTouchLayouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "singleClose": true,
+          "stableControls": true,
+          "scrollAllowed": true,
+          "confirmVisible": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "singleClose": true,
+          "stableControls": true,
+          "scrollAllowed": true,
+          "confirmVisible": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "singleClose": true,
+          "stableControls": true,
+          "scrollAllowed": true,
+          "confirmVisible": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "singleClose": true,
+          "stableControls": true,
+          "scrollAllowed": true,
+          "confirmVisible": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "singleClose": true,
+          "stableControls": true,
+          "scrollAllowed": true,
+          "confirmVisible": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "singleClose": true,
+          "stableControls": true,
+          "scrollAllowed": true,
+          "confirmVisible": true
+        }
+      ]
+    },
+    "reachedVillageWithGhosts": {
+      "passed": true,
+      "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+      "saveSha256": "ff3bfa63f0c30791338c58465fa5d7369b457f17a517448048267de423d2f27c",
+      "day": 22,
+      "army": [
+        [
+          "wake-of-gods.creatures:ghost",
+          5
+        ]
+      ]
+    },
+    "actualSoulStealGrowth": {
+      "passed": true,
+      "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+      "saveSha256": "813a73bb5a4d48d6cb3a3206619534658d6dcbe979d7268d9d1e46c58232003f",
+      "army": [
+        [
+          "wake-of-gods.creatures:ghost",
+          39
+        ]
+      ]
+    },
+    "paidRecruitment": {
+      "passed": true,
+      "engineSha256": "b0cfe010879ec94a924a7adee0cdc633a13cf0f827b6d4fd8ffd9658473a8abe",
+      "saveSha256": "bdc3c8e4dbdce4f160e534b31600ac9fbadbdcb656a5fdd4e31cf10b8299a54d",
+      "sixTouchLayouts": true,
+      "note": "Delivered version199; no recruitment UI or dwelling code changes in200."
+    }
+  },
+  "productionRegressions": {
+    "passed": true,
+    "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+    "origin": "http://127.0.0.1:8900/",
+    "engineSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+    "productionOnly": true,
+    "combatOnly": false,
+    "localPreviewCspBypassed": true,
+    "limitations": [
+      "Local preview bypasses CSP only for127.0.0.1/localhost: this tests delivered assets and gameplay, not production CSP. Public startup must be checked separately without bypass after deployment.",
+      "No old161 fixture profile or legacy-save override is applied; that compatibility proof is retained separately.",
+      "The online-authored map runs locally in native hotseat, not a realtime network session.",
+      "This smoke does not replace combat,54actor,XP or Cave functional proofs."
+    ],
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "5f3ec5920408d79d",
+      "wasm": "vcmiclient.9b1ea02660d01a2b.wasm",
+      "sha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "actualFetchedWasmSha256": "9b1ea02660d01a2b5c17c88df6c64748277287dddf4727c07fccc70956b0d7c6",
+    "manifestSha256": "16e1a62ecb7823f44938c9aeebfba3b2133159a99bff97af4a46273f18fa3674",
+    "nativePolicyParsingAtBattleStartValidated": true,
+    "productionSmokeValidated": true,
+    "mapSaveReloadValidated": true,
+    "playerRolesPreserved": true,
+    "actualResumedTurnTransitionsValidated": true,
+    "trackedProductionAssetsUnchanged": true,
+    "errors": [],
+    "fullResultSha256": "c548dc30b68b81be9d9f8e2b2dbc64c1a97e23be4a1a7c15e8343105a95a51bf",
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "nativeHotseat": false,
+        "saveReloadValidated": true,
+        "saveSha256": "3cb7edf3bb67b60ac24ff04ff47ffd220fcc99dba2391a2c2ef7110b031d072c",
+        "resumedTurnCycle": {
+          "passed": true,
+          "roles": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "observations": [
+            {
+              "day": 1,
+              "currentPlayer": 0
+            },
+            {
+              "day": 2,
+              "currentPlayer": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "nativeHotseat": true,
+        "saveReloadValidated": true,
+        "saveSha256": "839577610baee6d782f35d09cf44fa1a0cbf15fa64270074d8b9599725b87554",
+        "resumedTurnCycle": {
+          "passed": true,
+          "roles": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": true,
+              "name": "Player 2"
+            }
+          ],
+          "observations": [
+            {
+              "day": 1,
+              "currentPlayer": 0
+            },
+            {
+              "day": 1,
+              "currentPlayer": 1
+            },
+            {
+              "day": 2,
+              "currentPlayer": 0
+            }
+          ]
+        }
+      }
+    ],
+    "productionAdmissionCombat": {
+      "passed": true,
+      "map": "003-Goonks-WoG.vmap",
+      "fixtures": "none",
+      "installedAssetWrites": false,
+      "nativeMovementRevealCheatsUsed": true,
+      "nativeCheats": [
+        {
+          "action": 29,
+          "parameter": 2,
+          "command": "vcmimap"
+        },
+        {
+          "action": 29,
+          "parameter": 1,
+          "command": "vcmimove"
+        }
+      ],
+      "positiveRoundPolicyCompleted": true,
+      "observedRound": 1,
+      "battleOutcomeValidated": false,
+      "originalTarget": {
+        "instanceName": "flightCache",
+        "x": 27,
+        "y": 36,
+        "key": "core:royalGriffin",
+        "count": 20
+      },
+      "scope": "Actual delivered map/army and positive native battle round demonstrate successful BattleStart through initializeSourceXpAdmission, which loads all three production XP policies before checking participating actors. No victory, new54 ability, or new54 admission-enrollment claim. The battle is closed after the positive-round snapshot.",
+      "sourcePath": "work/vcmi-wasm/server/era/EraSourceXpAdmissionRuntime.h; BattleFlowProcessor.cpp onBattleStarted"
+    }
+  },
+  "unitTests": {
+    "total": 775,
+    "passed": 741,
+    "skipped": 34,
+    "failed": 0
+  },
+  "admission": {
+    "programs": 12,
+    "enabled": 0,
+    "unchangedOriginalArchives": true
+  },
+  "cleanEngine": {
+    "noPrivateBridgeExport": true,
+    "noNativeDiagnosticStrings": true
+  },
+  "implementationSha256": {
+    "work/vcmi-wasm/lib/era/EraCampaignHeroExperienceRule.h": "3ee363e532459f65a7e7407564afc77128cc759be7746e2c643b783f5d5d5076",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "cdcf2e0a3b9e1045346ada28d05b2e33d59d186fcd824395aa4099c769304c59",
+    "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "3d718dce4df86c391e2d081869a62cf125bcc24a6ccb7dcb5433d18f3c7cfbde",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "1b58787a73f4309a3646645fa6f4e69605470d6eee180fa85dae6aa1bde66b49"
+  }
+}

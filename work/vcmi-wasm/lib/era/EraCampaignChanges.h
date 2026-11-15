@@ -145,6 +145,12 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    if(!dynamic_cast<CGHeroInstance *>(object))throw std::runtime_error("Original portrait target is not a hero");
    // Definitions live in the replicated map state, not global hero types.
   }
+  else if(kind=="heroLevel")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);const int level=campaignInteger(change["level"]);
+   if(!hero||level<-32768||level>32767)throw std::runtime_error("Invalid original hero level mutation");
+   hero->level=static_cast<std::uint32_t>(level);hero->nodeHasChanged();
+  }
   else if(kind=="heroGender")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);

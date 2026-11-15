@@ -1,6 +1,7 @@
 /** Exact original campaign bytes; only its registry admission is changed privately.
- * Checks the real initial form and pending save, before the unported calendar. */
+ * Checks the real initial form and pending save on a fresh native first day. */
 import {chromium} from 'playwright-core';import crypto from 'node:crypto';import {readOriginalCampaign} from '../../scripts/era-bridge/campaigns/importer.mjs';
+import {readCompletedNativeSave} from './native-save-completed.mjs';
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {silenceTestAudio} from './silent-audio.mjs';
 const id='zc1',selected=1,out=process.env.REVIEW_OUTPUT||'/tmp/goonk-campaign183-original-start';fs.mkdirSync(out,{recursive:true});
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8877',original=`mod/wake-of-gods/Mods/maps/content/maps/${id}.vcmp`,campaign=readOriginalCampaign(original),bytes=fs.readFileSync(original),entryId=id+'-'+selected;
@@ -23,8 +24,7 @@ try{
  assert.deepEqual(form.choices.map(c=>c.value),[1,2,3,4]);assert.deepEqual(form.pictures.map(p=>p.mediaKey),['cmp.res/11_901.bmp','cmp.res/11_902.bmp','cmp.res/11_903.bmp','cmp.res/11_904.bmp']);assert.match(form.text,/Time to play a real game/);
  assert.equal(await page.locator('.campaign-media-thumbnail img').count(),4);await page.locator('.campaign-media-thumbnail img').evaluateAll(images=>Promise.all(images.map(img=>img.decode())));
  await page.locator('[data-campaign-input]').fill('Native hero');await page.locator('[data-campaign-choice="4"]').check();await page.waitForTimeout(500);
- assert((await state()).autosaveAllowed);const file='/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1',prior=await page.evaluate(file=>{try{return Module.FS.stat(file).mtime.getTime()}catch{return 0}},file);await cmd(34,183);await wait(({file,prior})=>{try{return Module.FS.stat(file).mtime.getTime()>prior}catch{return false}},{file,prior});
- const save=Buffer.from(await page.evaluate(file=>Array.from(Module.FS.readFile(file)),file));assert.equal(save.readInt32LE(4),905);assert(save.includes(Buffer.from('Native hero')));fs.writeFileSync(out+'/original-start-pending.vsgm1',save);assert.deepEqual(errors,[]);await page.screenshot({path:out+'/original-start.png'});
+ assert((await state()).autosaveAllowed);const save=await readCompletedNativeSave(page,cmd,{tag:200});assert.equal(save.readInt32LE(4),906);assert(save.includes(Buffer.from('Native hero')));fs.writeFileSync(out+'/original-start-pending.vsgm1',save);assert.deepEqual(errors,[]);await page.screenshot({path:out+'/original-start.png'});
  fs.writeFileSync(out+'/result.json',JSON.stringify({passed:true,scope:'Exact original zc1 archive and scripts privately admitted; actual initial extended form, original four illustrations, native draft and pending save. Calendar, complete quest and victory are not validated.',engine,sourceArchiveSha256:campaign.sha256,sourceProgramId:entryId,pendingSaveSha256:crypto.createHash('sha256').update(save).digest('hex'),pending,draft:{text:await page.locator('[data-campaign-input]').inputValue(),selection:Number(await page.locator('[data-campaign-choice]:checked').inputValue())},errors},null,2));
 
 }catch(e){fs.writeFileSync(path.join(out,'failure-state.json'),JSON.stringify(await state().catch(()=>null),null,2));await page.screenshot({path:path.join(out,'failure.png')});throw e;}finally{await browser.close();}

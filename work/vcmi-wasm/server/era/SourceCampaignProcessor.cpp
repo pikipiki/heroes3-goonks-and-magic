@@ -22,6 +22,7 @@
 #include "../../lib/era/EraCampaignTerrainRule.h"
 #include "../../lib/era/EraCampaignDemolition.h"
 #include "../../lib/era/EraCampaignFire.h"
+#include "../../lib/era/EraCampaignHeroExperienceRule.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
@@ -106,6 +107,15 @@ public:
  CampaignTurnQuery(CGameHandler & game,PlayerColor player):CQuery(&game){addPlayer(player);}
  bool blocksPack(const CPackForServer * packet)const override{return dynamic_cast<const AdvInterfaceReady *>(packet)==nullptr;}
  void onExposure(QueryPtr)override{}
+};
+class CampaignExperienceQuery final:public CQuery
+{
+ std::function<void()> continuation;
+public:
+ CampaignExperienceQuery(CGameHandler & game,PlayerColor player,std::function<void()> done):CQuery(&game),continuation(std::move(done)){addPlayer(player);}
+ bool blocksPack(const CPackForServer *)const override{return true;}
+ void onExposure(QueryPtr)override{owner->popQuery(*this);}
+ void onRemoval(PlayerColor)override{continuation();}
 };
 }
 struct SourceCampaignProcessor::Impl final:Host
@@ -399,6 +409,11 @@ struct SourceCampaignProcessor::Impl final:Host
     if(const auto & campaign=gh.gameState().getStartInfo()->campState;campaign&&!campaign->getSourceCampaignVariables().isNull())
      vm=era_campaign::persistentVariables(era_campaign_json::readState(campaign->getSourceCampaignVariables()));
    if(vm.programSha256.empty())vm.programSha256=program.sha256;
+   // The first native new-turn pass can create world state (including fire)
+   // before the interface starts the ERM initializers. Bind that world to the
+   // decoded VM identity now; persist() must not receive a null source digest.
+   state["contract"].String()="source-campaign-state-v1";
+   state["vm"]=era_campaign_json::writeState(vm);
    if(!state["turnQueue"].isNull())era_campaign_json::array(state["turnQueue"]);
    if(state["hero"].isNumber())heroId=ObjectInstanceID(state["hero"].Integer());
    if(state["object"].isNumber())objectId=ObjectInstanceID(state["object"].Integer());
@@ -540,6 +555,15 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   require(pending.isStruct(),"suspension without a dialog");
   if(shown)return;
+  if(pending["kind"].String()=="hero-experience")
+  {
+   const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"experience hero missing");
+   auto barrier=std::make_shared<CampaignExperienceQuery>(gh,h->getOwner(),[this](){shown.reset();pending=JsonNode();run();});
+   shown=barrier->queryID;gh.queries->addQuery(barrier);gh.expGiven(h);
+   // One-choice level-ups can complete synchronously without a dialog query.
+   if(gh.queries->topQuery(h->getOwner())==barrier)gh.queries->popQuery(barrier);
+   return;
+  }
   if(pending["kind"].String()=="army-exchange")
   {
    const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"army exchange hero missing");
@@ -1143,6 +1167,27 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   else if(op.code=="I"||op.code=="W")
   {arity(op,1);const int changed=value(op.code=="I"?h->mana:h->movementPointsRemaining(),args[0]);if(!query(op)){if(op.code=="I")gh.setManaPoints(h->id,changed);else gh.setMovePoints(h->id,changed);}}
+  else if(op.code=="E")
+  {
+   require(args.size()>=1&&args.size()<=3,"invalid hero experience arity");
+   // The level operand is applied BEFORE the experience operand. Its presence
+   // suppresses AddExp even when the experience operand itself is a write.
+   if(args.size()>1)
+   {
+    const int old=era_campaign_hero_experience::levelWord(h->level),changed=value(old,args[1]);
+    if(args[1].access!=Access::Write&&args[1].access!=Access::Compare&&!unchangedOperand(args[1]))
+    {auto change=mutation("heroLevel",h->id);change["level"].Integer()=era_campaign_hero_experience::levelWord(static_cast<std::uint32_t>(changed));persist(change);}
+   }
+   const int changed=value(era_campaign_chest::signedWord(h->exp),args[0]);
+   if(args[0].access==Access::Write||args[0].access==Access::Compare||unchangedOperand(args[0]))return Step::Continue;
+   SetHeroExperience experience;experience.id=h->id;experience.mode=ChangeValueMode::ABSOLUTE;experience.val=static_cast<std::uint32_t>(changed);gh.sendAndApply(experience);
+   if(args.size()>1)return Step::Continue;
+   const int target=era_campaign_hero_experience::levelFor(changed,LIBRARY->heroh->maxSupportedLevel(),[](int level){return LIBRARY->heroh->reqExp(level);});
+   if(static_cast<int>(h->level)>target)
+   {auto change=mutation("heroLevel",h->id);change["level"].Integer()=target;persist(change);}
+   else if(h->gainsLevel())
+   {pending["kind"].String()="hero-experience";pending["hero"].Integer()=h->id.getNum();return Step::Suspend;}
+  }
   else if(op.code=="A")
   {
    if(args.size()==1)

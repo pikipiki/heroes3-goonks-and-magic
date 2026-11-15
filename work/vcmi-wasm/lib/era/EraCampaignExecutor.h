@@ -47,7 +47,13 @@ class Executor
     for(std::size_t i=0;i<call.returnTargets.size();++i)
      if(call.returnTargets[i].access==Access::Compare&&call.returnTargets[i].comparison=="=")
       call.initialX[static_cast<std::int32_t>(i+1)]=lookup(frame.x,static_cast<std::int32_t>(i+1));
-    frame.x=call.initialX;frame.x[16]=static_cast<std::int32_t>(wide);frame.y.clear();
+    // WoG clears local y cells once on entry to DO, not once per iteration.
+    // Ordinary x inputs and scratch cells also survive the loop body. Only
+    // return/reference arguments are refreshed by the DO controller.
+    for(std::size_t i=0;i<call.returnTargets.size();++i)
+     if(call.returnTargets[i].access!=Access::Read)
+      frame.x[static_cast<std::int32_t>(i+1)]=lookup(call.initialX,static_cast<std::int32_t>(i+1));
+    frame.x[16]=static_cast<std::int32_t>(wide);
     call.blockCursor=0;call.command=0;call.operation=0;call.commandConditionAccepted=false;return;
    }
   }
