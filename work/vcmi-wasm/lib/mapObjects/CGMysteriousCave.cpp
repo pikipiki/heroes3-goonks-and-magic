@@ -20,7 +20,10 @@
 #include "../networkPacks/PacksForClient.h"
 #include "../era/EraMysteriousCaveRules.h"
 #include "../era/EraMysteriousCaveDemolition.h"
+#include "../era/EraCampaignDemolition.h"
+#include "../networkPacks/SourceCampaignChange.h"
 #include "../entities/faction/CTown.h"
+#include "../entities/ResourceTypeHandler.h"
 #include "../entities/faction/CFaction.h"
 #include "../entities/building/CBuilding.h"
 #include "../entities/artifact/ArtifactUtils.h"
@@ -41,9 +44,47 @@ std::string townKey(const CGTownInstance * town,const std::string & effect)
 {
  return "eraCave:town:"+std::to_string(town->id.getNum())+":"+effect;
 }
+bool sourceDemolition(const IGameInfoCallback & cb)
+{
+ const auto & map=cb.gameState().getMap();return era_campaign_demolition::active(map.sourceCampaignState,map.sourceCampaignWorld);
+}
+int demolitionLimit(const CGHeroInstance * hero)
+{
+ if(CGMysteriousCave::isBuilder(hero))return 10;
+ return hero&&sourceDemolition(*hero->cb)?era_campaign_demolition::setting(hero->cb->gameState().getMap().sourceCampaignWorld,"D",era_campaign_demolition::dailyLimit):0;
+}
+int demolitionMovement(const CGHeroInstance * hero)
+{
+ return CGMysteriousCave::isBuilder(hero)?0:era_campaign_demolition::setting(hero->cb->gameState().getMap().sourceCampaignWorld,"M",era_campaign_demolition::movementLoss);
+}
+int demolitionSurcharge(const CGHeroInstance * hero,int remaining)
+{
+ if(remaining<=0)return 0;const int used=demolitionLimit(hero)-remaining;
+ return CGMysteriousCave::isBuilder(hero)?era::caveDemolitionSurcharges.at(used):era_campaign_demolition::setting(hero->cb->gameState().getMap().sourceCampaignWorld,"N:"+std::to_string(used),era_campaign_demolition::surcharges.at(used));
+}
+bool demolitionFactionAllowed(const CGHeroInstance * hero,const CGTownInstance * town,int faction)
+{
+ return hero&&town&&(CGMysteriousCave::isBuilder(hero)||faction==town->getFactionID().getNum()||faction==hero->getFactionID().getNum());
+}
+const CCreature * demolitionGhost()
+{
+ const int id=CreatureID::decode("wake-of-gods.creatures:ghost");return id>=0?CreatureID(id).toCreature():nullptr;
+}
+std::pair<int,int> demolitionMinimum(const CGHeroInstance * hero,int faction,int building)
+{
+ if(CGMysteriousCave::isBuilder(hero))return {0,0};
+ const auto & world=hero->cb->gameState().getMap().sourceCampaignWorld;
+ return {era_campaign_demolition::minimum(world,faction,building,false),era_campaign_demolition::minimum(world,faction,building,true)};
+}
+int demolitionArmyHealth(const CGHeroInstance * hero)
+{
+ std::uint32_t total=0;
+ for(const auto & [slot,stack]:hero->Slots())if(slot.getNum()>=0&&slot.getNum()<7)total+=std::uint32_t(stack->getCreature()->getBaseHitPoints())*std::uint32_t(stack->getCount());
+ return total<=INT32_MAX?static_cast<int>(total):static_cast<int>(static_cast<std::int64_t>(total)-INT64_C(4294967296));
+}
 bool builderPresent(const CGHeroInstance * hero,const CGTownInstance * town)
 {
- return hero&&town&&hero->getOwner()==town->getOwner()&&(town->getVisitingHero()==hero||town->getGarrisonHero()==hero);
+ return hero&&town&&(hero->getOwner()==town->getOwner()||(town->getOwner()==PlayerColor::NEUTRAL&&CGMysteriousCave::sourceTownRuin(town)))&&(town->getVisitingHero()==hero||town->getGarrisonHero()==hero);
 }
 int sourceTownFaction(const CGTownInstance * town)
 {
@@ -109,6 +150,25 @@ std::string choiceText(int choice)
  if(choice>=62&&choice<=64)return "A new commander skill";
  const auto i=descriptions.find(choice);return i==descriptions.end()?"Mysterious Cave":i->second;
 }
+}
+
+int CGMysteriousCave::demolitionRead(const IGameInfoCallback & cb,const std::string & key,int fallback)
+{
+ if(sourceDemolition(cb))
+ {
+  const auto & n=cb.gameState().getMap().sourceCampaignWorld["demolition"]["runtime"][key];return n.isNull()?fallback:era_campaign_json::integer(n);
+ }
+ const auto * cave=CGMysteriousCave::controller(cb);return cave?cave->read(key,fallback):fallback;
+}
+void CGMysteriousCave::demolitionWrite(IGameEventCallback & events,const IGameInfoCallback & cb,const std::map<std::string,int> & values)
+{
+ if(sourceDemolition(cb))
+ {
+  SourceCampaignChange packet;packet.worldState=cb.gameState().getMap().sourceCampaignWorld;packet.changes.Vector();
+  for(const auto & [key,value]:values)packet.worldState["demolition"]["runtime"][key].Integer()=value;
+  events.sendAndApply(packet);return;
+ }
+ const auto * cave=CGMysteriousCave::controller(cb);if(cave)cave->write(events,values);
 }
 
 int CGMysteriousCave::read(const std::string & key,int fallback) const
@@ -578,27 +638,33 @@ bool CGMysteriousCave::isBuilder(const CGHeroInstance * hero)
 {
  return hero&&heroDays(*hero->cb,hero,"builder")>0;
 }
+bool CGMysteriousCave::canDemolish(const CGHeroInstance * hero)
+{
+ if(!hero)return false;
+ if(isBuilder(hero))return true;
+ const auto * player=hero->cb->getPlayerState(hero->getOwner(),false);
+ return player&&player->isHuman()&&sourceDemolition(*hero->cb)&&demolitionLimit(hero)>0;
+}
 int CGMysteriousCave::builderDemolitionsRemaining(const CGHeroInstance * hero,const CGTownInstance * town)
 {
- if(!isBuilder(hero)||!builderPresent(hero,town))return 0;
- const auto * global=controller(*hero->cb);
+ if(!canDemolish(hero)||!builderPresent(hero,town))return 0;
  const int day=hero->cb->getDate(Date::DAY);
- const int used=global->read(townKey(town,"builderDemolitionDay"))==day?global->read(townKey(town,"builderDemolitionCount")):0;
- return std::max(0,10-used);
+ const int used=demolitionRead(*hero->cb,townKey(town,"builderDemolitionDay"))==day?demolitionRead(*hero->cb,townKey(town,"builderDemolitionCount")):0;
+ return std::max(0,demolitionLimit(hero)-used);
 }
 bool CGMysteriousCave::consumeBuilderDemolition(IGameEventCallback & events,const CGHeroInstance * hero,const CGTownInstance * town)
 {
  const int remaining=builderDemolitionsRemaining(hero,town);if(remaining<=0)return false;
- const auto * global=controller(*hero->cb);
- global->write(events,{{townKey(town,"builderDemolitionDay"),hero->cb->getDate(Date::DAY)},
-  {townKey(town,"builderDemolitionCount"),11-remaining}});
+ demolitionWrite(events,*hero->cb,{{townKey(town,"builderDemolitionDay"),hero->cb->getDate(Date::DAY)},
+  {townKey(town,"builderDemolitionCount"),demolitionLimit(hero)+1-remaining}});
  return true;
 }
 JsonNode CGMysteriousCave::builderSnapshot(const CGHeroInstance * hero,const CGTownInstance * town)
 {
  JsonNode result;result["buildings"].Vector();
- const bool allowed=isBuilder(hero)&&builderPresent(hero,town);
+ const bool allowed=canDemolish(hero)&&builderPresent(hero,town);
  result["available"].Bool()=allowed;
+ result["combatPending"].Bool()=town&&sourceDemolition(*town->cb)&&!town->cb->gameState().getMap().sourceCampaignWorld["demolition"]["pending"].isNull();
  if(!town)return result;
  const int faction=sourceTownFaction(town);
  result["town"].Integer()=town->id.getNum();
@@ -606,14 +672,38 @@ JsonNode CGMysteriousCave::builderSnapshot(const CGHeroInstance * hero,const CGT
  result["sourceFaction"].Integer()=faction;
  result["goonkFaction"].Integer()=FactionID::decode("goonk:goonk");
  result["remaining"].Integer()=builderDemolitionsRemaining(hero,town);
+ result["dailyLimit"].Integer()=hero?demolitionLimit(hero):0;
+ result["movementCost"].Integer()=hero?demolitionMovement(hero):0;
  const int ready=townRebuildReadyDay(town);
+ const int ghosts=sourceTownRuin(town)?demolitionRead(*town->cb,townKey(town,"ghosts"),5):0;
+ result["ghosts"].Integer()=ghosts;
+ const bool ghostsReady=allowed&&ghosts>0&&town->cb->getDate(Date::DAY)>=sourceTownEntranceDay(town,hero);
+ result["ghostsReady"].Bool()=ghostsReady;
+ if(ghosts>0)
+ {
+  const auto * creature=demolitionGhost();const auto slot=hero&&creature?hero->getSlotFor(creature):SlotID();
+  result["ghostArmySpace"].Bool()=slot.validSlot();
+  if(creature)for(int count=1;count<=ghosts;++count)
+  {
+   JsonNode choice;choice["count"].Integer()=count;TResources cost;
+   for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){cost[resource]=creature->getRecruitCost(resource)*count;choice["cost"].Vector().push_back(JsonNode(int(cost[resource])));}
+   choice["enabled"].Bool()=ghostsReady&&slot.validSlot()&&hero->cb->getPlayerState(hero->getOwner())->resources.canAfford(cost);
+   result["ghostRecruitment"].Vector().push_back(choice);
+  }
+ }
+ result["rebuildFactions"].Vector();
+ if(hero)for(int id=0;id<9;++id)if(demolitionFactionAllowed(hero,town,id))result["rebuildFactions"].Vector().push_back(JsonNode(id));
+ const int goonk=FactionID::decode("goonk:goonk");if(goonk>=9&&demolitionFactionAllowed(hero,town,goonk))result["rebuildFactions"].Vector().push_back(JsonNode(goonk));
  result["ruined"].Bool()=ready>0;
- result["rebuildReady"].Bool()=allowed&&ready>0&&town->cb->getDate(Date::DAY)>=ready;
+ const auto rebuildMinimum=hero&&faction>=0&&faction<9?demolitionMinimum(hero,faction,16):std::pair<int,int>{0,0};
+ result["rebuildMinimumExperience"].Integer()=rebuildMinimum.first;result["rebuildMinimumArmyHealth"].Integer()=rebuildMinimum.second;
+ result["rebuildReason"].String()=ghosts>0?"Recrute les fantômes avant de reconstruire.":"";
+ result["rebuildReady"].Bool()=allowed&&ready>0&&ghosts==0&&town->cb->getDate(Date::DAY)>=sourceTownEntranceDay(town,hero)&&static_cast<std::uint64_t>(hero->exp)>=static_cast<std::uint32_t>(rebuildMinimum.first)&&demolitionArmyHealth(hero)>=rebuildMinimum.second&&builderDemolitionsRemaining(hero,town)>0;
  result["rebuildReadyDay"].Integer()=ready;
- result["rebuildGold"].Integer()=faction>=0&&faction<9?era::caveDemolitionRules.at(faction).at(16).gold+(builderDemolitionsRemaining(hero,town)>0?era::caveDemolitionSurcharges.at(10-builderDemolitionsRemaining(hero,town)):0):0;
+ result["rebuildGold"].Integer()=faction>=0&&faction<9?era::caveDemolitionRules.at(faction).at(16).gold+(builderDemolitionsRemaining(hero,town)>0?demolitionSurcharge(hero,builderDemolitionsRemaining(hero,town)):0):0;
  if(faction<0||faction>=9)return result;
  const int remaining=builderDemolitionsRemaining(hero,town);
- const int surcharge=remaining>0?era::caveDemolitionSurcharges.at(10-remaining):0;
+ const int surcharge=remaining>0?demolitionSurcharge(hero,remaining):0;
  for(const auto building:town->getBuildings())
  {
   const int id=building.getNum();if(id<0||id>=44)continue;
@@ -647,21 +737,33 @@ JsonNode CGMysteriousCave::builderSnapshot(const CGHeroInstance * hero,const CGT
    }
   }
   const int occupant=demolitionOccupant(town,id),count=occupantCount(town,occupant);
+  item["occupantTier"].Integer()=occupant<0?-1:occupant%7;
+  if(occupant>=0&&occupant%7<town->getTown()->creatures.size())
+  {
+   const auto & roster=town->getTown()->creatures.at(occupant%7);const int rank=occupant/7;
+   if(rank<roster.size())item["occupantCreature"].Integer()=roster.at(rank).getNum();
+  }
   item["occupants"].Integer()=count;item["evacuationGold"].Integer()=occupantPrice(occupant,count);
   item["gold"].Integer()=rule.gold+surcharge;
   if(id==26){item["recoverGrailGold"].Integer()=10000+surcharge;item["recoverGrailAvailable"].Bool()=allowed&&ArtifactUtils::isBackpackFreeSlots(hero)&&hero->cb->getResource(hero->getOwner(),EGameResID::GOLD)>=10000+surcharge;}
   bool dependent=false;
   for(const auto other:town->getBuildings())
    if(other.getNum()>=0&&other.getNum()<44&&(rule.dependencies&(UINT64_C(1)<<other.getNum())))dependent=true;
+  const auto & approved=town->cb->gameState().getMap().sourceCampaignWorld["demolition"]["pending"];
+  const bool battleApproved=hero&&sourceDemolition(*town->cb)&&approved["won"].Bool()&&approved["hero"].Integer()==hero->id.getNum()&&approved["town"].Integer()==town->id.getNum()&&approved["building"].Integer()==id;
+  const auto minimum=hero?demolitionMinimum(hero,faction,id):std::pair<int,int>{0,0};
+  item["minimumExperience"].Integer()=minimum.first;item["minimumArmyHealth"].Integer()=minimum.second;
   std::string reason;
   if(!allowed)reason="The Builder must be present in an owned town.";
   else if(ready>0)reason="Rebuild this ruined town first.";
-  else if(remaining<=0)reason="Ten demolitions have already been performed in this town today.";
+  else if(remaining<=0)reason="The daily demolition limit has been reached in this town.";
+  else if(!battleApproved&&static_cast<std::uint64_t>(hero->exp)<static_cast<std::uint32_t>(minimum.first))reason="The hero needs more experience.";
+  else if(!battleApproved&&demolitionArmyHealth(hero)<minimum.second)reason="The army needs more health points.";
   else if(dependent)reason="Demolish the dependent buildings first.";
-  else if(hero->Slots().empty())reason="The Builder needs an army.";
+  else if(!battleApproved&&hero->Slots().empty())reason="The Builder needs an army.";
   else if(hero->cb->getResource(hero->getOwner(),EGameResID::GOLD)<rule.gold+surcharge)reason="Not enough gold.";
   if(id==26)item["recoverGrailAvailable"].Bool()=item["recoverGrailAvailable"].Bool()&&reason.empty();
-  item["fightEnabled"].Bool()=count>0&&allowed&&ready==0&&remaining>0&&!dependent&&!hero->Slots().empty();
+  item["fightEnabled"].Bool()=count>0&&allowed&&ready==0&&remaining>0&&!dependent&&!hero->Slots().empty()&&(isBuilder(hero)||(hero->movementPointsRemaining()>=demolitionMovement(hero)&&static_cast<std::uint64_t>(hero->exp)>=static_cast<std::uint32_t>(minimum.first)&&demolitionArmyHealth(hero)>=minimum.second));
   item["enabled"].Bool()=reason.empty();item["reason"].String()=reason;
   for(const int value:rule.salvage){JsonNode resource;resource.Integer()=value;item["salvage"].Vector().push_back(resource);}
   result["buildings"].Vector().push_back(item);
@@ -691,8 +793,7 @@ bool CGMysteriousCave::builderDemolish(IGameEventCallback & events,const CGHeroI
  RazeStructures removal;removal.tid=town->id;removal.bid.insert(BuildingID(building));removal.destroyed=town->destroyed+1;
  events.sendAndApply(removal);
  bool hall=false;for(int id=10;id<=13;++id)if(town->hasBuilt(BuildingID(id)))hall=true;
- const auto * global=controller(*town->cb);
- if(hall)global->write(events,{{townKey(town,"damage"),std::min(3,townDemolitionDamage(town)+1)}});
+ if(hall)demolitionWrite(events,*town->cb,{{townKey(town,"damage"),std::min(3,townDemolitionDamage(town)+1)}});
  if(!hall)
  {
   // An extended native dwelling has no equivalent in the source bitmask.
@@ -705,28 +806,41 @@ bool CGMysteriousCave::builderDemolish(IGameEventCallback & events,const CGHeroI
    bool extended=false;
    if(level<8)for(int upgrade=(level>=7?0:2);upgrade<6;++upgrade)
     if(town->hasBuilt(BuildingID::getDwellingFromLevel(level,upgrade)))extended=true;
-   if(extended){stock.creatures[level].first=0;stock.creatures[level].second.clear();changed=true;}
+   if(extended||sourceDemolition(*town->cb)){stock.creatures[level].first=0;stock.creatures[level].second.clear();changed=true;}
   }
   if(changed)events.sendAndApply(stock);
   RazeStructures clear;clear.tid=town->id;clear.destroyed=town->destroyed;
   clear.bid=town->getBuildings();
   if(!clear.bid.empty())events.sendAndApply(clear);
   setTownRebuildReadyDay(events,town,town->cb->getDate(Date::DAY)+6);
-  global->write(events,{{townKey(town,"damage"),-1}});
+  demolitionWrite(events,*town->cb,{{townKey(town,"damage"),-1}});
+  if(sourceDemolition(*town->cb))demolitionWrite(events,*town->cb,{{townKey(town,"ghosts"),5},{townKey(town,"destroyedBy"),hero->getOwner().getNum()}});
  }
  events.setObjPropertyValue(town->id,ObjProperty::ERA_CAVE_TOWN_DAMAGE,townDemolitionDamage(town));
  return true;
 }
+bool CGMysteriousCave::builderRecruitGhosts(IGameEventCallback & events,const CGHeroInstance * hero,const CGTownInstance * town,int count)
+{
+ if(!hero||!town||!sourceTownRuin(town)||!canDemolish(hero)||!builderPresent(hero,town)||town->cb->getDate(Date::DAY)<sourceTownEntranceDay(town,hero))return false;
+ const int remaining=demolitionRead(*town->cb,townKey(town,"ghosts"),5);if(count<1||count>remaining)return false;
+ const auto * ghost=demolitionGhost();if(!ghost)return false;const auto slot=hero->getSlotFor(ghost);if(!slot.validSlot())return false;
+ TResources cost;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())cost[resource]=ghost->getRecruitCost(resource)*count;
+ if(!hero->cb->getPlayerState(hero->getOwner())->resources.canAfford(cost))return false;
+ if(!events.addToSlot({hero->id,slot},ghost,count))return false;
+ events.giveResources(hero->getOwner(),-cost);demolitionWrite(events,*town->cb,{{townKey(town,"ghosts"),remaining-count}});return true;
+}
 bool CGMysteriousCave::builderRebuild(IGameEventCallback & events,IGameRandomizer & randomizer,const CGHeroInstance * hero,const CGTownInstance * town,int faction)
 {
- if(!isBuilder(hero)||!builderPresent(hero,town)||faction<0)return false;
- if(faction>=9&&faction!=FactionID::decode("goonk:goonk"))return false;
+ if(!canDemolish(hero)||!builderPresent(hero,town)||faction<0)return false;
+ if((faction>=9&&faction!=FactionID::decode("goonk:goonk"))||!demolitionFactionAllowed(hero,town,faction))return false;
  const int ready=townRebuildReadyDay(town);
- if(ready<=0||town->cb->getDate(Date::DAY)<ready)return false;
+ if(ready<=0||town->cb->getDate(Date::DAY)<sourceTownEntranceDay(town,hero)||(sourceTownRuin(town)&&demolitionRead(*town->cb,townKey(town,"ghosts"),5)>0))return false;
  const int oldFaction=sourceTownFaction(town);if(oldFaction<0||oldFaction>=9||hero->Slots().empty())return false;
  const auto & rule=era::caveDemolitionRules.at(oldFaction).at(16);
  const int remaining=builderDemolitionsRemaining(hero,town);if(remaining<=0)return false;
- const int fee=rule.gold+era::caveDemolitionSurcharges.at(10-remaining);
+ const auto minimum=demolitionMinimum(hero,oldFaction,16);
+ if(static_cast<std::uint64_t>(hero->exp)<static_cast<std::uint32_t>(minimum.first)||demolitionArmyHealth(hero)<minimum.second)return false;
+ const int fee=rule.gold+demolitionSurcharge(hero,remaining);
  if(hero->cb->getResource(hero->getOwner(),EGameResID::GOLD)<fee)return false;
  ResourceSet salvage;for(int i=0;i<6;++i)salvage[GameResID(i)]=rule.salvage.at(i);salvage[EGameResID::GOLD]=-fee;
  events.giveResources(hero->getOwner(),salvage);
@@ -743,8 +857,9 @@ bool CGMysteriousCave::builderRebuild(IGameEventCallback & events,IGameRandomize
   }
  NewStructures hall;hall.tid=town->id;hall.bid.insert(BuildingID(10));hall.built=town->built;
  events.sendAndApply(hall);
+ if(sourceTownRuin(town)&&town->getOwner()!=hero->getOwner())events.setOwner(town,hero->getOwner());
  clearTownRebuild(events,town);
- const auto * global=controller(*town->cb);global->write(events,{{townKey(town,"damage"),0}});
+ demolitionWrite(events,*town->cb,{{townKey(town,"damage"),0}});
  events.setObjPropertyValue(town->id,ObjProperty::ERA_CAVE_TOWN_DAMAGE,0);
  return true;
 }
@@ -790,9 +905,26 @@ void CGMysteriousCave::battleFinished(IGameEventCallback & events,const CGHeroIn
  if(hasStackAtSlot(SlotID(0)))events.eraseStack(StackLocation(id,SlotID(0)),true);
  write(events,{{"eraCave:demolition:hero",-1}});
 }
+bool CGMysteriousCave::sourceTownRuin(const CGTownInstance * town)
+{
+ return town&&sourceDemolition(*town->cb)&&townRebuildReadyDay(town)>0;
+}
+int CGMysteriousCave::sourceTownEntranceDay(const CGTownInstance * town,const CGHeroInstance * hero)
+{
+ const int ready=townRebuildReadyDay(town);if(!sourceTownRuin(town)||!hero)return ready;
+ const int destroyer=demolitionRead(*town->cb,townKey(town,"destroyedBy"),hero->getOwner().getNum());
+ return ready+(destroyer==hero->getOwner().getNum()?0:1);
+}
+void CGMysteriousCave::sourceTownNewTurn(IGameEventCallback & events,const CGTownInstance * town)
+{
+ if(!sourceTownRuin(town)||town->getOwner()==PlayerColor::NEUTRAL)return;
+ // Original CasDem's daily scan relinquishes the ruined town on the next day.
+ // The native owner change updates the player's actual town list/countdown.
+ if(town->cb->getDate(Date::DAY)>townRebuildReadyDay(town)-6)events.setOwner(town,PlayerColor::NEUTRAL);
+}
 int CGMysteriousCave::townDemolitionDamage(const CGTownInstance * town)
 {
- if(!town)return 0;const auto * global=controller(*town->cb);return global?global->read(townKey(town,"damage")):0;
+ if(!town)return 0;return demolitionRead(*town->cb,townKey(town,"damage"));
 }
 std::string CGMysteriousCave::townDemolitionAnimation(const CGTownInstance * town)
 {
@@ -803,18 +935,17 @@ std::string CGMysteriousCave::townDemolitionAnimation(const CGTownInstance * tow
 }
 int CGMysteriousCave::townRebuildReadyDay(const CGTownInstance * town)
 {
- if(!town)return 0;const auto * global=controller(*town->cb);if(!global)return 0;
- return global->read(townKey(town,"rebuildReadyDay"));
+ if(!town)return 0;return demolitionRead(*town->cb,townKey(town,"rebuildReadyDay"));
 }
 void CGMysteriousCave::setTownRebuildReadyDay(IGameEventCallback & events,const CGTownInstance * town,int day)
 {
- if(!town||day<1)return;const auto * global=controller(*town->cb);if(!global)return;
- global->write(events,{{townKey(town,"rebuildReadyDay"),day}});
+ if(!town||day<1)return;
+ demolitionWrite(events,*town->cb,{{townKey(town,"rebuildReadyDay"),day}});
 }
 void CGMysteriousCave::clearTownRebuild(IGameEventCallback & events,const CGTownInstance * town)
 {
- if(!town)return;const auto * global=controller(*town->cb);if(!global)return;
- global->write(events,{{townKey(town,"rebuildReadyDay"),0}});
+ if(!town)return;
+ demolitionWrite(events,*town->cb,{{townKey(town,"rebuildReadyDay"),0}});
 }
 void CGMysteriousCave::expireBuilder(IGameEventCallback & events,const CGHeroInstance * hero)
 {

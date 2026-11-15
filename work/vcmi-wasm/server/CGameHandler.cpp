@@ -2402,11 +2402,13 @@ bool CGameHandler::visitTownBuilding(ObjectInstanceID tid, BuildingID bid)
 bool CGameHandler::caveBuilderAction(ObjectInstanceID heroID,ObjectInstanceID townID,int operation,int selection,bool option)
 {
  const auto * hero=gameInfo().getHero(heroID);const auto * town=gameInfo().getTown(townID);
- if(!hero||!town||hero->getOwner()!=town->getOwner()||!turnOrder->isPlayerMakingTurn(hero->getOwner()))return false;
+ if(!hero||!town||(hero->getOwner()!=town->getOwner()&&!(town->getOwner()==PlayerColor::NEUTRAL&&CGMysteriousCave::sourceTownRuin(town)))||!turnOrder->isPlayerMakingTurn(hero->getOwner()))return false;
  if(queries->topQuery(hero->getOwner())||gameState().getBattle(hero->getOwner()))return false;
  if(operation==0)return CGMysteriousCave::builderDemolish(*this,hero,town,selection,selection==26&&option,selection!=26&&option);
+ if(operation==4)return CGMysteriousCave::builderRecruitGhosts(*this,hero,town,selection);
  if(operation==2)return CGMysteriousCave::builderRebuild(*this,*randomizer,hero,town,selection);
  if(operation!=1)return false;
+ if(sourceCampaigns->demolitionFight(heroID,townID,selection))return true;
  const auto * cave=CGMysteriousCave::controller(gameInfo());
  if(!cave||getVisitingHero(cave))return false;
  const auto query=std::make_shared<MapObjectVisitQuery>(this,cave,hero);

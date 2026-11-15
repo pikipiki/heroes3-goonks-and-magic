@@ -390,6 +390,11 @@ SetAvailableCreatures NewTurnProcessor::generateTownGrowth(const CGTownInstance 
 
 	sac.tid = t->id;
 	sac.creatures = t->creatures;
+ if(CGMysteriousCave::sourceTownRuin(t))
+ {
+  for(auto & level:sac.creatures){level.first=0;level.second.clear();}
+  return sac;
+ }
 
 	for (int k=0; k < t->getTown()->creatures.size(); k++)
 	{
@@ -438,6 +443,7 @@ SetAvailableCreatures NewTurnProcessor::generateTownGrowth(const CGTownInstance 
 
 void NewTurnProcessor::updateNeutralTownGarrison(const CGTownInstance * t, int currentWeek) const
 {
+ if(CGMysteriousCave::sourceTownRuin(t))return;
 	assert(t);
 	assert(!t->getOwner().isValidPlayer());
 

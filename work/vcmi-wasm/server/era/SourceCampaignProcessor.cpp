@@ -18,6 +18,7 @@
 #include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignArtifactRule.h"
 #include "../../lib/era/EraCampaignTerrainRule.h"
+#include "../../lib/era/EraCampaignDemolition.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
@@ -38,6 +39,7 @@
 #include "../../lib/mapObjects/CGPandoraBox.h"
 #include "../../lib/mapObjects/CGCreature.h"
 #include "../../lib/mapObjects/CGTownInstance.h"
+#include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/mapObjects/army/CStackInstance.h"
 #include "../../lib/networkPacks/SourceCampaignChange.h"
 #include "../../lib/networkPacks/PacksForClient.h"
@@ -113,6 +115,7 @@ struct SourceCampaignProcessor::Impl final:Host
  std::optional<QueryID> shown;
  std::optional<bool> comparison;
  bool pumping=false;
+ bool demolitionResumeChecked=false;
  std::map<PlayerColor,QueryPtr> turnBarriers;
  explicit Impl(CGameHandler & game):gh(game){}
  int number(const Operand & o)const{return readNumber(o,vm,context);}
@@ -245,13 +248,13 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  JsonNode mutation(const std::string & kind,ObjectInstanceID id)const
  {JsonNode change;change["kind"].String()=kind;change["object"].Integer()=id.getNum();return change;}
- void persist(JsonNode change=JsonNode(),const CGEvent * event=nullptr,const Rewardable::Configuration * reward=nullptr)
+ void persist(JsonNode change=JsonNode(),const CGEvent * event=nullptr,const Rewardable::Configuration * reward=nullptr,JsonNode world=JsonNode())
  {
   state["contract"].String()="source-campaign-state-v1";
   state["vm"]=era_campaign_json::writeState(vm);
   state["running"].Bool()=!vm.continuations.empty()||!state["turnQueue"].Vector().empty();
   state["hero"].Integer()=heroId.getNum();state["object"].Integer()=objectId.getNum();state["player"].Integer()=player.getNum();state["pending"]=pending;
-  SourceCampaignChange packet;packet.state=state;packet.changes.Vector();
+  SourceCampaignChange packet;packet.state=state;packet.worldState=std::move(world);packet.changes.Vector();
   if(change.isVector())packet.changes=std::move(change);
   else if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
   if(event&&reward)packet.rewardConfigurations.emplace(event->id,*reward);
@@ -539,9 +542,62 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   gh.sendAndApply(packet);
  }
+ bool resumeDemolitionBattle()
+ {
+  const auto & map=gh.gameState().getMap();if(!era_campaign_demolition::active(map.sourceCampaignState,map.sourceCampaignWorld))return false;
+  const auto & pending=map.sourceCampaignWorld["demolition"]["pending"];if(pending.isNull())return false;
+  const auto attacker=ObjectInstanceID(pending["hero"].Integer()),defender=ObjectInstanceID(pending["army"].Integer());
+  const auto * hero=gh.gameInfo().getHero(attacker);
+  if(hero&&gh.gameState().getBattle(hero->getOwner()))return true;
+  if(pending["finished"].Bool()){demolitionBattleEnded(attacker,defender,pending["won"].Bool());return false;}
+  const auto * town=gh.gameInfo().getTown(ObjectInstanceID(pending["town"].Integer()));
+  if(!town||!town->hasBuilt(BuildingID(pending["building"].Integer()))){demolitionBattleEnded(attacker,defender,false);return false;}
+  const auto * army=dynamic_cast<const CGEvent *>(gh.gameState().getObj(defender));
+  require(hero&&army,"saved demolition combat participants missing");
+  gh.startBattle(hero,army,hero->visitablePos(),hero,nullptr,BattleLayout::createDefaultLayout(gh.gameInfo(),hero,army),nullptr);return true;
+ }
+ bool demolitionFight(ObjectInstanceID heroID,ObjectInstanceID townID,int building)
+ {
+  const auto & map=gh.gameState().getMap();if(!era_campaign_demolition::active(map.sourceCampaignState,map.sourceCampaignWorld)||!map.sourceCampaignWorld["demolition"]["pending"].isNull())return false;
+  const auto * hero=gh.gameInfo().getHero(heroID);const auto * town=gh.gameInfo().getTown(townID);if(!hero||!town)return false;
+  const auto snapshot=CGMysteriousCave::builderSnapshot(hero,town);const JsonNode * row=nullptr;
+  for(const auto & item:snapshot["buildings"].Vector())if(item["building"].Integer()==building)row=&item;
+  if(!row||!(*row)["fightEnabled"].Bool()||!(*row)["occupantCreature"].isNumber())return false;
+  auto army=std::dynamic_pointer_cast<CGEvent>(gh.createNewObject(hero->visitablePos(),Obj::EVENT,MapObjectSubID(0)));require(army!=nullptr,"demolition carrier is not armed");gh.newObject(army,hero->getOwner());
+  gh.insertNewStack({army->id,SlotID(0)},CreatureID((*row)["occupantCreature"].Integer()).toCreature(),(*row)["occupants"].Integer());
+  const int movement=CGMysteriousCave::isBuilder(hero)?0:era_campaign_demolition::setting(map.sourceCampaignWorld,"M",era_campaign_demolition::movementLoss);
+  gh.setMovePoints(hero->id,hero->movementPointsRemaining()-movement);
+  SourceCampaignChange packet;packet.worldState=map.sourceCampaignWorld;packet.changes.Vector();auto & pending=packet.worldState["demolition"]["pending"];
+  pending["hero"].Integer()=heroID.getNum();pending["town"].Integer()=townID.getNum();pending["building"].Integer()=building;pending["army"].Integer()=army->id.getNum();pending["tier"]=(*row)["occupantTier"];
+  gh.sendAndApply(packet);return resumeDemolitionBattle();
+ }
+ void demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won)
+ {
+  const auto & map=gh.gameState().getMap();if(!era_campaign_demolition::active(map.sourceCampaignState,map.sourceCampaignWorld))return;
+  const auto & pending=map.sourceCampaignWorld["demolition"]["pending"];
+  if(pending.isNull()||pending["hero"].Integer()!=attacker.getNum()||pending["army"].Integer()!=defender.getNum())return;
+  SourceCampaignChange packet;packet.worldState=map.sourceCampaignWorld;packet.changes.Vector();packet.worldState["demolition"]["pending"]["finished"].Bool()=true;packet.worldState["demolition"]["pending"]["won"].Bool()=won;gh.sendAndApply(packet);
+ }
+ void demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won)
+ {
+  const auto & map=gh.gameState().getMap();if(!era_campaign_demolition::active(map.sourceCampaignState,map.sourceCampaignWorld))return;
+  const auto pending=map.sourceCampaignWorld["demolition"]["pending"];
+  if(pending.isNull()||pending["hero"].Integer()!=attacker.getNum()||pending["army"].Integer()!=defender.getNum())return;
+  if(const auto * carrier=gh.gameState().getObj(defender))gh.removeObject(carrier,PlayerColor::NEUTRAL);
+  const auto * hero=gh.gameInfo().getHero(attacker);const auto * town=gh.gameInfo().getTown(ObjectInstanceID(pending["town"].Integer()));
+  if(won&&hero&&town)
+  {
+   SourceCampaignChange approved;approved.worldState=map.sourceCampaignWorld;approved.worldState["demolition"]["pending"]["won"].Bool()=true;approved.changes.Vector();gh.sendAndApply(approved);
+   const int tier=pending["tier"].Integer();require(tier>=0&&tier<town->creatures.size(),"demolition dwelling tier missing");
+   SetAvailableCreatures stock;stock.tid=town->id;stock.creatures=town->creatures;stock.creatures.at(tier).first=0;gh.sendAndApply(stock);
+   CGMysteriousCave::builderDemolish(gh,hero,town,pending["building"].Integer());
+  }
+  SourceCampaignChange cleared;cleared.worldState=map.sourceCampaignWorld;cleared.worldState["demolition"]["pending"]=JsonNode();cleared.changes.Vector();gh.sendAndApply(cleared);
+ }
  bool onReady(PlayerColor who)
  {
   bind();if(!active)return false;
+  if(!demolitionResumeChecked){demolitionResumeChecked=true;if(resumeDemolitionBattle())return true;}
   ensureTurnBarriers();
   if(!vm.initialized&&!vm.initializing)
   {
@@ -615,6 +671,38 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 {
  const auto & args=op.args;
  comparison.reset();
+ if(c.receiver=="CD")
+ {
+  auto world=era_campaign_demolition::bind(state,gh.gameState().getMap().sourceCampaignWorld);
+  std::string key;int previous=0;std::size_t argument=0;
+  if(op.code=="E"||op.code=="A")
+  {
+   arity(op,3);require(args[0].access==Access::Read&&args[1].access==Access::Read,"CD threshold needs fixed indices");
+   const int faction=number(args[0]),building=number(args[1]);require(faction>=0&&faction<9&&building>=0&&building<44,"CD threshold index outside source table");
+   key=op.code+":"+std::to_string(faction)+":"+std::to_string(building);argument=2;
+   previous=era_campaign_demolition::minimum(world,faction,building,op.code=="A");
+  }
+  else if(op.code=="D"||op.code=="M")
+  {
+   arity(op,1);require(args[0].access==Access::Read||args[0].access==Access::Relative,"CD control does not support output operands");
+   key=op.code;previous=era_campaign_demolition::setting(world,key,op.code=="D"?era_campaign_demolition::dailyLimit:era_campaign_demolition::movementLoss);
+  }
+  else if(op.code=="N")
+  {
+   arity(op,2);require(args[0].access==Access::Read,"CD surcharge needs a fixed index");const int index=number(args[0]);require(index>=0&&index<100,"CD surcharge index outside source table");
+   require(args[1].access==Access::Read||args[1].access==Access::Relative,"CD surcharge does not support output operands");
+   key="N:"+std::to_string(index);argument=1;previous=era_campaign_demolition::setting(world,key,era_campaign_demolition::surcharges.at(index));
+  }
+  else throw std::runtime_error("Original campaign: unadmitted CD operation "+op.code);
+  int changed=value(previous,args[argument]);
+  if(!query(op))
+  {
+   if(op.code=="D"||op.code=="M"||op.code=="N")changed=std::max(0,changed);
+   require(op.code!="D"||changed<=100,"CD daily limit exceeds the source surcharge table");
+   world["demolition"]["settings"][key].Integer()=changed;persist(JsonNode(),nullptr,nullptr,std::move(world));
+  }
+  return Step::Continue;
+ }
  if(c.receiver=="IF")
  {
   era_campaign_dialogs::Dialogs dialogs(state["dialogs"],vm,context);
@@ -1125,6 +1213,9 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 }
 SourceCampaignProcessor::SourceCampaignProcessor(CGameHandler & game):impl(std::make_unique<Impl>(game)){}
 SourceCampaignProcessor::~SourceCampaignProcessor()=default;
+bool SourceCampaignProcessor::demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building){return impl->demolitionFight(hero,town,building);}
+void SourceCampaignProcessor::demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnding(attacker,defender,won);}
+void SourceCampaignProcessor::demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnded(attacker,defender,won);}
 bool SourceCampaignProcessor::onReady(PlayerColor player){return impl->onReady(player);}
 bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
 {

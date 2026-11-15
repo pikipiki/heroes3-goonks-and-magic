@@ -24,6 +24,7 @@
 
 #include "../lib/CPlayerState.h"
 #include "../lib/mapObjects/CGTownInstance.h"
+#include "../lib/mapObjects/CGMysteriousCave.h"
 #include "../lib/mapObjects/CGHeroInstance.h"
 #include "../lib/gameState/CGameState.h"
 #include "../lib/battle/IBattleState.h"
@@ -151,7 +152,8 @@ void ApplyGhNetPackVisitor::visitDisbandCreature(DisbandCreature & pack)
 void ApplyGhNetPackVisitor::visitCaveBuilderAction(CaveBuilderAction & pack)
 {
  gh.throwIfWrongOwner(connection,&pack,pack.hero);
- gh.throwIfWrongOwner(connection,&pack,pack.town);
+ const auto * town=gh.gameInfo().getTown(pack.town);
+ if(!town||town->getOwner()!=PlayerColor::NEUTRAL||!CGMysteriousCave::sourceTownRuin(town)||(pack.operation!=2&&pack.operation!=4))gh.throwIfWrongOwner(connection,&pack,pack.town);
  gh.throwIfPlayerNotActive(connection,&pack);
  result=gh.caveBuilderAction(pack.hero,pack.town,pack.operation,pack.selection,pack.option);
 }

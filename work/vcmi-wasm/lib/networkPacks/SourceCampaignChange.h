@@ -8,6 +8,7 @@ struct DLL_LINKAGE SourceCampaignChange : public CPackForClient
 {
     JsonNode state;
     JsonNode changes;
+    JsonNode worldState;
     std::map<ObjectInstanceID, Rewardable::Configuration> rewardConfigurations;
     void visitTyped(ICPackVisitor & visitor) override;
     template<typename Handler> void serialize(Handler & h)
@@ -15,6 +16,10 @@ struct DLL_LINKAGE SourceCampaignChange : public CPackForClient
         h & state;
         h & changes;
         h & rewardConfigurations;
+        if(h.hasFeature(Handler::Version::GOONK_CAMPAIGN_WORLD))
+            h & worldState;
+        else if(!h.saving)
+            worldState=JsonNode();
     }
 };
 VCMI_LIB_NAMESPACE_END

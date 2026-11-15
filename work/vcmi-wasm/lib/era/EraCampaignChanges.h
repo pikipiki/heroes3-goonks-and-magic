@@ -28,9 +28,19 @@ inline int campaignInteger(const JsonNode & n)
 }
 inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChange & packet)
 {
- if(!packet.state.isStruct() || packet.state["contract"].String()!="source-campaign-state-v1")
-  throw std::runtime_error("Invalid original campaign state packet");
- gs.getMap().sourceCampaignState=packet.state;
+ if(packet.state.isNull()&&packet.worldState.isNull())throw std::runtime_error("Empty original campaign state packet");
+ if(!packet.state.isNull())
+ {
+  if(!packet.state.isStruct()||packet.state["contract"].String()!="source-campaign-state-v1")throw std::runtime_error("Invalid original campaign state packet");
+ }
+ if(!packet.worldState.isNull())
+ {
+  const auto & vm=packet.state.isNull()?gs.getMap().sourceCampaignState:packet.state;
+  if(!vm.isStruct()||vm["contract"].String()!="source-campaign-state-v1"||!packet.worldState.isStruct()||packet.worldState["contract"].String()!="source-campaign-world-v1"||!packet.worldState["programId"].isString()||!packet.worldState["programSha256"].isString()||packet.worldState["programId"]!=vm["programId"]||packet.worldState["programSha256"]!=vm["vm"]["programSha256"])
+   throw std::runtime_error("Invalid original campaign world state packet");
+ }
+ if(!packet.state.isNull())gs.getMap().sourceCampaignState=packet.state;
+ if(!packet.worldState.isNull())gs.getMap().sourceCampaignWorld=packet.worldState;
  for(const auto & entry:packet.rewardConfigurations)
  {
   auto * reward=dynamic_cast<CRewardableObject *>(gs.getObjInstance(entry.first));

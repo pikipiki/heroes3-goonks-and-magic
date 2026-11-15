@@ -1442,8 +1442,8 @@ void publishMobileState(){
    n["towns"].Vector().push_back(std::move(item));
   }
   if(townWindow||fortWindow){const auto town=townWindow?townWindow->town:fortWindow->getMobileTown();n["townName"].String()=town->getNameTranslated();n["townFaction"].String()=town->getFaction()->getJsonKey();mobileTownArmies(n,town);const auto machine=town->getWarMachineInBuilding(BuildingID::BLACKSMITH);if(machine.hasValue())n["townWarMachine"]=creature(machine.toArtifact()->getWarMachine().toCreature(),1);
-   const auto builder=CGMysteriousCave::isBuilder(town->getVisitingHero())?town->getVisitingHero():town->getGarrisonHero();
-   if(builder&&builder->getOwner()==p->playerID&&CGMysteriousCave::isBuilder(builder)){n["caveBuilder"]=CGMysteriousCave::builderSnapshot(builder,town);n["caveBuilder"]["hero"].Integer()=builder->id.getNum();n["caveBuilder"]["canAct"].Bool()=p->makingTurn;}
+   const auto builder=CGMysteriousCave::canDemolish(town->getVisitingHero())?town->getVisitingHero():town->getGarrisonHero();
+   if(builder&&builder->getOwner()==p->playerID&&CGMysteriousCave::canDemolish(builder)){n["caveBuilder"]=CGMysteriousCave::builderSnapshot(builder,town);n["caveBuilder"]["hero"].Integer()=builder->id.getNum();n["caveBuilder"]["canAct"].Bool()=p->makingTurn&&!n["caveBuilder"]["combatPending"].Bool();}
    for(const auto & level:town->spells){JsonNode row;row.Vector();for(const auto spell:level)row.Vector().push_back(JsonNode(double(spell.getNum())));n["townSpells"].Vector().push_back(row);}
    std::map<BuildingID, CreatureID> dwellingCreatures;
    const auto & roster = town->getTown()->creatures;
@@ -2005,8 +2005,8 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==103)
  {
   if(!townWindow||!p->makingTurn||battle||townWindow->town->id.getNum()!=b)return;
-  const auto builder=CGMysteriousCave::isBuilder(townWindow->town->getVisitingHero())?townWindow->town->getVisitingHero():townWindow->town->getGarrisonHero();
-  if(!builder||builder->id.getNum()!=a||builder->getOwner()!=p->playerID||!CGMysteriousCave::isBuilder(builder))return;
+  const auto builder=CGMysteriousCave::canDemolish(townWindow->town->getVisitingHero())?townWindow->town->getVisitingHero():townWindow->town->getGarrisonHero();
+  if(!builder||builder->id.getNum()!=a||builder->getOwner()!=p->playerID||!CGMysteriousCave::canDemolish(builder))return;
   p->cb->caveBuilderAction(builder->id,townWindow->town->id,c,d,e!=0);lastPublished=0;return;
  }
  if(action==102)

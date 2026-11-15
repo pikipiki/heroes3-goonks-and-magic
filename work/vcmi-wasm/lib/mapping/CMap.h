@@ -264,6 +264,7 @@ public:
     // Source campaign identity, flags and suspended dialog continuation.
     // The executable program remains in the hash-bound mod registry.
     JsonNode sourceCampaignState;
+    JsonNode sourceCampaignWorld;
 	int3 grailPos;
 	int grailRadius;
 
@@ -312,6 +313,10 @@ public:
             h & sourceCampaignState;
         else if(!h.saving)
             sourceCampaignState = JsonNode();
+        if(h.hasFeature(Handler::Version::GOONK_CAMPAIGN_WORLD))
+            h & sourceCampaignWorld;
+        else if(!h.saving)
+            sourceCampaignWorld = JsonNode();
 		h & grailPos;
 		h & artInstances;
 

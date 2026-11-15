@@ -5,3 +5,5 @@ test('Native error dialogs are shown and stop the loading indicator',()=>{const 
 test('Explicit retries start fresh without losing hosting path or user preferences',()=>{for(const[action,key]of [[20,'new-game'],[23,'choose-save'],[47,'new-campaign']]){const u=new URL(restartLaunchURL('https://example.org/heroes/game.html?mobile=1&choose-save=1&new-game=1',action));assert.equal(u.pathname,'/heroes/game.html');assert.equal(u.searchParams.get('mobile'),'1');assert.equal(u.searchParams.get(key),'1');assert.equal([...u.searchParams].length,2);}});
 
 test('A reconnect opened by session recovery also has a bounded wait',()=>{let now=0;const l=createMenuLaunch({clock:()=>now});l.observe({mode:'connecting',launchAction:23});assert.equal(l.pending.action,23);now=25000;l.tick();assert(l.pending.failed);});
+
+test('Completing a campaign mission can reconnect directly into scenario selection',()=>{for(const mode of ['campaign-scenario','campaign-intro','campaign-loading']){const l=createMenuLaunch();l.observe({mode:'connecting',launchAction:47});assert(l.pending);l.observe({mode});assert.equal(l.pending,null);l.tick();assert.equal(l.pending,null);}});

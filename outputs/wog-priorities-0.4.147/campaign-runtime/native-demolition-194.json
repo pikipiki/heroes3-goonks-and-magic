@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.194",
+  "engineSha256": "830ec71b04644463e2b752c8bf1cc127bb3b7610f57bb3a2d50f4fe636fe3430",
+  "passed": true,
+  "productionCampaignsActivated": false,
+  "controls": {
+    "fresh": {
+      "scope": "Private synthetic native CD control, not a campaign victory.",
+      "passed": true,
+      "initial": {
+        "available": true,
+        "buildings": [
+          {
+            "building": 5,
+            "enabled": true,
+            "evacuationGold": 0,
+            "fightEnabled": false,
+            "gold": 100,
+            "minimumArmyHealth": 1000,
+            "minimumExperience": 2000,
+            "name": "Plush Tavern",
+            "occupantTier": -1,
+            "occupants": 0,
+            "reason": "",
+            "salvage": [
+              2,
+              0,
+              2,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "building": 7,
+            "enabled": false,
+            "evacuationGold": 0,
+            "fightEnabled": false,
+            "gold": 1500,
+            "minimumArmyHealth": 1000,
+            "minimumExperience": 2000,
+            "name": "Goonk Ramparts",
+            "occupantTier": -1,
+            "occupants": 0,
+            "reason": "Demolish the dependent buildings first.",
+            "salvage": [
+              8,
+              0,
+              8,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "building": 10,
+            "enabled": false,
+            "evacuationGold": 0,
+            "fightEnabled": false,
+            "gold": 500,
+            "minimumArmyHealth": 1000,
+            "minimumExperience": 2000,
+            "name": "Goonk House",
+            "occupantTier": -1,
+            "occupants": 0,
+            "reason": "Demolish the dependent buildings first.",
+            "salvage": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "building": 14,
+            "enabled": false,
+            "evacuationGold": 0,
+            "fightEnabled": false,
+            "gold": 200,
+            "minimumArmyHealth": 0,
+            "minimumExperience": 2001,
+            "name": "Plush Marketplace",
+            "occupantTier": -1,
+            "occupants": 0,
+            "reason": "The hero needs more experience.",
+            "salvage": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "building": 30,
+            "enabled": true,
+            "evacuationGold": 640,
+            "fightEnabled": true,
+            "gold": 100,
+            "minimumArmyHealth": 1000,
+            "minimumExperience": 2000,
+            "name": "Nose Workshop",
+            "occupantCreature": 258,
+            "occupantTier": 0,
+            "occupants": 16,
+            "reason": "",
+            "salvage": [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "canAct": true,
+        "combatPending": false,
+        "dailyLimit": 4,
+        "faction": 10,
+        "ghosts": 0,
+        "ghostsReady": false,
+        "goonkFaction": 10,
+        "hero": 1,
+        "movementCost": 500,
+        "rebuildFactions": [
+          0,
+          10
+        ],
+        "rebuildGold": 500,
+        "rebuildMinimumArmyHealth": 1000,
+        "rebuildMinimumExperience": 2000,
+        "rebuildReady": false,
+        "rebuildReadyDay": 0,
+        "rebuildReason": "",
+        "remaining": 4,
+        "ruined": false,
+        "sourceFaction": 0,
+        "town": 0
+      },
+      "occupants": {
+        "building": 30,
+        "enabled": true,
+        "evacuationGold": 640,
+        "fightEnabled": true,
+        "gold": 100,
+        "minimumArmyHealth": 1000,
+        "minimumExperience": 2000,
+        "name": "Nose Workshop",
+        "occupantCreature": 258,
+        "occupantTier": 0,
+        "occupants": 16,
+        "reason": "",
+        "salvage": [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "geometry": {
+            "x": 12,
+            "y": 22,
+            "w": 298,
+            "h": 538,
+            "buttons": [
+              {
+                "x": 247,
+                "y": 31,
+                "w": 48,
+                "h": 48
+              },
+              {
+                "x": 27,
+                "y": 503,
+                "w": 268,
+                "h": 48
+              }
+            ],
+            "ancestorTouchNone": false
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "geometry": {
+            "x": 12,
+            "y": 6,
+            "w": 546,
+            "h": 306,
+            "buttons": [
+              {
+                "x": 501,
+                "y": 11,
+                "w": 48,
+                "h": 48
+              },
+              {
+                "x": 402,
+                "y": 100,
+                "w": 141,
+                "h": 48
+              }
+            ],
+            "ancestorTouchNone": false
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "geometry": {
+            "x": 12,
+            "y": 214,
+            "w": 368,
+            "h": 622,
+            "buttons": [
+              {
+                "x": 317,
+                "y": 223,
+                "w": 48,
+                "h": 48
+              },
+              {
+                "x": 27,
+                "y": 779,
+                "w": 338,
+                "h": 48
+              }
+            ],
+            "ancestorTouchNone": false
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "geometry": {
+            "x": 180,
+            "y": 6,
+            "w": 652,
+            "h": 376,
+            "buttons": [
+              {
+                "x": 775,
+                "y": 11,
+                "w": 48,
+                "h": 48
+              },
+              {
+                "x": 676,
+                "y": 100,
+                "w": 141,
+                "h": 48
+              }
+            ],
+            "ancestorTouchNone": false
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "geometry": {
+            "x": 134,
+            "y": 394,
+            "w": 622,
+            "h": 622,
+            "buttons": [
+              {
+                "x": 693,
+                "y": 403,
+                "w": 48,
+                "h": 48
+              },
+              {
+                "x": 149,
+                "y": 959,
+                "w": 592,
+                "h": 48
+              }
+            ],
+            "ancestorTouchNone": false
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "geometry": {
+            "x": 360,
+            "y": 138,
+            "w": 652,
+            "h": 622,
+            "buttons": [
+              {
+                "x": 955,
+                "y": 143,
+                "w": 48,
+                "h": 48
+              },
+              {
+                "x": 856,
+                "y": 232,
+                "w": 141,
+                "h": 48
+              }
+            ],
+            "ancestorTouchNone": false
+          }
+        }
+      ],
+      "paid": [
+        {
+          "id": 14,
+          "gold": 1200,
+          "remaining": 2
+        },
+        {
+          "id": 5,
+          "gold": 2100,
+          "remaining": 1
+        },
+        {
+          "id": 7,
+          "gold": 6500,
+          "remaining": 0
+        }
+      ],
+      "neutralTownCount": 0,
+      "nativeEntrance": [
+        7,
+        9,
+        0
+      ],
+      "ghosts": [
+        {
+          "count": 1,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            500,
+            0
+          ],
+          "remaining": 4
+        },
+        {
+          "count": 4,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000,
+            0
+          ],
+          "remaining": 0
+        }
+      ],
+      "rebuild": {
+        "available": true,
+        "buildings": [
+          {
+            "building": 10,
+            "enabled": true,
+            "evacuationGold": 0,
+            "fightEnabled": false,
+            "gold": 500,
+            "minimumArmyHealth": 1000,
+            "minimumExperience": 2000,
+            "name": "Goonk House",
+            "occupantTier": -1,
+            "occupants": 0,
+            "reason": "",
+            "salvage": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "canAct": true,
+        "combatPending": false,
+        "dailyLimit": 4,
+        "faction": 10,
+        "ghosts": 0,
+        "ghostsReady": false,
+        "goonkFaction": 10,
+        "hero": 1,
+        "movementCost": 500,
+        "rebuildFactions": [
+          0,
+          10
+        ],
+        "rebuildGold": 500,
+        "rebuildMinimumArmyHealth": 1000,
+        "rebuildMinimumExperience": 2000,
+        "rebuildReady": false,
+        "rebuildReadyDay": 0,
+        "rebuildReason": "",
+        "remaining": 4,
+        "ruined": false,
+        "sourceFaction": 0,
+        "town": 0
+      },
+      "saveSha256": {
+        "before": "a82b23fc3909da9f65a19b5c5eeec4fed07fdee700b68eb9ab0ba9566f5b0037",
+        "afterBattle": "524dc8c19d08d18305aa956857640269aa62c9fb7bdec36b5dfb947271992ee1",
+        "ruined": "ee79ae5fbd7d0f9c623bc2fe2c547cc9b8f20f408f795cddb0b1623de0f718fa",
+        "rebuilt": "7bb535c67f855967e6620a8e2fcb3e70edd65a6600cb051938e6ccd8d8dae14c"
+      }
+    },
+    "webkitRuinReload": {
+      "passed": true,
+      "inputSha256": "b5bce492f281d83ea5372e4813fb52ee5afc912a7751c473efd0b969844fead8",
+      "inputScope": "Private906 ruin control from an earlier unpublished build.",
+      "ghosts": [
+        {
+          "count": 1,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            500,
+            0
+          ],
+          "remaining": 4
+        },
+        {
+          "count": 4,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2000,
+            0
+          ],
+          "remaining": 0
+        }
+      ],
+      "rebuilt": {
+        "available": true,
+        "buildings": [
+          {
+            "building": 10,
+            "enabled": true,
+            "evacuationGold": 0,
+            "fightEnabled": false,
+            "gold": 500,
+            "minimumArmyHealth": 1000,
+            "minimumExperience": 2000,
+            "name": "Goonk House",
+            "occupantTier": -1,
+            "occupants": 0,
+            "reason": "",
+            "salvage": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "canAct": true,
+        "combatPending": false,
+        "dailyLimit": 4,
+        "faction": 10,
+        "ghosts": 0,
+        "ghostsReady": false,
+        "goonkFaction": 10,
+        "hero": 1,
+        "movementCost": 500,
+        "rebuildFactions": [
+          0,
+          10
+        ],
+        "rebuildGold": 500,
+        "rebuildMinimumArmyHealth": 1000,
+        "rebuildMinimumExperience": 2000,
+        "rebuildReady": false,
+        "rebuildReadyDay": 0,
+        "rebuildReason": "",
+        "remaining": 4,
+        "ruined": false,
+        "sourceFaction": 0,
+        "town": 0
+      },
+      "saveSha256": "3815bf36f152710b124ade4c35cf3205a9f5e058bd879a4513ee454cfce7278e"
+    },
+    "existingCaveBuilder": {
+      "passed": true,
+      "builder": {
+        "demolitions": 4,
+        "ruined": true,
+        "remaining": 6,
+        "goonkFaction": 10,
+        "rebuilt": {
+          "faction": "goonk:goonk",
+          "gold": 500,
+          "remaining": 10
+        },
+        "nativeSaveBytes": 135961
+      }
+    },
+    "old905Artifacts": {
+      "passed": true,
+      "inputSha256": "4a98878648ea4e9b4f066364459c5e0f821d303ffb77ce8b7ccdae4e9fc8de2e",
+      "outputFormat": 906,
+      "scope": "Actual equipped slots, backpack counts and suspended dialog continuation preserved."
+    },
+    "originalFirstVictory": {
+      "passed": true,
+      "inputFormat": 905,
+      "inputSha256": "9330c965919eeabded1eecdfc90a5ac003b28877ec5e7b1da9c9ae9f9b825613",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "scenarios": [
+        {
+          "available": false,
+          "completed": false,
+          "id": 0,
+          "name": "map.zc1:1.header.name"
+        },
+        {
+          "available": false,
+          "completed": true,
+          "id": 1,
+          "name": "The Beginning"
+        },
+        {
+          "available": true,
+          "completed": false,
+          "id": 2,
+          "name": "Gorynych"
+        }
+      ],
+      "nextBonus": 0,
+      "nextCanStart": true,
+      "scope": "Unchanged first main victory and accessible next bonus, not a validated second-scenario start."
+    },
+    "production": {
+      "passed": true,
+      "scope": "Both delivered Goonk maps, actual save/reload/roles/turns and positive ordinary BattleStart."
+    }
+  },
+  "verification": {
+    "wasmBuild": "ninja -j32 html5",
+    "site": true,
+    "node": {
+      "passed": 737,
+      "skipped": 34,
+      "failed": 0
+    },
+    "temporaryDiagnosticStringsInFinalWasm": false
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.194",
+  "engineSha256": "830ec71b04644463e2b752c8bf1cc127bb3b7610f57bb3a2d50f4fe636fe3430",
+  "activation": false,
+  "scope": "Source-bound CD controls and actual native human town demolition, occupant combat, ruin visits, ghosts and reconstruction. Original campaign2 CH/DW/CA/GR operations and all complete campaigns are still unvalidated.",
+  "reference": {
+    "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+    "navigationArchiveSha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "ztbuildSha256": "d38fd6d864dd157f818db232624c82175dc774e1b030856d46da4412d023ff02",
+    "ztcommnSha256": "d209213eab27aa813c053897af9dc5120c808b3b03d474db61a961423b23097e"
+  },
+  "boundedNativeObservations": [
+    {
+      "address": "0x70bb19",
+      "effect": "Store5 ghosts in ruined town state at offset0x14, beside destruction date/owner."
+    },
+    {
+      "address": "0x70ac19",
+      "effect": "Compare elapsed days with6 before the ghost recruitment branch."
+    },
+    {
+      "address": "0x70ac31",
+      "effect": "Recruit creature0x9f (source159)."
+    }
+  ],
+  "sourceControls": {
+    "receivers": [
+      "CD:D",
+      "CD:M",
+      "CD:N",
+      "CD:E",
+      "CD:A"
+    ],
+    "dailyLimit": 4,
+    "movementCostOnlyForOccupantFights": 500,
+    "surcharges": [
+      0,
+      1000,
+      2000,
+      5000
+    ],
+    "grailRecoveryGold": 10000,
+    "factions": [
+      0,
+      8
+    ],
+    "buildings": [
+      0,
+      43
+    ],
+    "thresholds": 396,
+    "defaultMinimumExperience": 2000,
+    "defaultMinimumArmyHealth": 1000,
+    "armyHealth": "Sum the seven raw creature HP×counts modulo32bits; interpret signed, excluding commander.",
+    "experienceMinimum": "Unsigned32 source comparison.",
+    "secondScenario": "Preserves all34 CD initializers including17 repeated Castle-only A overrides and100000XP rebuild thresholds."
+  },
+  "worldState": {
+    "format": 906,
+    "contract": "source-campaign-world-v1",
+    "binding": [
+      "programId",
+      "programSha256"
+    ],
+    "separateFromCachedVm": true,
+    "fields": [
+      "settings",
+      "per-town quota/day",
+      "damage",
+      "rebuild day",
+      "destroyer",
+      "remaining ghosts",
+      "temporary combat participants/result"
+    ],
+    "battleQuerySaveSupported": false,
+    "battleResume": "Only once on loading; final result is marked before BattleEnded. A resolved or already-demolished building cannot restart the temporary fight."
+  },
+  "ruins": {
+    "neutralized": "Next native day, updating actual owner and town list.",
+    "entrance": "Destroyer after6days; other players after7days.",
+    "capture": "A permitted empty ruin visit follows native capture; an unreconstructed ruin is relinquished again the next morning.",
+    "ghosts": 5,
+    "sourceCreature": 159,
+    "ghostGoldEach": 500,
+    "rebuildRequiresGhostsRecruited": true,
+    "rebuildFactions": "Current town or hero faction; the existing temporary Builder may choose all.",
+    "ordinaryNativeGrowthSuppressedInSourceRuins": true,
+    "existingTroopsNotDeleted": true
+  },
+  "goonkAdaptation": "Goonk towns use the existing Castle tariff family while retaining native creature IDs and faction. The temporary Cave Builder retains its existing10-action behavior.",
+  "definedBounds": [
+    "CD daily limits above100 are rejected rather than indexing beyond the original100-entry surcharge table.",
+    "CD:P and later unbound receiver extensions remain rejected.",
+    "No native mid-battle save is admitted; existing save controls are preserved.",
+    "AI-specific source reconstruction behavior and original campaign2 quest completion are not established by the human controls."
+  ]
+}

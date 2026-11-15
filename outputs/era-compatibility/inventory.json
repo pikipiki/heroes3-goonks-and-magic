@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reference": {
     "label": "TUM3.5 supplied source + installed VCMI WoG",
-    "release": "0.4.193",
+    "release": "0.4.194",
     "tumMetadata": {
       "caption": {
         "en_US": "Third Upgrade Mod",
@@ -138172,7 +138172,7 @@
         },
         {
           "file": "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp",
-          "sha256": "748ca1a628edd4be6cb7d1e771cd5794f05ff01d59a3094640ff273a5ed156f6"
+          "sha256": "30b7dff5df34fd6a3585067176478ea4b45afef61ea031790c5931808921641a"
         },
         {
           "file": "work/vcmi-wasm/lib/era/EraSourceBankXpAdmission.h",

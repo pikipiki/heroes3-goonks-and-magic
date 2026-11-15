@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../mapObjects/CGMysteriousCave.h"
 #include "CCallback.h"
 
 #include "../gameState/CGameState.h"
@@ -239,7 +240,9 @@ void CCallback::eraseArtifactByClient(const ArtifactLocation & al)
 bool CCallback::caveBuilderAction(ObjectInstanceID hero,ObjectInstanceID town,int operation,int selection,bool option)
 {
  const auto * h=getHero(hero);const auto * t=getTown(town);
- if(!h||!t||h->getOwner()!=getPlayerID()||t->getOwner()!=getPlayerID()||operation<0||operation>2)return false;
+ if(!h||!t||h->getOwner()!=getPlayerID()||(operation!=0&&operation!=1&&operation!=2&&operation!=4))return false;
+ const bool neutralRuin=t->getOwner()==PlayerColor::NEUTRAL&&CGMysteriousCave::sourceTownRuin(t)&&(operation==2||operation==4);
+ if(t->getOwner()!=getPlayerID()&&!neutralRuin)return false;
  CaveBuilderAction pack;pack.hero=hero;pack.town=town;pack.operation=operation;pack.selection=selection;pack.option=option;
  sendRequest(pack);return true;
 }

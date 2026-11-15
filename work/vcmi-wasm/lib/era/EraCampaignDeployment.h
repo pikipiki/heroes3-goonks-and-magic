@@ -1,6 +1,7 @@
 /* Shared admission, ownership and placement rules for original troop deployment. */
 #pragma once
 #include "EraCampaignDeploymentRule.h"
+#include "EraCampaignAdmission.h"
 #include <optional>
 #include "EraCampaignJson.h"
 #include "EraCampaignHints.h"
@@ -11,11 +12,7 @@ namespace era_campaign_deployment
 {
 inline bool admitted(const JsonNode & state)
 {
- if(!state.isStruct()||state["contract"].String()!="source-campaign-state-v1"||!state["vm"]["initialized"].Bool())return false;
- const auto path=JsonPath::builtin("config/era-campaigns/registry");if(!CResourceHandler::get()->existsResource(path))return false;
- static const JsonNode registry(path);
- for(const auto & entry:registry["programs"].Vector())if(entry["enabled"].Bool()&&entry["id"].String()==state["programId"].String()&&entry["programSha256"].String()==state["vm"]["programSha256"].String())return true;
- return false;
+ return era_campaign_admission::admitted(state);
 }
 inline bool emptyLand(const CMap & map,const int3 & target,const JsonNode & state)
 {

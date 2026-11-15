@@ -18,6 +18,9 @@ class SourceCampaignProcessor
 public:
  explicit SourceCampaignProcessor(CGameHandler & handler);
  ~SourceCampaignProcessor();
+ bool demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building);
+ void demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);
+ void demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);
  bool onReady(PlayerColor player);
  bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);

@@ -341,6 +341,19 @@ void CGTownInstance::setOwner(IGameEventCallback & gameEvents, const PlayerColor
 
 void CGTownInstance::onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstance * h) const
 {
+ if(CGMysteriousCave::sourceTownRuin(this))
+ {
+  if(cb->getDate(Date::DAY)<CGMysteriousCave::sourceTownEntranceDay(this,h))return;
+  // Original Enter2Castle permits the ordinary town visit after the delay.
+  // Its daily scan relinquishes an unreconstructed ruin again next morning.
+  // Occupied enemy ruins keep the normal native siege/capture path below.
+  if(!armedGarrison()&&(!getVisitingHero()||getVisitingHero()==h)&&(!getGarrisonHero()||getGarrisonHero()==h))
+  {
+   if(getOwner()!=h->getOwner())setOwner(gameEvents,h->getOwner());
+   gameEvents.heroVisitCastle(this,h);return;
+  }
+ }
+
 	if(cb->getPlayerRelations( getOwner(), h->getOwner() ) == PlayerRelations::ENEMIES)
 	{
 		if(armedGarrison() || getVisitingHero())
@@ -567,6 +580,7 @@ void CGTownInstance::initializeNeutralTownGarrison(vstd::RNG & rand)
 
 void CGTownInstance::newTurn(IGameEventCallback & gameEvents, IGameRandomizer & gameRandomizer) const
 {
+ CGMysteriousCave::sourceTownNewTurn(gameEvents,this);
 	for(const auto & building : rewardableBuildings)
 		building.second->newTurn(gameEvents, gameRandomizer);
 		

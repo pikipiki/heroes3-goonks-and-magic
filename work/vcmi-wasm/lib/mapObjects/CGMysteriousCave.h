@@ -11,6 +11,8 @@ class CGTownInstance;
 class DLL_LINKAGE CGMysteriousCave : public CRewardableObject
 {
  mutable bool appearanceChangedForView=false; // Local renderer invalidation only; never gameplay/save state.
+ static int demolitionRead(const IGameInfoCallback & cb,const std::string & key,int fallback=0);
+ static void demolitionWrite(IGameEventCallback & events,const IGameInfoCallback & cb,const std::map<std::string,int> & values);
  static void migrateHeroState(IGameEventCallback & events,const IGameInfoCallback & callback);
  void write(IGameEventCallback & events,const std::map<std::string,int> & changes) const;
  int read(const std::string & key,int fallback=0) const;
@@ -45,6 +47,7 @@ public:
  static void grantNeutralLoot(IGameEventCallback & events,const CGHeroInstance * hero);
  static std::string describeHeroEffects(const CGHeroInstance * hero);
  static bool hasDailyMovementBlessing(const CGHeroInstance * hero);
+ static bool canDemolish(const CGHeroInstance * hero);
  static bool isBuilder(const CGHeroInstance * hero);
  static int builderDemolitionsRemaining(const CGHeroInstance * hero,const CGTownInstance * town);
  static bool consumeBuilderDemolition(IGameEventCallback & events,const CGHeroInstance * hero,const CGTownInstance * town);
@@ -52,7 +55,11 @@ public:
  static bool builderDemolish(IGameEventCallback & events,const CGHeroInstance * hero,const CGTownInstance * town,int building,bool recoverGrail=false,bool payOccupants=false);
  static bool builderFightOccupants(IGameEventCallback & events,const CGHeroInstance * hero,const CGTownInstance * town,int building);
  void battleFinished(IGameEventCallback & events,const CGHeroInstance * hero,const BattleResult & result) const override;
+ static bool builderRecruitGhosts(IGameEventCallback & events,const CGHeroInstance * hero,const CGTownInstance * town,int count);
+ static int sourceTownEntranceDay(const CGTownInstance * town,const CGHeroInstance * hero);
  static bool builderRebuild(IGameEventCallback & events,IGameRandomizer & randomizer,const CGHeroInstance * hero,const CGTownInstance * town,int faction);
+ static bool sourceTownRuin(const CGTownInstance * town);
+ static void sourceTownNewTurn(IGameEventCallback & events,const CGTownInstance * town);
  static int townDemolitionDamage(const CGTownInstance * town);
  static std::string townDemolitionAnimation(const CGTownInstance * town);
  static int townRebuildReadyDay(const CGTownInstance * town);

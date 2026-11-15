@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/SourceCampaignProcessor.h"
 #include "../era/EraConfluxTomeRuntime.h"
 #include "../../lib/bonuses/BonusParameters.h"
 #include "BattleResultProcessor.h"
@@ -473,6 +474,8 @@ void BattleResultProcessor::battleFinalize(const BattleID & battleID, const Batt
 	const CGHeroInstance * winnerHero = nullptr;
 	const CGHeroInstance * loserHero = nullptr;
 
+	const auto campaignAttacker = (*battle)->battleGetArmyObject(BattleSide::ATTACKER)->id;
+	const auto campaignDefender = (*battle)->battleGetArmyObject(BattleSide::DEFENDER)->id;
 	const auto attackerHero = (*battle)->battleGetFightingHero(BattleSide::ATTACKER);
 	const auto defenderHero = (*battle)->battleGetFightingHero(BattleSide::DEFENDER);
 	const auto attackerSide = (*battle)->getSidePlayer(BattleSide::ATTACKER);
@@ -704,7 +707,9 @@ void BattleResultProcessor::battleFinalize(const BattleID & battleID, const Batt
 	ended.battleID = battleID;
 	ended.victor = finishingBattle->victor;
 	ended.loser = finishingBattle->loser;
+	gameHandler->sourceCampaigns->demolitionBattleEnding(campaignAttacker,campaignDefender,!finishingBattle->isDraw()&&finishingBattle->winnerSide==BattleSide::ATTACKER&&winnerHasUnitsLeft);
 	gameHandler->sendAndApply(ended);
+	gameHandler->sourceCampaigns->demolitionBattleEnded(campaignAttacker,campaignDefender,!finishingBattle->isDraw()&&finishingBattle->winnerSide==BattleSide::ATTACKER&&winnerHasUnitsLeft);
 
 	//handle victory/loss of engaged players
 	gameHandler->checkVictoryLossConditions({finishingBattle->loser, finishingBattle->victor});
