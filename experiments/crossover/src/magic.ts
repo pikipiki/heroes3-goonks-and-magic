@@ -1,6 +1,6 @@
 import {STARCRAFT_UNITS,type BattlePlan} from './battle.js';
 import type {NativeBridge} from './native-bridge.js';
-export type MagicSpell={id:number;key:string;name:string;description:string;caster:number;casts:number;passive:boolean;level:number;schools?:number[];cost:number;target:'none'|'ally'|'enemy'|'creature'|'ground'|'teleport'|'sacrifice';ready:number;enabled?:boolean;reason?:string};
+export type MagicSpell={id:number;key:string;name:string;description:string;caster:number;casts:number;passive:boolean;level:number;schools?:number[];cost:number;target:'none'|'ally'|'enemy'|'creature'|'ground'|'teleport'|'sacrifice';ready:number;enabled?:boolean;reason?:string;targets?:number[]};
 export type MagicCatalogue={mana:number;spent:number;frame:number;spells:MagicSpell[]};
 export type MagicGroup={id:number;side:number;owner:number;count:number;hp:number;healthDelta:number;revived:number;removed:boolean;persistentCount?:number;maxHp:number;attack:number;defense:number;damageMin:number;damageMax:number;speed:number;movementScale?:number;shooter:boolean;disabled:boolean;berserk:boolean;cloned:boolean;luck:number;morale:number;retaliations:number;creature:string;name:string;summoned:boolean;x:number;y:number;moved:boolean;meleeReduction:number;rangedReduction:number;fireShield:number;effects?:number[]};
 export type MagicResponse={sequence:number;battleId:number;ok:boolean;error?:string;catalogue:MagicCatalogue;groups:MagicGroup[];damageRules?:{source:number;target:number;melee:number;ranged:number}[];events:{id:number;caster:number;hex:number;x?:number;y?:number;targets?:number[]}[];obstacles?:{id:number;blocks:boolean;stops:boolean;triggers:boolean;tiles:{x:number;y:number}[]}[]};
@@ -11,7 +11,7 @@ export function magicController(win:Window,api:NativeBridge,plan:BattlePlan,onEf
  let hits:{source:number;target:number;frame:number;obstacle?:number}[]=[];let lastGroups:MagicGroup[]=[];
  const opening=api.census().units.filter(u=>u.stackId!==undefined&&u.stackId>=0),mean=(owner:number)=>{const rows=opening.filter(u=>u.owner===owner);return rows.reduce((sum,u)=>sum+u.x,0)/Math.max(1,rows.length);},mirrored=mean(0)>mean(1);
  const toField=(x:number):number=>mirrored?799-x:x;
- const positions=new Map<number,{x:number;y:number}>();
+ const positions=new Map<number,{x:number;y:number}>(plan.stacks.filter(s=>s.x!==undefined&&s.y!==undefined).map(s=>[s.id,{x:s.x!,y:s.y!}]));
  let reconciling=false;
  // Keep the deadline active until presentation finishes, not just until the native reply arrives.
  const receive=(event:Event):void=>{const response=(event as CustomEvent<MagicResponse>).detail;if(!pending||response.sequence!==pending.sequence||pending.received)return;const request=pending;request.received=true;if(!response.ok){win.clearTimeout(request.timer);pending=undefined;request.reject(Error(response.error||'Sort refusé.'));return;}

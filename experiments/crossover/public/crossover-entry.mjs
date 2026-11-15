@@ -61,7 +61,7 @@ try{
   status.textContent='Données prêtes · ouverture de Heroes…';
   const game=new URL(launchPage?'./'+launchFile:'./game.html',location.href);game.search=location.search;
   if(launchPage)game.searchParams.set('play','1');
-  game.searchParams.set('mobile','1');game.searchParams.set('skip-autoresume','1');
+  if(!game.searchParams.has('mobile'))game.searchParams.set('mobile',matchMedia('(pointer:coarse)').matches||innerWidth<=960?'1':'0');game.searchParams.set('skip-autoresume','1');
   location.replace(game);
  }
 }catch(error){status.textContent=error.message;retry.hidden=false;}

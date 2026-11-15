@@ -1,6 +1,6 @@
 export const STARCRAFT_UNITS:Readonly<Record<string,number>>={marine:0,firebat:32,zergling:37,hydralisk:38,zealot:65,dragoon:66};
 export type CreatureSpell={id:number;key:string;name:string;casts:number;radius:number;targets:{id:number;resistance:number;damage:number[]}[]};
-export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; spells?:CreatureSpell[];temporary?:boolean;firstHp?:number;maxCount?:number; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
+export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; x?:number;y?:number; spells?:CreatureSpell[];temporary?:boolean;firstHp?:number;maxCount?:number; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
 export type BattlePlan = {version: 1; battleId: number; magic?:import('./magic.js').MagicCatalogue;fromClassic?:boolean; stacks: (HeroesStack & {unit: number; heroes?:boolean})[]};
 export type BattleState = {battleId: number; frame: number; finished: boolean; groups: {id: number; side: number; initial: number; survivors: number;casts?:number;spellReady?:number}[]};
 export function battlePlan(value: {battleId: number; magic?:import('./magic.js').MagicCatalogue;fromClassic?:boolean; stacks: HeroesStack[]}): BattlePlan {
@@ -15,6 +15,7 @@ export function validateBattlePlan(value: BattlePlan): void {
   if(row.firstHp!==undefined&&(!Number.isSafeInteger(row.firstHp)||row.firstHp<0||row.firstHp>row.health))throw Error('Blessure de troupe invalide.');
   if(row.maxCount!==undefined&&(!Number.isSafeInteger(row.maxCount)||row.maxCount<row.count||row.maxCount>128))throw Error('Effectif initial invalide.');
   if(row.heroes && (!Number.isSafeInteger(row.health)||row.health<1||row.health>10000))throw Error('Points de vie Heroes invalides.');
+  if((row.x!==undefined&&(!Number.isSafeInteger(row.x)||row.x<0||row.x>799))||(row.y!==undefined&&(!Number.isSafeInteger(row.y)||row.y<0||row.y>499)))throw Error('Position de troupe invalide.');
   ids.add(row.id);totals[row.side]+=row.count;
  }
  if(totals.some(total=>total<1||total>128))throw Error('Ce test accepte de 1 à 128 créatures par armée.');

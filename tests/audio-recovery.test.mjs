@@ -36,3 +36,12 @@ test('Explicit recovery replaces a stalled SDL processor but retains its mixer a
  assert(repairSDLAudio(module));assert.equal(module.SDL2.audio.scriptProcessorNode,node);
  assert(repairSDLAudio(module,{rebuild:true}));assert.equal(module.SDL2.audioContext,ctx);assert.equal(module.SDL2.audio.scriptProcessorNode,replacement);assert.equal(replacement.onaudioprocess,callback);assert.equal(node.onaudioprocess,null);assert.equal(disconnected,1);assert.equal(connected,2);
 });
+test('Spontaneous context interruption resumes only while visible and unmuted, then detaches on disposal',async()=>{
+ const context=new EventTarget();context.state='running';let calls=0,muted=false,visible=true;
+ context.resume=async()=>{calls++;context.state='running';context.dispatchEvent(new Event('statechange'));};
+ const audio=createAudioRecovery({getContext:()=>context,isMuted:()=>muted,shouldResume:()=>visible});audio.observe();
+ const interrupt=()=>{context.state='interrupted';context.dispatchEvent(new Event('statechange'));};
+ interrupt();assert.equal(calls,1);assert.equal(context.state,'running');
+ muted=true;interrupt();assert.equal(calls,1);muted=false;visible=false;interrupt();assert.equal(calls,1);
+ visible=true;interrupt();assert.equal(calls,2);audio.dispose();interrupt();assert.equal(calls,2);assert.equal(await audio.resume(),false);
+});

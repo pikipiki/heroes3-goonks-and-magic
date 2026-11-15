@@ -730,11 +730,11 @@ void publishCrossoverSounds(const BattleInfo & battle){
  }
  previous=signature;
 }
-void publishCrossoverSpellClip(int id,const std::string & kind,const AnimationPath & path){try{
+void publishCrossoverSpellClip(int id,const std::string & kind,const AnimationPath & path,int fixedFrame=-1){try{
    const auto animation=ENGINE->renderHandler().loadAnimation(path,EImageBlitMode::SIMPLE);const int count=animation->size(0);if(!count)return;
    constexpr int cell=128,frames=16;auto surface=SDL_CreateRGBSurfaceWithFormat(0,cell*frames,cell,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
-   {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(int frame=0;frame<frames;frame++){const auto image=animation->getImage(frame*count/frames,0);if(!image)continue;const auto rect=image->contentRect();auto scratch=SDL_CreateRGBSurfaceWithFormat(0,std::max(1,rect.w),std::max(1,rect.h),32,SDL_PIXELFORMAT_ARGB8888);SDL_FillRect(scratch,nullptr,0);{auto from=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);from.draw(image,Point(0,0),rect);const double scale=std::min(1.,std::min(double(cell)/std::max(1,rect.w),double(cell)/std::max(1,rect.h)));const Point size(std::max(1,int(rect.w*scale)),std::max(1,int(rect.h*scale)));canvas.drawScaled(from,Point(frame*cell+(cell-size.x)/2,cell-size.y),size);}SDL_FreeSurface(scratch);}}
-   auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;const int bytes=cell*frames*cell*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto name=strdup(kind.c_str());MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=2048;c.height=128;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+2048*128*4).buffer),2048,128),0,0);window.goonkCrossoverSpellArt?.rows.push({id:$2,kind:UTF8ToString($1),canvas:c,frames:16});}finally{_free($0);_free($1);}},packet,name,id);}SDL_FreeSurface(rgba);
+   {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);for(int frame=0;frame<frames;frame++){const auto image=animation->getImage(fixedFrame>=0?std::min(fixedFrame,count-1):frame*count/frames,0);if(!image)continue;const auto rect=image->contentRect();auto scratch=SDL_CreateRGBSurfaceWithFormat(0,std::max(1,rect.w),std::max(1,rect.h),32,SDL_PIXELFORMAT_ARGB8888);SDL_FillRect(scratch,nullptr,0);{auto from=Canvas::createFromSurface(scratch,CanvasScalingPolicy::IGNORE);from.draw(image,Point(0,0),rect);const double scale=std::min(1.,std::min(double(cell)/std::max(1,rect.w),double(cell)/std::max(1,rect.h)));const Point size(std::max(1,int(rect.w*scale)),std::max(1,int(rect.h*scale)));canvas.drawScaled(from,Point(frame*cell+(cell-size.x)/2,cell-size.y),size);}SDL_FreeSurface(scratch);}}
+   auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;const int bytes=cell*frames*cell*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto name=strdup(kind.c_str());MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=2048;c.height=128;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+2048*128*4).buffer),2048,128),0,0);const art=window.goonkCrossoverSpellArt;const kind=UTF8ToString($1);if(art){for(const old of art.rows)if(old.id===$2&&old.kind===kind){old.canvas.width=0;old.canvas.height=0;}art.rows=art.rows.filter(row=>row.id!==$2||row.kind!==kind);art.rows.push({id:$2,kind,canvas:c,frames:16});}}finally{_free($0);_free($1);}},packet,name,id);}SDL_FreeSurface(rgba);
  }catch(const std::exception & e){logGlobal->warn("Crossover spell art %s: %s",path.getOriginalName(),e.what());}
 }
 void publishCrossoverSpellIcons(const std::set<SpellID> & ids,int battle){
@@ -789,13 +789,16 @@ void publishCrossoverArt(const BattleInfo & battle){
   MAIN_THREAD_ASYNC_EM_ASM({const old=window.goonkCrossoverArt;for(const row of old?.rows||[]){const c=row.canvas||old.canvas;if(c){c.width=0;c.height=0;}}window.goonkCrossoverArt=({battleId:$0,cell:$1,generation:$2,expected:$3,rows:[],ready:$3===0});},battle.battleID.getNum(),cell,generation,units.size());
  }
  if(cursor>=units.size())return;
+ const auto & projectile=units[cursor]->unitType()->animation.projectileImageName;
+ if(!projectile.empty()){const auto & angles=units[cursor]->unitType()->animation.missileFrameAngles;int frame=0;for(size_t i=1;i<angles.size();i++)if(std::abs(angles[i])<std::abs(angles[frame]))frame=i;publishCrossoverSpellClip(200000+units[cursor]->unitId(),"weapon",projectile,frame);}
  const int width=columns*cell,height=poses*cell;
  auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
  bool ready=true;
  {auto canvas=Canvas::createFromSurface(surface,CanvasScalingPolicy::IGNORE);
  for(size_t i=cursor;i<cursor+1;i++){
   const auto animation=ENGINE->renderHandler().loadAnimation(units[i]->unitType()->animDefName,EImageBlitMode::SIMPLE);
-  const int groups[6]={2,0,units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12,3,5,animation->size(31)?31:animation->size(18)?18:units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12};
+  const bool teleporting=units[i]->hasBonus(Selector::typeSubtype(BonusType::FLYING,BonusCustomSubtype::movementTeleporting));
+  const int groups[6]={2,teleporting?2:0,units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12,3,5,animation->size(31)?31:animation->size(18)?18:units[i]->hasBonusOfType(BonusType::SHOOTER)?15:12};
   int left=100000,top=100000,right=0,bottom=0;
   for(int pose=0;pose<poses;pose++){const int group=animation->size(groups[pose])?groups[pose]:2;for(size_t f=0;f<animation->size(group);++f)if(const auto image=animation->getImage(f,group)){const auto r=image->contentRect();left=std::min(left,r.x);top=std::min(top,r.y);right=std::max(right,r.x+r.w);bottom=std::max(bottom,r.y+r.h);}}
   const double scale=std::min(1.,std::min(double(cell)/std::max(1,right-left),double(cell)/std::max(1,bottom-top)));
@@ -1860,6 +1863,7 @@ void publishMobileState(){
    for(const auto & stack:info->stacks){
     JsonNode row;row["spells"]=crossoverCreatureSpells(*info,stack.get(),CPlayerInterface::battleInt->getBattle().get());row["id"].Integer()=stack->unitId();row["side"].Integer()=stack->unitSide()==BattleSide::ATTACKER?0:1;
     row["creature"].String()=stack->unitType()->getJsonKey();row["name"].String()=stack->unitType()->getNamePluralTranslated();
+    const auto at=crossoverHexPoint(stack->getPosition());row["x"].Integer()=at.x;row["y"].Integer()=at.y;
     row["count"].Integer()=stack->getCount();row["firstHp"].Integer()=stack->getFirstHPleft();row["maxCount"].Integer()=std::max<int>(stack->getCount(),stack->unitBaseAmount());row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();row["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["attack"].Integer()=stack->getAttack(false);row["defense"].Integer()=stack->getDefense(false);row["speed"].Integer()=stack->getMovementRange();
     data["stacks"].Vector().push_back(std::move(row));
    }

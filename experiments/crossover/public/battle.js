@@ -17,6 +17,8 @@ export function validateBattlePlan(value) {
             throw Error('Effectif initial invalide.');
         if (row.heroes && (!Number.isSafeInteger(row.health) || row.health < 1 || row.health > 10000))
             throw Error('Points de vie Heroes invalides.');
+        if ((row.x !== undefined && (!Number.isSafeInteger(row.x) || row.x < 0 || row.x > 799)) || (row.y !== undefined && (!Number.isSafeInteger(row.y) || row.y < 0 || row.y > 499)))
+            throw Error('Position de troupe invalide.');
         ids.add(row.id);
         totals[row.side] += row.count;
     }

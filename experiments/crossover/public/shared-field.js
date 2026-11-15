@@ -32,6 +32,7 @@ export function sharedField(win, canvas, api, plan) {
     const heroCanvases = new Map();
     let previousArt;
     let request = 0, closed = false, selected, attackMode = false, units = [], nativeFrame = -1, view;
+    const shots = [];
     const revivedBodies = new Set();
     const spellEffects = [], corpses = new Map(), deathTimes = new Map(), castTimes = new Map(), damageText = new Map();
     const spellFx = (event) => { const effect = { ...event.detail, at: win.performance.now() }; spellEffects.push(effect); if (effect.caster >= 0)
@@ -106,8 +107,14 @@ export function sharedField(win, canvas, api, plan) {
                         deathTimes.delete(unit.id);
                     }
                     const old = oldUnits.get(unit.id);
-                    if (unit.heroes && (unit.cooldown || 0) > (old?.cooldown || 0))
+                    if (unit.heroes && (unit.cooldown || 0) > (old?.cooldown || 0)) {
                         api.playCreatureAttack?.(unit.stackId);
+                        if (plan.stacks.find(s => s.id === unit.stackId)?.shooter) {
+                            const target = units.find(u => u.id === unit.target);
+                            if (target)
+                                shots.push({ stack: unit.stackId, from: bodyPoint(unit), to: bodyPoint(target), at: now });
+                        }
+                    }
                     const cycle = attackCycle(old, unit, nativeFrame, cycles.get(unit.id));
                     if (cycle)
                         cycles.set(unit.id, cycle);
@@ -138,7 +145,13 @@ export function sharedField(win, canvas, api, plan) {
                             }
                             if (!image) {
                                 const first = smoothSprite2x(raw, 96, 96, firstPixels), scaled = smoothSprite2x(new Uint8Array(first.buffer), 192, 192, scaledPixels), surface = makeSprite();
-                                surface.getContext('2d').putImageData(new ImageData(scaled, 384, 384), 0, 0);
+                                const smooth = surface.getContext('2d');
+                                smooth.putImageData(new ImageData(scaled, 384, 384), 0, 0);
+                                smooth.filter = 'blur(1px)';
+                                smooth.globalCompositeOperation = 'copy';
+                                smooth.drawImage(surface, 0, 0);
+                                smooth.filter = 'none';
+                                smooth.globalCompositeOperation = 'source-over';
                                 image = { raw: pixels.slice(), canvas: surface, bounds: opaqueBounds(scaled, 384, 384) };
                                 if (spriteCache.size >= 64)
                                     spriteCache.delete(spriteCache.keys().next().value);
@@ -205,7 +218,7 @@ export function sharedField(win, canvas, api, plan) {
         else
             context.setTransform(transform.zoom * density, 0, 0, transform.zoom * density, transform.x * density, transform.y * density);
         context.imageSmoothingEnabled = true;
-        context.imageSmoothingQuality = 'medium';
+        context.imageSmoothingQuality = 'high';
         const art = source.goonkCrossoverArt, cell = art?.cell || 128;
         if (art?.canvas !== previousArt) {
             previousArt = art?.canvas;
@@ -286,7 +299,7 @@ export function sharedField(win, canvas, api, plan) {
                     if (!pair)
                         continue;
                     context.imageSmoothingEnabled = true;
-                    context.imageSmoothingQuality = 'medium';
+                    context.imageSmoothingQuality = 'high';
                     const marineBlend = pair.blend, marineContext = marineBlend.getContext('2d');
                     marineContext.clearRect(0, 0, 384, 384);
                     marineContext.globalAlpha = 1 - amount;
@@ -325,8 +338,22 @@ export function sharedField(win, canvas, api, plan) {
                     context.fillText('−' + Number(damage.amount.toFixed(1)).toLocaleString('fr-FR'), x, y - bodyHeight - 8 - age * 30);
                     context.globalAlpha = 1;
                 }
-                if (unit.hp <= 0)
+                if (unit.hp <= 0) {
+                    const canRaise = canvas.dataset.revive === 'true' && JSON.parse(canvas.dataset.spellTargets || '[]').includes(unit.stackId);
+                    context.globalAlpha = .95;
+                    context.fillStyle = canRaise ? '#ffe39a' : '#201713';
+                    context.strokeStyle = canRaise ? '#ffe39a' : '#ffb19d';
+                    context.lineWidth = 3;
+                    context.beginPath();
+                    context.ellipse(0, 4, 25, 12, 0, 0, Math.PI * 2);
+                    context.fill();
+                    context.stroke();
+                    context.font = 'bold 15px sans-serif';
+                    context.textAlign = 'center';
+                    context.fillStyle = canRaise ? '#211a10' : '#ffe6db';
+                    context.fillText(canRaise ? 'Réanimer' : '✝', 0, 9);
                     continue;
+                }
                 const width = 34, barY = y - bodyHeight - 5, hp = Math.max(0, Math.min(1, (unit.hp256 ?? unit.hp * 256) / ((unit.maxHp || unit.hp) * 256)));
                 if (unit.maxShields) {
                     context.fillStyle = '#121009';
@@ -367,6 +394,14 @@ export function sharedField(win, canvas, api, plan) {
             context.globalAlpha = mix;
             context.drawImage(clip.canvas, Math.min(clip.frames - 1, index + 1) * 128, 0, 128, 128, x - size / 2, y - size, size, size);
         } context.globalAlpha = 1; context.restore(); };
+        while (shots.length && now - shots[0].at > 380)
+            shots.shift();
+        for (const shot of shots) {
+            const age = now - shot.at, t = Math.min(1, age / 180), x = shot.from.x + (shot.to.x - shot.from.x) * t, y = shot.from.y + (shot.to.y - shot.from.y) * t;
+            const clip = spellArt?.rows.find(c => c.id === 200000 + shot.stack && c.kind === 'weapon');
+            if (clip)
+                drawClip(clip, x, y, age * 2, 100);
+        }
         for (const obstacle of obstacles) {
             const clip = spellArt?.rows.find(c => c.id === 100000 + obstacle.id && c.kind === 'obstacle');
             if (clip)
@@ -407,7 +442,10 @@ export function sharedField(win, canvas, api, plan) {
         const nearby = battlePick(pickUnits, positions, { x, y }, camera, selected !== undefined, portrait, mirrorBackground);
         if (canvas.dataset.spellMode) {
             if (canvas.dataset.spellMode === 'target') {
-                const target = nearby || [...corpses.values()].find(u => Math.hypot(x - bodyPoint(u).x, y - bodyPoint(u).y) < 45);
+                const eligible = JSON.parse(canvas.dataset.spellTargets || '[]');
+                const fallen = [...units.filter(u => u.hp <= 0), ...corpses.values()].filter(u => !revivedBodies.has(u.id) && (!canvas.dataset.revive || canvas.dataset.revive !== 'true' || eligible.includes(u.stackId)));
+                const deadPick = fallen.find(u => Math.hypot(x - (u.x - camera.x), y - (u.y - camera.y)) < 35 || Math.hypot(x - bodyPoint(u).x, y - bodyPoint(u).y) < 40);
+                const target = canvas.dataset.revive === 'true' ? (deadPick || nearby) : (nearby || deadPick);
                 const at = target && targetKind !== 'ground' ? (positions.get(target.id) || target) : undefined;
                 canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { stack: target?.stackId, owner: target?.owner, hp: target?.hp, x: at ? at.x - camera.x : x, y: at ? at.y - camera.y : y } }));
             }

@@ -1,3 +1,4 @@
+import {createAudioRecovery,configurePlaybackSession} from '../audio-recovery.mjs';
 import {loadArchives, installArchiveImport} from '../local-assets.js';
 import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
 // web/openbw.js — browser host for the OpenBW sandbox wasm module.
@@ -5,7 +6,7 @@ import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
 
 // Build id — CI replaces the placeholder with the commit SHA for cache-busting.
-const BUILD = 'openbw-015dae8ce8a3148a';
+const BUILD = 'openbw-ae6e35826f489b88';
 
 // Any build whose SHA wasn't stamped in by CI is a local/dev build. CI's stamp is a
 // GLOBAL sed of the placeholder, which also rewrites comparisons that spell it out —
@@ -472,9 +473,10 @@ async function boot(session) {
   try { muted = localStorage.getItem('openbw-muted') === '1'; } catch {}
   const ensureAudio = () => {
     if(crossoverDisposed)return;
-    if (audioCtx) { audioCtx.resume(); return; }
+    if (audioCtx) { void recovery.resume(); return; }
     try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
     catch (e) { console.warn('[audio] no AudioContext — running silent:', e && e.message); return; }
+    configurePlaybackSession(navigator);recovery.observe();
     masterGain = audioCtx.createGain();
     masterGain.connect(audioCtx.destination);
     applyMute();
@@ -603,11 +605,11 @@ async function boot(session) {
   // wasm caching so rebuilds are picked up. In production we want the opposite:
   // let the browser cache and reuse the compiled module across visits.
   // Any build whose SHA wasn't stamped in by CI is a local/dev build — including one served
-  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-015dae8ce8a3148a
+  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-ae6e35826f489b88
   // cache-buster is a constant locally, so a plain fetch would serve a stale, skewed wasm).
   // BUILD is replaced by CI with the commit SHA (see .github/workflows/pages.yml), so a
   // new deploy fetches a fresh wasm URL instead of a stale cached one. Locally it stays
-  // the 'openbw-015dae8ce8a3148a' placeholder and we cache-bust per load instead.
+  // the 'openbw-ae6e35826f489b88' placeholder and we cache-bust per load instead.
   // vs-Computer loads a bot-enabled module (sandbox + BWAPI server + the chosen bot);
   // each exports the same surface plus openbw_bot_*, so everything else is identical.
   const wasmName = session.bot ? session.bot.module : 'openbw.wasm';
@@ -1062,7 +1064,7 @@ async function boot(session) {
     try { if (audioCtx) void audioCtx.close().catch(()=>{}); } catch {}
     try { if (link) link.close(); } catch {}
     crossoverApi.close();
-    removeEventListener('pointerdown',ensureAudio);removeEventListener('keydown',ensureAudio);
+    removeEventListener('pointerdown',ensureAudio);removeEventListener('keydown',ensureAudio);recovery.dispose();removeEventListener('focus',recoverVisible);removeEventListener('pageshow',recoverVisible);document.removeEventListener('visibilitychange',recoverVisible);
     soundBuffers.length=0;soundChannels.length=0;
     for(const id of Object.keys(pendingWavs))delete pendingWavs[id];
     for(const id of Object.keys(pendingPlay))delete pendingPlay[id];
@@ -1102,7 +1104,9 @@ async function boot(session) {
     updateBanner();
   };
   crossoverApi.pause=()=>{paused=true;applyPause();x.openbw_set_paused?.(1);}; crossoverApi.isPaused=()=>paused; crossoverApi.tickDuration = () => stepMs; crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };
-  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
+  const recovery=createAudioRecovery({getContext:()=>audioCtx,isMuted:()=>muted,shouldResume:()=>!crossoverDisposed&&document.visibilityState!=='hidden',prepareOutput:()=>configurePlaybackSession(navigator)});
+  const recoverVisible=()=>{if(document.visibilityState!=='hidden')void recovery.resume();};addEventListener('focus',recoverVisible);addEventListener('pageshow',recoverVisible);document.addEventListener('visibilitychange',recoverVisible);
+  crossoverApi.enableAudio=()=>{ensureAudio();return recovery.resume().then(ok=>{if(!ok&&!muted)throw Error('Audio interrompu.');});};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
   const creatureSounds=new Map(),creaturePlayed=new Map(),creatureSoundLoads=new Map();

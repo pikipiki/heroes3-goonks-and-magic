@@ -23,7 +23,7 @@ fs.copyFileSync(output+'/index.html',output+'/laboratoire.html');
 let heroesPage=fs.readFileSync(output+'/game.html','utf8');
 heroesPage=heroesPage.replace('</body>','<script type="module" src="./adventure-entry.js"></script></body>');
 fs.writeFileSync(output+'/game.html',heroesPage);
-fs.writeFileSync(output+'/heroes-entry.js',"const entry=new URL(location.href);entry.searchParams.set('mobile','1');entry.searchParams.set('skip-autoresume','1');history.replaceState(null,'',entry);import('./crossover-entry.mjs');\n");
+fs.writeFileSync(output+'/heroes-entry.js',"const entry=new URL(location.href);if(!entry.searchParams.has('mobile'))entry.searchParams.set('mobile',matchMedia('(pointer:coarse)').matches||innerWidth<=960?'1':'0');entry.searchParams.set('skip-autoresume','1');history.replaceState(null,'',entry);import('./crossover-entry.mjs');\n");
 fs.writeFileSync(output+'/index.html','<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heroes Goonk</title><link rel="stylesheet" href="./preload.css"><script type="module" src="./crossover-entry.mjs"></script></head><body><main class="preload"><span>HEROES GOONK × STARCRAFT</span><h1>Préparation de ton jeu</h1><p id="hosting-status" role="status">Préparation du jeu…</p><progress id="preload-progress" aria-label="Installation des données"></progress><p class="note">Les données sont préparées avant de jouer et conservées sur cet appareil.</p><button id="hosting-retry" hidden>Réessayer</button></main></body></html>');
 fs.copyFileSync(output+'/index.html',output+'/launch.html');
 fs.copyFileSync(output+'/index.html',output+'/start.html');

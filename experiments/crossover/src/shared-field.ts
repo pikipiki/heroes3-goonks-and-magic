@@ -35,6 +35,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const heroCanvases=new Map<number,HTMLCanvasElement>();let previousArt:HTMLCanvasElement|undefined;
  let request=0,closed=false,selected:number|undefined,attackMode=false,units:NativeUnit[]=[],nativeFrame=-1,view:ReturnType<typeof battleView>|undefined;
  type SpellEffect={id:number;caster:number;targets:number[];x:number;y:number;at:number};
+ const shots:{stack:number;from:{x:number;y:number};to:{x:number;y:number};at:number}[]=[];
  const revivedBodies=new Set<number>();
  const spellEffects:SpellEffect[]=[],corpses=new Map<number,NativeUnit>(),deathTimes=new Map<number,number>(),castTimes=new Map<number,number>(),damageText=new Map<number,{amount:number;at:number}>();
  const spellFx=(event:Event):void=>{const effect={...(event as CustomEvent).detail,at:win.performance.now()};spellEffects.push(effect);if(effect.caster>=0)castTimes.set(effect.caster,effect.at+800);};canvas.addEventListener('crossover-spell-effect',spellFx);
@@ -64,13 +65,13 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
     for(const unit of units){
      if(unit.hp>0&&!oldUnits.has(unit.id)){const dead=[...corpses.values(),...oldUnits.values()].find(u=>u.stackId===unit.stackId&&u.hp<=0&&!revivedBodies.has(u.id));if(dead){revivedBodies.add(dead.id);corpses.delete(dead.id);deathTimes.delete(dead.id);}}
      if(unit.hp>0){corpses.delete(unit.id);deathTimes.delete(unit.id);}
-     const old=oldUnits.get(unit.id);if(unit.heroes&&(unit.cooldown||0)>(old?.cooldown||0))api.playCreatureAttack?.(unit.stackId!);
+     const old=oldUnits.get(unit.id);if(unit.heroes&&(unit.cooldown||0)>(old?.cooldown||0)){api.playCreatureAttack?.(unit.stackId!);if(plan.stacks.find(s=>s.id===unit.stackId)?.shooter){const target=units.find(u=>u.id===unit.target);if(target)shots.push({stack:unit.stackId!,from:bodyPoint(unit),to:bodyPoint(target),at:now});}}
      const cycle=attackCycle(old,unit,nativeFrame,cycles.get(unit.id));if(cycle)cycles.set(unit.id,cycle);
      if(old&&((unit.hp256??unit.hp*256)<(old.hp256??old.hp*256)||(unit.shields256??(unit.shields??0)*256)<(old.shields256??(old.shields??0)*256))){hits.set(unit.id,now+320);damageText.set(unit.id,{amount:(Math.max(0,(old.hp256??old.hp*256)-(unit.hp256??unit.hp*256))+Math.max(0,(old.shields256??(old.shields??0)*256)-(unit.shields256??(unit.shields??0)*256)))/256,at:now});if(unit.hp<=0&&!deathTimes.has(unit.id))deathTimes.set(unit.id,now);if(unit.heroes){api.playCreatureSound?.(unit.stackId!,unit.hp>0?'hit':'death');if(unit.hp<=0)deaths.add(unit.id);}}
      if(!unit.heroes){
       try{const raw=new Uint8Array(api.sprite(unit.id)),pixels=new Uint32Array(raw.buffer,raw.byteOffset,raw.byteLength/4);let hash=2166136261;for(const pixel of pixels)hash=Math.imul(hash^pixel,16777619)>>>0;
        let image=spriteCache.get(hash);if(image){for(let i=0;i<pixels.length;i++)if(image.raw[i]!==pixels[i]){image=undefined;break;}}
-       if(!image){const first=smoothSprite2x(raw,96,96,firstPixels),scaled=smoothSprite2x(new Uint8Array(first.buffer),192,192,scaledPixels),surface=makeSprite();surface.getContext('2d')!.putImageData(new ImageData(scaled,384,384),0,0);image={raw:pixels.slice(),canvas:surface,bounds:opaqueBounds(scaled,384,384)};if(spriteCache.size>=64)spriteCache.delete(spriteCache.keys().next().value!);}else spriteCache.delete(hash);spriteCache.set(hash,image);
+       if(!image){const first=smoothSprite2x(raw,96,96,firstPixels),scaled=smoothSprite2x(new Uint8Array(first.buffer),192,192,scaledPixels),surface=makeSprite();const smooth=surface.getContext('2d')!;smooth.putImageData(new ImageData(scaled,384,384),0,0);smooth.filter='blur(1px)';smooth.globalCompositeOperation='copy';smooth.drawImage(surface,0,0);smooth.filter='none';smooth.globalCompositeOperation='source-over';image={raw:pixels.slice(),canvas:surface,bounds:opaqueBounds(scaled,384,384)};if(spriteCache.size>=64)spriteCache.delete(spriteCache.keys().next().value!);}else spriteCache.delete(hash);spriteCache.set(hash,image);
        let pair=sprites.get(unit.id);if(!pair){pair={before:image.canvas,after:image.canvas,blend:makeSprite()};sprites.set(unit.id,pair);}else{pair.before=pair.after;pair.after=image.canvas;}
        if(!starBounds.has(unit.id))starBounds.set(unit.id,image.bounds);
       }catch{/* Keep the last complete native sprite if an extraction fails. */}
@@ -86,7 +87,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    const key=portrait+':'+density+':'+mirrorBackground;if(backdropSource!==background||backdropKey!==key){backdropSource=background;backdropKey=key;backdrop.width=canvas.width;backdrop.height=canvas.height;const bg=backdrop.getContext('2d')!;bg.scale(density,density);bg.imageSmoothingEnabled=true;bg.imageSmoothingQuality='high';if(portrait){const ratio=Math.max(500/background.width,800/background.height);bg.drawImage(background,(500-background.width*ratio)/2,(800-background.height*ratio)/2,background.width*ratio,background.height*ratio);}else{if(mirrorBackground){bg.translate(800,0);bg.scale(-1,1);}bg.drawImage(background,0,0,800,500);}}
    context.drawImage(backdrop,0,0,portrait?500:800,portrait?800:500);
   }
-  const transform=portrait?{zoom:1,x:0,y:0}:view||{zoom:1,x:0,y:0};if(portrait)context.setTransform(0,(mirrorBackground?1:-1)*transform.zoom*density,transform.zoom*density,0,transform.y*density,(mirrorBackground?transform.x:800-transform.x)*density);else context.setTransform(transform.zoom*density,0,0,transform.zoom*density,transform.x*density,transform.y*density);context.imageSmoothingEnabled=true;context.imageSmoothingQuality='medium';
+  const transform=portrait?{zoom:1,x:0,y:0}:view||{zoom:1,x:0,y:0};if(portrait)context.setTransform(0,(mirrorBackground?1:-1)*transform.zoom*density,transform.zoom*density,0,transform.y*density,(mirrorBackground?transform.x:800-transform.x)*density);else context.setTransform(transform.zoom*density,0,0,transform.zoom*density,transform.x*density,transform.y*density);context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
   const art=source.goonkCrossoverArt,cell=art?.cell||128;if(art?.canvas!==previousArt){previousArt=art?.canvas;heroBounds.clear();heroCanvases.clear();}
   const blendedHeroes=new Map<string,HTMLCanvasElement>();
   for(const unit of [...corpses.values(),...units].filter(u=>!revivedBodies.has(u.id)).sort((a,b)=>portrait?(mirrorBackground?1:-1)*((positions.get(a.id)||a).x-(positions.get(b.id)||b).x):(positions.get(a.id)||a).y-(positions.get(b.id)||b).y)){
@@ -111,14 +112,14 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
     }
    }else if(!unit.heroes){
     const pair=sprites.get(unit.id);if(!pair)continue;
-    context.imageSmoothingEnabled=true;context.imageSmoothingQuality='medium';
+    context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
     const marineBlend=pair.blend,marineContext=marineBlend.getContext('2d')!;marineContext.clearRect(0,0,384,384);marineContext.globalAlpha=1-amount;marineContext.drawImage(pair.before,0,0);
     marineContext.globalCompositeOperation='lighter';marineContext.globalAlpha=amount;marineContext.drawImage(pair.after,0,0);marineContext.globalCompositeOperation='source-over';
     const hitUntil=hits.get(unit.id)||0,recoil=hitUntil>now?Math.sin((1-(hitUntil-now)/320)*Math.PI)*7:0;const bounds=starBounds.get(unit.id)||{x:0,y:0,width:384,height:384},place=spritePlacement(bounds);bodyHeight=bounds.height*place.scale;context.drawImage(marineBlend,x+place.x+recoil,y+5+place.y,384*place.scale,384*place.scale);
    }
    const hitUntil=hits.get(unit.id)||0;if(hitUntil>now){const age=1-(hitUntil-now)/320;context.strokeStyle='#fff0be';context.globalAlpha=1-age;context.lineWidth=2;for(let i=0;i<7;i++){const angle=i*Math.PI*2/7,r=8+age*27;context.beginPath();context.moveTo(x+Math.cos(angle)*r,y-45+Math.sin(angle)*r);context.lineTo(x+Math.cos(angle)*(r+7),y-45+Math.sin(angle)*(r+7));context.stroke();}context.globalAlpha=1;}
    const damage=damageText.get(unit.id);if(damage&&now-damage.at<850){const age=(now-damage.at)/850;context.globalAlpha=1-age;context.font='bold 20px sans-serif';context.textAlign='center';context.fillStyle='#ffe5bf';context.fillText('−'+Number(damage.amount.toFixed(1)).toLocaleString('fr-FR'),x,y-bodyHeight-8-age*30);context.globalAlpha=1;}
-   if(unit.hp<=0)continue;
+   if(unit.hp<=0){const canRaise=canvas.dataset.revive==='true'&&JSON.parse(canvas.dataset.spellTargets||'[]').includes(unit.stackId);context.globalAlpha=.95;context.fillStyle=canRaise?'#ffe39a':'#201713';context.strokeStyle=canRaise?'#ffe39a':'#ffb19d';context.lineWidth=3;context.beginPath();context.ellipse(0,4,25,12,0,0,Math.PI*2);context.fill();context.stroke();context.font='bold 15px sans-serif';context.textAlign='center';context.fillStyle=canRaise?'#211a10':'#ffe6db';context.fillText(canRaise?'Réanimer':'✝',0,9);continue;}
    const width=34,barY=y-bodyHeight-5,hp=Math.max(0,Math.min(1,(unit.hp256??unit.hp*256)/((unit.maxHp||unit.hp)*256)));
    if(unit.maxShields){context.fillStyle='#121009';context.fillRect(x-width/2-1,barY-8,width+2,6);context.fillStyle='#70c9ff';context.fillRect(x-width/2,barY-7,width*Math.max(0,(unit.shields??0)/unit.maxShields),4);}
    context.fillStyle='#121009';context.fillRect(x-width/2-1,barY-1,width+2,8);context.fillStyle=unit.owner===0?'#88e460':'#ff7665';context.fillRect(x-width/2,barY,width*hp,6);
@@ -130,6 +131,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   }
   const spellArt=source.goonkCrossoverSpellArt;
   const drawClip=(clip:SpellClip,x:number,y:number,age:number,size=150):void=>{context.save();context.translate(x,y);upright();x=y=0;const position=Math.min(clip.frames-1,Math.max(0,age/950*(clip.frames-1))),index=Math.floor(position),mix=position-index;context.globalAlpha=1-mix;context.drawImage(clip.canvas,index*128,0,128,128,x-size/2,y-size,size,size);if(mix>0){context.globalAlpha=mix;context.drawImage(clip.canvas,Math.min(clip.frames-1,index+1)*128,0,128,128,x-size/2,y-size,size,size);}context.globalAlpha=1;context.restore();};
+  while(shots.length&&now-shots[0].at>380)shots.shift();for(const shot of shots){const age=now-shot.at,t=Math.min(1,age/180),x=shot.from.x+(shot.to.x-shot.from.x)*t,y=shot.from.y+(shot.to.y-shot.from.y)*t;const clip=spellArt?.rows.find(c=>c.id===200000+shot.stack&&c.kind==='weapon');if(clip)drawClip(clip,x,y,age*2,100);}
   for(const obstacle of obstacles){const clip=spellArt?.rows.find(c=>c.id===100000+obstacle.id&&c.kind==='obstacle');if(clip)for(const tile of obstacle.tiles)drawClip(clip,tile.x,tile.y+20,(nativeFrame*42)%950,100);}
   while(spellEffects.length&&now-spellEffects[0].at>1200)spellEffects.shift();
   for(const effect of spellEffects){const age=now-effect.at,actors=[...units,...corpses.values()],caster=actors.find(u=>u.stackId===effect.caster),from=caster?bodyPoint(caster):{x:mirrorBackground?750:50,y:280};const targets=actors.filter(u=>effect.targets.includes(u.stackId!));
@@ -148,7 +150,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   const sx=(event.clientX-box.left)*(portrait?500:800)/box.width,sy=(event.clientY-box.top)*(portrait?800:500)/box.height;const x=((portrait?(mirrorBackground?sy:800-sy):sx)-transform.x)/transform.zoom,y=((portrait?sx:sy)-transform.y)/transform.zoom;
   const targetKind=canvas.dataset.spellTarget;const pickUnits=canvas.dataset.spellMode&&['ally','teleport','sacrifice'].includes(targetKind||'')?units.filter(u=>u.owner===0):canvas.dataset.spellMode&&targetKind==='enemy'?units.filter(u=>u.owner===1):units;const nearby=battlePick(pickUnits,positions,{x,y},camera,selected!==undefined,portrait,mirrorBackground);
   if(canvas.dataset.spellMode){
-   if(canvas.dataset.spellMode==='target'){const target=nearby||[...corpses.values()].find(u=>Math.hypot(x-bodyPoint(u).x,y-bodyPoint(u).y)<45);const at=target&&targetKind!=='ground'?(positions.get(target.id)||target):undefined;canvas.dispatchEvent(new CustomEvent('crossover-spell-target',{detail:{stack:target?.stackId,owner:target?.owner,hp:target?.hp,x:at?at.x-camera.x:x,y:at?at.y-camera.y:y}}));}return;
+   if(canvas.dataset.spellMode==='target'){const eligible=JSON.parse(canvas.dataset.spellTargets||'[]') as number[];const fallen=[...units.filter(u=>u.hp<=0),...corpses.values()].filter(u=>!revivedBodies.has(u.id)&&(!canvas.dataset.revive||canvas.dataset.revive!=='true'||eligible.includes(u.stackId!)));const deadPick=fallen.find(u=>Math.hypot(x-(u.x-camera.x),y-(u.y-camera.y))<35||Math.hypot(x-bodyPoint(u).x,y-bodyPoint(u).y)<40);const target=canvas.dataset.revive==='true'?(deadPick||nearby):(nearby||deadPick);const at=target&&targetKind!=='ground'?(positions.get(target.id)||target):undefined;canvas.dispatchEvent(new CustomEvent('crossover-spell-target',{detail:{stack:target?.stackId,owner:target?.owner,hp:target?.hp,x:at?at.x-camera.x:x,y:at?at.y-camera.y:y}}));}return;
   }
   if(nearby?.owner===0){select(nearby.stackId!);return;}
   if(selected===undefined){notifySelection();return;}

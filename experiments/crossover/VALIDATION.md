@@ -102,3 +102,12 @@ Les archives distribuées sont les trois MPQ issus du paquet Blizzard demandé, 
 ## Limites
 
 Pas de validation sur un iPhone/iPad physique. Les tests WebKit sont exécutés sur ordinateur. Pas de sauvegarde/reprise d’un combat RTS interrompu, de replay du scénario délégué ou de multijoueur. Le mode est limité aux batailles solo de terrain compatibles, à 32 groupes et 128 unités par camp. La publication utilise le projet GitHub Pages séparé `heroes-starcraft`. Les sprites originaux sont lissés et agrandis ; ce ne sont pas des images HD de remplacement.
+
+## Correction portée, résurrection et continuité — 15 novembre 2026
+
+- `ninja -j32 html5`, reconstruction OpenBW, TypeScript, `prepare:web`, `build:web` et `verify:web` réussis ; 43 tests du crossover et 695 tests Heroes réussis (46 ignorés).
+- Chromium et WebKit : tir réel du Master of Thunder à 596 pixels, déplacement inférieur à 80 pixels avant les dégâts, projectile Heroes dessiné ; pixels non transparents du projectile vérifiés sous WebKit. Démo, livre natif et bascule disponibles sur PC.
+- Chromium et WebKit : déplacement réel de l’Antéchrist, huit images de mouvement visibles, position conservée après RTS → case classique → RTS.
+- Chromium et WebKit : mort réelle sous Anneau de froid, sélection « Mort · Réanimer », Résurrection du héros, invocations, boucliers Protoss et animations de dégâts. Blessures et mana conservés après des tours classiques réels ; le test attend la réception du paquet de mana du serveur.
+- Chromium et WebKit mobiles DPR 3 : préparation annulable et reprise ; pas de transfert d’image de plus de 1 769 472 pixels, pas de chargement massif des effets de sorts, une lecture de chaque MPQ par hôte.
+- La reprise automatique d’une interruption audio respecte le silence choisi, l’arrière-plan et la destruction du contexte ; test de régression unitaire.

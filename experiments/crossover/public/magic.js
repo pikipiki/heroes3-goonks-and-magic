@@ -6,7 +6,7 @@ export function magicController(win, api, plan, onEffects) {
     let lastGroups = [];
     const opening = api.census().units.filter(u => u.stackId !== undefined && u.stackId >= 0), mean = (owner) => { const rows = opening.filter(u => u.owner === owner); return rows.reduce((sum, u) => sum + u.x, 0) / Math.max(1, rows.length); }, mirrored = mean(0) > mean(1);
     const toField = (x) => mirrored ? 799 - x : x;
-    const positions = new Map();
+    const positions = new Map(plan.stacks.filter(s => s.x !== undefined && s.y !== undefined).map(s => [s.id, { x: s.x, y: s.y }]));
     let reconciling = false;
     // Keep the deadline active until presentation finishes, not just until the native reply arrives.
     const receive = (event) => {

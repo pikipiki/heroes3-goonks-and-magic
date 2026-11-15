@@ -157,3 +157,6 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu]>.mobile-play { gr
 #crossover-arena[data-transferring] :is(.field,aside,#crossover-cancel){pointer-events:none;opacity:.65}
 
 #crossover-field[hidden]{display:none}
+
+#crossover-desktop{position:fixed;top:0;left:0;right:0;min-height:48px;z-index:10;display:flex;gap:12px;align-items:center;padding:4px 12px;background:#211c15;color:#f0e3bf}#crossover-desktop button{min-height:40px;padding:6px 16px;background:#51452d;color:#fff0c8;border:1px solid #b29963;border-radius:6px}#crossover-desktop small{display:none}body.crossover-desktop #canvas{margin-top:56px;height:calc(100% - 56px)}#crossover-friendly-targets [data-dead=true]{border:2px solid #efd47b}#crossover-friendly-targets button:disabled{opacity:.45}.army-card.eliminated{opacity:.65;border-style:dashed}.army-card.eliminated strong{font-size:16px}
+#crossover-desktop{padding-left:72px}#crossover-desktop [hidden]{display:none!important}

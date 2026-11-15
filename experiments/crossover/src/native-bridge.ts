@@ -1,7 +1,7 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
 import {STARCRAFT_UNITS,validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
 export type CreatureSoundKind='attack'|'hit'|'death'|`spell:${number}`;
-export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;hp256?:number;shields256?:number;shields?:number;maxShields?:number;order?:number;cooldown?:number; x: number; y: number};
+export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;hp256?:number;shields256?:number;shields?:number;maxShields?:number;order?:number;cooldown?:number;target?:number; x: number; y: number};
 export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
 export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
 export type NativeSample = {frame: number; checksum: number; outcome: number; cohort?: NativeCohort};
@@ -60,7 +60,7 @@ type NativeExports = {
 export function setupNativeBattle(x: NativeExports,memory: WebAssembly.Memory,plan: BattlePlan): void {
  validateBattlePlan(plan);
  if(!x.openbw_crossover_setup)throw Error('Passerelle native de combat absente.');
- const rows=new Int32Array(plan.stacks.flatMap(row=>[row.id,row.side,row.unit,row.count,row.heroes?1:0,row.health||40,row.damageMin??6,row.damageMax??6,row.defense??0,row.speed||5,row.shooter?1:0,row.attack??0,row.firstHp??row.health??40,row.maxCount??row.count]));
+ const rows=new Int32Array(plan.stacks.flatMap(row=>[row.id,row.side,row.unit,row.count,row.heroes?1:0,row.health||40,row.damageMin??6,row.damageMax??6,row.defense??0,row.speed||5,row.shooter?1:0,row.attack??0,row.firstHp??row.health??40,row.maxCount??row.count,row.x??-1,row.y??-1]));
  const pointer=x.openbw_in_ptr(rows.byteLength);
  new Uint8Array(memory.buffer,pointer,rows.byteLength).set(new Uint8Array(rows.buffer));
  if(x.openbw_crossover_setup(plan.battleId,plan.stacks.length)!==1)throw Error('Placement des armées StarCraft impossible. Reprends le combat Heroes.');

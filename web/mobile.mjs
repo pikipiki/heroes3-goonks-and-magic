@@ -32,6 +32,8 @@ import {createWogOptions} from './wog-options.mjs';
 import {getLanguage,translate} from './i18n.mjs';
 import {creaturePortrait,paintCreaturePortraits} from './creature-portraits.mjs';
 import {createMobileSpellbook} from './spellbook.mjs';
+window.goonkCreateCombatSpellbook=createMobileSpellbook;
+
 import {createMageGuild} from './mage-guild.mjs';
 import {createActionFeedback} from './action-feedback.mjs';
 import {renderArmyPanel} from './army-panel.mjs';
@@ -163,7 +165,7 @@ function mount(){
  const townServices=createTownServices({root,command});
  const caveBuilder=createCaveBuilder({root,command});
  const creatureView=createCreaturePresentation({root,command,pointer,openRecruit,buildingArt:(state,building)=>townBuildings.artURL(state,building),openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
- window.goonkCreateCombatSpellbook=createMobileSpellbook;
+
  const spellbook=createMobileSpellbook({root,command});
  const spellShortcuts=createBattleSpellShortcuts({root,command,notify});
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});

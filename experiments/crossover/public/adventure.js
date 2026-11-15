@@ -87,8 +87,20 @@ export function installAdventure(target, base, onExit, trial = false) {
         });
         return warmPromise;
     };
+    const desktop = doc.createElement('nav');
+    desktop.id = 'crossover-desktop';
+    desktop.setAttribute('aria-label', 'Heroes × StarCraft');
     const cancelled = new Set();
     const mountControls = () => {
+        const nativeDesktop = !doc.querySelector('#mobile-app');
+        if (nativeDesktop) {
+            if (!desktop.isConnected)
+                doc.body.append(desktop);
+            desktop.append(demo, realTime, modeStatus);
+            doc.body.classList.add('crossover-desktop');
+            demo.hidden = !['menu', 'map'].includes(latestMode);
+            realTime.hidden = latestMode !== 'battle';
+        }
         const home = doc.querySelector('#mobile-app .mobile-menu[data-kind="menu"]');
         if (home && !home.contains(demo)) {
             const first = home.querySelector('[data-action="20"]');
@@ -166,7 +178,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         })().catch(error => { if (epoch !== switchEpoch)
             return; switchPending = false; realTime.disabled = !canSwitch; modeStatus.textContent = String(error); });
     };
-    const closePanel = () => { returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app'); if (nativeApp)
+    const closePanel = () => { returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app') || doc.querySelector('#canvas'); if (nativeApp)
         nativeApp.inert = false; const hadEngine = !!frame; sceneDispose?.(); sceneDispose = undefined; const host = frame?.contentWindow; host?.openbwDisposeCrossover?.(); if (timer !== undefined)
         win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (hadEngine) {
         assetsReady = false;
@@ -187,7 +199,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.hidden = false;
         doc.body.append(panel);
         panel.querySelector('#crossover-field').hidden = true;
-        const nativeApp = doc.querySelector('#mobile-app');
+        const nativeApp = doc.querySelector('#mobile-app') || doc.querySelector('#canvas');
         if (nativeApp)
             nativeApp.inert = true;
         panel.querySelector('iframe').remove();
@@ -266,14 +278,31 @@ export function installAdventure(target, base, onExit, trial = false) {
         const api = () => activeFrame.contentWindow.openbwCrossover;
         let magic;
         const friendlyTargets = panel.querySelector('#crossover-friendly-targets');
-        const showFriendlyTargets = () => { friendlyTargets.replaceChildren(); friendlyTargets.hidden = !armedSpell || !['ally', 'creature', 'teleport', 'sacrifice'].includes(armedSpell.target); if (friendlyTargets.hidden)
-            return; for (const row of activePlan.stacks.filter(s => s.side === 0)) {
-            const button = doc.createElement('button');
-            button.type = 'button';
-            button.textContent = row.name;
-            button.onclick = () => { const living = api().census().units.filter(u => u.stackId === row.id && u.hp > 0), point = magic.position(row.id) || { x: 400, y: 250 }; canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { stack: row.id, owner: 0, hp: living.reduce((sum, u) => sum + u.hp, 0), x: point.x, y: point.y } })); };
-            friendlyTargets.append(button);
-        } };
+        const showFriendlyTargets = () => {
+            friendlyTargets.replaceChildren();
+            const spell = armedSpell;
+            friendlyTargets.hidden = !spell || !['ally', 'creature', 'teleport', 'sacrifice'].includes(spell.target);
+            if (!spell)
+                return;
+            canvas.dataset.revive = spell.targets ? 'true' : '';
+            canvas.dataset.spellTargets = JSON.stringify(spell.targets || []);
+            if (friendlyTargets.hidden)
+                return;
+            const census = api().census().units;
+            for (const row of activePlan.stacks.filter(s => s.side === 0)) {
+                const living = census.filter(u => u.stackId === row.id && u.hp > 0), dead = living.length === 0;
+                const eligible = !spell.targets || spell.targets.includes(row.id);
+                const button = doc.createElement('button');
+                button.type = 'button';
+                button.dataset.reviveTarget = String(row.id);
+                button.dataset.dead = String(dead);
+                button.disabled = !eligible;
+                button.textContent = (dead ? '✝ Mort · ' : '') + row.name + (dead && eligible && spell.targets ? ' · Réanimer' : '');
+                button.title = eligible ? 'Choisir cette troupe' : spell.reason || 'Cette troupe ne peut pas recevoir ce sort (puissance, nature ou immunité).';
+                button.onclick = () => { const point = magic.position(row.id) || { x: row.x ?? 400, y: row.y ?? 250 }; canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { stack: row.id, owner: 0, hp: living.reduce((sum, u) => sum + u.hp, 0), x: point.x, y: point.y } })); };
+                friendlyTargets.append(button);
+            }
+        };
         // Sound decoding is presentation work: it must never hold a combat transfer open.
         const onMagicResponse = async (response) => { if (panel !== activePanel)
             return; catalogue = response.catalogue; for (const group of response.groups) {
@@ -312,7 +341,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         sceneDispose = () => { mediaAbort.abort(); stopKeys(); magic?.dispose(); oldDispose?.(); };
         const available = () => (catalogue?.spells || []).filter(s => s.caster < 0 || chosen === undefined || chosen < 0 || s.caster === chosen);
         const finishChoice = (cast) => { if (panel !== activePanel || returningToClassic)
-            return; choosingSpell = false; bookRoot.hidden = true; activePanel.classList.remove('choosing-spell', 'using-shortcut'); editing = false; editingSlot = undefined; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; armedSpell = undefined; teleportTarget = undefined; picker.hidden = true; friendlyTargets.hidden = true; activePanel.querySelector('aside').scrollTop = 0; delete canvas.dataset.spellMode; delete canvas.dataset.spellTarget; if (cast || !wasPaused) {
+            return; choosingSpell = false; bookRoot.hidden = true; activePanel.classList.remove('choosing-spell', 'using-shortcut'); editing = false; editingSlot = undefined; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; armedSpell = undefined; teleportTarget = undefined; picker.hidden = true; friendlyTargets.hidden = true; activePanel.querySelector('aside').scrollTop = 0; delete canvas.dataset.spellMode; delete canvas.dataset.spellTarget; delete canvas.dataset.revive; delete canvas.dataset.spellTargets; if (cast || !wasPaused) {
             api().start();
             start.hidden = true;
         } updateSelection(); };
@@ -412,7 +441,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         } };
         quickButtons.forEach((button, index) => button.onclick = () => { void quickCast(index); });
         const hotkey = (event) => { if (activePanel.hidden)
-            return; event.stopImmediatePropagation(); if (event.key === 'Escape' && choosingSpell) {
+            return; audio(); event.stopImmediatePropagation(); if (event.key === 'Escape' && choosingSpell) {
             event.preventDefault();
             if (editing)
                 cancelSpell.click();
@@ -592,7 +621,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                                     opponents += group.survivors;
                                 const count = enemyCards.get(group.id);
                                 if (count && count.textContent !== String(group.survivors))
-                                    count.textContent = String(group.survivors);
+                                    count.textContent = group.survivors ? String(group.survivors) : '✝ Éliminés';
+                                count?.parentElement?.classList.toggle('eliminated', group.survivors === 0);
                             }
                         }
                         opponents = native.groups.filter(g => g.side === 1 && effectiveOwners.get(g.id) !== 0).reduce((sum, g) => sum + g.survivors, 0);
@@ -628,6 +658,8 @@ export function installAdventure(target, base, onExit, trial = false) {
         const state = event.detail;
         if (!state || disposed)
             return;
+        if (!doc.querySelector('#mobile-app'))
+            win.goonkMobileState = state;
         latestMode = state.mode;
         latestBattleId = state.battleId ?? -1;
         canSwitch = !!state.canStartCrossover;
@@ -645,9 +677,10 @@ export function installAdventure(target, base, onExit, trial = false) {
         latestOnline = !!state.onlineGame;
         latestTurn = !!state.turn;
         mountControls();
-        demo.disabled = !assetsReady || !!state.onlineGame || trial || state.mode !== 'menu';
-        menuDemo.hidden = toggle.hidden = state.mode !== 'map';
-        menuDemo.disabled = !assetsReady || !!state.onlineGame || checkpoint || !state.turn;
+        demo.disabled = !assetsReady || !!state.onlineGame || trial || !['menu', 'map'].includes(state.mode);
+        menuDemo.hidden = !['menu', 'map'].includes(state.mode);
+        toggle.hidden = state.mode !== 'map';
+        menuDemo.disabled = !assetsReady || !!state.onlineGame || checkpoint || (state.mode !== 'menu' && !state.turn);
         toggle.disabled = !!state.onlineGame || !state.turn;
         menuDemo.textContent = isDemo ? 'Rejouer la démo' : 'Démo Heroes × StarCraft';
         if (state.mode === 'menu') {
@@ -754,6 +787,6 @@ export function installAdventure(target, base, onExit, trial = false) {
     mountControls();
     void prepareEngine().catch(() => { });
     return () => { disposed = true; ++switchEpoch; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); warmFrame?.remove(); if (settingsButton)
-        doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton); for (const node of [demo, menuDemo, toggle, realTime, modeStatus, mainStatus, menuStatus, style])
+        doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton); doc.body.classList.remove('crossover-desktop'); desktop.remove(); for (const node of [demo, menuDemo, toggle, realTime, modeStatus, mainStatus, menuStatus, style])
         node.remove(); };
 }

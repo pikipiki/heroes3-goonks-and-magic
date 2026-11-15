@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
+fs.copyFileSync(root+'../../web/audio-recovery.mjs',root+'public/audio-recovery.mjs');
 let js=fs.readFileSync(root+'vendor/openbw/web/openbw.js','utf8');
 const replace=(from,to)=>{if(!js.includes(from))throw Error('Upstream anchor missing: '+from.slice(0,70));js=js.replace(from,to);};
 replace("const DEV = BUILD.startsWith('__') || location.hostname === 'localhost' || location.hostname === '127.0.0.1';",'const DEV = false;');
@@ -19,10 +20,11 @@ replace('if (DEV) window.__bw = null;','crossoverApi.close();');
 // audio explicitly before its owner releases the frame.
 replace("  addEventListener('pagehide', () => {\n    clearTimeout(stepTimer);", "  const disposeCrossover=()=>{\n    if(crossoverDisposed)return;crossoverDisposed=true;paused=true;clearTimeout(stepTimer);clearTimeout(resizeTimer);");
 replace('  let audioCtx = null, masterGain = null;', '  let crossoverDisposed=false;\n  let audioCtx = null, masterGain = null;');
-replace('    if (audioCtx) { audioCtx.resume(); return; }', '    if(crossoverDisposed)return;\n    if (audioCtx) { audioCtx.resume(); return; }');
+replace('    if (audioCtx) { audioCtx.resume(); return; }', '    if(crossoverDisposed)return;\n    if (audioCtx) { void recovery.resume(); return; }');
+replace('    masterGain = audioCtx.createGain();', '    configurePlaybackSession(navigator);recovery.observe();\n    masterGain = audioCtx.createGain();');
 replace('      soundBuffers[id] = b;', '      if(crossoverDisposed)return;\n      soundBuffers[id] = b;');
 replace('try { if (audioCtx) audioCtx.close(); } catch {}', 'try { if (audioCtx) void audioCtx.close().catch(()=>{}); } catch {}');
-replace("    crossoverApi.close();\n  });", "    crossoverApi.close();\n    removeEventListener('pointerdown',ensureAudio);removeEventListener('keydown',ensureAudio);\n    soundBuffers.length=0;soundChannels.length=0;\n    for(const id of Object.keys(pendingWavs))delete pendingWavs[id];\n    for(const id of Object.keys(pendingPlay))delete pendingPlay[id];\n    creatureSounds.clear();creaturePlayed.clear();creatureSoundLoads.clear();\n  };\n  window.openbwDisposeCrossover=disposeCrossover;\n  addEventListener('pagehide',disposeCrossover,{once:true});");
+replace("    crossoverApi.close();\n  });", "    crossoverApi.close();\n    removeEventListener('pointerdown',ensureAudio);removeEventListener('keydown',ensureAudio);recovery.dispose();removeEventListener('focus',recoverVisible);removeEventListener('pageshow',recoverVisible);document.removeEventListener('visibilitychange',recoverVisible);\n    soundBuffers.length=0;soundChannels.length=0;\n    for(const id of Object.keys(pendingWavs))delete pendingWavs[id];\n    for(const id of Object.keys(pendingPlay))delete pendingPlay[id];\n    creatureSounds.clear();creaturePlayed.clear();creatureSoundLoads.clear();\n  };\n  window.openbwDisposeCrossover=disposeCrossover;\n  addEventListener('pagehide',disposeCrossover,{once:true});");
 
 replace("  hb('boot:engine-init');\n  x._initialize();", "  hb('boot:engine-init');\n  x._initialize();\n  x.openbw_crossover_arena?.(session.crossover?1:0);");
 replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(x,memory,session.crossover);\n  hb('boot:engine-ready');");
@@ -35,7 +37,9 @@ js=js.replaceAll('x.openbw_init_mp(...winSize(),','x.openbw_init_mp(...nativeSiz
 replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
 replace('let paused = false, waiting = false, stepMs = 42;', 'let paused = !!session.crossover, waiting = false, stepMs = 42;');
 replace('  pauseBtn.onclick = () => {', '  crossoverApi.pause=()=>{paused=true;applyPause();x.openbw_set_paused?.(1);}; crossoverApi.isPaused=()=>paused; crossoverApi.tickDuration = () => stepMs; crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };\n  pauseBtn.onclick = () => {');
-replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureAudio();return audioCtx?audioCtx.resume():Promise.reject(Error('Audio indisponible.'));};
+replace('  pauseBtn.onclick = () => {', `  const recovery=createAudioRecovery({getContext:()=>audioCtx,isMuted:()=>muted,shouldResume:()=>!crossoverDisposed&&document.visibilityState!=='hidden',prepareOutput:()=>configurePlaybackSession(navigator)});
+  const recoverVisible=()=>{if(document.visibilityState!=='hidden')void recovery.resume();};addEventListener('focus',recoverVisible);addEventListener('pageshow',recoverVisible);document.addEventListener('visibilitychange',recoverVisible);
+  crossoverApi.enableAudio=()=>{ensureAudio();return recovery.resume().then(ok=>{if(!ok&&!muted)throw Error('Audio interrompu.');});};
   crossoverApi.setMuted=value=>{muted=!!value;try{localStorage.setItem('openbw-muted',muted?'1':'0');}catch{}applyMute();};
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
   const creatureSounds=new Map(),creaturePlayed=new Map(),creatureSoundLoads=new Map();
@@ -97,6 +101,7 @@ fs.mkdirSync(root+'public/starcraft/maps',{recursive:true});
 const data=fileURLToPath(new URL('../../../game-data/starcraft/',import.meta.url));
 fs.rmSync(root+'public/starcraft/data',{recursive:true,force:true});
 if(fs.existsSync(data+'manifest.json'))fs.cpSync(data,root+'public/starcraft/data',{recursive:true});
+js="import {createAudioRecovery,configurePlaybackSession} from '../audio-recovery.mjs';\n"+js;
 fs.writeFileSync(root+'public/starcraft/openbw.js',js.replace(/[ \t]+$/gm,''));
 const net=fs.readFileSync(root+'vendor/openbw/web/net.js','utf8');
 const lockstep=net.indexOf('export class Lockstep');

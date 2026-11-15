@@ -103,7 +103,7 @@ int crossover_weapon_contact(bwgame::unit_t* target,bwgame::unit_t* source,int d
  return damage;
 }
 OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int count) {
-  if(!g_ui || count<2 || count>32 || (g_inbuf.size()!=size_t(count*16) && g_inbuf.size()!=size_t(count*48) && g_inbuf.size()!=size_t(count*56)))return 0;
+  if(!g_ui || count<2 || count>32 || (g_inbuf.size()!=size_t(count*16) && g_inbuf.size()!=size_t(count*48) && g_inbuf.size()!=size_t(count*56) && g_inbuf.size()!=size_t(count*64)))return 0;
   const auto* rows=reinterpret_cast<const int32_t*>(g_inbuf.data());
   const int stride=g_inbuf.size()/count/4;
   int totals[2]={0,0};
@@ -111,7 +111,7 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
     const auto* row=rows+i*stride;
     if(row[0]<0 || row[1]<0 || row[1]>1 || (row[2]!=0 && row[2]!=32 && row[2]!=37 && row[2]!=38 && row[2]!=65 && row[2]!=66) || row[3]<0 || row[3]>128)return 0;
     if(stride>=12 && (row[4]<0 || row[4]>1 || row[5]<1 || row[5]>10000 || row[6]<0 || row[7]<row[6] || row[7]>10000 || row[8]<0 || row[8]>1000 || row[9]<1 || row[9]>100 || row[10]<0 || row[10]>1))return 0;
-    if(stride==14&&(row[12]<0||row[12]>row[5]||row[13]<row[3]||row[13]>128))return 0;
+    if(stride>=14&&(row[12]<0||row[12]>row[5]||row[13]<row[3]||row[13]>128))return 0;
     totals[row[1]]+=row[3];
   }
   if(totals[0]<1 || totals[1]<1 || totals[0]>128 || totals[1]>128)return 0;
@@ -142,6 +142,7 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
         type.armor_upgrade=bwgame::UpgradeTypes::unk_18;type.hitpoints=bwgame::fp8::integer(row[5]);type.has_shield=false;type.flags=bwgame::unit_type_t::flags_t(uint32_t(type.flags)&~uint32_t(bwgame::unit_type_t::flag_regens_hp));type.armor=row[8]/4;
         weapon.damage_amount=(row[6]+row[7]+1)/2;weapon.damage_bonus=0;
         weapon.damage_type=bwgame::weapon_type_t::damage_type_normal;
+        weapon.max_range=row[10]?640:32;
         weapon.cooldown=std::max(12,std::min(48,160/row[9]));
         type.ground_weapon=&weapon;type.air_weapon=row[10]?&weapon:nullptr;
       }
@@ -156,10 +157,12 @@ OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int 
       const int index=placed[row[1]]++;
       // Five lanes keep each five-creature cohort together and upright sprites legible when the field is projected vertically.
       const int lanes=5;const bool compact=totals[0]>35||totals[1]>12;const int fieldX=compact?60+row[1]*420+(index%8)*24:row[1]?680-(index/lanes)*70:60+(index/lanes)*70,fieldY=compact?125+(index/8)*20:50+(index%lanes)*100;
-      const bwgame::xy at=crossover_camera+bwgame::xy(direction>0?fieldX:799-fieldX,fieldY);
+      const bool positioned=stride>=16&&row[14]>=0&&row[14]<800&&row[15]>=0&&row[15]<500;
+      const int px=positioned?row[14]+(row[3]>1?(j%3-1)*20:0):fieldX,py=positioned?row[15]+(row[3]>1?(j/3)*20:0):fieldY;
+      const bwgame::xy at=crossover_camera+bwgame::xy(px,py);
       auto* unit=g_ui->trigger_create_unit(definition,at,row[1]);
       if(!unit){crossover_battle=-1;return 0;}
-      if(stride==14&&j==0&&row[3]>0&&row[12]<row[5]){int missing=row[5]-row[12];if(unit->unit_type->has_shield){const int shieldLoss=std::min(missing,unit->shield_points.integer_part());unit->shield_points-=bwgame::fp8::integer(shieldLoss);missing-=shieldLoss;}if(missing>0)unit->hp=std::max(bwgame::fp8::from_raw(1),unit->hp-bwgame::fp8::integer(missing));}
+      if(stride>=14&&j==0&&row[3]>0&&row[12]<row[5]){int missing=row[5]-row[12];if(unit->unit_type->has_shield){const int shieldLoss=std::min(missing,unit->shield_points.integer_part());unit->shield_points-=bwgame::fp8::integer(shieldLoss);missing-=shieldLoss;}if(missing>0)unit->hp=std::max(bwgame::fp8::from_raw(1),unit->hp-bwgame::fp8::integer(missing));}
       if(group.heroes){unit->status_flags&=~(bwgame::unit_t::status_flag_speed_upgrade|bwgame::unit_t::status_flag_cooldown_upgrade);g_ui->update_unit_speed(unit);}
       if(group.owner==0)g_ui->issue_order(unit,false,g_ui->get_order_type(bwgame::Orders::Nothing),{});
       group.ids.push_back(g_ui->get_unit_id(unit));
@@ -224,7 +227,7 @@ OPENBW_EXPORT(openbw_crossover_apply_magic) int openbw_crossover_apply_magic(int
   const int maximum=std::max(1,r[4]-shieldMaximum),desiredHealth=r[20]?0:r[3],desiredCount=r[20]?0:r[2];
   d.type.hitpoints=bwgame::fp8::integer(maximum);d.type.armor=d.baseArmor;d.weapon.damage_amount=d.baseDamage;d.weapon.damage_bonus=group->heroes?0:d.base->ground_weapon->damage_bonus;d.weapon.damage_type=d.base->ground_weapon->damage_type;
   if(!r[10])d.weapon.max_range=std::min(32,d.base->ground_weapon->max_range);
-  else d.weapon.max_range=d.base->ground_weapon->max_range;
+  else d.weapon.max_range=group->heroes?640:d.base->ground_weapon->max_range;
   if(r[1]==0)d.type.human_ai_idle=d.type.computer_ai_idle=d.type.return_to_idle=g_ui->get_order_type(bwgame::Orders::Nothing);
   d.type.ground_weapon=&d.weapon;d.type.air_weapon=r[10]?&d.weapon:nullptr;d.movementScale=r[26];d.disabled=r[13]&1;d.berserk=r[13]&2;d.cloned=r[13]&4;d.shooting=r[10];d.luck=r[23];d.morale=r[24];d.retaliations=r[25];d.melee=r[15];d.ranged=r[16];d.fire=r[17];
   std::sort(live.begin(),live.end(),[](auto* a,auto* b){return a->hp<b->hp;});
@@ -276,8 +279,8 @@ OPENBW_EXPORT(openbw_crossover_census) const char* openbw_crossover_census() {
     comma = true;
     int stack=-1;bool heroes=false;
     for(const auto& group:crossover_groups)for(auto id:group.ids)if(id==g_ui->get_unit_id(unit)){stack=group.stack;heroes=group.heroes;}
-    out += bwgame::format("{\"stackId\":%d,\"heroes\":%s,\"maxHp\":%d,\"shields\":%d,\"maxShields\":%d,\"order\":%d,\"cooldown\":%d,\"id\":%u,\"type\":%d,\"owner\":%d,\"completed\":%s,\"hp\":%d,\"hp256\":%d,\"shields256\":%d,\"x\":%d,\"y\":%d}",
-      stack,heroes?"true":"false",unit->unit_type->hitpoints.integer_part(),unit->unit_type->has_shield?unit->shield_points.integer_part():0,unit->unit_type->has_shield?unit->unit_type->shield_points:0,int(unit->order_type->id),int(unit->ground_weapon_cooldown),(unsigned)g_ui->get_unit_id(unit).raw_value,(int)unit->unit_type->id,owner,
+    out += bwgame::format("{\"stackId\":%d,\"heroes\":%s,\"maxHp\":%d,\"shields\":%d,\"maxShields\":%d,\"order\":%d,\"cooldown\":%d,\"target\":%u,\"id\":%u,\"type\":%d,\"owner\":%d,\"completed\":%s,\"hp\":%d,\"hp256\":%d,\"shields256\":%d,\"x\":%d,\"y\":%d}",
+      stack,heroes?"true":"false",unit->unit_type->hitpoints.integer_part(),unit->unit_type->has_shield?unit->shield_points.integer_part():0,unit->unit_type->has_shield?unit->unit_type->shield_points:0,int(unit->order_type->id),int(unit->ground_weapon_cooldown),unit->order_target.unit?(unsigned)g_ui->get_unit_id(unit->order_target.unit).raw_value:0,(unsigned)g_ui->get_unit_id(unit).raw_value,(int)unit->unit_type->id,owner,
       g_ui->u_completed(unit)?"true":"false",unit->hp.ceil().integer_part(),int(unit->hp.raw_value),unit->unit_type->has_shield?int(unit->shield_points.raw_value):0,unit->sprite->position.x,unit->sprite->position.y);
   }
   out += "]}";

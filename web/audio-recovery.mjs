@@ -19,25 +19,26 @@ export function repairSDLAudio(module,{rebuild=false}={}){
   return true;
  }catch{return false;}
 }
-export function createAudioRecovery({getContext,isMuted,onChange=()=>{},prepareOutput=()=>{}}){
- let watched=null,attempt=0,last='';
+export function createAudioRecovery({getContext,isMuted,onChange=()=>{},prepareOutput=()=>{},shouldResume=()=>true}){
+ let watched=null,attempt=0,last='',disposed=false;
+ const stateChanged=()=>{observe();if(!disposed&&shouldResume()&&!isMuted()&&watched&&['suspended','interrupted'].includes(watched.state))void control.resume();};
  const report=(phase,error='')=>{const key=phase+error;if(key!==last){last=key;onChange({phase,error});}};
  const observe=()=>{
-  const ctx=getContext();if(ctx!==watched){watched?.removeEventListener?.('statechange',observe);watched=ctx;ctx?.addEventListener?.('statechange',observe);}
+  const ctx=getContext();if(ctx!==watched){watched?.removeEventListener?.('statechange',stateChanged);watched=ctx;ctx?.addEventListener?.('statechange',stateChanged);}
   const phase=isMuted()?'muted':!ctx?'loading':ctx.state==='running'?'running':ctx.state==='closed'?'closed':'paused';report(phase);return phase;
  };
- return{observe,async resume({repair=false}={}){
-  const ctx=getContext();if(isMuted()){observe();return false;}try{prepareOutput({repair});}catch{}if(!ctx||ctx.state==='closed'){observe();return false;}if(ctx.state==='running'){observe();return true;}
+ const control={observe,dispose(){disposed=true;++attempt;watched?.removeEventListener?.('statechange',stateChanged);watched=null;},async resume({repair=false}={}){
+  if(disposed)return false;const ctx=getContext();if(isMuted()){observe();return false;}try{prepareOutput({repair});}catch{}if(!ctx||ctx.state==='closed'){observe();return false;}if(ctx.state==='running'){observe();return true;}
   const token=++attempt;
   try{
    // Call resume synchronously in the gesture handler, before the first await.
    // Retry on later gestures even if an earlier browser-blocked promise hangs.
    await ctx.resume();if(token!==attempt)return ctx.state==='running'&&!isMuted();observe();return ctx.state==='running'&&!isMuted();
   }catch(error){if(token===attempt)report('paused',String(error?.message||error));return false;}
- }};
+ }};return control;
 }
 export function installAudioRecovery({getModule=()=>window.Module,isMuted,onChange,doc=document,win=window}){
- const audio=createAudioRecovery({getContext:()=>getModule()?.SDL2?.audioContext,isMuted,onChange,prepareOutput:({repair})=>{configurePlaybackSession(win.navigator);repairSDLAudio(getModule(),{rebuild:repair});}});
+ const audio=createAudioRecovery({getContext:()=>getModule()?.SDL2?.audioContext,isMuted,onChange,shouldResume:()=>doc.visibilityState!=='hidden',prepareOutput:({repair})=>{configurePlaybackSession(win.navigator);repairSDLAudio(getModule(),{rebuild:repair});}});
  const gesture=()=>{void audio.resume();},visible=()=>{if(doc.visibilityState!=='hidden')gesture();};
  for(const event of ['pointerdown','pointerup','touchend','click','keydown'])doc.addEventListener(event,gesture,{capture:true,passive:true});
  doc.addEventListener('visibilitychange',visible);win.addEventListener('pageshow',visible);win.addEventListener('focus',visible);
