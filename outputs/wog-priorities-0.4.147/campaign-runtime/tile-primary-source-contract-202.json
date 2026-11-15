@@ -1,0 +1,917 @@
+{
+  "schemaVersion": 1,
+  "feature": "UN:O selects the primary object on the queried tile",
+  "evidenceType": "Static inspection of supplied pinned WoG3.58f PE, corroborated by native original quest; no Windows execution",
+  "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "observations": [
+    {
+      "range": "0x4aa820..0x4aa86f",
+      "claim": "Native removal reads MapItem DrawNum at offset0x24, rather than looking up objects by anchor."
+    },
+    {
+      "range": "0x505c60..0x506055",
+      "claim": "Tile primary selection prefers visitable mask, then blocked footprint of entrance types, then other blocked footprints, then River Delta124. Ground decals with no visit/block bit are skipped."
+    },
+    {
+      "range": "0x40fc00..0x40fc47",
+      "claim": "Preferred blocked types are17,20,33,42,53,77,87,98."
+    },
+    {
+      "range": "0x505880..0x505ab6",
+      "claim": "Ties depend on the original draw list and occlusion depth, not simply the instance number."
+    }
+  ],
+  "originalQuest": {
+    "program": "zc1-1",
+    "position": [
+      30,
+      12,
+      0
+    ],
+    "objects": [
+      "resource_495",
+      "crater_463"
+    ],
+    "finding": "The Rogue quest deletes gold on a tile also occupied by a purely decorative crater. Previous anchor uniqueness refused this valid original call. The resource is now selected and the Rogue cavern awards the real spellbook."
+  },
+  "limitations": [
+    "Original draw-order ties in the same priority phase remain rejected explicitly.",
+    "Literal-call static inventory excludes computed coordinates and newly created objects.",
+    "Other campaign battles, victories and transfers are not certified by this fix."
+  ],
+  "literalCallAmbiguities": [
+    {
+      "program": "zc1-0",
+      "ambiguous": [
+        {
+          "position": [
+            56,
+            9,
+            0
+          ],
+          "line": 411,
+          "selected": [
+            {
+              "name": "mine_1895",
+              "type": "mine",
+              "anchor": [
+                58,
+                10
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "town_1896",
+              "type": "town",
+              "anchor": [
+                56,
+                9
+              ],
+              "bit": "B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "program": "zc1-1",
+      "ambiguous": []
+    },
+    {
+      "program": "zc1-2",
+      "ambiguous": []
+    },
+    {
+      "program": "zc2-0",
+      "ambiguous": []
+    },
+    {
+      "program": "zc2-1",
+      "ambiguous": [
+        {
+          "position": [
+            69,
+            71,
+            1
+          ],
+          "line": 584,
+          "selected": [
+            {
+              "name": "lake_2709",
+              "type": "lake",
+              "anchor": [
+                73,
+                72
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "monolithOneWayEntrance_2700",
+              "type": "monolithOneWayEntrance",
+              "anchor": [
+                69,
+                71
+              ],
+              "bit": "B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "program": "zc2-2",
+      "ambiguous": []
+    },
+    {
+      "program": "zc3-0",
+      "ambiguous": [
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 4,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 5,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 6,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 7,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 8,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 9,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 10,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 11,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 12,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 13,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 14,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 15,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            29,
+            58,
+            0
+          ],
+          "line": 16,
+          "selected": [
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_215",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_216",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_217",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_218",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        },
+        {
+          "position": [
+            28,
+            58,
+            0
+          ],
+          "line": 17,
+          "selected": [
+            {
+              "name": "rock_1556",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_1557",
+              "type": "rock",
+              "anchor": [
+                28,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_214",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            },
+            {
+              "name": "rock_2272",
+              "type": "rock",
+              "anchor": [
+                29,
+                58
+              ],
+              "bit": "B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "program": "zc4-0",
+      "ambiguous": []
+    },
+    {
+      "program": "zc4-1",
+      "ambiguous": []
+    },
+    {
+      "program": "zc4-2",
+      "ambiguous": []
+    },
+    {
+      "program": "zc4-3",
+      "ambiguous": []
+    }
+  ]
+}

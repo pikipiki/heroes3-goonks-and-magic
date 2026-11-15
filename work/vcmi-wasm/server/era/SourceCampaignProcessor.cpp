@@ -1026,9 +1026,27 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   {
    const int clearDescription=args.size()>3?number(args[3]):0,refresh=args.size()>4?number(args[4]):1;
    require(clearDescription==0||clearDescription==1,"invalid description removal flag");require(refresh==1,"deferred object refresh not admitted");
+   std::array<std::vector<const CGObjectInstance *>,4> primary;
+   for(const auto & obj:map.objects)if(obj&&obj->ID!=Obj::HERO&&obj->appearance)
+   {
+    // Original tile rebuild 0x505c60: visit bits first; then the blocking
+    // footprint of the eight entrance-bearing types; then other blockers.
+    // Pure ground decals do not acquire DrawNum. River Delta is a fallback.
+    if(obj->visitableAt(anchor))primary[0].push_back(obj.get());
+    else if(obj->blockingAt(anchor))
+    {
+     const int type=int(identity(obj.get()).ID);
+     const bool entrance=type==17||type==20||type==33||type==42||type==53||type==77||type==87||type==98;
+     primary[entrance?1:2].push_back(obj.get());
+    }
+    else if(obj->coveringAt(anchor)&&identity(obj.get()).ID==Obj(124))primary[3].push_back(obj.get());
+   }
    const CGObjectInstance * target=nullptr;
-   for(const auto & obj:map.objects)if(obj&&obj->anchorPos()==anchor&&obj->ID!=Obj::HERO)
-   {require(target==nullptr,"ambiguous object anchor needs source selection validation");target=obj.get();}
+   for(const auto & layer:primary)if(!layer.empty())
+   {
+    require(layer.size()==1,"ambiguous primary drawing order needs source selection validation");
+    target=layer.front();break;
+   }
    if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities","leftTroops"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
    if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(anchor));
    if(clearDescription)for(const auto & field:{"objectDescriptions","objectAccessPositions"})if(!state[field].isNull())state[field].Struct().erase(era_campaign_hints::positionKey(anchor));
