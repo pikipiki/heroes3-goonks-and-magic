@@ -1,4 +1,4 @@
-import {opaqueBounds,smoothSprite2x,spritePlacement,COMBAT_BODY_HEIGHT,type SpriteBounds} from './sprite-scale.js';
+import {opaqueBounds,smoothSprite2x,spritePlacement,starcraftPlacement,COMBAT_BODY_HEIGHT,type SpriteBounds} from './sprite-scale.js';
 import {RenderClock,RenderDensity,SimulationTimeline,interpolatedPosition,attackCycle,heroAnimation,type AttackCycle} from './animation.js';
 import type {BattlePlan} from './battle.js';
 import type {NativeBridge,NativeUnit} from './native-bridge.js';
@@ -49,7 +49,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const backdrop=win.document.createElement('canvas');let backdropSource:HTMLCanvasElement|undefined,backdropKey='';
  let portrait=false,density=1;let mirrorBackground=false;
  const upright=():void=>{if(portrait)context.transform(0,1,mirrorBackground?1:-1,0,0,0);};
- const bodyPoint=(unit:NativeUnit):{x:number;y:number}=>({x:unit.x-camera.x+(portrait?(mirrorBackground?-45:45):0),y:unit.y-camera.y-(portrait?0:45)});
+ const bodyPoint=(unit:NativeUnit):{x:number;y:number}=>{const bounds=starBounds.get(unit.id),height=unit.heroes?COMBAT_BODY_HEIGHT:bounds?bounds.height*starcraftPlacement(bounds).scale:48,centre=height/2;return {x:unit.x-camera.x+(portrait?(mirrorBackground?-centre:centre):0),y:unit.y-camera.y-(portrait?0:centre)};};
  let camera={x:0,y:0},marker:{x:number;y:number;target?:number;attack:boolean;at:number}|undefined;
  const draw=(now:number):void=>{
   if(closed)return;request=win.requestAnimationFrame(draw);if(!clock.due(now))return;const vertical=win.innerWidth<win.innerHeight,nextDensity=resolution.sample(now,canvas.clientWidth,vertical?500:800,win.devicePixelRatio||1);
@@ -125,9 +125,9 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
     context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
     const marineBlend=pair.blend,marineContext=marineBlend.getContext('2d')!;marineContext.clearRect(0,0,384,384);marineContext.globalAlpha=1-amount;marineContext.drawImage(pair.before,0,0);
     marineContext.globalCompositeOperation='lighter';marineContext.globalAlpha=amount;marineContext.drawImage(pair.after,0,0);marineContext.globalCompositeOperation='source-over';
-    const hitUntil=hits.get(unit.id)||0,recoil=hitUntil>now?Math.sin((1-(hitUntil-now)/320)*Math.PI)*7:0;const bounds=starBounds.get(unit.id)||{x:0,y:0,width:384,height:384},place=spritePlacement(bounds);bodyHeight=bounds.height*place.scale;context.drawImage(marineBlend,x+place.x+recoil,y+5+place.y,384*place.scale,384*place.scale);
+    const hitUntil=hits.get(unit.id)||0,recoil=hitUntil>now?Math.sin((1-(hitUntil-now)/320)*Math.PI)*7:0;const bounds=starBounds.get(unit.id)||{x:0,y:0,width:384,height:384},place=starcraftPlacement(bounds);bodyHeight=bounds.height*place.scale;context.drawImage(marineBlend,x+place.x+recoil,y+5+place.y,384*place.scale,384*place.scale);
    }
-   const hitUntil=hits.get(unit.id)||0;if(hitUntil>now){const age=1-(hitUntil-now)/320;context.strokeStyle='#fff0be';context.globalAlpha=1-age;context.lineWidth=2;for(let i=0;i<7;i++){const angle=i*Math.PI*2/7,r=8+age*27;context.beginPath();context.moveTo(x+Math.cos(angle)*r,y-45+Math.sin(angle)*r);context.lineTo(x+Math.cos(angle)*(r+7),y-45+Math.sin(angle)*(r+7));context.stroke();}context.globalAlpha=1;}
+   const hitUntil=hits.get(unit.id)||0;if(hitUntil>now){const age=1-(hitUntil-now)/320;context.strokeStyle='#fff0be';context.globalAlpha=1-age;context.lineWidth=2;for(let i=0;i<7;i++){const angle=i*Math.PI*2/7,r=8+age*27;context.beginPath();context.moveTo(x+Math.cos(angle)*r,y-bodyHeight/2+Math.sin(angle)*r);context.lineTo(x+Math.cos(angle)*(r+7),y-bodyHeight/2+Math.sin(angle)*(r+7));context.stroke();}context.globalAlpha=1;}
    const damage=damageText.get(unit.id);if(damage&&now-damage.at<850){const age=(now-damage.at)/850;context.globalAlpha=1-age;context.font='bold 20px sans-serif';context.textAlign='center';context.fillStyle='#ffe5bf';context.fillText('−'+Number(damage.amount.toFixed(1)).toLocaleString('fr-FR'),x,y-bodyHeight-8-age*30);context.globalAlpha=1;}
    if(unit.hp<=0){const canRaise=canvas.dataset.revive==='true'&&JSON.parse(canvas.dataset.spellTargets||'[]').includes(unit.stackId);context.globalAlpha=.95;context.fillStyle=canRaise?'#ffe39a':'#201713';context.strokeStyle=canRaise?'#ffe39a':'#ffb19d';context.lineWidth=3;context.beginPath();context.ellipse(0,4,25,12,0,0,Math.PI*2);context.fill();context.stroke();context.font='bold 15px sans-serif';context.textAlign='center';context.fillStyle=canRaise?'#211a10':'#ffe6db';context.fillText(canRaise?'Réanimer':'✝',0,9);continue;}
    const width=34,barY=y-bodyHeight-5,hp=Math.max(0,Math.min(1,(unit.hp256??unit.hp*256)/((unit.maxHp||unit.hp)*256)));
@@ -136,7 +136,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    }finally{context.restore();}
   }
   if(marker&&now-marker.at<1000){
-   const target=marker.target===undefined?undefined:positions.get(marker.target),mx=target?target.x-camera.x:marker.x,my=target?target.y-camera.y-(portrait?0:45):marker.y;
+   const targetId=marker.target,actor=targetId===undefined?undefined:units.find(u=>u.id===targetId),aim=actor?bodyPoint({...actor,...positions.get(actor.id)}):undefined,mx=aim?.x??marker.x,my=aim?.y??marker.y;
    const age=(now-marker.at)/1000,r=14+Math.sin(age*Math.PI*4)*4;context.globalAlpha=1-age*.7;context.strokeStyle=marker.attack?'#ff735f':'#9feeab';context.lineWidth=3;context.beginPath();context.arc(mx,my,r,0,Math.PI*2);context.moveTo(mx-r-8,my);context.lineTo(mx-5,my);context.moveTo(mx+5,my);context.lineTo(mx+r+8,my);context.moveTo(mx,my-r-8);context.lineTo(mx,my-5);context.moveTo(mx,my+5);context.lineTo(mx,my+r+8);context.stroke();context.globalAlpha=1;
   }
   while(shots.length&&now-shots[0].at>380)shots.shift();for(const shot of shots){const age=now-shot.at,t=Math.min(1,age/180),x=shot.from.x+(shot.to.x-shot.from.x)*t,y=shot.from.y+(shot.to.y-shot.from.y)*t;const clip=spellArt?.rows.find(c=>c.id===200000+shot.stack&&c.kind==='weapon');if(clip)drawClip(clip,x,y,age*2,100);}

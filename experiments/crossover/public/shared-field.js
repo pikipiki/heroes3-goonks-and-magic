@@ -1,4 +1,4 @@
-import { opaqueBounds, smoothSprite2x, spritePlacement, COMBAT_BODY_HEIGHT } from './sprite-scale.js';
+import { opaqueBounds, smoothSprite2x, spritePlacement, starcraftPlacement, COMBAT_BODY_HEIGHT } from './sprite-scale.js';
 import { RenderClock, RenderDensity, SimulationTimeline, interpolatedPosition, attackCycle, heroAnimation } from './animation.js';
 // Frame the opening armies once, so the camera stays steady during combat.
 export function battleView(units, camera) {
@@ -55,7 +55,7 @@ export function sharedField(win, canvas, api, plan) {
     let mirrorBackground = false;
     const upright = () => { if (portrait)
         context.transform(0, 1, mirrorBackground ? 1 : -1, 0, 0, 0); };
-    const bodyPoint = (unit) => ({ x: unit.x - camera.x + (portrait ? (mirrorBackground ? -45 : 45) : 0), y: unit.y - camera.y - (portrait ? 0 : 45) });
+    const bodyPoint = (unit) => { const bounds = starBounds.get(unit.id), height = unit.heroes ? COMBAT_BODY_HEIGHT : bounds ? bounds.height * starcraftPlacement(bounds).scale : 48, centre = height / 2; return { x: unit.x - camera.x + (portrait ? (mirrorBackground ? -centre : centre) : 0), y: unit.y - camera.y - (portrait ? 0 : centre) }; };
     let camera = { x: 0, y: 0 }, marker;
     const draw = (now) => {
         if (closed)
@@ -327,7 +327,7 @@ export function sharedField(win, canvas, api, plan) {
                     marineContext.drawImage(pair.after, 0, 0);
                     marineContext.globalCompositeOperation = 'source-over';
                     const hitUntil = hits.get(unit.id) || 0, recoil = hitUntil > now ? Math.sin((1 - (hitUntil - now) / 320) * Math.PI) * 7 : 0;
-                    const bounds = starBounds.get(unit.id) || { x: 0, y: 0, width: 384, height: 384 }, place = spritePlacement(bounds);
+                    const bounds = starBounds.get(unit.id) || { x: 0, y: 0, width: 384, height: 384 }, place = starcraftPlacement(bounds);
                     bodyHeight = bounds.height * place.scale;
                     context.drawImage(marineBlend, x + place.x + recoil, y + 5 + place.y, 384 * place.scale, 384 * place.scale);
                 }
@@ -340,8 +340,8 @@ export function sharedField(win, canvas, api, plan) {
                     for (let i = 0; i < 7; i++) {
                         const angle = i * Math.PI * 2 / 7, r = 8 + age * 27;
                         context.beginPath();
-                        context.moveTo(x + Math.cos(angle) * r, y - 45 + Math.sin(angle) * r);
-                        context.lineTo(x + Math.cos(angle) * (r + 7), y - 45 + Math.sin(angle) * (r + 7));
+                        context.moveTo(x + Math.cos(angle) * r, y - bodyHeight / 2 + Math.sin(angle) * r);
+                        context.lineTo(x + Math.cos(angle) * (r + 7), y - bodyHeight / 2 + Math.sin(angle) * (r + 7));
                         context.stroke();
                     }
                     context.globalAlpha = 1;
@@ -389,7 +389,7 @@ export function sharedField(win, canvas, api, plan) {
             }
         }
         if (marker && now - marker.at < 1000) {
-            const target = marker.target === undefined ? undefined : positions.get(marker.target), mx = target ? target.x - camera.x : marker.x, my = target ? target.y - camera.y - (portrait ? 0 : 45) : marker.y;
+            const targetId = marker.target, actor = targetId === undefined ? undefined : units.find(u => u.id === targetId), aim = actor ? bodyPoint({ ...actor, ...positions.get(actor.id) }) : undefined, mx = aim?.x ?? marker.x, my = aim?.y ?? marker.y;
             const age = (now - marker.at) / 1000, r = 14 + Math.sin(age * Math.PI * 4) * 4;
             context.globalAlpha = 1 - age * .7;
             context.strokeStyle = marker.attack ? '#ff735f' : '#9feeab';

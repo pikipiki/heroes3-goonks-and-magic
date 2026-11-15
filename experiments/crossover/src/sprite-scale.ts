@@ -15,3 +15,8 @@ export function smoothSprite2x(bytes:Uint8Array,width:number,height:number,outpu
  }return pixels;
 }
 export function spritePlacement(bounds:SpriteBounds,targetHeight=COMBAT_BODY_HEIGHT):{scale:number;x:number;y:number}{const scale=targetHeight/Math.max(1,bounds.height,bounds.width);return {scale,x:-(bounds.x+bounds.width/2)*scale,y:-(bounds.y+bounds.height)*scale};}
+
+// One common pixel scale preserves the native relationship between species.
+// OpenBW's 96px extraction is cached at 4x; do not normalize each silhouette.
+export const STARCRAFT_NATIVE_SCALE=1.5;
+export function starcraftPlacement(bounds:SpriteBounds):{scale:number;x:number;y:number}{const scale=STARCRAFT_NATIVE_SCALE/4;return {scale,x:-(bounds.x+bounds.width/2)*scale,y:-(bounds.y+bounds.height)*scale};}

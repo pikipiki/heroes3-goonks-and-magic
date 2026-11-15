@@ -78,7 +78,8 @@
     "description": "StarCraft unit adapted to Heroes III turns: native initiative, movement, attacks, ammunition, retaliation, damage and spells. Maximum test upgrades are reflected in its Heroes statistics.",
     "sound": {
       "attack": "crossover/firebat-attack.wav",
-      "shoot": "crossover/firebat-attack.wav"
+      "shoot": "crossover/firebat-attack.wav",
+      "killed": "crossover/firebat-death.wav"
     }
   },
   "zergling": {

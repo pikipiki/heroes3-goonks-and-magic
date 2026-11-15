@@ -1,6 +1,7 @@
 import {createAudioRecovery,configurePlaybackSession} from '../audio-recovery.mjs';
 import {loadArchives, installArchiveImport} from '../local-assets.js';
 import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
+import {compiledEngine} from '../preparation.js';
 // web/openbw.js — browser host for the OpenBW sandbox wasm module.
 //
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
@@ -1655,6 +1656,6 @@ async function runLocalGame(session) {
 
 const archivesReady=installArchiveImport();
 let prepared;
-function prepareCrossover(){return prepared??=(async()=>{await archivesReady;const assets=await loadAssets(MAP_LOCAL);const response=await fetch('./openbw.wasm?v='+BUILD);if(!response.ok)throw Error('Moteur StarCraft indisponible.');const module=await WebAssembly.compileStreaming(response);return {assets,module};})().catch(error=>{prepared=undefined;throw error;});}
+function prepareCrossover(){return prepared??=(async()=>{const owner=parent!==window?parent:window;const key=new URL('./openbw.wasm?v='+BUILD,location.href).href;const compilation=compiledEngine(owner,key,async()=>{const response=await owner.fetch(key);if(!response.ok)throw Error('Moteur StarCraft indisponible.');return owner.WebAssembly.compileStreaming(response);});const [assets,module]=await Promise.all([loadAssets(MAP_LOCAL),compilation]);return {assets,module};})().catch(error=>{prepared=undefined;throw error;});}
 window.openbwPrepareCrossover=prepareCrossover;
 window.openbwLaunchCrossover=async(plan)=>{await prepareCrossover();document.getElementById('controls').style.display='none';document.getElementById('opt-resign').hidden=true;await runLocalGame({slots:[{slot:0,race:1},{slot:1,race:1}],mySlot:0,delay:0,mapFile:MAP_LOCAL,crossover:plan});if(!window.openbwCrossover)throw Error(document.getElementById('msg').textContent);};

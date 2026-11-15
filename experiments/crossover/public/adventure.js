@@ -44,6 +44,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     const closeMenu = () => { doc.querySelector('#game-menu')?.close(); };
     let enabled = true, configured = false, disposed = false, plan, frame, panel, timer, sent = false, starting = false, selected = false, autoAttack = false, isDemo = trial, latestMode = '', checkpoint = false, sceneDispose;
     let settingsButton, latestOnline = false, latestTurn = false;
+    let preparationNotice;
     let warmFrame, warmPromise, assetsReady = false;
     const prepareEngine = () => {
         if (warmPromise)
@@ -178,12 +179,15 @@ export function installAdventure(target, base, onExit, trial = false) {
         })().catch(error => { if (epoch !== switchEpoch)
             return; switchPending = false; realTime.disabled = !canSwitch; modeStatus.textContent = String(error); });
     };
-    const closePanel = () => { returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app') || doc.querySelector('#canvas'); if (nativeApp)
+    const closePanel = () => { preparationNotice?.remove(); preparationNotice = undefined; returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app') || doc.querySelector('#canvas'); if (nativeApp)
         nativeApp.inert = false; const hadEngine = !!frame; sceneDispose?.(); sceneDispose = undefined; const host = frame?.contentWindow; host?.openbwDisposeCrossover?.(); if (timer !== undefined)
         win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (hadEngine) {
         assetsReady = false;
         realTime.textContent = '▶ Temps réel';
         realTime.disabled = !canSwitch;
+    } if (hadEngine && !doc.querySelector('#mobile-app') && win.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+        win.setTimeout(() => { if (!disposed && !frame && !warmPromise && ['battle', 'map', 'menu'].includes(latestMode))
+            void prepareEngine().catch(() => { }); }, 250);
     } };
     const begin = (value) => {
         if (plan?.battleId === value.battleId || cancelled.has(value.battleId))
@@ -196,8 +200,15 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
         panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Continuer ce combat au tour par tour">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="command-console"><div class="precombat-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-loadout" disabled>Préparer 5 sorts</button></div><div class="battle-actions sc-command-grid"><button id="crossover-move" disabled>↗<small>Déplacer</small></button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>■<small>Arrêter</small></button><button class="quick-slot" data-quick-slot="0" disabled><kbd>1</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 1</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="1" disabled><kbd>2</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 2</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="2" disabled><kbd>3</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 3</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="3" disabled><kbd>4</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 4</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="4" disabled><kbd>5</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 5</small><span class="quick-cost"></span></button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><div class="console-utility"><button id="crossover-spells" disabled>Tous les sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-loadout-slots" hidden></div><div id="crossover-spell-options"></div><div id="crossover-friendly-targets" hidden></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><p>Terrans, Zergs et Protoss : armes et armures 3/3, boucliers 3.</p><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis un sort du héros ou d’une créature, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
-        panel.hidden = false;
+        panel.hidden = true;
         doc.body.append(panel);
+        preparationNotice = doc.createElement('section');
+        preparationNotice.id = 'crossover-preparing';
+        preparationNotice.setAttribute('role', 'status');
+        preparationNotice.innerHTML = '<p>Préparation du combat en temps réel…</p><progress aria-label="Préparation du combat"></progress><button>Annuler</button>';
+        doc.body.append(preparationNotice);
+        const notice = preparationNotice;
+        notice.querySelector('button').onclick = () => panel?.querySelector('#crossover-cancel')?.click();
         panel.querySelector('#crossover-field').hidden = true;
         const nativeApp = doc.querySelector('#mobile-app') || doc.querySelector('#canvas');
         if (nativeApp)
@@ -550,7 +561,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                 const sc = await prepared;
                 if (!sc.openbwLaunchCrossover)
                     throw Error('Chargement de StarCraft incomplet.');
-                await waitForBattleArt(win, activePlan.battleId, mediaAbort.signal, (done, total) => { status.textContent = `Préparation des animations : ${done}/${total}`; progress.max = Math.max(1, total); progress.value = done; });
+                await waitForBattleArt(win, activePlan.battleId, mediaAbort.signal, (done, total) => { status.textContent = `Préparation des animations : ${done}/${total}`; progress.max = Math.max(1, total); progress.value = done; notice.querySelector('p').textContent = status.textContent; const bar = notice.querySelector('progress'); bar.max = Math.max(1, total); bar.value = done; });
                 if (panel !== activePanel)
                     return;
                 await sc.openbwLaunchCrossover(activePlan);
@@ -583,6 +594,9 @@ export function installAdventure(target, base, onExit, trial = false) {
                     return;
                 canvas.hidden = false;
                 panel.hidden = false;
+                notice.remove();
+                if (preparationNotice === notice)
+                    preparationNotice = undefined;
                 timer = win.setInterval(() => {
                     if (returningToClassic)
                         return;
@@ -648,6 +662,9 @@ export function installAdventure(target, base, onExit, trial = false) {
             catch (e) {
                 if (panel !== activePanel)
                     return;
+                notice.remove();
+                if (preparationNotice === notice)
+                    preparationNotice = undefined;
                 activePanel.hidden = false;
                 progress.hidden = true;
                 status.textContent = String(e) + ' Tu peux reprendre le combat classique.';

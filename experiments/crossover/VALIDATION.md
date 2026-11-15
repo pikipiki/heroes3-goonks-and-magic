@@ -117,3 +117,16 @@ Pas de validation sur un iPhone/iPad physique. Les tests WebKit sont exécutés 
 Le rendu utilisait la liste des cases de collision pour redessiner l’image complète de l’obstacle sur chacune d’elles. Le terrain RTS dessine maintenant une seule image par obstacle, dimensionnée sur son emprise, derrière les combattants. La synchronisation initiale transmet les obstacles au rendu avant d’afficher le terrain, y compris lors du premier lancement de la démo.
 
 `tests/obstacles-browser.mjs` vérifie avec Chromium et WebKit qu’un véritable obstacle de huit cases est dessiné une seule fois par image et qu’il est présent dès l’image native zéro, avant l’affichage du terrain. Portrait et paysage inspectés ; les 43 tests du crossover, `verify:web` et le parcours complet de magie sous Chromium passent.
+
+## Proportions StarCraft et transitions — 15 novembre 2026
+
+Les six espèces utilisent 1,5 pixel logique par pixel natif, au lieu d’être toutes agrandies à un gabarit de 88. Les animations classiques ont été réextraites du même OpenBW/MPQ vérifié, dans une page isolée par espèce, et gardent le même ancrage et la même échelle dans toutes leurs poses. Le catalogue de preuve inclut les dimensions natives. Le rendu RTS et le centre des impacts suivent cette échelle.
+
+La compilation du moteur démarre en parallèle avec la lecture/vérification des archives et est réutilisée entre hôtes. Ses objets appartiennent à la fenêtre principale, pour ne pas retenir le contexte d’un iframe détruit. Le cache ne contient pas de mémoire de simulation ni de MPQ. Sur mobile, le retour classique retire toujours l’hôte complet ; sur PC à pointeur fin, le prochain hôte prépare uniquement ses données, sans instancier de simulation. L’écran Heroes reste affiché pendant la préparation annulable, jusqu’à ce que le terrain RTS soit prêt.
+
+- 47 tests du crossover et 695 tests Heroes réussis (46 ignorés) ; TypeScript et `verify:web` réussis.
+- Chromium et WebKit, DPR 3 : proportions Marine/Dragoon dans les deux modes, captures portrait/paysage, écran classique conservé pendant la préparation ; une compilation pour deux instances successives, trois lectures d’archives vérifiées par hôte, objets compilés dans la fenêtre principale.
+- Chromium et WebKit : annulation de la préparation, reprise, limites des transferts d’image conservées.
+- Chromium PC : projectile réel du Master of Thunder et préchargement classique sans deuxième simulation.
+- WebKit : deux bascules avec retour pendant une réponse magique et décodage audio bloqué, sans reprise intempestive ni rechargement du jeu.
+- Dossier Pages : 998 975 736 octets. Les sprites restent les originaux classiques, sans ressources HD de remplacement.

@@ -1,5 +1,10 @@
 {
   "marine": {
+    "nativeBounds": {
+      "width": 17,
+      "height": 25
+    },
+    "nativeScale": 1.5,
     "frames": {
       "idle": {
         "count": 8,
@@ -23,6 +28,11 @@
     ]
   },
   "firebat": {
+    "nativeBounds": {
+      "width": 19,
+      "height": 30
+    },
+    "nativeScale": 1.5,
     "frames": {
       "idle": {
         "count": 8,
@@ -34,16 +44,24 @@
       },
       "attack": {
         "count": 16,
-        "distinct": 6
+        "distinct": 8
       },
       "death": {
         "count": 12,
         "distinct": 8
       }
     },
-    "sounds": []
+    "sounds": [
+      "attack",
+      "death"
+    ]
   },
   "zergling": {
+    "nativeBounds": {
+      "width": 28,
+      "height": 21
+    },
+    "nativeScale": 1.5,
     "frames": {
       "idle": {
         "count": 8,
@@ -67,6 +85,11 @@
     ]
   },
   "hydralisk": {
+    "nativeBounds": {
+      "width": 39,
+      "height": 34
+    },
+    "nativeScale": 1.5,
     "frames": {
       "idle": {
         "count": 8,
@@ -90,6 +113,11 @@
     ]
   },
   "zealot": {
+    "nativeBounds": {
+      "width": 22,
+      "height": 31
+    },
+    "nativeScale": 1.5,
     "frames": {
       "idle": {
         "count": 8,
@@ -113,6 +141,11 @@
     ]
   },
   "dragoon": {
+    "nativeBounds": {
+      "width": 37,
+      "height": 48
+    },
+    "nativeScale": 1.5,
     "frames": {
       "idle": {
         "count": 8,
@@ -124,7 +157,7 @@
       },
       "attack": {
         "count": 16,
-        "distinct": 5
+        "distinct": 6
       },
       "death": {
         "count": 12,
