@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.187",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive contains later changes; selected mask writes are corroborated in the pinned original3.58f binary."
+  },
+  "analysis": "Ordinary bounded LLVM disassembly and pinned archive inspection; no Windows execution or external binary upload. Earlier REA evidence remains retained, with Hopper bridge unavailable.",
+  "boundedAssemblySha256": {
+    "terrainPE": "a47548a34a40f01ff205dcd334b458237f20e6eb468e464c91f91c0f08db8ba3"
+  },
+  "observations": [
+    {
+      "address": "0x738346..0x7383a6",
+      "fact": "TR:P queries inverted blocked bit0x01 through Apply; zero sets the blocked bit, any nonzero result clears it."
+    },
+    {
+      "address": "0x7383d1..0x738438",
+      "fact": "TR:E similarly reads/writes the inverted entrance-disable bit0x10 independently of the blocked bit."
+    }
+  ],
+  "originalUsage": {
+    "P": 49,
+    "E": 39,
+    "T_unadmitted": 76,
+    "maskArguments": {
+      "P1": 44,
+      "P0": 5,
+      "E0": 34,
+      "E1": 3,
+      "E_query": 2
+    },
+    "coordinateSelectors": {
+      "explicit3": 86,
+      "indirect1": 2
+    }
+  },
+  "implementation": [
+    "Source terrain mutations use actual native tile block/visit masks, preserve suspended object IDs, retain appearance and permit later restoration. Moving native heroes temporarily occupy the scripted cell without restoring its suspended background objects.",
+    "Native object/source lookup can still find an entrance-suppressed object; removed or moved objects are not resurrected on restoration. Guard zones and client paths are recomputed after mask changes.",
+    "New save feature905 serializes forced masks and suspended object IDs. Versions901..904 initialize the added fields to their ordinary defaults."
+  ],
+  "limitations": [
+    "Native proof covers an empty forced-blocked cell, an existing resource and a monster whose entry is disabled; it does not establish every object class or original quest.",
+    "TR:T/G/V and logical plot-object retyping remain unadmitted. Connecting synthetic entrances on decorative/non-visitable cells still requires the original plot-object dispatch.",
+    "No original Windows random sequence or execution equivalence is claimed. Campaigns remain disabled until their complete quests, combats and victories are validated."
+  ]
+}

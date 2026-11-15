@@ -15,6 +15,7 @@
 #include "../mapping/CCastleEvent.h"
 #include "../networkPacks/SourceCampaignChange.h"
 #include "../entities/ResourceTypeHandler.h"
+#include "EraCampaignTerrainRule.h"
 #include <stdexcept>
 #include <set>
 #include <algorithm>
@@ -42,6 +43,27 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="terrainAccess")
+  {
+   const int3 position(campaignInteger(change["x"]),campaignInteger(change["y"]),campaignInteger(change["z"]));
+   if(!gs.getMap().isInTheMap(position)||!change["enabled"].isBool())throw std::runtime_error("Invalid original terrain mutation");
+   auto & tile=gs.getMap().getTile(position);const bool enabled=change["enabled"].Bool();const auto & operation=change["operation"].String();
+   if(operation=="P")
+   {
+    if(enabled)era_campaign_terrain::hide(tile.blockingObjects,tile.sourceHiddenBlockingObjects);
+    else era_campaign_terrain::restore(tile.blockingObjects,tile.sourceHiddenBlockingObjects,[&](ObjectInstanceID id){const auto * obj=gs.getObj(id);return obj&&obj->blockingAt(position);});
+    tile.sourceForceBlocked=!enabled;
+   }
+   else if(operation=="E")
+   {
+    if(!enabled)era_campaign_terrain::hide(tile.visitableObjects,tile.sourceHiddenVisitableObjects);
+    else era_campaign_terrain::restore(tile.visitableObjects,tile.sourceHiddenVisitableObjects,[&](ObjectInstanceID id){const auto * obj=gs.getObj(id);return obj&&obj->visitableAt(position);});
+    tile.sourceForceVisitable=enabled;
+   }
+   else throw std::runtime_error("Invalid original terrain operation");
+   gs.getMap().calculateGuardingGreaturePositions(position-int3(1,1,0),position+int3(1,1,0));
+   continue;
+  }
   if(kind=="playerKey")
   {
    const PlayerColor color(campaignInteger(change["player"]));const int key=campaignInteger(change["color"]);

@@ -171,7 +171,7 @@ EDiggingStatus TerrainTile::getDiggingStatus(const bool excludeTop) const
 		return EDiggingStatus::WRONG_TERRAIN;
 
 	int allowedBlocked = excludeTop ? 1 : 0;
-	if(blockingObjects.size() > allowedBlocked || topVisitableObj(excludeTop).hasValue())
+	if(sourceForceBlocked || blockingObjects.size() > allowedBlocked || topVisitableObj(excludeTop).hasValue())
 		return EDiggingStatus::TILE_OCCUPIED;
 	else
 		return EDiggingStatus::CAN_DIG;
@@ -218,6 +218,8 @@ void CMap::hideObject(CGObjectInstance * obj)
 				TerrainTile & curt = getTile(int3(xVal, yVal, zVal));
 				curt.visitableObjects -= obj->id;
 				curt.blockingObjects -= obj->id;
+				curt.sourceHiddenVisitableObjects -= obj->id;
+				curt.sourceHiddenBlockingObjects -= obj->id;
 			}
 		}
 	}

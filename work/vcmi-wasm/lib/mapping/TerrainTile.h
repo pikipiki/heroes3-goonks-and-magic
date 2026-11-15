@@ -66,6 +66,11 @@ struct DLL_LINKAGE TerrainTile
 
 	std::vector<ObjectInstanceID> visitableObjects;
 	std::vector<ObjectInstanceID> blockingObjects;
+	// TR:P/E alter cell masks without deleting the objects or their appearance.
+	bool sourceForceBlocked = false;
+	bool sourceForceVisitable = false;
+	std::vector<ObjectInstanceID> sourceHiddenBlockingObjects;
+	std::vector<ObjectInstanceID> sourceHiddenVisitableObjects;
 
 	template<typename Handler>
 	void serialize(Handler & h)
@@ -77,6 +82,13 @@ struct DLL_LINKAGE TerrainTile
 		h & roadType;
 		h & roadDir;
 		h & extTileFlags;
+		if(h.hasFeature(Handler::Version::GOONK_CAMPAIGN_TERRAIN))
+		{
+			h & sourceForceBlocked;
+			h & sourceForceVisitable;
+			h & sourceHiddenBlockingObjects;
+			h & sourceHiddenVisitableObjects;
+		}
 
 		if(h.hasFeature(Handler::Version::NO_RAW_POINTERS_IN_SERIALIZER))
 		{
@@ -113,12 +125,12 @@ inline bool TerrainTile::isLand() const
 
 inline bool TerrainTile::visitable() const
 {
-	return !visitableObjects.empty();
+	return sourceForceVisitable || !visitableObjects.empty();
 }
 
 inline bool TerrainTile::blocked() const
 {
-	return !blockingObjects.empty();
+	return sourceForceBlocked || !blockingObjects.empty();
 }
 
 inline bool TerrainTile::hasRiver() const

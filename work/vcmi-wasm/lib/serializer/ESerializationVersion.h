@@ -66,9 +66,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_SOURCE_CAMPAIGNS, // persisted source scenario scripts and continuations
 
 	GOONK_CAMPAIGN_CARRYOVER, // campaign-scoped original ERM persistent variables
+	GOONK_CAMPAIGN_TERRAIN, // original scripted tile masks and suspended object masks
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_CAMPAIGN_CARRYOVER,
+	CURRENT = GOONK_CAMPAIGN_TERRAIN,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

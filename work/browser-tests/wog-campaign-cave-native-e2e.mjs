@@ -32,7 +32,7 @@ async function saveAs(name,token){
  await cmd(34,token);
  await wait(prior=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime()>prior}catch{return false}},prior);
  const bytes=Buffer.from(await page.evaluate(()=>Array.from(Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1'))));
- assert.equal(bytes.readInt32LE(4),904);fs.writeFileSync(path.join(out,name+'.vsgm1'),bytes);return bytes;
+ assert.equal(bytes.readInt32LE(4),905);fs.writeFileSync(path.join(out,name+'.vsgm1'),bytes);return bytes;
 }
 async function finishLever(question){
  assert.equal(question.dialogKind,'source-campaign');assert(question.dialogPresentation.queryId>=0);assert(question.autosaveAllowed);
@@ -130,7 +130,7 @@ try{
  await cmd(34,170);await wait(()=>Module.FS.analyzePath('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').exists);
  const save=Buffer.from(await page.evaluate(()=>Array.from(Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1'))));
  fs.writeFileSync(path.join(out,'cave-start.vsgm1'),save);
- assert.equal(save.subarray(0,4).toString(),'VCMI');assert.equal(save.readInt32LE(4),904);
+ assert.equal(save.subarray(0,4).toString(),'VCMI');assert.equal(save.readInt32LE(4),905);
  assert(save.includes(Buffer.from('source-campaign-state-v1')),'Real game save contains native campaign state');
  assert(save.includes(Buffer.from('cave-gerfrex')),'Save is bound to the original Cave program');
  const cases={};

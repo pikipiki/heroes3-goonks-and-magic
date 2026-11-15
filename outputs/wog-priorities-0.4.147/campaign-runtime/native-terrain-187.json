@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.187",
+  "engineSha256": "e01076737ff5c7d6a765e275d59cce52bf63c51c7bf1b0f12fa3fccddc324ce8",
+  "saveVersion": 905,
+  "originalCampaignsEnabled": false,
+  "sourceContract": "terrain-source-contract-187.json",
+  "nativeChecks": [
+    {
+      "case": "terrain-final",
+      "passed": true,
+      "resultSha256": "880b50b3f8b4f9fda30b721857dc18d8396b7cdf2bc677add6b2943fa08555ac",
+      "loadedPending": false,
+      "fixtureSha256": "1484e91b3132a978be524fdcf3c75c924173213e8717f8e2e8913582abbb1c1e",
+      "mapSha256": "08afe59a69c3edbe964bfb95bf1611be8b41a88f5e581d6b15a140b1576d6eb7",
+      "dialogs": [
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native terrain locked 0/0; resource 1/0/79; guard 54"
+            ],
+            "queryId": 3,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native passage opened 1/0; resource 1/0/79; guard 54"
+            ],
+            "queryId": 7,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        },
+        {
+          "day": 2,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native walked terrain 1/0; resource 1/0/79; guard 54"
+            ],
+            "queryId": 17,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 2,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native resource restored 0/1/79"
+            ],
+            "queryId": 21,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        }
+      ],
+      "initialRouteBlocked": true,
+      "openedRouteExists": true,
+      "crossedGold": 20001,
+      "collectedGold": 21002
+    },
+    {
+      "case": "terrain-final-reload",
+      "passed": true,
+      "resultSha256": "cefb6b25ee673c0cafbb2e17b681a90333b5e407757c3cc6ccf4e477a84c5085",
+      "loadedPending": true,
+      "fixtureSha256": "1484e91b3132a978be524fdcf3c75c924173213e8717f8e2e8913582abbb1c1e",
+      "mapSha256": "08afe59a69c3edbe964bfb95bf1611be8b41a88f5e581d6b15a140b1576d6eb7",
+      "dialogs": [
+        {
+          "day": 1,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native passage opened 1/0; resource 1/0/79; guard 54"
+            ],
+            "queryId": 9,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 2,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native walked terrain 1/0; resource 1/0/79; guard 54"
+            ],
+            "queryId": 19,
+            "title": "Game message"
+          }
+        },
+        {
+          "day": 2,
+          "presentation": {
+            "cancel": false,
+            "lines": [
+              "Native resource restored 0/1/79"
+            ],
+            "queryId": 23,
+            "title": "Game message",
+            "visitedObject": "Gold"
+          }
+        }
+      ],
+      "initialRouteBlocked": null,
+      "openedRouteExists": true,
+      "crossedGold": 20001,
+      "collectedGold": 21002
+    }
+  ],
+  "regressions": [
+    {
+      "case": "legacy-final",
+      "passed": true,
+      "resultSha256": "3027290f9e17d9e8dc2df1a1b24b170026c21abc9a1b6aa309741d4c725d7b86",
+      "saves": [
+        {
+          "passed": true,
+          "map": "003-Goonks-WoG.vmap",
+          "oldVersion": 901,
+          "newVersion": 905,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "004-Goonks-WoG-Online.vmap",
+          "oldVersion": 901,
+          "newVersion": 905,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "003-Goonks-WoG.vmap",
+          "oldVersion": 902,
+          "newVersion": 905,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "004-Goonks-WoG-Online.vmap",
+          "oldVersion": 902,
+          "newVersion": 905,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        }
+      ]
+    },
+    {
+      "case": "gerfrex903",
+      "passed": true,
+      "resultSha256": "07d68c48db5c94177e01e959ed559bab8ff41087f1552991e56b8302f29c899e"
+    },
+    {
+      "case": "clock904-final",
+      "passed": true,
+      "resultSha256": "e60716e815ad94e8bdec8875b2db19c027f2b00b1b947d066a9b8be263a364b6"
+    },
+    {
+      "case": "production-final",
+      "passed": true,
+      "resultSha256": "c9dc327684974d0f539e4171453d9aed152fbb8d45783296a537600fabead51b"
+    }
+  ],
+  "unitTests": {
+    "passed": 729,
+    "skipped": 34,
+    "failed": 0,
+    "resultSha256": "8d515e97eb3cbd850f258d7ff55adbdfaf7dde0544860dd346a4e69ccf3fe920",
+    "finalInventoryAndRuleChecksSha256": "6dc86c60bd4faf08726cf8344a90f9af8ca23f36a4e71d60aa484381fb7fb68f"
+  },
+  "implementationSha256": {
+    "work/vcmi-wasm/lib/era/EraCampaignTerrainRule.h": "75656b4fe48db65aa5938e963379b0fb74d54ff02ba3a95aeb83dc94e3622940",
+    "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "02e56a846acc10a7e2d121756f843f194d7be169c5c97d94721f7afc81aefa69",
+    "work/vcmi-wasm/lib/mapping/CMap.cpp": "e2ff55b994aaceb1100a21ea6c10b609274fa9dc55ba8db7ccd2e9fceb055115",
+    "work/vcmi-wasm/lib/mapping/TerrainTile.h": "5a68e3e4aa64004f60b2b72ad4aabb4d7badbebb567bd471f49c0c1a9b5b2293",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "606eccc362d8fc52939ac00c310ee9a6fa7618fd91349b248d3ceaf8e28a3f5b",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a149e74c4cbfd24dd8d4dc717469f935b24ea47ff776c73533e6169604d3a5f5",
+    "work/vcmi-wasm/client/NetPacksClient.cpp": "ee57957f5ad117ceb5c105850312b63f857491a0a63038584b12d43f54b146e0"
+  },
+  "scope": "Existing-object and native-path TR:P/E subset only. Synthetic plot cells, other terrain operations and original quests/combat/victories still require porting. Original campaign registry stays disabled."
+}

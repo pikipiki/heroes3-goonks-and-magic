@@ -1,0 +1,19 @@
+/* Source tile masks retain the hidden object's identity for later restoration. */
+#pragma once
+#include <algorithm>
+#include <vector>
+namespace era_campaign_terrain
+{
+template<class T> void hide(std::vector<T> & active,std::vector<T> & hidden)
+{
+ for(const auto & item:active)if(std::find(hidden.begin(),hidden.end(),item)==hidden.end())hidden.push_back(item);
+ active.clear();
+}
+template<class T,class Predicate> void restore(std::vector<T> & active,std::vector<T> & hidden,Predicate valid)
+{
+ std::vector<T> merged;
+ for(const auto & item:hidden)if(valid(item)&&std::find(merged.begin(),merged.end(),item)==merged.end())merged.push_back(item);
+ for(const auto & item:active)if(std::find(merged.begin(),merged.end(),item)==merged.end())merged.push_back(item);
+ active=std::move(merged);hidden.clear();
+}
+}

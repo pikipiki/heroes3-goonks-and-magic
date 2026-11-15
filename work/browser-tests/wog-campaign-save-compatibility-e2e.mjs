@@ -22,11 +22,11 @@ try{
    const loaded=await state();assert.deepEqual(snapshot(loaded),old.before,'Older native save retains exact state');assert(!loaded.campaignPending,'Older maps do not acquire source campaign state');
    await cmd(34,175);await page.waitForTimeout(800);
    const upgraded=Buffer.from(await page.evaluate(()=>Array.from(Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1'))));
-   assert.equal(upgraded.readInt32LE(4),904);assert(!upgraded.includes(Buffer.from('source-campaign-state-v1')),'Dormant registry does not bind a Goonk map');
+   assert.equal(upgraded.readInt32LE(4),905);assert(!upgraded.includes(Buffer.from('source-campaign-state-v1')),'Dormant registry does not bind a Goonk map');
    await cmd(3);
    for(let n=0;n<1800;n++){const s=await state();if(s.mode==='dialog')await cmd(1);else if(s.mode==='map'&&s.turn&&(old.nativeHotseat?s.currentPlayer!==loaded.currentPlayer:s.day>loaded.day))break;await page.waitForTimeout(100);}
    const after=await state();assert.equal(after.mode,'map');assert(after.turn);assert(old.nativeHotseat?after.currentPlayer!==loaded.currentPlayer:after.day>loaded.day);assert.deepEqual(after.players,loaded.players);
-   results.push({passed:true,map:old.name,oldVersion:version,newVersion:904,exactStatePreserved:true,realNextTurn:true,campaignStateAbsent:true});
+   results.push({passed:true,map:old.name,oldVersion:version,newVersion:upgraded.readInt32LE(4),exactStatePreserved:true,realNextTurn:true,campaignStateAbsent:true});
    await page.close();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:false,inProgress:true,results,errors},null,2));
   }
  }

@@ -144,7 +144,7 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int3 position(const Command & c)const
  {
-  require(c.selectors.size()==3||(c.receiver=="OB"&&c.selectors.size()==1),"object needs three coordinates or an OB coordinate variable");
+  require(c.selectors.size()==3||((c.receiver=="OB"||c.receiver=="TR")&&c.selectors.size()==1),"object needs three coordinates or a coordinate variable");
   int3 pos;
   if(c.selectors.size()==1){const int index=number(c.selectors[0]);require(index>=1&&index<=9998,"invalid OB coordinate variable");pos=int3(lookup(vm.v,index),lookup(vm.v,index+1),lookup(vm.v,index+2));}
   else pos=int3(number(c.selectors[0]),number(c.selectors[1]),number(c.selectors[2]));
@@ -153,7 +153,8 @@ struct SourceCampaignProcessor::Impl final:Host
  const CGObjectInstance * object(const Command & c,MapObjectID type=MapObjectID())const
  {
   const auto pos=position(c);const auto & map=gh.gameState().getMap();if(!map.isInTheMap(pos))return nullptr;
-  for(const auto id:map.getTile(pos).visitableObjects)
+  const auto & tile=map.getTile(pos);auto candidates=tile.visitableObjects;candidates.insert(candidates.end(),tile.sourceHiddenVisitableObjects.begin(),tile.sourceHiddenVisitableObjects.end());
+  for(const auto id:candidates)
   {
    const auto * obj=gh.gameState().getObj(id);
    if(obj&&(!type.hasValue()||obj->ID==type)&&obj->ID!=Obj::HERO)return obj;
@@ -759,6 +760,17 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    pending["creature"].Integer()=source;pending["count"].Integer()=count;return Step::Suspend;
   }
   else throw std::runtime_error("Original campaign: unsupported Cave hero operation "+op.code);
+  return Step::Continue;
+ }
+ if(c.receiver=="TR")
+ {
+  require(op.code=="P"||op.code=="E","unsupported terrain operation "+op.code);arity(op,1);
+  const auto pos=position(c);require(gh.gameState().getMap().isInTheMap(pos),"terrain position outside map");const auto & tile=gh.gameState().getMap().getTile(pos);
+  const int old=op.code=="P"?!tile.blocked():tile.visitable();const int changed=value(old,args[0]);
+  if(!query(op))
+  {
+   auto change=mutation("terrainAccess",ObjectInstanceID::NONE);change["x"].Integer()=pos.x;change["y"].Integer()=pos.y;change["z"].Integer()=pos.z;change["operation"].String()=op.code;change["enabled"].Bool()=changed!=0;persist(change);
+  }
   return Step::Continue;
  }
  if(c.receiver=="HO")
