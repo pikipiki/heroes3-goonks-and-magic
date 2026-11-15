@@ -13,6 +13,8 @@ export function battleGuidance(state){
  const spellCells=cap.targeting?(state.battleCells||[]).filter(cell=>cell.spellTarget===true):[];
  const spellPositions=new Set(spellCells.map(cell=>cell.x+','+cell.y));
  const spellTargets=spellCells.length?(state.battleUnits||[]).filter(unit=>spellPositions.has(unit.x+','+unit.y)):[];
+ const invalidSpellPositions=new Set(cap.targeting?(state.battleCells||[]).filter(cell=>cell.spellTarget===false).map(cell=>cell.x+','+cell.y):[]);
+ const invalidSpellTargets=(state.battleUnits||[]).filter(unit=>invalidSpellPositions.has(unit.x+','+unit.y));
  const canHealOrBuff=ready&&cap.combatReady&&(
   state.creatureCanCast===true||
   state.activeUnit?.canHealOrBuff===true||
@@ -21,7 +23,7 @@ export function battleGuidance(state){
  );
  const nativeActions=(state.battleCells||[]).some(cell=>Object.hasOwn(cell,'actionLabel'));
  const beneficialTargets=canHealOrBuff?(state.battleUnits||[]).filter(unit=>!unit.enemy&&(nativeActions?(state.battleCells||[]).some(cell=>cell.x===unit.x&&cell.y===unit.y&&/^(Cast |Heal)/.test(cell.actionLabel||'')):unit.stackId!==actor.stackId)):[];
- return {actor,ready,cells,shotTargets,meleeTargets,spellTargets,beneficialTargets,label:cap.tactics?'À placer':'À jouer'};
+ return {actor,ready,cells,shotTargets,meleeTargets,spellTargets,invalidSpellTargets,beneficialTargets,label:cap.tactics?'À placer':'À jouer'};
 }
 export function paintActiveCreature(ctx,guidance,layout){
  const {actor,ready}=guidance;if(!ready||!actor)return;
@@ -127,7 +129,7 @@ export function paintMeleeTargets(ctx,targets,layout){
  ctx.restore();
 }
 
-export function paintSpellTargets(ctx,targets,layout){
+export function paintSpellTargets(ctx,targets,layout,invalid=false){
  if(!targets.length)return;
  const {dx,dy,w,h,scale}=layout,radius=Math.max(6,Math.min(10,9*scale));
  ctx.save();
@@ -138,7 +140,9 @@ export function paintSpellTargets(ctx,targets,layout){
   const x=dx+(target.x-layout.x)*scale,y=dy+(target.y+14-layout.y)*scale;
   if(x<dx||x>dx+w*scale||y<dy||y>dy+h*scale)continue;
   ctx.beginPath();
-  if(target.enemy){
+  if(invalid){
+   ctx.arc(x,y,radius,0,Math.PI*2);ctx.moveTo(x-radius*.7,y+radius*.7);ctx.lineTo(x+radius*.7,y-radius*.7);
+  }else if(target.enemy){
    ctx.moveTo(x,y-radius);
    ctx.lineTo(x+radius,y);
    ctx.lineTo(x,y+radius);
@@ -154,7 +158,7 @@ export function paintSpellTargets(ctx,targets,layout){
   ctx.strokeStyle='#23162b';
   ctx.lineWidth=5;
   ctx.stroke();
-  ctx.strokeStyle=target.enemy?'#ffc0ff':'#b9ff9a';
+  ctx.strokeStyle=invalid?'#c5c5c5':target.enemy?'#ffc0ff':'#b9ff9a';
   ctx.lineWidth=2.5;
   ctx.stroke();
  }

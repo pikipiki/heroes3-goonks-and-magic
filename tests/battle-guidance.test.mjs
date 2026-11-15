@@ -100,3 +100,16 @@ test('Beneficial markers follow native legality, including self healing',()=>{
  assert.deepEqual(battleGuidance(combat).beneficialTargets,[actor]);
  assert.deepEqual(battleGuidance({...combat,battleCells:combat.battleCells.map(c=>({...c,actionLabel:''}))}).beneficialTargets,[]);
 });
+
+test('Protective and offensive spell eligibility uses native rules including immune allies and enemies',()=>{
+ const ally={...actor,x:102,y:196},immune={stackId:8,x:146,y:196,enemy:false},enemy={stackId:9,x:718,y:196,enemy:true};
+ const units=[ally,immune,enemy];
+ for(const legal of [[true,false,false],[false,false,true]]){
+  const targeting={...state,tacticsMode:false,round:1,spellTargeting:true,battleUnits:units,battleCells:units.map((u,i)=>({x:u.x,y:u.y,spellTarget:legal[i]}))};
+  assert.deepEqual(battleGuidance(targeting).spellTargets,units.filter((_,i)=>legal[i]));
+  assert.deepEqual(battleGuidance(targeting).invalidSpellTargets,units.filter((_,i)=>!legal[i]));
+  assert.deepEqual(battleGuidance({...targeting,spellTargeting:false}).invalidSpellTargets,[]);
+  assert.deepEqual(battleGuidance({...targeting,autoCombat:true}).invalidSpellTargets,[]);
+  assert.deepEqual(battleGuidance({...targeting,battleCells:[]}).invalidSpellTargets,[]);
+ }
+});
