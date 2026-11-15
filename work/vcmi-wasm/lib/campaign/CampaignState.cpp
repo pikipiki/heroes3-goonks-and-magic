@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraCampaignAdmission.h"
 #include "CampaignState.h"
 #include "../era/EraCampaignCarryover.h"
 #include "../era/EraCampaignJson.h"
@@ -221,6 +222,11 @@ void CampaignState::captureSourceCampaignVariables(const JsonNode & state)
  sourceCampaignCarryover = JsonNode();
  if(state["contract"].String() == "source-campaign-state-v1")
   sourceCampaignCarryover = era_campaign_json::writeState(era_campaign::persistentVariables(era_campaign_json::readState(state["vm"])));
+ if(era_campaign_admission::admitted(state))
+ {
+  sourceCampaignCarryover["sourceExperienceProgramId"]=state["programId"];
+  sourceCampaignCarryover["sourceExperienceProgramSha256"]=state["vm"]["programSha256"];
+ }
 }
 
 const JsonNode & CampaignState::getSourceCampaignVariables() const

@@ -17,6 +17,7 @@
 #include "../../lib/era/EraCampaignHints.h"
 #include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignArtifactRule.h"
+#include "../../lib/era/EraCampaignChestRule.h"
 #include "../../lib/era/EraCampaignTerrainRule.h"
 #include "../../lib/era/EraCampaignDemolition.h"
 #include "../../lib/entities/artifact/CArtifact.h"
@@ -121,6 +122,7 @@ struct SourceCampaignProcessor::Impl final:Host
  int number(const Operand & o)const{return readNumber(o,vm,context);}
  int value(int old,const Operand & o)
  {
+  if(unchangedOperand(o))return old;
   if(o.access==Access::Write){writeNumber(o,vm,context,old);return old;}
   if(o.access==Access::Compare){comparison=comparison.value_or(true)&&compare(old,o.comparison,number(o));writeFlag(1,vm,*comparison);return old;}
   return o.access==Access::Relative?add(old,number(o)):number(o);
@@ -152,7 +154,7 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int3 position(const Command & c)const
  {
-  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE";
+  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH";
   const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4&&c.selectors[3].access==Access::Read&&number(c.selectors[3])==1;
   require(c.selectors.size()==3||(indirect&&c.selectors.size()==1)||dynamicMonster,"object needs three coordinates or a coordinate variable");
   int3 pos;
@@ -248,7 +250,7 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  JsonNode mutation(const std::string & kind,ObjectInstanceID id)const
  {JsonNode change;change["kind"].String()=kind;change["object"].Integer()=id.getNum();return change;}
- void persist(JsonNode change=JsonNode(),const CGEvent * event=nullptr,const Rewardable::Configuration * reward=nullptr,JsonNode world=JsonNode())
+ void persist(JsonNode change=JsonNode(),const CRewardableObject * event=nullptr,const Rewardable::Configuration * reward=nullptr,JsonNode world=JsonNode())
  {
   state["contract"].String()="source-campaign-state-v1";
   state["vm"]=era_campaign_json::writeState(vm);
@@ -671,6 +673,38 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 {
  const auto & args=op.args;
  comparison.reset();
+ if(c.receiver=="CH")
+ {
+  arity(op,1);require(op.code=="S"||op.code=="B"||op.code=="A","unadmitted chest operation");
+  const auto * chest=dynamic_cast<const CRewardableObject *>(object(c,Obj::TREASURE_CHEST));require(chest!=nullptr,"source chest target missing");
+  auto & data=state["chests"][std::to_string(chest->id.getNum())];
+  if(data.isNull())
+  {
+   int mode=0,bonus=0,artifact=-1;
+   for(const auto & info:chest->configuration.info)if(info.visitType==Rewardable::EEventType::EVENT_FIRST_VISIT)
+   {
+    if(!info.reward.grantedArtifacts.empty()){mode=1;const auto id=info.reward.grantedArtifacts.front();for(int source=0;source<144;++source)if(LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(source))==id){artifact=source;break;}}
+    if(info.reward.resources[EGameResID::GOLD]>0)bonus=info.reward.resources[EGameResID::GOLD]/500;
+   }
+   data["S"].Integer()=mode;data["A"].Integer()=artifact;data["B"].Integer()=era_campaign_chest::bonus(bonus);
+  }
+  const int old=data[op.code].Integer();require(op.code!="A"||old>=0||!query(op),"unbound original chest artifact");const int changed=value(old,args[0]);
+  if(query(op))return Step::Continue;
+  const int stored=op.code=="S"?era_campaign_chest::mode(changed):op.code=="B"?era_campaign_chest::bonus(changed):era_campaign_chest::artifact(changed);
+  data[op.code].Integer()=stored;
+  auto config=chest->configuration;config.info.clear();config.selectMode=Rewardable::SELECT_PLAYER;config.canRefuse=false;config.variables.values["eraCampaignChest"]=1;
+  const auto add=[&]() -> Rewardable::VisitInfo & {config.info.emplace_back();auto & info=config.info.back();info.visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;info.reward.removeObject=true;return info;};
+  if(data["S"].Integer()!=0)
+  {
+   const int original=data["A"].Integer();require(original>=0&&original<144,"unbound original chest artifact");auto & info=add();info.reward.grantedArtifacts.push_back(LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(original)));info.message.appendLocalString(EMetaText::GENERAL_TXT,145);info.message.replaceName(info.reward.grantedArtifacts.front());
+  }
+  else
+  {
+   auto & gold=add();const int amount=era_campaign_chest::gold(data["B"].Integer());gold.reward.resources[EGameResID::GOLD]=amount;if(amount==0)gold.reward.extraComponents.emplace_back(ComponentType::RESOURCE,GameResID(EGameResID::GOLD),0);
+   auto & experience=add();experience.reward.heroExperience=era_campaign_chest::experience(data["B"].Integer());if(experience.reward.heroExperience==0)experience.reward.extraComponents.emplace_back(ComponentType::EXPERIENCE,0);
+  }
+  persist(JsonNode(),chest,&config);return Step::Continue;
+ }
  if(c.receiver=="CD")
  {
   auto world=era_campaign_demolition::bind(state,gh.gameState().getMap().sourceCampaignWorld);
@@ -996,7 +1030,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    if(slots.empty()&&query(op)){value(0,args[2]);value(0,args[3]);}
    for(const auto slot:slots)
    {
-    const auto * stack=h->getStackPtr(slot);const int type=args[2].access==Access::Read?number(args[2]):value(stack?sourceCreature(stack->getId()):-1,args[2]);const int count=value(stack?stack->getCount():0,args[3]);
+    const auto * stack=h->getStackPtr(slot);const int type=args[2].access==Access::Read&&!unchangedOperand(args[2])?number(args[2]):value(stack?sourceCreature(stack->getId()):-1,args[2]);const int count=value(stack?stack->getCount():0,args[3]);
     if(query(op))continue;
     if(type<0||count<=0){if(stack)gh.eraseStack({h->id,slot},true);}
     else if(!stack)gh.insertNewStack({h->id,slot},creature(type).toCreature(),count);

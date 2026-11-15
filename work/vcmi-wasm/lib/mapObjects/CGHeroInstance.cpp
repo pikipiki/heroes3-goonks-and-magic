@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraCampaignExperienceWord.h"
 #include "../era/EraDwellingArtifactMimic.h"
 #include "../era/EraGooseReflectionRuntime.h"
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
@@ -1454,6 +1455,7 @@ void CGHeroInstance::setExperience(si64 value, ChangeValueMode mode)
 
 bool CGHeroInstance::gainsLevel() const
 {
+ if(era_campaign_experience_word::active(*this)&&era_campaign_chest::signedWord(exp)<0)return false;
 	return level < LIBRARY->heroh->maxSupportedLevel() && exp >= static_cast<TExpType>(LIBRARY->heroh->reqExp(level+1));
 }
 

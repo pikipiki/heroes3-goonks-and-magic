@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../lib/era/EraCampaignExperienceWord.h"
 #include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraBankActors.h"
 #include "../lib/mapObjects/CGMysteriousCave.h"
@@ -385,8 +386,15 @@ void CGameHandler::giveExperience(const CGHeroInstance * hero, TExpType amountTo
 	if (gameState().getMap().levelLimit != 0)
 		maxExp = LIBRARY->heroh->reqExp(gameState().getMap().levelLimit);
 
+ const bool sourceWord=era_campaign_experience_word::active(*hero);
 	TExpType canGainHeroExp = 0;
-	if (maxExp > currHeroExp)
+ if(sourceWord)
+ {
+  const auto current=era_campaign_chest::signedWord(currHeroExp);
+  const auto cap=static_cast<std::int64_t>(std::min<TExpType>(maxExp,INT32_MAX));
+  if(cap>current)canGainHeroExp=static_cast<TExpType>(cap-current);
+ }
+ else if (maxExp > currHeroExp)
 		canGainHeroExp = maxExp - currHeroExp;
 
 	TExpType actualHeroExperience = 0;

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.195",
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "method": "Bounded static inspection of original PE instructions; no Windows execution claimed.",
+  "observations": [
+    {
+      "range": "0x7353e0..0x735620",
+      "behavior": "CH checks original object101;S stores1bit,A stores10bits,B stores4bits."
+    },
+    {
+      "range": "0x4a61d0..0x4a6560",
+      "behavior": "Chest gold is500 times the4bit bonus."
+    },
+    {
+      "range": "0x4a60b0..0x4a61d0",
+      "behavior": "Experience alternative is gold minus500, then hero learning multiplier."
+    },
+    {
+      "range": "0x4e3620..0x4e3750 and0x4e37ad..0x4e3824",
+      "behavior": "Experience adds to the raw32bit word; signed comparisons govern level progression. Negative loss does not lower an existing level."
+    }
+  ],
+  "definedOriginalBehaviorPreserved": [
+    "B16 truncates to0, giving a choice of0gold or minus500experience.",
+    "B-1 truncates to15.",
+    "Negative experience debt is retained, displayed signed, repaid by later experience and retained across native scenario transfer."
+  ],
+  "admittedScope": [
+    "CH:S/A/B on actual native treasure chests; original artifact IDs0..143 and explicit native mapping.",
+    "Source experience word behavior is gated by initialized admitted program or bound native carryover metadata. Ordinary Goonk games retain their native experience model.",
+    "Default operand d in pinned legacy ASTs retains existing field values without rewriting source program hashes."
+  ],
+  "validation": "tests/native/EraCampaignChest.test.cpp with address/undefined sanitizers; native Chromium/WebKit and native three-scenario controlled carryover."
+}

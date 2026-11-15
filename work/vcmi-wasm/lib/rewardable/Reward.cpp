@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "Reward.h"
+#include "../era/EraCampaignChestRule.h"
 #include "../era/EraBankManaSemantics.h"
 
 #include "../mapObjects/CGHeroInstance.h"
@@ -109,7 +110,13 @@ void Rewardable::Reward::loadComponents(std::vector<Component> & comps, const CG
 	}
 	
 	if (heroExperience)
-		comps.emplace_back(ComponentType::EXPERIENCE, static_cast<si32>(h ? h->calculateXp(heroExperience) : heroExperience));
+ {
+  // Never pass a negative component through the unsigned XP multiplier.
+  const auto amount=heroExperience<0?-static_cast<std::int64_t>(heroExperience):static_cast<std::int64_t>(heroExperience);
+  const auto scaled=h?h->calculateXp(amount):amount;
+  const auto shown=heroExperience<0?era_campaign_chest::signedWord(era_campaign_chest::addExperience(0,-static_cast<std::int64_t>(scaled))):static_cast<si32>(scaled);
+  comps.emplace_back(ComponentType::EXPERIENCE,shown);
+ }
 
 	if (heroLevel)
 		comps.emplace_back(ComponentType::LEVEL, heroLevel);

@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/EraCampaignExperienceWord.h"
 #include "../era/EraEye278Native.h"
 #include "../era/EraFamiliarChannel43.h"
 #include "../era/EraBridgePolicies.h"
@@ -69,6 +70,7 @@ void GameStatePackVisitor::visitSetHeroExperience(SetHeroExperience & pack)
 	CGHeroInstance * hero = gs.getHero(pack.id);
 	assert(hero);
 	hero->setExperience(pack.val, pack.mode);
+ if(era_campaign_experience_word::active(*hero))hero->exp=static_cast<std::uint32_t>(hero->exp);
 }
 
 void GameStatePackVisitor::visitGiveStackExperience(GiveStackExperience & pack)

@@ -1,6 +1,7 @@
 /** Private native campaign carryover control. Private programs and day-two victories check scenario transitions;
  * it does not validate the original quests or victory conditions. */
-import crypto from 'node:crypto';import {execFileSync} from 'node:child_process';import {readOriginalCampaign} from '../../scripts/era-bridge/campaigns/importer.mjs';
+import crypto from 'node:crypto';import {execFileSync} from 'node:child_process';import {readOriginalCampaign,readZip} from '../../scripts/era-bridge/campaigns/importer.mjs';
+import {readCompletedNativeSave} from './native-save-completed.mjs';
 import {chromium} from 'playwright-core';import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {silenceTestAudio} from './silent-audio.mjs';
 const out=process.env.REVIEW_OUTPUT||'/tmp/goonk-campaign183-carry';fs.mkdirSync(out,{recursive:true});
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8877',original='mod/wake-of-gods/Mods/maps/content/maps/zc1.vcmp';
@@ -12,9 +13,12 @@ const programs=Object.fromEntries([1,2,0].map((index,order)=>{
   command('IF',[],'V',[n(500),n(1)]),command('IF',[],'V',[n(501),n(1)]),command('IF',[],'W',[n(0)]),...[50,51,100,200].map(i=>set('w',i,i)),
   command('IF',[],'M',[text('carry seeded %V501/%Z398/%W51')])
  ]:[command('IF',[],'W',[n(0)]),command('IF',[],'M',[text('carry '+order+': %V500/%V501/%V1000/%V1001 | %Z300/%Z301/%Z398/%Z500/%Z501 | %F500/%F501 | %W50/%W51/%W100/%W200')]),command('VR',[v('v',501)],'+',[n(1)])];
+ if(process.env.CARRY_CHEST_MAP&&order===0)initializers.unshift(command('CH',[n(20),n(18),n(0)],'S',[n(0)]),command('CH',[n(20),n(18),n(0)],'B',[n(0)]));
  const program={schemaVersion:1,contract:'source-campaign-erm-ast-v1',source:'private-campaign-carry-'+index,initializers,blocks:[],originalMessages:['ZVSE private campaign carryover '+index]};program.sha256=digest(JSON.stringify(program));return[index,program];
 }));
-const headers=Object.fromEntries(readOriginalCampaign(original).maps.map((m,index)=>{m.header.events=[{name:'private source binding',firstOccurrence:499,nextOccurrence:0,humanAffected:1,computerAffected:0,players:['red','blue','tan','green','orange','purple','teal','pink'],message:{exactStrings:programs[index].originalMessages,localStrings:null,message:[0],numbers:null,stringsTextID:null}}];m.header.triggeredEvents={controlledVictory:{condition:['allOf',['isHuman',{value:1}],['daysPassed',{value:1}]],effect:{type:'victory'}}};return[m.member,m.header];}));
+const replacements={};
+const headers=Object.fromEntries(readOriginalCampaign(original).maps.map((m,index)=>{if(process.env.CARRY_CHEST_MAP&&index===1){const flat=readZip(fs.readFileSync(process.env.CARRY_CHEST_MAP));m.header=JSON.parse(flat['header.json']);m.header.players.teal=m.header.players.red;delete m.header.players.red;const objects=JSON.parse(flat['objects.json']);for(const object of objects)if(object.options?.owner==='red')object.options.owner='teal';flat['objects.json']=Buffer.from(JSON.stringify(objects));replacements[m.member]=Object.fromEntries(Object.entries(flat).map(([key,bytes])=>[key,bytes.toString('base64')]));}
+ m.header.events=[{name:'private source binding',firstOccurrence:499,nextOccurrence:0,humanAffected:1,computerAffected:0,players:['red','blue','tan','green','orange','purple','teal','pink'],message:{exactStrings:programs[index].originalMessages,localStrings:null,message:[0],numbers:null,stringsTextID:null}}];m.header.triggeredEvents={controlledVictory:{condition:['allOf',['isHuman',{value:1}],['daysPassed',{value:1}]],effect:{type:'victory'}}};return[m.member,m.header];}));
 const bytes=execFileSync('python3',['-c',`import sys,json,zipfile,io
 p=json.load(sys.stdin); source=zipfile.ZipFile(p['source']);out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as target:
@@ -22,11 +26,16 @@ with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as target:
   data=source.read(name)
   if name in p['headers']:
    old=zipfile.ZipFile(io.BytesIO(data));new=io.BytesIO()
+   replacement=p['replacements'].get(name)
+   if replacement:
+    import base64
+    oldData={k:base64.b64decode(v) for k,v in replacement.items()}
+   else:oldData={k:old.read(k) for k in old.namelist()}
    with zipfile.ZipFile(new,'w',zipfile.ZIP_DEFLATED) as dest:
-    for member in old.namelist():dest.writestr(member,json.dumps(p['headers'][name]).encode() if member=='header.json' else old.read(member))
+    for member in oldData:dest.writestr(member,json.dumps(p['headers'][name]).encode() if member=='header.json' else oldData[member])
    data=new.getvalue()
   target.writestr(name,data)
-sys.stdout.buffer.write(out.getvalue())`],{input:JSON.stringify({source:original,headers})});
+sys.stdout.buffer.write(out.getvalue())`],{input:JSON.stringify({source:original,headers,replacements})});
 const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true});await silenceTestAudio(page);page.setDefaultTimeout(90000);const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>fs.appendFileSync(path.join(out,'console.log'),m.text()+'\n'));
 const wait=(f,arg)=>page.waitForFunction(f,arg,{timeout:90000}),cmd=(...args)=>page.evaluate(args=>Module._vcmiMobileCommand(...args),[...args,...Array(6-args.length).fill(0)]),state=()=>page.evaluate(()=>goonkMobileState);
 await page.addInitScript(({bytes,programs})=>{
@@ -45,8 +54,10 @@ try{
   if(!(process.env.CARRY_LOAD_SAVE&&order===initialOrder)){const s=await state();transitions.push(s.campaignScenario);assert.equal(s.campaignScenario.selected,selected);assert.equal(s.campaignScenario.scenarios.find(x=>x.id===selected).available,true);assert.deepEqual(s.campaignScenario.scenarios.filter(x=>x.available&&!x.completed).map(x=>x.id),[selected]);
   const bonus=page.locator('[data-campaign-bonus]').first();if(await bonus.count())await bonus.tap();await wait(()=>goonkMobileState.campaignScenario?.canStart);await cmd(67);
   await wait(()=>['map','campaign-intro','dialog'].includes(goonkMobileState.mode));if((await state()).mode==='campaign-intro')await cmd(68);}
-  for(let i=0;i<600;i++){await page.waitForTimeout(100);const s=await state();if(s.mode==='map'&&s.turn)break;if(s.mode==='dialog'){const token=order+':'+s.windowToken+':'+s.dialogPresentation?.queryId;if(seen.has(token))continue;seen.add(token);if(s.dialogKind==='source-campaign'){messages.push(s.dialogPresentation.lines.join('\n'));assert.equal(messages.at(-1),expected[order]);if(order<2){assert(s.autosaveAllowed);const prior=await page.evaluate(()=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime()}catch{return 0}});await cmd(34,183);await wait(prior=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime()>prior}catch{return false}},prior);await page.waitForTimeout(300);const bytes=Buffer.from(await page.evaluate(()=>Array.from(Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1'))));assert.equal(bytes.readInt32LE(4),905);fs.writeFileSync(path.join(out,'carry-pending-'+selected+'.vsgm1'),bytes);if(order===0)fs.writeFileSync(path.join(out,'carry-pending.vsgm1'),bytes);}}await cmd(1);}}
+  for(let i=0;i<600;i++){await page.waitForTimeout(100);const s=await state();if(s.mode==='map'&&s.turn)break;if(s.mode==='dialog'){const token=order+':'+s.windowToken+':'+s.dialogPresentation?.queryId;if(seen.has(token))continue;seen.add(token);if(s.dialogKind==='source-campaign'){messages.push(s.dialogPresentation.lines.join('\n'));assert.equal(messages.at(-1),process.env.CARRY_CHEST_MAP&&order>0?expected[order].replace('/1000/0 |','/0/0 |'):expected[order]);if(order<2){assert(s.autosaveAllowed);const bytes=await readCompletedNativeSave(page,cmd);assert.equal(bytes.readInt32LE(4),906);fs.writeFileSync(path.join(out,'carry-pending-'+selected+'.vsgm1'),bytes);if(order===0)fs.writeFileSync(path.join(out,'carry-pending.vsgm1'),bytes);}}await cmd(1);}}
   await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);assert.equal((await state()).cheatsAllowed,true);
+  if(process.env.CARRY_CHEST_MAP){if(order===0){const mini=(await state()).mapOverview;await page.evaluate(m=>Module._vcmiMobilePointer(Math.round(m.rect.x+20*m.rect.w/m.width),Math.round(m.rect.y+18*m.rect.h/m.height),5),mini);await page.waitForTimeout(500);const view=(await state()).mapOverview.view;await page.evaluate(r=>Module._vcmiMobilePointer(Math.round(r.x+r.w/2),Math.round(r.y+r.h/2),1),view);await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.choices?.filter(c=>c.selectable).length===2);await page.locator('[data-dialog-choice="1"]').tap();await page.locator('[data-dialog-confirm]').tap();await wait(()=>goonkMobileState.mode==='map'&&!goonkMobileState.heroMoving);}
+   await cmd(55);await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);const hero=(await state()).heroWindow;assert.equal(hero.experience,-500);assert.equal(hero.level,1);fs.writeFileSync(path.join(out,'experience-'+selected+'.json'),JSON.stringify(hero,null,2));await cmd(63);await wait(()=>goonkMobileState.mode==='map');}
   assert.equal(messages.length,order-initialOrder+1,'Source initializer ran on this native campaign map');order++;if(selected===0)break;await cmd(3);
   await page.waitForTimeout(1200);fs.writeFileSync(path.join(out,'after-win-'+selected+'.json'),JSON.stringify(await state(),null,2));
   const victoryWindows=new Set();for(let i=0;i<600;i++){const s=await state();if(['campaign-scenario','campaign-intro','campaign','menu'].includes(s.mode))break;const token=s.windowToken+':'+JSON.stringify(s.dialogPresentation);if(s.mode==='dialog'&&!victoryWindows.has(token)){victoryWindows.add(token);await cmd(1);}await page.waitForTimeout(200);}

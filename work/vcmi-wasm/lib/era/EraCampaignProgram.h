@@ -23,6 +23,13 @@ struct Operand
  std::shared_ptr<Operand> index;
  bool negate=false;
 };
+inline bool unchangedOperand(const Operand & operand)
+{
+ // Pinned ASTs historically recorded the source default token d as a fast
+ // variable. d is reserved; repair execution without changing program hashes.
+ return operand.access==Access::Read&&!operand.negate&&(operand.kind==Kind::Default||(operand.kind==Kind::Fast&&operand.name=="d"));
+}
+
 struct Predicate
 {
  bool isFlag=false;

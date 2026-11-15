@@ -5,6 +5,7 @@
 #include "../lib/era/EraAtmaStateNative.h"
 #include "../lib/era/EraInterferenceState.h"
 #include "../lib/era/EraCampaignDeployment.h"
+#include "../lib/era/EraCampaignExperienceWord.h"
 #include "../lib/era/EraSourceCreatureLevels.h"
 #include "MobileBridge.h"
 #include "../lib/gameState/CGameState.h"
@@ -1383,7 +1384,7 @@ void publishMobileState(){
     addHeroIcon(icons, icon, "PSKIL42", i == 3 ? 5 : i);
     h["primaryIcons"].Vector().push_back(std::move(icon));
    }
-   h["experience"].Integer()=hero->exp;
+   h["experience"].Integer()=era_campaign_experience_word::active(*hero)?static_cast<si64>(era_campaign_chest::signedWord(hero->exp)):static_cast<si64>(hero->exp);
    addHeroIcon(icons, h["experienceIcon"], "PSKIL42", 4);
    addHeroIcon(icons, h["manaIcon"], "PSKIL42", 3);
    addHeroIcon(icons, h["specialty"]["icon"], "UN44", hero->getHeroType()->imageIndex);

@@ -10,6 +10,8 @@
 
 #include "StdInc.h"
 #include "Interface.h"
+#include "../era/EraCampaignExperienceWord.h"
+#include "../mapping/CMap.h"
 
 #include "../TerrainHandler.h"
 #include "../CPlayerState.h"
@@ -126,6 +128,17 @@ void Rewardable::Interface::grantRewardBeforeLevelup(IGameEventCallback & gameEv
 		if (info.reward.primary[i] != 0)
 			gameEvents.changePrimSkill(hero, static_cast<PrimarySkill>(i), info.reward.primary[i], ChangeValueMode::RELATIVE);
 
+ if(info.reward.heroExperience<0&&era_campaign_experience_word::active(*hero))
+ {
+  const auto marker=configuration.variables.values.find("eraCampaignChest");
+  const auto * object=dynamic_cast<const CGObjectInstance *>(getObject());
+  const auto & source=hero->cb->gameState().getSourceCampaignState();
+  if(marker!=configuration.variables.values.end()&&marker->second==1&&object&&object->ID==Obj::TREASURE_CHEST&&!source["chests"][std::to_string(object->id.getNum())].isNull())
+  {
+   const auto loss=hero->calculateXp(-static_cast<std::int64_t>(info.reward.heroExperience));
+   SetHeroExperience change;change.id=hero->id;change.mode=ChangeValueMode::RELATIVE;change.val=-static_cast<std::int64_t>(loss);gameEvents.sendAndApply(change);
+  }
+ }
 	TExpType expToGive = 0;
 
 	if (info.reward.heroLevel > 0)
