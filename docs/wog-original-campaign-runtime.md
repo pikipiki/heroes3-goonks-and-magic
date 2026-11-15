@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. Les versions 0.4.170 à 0.4.202 raccordent progressivement l’hôte Cave, les formulaires et illustrations, une forme de combat scripté, les échanges de troupes, les visites d’objets, les minuteries, les textes de héros, les ressources, les clés de gardiens et la création/suppression d’objets et leurs descriptions. Chaque section distingue les contrôles natifs des quêtes et victoires originales encore à valider.
+Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. Les versions 0.4.170 à 0.4.203 raccordent progressivement l’hôte Cave, les formulaires et illustrations, une forme de combat scripté, les échanges de troupes, les visites d’objets, les minuteries, les textes de héros, les ressources, les clés de gardiens et la création/suppression d’objets et leurs descriptions. Chaque section distingue les contrôles natifs des quêtes et victoires originales encore à valider.
 
 ## Ce qui est implémenté
 
@@ -401,3 +401,14 @@ Le parcours du Rogue reprend une vraie sauvegarde antérieure au blocage et obti
 Compilation `ninja -j32 html5`,741 tests réussis et34 ignorés, audit de compatibilité et construction du site passent. Le paquet202 entier conserve les sauvegardes, rôles, tours solo/hotseat des cartes003/004 et le démarrage d’un combat natif. Les douze admissions restent désactivées pendant la validation des victoires et transferts restants.
 
 Le premier scénario est ensuite gagné avec les sept quêtes annexes : le message original affiche «7 of7 submissions». La vraie transition de campagne ouvre le deuxième scénario, ajoute Gorynych à l’armée et retrouve les six équipements, Basic Earth Magic et les sorts Shield, Stone Skin et Protection from Earth. Basic Sorcery apparaît également. Les valeurs primaires observées passent de5/5/1/1 à4/5/1/1 ; le relevé ne présente donc pas les caractéristiques comme intégralement identiques. [Le contrôle de victoire et transfert](../outputs/wog-priorities-0.4.147/campaign-runtime/native-seven-quests-transfer-202.json) n’utilise aucune modification d’archive, de drapeau de quête, d’armée ou de points de déplacement. Les victoires suivantes restent à valider.
+
+
+## Profondeur de dessin en0.4.203
+
+La première clé de la liste de dessin originale est portée : chaque case possède une profondeur calculée à partir du masque de blocage ; les modèles de sol prioritaires restent à zéro. Parmi les objets de la première phase non vide, un maximum unique suffit à identifier le premier objet lu en sens inverse. Une ville peut ainsi être sélectionnée devant une mine de sol superposée, comme à56/9 dans `zc1-0`. Le même critère distingue le monolithe du lac superposé dans `zc2-1`. La voie des candidats déjà uniques est conservée.
+
+[Le contrat203](../outputs/wog-priorities-0.4.147/campaign-runtime/drawing-depth-source-contract-203.json) détaille les plages statiques du PE358f, le calcul8×6 et ses limites. Les égalités au maximum exigent encore le second critère d’occlusion et restent refusées. Les suppressions multiples de rochers de `zc3-0` ne sont donc pas déclarées portées intégralement.
+
+[Le contrôle natif203](../outputs/wog-priorities-0.4.147/campaign-runtime/native-drawing-depth-203.json) emploie les deux modèles originaux ville/mine déplacés ensemble dans une carte privée vide. `UN:O` supprime la ville, la mine reste interrogeable, puis une autre suppression retire cette dernière. Chromium l’exécute sur le paquet complet ; WebKit reprend une sauvegarde avant la suppression et retrouve la même suite. Aucune substitution privée de moteur n’est utilisée dans ces contrôles finaux.
+
+La compilation WebAssembly,742 tests réussis et34 ignorés, l’audit de compatibilité, la construction du site et les contrôles des deux cartes Goonk passent. Les sauvegardes, rôles, tours et premier round de combat restent vérifiés. Les campagnes demeurent désactivées pendant la validation des autres objectifs, combats et transferts.

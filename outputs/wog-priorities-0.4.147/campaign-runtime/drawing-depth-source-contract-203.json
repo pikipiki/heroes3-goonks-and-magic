@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "feature": "First original drawing-list key resolves different depths in primary-object removal",
+  "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "evidenceType": "Bounded static inspection of supplied pinned3.58f PE. No Windows target execution. Native VCMI fixture corroborates the port, not original Windows execution.",
+  "observations": [
+    {
+      "range": "0x5056b0..0x50587c",
+      "claim": "Clear8x6 signed-byte depths. A nonzero template priority flag leaves all cells at zero. Otherwise traverse columns from the anchor leftward and rows upward; begin each column at1, reset to1 on a blocked cell above a passable cell, inherit previous-column depth on a passable cell beside a blocked previous-column cell, write then increment."
+    },
+    {
+      "range": "0x50631b..0x506341",
+      "claim": "Draw entry byte3 stores the per-tile depth from that table. The first two bytes are drawing index, byte2 packs the local offsets."
+    },
+    {
+      "range": "0x5058c9..0x5058da",
+      "claim": "Draw insertion first compares signed byte3; strictly greater new depth appends after the last lower-depth entry. Smaller depths scan earlier. Equal depths additionally compare occlusion across the rectangles."
+    },
+    {
+      "range": "0x505c60..0x506055",
+      "claim": "Primary selection scans the tile draw list in reverse within each original priority phase."
+    }
+  ],
+  "implementationBoundary": "Among candidates in the first nonempty phase, select a unique maximum depth. Only the depth needed at the queried tile is computed. Preserve the previous unique-candidate path. Equal highest depths remain rejected; secondary occlusion order is not guessed.",
+  "authoredExamples": [
+    {
+      "program": "zc1-0",
+      "tile": [
+        56,
+        9,
+        0
+      ],
+      "candidates": [
+        {
+          "object": "mine_1895",
+          "anchor": [
+            58,
+            10,
+            0
+          ],
+          "templatePriority": 100,
+          "depth": 0
+        },
+        {
+          "object": "town_1896",
+          "anchor": [
+            56,
+            9,
+            0
+          ],
+          "templatePriority": 0,
+          "depth": 1
+        }
+      ],
+      "selected": "town_1896"
+    },
+    {
+      "program": "zc2-1",
+      "tile": [
+        69,
+        71,
+        1
+      ],
+      "candidates": [
+        {
+          "object": "lake_2709",
+          "anchor": [
+            73,
+            72,
+            1
+          ],
+          "templatePriority": 100,
+          "depth": 0
+        },
+        {
+          "object": "monolithOneWayEntrance_2700",
+          "anchor": [
+            69,
+            71,
+            1
+          ],
+          "templatePriority": 0,
+          "depth": 1
+        }
+      ],
+      "selected": "monolithOneWayEntrance_2700"
+    }
+  ],
+  "limitations": [
+    "Equal maximum depths in zc3-0 rock removal still need original secondary draw ordering.",
+    "This does not establish campaign battles or later scenario victories."
+  ]
+}

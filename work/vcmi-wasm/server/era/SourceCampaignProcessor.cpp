@@ -23,6 +23,7 @@
 #include "../../lib/era/EraCampaignDemolition.h"
 #include "../../lib/era/EraCampaignFire.h"
 #include "../../lib/era/EraCampaignHeroExperienceRule.h"
+#include "../../lib/era/EraCampaignDrawingDepth.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
@@ -1044,8 +1045,20 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const CGObjectInstance * target=nullptr;
    for(const auto & layer:primary)if(!layer.empty())
    {
-    require(layer.size()==1,"ambiguous primary drawing order needs source selection validation");
-    target=layer.front();break;
+    if(layer.size()==1){target=layer.front();break;}
+    // DrawNum scans the draw list backwards. Its first ordering key is the
+    // signed depth byte at this tile (0x505880). Distinct depths are sufficient
+    // to resolve e.g. the authored town overlapping a ground-priority mine.
+    int highest=-1;bool tied=false;
+    for(const auto * candidate:layer)
+    {
+     const auto offset=candidate->anchorPos()-anchor;
+     const auto & appearance=*candidate->appearance;
+     const int rank=era_campaign_drawing::depth(offset.x,offset.y,appearance.printPriority,[&](int x,int y){return appearance.isBlockedAt(x,y);});
+     if(rank>highest){highest=rank;target=candidate;tied=false;}
+     else if(rank==highest)tied=true;
+    }
+    require(!tied,"ambiguous primary drawing order needs source selection validation");break;
    }
    if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities","leftTroops"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
    if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(anchor));
