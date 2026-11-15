@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import zlib from 'node:zlib';
 import crypto from 'node:crypto';
 import {silenceTestAudio} from './silent-audio.mjs';
+import {readCompletedNativeSave} from './native-save-completed.mjs';
 const out=process.env.REVIEW_OUTPUT||'/tmp/goonk-campaign-cave-native';fs.mkdirSync(out,{recursive:true});
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8864';
 const browser=await chromium.launch({headless:true});
@@ -28,10 +29,7 @@ const cmd=(...args)=>page.evaluate(args=>Module._vcmiMobileCommand(...args),[...
 const state=()=>page.evaluate(()=>goonkMobileState);
 const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 async function saveAs(name,token){
- const prior=await page.evaluate(()=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime()}catch{return 0}});
- await cmd(34,token);
- await wait(prior=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime()>prior}catch{return false}},prior);
- const bytes=Buffer.from(await page.evaluate(()=>Array.from(Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1'))));
+ const bytes=await readCompletedNativeSave(page,cmd,{tag:token});
  assert.equal(bytes.readInt32LE(4),905);fs.writeFileSync(path.join(out,name+'.vsgm1'),bytes);return bytes;
 }
 async function finishLever(question){
@@ -127,8 +125,7 @@ try{
  await cmd(6);await page.waitForTimeout(300);
  const first=await state();fs.writeFileSync(path.join(out,'first-state.json'),JSON.stringify(first,null,2));
  await page.screenshot({path:path.join(out,'first-map.png')});
- await cmd(34,170);await wait(()=>Module.FS.analyzePath('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').exists);
- const save=Buffer.from(await page.evaluate(()=>Array.from(Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1'))));
+ const save=await readCompletedNativeSave(page,cmd,{tag:170});
  fs.writeFileSync(path.join(out,'cave-start.vsgm1'),save);
  assert.equal(save.subarray(0,4).toString(),'VCMI');assert.equal(save.readInt32LE(4),905);
  assert(save.includes(Buffer.from('source-campaign-state-v1')),'Real game save contains native campaign state');
@@ -201,7 +198,7 @@ try{
   const after=await state(),army=after.armies.find(a=>a.id===after.heroId).slots;
   if(branch==='give'){
    assert.equal(after.resources[6],before.resources[6]-1000,'Real gold payment');
-   assert(after.equipment.some(a=>a.name==='Pendant of Second Sight'),'Native pendant reward');
+   await cmd(55);await wait(()=>goonkMobileState.mode==='hero');const reward=(await state()).heroWindow.backpack.find(a=>a.name==='Pendant of Second Sight');assert(reward,'Original HE:A places its pendant reward in the backpack');await cmd(63);await wait(()=>goonkMobileState.mode==='map');
    assert.deepEqual(army.map(a=>[a.key,a.count]),before.armies.find(a=>a.id===before.heroId).slots.map(a=>[a.key,a.count]));
   }else if(branch==='kill')assert(army.every(a=>a.key==='core:troglodyte'),'Real army transformation');
   else assert.equal(army.filter(a=>a.key==='core:troglodyte').length,2,'Exactly two real stacks transformed');

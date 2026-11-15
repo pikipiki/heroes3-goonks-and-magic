@@ -16,6 +16,10 @@
 #include "../../lib/era/EraCampaignObjectAccess.h"
 #include "../../lib/era/EraCampaignHints.h"
 #include "../../lib/era/EraCampaignDeployment.h"
+#include "../../lib/era/EraCampaignArtifactRule.h"
+#include "../../lib/era/EraCampaignTerrainRule.h"
+#include "../../lib/entities/artifact/CArtifact.h"
+#include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
 #include "../../lib/era/EraCampaignTimers.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
@@ -248,7 +252,8 @@ struct SourceCampaignProcessor::Impl final:Host
   state["running"].Bool()=!vm.continuations.empty()||!state["turnQueue"].Vector().empty();
   state["hero"].Integer()=heroId.getNum();state["object"].Integer()=objectId.getNum();state["player"].Integer()=player.getNum();state["pending"]=pending;
   SourceCampaignChange packet;packet.state=state;packet.changes.Vector();
-  if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
+  if(change.isVector())packet.changes=std::move(change);
+  else if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
   if(event&&reward)packet.rewardConfigurations.emplace(event->id,*reward);
   gh.sendAndApply(packet);
  }
@@ -274,6 +279,35 @@ struct SourceCampaignProcessor::Impl final:Host
   if(next!=*raw||owner->daysWithoutCastle!=shadow)
   {state["townClocks"][key].Integer()=next;persist(townClockMutation(who,next));}
   return true;
+ }
+ void migrateEntrances()
+ {
+  if(!state["terrainEncoding"].isNull()){require(era_campaign_json::integer(state["terrainEncoding"])==2,"unknown terrain encoding");return;}
+  std::set<int3> initialized;
+  std::size_t prefix=vm.initialized?program.initializers.size():0,partialOperation=0;
+  if(vm.initializing)for(const auto & continuation:vm.continuations)if(continuation.initializer){prefix=continuation.command;partialOperation=continuation.operation;break;}
+  for(std::size_t index=0;index<program.initializers.size()&&index<=prefix;++index)
+  {
+   const auto & command=program.initializers[index];if(command.receiver!="TR")continue;
+   for(std::size_t operation=0;operation<command.operations.size();++operation)
+   {
+    const auto & op=command.operations[operation];if(op.code!="E"||(index==prefix&&operation>=partialOperation))continue;
+    if(op.args.size()==1&&(op.args[0].access==Access::Write||op.args[0].access==Access::Compare))continue;
+    require(command.conditions.empty()&&command.selectors.size()==3&&op.args.size()==1&&op.args[0].kind==Kind::Number&&op.args[0].access==Access::Read,"cannot migrate conditional terrain initializer");
+    for(const auto & selector:command.selectors)require(selector.kind==Kind::Number&&selector.access==Access::Read,"cannot migrate indirect terrain initializer");
+    initialized.insert(int3(command.selectors[0].number,command.selectors[1].number,command.selectors[2].number));
+   }
+  }
+  const auto & map=gh.gameState().getMap();JsonNode changes;changes.Vector();
+  for(int z=0;z<int(map.levels());++z)for(int y=0;y<map.height;++y)for(int x=0;x<map.width;++x)
+  {
+   const int3 pos(x,y,z);const auto & tile=map.getTile(pos);
+   if(!tile.sourceForceVisitable&&tile.sourceHiddenVisitableObjects.empty()&&!initialized.count(pos))continue;
+   // The old force bit records E1; a hidden list or an executed initializer
+   // with that bit clear records E0. Keep the source value, repair its mask.
+   auto change=mutation("terrainAccess",ObjectInstanceID::NONE);change["x"].Integer()=x;change["y"].Integer()=y;change["z"].Integer()=z;change["operation"].String()="E";change["enabled"].Bool()=!tile.sourceForceVisitable;changes.Vector().push_back(std::move(change));
+  }
+  state["terrainEncoding"].Integer()=2;persist(std::move(changes));
  }
  void bind()
  {
@@ -311,7 +345,9 @@ struct SourceCampaignProcessor::Impl final:Host
    if(state["hero"].isNumber())heroId=ObjectInstanceID(state["hero"].Integer());
    if(state["object"].isNumber())objectId=ObjectInstanceID(state["object"].Integer());
    if(state["player"].isNumber())player=PlayerColor(state["player"].Integer());
-   active=true;return;
+   active=true;
+   if(saved.isNull())state["terrainEncoding"].Integer()=2;else migrateEntrances();
+   return;
   }
  }
  void updateContext()
@@ -780,11 +816,53 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   {arity(op,1);const int changed=value(op.code=="I"?h->mana:h->movementPointsRemaining(),args[0]);if(!query(op)){if(op.code=="I")gh.setManaPoints(h->id,changed);else gh.setMovePoints(h->id,changed);}}
   else if(op.code=="A")
   {
-   arity(op,1);const int id=number(args[0]);
-   if(args[0].access==Access::Compare){writeFlag(1,vm,h->hasArt(ArtifactID(id),false,true));return Step::Continue;}
-   require(args[0].access==Access::Read,"unsupported artifact access");
-   if(id>=0)gh.giveHeroNewArtifact(h,ArtifactID(id),ArtifactPosition::FIRST_AVAILABLE);
-   else for(;;){const auto slot=h->getArtPos(ArtifactID(-id),false,false);if(slot==ArtifactPosition::PRE_FIRST)break;gh.removeArtifact(ArtifactLocation(h->id,slot));}
+   if(args.size()==1)
+   {
+    arity(op,1);const int encoded=number(args[0]);require(encoded!=INT32_MIN,"invalid artifact magnitude");
+    const auto spec=era_campaign_artifact::decode(encoded<0?-encoded:encoded);require(spec.has_value(),"unbound original artifact encoding");
+    const auto id=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(spec->artifact));
+    const auto matches=[&](const CArtifactInstance * art){return art&&art->getTypeId()==id&&(spec->artifact!=1||encoded==-1||art->getScrollSpellID().getNum()==spec->spell);};
+    std::vector<ArtifactInstanceID> found;
+    for(const auto & item:h->artifactsWorn)if(item.first.getNum()>=0&&item.first.getNum()<=18&&!item.second.locked&&matches(item.second.getArt()))found.push_back(item.second.getID());
+    for(std::size_t index=0;index<std::min<std::size_t>(64,h->artifactsInBackpack.size());++index){const auto & item=h->artifactsInBackpack[index];if(!item.locked&&matches(item.getArt()))found.push_back(item.getID());}
+    if(args[0].access==Access::Compare){require(encoded>=0,"invalid artifact comparison");writeFlag(1,vm,!found.empty());return Step::Continue;}
+    require(args[0].access==Access::Read,"unsupported artifact access");
+    if(encoded>=0)
+    {
+     if(h->artifactsInBackpack.size()>=64)return Step::Continue;
+     const ArtifactPosition slot(int(ArtifactPosition::BACKPACK_START)+h->artifactsInBackpack.size());
+     const bool placed=spec->spell>=0?gh.giveHeroNewScroll(h,SpellID(spec->spell),slot):gh.giveHeroNewArtifact(h,id,slot);require(placed,"original backpack artifact cannot be represented natively");
+    }
+    else for(const auto instance:found){const auto * art=h->getArtByInstanceId(instance);require(art!=nullptr,"selected artifact disappeared");gh.removeArtifact(ArtifactLocation(h->id,h->getArtPos(art)));}
+    return Step::Continue;
+   }
+   require(args[0].access==Access::Read,"artifact mode must be a value");const int mode=number(args[0]);
+   require(mode>=1&&mode<=3,"unsupported extended artifact mode");arity(op,mode==1?3:4);
+   const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+   if(mode==1)
+   {
+    require(args[2].access==Access::Read,"artifact position must be a value");const int rawSlot=number(args[2]);
+    require(rawSlot>=0&&rawSlot<=18,"unvalidated original backpack slot operation");const ArtifactPosition slot(rawSlot);
+    const auto * existing=h->getArt(slot);
+    if(args[1].access==Access::Write||args[1].access==Access::Compare)
+    {
+     int source=-1;if(existing){for(int candidate=0;candidate<=143;++candidate)if(mapping.remap(ArtifactID(candidate))==existing->getTypeId()){source=era_campaign_artifact::encode(candidate,existing->getScrollSpellID().getNum());break;}require(source!=-1,"foreign artifact in original slot query");}
+     value(source,args[1]);return Step::Continue;
+    }
+    require(args[1].access==Access::Read,"unsupported artifact slot access");const auto spec=era_campaign_artifact::decode(number(args[1]));require(spec.has_value(),"unbound original artifact encoding");
+    if(!h->isPositionFree(slot)){writeFlag(1,vm,false);return Step::Continue;}
+    const auto id=mapping.remap(ArtifactID(spec->artifact));const auto * type=id.toArtifact();require(type!=nullptr,"unbound original artifact");
+    const bool placed=spec->spell>=0?gh.giveHeroNewScroll(h,SpellID(spec->spell),slot):gh.giveHeroNewArtifact(h,id,slot);writeFlag(1,vm,placed);return Step::Continue;
+   }
+   require(args[1].access==Access::Read,"artifact identity must be a value");const auto spec=era_campaign_artifact::decode(number(args[1]));require(spec.has_value(),"unbound original artifact encoding");const auto id=mapping.remap(ArtifactID(spec->artifact));
+   const auto matches=[&](const CArtifactInstance * art){return art&&art->getTypeId()==id&&(spec->artifact!=1||art->getScrollSpellID().getNum()==spec->spell);};
+   std::vector<ArtifactInstanceID> worn,backpack;
+   for(const auto & item:h->artifactsWorn)if(!item.second.locked&&matches(item.second.getArt()))worn.push_back(item.second.getID());
+   for(const auto & item:h->artifactsInBackpack)if(!item.locked&&matches(item.getArt()))backpack.push_back(item.getID());
+   if(mode==2){value(worn.size()+backpack.size(),args[2]);value(worn.size(),args[3]);return Step::Continue;}
+   require(args[2].access==Access::Read&&args[3].access==Access::Read,"artifact removal requires values");const int count=number(args[2]),wearFirst=number(args[3]);require(count>=0&&(wearFirst==0||wearFirst==1),"invalid artifact removal selection");
+   std::vector<ArtifactInstanceID> order=wearFirst?worn:backpack;const auto & later=wearFirst?backpack:worn;order.insert(order.end(),later.begin(),later.end());
+   int remaining=count;for(const auto instance:order){if(remaining==0)break;const auto * art=h->getArtByInstanceId(instance);require(art!=nullptr,"selected artifact disappeared");const auto slot=h->getArtPos(art);require(slot!=ArtifactPosition::PRE_FIRST,"selected artifact position missing");gh.removeArtifact(ArtifactLocation(h->id,slot));--remaining;}
   }
   else if(op.code=="M")
   {arity(op,2);const SpellID spell(number(args[0]));const int changed=value(h->spellbookContainsSpell(spell)?1:0,args[1]);if(!query(op))gh.changeSpells(h,changed!=0,{spell});}
@@ -853,10 +931,10 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  {
   require(op.code=="P"||op.code=="E","unsupported terrain operation "+op.code);arity(op,1);
   const auto pos=position(c);require(gh.gameState().getMap().isInTheMap(pos),"terrain position outside map");const auto & tile=gh.gameState().getMap().getTile(pos);
-  const int old=op.code=="P"?!tile.blocked():tile.visitable();const int changed=value(old,args[0]);
+  const int old=op.code=="P"?!tile.blocked():era_campaign_terrain::entranceValue(tile.visitable());const int changed=value(old,args[0]);
   if(!query(op))
   {
-   auto change=mutation("terrainAccess",ObjectInstanceID::NONE);change["x"].Integer()=pos.x;change["y"].Integer()=pos.y;change["z"].Integer()=pos.z;change["operation"].String()=op.code;change["enabled"].Bool()=changed!=0;persist(change);
+   auto change=mutation("terrainAccess",ObjectInstanceID::NONE);change["x"].Integer()=pos.x;change["y"].Integer()=pos.y;change["z"].Integer()=pos.z;change["operation"].String()=op.code;change["enabled"].Bool()=op.code=="P"?changed!=0:era_campaign_terrain::entranceVisitable(changed);persist(change);
   }
   return Step::Continue;
  }

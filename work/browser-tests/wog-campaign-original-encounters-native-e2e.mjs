@@ -1,5 +1,5 @@
-/** Exact original archive and script program, private registry admission only.
- * Proves three actual original encounters; no complete quest or victory proof. */
+/** Private unchanged original journeys, with optional native first main victory.
+ * Complete optional quests and later campaign scenarios are not established. */
 import {chromium,webkit} from 'playwright-core';import crypto from 'node:crypto';
 import {readOriginalCampaign} from '../../scripts/era-bridge/campaigns/importer.mjs';
 import {readCompletedNativeSave} from './native-save-completed.mjs';
@@ -14,7 +14,7 @@ await page.addInitScript(({bytes,entryId})=>{
 
 const dialogs=[],seen=new Set();let victory=null;
 async function answer(s){const model=s.dialogPresentation;if(!model)return;const token=s.windowToken+':'+model.queryId+':'+JSON.stringify(model);if(seen.has(token))return;seen.add(token);dialogs.push(model);fs.writeFileSync(out+'/dialogs.json',JSON.stringify(dialogs,null,2));if(model.scriptDialog){const images=page.locator('.campaign-media-thumbnail img');await images.evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));if(model.scriptDialog.inputLabel)await page.locator('[data-campaign-input]').fill('Native hero');if(model.scriptDialog.choices?.length){const ratibor=model.scriptDialog.text?.includes('Ratibor looks very irritable');await (ratibor?page.locator('[data-campaign-choice="2"]'):page.locator('[data-campaign-choice]').first()).check();}await page.locator('[data-dialog-confirm]').tap();}else await cmd(1);await page.waitForTimeout(200);}
-async function ready(){for(let i=0;i<900;i++){const s=await state();fs.writeFileSync(out+'/progress.json',JSON.stringify(s,null,2));if(s.mode==='map'&&s.turn&&!s.campaignPending&&!s.heroMoving){if(s.movement===0){const day=s.day;await cmd(3);await page.waitForTimeout(400);await wait(day=>goonkMobileState.day>day||goonkMobileState.mode==='dialog',day);await page.waitForTimeout(500);if((await state()).mode==='map'&&(await state()).hasPath)await cmd(2);continue;}if(!s.hasPath)return s;await cmd(2);await page.waitForTimeout(400);continue;}if(s.mode==='dialog')await answer(s);await page.waitForTimeout(100);}throw Error('Original map not ready');}
+async function ready(){for(let i=0;i<900;i++){const s=await state();fs.writeFileSync(out+'/progress.json',JSON.stringify(s,null,2));if(s.mode==='battle')throw Error('Unexpected original battle: '+JSON.stringify(s.battleUnits?.map(u=>({key:u.key,count:u.count,enemy:u.enemy}))));if(s.mode==='map'&&s.turn&&!s.campaignPending&&!s.heroMoving){if(s.movement===0){const day=s.day;await cmd(3);await page.waitForTimeout(400);await wait(day=>goonkMobileState.day>day||goonkMobileState.mode==='dialog',day);await page.waitForTimeout(500);if((await state()).mode==='map'&&(await state()).hasPath)await cmd(2);continue;}if(!s.hasPath)return s;await cmd(2);await page.waitForTimeout(400);continue;}if(s.mode==='dialog')await answer(s);await page.waitForTimeout(100);}throw Error('Original map not ready');}
 async function centerTile(x,y){
  fs.writeFileSync(out+'/target.json',JSON.stringify({x,y}));
  for(let attempt=0;attempt<30;attempt++){
@@ -60,7 +60,7 @@ try{
    stages.push({target:[21,6],after:await encounter(21,6)});await saveCheckpoint();
    for(const[x,y]of[[20,8],[17,7],[14,6],[11,4],[8,4],[5,3]])stages.push({target:[x,y],after:await travel(x,y)});
    const view=await centerTile(3,2);await page.evaluate(({x,y})=>Module._vcmiMobilePointer(x,y,1),{x:Math.round(view.x+view.w/2),y:Math.round(view.y+view.h/2)});await cmd(2);
-   const deadline=Date.now()+120000;while(Date.now()<deadline){const s=await state();fs.writeFileSync(out+'/victory-progress.json',JSON.stringify(s,null,2));if(s.campaignScenario?.scenarios?.some(s=>s.id===1&&s.completed)){victory=s;break;}if(s.mode==='dialog')await answer(s);else if(s.mode==='map'&&!s.heroMoving&&s.hasPath)await cmd(2);await page.waitForTimeout(150);}
+   const deadline=Date.now()+120000;while(Date.now()<deadline){const s=await state();fs.writeFileSync(out+'/victory-progress.json',JSON.stringify(s,null,2));if(s.campaignScenario?.scenarios?.some(s=>s.id===1&&s.completed)){victory=s;break;}if(s.mode==='dialog')await answer(s);else if(s.mode==='campaign-intro'){await page.locator('[data-campaign-continue]').tap();await page.waitForTimeout(300);}else if(s.mode==='map'&&!s.heroMoving&&s.hasPath)await cmd(2);await page.waitForTimeout(150);}
    assert(victory,'Removing the original objective monster must validate the real campaign victory');assert(dialogs.some(d=>JSON.stringify(d).includes('You complete the main mission')));
   }
 

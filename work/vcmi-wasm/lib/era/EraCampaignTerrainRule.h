@@ -4,6 +4,9 @@
 #include <vector>
 namespace era_campaign_terrain
 {
+// TR:E writes the inverse of the native activation bit0x10.
+inline int entranceValue(bool visitable){return visitable?0:1;}
+inline bool entranceVisitable(int value){return value==0;}
 template<class T> void hide(std::vector<T> & active,std::vector<T> & hidden)
 {
  for(const auto & item:active)if(std::find(hidden.begin(),hidden.end(),item)==hidden.end())hidden.push_back(item);

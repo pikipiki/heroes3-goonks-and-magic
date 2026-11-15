@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.193",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Ordinary address-bounded LLVM inspection corroborated by historical ERM/CasDem navigation. No original Windows execution, binary upload or new Hopper result.",
+  "boundedAssemblySha256": {
+    "artifactSlot": "796a90508300de0af88d351aadd47a0ac90b4c69668548b9629e575eaa18872e",
+    "artifactLegacy": "ba39468ad5e2eaa03c067ad67064a6c7839c6f8fd2cd677f4787d2968a73d818",
+    "activationBranch": "a88894556438096621076b3213e0eac1d3ca120054968fcd769cc9598d29a33f"
+  },
+  "observations": [
+    {
+      "address": "0x7383d1..0x738438 (retained187 terrain proof)",
+      "fact": "TR:E reads inverted native bit0x10. Source zero sets that bit; a nonzero source value clears it."
+    },
+    {
+      "address": "0x4804f6..0x480532",
+      "fact": "The ordinary movement routine tests native bit0x10; when clear it skips the object-dispatch branch. This corrects the earlier interpretation of that bit as entrance-disable rather than activation."
+    },
+    {
+      "address": "0x741617..0x741643;0x7416ce..0x741751",
+      "fact": "Artifact encoding1000 denotes the spellbook; values above1000 encode scroll spell+1001. Slot queries preserve the empty sentinel."
+    },
+    {
+      "address": "0x741801..0x7418c5",
+      "fact": "Slot placement checks for the empty artifact sentinel and sets flag1 for success or occupancy failure."
+    },
+    {
+      "address": "0x741e76..0x741ec6",
+      "fact": "The single-argument grant searches the64 backpack cells and writes the first free cell; it does not auto-equip the reward."
+    }
+  ],
+  "implementation": [
+    "TR:E0 activates a tile and TR:E1 suppresses activation; numeric getters retain the original inverted source value. TR:P remains independent.",
+    "Preserve the905 native layout. terrainEncoding2 identifies corrected states; old native force/hidden lists plus the executed literal initializer prefix reconstruct the original recorded E values in one replicated update. Source variables, pending answers and quest counters are not replayed.",
+    "HE:A1 places only in an empty admitted worn slot and queries the original item encoding. HE:A2 reports total and worn counts. HE:A3 removes stable native artifact instances in backpack-first or worn-first order.",
+    "Historical HE:A grants use the backpack, handle encoded scroll spells and comparisons, and remove selected spells or all scrolls for A-1. Native transfers preserve inventory limits and update native bonuses and combination locks."
+  ],
+  "admissionLimits": [
+    "Explicit slot operations currently admit source positions0..18; the original campaign instruction forms inspected use those positions. Fixed-hole backpack positions19..82 and mode4 remain unadmitted.",
+    "Artifact encodings currently admit original IDs0..143 and defined scroll spell IDs0..80. Foreign and unbound encodings fail explicitly.",
+    "The migration covers the literal executed E initializers and the native force/hidden records used by the original programs; arbitrary external scripts with unrecorded dynamic empty-cell overrides are not claimed compatible.",
+    "Native artifact bonuses are handled through the engine inventory API; this does not establish equivalence to every raw Windows artifact corruption case."
+  ],
+  "originalProgress": "The exact original first-scenario archive reaches native victory with0/7 optional submissions; native campaign UI marks The Beginning complete and Gorynych available. Other original quests and scenarios remain unvalidated and disabled."
+}

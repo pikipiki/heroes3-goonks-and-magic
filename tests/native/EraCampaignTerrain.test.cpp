@@ -5,6 +5,8 @@ static_assert(static_cast<int>(ESerializationVersion::GOONK_CAMPAIGN_TERRAIN)==s
 int main()
 {
  using namespace era_campaign_terrain;
+ assert(entranceValue(true)==0&&entranceValue(false)==1);
+ assert(entranceVisitable(0)&&!entranceVisitable(1)&&!entranceVisitable(-1));
  std::vector<int> active{3,1},hidden;
  hide(active,hidden);assert(active.empty()&&hidden==std::vector<int>({3,1}));
  hide(active,hidden);assert(hidden==std::vector<int>({3,1}));
