@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive includes changes later than3.58f. Bounded assembly below corroborates the selected rules in the original3.58f binary."
+  },
+  "analysis": "New evidence is ordinary address-bounded LLVM objdump and PE byte/reference inspection, not newly returned REA dossiers or original execution. Hopper could not launch its local bridge (Connection is invalid); its retained180 evidence was exported, but cleanup acknowledgement was unavailable. No reinstall, external binary upload or Windows execution was attempted.",
+  "release": "0.4.184",
+  "contracts": [
+    "https://h3era.github.io/ERM-Help/Rec/UN.htm"
+  ],
+  "boundedAssemblySha256": {
+    "unKandM": "e65b8f2d64fb0e2eab7997e5317f66545d8aa6b4a64f32b5bbfd3e02134bc173",
+    "calendarOverrides": "6922c0334ab25315277ba42c1403a68af7ecc4a1536ee0fa1a938c4c7b5b0eb2",
+    "weekNativeSelector": "e013db471c868cf220d0443a2c554485fcfa342a0fce8b9dfde499ac4f151315",
+    "weekMessage": "cbe44db1147589ec64fa00f1f6d80d7777181ced4d992e60430c1f506e22bc65"
+  },
+  "observations": [
+    {
+      "address": "0x72e18e..0x72e1b5",
+      "fact": "UN:K applies to the independent32-bit week suppression and message-index fields."
+    },
+    {
+      "address": "0x72e1fe..0x72e267",
+      "fact": "M0/M1/M2/M3 select normal/none/forced creature/plague. M2 separately applies the creature operand."
+    },
+    {
+      "address": "0x714941..0x71496f and0x4c846b..0x4c8496",
+      "fact": "K1 changes the normal week selector so the random creature branch cannot be taken."
+    },
+    {
+      "address": "0x714980..0x714a0e and0x4cca5a..0x4cca63",
+      "fact": "K2 resolves a z-index1..500 and formats its current contents before replacing the final week notification pointer."
+    },
+    {
+      "address": "0x714a3b..0x714b1d",
+      "fact": "The month overrides return normal, forced-double or plague selection and the chosen creature pointer."
+    }
+  ],
+  "implementation": [
+    "Map-local K1 suppression, K2 live message reference/reset and M0..3 selection, replicated and saved in the existing source state.",
+    "The existing native Inferno Grail effect keeps priority, as required by the primary UN documentation. Existing native week/month growth and plague arithmetic are used.",
+    "Forced calendar selection still consumes the ordinary native calendar roll; no Windows/native random-sequence equivalence is claimed.",
+    "Creature IDs use the already installed original source bindings, not an assumed numeric native index."
+  ],
+  "limitations": [
+    "Only solo source initialization is established by these native calendar controls. A preliminary private hotseat fixture exposed a source-initialization dialog on the other local interface; this multi-human source-host path remains unvalidated. Ordinary Goonk hotseat regression tests pass and original campaigns are single-player.",
+    "The forced-double native stock proof uses original source creature0/Pikeman; this control does not independently exercise every possible creature ID.",
+    "Calendar parity does not establish an original scenario quest, combat or victory. Campaigns remain disabled."
+  ]
+}

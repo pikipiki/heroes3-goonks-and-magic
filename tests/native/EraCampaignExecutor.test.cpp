@@ -2,6 +2,7 @@
 #include "../../work/vcmi-wasm/lib/era/EraCampaignObjectAccess.h"
 #include "../../work/vcmi-wasm/lib/era/EraCampaignCarryover.h"
 #include "../../work/vcmi-wasm/lib/serializer/ESerializationVersion.h"
+#include "../../work/vcmi-wasm/lib/era/EraCampaignCalendar.h"
 #include <cassert>
 #include <climits>
 #include <vector>
@@ -127,5 +128,14 @@ int main()
  assert(completed.initialized&&completed.continuations.size()==1&&completed.z.count(300));
  Program following;following.sha256="following-map";following.initializers={cmd("VR",{var('v',501)},"+",{num(1)})};
  Executor nextMap(following,next,context,host);nextMap.initialize();assert(nextMap.run()&&next.v.at(501)==502&&next.initialized&&next.programSha256=="following-map");
+
+ using era_campaign_calendar::Settings;using era_campaign_calendar::Effect;
+ Settings calendar;assert(era_campaign_calendar::effect(calendar,false)==Effect::Inherit&&era_campaign_calendar::effect(calendar,true)==Effect::Inherit);
+ calendar.week=1;assert(era_campaign_calendar::effect(calendar,false)==Effect::Normal&&era_campaign_calendar::effect(calendar,true)==Effect::Inherit);
+ calendar.month=1;assert(era_campaign_calendar::effect(calendar,true)==Effect::Normal);
+ calendar.month=2;calendar.creature=0;assert(era_campaign_calendar::effect(calendar,true)==Effect::DoubleGrowth);
+ calendar.month=3;assert(era_campaign_calendar::effect(calendar,true)==Effect::Plague&&era_campaign_calendar::effect(calendar,false)==Effect::Normal);
+ calendar.week=0;assert(era_campaign_calendar::effect(calendar,false)==Effect::Inherit);
+ for(const Settings bad:std::vector<Settings>{{2,0,0,0},{0,501,0,0},{0,-1,0,0},{0,0,4,0},{0,0,2,-1}}){rejected=false;try{era_campaign_calendar::effect(bad,true);}catch(const std::runtime_error&){rejected=true;}assert(rejected);}
 
 }

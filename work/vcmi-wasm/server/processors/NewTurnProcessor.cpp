@@ -22,6 +22,10 @@
 #include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/era/EraBridgeArtifactPolicies.h"
 #include "../../lib/era/EraBridgePolicies.h"
+#include "../../lib/era/EraCampaignCalendarJson.h"
+#include "../../lib/era/EraSourceCreatureLevels.h"
+#include "../../lib/modding/IdentifierStorage.h"
+#include "../../lib/modding/ModScope.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/IGameSettings.h"
@@ -621,10 +625,26 @@ std::tuple<EWeekType, CreatureID, int> NewTurnProcessor::pickWeekType(bool newMo
 		return { EWeekType::DEITYOFFIRE, std::get<0>(item), std::get<1>(item)};
 	}
 
-	if(!gameHandler->gameInfo().getSettings().getBoolean(EGameSettings::CREATURES_ALLOW_RANDOM_SPECIAL_WEEKS))
-		return { EWeekType::NORMAL, CreatureID::NONE, 0};
+ // The original UN overrides do not suppress the Inferno Grail week/month.
+ const auto sourceSettings=era_campaign_calendar_json::read(gameHandler->gameState().getMap().sourceCampaignState);
+ const auto sourceEffect=era_campaign_calendar::effect(sourceSettings,newMonth);
+ const bool randomWeeks=gameHandler->gameInfo().getSettings().getBoolean(EGameSettings::CREATURES_ALLOW_RANDOM_SPECIAL_WEEKS);
+ if(!randomWeeks&&sourceEffect==era_campaign_calendar::Effect::Inherit)return {EWeekType::NORMAL,CreatureID::NONE,0};
+ // Keep the native calendar roll even when the source forces its result.
+ const int monthType=gameHandler->getRandomGenerator().nextInt(99);
+ if(sourceEffect==era_campaign_calendar::Effect::Normal)return {EWeekType::NORMAL,CreatureID::NONE,0};
+ if(sourceEffect==era_campaign_calendar::Effect::Plague)return {EWeekType::PLAGUE,CreatureID::NONE,0};
+ if(sourceEffect==era_campaign_calendar::Effect::DoubleGrowth)
+ {
+  for(const auto & binding:era_bridge::sourceCreatureLevelBindings)if(binding.sourceId==sourceSettings.creature)
+  {
+   const auto id=LIBRARY->identifiers()->getIdentifier(ModScope::scopeGame(),"creature",std::string(binding.key),true);
+   if(!id)throw std::runtime_error("Unresolved source campaign month creature");
+   return {EWeekType::DOUBLE_GROWTH,CreatureID(*id),0};
+  }
+  throw std::runtime_error("Unbound source campaign month creature");
+ }
 
-	int monthType = gameHandler->getRandomGenerator().nextInt(99);
 	if (newMonth) //new month
 	{
 		if (monthType < gameHandler->gameInfo().getSettings().getInteger(EGameSettings::CREATURES_MONTH_DOUBLE_GROWTH_PROBABILITY)) //double growth
@@ -707,6 +727,8 @@ std::vector<SetMovePoints> NewTurnProcessor::updateHeroesMovementPoints()
 InfoWindow NewTurnProcessor::createInfoWindow(EWeekType weekType, CreatureID creatureWeek, bool newMonth, int additionalGrowth)
 {
 	InfoWindow iw;
+ if(const auto text=era_campaign_calendar_json::message(gameHandler->gameState().getMap().sourceCampaignState,gameHandler->gameState().day+1))
+ {iw.text.appendRawString(*text);return iw;}
 	switch (weekType)
 	{
 		case EWeekType::DOUBLE_GROWTH:

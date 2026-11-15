@@ -1,0 +1,1234 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.184",
+  "engineSha256": "5763117d53991a1f63e811baedb868a9e2c7df0b76ccbf55ee61ce1c343499b3",
+  "originalCampaignsEnabled": false,
+  "sourceContract": "calendar-source-contract-184.json",
+  "nativeChecks": [
+    {
+      "case": "normal-r3",
+      "passed": true,
+      "resultSha256": "5ce8deebb16e6460cdedf30f1a049ec67ed1f9b6afd8b4463047c7b9830725b1",
+      "month": 1,
+      "grail": false,
+      "loadedPending": false,
+      "fixtureSha256": "f4929a9b411ad5b60a14e6f8ae4931e2b1e68ecd670d4656c88348331dffa845",
+      "mapSha256": "1e8c4e2d796378b888a98d7d0a482c64de8de12f17dd7936da05f3c444ec83c5",
+      "stocks": [
+        {
+          "day": 1,
+          "count": 14,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "count": 28,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 15,
+          "count": 42,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 22,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 28,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 29,
+          "count": 70,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "day": 1,
+          "player": 0,
+          "lines": [
+            "Native calendar configured 1/412"
+          ]
+        },
+        {
+          "day": 8,
+          "player": 0,
+          "lines": [
+            "Calendar week 7"
+          ]
+        },
+        {
+          "day": 15,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 22,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 29,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "double-r3",
+      "passed": true,
+      "resultSha256": "656c7c4a3905df4e0cbbd20e1ca273bae0243bf66ddff36a30f53a7628927f9a",
+      "month": 2,
+      "grail": false,
+      "loadedPending": false,
+      "fixtureSha256": "1bc9f6611e5e5b8ade0b64999bdd9a9340aec990c75405593aca1b68636bcb6a",
+      "mapSha256": "ac711075686409a7ba096017ab2e2ae3b18d9cdad684370831c028c186b1fe4a",
+      "stocks": [
+        {
+          "day": 1,
+          "count": 14,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "count": 28,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 15,
+          "count": 42,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 22,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 28,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 29,
+          "count": 140,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "day": 1,
+          "player": 0,
+          "lines": [
+            "Native calendar configured 1/412"
+          ]
+        },
+        {
+          "day": 8,
+          "player": 0,
+          "lines": [
+            "Calendar week 7"
+          ]
+        },
+        {
+          "day": 15,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 22,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 29,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "plague-r3",
+      "passed": true,
+      "resultSha256": "057034c96176c171f8545cffede3f570ddf961c52fb44cfabc29e2d47bedd34f",
+      "month": 3,
+      "grail": false,
+      "loadedPending": false,
+      "fixtureSha256": "7700a3ff6e0eba0c3b2c22007734dbbbcf0c72a7a08590284c520d191ff2ba93",
+      "mapSha256": "d5ce8fe515087af250fcc4d60dfcc1b5c311e96105366c6336cbf6ad09f31994",
+      "stocks": [
+        {
+          "day": 1,
+          "count": 14,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "count": 28,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 15,
+          "count": 42,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 22,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 28,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 29,
+          "count": 28,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "day": 1,
+          "player": 0,
+          "lines": [
+            "Native calendar configured 1/412"
+          ]
+        },
+        {
+          "day": 8,
+          "player": 0,
+          "lines": [
+            "Calendar week 7"
+          ]
+        },
+        {
+          "day": 15,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 22,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 29,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "grail-plague",
+      "passed": true,
+      "resultSha256": "d28844e58979921c5fcb0abbd8b49169546360b1abd46e2e574a1b0980f0dea4",
+      "month": 3,
+      "grail": true,
+      "loadedPending": false,
+      "fixtureSha256": "3d02f1aef2c1fbc65afe05b5692837dd519d2bb6eb140ea72e5c7d525f9341e1",
+      "mapSha256": "9b51a8f38525aa862c009fbce21f1154d12041285158056516bc94f55d40d233",
+      "stocks": [
+        {
+          "day": 1,
+          "count": 15,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "count": 52,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 15,
+          "count": 89,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 22,
+          "count": 126,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 28,
+          "count": 126,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 29,
+          "count": 163,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "day": 1,
+          "player": 0,
+          "lines": [
+            "Native calendar configured 1/412"
+          ]
+        },
+        {
+          "day": 8,
+          "player": 0,
+          "lines": [
+            "Calendar week 7"
+          ]
+        },
+        {
+          "day": 15,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 22,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 29,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "grail-control",
+      "passed": true,
+      "resultSha256": "f94b2c9a74b574181acba9b50341507f4756133299ae104dbd40e6ced7646a03",
+      "month": 0,
+      "grail": true,
+      "loadedPending": false,
+      "fixtureSha256": "c8be571304c716b14c80f4ddfb96c8d3af583cd16432def1932ba028a56afb6a",
+      "mapSha256": "a8b681fd371cd9f49bab49d55251c1cfd8ddf8b87a4d130d3b50dae67ae39acf",
+      "stocks": [
+        {
+          "day": 1,
+          "count": 15,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "count": 52,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 15,
+          "count": 89,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 22,
+          "count": 126,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 28,
+          "count": 126,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        },
+        {
+          "day": 29,
+          "count": 163,
+          "growth": 22,
+          "forms": [
+            {
+              "built": true,
+              "id": 42,
+              "key": "core:imp",
+              "name": "Imp"
+            },
+            {
+              "built": false,
+              "id": 43,
+              "key": "core:familiar",
+              "name": "Familiar"
+            },
+            {
+              "built": false,
+              "id": 230,
+              "key": "third-upgrades:tumVermin",
+              "name": "Vermin"
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "day": 1,
+          "player": 0,
+          "lines": [
+            "Native calendar configured 1/412"
+          ]
+        },
+        {
+          "day": 8,
+          "player": 0,
+          "lines": [
+            "Calendar week 7"
+          ]
+        },
+        {
+          "day": 15,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 22,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 29,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "plague-reload",
+      "passed": true,
+      "resultSha256": "86ce94d6078fa2d0175826073966756cb40be12ba3acaf0fc7216923491173ab",
+      "month": 3,
+      "grail": false,
+      "loadedPending": true,
+      "fixtureSha256": "7700a3ff6e0eba0c3b2c22007734dbbbcf0c72a7a08590284c520d191ff2ba93",
+      "mapSha256": "d5ce8fe515087af250fcc4d60dfcc1b5c311e96105366c6336cbf6ad09f31994",
+      "stocks": [
+        {
+          "day": 1,
+          "count": 14,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "count": 28,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 15,
+          "count": 42,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 22,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 28,
+          "count": 56,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        },
+        {
+          "day": 29,
+          "count": 28,
+          "growth": 14,
+          "forms": [
+            {
+              "built": true,
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman"
+            },
+            {
+              "built": false,
+              "id": 1,
+              "key": "core:halberdier",
+              "name": "Halberdier"
+            },
+            {
+              "built": false,
+              "id": 223,
+              "key": "third-upgrades:tumRoyalHalberdier",
+              "name": "Royal Halberdier"
+            }
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "day": 1,
+          "player": 0,
+          "lines": [
+            "Native calendar configured 1/412"
+          ]
+        },
+        {
+          "day": 8,
+          "player": 0,
+          "lines": [
+            "Calendar week 7"
+          ]
+        },
+        {
+          "day": 15,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 22,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        },
+        {
+          "day": 29,
+          "player": 0,
+          "lines": [
+            "Updated week 9"
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "identicalGrailStocksWithAndWithoutForcedPlague": true,
+  "regressions": [
+    {
+      "case": "production-maps",
+      "passed": true,
+      "resultSha256": "6f2fed31511ef605da575950676c47803b9662d15785e3752e23961abc6184c4",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write."
+    },
+    {
+      "case": "original-gerfrex-903-checkpoint",
+      "passed": true,
+      "resultSha256": "6b822856ad3f67d394b5bd125dea864b78db293fbd661d35f13004d60b129d30",
+      "scope": "Controlled hero relocation, original Gerfrex dialogue and seven native Faerie Dragons recruited; full map victory not validated"
+    }
+  ],
+  "unitTests": {
+    "total": 761,
+    "passed": 727,
+    "skipped": 34,
+    "failed": 0
+  },
+  "build": {
+    "wasm": "ninja -j32 html5 passed8/8",
+    "site": "prepare/build/verify passed"
+  }
+}

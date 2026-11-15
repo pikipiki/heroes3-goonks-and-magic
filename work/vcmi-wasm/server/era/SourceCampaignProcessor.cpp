@@ -24,6 +24,7 @@
 #include "../../lib/StartInfo.h"
 #include "../../lib/campaign/CampaignState.h"
 #include "../../lib/era/EraCampaignCarryover.h"
+#include "../../lib/era/EraCampaignCalendarJson.h"
 #include "../../lib/gameState/CGameState.h"
 #include "../../lib/mapping/CMap.h"
 #include "../../lib/mapping/CCastleEvent.h"
@@ -499,6 +500,24 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  if(c.receiver=="UN")
  {
   require(c.selectors.empty(),"universal receiver does not take selectors");
+  if(op.code=="K"||op.code=="M")
+  {
+   require(!args.empty()&&args[0].access==Access::Read,"calendar mode needs a value");
+   auto settings=era_campaign_calendar_json::read(state);const int mode=number(args[0]);
+   if(op.code=="K")
+   {
+    arity(op,2);require(mode==1||mode==2,"unknown source week setting");
+    auto & selected=mode==1?settings.week:settings.message;selected=value(selected,args[1]);era_campaign_calendar::validate(settings);
+    if(!query(op)){era_campaign_calendar_json::write(state,settings);persist();}
+   }
+   else
+   {
+    require(mode>=0&&mode<=3,"unknown source month setting");arity(op,mode==2?2:1);settings.month=mode;
+    if(mode==2){const int selected=value(settings.creature,args[1]);creature(selected);if(!query(op))settings.creature=selected;}
+    era_campaign_calendar_json::write(state,settings);persist();
+   }
+   return Step::Continue;
+  }
   require(op.code=="O"||op.code=="I","unsupported universal operation "+op.code);
   require(op.code=="O"?(args.size()>=3&&args.size()<=5):(args.size()>=5&&args.size()<=9),"unsupported universal object arity");
   for(const auto & arg:args)require(arg.access==Access::Read,"object mutation needs value arguments");
