@@ -66,3 +66,15 @@ test('native census returns typed copied data and rejects malformed native recor
     state=null;assert.throws(()=>api.census(),/invalide/);
   }finally{api.close();}
 });
+test('Heroes movement multipliers reach the native rows for both unit families',()=>{
+ const f=fixture();let rows;
+ f.exports.openbw_crossover_apply_magic=count=>{rows=new Int32Array(f.memory.buffer,64,count*27).slice();return 1;};
+ f.exports.openbw_crossover_damage_rules=()=>1;
+ const api=installNativeBridge(f.exports,f.memory,f.target);
+ try{
+  const unit={id:1,owner:0,count:1,hp:40,maxHp:40,attack:0,defense:0,damageMin:6,damageMax:6,speed:8,shooter:true,x:40,y:50,luck:0,morale:0,retaliations:0};
+  api.applyMagic([{...unit,creature:'heroes-starcraft:marine',movementScale:1500},{...unit,id:2,creature:'core:archer',movementScale:500}]);
+  assert.equal(rows[26],1500);assert.equal(rows[27+26],500);
+  api.applyMagic([{...unit,creature:'core:archer'}]);assert.equal(rows[26],1000,'older callers retain normal movement');
+ }finally{api.close();}
+});

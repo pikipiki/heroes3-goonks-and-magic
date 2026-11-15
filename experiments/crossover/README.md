@@ -153,3 +153,7 @@ Les deux modes partagent une santé de groupe compatible Heroes : plusieurs memb
 `node scripts/export-classic-art.mjs` (depuis ce dossier) régénère les sprites classiques à partir du moteur et des archives locales vérifiées. Il nécessite Playwright et Python avec Pillow. Les PNG indexés réservent les couleurs de transparence, ombres et sélection attendues par VCMI.
 
 Les changements de mode attendent la confirmation de l’état natif, sans attendre le décodage audio. Les requêtes gardent leur délai de secours jusqu’à leur achèvement ; les réponses et temporisateurs d’un ancien combat ne peuvent pas relancer la simulation pendant un transfert. Chaque retour classique arrête explicitement les tâches, le son et la passerelle du moteur RTS avant de libérer son iframe.
+
+Hâte et Lenteur modifient les déplacements réels des deux familles d’unités, y compris les déplacements pilotés par les animations StarCraft. Le multiplicateur vient des bonus natifs Heroes ; les améliorations StarCraft restent actives. Les effets déjà présents en classique sont repris en temps réel, et Dissipation rétablit la vitesse normale.
+
+Pour limiter la mémoire sur téléphone, le retour classique libère entièrement l’hôte RTS sans charger aussitôt une autre copie de ses archives. Le prochain clic « Temps réel » prépare le moteur avant d’activer ce mode. Son rendu technique invisible utilise une surface de 320 × 240 ; le terrain visible et les sprites gardent leur propre rendu haute résolution.

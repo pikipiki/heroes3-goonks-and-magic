@@ -100,7 +100,7 @@ export function installNativeBridge(x, memory, target = window) {
         applyMagic(groups, rules = []) {
             if (closed || !x.openbw_crossover_apply_magic)
                 throw Error('Passerelle de magie absente.');
-            const data = new Int32Array(groups.flatMap(r => [r.id, r.owner, r.count, r.hp, r.maxHp, r.attack, r.defense, r.damageMin, r.damageMax, r.speed, r.shooter ? 1 : 0, r.x, r.y, (r.disabled ? 1 : 0) | (r.berserk ? 2 : 0) | (r.cloned ? 4 : 0), r.moved ? 1 : 0, r.meleeReduction, r.rangedReduction, r.fireShield, r.healthDelta, r.revived, r.removed ? 1 : 0, r.creature.startsWith('heroes-starcraft:') ? (STARCRAFT_UNITS[r.creature.split(':')[1]] ?? -1) : r.shooter ? 0 : 37, r.creature.startsWith('heroes-starcraft:') ? 0 : 1, r.luck, r.morale, r.retaliations]));
+            const data = new Int32Array(groups.flatMap(r => [r.id, r.owner, r.count, r.hp, r.maxHp, r.attack, r.defense, r.damageMin, r.damageMax, r.speed, r.shooter ? 1 : 0, r.x, r.y, (r.disabled ? 1 : 0) | (r.berserk ? 2 : 0) | (r.cloned ? 4 : 0), r.moved ? 1 : 0, r.meleeReduction, r.rangedReduction, r.fireShield, r.healthDelta, r.revived, r.removed ? 1 : 0, r.creature.startsWith('heroes-starcraft:') ? (STARCRAFT_UNITS[r.creature.split(':')[1]] ?? -1) : r.shooter ? 0 : 37, r.creature.startsWith('heroes-starcraft:') ? 0 : 1, r.luck, r.morale, r.retaliations, r.movementScale ?? 1000]));
             const pointer = x.openbw_in_ptr(data.byteLength);
             new Int32Array(memory.buffer, pointer, data.length).set(data);
             if (x.openbw_crossover_apply_magic(groups.length) !== 1)

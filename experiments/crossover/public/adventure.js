@@ -28,7 +28,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     const modeStatus = doc.createElement('p');
     modeStatus.className = 'crossover-mode-status';
     modeStatus.setAttribute('role', 'status');
-    let latestBattleId = -1, canSwitch = false, switchPending = false, returningToClassic = false;
+    let latestBattleId = -1, canSwitch = false, switchPending = false, returningToClassic = false, switchEpoch = 0;
     const menuDemo = makeButton('crossover-demo-menu', 'Démo Heroes × StarCraft', 'demo');
     const toggle = makeButton('crossover-toggle', 'Combats en temps réel : activés', 'toggle');
     toggle.setAttribute('aria-pressed', 'true');
@@ -137,23 +137,41 @@ export function installAdventure(target, base, onExit, trial = false) {
                 m._free(pointer);
         }
     };
-    realTime.onclick = () => { if (!assetsReady || !canSwitch || switchPending)
-        return; cancelled.delete(latestBattleId); switchPending = true; realTime.disabled = true; realTime.textContent = 'Activation…'; modeStatus.textContent = ''; try {
-        command(3, latestBattleId);
-    }
-    catch (error) {
-        switchPending = false;
-        modeStatus.textContent = String(error);
-    } win.setTimeout(() => { if (switchPending) {
-        switchPending = false;
-        realTime.textContent = '▶ Temps réel';
-        realTime.disabled = !canSwitch || !assetsReady;
-        modeStatus.textContent = 'Ce combat ne permet pas le passage en temps réel.';
-    } }, 6000); };
+    realTime.onclick = () => {
+        if (!canSwitch || switchPending)
+            return;
+        const battleId = latestBattleId, epoch = ++switchEpoch;
+        cancelled.delete(battleId);
+        switchPending = true;
+        realTime.disabled = true;
+        realTime.textContent = assetsReady ? 'Activation…' : 'Préparation…';
+        modeStatus.textContent = '';
+        void (async () => {
+            await prepareEngine();
+            if (epoch !== switchEpoch)
+                return;
+            if (disposed || battleId !== latestBattleId || !canSwitch) {
+                switchPending = false;
+                realTime.disabled = !canSwitch;
+                return;
+            }
+            command(3, battleId);
+            win.setTimeout(() => { if (epoch === switchEpoch && switchPending && latestBattleId === battleId) {
+                switchPending = false;
+                realTime.textContent = '▶ Temps réel';
+                realTime.disabled = !canSwitch;
+                modeStatus.textContent = 'Ce combat ne permet pas le passage en temps réel.';
+            } }, 6000);
+        })().catch(error => { if (epoch !== switchEpoch)
+            return; switchPending = false; realTime.disabled = !canSwitch; modeStatus.textContent = String(error); });
+    };
     const closePanel = () => { returningToClassic = false; const nativeApp = doc.querySelector('#mobile-app'); if (nativeApp)
-        nativeApp.inert = false; sceneDispose?.(); sceneDispose = undefined; const host = frame?.contentWindow; host?.openbwDisposeCrossover?.(); if (timer !== undefined)
-        win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (!disposed)
-        void prepareEngine().catch(() => { }); };
+        nativeApp.inert = false; const hadEngine = !!frame; sceneDispose?.(); sceneDispose = undefined; const host = frame?.contentWindow; host?.openbwDisposeCrossover?.(); if (timer !== undefined)
+        win.clearInterval(timer); timer = undefined; frame?.remove(); frame = undefined; panel?.remove(); panel = undefined; plan = undefined; sent = false; if (hadEngine) {
+        assetsReady = false;
+        realTime.textContent = '▶ Temps réel';
+        realTime.disabled = !canSwitch;
+    } };
     const begin = (value) => {
         if (plan?.battleId === value.battleId || cancelled.has(value.battleId))
             return;
@@ -596,11 +614,14 @@ export function installAdventure(target, base, onExit, trial = false) {
         latestBattleId = state.battleId ?? -1;
         canSwitch = !!state.canStartCrossover;
         if (state.crossover) {
-            switchPending = false;
+            if (switchPending) {
+                switchPending = false;
+                ++switchEpoch;
+            }
             modeStatus.textContent = '';
         }
-        realTime.disabled = !assetsReady || !canSwitch || switchPending;
-        realTime.textContent = switchPending ? 'Activation…' : assetsReady ? '▶ Temps réel' : 'Préparation…';
+        realTime.disabled = !canSwitch || switchPending;
+        realTime.textContent = switchPending ? (assetsReady ? 'Activation…' : 'Préparation…') : '▶ Temps réel';
         if (state.mode !== 'battle')
             modeStatus.textContent = '';
         latestOnline = !!state.onlineGame;
@@ -619,6 +640,10 @@ export function installAdventure(target, base, onExit, trial = false) {
         }
         if (state.mode === 'load')
             isDemo = false;
+        // Keep the classic battle free of a second archive/engine allocation. Prepare
+        // again only at the menu/map, or after an explicit RTS request.
+        if (!frame && !warmPromise && (state.mode === 'menu' || state.mode === 'map'))
+            void prepareEngine().catch(() => { });
         if (trial && state.mode === 'menu' && !starting) {
             starting = true;
             win.Module?._vcmiMobileCommand?.(20, 1, 0, 0, 0, 0);
@@ -710,7 +735,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     win.addEventListener('goonk-state', observe);
     mountControls();
     void prepareEngine().catch(() => { });
-    return () => { disposed = true; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); warmFrame?.remove(); if (settingsButton)
+    return () => { disposed = true; ++switchEpoch; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); warmFrame?.remove(); if (settingsButton)
         doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton); for (const node of [demo, menuDemo, toggle, realTime, modeStatus, mainStatus, menuStatus, style])
         node.remove(); };
 }

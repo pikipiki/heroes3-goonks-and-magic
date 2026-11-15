@@ -6,9 +6,10 @@ const cycles = Number(process.env.SWITCH_CYCLES || 8);
 assert(Number.isInteger(cycles) && cycles >= 2 && cycles <= 20);
 for (const [name, type] of Object.entries({chromium, webkit}).filter(([name]) => !process.env.CROSSOVER_BROWSER || name === process.env.CROSSOVER_BROWSER)) {
  const browser = await type.launch({headless: true});
- const page = await browser.newPage({viewport: {width: 390, height: 844}, isMobile: true, hasTouch: true});
+ const page = await browser.newPage({viewport: {width: 390, height: 844}, isMobile: true, hasTouch: true, deviceScaleFactor: 3});
  await silenceTestAudio(page);
- const errors = [];
+ const errors = [];let inBattle=false;
+ page.on('framenavigated', frame => {if(inBattle&&frame===page.mainFrame())errors.push('unexpected game reboot');});
  page.on('pageerror', error => {errors.push(error.message); console.log('pageerror', error.message);});
  page.on('crash', () => errors.push('browser page crashed'));
  page.on('console', message => {if (message.type() === 'error' && /abort|trap|assert|refus|horloge|exception|invalid unit|failed to resolve/i.test(message.text())) console.log('browser', message.text());});
@@ -16,9 +17,11 @@ for (const [name, type] of Object.entries({chromium, webkit}).filter(([name]) =>
   await page.addInitScript(() => {try {sessionStorage.setItem('heroes-goonk.storage-failed', 'true');} catch {} window.switchMagic = []; window.engineReleases = 0; window.transferResumes = 0; window.switchOnSync = false; addEventListener('goonk-crossover-magic', event => {switchMagic.push(structuredClone(event.detail)); if(switchOnSync && event.detail.ok) {switchOnSync = false; document.querySelector('#crossover-cancel')?.click();}});});
   await page.goto(process.env.CROSSOVER_URL || 'http://127.0.0.1:8784/heroes-starcraft/battle.html');
   await page.waitForFunction(() => window.goonkMobileState?.mode === 'menu', null, {timeout: 120000});
+  inBattle=true;
   await page.locator('#crossover-demo').click({timeout: 180000});
   for (let cycle = 0; cycle < cycles; cycle++) {
    await page.locator('#crossover-field').waitFor({state: 'visible', timeout: 60000});
+   const retiredCanvas=await page.locator('#crossover-field').elementHandle();
    const sc = await (await page.locator('iframe[data-crossover-engine]').elementHandle()).contentFrame();
    if (cycle === 1 && process.env.STALL_SOUND === '1') await sc.evaluate(() => {openbwCrossover.prepareCreatureSounds = () => new Promise(() => {});});
    await sc.evaluate(() => {const dispose = window.openbwDisposeCrossover; window.openbwDisposeCrossover = () => {parent.engineReleases++; dispose();}; const start = openbwCrossover.start; openbwCrossover.start = () => {if(parent.document.querySelector('#crossover-arena')?.dataset.transferring === 'true') parent.transferResumes++; start();};});
@@ -32,7 +35,8 @@ for (const [name, type] of Object.entries({chromium, webkit}).filter(([name]) =>
     await page.locator('#crossover-cancel').dblclick();
    }
    await page.waitForFunction(() => !document.querySelector('#crossover-arena') && goonkMobileState.mode === 'battle' && goonkMobileState.canAct, null, {timeout: 30000});
-   assert.equal(await page.locator('iframe[data-crossover-engine]').count(), 1, 'one prepared engine');
+   assert.equal(await page.locator('iframe[data-crossover-engine]').count(), 0, 'classic does not allocate another RTS host');
+   assert(await retiredCanvas.evaluate(canvas=>canvas.width===0&&canvas.height===0),'retired combat canvas released immediately');await retiredCanvas.dispose();
    assert.equal(await page.evaluate(() => engineReleases), cycle + 1, 'previous engine explicitly released');
    await page.locator('[data-ui="battle-view"]').click();
    if(cycle % 2 === 0) {

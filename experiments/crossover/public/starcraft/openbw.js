@@ -5,7 +5,7 @@ import {installNativeBridge, setupNativeBattle} from '../native-bridge.js';
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
 
 // Build id — CI replaces the placeholder with the commit SHA for cache-busting.
-const BUILD = 'openbw-46770cc65619bc61';
+const BUILD = 'openbw-015dae8ce8a3148a';
 
 // Any build whose SHA wasn't stamped in by CI is a local/dev build. CI's stamp is a
 // GLOBAL sed of the placeholder, which also rewrites comparisons that spell it out —
@@ -162,7 +162,7 @@ const zoomMax = () => Math.max(1, Math.min(window.innerWidth / 640, window.inner
 try { zoom = Math.min(zoomMax(), Math.max(1, parseFloat(localStorage.getItem('openbw-zoom')) || 1)); } catch {}
 const winSize = () => [Math.max(320, (window.innerWidth / zoom) | 0), Math.max(240, (window.innerHeight / zoom) | 0)];
 
-function wireInput(canvas, x) {
+function wireInput(canvas, x, nativeSize=winSize) {
   const xy = (e) => {
     const r = canvas.getBoundingClientRect();
     return [Math.round((e.clientX - r.left) * canvas.width / r.width),
@@ -290,7 +290,7 @@ function wireInput(canvas, x) {
     if (k === 1) return;
     appliedZoom = zoom;
     if (x.openbw_set_view_scale) x.openbw_set_view_scale(zoom);
-    x.openbw_resize(...winSize());
+    x.openbw_resize(...nativeSize());
     // Zoom towards the cursor: the resize keeps the camera's top-left corner, so
     // pan by the cursor's shift to keep the map point under it fixed (the engine
     // clamps at map edges). The virtual cursor keeps its on-screen spot.
@@ -465,11 +465,13 @@ async function boot(session) {
   // and Chrome offers to kill the page" freeze. By the first click/keypress the teardown
   // is long finished (and a gesture is also what the autoplay policy wants). Sounds the
   // engine loads before then are stashed as raw WAVs and decoded when audio comes up.
+  let crossoverDisposed=false;
   let audioCtx = null, masterGain = null;
   const pendingWavs = {};    // id -> Uint8Array, loaded before the context existed
   let muted = false;
   try { muted = localStorage.getItem('openbw-muted') === '1'; } catch {}
   const ensureAudio = () => {
+    if(crossoverDisposed)return;
     if (audioCtx) { audioCtx.resume(); return; }
     try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
     catch (e) { console.warn('[audio] no AudioContext — running silent:', e && e.message); return; }
@@ -545,6 +547,7 @@ async function boot(session) {
   };
   const decodeWav = (id, wav) => {
     audioCtx.decodeAudioData(wav.buffer).then((b) => {
+      if(crossoverDisposed)return;
       soundBuffers[id] = b;
       // A play requested while still decoding would be silently dropped
       // (a one-shot sound like a selection ack) — fire it now that it's ready.
@@ -600,11 +603,11 @@ async function boot(session) {
   // wasm caching so rebuilds are picked up. In production we want the opposite:
   // let the browser cache and reuse the compiled module across visits.
   // Any build whose SHA wasn't stamped in by CI is a local/dev build — including one served
-  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-46770cc65619bc61
+  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-015dae8ce8a3148a
   // cache-buster is a constant locally, so a plain fetch would serve a stale, skewed wasm).
   // BUILD is replaced by CI with the commit SHA (see .github/workflows/pages.yml), so a
   // new deploy fetches a fresh wasm URL instead of a stale cached one. Locally it stays
-  // the 'openbw-46770cc65619bc61' placeholder and we cache-bust per load instead.
+  // the 'openbw-015dae8ce8a3148a' placeholder and we cache-bust per load instead.
   // vs-Computer loads a bot-enabled module (sandbox + BWAPI server + the chosen bot);
   // each exports the same surface plus openbw_bot_*, so everything else is identical.
   const wasmName = session.bot ? session.bot.module : 'openbw.wasm';
@@ -629,6 +632,7 @@ async function boot(session) {
   hb('boot:engine-init');
   x._initialize();
   x.openbw_crossover_arena?.(session.crossover?1:0);
+  const nativeSize=()=>session.crossover?[320,240]:winSize();
   const { slots, mySlot, link = null, delay = 0 } = session;
   if (slots.length > 1) {
     // Hand the slot list to the wasm as int32 [slot, race] pairs via the scratch buffer.
@@ -636,9 +640,9 @@ async function boot(session) {
     slots.forEach((s, i) => { pairs[2 * i] = s.slot; pairs[2 * i + 1] = s.race; });
     const p = x.openbw_in_ptr(pairs.byteLength);
     new Uint8Array(memory.buffer, p, pairs.byteLength).set(new Uint8Array(pairs.buffer));
-    x.openbw_init_mp(...winSize(), mySlot, slots.length);
+    x.openbw_init_mp(...nativeSize(), mySlot, slots.length);
   } else {
-    x.openbw_init(...winSize(), slots[0].race, slots[0].slot);
+    x.openbw_init(...nativeSize(), slots[0].race, slots[0].slot);
   }
   if(session.crossover)setupNativeBattle(x,memory,session.crossover);
   hb('boot:engine-ready');
@@ -654,7 +658,7 @@ async function boot(session) {
     shadow = await makeBotReplica(assets, session.bot2.module, slots, session.bot2.slot, ...winSize());
     bot2 = { slot: session.bot2.slot };
   }
-  wireInput(canvas, x);
+  wireInput(canvas, x, nativeSize);
   // View zoom + native cursor overlay (feature-detected: a stale module falls back
   // to the engine-drawn cursor and a zoom-scaled minimap).
   if (x.openbw_set_view_scale) x.openbw_set_view_scale(zoom);
@@ -854,7 +858,7 @@ async function boot(session) {
   let resizeTimer = 0;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => x.openbw_resize(...winSize()), 150);
+    resizeTimer = setTimeout(() => x.openbw_resize(...nativeSize()), 150);
   });
 
   $('overlay').style.display = 'none';
@@ -1053,12 +1057,16 @@ async function boot(session) {
   // eventually makes the next boot's `new AudioContext()` fail. Also stop the step timer
   // so no catch-up burst fires mid-teardown, and drop the debug handle to help the GC
   // reclaim the (large) wasm memory sooner.
-  let crossoverDisposed=false;
   const disposeCrossover=()=>{
     if(crossoverDisposed)return;crossoverDisposed=true;paused=true;clearTimeout(stepTimer);clearTimeout(resizeTimer);
     try { if (audioCtx) void audioCtx.close().catch(()=>{}); } catch {}
     try { if (link) link.close(); } catch {}
     crossoverApi.close();
+    removeEventListener('pointerdown',ensureAudio);removeEventListener('keydown',ensureAudio);
+    soundBuffers.length=0;soundChannels.length=0;
+    for(const id of Object.keys(pendingWavs))delete pendingWavs[id];
+    for(const id of Object.keys(pendingPlay))delete pendingPlay[id];
+    creatureSounds.clear();creaturePlayed.clear();creatureSoundLoads.clear();
   };
   window.openbwDisposeCrossover=disposeCrossover;
   addEventListener('pagehide',disposeCrossover,{once:true});
@@ -1104,7 +1112,7 @@ async function boot(session) {
     if(fresh.length){
       const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
       for(const row of fresh){const id=key(row);if(creatureSoundLoads.has(id))continue;
-        const task=decoder.decodeAudioData(new Uint8Array(row.bytes).buffer).then(buffer=>{creatureSounds.set(id,buffer);}).finally(()=>creatureSoundLoads.delete(id));
+        const task=decoder.decodeAudioData(new Uint8Array(row.bytes).buffer).then(buffer=>{if(!crossoverDisposed)creatureSounds.set(id,buffer);}).finally(()=>creatureSoundLoads.delete(id));
         creatureSoundLoads.set(id,task);
       }
     }

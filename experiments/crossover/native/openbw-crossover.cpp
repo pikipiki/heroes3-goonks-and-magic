@@ -1,6 +1,7 @@
 // Native crossover scenario and rendering DTOs; upstream source remains unchanged.
 namespace bwgame {struct unit_t;}
 int crossover_weapon_contact(bwgame::unit_t*,bwgame::unit_t*,int);
+int crossover_movement_speed(const bwgame::unit_t*,int);
 // Scenario option only: ordinary StarCraft maps retain their original terrain.
 bool crossover_arena_requested=false;
 #include "../vendor/openbw/web/sandbox.h"
@@ -36,8 +37,18 @@ std::array<bwgame::unit_type_t,128> crossover_types;
 std::array<bwgame::weapon_type_t,128> crossover_weapons;
 bwgame::xy crossover_camera;
 bwgame::a_vector<uint8_t> crossover_pixels;
-struct MagicDefinition {bwgame::unit_type_t type;bwgame::weapon_type_t weapon;bwgame::flingy_type_t flingy;const bwgame::unit_type_t* base=nullptr;int attack=0,speed=0,baseDamage=0,baseArmor=0;bool disabled=false,berserk=false,cloned=false,shooting=false;int luck=0,morale=0,retaliations=0;int melee=0,ranged=0,fire=0;};
+struct MagicDefinition {bwgame::unit_type_t type;bwgame::weapon_type_t weapon;bwgame::flingy_type_t flingy;const bwgame::unit_type_t* base=nullptr;int attack=0,movementScale=1000,baseDamage=0,baseArmor=0;bool disabled=false,berserk=false,cloned=false,shooting=false;int luck=0,morale=0,retaliations=0;int melee=0,ranged=0,fire=0;};
 std::map<int,MagicDefinition> crossover_magic_definitions;
+}
+// Apply Heroes movement effects after native speed upgrades, including iscript
+// walking. Editing flingy.top_speed alone cannot affect infantry script movement.
+int crossover_movement_speed(const bwgame::unit_t* unit,int speed){
+ if(!unit||speed<=0)return speed;
+ for(const auto & entry:crossover_magic_definitions)if(unit->unit_type==&entry.second.type)
+  return std::max(1,int(int64_t(speed)*entry.second.movementScale/1000));
+ return speed;
+}
+namespace {
 std::map<std::pair<int,int>,std::pair<int,int>> crossover_damage_rules;
 struct CrossoverContact {int source,target,frame,obstacle=-1;};bwgame::a_vector<CrossoverContact> crossover_contacts;
 bwgame::a_string crossover_contact_json;
@@ -199,23 +210,23 @@ OPENBW_EXPORT(openbw_crossover_obstacles) int openbw_crossover_obstacles(int cou
  }crossover_obstacles=std::move(next);return 1;
 }
 OPENBW_EXPORT(openbw_crossover_apply_magic) int openbw_crossover_apply_magic(int count){
- constexpr int stride=26;if(!g_ui||count<1||count>128||g_inbuf.size()!=size_t(count*stride*4))return 0;
+ constexpr int stride=27;if(!g_ui||count<1||count>128||g_inbuf.size()!=size_t(count*stride*4))return 0;
  const auto* rows=reinterpret_cast<const int32_t*>(g_inbuf.data());int totals[2]={0,0};std::set<int> keys;
- for(int i=0;i<count;i++){const auto* r=rows+i*stride;if(r[0]<0||r[1]<0||r[1]>1||r[2]<0||r[2]>128||r[3]<0||r[4]<1||r[4]>10000||r[3]>r[2]*r[4]||r[5]<0||r[5]>1000||r[6]<0||r[6]>1000||r[7]<0||r[8]<r[7]||r[8]>10000||r[9]<0||r[9]>100||r[11]<0||r[11]>799||r[12]<0||r[12]>499||!keys.insert(r[0]).second)return 0;totals[r[1]]+=r[2];}
+ for(int i=0;i<count;i++){const auto* r=rows+i*stride;if(r[0]<0||r[1]<0||r[1]>1||r[2]<0||r[2]>128||r[3]<0||r[4]<1||r[4]>10000||r[3]>r[2]*r[4]||r[5]<0||r[5]>1000||r[6]<0||r[6]>1000||r[7]<0||r[8]<r[7]||r[8]>10000||r[9]<0||r[9]>100||r[26]<100||r[26]>10000||r[11]<0||r[11]>799||r[12]<0||r[12]>499||!keys.insert(r[0]).second)return 0;totals[r[1]]+=r[2];}
  if(totals[0]>128||totals[1]>128||keys.size()>128)return 0;
  for(int i=0;i<count;i++){
   const auto* r=rows+i*stride;CrossoverGroup* group=nullptr;for(auto& g:crossover_groups)if(g.stack==r[0])group=&g;
   if(!group){if(!r[2])continue;if(crossover_groups.size()>=128)return 0;crossover_groups.push_back({r[0],r[1],bool(r[22]),0,{}});group=&crossover_groups.back();}
   const bool newGroup=group->initial==0&&group->ids.empty();
   auto& d=crossover_magic_definitions[group->stack];bwgame::a_vector<bwgame::unit_t*> live;for(auto id:group->ids)if(crossover_live(id,group->owner))live.push_back(g_ui->get_unit(id));
-  if(!d.base){d.base=live.empty()?g_ui->get_unit_type(bwgame::UnitTypes(r[21])):live.front()->unit_type;d.baseDamage=group->initial?d.base->ground_weapon->damage_amount:(r[7]+r[8]+1)/2;d.baseArmor=group->initial||!group->heroes?d.base->armor:r[6]/4;d.attack=r[5];d.speed=std::max(1,r[9]);d.type=*d.base;d.weapon=*d.base->ground_weapon;d.flingy=*g_ui->get_flingy_type(d.base->flingy);}
+  if(!d.base){d.base=live.empty()?g_ui->get_unit_type(bwgame::UnitTypes(r[21])):live.front()->unit_type;d.baseDamage=group->initial?d.base->ground_weapon->damage_amount:(r[7]+r[8]+1)/2;d.baseArmor=group->initial||!group->heroes?d.base->armor:r[6]/4;d.attack=r[5];d.type=*d.base;d.weapon=*d.base->ground_weapon;d.flingy=*g_ui->get_flingy_type(d.base->flingy);}
   const int shieldMaximum=!group->heroes&&d.base->has_shield?d.base->shield_points:0;
   const int maximum=std::max(1,r[4]-shieldMaximum),desiredHealth=r[20]?0:r[3],desiredCount=r[20]?0:r[2];
   d.type.hitpoints=bwgame::fp8::integer(maximum);d.type.armor=d.baseArmor;d.weapon.damage_amount=d.baseDamage;d.weapon.damage_bonus=group->heroes?0:d.base->ground_weapon->damage_bonus;d.weapon.damage_type=d.base->ground_weapon->damage_type;
   if(!r[10])d.weapon.max_range=std::min(32,d.base->ground_weapon->max_range);
   else d.weapon.max_range=d.base->ground_weapon->max_range;
   if(r[1]==0)d.type.human_ai_idle=d.type.computer_ai_idle=d.type.return_to_idle=g_ui->get_order_type(bwgame::Orders::Nothing);
-  d.type.ground_weapon=&d.weapon;d.type.air_weapon=r[10]?&d.weapon:nullptr;d.flingy.top_speed=d.base->flingy->top_speed*std::max(1,r[9])/d.speed;d.disabled=r[13]&1;d.berserk=r[13]&2;d.cloned=r[13]&4;d.shooting=r[10];d.luck=r[23];d.morale=r[24];d.retaliations=r[25];d.melee=r[15];d.ranged=r[16];d.fire=r[17];
+  d.type.ground_weapon=&d.weapon;d.type.air_weapon=r[10]?&d.weapon:nullptr;d.movementScale=r[26];d.disabled=r[13]&1;d.berserk=r[13]&2;d.cloned=r[13]&4;d.shooting=r[10];d.luck=r[23];d.morale=r[24];d.retaliations=r[25];d.melee=r[15];d.ranged=r[16];d.fire=r[17];
   std::sort(live.begin(),live.end(),[](auto* a,auto* b){return a->hp<b->hp;});
   while(int(live.size())>desiredCount){g_ui->unit_deal_damage(live.front(),live.front()->hp,nullptr,~0);live.erase(live.begin());}
   while(int(live.size())<desiredCount){const auto at=crossover_camera+bwgame::xy(std::clamp(r[11]+int(live.size()%4)*16,0,799),std::clamp(r[12]+int(live.size()/4)*16,0,499));auto* unit=g_ui->trigger_create_unit(&d.type,at,r[1]);if(!unit)return 0;group->ids.push_back(g_ui->get_unit_id(unit));live.push_back(unit);if(r[1]==0)g_ui->issue_order(unit,false,g_ui->get_order_type(bwgame::Orders::Nothing),{});}

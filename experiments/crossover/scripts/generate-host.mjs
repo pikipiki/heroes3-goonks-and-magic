@@ -17,12 +17,21 @@ replace('if (DEV) window.__bw = { x, memory, lockstep, link };   // dev-only deb
 replace('if (DEV) window.__bw = null;','crossoverApi.close();');
 // An iframe can be detached without pagehide on mobile. Stop native work and
 // audio explicitly before its owner releases the frame.
-replace("  addEventListener('pagehide', () => {\n    clearTimeout(stepTimer);", "  let crossoverDisposed=false;\n  const disposeCrossover=()=>{\n    if(crossoverDisposed)return;crossoverDisposed=true;paused=true;clearTimeout(stepTimer);clearTimeout(resizeTimer);");
+replace("  addEventListener('pagehide', () => {\n    clearTimeout(stepTimer);", "  const disposeCrossover=()=>{\n    if(crossoverDisposed)return;crossoverDisposed=true;paused=true;clearTimeout(stepTimer);clearTimeout(resizeTimer);");
+replace('  let audioCtx = null, masterGain = null;', '  let crossoverDisposed=false;\n  let audioCtx = null, masterGain = null;');
+replace('    if (audioCtx) { audioCtx.resume(); return; }', '    if(crossoverDisposed)return;\n    if (audioCtx) { audioCtx.resume(); return; }');
+replace('      soundBuffers[id] = b;', '      if(crossoverDisposed)return;\n      soundBuffers[id] = b;');
 replace('try { if (audioCtx) audioCtx.close(); } catch {}', 'try { if (audioCtx) void audioCtx.close().catch(()=>{}); } catch {}');
-replace("    crossoverApi.close();\n  });", "    crossoverApi.close();\n  };\n  window.openbwDisposeCrossover=disposeCrossover;\n  addEventListener('pagehide',disposeCrossover,{once:true});");
+replace("    crossoverApi.close();\n  });", "    crossoverApi.close();\n    removeEventListener('pointerdown',ensureAudio);removeEventListener('keydown',ensureAudio);\n    soundBuffers.length=0;soundChannels.length=0;\n    for(const id of Object.keys(pendingWavs))delete pendingWavs[id];\n    for(const id of Object.keys(pendingPlay))delete pendingPlay[id];\n    creatureSounds.clear();creaturePlayed.clear();creatureSoundLoads.clear();\n  };\n  window.openbwDisposeCrossover=disposeCrossover;\n  addEventListener('pagehide',disposeCrossover,{once:true});");
 
 replace("  hb('boot:engine-init');\n  x._initialize();", "  hb('boot:engine-init');\n  x._initialize();\n  x.openbw_crossover_arena?.(session.crossover?1:0);");
 replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(x,memory,session.crossover);\n  hb('boot:engine-ready');");
+// A small fixed hidden framebuffer avoids allocating another full combat
+// surface on phones. The visible compositor retains its full-resolution canvas.
+replace("  const { slots, mySlot, link = null, delay = 0 } = session;", "  const nativeSize=()=>session.crossover?[320,240]:winSize();\n  const { slots, mySlot, link = null, delay = 0 } = session;");
+replace('function wireInput(canvas, x) {','function wireInput(canvas, x, nativeSize=winSize) {');
+replace('wireInput(canvas, x);','wireInput(canvas, x, nativeSize);');
+js=js.replaceAll('x.openbw_init_mp(...winSize(),','x.openbw_init_mp(...nativeSize(),').replaceAll('x.openbw_init(...winSize(),','x.openbw_init(...nativeSize(),').replaceAll('x.openbw_resize(...winSize())','x.openbw_resize(...nativeSize())');
 replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
 replace('let paused = false, waiting = false, stepMs = 42;', 'let paused = !!session.crossover, waiting = false, stepMs = 42;');
 replace('  pauseBtn.onclick = () => {', '  crossoverApi.pause=()=>{paused=true;applyPause();x.openbw_set_paused?.(1);}; crossoverApi.isPaused=()=>paused; crossoverApi.tickDuration = () => stepMs; crossoverApi.start = () => { paused=false;stepClock=performance.now();applyPause();x.openbw_set_paused?.(0); };\n  pauseBtn.onclick = () => {');
@@ -36,7 +45,7 @@ replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureA
     if(fresh.length){
       const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
       for(const row of fresh){const id=key(row);if(creatureSoundLoads.has(id))continue;
-        const task=decoder.decodeAudioData(new Uint8Array(row.bytes).buffer).then(buffer=>{creatureSounds.set(id,buffer);}).finally(()=>creatureSoundLoads.delete(id));
+        const task=decoder.decodeAudioData(new Uint8Array(row.bytes).buffer).then(buffer=>{if(!crossoverDisposed)creatureSounds.set(id,buffer);}).finally(()=>creatureSoundLoads.delete(id));
         creatureSoundLoads.set(id,task);
       }
     }

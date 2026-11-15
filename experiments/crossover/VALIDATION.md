@@ -1,5 +1,17 @@
 # Validation — 14 novembre 2026
 
+## Hâte/Lenteur et mémoire des bascules — 15 novembre 2026
+
+- Correction du chemin de vitesse OpenBW : les unités à déplacement iscript ignoraient la seule modification de `flingy.top_speed`. Le multiplicateur Heroes est maintenant appliqué au calcul natif de chaque déplacement, après les améliorations StarCraft. Le code amont épinglé reste inchangé ; le hook est injecté dans la copie de construction vérifiée.
+- VCMI transmet le rapport entre la vitesse avec et sans bonus de sorts. Il fonctionne aussi lorsqu’un effet est déjà actif au passage classique → RTS ; le retrait de l’effet restaure le rapport normal.
+- `tests/movement-browser.mjs` réussi dans Chromium et WebKit sur les six types StarCraft et les deux familles de simulation Heroes (mêlée/tireur). Mesures sur 24 frames, multiplicateurs 1 / 1,5 / 0,5 / 1 : Marine 96 / 140 / 50 / 94 pixels ; Dragoon 120 / 180 / 66 / 116 ; Heroes mêlée 122 / 189 / 71 / 126. Scénario isolé, mêmes unités et santé, déplacements natifs réellement simulés.
+- `tests/speed-spells-browser.mjs` : vrais sorts Hâte, Lenteur et Dissipation depuis le livre partagé sous Chromium et WebKit. Lenteur touche les six types StarCraft, Hâte affecte les créatures Heroes admissibles. Les multiplicateurs survivent à un aller-retour classique, Dissipation les remet à 1. Les immunités natives Heroes restent appliquées.
+- Au retour classique, aucune nouvelle iframe RTS ni copie de ses archives n’est préparée. Le prochain clic Temps réel prépare explicitement le moteur. Le framebuffer natif invisible est limité à 320×240 ; les sprites et le terrain visibles gardent leur rendu indépendant. Les surfaces de rendu et buffers audio retirés sont libérés explicitement, sans attendre le ramasse-miettes.
+- Quatre allers-retours actifs par navigateur, avec DPR 3, vues classique/verticale et orientations portrait/paysage : aucune navigation/redémarrage observé. Deux allers-retours supplémentaires par navigateur déclenchés à la réponse native, audio suspendu, vérifient l’absence d’hôte RTS en classique et la mise à zéro immédiate de l’ancien canevas.
+- Régression finale `tests/roundtrip-browser.mjs` sous Chromium : dégâts, morts, boucliers, mana et invocations conservés, avec de nouveaux dégâts classiques avant le retour RTS.
+- Compilations VCMI `ninja -j32 html5` et OpenBW WASI réussies ; TypeScript strict et `verify:web` réussis. Tests crossover : 40 réussis ; Heroes : 694 réussis, 46 ignorés. Bundle Pages final : 999 149 869 octets.
+- Le redémarrage signalé sur appareil physique n’a pas été reproduit sur ordinateur ; les allocations superposées identifiées ont été réduites et les tests navigateur ne montrent pas de redémarrage.
+
 ## Blocage des changements de mode — 15 novembre 2026
 
 - Reproduction ciblée : remplacer uniquement la préparation audio par une promesse suspendue bloquait la simulation lors de sa synchronisation périodique. Le délai de réponse était supprimé avant l’achèvement de ce traitement et le contrôleur restait occupé. Aucun PV ou résultat n’est fabriqué.

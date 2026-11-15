@@ -165,5 +165,12 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const mode=(event:Event):void=>{attackMode=(event as CustomEvent).detail==='attack';canvas.dataset.attackMode=attackMode?'armed':'';if(attackMode)api.acknowledge?.('armed');};
  const stop=():void=>{if(selected===undefined)return;api.stop(selected);attackMode=false;marker=undefined;canvas.dataset.attackMode='';canvas.dataset.orderFeedback='stop';api.acknowledge?.('stop');canvas.dispatchEvent(new CustomEvent('crossover-order-issued',{detail:'Ordres annulés. La sélection reste inactive.'}));};
  canvas.addEventListener('crossover-select-all',selectAll);canvas.addEventListener('crossover-select-group',selectGroup);canvas.addEventListener('crossover-command-mode',mode);canvas.addEventListener('crossover-stop-selection',stop);canvas.addEventListener('pointerdown',pointer);request=win.requestAnimationFrame(draw);
- return()=>{canvas.removeEventListener('crossover-obstacles',obstacleChange);canvas.removeEventListener('crossover-native-changed',changed);canvas.removeEventListener("crossover-spell-effect",spellFx);closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
+ return()=>{
+  // Release GPU-backed surfaces immediately, even if a retired callback still
+  // retains this scene until its promise settles on a memory-constrained phone.
+  const surfaces=new Set<HTMLCanvasElement>([canvas,backdrop,...heroCanvases.values(),...Array.from(spriteCache.values(),entry=>entry.canvas)]);
+  for(const pair of sprites.values())for(const image of [pair.before,pair.after,pair.blend])surfaces.add(image);
+  for(const image of surfaces){image.width=0;image.height=0;}
+  heroCanvases.clear();spriteCache.clear();sprites.clear();units=[];oldUnits.clear();corpses.clear();spellEffects.length=0;
+  canvas.removeEventListener('crossover-obstacles',obstacleChange);canvas.removeEventListener('crossover-native-changed',changed);canvas.removeEventListener("crossover-spell-effect",spellFx);closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
 }

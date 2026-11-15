@@ -28,6 +28,12 @@ try {
  const needle='\t\tdamage += fp8::integer(target->acid_spore_count);';
  if(text.split(needle).length!==2)throw Error('Pinned native damage hook changed.');
  let transformed=text.replace(needle,needle+'\n\t\tdamage = fp8::from_raw(::crossover_weapon_contact(target, source_unit, damage.raw_value));');
+ const speedStart=transformed.indexOf('\tfp8 get_modified_unit_speed(const unit_t* u, fp8 base_speed) const {');
+ const speedEnd=transformed.indexOf('\tfp8 get_modified_unit_acceleration(',speedStart);
+ const speedSection=transformed.slice(speedStart,speedEnd);
+ const speedReturn='\t\treturn speed.as_signed();';
+ if(speedStart<0||speedEnd<0||speedSection.split(speedReturn).length!==2)throw Error('Pinned native movement hook changed.');
+ transformed=transformed.slice(0,speedStart)+speedSection.replace(speedReturn,'\t\treturn fp8::from_raw(::crossover_movement_speed(u,speed.as_signed().raw_value));')+transformed.slice(speedEnd);
  const terrainNeedle='\t\t\tfor (size_t i = 0; i != game_st.gfx_tiles.size(); ++i) {\n\t\t\t\ttile_id tile_id = game_st.gfx_tiles[i];';
  if(transformed.split(terrainNeedle).length!==2)throw Error('Pinned terrain initialization changed.');
  const arena=`

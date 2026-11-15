@@ -449,5 +449,33 @@ export function sharedField(win, canvas, api, plan) {
     canvas.addEventListener('crossover-stop-selection', stop);
     canvas.addEventListener('pointerdown', pointer);
     request = win.requestAnimationFrame(draw);
-    return () => { canvas.removeEventListener('crossover-obstacles', obstacleChange); canvas.removeEventListener('crossover-native-changed', changed); canvas.removeEventListener("crossover-spell-effect", spellFx); closed = true; win.cancelAnimationFrame(request); canvas.removeEventListener('pointerdown', pointer); canvas.removeEventListener('crossover-select-all', selectAll); canvas.removeEventListener('crossover-select-group', selectGroup); canvas.removeEventListener('crossover-command-mode', mode); canvas.removeEventListener('crossover-stop-selection', stop); };
+    return () => {
+        // Release GPU-backed surfaces immediately, even if a retired callback still
+        // retains this scene until its promise settles on a memory-constrained phone.
+        const surfaces = new Set([canvas, backdrop, ...heroCanvases.values(), ...Array.from(spriteCache.values(), entry => entry.canvas)]);
+        for (const pair of sprites.values())
+            for (const image of [pair.before, pair.after, pair.blend])
+                surfaces.add(image);
+        for (const image of surfaces) {
+            image.width = 0;
+            image.height = 0;
+        }
+        heroCanvases.clear();
+        spriteCache.clear();
+        sprites.clear();
+        units = [];
+        oldUnits.clear();
+        corpses.clear();
+        spellEffects.length = 0;
+        canvas.removeEventListener('crossover-obstacles', obstacleChange);
+        canvas.removeEventListener('crossover-native-changed', changed);
+        canvas.removeEventListener("crossover-spell-effect", spellFx);
+        closed = true;
+        win.cancelAnimationFrame(request);
+        canvas.removeEventListener('pointerdown', pointer);
+        canvas.removeEventListener('crossover-select-all', selectAll);
+        canvas.removeEventListener('crossover-select-group', selectGroup);
+        canvas.removeEventListener('crossover-command-mode', mode);
+        canvas.removeEventListener('crossover-stop-selection', stop);
+    };
 }
