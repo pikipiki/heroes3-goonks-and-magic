@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "completedBattles": 20,
+  "continuousGames": 4,
+  "browsers": [
+    "WebKit",
+    "Chromium"
+  ],
+  "deviceScaleFactor": 3,
+  "armies": [
+    "seven classic stacks",
+    "seven Goonk stacks"
+  ],
+  "spells": [
+    "Fireball",
+    "Haste",
+    "Magic Arrow",
+    "Prayer",
+    "Water Elemental"
+  ],
+  "viewChanges": 100,
+  "rotations": 116,
+  "cancelledTargeting": 8,
+  "idleCanvasCreationsBeforePerSecond": 12,
+  "maximumIdleCanvasCreationsAfterPerSecond": 0,
+  "maximumIdleImageDataCreationsAfterPerSecond": 0,
+  "engineSha256": "7a4663e6dae037063d7fbdedc3786e81f27df2b24e9fb5d438d3ff09de248b9d",
+  "packagedEngineSmoke": true,
+  "nativeBuild": "ninja -j32 html5",
+  "nodeTests": {
+    "passed": 751,
+    "skipped": 34,
+    "failed": 0
+  },
+  "physicalDeviceTest": false,
+  "scope": "Field battles in four continuous native games; desktop WebKit/Chromium with touch and DPR 3. Not exhaustive across all maps/creatures/spells/sieges. iPhone OS process termination not reproduced.",
+  "otherFindings": "An exploratory new-game restart remained in connecting; recorded separately from in-combat page reload. The final continuous-battle matrix also handles expected level-up dialogues."
+}

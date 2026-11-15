@@ -1,0 +1,55 @@
+/** Twenty native battles, five successive battles per game. No live saves. */
+import {chromium,webkit} from 'playwright-core';import crypto from 'node:crypto';import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {silenceTestAudio} from './silent-audio.mjs';
+const root=path.resolve(process.argv.find(a=>a.startsWith('--site-root='))?.slice(12)||process.env.GOONK_SITE_ROOT||'dist'),out=process.argv.find(a=>a.startsWith('--out='))?.slice(6)||process.env.REVIEW_OUTPUT||'/tmp/goonk-combat-stress-20';fs.mkdirSync(out,{recursive:true});const report={engine:JSON.parse(fs.readFileSync(root+'/engine-build.json')),cases:[],failures:[],physicalDevice:false};
+const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.wasm':'application/wasm','.png':'image/png','.svg':'image/svg+xml'};const server=http.createServer((q,r)=>{const f=path.resolve(root,'.'+new URL(q.url,'http://x').pathname);if(!f.startsWith(root+'/')||!fs.existsSync(f)||!fs.statSync(f).isFile()){r.writeHead(404).end();return;}r.setHeader('Cross-Origin-Opener-Policy','same-origin');r.setHeader('Cross-Origin-Embedder-Policy','require-corp');r.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');fs.createReadStream(f).on('error',()=>r.destroy()).pipe(r);});await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
+const engineDir=process.argv.find(a=>a.startsWith('--engine-dir='))?.slice(13);if(engineDir)report.testEngineSha256=crypto.createHash('sha256').update(fs.readFileSync(path.join(engineDir,'vcmiclient.wasm'))).digest('hex');
+const browserOnly=process.argv.find(a=>a.startsWith('--browser='))?.slice(10);
+const probe=process.argv.includes('--probe-only'),dpr=Number(process.argv.find(a=>a.startsWith('--dpr='))?.slice(6)||1);report.deviceScaleFactor=dpr;
+const persist=()=>fs.writeFileSync(out+'/results.json',JSON.stringify(report,null,2));
+try{for(const name of (browserOnly?[browserOnly]:probe?['webkit']:['webkit','chromium']))for(const army of (probe?['core']:['core','goonk'])){
+ const browser=await({webkit,chromium}[name]).launch({headless:true});let p;try{
+ p=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:dpr,hasTouch:true,bypassCSP:true});await silenceTestAudio(p);let fail;const fatal=new Promise((_,r)=>fail=r);fatal.catch(()=>{});const errors=[];p.on('pageerror',e=>{errors.push(e.message);fail(e);});p.on('crash',()=>fail(Error('Page process crashed')));p.on('console',m=>fs.appendFileSync(out+'/'+name+'-'+army+'.log',m.text()+'\n'));await p.addInitScript(()=>{sessionStorage.setItem('heroes-goonk.storage-failed','true');window.stressAllocations={canvas:0,imageData:0};const create=document.createElement.bind(document);document.createElement=(tag,...args)=>{if(tag.toLowerCase()==='canvas')stressAllocations.canvas++;return create(tag,...args);};window.ImageData=new Proxy(ImageData,{construct(T,args){stressAllocations.imageData++;return Reflect.construct(T,args);}});});
+ if(engineDir)await p.route(/\/vcmiclient(?:\.[a-f0-9]+)?\.(js|wasm)(?:\?.*)?$/,r=>{const wasm=new URL(r.request().url()).pathname.endsWith('.wasm');return r.fulfill({path:path.join(engineDir,wasm?'vcmiclient.wasm':'vcmiclient.js'),contentType:wasm?'application/wasm':'text/javascript',headers:{'Cross-Origin-Opener-Policy':'same-origin','Cross-Origin-Embedder-Policy':'require-corp','Cross-Origin-Resource-Policy':'same-origin'}});});
+ let navs=0;p.on('framenavigated',f=>{if(f===p.mainFrame())navs++;});
+ const state=()=>p.evaluate(()=>goonkMobileState),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]),wait=(f,a)=>Promise.race([p.waitForFunction(f,a,{timeout:90000}),fatal]);
+ await p.goto(origin+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');
+ const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys
+army=sys.argv[1];out=io.BytesIO()
+with zipfile.ZipFile('maps/000-Goonk.vmap') as src,zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as dst:
+ for name in src.namelist():
+  data=src.read(name)
+  if name=='objects.json':
+   objects=[o for o in json.loads(data) if o.get('instanceName')!='trainingOgre']
+   for o in objects:
+    if o.get('instanceName')=='goonkHero':
+     o['x']=8;o['y']=9;o['options'].update({'type':'core:christian','artifacts':{'spellbook':'core:spellBook'},'spellBook':['core:magicArrow'],'primarySkills':{'attack':10,'defence':10,'spellpower':5,'knowledge':10}})
+     if army=='core':o['options']['army']=[{'type':'core:'+c,'amount':100} for c in ['archangel','pikeman','marksman','royalGriffin','crusader','zealot','champion']]
+     else:
+      for s in o['options']['army']:s['amount']=200
+    if o.get('instanceName')=='trainingGuard':o['x']=12;o['y']=9;o['subtype']='core:skeleton';o['options']['amount']=40
+   guard=next(o for o in objects if o.get('instanceName')=='trainingGuard')
+   for i in range(1,5):
+    clone=json.loads(json.dumps(guard));clone['instanceName']='stressGuard'+str(i);clone['x']=12+3*i;objects.append(clone)
+   data=json.dumps(objects).encode()
+  dst.writestr(name,data)
+sys.stdout.buffer.write(out.getvalue())`,army]);await p.evaluate(b=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/001-Goonks.vmap',new Uint8Array(b)),[...fixture]);
+ for(let i=0;i<(probe?1:5);i++){
+ const test={browser:name,army,index:i+1,spell:['Magic Arrow','Haste','Fireball','Prayer','Water Elemental'][i],samples:[],rotations:0,viewChanges:0,cancelledSpell:false,passed:false};report.cases.push(test);persist();const stamp=async phase=>{test.samples.push(await p.evaluate(phase=>({phase,mode:goonkMobileState.mode,wasmBytes:Module.HEAPU8.byteLength,jsHeap:performance.memory?.usedJSHeapSize,allocations:{...stressAllocations},canvasBytes:[...document.querySelectorAll('canvas')].reduce((n,c)=>n+c.width*c.height*4,0)}),phase));};
+ try{
+ if(i===0){await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);await cmd(21);await wait(()=>goonkMobileState.selectedMap?.startsWith('000'));await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);}
+ await cmd(29,3);await cmd(29,1);await p.waitForTimeout(250);const mini=(await state()).mapOverview;
+ await p.evaluate(({m,x})=>Module._vcmiMobilePointer(Math.round(m.rect.x+x*m.rect.w/m.width),Math.round(m.rect.y+9*m.rect.h/m.height),5),{m:mini,x:12+3*i});await p.waitForTimeout(250);const view=(await state()).mapOverview.view;
+ await p.evaluate(v=>Module._vcmiMobilePointer(Math.round(v.x+v.w/2),Math.round(v.y+v.h/2),1),view);await wait(()=>goonkMobileState.hasPath);await p.locator('.mobile-nav [data-ui=move]').tap();await wait(()=>goonkMobileState.mode==='battle');await cmd(15);await p.waitForTimeout(250);if((await state()).canEndTactics)await cmd(35);await wait(()=>goonkMobileState.canAct);await stamp('entry');const a0=await p.evaluate(()=>({...stressAllocations}));await p.waitForTimeout(1000);const a1=await p.evaluate(()=>({...stressAllocations}));test.idleAllocations={canvas:a1.canvas-a0.canvas,imageData:a1.imageData-a0.imageData};if(engineDir||!probe)assert(test.idleAllocations.canvas<=4,'Steady combat reuses canvas surfaces');
+ for(const size of [{width:390,height:844},{width:844,height:390},{width:320,height:568},{width:568,height:320},{width:390,height:844}]){await p.setViewportSize(size);test.rotations++;await p.waitForTimeout(140);const view=p.locator('[data-ui=battle-view]:visible');if(await view.count()){await view.tap();test.viewChanges++;await p.waitForTimeout(100);}await stamp('view-'+test.rotations);}
+ if(probe)await p.screenshot({path:out+'/'+name+'-'+army+'-battle.png'});
+ const open=async()=>{await cmd(14);await wait(()=>goonkMobileState.mode==='spellbook');await cmd(51,0);await wait(()=>goonkMobileState.spellbook.school===-1);const b=(await state()).spellbook,s=b.spells.find(s=>s.name===test.spell);assert(s?.enabled,'Requested spell available: '+test.spell);return {book:b,spell:s};};
+ let {book,spell}=await open();await p.locator('[data-spell="'+spell.id+'"]').scrollIntoViewIfNeeded();await p.locator('[data-spell="'+spell.id+'"]').tap();await p.locator('[data-cast-spell]').tap();await wait(()=>goonkMobileState.mode==='battle'||goonkMobileState.dialogKind==='battle-result');
+ if((await state()).spellTargeting){if(i%2===0){await cmd(14,2);await wait(()=>!goonkMobileState.spellTargeting);test.cancelledSpell=true;({book,spell}=await open());await p.locator('[data-spell="'+spell.id+'"]').scrollIntoViewIfNeeded();await p.locator('[data-spell="'+spell.id+'"]').tap();await p.locator('[data-cast-spell]').tap();await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.spellTargeting);}
+ await p.setViewportSize({width:844,height:390});test.rotations++;await p.waitForTimeout(150);const s=await state(),target=s.battleUnits.find(u=>spell.target==='ally'?!u.enemy:u.enemy);assert(target);await cmd(14,3,target.occupied[0]);}
+ await wait(()=>goonkMobileState.dialogKind==='battle-result'||(goonkMobileState.mode==='battle'&&!goonkMobileState.spellTargeting&&goonkMobileState.heroMana<999));await stamp('after-spell');
+ if((await state()).mode==='battle'){await wait(()=>goonkMobileState.canAutoCombat);await cmd(44,1);}await wait(()=>goonkMobileState.dialogKind==='battle-result');await stamp('result');await p.locator('[data-result-confirm]').tap();for(let dialog=0;dialog<12;dialog++){await p.waitForTimeout(200);const s=await state();if(s.mode==='map')break;if(s.mode==='dialog')await cmd(1);}await wait(()=>goonkMobileState.mode==='map');assert.equal(navs,1,'No automatic reload');assert.deepEqual(errors,[]);await stamp('returned-map');test.passed=true;persist();console.log('PASS',name,army,i+1,test.spell,'heap',test.samples.at(-1).wasmBytes);
+ await p.setViewportSize({width:390,height:844});await p.waitForTimeout(150);
+ }catch(error){test.failure=error.stack;report.failures.push({browser:name,army,index:i+1,error:error.message});fs.writeFileSync(out+'/'+name+'-'+army+'-failure-state.json',JSON.stringify(await state().catch(()=>null),null,2));await p.screenshot({path:out+'/'+name+'-'+army+'-failure.png'}).catch(()=>{});persist();throw error;}
+ }
+ }catch(error){report.failures.push({browser:name,army,sessionFailure:error.message});if(p){fs.writeFileSync(out+'/'+name+'-'+army+'-boot.json',JSON.stringify(await p.evaluate(()=>({state:window.goonkMobileState,recovery:window.goonkSessionRecovery,body:document.body.innerText})).catch(()=>null),null,2));await p.screenshot({path:out+'/'+name+'-'+army+'-boot.png'}).catch(()=>{});}persist();console.error('SESSION FAILED',name,army,error.message);}finally{await browser.close();}
+}report.completed=report.cases.filter(c=>c.passed).length;report.passed=report.completed===(probe?1:browserOnly?10:20)&&report.failures.length===0;persist();assert(report.passed,'All twenty cases must finish');}finally{await new Promise(r=>server.close(r));}

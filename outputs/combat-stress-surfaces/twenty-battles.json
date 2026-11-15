@@ -1,0 +1,2231 @@
+{
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "4ffee58a1101d1e1",
+    "wasm": "vcmiclient.43c2b3ea064350f5.wasm",
+    "sha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "cases": [
+    {
+      "browser": "webkit",
+      "army": "core",
+      "index": 1,
+      "spell": "Magic Arrow",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 12,
+            "imageData": 8
+          },
+          "canvasBytes": 6266080
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4587520
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4238880
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4218400
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4587520
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 22,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 25,
+            "imageData": 11
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 25,
+            "imageData": 12
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "core",
+      "index": 2,
+      "spell": "Haste",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 29,
+            "imageData": 13
+          },
+          "canvasBytes": 6369504
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 16
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 16
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 16
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 16
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 16
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 37,
+            "imageData": 16
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 40,
+            "imageData": 16
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 40,
+            "imageData": 17
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "core",
+      "index": 3,
+      "spell": "Fireball",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 44,
+            "imageData": 18
+          },
+          "canvasBytes": 6369504
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 54,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 57,
+            "imageData": 21
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 57,
+            "imageData": 22
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "core",
+      "index": 4,
+      "spell": "Prayer",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 61,
+            "imageData": 23
+          },
+          "canvasBytes": 6369504
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 65,
+            "imageData": 26
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 65,
+            "imageData": 26
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 65,
+            "imageData": 26
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 65,
+            "imageData": 26
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 65,
+            "imageData": 26
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 69,
+            "imageData": 26
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 72,
+            "imageData": 26
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 72,
+            "imageData": 27
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "core",
+      "index": 5,
+      "spell": "Water Elemental",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 76,
+            "imageData": 28
+          },
+          "canvasBytes": 6401904
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4723344
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 6433104
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4374704
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4354224
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4723344
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 83,
+            "imageData": 32
+          },
+          "canvasBytes": 6414384
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 86,
+            "imageData": 32
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 96,
+            "imageData": 34
+          },
+          "canvasBytes": 7273008
+        }
+      ],
+      "rotations": 5,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "goonk",
+      "index": 1,
+      "spell": "Magic Arrow",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 12,
+            "imageData": 8
+          },
+          "canvasBytes": 6266080
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4587520
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4238880
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4218400
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4587520
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 22,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 26,
+            "imageData": 11
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 26,
+            "imageData": 12
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "goonk",
+      "index": 2,
+      "spell": "Haste",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 30,
+            "imageData": 14
+          },
+          "canvasBytes": 6369504
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 17
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 17
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 17
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 17
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 17
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 38,
+            "imageData": 17
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 42,
+            "imageData": 17
+          },
+          "canvasBytes": 2598144
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 42,
+            "imageData": 17
+          },
+          "canvasBytes": 6335904
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "goonk",
+      "index": 3,
+      "spell": "Fireball",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 46,
+            "imageData": 18
+          },
+          "canvasBytes": 6369504
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 50,
+            "imageData": 21
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 50,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 50,
+            "imageData": 21
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 50,
+            "imageData": 21
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 50,
+            "imageData": 21
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 56,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 60,
+            "imageData": 21
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 60,
+            "imageData": 22
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "goonk",
+      "index": 4,
+      "spell": "Prayer",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 64,
+            "imageData": 24
+          },
+          "canvasBytes": 6369504
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 68,
+            "imageData": 27
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 68,
+            "imageData": 27
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 68,
+            "imageData": 27
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 68,
+            "imageData": 27
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 68,
+            "imageData": 27
+          },
+          "canvasBytes": 4690944
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 72,
+            "imageData": 27
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 76,
+            "imageData": 27
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 76,
+            "imageData": 27
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "webkit",
+      "army": "goonk",
+      "index": 5,
+      "spell": "Water Elemental",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 28
+          },
+          "canvasBytes": 6401904
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 84,
+            "imageData": 31
+          },
+          "canvasBytes": 4723344
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 84,
+            "imageData": 31
+          },
+          "canvasBytes": 6433104
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 84,
+            "imageData": 31
+          },
+          "canvasBytes": 4374704
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 84,
+            "imageData": 31
+          },
+          "canvasBytes": 4354224
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 84,
+            "imageData": 31
+          },
+          "canvasBytes": 4723344
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 87,
+            "imageData": 32
+          },
+          "canvasBytes": 6414384
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 91,
+            "imageData": 32
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "allocations": {
+            "canvas": 103,
+            "imageData": 36
+          },
+          "canvasBytes": 7273008
+        }
+      ],
+      "rotations": 5,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "core",
+      "index": 1,
+      "spell": "Magic Arrow",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 12,
+            "imageData": 8
+          },
+          "canvasBytes": 6259840
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4581280
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4238880
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4218400
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4581280
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 22,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 25,
+            "imageData": 11
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 25,
+            "imageData": 12
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "core",
+      "index": 2,
+      "spell": "Haste",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 29,
+            "imageData": 14
+          },
+          "canvasBytes": 6363264
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 17
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 17
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 17
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 17
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 33,
+            "imageData": 17
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 36,
+            "imageData": 17
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 39,
+            "imageData": 17
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 39,
+            "imageData": 17
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "core",
+      "index": 3,
+      "spell": "Fireball",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 43,
+            "imageData": 18
+          },
+          "canvasBytes": 6363264
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 47,
+            "imageData": 21
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 47,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 47,
+            "imageData": 21
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 47,
+            "imageData": 21
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 47,
+            "imageData": 21
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 53,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 56,
+            "imageData": 21
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 56,
+            "imageData": 22
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "core",
+      "index": 4,
+      "spell": "Prayer",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 60,
+            "imageData": 23
+          },
+          "canvasBytes": 6363264
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 64,
+            "imageData": 26
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 64,
+            "imageData": 26
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 64,
+            "imageData": 26
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 64,
+            "imageData": 26
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 64,
+            "imageData": 26
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 67,
+            "imageData": 26
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 70,
+            "imageData": 26
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 70,
+            "imageData": 27
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "core",
+      "index": 5,
+      "spell": "Water Elemental",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 74,
+            "imageData": 28
+          },
+          "canvasBytes": 6395664
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 78,
+            "imageData": 31
+          },
+          "canvasBytes": 4717104
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 78,
+            "imageData": 31
+          },
+          "canvasBytes": 6433104
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 78,
+            "imageData": 31
+          },
+          "canvasBytes": 4374704
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 78,
+            "imageData": 31
+          },
+          "canvasBytes": 4354224
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 78,
+            "imageData": 31
+          },
+          "canvasBytes": 4717104
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 81,
+            "imageData": 32
+          },
+          "canvasBytes": 6408144
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 84,
+            "imageData": 32
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 268435456,
+          "jsHeap": 109000000,
+          "allocations": {
+            "canvas": 95,
+            "imageData": 35
+          },
+          "canvasBytes": 7273008
+        }
+      ],
+      "rotations": 5,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "goonk",
+      "index": 1,
+      "spell": "Magic Arrow",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 12,
+            "imageData": 8
+          },
+          "canvasBytes": 6259840
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4581280
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 268435456,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4238880
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4218400
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 16,
+            "imageData": 11
+          },
+          "canvasBytes": 4581280
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 22,
+            "imageData": 11
+          },
+          "canvasBytes": 6297280
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 26,
+            "imageData": 11
+          },
+          "canvasBytes": 2598144
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 26,
+            "imageData": 12
+          },
+          "canvasBytes": 6335904
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "goonk",
+      "index": 2,
+      "spell": "Haste",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 30,
+            "imageData": 13
+          },
+          "canvasBytes": 6363264
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 16
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 16
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 16
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 16
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 34,
+            "imageData": 16
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 37,
+            "imageData": 16
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 40,
+            "imageData": 16
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 40,
+            "imageData": 17
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "goonk",
+      "index": 3,
+      "spell": "Fireball",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 44,
+            "imageData": 18
+          },
+          "canvasBytes": 6363264
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 48,
+            "imageData": 21
+          },
+          "canvasBytes": 6375744
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 54,
+            "imageData": 21
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 58,
+            "imageData": 21
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 58,
+            "imageData": 22
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": true,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "goonk",
+      "index": 4,
+      "spell": "Prayer",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 62,
+            "imageData": 23
+          },
+          "canvasBytes": 6363264
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 66,
+            "imageData": 26
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 66,
+            "imageData": 26
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 66,
+            "imageData": 26
+          },
+          "canvasBytes": 4342304
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 66,
+            "imageData": 26
+          },
+          "canvasBytes": 4321824
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 66,
+            "imageData": 26
+          },
+          "canvasBytes": 4684704
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 69,
+            "imageData": 26
+          },
+          "canvasBytes": 6400704
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 72,
+            "imageData": 26
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 72,
+            "imageData": 27
+          },
+          "canvasBytes": 6368304
+        }
+      ],
+      "rotations": 6,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    },
+    {
+      "browser": "chromium",
+      "army": "goonk",
+      "index": 5,
+      "spell": "Water Elemental",
+      "samples": [
+        {
+          "phase": "entry",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 76,
+            "imageData": 28
+          },
+          "canvasBytes": 6395664
+        },
+        {
+          "phase": "view-1",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 6408144
+        },
+        {
+          "phase": "view-2",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 6433104
+        },
+        {
+          "phase": "view-3",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4374704
+        },
+        {
+          "phase": "view-4",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4354224
+        },
+        {
+          "phase": "view-5",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 80,
+            "imageData": 31
+          },
+          "canvasBytes": 4717104
+        },
+        {
+          "phase": "after-spell",
+          "mode": "battle",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 83,
+            "imageData": 32
+          },
+          "canvasBytes": 6408144
+        },
+        {
+          "phase": "result",
+          "mode": "dialog",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 86,
+            "imageData": 32
+          },
+          "canvasBytes": 2630544
+        },
+        {
+          "phase": "returned-map",
+          "mode": "map",
+          "wasmBytes": 301989888,
+          "jsHeap": 116000000,
+          "allocations": {
+            "canvas": 96,
+            "imageData": 34
+          },
+          "canvasBytes": 7273008
+        }
+      ],
+      "rotations": 5,
+      "viewChanges": 5,
+      "cancelledSpell": false,
+      "passed": true,
+      "idleAllocations": {
+        "canvas": 0,
+        "imageData": 0
+      }
+    }
+  ],
+  "failures": [],
+  "physicalDevice": false,
+  "testEngineSha256": "7a4663e6dae037063d7fbdedc3786e81f27df2b24e9fb5d438d3ff09de248b9d",
+  "deviceScaleFactor": 3,
+  "completed": 20,
+  "passed": true
+}

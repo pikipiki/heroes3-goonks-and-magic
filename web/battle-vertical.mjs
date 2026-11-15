@@ -45,7 +45,7 @@ function paintVerticalGrid(ctx,width,height,state,geometry,cellPath){
 export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds,tracking){
  if(!planes?.ground||!atlas||!ids||!bounds?.length)return null;
  const now=performance.now();
- // Each atlas is an immutable RGBA frame; interpolate positions across frames.
+ // Frame pixels update in place; interpolate positions across geometry snapshots.
  // A new battle explicitly resets the pose history through resetVerticalBattle().
  if(bounds!==previousBounds){
   const present=new Set(bounds.map(b=>b.stackId));for(const id of poses.keys())if(!present.has(id))poses.delete(id);
