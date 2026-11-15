@@ -24,6 +24,7 @@
 #include "../../lib/era/EraCampaignFire.h"
 #include "../../lib/era/EraCampaignHeroExperienceRule.h"
 #include "../../lib/era/EraCampaignDrawingDepth.h"
+#include "../../lib/era/EraCampaignCreatureAttributes.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
@@ -773,6 +774,22 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 {
  const auto & args=op.args;
  comparison.reset();
+ if(c.receiver=="MA")
+ {
+  require(c.selectors.empty()&&op.code.size()==1,"source creature attribute takes no selector");arity(op,2);
+  require(args[0].access==Access::Read,"source creature attribute needs a creature value");
+  const auto selected=creature(number(args[0]));const char field=op.code.front();era_campaign_creature_attributes::fieldIndex(field);
+  const auto key=std::to_string(selected.getNum());const auto & previous=std::as_const(state)["creatureAttributes"][key][op.code];
+  const int changed=value(previous.isNull()?era_campaign_creature_attributes::base(*selected.toCreature(),field):era_campaign_json::integer(previous),args[1]);
+  if(!query(op))
+  {
+   require(!gh.gameState().getBattle(player),"source creature attributes during an active battle are not admitted");
+   require(changed>=(field=='P'?1:0),"nonpositive health or negative source creature attributes are not admitted");
+   state["creatureAttributes"][key][op.code].Integer()=changed;
+   auto change=mutation("creatureAttribute",ObjectInstanceID::NONE);change["creature"].Integer()=selected.getNum();change["field"].String()=op.code;change["amount"].Integer()=changed;persist(change);
+  }
+  return Step::Continue;
+ }
  if(c.receiver=="GR")
  {
   const auto * garrison=dynamic_cast<const CGGarrison *>(object(c,Obj::GARRISON));if(!garrison)return sourceCommandError(c,"not a garrison");

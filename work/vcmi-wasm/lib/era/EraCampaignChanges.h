@@ -18,6 +18,7 @@
 #include "../networkPacks/SourceCampaignChange.h"
 #include "../entities/ResourceTypeHandler.h"
 #include "EraCampaignTerrainRule.h"
+#include "EraCampaignCreatureAttributes.h"
 #include <stdexcept>
 #include <set>
 #include <algorithm>
@@ -55,6 +56,13 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="creatureAttribute")
+  {
+   const auto & field=change["field"].String();
+   if(field.size()!=1)throw std::runtime_error("Invalid original creature attribute field");
+   era_campaign_creature_attributes::apply(gs,CreatureID(campaignInteger(change["creature"])),field.front(),campaignInteger(change["amount"]));
+   continue;
+  }
   if(kind=="mapRefresh")
   {
    const int mode=campaignInteger(change["mode"]);const PlayerColor player(campaignInteger(change["player"]));

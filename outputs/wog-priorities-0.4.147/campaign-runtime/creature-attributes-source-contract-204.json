@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "feature": "Five numeric MA attributes used by the original Gorynych final confrontation",
+  "evidenceType": "Static supplied WoG3.58f PE inspection, with native VCMI controls separately identified; no Windows execution",
+  "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "observations": [
+    {
+      "address": "0x78d30a",
+      "bytes": "4d415025750000000000",
+      "claim": "Packed MA dispatch entry targets0x752550."
+    },
+    {
+      "range": "0x752550..0x7525d2",
+      "claim": "Requires two arguments and source creature index0..196. Command switch table starts at0x752ab0."
+    },
+    {
+      "address": "0x752805",
+      "field": "P",
+      "tableField": "0x7acf00 + creature*0x74 + 0x4c",
+      "claim": "Signed4-byte Apply at argument1, then change notification on writes."
+    },
+    {
+      "address": "0x752890",
+      "field": "A",
+      "tableField": "0x7acf00 + creature*0x74 + 0x54"
+    },
+    {
+      "address": "0x7528c7",
+      "field": "D",
+      "tableField": "0x7acf00 + creature*0x74 + 0x58"
+    },
+    {
+      "address": "0x7528fe",
+      "field": "M",
+      "tableField": "0x7acf00 + creature*0x74 + 0x5c"
+    },
+    {
+      "address": "0x752935",
+      "field": "E",
+      "tableField": "0x7acf00 + creature*0x74 + 0x60"
+    },
+    {
+      "range": "0x75dbd0..0x75dc33",
+      "claim": "First reset preserves the initial0x5944-byte creature table in0x7eb558; every reset copies the backup back to0x7acf00."
+    },
+    {
+      "addresses": [
+        "0x75dd9d",
+        "0x75e372"
+      ],
+      "claim": "Saved-map loading and map-monster reset call that table reset routine."
+    }
+  ],
+  "originalUse": {
+    "program": "zc1-0",
+    "sourceLine": 395,
+    "command": "!!MA:P168/20000A168/50D168/50M168/100E168/100;",
+    "phase": "Before the final confrontation teleport, outside active combat"
+  },
+  "nativeDesign": {
+    "scope": "Current game map, all matching owned and neutral stacks; shared creature library stays immutable.",
+    "mechanism": "Permanent BASE_NUMBER deltas on the game global-effects node, limited to exactly the remapped creature. Field-specific source IDs replace earlier values rather than stacking.",
+    "savedState": "Map-local original attribute values and existing serialized native bonuses; existing save version906.",
+    "queryBase": "Native installed creature attributes, including installed mod overrides; not guessed from a single JSON definition."
+  },
+  "limitations": [
+    "This does not port MA cost, upgrade or experience operations.",
+    "Nonpositive health, negative numeric values and writes during an active battle remain explicitly unadmitted; none occur in this original command.",
+    "The original final quest and victory are not established by the private attribute fixture."
+  ]
+}
