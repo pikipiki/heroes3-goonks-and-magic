@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
@@ -19,10 +20,20 @@ const adapterSha256=crypto.createHash('sha256').update(fs.readFileSync(adapter))
 const out=root+'public/starcraft/openbw.wasm';
 fs.mkdirSync(path.dirname(out),{recursive:true});
 const flags=['-std=c++17','-O2','-fno-exceptions','-mexec-model=reactor','-DOPENBW_NO_EXCEPTIONS','-DOPENBW_ENABLE_UI','-DOPENBW_NO_SDL_IMAGE','-DOPENBW_NO_SDL_MIXER','-I'+source,'-I'+source+'/ui','-ffile-prefix-map='+root+'=crossover','-ffile-prefix-map='+source+'=openbw','-Wl,-z,stack-size=8388608','-Wl,--strip-debug'];
-execFileSync(compiler,[...flags,adapter,source+'/web/wasm_backend.cpp','-o',out+'.tmp'],{stdio:'inherit'});
+const workspace=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-openbw-'));
+const adapted=path.join(workspace,'openbw');
+try {
+ fs.cpSync(source,adapted,{recursive:true});
+ const hookFile=path.join(adapted,'bwgame.h'),text=fs.readFileSync(hookFile,'utf8');
+ const needle='\t\tdamage += fp8::integer(target->acid_spore_count);';
+ if(text.split(needle).length!==2)throw Error('Pinned native damage hook changed.');
+ fs.writeFileSync(hookFile,text.replace(needle,needle+'\n\t\tdamage = fp8::from_raw(::crossover_weapon_contact(target, source_unit, damage.raw_value));'));
+ const entry=path.join(workspace,'openbw-crossover.cpp');fs.writeFileSync(entry,fs.readFileSync(adapter,'utf8').replaceAll('../vendor/openbw',adapted));
+ execFileSync(compiler,[...flags.map(flag=>flag.startsWith('-I'+source)?flag.replace(source,adapted):flag),'-ffile-prefix-map='+workspace+'=crossover-adapter',entry,adapted+'/web/wasm_backend.cpp','-o',out+'.tmp'],{stdio:'inherit'});
+}finally{fs.rmSync(workspace,{recursive:true,force:true});}
 fs.renameSync(out+'.tmp',out);
 fs.chmodSync(out,0o644);
 const module=await WebAssembly.compile(fs.readFileSync(out));
 const sha256=crypto.createHash('sha256').update(fs.readFileSync(out)).digest('hex');
-fs.writeFileSync(root+'public/starcraft/engine-build.json',JSON.stringify({engine:'OpenBW',upstream:upstream.commit,sdk:'wasi-sdk-33.0',compiler:compilerVersion,sourceTreeSha256:fingerprint,adapterSha256,sha256,bytes:fs.statSync(out).size,exports:WebAssembly.Module.exports(module).map(v=>v.name)},null,2)+'\n');
+fs.writeFileSync(root+'public/starcraft/engine-build.json',JSON.stringify({engine:'OpenBW',upstream:upstream.commit,sdk:'wasi-sdk-33.0',compiler:compilerVersion,sourceTreeSha256:fingerprint,adapterSha256,buildScriptSha256:crypto.createHash('sha256').update(fs.readFileSync(fileURLToPath(import.meta.url))).digest('hex'),sha256,bytes:fs.statSync(out).size,exports:WebAssembly.Module.exports(module).map(v=>v.name)},null,2)+'\n');
 console.log('OpenBW WASM: '+sha256);

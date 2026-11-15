@@ -24,6 +24,7 @@ replace('  pauseBtn.onclick = () => {', `  crossoverApi.enableAudio=()=>{ensureA
   crossoverApi.audioState=()=>({state:audioCtx?.state||'inactive',muted});
   const creatureSounds=new Map(),creaturePlayed=new Map();
   crossoverApi.prepareCreatureSounds=async rows=>{
+    rows=rows.filter(row=>!creatureSounds.has(row.id+':'+(row.kind||'attack')));if(!rows.length)return;
     const decoder=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,44100);
     await Promise.all(rows.map(async row=>{const buffer=await decoder.decodeAudioData(new Uint8Array(row.bytes).buffer);creatureSounds.set(row.id+':'+(row.kind||'attack'),buffer);}));
   };

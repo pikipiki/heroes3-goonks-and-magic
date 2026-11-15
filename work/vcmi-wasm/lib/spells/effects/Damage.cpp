@@ -123,7 +123,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
                 animation.val=220;animation.additionalInfo=37;server->apply(animation);
                 BattleStackAttacked extra;extra.stackAttacked=unit->unitId();extra.attackerID=-1;
                 extra.damageAmount=rodDamage;auto extraState=unit->acquireState();
-                CStack::prepareAttacked(extra,*server->getRNG(),extraState);
+                server->beforeSpellDamage(unit->unitId(),extra.damageAmount);CStack::prepareAttacked(extra,*server->getRNG(),extraState);
                 StacksInjured raw;raw.battleID=stacksInjured.battleID;raw.stacks.push_back(extra);server->apply(raw);
             }
             if(eraDeflectionSpell(m))
@@ -152,7 +152,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 			bsa.stackAttacked = unit->unitId();
 			bsa.attackerID = -1;
 			auto newState = unit->acquireState();
-			CStack::prepareAttacked(bsa, *server->getRNG(), newState);
+			server->beforeSpellDamage(unit->unitId(),bsa.damageAmount);CStack::prepareAttacked(bsa, *server->getRNG(), newState);
             if(!sourceDamageBlocked&&era_compat::sourceXpBattleAdmitted(*m->battle()))
                 bsa.newState.data["eraSourceXpDamageEntered"].Bool()=true;
             if(bsa.damageAmount < 0 && era_compat::Policies::get().spellDamageInversion(

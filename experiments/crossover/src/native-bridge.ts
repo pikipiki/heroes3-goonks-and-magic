@@ -1,7 +1,7 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
-import {validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
+import {STARCRAFT_UNITS,validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
 export type CreatureSoundKind='attack'|'hit'|'death'|`spell:${number}`;
-export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;order?:number;cooldown?:number; x: number; y: number};
+export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;hp256?:number;shields256?:number;shields?:number;maxShields?:number;order?:number;cooldown?:number; x: number; y: number};
 export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
 export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
 export type NativeSample = {frame: number; checksum: number; outcome: number; cohort?: NativeCohort};
@@ -18,6 +18,9 @@ export type NativeBridge = {
   start(): void;
   pause():void;
   isPaused():boolean;
+  applyMagic(groups:import('./magic.js').MagicGroup[],rules?:{source:number;target:number;melee:number;ranged:number}[]):void;
+  obstacles(rows:{id:number;blocks:boolean;stops:boolean;triggers:boolean;tiles:{x:number;y:number}[]}[]):void;
+  contacts():{source:number;target:number;frame:number;obstacle?:number}[];
   cast(stack:number,spell:number,x:number,y:number):boolean;
   enableAudio?():Promise<void>;
   prepareCreatureSounds?(rows:{id:number;bytes:Uint8Array;kind?:CreatureSoundKind}[]):Promise<void>;
@@ -35,6 +38,10 @@ export type NativeBridge = {
 };
 export type CrossoverWindow = Window & {openbwCrossover?: NativeBridge};
 type NativeExports = {
+  openbw_crossover_obstacles?(count:number):number;
+  openbw_crossover_contacts?():number;
+  openbw_crossover_damage_rules?(count:number):number;
+  openbw_crossover_apply_magic?(count:number):number;
   openbw_crossover_spell_setup?(stack:number,spell:number,charges:number,radius:number):number;
   openbw_crossover_cast?(stack:number,spell:number,x:number,y:number):number;
   openbw_crossover_stop?(stack:number):void;
@@ -120,6 +127,14 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
       return {pixels:new Uint8ClampedArray(memory.buffer,pointer,800*500*4).slice(),x:x.openbw_crossover_camera_x!(),y:x.openbw_crossover_camera_y!(),width:800,height:500};
     },
     order(stack,px,py,attack){if(closed||!x.openbw_crossover_order)throw Error('Ordre indisponible.');x.openbw_crossover_order(stack,Math.round(px),Math.round(py),attack?1:0);},
+    obstacles(rows){const data=new Int32Array(rows.flatMap(r=>r.tiles.flatMap(p=>[r.id,p.x,p.y,r.blocks?1:0,r.stops?1:0,r.triggers?1:0])));const pointer=x.openbw_in_ptr(data.byteLength);new Int32Array(memory.buffer,pointer,data.length).set(data);if(x.openbw_crossover_obstacles?.(data.length/6)!==1)throw Error('Obstacles magiques indisponibles.');},
+    contacts(){if(closed||!x.openbw_crossover_contacts)return [];const ptr=x.openbw_crossover_contacts(),bytes=new Uint8Array(memory.buffer);let end=ptr;while(end<bytes.length&&end-ptr<65536&&bytes[end])end++;return JSON.parse(new TextDecoder().decode(bytes.subarray(ptr,end)));},
+    applyMagic(groups,rules=[]){
+      if(closed||!x.openbw_crossover_apply_magic)throw Error('Passerelle de magie absente.');
+      const data=new Int32Array(groups.flatMap(r=>[r.id,r.owner,r.count,r.hp,r.maxHp,r.attack,r.defense,r.damageMin,r.damageMax,r.speed,r.shooter?1:0,r.x,r.y,(r.disabled?1:0)|(r.berserk?2:0)|(r.cloned?4:0),r.moved?1:0,r.meleeReduction,r.rangedReduction,r.fireShield,r.healthDelta,r.revived,r.removed?1:0,r.creature.startsWith('heroes-starcraft:')?(STARCRAFT_UNITS[r.creature.split(':')[1]]??-1):r.shooter?0:37,r.creature.startsWith('heroes-starcraft:')?0:1,r.luck,r.morale,r.retaliations]));
+      const pointer=x.openbw_in_ptr(data.byteLength);new Int32Array(memory.buffer,pointer,data.length).set(data);if(x.openbw_crossover_apply_magic(groups.length)!==1)throw Error('Effets magiques refusés par le moteur RTS.');
+      const table=new Int32Array(rules.flatMap(r=>[r.source,r.target,r.melee,r.ranged]));const location=x.openbw_in_ptr(table.byteLength);new Int32Array(memory.buffer,location,table.length).set(table);if(x.openbw_crossover_damage_rules?.(rules.length)!==1)throw Error('Règles de dégâts magiques indisponibles.');
+    },
     pause(){throw Error("Pause indisponible.");},
     isPaused(){return true;},
     cast(stack,spell,px,py){return !closed&&x.openbw_crossover_cast?.(stack,spell,Math.round(px),Math.round(py))===1;},

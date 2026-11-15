@@ -102,8 +102,7 @@ Voir [AUDIT.md](./AUDIT.md) et [VALIDATION.md](./VALIDATION.md).
 
 ## Projet Netlify séparé
 
-Le code reste dans ce dépôt sur `codex/heroes-starcraft-crossover`. Le projet Netlify `heroes-starcraft` est créé mais doit encore être connecté et déployé. Choisir ce dépôt GitHub et cette branche comme **production branch** du nouveau projet ; la configuration de branche de `netlify.toml` construit le crossover dans `dist-heroes-starcraft`. Le projet Heroes Goonk existant et la branche `main` ne sont pas modifiés. Ne pas créer un deuxième projet si `heroes-starcraft` est utilisé.
-
+Le code reste dans ce dépôt sur `codex/heroes-starcraft-crossover`. La publication GitHub Pages séparée est gérée par [pikipiki/heroes-starcraft](https://github.com/pikipiki/heroes-starcraft) : son fichier `source-ref` fixe le commit vérifié à construire. Le jeu est accessible sur https://pikipiki.github.io/heroes-starcraft/battle.html. La branche `main` et le déploiement du jeu classique restent indépendants.
 Pour préparer le même dossier de publication localement, après les builds ci-dessus :
 
 ```sh
@@ -128,3 +127,13 @@ node experiments/crossover/scripts/build-standalone.mjs
 ```
 
 Les tests `tests/rts-battle-browser.mjs` et `tests/heroes-rts-browser.mjs` utilisent respectivement le serveur de test sur 8778 et le bundle séparé sur 8779.
+
+## Livre de sorts et commandes tactiles
+
+La démo oppose sept cohortes de cinq créatures finales de factions différentes à douze unités StarCraft (Marine, Firebat, Zergling, Hydralisk, Zealot, Dragoon), avec les améliorations maximales. Le héros dispose du livre de combat complet ; les capacités des créatures utilisent également le moteur VCMI natif.
+
+Avant de commencer, « Préparer 5 sorts » permet d’affecter les cinq raccourcis au héros ou aux créatures. La préparation ne dépense pas de mana et ne démarre pas la simulation. Les préférences sont mémorisées localement par identité de créature. Pendant le combat, les touches 1–5 ou les boutons ouvrent directement le ciblage en pause. Le livre complet reste accessible.
+
+Les boutons utilisent les icônes originales Heroes dans une grille de commandes RTS : cinq raccourcis en bas en portrait, carte 3 × 3 à droite en paysage. Le panneau reste défilable verticalement. Les sorts, invocations, soins, résurrections, obstacles, effets temporaires et animations sont évalués par les règles natives ; les boucliers Protoss absorbent les dégâts avant les points de vie.
+
+Validation navigateur sur le bundle séparé : `node experiments/crossover/tests/universal-magic-browser.mjs` (Chromium et WebKit). Ce test emploie de vrais sorts pour provoquer blessures, morts, résurrection et invocation ; aucun point de vie artificiel n’est injecté. `tests/render-fps-browser.mjs` mesure séparément le rendu à 50 fps.

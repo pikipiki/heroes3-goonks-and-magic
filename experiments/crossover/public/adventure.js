@@ -1,3 +1,5 @@
+import { LOADOUT_KEY, parseLoadout, defaultLoadout, resolveSpell, spellRef, assignSlot } from './loadout.js';
+import { magicController } from './magic.js';
 import { sharedField } from './shared-field.js';
 import { battlePlan, battleResult } from './battle.js';
 export function installAdventure(target, base, onExit, trial = false) {
@@ -14,7 +16,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     doc.head.append(style);
     const makeButton = (id, label, action) => { const button = doc.createElement('button'); button.id = id; button.type = 'button'; button.textContent = label; button.dataset.crossoverAction = action; button.setAttribute('translate', 'no'); return button; };
     const demo = makeButton('crossover-demo', 'Démo Heroes × StarCraft', 'demo');
-    demo.innerHTML = '<span>Démo Heroes × StarCraft</span><small>Archers, piquiers, Goonk et Marines</small>';
+    demo.innerHTML = '<span>Démo Heroes × StarCraft</span><small>7 × 5 troupes finales · 12 StarCraft max</small>';
     demo.disabled = true;
     const menuDemo = makeButton('crossover-demo-menu', 'Démo Heroes × StarCraft', 'demo');
     const toggle = makeButton('crossover-toggle', 'Combats en temps réel : activés', 'toggle');
@@ -127,7 +129,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         panel.id = 'crossover-arena';
         panel.setAttribute('translate', 'no');
         panel.setAttribute('aria-label', 'Combat Heroes × StarCraft');
-        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="battle-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>Arrêter</button><button id="crossover-select-all" disabled>Tout sélectionner</button><button id="crossover-spells" disabled>Sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-spell-options"></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis le sort d’un Goonk, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
+        panel.innerHTML = '<div class="field"><iframe title="Moteur de combat" aria-hidden="true" tabindex="-1"></iframe><canvas id="crossover-field"></canvas></div><header class="battle-heading"><div class="heading-label"><span class="eyebrow">HEROES GOONK</span><h2>Combat en temps réel</h2></div><button id="crossover-cancel" aria-label="Reprendre le combat Heroes classique">↩ Classique</button><p id="crossover-battle-status" role="status">Préparation du combat…</p><progress aria-label="Préparation des données du combat"></progress></header><aside aria-label="Commandes du combat"><div class="command-console"><div class="precombat-actions"><button id="crossover-start" disabled>Commencer le combat</button><button id="crossover-loadout" disabled>Préparer 5 sorts</button></div><div class="battle-actions sc-command-grid"><button id="crossover-move" disabled>↗<small>Déplacer</small></button><button id="crossover-attack" aria-pressed="false" disabled>Avancer et attaquer</button><button id="crossover-stop" disabled>■<small>Arrêter</small></button><button class="quick-slot" data-quick-slot="0" disabled><kbd>1</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 1</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="1" disabled><kbd>2</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 2</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="2" disabled><kbd>3</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 3</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="3" disabled><kbd>4</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 4</small><span class="quick-cost"></span></button><button class="quick-slot" data-quick-slot="4" disabled><kbd>5</kbd><canvas class="spell-icon" width="48" height="48"></canvas><small class="quick-name">Sort 5</small><span class="quick-cost"></span></button><button id="crossover-select-all" disabled>Tout sélectionner</button></div><div class="console-utility"><button id="crossover-spells" disabled>Tous les sorts</button><button id="crossover-sound" disabled aria-pressed="true">Son activé</button></div></div><p id="crossover-selection" class="battle-selection" role="status">Sélectionne une troupe, puis touche un ennemi pour attaquer.</p><section id="crossover-spell-picker" hidden aria-label="Choix du sort"><h3>Combat en pause</h3><p>Choisis un sort, puis sa cible sur le terrain.</p><div id="crossover-loadout-slots" hidden></div><div id="crossover-spell-options"></div><button id="crossover-spell-cancel">Annuler le sort</button></section><section aria-label="Armées"><h3>Les combattants</h3><p>Terrans, Zergs et Protoss : armes et armures 3/3, boucliers 3.</p><div id="crossover-roster"></div></section><details><summary>Comment jouer</summary><p>Choisis une troupe, puis touche le terrain pour la déplacer ou un ennemi pour l’attaquer. Touche directement un ennemi pour attaquer : aucun bouton supplémentaire. Le premier ordre démarre le combat. « Avancer et attaquer » sert uniquement à avancer vers un point en engageant les ennemis rencontrés. « Arrêter » annule ses ordres. Tes troupes restent inactives sans ordre. « Sorts » met le combat en pause : choisis un sort du héros ou d’une créature, puis touche sa cible pour le lancer et reprendre le combat. Les sorts de zone touchent aussi les alliés sensibles à la magie.</p></details></aside>';
         panel.hidden = true;
         doc.body.append(panel);
         panel.querySelector('iframe').remove();
@@ -159,6 +161,7 @@ export function installAdventure(target, base, onExit, trial = false) {
             cards.set(row.id, { button, count });
             button.onclick = () => canvas.dispatchEvent(new CustomEvent('crossover-select-group', { detail: row.id }));
         }
+        const effectiveOwners = new Map(), enemyCards = new Map();
         const enemy = doc.createElement('div');
         enemy.className = 'army-card enemy';
         const enemyCount = doc.createElement('strong'), enemyName = doc.createElement('span');
@@ -166,53 +169,204 @@ export function installAdventure(target, base, onExit, trial = false) {
         enemyName.textContent = 'Ennemis · ' + [...new Set(plan.stacks.filter(row => row.side === 1).map(row => row.name))].join(', ');
         enemy.append(enemyCount, enemyName);
         roster.append(enemy);
+        for (const row of activePlan.stacks.filter(s => s.side === 1)) {
+            const card = doc.createElement('div');
+            card.className = 'army-card enemy';
+            card.dataset.enemyGroup = String(row.id);
+            const count = doc.createElement('strong'), name = doc.createElement('span');
+            count.textContent = String(row.count);
+            name.textContent = row.name;
+            card.append(count, name);
+            roster.append(card);
+            enemyCards.set(row.id, count);
+        }
         const spellButton = panel.querySelector('#crossover-spells'), picker = panel.querySelector('#crossover-spell-picker'), options = panel.querySelector('#crossover-spell-options');
-        let choosingSpell = false, wasPaused = true, armedSpell, effectUntil = 0;
+        const prep = panel.querySelector('#crossover-loadout'), move = panel.querySelector('#crossover-move'), slotOverview = panel.querySelector('#crossover-loadout-slots'), cancelSpell = panel.querySelector('#crossover-spell-cancel'), quickButtons = [...panel.querySelectorAll('[data-quick-slot]')];
+        let loadout;
+        try {
+            loadout = parseLoadout(win.localStorage.getItem(LOADOUT_KEY));
+        }
+        catch { }
+        let draft = [], editing = false, editingSlot;
+        let choosingSpell = false, wasPaused = true, armedSpell, teleportTarget, effectUntil = 0, catalogue = activePlan.magic, lastMagicRound = 0, finalMagicSync = false, observedFinish = false;
         const api = () => activeFrame.contentWindow.openbwCrossover;
-        const available = () => { const state = api()?.battle(); return activePlan.stacks.filter(row => row.side === 0 && (chosen === undefined || chosen < 0 || chosen === row.id)).flatMap(row => (row.spells || []).map(spell => ({ stack: row.id, name: row.name, spell, group: state?.groups.find(g => g.id === row.id) }))).filter(item => item.group && item.group.survivors > 0 && (item.group.casts ?? 0) > 0 && (item.group.spellReady ?? 0) <= (state?.frame ?? 0)); };
-        const finishChoice = (cast) => { choosingSpell = false; armedSpell = undefined; picker.hidden = true; delete canvas.dataset.spellMode; if (cast || !wasPaused) {
+        let magic;
+        const onMagicResponse = async (response) => { catalogue = response.catalogue; for (const group of response.groups) {
+            effectiveOwners.set(group.id, group.owner);
+            const original = activePlan.stacks.find(s => s.id === group.id);
+            if (group.owner === 0 && !cards.has(group.id) && group.count > 0) {
+                const button = doc.createElement('button');
+                button.className = 'army-card';
+                button.dataset.crossoverGroup = String(group.id);
+                button.type = 'button';
+                const count = doc.createElement('strong'), name = doc.createElement('span');
+                count.textContent = String(group.count);
+                name.textContent = (group.summoned ? 'Invocation · ' : original?.side === 1 ? 'Contrôlé · ' : '') + group.name;
+                button.append(count, name);
+                button.onclick = () => canvas.dispatchEvent(new CustomEvent('crossover-select-group', { detail: group.id }));
+                roster.insertBefore(button, enemy);
+                cards.set(group.id, { button, count });
+            }
+            const card = cards.get(group.id);
+            if (card && original?.side === 1)
+                card.button.hidden = group.owner !== 0;
+            const opposing = enemyCards.get(group.id);
+            if (opposing)
+                opposing.parentElement.hidden = group.owner === 0;
+        } const sounds = win.goonkCrossoverSounds; if (sounds?.battleId === activePlan.battleId)
+            await api().prepareCreatureSounds?.(sounds.rows).catch(() => { }); for (const event of response.events || []) {
+            api().playCreatureSound?.(event.caster, `spell:${event.id}`);
+            canvas.dispatchEvent(new CustomEvent('crossover-spell-effect', { detail: { id: event.id, caster: event.caster, targets: event.targets || [], x: event.x ?? (event.hex % 17 - 1) * 800 / 15 + 26, y: event.y ?? Math.floor(event.hex / 17) * 500 / 11 + 22 } }));
+        } canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: response.obstacles || [] })); canvas.dispatchEvent(new Event('crossover-native-changed')); };
+        const oldDispose = sceneDispose;
+        sceneDispose = () => { magic?.dispose(); oldDispose?.(); };
+        const available = () => (catalogue?.spells || []).filter(s => s.caster < 0 || chosen === undefined || chosen < 0 || s.caster === chosen);
+        const finishChoice = (cast) => { choosingSpell = false; activePanel.classList.remove('choosing-spell', 'using-shortcut'); editing = false; editingSlot = undefined; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; armedSpell = undefined; teleportTarget = undefined; picker.hidden = true; activePanel.querySelector('aside').scrollTop = 0; delete canvas.dataset.spellMode; delete canvas.dataset.spellTarget; if (cast || !wasPaused) {
             api().start();
             start.hidden = true;
         } updateSelection(); };
-        spellButton.onclick = () => {
-            const spells = available();
-            if (!spells.length)
-                return;
-            wasPaused = api().isPaused();
-            api().pause();
-            choosingSpell = true;
-            canvas.dataset.spellMode = 'choose';
-            picker.hidden = false;
-            options.replaceChildren();
-            armedSpell = undefined;
-            for (const item of spells) {
-                const button = doc.createElement('button');
-                button.textContent = `${item.name} · ${item.spell.name} (${item.group.casts})`;
-                button.dataset.spellId = String(item.spell.id);
-                button.onclick = () => { armedSpell = item; canvas.dataset.spellMode = 'target'; for (const child of options.querySelectorAll('button'))
-                    child.setAttribute('aria-pressed', String(child === button)); selection.textContent = `Pause · ${item.spell.name} : touche une cible (zone, alliés inclus).`; };
-                options.append(button);
-            }
-            selection.textContent = 'Combat en pause · choisis un sort.';
-            updateSelection();
-        };
-        panel.querySelector('#crossover-spell-cancel').onclick = () => { finishChoice(false); selection.textContent = 'Sort annulé.'; };
-        canvas.addEventListener('crossover-spell-target', event => {
-            if (!choosingSpell || !armedSpell)
-                return;
-            const { x, y } = event.detail, { stack, spell } = armedSpell;
-            if (!api().cast(stack, spell.id, x, y)) {
-                selection.textContent = 'Pause · aucune cible sensible ici. Choisis une autre cible.';
-                return;
-            }
-            api().playCreatureSound?.(stack, `spell:${spell.id}`);
-            canvas.dispatchEvent(new CustomEvent('crossover-spell-effect', { detail: { x, y, radius: spell.radius } }));
-            effectUntil = win.performance.now() + 700;
+        const launchSpell = async (spell, target, x, y, secondTarget) => { if (magic.busy())
+            return; selection.textContent = 'Pause · lancement du sort…'; try {
+            await magic.cast(spell, target, x, y, secondTarget);
+            effectUntil = win.performance.now() + 1200;
             finishChoice(true);
             selection.dataset.feedback = 'confirmed';
             selection.textContent = `${spell.name} lancé · combat repris.`;
+        }
+        catch (error) {
+            selection.textContent = 'Pause · ' + String(error instanceof Error ? error.message : error);
+        } };
+        const populateSpells = () => {
+            options.replaceChildren();
+            const search = doc.createElement('input');
+            search.type = 'search';
+            search.placeholder = 'Chercher un sort';
+            search.setAttribute('aria-label', 'Chercher dans tous les sorts');
+            options.append(search);
+            const list = doc.createElement('div');
+            list.className = 'spell-list';
+            options.append(list);
+            for (const item of editing ? (catalogue?.spells || []).filter((item, index, items) => items.findIndex(other => JSON.stringify(spellRef(other, activePlan)) === JSON.stringify(spellRef(item, activePlan))) === index) : available()) {
+                const button = doc.createElement('button');
+                const name = item.caster < 0 ? 'Héros' : activePlan.stacks.find(s => s.id === item.caster)?.name || 'Créature';
+                button.textContent = `${name} · ${item.name} · ${item.caster < 0 ? item.cost + ' mana' : item.casts < 0 ? 'capacité' : item.casts + ' charges'}`;
+                button.title = item.description + (item.reason ? ' · ' + item.reason : '');
+                button.dataset.spellId = String(item.id);
+                button.dataset.spellCaster = String(item.caster);
+                button.disabled = !editing && (item.enabled === false || item.ready > api().frame() || (item.caster < 0 ? item.cost > (catalogue?.mana ?? 0) : item.casts === 0));
+                button.onclick = () => { if (editing) {
+                    draft = assignSlot(draft, editingSlot, spellRef(item, activePlan));
+                    showLoadout();
+                    return;
+                } armedSpell = item; teleportTarget = undefined; canvas.dataset.spellMode = 'target'; canvas.dataset.spellTarget = item.target; for (const child of list.querySelectorAll('button'))
+                    child.setAttribute('aria-pressed', String(child === button)); selection.textContent = `Pause · ${item.name} : ${item.target === 'sacrifice' ? 'choisis une troupe tombée, puis une troupe à sacrifier.' : item.target === 'teleport' ? 'choisis la troupe à téléporter, puis sa destination.' : item.target === 'ally' ? 'touche une troupe alliée.' : item.target === 'enemy' ? 'touche une troupe ennemie.' : 'choisis la cible sur le terrain.'}`; if (item.target === 'none')
+                    void launchSpell(item, -1, 400, 250); };
+                list.append(button);
+            }
+            search.oninput = () => { const query = search.value.toLocaleLowerCase(); for (const button of list.querySelectorAll('button'))
+                button.hidden = !button.textContent.toLocaleLowerCase().includes(query); };
+        };
+        spellButton.onclick = () => { if (!ready)
+            return; editing = false; slotOverview.hidden = true; options.hidden = false; cancelSpell.textContent = 'Annuler le sort'; picker.querySelector('h3').textContent = 'Combat en pause'; picker.querySelector('p').textContent = 'Choisis un sort, puis sa cible sur le terrain.'; if (!choosingSpell)
+            wasPaused = !start.hidden; api().pause(); choosingSpell = true; activePanel.classList.add('choosing-spell'); canvas.dataset.spellMode = 'choose'; picker.hidden = false; options.replaceChildren(); armedSpell = undefined; selection.textContent = 'Combat en pause · ouverture du livre de sorts…'; updateSelection(); void (async () => { while (magic.busy() && choosingSpell)
+            await new Promise(resolve => win.setTimeout(resolve, 16)); if (!choosingSpell)
+            return; await magic.sync(); if (!choosingSpell)
+            return; populateSpells(); picker.scrollIntoView({ block: 'nearest' }); selection.textContent = `Combat en pause · choisis un sort (${catalogue?.mana ?? 0} mana).`; })().catch(error => { selection.textContent = 'Pause · ' + String(error); }); };
+        cancelSpell.onclick = () => { if (editing) {
+            if (editingSlot !== undefined) {
+                showLoadout();
+                return;
+            }
+            loadout = draft.map(ref => ref ? { ...ref } : null);
+            try {
+                win.localStorage.setItem(LOADOUT_KEY, JSON.stringify(loadout));
+            }
+            catch { }
+            finishChoice(false);
+            selection.textContent = '5 raccourcis prêts · commence le combat quand tu veux.';
+            return;
+        } finishChoice(false); selection.textContent = 'Sort annulé.'; };
+        const showLoadout = () => { editingSlot = undefined; options.hidden = true; slotOverview.hidden = false; slotOverview.replaceChildren(); picker.querySelector('h3').textContent = 'Préparer les 5 sorts'; picker.querySelector('p').textContent = 'Touche un emplacement pour choisir son sort. Aucun mana dépensé.'; cancelSpell.textContent = 'Valider les raccourcis'; draft.forEach((ref, index) => { const item = resolveSpell(ref, catalogue?.spells || [], activePlan); const button = doc.createElement('button'); button.dataset.editSlot = String(index); button.textContent = `${index + 1} · ${item?.name || 'Choisir un sort'}`; button.onclick = () => { editingSlot = index; slotOverview.hidden = true; options.hidden = false; picker.querySelector('h3').textContent = `Raccourci ${index + 1}`; picker.querySelector('p').textContent = 'Choisis un sort du héros ou une capacité de créature.'; cancelSpell.textContent = 'Retour aux 5 raccourcis'; populateSpells(); }; slotOverview.append(button); }); };
+        const editLoadout = (index) => { if (!ready || start.hidden)
+            return; wasPaused = true; api().pause(); choosingSpell = true; editing = true; draft = (loadout || defaultLoadout(catalogue?.spells || [], activePlan)).map(ref => ref ? { ...ref } : null); activePanel.classList.add('choosing-spell'); picker.hidden = false; armedSpell = undefined; canvas.dataset.spellMode = 'choose'; showLoadout(); if (index !== undefined)
+            slotOverview.querySelector(`[data-edit-slot="${index}"]`).click(); selection.textContent = 'Préparation · combat en pause'; updateSelection(); };
+        prep.onclick = () => editLoadout();
+        const quickCast = async (index) => { if (!ready || editing)
+            return; if (!start.hidden) {
+            editLoadout(index);
+            return;
+        } if (!choosingSpell)
+            wasPaused = false; api().pause(); choosingSpell = true; activePanel.classList.add('choosing-spell', 'using-shortcut'); picker.hidden = false; options.hidden = true; slotOverview.hidden = true; cancelSpell.textContent = 'Annuler le sort'; picker.querySelector('h3').textContent = 'Combat en pause'; picker.querySelector('p').textContent = 'Choisis la cible sur le terrain.'; armedSpell = undefined; canvas.dataset.spellMode = 'choose'; updateSelection(); try {
+            while (magic.busy() && choosingSpell)
+                await new Promise(resolve => win.setTimeout(resolve, 16));
+            if (!choosingSpell)
+                return;
+            await magic.sync();
+            if (!choosingSpell)
+                return;
+            const spell = resolveSpell(loadout?.[index] || null, catalogue?.spells || [], activePlan, api().frame());
+            if (!spell)
+                throw Error('Ce sort est indisponible.');
+            armedSpell = spell;
+            teleportTarget = undefined;
+            canvas.dataset.spellMode = 'target';
+            canvas.dataset.spellTarget = spell.target;
+            selection.textContent = `Pause · ${spell.name} : ${spell.target === 'teleport' ? 'troupe puis destination' : spell.target === 'sacrifice' ? 'troupe tombée puis sacrifice' : 'choisis une cible'}.`;
+            if (spell.target === 'none')
+                await launchSpell(spell, -1, 400, 250);
+        }
+        catch (error) {
+            selection.textContent = 'Pause · ' + String(error);
+        } };
+        quickButtons.forEach((button, index) => button.onclick = () => { void quickCast(index); });
+        const hotkey = (event) => { if (event.ctrlKey || event.metaKey || event.altKey || event.repeat || /INPUT|TEXTAREA|SELECT/.test(event.target?.tagName))
+            return; const index = Number(event.key) - 1; if (index >= 0 && index < 5 && Number.isInteger(index) && !quickButtons[index].disabled) {
+            event.preventDefault();
+            quickButtons[index].click();
+        } };
+        win.addEventListener('keydown', hotkey);
+        const updateQuickSlots = () => { if (!loadout && catalogue?.spells.length)
+            loadout = defaultLoadout(catalogue.spells, activePlan); prep.disabled = !ready || choosingSpell; activePanel.querySelector('.precombat-actions').hidden = start.hidden; const frame = api()?.frame?.() || 0; quickButtons.forEach((button, index) => { const spell = resolveSpell(loadout?.[index] || null, catalogue?.spells || [], activePlan, frame); button.querySelector('.quick-name').textContent = spell?.name || 'Choisir'; const waiting = spell ? Math.max(0, spell.ready - frame) : 0; button.querySelector('.quick-cost').textContent = spell ? (waiting ? Math.ceil(waiting / 24) + 's' : spell.caster < 0 ? spell.cost + ' M' : spell.casts < 0 ? 'Capacité' : spell.casts + ' ×') : ''; button.disabled = !ready || choosingSpell || (!spell && start.hidden) || (start.hidden && !!spell && (waiting > 0 || spell.casts === 0 || (spell.caster < 0 && spell.cost > (catalogue?.mana ?? 0)))); button.title = spell ? spell.name + ' · ' + spell.description : 'Préparer ce raccourci'; button.setAttribute('aria-label', `Raccourci ${index + 1} : ${spell?.name || 'choisir un sort'}`); const icons = win.goonkCrossoverSpellIcons, icon = icons?.rows.find(row => row.id === spell?.id), paint = button.querySelector('canvas'); if (icon && icons) {
+            const ctx = paint.getContext('2d');
+            ctx.clearRect(0, 0, 48, 48);
+            ctx.drawImage(icons.canvas, icon.x, icon.y, 48, 48, 0, 0, 48, 48);
+        } }); };
+        canvas.addEventListener('crossover-spell-target', event => {
+            if (!choosingSpell || !armedSpell)
+                return;
+            const { x, y, stack, owner, hp } = event.detail;
+            if (armedSpell.target === 'sacrifice') {
+                if (teleportTarget === undefined) {
+                    if (stack === undefined || owner !== 0 || hp > 0) {
+                        selection.textContent = 'Pause · choisis une troupe alliée tombée.';
+                        return;
+                    }
+                    teleportTarget = stack;
+                    selection.textContent = 'Pause · choisis la troupe vivante à sacrifier.';
+                    return;
+                }
+                if (stack === undefined || owner !== 0 || hp <= 0) {
+                    selection.textContent = 'Pause · choisis une troupe alliée vivante à sacrifier.';
+                    return;
+                }
+                void launchSpell(armedSpell, teleportTarget, x, y, stack);
+                return;
+            }
+            if (armedSpell.target === 'teleport' && teleportTarget === undefined) {
+                if (stack === undefined || owner !== 0) {
+                    selection.textContent = 'Pause · choisis une troupe alliée à téléporter.';
+                    return;
+                }
+                teleportTarget = stack;
+                canvas.dataset.spellTarget = 'ground';
+                selection.textContent = 'Pause · choisis la destination de téléportation.';
+                return;
+            }
+            void launchSpell(armedSpell, teleportTarget ?? (armedSpell.target === 'ground' ? -1 : stack ?? -1), x, y);
         });
         const updateSelection = () => {
+            updateQuickSlots();
+            move.disabled = !ready || choosingSpell || chosen === undefined;
             spellButton.disabled = !ready || choosingSpell || !available().length;
             start.disabled = all.disabled = !ready || choosingSpell;
             for (const { button } of cards.values())
@@ -232,6 +386,7 @@ export function installAdventure(target, base, onExit, trial = false) {
             activeFrame.contentWindow.openbwCrossover.start();
             start.hidden = true;
         } selection.textContent = event.detail; });
+        move.onclick = () => { attack.setAttribute('aria-pressed', 'false'); canvas.dispatchEvent(new CustomEvent('crossover-command-mode', { detail: 'move' })); selection.textContent = 'Touche le terrain pour déplacer la sélection.'; };
         all.onclick = () => canvas.dispatchEvent(new Event('crossover-select-all'));
         attack.onclick = () => { const active = attack.getAttribute('aria-pressed') !== 'true'; attack.setAttribute('aria-pressed', String(active)); attack.textContent = active ? 'Choisir un point' : 'Avancer et attaquer'; selection.dataset.feedback = active ? 'armed' : ''; canvas.dispatchEvent(new CustomEvent('crossover-command-mode', { detail: active ? 'attack' : 'move' })); selection.textContent = active ? 'Touche un point du terrain pour avancer en attaquant. Un ennemi se cible directement.' : 'Choisis un point où déplacer la sélection.'; };
         stop.onclick = () => canvas.dispatchEvent(new Event('crossover-stop-selection'));
@@ -249,6 +404,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                 if (!sc.openbwLaunchCrossover)
                     throw Error('Chargement de StarCraft incomplet.');
                 await sc.openbwLaunchCrossover(activePlan);
+                magic = magicController(win, sc.openbwCrossover, activePlan, onMagicResponse);
                 const sounds = win.goonkCrossoverSounds;
                 if (sounds?.battleId === activePlan.battleId && sounds.rows.length)
                     await sc.openbwCrossover.prepareCreatureSounds?.(sounds.rows);
@@ -263,7 +419,8 @@ export function installAdventure(target, base, onExit, trial = false) {
                 updateSound();
                 for (const { button } of cards.values())
                     button.disabled = false;
-                sceneDispose = sharedField(win, canvas, sc.openbwCrossover, activePlan);
+                const disposeField = sharedField(win, canvas, sc.openbwCrossover, activePlan);
+                sceneDispose = () => { win.removeEventListener('keydown', hotkey); magic.dispose(); disposeField(); };
                 await new Promise(resolve => win.requestAnimationFrame(() => win.requestAnimationFrame(() => resolve())));
                 if (panel !== activePanel)
                     return;
@@ -273,6 +430,18 @@ export function installAdventure(target, base, onExit, trial = false) {
                         const native = sc.openbwCrossover?.battle();
                         if (!native)
                             return;
+                        if (!native.finished && !choosingSpell && !magic.busy() && (Math.floor(native.frame / 96) > lastMagicRound || magic.needsSync())) {
+                            lastMagicRound = Math.floor(native.frame / 96);
+                            const paused = api().isPaused();
+                            api().pause();
+                            void magic.sync().then(() => { if (!paused && !choosingSpell)
+                                api().start(); }).catch(error => { status.textContent = String(error); if (!paused && !choosingSpell)
+                                api().start(); });
+                        }
+                        if (native.finished && !observedFinish) {
+                            observedFinish = true;
+                            effectUntil = Math.max(effectUntil, win.performance.now() + 1200);
+                        }
                         start.disabled = all.disabled = native.finished;
                         ready = !native.finished;
                         updateSelection();
@@ -287,15 +456,26 @@ export function installAdventure(target, base, onExit, trial = false) {
                                     card.count.textContent = String(group.survivors);
                                 card.button.disabled = choosingSpell || group.survivors === 0 || native.finished;
                             }
-                            else if (group.side === 1)
-                                opponents += group.survivors;
+                            else if (group.side === 1) {
+                                if (effectiveOwners.get(group.id) !== 0)
+                                    opponents += group.survivors;
+                                const count = enemyCards.get(group.id);
+                                if (count && count.textContent !== String(group.survivors))
+                                    count.textContent = String(group.survivors);
+                            }
                         }
+                        opponents = native.groups.filter(g => g.side === 1 && effectiveOwners.get(g.id) !== 0).reduce((sum, g) => sum + g.survivors, 0);
                         if (enemyCount.textContent !== String(opponents))
                             enemyCount.textContent = String(opponents);
-                        if (native.finished && !sent && win.performance.now() >= effectUntil) {
-                            const rows = battleResult(activePlan, native);
+                        if (native.finished && !sent && !finalMagicSync && !magic.busy()) {
+                            finalMagicSync = true;
+                            void magic.sync().catch(error => { finalMagicSync = false, observedFinish = false; status.textContent = String(error); });
+                            return;
+                        }
+                        if (native.finished && !sent && !magic.busy() && win.performance.now() >= effectUntil) {
+                            const rows = battleResult(activePlan, native).map(([id, count]) => [id, magic.persistent(id, count)]);
                             sent = true;
-                            command(1, activePlan.battleId, rows);
+                            command(1, activePlan.battleId, [...rows, [2147483647, catalogue?.spent ?? 0]]);
                             win.dispatchEvent(new CustomEvent('goonk-crossover-submitted', { detail: { version: 1, plan: structuredClone(activePlan), result: structuredClone(native) } }));
                         }
                     }

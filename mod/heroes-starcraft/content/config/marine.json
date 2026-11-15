@@ -11,12 +11,12 @@
     },
     "speed": 6,
     "hitPoints": 40,
-    "attack": 6,
-    "defense": 0,
+    "attack": 9,
+    "defense": 3,
     "shots": 32,
     "damage": {
-      "min": 6,
-      "max": 6
+      "min": 9,
+      "max": 9
     },
     "fightValue": 250,
     "aiValue": 250,

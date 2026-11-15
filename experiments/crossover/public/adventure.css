@@ -12,7 +12,7 @@
 }
 #crossover-arena * { box-sizing:border-box; }
 #crossover-arena .field { grid-column:1;grid-row:1/3;position:relative;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;background:#14130e;container-type:size; }
-#crossover-arena canvas { position:relative;display:block;width:min(100cqw,160cqh);height:auto;aspect-ratio:8/5;touch-action:none; }
+#crossover-arena #crossover-field { position:relative;display:block;width:min(100cqw,160cqh);height:auto;aspect-ratio:8/5;touch-action:none; }
 #crossover-arena iframe { position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;border:0; }
 #crossover-arena .battle-heading { grid-column:2;grid-row:1;min-width:0;padding:12px 10px 10px;display:grid;gap:8px;border-bottom:1px solid var(--line);background:#302619; }
 #crossover-arena .eyebrow { color:var(--gold);font-size:10px;letter-spacing:.12em;font-weight:700; }
@@ -49,7 +49,7 @@
  #crossover-arena #crossover-battle-status { grid-column:1;grid-row:2; }
  #crossover-arena progress { grid-column:1/3; }
  #crossover-arena .field { grid-column:1;grid-row:2;aspect-ratio:8/5;container-type:normal; }
- #crossover-arena canvas { width:100%;height:auto; }
+ #crossover-arena #crossover-field { width:100%;height:auto; }
  #crossover-arena aside { grid-column:1;grid-row:3;padding:14px 16px;gap:12px; }
  #crossover-arena .battle-actions { grid-template-columns:repeat(3,minmax(0,1fr)); }
  #crossover-arena #crossover-start { grid-column:1/-1; }
@@ -94,3 +94,48 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu]>.mobile-play { gr
 #crossover-arena #crossover-sound{grid-column:1/-1;min-height:44px}
 
 #crossover-arena [hidden]{display:none!important}#crossover-spell-picker{padding:12px;border:1px solid #c7a258;border-radius:12px;background:#322919}#crossover-spell-options{display:grid;gap:8px;margin:10px 0}#crossover-spell-options [aria-pressed="true"]{outline:2px solid #f1cc75}#crossover-arena canvas[data-spell-mode="target"]{cursor:crosshair}
+
+#crossover-spell-options input{width:100%;box-sizing:border-box;padding:12px;border-radius:8px;background:#19160f;color:#fff;border:1px solid #b59863}.spell-list{display:grid;gap:8px;max-height:40vh;overflow-y:auto;touch-action:pan-y}.spell-list button{text-align:left;padding:12px}
+
+#crossover-arena.choosing-spell .battle-actions,#crossover-arena.choosing-spell section[aria-label="Armées"],#crossover-arena.choosing-spell details{display:none}#crossover-arena.choosing-spell aside{scroll-padding-top:10px}
+
+/* Compact command card: original Heroes spell art inside a steel RTS console. */
+#crossover-arena{grid-template-columns:minmax(0,1fr) clamp(204px,25vw,250px)}
+#crossover-arena .command-console{background:linear-gradient(135deg,#343c3d,#161e20);border:2px solid #586465;border-bottom-color:#101719;padding:7px;box-shadow:inset 0 0 0 1px #11191b}
+#crossover-arena .sc-command-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+#crossover-arena .sc-command-grid button{position:relative;min-width:0;min-height:52px;padding:3px;border-radius:2px;border:2px solid;border-color:#718075 #26352b #16251e #586f5c;background:linear-gradient(#24372c,#102218);color:#b3efab;font-size:10px;line-height:1.1;box-shadow:inset 0 0 0 1px #08150d;overflow:hidden}
+#crossover-arena .sc-command-grid button:disabled{opacity:.5}
+#crossover-arena .sc-command-grid button[aria-pressed=true]{border-color:#b1f2a3;background:#315639}
+#crossover-arena #crossover-select-all{grid-column:auto}
+#crossover-arena .sc-command-grid small{display:block;font-size:9px;line-height:1.15}
+#crossover-arena .quick-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+#crossover-arena .spell-icon{display:block;width:32px;height:32px;aspect-ratio:1;pointer-events:none}
+#crossover-arena kbd{position:absolute;left:3px;top:2px;font:10px system-ui;color:#f9e7a6;text-shadow:0 1px #000}
+#crossover-arena .quick-cost{position:absolute;right:2px;top:2px;font-size:9px;color:#bce3ff;text-shadow:0 1px #000}
+#crossover-arena .precombat-actions{display:grid;gap:5px;margin-bottom:7px}
+#crossover-arena .console-utility{display:flex;gap:5px;margin-top:6px}
+#crossover-arena .console-utility button{flex:1;padding:4px;font-size:11px;min-height:44px;border-radius:3px;background:#232d30;border-color:#697578}
+#crossover-arena #crossover-sound{grid-column:auto}
+#crossover-loadout-slots{display:grid;gap:6px;margin:10px 0}
+#crossover-arena #crossover-loadout-slots button{min-height:48px;text-align:left;border-radius:3px;background:#183124;border-color:#658367}
+#crossover-arena.choosing-spell .command-console{display:none}
+#crossover-arena.using-shortcut .command-console,#crossover-arena.using-shortcut .battle-actions{display:grid}
+#crossover-arena.using-shortcut #crossover-spell-picker{padding:8px}
+#crossover-arena .battle-heading{gap:4px;padding:7px 10px}
+#crossover-arena .battle-heading h2{font-size:14px}
+@media(orientation:portrait){
+ #crossover-arena{grid-template-columns:minmax(0,1fr)}
+ #crossover-arena aside{padding:8px 10px;gap:8px}
+ #crossover-arena .sc-command-grid{grid-template-columns:repeat(20,minmax(0,1fr))}
+ #crossover-arena .sc-command-grid .quick-slot{grid-row:1;grid-column:span 4;min-height:66px}
+ #crossover-arena .sc-command-grid>button:not(.quick-slot){grid-row:2;grid-column:span 5;min-height:44px;font-size:11px}
+ #crossover-arena .sc-command-grid small{font-size:10px}
+ #crossover-arena .precombat-actions{grid-template-columns:1fr 1fr}
+ #crossover-arena .precombat-actions button{padding:6px;font-size:12px}
+ #crossover-arena .spell-icon{width:38px;height:38px}
+}
+@media(orientation:landscape){#crossover-arena:not(.choosing-spell) .command-console{position:sticky;top:-12px;z-index:2}#crossover-arena .battle-heading{grid-template-columns:1fr auto}#crossover-arena .heading-label{grid-column:1}#crossover-arena #crossover-cancel{grid-column:2;grid-row:1/3;padding:5px;font-size:10px}#crossover-arena #crossover-battle-status{grid-column:1;font-size:10px}}
+
+#crossover-arena aside>*{flex-shrink:0}
+
+@media(orientation:portrait){#crossover-arena #crossover-select-all{grid-column:span 5}#crossover-arena .precombat-actions #crossover-start{grid-column:auto}}

@@ -1,5 +1,5 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
-import { validateBattlePlan } from './battle.js';
+import { STARCRAFT_UNITS, validateBattlePlan } from './battle.js';
 export function setupNativeBattle(x, memory, plan) {
     validateBattlePlan(plan);
     if (!x.openbw_crossover_setup)
@@ -92,6 +92,25 @@ export function installNativeBridge(x, memory, target = window) {
         },
         order(stack, px, py, attack) { if (closed || !x.openbw_crossover_order)
             throw Error('Ordre indisponible.'); x.openbw_crossover_order(stack, Math.round(px), Math.round(py), attack ? 1 : 0); },
+        obstacles(rows) { const data = new Int32Array(rows.flatMap(r => r.tiles.flatMap(p => [r.id, p.x, p.y, r.blocks ? 1 : 0, r.stops ? 1 : 0, r.triggers ? 1 : 0]))); const pointer = x.openbw_in_ptr(data.byteLength); new Int32Array(memory.buffer, pointer, data.length).set(data); if (x.openbw_crossover_obstacles?.(data.length / 6) !== 1)
+            throw Error('Obstacles magiques indisponibles.'); },
+        contacts() { if (closed || !x.openbw_crossover_contacts)
+            return []; const ptr = x.openbw_crossover_contacts(), bytes = new Uint8Array(memory.buffer); let end = ptr; while (end < bytes.length && end - ptr < 65536 && bytes[end])
+            end++; return JSON.parse(new TextDecoder().decode(bytes.subarray(ptr, end))); },
+        applyMagic(groups, rules = []) {
+            if (closed || !x.openbw_crossover_apply_magic)
+                throw Error('Passerelle de magie absente.');
+            const data = new Int32Array(groups.flatMap(r => [r.id, r.owner, r.count, r.hp, r.maxHp, r.attack, r.defense, r.damageMin, r.damageMax, r.speed, r.shooter ? 1 : 0, r.x, r.y, (r.disabled ? 1 : 0) | (r.berserk ? 2 : 0) | (r.cloned ? 4 : 0), r.moved ? 1 : 0, r.meleeReduction, r.rangedReduction, r.fireShield, r.healthDelta, r.revived, r.removed ? 1 : 0, r.creature.startsWith('heroes-starcraft:') ? (STARCRAFT_UNITS[r.creature.split(':')[1]] ?? -1) : r.shooter ? 0 : 37, r.creature.startsWith('heroes-starcraft:') ? 0 : 1, r.luck, r.morale, r.retaliations]));
+            const pointer = x.openbw_in_ptr(data.byteLength);
+            new Int32Array(memory.buffer, pointer, data.length).set(data);
+            if (x.openbw_crossover_apply_magic(groups.length) !== 1)
+                throw Error('Effets magiques refusés par le moteur RTS.');
+            const table = new Int32Array(rules.flatMap(r => [r.source, r.target, r.melee, r.ranged]));
+            const location = x.openbw_in_ptr(table.byteLength);
+            new Int32Array(memory.buffer, location, table.length).set(table);
+            if (x.openbw_crossover_damage_rules?.(rules.length) !== 1)
+                throw Error('Règles de dégâts magiques indisponibles.');
+        },
         pause() { throw Error("Pause indisponible."); },
         isPaused() { return true; },
         cast(stack, spell, px, py) { return !closed && x.openbw_crossover_cast?.(stack, spell, Math.round(px), Math.round(py)) === 1; },

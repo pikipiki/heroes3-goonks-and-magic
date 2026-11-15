@@ -1,0 +1,7 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {parseLoadout,assignSlot,defaultLoadout,resolveSpell,spellRef} from '../public/loadout.js';
+const plan={stacks:[{id:2,creature:'tum-era:cherub'}]};
+const spells=[17,21,37,38,53].map(id=>({id,caster:-1,casts:-1,ready:0}));
+test('five stable shortcuts validate untrusted saved preferences',()=>{assert.equal(defaultLoadout(spells,plan).length,5);assert.deepEqual(parseLoadout(JSON.stringify(defaultLoadout(spells,plan))),spells.map(s=>({id:s.id})));for(const value of ['[]','null','{}',JSON.stringify([{id:-1},null,null,null,null]),JSON.stringify([{id:1,creature:'../bad'},null,null,null,null])])assert.equal(parseLoadout(value),undefined);});
+test('assigning an existing spell swaps slots without duplicates',()=>{const original=defaultLoadout(spells,plan),result=assignSlot(original,0,{id:21});assert.deepEqual(result.slice(0,2),[{id:21},{id:17}]);assert.equal(original[0].id,17);assert.throws(()=>assignSlot(original,5,{id:17}));});
+test('creature shortcut follows creature identity across battle stack IDs',()=>{const ref=spellRef({id:38,caster:2},plan);assert.deepEqual(ref,{id:38,creature:'tum-era:cherub'});const next={stacks:[{id:19,creature:'tum-era:cherub'}]},spell={id:38,caster:19,casts:2,ready:0};assert.equal(resolveSpell(ref,[...spells,spell],next),spell);assert.equal(resolveSpell({id:38},[...spells,spell],next).caster,-1);});

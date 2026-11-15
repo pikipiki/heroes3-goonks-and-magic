@@ -1,0 +1,229 @@
+{
+  "firebat": {
+    "name": {
+      "singular": "Firebat",
+      "plural": "Firebats"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 500
+    },
+    "speed": 7,
+    "hitPoints": 50,
+    "attack": 11,
+    "defense": 4,
+    "shots": 32,
+    "damage": {
+      "min": 11,
+      "max": 11
+    },
+    "fightValue": 250,
+    "aiValue": 250,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/marine",
+      "map": "crossover/marine-map",
+      "iconSmall": "crossover/marine.png",
+      "iconLarge": "crossover/marine.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+  },
+  "zergling": {
+    "name": {
+      "singular": "Zergling",
+      "plural": "Zerglings"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 500
+    },
+    "speed": 10,
+    "hitPoints": 35,
+    "attack": 8,
+    "defense": 3,
+    "shots": 32,
+    "damage": {
+      "min": 8,
+      "max": 8
+    },
+    "fightValue": 250,
+    "aiValue": 250,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {},
+    "graphics": {
+      "animation": "crossover/marine",
+      "map": "crossover/marine-map",
+      "iconSmall": "crossover/marine.png",
+      "iconLarge": "crossover/marine.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+  },
+  "hydralisk": {
+    "name": {
+      "singular": "Hydralisk",
+      "plural": "Hydralisks"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 500
+    },
+    "speed": 7,
+    "hitPoints": 80,
+    "attack": 13,
+    "defense": 3,
+    "shots": 32,
+    "damage": {
+      "min": 13,
+      "max": 13
+    },
+    "fightValue": 250,
+    "aiValue": 250,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/marine",
+      "map": "crossover/marine-map",
+      "iconSmall": "crossover/marine.png",
+      "iconLarge": "crossover/marine.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+  },
+  "zealot": {
+    "name": {
+      "singular": "Zealot",
+      "plural": "Zealots"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 500
+    },
+    "speed": 8,
+    "hitPoints": 100,
+    "attack": 11,
+    "defense": 4,
+    "shots": 32,
+    "damage": {
+      "min": 11,
+      "max": 11
+    },
+    "fightValue": 250,
+    "aiValue": 250,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {},
+    "graphics": {
+      "animation": "crossover/marine",
+      "map": "crossover/marine-map",
+      "iconSmall": "crossover/marine.png",
+      "iconLarge": "crossover/marine.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+  },
+  "dragoon": {
+    "name": {
+      "singular": "Dragoon",
+      "plural": "Dragoons"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 500
+    },
+    "speed": 6,
+    "hitPoints": 100,
+    "attack": 26,
+    "defense": 4,
+    "shots": 32,
+    "damage": {
+      "min": 26,
+      "max": 26
+    },
+    "fightValue": 250,
+    "aiValue": 250,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/marine",
+      "map": "crossover/marine-map",
+      "iconSmall": "crossover/marine.png",
+      "iconLarge": "crossover/marine.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 1,
+        "attack": 1,
+        "idle": 10
+      }
+    },
+    "description": "StarCraft test unit with maximum weapon, armour and race upgrades."
+  }
+}

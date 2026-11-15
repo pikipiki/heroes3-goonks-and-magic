@@ -329,9 +329,11 @@ bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID
  if(operation==2 && survivors.empty()){
   battle->crossover=false;flowProcessor->onBattleStarted(*battle);return true;
  }
- if(operation!=1 || survivors.size()!=battle->stacks.size() || survivors.size()>32)return false;
+ int manaSpent=0;std::vector<std::pair<uint32_t,int32_t>> survivorsOnly;
+ for(const auto & row:survivors){if(row.first==2147483647u){if(row.second<0)return false;manaSpent=row.second;}else survivorsOnly.push_back(row);}
+ if(operation!=1 || survivorsOnly.size()!=battle->stacks.size() || survivorsOnly.size()>32)return false;
  std::map<uint32_t,int32_t> counts;
- for(const auto & row:survivors)if(row.second<0 || !counts.emplace(row).second)return false;
+ for(const auto & row:survivorsOnly)if(row.second<0 || !counts.emplace(row).second)return false;
  int totals[2]={0,0};
  for(const auto & stack:battle->stacks){
   const auto found=counts.find(stack->unitId());
@@ -345,7 +347,9 @@ bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID
   next->damage(damage);
   UnitChanges change(stack->unitId(),UnitChanges::EOperation::RESET_STATE);next->save(change.data);change.healthDelta=-damage;changes.changedStacks.push_back(std::move(change));
  }
+ if(const auto hero=battle->battleGetFightingHero(BattleSide::ATTACKER);hero&&manaSpent>hero->mana)return false;
  gameHandler->sendAndApply(changes);
+ if(const auto hero=battle->battleGetFightingHero(BattleSide::ATTACKER);hero&&manaSpent){SetMana mana(hero->id,-manaSpent,ChangeValueMode::RELATIVE);gameHandler->sendAndApply(mana);}
  battle->crossover=false;
  setBattleResult(*battle,EBattleResult::NORMAL,totals[0]>0?BattleSide::ATTACKER:totals[1]>0?BattleSide::DEFENDER:BattleSide::NONE);
  return true;

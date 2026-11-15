@@ -36,6 +36,11 @@ public:
 
 	virtual vstd::RNG * getRNG() = 0;
 
+ // Cross-engine barriers (for example Protoss shields) need the spell amount
+ // before Heroes clamps overkill to the target's remaining health.
+ virtual void beforeSpellDamage(uint32_t unitId,int64_t amount) {}
+
+
 	virtual void apply(CPackForClient & pack) = 0;
 
 	virtual void apply(BattleLogMessage & pack) = 0;

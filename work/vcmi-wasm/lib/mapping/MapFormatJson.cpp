@@ -913,6 +913,8 @@ void CMapLoaderJson::readMap()
 {
 	LOG_TRACE(logGlobal);
 	readHeader(true);
+	// Optional per-map settings use the same validated overrides as generated maps.
+	if(isExistArchive("gameSettings.json"))map->overrideGameSettings(getFromArchive("gameSettings.json"));
 	map->initTerrain();
 	readTerrain();
 	readObjects();

@@ -1,5 +1,6 @@
+export const STARCRAFT_UNITS = { marine: 0, firebat: 32, zergling: 37, hydralisk: 38, zealot: 65, dragoon: 66 };
 export function battlePlan(value) {
-    const plan = { version: 1, battleId: value.battleId, stacks: value.stacks.map(row => ({ ...row, heroes: !row.creature.startsWith("heroes-starcraft:"), unit: row.creature === "heroes-starcraft:zergling" ? 37 : row.creature.startsWith("heroes-starcraft:") ? 0 : row.shooter ? 0 : 37 })) };
+    const plan = { version: 1, battleId: value.battleId, magic: value.magic, stacks: value.stacks.map(row => ({ ...row, heroes: !row.creature.startsWith("heroes-starcraft:"), unit: row.creature.startsWith('heroes-starcraft:') ? (STARCRAFT_UNITS[row.creature.split(':')[1]] ?? -1) : row.shooter ? 0 : 37 })) };
     validateBattlePlan(plan);
     return plan;
 }
@@ -8,7 +9,7 @@ export function validateBattlePlan(value) {
         throw Error('Combat Heroes invalide.');
     const ids = new Set(), totals = [0, 0];
     for (const row of value.stacks) {
-        if (!Number.isSafeInteger(row.id) || row.id < 0 || ids.has(row.id) || ![0, 1].includes(row.side) || !Number.isSafeInteger(row.count) || row.count < 1 || row.count > 128 || ![0, 32, 37].includes(row.unit))
+        if (!Number.isSafeInteger(row.id) || row.id < 0 || ids.has(row.id) || ![0, 1].includes(row.side) || !Number.isSafeInteger(row.count) || row.count < 1 || row.count > 128 || !Object.values(STARCRAFT_UNITS).includes(row.unit))
             throw Error('Troupe Heroes invalide.');
         if (row.heroes && (!Number.isSafeInteger(row.health) || row.health < 1 || row.health > 10000))
             throw Error('Points de vie Heroes invalides.');
@@ -19,7 +20,11 @@ export function validateBattlePlan(value) {
         throw Error('Ce test accepte de 1 à 128 créatures par armée.');
 }
 export function battleResult(plan, state) {
-    if (state.battleId !== plan.battleId || !state.finished || !Number.isSafeInteger(state.frame) || state.frame < 1 || !Array.isArray(state.groups) || state.groups.length !== plan.stacks.length)
+    if (!Array.isArray(state.groups) || state.groups.some(g => !plan.stacks.some(s => s.id === g.id)))
+        throw Error('Troupes inconnues dans le résultat.');
+    const originalStacks = plan.stacks.filter(s => !s.temporary);
+    state = { ...state, groups: state.groups.filter(g => originalStacks.some(s => s.id === g.id)) };
+    if (state.battleId !== plan.battleId || !state.finished || !Number.isSafeInteger(state.frame) || state.frame < 1 || !Array.isArray(state.groups) || state.groups.length !== originalStacks.length)
         throw Error('Résultat StarCraft incomplet ou périmé.');
     const seen = new Set(), totals = [0, 0];
     const result = state.groups.map(row => {
