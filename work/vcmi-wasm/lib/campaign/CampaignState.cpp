@@ -9,6 +9,8 @@
  */
 #include "StdInc.h"
 #include "CampaignState.h"
+#include "../era/EraCampaignCarryover.h"
+#include "../era/EraCampaignJson.h"
 
 #include "../Point.h"
 #include "../filesystem/ResourcePath.h"
@@ -212,6 +214,18 @@ const JsonNode & CampaignState::getHeroByType(HeroTypeID heroID) const
 		return emptyNode;
 
 	return globalHeroPool.at(heroID);
+}
+
+void CampaignState::captureSourceCampaignVariables(const JsonNode & state)
+{
+ sourceCampaignCarryover = JsonNode();
+ if(state["contract"].String() == "source-campaign-state-v1")
+  sourceCampaignCarryover = era_campaign_json::writeState(era_campaign::persistentVariables(era_campaign_json::readState(state["vm"])));
+}
+
+const JsonNode & CampaignState::getSourceCampaignVariables() const
+{
+ return sourceCampaignCarryover;
 }
 
 void CampaignState::setCurrentMapAsConquered(std::vector<CGHeroInstance *> heroes)

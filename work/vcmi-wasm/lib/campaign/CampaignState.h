@@ -10,6 +10,7 @@
 #pragma once
 
 #include "CampaignBonus.h"
+#include "../json/JsonNode.h"
 #include "CampaignRegions.h"
 #include "CampaignScenarioPrologEpilog.h"
 
@@ -273,6 +274,8 @@ class DLL_LINKAGE CampaignState : public Campaign
 	/// Pool of heroes currently reserved for usage in campaign
 	GlobalPoolType globalHeroPool;
 
+	JsonNode sourceCampaignCarryover;
+
 public:
 	CampaignState() = default;
 
@@ -304,6 +307,8 @@ public:
 	void setCurrentMap(CampaignScenarioID which);
 	void setCurrentMapBonus(ui8 which);
 	void setCurrentMapAsConquered(std::vector<CGHeroInstance*> heroes);
+	void captureSourceCampaignVariables(const JsonNode & state);
+	const JsonNode & getSourceCampaignVariables() const;
 
 	/// Returns list of heroes that must be reserved for campaign and can only be used for hero placeholders
 	std::set<HeroTypeID> getReservedHeroes() const;
@@ -337,6 +342,8 @@ public:
 		h & campaignSet;
 		h & mapTranslations;
 		h & highscoreParameters;
+		if (h.hasFeature(Handler::Version::GOONK_CAMPAIGN_CARRYOVER))
+			h & sourceCampaignCarryover;
 	}
 };
 

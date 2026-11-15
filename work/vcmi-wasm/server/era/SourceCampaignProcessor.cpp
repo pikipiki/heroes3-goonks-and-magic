@@ -22,6 +22,8 @@
 #include "../../lib/CPlayerState.h"
 #include "../../lib/CCreatureHandler.h"
 #include "../../lib/StartInfo.h"
+#include "../../lib/campaign/CampaignState.h"
+#include "../../lib/era/EraCampaignCarryover.h"
 #include "../../lib/gameState/CGameState.h"
 #include "../../lib/mapping/CMap.h"
 #include "../../lib/mapping/CCastleEvent.h"
@@ -207,9 +209,9 @@ struct SourceCampaignProcessor::Impl final:Host
   for(const auto & entry:registry["programs"].Vector())
   {
    if(!entry["enabled"].Bool())continue;
-   // The pinned Cave admission remains the only validated host entry point.
-   if(entry["id"].String()!="cave-gerfrex")continue;
+   // Every source program remains gated by its explicit registry admission.
    const JsonNode source(JsonPath::builtin(entry["resource"].String()));
+   require(entry["programSha256"].String()==source["sha256"].String(),"source program registry identity changed");
    const auto & saved=map.sourceCampaignState;
    if(!saved.isNull())
    {
@@ -226,6 +228,9 @@ struct SourceCampaignProcessor::Impl final:Host
    program=era_campaign_json::readProgram(source);state=saved;
    if(state.isNull())state["programId"].String()=entry["id"].String();
    vm=era_campaign_json::readState(state["vm"]);pending=state["pending"];
+   if(saved.isNull())
+    if(const auto & campaign=gh.gameState().getStartInfo()->campState;campaign&&!campaign->getSourceCampaignVariables().isNull())
+     vm=era_campaign::persistentVariables(era_campaign_json::readState(campaign->getSourceCampaignVariables()));
    if(vm.programSha256.empty())vm.programSha256=program.sha256;
    if(!state["turnQueue"].isNull())era_campaign_json::array(state["turnQueue"]);
    if(state["hero"].isNumber())heroId=ObjectInstanceID(state["hero"].Integer());

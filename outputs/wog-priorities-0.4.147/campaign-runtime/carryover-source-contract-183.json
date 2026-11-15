@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive includes changes later than3.58f. Bounded assembly below corroborates the selected rules in the original3.58f binary."
+  },
+  "analysis": "New evidence is ordinary address-bounded LLVM objdump and PE byte/reference inspection, not newly returned REA dossiers or original execution. Hopper could not launch its local bridge (Connection is invalid); its retained180 evidence was exported, but cleanup acknowledgement was unavailable. No reinstall, external binary upload or Windows execution was attempted.",
+  "release": "0.4.183",
+  "boundedAssemblySha256": {
+    "ResetERM_74f360_74fc00": "de48e65697d1e7ee8633ea271526190a00f4e1388fcd7c6d786759ccccb87566"
+  },
+  "observations": [
+    {
+      "address": "0x74f3d6..0x74f47c",
+      "fact": "ResetERM clears original integer slots0..499 and1000..9999, leaving one-basedv501..v1000 and their macro names."
+    },
+    {
+      "address": "0x74f47c..0x74f4cb",
+      "fact": "ResetERM clears flag slots0..499 and their macro names. The VM supplies source system flags996..1000 from the host context rather than transferring them."
+    },
+    {
+      "address": "0x74f4cb..0x74f5b1",
+      "fact": "String slots0..299 and500..999 are cleared; one-basedz301..z500 and their macro names survive."
+    },
+    {
+      "address": "0x74f5f9..0x74f6e8",
+      "fact": "For each of156 heroes, w-slots0..49 are cleared. The second loop initializes1000 then tests<200 and never runs; one-basedw51..w200 survive. This defined original bug is retained, not silently changed to a presumed100 bound."
+    }
+  ],
+  "implementation": [
+    "Capture only persistent VM globals on the ordinary native human campaign victory; campaign-scoped field, never a process-global store.",
+    "New map imports filtered variables before source initialization; program hash, frames, continuations, selected hero, timers, object access, portraits and other map state start fresh. A resumed map restores its exact VM instead.",
+    "Save feature904 adds a gated CampaignState JSON field. Older901/902/903 files remain readable.",
+    "Constant variable-slot macro aliases survive only for retained ranges; all28 MC selectors in the11original campaign programs are direct constant slot references.",
+    "All11original programs plus Cave are registered reproducibly, dormant by default; enabled bindings require a matching program identity and the complete original ZVSE message multiset.",
+    "Legacy fully-qualified map.* text identifiers are registered unchanged, while relative identifiers still acquire the actual map prefix. This restores original dialogue binding and map text without rewriting original archives."
+  ],
+  "limitations": [
+    "Controlled victory conditions and replacement script programs are private test controls, not validation of an original quest or victory.",
+    "The real original first form is tested separately, but later calendar, quest, combat and native victory paths still require porting and validation.",
+    "Dynamic or chained macro aliases outside the direct slot forms used by these sources are not established by this control. Original campaigns remain disabled."
+  ]
+}

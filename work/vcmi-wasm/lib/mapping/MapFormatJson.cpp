@@ -1338,8 +1338,10 @@ void CMapLoaderJson::readTranslations()
 		{
 			for(auto & str : translationsFromFile[baseLanguage].Struct())
 			{
-				// Keys in JSON don't have map name (e.g. "header.name"), add map name when registering: map.<mapName>.<identifier>
-				TextIdentifier fullIdentifier = runningInMapEditor 
+				// Older converted maps store complete map.* identifiers, including
+				// campaign region numbers. Keep them intact for their stored references.
+				// Current relative keys receive the actual map prefix.
+				TextIdentifier fullIdentifier = runningInMapEditor || str.first.compare(0, 4, "map.") == 0
 					? TextIdentifier(str.first)
 					: TextIdentifier("map", actualMapName, str.first);
 				mapRegisterLocalizedString("map", *mapHeader, fullIdentifier, str.second.String(), baseLanguage);
@@ -1352,7 +1354,7 @@ void CMapLoaderJson::readTranslations()
 			JsonNode translationOverrides;
 			for(auto & str : translationsFromFile[preferredLanguage].Struct())
 			{
-				TextIdentifier fullIdentifier = runningInMapEditor 
+				TextIdentifier fullIdentifier = runningInMapEditor || str.first.compare(0, 4, "map.") == 0
 					? TextIdentifier(str.first)
 					: TextIdentifier("map", actualMapName, str.first);
 				translationOverrides.Struct()[fullIdentifier.get()].String() = str.second.String();

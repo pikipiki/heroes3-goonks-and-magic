@@ -338,6 +338,7 @@ void GameStatePackVisitor::visitPlayerEndsGame(PlayerEndsGame & pack)
 				if (hero->tempOwner == pack.player)
 					crossoverHeroes.push_back(hero);
 
+			gs.getStartInfo()->campState->captureSourceCampaignVariables(gs.getMap().sourceCampaignState);
 			gs.getStartInfo()->campState->setCurrentMapAsConquered(crossoverHeroes);
 		}
 	}

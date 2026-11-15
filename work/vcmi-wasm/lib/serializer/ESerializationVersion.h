@@ -65,8 +65,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_WOG_OPTIONS, // per-game, map-inheriting WoG options
 	GOONK_SOURCE_CAMPAIGNS, // persisted source scenario scripts and continuations
 
+	GOONK_CAMPAIGN_CARRYOVER, // campaign-scoped original ERM persistent variables
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_SOURCE_CAMPAIGNS,
+	CURRENT = GOONK_CAMPAIGN_CARRYOVER,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

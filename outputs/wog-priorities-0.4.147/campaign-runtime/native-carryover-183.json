@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.183",
+  "engineSha256": "c3db8b5f28ca8aec534b2dba1a2fb08b167e0dd0f1b09835077100563eed17a2",
+  "sourceContract": "carryover-source-contract-183.json",
+  "originalCampaignsEnabled": false,
+  "saveVersion": 904,
+  "registry": {
+    "programs": 12,
+    "originalScenarios": 11,
+    "cave": 1,
+    "allDisabled": true
+  },
+  "nativeChecks": [
+    {
+      "case": "fresh-three-scenarios",
+      "resultSha256": "39525d5c57010854e42e77d780f8b02b6c8b8d0667adc75116b1f7917c92a0c4",
+      "passed": true,
+      "scope": "Private source programs, two controlled day-two victories and native persistent variables on entry to three scenarios; no original quest/victory validation",
+      "loadedPending": false,
+      "controlledVictories": 2,
+      "enteredScenarios": [
+        1,
+        2,
+        0
+      ],
+      "messages": [
+        "carry seeded 777/Z11p_4l.pcx/51",
+        "carry 1: 0/777/1000/0 | /persistent/Z11p_4l.pcx/last/ | 0/1 | 0/51/100/200",
+        "carry 2: 0/778/1000/0 | /persistent/Z11p_4l.pcx/last/ | 0/1 | 0/51/100/200"
+      ],
+      "privateCampaignSha256": "c66a6758aa312b70c0224f42ad66bb4ccc2c21a04341a2dd13e72e7cde89235f",
+      "programSha256": {
+        "0": "cc77954e9a818e18253a07c69ea0c2bbe03ea64dfab2455e1fcdc90ac0b80885",
+        "1": "6ad6c215126e69432079661e3462bc89d4723b45732de016411103c46c17c6d2",
+        "2": "33863284fb53122f3327d67e953ee1dd6f2db3809f475e7d8fb43d6ed87ff04e"
+      },
+      "errors": []
+    },
+    {
+      "case": "first-pending-reload",
+      "resultSha256": "3dfcf72cc6ef2a9fd073b777d4e445680828ad819364de390b9e43994cc1905a",
+      "passed": true,
+      "scope": "Private source programs, two controlled day-two victories and native persistent variables on entry to three scenarios; no original quest/victory validation",
+      "loadedPending": true,
+      "controlledVictories": 2,
+      "enteredScenarios": 3,
+      "messages": [
+        "carry seeded 777/Z11p_4l.pcx/51",
+        "carry 1: 0/777/1000/0 | /persistent/Z11p_4l.pcx/last/ | 0/1 | 0/51/100/200",
+        "carry 2: 0/778/1000/0 | /persistent/Z11p_4l.pcx/last/ | 0/1 | 0/51/100/200"
+      ],
+      "privateCampaignSha256": "c2a0677190a5878274bf216f9c8b9b6d7f3905b72c7c84d7dd0cd65567173bd5",
+      "programSha256": {
+        "0": "cc77954e9a818e18253a07c69ea0c2bbe03ea64dfab2455e1fcdc90ac0b80885",
+        "1": "6ad6c215126e69432079661e3462bc89d4723b45732de016411103c46c17c6d2",
+        "2": "33863284fb53122f3327d67e953ee1dd6f2db3809f475e7d8fb43d6ed87ff04e"
+      },
+      "errors": []
+    },
+    {
+      "case": "second-pending-reload-nonempty-carryover",
+      "resultSha256": "45229f7c2612ed7e8de2149971deba807aad82156c6db6604a55805fffa22af4",
+      "passed": true,
+      "scope": "Private source programs, two controlled day-two victories and native persistent variables on entry to three scenarios; no original quest/victory validation",
+      "loadedPending": true,
+      "controlledVictories": 1,
+      "enteredScenarios": [
+        2,
+        0
+      ],
+      "messages": [
+        "carry 1: 0/777/1000/0 | /persistent/Z11p_4l.pcx/last/ | 0/1 | 0/51/100/200",
+        "carry 2: 0/778/1000/0 | /persistent/Z11p_4l.pcx/last/ | 0/1 | 0/51/100/200"
+      ],
+      "privateCampaignSha256": "1b36bb64789cdcbf7bad9524dcdee311379c35b50515aaf734e703e6991d68a1",
+      "programSha256": {
+        "0": "cc77954e9a818e18253a07c69ea0c2bbe03ea64dfab2455e1fcdc90ac0b80885",
+        "1": "6ad6c215126e69432079661e3462bc89d4723b45732de016411103c46c17c6d2",
+        "2": "33863284fb53122f3327d67e953ee1dd6f2db3809f475e7d8fb43d6ed87ff04e"
+      },
+      "errors": []
+    }
+  ],
+  "originalFirstForm": {
+    "passed": true,
+    "resultSha256": "624c992b56928eabacb9f29dcd2d960b6bfd130b35d6f91d06dc255085ed0da2",
+    "scope": "Exact original zc1 archive and scripts privately admitted; actual initial extended form, original four illustrations, native draft and pending save. Calendar, complete quest and victory are not validated.",
+    "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+    "sourceProgramId": "zc1-1",
+    "pendingSaveSha256": "b77edf3aa8f657c60f1146773a767e2ebb14c5d0e9cecf59f0ad0d8122e915b9",
+    "draft": {
+      "text": "Native hero",
+      "selection": 4
+    },
+    "form": {
+      "canCancel": false,
+      "choiceLabel": "Choose your portrait, hero:",
+      "choices": [
+        {
+          "hint": "First",
+          "label": "First",
+          "rect": {
+            "h": 32,
+            "w": 190,
+            "x": 110,
+            "y": 420
+          },
+          "value": 1
+        },
+        {
+          "hint": "Second",
+          "label": "Second",
+          "rect": {
+            "h": 32,
+            "w": 190,
+            "x": 306,
+            "y": 420
+          },
+          "value": 2
+        },
+        {
+          "hint": "Third",
+          "label": "Third",
+          "rect": {
+            "h": 32,
+            "w": 190,
+            "x": 502,
+            "y": 420
+          },
+          "value": 3
+        },
+        {
+          "hint": "Fourth",
+          "label": "Fourth",
+          "rect": {
+            "h": 32,
+            "w": 190,
+            "x": 110,
+            "y": 468
+          },
+          "value": 4
+        }
+      ],
+      "contract": "source-campaign-dialog-v1",
+      "draft": {
+        "text": ""
+      },
+      "inputLabel": "What's your name:",
+      "kind": "extended",
+      "pictures": [
+        {
+          "file": "..\\Data\\Zvs\\Cmp.res\\11_901.bmp",
+          "hint": "First",
+          "mediaKey": "cmp.res/11_901.bmp",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 131,
+            "y": 318
+          }
+        },
+        {
+          "file": "..\\Data\\Zvs\\Cmp.res\\11_902.bmp",
+          "hint": "Second",
+          "mediaKey": "cmp.res/11_902.bmp",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 271,
+            "y": 318
+          }
+        },
+        {
+          "file": "..\\Data\\Zvs\\Cmp.res\\11_903.bmp",
+          "hint": "Third",
+          "mediaKey": "cmp.res/11_903.bmp",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 411,
+            "y": 318
+          }
+        },
+        {
+          "file": "..\\Data\\Zvs\\Cmp.res\\11_904.bmp",
+          "hint": "Fourth",
+          "mediaKey": "cmp.res/11_904.bmp",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 551,
+            "y": 318
+          }
+        }
+      ],
+      "queryId": 3,
+      "resultVariable": 100,
+      "selection": 1,
+      "text": "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+    },
+    "errors": []
+  },
+  "catalogueLayouts": {
+    "resultSha256": "dbe7cf719c7ffd332a5abf13f239792b77b2ed5352571b4535b608b85fff969d",
+    "passed": true,
+    "scope": "Mobile catalogue only;30 entries, first/last buttons, one exit and stable list node/scroll across state updates on Chromium/WebKit.",
+    "results": [
+      {
+        "kind": "chromium",
+        "width": 320,
+        "height": 568,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1451,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "chromium",
+        "width": 568,
+        "height": 320,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1554,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "chromium",
+        "width": 390,
+        "height": 844,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1175,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "chromium",
+        "width": 844,
+        "height": 390,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1484,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "chromium",
+        "width": 768,
+        "height": 1024,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 996,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "chromium",
+        "width": 1024,
+        "height": 768,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1106,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "chromium",
+        "width": 820,
+        "height": 1180,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 842,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 320,
+        "height": 568,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1451,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 568,
+        "height": 320,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1554,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 390,
+        "height": 844,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1175,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 844,
+        "height": 390,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1484,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 768,
+        "height": 1024,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 996,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 1024,
+        "height": 768,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 1106,
+        "noScrollBlock": true
+      },
+      {
+        "kind": "webkit",
+        "width": 820,
+        "height": 1180,
+        "sameNode": true,
+        "sameScroll": true,
+        "scrollable": true,
+        "scrollTop": 841,
+        "noScrollBlock": true
+      }
+    ]
+  },
+  "regressions": [
+    {
+      "case": "production-maps",
+      "passed": true,
+      "resultSha256": "6a3157f22d8743a403857f97c52890c4dfba775d7cb26b98623f9fa921edc190",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write."
+    },
+    {
+      "case": "older901902-saves",
+      "passed": true,
+      "resultSha256": "9efee2f5aba5f0c85ca5c1041d4750af43ed7ec3e267f3bc6d22ec923e0cddde",
+      "scope": null,
+      "results": [
+        {
+          "passed": true,
+          "map": "003-Goonks-WoG.vmap",
+          "oldVersion": 901,
+          "newVersion": 904,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "004-Goonks-WoG-Online.vmap",
+          "oldVersion": 901,
+          "newVersion": 904,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "003-Goonks-WoG.vmap",
+          "oldVersion": 902,
+          "newVersion": 904,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        },
+        {
+          "passed": true,
+          "map": "004-Goonks-WoG-Online.vmap",
+          "oldVersion": 902,
+          "newVersion": 904,
+          "exactStatePreserved": true,
+          "realNextTurn": true,
+          "campaignStateAbsent": true
+        }
+      ]
+    },
+    {
+      "case": "original-gerfrex-older903-save",
+      "passed": true,
+      "resultSha256": "e4e8f3582300d83de7ea44a843d50aceee0a03432974a86d667b73c088cf0eef",
+      "scope": "Controlled hero relocation, original Gerfrex dialogue and seven native Faerie Dragons recruited; full map victory not validated"
+    }
+  ],
+  "unitTests": {
+    "total": 761,
+    "passed": 727,
+    "skipped": 34,
+    "failed": 0
+  },
+  "build": {
+    "wasm": "ninja -j32 html5 passed38/38, then5/5 after translation repair",
+    "site": "prepare/build/verify passed"
+  },
+  "limitations": [
+    "Private controlled victories establish VM/campaign handoff only, not original victory conditions.",
+    "The original first form is established before unported UN:K/M and later receiver operations. Full original quests, combat, wins and remaining media are not yet validated."
+  ]
+}

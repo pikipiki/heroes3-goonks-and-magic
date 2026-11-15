@@ -1,5 +1,7 @@
 #include "../../work/vcmi-wasm/lib/era/EraCampaignExecutor.h"
 #include "../../work/vcmi-wasm/lib/era/EraCampaignObjectAccess.h"
+#include "../../work/vcmi-wasm/lib/era/EraCampaignCarryover.h"
+#include "../../work/vcmi-wasm/lib/serializer/ESerializationVersion.h"
 #include <cassert>
 #include <climits>
 #include <vector>
@@ -21,6 +23,7 @@ struct Recorder:Host
  }
  int32_t random(int32_t maximum,bool)override{return maximum;}
 };
+static_assert(static_cast<int>(ESerializationVersion::GOONK_CAMPAIGN_CARRYOVER)==static_cast<int>(ESerializationVersion::GOONK_SOURCE_CAMPAIGNS)+1);
 int main()
 {
  Context context;Recorder host;
@@ -105,5 +108,24 @@ int main()
  mask=change(mask,'R');for(int player=0;player<8;++player)assert(allows(mask,player));
  mask=change(mask,'D',3);assert(!allows(mask,3)&&allows(mask,2));assert(!allows(mask,-1)&&!allows(mask,8));
  rejected=false;try{change(mask,'D',8);}catch(const std::runtime_error &){rejected=true;}assert(rejected);
+
+ // ResetERM keeps only the original persistent ranges, never execution state.
+ State completed;completed.programSha256="old";completed.initialized=true;completed.initializing=true;
+ for(const int index:{1,500,501,995,996,1000,1001,10000}){completed.v[index]=index;completed.flags[index]=true;}
+ for(const int index:{-1,1,300,301,398,500,501,1000})completed.z[index]=std::to_string(index);
+ for(const int hero:{-1,0,155,156})for(const int index:{1,50,51,100,101,200,201})completed.w[hero][index]=index;
+ completed.fast['i']=42;completed.selectedHero=1;completed.disabledBlocks[0]=true;completed.continuations.push_back(Continuation{});completed.frames[0].y[1]=8;
+ completed.macros["portrait"]=var('z',398);completed.macros["temporary"]=var('z',300);completed.macros["local"]=var('y',51);
+ auto next=persistentVariables(completed);
+ for(const int index:{1,500,1001,10000})assert(!next.v.count(index));
+ for(const int index:{501,995,996,1000})assert(next.v.at(index)==index);
+ assert(next.flags.size()==2&&next.flags.at(501)&&next.flags.at(995));
+ assert(next.z.size()==3&&next.z.at(398)=="398");
+ assert(next.w.size()==2&&next.w.at(0).size()==4&&next.w.at(155).at(200)==200);
+ assert(next.macros.size()==1&&next.macros.count("portrait"));
+ assert(next.programSha256.empty()&&!next.initialized&&!next.initializing&&next.fast.empty()&&next.selectedHero==-1&&next.disabledBlocks.empty()&&next.continuations.empty()&&next.frames.size()==1&&next.frames[0].y.empty());
+ assert(completed.initialized&&completed.continuations.size()==1&&completed.z.count(300));
+ Program following;following.sha256="following-map";following.initializers={cmd("VR",{var('v',501)},"+",{num(1)})};
+ Executor nextMap(following,next,context,host);nextMap.initialize();assert(nextMap.run()&&next.v.at(501)==502&&next.initialized&&next.programSha256=="following-map");
 
 }
