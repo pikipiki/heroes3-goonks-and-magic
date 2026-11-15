@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "engineSha256": "1ec66ac62d641b994f4a7776f90621b0bdcb0189b51c4bc97829fdcb241f74c6",
+  "spellCount": 59,
+  "castBeyondFirstPage": {
+    "cost": 25,
+    "description": "{Summon Water Elemental}\n\nAllows you to summon water elementals.  Once cast, no other elemental types may be summoned.\n",
+    "enabled": true,
+    "id": 68,
+    "level": 5,
+    "name": "Water Elemental",
+    "target": "none"
+  },
+  "oneCasualtyResult": {
+    "description": "A glorious victory!\n\nFor valor in combat, Christian receives 12 experience",
+    "sides": [
+      {
+        "name": "Christian",
+        "portrait": [
+          186,
+          58,
+          58,
+          64
+        ],
+        "winner": true
+      },
+      {
+        "losses": [
+          {
+            "count": 1,
+            "icon": "goonk/pink-large.png",
+            "id": 258,
+            "name": "Paingpaing"
+          }
+        ],
+        "name": "Paingpaing",
+        "portrait": [
+          557,
+          58,
+          58,
+          64
+        ],
+        "winner": false
+      }
+    ],
+    "won": true
+  },
+  "sixLayouts": true,
+  "errors": [],
+  "nodeTests": {
+    "passed": 746,
+    "skipped": 34,
+    "failed": 0
+  },
+  "layoutBrowsers": [
+    "Chromium",
+    "WebKit"
+  ],
+  "viewports": [
+    [
+      320,
+      568
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      568,
+      320
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1024,
+      768
+    ]
+  ],
+  "lossCases": [
+    0,
+    1,
+    14
+  ],
+  "optionalStylesheetFailureCovered": true,
+  "realTouchScroll": true,
+  "adventurePaginationPreserved": true,
+  "wasmBuild": "ninja -j32 html5",
+  "siteBuild": true,
+  "siteVerification": true,
+  "physicalDeviceTest": false
+}

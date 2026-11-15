@@ -121,3 +121,9 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
  #mobile-app .mobile-spellbook .spell-row{padding:2px}
  .mobile-spellbook .spell-row strong{font-size:12px}
 }
+
+/* Combat spells form one vertically scrollable catalogue, with one cast action. */
+#mobile-app .mobile-spellbook[data-scrolling=true]>footer{grid-template-columns:minmax(0,1fr);grid-template-rows:46px}
+#mobile-app .mobile-spellbook[data-scrolling=true] .spell-list{overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain}
+
+#mobile-app .mobile-spellbook[data-scrolling=true] .spell-content{height:auto;box-sizing:border-box;overflow:hidden}

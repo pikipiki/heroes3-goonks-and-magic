@@ -42,7 +42,7 @@ loader=loader.slice(0,loaderStart)+fetchEnginePackage.toString().replace('fetchE
 let html=renderPage(root);const runtimeNames={};
 for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){const bytes=fs.readFileSync(path.join(dist,name)),hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16),hashed=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');fs.renameSync(path.join(dist,name),path.join(dist,hashed));runtimeNames[name]=hashed;}
 html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]);
-const moduleFiles=fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name)).sort();
+const moduleFiles=fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js|css)$/.test(name)).sort();
 const runtimeVersion=createRuntimeVersion(html,[...moduleFiles.map(name=>['web/'+name,fs.readFileSync(path.join(dist,'web',name))]),...fs.readdirSync(dist).filter(name=>/\.(mjs|js)$/.test(name)).map(name=>[name,fs.readFileSync(path.join(dist,name))])]);
 const engineBuild={memoryVersion:1,runtimeVersion,wasm:runtimeNames['vcmiclient.wasm'],sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,runtimeNames['vcmiclient.wasm']))).digest('hex'),mobile:{width:800,height:600},assetCacheBytes:16*1024*1024};manifest.engine=engineBuild;fs.writeFileSync(path.join(dist,'engine-build.json'),JSON.stringify(engineBuild));
 for(const name of fs.readdirSync(path.join(dist,'web')).filter(name=>/\.(mjs|js)$/.test(name))){const file=path.join(dist,'web',name);fs.writeFileSync(file,versionModuleImports(fs.readFileSync(file,'utf8'),runtimeVersion));}

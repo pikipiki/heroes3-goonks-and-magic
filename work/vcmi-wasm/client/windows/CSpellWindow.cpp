@@ -891,14 +891,15 @@ void CSpellWindow::SpellArea::setSpell(const CSpell * spell)
 JsonNode CSpellWindow::mobileSnapshot()
 {
  JsonNode n;n["pages"].Integer()=pagesWithinCurrentTab();n["page"].Integer()=currentPage;n["school"].Integer()=selectedTab.getNum();n["mana"].Integer()=myHero->mana;n["manaLimit"].Integer()=myHero->manaLimit();n["inCombat"].Bool()=myInt->battleInt!=nullptr;n["combatSpells"].Bool()=battleSpellsOnly;
- for(const auto & area:spellAreas)
+ const bool scrollingCombat=myInt->battleInt!=nullptr;
+ n["scrollable"].Bool()=scrollingCombat;
+ if(scrollingCombat){n["page"].Integer()=0;n["pages"].Integer()=1;}
+ const auto appendSpell=[&](const CSpell * spell,int schoolLevel,const SpellArea * area)
  {
-  if(!area||!area->mySpell)continue;
-  const auto spell=area->mySpell;
   JsonNode row;
   row["id"].Integer()=spell->id.getNum();
   row["name"].String()=spell->getNameTranslated();
-  row["description"].String()=spell->getDescriptionTranslated(area->schoolLevel);
+  row["description"].String()=spell->getDescriptionTranslated(schoolLevel);
   row["level"].Integer()=spell->getLevel();
   row["cost"].Integer()=myInt->cb->getSpellCost(spell,myHero);
   row["enabled"].Bool()=row["cost"].Integer()<=myHero->mana;
@@ -909,7 +910,7 @@ JsonNode CSpellWindow::mobileSnapshot()
   }
   if(spell->isCombat())
   {
-   const CSpell::TargetInfo target(spell,area->schoolLevel,spells::Mode::HERO);
+   const CSpell::TargetInfo target(spell,schoolLevel,spells::Mode::HERO);
    if(target.massive||target.type==spells::AimType::NO_TARGET)
     row["target"].String()="none";
    else if(target.type==spells::AimType::CREATURE)
@@ -917,16 +918,39 @@ JsonNode CSpellWindow::mobileSnapshot()
    else
     row["target"].String()="location";
   }
-  row["x"].Integer()=area->pos.x;
-  row["y"].Integer()=area->pos.y;
-  row["w"].Integer()=area->pos.w;
-  row["h"].Integer()=area->pos.h;
+  // Only visible native slots have framebuffer coordinates for icon fallback.
+  if(area){row["x"].Integer()=area->pos.x;row["y"].Integer()=area->pos.y;row["w"].Integer()=area->pos.w;row["h"].Integer()=area->pos.h;}
   n["spells"].Vector().push_back(row);
+ };
+ if(scrollingCombat)
+ {
+  for(const auto spell:mySpells)
+   if(spell->isCombat()&&(selectedTab==SpellSchool::ANY||spell->schools.count(selectedTab)))
+    appendSpell(spell,myHero->getSpellSchoolLevel(spell),nullptr);
  }
+ else for(const auto & area:spellAreas)
+  if(area&&area->mySpell)appendSpell(area->mySpell,area->schoolLevel,area.get());
  return n;
 }
 void CSpellWindow::mobileSelectSpell(int id)
 {
+ // Resolve the native slot only at casting time; mobile browsing never turns pages.
+ if(myInt->battleInt)
+ {
+  size_t index=0;
+  for(const auto spell:mySpells)
+  {
+   if(!spell->isCombat()||(selectedTab!=SpellSchool::ANY&&!spell->schools.count(selectedTab)))continue;
+   if(spell->id.getNum()==id)
+   {
+    const size_t firstPage=selectedTab==SpellSchool::ANY?spellsPerPage:spellsPerPage-2;
+    const int page=index<firstPage?0:1+(index-firstPage)/spellsPerPage;
+    setCurrentPage(page);computeSpellsPerArea();break;
+   }
+   ++index;
+  }
+ }
+
  for(const auto & area:spellAreas)if(area&&area->mySpell&&area->mySpell->id.getNum()==id)
  {
   const auto spell = area->mySpell;

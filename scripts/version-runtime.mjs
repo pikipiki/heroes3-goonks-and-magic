@@ -4,7 +4,8 @@ export function versionModuleImports(source,version){
  return source.replace(/(\b(?:from\s*|import\s*\(\s*|import\s*)['"])(\.{1,2}\/[^'"\s]+\.(?:mjs|js))(['"])/g,(_all,before,url,after)=>before+url+'?v='+version+after);
 }
 export function versionScriptTags(html,version){
- return html.replace(/(<script\b[^>]*\bsrc=["'])(\.\/[^"']+\.(?:mjs|js))(["'])/g,(_all,before,url,after)=>before+url+'?v='+version+after);
+ return html.replace(/(<script\b[^>]*\bsrc=["'])(\.\/[^"']+\.(?:mjs|js))(["'])/g,(_all,before,url,after)=>before+url+'?v='+version+after)
+  .replace(/(<link\b[^>]*\bhref=["'])(\.\/[^"']+\.css)(["'])/g,(_all,before,url,after)=>before+url+'?v='+version+after);
 }
 
 export function createRuntimeVersion(html,modules){

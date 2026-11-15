@@ -174,13 +174,17 @@ function mount(){
  const paintHeroMovement=watchHeroMovement(nav);
  const onlineLogin=createOnlineLogin(root,command);
  const onlineLobby=createOnlineLobby(root,command);
- const reviewStyle=document.createElement('link');reviewStyle.rel='stylesheet';reviewStyle.href=new URL('./mobile-review.css',import.meta.url).href;document.head.append(reviewStyle);
- const refinementStyle=document.createElement('link');refinementStyle.rel='stylesheet';refinementStyle.href=new URL('./mobile-refinement.css',import.meta.url).href;document.head.append(refinementStyle);const followupStyle=document.createElement('link');followupStyle.rel='stylesheet';followupStyle.href=new URL('./mobile-followup.css',import.meta.url).href;document.head.append(followupStyle);const compactStyle=document.createElement('link');compactStyle.rel='stylesheet';compactStyle.href=new URL('./mobile-compact.css',import.meta.url).href;document.head.append(compactStyle);
+ // Keep late-loaded styles on the same release as this module.
+ for(const name of ['mobile-review','mobile-refinement','mobile-followup','mobile-compact']){
+  const link=document.createElement('link'),url=new URL('./'+name+'.css',import.meta.url);url.search=new URL(import.meta.url).search;
+  link.rel='stylesheet';link.href=url.href;document.head.append(link);
+ }
  const turnLimits=[0,1,2,3,5,10];
  function controls(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
   const fr=getLanguage()==='fr';
-  if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn('<img class="troops-nav-icon" src="./web/h3-theme/troops.svg" alt="" aria-hidden="true">'+(fr?'Troupes':'Troops'),'heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Fin tour':'☀ End turn','endturn',false,!state.turn)];
+  if(state.dialogKind==='battle-result'&&state.battleResult)items=[];
+  else if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn('<img class="troops-nav-icon" src="./web/h3-theme/troops.svg" alt="" aria-hidden="true">'+(fr?'Troupes':'Troops'),'heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Fin tour':'☀ End turn','endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
     ...(state.onlineInvitation?[btn((fr?'Invitation de ':'Invitation from ')+escape(state.onlineInvitation),'online-invitation',true)]:[]),

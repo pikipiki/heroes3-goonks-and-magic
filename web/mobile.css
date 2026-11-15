@@ -1,3 +1,4 @@
+@import url('./battle-result.css');
 @import url('./cave-builder.css');
 @import url('./wog-options.css');
 @import url('./army-panel.css');
@@ -81,3 +82,5 @@
 #mobile-app .building-project [aria-current=step]{border-color:var(--gold);background:#59381c}
 #mobile-app .building-project [data-built]{color:#d7e4ad}
 #mobile-app .building-detail [data-building-prerequisite],#mobile-app .building-detail [data-building-goal]{min-height:44px}
+
+#mobile-viewport{container:goonk-viewport / size}

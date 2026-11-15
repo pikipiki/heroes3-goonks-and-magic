@@ -2,7 +2,7 @@ import{test}from'node:test';import assert from'node:assert/strict';import{versio
 test('A release versions its top-level scripts and each nested static or dynamic module',()=>{
  const source=`import{read}from '../opfs-worker.js';\nimport './startup.mjs';\nconst load=()=>import('./lazy-assets.mjs');\nconst assets='./sprites.png';\nconst other='https://example.org/lib.js';`;
  const result=versionModuleImports(source,'abcdef');for(const name of ['../opfs-worker.js','./startup.mjs','./lazy-assets.mjs'])assert(result.includes(name+'?v=abcdef'));assert(result.includes("'./sprites.png'"));assert(result.includes("'https://example.org/lib.js'"));
- const html='<script type="module" src="./web/install.mjs"></script><link href="./web/mobile.css">';assert.equal(versionScriptTags(html,'abcdef'),'<script type="module" src="./web/install.mjs?v=abcdef"></script><link href="./web/mobile.css">');
+ const html='<script type="module" src="./web/install.mjs"></script><link href="./web/mobile.css">';assert.equal(versionScriptTags(html,'abcdef'),'<script type="module" src="./web/install.mjs?v=abcdef"></script><link href="./web/mobile.css?v=abcdef">');
 });
 
 test('JavaScript-only releases invalidate worker/module cache keys even when WASM is unchanged',()=>{
@@ -10,4 +10,8 @@ test('JavaScript-only releases invalidate worker/module cache keys even when WAS
  assert.equal(createRuntimeVersion(html,[...modules].reverse()),initial);
  assert.notEqual(createRuntimeVersion(html,[modules[0],['opfs-worker.js','new protocol']]),initial);
  assert.notEqual(createRuntimeVersion(html,[['web/install.mjs','new'],modules[1]]),initial);
+});
+
+test('Stylesheet-only changes also produce a new release cache key',()=>{
+ assert.notEqual(createRuntimeVersion('',[['web/battle-result.css','old']]),createRuntimeVersion('',[['web/battle-result.css','new']]));
 });

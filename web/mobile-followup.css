@@ -1,5 +1,4 @@
 /* Responsive rules follow the measured game surface, not Safari's stale layout viewport. */
-#mobile-viewport{container:goonk-viewport / size}
 #mobile-viewport[data-orientation=landscape]{padding-top:0}
 #mobile-viewport[data-orientation=portrait]{padding-left:0;padding-right:0}
 #mobile-app .mobile-play{min-width:0;min-height:0}
@@ -171,22 +170,6 @@ html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection{flex:none!impo
  html.goonk-mobile #mobile-app[data-sheet=army] .army-transfer-all{margin-top:6px}
 }
 #mobile-app .visited-object-art{align-self:center!important;justify-self:center!important}
-html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result){display:none!important}
-#mobile-app .battle-result{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(40px,auto) minmax(0,1fr) 48px;gap:10px;padding:12px;box-sizing:border-box;border:10px solid #b99b57;border-image:url('./h3-theme/recruit-frame.png') 12 stretch;background:#2b1d12 url('./h3-theme/stone.png');font-family:Georgia,serif;overflow:hidden}
-#mobile-app .battle-result[hidden]{display:none}
-#mobile-app .battle-result>header{background:linear-gradient(#7c261b,#3e180f);padding:8px 12px;border:2px ridge #d3ad5e}
-#mobile-app .battle-result h2{margin:0;color:#ffe29a;font-size:26px}
-#mobile-app .battle-result p{margin:0;line-height:1.4}
-#mobile-app .result-description{overflow:auto;max-height:130px;padding:8px 12px;border:1px solid #b7944d}
-#mobile-app .result-sides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-height:0;overflow:auto}
-#mobile-app .result-sides>section{padding:10px;border:2px ridge #b99952;background:#20150dde;min-width:0;overflow:auto}
-#mobile-app .result-sides header{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 8px;align-items:center}
-#mobile-app .result-sides header canvas{grid-row:1/3;width:48px;height:53px;border:2px ridge #d3ad5e}
-#mobile-app .result-sides h3{font-size:17px;margin:0;overflow-wrap:anywhere}
-#mobile-app .result-sides h4{font-size:15px;color:#ffe29a;margin:12px 0 8px}
-#mobile-app .result-losses article{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:8px;align-items:center;min-height:48px;border-top:1px solid #967b43}
-#mobile-app .result-losses .unit-portrait{width:38px;height:38px}
-@container goonk-viewport (orientation:landscape){#mobile-app .battle-result{grid-template-columns:minmax(0,1fr) minmax(180px,28%);grid-template-rows:auto minmax(0,1fr) 48px}#mobile-app .battle-result>header{grid-column:2;grid-row:1}#mobile-app .result-description{grid-column:2;grid-row:2;max-height:none}#mobile-app .result-sides{grid-column:1;grid-row:1/4}#mobile-app .battle-result>[data-result-confirm]{grid-column:2;grid-row:3}}
 @container goonk-viewport (orientation:portrait){
  html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>[data-ui=back]{grid-column:span 3!important}
  html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 2!important}

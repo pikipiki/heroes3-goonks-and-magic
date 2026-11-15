@@ -33,6 +33,7 @@ export function createMobileSpellbook({root,command}){
  }
  function render(){
   panel.dataset.browsing=String(book.inCombat===false);
+  panel.dataset.scrolling=String(book.inCombat===true);
   panel.dataset.spellPalette=String(Math.max(0,spellSchoolIndex(book.school)));
   const scroll=panel.querySelector('.spell-list')?.scrollTop||0;
   const previous=used.get(hero()),spells=book.spells||[];if(!spells.some(s=>s.id===selected))selected=(spells.find(s=>s.enabled)||spells[0])?.id;const active=spells.find(s=>s.id===selected);
@@ -70,7 +71,7 @@ export function createMobileSpellbook({root,command}){
     </article>
    </div>
    <footer>
-    <div class="spell-pagination"><button data-page="-1" ${book.page>0?'':'disabled'}>← Previous page</button><span>Page ${(book.page??0)+1}</span><button data-page="1" ${book.page+1>=book.pages?'disabled':''}>Next page →</button></div>
+    ${book.inCombat===true?'':`<div class="spell-pagination"><button data-page="-1" ${book.page>0?'':'disabled'}>← Previous page</button><span>Page ${(book.page??0)+1}</span><button data-page="1" ${book.page+1>=book.pages?'disabled':''}>Next page →</button></div>`}
     <button class="spell-confirm primary" data-cast-spell ${active?.enabled?'':'disabled'}>${castLabel}${active?` · ${active.cost} mana`:''}</button>
    </footer>`;
   panel.querySelector('.spell-list').scrollTop=scroll;
