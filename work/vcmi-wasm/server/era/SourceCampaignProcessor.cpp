@@ -24,6 +24,7 @@
 #include "../../lib/era/EraCampaignFire.h"
 #include "../../lib/era/EraCampaignHeroExperienceRule.h"
 #include "../../lib/era/EraCampaignDrawingDepth.h"
+#include "../../lib/era/EraCampaignRemovalBatch.h"
 #include "../../lib/era/EraCampaignCreatureAttributes.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
@@ -168,6 +169,61 @@ struct SourceCampaignProcessor::Impl final:Host
   if(id==CreatureID::NONE)return -1;
   const auto source=era_bridge::sourceCreatureIdForLevel(id.toCreature()->getJsonKey());
   require(source.has_value(),"foreign creature cannot be represented by original source ID: "+id.toCreature()->getJsonKey());return *source;
+ }
+ bool clearRockBatch()
+ {
+  if(vm.continuations.empty())return false;
+  const auto & call=vm.continuations.back();
+  if(call.operation!=1)return false;
+  const auto * commands=&program.initializers;
+  if(!call.initializer)
+  {
+   if(call.blockCursor>=call.blocks.size()||call.blocks[call.blockCursor]>=program.blocks.size())return false;
+   commands=&program.blocks[call.blocks[call.blockCursor]].commands;
+  }
+  const auto & map=gh.gameState().getMap();std::vector<int3> positions;
+  for(auto cursor=call.command;cursor<commands->size()&&positions.size()<64;++cursor)
+  {
+   const auto & command=(*commands)[cursor];
+   if(command.receiver!="UN"||!command.selectors.empty()||!command.conditions.empty()||command.operations.size()!=1)break;
+   const auto & operation=command.operations.front();
+   if(operation.code!="O"||operation.args.size()!=3||!std::all_of(operation.args.begin(),operation.args.end(),[](const Operand & a){return a.kind==Kind::Number&&a.access==Access::Read&&!a.negate;}))break;
+   const int3 pos(number(operation.args[0]),number(operation.args[1]),number(operation.args[2]));
+   if(!map.isInTheMap(pos)||!std::as_const(state)["tileIdentities"][era_campaign_hints::positionKey(pos)].isNull())return false;
+   positions.push_back(pos);
+  }
+  if(positions.size()<2)return false;
+  std::vector<const CGObjectInstance *> rocks;std::vector<std::uint32_t> coverage;
+  for(const auto & pos:positions)
+  {
+   std::uint32_t covered=0;
+   for(const auto & obj:map.objects)if(obj&&obj->ID!=Obj::HERO&&obj->appearance)
+   {
+    // Only inert rocks are admitted. A visitable object, another blocker or
+    // a hole fallback would make the removal effects order-dependent.
+    if(obj->visitableAt(pos))return false;
+    if(obj->blockingAt(pos))
+    {
+     if(identity(obj.get()).ID!=Obj::ROCK||objectMask(obj->id)!=255)return false;
+     auto found=std::find(rocks.begin(),rocks.end(),obj.get());
+     if(found==rocks.end()){if(rocks.size()>=16)return false;rocks.push_back(obj.get());found=rocks.end()-1;}
+     covered|=std::uint32_t(1)<<std::distance(rocks.begin(),found);
+    }
+    else if(obj->coveringAt(pos)&&identity(obj.get()).ID==Obj::HOLE)return false;
+   }
+   coverage.push_back(covered);
+  }
+  if(rocks.empty()||!era_campaign_removal::guaranteedClear(coverage,rocks.size()))return false;
+  // Every possible primary choice leaves exactly the same empty candidate
+  // set before the next non-removal command. Perform that proven result;
+  // the remaining consecutive UN:O commands then find empty tiles as usual.
+  for(const auto * rock:rocks)
+  {
+   const auto removed=rock->id;require(gh.removeObject(rock,player),"rock batch removal failed");
+   if(objectId==removed)objectId=ObjectInstanceID::NONE;
+   for(const auto & field:{"objectAccess","objectIdentities","leftTroops"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));
+  }
+  return true;
  }
  int3 position(const Command & c)const
  {
@@ -1055,7 +1111,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    {
     // Original tile rebuild 0x505c60: visit bits first; then the blocking
     // footprint of the eight entrance-bearing types; then other blockers.
-    // Pure ground decals do not acquire DrawNum. River Delta is a fallback.
+    // Pure ground decals do not acquire DrawNum. A hole is a fallback.
     if(obj->visitableAt(anchor))primary[0].push_back(obj.get());
     else if(obj->blockingAt(anchor))
     {
@@ -1063,7 +1119,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
      const bool entrance=type==17||type==20||type==33||type==42||type==53||type==77||type==87||type==98;
      primary[entrance?1:2].push_back(obj.get());
     }
-    else if(obj->coveringAt(anchor)&&identity(obj.get()).ID==Obj(124))primary[3].push_back(obj.get());
+    else if(obj->coveringAt(anchor)&&identity(obj.get()).ID==Obj::HOLE)primary[3].push_back(obj.get());
    }
    const CGObjectInstance * target=nullptr;
    for(const auto & layer:primary)if(!layer.empty())
@@ -1081,6 +1137,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
      if(rank>highest){highest=rank;target=candidate;tied=false;}
      else if(rank==highest)tied=true;
     }
+    if(tied&&clearRockBatch()){target=nullptr;break;}
     require(!tied,"ambiguous primary drawing order needs source selection validation");break;
    }
    if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities","leftTroops"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}

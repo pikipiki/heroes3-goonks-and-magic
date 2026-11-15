@@ -437,3 +437,14 @@ La compilation `ninja -j32 html5`,743 tests suivis réussis et34 ignorés, la co
 ## Forteresse originale validée en0.4.205
 
 [Le parcours de la Forteresse](../outputs/wog-priorities-0.4.147/campaign-runtime/native-fortress-demolition-205.json) gagne le combat contre Alkin, capture Backwater, démolit réellement la citadelle, le fort et le hall, puis retrouve le message original «Right! You did it!» au retour. Le contrôle de survie distingue désormais l’élimination légitime de l’adversaire bleu de celle du joueur. L’armée finale compte un Gorynych et175 fantômes ; les pertes du compagnon de l’air sont conservées. Aucun adversaire, drapeau de quête, déplacement ou effectif n’est modifié pour ce contrôle. La Crypte, la Nécropole, les victoires suivantes et les autres campagnes restent à valider.
+
+
+## Passage d’Ellam en0.4.206
+
+Les quatorze suppressions consécutives de rochers du bloc original `LE31/59/0` sont admises lorsque leur résultat est indépendant de tout ordre de sélection. Le moteur explore toutes les possibilités de suppression parmi les rochers couverts et exige un ensemble final vide. Cette preuve bornée évite de choisir arbitrairement entre deux objets de même profondeur ; elle ne constitue pas un port complet du second critère de dessin original. Les objets visitables, autres blocages, trous, masques restreints et suites non équivalentes restent refusés. Le type124 est bien un trou (`HOLE`) ; les anciens commentaires l’appelant delta de rivière sont corrigés sans changement de sa valeur.
+
+[Le contrat206](../outputs/wog-priorities-0.4.147/campaign-runtime/removal-batch-source-contract-206.json) et [les contrôles natifs](../outputs/wog-priorities-0.4.147/campaign-runtime/native-rock-removal-batch-206.json) conservent le bloc original inchangé, ses huit rochers et ses deux décors voisins sur une carte privée. Chromium puis WebKit, après reprise d’une sauvegarde en attente, franchissent réellement les deux cases auparavant bloquées ; la montagne et l’arbre restent bloquants. La régression ville/mine superposées passe également dans les deux navigateurs. Ces tests utilisent le paquet entier, comprenant le correctif de mémoire mobile614e012f, sans substitution du moteur.
+
+Compilation `ninja -j32 html5`,748 tests réussis et34 ignorés, audit de compatibilité, construction du site, sauvegardes/reprises et tours des cartes003/004 et premier round positif de combat passent. Les douze admissions restent désactivées : ce contrôle isolé ne valide pas une victoire de campagne.
+
+Le parcours original de Gorynych atteint aussi la Crypte, gagne son vrai combat et obtient le dialogue original de Koschey. [Le relevé205](../outputs/wog-priorities-0.4.147/campaign-runtime/native-original-crypt-205.json) conserve ce contrôle sans modification d’armée ni de drapeau de quête. Le contrôle de parcours ferme désormais le marché natif rencontré en chemin avec sa commande normale. La victoire de ce deuxième scénario reste à vérifier.

@@ -1,0 +1,26 @@
+{
+  "version": "0.4.206",
+  "source": "Pinned original zc3 campaign archive and parsed LE31/59/0 block",
+  "archiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+  "blockSha256": "18b707f41dbafc0a6943fc27694c342a92c1e5dc0e7077e24cdf19c5db118502",
+  "semantics": "For consecutive unconditional UN:O literal coordinates, exhaustively branch every covered inert rock choice. Admit only when every possible sequence leaves the complete candidate set empty before the next non-removal command. This overapproximates original selection and does not claim the original equal-depth ordering.",
+  "limits": {
+    "objects": 16,
+    "commands": 64,
+    "states": 4096,
+    "transitions": 262144
+  },
+  "rejections": [
+    "Non-rock blocker",
+    "Visitable object",
+    "Hole fallback",
+    "Restricted access mask",
+    "Non-literal coordinate",
+    "Conditional removal",
+    "Non-confluent final sets"
+  ],
+  "namingCorrection": "Original type124 is HOLE, not River Delta (143); replace old misleading comments without changing numeric selection.",
+  "saveFormatChanged": false,
+  "sourceProgramEdited": false,
+  "originalDrawingTieOrderFullyPorted": false
+}

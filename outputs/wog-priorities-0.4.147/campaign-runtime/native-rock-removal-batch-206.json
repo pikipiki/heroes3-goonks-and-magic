@@ -1,0 +1,2985 @@
+{
+  "version": "0.4.206",
+  "passed": true,
+  "scope": "Exact original Ellam removal block on private map; not a campaign victory",
+  "chromium": {
+    "passed": true,
+    "scope": "Exact original Ellam LE31/59 block and original eight rocks, event and neighbouring mountain/tree templates on a private flat map; all fourteen source removals, original exhaustion and actual passage crossing. Not an original campaign victory.",
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "4ffee58a1101d1e1",
+      "wasm": "vcmiclient.43c2b3ea064350f5.wasm",
+      "sha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+    "originalProgramSha256": "93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a",
+    "originalBlockSha256": "18b707f41dbafc0a6943fc27694c342a92c1e5dc0e7077e24cdf19c5db118502",
+    "fixtureSha256": "f1766dfe3144d5a0fa6f8025af9b5cb9fa11168e9441acac50498da43bb0382c",
+    "originalRemovalCount": 14,
+    "originalRockNames": [
+      "rock_214",
+      "rock_215",
+      "rock_216",
+      "rock_217",
+      "rock_218",
+      "rock_2272",
+      "rock_1556",
+      "rock_1557"
+    ],
+    "untouchedOriginalOverlays": [
+      "mountain_1588",
+      "oakTrees_209"
+    ],
+    "routedWasm": 0,
+    "pendingSaveSha256": "f95ccce1a089b9e6edb86a908fb2f07f9d1bf71e0817e3c959c879c281be3eed",
+    "loadedPending": false,
+    "observations": [
+      "BATCH AFTER"
+    ],
+    "physicalChecks": {
+      "bothTilesInitiallyBlocked": true,
+      "bothTilesActuallyOccupiedAfterClearing": true,
+      "mountainAndOakTreeStillBlock": true,
+      "freeControlTilesAvailable": true
+    },
+    "finalPosition": [
+      28,
+      58,
+      0
+    ],
+    "dialogs": [
+      {
+        "cancel": false,
+        "lines": [
+          "BATCH READY"
+        ],
+        "queryId": 3,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "You and Ellam spend the day clearing up the mountain path, and you can soon pass to his village. This has, however, left you both exhausted."
+        ],
+        "queryId": 12,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "BATCH AFTER"
+        ],
+        "queryId": 13,
+        "title": "Game message",
+        "visitedObject": "Event"
+      }
+    ],
+    "errors": []
+  },
+  "webkit": {
+    "passed": true,
+    "scope": "Exact original Ellam LE31/59 block and original eight rocks, event and neighbouring mountain/tree templates on a private flat map; all fourteen source removals, original exhaustion and actual passage crossing. Not an original campaign victory.",
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "4ffee58a1101d1e1",
+      "wasm": "vcmiclient.43c2b3ea064350f5.wasm",
+      "sha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+    "originalProgramSha256": "93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a",
+    "originalBlockSha256": "18b707f41dbafc0a6943fc27694c342a92c1e5dc0e7077e24cdf19c5db118502",
+    "fixtureSha256": "f1766dfe3144d5a0fa6f8025af9b5cb9fa11168e9441acac50498da43bb0382c",
+    "originalRemovalCount": 14,
+    "originalRockNames": [
+      "rock_214",
+      "rock_215",
+      "rock_216",
+      "rock_217",
+      "rock_218",
+      "rock_2272",
+      "rock_1556",
+      "rock_1557"
+    ],
+    "untouchedOriginalOverlays": [
+      "mountain_1588",
+      "oakTrees_209"
+    ],
+    "routedWasm": 0,
+    "loadedPending": true,
+    "observations": [
+      "BATCH AFTER"
+    ],
+    "physicalChecks": {
+      "bothTilesInitiallyBlocked": true,
+      "bothTilesActuallyOccupiedAfterClearing": true,
+      "mountainAndOakTreeStillBlock": true,
+      "freeControlTilesAvailable": true
+    },
+    "finalPosition": [
+      28,
+      58,
+      0
+    ],
+    "dialogs": [
+      {
+        "cancel": false,
+        "lines": [
+          "BATCH READY"
+        ],
+        "queryId": 5,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "You and Ellam spend the day clearing up the mountain path, and you can soon pass to his village. This has, however, left you both exhausted."
+        ],
+        "queryId": 14,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "BATCH AFTER"
+        ],
+        "queryId": 15,
+        "title": "Game message",
+        "visitedObject": "Event"
+      }
+    ],
+    "errors": []
+  },
+  "drawingRegression": {
+    "chromium": {
+      "passed": true,
+      "scope": "Actual original zc1-0 town/mine templates translated together to a private empty map. Native UN:O on their overlapping blocked footprints removes the town first, retains the mine, then removes the mine at its own footprint. Not an original scenario victory.",
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "4ffee58a1101d1e1",
+        "wasm": "vcmiclient.43c2b3ea064350f5.wasm",
+        "sha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "930a728e54115d925fffa694c2aabfcf3f7cc649438cf152ec619b26fb5b025f",
+      "routedWasm": 0,
+      "pendingSaveSha256": "d4b3bcf6888edc178478775296f0c4f26df6d33e5612b2d1ee9ab2120901b8ff",
+      "observations": [
+        "DRAW before 98/53",
+        "DRAW after town -1/53",
+        "DRAW after mine -1"
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "DRAW before 98/53"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "DRAW after town -1/53"
+          ],
+          "queryId": 4,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "DRAW after mine -1"
+          ],
+          "queryId": 5,
+          "title": "Game message"
+        }
+      ],
+      "errors": []
+    },
+    "webkit": {
+      "passed": true,
+      "scope": "Actual original zc1-0 town/mine templates translated together to a private empty map. Native UN:O on their overlapping blocked footprints removes the town first, retains the mine, then removes the mine at its own footprint. Not an original scenario victory.",
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "4ffee58a1101d1e1",
+        "wasm": "vcmiclient.43c2b3ea064350f5.wasm",
+        "sha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "930a728e54115d925fffa694c2aabfcf3f7cc649438cf152ec619b26fb5b025f",
+      "routedWasm": 0,
+      "observations": [
+        "DRAW before 98/53",
+        "DRAW after town -1/53",
+        "DRAW after mine -1"
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "DRAW before 98/53"
+          ],
+          "queryId": 5,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "DRAW after town -1/53"
+          ],
+          "queryId": 6,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "DRAW after mine -1"
+          ],
+          "queryId": 7,
+          "title": "Game message"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "productionRegression": {
+    "passed": true,
+    "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+    "origin": "http://127.0.0.1:8906/",
+    "engineSha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+    "productionOnly": true,
+    "combatOnly": false,
+    "localPreviewCspBypassed": true,
+    "limitations": [
+      "Local preview bypasses CSP only for127.0.0.1/localhost: this tests delivered assets and gameplay, not production CSP. Public startup must be checked separately without bypass after deployment.",
+      "No old161 fixture profile or legacy-save override is applied; that compatibility proof is retained separately.",
+      "The online-authored map runs locally in native hotseat, not a realtime network session.",
+      "This smoke does not replace combat,54actor,XP or Cave functional proofs."
+    ],
+    "engineMetadata": {
+      "memoryVersion": 1,
+      "runtimeVersion": "4ffee58a1101d1e1",
+      "wasm": "vcmiclient.43c2b3ea064350f5.wasm",
+      "sha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "actualFetchedWasmSha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+    "manifestSha256": "7095326e823857bae2892a4e4081b27e5350d4185e7fd90d2f40edd86357f819",
+    "productionAdmissionCombat": {
+      "passed": true,
+      "map": "003-Goonks-WoG.vmap",
+      "fixtures": "none",
+      "installedAssetWrites": false,
+      "nativeMovementRevealCheatsUsed": true,
+      "nativeCheats": [
+        {
+          "action": 29,
+          "parameter": 2,
+          "command": "vcmimap"
+        },
+        {
+          "action": 29,
+          "parameter": 1,
+          "command": "vcmimove"
+        }
+      ],
+      "positiveRoundPolicyCompleted": true,
+      "observedRound": 1,
+      "battleOutcomeValidated": false,
+      "originalTarget": {
+        "instanceName": "flightCache",
+        "x": 27,
+        "y": 36,
+        "key": "core:royalGriffin",
+        "count": 20
+      },
+      "scope": "Actual delivered map/army and positive native battle round demonstrate successful BattleStart through initializeSourceXpAdmission, which loads all three production XP policies before checking participating actors. No victory, new54 ability, or new54 admission-enrollment claim. The battle is closed after the positive-round snapshot.",
+      "sourcePath": "work/vcmi-wasm/server/era/EraSourceXpAdmissionRuntime.h; BattleFlowProcessor.cpp onBattleStarted",
+      "before": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "needsLastStack": false,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "id": 471,
+            "name": "Daremyth",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 44,
+                "attack": 3,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                "count": 30,
+                "damageMax": 2,
+                "damageMin": 1,
+                "defense": 3,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 55,
+                "growth": 16,
+                "health": 4,
+                "icon": "",
+                "id": 28,
+                "key": "core:gremlin",
+                "name": "Gremlin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              {
+                "aiValue": 165,
+                "attack": 6,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  130,
+                  0
+                ],
+                "count": 4,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 6,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 150,
+                "growth": 9,
+                "health": 16,
+                "icon": "",
+                "id": 30,
+                "key": "core:stoneGargoyle",
+                "name": "Stone Gargoyle",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 6
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "armyTownId": 0,
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Runes of Imminency}\n\nDecreases enemy's Luck by 1.",
+            "icon": 210,
+            "name": "Runes of Imminency",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 471,
+        "heroMana": 37,
+        "heroManaLimit": 37,
+        "heroMoving": false,
+        "heroName": "Daremyth",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 471,
+            "index": 0,
+            "mana": 37,
+            "manaLimit": 37,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Daremyth"
+          }
+        ],
+        "mapOverview": {
+          "height": 144,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": 6,
+            "y": 8
+          },
+          "width": 144
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1560,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34071072,
+        "worldView": false
+      },
+      "afterNativeCheats": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 0,
+            "name": "Garnison",
+            "needsLastStack": false,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "id": 471,
+            "name": "Daremyth",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 44,
+                "attack": 3,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                "count": 30,
+                "damageMax": 2,
+                "damageMin": 1,
+                "defense": 3,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 55,
+                "growth": 16,
+                "health": 4,
+                "icon": "",
+                "id": 28,
+                "key": "core:gremlin",
+                "name": "Gremlin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              {
+                "aiValue": 165,
+                "attack": 6,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  130,
+                  0
+                ],
+                "count": 4,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 6,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 150,
+                "growth": 9,
+                "health": 16,
+                "icon": "",
+                "id": 30,
+                "key": "core:stoneGargoyle",
+                "name": "Stone Gargoyle",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 6
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "armyTownId": 0,
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Runes of Imminency}\n\nDecreases enemy's Luck by 1.",
+            "icon": 210,
+            "name": "Runes of Imminency",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 471,
+        "heroMana": 37,
+        "heroManaLimit": 37,
+        "heroMoving": false,
+        "heroName": "Daremyth",
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 471,
+            "index": 0,
+            "mana": 37,
+            "manaLimit": 37,
+            "movement": 1000000,
+            "movementLimit": 1560,
+            "name": "Daremyth"
+          }
+        ],
+        "mapOverview": {
+          "height": 144,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": 6,
+            "y": 8
+          },
+          "width": 144
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1000000,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 34071072,
+        "worldView": false
+      },
+      "battle": {
+        "activeStack": 1,
+        "activeUnit": {
+          "aiValue": 165,
+          "attack": 6,
+          "canShoot": false,
+          "commander": false,
+          "controlled": true,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            130,
+            0
+          ],
+          "count": 4,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 6,
+          "description": "",
+          "fightValue": 150,
+          "growth": 9,
+          "health": 16,
+          "icon": "",
+          "id": 30,
+          "key": "core:stoneGargoyle",
+          "name": "Stone Gargoyle",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 6,
+          "stackId": 1
+        },
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 471,
+            "name": "Daremyth",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 44,
+                "attack": 3,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  30,
+                  0
+                ],
+                "count": 30,
+                "damageMax": 2,
+                "damageMin": 1,
+                "defense": 3,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 55,
+                "growth": 16,
+                "health": 4,
+                "icon": "",
+                "id": 28,
+                "key": "core:gremlin",
+                "name": "Gremlin",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              {
+                "aiValue": 165,
+                "attack": 6,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  130,
+                  0
+                ],
+                "count": 4,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 6,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 150,
+                "growth": 9,
+                "health": 16,
+                "icon": "",
+                "id": 30,
+                "key": "core:stoneGargoyle",
+                "name": "Stone Gargoyle",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": true,
+                  "living": false,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 6
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autoCombat": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "battleCamera": {
+          "active": false,
+          "actor": {
+            "cells": [
+              {
+                "x": 652,
+                "y": 322
+              },
+              {
+                "x": 696,
+                "y": 322
+              }
+            ],
+            "name": "Royal Griffin",
+            "stackId": 2,
+            "x": 652,
+            "y": 322
+          },
+          "kind": "",
+          "label": "",
+          "sequence": 1
+        },
+        "battleCells": [
+          {
+            "actionLabel": "",
+            "hex": 1,
+            "kind": 0,
+            "reachable": false,
+            "x": 102,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 2,
+            "kind": 0,
+            "reachable": false,
+            "x": 146,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 3,
+            "kind": 0,
+            "reachable": false,
+            "x": 190,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 4,
+            "kind": 0,
+            "reachable": false,
+            "x": 234,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 5,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 6,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 7,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 8,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 9,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 10,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 11,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 12,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 13,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 14,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 15,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 112
+          },
+          {
+            "actionLabel": "",
+            "hex": 18,
+            "kind": 0,
+            "reachable": false,
+            "x": 80,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 19,
+            "kind": 0,
+            "reachable": false,
+            "x": 124,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 20,
+            "kind": 0,
+            "reachable": false,
+            "x": 168,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 21,
+            "kind": 0,
+            "reachable": false,
+            "x": 212,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 22,
+            "kind": 0,
+            "reachable": false,
+            "x": 256,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 23,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 24,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 25,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 26,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 27,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 28,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 29,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 30,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 31,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 32,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 154
+          },
+          {
+            "actionLabel": "",
+            "hex": 35,
+            "kind": 1,
+            "reachable": false,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 36,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 37,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 38,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 39,
+            "kind": 0,
+            "reachable": false,
+            "x": 278,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 40,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 41,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 42,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 43,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 44,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 45,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 46,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 47,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 48,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 196
+          },
+          {
+            "actionLabel": "",
+            "hex": 49,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 196
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 52,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 53,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 54,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 55,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 56,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 57,
+            "kind": 0,
+            "reachable": false,
+            "x": 300,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 58,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 59,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 60,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 61,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 62,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 63,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 64,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 65,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 238
+          },
+          {
+            "actionLabel": "",
+            "hex": 66,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 238
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 69,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 70,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 71,
+            "kind": 1,
+            "reachable": false,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 72,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 73,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 74,
+            "kind": 0,
+            "reachable": false,
+            "x": 322,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 75,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 76,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 77,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 78,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 79,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 80,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 81,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 82,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 280
+          },
+          {
+            "actionLabel": "",
+            "hex": 83,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 280
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 86,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 87,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 88,
+            "kind": 2,
+            "reachable": false,
+            "x": 168,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 89,
+            "kind": 2,
+            "reachable": false,
+            "x": 212,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 90,
+            "kind": 2,
+            "reachable": false,
+            "x": 256,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 91,
+            "kind": 2,
+            "reachable": false,
+            "x": 300,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 92,
+            "kind": 0,
+            "reachable": false,
+            "x": 344,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 93,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 94,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 95,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 96,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 97,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 98,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 99,
+            "kind": 1,
+            "reachable": false,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "actionLabel": "",
+            "hex": 100,
+            "kind": 1,
+            "reachable": false,
+            "x": 696,
+            "y": 322
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 103,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 104,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 105,
+            "kind": 2,
+            "reachable": false,
+            "x": 190,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 106,
+            "kind": 2,
+            "reachable": false,
+            "x": 234,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 107,
+            "kind": 2,
+            "reachable": false,
+            "x": 278,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 108,
+            "kind": 2,
+            "reachable": false,
+            "x": 322,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 109,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 110,
+            "kind": 2,
+            "reachable": false,
+            "x": 410,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 111,
+            "kind": 2,
+            "reachable": false,
+            "x": 454,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 112,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 113,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 114,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 115,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 116,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 364
+          },
+          {
+            "actionLabel": "",
+            "hex": 117,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 364
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 120,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 121,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 122,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 123,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 124,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 125,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 406
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 126,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 127,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 128,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 129,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 130,
+            "kind": 0,
+            "reachable": false,
+            "x": 520,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 131,
+            "kind": 0,
+            "reachable": false,
+            "x": 564,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 132,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 133,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 134,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 406
+          },
+          {
+            "actionLabel": "",
+            "hex": 137,
+            "kind": 1,
+            "reachable": true,
+            "x": 102,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 138,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 139,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 140,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 141,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 142,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 143,
+            "kind": 0,
+            "reachable": true,
+            "x": 366,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 144,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 145,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 146,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 147,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 148,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 149,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 150,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 448
+          },
+          {
+            "actionLabel": "",
+            "hex": 151,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 448
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 154,
+            "kind": 0,
+            "reachable": true,
+            "x": 80,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 155,
+            "kind": 0,
+            "reachable": true,
+            "x": 124,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 156,
+            "kind": 0,
+            "reachable": true,
+            "x": 168,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 157,
+            "kind": 0,
+            "reachable": true,
+            "x": 212,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 158,
+            "kind": 0,
+            "reachable": true,
+            "x": 256,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 159,
+            "kind": 0,
+            "reachable": true,
+            "x": 300,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 160,
+            "kind": 0,
+            "reachable": true,
+            "x": 344,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 161,
+            "kind": 0,
+            "reachable": false,
+            "x": 388,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 162,
+            "kind": 0,
+            "reachable": false,
+            "x": 432,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 163,
+            "kind": 0,
+            "reachable": false,
+            "x": 476,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 164,
+            "kind": 2,
+            "reachable": false,
+            "x": 520,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 165,
+            "kind": 2,
+            "reachable": false,
+            "x": 564,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 166,
+            "kind": 0,
+            "reachable": false,
+            "x": 608,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 167,
+            "kind": 0,
+            "reachable": false,
+            "x": 652,
+            "y": 490
+          },
+          {
+            "actionLabel": "",
+            "hex": 168,
+            "kind": 0,
+            "reachable": false,
+            "x": 696,
+            "y": 490
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 171,
+            "kind": 0,
+            "reachable": true,
+            "x": 102,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 172,
+            "kind": 0,
+            "reachable": true,
+            "x": 146,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 173,
+            "kind": 0,
+            "reachable": true,
+            "x": 190,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 174,
+            "kind": 0,
+            "reachable": true,
+            "x": 234,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 175,
+            "kind": 0,
+            "reachable": true,
+            "x": 278,
+            "y": 532
+          },
+          {
+            "actionLabel": "Move",
+            "hex": 176,
+            "kind": 0,
+            "reachable": true,
+            "x": 322,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 177,
+            "kind": 0,
+            "reachable": false,
+            "x": 366,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 178,
+            "kind": 0,
+            "reachable": false,
+            "x": 410,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 179,
+            "kind": 0,
+            "reachable": false,
+            "x": 454,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 180,
+            "kind": 0,
+            "reachable": false,
+            "x": 498,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 181,
+            "kind": 0,
+            "reachable": false,
+            "x": 542,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 182,
+            "kind": 0,
+            "reachable": false,
+            "x": 586,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 183,
+            "kind": 0,
+            "reachable": false,
+            "x": 630,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 184,
+            "kind": 0,
+            "reachable": false,
+            "x": 674,
+            "y": 532
+          },
+          {
+            "actionLabel": "",
+            "hex": 185,
+            "kind": 0,
+            "reachable": false,
+            "x": 718,
+            "y": 532
+          }
+        ],
+        "battlePlayerAttacks": true,
+        "battleUnits": [
+          {
+            "aiValue": 448,
+            "armySlot": 0,
+            "attack": 10,
+            "canMeleeAt": false,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              240,
+              0
+            ],
+            "count": 20,
+            "currentHealth": 25,
+            "damageMax": 6,
+            "damageMin": 3,
+            "defense": 10,
+            "description": "",
+            "enemy": true,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 364,
+            "growth": 7,
+            "health": 25,
+            "icon": "",
+            "id": 5,
+            "key": "core:royalGriffin",
+            "luck": -1,
+            "magicResistance": 0,
+            "maximumHealth": 25,
+            "morale": 0,
+            "name": "Royal Griffin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              99,
+              100
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 10,
+            "spellEffects": [],
+            "stackId": 2,
+            "x": 652,
+            "y": 322
+          },
+          {
+            "aiValue": 156,
+            "armySlot": -2,
+            "attack": 5,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              140,
+              0
+            ],
+            "count": 1,
+            "currentHealth": 40,
+            "damageMax": 12,
+            "damageMin": 6,
+            "defense": 5,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 2,
+            "experience": 61,
+            "experiencePerUnit": 61,
+            "experienceRank": 1,
+            "fightValue": 130,
+            "growth": 9,
+            "health": 40,
+            "icon": "commanders/CPrL176n",
+            "id": 244,
+            "key": "wake-of-gods.commanders:templeGuardian1",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 40,
+            "morale": 1,
+            "name": "Temple Guardian",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              71
+            ],
+            "remainingCasts": 1,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 24,
+            "speed": 4,
+            "spellEffects": [],
+            "stackId": 3,
+            "x": 190,
+            "y": 280
+          },
+          {
+            "aiValue": 44,
+            "armySlot": 0,
+            "attack": 3,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              30,
+              0
+            ],
+            "count": 30,
+            "currentHealth": 4,
+            "damageMax": 2,
+            "damageMin": 1,
+            "defense": 3,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 0,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 55,
+            "growth": 16,
+            "health": 4,
+            "icon": "",
+            "id": 28,
+            "key": "core:gremlin",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 4,
+            "morale": 1,
+            "name": "Gremlin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              35
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 4,
+            "spellEffects": [],
+            "stackId": 0,
+            "x": 102,
+            "y": 196
+          },
+          {
+            "aiValue": 165,
+            "armySlot": 1,
+            "attack": 6,
+            "canMeleeAt": true,
+            "canShootAt": false,
+            "cloned": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              130,
+              0
+            ],
+            "count": 4,
+            "currentHealth": 16,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 6,
+            "description": "",
+            "enemy": false,
+            "eraSlot": 1,
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 150,
+            "growth": 9,
+            "health": 16,
+            "icon": "",
+            "id": 30,
+            "key": "core:stoneGargoyle",
+            "luck": 0,
+            "magicResistance": 0,
+            "maximumHealth": 16,
+            "morale": 1,
+            "name": "Stone Gargoyle",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "occupied": [
+              137
+            ],
+            "remainingCasts": 0,
+            "remainingRetaliations": 1,
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 0,
+            "speed": 6,
+            "spellEffects": [],
+            "stackId": 1,
+            "x": 102,
+            "y": 448
+          }
+        ],
+        "campaignPending": false,
+        "canAct": true,
+        "canAutoCombat": true,
+        "canEndTactics": false,
+        "canQueueAutoCombat": false,
+        "canRetreat": true,
+        "canUseMagic": true,
+        "canWait": true,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "creatureCanCast": false,
+        "creatureSpellTargeting": false,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Runes of Imminency}\n\nDecreases enemy's Luck by 1.",
+            "icon": 210,
+            "name": "Runes of Imminency",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "focus": {
+          "x": 102,
+          "y": 448
+        },
+        "heroCanCast": true,
+        "heroHasSpellbook": true,
+        "heroId": 471,
+        "heroMana": 37,
+        "heroManaLimit": 37,
+        "heroMoving": false,
+        "heroName": "Daremyth",
+        "heroSpellCastLimitReached": false,
+        "heroSpellPower": {
+          "effective": 2,
+          "interference": false,
+          "original": 2
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 471,
+            "index": 0,
+            "mana": 37,
+            "manaLimit": 37,
+            "movement": 1000000,
+            "movementLimit": 1560,
+            "name": "Daremyth"
+          }
+        ],
+        "manualControl": true,
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "battle",
+        "movement": 1000000,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          20000,
+          0
+        ],
+        "round": 1,
+        "sessionState": 6,
+        "soundVolume": 88,
+        "spellTargeting": false,
+        "tacticsMode": false,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "turn": true,
+        "windowToken": 125991376
+      },
+      "initialAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      },
+      "afterAssets": {
+        "passed": true,
+        "files": {
+          "Mods/tum-era/mod.json": {
+            "sha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+            "size": 19900
+          },
+          "Mods/tum-era/era-identities.json": {
+            "sha256": "a07db0a02048490a7366a69aee0fa0b3d48adbc4c7292c340698ea7a964bb70c",
+            "size": 4210
+          },
+          "Mods/tum-era/content/config/era-bridge-source-xp-admission-v1.json": {
+            "sha256": "fef050eb61afe14d58c3b52c89c17808bbc3641f016b1a5866a225077753256b",
+            "size": 25960
+          },
+          "Mods/tum-era/content/config/era-dwelling-services-v1.json": {
+            "sha256": "79c407ab984ff0042f48fb62f3e44bbb134156701714d3a8998237cb56191e6d",
+            "size": 506
+          },
+          "Mods/tum-era/content/config/era-object-replacements-v1.json": {
+            "sha256": "caf9aeb0526b03f3333ee87243609aa4167c6148d28c0cabbbe2932e43b8114b",
+            "size": 176693
+          },
+          "Mods/tum-era/content/config/era-bridge-bank-xp-admission-v1.json": {
+            "sha256": "c8d6304496b241ce7e88bf2872689fb7d4ff0ee3fdb0440304fdbc5d99ac3c85",
+            "size": 4314
+          },
+          "Mods/tum-era/content/config/era-bridge-dwelling-xp-admission-v1.json": {
+            "sha256": "e65aab9b662ae6fbb769e117385620a3aec9cba01e2f7770929744f477867b42",
+            "size": 9712
+          },
+          "Maps/003-Goonks-WoG.vmap": {
+            "sha256": "7d829b75c95f66b1564dcbfef0cb6ed66c69fc636f6533f511667315cc1a95cb",
+            "size": 31409
+          },
+          "Maps/004-Goonks-WoG-Online.vmap": {
+            "sha256": "9b286bce0b15369df4f363ebfe3a32d2977399780c5037f9eb55b542bbb9a84e",
+            "size": 31104
+          }
+        },
+        "gates": {
+          "primaryXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all43",
+            "rows": 43
+          },
+          "dwellingServices": {
+            "enabled": true,
+            "actors": 44
+          },
+          "replacement": {
+            "enabled": true,
+            "programs": 102
+          },
+          "bankXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all6",
+            "rows": 6
+          },
+          "dwellingXp": {
+            "enabled": true,
+            "nativeValidated": true,
+            "mode": "validated-all17",
+            "rows": 17
+          }
+        }
+      }
+    },
+    "nativePolicyParsingAtBattleStartValidated": true,
+    "productionSmokeValidated": true,
+    "mapSaveReloadValidated": true,
+    "playerRolesPreserved": true,
+    "actualResumedTurnTransitionsValidated": true,
+    "trackedProductionAssetsUnchanged": true,
+    "errors": []
+  },
+  "campaignsEnabled": false
+}

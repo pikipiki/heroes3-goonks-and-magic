@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "engineSha256": "72083f9c4bf7bed0620ffe57594d6cbc3685299bc5c581fd313d9309a58a3088",
+  "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "saveSha256": "1237b0b3abd89e591065fe16044b04d61255900d4b0159405ebdebdf737cc2d1",
+  "journey": "gorynych-route",
+  "firstObjective": false,
+  "scope": "Private unchanged original script encounter exploration, not a campaign victory",
+  "victory": null,
+  "dialogs": [
+    {
+      "cancel": false,
+      "lines": [
+        "Another week has passed"
+      ],
+      "queryId": -1,
+      "title": "Game message",
+      "visitedObject": "Trading Post"
+    },
+    {
+      "cancel": true,
+      "lines": [
+        "{Followers}\n\nA group of Pikeman with a desire for greater glory wish to join you. Do you accept? "
+      ],
+      "queryId": 1211,
+      "title": "Game message",
+      "visitedObject": "Pikemen"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Zombies",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 313
+          }
+        }
+      ],
+      "lines": [
+        "Message on the entrance.\n\nThou, who tries to disturb dead souls.\nIn the name of Koschey, get thee gone."
+      ],
+      "queryId": 1215,
+      "title": "Game message",
+      "visitedObject": "Crypt"
+    },
+    {
+      "cancel": true,
+      "choices": [],
+      "lines": [
+        "Who is this Koschey? Strange."
+      ],
+      "queryId": 1216,
+      "scriptDialog": {
+        "canCancel": true,
+        "choiceLabel": "",
+        "choices": [],
+        "contract": "source-campaign-dialog-v1",
+        "draft": null,
+        "inputLabel": "",
+        "kind": "extended",
+        "pictures": [
+          {
+            "file": "..\\Data\\Zvs\\Cmp.res\\11_904.bmp",
+            "hint": "Native hero",
+            "mediaKey": "cmp.res/11_904.bmp",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 131,
+              "y": 318
+            }
+          },
+          {
+            "file": "",
+            "hint": ""
+          },
+          {
+            "file": "",
+            "hint": ""
+          },
+          {
+            "file": "",
+            "hint": ""
+          }
+        ],
+        "queryId": 1216,
+        "resultVariable": 1,
+        "selection": 0,
+        "text": "Who is this Koschey? Strange."
+      },
+      "title": "Game message",
+      "visitedObject": "Crypt"
+    },
+    {
+      "cancel": true,
+      "choices": [
+        {
+          "description": "",
+          "label": "20 Skeletons",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 221,
+            "y": 297
+          }
+        },
+        {
+          "description": "",
+          "label": "20 Walking Dead",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 321,
+            "y": 297
+          }
+        },
+        {
+          "description": "",
+          "label": "10 Wights",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 421,
+            "y": 297
+          }
+        },
+        {
+          "description": "",
+          "label": "5 Vampires",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 521,
+            "y": 297
+          }
+        }
+      ],
+      "lines": [
+        "{Crypt}\n\nYou tentatively approach the burial crypt of ancient warriors.  Do you want to search the graves?"
+      ],
+      "queryId": 1217,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "{Clover of Fortune}\n\nThe Clover of Fortune increases your Luck by +1.",
+          "label": "Clover of Fortune",
+          "rect": {
+            "h": 44,
+            "w": 44,
+            "x": 316,
+            "y": 267
+          }
+        },
+        {
+          "description": "",
+          "label": "2500 Gold",
+          "rect": {
+            "h": 93,
+            "w": 82,
+            "x": 402,
+            "y": 267
+          }
+        }
+      ],
+      "lines": [
+        "Upon defeating the undead guardians you search the graves and find something!"
+      ],
+      "queryId": -1,
+      "title": "Game message"
+    }
+  ],
+  "errors": []
+}
