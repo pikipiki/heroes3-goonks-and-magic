@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.198",
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "method": "Bounded static inspection of pinned original PE; later source corroborates it. No Windows execution claimed.",
+  "observations": [
+    {
+      "range": "0x737a40..0x737c8a; NotRem read0x737c3d and write0x737c5e",
+      "behavior": "GR targets original garrison33. G uses seven32bit creature/count pairs. F reads signed NotRem byte through a32bit temporary, then writes low8bits."
+    },
+    {
+      "range": "0x72db58..0x72dbb8; wrapper0x711a80..0x711ac8; team mask0x49d04e..0x49d099",
+      "behavior": "UN:H accepts five arguments, hides the owner allied mask, then reopens sight around owned objects through0x4c7910."
+    },
+    {
+      "range": "0x72de9a..0x72e005; PlaceObject0x711f00..0x7120eb",
+      "behavior": "UN:I passes independent logical type/subtype and visual type/subtype. Native code rewrites OType/OSType at offsets0x1e/0x22 while keeping the selected appearance."
+    }
+  ],
+  "admittedScope": [
+    "GR:F reads/writes the complete raw byte, including\u22121/255,257\u21921,256\u21920; native removable policy is true only for raw0. World state preserves nonboolean raw bytes across save/reload.",
+    "GR:G slots0..6, nonnegative counts and explicit source creature mappings. Empty source type\u22121 retains its count for faithful later queries. GR:O owners\u22121..7.",
+    "UN:H uses native team visibility and protects currently observed cells around allied owned objects before sending one hide mutation. Owner\u22121 variants remain unadmitted.",
+    "Different UN:I appearances are admitted only for the pinned logical98/0, visual63/1 combination. Town logic, source configuration, native owner and guard army remain native.",
+    "Created-town visual metadata is in the existing bound world state. Faction reconstruction clears that override; combined demolition/rebuild of this specific created town remains to validate.",
+    "The existing tactile army exchange handles native garrison windows only in admitted source scenarios. Locked withdrawals and locked-target swaps are rejected, donations remain allowed, native server permissions remain authoritative. No new save permission is added for normal garrison windows."
+  ],
+  "saveVersion": 906,
+  "sourceArchivesAndProgramsUnchanged": true,
+  "remaining": "Later original quests, battles, victories, transfers and other campaigns remain unvalidated. All12 programs stay disabled."
+}

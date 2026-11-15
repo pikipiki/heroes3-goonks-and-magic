@@ -148,6 +148,8 @@ void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange &
     ENGINE->windows().totalRedraw();
    }
   }
+  if(item["kind"].String()=="garrisonRemoval")
+   if(const auto * garrison=cl.gameInfo().getObjInstance(ObjectInstanceID(item["object"].Integer())))callInterfaceIfPresent(cl,garrison->getOwner(),&IGameEventsReceiver::garrisonsChanged,garrison->id,garrison->id);
   if(item["kind"].String()=="townBuilding")
    if(const auto * town=cl.gameInfo().getTown(ObjectInstanceID(item["object"].Integer())))
    {

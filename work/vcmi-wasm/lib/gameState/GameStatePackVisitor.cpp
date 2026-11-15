@@ -15,6 +15,7 @@
 #include "../era/EraConfluxPolicies.h"
 #include "../era/EraWayfarerState.h"
 #include "../era/EraCampaignChanges.h"
+#include "../era/EraCampaignAdmission.h"
 #include "GameStatePackVisitor.h"
 
 #include "CGameState.h"
@@ -1179,6 +1180,15 @@ void GameStatePackVisitor::visitSetObjectProperty(SetObjectProperty & pack)
 		logNetwork->error("Wrong object ID - property cannot be set!");
 		return;
 	}
+
+ if(pack.what==ObjProperty::ERA_CAVE_TOWN_FACTION)
+ {
+  auto & world=gs.getMap().sourceCampaignWorld;const auto & vm=gs.getMap().sourceCampaignState;
+  if(era_campaign_admission::worldMatches(vm,world)&&era_campaign_admission::programAdmitted(vm["programId"].String(),vm["vm"]["programSha256"].String()))
+  {
+   auto & town=world["towns"][std::to_string(pack.id.getNum())];if(town.isStruct()){town.Struct().erase("visualType");town.Struct().erase("visualSubtype");}
+  }
+ }
 
 	if(pack.what == ObjProperty::OWNER && obj->asOwnable())
 	{

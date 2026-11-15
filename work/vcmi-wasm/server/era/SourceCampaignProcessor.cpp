@@ -41,6 +41,7 @@
 #include "../../lib/mapObjects/CGPandoraBox.h"
 #include "../../lib/mapObjects/CGCreature.h"
 #include "../../lib/mapObjects/CGDwelling.h"
+#include "../../lib/mapObjects/MiscObjects.h"
 #include "../../lib/mapObjects/CGTownInstance.h"
 #include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/mapObjects/army/CStackInstance.h"
@@ -157,7 +158,7 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int3 position(const Command & c)const
  {
-  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH"||c.receiver=="DW";
+  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH"||c.receiver=="DW"||c.receiver=="GR";
   const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4&&c.selectors[3].access==Access::Read&&number(c.selectors[3])==1;
   require(c.selectors.size()==3||(indirect&&c.selectors.size()==1)||dynamicMonster,"object needs three coordinates or a coordinate variable");
   int3 pos;
@@ -685,6 +686,37 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 {
  const auto & args=op.args;
  comparison.reset();
+ if(c.receiver=="GR")
+ {
+  const auto * garrison=dynamic_cast<const CGGarrison *>(object(c,Obj::GARRISON));if(!garrison)return sourceCommandError(c,"not a garrison");
+  if(op.code=="F")
+  {
+   arity(op,1);auto world=era_campaign_admission::bindWorld(state,gh.gameState().getMap().sourceCampaignWorld);auto & settings=world["garrisons"][std::to_string(garrison->id.getNum())];
+   const auto & saved=std::as_const(settings)["notRem"];const int previous=saved.isNull()?(garrison->removableUnits?0:1):era_campaign_terrain::byteQuery(era_campaign_json::integer(saved));
+   const int changed=value(previous,args[0]);
+   if(!query(op)){const int raw=era_campaign_terrain::byteWord(changed);settings["notRem"].Integer()=raw;auto change=mutation("garrisonRemoval",garrison->id);change["removable"].Bool()=raw==0;persist(change,nullptr,nullptr,world);}
+  }
+  else if(op.code=="O")
+  {
+   arity(op,1);const int changed=value(garrison->getOwner().isValidPlayer()?garrison->getOwner().getNum():-1,args[0]);
+   if(!query(op)){require(changed>=-1&&changed<8,"source garrison owner outside-1..7");gh.setOwner(garrison,changed<0?PlayerColor::NEUTRAL:PlayerColor(changed));}
+  }
+  else if(op.code=="G")
+  {
+   arity(op,3);const int index=number(args[0]);require(index>=0&&index<7,"source garrison guard slot outside0..6");const SlotID slot(index);const auto * stack=garrison->getStackPtr(slot);
+   auto world=era_campaign_admission::bindWorld(state,gh.gameState().getMap().sourceCampaignWorld);auto & empty=world["garrisons"][std::to_string(garrison->id.getNum())]["emptyGuards"];
+   const auto & previous=std::as_const(empty)[std::to_string(index)];const int type=value(stack?sourceCreature(stack->getId()):-1,args[1]),count=value(stack?stack->getCount():previous.isNull()?0:era_campaign_json::integer(previous),args[2]);
+   if(!query(op))
+   {
+    require(count>=0,"negative source garrison guard count is not admitted");
+    if(type<0||count==0){if(stack)gh.eraseStack({garrison->id,slot},true);empty[std::to_string(index)].Integer()=count;}
+    else {if(!stack)gh.insertNewStack({garrison->id,slot},creature(type).toCreature(),count);else{gh.changeStackType({garrison->id,slot},creature(type).toCreature());gh.changeStackCount({garrison->id,slot},count,ChangeValueMode::ABSOLUTE);}empty.Struct().erase(std::to_string(index));}
+    persist(JsonNode(),nullptr,nullptr,world);
+   }
+  }
+  else throw std::runtime_error("Original campaign: unsupported garrison operation "+op.code);
+  return Step::Continue;
+ }
  if(c.receiver=="CA")
  {
   const auto * town=dynamic_cast<const CGTownInstance *>(object(c,Obj::TOWN));if(!town)return sourceCommandError(c,"not a town");
@@ -864,11 +896,23 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    arity(op,1);require(args[0].access==Access::Read,"redraw mode needs a value");const int mode=number(args[0]);require(mode==1||mode==2,"unsupported source redraw mode");
    auto change=mutation("mapRefresh",ObjectInstanceID::NONE);change["mode"].Integer()=mode;change["player"].Integer()=player.getNum();persist(change);return Step::Continue;
   }
-  if(op.code=="S")
+  if(op.code=="S"||op.code=="H")
   {
-   arity(op,5);require(!query(op),"reveal arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const PlayerColor owner(number(args[3]));const int radius=number(args[4]);
+   arity(op,5);require(!query(op),"fog arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const PlayerColor owner(number(args[3]));const int radius=number(args[4]);
    require(gh.gameState().getMap().isInTheMap(center)&&owner.isValidPlayer()&&gh.gameInfo().getPlayerState(owner,false)&&radius>=0,"invalid source reveal area");
-   gh.changeFogOfWar(center,radius,owner,ETileVisibility::REVEALED);return Step::Continue;
+   if(op.code=="S")gh.changeFogOfWar(center,radius,owner,ETileVisibility::REVEALED);
+   else
+   {
+    // The original hides the owner's whole allied mask, then reopens sight
+    // around owned objects. Exclude those cells before sending one mutation.
+    FowTilesType hidden,observed;gh.gameInfo().getTilesInRange(hidden,center,radius,ETileVisibility::REVEALED,owner);
+    const auto * affected=gh.gameInfo().getPlayerState(owner);
+    for(int color=0;color<8;++color)if(const auto * ally=gh.gameInfo().getPlayerState(PlayerColor(color),false))if(ally->team==affected->team)
+     for(const auto * object:ally->getOwnedObjects())gh.gameInfo().getTilesInRange(observed,object->getSightCenter(),object->getSightRadius(),ETileVisibility::REVEALED,object->getOwner());
+    for(const auto & tile:observed)hidden.erase(tile);
+    gh.changeFogOfWar(hidden,owner,ETileVisibility::HIDDEN);
+   }
+   return Step::Continue;
   }
   if(op.code=="K"||op.code=="M")
   {
@@ -908,7 +952,8 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   int source=number(args[3]),subtype=number(args[4]);require(source>=0&&source!=static_cast<int>(Obj::HERO),"unsupported source object type");
   int visual=args.size()>6?number(args[5]):source,visualSubtype=args.size()>6?number(args[6]):subtype;
   if(source==76){if(visual==source&&visualSubtype==subtype){subtype=random(6,false);source=79;visual=source;visualSubtype=subtype;}else{source=79;subtype=random(6,false);}}
-  require(visual==source&&visualSubtype==subtype,"different source object appearance not admitted");
+  const bool customTown=source==98&&subtype==0&&visual==63&&visualSubtype==1;
+  require((visual==source&&visualSubtype==subtype)||customTown,"different source object appearance not admitted");
   require(!(source==17&&subtype==93),"messenger dwelling variant requires original selection validation");
   const int surface=args.size()==6?number(args[5]):args.size()>7?number(args[7]):-1;require(surface>=-1&&surface<=8,"source surface outside -1..8");
   const auto mapped=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remapObject({Obj(source),subtype});
@@ -916,14 +961,22 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   require(LIBRARY->objtypeh->knownObjects().count(type)&&LIBRARY->objtypeh->knownSubObjects(type).count(sub),"unbound source object identity");
   const auto handler=LIBRARY->objtypeh->getHandlerFor(type,sub);
   const auto wanted=source==124?map.getTile(anchor).getTerrainID():surface>=0?LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(TerrainId(surface)):TerrainId::NONE;
-  auto templates=LIBRARY->objtypeh->getOriginalTemplates(type,sub);const bool originalTemplate=!templates.empty();
-  if(templates.empty())templates=handler->getTemplates();
+  const auto visualMapped=customTown?LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remapObject({Obj(visual),visualSubtype}):mapped;
+  require(LIBRARY->objtypeh->knownObjects().count(visualMapped.ID)&&LIBRARY->objtypeh->knownSubObjects(visualMapped.ID).count(visualMapped.subID),"unbound source object appearance");
+  const auto visualHandler=LIBRARY->objtypeh->getHandlerFor(visualMapped.ID,visualMapped.subID);
+  auto templates=LIBRARY->objtypeh->getOriginalTemplates(visualMapped.ID,visualMapped.subID);const bool originalTemplate=!templates.empty();
+  if(templates.empty())templates=visualHandler->getTemplates();
   if(wanted!=TerrainId::NONE)templates.erase(std::remove_if(templates.begin(),templates.end(),[&](const auto & item){return !item->canBePlacedAt(wanted);}),templates.end());
   require(!templates.empty(),"source object has no template for its surface");
   auto created=handler->create(&gh.gameInfo(),nullptr);handler->configureObject(created.get(),*gh.randomizer);gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=originalTemplate?templates.back():templates.front();created->setAnchorPos(anchor);
   if(auto monster=std::dynamic_pointer_cast<CGCreature>(created)){monster->initialCharacter=CGCreature::Character::SAVAGE;monster->neverFlees=true;monster->notGrowingTeam=false;monster->gainedArtifact=ArtifactID::NONE;monster->resources=TResources{};monster->message.clear();monster->clearSlots();monster->putStack(SlotID(0),std::make_unique<CStackInstance>(&gh.gameInfo(),CreatureID(sub.getNum()),5));}
   if(auto resource=std::dynamic_pointer_cast<CGResource>(created)){resource->clearSlots();resource->setAmount(5*resource->getResourceHandler()->getAmountMultiplier());}
   if(auto event=std::dynamic_pointer_cast<CGEvent>(created)){event->humanActivate=true;event->computerActivate=false;event->removeAfterVisit=false;event->availableFor.clear();for(int color=0;color<8;++color)event->availableFor.insert(PlayerColor(color));event->configuration.info.clear();event->configuration.info.emplace_back();event->configuration.info.back().visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;}
+  if(customTown)
+  {
+   created->id=ObjectInstanceID(map.objects.size());auto world=era_campaign_admission::bindWorld(state,map.sourceCampaignWorld);auto & setting=world["towns"][std::to_string(created->id.getNum())];
+   setting["visualType"].Integer()=visualMapped.ID.getNum();setting["visualSubtype"].Integer()=visualMapped.subID;persist(JsonNode(),nullptr,nullptr,world);
+  }
   gh.newObject(created,player);if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
  if(c.receiver=="OW")

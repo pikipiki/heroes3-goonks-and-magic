@@ -762,6 +762,18 @@ void CGTownInstance::updateAppearance()
 	auto terrain = tile->getTerrainID();
 	//FIXME: not the best way to do this
 	auto app = getObjectHandler()->getOverride(terrain, this);
+ const auto & map=cb->gameState().getMap();const auto & vm=map.sourceCampaignState;const auto & world=map.sourceCampaignWorld;
+ if(era_campaign_admission::programAdmitted(vm["programId"].String(),vm["vm"]["programSha256"].String())&&era_campaign_admission::worldMatches(vm,world))
+ {
+  const auto & visual=world["towns"][std::to_string(id.getNum())];
+  if(visual["visualType"].isNumber()&&visual["visualSubtype"].isNumber())
+  {
+   const MapObjectID type(visual["visualType"].Integer());const MapObjectSubID subtype(visual["visualSubtype"].Integer());
+   auto templates=LIBRARY->objtypeh->getOriginalTemplates(type,subtype);const bool original=!templates.empty();
+   if(templates.empty())templates=LIBRARY->objtypeh->getHandlerFor(type,subtype)->getTemplates();
+   if(templates.empty())throw std::runtime_error("Original town appearance unavailable");app=original?templates.back():templates.front();
+  }
+ }
 	if (app)
 		appearance = app;
 	const auto demolition = CGMysteriousCave::townDemolitionAnimation(this);

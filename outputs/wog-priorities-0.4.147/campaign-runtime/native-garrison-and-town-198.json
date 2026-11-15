@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.198",
+  "passed": true,
+  "engineSha256": "34b0b3a4e4949d127f7740a748181c059686740f91cef89159241e0256c8aa43",
+  "scope": "Native garrison/fog and actual original town/companion progression; no second-scenario victory.",
+  "garrisonFresh": {
+    "passed": true,
+    "fixtureSha256": "8edec8fcfec1e00f4813858c861815e024de90a17a36d1e334261d50384e6f3c",
+    "saveSha256": "75ca9e980a5de6cd58b3ef1c8ac3462b7e9f57c849e90b93f668709d65c9f0fa",
+    "fields": [
+      "Native garrison ready 1/0/168/2/-1/7/-1/-1"
+    ],
+    "afterUnlock": [
+      "Native garrison unlocked 0/0/168/2/-1/7/-1"
+    ],
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      }
+    ],
+    "checks": [
+      "Raw byte\u22121/255 and257\u21921",
+      "Locked withdrawal rejected",
+      "Locked-target swap rejected",
+      "Donation of2 dragons into empty locked garrison slot succeeds",
+      "256\u21920 unlocks native garrison",
+      "Gorynych2 withdrawn into hero army",
+      "Empty guard slot retains\u22121/type and count7",
+      "Remote marker hidden; allied hero inspection retains native popup before/after hide",
+      "Normal native garrison window keeps autosaveAllowed=false"
+    ]
+  },
+  "webkitReload": {
+    "passed": true,
+    "loadedPending": true,
+    "inputSaveSha256": "75ca9e980a5de6cd58b3ef1c8ac3462b7e9f57c849e90b93f668709d65c9f0fa",
+    "outputSaveSha256": "28593f1d146acfe94caba40a97a4bf2941253f7c94823c6f7da829076c353286",
+    "rawByteAfterReload": [
+      "Native garrison unlocked 0/0/168/2/-1/7/-1"
+    ],
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      }
+    ],
+    "errors": []
+  },
+  "originalTownCreation": {
+    "passed": true,
+    "engineSha256": "34b0b3a4e4949d127f7740a748181c059686740f91cef89159241e0256c8aa43",
+    "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+    "saveSha256": "176bdd677ee1c6fed374994a1f6a682e287c39c2f52eebff7fb48f6050d770c8",
+    "browser": "WebKit",
+    "town": "Gorynych\u2019s",
+    "checks": [
+      "Actual original Grail return creates real native town",
+      "Nightmare1 in native garrison",
+      "VillageHall10 built",
+      "Guild0/tavern5/fort7/townHall11 absent and forbidden",
+      "Decorative original appearance retained through scripted building updates"
+    ],
+    "errors": []
+  },
+  "originalTownReload": {
+    "passed": true,
+    "scope": "Separate WebKit native reload and town inspection on preceding build2; build3 differs only in raw GR:F handling.",
+    "inputSaveSha256": "176bdd677ee1c6fed374994a1f6a682e287c39c2f52eebff7fb48f6050d770c8",
+    "errors": []
+  },
+  "originalNightmarePickup": {
+    "passed": true,
+    "engineSha256": "34b0b3a4e4949d127f7740a748181c059686740f91cef89159241e0256c8aa43",
+    "saveSha256": "12165fe08d7f6eb1105deb7f3eb4ab9ae1e07d238cfb12b3d205a404794c64c3",
+    "checks": [
+      "Real town visit with visiting hero",
+      "Native authorized army transfer ofNightmare1 from town to hero",
+      "Original exit dialogue acknowledges best friend"
+    ],
+    "dialogs": [
+      [
+        "Do you still think this is bad?\nI told you! This is your decision.\nIf you want, you can do all that you want!\nBut don't ask me to build a town for you!"
+      ],
+      [
+        "And take care of my best friend.\nHe can be very useful!"
+      ]
+    ],
+    "errors": []
+  },
+  "productionSmoke": {
+    "passed": true,
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "saveSha256": "0101f0ffa18ddca5e25cdb11237b72e7f829d13751a0806843c09ac0eced0d64"
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "saveSha256": "6c33225aa8bafc89e142ebde1137acbd642ac5e558c492ad11b1f9394c4560f1"
+      }
+    ],
+    "positiveNativeBattleStart": true
+  },
+  "unitTests": {
+    "passed": 739,
+    "skipped": 34,
+    "failed": 0
+  },
+  "allOriginalCampaignsEnabled": false
+}

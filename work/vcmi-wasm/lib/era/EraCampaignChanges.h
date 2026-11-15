@@ -8,6 +8,7 @@
 #include "../mapObjects/CGCreature.h"
 #include "../mapObjects/CGPandoraBox.h"
 #include "../mapObjects/CGTownInstance.h"
+#include "../mapObjects/MiscObjects.h"
 #include "../mapObjects/army/CStackInstance.h"
 #include "../bonuses/BonusSelector.h"
 #include "../bonuses/Limiters.h"
@@ -144,6 +145,10 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    const int gender=campaignInteger(change["gender"]);
    if(!hero||(gender!=0&&gender!=1))throw std::runtime_error("Invalid original hero gender mutation");
    hero->gender=static_cast<EHeroGender>(gender);
+  }
+  else if(kind=="garrisonRemoval")
+  {
+   auto * garrison=dynamic_cast<CGGarrison *>(object);if(!garrison||!change["removable"].isBool())throw std::runtime_error("Invalid original garrison removal policy");garrison->removableUnits=change["removable"].Bool();
   }
   else if(kind=="townName")
   {
