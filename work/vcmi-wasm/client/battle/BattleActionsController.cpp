@@ -310,6 +310,24 @@ void BattleActionsController::enterCreatureCastingMode()
 	ENGINE->fakeMouseMove();
 }
 
+bool BattleActionsController::selectMobileCreatureSpell(SpellID id)
+{
+ const auto active=owner.stacksController->getActiveStack();
+ if(owner.tacticsMode||heroSpellToCast||!active||!active->canCast())return false;
+ auto actions=getPossibleActionsForStack(active);
+ vstd::erase_if(actions,[id](const PossiblePlayerBattleAction & action){return !action.spellcast()||action.spell()!=id;});
+ if(actions.empty())return false;
+ const auto spell=id.toSpell();spells::detail::ProblemImpl problem;
+ if(!spell->canBeCast(problem,owner.getBattle().get(),spells::Mode::CREATURE_ACTIVE,active))return false;
+ if(std::any_of(actions.begin(),actions.end(),[](const auto & action){return action.get()==PossiblePlayerBattleAction::NO_LOCATION;}))
+ {
+  spells::Target target;target.emplace_back();spells::BattleCast cast(owner.getBattle().get(),active,spells::Mode::CREATURE_ACTIVE,spell);
+  if(!spell->battleMechanics(&cast)->canBeCastAt(target))return false;
+  owner.giveCommand(EActionType::MONSTER_SPELL,BattleHex::INVALID,spell->getId());selectedStack=nullptr;return true;
+ }
+ possibleActions=std::move(actions);selectedStack=nullptr;ENGINE->fakeMouseMove();return true;
+}
+
 std::vector<PossiblePlayerBattleAction> BattleActionsController::getPossibleActionsForStack(const CStack *stack) const
 {
 	BattleClientInterfaceData data; //hard to get rid of these things so for now they're required data to pass

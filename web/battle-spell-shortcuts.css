@@ -1,0 +1,26 @@
+html.goonk-mobile #mobile-app .native-spell-shortcuts[hidden],html.goonk-mobile #mobile-app .native-spell-editor[hidden]{display:none!important}
+html.goonk-mobile #mobile-app .native-spell-shortcuts{flex:none;min-width:0;padding:4px;background:linear-gradient(135deg,#343d3d,#18201e);border:2px outset #65766c;touch-action:pan-y}
+#mobile-app .native-spell-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+html.goonk-mobile #mobile-app .native-spell-grid button{position:relative;min-width:44px;min-height:62px!important;padding:3px 2px!important;border:2px outset #68816a!important;border-radius:2px!important;background:linear-gradient(#2b3d2b,#112319)!important;color:#d1efb6!important;font-size:10px!important;line-height:1.1!important;display:flex;flex-direction:column;align-items:center;gap:2px;overflow:hidden}
+#mobile-app .native-spell-grid img{width:32px;height:30px;object-fit:contain;pointer-events:none}
+#mobile-app .native-spell-grid kbd{position:absolute;left:2px;top:1px;font:10px system-ui;color:#ffdf8e}
+#mobile-app .native-spell-grid small{position:absolute;right:2px;top:2px;font-size:9px;color:#bee7ff;text-shadow:0 1px #000}
+#mobile-app .quick-spell-name{max-width:100%;overflow-wrap:anywhere;font-size:9px}
+html.goonk-mobile #mobile-app .native-spell-edit{width:100%;min-height:44px!important;padding:3px!important;margin-top:4px;font-size:12px!important;border-radius:3px;background:#29362e;color:#e4efdb}
+html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel:has(.native-spell-shortcuts){overflow-y:auto!important;touch-action:pan-y;justify-content:flex-start!important;overscroll-behavior:contain}
+html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel:has(.native-spell-shortcuts) .battle-panel-card{flex:0 0 auto!important}
+#mobile-app .native-spell-editor{position:absolute;inset:0;z-index:30;background:#17221d;color:#f5e8c2;border:2px ridge #8b956b;display:flex;flex-direction:column;gap:10px;padding:12px;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;min-height:0}
+#mobile-app .native-spell-editor>*{flex-shrink:0}
+#mobile-app .native-spell-editor header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#mobile-app .native-spell-editor h2{margin:0;font:700 17px system-ui}
+#mobile-app .native-spell-editor p{font:12px/1.4 system-ui;margin:0}
+#mobile-app .native-spell-editor button{min-height:44px;min-width:44px;padding:8px;border:2px outset #6f8769;border-radius:3px;background:#25392b;color:#e2f1cd;font:14px system-ui}
+#mobile-app .native-spell-editor input{min-height:44px;width:100%;padding:8px;background:#101b15;border:1px solid #80906d;color:#fff;font:16px system-ui}
+#mobile-app .native-spell-options{display:grid;gap:6px}
+#mobile-app .native-spell-options button{display:flex;align-items:center;gap:8px;text-align:left}
+#mobile-app .native-spell-options img{width:36px;height:32px;object-fit:contain}
+#mobile-app[data-spell-shortcuts-editing=true] #mobile-scene,#mobile-app[data-spell-shortcuts-editing=true] #battle-strategic-scene{pointer-events:none}
+@container goonk-viewport (orientation:landscape){#mobile-app .native-spell-grid{grid-template-columns:repeat(3,minmax(44px,1fr))}html.goonk-mobile #mobile-app .native-spell-grid button{min-height:52px!important}#mobile-app .native-spell-edit{margin-top:4px}#mobile-app .native-spell-editor{padding:8px 12px}#mobile-app .native-spell-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container goonk-viewport (orientation:portrait){html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel:has(.native-spell-shortcuts){max-height:clamp(148px,29dvh,250px)!important}}
+/* The editor scrolls inside the field; no ancestor may block its vertical gesture. */
+html.goonk-mobile #mobile-app[data-spell-shortcuts-editing=true] .mobile-play{touch-action:pan-y!important}

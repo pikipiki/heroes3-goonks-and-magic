@@ -103,6 +103,8 @@ public:
 
 	/// enter targeted spellcasting mode for creature, e.g. via "F" hotkey
 	void enterCreatureCastingMode();
+	/// Select an existing native active creature spell without drawing another random spell.
+	bool selectMobileCreatureSpell(SpellID id);
 
 	/// initialize hero spellcasting mode, e.g. on selecting spell in spellbook
 	void castThisSpell(SpellID spellID);

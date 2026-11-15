@@ -1,4 +1,6 @@
 import {mapTwoClicks} from './map-click-preferences.mjs';
+import {createBattleSpellShortcuts} from './battle-spell-shortcuts.mjs';
+
 import {createCaveBuilder} from './cave-builder.mjs';
 import {defaultBattleView,battleOneClick} from './battle-preferences.mjs';
 import {siegeTargets,siegePickerTargets,paintSiegeTargets} from './battle-siege.mjs';
@@ -162,6 +164,7 @@ function mount(){
  const caveBuilder=createCaveBuilder({root,command});
  const creatureView=createCreaturePresentation({root,command,pointer,openRecruit,buildingArt:(state,building)=>townBuildings.artURL(state,building),openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
  const spellbook=createMobileSpellbook({root,command});
+ const spellShortcuts=createBattleSpellShortcuts({root,command,notify});
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});
  const campaignSetup=createCampaignSetup({root,command});
  const heroEquipment=createHeroEquipment({root,command,pointer,onViewChange:()=>controls(),portrait:u=>portrait(u),notify});
@@ -308,7 +311,7 @@ function mount(){
   battleResult.update(state);dialogPresentation.update(state);
   tavern.update(state);townServices.update(state);caveBuilder.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
-  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
+  creatureView.update(state);spellbook.update(state);spellShortcuts.update(state);mageGuild.update(state);heroEquipment.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
   if(detailReturn==='army'&&['map','town'].includes(state.mode)){detailReturn='';showList('army');}
   const choices=root.querySelector('.recruit-choices');choices.hidden=true;
 

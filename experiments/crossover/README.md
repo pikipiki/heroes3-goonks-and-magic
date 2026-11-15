@@ -137,3 +137,7 @@ Avant de commencer, « Préparer 5 sorts » permet d’affecter les cinq raccour
 Les boutons utilisent les icônes originales Heroes dans une grille de commandes RTS : cinq raccourcis en bas en portrait, carte 3 × 3 à droite en paysage. Le panneau reste défilable verticalement. Les sorts, invocations, soins, résurrections, obstacles, effets temporaires et animations sont évalués par les règles natives ; les boucliers Protoss absorbent les dégâts avant les points de vie.
 
 Validation navigateur sur le bundle séparé : `node experiments/crossover/tests/universal-magic-browser.mjs` (Chromium et WebKit). Ce test emploie de vrais sorts pour provoquer blessures, morts, résurrection et invocation ; aucun point de vie artificiel n’est injecté. `tests/render-fps-browser.mjs` mesure séparément le rendu à 50 fps.
+
+Les mêmes cinq choix sont disponibles dans les combats natifs Heroes, en « Classic view » et « Vertical view », y compris après « Classique » dans la démo crossover. La préparation se fait avant une action de ton équipe ; elle ne dépense pas de mana et ne passe pas le tour. Les capacités de créatures attendent le tour du lanceur réel. Les raccourcis appellent directement le ciblage natif : coûts, charges, immunités et limite de sorts par round restent contrôlés par VCMI. Le sélecteur défile sur mobile et change de disposition en paysage.
+
+`tests/native-shortcuts-browser.mjs` vérifie les deux vues et orientations sur Chromium et WebKit avec de vrais sorts, blessures et résurrection, sans changer artificiellement les points de vie.

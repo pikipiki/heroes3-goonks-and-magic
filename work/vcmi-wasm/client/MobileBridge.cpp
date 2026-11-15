@@ -1798,6 +1798,24 @@ void publishMobileState(){
    n["heroSpellCastLimitReached"].Bool()=spellProblem==ESpellCastProblem::CASTS_PER_TURN_LIMIT;
    n["heroCanCast"].Bool()=manualControl&&!tactics&&caster&&(spellProblem==ESpellCastProblem::OK||spellProblem==ESpellCastProblem::MAGIC_IS_BLOCKED);
    n["canAct"].Bool()=manualControl&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active)n["canWait"].Bool()=!active->waitedThisTurn;n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["stackId"].Integer()=active->unitId();n["activeUnit"]["nativeFlags"]["flying"].Bool()=active->hasBonusOfType(BonusType::FLYING);n["activeUnit"]["nativeFlags"]["attacksAllAdjacent"].Bool()=active->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["activeUnit"]["controlled"].Bool()=b->getBattle()->battleGetOwner(active)==p->playerID;n["activeUnit"]["commander"].Bool()=active->unitSlot()==SlotID::COMMANDER_SLOT_PLACEHOLDER;n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
+   // Complete known catalogue for five persistent shortcuts, shared by both mobile battle views.
+   auto & quick=n["battleSpellShortcuts"];quick.Vector();
+   if(caster&&b->curInt&&caster->getOwner()==p->playerID&&caster->hasSpellbook())for(const auto & spell:LIBRARY->spellh->objects)
+   {
+    if(!spell->isCombat()||!caster->canCastThisSpell(spell.get()))continue;
+    JsonNode row;row["id"].Integer()=spell->id.getNum();row["caster"].Integer()=-1;row["name"].String()=spell->getNameTranslated();row["description"].String()=spell->getDescriptionTranslated(caster->getSpellSchoolLevel(spell.get()));row["cost"].Integer()=b->curInt->cb->getSpellCost(spell.get(),caster);
+    spells::detail::ProblemImpl problem;row["enabled"].Bool()=n["canUseMagic"].Bool()&&!targeting&&n["heroCanCast"].Bool()&&row["cost"].Integer()<=caster->mana&&spell->canBeCast(problem,b->getBattle().get(),spells::Mode::HERO,caster);quick.Vector().push_back(std::move(row));
+   }
+   for(const auto stack:b->getBattle()->battleGetAllStacks())
+   {
+    if(stack->getCount()<=0||b->getBattle()->battleGetOwner(stack)!=p->playerID)continue;std::set<int> seen;
+    for(const auto & bonus:*stack->getBonusesOfType(BonusType::SPELLCASTER))
+    {
+     const auto id=bonus->subtype.as<SpellID>();if(bonus->parameters||!id.hasValue()||!seen.insert(id.getNum()).second)continue;const auto spell=id.toSpell();if(!spell->isCombat())continue;
+     JsonNode row;row["id"].Integer()=id.getNum();row["caster"].Integer()=stack->unitId();row["creature"].String()=stack->unitType()->getJsonKey();row["sourceName"].String()=stack->unitType()->getNameSingularTranslated();row["name"].String()=spell->getNameTranslated();row["description"].String()=spell->getDescriptionTranslated(stack->getSpellSchoolLevel(spell));row["casts"].Integer()=stack->casts.available();
+     const auto & actions=b->actionsController->getPossibleActions();const bool selectable=std::any_of(actions.begin(),actions.end(),[id](const auto & action){return action.spellcast()&&action.spell()==id;});spells::detail::ProblemImpl problem;row["enabled"].Bool()=n["canUseMagic"].Bool()&&!targeting&&active==stack&&stack->canCast()&&selectable&&spell->canBeCast(problem,b->getBattle().get(),spells::Mode::CREATURE_ACTIVE,stack);quick.Vector().push_back(std::move(row));
+    }
+   }
    for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());mobileSpellEffects(item,*stack);item["nativeFlags"]["flying"].Bool()=stack->hasBonusOfType(BonusType::FLYING);item["nativeFlags"]["attacksAllAdjacent"].Bool()=stack->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();item["luck"].Integer()=stack->luckVal();item["magicResistance"].Integer()=stack->magicResistance();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
    const bool previewSpellTargets=targeting&&manualControl;
    if(!targeting)if(const auto spell=b->actionsController->targetedSpell())n["creatureSpellName"].String()=spell->getNameTranslated();
@@ -2564,6 +2582,16 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    }
    else if(combatReady&&!targeting&&a==4&&b>=0&&b<GameConstants::BFIELD_SIZE)
     spells.performMobileAction(BattleHex(b));
+   else if(combatReady&&!targeting&&a==5&&b>=0&&b<int(LIBRARY->spellh->objects.size()))
+   {
+    const auto spell=SpellID(b).toSpell();
+    if(c==-1)
+    {
+     const auto hero=battle->currentHero();spells::detail::ProblemImpl problem;const auto castProblem=hero?battle->getBattle()->battleCanCastSpell(hero,spells::Mode::HERO):ESpellCastProblem::NO_HERO_TO_CAST_SPELL;
+     if(hero&&hero->hasSpellbook()&&hero->canCastThisSpell(spell)&&(castProblem==ESpellCastProblem::OK||castProblem==ESpellCastProblem::MAGIC_IS_BLOCKED)&&spell->isCombat()&&hero->mana>=battle->curInt->cb->getSpellCost(spell,hero)&&spell->canBeCast(problem,battle->getBattle().get(),spells::Mode::HERO,hero))spells.castThisSpell(SpellID(b));
+    }
+    else if(const auto active=battle->stacksController->getActiveStack();active&&int(active->unitId())==c&&battle->getBattle()->battleGetOwner(active)==p->playerID)spells.selectMobileCreatureSpell(SpellID(b));
+   }
    else if(combatReady&&!targeting&&(a==0||a==1))
     shortcut(a==1?EShortcut::BATTLE_USE_CREATURE_SPELL:EShortcut::BATTLE_CAST_SPELL);
   }
