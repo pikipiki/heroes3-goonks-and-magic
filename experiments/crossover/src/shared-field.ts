@@ -14,12 +14,14 @@ export function battleView(units:NativeUnit[],camera:{x:number;y:number}):{zoom:
  const zoom=Math.min(1.15,760/Math.max(1,r-l),460/Math.max(1,b-t));
  return {zoom,x:400-(l+r)/2*zoom,y:250-(t+b)/2*zoom};
 }
-// Enemy targets take precedence over overlapping allies once a troop is selected.
-// The tall touch area follows the enlarged bodies rather than only their feet.
-export function battlePick(units:NativeUnit[],positions:Map<number,{x:number;y:number}>,point:{x:number;y:number},camera:{x:number;y:number},selected:boolean,portrait=false,mirrored=false):NativeUnit|undefined {
+// A normal tap can always reclaim a friendly body in a crowded melee.
+// Explicit attack targeting gives enemies priority; transparent margins do not.
+export function battlePick(units:NativeUnit[],positions:Map<number,{x:number;y:number}>,point:{x:number;y:number},camera:{x:number;y:number},preferEnemy:boolean,portrait=false,mirrored=false,hitTest?:(unit:NativeUnit,x:number,y:number)=>boolean):NativeUnit|undefined {
  const distance=(unit:NativeUnit):number=>{const at=positions.get(unit.id)||unit,nx=point.x-(at.x-camera.x),ny=point.y-(at.y-camera.y),dx=portrait?ny:nx,dy=portrait?(mirrored?nx:-nx):ny;return Math.hypot(dx,Math.max(0,-dy-COMBAT_BODY_HEIGHT,dy-10))+Math.abs(dy)*.15;};
  const candidates=units.filter(unit=>unit.hp>0&&distance(unit)<28).sort((a,b)=>distance(a)-distance(b));
- return (selected?candidates.find(unit=>unit.owner===1):undefined)||candidates[0];
+ const solid=hitTest?candidates.filter(unit=>{const at=positions.get(unit.id)||unit,nx=point.x-(at.x-camera.x),ny=point.y-(at.y-camera.y);return hitTest(unit,portrait?ny:nx,portrait?(mirrored?nx:-nx):ny);}):candidates;
+ const targets=solid.length?solid:candidates;
+ return targets.find(unit=>unit.owner===(preferEnemy?1:0))||targets[0];
 }
 export function obstacleVisual(tiles:{x:number;y:number}[]):{x:number;y:number;size:number}|undefined {
  if(!tiles.length)return;
@@ -35,6 +37,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  type SpritePair={before:HTMLCanvasElement;after:HTMLCanvasElement;blend:HTMLCanvasElement};
  const spriteCache=new Map<number,{raw:Uint32Array;canvas:HTMLCanvasElement;bounds:SpriteBounds}>(),firstPixels=new Uint8ClampedArray(192*192*4),scaledPixels=new Uint8ClampedArray(384*384*4);
  const heroBounds=new Map<number,SpriteBounds>(),starBounds=new Map<number,SpriteBounds>();
+ type BodyHit={image:HTMLCanvasElement;x:number;y:number;scale:number;flip:boolean;height:number};const bodyHits=new Map<number,BodyHit>();
  const sprites=new Map<number,SpritePair>(),positions=new Map<number,{x:number;y:number}>();
  const makeSprite=():HTMLCanvasElement=>{const image=win.document.createElement('canvas');image.width=image.height=384;return image;};
  const heroCanvases=new Map<number,HTMLCanvasElement>();let previousArt:HTMLCanvasElement|undefined;
@@ -100,6 +103,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   for(const obstacle of obstacles){const clip=spellArt?.rows.find(c=>c.id===100000+obstacle.id&&c.kind==='obstacle'),place=obstacleVisual(obstacle.tiles);if(clip&&place)drawClip(clip,place.x,place.y,(nativeFrame*42)%950,place.size);}
   const art=source.goonkCrossoverArt,cell=art?.cell||128;if(art?.canvas!==previousArt){previousArt=art?.canvas;heroBounds.clear();heroCanvases.clear();}
   const blendedHeroes=new Map<string,HTMLCanvasElement>();
+  bodyHits.clear();
   for(const unit of [...corpses.values(),...units].filter(u=>!revivedBodies.has(u.id)).sort((a,b)=>portrait?(mirrorBackground?1:-1)*((positions.get(a.id)||a).x-(positions.get(b.id)||b).x):(positions.get(a.id)||a).y-(positions.get(b.id)||b).y)){
    const point=positions.get(unit.id)||unit,worldX=point.x-camera.x,worldY=point.y-camera.y;context.save();context.translate(worldX,worldY);upright();let bodyHeight=COMBAT_BODY_HEIGHT;try{const x=0,y=0,old=oldUnits.get(unit.id),moving=!!old&&(old.x!==unit.x||old.y!==unit.y);
    const chosen=unit.owner===0&&selected!==undefined&&(selected<0||selected===unit.stackId);
@@ -114,18 +118,18 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
      if(deadAt!==undefined){const position=Math.min(7,(now-deadAt)/110),index=Math.floor(position);animation={pose:4,frame:index,next:Math.min(7,index+1),mix:position-index};}
      else if(hitUntil>now){const position=Math.min(7,(1-(hitUntil-now)/320)*8),index=Math.floor(position);animation={pose:3,frame:index,next:Math.min(7,index+1),mix:position-index};}
      else if(castUntil>now){const position=Math.min(7,(1-(castUntil-now)/800)*8),index=Math.floor(position);animation={pose:5,frame:index,next:Math.min(7,index+1),mix:position-index};}
-     context.save();context.translate(x,y+5);if(units.some(enemy=>enemy.owner!==unit.owner&&enemy.x<unit.x))context.scale(-1,1);
+     context.save();context.translate(x,y+5);const flip=units.some(enemy=>enemy.owner!==unit.owner&&enemy.x<unit.x);if(flip)context.scale(-1,1);
      const blendKey=unit.stackId+':'+animation.pose+':'+animation.frame+':'+animation.next+':'+animation.mix;let heroBlend=blendedHeroes.get(blendKey);if(!heroBlend){heroBlend=heroCanvases.get(unit.id);if(!heroBlend){heroBlend=win.document.createElement('canvas');heroBlend.width=heroBlend.height=cell;heroCanvases.set(unit.id,heroBlend);}const heroContext=heroBlend.getContext('2d')!;
      heroContext.clearRect(0,0,cell,cell);heroContext.globalAlpha=1-animation.mix;heroContext.drawImage(atlas,animation.frame*cell,(row.row+animation.pose)*cell,cell,cell,0,0,cell,cell);
      heroContext.globalCompositeOperation='lighter';heroContext.globalAlpha=animation.mix;heroContext.drawImage(atlas,animation.next*cell,(row.row+animation.pose)*cell,cell,cell,0,0,cell,cell);heroContext.globalCompositeOperation='source-over';blendedHeroes.set(blendKey,heroBlend);}
-     let bounds=heroBounds.get(unit.stackId!);if(!bounds){bounds=opaqueBounds(atlas.getContext('2d')!.getImageData(0,row.row*cell,cell,cell).data,cell,cell);heroBounds.set(unit.stackId!,bounds);}const place=spritePlacement(bounds);bodyHeight=bounds.height*place.scale;context.drawImage(heroBlend,place.x,place.y,cell*place.scale,cell*place.scale);context.restore();
+     let bounds=heroBounds.get(unit.stackId!);if(!bounds){bounds=opaqueBounds(atlas.getContext('2d')!.getImageData(0,row.row*cell,cell,cell).data,cell,cell);heroBounds.set(unit.stackId!,bounds);}const place=spritePlacement(bounds);bodyHeight=bounds.height*place.scale;bodyHits.set(unit.id,{image:heroBlend,x:place.x,y:5+place.y,scale:place.scale,flip,height:bodyHeight});context.drawImage(heroBlend,place.x,place.y,cell*place.scale,cell*place.scale);context.restore();
     }
    }else if(!unit.heroes){
     const pair=sprites.get(unit.id);if(!pair)continue;
     context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
     const marineBlend=pair.blend,marineContext=marineBlend.getContext('2d')!;marineContext.clearRect(0,0,384,384);marineContext.globalAlpha=1-amount;marineContext.drawImage(pair.before,0,0);
     marineContext.globalCompositeOperation='lighter';marineContext.globalAlpha=amount;marineContext.drawImage(pair.after,0,0);marineContext.globalCompositeOperation='source-over';
-    const hitUntil=hits.get(unit.id)||0,recoil=hitUntil>now?Math.sin((1-(hitUntil-now)/320)*Math.PI)*7:0;const bounds=starBounds.get(unit.id)||{x:0,y:0,width:384,height:384},place=starcraftPlacement(bounds);bodyHeight=bounds.height*place.scale;context.drawImage(marineBlend,x+place.x+recoil,y+5+place.y,384*place.scale,384*place.scale);
+    const hitUntil=hits.get(unit.id)||0,recoil=hitUntil>now?Math.sin((1-(hitUntil-now)/320)*Math.PI)*7:0;const bounds=starBounds.get(unit.id)||{x:0,y:0,width:384,height:384},place=starcraftPlacement(bounds);bodyHeight=bounds.height*place.scale;bodyHits.set(unit.id,{image:marineBlend,x:place.x+recoil,y:5+place.y,scale:place.scale,flip:false,height:bodyHeight});context.drawImage(marineBlend,x+place.x+recoil,y+5+place.y,384*place.scale,384*place.scale);
    }
    const hitUntil=hits.get(unit.id)||0;if(hitUntil>now){const age=1-(hitUntil-now)/320;context.strokeStyle='#fff0be';context.globalAlpha=1-age;context.lineWidth=2;for(let i=0;i<7;i++){const angle=i*Math.PI*2/7,r=8+age*27;context.beginPath();context.moveTo(x+Math.cos(angle)*r,y-bodyHeight/2+Math.sin(angle)*r);context.lineTo(x+Math.cos(angle)*(r+7),y-bodyHeight/2+Math.sin(angle)*(r+7));context.stroke();}context.globalAlpha=1;}
    const damage=damageText.get(unit.id);if(damage&&now-damage.at<850){const age=(now-damage.at)/850;context.globalAlpha=1-age;context.font='bold 20px sans-serif';context.textAlign='center';context.fillStyle='#ffe5bf';context.fillText('−'+Number(damage.amount.toFixed(1)).toLocaleString('fr-FR'),x,y-bodyHeight-8-age*30);context.globalAlpha=1;}
@@ -152,10 +156,17 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   context.setTransform(1,0,0,1,0,0);
   canvas.dataset.heroesUnits=String(units.filter(unit=>unit.heroes).length);canvas.dataset.starcraftUnits=String(units.filter(unit=>!unit.heroes).length);canvas.dataset.frame=String(nativeFrame);
  };
+ const hitBody=(unit:NativeUnit,x:number,y:number):boolean=>{const body=bodyHits.get(unit.id);if(!body)return false;
+  // Health bars remain a reliable selection handle when bodies are covered.
+  if(Math.abs(x)<=18&&y>=-body.height-8&&y<=-body.height+3)return true;
+  const px=Math.floor(((body.flip?-x:x)-body.x)/body.scale),py=Math.floor((y-body.y)/body.scale);
+  if(px<0||py<0||px>=body.image.width||py>=body.image.height)return false;
+  return body.image.getContext('2d')!.getImageData(px,py,1,1).data[3]>32;
+ };
  const pointer=(event:PointerEvent):void=>{
   const box=canvas.getBoundingClientRect(),transform=portrait?{zoom:1,x:0,y:0}:view||{zoom:1,x:0,y:0},camera=api.camera();
   const sx=(event.clientX-box.left)*(portrait?500:800)/box.width,sy=(event.clientY-box.top)*(portrait?800:500)/box.height;const x=((portrait?(mirrorBackground?sy:800-sy):sx)-transform.x)/transform.zoom,y=((portrait?sx:sy)-transform.y)/transform.zoom;
-  const targetKind=canvas.dataset.spellTarget;const pickUnits=canvas.dataset.spellMode&&['ally','teleport','sacrifice'].includes(targetKind||'')?units.filter(u=>u.owner===0):canvas.dataset.spellMode&&targetKind==='enemy'?units.filter(u=>u.owner===1):units;const nearby=battlePick(pickUnits,positions,{x,y},camera,selected!==undefined,portrait,mirrorBackground);
+  const targetKind=canvas.dataset.spellTarget;const pickUnits=canvas.dataset.spellMode&&['ally','teleport','sacrifice'].includes(targetKind||'')?units.filter(u=>u.owner===0):canvas.dataset.spellMode&&targetKind==='enemy'?units.filter(u=>u.owner===1):units;const nearby=battlePick(pickUnits,positions,{x,y},camera,canvas.dataset.spellMode?targetKind==='enemy':attackMode,portrait,mirrorBackground,hitBody);
   if(canvas.dataset.spellMode){
    if(canvas.dataset.spellMode==='target'){const eligible=JSON.parse(canvas.dataset.spellTargets||'[]') as number[];const fallen=[...units.filter(u=>u.hp<=0),...corpses.values()].filter(u=>!revivedBodies.has(u.id)&&(!canvas.dataset.revive||canvas.dataset.revive!=='true'||eligible.includes(u.stackId!)));const deadPick=fallen.find(u=>Math.hypot(x-(u.x-camera.x),y-(u.y-camera.y))<35||Math.hypot(x-bodyPoint(u).x,y-bodyPoint(u).y)<40);const target=canvas.dataset.revive==='true'?(deadPick||nearby):(nearby||deadPick);const at=target&&targetKind!=='ground'?(positions.get(target.id)||target):undefined;canvas.dispatchEvent(new CustomEvent('crossover-spell-target',{detail:{stack:target?.stackId,owner:target?.owner,hp:target?.hp,x:at?at.x-camera.x:x,y:at?at.y-camera.y:y}}));}return;
   }
@@ -169,7 +180,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   canvas.dispatchEvent(new CustomEvent('crossover-order-issued',{detail:attacking?name+' · ordre d’attaque envoyé'+(nearby?.owner===1?' sur l’ennemi.':' vers ce point.'):name+' · déplacement ordonné.'}));attackMode=false;canvas.dataset.attackMode='';
  };
  const notifySelection=():void=>{const name=selected===undefined?'Sélectionne une troupe, puis touche un ennemi pour attaquer.':selected<0?'Toute l’armée sélectionnée':(plan.stacks.find(row=>row.id===selected)?.name||'Troupe')+' sélectionnés';canvas.dataset.selection=selected===undefined?'':selected<0?'Toute l’armée':plan.stacks.find(row=>row.id===selected)?.name||'';canvas.dispatchEvent(new CustomEvent('crossover-selection',{detail:{id:selected,name}}));};
- const select=(id:number):void=>{if(id>=0&&!units.some(unit=>unit.stackId===id&&unit.owner===0&&unit.hp>0))return;selected=id;notifySelection();api.acknowledge?.('select');};
+ const select=(id:number):void=>{if(id>=0&&!units.some(unit=>unit.stackId===id&&unit.owner===0&&unit.hp>0))return;selected=id;attackMode=false;marker=undefined;canvas.dataset.attackMode='';notifySelection();api.acknowledge?.('select');};
  const selectAll=():void=>select(-1);
  const selectGroup=(event:Event):void=>{const id=(event as CustomEvent).detail;if(Number.isSafeInteger(id))select(id);};
  const mode=(event:Event):void=>{attackMode=(event as CustomEvent).detail==='attack';canvas.dataset.attackMode=attackMode?'armed':'';if(attackMode)api.acknowledge?.('armed');};
@@ -181,6 +192,6 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   const surfaces=new Set<HTMLCanvasElement>([canvas,backdrop,...heroCanvases.values(),...Array.from(spriteCache.values(),entry=>entry.canvas)]);
   for(const pair of sprites.values())for(const image of [pair.before,pair.after,pair.blend])surfaces.add(image);
   for(const image of surfaces){image.width=0;image.height=0;}
-  heroCanvases.clear();spriteCache.clear();sprites.clear();units=[];oldUnits.clear();corpses.clear();spellEffects.length=0;
+  bodyHits.clear();heroCanvases.clear();spriteCache.clear();sprites.clear();units=[];oldUnits.clear();corpses.clear();spellEffects.length=0;
   canvas.removeEventListener('crossover-obstacles',obstacleChange);canvas.removeEventListener('crossover-native-changed',changed);canvas.removeEventListener("crossover-spell-effect",spellFx);closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
 }

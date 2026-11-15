@@ -10,12 +10,14 @@ export function battleView(units, camera) {
     const zoom = Math.min(1.15, 760 / Math.max(1, r - l), 460 / Math.max(1, b - t));
     return { zoom, x: 400 - (l + r) / 2 * zoom, y: 250 - (t + b) / 2 * zoom };
 }
-// Enemy targets take precedence over overlapping allies once a troop is selected.
-// The tall touch area follows the enlarged bodies rather than only their feet.
-export function battlePick(units, positions, point, camera, selected, portrait = false, mirrored = false) {
+// A normal tap can always reclaim a friendly body in a crowded melee.
+// Explicit attack targeting gives enemies priority; transparent margins do not.
+export function battlePick(units, positions, point, camera, preferEnemy, portrait = false, mirrored = false, hitTest) {
     const distance = (unit) => { const at = positions.get(unit.id) || unit, nx = point.x - (at.x - camera.x), ny = point.y - (at.y - camera.y), dx = portrait ? ny : nx, dy = portrait ? (mirrored ? nx : -nx) : ny; return Math.hypot(dx, Math.max(0, -dy - COMBAT_BODY_HEIGHT, dy - 10)) + Math.abs(dy) * .15; };
     const candidates = units.filter(unit => unit.hp > 0 && distance(unit) < 28).sort((a, b) => distance(a) - distance(b));
-    return (selected ? candidates.find(unit => unit.owner === 1) : undefined) || candidates[0];
+    const solid = hitTest ? candidates.filter(unit => { const at = positions.get(unit.id) || unit, nx = point.x - (at.x - camera.x), ny = point.y - (at.y - camera.y); return hitTest(unit, portrait ? ny : nx, portrait ? (mirrored ? nx : -nx) : ny); }) : candidates;
+    const targets = solid.length ? solid : candidates;
+    return targets.find(unit => unit.owner === (preferEnemy ? 1 : 0)) || targets[0];
 }
 export function obstacleVisual(tiles) {
     if (!tiles.length)
@@ -33,6 +35,7 @@ export function sharedField(win, canvas, api, plan) {
     const clock = new RenderClock(), resolution = new RenderDensity(), timeline = new SimulationTimeline(), oldUnits = new Map(), cycles = new Map(), deaths = new Set(), hits = new Map();
     const spriteCache = new Map(), firstPixels = new Uint8ClampedArray(192 * 192 * 4), scaledPixels = new Uint8ClampedArray(384 * 384 * 4);
     const heroBounds = new Map(), starBounds = new Map();
+    const bodyHits = new Map();
     const sprites = new Map(), positions = new Map();
     const makeSprite = () => { const image = win.document.createElement('canvas'); image.width = image.height = 384; return image; };
     const heroCanvases = new Map();
@@ -244,6 +247,7 @@ export function sharedField(win, canvas, api, plan) {
             heroCanvases.clear();
         }
         const blendedHeroes = new Map();
+        bodyHits.clear();
         for (const unit of [...corpses.values(), ...units].filter(u => !revivedBodies.has(u.id)).sort((a, b) => portrait ? (mirrorBackground ? 1 : -1) * ((positions.get(a.id) || a).x - (positions.get(b.id) || b).x) : (positions.get(a.id) || a).y - (positions.get(b.id) || b).y)) {
             const point = positions.get(unit.id) || unit, worldX = point.x - camera.x, worldY = point.y - camera.y;
             context.save();
@@ -280,7 +284,8 @@ export function sharedField(win, canvas, api, plan) {
                         }
                         context.save();
                         context.translate(x, y + 5);
-                        if (units.some(enemy => enemy.owner !== unit.owner && enemy.x < unit.x))
+                        const flip = units.some(enemy => enemy.owner !== unit.owner && enemy.x < unit.x);
+                        if (flip)
                             context.scale(-1, 1);
                         const blendKey = unit.stackId + ':' + animation.pose + ':' + animation.frame + ':' + animation.next + ':' + animation.mix;
                         let heroBlend = blendedHeroes.get(blendKey);
@@ -308,6 +313,7 @@ export function sharedField(win, canvas, api, plan) {
                         }
                         const place = spritePlacement(bounds);
                         bodyHeight = bounds.height * place.scale;
+                        bodyHits.set(unit.id, { image: heroBlend, x: place.x, y: 5 + place.y, scale: place.scale, flip, height: bodyHeight });
                         context.drawImage(heroBlend, place.x, place.y, cell * place.scale, cell * place.scale);
                         context.restore();
                     }
@@ -329,6 +335,7 @@ export function sharedField(win, canvas, api, plan) {
                     const hitUntil = hits.get(unit.id) || 0, recoil = hitUntil > now ? Math.sin((1 - (hitUntil - now) / 320) * Math.PI) * 7 : 0;
                     const bounds = starBounds.get(unit.id) || { x: 0, y: 0, width: 384, height: 384 }, place = starcraftPlacement(bounds);
                     bodyHeight = bounds.height * place.scale;
+                    bodyHits.set(unit.id, { image: marineBlend, x: place.x + recoil, y: 5 + place.y, scale: place.scale, flip: false, height: bodyHeight });
                     context.drawImage(marineBlend, x + place.x + recoil, y + 5 + place.y, 384 * place.scale, 384 * place.scale);
                 }
                 const hitUntil = hits.get(unit.id) || 0;
@@ -440,13 +447,25 @@ export function sharedField(win, canvas, api, plan) {
         canvas.dataset.starcraftUnits = String(units.filter(unit => !unit.heroes).length);
         canvas.dataset.frame = String(nativeFrame);
     };
+    const hitBody = (unit, x, y) => {
+        const body = bodyHits.get(unit.id);
+        if (!body)
+            return false;
+        // Health bars remain a reliable selection handle when bodies are covered.
+        if (Math.abs(x) <= 18 && y >= -body.height - 8 && y <= -body.height + 3)
+            return true;
+        const px = Math.floor(((body.flip ? -x : x) - body.x) / body.scale), py = Math.floor((y - body.y) / body.scale);
+        if (px < 0 || py < 0 || px >= body.image.width || py >= body.image.height)
+            return false;
+        return body.image.getContext('2d').getImageData(px, py, 1, 1).data[3] > 32;
+    };
     const pointer = (event) => {
         const box = canvas.getBoundingClientRect(), transform = portrait ? { zoom: 1, x: 0, y: 0 } : view || { zoom: 1, x: 0, y: 0 }, camera = api.camera();
         const sx = (event.clientX - box.left) * (portrait ? 500 : 800) / box.width, sy = (event.clientY - box.top) * (portrait ? 800 : 500) / box.height;
         const x = ((portrait ? (mirrorBackground ? sy : 800 - sy) : sx) - transform.x) / transform.zoom, y = ((portrait ? sx : sy) - transform.y) / transform.zoom;
         const targetKind = canvas.dataset.spellTarget;
         const pickUnits = canvas.dataset.spellMode && ['ally', 'teleport', 'sacrifice'].includes(targetKind || '') ? units.filter(u => u.owner === 0) : canvas.dataset.spellMode && targetKind === 'enemy' ? units.filter(u => u.owner === 1) : units;
-        const nearby = battlePick(pickUnits, positions, { x, y }, camera, selected !== undefined, portrait, mirrorBackground);
+        const nearby = battlePick(pickUnits, positions, { x, y }, camera, canvas.dataset.spellMode ? targetKind === 'enemy' : attackMode, portrait, mirrorBackground, hitBody);
         if (canvas.dataset.spellMode) {
             if (canvas.dataset.spellMode === 'target') {
                 const eligible = JSON.parse(canvas.dataset.spellTargets || '[]');
@@ -481,7 +500,7 @@ export function sharedField(win, canvas, api, plan) {
     };
     const notifySelection = () => { const name = selected === undefined ? 'Sélectionne une troupe, puis touche un ennemi pour attaquer.' : selected < 0 ? 'Toute l’armée sélectionnée' : (plan.stacks.find(row => row.id === selected)?.name || 'Troupe') + ' sélectionnés'; canvas.dataset.selection = selected === undefined ? '' : selected < 0 ? 'Toute l’armée' : plan.stacks.find(row => row.id === selected)?.name || ''; canvas.dispatchEvent(new CustomEvent('crossover-selection', { detail: { id: selected, name } })); };
     const select = (id) => { if (id >= 0 && !units.some(unit => unit.stackId === id && unit.owner === 0 && unit.hp > 0))
-        return; selected = id; notifySelection(); api.acknowledge?.('select'); };
+        return; selected = id; attackMode = false; marker = undefined; canvas.dataset.attackMode = ''; notifySelection(); api.acknowledge?.('select'); };
     const selectAll = () => select(-1);
     const selectGroup = (event) => { const id = event.detail; if (Number.isSafeInteger(id))
         select(id); };
@@ -506,6 +525,7 @@ export function sharedField(win, canvas, api, plan) {
             image.width = 0;
             image.height = 0;
         }
+        bodyHits.clear();
         heroCanvases.clear();
         spriteCache.clear();
         sprites.clear();

@@ -130,3 +130,9 @@ La compilation du moteur démarre en parallèle avec la lecture/vérification de
 - Chromium PC : projectile réel du Master of Thunder et préchargement classique sans deuxième simulation.
 - WebKit : deux bascules avec retour pendant une réponse magique et décodage audio bloqué, sans reprise intempestive ni rechargement du jeu.
 - Dossier Pages : 998 975 736 octets. Les sprites restent les originaux classiques, sans ressources HD de remplacement.
+
+## Sélection dans une mêlée — 15 novembre 2026
+
+Un toucher normal privilégie désormais les alliés réellement touchés, même avec une sélection précédente et plusieurs ennemis superposés. Les pixels transparents ne suffisent plus à intercepter un toucher ; les barres de vie servent aussi de poignée de sélection. Le ciblage d’attaque explicite conserve la priorité aux ennemis. Sélectionner une autre troupe désarme un ancien ordre d’attaque et remet le bouton dans son état normal.
+
+49 tests du crossover et `verify:web` passent. Le test de composant navigateur `melee-selection-browser.mjs` utilise un pont espion, sans simuler de dégâts : sur Chromium et WebKit, portrait et paysage, il vérifie le corps et la barre d’un allié entouré de douze ennemis, l’absence d’ordre envoyé par l’ancienne sélection, le clic direct sur un ennemi distinct et le ciblage explicite dans la mêlée. Le parcours complet du vrai combat avec sorts, résurrection, dégâts et morts passe également sous Chromium.
