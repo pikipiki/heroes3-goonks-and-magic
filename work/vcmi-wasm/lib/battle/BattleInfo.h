@@ -43,6 +43,7 @@ public:
 	bool replayAllowed;
  // Transient delegation, intentionally not part of adventure saves. Loading resumes native Heroes combat.
  bool crossover=false;
+ bool crossoverFromClassic=false;
 	std::vector<std::unique_ptr<CStack>> stacks;
 	std::vector<std::shared_ptr<CObstacleInstance> > obstacles;
 	SiegeInfo si;

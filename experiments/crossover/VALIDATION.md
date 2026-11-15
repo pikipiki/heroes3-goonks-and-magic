@@ -1,5 +1,19 @@
 # Validation — 14 novembre 2026
 
+## Passage classique → temps réel et rendu mobile — 15 novembre 2026
+
+- VCMI : compilation `ninja -j32 html5` réussie ; archive dédiée mise à jour.
+- OpenBW : compilation WASI SDK 33.0 réussie, source amont épinglée inchangée, empreintes de l’adaptateur et du binaire vérifiées.
+- Tests Heroes : 740 tests, 694 réussis, 46 ignorés, aucun échec. Tests crossover : 33 réussis. TypeScript strict et `verify:web` réussis.
+- `tests/mode-switch-browser.mjs` : Chromium et WebKit, écran tactile 390×844 à DPR 2, puis 844×390. Vérification du gabarit des 47 acteurs, livre partagé (écoles, description, confirmation), pause, accès au bouton Temps réel dans les vues classique et verticale.
+- Deux vrais sorts classiques tuent les Marines et blessent une créature alliée. Le passage en RTS conserve les morts, effectifs vivants, blessures, mana et les groupes tombés pouvant être ressuscités. Aucun point de vie n’est fabriqué dans le test.
+- Le combat reprend immédiatement ; un sort du livre partagé atteint une vraie cible. Cadence de présentation active mesurée : Chromium 49,9 images/s, WebKit 48,0 images/s. Le canevas adapte sa définition à la taille visible et à la cadence, les sprites conservent leur gabarit.
+- `tests/universal-magic-browser.mjs` : régression Chromium réussie sur la préparation des cinq raccourcis, 60 sorts du héros, Hâte, trois Cercles de glace réellement dommageables, résurrection de créature, invocation native de 48 combattants, boucliers Protoss et animations de blessure, mort et lancement.
+- Lancement à froid validé sur un serveur sans en-têtes COOP/COEP, comme Pages : les scripts des workers possèdent désormais un service worker couvrant leur propre URL.
+- Bundle Pages vérifié sous la limite de 1 Go. La publication reste indépendante de `main`.
+
+Les sections ci-dessous conservent les preuves des premiers parcours du laboratoire.
+
 ## Bataille depuis Heroes
 
 `tests/heroes-rts-browser.mjs` lance le scénario par le bouton situé directement dans Heroes, attaque le garde avec le héros natif et attend le vrai résultat des deux moteurs. Aucun PV ni résultat de simulation n’est injecté. Le scénario de départ contient 12 archers, 6 piquiers et le commandant WoG du héros, face à 3 Marines ayant leur propre identité dans VCMI.
@@ -39,4 +53,4 @@ Les archives distribuées sont les trois MPQ issus du paquet Blizzard demandé, 
 
 ## Limites
 
-Pas de validation physique iPhone/iPad ni WebKit. Pas de sauvegarde/reprise d’un combat RTS interrompu, de replay du scénario délégué, de multijoueur ou de transposition des sorts/bonus Heroes. Le mode est limité aux batailles de terrain compatibles, à 32 groupes et 128 unités par camp. Le déploiement Netlify séparé n’a pas été effectué. La version testée est servie localement.
+Pas de validation sur un iPhone/iPad physique. Les tests WebKit sont exécutés sur ordinateur. Pas de sauvegarde/reprise d’un combat RTS interrompu, de replay du scénario délégué ou de multijoueur. Le mode est limité aux batailles solo de terrain compatibles, à 32 groupes et 128 unités par camp. La publication utilise le projet GitHub Pages séparé `heroes-starcraft`. Les sprites originaux sont lissés et agrandis ; ce ne sont pas des images HD de remplacement.

@@ -325,9 +325,18 @@ bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID
   return true;
  }
  auto battle=const_cast<BattleInfo*>(gameHandler->gameState().getBattle(battleID));
- if(!battle || !battle->crossover || battle->getSide(BattleSide::ATTACKER).color!=player)return false;
+ if(!battle || battle->getSide(BattleSide::ATTACKER).color!=player)return false;
+ if(operation==3 && survivors.empty()){
+  if(battle->crossover||battle->townID!=ObjectInstanceID::NONE||battle->getRound()<1||battle->battleTacticDist()!=0)return false;
+  const auto active=battle->battleActiveUnit();if(!active||battle->battleGetOwner(active)!=player)return false;
+  int humans=0,totals[2]={0,0};for(int i=0;i<8;i++){const auto p=gameHandler->gameInfo().getPlayerState(PlayerColor(i),false);if(p&&p->isHuman())++humans;}if(humans!=1)return false;
+  const auto defender=gameHandler->gameInfo().getPlayerState(battle->getSide(BattleSide::DEFENDER).color,false);if(defender&&defender->isHuman())return false;
+  if(battle->stacks.size()>32)return false;for(const auto & stack:battle->stacks){if(stack->isTurret())return false;totals[stack->unitSide()==BattleSide::ATTACKER?0:1]+=stack->getCount();}if(totals[0]<1||totals[1]<1||totals[0]>128||totals[1]>128)return false;
+  BattleUnitsChanged change;change.battleID=battleID;change.crossoverMode=2;gameHandler->sendAndApply(change);battle->replayAllowed=false;return true;
+ }
+ if(!battle->crossover)return false;
  if(operation==2 && survivors.empty()){
-  battle->crossover=false;flowProcessor->onBattleStarted(*battle);return true;
+  if(battle->crossoverFromClassic){BattleUnitsChanged change;change.battleID=battleID;change.crossoverMode=0;gameHandler->sendAndApply(change);}else{battle->crossover=false;flowProcessor->onBattleStarted(*battle);}return true;
  }
  int manaSpent=0;std::vector<std::pair<uint32_t,int32_t>> survivorsOnly;
  for(const auto & row:survivors){if(row.first==2147483647u){if(row.second<0)return false;manaSpent=row.second;}else survivorsOnly.push_back(row);}
@@ -337,14 +346,14 @@ bool BattleProcessor::crossoverCommand(PlayerColor player,int operation,BattleID
  int totals[2]={0,0};
  for(const auto & stack:battle->stacks){
   const auto found=counts.find(stack->unitId());
-  if(found==counts.end() || found->second>stack->getCount())return false;
+  if(found==counts.end() || found->second>std::max<int>(stack->getCount(),stack->unitBaseAmount()))return false;
   totals[stack->unitSide()==BattleSide::ATTACKER?0:1]+=found->second;
  }
  if(totals[0]>0 && totals[1]>0)return false; // No fabricated mid-battle resolution.
  BattleUnitsChanged changes;changes.battleID=battleID;
  for(const auto & stack:battle->stacks){
   auto next=stack->acquireState();int64_t damage=int64_t(stack->getCount()-counts.at(stack->unitId()))*stack->getMaxHealth();
-  next->damage(damage);
+  if(damage>=0)next->damage(damage);else{int64_t healing=-damage;next->heal(healing,EHealLevel::RESURRECT,EHealPower::PERMANENT);}
   UnitChanges change(stack->unitId(),UnitChanges::EOperation::RESET_STATE);next->save(change.data);change.healthDelta=-damage;changes.changedStacks.push_back(std::move(change));
  }
  if(const auto hero=battle->battleGetFightingHero(BattleSide::ATTACKER);hero&&manaSpent>hero->mana)return false;

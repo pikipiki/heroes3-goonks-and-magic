@@ -37,3 +37,13 @@ test('independent start scope serves the native game and isolates its root asset
  handlers.fetch({request:new Request('https://example.test/heroes-starcraft/web/mobile-render.mjs'),respondWith:promise=>{result=promise;}});
  assert.equal((await result).headers.get('Cross-Origin-Embedder-Policy'),'require-corp');
 });
+
+test('recovery launch registers isolation for dedicated engine workers at the root too',async()=>{
+ const entry=fs.readFileSync(new URL('../public/crossover-entry.mjs',import.meta.url),'utf8'),registrations=[],controller={state:'activated'},rootWorker={state:'activated'},values=new Map();let reloaded=false;
+ const navigator={serviceWorker:{controller,register:async(_url,{scope})=>{registrations.push(scope);return{active:scope==='./'?rootWorker:controller,update:async()=>{}};}}};
+ const location={href:'https://example.test/heroes-starcraft/battle.html',pathname:'/heroes-starcraft/battle.html',reload:()=>{reloaded=true;}};
+ const elements={'#hosting-status':{},'#hosting-retry':{}};
+ const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+ await new AsyncFunction('document','navigator','location','sessionStorage','isSecureContext','crossOriginIsolated','URL','setTimeout','clearTimeout',entry)({querySelector:key=>elements[key]},navigator,location,{getItem:key=>values.get(key),setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)},true,false,URL,setTimeout,clearTimeout);
+ assert.deepEqual(registrations,['./battle.html','./']);assert(reloaded);
+});

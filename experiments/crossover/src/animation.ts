@@ -61,3 +61,14 @@ export function heroAnimation(frame:number,moving:boolean,cooldown:number,cycle:
  const index=Math.floor(position);
  return {pose,frame:index,next:(index+1)%8,mix:position-index};
 }
+
+// Match the visible pixel budget and reduce oversampling when rendering misses
+// the display cadence. Native art and combat simulation are never downsampled.
+export class RenderDensity {
+ private cap=2;private since=0;private frames=0;
+ sample(now:number,cssWidth:number,logicalWidth:number,dpr:number):number {
+  if(!this.frames)this.since=now;this.frames++;
+  const elapsed=now-this.since;if(elapsed>=500){if((this.frames-1)*1000/elapsed<47)this.cap=Math.max(1,this.cap*.8);this.since=now;this.frames=1;}
+  return Math.min(this.cap,Math.max(1,cssWidth/logicalWidth*dpr));
+ }
+}

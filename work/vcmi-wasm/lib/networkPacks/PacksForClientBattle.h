@@ -181,6 +181,8 @@ struct DLL_LINKAGE BattleStackMoved : public CPackForClient
 struct DLL_LINKAGE BattleUnitsChanged : public CPackForClient
 {
 	BattleID battleID = BattleID::NONE;
+ // -1 unchanged; 0 native; 2 delegated from an already started native battle.
+ int32_t crossoverMode=-1;
 	std::vector<UnitChanges> changedStacks;
 
 	void visitTyped(ICPackVisitor & visitor) override;
@@ -189,6 +191,7 @@ struct DLL_LINKAGE BattleUnitsChanged : public CPackForClient
 	{
 		h & battleID;
 		h & changedStacks;
+  h & crossoverMode;
 		assert(battleID != BattleID::NONE);
 	}
 };

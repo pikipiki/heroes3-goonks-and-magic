@@ -770,7 +770,9 @@ void publishCrossoverArt(const BattleInfo & battle){
  publishCrossoverSounds(battle);publishCrossoverSpellArt(battle);publishCrossoverObstacleArt(battle);
  static std::string previous;std::string signature=std::to_string(battle.battleID.getNum());for(const auto & s:battle.stacks)signature+="/"+std::to_string(s->unitId())+":"+s->unitType()->getJsonKey();if(previous==signature)return;
  std::vector<const CStack*> units;for(const auto & stack:battle.stacks)if(!stack->unitType()->getJsonKey().starts_with("heroes-starcraft:"))units.push_back(stack.get());
- constexpr int cell=128,columns=8,frames=8,poses=6;
+ constexpr int columns=8,frames=8,poses=6;
+ // Preserve original creature detail, keeping each mobile atlas below 16M pixels.
+ const int cell=std::clamp(int(std::sqrt(16000000.0/(std::max<size_t>(1,units.size())*frames*poses)))/16*16,80,192);
  const int width=columns*cell,height=std::max(1,int(units.size()))*poses*cell;
  auto surface=SDL_CreateRGBSurfaceWithFormat(0,width,height,32,SDL_PIXELFORMAT_ARGB8888);if(!surface)return;SDL_FillRect(surface,nullptr,0);
  JsonNode metadata;bool ready=true;
@@ -794,7 +796,7 @@ void publishCrossoverArt(const BattleInfo & battle){
  }}
  auto rgba=SDL_ConvertSurfaceFormat(surface,SDL_PIXELFORMAT_RGBA32,0);SDL_FreeSurface(surface);if(!rgba)return;
  const int bytes=width*height*4;auto packet=malloc(bytes);if(packet){memcpy(packet,rgba->pixels,bytes);auto text=strdup(metadata.toCompactString().c_str());
- MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkCrossoverArt=({battleId:$4,canvas:c,rows:JSON.parse(UTF8ToString($3))});}finally{_free($0);_free($3);}},packet,width,height,text,battle.battleID.getNum());
+ MAIN_THREAD_ASYNC_EM_ASM({try{const c=document.createElement('canvas');c.width=$1;c.height=$2;c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice($0,$0+$1*$2*4)),$1,$2),0,0);window.goonkCrossoverArt=({battleId:$4,cell:$5,canvas:c,rows:JSON.parse(UTF8ToString($3))});}finally{_free($0);_free($3);}},packet,width,height,text,battle.battleID.getNum(),cell);
  if(ready)previous=signature;}
  // Keep a dedicated backdrop: the normal mobile battle listener clears its
  // own plane cache on entry, after the first native render notification.
@@ -1043,7 +1045,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobilePreviewAtlasAck(){previewAtlasPen
 namespace { bool mobileCrossoverEnabled=false; int mobileCrossoverSuppressed=-1; }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiCrossoverCommand(int operation,int battleID,const int32_t * rows,int count)
 {
- if(!ENGINE || count<0 || count>64 || (count&&!rows) || operation<0 || operation>2)return;
+ if(!ENGINE || count<0 || count>64 || (count&&!rows) || operation<0 || operation>3)return;
  std::vector<std::pair<uint32_t,int32_t>> survivors;
  for(int i=0;i<count;i++){if(rows[i*2]<0 || rows[i*2+1]<0)return;survivors.emplace_back(rows[i*2],rows[i*2+1]);}
  ENGINE->dispatchMainThread([operation,battleID,survivors](){
@@ -1053,6 +1055,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiCrossoverCommand(int operation,int batt
    if(!player->makingTurn || !ENGINE->windows().topWindow<AdventureMapInterface>() || (battleID!=0&&battleID!=1))return;
    mobileCrossoverEnabled=battleID!=0;
   }else if(!CPlayerInterface::battleInt)return;
+  if(operation==3){mobileCrossoverSuppressed=-1;}
   if(operation==2){
    const auto active=dynamic_cast<const BattleInfo*>(CPlayerInterface::battleInt->getBattle()->getBattle());
    if(!active || active->battleID.getNum()!=battleID || !active->crossover)return;
@@ -1795,6 +1798,8 @@ void publishMobileState(){
    const auto caster=b->currentHero();n["heroHasSpellbook"].Bool()=caster&&caster->hasSpellbook();if(caster)n["heroMana"].Integer()=caster->mana;
    if(caster)n["heroSpellPower"]=mobileHeroSpellPower(*b->getBattle(),caster);
    const auto spellProblem=caster?b->getBattle()->battleCanCastSpell(caster,spells::Mode::HERO):ESpellCastProblem::NO_HERO_TO_CAST_SPELL;
+   n["battleId"].Integer()=b->getBattleID().getNum();
+   if(const auto info=dynamic_cast<const BattleInfo*>(b->getBattle()->getBattle())){int totals[2]={0,0};bool field=info->townID==ObjectInstanceID::NONE;for(const auto & stack:info->stacks){totals[stack->unitSide()==BattleSide::ATTACKER?0:1]+=stack->getCount();if(stack->isTurret())field=false;}n["canStartCrossover"].Bool()=!server.inLobbyRoom()&&!info->crossover&&field&&info->getSide(BattleSide::ATTACKER).color==p->playerID&&info->stacks.size()<=32&&totals[0]>0&&totals[1]>0&&totals[0]<=128&&totals[1]<=128&&n["canUseMagic"].Bool()&&!targeting;}
    n["heroSpellCastLimitReached"].Bool()=spellProblem==ESpellCastProblem::CASTS_PER_TURN_LIMIT;
    n["heroCanCast"].Bool()=manualControl&&!tactics&&caster&&(spellProblem==ESpellCastProblem::OK||spellProblem==ESpellCastProblem::MAGIC_IS_BLOCKED);
    n["canAct"].Bool()=manualControl&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active)n["canWait"].Bool()=!active->waitedThisTurn;n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["stackId"].Integer()=active->unitId();n["activeUnit"]["nativeFlags"]["flying"].Bool()=active->hasBonusOfType(BonusType::FLYING);n["activeUnit"]["nativeFlags"]["attacksAllAdjacent"].Bool()=active->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["activeUnit"]["controlled"].Bool()=b->getBattle()->battleGetOwner(active)==p->playerID;n["activeUnit"]["commander"].Bool()=active->unitSlot()==SlotID::COMMANDER_SLOT_PLACEHOLDER;n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
@@ -1832,12 +1837,12 @@ void publishMobileState(){
  if(p && battleWindow && CPlayerInterface::battleInt){
   const auto info=dynamic_cast<const BattleInfo*>(CPlayerInterface::battleInt->getBattle()->getBattle());
   if(info && info->crossover && info->battleID.getNum()!=mobileCrossoverSuppressed){
-   publishCrossoverArt(*info);
-   auto & data=n["crossover"];data["battleId"].Integer()=info->battleID.getNum();data["magic"]=crossoverMagicCatalogue(*info);
+   publishCrossoverArt(prepareCrossoverMagic(*info));
+   auto & data=n["crossover"];data["battleId"].Integer()=info->battleID.getNum();data["fromClassic"].Bool()=info->crossoverFromClassic;data["magic"]=crossoverMagicCatalogue(*info);
    for(const auto & stack:info->stacks){
     JsonNode row;row["spells"]=crossoverCreatureSpells(*info,stack.get(),CPlayerInterface::battleInt->getBattle().get());row["id"].Integer()=stack->unitId();row["side"].Integer()=stack->unitSide()==BattleSide::ATTACKER?0:1;
     row["creature"].String()=stack->unitType()->getJsonKey();row["name"].String()=stack->unitType()->getNamePluralTranslated();
-    row["count"].Integer()=stack->getCount();row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();row["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["attack"].Integer()=stack->getAttack(false);row["defense"].Integer()=stack->getDefense(false);row["speed"].Integer()=stack->getMovementRange();
+    row["count"].Integer()=stack->getCount();row["firstHp"].Integer()=stack->getFirstHPleft();row["maxCount"].Integer()=std::max<int>(stack->getCount(),stack->unitBaseAmount());row["shooter"].Bool()=stack->hasBonusOfType(BonusType::SHOOTER);row["health"].Integer()=stack->getMaxHealth();row["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));row["attack"].Integer()=stack->getAttack(false);row["defense"].Integer()=stack->getDefense(false);row["speed"].Integer()=stack->getMovementRange();
     data["stacks"].Vector().push_back(std::move(row));
    }
   }

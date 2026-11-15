@@ -52,7 +52,7 @@ struct CrossoverMagicServer : ServerCallback {
 };
 void resetCrossoverMagic(){crossoverMagicBattle.reset();crossoverMagicReady.clear();crossoverMagicAutoReady.clear();crossoverMagicCatalogueDirty=true;crossoverMagicFrame=crossoverMagicRound=0;}
 CrossoverSpellBattle & prepareCrossoverMagic(const BattleInfo & source){
- if(!crossoverMagicBattle||crossoverMagicBattle->battleID!=source.battleID){resetCrossoverMagic();crossoverMagicBattle=std::make_unique<CrossoverSpellBattle>(source);const auto hero=source.battleGetFightingHero(BattleSide::ATTACKER);crossoverMagicMana=crossoverMagicInitialMana=hero?hero->mana:0;}
+ if(!crossoverMagicBattle||crossoverMagicBattle->battleID!=source.battleID){resetCrossoverMagic();crossoverMagicBattle=std::make_unique<CrossoverSpellBattle>(source);const auto hero=source.battleGetFightingHero(BattleSide::ATTACKER);crossoverMagicMana=crossoverMagicInitialMana=hero?hero->mana:0;if(source.getSide(BattleSide::ATTACKER).castSpellsCount>0)crossoverMagicReady[-1]=96;}
  return *crossoverMagicBattle;
 }
 int crossoverSpellLevel(const CStack * stack,const CSpell * spell){
@@ -61,7 +61,7 @@ int crossoverSpellLevel(const CStack * stack,const CSpell * spell){
 JsonNode crossoverSpellDescriptor(const CSpell * spell,const spells::Caster * caster,int stack,int casts,bool passive,const CBattleInfoCallback & battle){
  JsonNode item;item["id"].Integer()=spell->id.getNum();item["key"].String()=spell->getJsonKey();item["name"].String()=spell->getNameTranslated();item["caster"].Integer()=stack;item["casts"].Integer()=casts;item["passive"].Bool()=passive;
  const int level=stack<0?caster->getSpellSchoolLevel(spell):crossoverSpellLevel(static_cast<const CStack*>(caster),spell);
- item["description"].String()=spell->isCreatureAbility()?spell->getNameTranslated():spell->getDescriptionTranslated(level);item["level"].Integer()=spell->getLevel();item["cost"].Integer()=stack<0?battle.battleGetSpellCost(spell,static_cast<const CGHeroInstance*>(caster)):0;
+ item["description"].String()=spell->isCreatureAbility()?spell->getNameTranslated():spell->getDescriptionTranslated(level);item["level"].Integer()=spell->getLevel();for(auto school:spell->schools)item["schools"].Vector().push_back(JsonNode(double(school.getNum())));item["cost"].Integer()=stack<0?battle.battleGetSpellCost(spell,static_cast<const CGHeroInstance*>(caster)):0;
  const CSpell::TargetInfo target(spell,level,stack<0?spells::Mode::HERO:passive?spells::Mode::PASSIVE:spells::Mode::CREATURE_ACTIVE);
  item["target"].String()=passive?"enemy":target.massive||target.type==spells::AimType::NO_TARGET?"none":target.type==spells::AimType::CREATURE?spell->isPositive()?"ally":spell->isNegative()?"enemy":"creature":"ground";
  if(spell->id==SpellID::TELEPORT)item["target"].String()="teleport";if(spell->id==SpellID::SACRIFICE)item["target"].String()="sacrifice";

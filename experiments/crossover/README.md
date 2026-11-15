@@ -2,7 +2,7 @@
 
 Branche : `codex/heroes-starcraft-crossover`. Checkout indépendant : `/Users/sevenone./.codex/worktrees/heroes-starcraft/heroes-goonk`. Les modifications du jeu Heroes existant restent séparées de ce laboratoire.
 
-Le site expérimental ouvre directement **Heroes Goonk**. Le bouton **Démo Heroes × StarCraft**, présent dans Heroes, lance une vraie bataille entre archers/piquiers Heroes et Marines StarCraft, sur un champ de bataille Heroes unique. Aucun écran ni menu StarCraft n’est montré dans ce parcours.
+Le site expérimental ouvre directement **Heroes Goonk**. Le bouton **Démo Heroes × StarCraft**, présent dans Heroes, lance une vraie bataille entre sept groupes de créatures finales Heroes et douze unités Terran, Zerg et Protoss, sur un champ de bataille Heroes unique. Aucun écran ni menu StarCraft n’est montré dans ce parcours.
 
 ## Jouer à la démo intégrée
 
@@ -11,11 +11,15 @@ Le site expérimental ouvre directement **Heroes Goonk**. Le bouton **Démo Hero
 3. Choisir une troupe dans le terrain ou sa carte, puis toucher le terrain pour la déplacer ou un ennemi pour l’attaquer. **Tout sélectionner** sélectionne les groupes alliés. **Attaquer** arme un ordre vers le prochain point choisi ; **Arrêter** annule les ordres et rend la sélection passive. Sans ordre, tes troupes restent immobiles et ne ripostent pas, même sous le feu ennemi. Les Marines ennemis conservent leur IA.
 4. Confirmer le bilan Heroes pour poursuivre l’aventure avec les survivants. La sauvegarde après ce retour conserve les pertes.
 
-La démo contient 12 archers, 6 piquiers et le commandant Heroes, face à 3 Marines. Les troupes Heroes restent des troupes Heroes ; les Marines ont une véritable définition `heroes-starcraft:marine` dans le catalogue VCMI. Ils ne sont pas des gardes renommés. Le sprite de catalogue est extrait du rendu natif OpenBW ; le combat utilise ses sprites animés natifs. Les animations et le décor Heroes sont fournis par VCMI.
+La démo contient sept groupes de cinq créatures finales Heroes de factions différentes, face à douze unités StarCraft : deux Marines, Firebats, Zerglings, Hydralisks, Zealots et Dragoons, avec leurs améliorations maximales. Les troupes Heroes restent des troupes Heroes ; les Marines ont une véritable définition `heroes-starcraft:marine` dans le catalogue VCMI. Ils ne sont pas des gardes renommés. Le sprite de catalogue est extrait du rendu natif OpenBW ; le combat utilise ses sprites animés natifs. Les animations et le décor Heroes sont fournis par VCMI.
 
-« ↩ Classique » annule la délégation et reprend la bataille VCMI avec les effectifs initiaux. Les sauvegardes restent locales. Les sauvegardes de la version précédente peuvent exiger son ancien catalogue de mods ; elles ne sont pas supprimées.
+Le bouton **▶ Temps réel** est disponible pendant ton tour dans les vues de combat classique et verticale. Il délègue la bataille en cours en conservant les pertes, blessures, effets et mana. Le temps démarre immédiatement ; tes troupes attendent toujours tes ordres. Cette option concerne les combats solo de terrain, côté attaquant, avec au plus 32 groupes et 128 combattants par camp.
 
-L’accueil n’a plus de panneau flottant : la démo et les options appartiennent au même menu. Le combat utilise le terrain sur toute la largeur et les commandes en dessous en portrait ; en paysage, titre/retour restent à droite et les commandes défilent verticalement. Les cartes d’armée offrent une sélection tactile et leurs effectifs suivent le recensement réel. Le rendu des Marines utilise un lissage de haute qualité du navigateur ; les sprites restent ceux d’origine en basse résolution, sans ajout de détails HD.
+**Tous les sorts** ouvre le même composant de livre que le combat classique : écoles, pages, icônes et descriptions, sélection puis confirmation de cible. Un sélecteur ajoute les capacités de créatures. Le combat reste en pause pendant ce choix ; les cinq raccourcis restent disponibles.
+
+« ↩ Classique » annule la délégation et reprend la bataille VCMI dans son état avant le passage en temps réel, sans appliquer les pertes du test annulé. Les sauvegardes restent locales. Les sauvegardes de la version précédente peuvent exiger son ancien catalogue de mods ; elles ne sont pas supprimées.
+
+L’accueil n’a plus de panneau flottant : la démo et les options appartiennent au même menu. Le combat utilise le terrain sur toute la largeur et les commandes en dessous en portrait ; en paysage, titre/retour restent à droite et les commandes défilent verticalement. Les cartes d’armée offrent une sélection tactile et leurs effectifs suivent le recensement réel. En portrait, le terrain est projeté verticalement et les sprites restent debout, avec un gabarit comparable de 88 unités logiques sur leur plus grande dimension, sans déformer leurs proportions. Le rendu Retina conserve davantage de détails Heroes ; les sprites StarCraft passent par un agrandissement Scale2x en deux passes et un lissage navigateur. Le décor redimensionné est mis en cache ; la définition du canevas suit sa taille visible et réduit le suréchantillonnage si la cadence baisse, sans réduire la taille des unités. Les transitions d’images et déplacements sont présentés à 50 images/s. Les sprites restent les originaux basse résolution, sans détails HD inventés.
 
 Les deux jeux indépendants et l’ancien laboratoire restent accessibles sous `laboratoire.html`. Voir [VALIDATION.md](./VALIDATION.md) pour les vérifications réellement exécutées.
 

@@ -31,6 +31,14 @@ try{
     const changed=()=>{if(navigator.serviceWorker.controller===next){navigator.serviceWorker.removeEventListener('controllerchange',changed);resolve();}};
     navigator.serviceWorker.addEventListener('controllerchange',changed);changed();
    });
+   // Dedicated worker entry scripts need an isolating registration at their own
+   // root URL too; the recovery document scope alone does not cover them.
+   if(launchPage){
+    let engineRegistration;
+    try{engineRegistration=await navigator.serviceWorker.register(workerURL,{scope:'./',updateViaCache:'none'});}
+    catch(error){engineRegistration=await navigator.serviceWorker.getRegistration(new URL('./',location.href));if(!engineRegistration?.active)throw error;}
+    if(!engineRegistration.active){const engineWorker=engineRegistration.installing||engineRegistration.waiting;if(!engineWorker)throw Error('Le moteur ne peut pas être préparé.');await new Promise((resolve,reject)=>{const changed=()=>{if(engineWorker.state==='activated'){engineWorker.removeEventListener('statechange',changed);resolve();}else if(engineWorker.state==='redundant'){engineWorker.removeEventListener('statechange',changed);reject(Error('Préparation du moteur interrompue.'));}};engineWorker.addEventListener('statechange',changed);changed();});}
+   }
   })(),
   new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('La préparation prend trop de temps. Ferme les autres onglets du jeu puis touche Réessayer.')),30000);})
  ]);
@@ -48,7 +56,7 @@ try{
   status.textContent='Préparation du moteur et de la carte…';
   const engineResponse=await fetch(new URL('starcraft/engine-build.json',location.href));if(!engineResponse.ok)throw Error('Moteur indisponible. Touche Réessayer.');
   const engine=await engineResponse.json();if(!/^[a-f0-9]{64}$/.test(engine.sha256))throw Error('Moteur non vérifié.');
-  const files=['starcraft/index.html','starcraft/openbw.js','starcraft/net.js','starcraft/openbw.wasm?v=openbw-'+engine.sha256.slice(0,16),'starcraft/maps/Weave_v1.scx','native-bridge.js','battle.js','shared-field.js','adventure.js','adventure.css'];
+  const files=['starcraft/index.html','starcraft/openbw.js','starcraft/net.js','starcraft/openbw.wasm?v=openbw-'+engine.sha256.slice(0,16),'starcraft/maps/Weave_v1.scx','native-bridge.js','battle.js','magic.js','loadout.js','sprite-scale.js','shared-field.js','adventure.js','adventure.css'];
   await Promise.all(files.map(async file=>{const response=await fetch(new URL(file,location.href));if(!response.ok)throw Error('Préchargement interrompu. Touche Réessayer.');await response.arrayBuffer();}));
   status.textContent='Données prêtes · ouverture de Heroes…';
   const game=new URL(launchPage?'./'+launchFile:'./game.html',location.href);game.search=location.search;

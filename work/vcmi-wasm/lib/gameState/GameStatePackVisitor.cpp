@@ -17,6 +17,7 @@
 #include "../era/EraCampaignChanges.h"
 #include "../era/EraCampaignAdmission.h"
 #include "GameStatePackVisitor.h"
+#include "../battle/BattleInfo.h"
 
 #include "CGameState.h"
 #include "TavernHeroesPool.h"
@@ -1753,6 +1754,7 @@ void BattleStatePackVisitor::visitStacksInjured(StacksInjured & pack)
 
 void BattleStatePackVisitor::visitBattleUnitsChanged(BattleUnitsChanged & pack)
 {
+ if(pack.crossoverMode>=0)if(auto * battle=dynamic_cast<BattleInfo*>(&battleState)){battle->crossover=pack.crossoverMode!=0;battle->crossoverFromClassic=pack.crossoverMode==2;}
 	for(auto & elem : pack.changedStacks)
 	{
 		switch(elem.operation)

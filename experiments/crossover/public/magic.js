@@ -83,7 +83,7 @@ export function magicController(win, api, plan, onEffects) {
             module._free(pointer);
         } });
     };
-    return { cast: (spell, target, x, y, secondTarget) => send(spell, target, x, y, secondTarget), sync: () => send(undefined), busy: () => !!pending, persistent(id, survivors) { const group = lastGroups.find(g => g.id === id); return group ? Math.max(0, survivors - Math.max(0, group.count - (group.persistentCount ?? group.count))) : survivors; }, needsSync() { const contacts = api.contacts(); for (const hit of contacts)
+    return { cast: (spell, target, x, y, secondTarget) => send(spell, target, x, y, secondTarget), sync: () => send(undefined), busy: () => !!pending, position: id => positions.get(id), persistent(id, survivors) { const group = lastGroups.find(g => g.id === id); return group ? Math.max(0, survivors - Math.max(0, group.count - (group.persistentCount ?? group.count))) : survivors; }, needsSync() { const contacts = api.contacts(); for (const hit of contacts)
             if (hit.obstacle !== undefined || (plan.magic?.spells || []).some(s => s.caster === hit.source && s.passive) || lastGroups.find(g => g.id === hit.target)?.disabled)
                 hits.push(hit); return hits.length > 0; }, dispose() { closed = true; win.removeEventListener('goonk-crossover-magic', receive); if (pending) {
             win.clearTimeout(pending.timer);

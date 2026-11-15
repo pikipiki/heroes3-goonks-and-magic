@@ -27,7 +27,23 @@ try {
  const hookFile=path.join(adapted,'bwgame.h'),text=fs.readFileSync(hookFile,'utf8');
  const needle='\t\tdamage += fp8::integer(target->acid_spore_count);';
  if(text.split(needle).length!==2)throw Error('Pinned native damage hook changed.');
- fs.writeFileSync(hookFile,text.replace(needle,needle+'\n\t\tdamage = fp8::from_raw(::crossover_weapon_contact(target, source_unit, damage.raw_value));'));
+ let transformed=text.replace(needle,needle+'\n\t\tdamage = fp8::from_raw(::crossover_weapon_contact(target, source_unit, damage.raw_value));');
+ const terrainNeedle='\t\t\tfor (size_t i = 0; i != game_st.gfx_tiles.size(); ++i) {\n\t\t\t\ttile_id tile_id = game_st.gfx_tiles[i];';
+ if(transformed.split(terrainNeedle).length!==2)throw Error('Pinned terrain initialization changed.');
+ const arena=`
+   if (::crossover_arena_requested) {
+    tile_id floor;bool found=false;
+    for (auto tile:game_st.gfx_tiles) {
+     if(tile.group_index()>=game_st.cv5.size())continue;
+     const auto & group=game_st.cv5.at(tile.group_index());
+     const auto mega=group.mega_tile_index[tile.subtile_index()];
+     const auto flags=game_st.mega_tile_flags.at(mega);
+     if((flags&tile_t::flag_walkable)&&!(flags&tile_t::flag_partially_walkable)&&!(group.flags&tile_t::flag_unbuildable)){floor=tile;found=true;break;}
+    }
+    if(found)for(auto & tile:game_st.gfx_tiles)tile=floor;
+   }
+ `;
+ transformed=transformed.replace(terrainNeedle,arena+terrainNeedle);fs.writeFileSync(hookFile,transformed);
  const entry=path.join(workspace,'openbw-crossover.cpp');fs.writeFileSync(entry,fs.readFileSync(adapter,'utf8').replaceAll('../vendor/openbw',adapted));
  execFileSync(compiler,[...flags.map(flag=>flag.startsWith('-I'+source)?flag.replace(source,adapted):flag),'-ffile-prefix-map='+workspace+'=crossover-adapter',entry,adapted+'/web/wasm_backend.cpp','-o',out+'.tmp'],{stdio:'inherit'});
 }finally{fs.rmSync(workspace,{recursive:true,force:true});}

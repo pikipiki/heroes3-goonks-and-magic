@@ -1,18 +1,18 @@
 import {chromium,webkit} from '../../../work/browser-tests/node_modules/playwright-core/index.mjs';
 import {silenceTestAudio} from '../../../work/browser-tests/silent-audio.mjs';import assert from 'node:assert/strict';
 const entry=process.env.CROSSOVER_URL||'http://127.0.0.1:8784/heroes-starcraft/battle.html';
-for(const [name,type]of Object.entries({chromium,webkit})){
+for(const [name,type]of Object.entries({chromium,webkit}).filter(([name])=>!process.env.CROSSOVER_BROWSER||name===process.env.CROSSOVER_BROWSER)){
  const browser=await type.launch({headless:true});try{
   const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});await silenceTestAudio(page);
   await page.addInitScript(()=>{
-   sessionStorage.setItem('heroes-goonk.storage-failed','true');
+   try{sessionStorage.setItem('heroes-goonk.storage-failed','true');}catch{}
    const fills=CanvasRenderingContext2D.prototype.fillRect;
    globalThis.testRenderTimes=[];globalThis.testRenderPositions=[];
-   CanvasRenderingContext2D.prototype.fillRect=function(...args){if(this.canvas.id==='crossover-field'&&args[0]===0&&args[1]===0&&args[2]===800&&args[3]===500)testRenderTimes.push(performance.now());return fills.apply(this,args);};
+   CanvasRenderingContext2D.prototype.fillRect=function(...args){if(this.canvas.id==='crossover-field'&&args[0]===0&&args[1]===0&&((args[2]===800&&args[3]===500)||(args[2]===500&&args[3]===800)))testRenderTimes.push(performance.now());return fills.apply(this,args);};
    const translate=CanvasRenderingContext2D.prototype.translate;
    CanvasRenderingContext2D.prototype.translate=function(x,y){if(this.canvas.id==='crossover-field')testRenderPositions.push([performance.now(),x,y]);return translate.call(this,x,y);};
   });
-  await page.goto(entry);await page.locator('#crossover-demo').click({timeout:180000});await page.locator('#crossover-field').waitFor({state:'visible',timeout:180000});
+  await page.goto(entry);await page.waitForFunction(()=>window.goonkMobileState?.mode==='menu',null,{timeout:120000});await page.locator('#crossover-demo').click({timeout:180000});await page.locator('#crossover-field').waitFor({state:'visible',timeout:180000});
   const sc=await(await page.locator('iframe[data-crossover-engine]').elementHandle()).contentFrame();assert(sc);
   await sc.evaluate(()=>{const api=openbwCrossover,original=api.sprite;globalThis.testSpriteReads=[];api.sprite=id=>{testSpriteReads.push([api.frame(),id]);return original.call(api,id);};});
   for(const viewport of [{width:390,height:844},{width:844,height:390}]){

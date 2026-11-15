@@ -1,17 +1,19 @@
 export const STARCRAFT_UNITS:Readonly<Record<string,number>>={marine:0,firebat:32,zergling:37,hydralisk:38,zealot:65,dragoon:66};
 export type CreatureSpell={id:number;key:string;name:string;casts:number;radius:number;targets:{id:number;resistance:number;damage:number[]}[]};
-export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; spells?:CreatureSpell[];temporary?:boolean; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
-export type BattlePlan = {version: 1; battleId: number; magic?:import('./magic.js').MagicCatalogue; stacks: (HeroesStack & {unit: number; heroes?:boolean})[]};
+export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; spells?:CreatureSpell[];temporary?:boolean;firstHp?:number;maxCount?:number; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
+export type BattlePlan = {version: 1; battleId: number; magic?:import('./magic.js').MagicCatalogue;fromClassic?:boolean; stacks: (HeroesStack & {unit: number; heroes?:boolean})[]};
 export type BattleState = {battleId: number; frame: number; finished: boolean; groups: {id: number; side: number; initial: number; survivors: number;casts?:number;spellReady?:number}[]};
-export function battlePlan(value: {battleId: number; magic?:import('./magic.js').MagicCatalogue; stacks: HeroesStack[]}): BattlePlan {
- const plan: BattlePlan = {version:1,battleId:value.battleId,magic:value.magic,stacks:value.stacks.map(row=>({...row,heroes:!row.creature.startsWith("heroes-starcraft:"),unit:row.creature.startsWith('heroes-starcraft:')?(STARCRAFT_UNITS[row.creature.split(':')[1]]??-1):row.shooter?0:37}))};
+export function battlePlan(value: {battleId: number; magic?:import('./magic.js').MagicCatalogue;fromClassic?:boolean; stacks: HeroesStack[]}): BattlePlan {
+ const plan: BattlePlan = {version:1,battleId:value.battleId,magic:value.magic,fromClassic:value.fromClassic,stacks:value.stacks.map(row=>({...row,heroes:!row.creature.startsWith("heroes-starcraft:"),unit:row.creature.startsWith('heroes-starcraft:')?(STARCRAFT_UNITS[row.creature.split(':')[1]]??-1):row.shooter?0:37}))};
  validateBattlePlan(plan);return plan;
 }
 export function validateBattlePlan(value: BattlePlan): void {
  if(value.version!==1 || !Number.isSafeInteger(value.battleId) || value.battleId<0 || !Array.isArray(value.stacks) || value.stacks.length<2 || value.stacks.length>32)throw Error('Combat Heroes invalide.');
  const ids=new Set<number>(),totals=[0,0];
  for(const row of value.stacks){
-  if(!Number.isSafeInteger(row.id)||row.id<0||ids.has(row.id)||![0,1].includes(row.side)||!Number.isSafeInteger(row.count)||row.count<1||row.count>128||!Object.values(STARCRAFT_UNITS).includes(row.unit))throw Error('Troupe Heroes invalide.');
+  if(!Number.isSafeInteger(row.id)||row.id<0||ids.has(row.id)||![0,1].includes(row.side)||!Number.isSafeInteger(row.count)||row.count<0||row.count>128||!Object.values(STARCRAFT_UNITS).includes(row.unit))throw Error('Troupe Heroes invalide.');
+  if(row.firstHp!==undefined&&(!Number.isSafeInteger(row.firstHp)||row.firstHp<0||row.firstHp>row.health))throw Error('Blessure de troupe invalide.');
+  if(row.maxCount!==undefined&&(!Number.isSafeInteger(row.maxCount)||row.maxCount<row.count||row.maxCount>128))throw Error('Effectif initial invalide.');
   if(row.heroes && (!Number.isSafeInteger(row.health)||row.health<1||row.health>10000))throw Error('Points de vie Heroes invalides.');
   ids.add(row.id);totals[row.side]+=row.count;
  }
@@ -24,7 +26,7 @@ export function battleResult(plan: BattlePlan,state: BattleState): [number,numbe
  const seen=new Set<number>(),totals=[0,0];
  const result=state.groups.map(row=>{
   const original=plan.stacks.find(stack=>stack.id===row.id);
-  if(!original||seen.has(row.id)||row.side!==original.side||row.initial!==original.count||!Number.isSafeInteger(row.survivors)||row.survivors<0||row.survivors>row.initial)throw Error('Pertes StarCraft incohérentes.');
+  if(!original||seen.has(row.id)||row.side!==original.side||row.initial!==original.count||!Number.isSafeInteger(row.survivors)||row.survivors<0||row.survivors>(original.maxCount??row.initial))throw Error('Pertes StarCraft incohérentes.');
   seen.add(row.id);totals[row.side]+=row.survivors;return [row.id,row.survivors] as [number,number];
  });
  if(totals.every(total=>total>0))throw Error('La bataille StarCraft continue.');

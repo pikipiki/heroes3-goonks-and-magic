@@ -15,6 +15,7 @@ const oppStart=js.indexOf('const OPPONENTS = {'),oppEnd=js.indexOf('const slotsB
 js=js.slice(0,oppStart)+"const OPPONENTS = {};\nconst DEFAULT_OPP = 'none';\n"+js.slice(oppEnd);
 replace('if (DEV) window.__bw = { x, memory, lockstep, link };   // dev-only debugging handle','const crossoverApi = installNativeBridge(x, memory);');
 replace('if (DEV) window.__bw = null;','crossoverApi.close();');
+replace("  hb('boot:engine-init');\n  x._initialize();", "  hb('boot:engine-init');\n  x._initialize();\n  x.openbw_crossover_arena?.(session.crossover?1:0);");
 replace("  hb('boot:engine-ready');", "  if(session.crossover)setupNativeBattle(x,memory,session.crossover);\n  hb('boot:engine-ready');");
 replace('slots: slots.map((s) => s.slot),','slots: session.crossover ? [mySlot] : slots.map((s) => s.slot),');
 replace('let paused = false, waiting = false, stepMs = 42;', 'let paused = !!session.crossover, waiting = false, stepMs = 42;');

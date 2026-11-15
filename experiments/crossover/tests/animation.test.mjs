@@ -39,3 +39,8 @@ test('direct enemy tapping includes the visible Marine head and wins over overla
  assert.equal(battlePick([friendly],positions,{x:100,y:90},camera,false)?.id,1);
  assert.equal(battlePick([friendly,enemy],positions,{x:700,y:450},camera,true),undefined,'empty ground stays a move order');
 });
+
+
+test('upright portrait targets follow the projected body on either native starting side',async()=>{const {battlePick}=await import('../public/shared-field.js');const unit={id:9,owner:1,hp:40,x:300,y:200,heroes:false},positions=new Map([[9,{x:300,y:200}]]),camera={x:0,y:0};assert.equal(battlePick([unit],positions,{x:350,y:200},camera,true,true,false)?.id,9);assert.equal(battlePick([unit],positions,{x:250,y:200},camera,true,true,true)?.id,9);assert.equal(battlePick([unit],positions,{x:350,y:400},camera,true,true,false),undefined);});
+
+test('mobile render resolution matches visible pixels and adapts to sustained slow presentation',async()=>{const {RenderDensity}=await import('../public/animation.js');const density=new RenderDensity();assert.equal(density.sample(100,350,500,2),1.4);for(let i=1;i<=40;i++)density.sample(100+i*50,350,500,2);assert.equal(density.sample(2150,350,500,2),1);const stable=new RenderDensity();for(let i=0;i<120;i++)assert.equal(stable.sample(100+i*16.67,350,500,2),1.4);});

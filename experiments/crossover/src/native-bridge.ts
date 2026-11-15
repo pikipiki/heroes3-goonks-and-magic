@@ -60,7 +60,7 @@ type NativeExports = {
 export function setupNativeBattle(x: NativeExports,memory: WebAssembly.Memory,plan: BattlePlan): void {
  validateBattlePlan(plan);
  if(!x.openbw_crossover_setup)throw Error('Passerelle native de combat absente.');
- const rows=new Int32Array(plan.stacks.flatMap(row=>[row.id,row.side,row.unit,row.count,row.heroes?1:0,row.health||40,row.damageMin??6,row.damageMax??6,row.defense??0,row.speed||5,row.shooter?1:0,row.attack??0]));
+ const rows=new Int32Array(plan.stacks.flatMap(row=>[row.id,row.side,row.unit,row.count,row.heroes?1:0,row.health||40,row.damageMin??6,row.damageMax??6,row.defense??0,row.speed||5,row.shooter?1:0,row.attack??0,row.firstHp??row.health??40,row.maxCount??row.count]));
  const pointer=x.openbw_in_ptr(rows.byteLength);
  new Uint8Array(memory.buffer,pointer,rows.byteLength).set(new Uint8Array(rows.buffer));
  if(x.openbw_crossover_setup(plan.battleId,plan.stacks.length)!==1)throw Error('Placement des armées StarCraft impossible. Reprends le combat Heroes.');

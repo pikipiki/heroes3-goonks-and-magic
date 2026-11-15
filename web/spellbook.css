@@ -1,27 +1,27 @@
-#mobile-app[data-mode=spellbook] :is(.scene-tools,#mobile-scene,.scene-hint,.mobile-nav){display:none!important}
-html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
-#mobile-app[data-mode=spellbook] :is(.mobile-top,.mobile-play){grid-column:1}
-#mobile-app[data-mode=spellbook] .mobile-play{grid-row:2}
+:is(#mobile-app,#crossover-spellbook-root)[data-mode=spellbook] :is(.scene-tools,#mobile-scene,.scene-hint,.mobile-nav){display:none!important}
+html.goonk-mobile :is(#mobile-app,#crossover-spellbook-root)[data-mode=spellbook]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+:is(#mobile-app,#crossover-spellbook-root)[data-mode=spellbook] :is(.mobile-top,.mobile-play){grid-column:1}
+:is(#mobile-app,#crossover-spellbook-root)[data-mode=spellbook] .mobile-play{grid-row:2}
 
-#mobile-app .mobile-spellbook{
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook{
  --spell-icon-size:56px;--spell-detail-icon-size:60px;
  position:absolute;inset:0;z-index:3;display:grid;box-sizing:border-box;
  grid-template:"title" 44px "reuse" 44px "schools" 44px "book" minmax(0,1fr) "footer" auto / minmax(0,1fr);
  gap:5px;padding:5px max(8px,env(safe-area-inset-right)) max(6px,var(--safe-bottom)) max(8px,env(safe-area-inset-left));
  background:#332013 url('./h3-theme/stone.png');color:#ffe8ad;font-family:Georgia,serif;overflow:hidden
 }
-#mobile-app .mobile-spellbook[data-browsing=true]{
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook[data-browsing=true]{
  grid-template-areas:"title" "reuse" "contexts" "schools" "book" "footer";
  grid-template-rows:repeat(4,44px) minmax(0,1fr) auto
 }
-#mobile-app .mobile-spellbook[hidden]{display:none!important}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook[hidden]{display:none!important}
 .mobile-spellbook>header{grid-area:title;display:flex;align-items:center;justify-content:space-between;gap:5px;min-width:0}
 .mobile-spellbook h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 9px;margin:0;font-size:21px;line-height:1.12}
 .mobile-spellbook h2 small{color:#c4d9fb;font-size:13px;white-space:nowrap}
-#mobile-app .mobile-spellbook button{min-height:44px;min-width:0}
-#mobile-app .mobile-spellbook [data-close-book]{flex:0 0 44px;padding:3px;font-size:20px}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook button{min-height:44px;min-width:0}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook [data-close-book]{flex:0 0 44px;padding:3px;font-size:20px}
 .mobile-spellbook .spell-top-actions{grid-area:reuse;min-width:0}
-#mobile-app .mobile-spellbook [data-reuse]{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;height:44px;padding:1px 6px;overflow:hidden}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook [data-reuse]{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;height:44px;padding:1px 6px;overflow:hidden}
 .mobile-spellbook [data-reuse]>span{display:grid;min-width:0;text-align:left}
 .mobile-spellbook [data-reuse] small{font-size:11px;line-height:1.15}
 .mobile-spellbook [data-reuse] strong{font-size:14px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -29,7 +29,7 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
 .mobile-spellbook .spell-contexts,.mobile-spellbook .spell-schools{display:grid;gap:3px;min-width:0}
 .mobile-spellbook .spell-contexts{grid-area:contexts;grid-template-columns:repeat(2,minmax(0,1fr))}
 .mobile-spellbook .spell-schools{grid-area:schools;grid-template-columns:repeat(5,minmax(0,1fr))}
-#mobile-app .mobile-spellbook :is([data-school],[data-spell-context]){border:1px solid #a98246;border-image:none;padding:2px;line-height:1.1;font-size:13px}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook :is([data-school],[data-spell-context]){border:1px solid #a98246;border-image:none;padding:2px;line-height:1.1;font-size:13px}
 /* The tabs and pages use the same palette, in the order of the native school controls. */
 .mobile-spellbook,.mobile-spellbook [data-school="0"]{
  --school-top:#5c4765;--school-bottom:#35283e;--paper-center:#49394d;--paper-edge:#282231;--paper-light:#d9b8dc
@@ -46,8 +46,8 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
 .mobile-spellbook[data-spell-palette="4"],.mobile-spellbook [data-school="4"]{
  --school-top:#3c5772;--school-bottom:#263445;--paper-center:#3c5772;--paper-edge:#263445;--paper-light:#b8ddf7
 }
-#mobile-app .mobile-spellbook [data-school]{border-radius:2px 2px 8px 8px;background:linear-gradient(var(--school-top),var(--school-bottom))}
-#mobile-app .mobile-spellbook :is([data-school],[data-spell-context])[aria-pressed=true]{box-shadow:inset 0 0 0 2px #f6d589;border-color:#f6d589}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook [data-school]{border-radius:2px 2px 8px 8px;background:linear-gradient(var(--school-top),var(--school-bottom))}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook :is([data-school],[data-spell-context])[aria-pressed=true]{box-shadow:inset 0 0 0 2px #f6d589;border-color:#f6d589}
 .mobile-spellbook .spell-content{
  grid-area:book;min-width:0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) clamp(105px,19dvh,158px);
  padding:5px;border:2px ridge #ad7c43;border-radius:6px 6px 10px 10px;background:#4d2b1a;box-shadow:0 2px 0 #1b110c
@@ -68,12 +68,12 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
 @container goonk-viewport (orientation:portrait) and (max-width:360px){
  .mobile-spellbook .spell-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-#mobile-app .mobile-spellbook .spell-row{
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook .spell-row{
  display:grid;grid-template-rows:var(--spell-icon-size) auto auto;justify-items:center;align-content:start;gap:2px;
  padding:3px;text-align:center;border:1px solid transparent;border-image:none;border-bottom-color:#d0cad74d;border-radius:6px;
  color:#f3ecdd;background:linear-gradient(155deg,#ffffff0d,#10101c24);text-shadow:none
 }
-#mobile-app .mobile-spellbook .spell-row[aria-pressed=true]{border-color:var(--paper-light);background:linear-gradient(150deg,color-mix(in srgb,var(--paper-light) 22%,transparent),#18112035);box-shadow:inset 0 1px #f5e8f33f,0 2px 5px #100c1658}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook .spell-row[aria-pressed=true]{border-color:var(--paper-light);background:linear-gradient(150deg,color-mix(in srgb,var(--paper-light) 22%,transparent),#18112035);box-shadow:inset 0 1px #f5e8f33f,0 2px 5px #100c1658}
 .mobile-spellbook .spell-row strong{font-size:13px;line-height:1.1;overflow-wrap:anywhere}
 .mobile-spellbook .spell-row small,.mobile-spellbook .spell-selection small{font-size:12px;color:#e0d7cd}
 .mobile-spellbook .spell-row.is-unavailable small{color:#ffc1a6}
@@ -91,19 +91,19 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
 .mobile-spellbook [data-spell-target=location]{color:#e1d2ff}
 .mobile-spellbook>footer{grid-area:footer;display:grid;grid-template-rows:44px 46px;gap:4px}
 .mobile-spellbook .spell-pagination{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:4px;text-align:center;font-size:12px}
-#mobile-app .mobile-spellbook .spell-pagination button{box-sizing:border-box;height:44px;padding:3px;font-size:13px;line-height:1.1}
-#mobile-app .mobile-spellbook .spell-confirm{
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook .spell-pagination button{box-sizing:border-box;height:44px;padding:3px;font-size:13px;line-height:1.1}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook .spell-confirm{
  min-height:46px;padding:4px;border:3px ridge #e3bd72;border-image:none;color:#fff0c3;
  background:linear-gradient(#803a2e,#492019);font-weight:bold;font-size:16px
 }
 
 @container goonk-viewport (orientation:landscape){
- #mobile-app .mobile-spellbook{--spell-icon-size:42px;grid-template:"title reuse" 44px "schools schools" 44px "book book" minmax(0,1fr) "footer footer" auto / minmax(0,1fr) minmax(0,1.15fr)}
- #mobile-app .mobile-spellbook[data-browsing=true]{grid-template-areas:"title reuse" "contexts schools" "book book" "footer footer";grid-template-rows:44px 44px minmax(0,1fr) auto}
+ :is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook{--spell-icon-size:42px;grid-template:"title reuse" 44px "schools schools" 44px "book book" minmax(0,1fr) "footer footer" auto / minmax(0,1fr) minmax(0,1.15fr)}
+ :is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook[data-browsing=true]{grid-template-areas:"title reuse" "contexts schools" "book book" "footer footer";grid-template-rows:44px 44px minmax(0,1fr) auto}
  .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:2px}
  .mobile-spellbook .spell-list{border-radius:4px 0 0 4px;box-shadow:inset -8px 0 13px -11px #4e2d16}
  .mobile-spellbook .spell-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
- #mobile-app .mobile-spellbook .spell-row{grid-template:"icon name" auto "icon cost" auto / var(--spell-icon-size) minmax(0,1fr);justify-items:start;align-content:center;align-items:center;text-align:left}
+ :is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook .spell-row{grid-template:"icon name" auto "icon cost" auto / var(--spell-icon-size) minmax(0,1fr);justify-items:start;align-content:center;align-items:center;text-align:left}
  .mobile-spellbook .spell-row .spell-symbol{grid-area:icon}
  .mobile-spellbook .spell-row strong{grid-area:name}
  .mobile-spellbook .spell-row small{grid-area:cost}
@@ -116,9 +116,9 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
  .mobile-spellbook .spell-selection{border-radius:0 0 4px 4px}
 }
 @container goonk-viewport (orientation:landscape) and (max-height:360px){
- #mobile-app .mobile-spellbook{--spell-icon-size:34px;--spell-detail-icon-size:52px;gap:3px;padding-top:3px}
+ :is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook{--spell-icon-size:34px;--spell-detail-icon-size:52px;gap:3px;padding-top:3px}
  .mobile-spellbook .spell-content{padding:3px}
- #mobile-app .mobile-spellbook .spell-row{padding:2px}
+ :is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook .spell-row{padding:2px}
  .mobile-spellbook .spell-row strong{font-size:12px}
 }
 
@@ -127,3 +127,15 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
 #mobile-app .mobile-spellbook[data-scrolling=true] .spell-list{overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain}
 
 #mobile-app .mobile-spellbook[data-scrolling=true] .spell-content{height:auto;box-sizing:border-box;overflow:hidden}
+/* Both native and real-time combat use this same spellbook component. */
+#crossover-spellbook-root{position:absolute;inset:0;z-index:40;container:goonk-viewport / size;touch-action:pan-y;color:#ffe8ad}
+#crossover-spellbook-root[hidden]{display:none!important}
+.mobile-spellbook:has([data-spell-caster-select]){grid-template-rows:44px 52px 44px minmax(0,1fr) auto}
+.mobile-spellbook:has([data-spell-caster-select]) .spell-top-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px}
+.spell-caster-label{font-size:11px;display:flex;flex-direction:column;min-width:0;gap:2px}
+.spell-caster-label select{min-width:0;width:100%;min-height:36px;font:14px Georgia;background:#33251a;color:#ffe8ad;border:1px solid #b49865;padding:3px}
+#crossover-spellbook-root .mobile-spellbook{height:100%;font-size:14px}
+#crossover-spellbook-root :is(button,input,select){touch-action:pan-y}
+@container goonk-viewport (orientation:landscape){.mobile-spellbook:has([data-spell-caster-select]) .spell-top-actions{display:flex;flex-direction:column;gap:5px}.spell-caster-label select{min-height:44px}}
+
+#mobile-app[data-mode=spellbook] .mobile-play{touch-action:pan-y!important}
