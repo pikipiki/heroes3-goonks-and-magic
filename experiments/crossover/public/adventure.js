@@ -346,7 +346,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                     host.playCreatureSound?.(event.caster, `spell:${event.id}`); }).catch(() => { });
             }
             canvas.dispatchEvent(new CustomEvent('crossover-spell-effect', { detail: { id: event.id, caster: event.caster, targets: event.targets || [], x: event.x ?? (event.hex % 17 - 1) * 800 / 15 + 26, y: event.y ?? Math.floor(event.hex / 17) * 500 / 11 + 22 } }));
-        } canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: response.obstacles || [] })); await waitForBattleArt(win, activePlan.battleId, mediaAbort.signal); canvas.dispatchEvent(new Event('crossover-native-changed')); };
+        } canvas.dispatchEvent(new CustomEvent('crossover-status-effects', { detail: response.groups })); canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: response.obstacles || [] })); await waitForBattleArt(win, activePlan.battleId, mediaAbort.signal); canvas.dispatchEvent(new Event('crossover-native-changed')); };
         let stopKeys = () => { };
         const oldDispose = sceneDispose;
         sceneDispose = () => { mediaAbort.abort(); stopKeys(); magic?.dispose(); oldDispose?.(); };
@@ -582,6 +582,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                 for (const { button } of cards.values())
                     button.disabled = false;
                 const disposeField = sharedField(win, canvas, sc.openbwCrossover, activePlan);
+                canvas.dispatchEvent(new CustomEvent('crossover-status-effects', { detail: openingMagic.groups }));
                 canvas.dispatchEvent(new CustomEvent('crossover-obstacles', { detail: openingMagic.obstacles || [] }));
                 if (activePlan.fromClassic) {
                     sc.openbwCrossover.start();

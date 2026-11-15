@@ -1,3 +1,4 @@
+import {paintStarcraftUnits} from './battle-starcraft.mjs';
 import {siegeTargets,paintSiegeTargets} from './battle-siege.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {paintBattleFloor} from './battle-floor.mjs';
@@ -97,6 +98,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
   if(selected){
    paintSelectedTile(ctx,selected,l,state,isMove);
   }
+  paintStarcraftUnits(ctx,state,l);
   if(detail){lastDetail=detail;}
  }
  return {sync,paint,get active(){return active;}};

@@ -20,7 +20,7 @@ export type NativeBridge = {
   isPaused():boolean;
   applyMagic(groups:import('./magic.js').MagicGroup[],rules?:{source:number;target:number;melee:number;ranged:number}[]):void;
   obstacles(rows:{id:number;blocks:boolean;stops:boolean;triggers:boolean;tiles:{x:number;y:number}[]}[]):void;
-  contacts():{source:number;target:number;frame:number;obstacle?:number}[];
+  contacts():{source:number;target:number;frame:number;obstacle?:number;fireShield?:boolean}[];
   cast(stack:number,spell:number,x:number,y:number):boolean;
   enableAudio?():Promise<void>;
   prepareCreatureSounds?(rows:{id:number;bytes:Uint8Array;kind?:CreatureSoundKind}[]):Promise<void>;

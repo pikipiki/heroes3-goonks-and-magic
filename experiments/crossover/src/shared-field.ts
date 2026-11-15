@@ -47,6 +47,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const revivedBodies=new Set<number>();
  const spellEffects:SpellEffect[]=[],corpses=new Map<number,NativeUnit>(),deathTimes=new Map<number,number>(),castTimes=new Map<number,number>(),damageText=new Map<number,{amount:number;at:number}>();
  const spellFx=(event:Event):void=>{const effect={...(event as CustomEvent).detail,at:win.performance.now()};spellEffects.push(effect);if(effect.caster>=0)castTimes.set(effect.caster,effect.at+800);};canvas.addEventListener('crossover-spell-effect',spellFx);
+ let shields=new Set<number>();const shieldChange=(event:Event):void=>{shields=new Set(((event as CustomEvent).detail as {id:number;fireShield:number}[]).filter(g=>g.fireShield>0).map(g=>g.id));};canvas.addEventListener('crossover-status-effects',shieldChange);
  let obstacles:{id:number;tiles:{x:number;y:number}[]}[]=[];const obstacleChange=(event:Event):void=>{obstacles=(event as CustomEvent).detail;};canvas.addEventListener('crossover-obstacles',obstacleChange);
  const changed=():void=>{nativeFrame=-1;};canvas.addEventListener('crossover-native-changed',changed);
  const backdrop=win.document.createElement('canvas');let backdropSource:HTMLCanvasElement|undefined,backdropKey='';
@@ -101,6 +102,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   // Draw complete obstacle artwork once, behind combatants. The tiles remain
   // exclusively the native footprint for collision and spell triggers.
   for(const obstacle of obstacles){const clip=spellArt?.rows.find(c=>c.id===100000+obstacle.id&&c.kind==='obstacle'),place=obstacleVisual(obstacle.tiles);if(clip&&place)drawClip(clip,place.x,place.y,(nativeFrame*42)%950,place.size);}
+  const shieldClip=spellArt?.rows.find(c=>c.id===29&&c.kind==='affect');if(shieldClip)for(const unit of units)if(unit.hp>0&&shields.has(unit.stackId!)){const at=positions.get(unit.id)||unit;drawClip(shieldClip,at.x-camera.x,at.y-camera.y+8,(nativeFrame*42)%950,115);}
   const art=source.goonkCrossoverArt,cell=art?.cell||128;if(art?.canvas!==previousArt){previousArt=art?.canvas;heroBounds.clear();heroCanvases.clear();}
   const blendedHeroes=new Map<string,HTMLCanvasElement>();
   bodyHits.clear();
@@ -193,5 +195,5 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   for(const pair of sprites.values())for(const image of [pair.before,pair.after,pair.blend])surfaces.add(image);
   for(const image of surfaces){image.width=0;image.height=0;}
   bodyHits.clear();heroCanvases.clear();spriteCache.clear();sprites.clear();units=[];oldUnits.clear();corpses.clear();spellEffects.length=0;
-  canvas.removeEventListener('crossover-obstacles',obstacleChange);canvas.removeEventListener('crossover-native-changed',changed);canvas.removeEventListener("crossover-spell-effect",spellFx);closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
+  canvas.removeEventListener('crossover-status-effects',shieldChange);shields.clear();canvas.removeEventListener('crossover-obstacles',obstacleChange);canvas.removeEventListener('crossover-native-changed',changed);canvas.removeEventListener("crossover-spell-effect",spellFx);closed=true;win.cancelAnimationFrame(request);canvas.removeEventListener('pointerdown',pointer);canvas.removeEventListener('crossover-select-all',selectAll);canvas.removeEventListener('crossover-select-group',selectGroup);canvas.removeEventListener('crossover-command-mode',mode);canvas.removeEventListener('crossover-stop-selection',stop);};
 }

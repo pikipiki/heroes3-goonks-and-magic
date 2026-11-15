@@ -105,6 +105,7 @@ JsonNode runCrossoverMagic(const JsonNode & request,const BattleInfo & original)
  crossoverMagicEvents=JsonNode();crossoverMagicEvents.Vector();CrossoverMagicServer server(b);
  // Exact after-attack abilities use actual native weapon contacts, not a timer.
  for(const auto & hit:request["hits"].Vector()){
+  if(hit["fireShield"].Bool()){const auto source=b.getStack(hit["source"].Integer(),false),target=b.getStack(hit["target"].Integer(),false);if(source&&target){publishCrossoverSpellEffects(SpellID(29),b.battleID.getNum());JsonNode event;event["id"].Integer()=29;event["caster"].Integer()=source->unitId();const auto point=crossoverHexPoint(target->getPosition());event["x"].Integer()=point.x;event["y"].Integer()=point.y;event["targets"].Vector().emplace_back(double(target->unitId()));crossoverMagicEvents.Vector().push_back(event);}continue;}
   auto * source=b.getStack(hit["source"].Integer());auto * target=b.getStack(hit["target"].Integer());if(!source||!target||crossoverMagicAutoReady[source->unitId()]>frame)continue;crossoverMagicAutoReady[source->unitId()]=frame+24;
   for(const auto & bonus:*source->getBonusesOfType(BonusType::SPELL_AFTER_ATTACK)){if(server.getRNG()->nextInt(99)>=bonus->val)continue;const auto spell=bonus->subtype.as<SpellID>().toSpell();const int level=bonus->parameters?bonus->parameters->toVector().at(0):0;spells::AbilityCaster caster(source,level);spells::BattleCast cast(&b,&caster,spells::Mode::PASSIVE,spell);cast.cast(&server,{battle::Destination(target)});}
  }

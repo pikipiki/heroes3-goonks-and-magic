@@ -1,6 +1,7 @@
 // Native crossover scenario and rendering DTOs; upstream source remains unchanged.
 namespace bwgame {struct unit_t;}
 int crossover_weapon_contact(bwgame::unit_t*,bwgame::unit_t*,int);
+void crossover_fire_shield(bwgame::unit_t*,bwgame::unit_t*,int);
 int crossover_movement_speed(const bwgame::unit_t*,int);
 // Scenario option only: ordinary StarCraft maps retain their original terrain.
 bool crossover_arena_requested=false;
@@ -50,7 +51,7 @@ int crossover_movement_speed(const bwgame::unit_t* unit,int speed){
 }
 namespace {
 std::map<std::pair<int,int>,std::pair<int,int>> crossover_damage_rules;
-struct CrossoverContact {int source,target,frame,obstacle=-1;};bwgame::a_vector<CrossoverContact> crossover_contacts;
+struct CrossoverContact {int source,target,frame,obstacle=-1;bool fireShield=false;};bwgame::a_vector<CrossoverContact> crossover_contacts;
 bwgame::a_string crossover_contact_json;
 std::map<std::pair<int,int>,int> crossover_last_contact;
 struct CrossoverObstacle {int id,x,y;bool blocks,stops,triggers;bwgame::unit_id blocker;};bwgame::a_vector<CrossoverObstacle> crossover_obstacles;
@@ -95,12 +96,26 @@ int crossover_weapon_contact(bwgame::unit_t* target,bwgame::unit_t* source,int d
   const auto & d=sourceRules->second;if(d.luck&&int(g_ui->lcg_rand(0)%24)<std::min(3,std::abs(d.luck)))damage=d.luck>0?damage*2:damage/2;
   if(d.morale&&int(g_ui->lcg_rand(0)%24)<std::min(3,std::abs(d.morale)))source->ground_weapon_cooldown=d.morale>0?source->ground_weapon_cooldown/2:std::min(255,int(source->ground_weapon_cooldown)+source->unit_type->ground_weapon->cooldown);
  }
- const auto definition=crossover_magic_definitions.find(to);if(definition!=crossover_magic_definitions.end()&&definition->second.fire>0&&source->unit_type->ground_weapon->max_range<=32&&source->unit_type->id!=bwgame::UnitTypes::Terran_Firebat){g_ui->unit_deal_damage(source,bwgame::fp8::from_raw(int(int64_t(damage)*definition->second.fire/100)),nullptr,~0);}
+ const auto definition=crossover_magic_definitions.find(to);
  if(definition!=crossover_magic_definitions.end()){
   const auto & d=definition->second;if(d.cloned&&damage>0)for(const auto& group:crossover_groups)if(group.stack==to)for(auto id:group.ids){auto* unit=g_ui->get_unit(id);if(unit&&unit!=target&&!g_ui->unit_dying(unit))g_ui->unit_deal_damage(unit,unit->hp,nullptr,~0);}if(d.cloned)damage=std::max(damage,(int(target->hp.raw_value)+int(target->shield_points.raw_value)+8192)*4);
   if(!crossover_retaliating&&d.retaliations>0&&!d.disabled&&target->order_target.unit&&source->unit_type->ground_weapon->max_range<=32){auto & used=crossover_retaliation_counts[g_ui->get_unit_id(target).raw_value];if(used.first!=frame/96)used={frame/96,0};if(used.second<d.retaliations){++used.second;crossover_retaliating=true;g_ui->weapon_deal_damage(target->unit_type->ground_weapon,g_ui->weapon_damage_amount(target->unit_type->ground_weapon,target->owner),1,source,bwgame::direction_t(),target,target->owner);crossover_retaliating=false;}}
  }
  return damage;
+}
+// Reflection follows actual armor/shield mitigation, not the incoming weapon estimate.
+void crossover_fire_shield(bwgame::unit_t* target,bwgame::unit_t* source,int damage){
+ if(!g_ui||crossover_battle<0||!target||!source||damage<=0)return;
+ int from=-1,to=-1;for(const auto & group:crossover_groups)for(auto id:group.ids){const auto* unit=g_ui->get_unit(id);if(unit==source)from=group.stack;if(unit==target)to=group.stack;}
+ const auto guard=crossover_magic_definitions.find(to),attacker=crossover_magic_definitions.find(from);
+ if(guard==crossover_magic_definitions.end()||guard->second.fire<=0)return;
+ const bool ranged=attacker!=crossover_magic_definitions.end()?attacker->second.shooting:source->unit_type->ground_weapon->max_range>32||source->unit_type->id==bwgame::UnitTypes::Terran_Firebat;
+ if(ranged)return;
+ const int available=int(target->hp.raw_value)+(target->unit_type->has_shield?int(target->shield_points.raw_value):0);
+ int reflected=int(int64_t(std::min(damage,available))*guard->second.fire/100);if(reflected<=0)return;
+ if(source->unit_type->has_shield){const int loss=std::min(reflected,int(source->shield_points.raw_value));source->shield_points-=bwgame::fp8::from_raw(loss);reflected-=loss;if(loss)g_ui->create_shield_damage_effect(source,bwgame::direction_t());}
+ if(reflected>0)g_ui->unit_deal_damage(source,bwgame::fp8::from_raw(reflected),target,target->owner);
+ if(crossover_contacts.size()<256)crossover_contacts.push_back({to,from,int(g_ui->st.current_frame),-1,true});
 }
 OPENBW_EXPORT(openbw_crossover_setup) int openbw_crossover_setup(int battle,int count) {
   if(!g_ui || count<2 || count>32 || (g_inbuf.size()!=size_t(count*16) && g_inbuf.size()!=size_t(count*48) && g_inbuf.size()!=size_t(count*56) && g_inbuf.size()!=size_t(count*64)))return 0;
@@ -204,7 +219,7 @@ OPENBW_EXPORT(openbw_crossover_cast) int openbw_crossover_cast(int stack,int spe
 // Transaction from the isolated VCMI battle: damage, healing, resurrection,
 // summons, control, speed and weapon/defence bonuses use native RTS actors.
 OPENBW_EXPORT(openbw_crossover_damage_rules) int openbw_crossover_damage_rules(int count){if(count<0||count>16384||g_inbuf.size()!=size_t(count*16))return 0;const auto* rows=reinterpret_cast<const int32_t*>(g_inbuf.data());for(int i=0;i<count;i++)if(rows[i*4+2]<0||rows[i*4+2]>100000||rows[i*4+3]<0||rows[i*4+3]>100000)return 0;crossover_damage_rules.clear();for(int i=0;i<count;i++)crossover_damage_rules[{rows[i*4],rows[i*4+1]}]={rows[i*4+2],rows[i*4+3]};return 1;}
-OPENBW_EXPORT(openbw_crossover_contacts) const char* openbw_crossover_contacts(){auto& out=crossover_contact_json;out="[";bool comma=false;for(const auto& hit:crossover_contacts){if(comma)out+=',';comma=true;out+=bwgame::format("{\"source\":%d,\"target\":%d,\"frame\":%d",hit.source,hit.target,hit.frame);if(hit.obstacle>=0)out+=bwgame::format(",\"obstacle\":%d",hit.obstacle);out+='}';}out+=']';crossover_contacts.clear();return out.c_str();}
+OPENBW_EXPORT(openbw_crossover_contacts) const char* openbw_crossover_contacts(){auto& out=crossover_contact_json;out="[";bool comma=false;for(const auto& hit:crossover_contacts){if(comma)out+=',';comma=true;out+=bwgame::format("{\"source\":%d,\"target\":%d,\"frame\":%d",hit.source,hit.target,hit.frame);if(hit.fireShield)out+=",\"fireShield\":true";if(hit.obstacle>=0)out+=bwgame::format(",\"obstacle\":%d",hit.obstacle);out+='}';}out+=']';crossover_contacts.clear();return out.c_str();}
 OPENBW_EXPORT(openbw_crossover_obstacles) int openbw_crossover_obstacles(int count){
  if(!g_ui||count<0||count>256||g_inbuf.size()!=size_t(count*24))return 0;const auto* rows=reinterpret_cast<const int32_t*>(g_inbuf.data());for(int i=0;i<count;i++)if(rows[i*6]<0||rows[i*6+1]<0||rows[i*6+1]>799||rows[i*6+2]<0||rows[i*6+2]>499)return 0;
  for(auto & obstacle:crossover_obstacles)if(obstacle.blocks){bool retained=false;for(int i=0;i<count;i++)if(rows[i*6]==obstacle.id&&rows[i*6+1]==obstacle.x&&rows[i*6+2]==obstacle.y)retained=true;if(!retained)if(auto* unit=g_ui->get_unit(obstacle.blocker))g_ui->kill_unit(unit);}

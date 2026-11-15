@@ -47,6 +47,9 @@ export function sharedField(win, canvas, api, plan) {
     const spellFx = (event) => { const effect = { ...event.detail, at: win.performance.now() }; spellEffects.push(effect); if (effect.caster >= 0)
         castTimes.set(effect.caster, effect.at + 800); };
     canvas.addEventListener('crossover-spell-effect', spellFx);
+    let shields = new Set();
+    const shieldChange = (event) => { shields = new Set(event.detail.filter(g => g.fireShield > 0).map(g => g.id)); };
+    canvas.addEventListener('crossover-status-effects', shieldChange);
     let obstacles = [];
     const obstacleChange = (event) => { obstacles = event.detail; };
     canvas.addEventListener('crossover-obstacles', obstacleChange);
@@ -240,6 +243,13 @@ export function sharedField(win, canvas, api, plan) {
             if (clip && place)
                 drawClip(clip, place.x, place.y, (nativeFrame * 42) % 950, place.size);
         }
+        const shieldClip = spellArt?.rows.find(c => c.id === 29 && c.kind === 'affect');
+        if (shieldClip)
+            for (const unit of units)
+                if (unit.hp > 0 && shields.has(unit.stackId)) {
+                    const at = positions.get(unit.id) || unit;
+                    drawClip(shieldClip, at.x - camera.x, at.y - camera.y + 8, (nativeFrame * 42) % 950, 115);
+                }
         const art = source.goonkCrossoverArt, cell = art?.cell || 128;
         if (art?.canvas !== previousArt) {
             previousArt = art?.canvas;
@@ -533,6 +543,8 @@ export function sharedField(win, canvas, api, plan) {
         oldUnits.clear();
         corpses.clear();
         spellEffects.length = 0;
+        canvas.removeEventListener('crossover-status-effects', shieldChange);
+        shields.clear();
         canvas.removeEventListener('crossover-obstacles', obstacleChange);
         canvas.removeEventListener('crossover-native-changed', changed);
         canvas.removeEventListener("crossover-spell-effect", spellFx);

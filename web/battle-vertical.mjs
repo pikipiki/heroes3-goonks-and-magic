@@ -1,3 +1,4 @@
+import {paintStarcraftUnits} from './battle-starcraft.mjs';
 import {paintSiegeTargets,paintVerticalFortifications} from './battle-siege.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 import {paintBattleAction} from './battle-director.mjs';
@@ -89,6 +90,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  for(const unit of guidance.shotTargets)marker(unit,'shot','#b2f5ff');for(const unit of guidance.meleeTargets)marker(unit,'melee','#ff6969');for(const unit of guidance.beneficialTargets)marker(unit,'heal','#b5f07a');for(const unit of guidance.spellTargets)marker(unit,unit.enemy?'spell':'heal',unit.enemy?'#ffc0ff':'#b9ff9a');
  for(const unit of guidance.invalidSpellTargets)marker(unit,'invalid','#c5c5c5');
  paintSiegeTargets(ctx,state,project);
+ paintStarcraftUnits(ctx,state,{project,scale,dx:0,dy:0,w:width/scale,h:height/scale},atlas,ids,bounds);
  // Counters are the final overlay: sprites and spell effects cannot cover them.
  for(const {b,p} of records){const unit=units.get(b.stackId);if(!unit)continue;
   const label=String(unit.count??unit.amount??1),bw=Math.max(20,label.length*7+8),by=Math.max(2,Math.min(height-16,p.y+9));

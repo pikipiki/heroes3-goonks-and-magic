@@ -28,6 +28,9 @@ try {
  const needle='\t\tdamage += fp8::integer(target->acid_spore_count);';
  if(text.split(needle).length!==2)throw Error('Pinned native damage hook changed.');
  let transformed=text.replace(needle,needle+'\n\t\tdamage = fp8::from_raw(::crossover_weapon_contact(target, source_unit, damage.raw_value));');
+ const reflectedHit='\t\tunit_deal_damage(target, damage, source_unit, source_owner, weapon->id != WeaponTypes::Irradiate);';
+ if(transformed.split(reflectedHit).length!==2)throw Error('Pinned damage application hook changed.');
+ transformed=transformed.replace(reflectedHit,'\t\t::crossover_fire_shield(target, source_unit, (damage+shield_damage).raw_value);\n'+reflectedHit);
  const speedStart=transformed.indexOf('\tfp8 get_modified_unit_speed(const unit_t* u, fp8 base_speed) const {');
  const speedEnd=transformed.indexOf('\tfp8 get_modified_unit_acceleration(',speedStart);
  const speedSection=transformed.slice(speedStart,speedEnd);
