@@ -34,3 +34,23 @@
  #mobile-app .progression-page footer p{max-height:50%;margin-bottom:auto}
 }
 @media(min-width:900px){#mobile-app .progression-offers,#mobile-app .troop-inventory{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#mobile-app[data-troop-deployment]>.mobile-top,#mobile-app[data-troop-deployment]>.mobile-nav{visibility:hidden!important;pointer-events:none!important}
+#mobile-app .deployment-quantity{display:flex;align-items:center;gap:12px;justify-content:space-between}
+#mobile-app .deployment-quantity input{box-sizing:border-box;min-height:44px;width:100px;font-size:18px;background:#291a10;color:#ffe9b5;border:2px ridge #b99a56;padding:6px}
+#mobile-app .deployment-quantity-tools{display:grid;grid-template-columns:44px minmax(40px,1fr) 44px 52px;align-items:center;gap:6px;margin:6px 0}
+#mobile-app .deployment-quantity-tools input{width:100%;min-width:0;min-height:44px;touch-action:pan-x}
+#mobile-app .deployment-quantity-tools button{padding:4px;font-size:16px;white-space:nowrap}
+#mobile-app .deployment-targets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:440px;margin:8px auto}
+#mobile-app .deployment-targets button{padding:8px 2px;border:2px ridge #b99a56;background:#352317;color:#ffe9b5;font-size:14px}
+#mobile-app .deployment-targets button[aria-pressed=true]{background:#75421e;outline:2px solid #ffe28c;outline-offset:-4px}
+#mobile-app .deployment-targets button:disabled{opacity:.4}
+#mobile-app .deployment-origin{display:grid;place-items:center;min-height:44px;color:#ffe28c}
+#mobile-app .deployment-return{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+#mobile-app .deployment-return input{width:24px;height:24px;flex-shrink:0}
+#mobile-app .troop-deployment-page .progression-scroll>p{font-size:13px;line-height:1.4}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .troop-deployment-page>header{grid-column:2;grid-row:1}
+ #mobile-app .troop-deployment-page>.progression-scroll{grid-column:1;grid-row:1/-1}
+ #mobile-app .troop-deployment-page>footer{grid-column:2;grid-row:2;min-height:0}
+ #mobile-app .troop-deployment-page h2{font-size:20px}
+}

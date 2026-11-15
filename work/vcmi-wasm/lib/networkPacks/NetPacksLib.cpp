@@ -15,6 +15,7 @@
 #include "SetRewardableConfiguration.h"
 #include "SourceCampaignChange.h"
 #include "SourceCampaignReply.h"
+#include "SourceCampaignDeployTroops.h"
 #include "PacksForLobby.h"
 #include "SetStackEffect.h"
 #include "NetPackVisitor.h"
@@ -110,6 +111,8 @@ void EntitiesChanged::visitTyped(ICPackVisitor & visitor)
 {
 	visitor.visitEntitiesChanged(*this);
 }
+
+void SourceCampaignDeployTroops::visitTyped(ICPackVisitor & visitor){visitor.visitSourceCampaignDeployTroops(*this);}
 
 void SourceCampaignReply::visitTyped(ICPackVisitor & visitor)
 {

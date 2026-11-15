@@ -11,6 +11,8 @@
 #include "StdInc.h"
 #include "CGCreature.h"
 #include "CGHeroInstance.h"
+#include "../CPlayerState.h"
+#include "../era/EraCampaignDeployment.h"
 
 #include "../texts/CGeneralTextHandler.h"
 #include "../CConfigHandler.h"
@@ -343,6 +345,9 @@ void CGCreature::setPropertyDer(ObjProperty what, ObjPropertyID identifier)
 
 int CGCreature::takenAction(const CGHeroInstance *h, bool allowJoin) const
 {
+ const auto style=era_campaign_deployment::ownerStyle(cb->gameState().getSourceCampaignState(),id.getNum(),h->getOwner().getNum(),visitablePos());
+ if(style&&cb->getPlayerState(h->getOwner())->isHuman())return *style&&allowJoin?JOIN_FOR_FREE:FLEE;
+
 	//calculate relative strength of hero and creatures armies
 	double relStrength = static_cast<double>(h->getValueForDiplomacy()) / getArmyStrength();
 
@@ -409,6 +414,12 @@ int CGCreature::takenAction(const CGHeroInstance *h, bool allowJoin) const
 
 void CGCreature::fleeDecision(IGameEventCallback & gameEvents, const CGHeroInstance *h, ui32 pursue) const
 {
+	// The original leave-creatures hook never lets the owner fight these troops.
+	if(era_campaign_deployment::ownerStyle(cb->gameState().getSourceCampaignState(),id.getNum(),h->getOwner().getNum(),visitablePos()) && cb->getPlayerState(h->getOwner())->isHuman())
+	{
+		gameEvents.removeObject(this,h->getOwner());
+		return;
+	}
 	if(refusedJoining)
 		gameEvents.setObjPropertyValue(id, ObjProperty::MONSTER_REFUSED_JOIN, false);
 
@@ -426,6 +437,12 @@ void CGCreature::joinDecision(IGameEventCallback & gameEvents, const CGHeroInsta
 {
 	if(!accept)
 	{
+		if(era_campaign_deployment::ownerStyle(cb->gameState().getSourceCampaignState(),id.getNum(),h->getOwner().getNum(),visitablePos()) && cb->getPlayerState(h->getOwner())->isHuman())
+		{
+			InfoWindow message;message.player=h->getOwner();message.text.appendRawString("The creatures you left here run away.");gameEvents.showInfoDialog(&message);
+			gameEvents.removeObject(this,h->getOwner());
+			return;
+		}
 		if(takenAction(h,false) == FLEE)
 		{
 			gameEvents.setObjPropertyValue(id, ObjProperty::MONSTER_REFUSED_JOIN, true);

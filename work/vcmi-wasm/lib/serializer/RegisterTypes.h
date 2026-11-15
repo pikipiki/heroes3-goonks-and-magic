@@ -44,6 +44,7 @@
 #include "../networkPacks/SetRewardableConfiguration.h"
 #include "../networkPacks/SourceCampaignChange.h"
 #include "../networkPacks/SourceCampaignReply.h"
+#include "../networkPacks/SourceCampaignDeployTroops.h"
 #include "../networkPacks/SetStackEffect.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
@@ -315,6 +316,7 @@ void registerTypes(Serializer &s)
     s.template registerType<CaveBuilderAction>(269);
     s.template registerType<SourceCampaignChange>(270);
     s.template registerType<SourceCampaignReply>(271);
+    s.template registerType<SourceCampaignDeployTroops>(272);
 }
 
 VCMI_LIB_NAMESPACE_END

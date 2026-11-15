@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.192",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Bounded ordinary LLVM disassembly corroborated by historical Monsters.cpp navigation. No Windows execution, external binary upload or new Hopper result.",
+  "boundedAssemblySha256": {
+    "checkCreature": "c6da898d0cfc2ba5429c344e2abf839ead213ea5531f863ba3ac3f38bf55430b",
+    "placeCreature": "18adf068082de78a947ba47c3a5ebd0d1decf194f7f0e10ee0ba3f6ab58f68a3"
+  },
+  "observations": [
+    {
+      "address": "0x753239..0x7532a2",
+      "fact": "CheckCreature2Leave rejects ghost159 and the half-open god range160..164."
+    },
+    {
+      "address": "0x75367d",
+      "fact": "PlaceCreature calls the same original family guard."
+    },
+    {
+      "address": "0x753709..0x753716",
+      "fact": "The original creation masks the count to12bits, writes the whole setup word and assigns aggression10."
+    }
+  ],
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "selectedCode": "Monsters.cpp PlaceCreature, AddMonOnMap, Enter2Monster2 and _E2MWoMoNoBattle; common.cpp EmptyPlace",
+    "warning": "Archive contains later changes. Family checks and count/aggression stores have bounded original3.58f corroboration; no claim of complete equivalence for all later options."
+  },
+  "implementation": [
+    "Typed owner/active-player request, source registry admission, human-owned current hero, one adjacent empty land cell, no boat/garrison or active source query.",
+    "One native stack per action; existing merge/split controls can prepare one family across slots. Native moveStack transfers the actual units and their supported experience/artifact state.",
+    "Retain at least one army creature; admit1..4095 rather than silently truncating the source12bit field; reject forbidden source families, war machines and existing protected actor340.",
+    "Neutral group with aggression10, original object appearance and source54/creature identity, owner and per-placement recovery style persisted inside existing905 source state.",
+    "Default owner revisits remove the group; recovery style offers free native joining. Owner refusal and pursuit cannot start combat. Other players retain normal savage-monster behavior."
+  ],
+  "exceptions": [
+    "The original uses a global leave-style option; the mobile control stores that choice on each deployment, as the original map record does.",
+    "The original multi-slot family selection is represented by existing native merge controls followed by a one-stack deployment.",
+    "Count is restricted to the defined original12bit capacity; no wraparound or troop loss is reproduced."
+  ],
+  "limitations": [
+    "This action alone does not validate original scenario victories or campaign transfers. All original campaign entries remain disabled.",
+    "The actual original pursuit is tested; the subsequent troll-bridge progression is still under review, without changing original quest flags or guard counts."
+  ]
+}

@@ -4,6 +4,8 @@
 #include "../lib/era/EraCreatureSpecialists.h"
 #include "../lib/era/EraAtmaStateNative.h"
 #include "../lib/era/EraInterferenceState.h"
+#include "../lib/era/EraCampaignDeployment.h"
+#include "../lib/era/EraSourceCreatureLevels.h"
 #include "MobileBridge.h"
 #include "../lib/gameState/CGameState.h"
 #include "../lib/mapping/CMap.h"
@@ -1312,6 +1314,25 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
+  if(heroWindow&&hero&&hero->getOwner()==p->playerID&&!hero->isGarrisoned()&&!hero->inBoat())
+  {
+   const auto & saved=static_cast<const IGameInfoCallback &>(*p->cb).gameState().getSourceCampaignState();
+   if(era_campaign_deployment::admitted(saved))
+   {
+    auto & deploy=n["troopDeployment"];deploy["heroId"].Integer()=hero->id.getNum();deploy["revision"].Integer()=saved["lastTroopDeployment"]["revision"].Integer();
+    const auto origin=hero->visitablePos();deploy["origin"].Vector()={JsonNode(origin.x),JsonNode(origin.y),JsonNode(origin.z)};std::int64_t army=0;for(const auto & entry:hero->stacks)army+=entry.second->getCount();
+    for(int slot=0;slot<7;++slot)if(hero->hasStackAtSlot(SlotID(slot)))
+    {
+     const auto & stack=hero->getStack(SlotID(slot));const auto source=era_bridge::sourceCreatureIdForLevel(stack.getCreature()->getJsonKey());auto unit=creature(stack.getCreature(),stack.getCount());unit["slot"].Integer()=slot;
+     unit["maximum"].Integer()=era_campaign_deployment_rule::maximum(stack.getCount(),army,source.value_or(-1),stack.getCreature()->warMachine!=ArtifactID::NONE);deploy["troops"].Vector().push_back(unit);
+    }
+    for(std::size_t index=0;index<era_campaign_deployment_rule::directions.size();++index)
+    {
+     const auto offset=era_campaign_deployment_rule::directions[index];const int3 target=origin+int3(offset[0],offset[1],0);JsonNode cell;cell["direction"].Integer()=index;cell["x"].Integer()=target.x;cell["y"].Integer()=target.y;
+     cell["available"].Bool()=era_campaign_deployment::emptyLand(static_cast<const IGameInfoCallback &>(*p->cb).gameState().getMap(),target,saved)&&p->cb->isVisibleFor(target,p->playerID);deploy["targets"].Vector().push_back(cell);
+    }
+   }
+  }
   if(n["mode"].String()=="map"&&hero)
   {
    if(const auto town=mobileResidentTown(hero);town&&town->getOwner()==p->playerID)
@@ -1973,6 +1994,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    p->cb->recruitCreatures(town,destination,id,std::min(c,int(row.first)),a);
   }
   lastPublished=0;return;
+ }
+ if(action==110)
+ {
+  const auto window=ENGINE->windows().topWindow<CHeroWindow>();const auto owner=window?window->curHero:nullptr;
+  if(!owner||owner->id.getNum()!=a||owner->getOwner()!=p->playerID||!p->makingTurn||battle||window->getPickedArtifact()||b<0||b>=7||d<0||d>=8||(e!=0&&e!=1)||!owner->hasStackAtSlot(SlotID(b)))return;
+  const auto & saved=static_cast<const IGameInfoCallback &>(*p->cb).gameState().getSourceCampaignState();if(!era_campaign_deployment::admitted(saved))return;const auto offset=era_campaign_deployment_rule::directions[d];
+  p->cb->sourceCampaignDeployTroops(owner,SlotID(b),c,owner->visitablePos()+int3(offset[0],offset[1],0),e!=0);lastPublished=0;return;
  }
  if(action==103)
  {

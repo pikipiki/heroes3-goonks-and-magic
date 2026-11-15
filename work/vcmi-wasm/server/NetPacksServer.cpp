@@ -448,6 +448,12 @@ void ApplyGhNetPackVisitor::visitBuildBoat(BuildBoat & pack)
 	result = gh.buildBoat(pack.objid, pack.player);
 }
 
+void ApplyGhNetPackVisitor::visitSourceCampaignDeployTroops(SourceCampaignDeployTroops & pack)
+{
+ gh.throwIfWrongOwner(connection,&pack,pack.hero);gh.throwIfPlayerNotActive(connection,&pack);
+ result=gh.sourceCampaigns->deployTroops(pack.hero,pack.slot,pack.creature,pack.count,pack.position,pack.takeBack,pack.player);
+}
+
 void ApplyGhNetPackVisitor::visitSourceCampaignReply(SourceCampaignReply & pack)
 {
  gh.throwIfWrongPlayer(connection,&pack);

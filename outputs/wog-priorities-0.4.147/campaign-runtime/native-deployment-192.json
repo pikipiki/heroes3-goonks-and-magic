@@ -1,0 +1,2587 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.192",
+  "engineSha256": "eba0ed40868cf9fbc700657428510ec29f2a5b6b1040a2993bfb642ea886b4b2",
+  "passed": true,
+  "scope": "Typed native troop deployment, ownership recovery, save/reload and real original bait/hiding/pursuit/escape. Not original scenario victory or complete campaign.",
+  "cases": [
+    {
+      "passed": true,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "8128a5e2f5ca7a92",
+        "wasm": "vcmiclient.88ccff1179a94b66.wasm",
+        "sha256": "88ccff1179a94b66df1c7830f4166c94c43e4cd0d6f785a28ff4166f7df3b772",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "8f7cc5f0f29b62f5d1f112b7fe9cebb44558bb471030f41ce5aa0ebb5c8b96d9",
+      "mapSha256": "7725d24bab48a52f8a73d99f373571d8efeb61c91590984870e0a03ee6f1ea65",
+      "initial": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 0,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 15,
+            "attack": 1,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10,
+              0
+            ],
+            "count": 3,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 1,
+            "description": "",
+            "fightValue": 15,
+            "growth": 25,
+            "health": 1,
+            "icon": "",
+            "id": 139,
+            "key": "core:peasant",
+            "maximum": 3,
+            "name": "Peasant",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 0,
+            "speed": 3
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 2,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 2,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "final": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 4,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 0,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "freeJoin": {
+        "cancel": true,
+        "lines": [
+          "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        "queryId": 6,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "Native deployment ready"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Native deployment ready"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        }
+      ],
+      "saveSha256": "09f44bae2668dc150794db55958f883b6ddf3a0ec8bc3fe5abfdd6b941e5bd3b",
+      "errors": [],
+      "case": "chromium",
+      "evidenceSha256": "4e5e79a9d7a5b649abdcd141f5788aa39c8478d3485572b62686d51ff9d63282"
+    },
+    {
+      "passed": true,
+      "loadedFirstDeployment": false,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "8128a5e2f5ca7a92",
+        "wasm": "vcmiclient.88ccff1179a94b66.wasm",
+        "sha256": "88ccff1179a94b66df1c7830f4166c94c43e4cd0d6f785a28ff4166f7df3b772",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "8f7cc5f0f29b62f5d1f112b7fe9cebb44558bb471030f41ce5aa0ebb5c8b96d9",
+      "mapSha256": "7725d24bab48a52f8a73d99f373571d8efeb61c91590984870e0a03ee6f1ea65",
+      "initial": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 0,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 15,
+            "attack": 1,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10,
+              0
+            ],
+            "count": 3,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 1,
+            "description": "",
+            "fightValue": 15,
+            "growth": 25,
+            "health": 1,
+            "icon": "",
+            "id": 139,
+            "key": "core:peasant",
+            "maximum": 3,
+            "name": "Peasant",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 0,
+            "speed": 3
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 2,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 2,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "final": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 4,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 0,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "freeJoin": {
+        "cancel": true,
+        "lines": [
+          "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        "queryId": 6,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "Native deployment ready"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Native deployment ready"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        }
+      ],
+      "saveSha256": "2f8004504a901195533d05b96b1df79bf708c2f2d609528046cdf0ddde3a2d18",
+      "errors": [],
+      "case": "webkit",
+      "evidenceSha256": "a65030346eb842ffa5687667610a823c989d41c4ae20ff067a6b3baee9f69de4"
+    },
+    {
+      "passed": true,
+      "loadedFirstDeployment": true,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "8128a5e2f5ca7a92",
+        "wasm": "vcmiclient.88ccff1179a94b66.wasm",
+        "sha256": "88ccff1179a94b66df1c7830f4166c94c43e4cd0d6f785a28ff4166f7df3b772",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "8f7cc5f0f29b62f5d1f112b7fe9cebb44558bb471030f41ce5aa0ebb5c8b96d9",
+      "mapSha256": "7725d24bab48a52f8a73d99f373571d8efeb61c91590984870e0a03ee6f1ea65",
+      "initial": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 1,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 15,
+            "attack": 1,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10,
+              0
+            ],
+            "count": 2,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 1,
+            "description": "",
+            "fightValue": 15,
+            "growth": 25,
+            "health": 1,
+            "icon": "",
+            "id": 139,
+            "key": "core:peasant",
+            "maximum": 2,
+            "name": "Peasant",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 0,
+            "speed": 3
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 2,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 2,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "final": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 4,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 0,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "freeJoin": {
+        "cancel": true,
+        "lines": [
+          "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        "queryId": 6,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      "dialogs": [
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        }
+      ],
+      "saveSha256": "fdc4f2e57ba6ad33f53a1e463a95b5a96afbef1c37abe4267a6ce924d552847a",
+      "errors": [],
+      "case": "webkit-reload",
+      "evidenceSha256": "64d8e0179ca7de01c9718edc39a7d47a9c5c6e2a9d83e34852abc73fa6262ced"
+    },
+    {
+      "passed": true,
+      "loadedFirstDeployment": false,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "6de60f0906c8efb2",
+        "wasm": "vcmiclient.eba0ed40868cf9fb.wasm",
+        "sha256": "eba0ed40868cf9fbc700657428510ec29f2a5b6b1040a2993bfb642ea886b4b2",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "8f7cc5f0f29b62f5d1f112b7fe9cebb44558bb471030f41ce5aa0ebb5c8b96d9",
+      "mapSha256": "7725d24bab48a52f8a73d99f373571d8efeb61c91590984870e0a03ee6f1ea65",
+      "initial": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 0,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 15,
+            "attack": 1,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10,
+              0
+            ],
+            "count": 3,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 1,
+            "description": "",
+            "fightValue": 15,
+            "growth": 25,
+            "health": 1,
+            "icon": "",
+            "id": 139,
+            "key": "core:peasant",
+            "maximum": 3,
+            "name": "Peasant",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 0,
+            "speed": 3
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 2,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 2,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "final": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 4,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 0,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "freeJoin": {
+        "cancel": true,
+        "lines": [
+          "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        "queryId": 6,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "Native deployment ready"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        }
+      ],
+      "saveSha256": "26b7f48b4c28613380590f5c37860531f05eb962e16932cd17a3d2ddc9fa5b87",
+      "errors": [],
+      "case": "chromium-final",
+      "evidenceSha256": "1c80aafbd987d7f1114e1122801aa4bd443ae35c16b5ab1372f79aae379203dd"
+    },
+    {
+      "passed": true,
+      "loadedFirstDeployment": true,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "6de60f0906c8efb2",
+        "wasm": "vcmiclient.eba0ed40868cf9fb.wasm",
+        "sha256": "eba0ed40868cf9fbc700657428510ec29f2a5b6b1040a2993bfb642ea886b4b2",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "8f7cc5f0f29b62f5d1f112b7fe9cebb44558bb471030f41ce5aa0ebb5c8b96d9",
+      "mapSha256": "7725d24bab48a52f8a73d99f373571d8efeb61c91590984870e0a03ee6f1ea65",
+      "initial": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 1,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 15,
+            "attack": 1,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              10,
+              0
+            ],
+            "count": 2,
+            "damageMax": 1,
+            "damageMin": 1,
+            "defense": 1,
+            "description": "",
+            "fightValue": 15,
+            "growth": 25,
+            "health": 1,
+            "icon": "",
+            "id": 139,
+            "key": "core:peasant",
+            "maximum": 2,
+            "name": "Peasant",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 0,
+            "speed": 3
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 2,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 2,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "final": {
+        "heroId": 2,
+        "origin": [
+          17,
+          18,
+          0
+        ],
+        "revision": 4,
+        "targets": [
+          {
+            "available": false,
+            "direction": 0,
+            "x": 17,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 1,
+            "x": 18,
+            "y": 17
+          },
+          {
+            "available": true,
+            "direction": 2,
+            "x": 18,
+            "y": 18
+          },
+          {
+            "available": true,
+            "direction": 3,
+            "x": 18,
+            "y": 19
+          },
+          {
+            "available": false,
+            "direction": 4,
+            "x": 17,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 5,
+            "x": 16,
+            "y": 19
+          },
+          {
+            "available": true,
+            "direction": 6,
+            "x": 16,
+            "y": 18
+          },
+          {
+            "available": false,
+            "direction": 7,
+            "x": 16,
+            "y": 17
+          }
+        ],
+        "troops": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "maximum": 0,
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "slot": 1,
+            "speed": 4
+          }
+        ]
+      },
+      "freeJoin": {
+        "cancel": true,
+        "lines": [
+          "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        "queryId": 6,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      "dialogs": [
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "{Followers}\n\nA group of Peasant with a desire for greater glory wish to join you. Do you accept? "
+          ],
+          "queryId": 9,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The creatures you left here run away."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Peasants"
+        }
+      ],
+      "saveSha256": "fdc4f2e57ba6ad33f53a1e463a95b5a96afbef1c37abe4267a6ce924d552847a",
+      "errors": [],
+      "case": "webkit-final-reload",
+      "evidenceSha256": "86580174d11ba0add7d8a5be9f7699455c1e9ae23c8c810d431af81731a37922"
+    }
+  ],
+  "original": {
+    "passed": true,
+    "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+    "sourceProgramId": "zc1-1",
+    "sourceProgramSha256": "af10bd72c945d90635dc55109806bca2c8ce19a38cd6a48a8a3d5b2a2e083b62",
+    "inputSaveSha256": "a5ec69f834dae4cd2efcdacebb5d2417f5bef8cc9ee660dc3abeff16dbe84e79",
+    "outputSaveSha256": "79293a025e1bbc71c44f78e5d34eb5bf4ffe3fbd33fa4d104d76d7535b175ae7",
+    "evidenceSha256": "49d4b3c3bca56ead4824cc352878279d6a42775aa323c063ee897a3931317cd2",
+    "browser": "webkit",
+    "keyboardEnterPreservesHero": true,
+    "invalidQuantityDisablesConfirmation": true,
+    "escapeClosesOnlyOverlay": true,
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 568,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 498,
+              "w": 139,
+              "h": 52
+            },
+            {
+              "x": 163,
+              "y": 498,
+              "w": 139,
+              "h": 52
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 568,
+          "h": 320,
+          "buttons": [
+            {
+              "x": 314,
+              "y": 202,
+              "w": 230,
+              "h": 44
+            },
+            {
+              "x": 314,
+              "y": 252,
+              "w": 230,
+              "h": 44
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 843.984375,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 781.984375,
+              "w": 174,
+              "h": 44
+            },
+            {
+              "x": 198,
+              "y": 781.984375,
+              "w": 174,
+              "h": 44
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 843.984375,
+          "h": 390,
+          "buttons": [
+            {
+              "x": 589.234375,
+              "y": 272,
+              "w": 230.75,
+              "h": 44
+            },
+            {
+              "x": 589.234375,
+              "y": 322,
+              "w": 230.75,
+              "h": 44
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 1024,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 962,
+              "w": 363,
+              "h": 44
+            },
+            {
+              "x": 387,
+              "y": 962,
+              "w": 363,
+              "h": 44
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 768,
+          "buttons": [
+            {
+              "x": 717.046875,
+              "y": 650,
+              "w": 282.953125,
+              "h": 44
+            },
+            {
+              "x": 717.046875,
+              "y": 700,
+              "w": 282.953125,
+              "h": 44
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      },
+      {
+        "width": 1366,
+        "height": 1024,
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 1024,
+          "buttons": [
+            {
+              "x": 1016,
+              "y": 906,
+              "w": 326,
+              "h": 44
+            },
+            {
+              "x": 1016,
+              "y": 956,
+              "w": 326,
+              "h": 44
+            }
+          ],
+          "ancestorTouchNone": false
+        }
+      }
+    ],
+    "deploymentBefore": {
+      "heroId": 144,
+      "origin": [
+        18,
+        25,
+        0
+      ],
+      "revision": 0,
+      "targets": [
+        {
+          "available": true,
+          "direction": 0,
+          "x": 18,
+          "y": 24
+        },
+        {
+          "available": true,
+          "direction": 1,
+          "x": 19,
+          "y": 24
+        },
+        {
+          "available": false,
+          "direction": 2,
+          "x": 19,
+          "y": 25
+        },
+        {
+          "available": true,
+          "direction": 3,
+          "x": 19,
+          "y": 26
+        },
+        {
+          "available": false,
+          "direction": 4,
+          "x": 18,
+          "y": 26
+        },
+        {
+          "available": true,
+          "direction": 5,
+          "x": 17,
+          "y": 26
+        },
+        {
+          "available": true,
+          "direction": 6,
+          "x": 17,
+          "y": 25
+        },
+        {
+          "available": true,
+          "direction": 7,
+          "x": 17,
+          "y": 24
+        }
+      ],
+      "troops": [
+        {
+          "aiValue": 15,
+          "attack": 1,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0
+          ],
+          "count": 1,
+          "damageMax": 1,
+          "damageMin": 1,
+          "defense": 1,
+          "description": "",
+          "fightValue": 15,
+          "growth": 25,
+          "health": 1,
+          "icon": "",
+          "id": 139,
+          "key": "core:peasant",
+          "maximum": 1,
+          "name": "Peasant",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 0,
+          "speed": 3
+        },
+        {
+          "aiValue": 80,
+          "attack": 4,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 5,
+          "description": "",
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "maximum": 1,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 1,
+          "speed": 4
+        }
+      ]
+    },
+    "deploymentAfter": {
+      "heroId": 144,
+      "origin": [
+        18,
+        25,
+        0
+      ],
+      "revision": 1,
+      "targets": [
+        {
+          "available": true,
+          "direction": 0,
+          "x": 18,
+          "y": 24
+        },
+        {
+          "available": true,
+          "direction": 1,
+          "x": 19,
+          "y": 24
+        },
+        {
+          "available": false,
+          "direction": 2,
+          "x": 19,
+          "y": 25
+        },
+        {
+          "available": false,
+          "direction": 3,
+          "x": 19,
+          "y": 26
+        },
+        {
+          "available": false,
+          "direction": 4,
+          "x": 18,
+          "y": 26
+        },
+        {
+          "available": true,
+          "direction": 5,
+          "x": 17,
+          "y": 26
+        },
+        {
+          "available": true,
+          "direction": 6,
+          "x": 17,
+          "y": 25
+        },
+        {
+          "available": true,
+          "direction": 7,
+          "x": 17,
+          "y": 24
+        }
+      ],
+      "troops": [
+        {
+          "aiValue": 80,
+          "attack": 4,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 5,
+          "description": "",
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "maximum": 0,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 1,
+          "speed": 4
+        }
+      ]
+    },
+    "stages": [
+      {
+        "target": [
+          5,
+          13
+        ],
+        "day": 7,
+        "movement": 242
+      },
+      {
+        "target": [
+          8,
+          14
+        ],
+        "day": 8,
+        "movement": 1359
+      },
+      {
+        "target": [
+          10,
+          17
+        ],
+        "day": 8,
+        "movement": 1037
+      },
+      {
+        "target": [
+          13,
+          20
+        ],
+        "day": 8,
+        "movement": 719
+      },
+      {
+        "target": [
+          15,
+          22
+        ],
+        "day": 8,
+        "movement": 463
+      },
+      {
+        "target": [
+          18,
+          25
+        ],
+        "day": 8,
+        "movement": 145
+      },
+      {
+        "target": [
+          17,
+          24
+        ],
+        "day": 9,
+        "movement": 1394
+      },
+      {
+        "target": [
+          15,
+          25
+        ],
+        "day": 9,
+        "movement": 1153
+      },
+      {
+        "target": [
+          14,
+          28
+        ],
+        "day": 9,
+        "movement": 730
+      },
+      {
+        "target": [
+          16,
+          30
+        ],
+        "day": 9,
+        "movement": 389
+      },
+      {
+        "target": [
+          17,
+          31
+        ],
+        "day": 9,
+        "movement": 248
+      },
+      {
+        "target": [
+          16,
+          30
+        ],
+        "day": 11,
+        "movement": 1419
+      },
+      {
+        "target": [
+          14,
+          28
+        ],
+        "day": 11,
+        "movement": 1078
+      },
+      {
+        "target": [
+          13,
+          27
+        ],
+        "day": 11,
+        "movement": 937
+      },
+      {
+        "target": [
+          15,
+          25
+        ],
+        "day": 11,
+        "movement": 655
+      },
+      {
+        "target": [
+          18,
+          25
+        ],
+        "day": 11,
+        "movement": 380
+      },
+      {
+        "target": [
+          20,
+          26
+        ],
+        "day": 11,
+        "movement": 199
+      },
+      {
+        "target": [
+          23,
+          26
+        ],
+        "day": 12,
+        "movement": 1460
+      },
+      {
+        "target": [
+          27,
+          27
+        ],
+        "day": 12,
+        "movement": 1094
+      },
+      {
+        "target": [
+          30,
+          26
+        ],
+        "day": 12,
+        "movement": 873
+      },
+      {
+        "target": [
+          31,
+          23
+        ],
+        "day": 12,
+        "movement": 652
+      }
+    ],
+    "dialogs": [
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Crusaders",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 313
+            }
+          }
+        ],
+        "lines": [
+          "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+        ],
+        "queryId": 186,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Peasants",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 313
+            }
+          }
+        ],
+        "lines": [
+          "He disappointed me, that Ratibor. \nI counted on him... \nI'm in a foul mood. \nDon't touch me. \nI won't say more!"
+        ],
+        "queryId": 187,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "Another week has passed"
+        ],
+        "queryId": -1,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Crusaders",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 313
+            }
+          }
+        ],
+        "lines": [
+          "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+        ],
+        "queryId": 204,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Peasants",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 281
+            }
+          }
+        ],
+        "lines": [
+          "Can you please slow down!"
+        ],
+        "queryId": 205,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "This seems like a good place to hide! "
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Peasants",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 281
+            }
+          }
+        ],
+        "lines": [
+          "Native hero! Where are you? \nI can't find you!"
+        ],
+        "queryId": 220,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Crusaders",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 281
+            }
+          }
+        ],
+        "lines": [
+          "Hah! Now you really made us angry! \nWe're coming!"
+        ],
+        "queryId": 221,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Peasants",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 281
+            }
+          }
+        ],
+        "lines": [
+          "Oops, .... they're here already."
+        ],
+        "queryId": 222,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Peasants",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 313
+            }
+          }
+        ],
+        "lines": [
+          "Yes, yes, sir. \nI will work very hard! \nI will do my very best! \nDon't worry!"
+        ],
+        "queryId": 226,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Crusaders",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 281
+            }
+          }
+        ],
+        "lines": [
+          "Hey! Stay where you are!\nWe're coming!"
+        ],
+        "queryId": 240,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Crusaders",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 313
+            }
+          }
+        ],
+        "lines": [
+          "Hey, What did we tell you!\nGet back to work! \nOr we'll come over\nand teach you some obedience!"
+        ],
+        "queryId": 246,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "Finaly, free!!!\nUnfortunately you had to leave friend Dan behind.\nBut perhaps this is better...\nWho knows, maybe you will meet again.\nNow, let's see what the world has to offer a brave knight like you!"
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Event"
+      }
+    ],
+    "errors": []
+  },
+  "limitations": [
+    "Original campaign registry remains entirely disabled.",
+    "Crossing the later troll bridge reaches a native9-troll battle; original pass-through behavior is still being investigated.",
+    "The evidence does not establish complete optional quests, original combat victories or campaign transfers."
+  ],
+  "engineArchiveSha256": "3eb8c4175ec8725d7bc6f3e8df7acb64d803496a6db9a8a4dc5911bda841c804",
+  "finalCoordinateGuard": "Widen coordinate differences before adjacency checks, with sanitizer cases for INT_MIN and INT_MAX. Native final runs and the original WebKit escape identify the final engine; earlier explicit engine hashes remain as historical evidence.",
+  "nonRegression": {
+    "passed": true,
+    "engineSha256": "eba0ed40868cf9fbc700657428510ec29f2a5b6b1040a2993bfb642ea886b4b2",
+    "productionOnly": true,
+    "evidenceSha256": "51b9cb73e7242bc1441e32a088a64539003ffd387b2e1bdfafdc767c45d05396",
+    "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true
+      }
+    ],
+    "unitTests": {
+      "passed": 733,
+      "skipped": 34,
+      "failed": 0
+    },
+    "webAssemblyBuild": "ninja -j32 html5 passed",
+    "siteBuild": "prepare-web, build-site and verify-site passed"
+  }
+}

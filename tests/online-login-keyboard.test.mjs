@@ -25,3 +25,12 @@ test('The mobile name input keeps native typing before game keyboard handlers', 
   const escape = new Event('keydown', {cancelable: true});window.dispatchEvent(escape);
   assert.equal(escape.defaultPrevented, false);assert.deepEqual(gameEvents, ['keydown']);
 });
+
+test('troop deployment keeps keyboard input away from SDL and Escape uses its single back action',()=>{
+ const window=new EventTarget();let exits=0,gameKeys=0;
+ window.document={querySelector:selector=>selector==='.troop-deployment-page:not([hidden])'?{querySelector:()=>({click:()=>exits++})}:null};
+ guardOnlineNameKeyboard(window);window.addEventListener('keydown',()=>gameKeys++);
+ const number=new Event('keydown',{cancelable:true});Object.defineProperty(number,'key',{value:'2'});window.dispatchEvent(number);assert.equal(number.defaultPrevented,false);
+ for(const type of ['keydown','keypress','keyup']){const e=new Event(type,{cancelable:true});Object.defineProperty(e,'key',{value:'Escape'});window.dispatchEvent(e);assert(e.defaultPrevented);}
+ assert.equal(exits,1);assert.equal(gameKeys,0);
+});

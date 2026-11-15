@@ -16,6 +16,7 @@
 #include "../mapping/CMap.h"
 #include "../networkPacks/PacksForServer.h"
 #include "../networkPacks/SourceCampaignReply.h"
+#include "../networkPacks/SourceCampaignDeployTroops.h"
 #include "../networkPacks/SaveLocalState.h"
 #include "../era/EraConfluxPolicies.h"
 #include "../mapObjects/army/CStackInstance.h"
@@ -46,6 +47,13 @@ void CCallback::moveHero(const CGHeroInstance *h, const std::vector<int3> & path
 int CCallback::selectionMade(int selection, QueryID queryID)
 {
 	return sendQueryReply(selection, queryID);
+}
+
+int CCallback::sourceCampaignDeployTroops(const CGHeroInstance * hero,SlotID slot,int count,const int3 & position,bool takeBack)
+{
+ ASSERT_IF_CALLED_WITH_PLAYER
+ if(!hero||hero->getOwner()!=*getPlayerID()||!hero->hasStackAtSlot(slot)||count<1)return -1;
+ SourceCampaignDeployTroops pack;pack.player=*getPlayerID();pack.hero=hero->id;pack.slot=slot;pack.creature=hero->getStack(slot).getId();pack.count=count;pack.position=position;pack.takeBack=takeBack;return sendRequest(pack);
 }
 
 int CCallback::sourceCampaignReply(QueryID queryID,int selection,const std::string & text,bool submit)

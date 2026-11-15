@@ -15,6 +15,7 @@
 #include "../../lib/era/EraCampaignPictures.h"
 #include "../../lib/era/EraCampaignObjectAccess.h"
 #include "../../lib/era/EraCampaignHints.h"
+#include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignMedia.h"
 #include "../../lib/era/EraCampaignTimers.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
@@ -197,6 +198,38 @@ struct SourceCampaignProcessor::Impl final:Host
    if(!node.isNull()){const int mask=era_campaign_json::integer(node);require(mask>=0&&mask<=255,"invalid source hero access mask");return era_campaign_object_access::allows(mask,h->getOwner().getNum());}
   }
   return era_campaign_object_access::allows(objectMask(obj->id),h->getOwner().getNum());
+ }
+ bool consumeLeftTroop(const CGObjectInstance * obj,const CGHeroInstance * h)
+ {
+  if(obj->ID!=Obj::MONSTER||!gh.gameInfo().getPlayerState(h->getOwner())->isHuman())return false;
+  const auto style=era_campaign_deployment::ownerStyle(state,obj->id.getNum(),h->getOwner().getNum(),obj->visitablePos());
+  if(!style||*style)return false;
+  const auto id=obj->id;InfoWindow message;message.player=h->getOwner();message.text.appendRawString("The creatures you left here run away.");gh.showInfoDialog(&message);
+  if(!gh.removeObject(obj,h->getOwner()))return false;
+  state["leftTroops"].Struct().erase(std::to_string(id.getNum()));if(!state["objectIdentities"].isNull())state["objectIdentities"].Struct().erase(std::to_string(id.getNum()));persist();return true;
+ }
+ bool deployTroops(ObjectInstanceID requestedHero,SlotID slot,CreatureID requestedCreature,int count,const int3 & target,bool takeBack,PlayerColor who)
+ {
+  bind();if(!active||!vm.initialized||executing||!pending.isNull()||!vm.continuations.empty()||!state["turnQueue"].Vector().empty()||gh.queries->topQuery(who))return false;
+  const auto * h=gh.gameState().getHero(requestedHero);if(!h||h->getOwner()!=who||h->isGarrisoned()||h->inBoat()||!slot.validSlot()||slot.getNum()>6||!h->hasStackAtSlot(slot)||!gh.gameInfo().getPlayerState(who)->isHuman())return false;
+  const auto & stack=h->getStack(slot);if(stack.getId()!=requestedCreature)return false;
+  const auto origin=h->visitablePos();if(!era_campaign_deployment_rule::adjacent(origin.x,origin.y,origin.z,target.x,target.y,target.z)||!era_campaign_deployment::emptyLand(gh.gameState().getMap(),target,state))return false;
+  std::int64_t army=0;for(const auto & entry:h->stacks)army+=entry.second->getCount();
+  int source;try{source=sourceCreature(requestedCreature);}catch(const std::runtime_error &){return false;}const bool machine=stack.getCreature()->warMachine!=ArtifactID::NONE;
+  if(count<1||count>era_campaign_deployment_rule::maximum(stack.getCount(),army,source,machine))return false;
+  auto & left=state["leftTroops"].Struct();for(auto it=left.begin();it!=left.end();){int id=-1;try{id=std::stoi(it->first);}catch(const std::exception &){}const auto & objects=gh.gameState().getMap().objects;if(id<0||id>=int(objects.size())||!objects[id])it=left.erase(it);else ++it;}
+  if(left.size()>=10000)return false;
+  const MapObjectSubID subtype(requestedCreature.getNum());const auto handler=LIBRARY->objtypeh->getHandlerFor(Obj::MONSTER,subtype);
+  auto templates=LIBRARY->objtypeh->getOriginalTemplates(Obj::MONSTER,subtype);const bool original=!templates.empty();if(!original)templates=handler->getTemplates();if(templates.empty())return false;
+  auto created=std::dynamic_pointer_cast<CGCreature>(handler->create(&gh.gameInfo(),nullptr));if(!created)return false;
+  handler->configureObject(created.get(),*gh.randomizer);gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=original?templates.back():templates.front();created->setAnchorPos(target+created->getVisitableOffset());
+  created->initialCharacter=CGCreature::Character::SAVAGE;created->neverFlees=false;created->notGrowingTeam=false;created->gainedArtifact=ArtifactID::NONE;created->resources=TResources{};created->message.clear();created->clearSlots();created->putStack(SlotID(0),std::make_unique<CStackInstance>(&gh.gameInfo(),requestedCreature,1));
+  gh.newObject(created,who);gh.eraseStack({created->id,SlotID(0)});
+  if(!gh.moveStack({h->id,slot},{created->id,SlotID(0)},count)){gh.removeObject(created.get(),who);return false;}
+  gh.setObjPropertyValue(created->id,ObjProperty::MONSTER_POWER,count*1000);
+  auto & record=state["leftTroops"][std::to_string(created->id.getNum())];record["owner"].Integer()=who.getNum();record["takeBack"].Bool()=takeBack;record["position"].Vector()={JsonNode(target.x),JsonNode(target.y),JsonNode(target.z)};
+  state["objectIdentities"][std::to_string(created->id.getNum())].Vector()={JsonNode(54),JsonNode(source)};
+  auto & result=state["lastTroopDeployment"];result["revision"].Integer()=result["revision"].Integer()+1;result["hero"].Integer()=h->id.getNum();result["object"].Integer()=created->id.getNum();player=who;persist();return true;
  }
  bool consumeEmptyMonster(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
@@ -394,7 +427,7 @@ struct SourceCampaignProcessor::Impl final:Host
     const auto * h=gh.gameState().getHero(completedHero);
     // The event still grants its reward after a scripted teleport. The
     // mountain passage, for example, grants morale before moving the hero.
-    if(obj&&h&&allowsObject(obj,h)&&!consumeEmptyMonster(obj,h))obj->onHeroVisit(gh,h);
+    if(obj&&h&&allowsObject(obj,h)&&!consumeEmptyMonster(obj,h)&&!consumeLeftTroop(obj,h))obj->onHeroVisit(gh,h);
    }
    pumpTurns();
   }
@@ -534,7 +567,7 @@ struct SourceCampaignProcessor::Impl final:Host
     const auto source=identity(obj);
     if(executor.dispatchAny("OB",{{int(source.ID)},{int(source.ID),source.subID},{pos.x,pos.y,pos.z}})){run();return true;}
    }
-   const bool handled=!allowsObject(obj,h)||consumeEmptyMonster(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
+   const bool handled=!allowsObject(obj,h)||consumeEmptyMonster(obj,h)||consumeLeftTroop(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
   }
   const auto * local=dynamic_cast<const CGEvent *>(obj);
   const bool human=gh.gameInfo().getPlayerState(h->getOwner())->isHuman();
@@ -603,7 +636,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const CGObjectInstance * target=nullptr;
    for(const auto & obj:map.objects)if(obj&&obj->anchorPos()==anchor&&obj->ID!=Obj::HERO)
    {require(target==nullptr,"ambiguous object anchor needs source selection validation");target=obj.get();}
-   if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
+   if(target){const auto removed=target->id;const auto mask=objectMask(removed);if(mask!=255)state["objectAccessPositions"][era_campaign_hints::positionKey(target->visitablePos())].Integer()=mask;require(gh.removeObject(target,player),"object removal failed");if(objectId==removed)objectId=ObjectInstanceID::NONE;for(const auto & field:{"objectAccess","objectIdentities","leftTroops"})if(!state[field].isNull())state[field].Struct().erase(std::to_string(removed.getNum()));}
    if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(anchor));
    if(clearDescription)for(const auto & field:{"objectDescriptions","objectAccessPositions"})if(!state[field].isNull())state[field].Struct().erase(era_campaign_hints::positionKey(anchor));
    persist();return Step::Continue;
@@ -1040,6 +1073,8 @@ bool SourceCampaignProcessor::reply(QueryID query,int selection,const std::strin
  impl->pending["replyText"].String()=text;
  return impl->gh.queryReply(query,selection,player);
 }
+bool SourceCampaignProcessor::deployTroops(ObjectInstanceID hero,SlotID slot,CreatureID creature,int count,const int3 & position,bool takeBack,PlayerColor player)
+{return impl->deployTroops(hero,slot,creature,count,position,takeBack,player);}
 bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero){return impl->visit(object,hero);}
 bool SourceCampaignProcessor::visitPosition(const int3 & position,const CGHeroInstance * hero){return impl->visitPosition(position,hero);}
 bool SourceCampaignProcessor::beginTurn(PlayerColor player)
