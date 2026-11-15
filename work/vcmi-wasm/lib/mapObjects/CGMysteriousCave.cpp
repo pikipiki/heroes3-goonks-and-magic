@@ -920,7 +920,10 @@ void CGMysteriousCave::sourceTownNewTurn(IGameEventCallback & events,const CGTow
  if(!sourceTownRuin(town)||town->getOwner()==PlayerColor::NEUTRAL)return;
  // Original CasDem's daily scan relinquishes the ruined town on the next day.
  // The native owner change updates the player's actual town list/countdown.
- if(town->cb->getDate(Date::DAY)>townRebuildReadyDay(town)-6)events.setOwner(town,PlayerColor::NEUTRAL);
+ // CasDem calls5be6d0 to relinquish the town without invoking4f3370.
+ // Keep native ownership lists current, but let the normal turn loss check
+ // initialize the source255 sentinel after its signed-byte tick.
+ if(town->cb->getDate(Date::DAY)>townRebuildReadyDay(town)-6)events.setObjPropertyID(town->id,ObjProperty::OWNER,PlayerColor::NEUTRAL);
 }
 int CGMysteriousCave::townDemolitionDamage(const CGTownInstance * town)
 {

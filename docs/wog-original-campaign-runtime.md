@@ -349,3 +349,18 @@ Dans le scénario original, la ville est créée au retour du Graal puis inspect
 Le moteur `34b0b3a4e4949d127f7740a748181c059686740f91cef89159241e0256c8aa43` passe la compilation WebAssembly, le site, les739 tests suivis (34 ignorés, aucun échec), les sauvegardes/tours des deux cartes Goonk et le combat ordinaire. [Le contrat198](../outputs/wog-priorities-0.4.147/campaign-runtime/garrison-and-town-source-contract-198.json) et [les preuves natives](../outputs/wog-priorities-0.4.147/campaign-runtime/native-garrison-and-town-198.json) conservent les limites. Les douze programmes restent désactivés jusqu’à validation des scénarios complets.
 
 La publication197 précédente a réussi via le workflow43717335844. Un premier contrôle public a rencontré un HTTP503 sur un module JavaScript ; le second a vérifié le vrai WASM, le chargement du jeu, la CSP sans contournement, l’isolation, les cartes et les options natives.
+
+
+### 0.4.199 — incendies originaux et délai après la ruine
+
+Les 54 objets animés `207/1` du deuxième scénario utilisent désormais l’automate WoG, ses six phases et les quatre images originales. La démolition provoque les feux voisins ; seules les cendres de la phase 4 ouvrent leur case. Les phases, compteurs et prochaines transitions sont répliqués et sauvegardés dans l’état local de la campagne. Les images sont extraites par coordonnées natives, comptées depuis le bord droit du DEF. Les cartes ordinaires conservent leurs règles.
+
+Le contrôle d’une ville doit rétablir l’octet source `255`, et non supprimer son suivi. Le retrait quotidien d’une ville ruinée ne doit pas ajouter un contrôle de défaite absent de la routine originale. Cette transition, encore non validée en 0.4.185, est maintenant exercée après création et démolition réelles de la ville décorative. Les compteurs finis et l’immortalité `254` gardent leurs contrôles antérieurs.
+
+Le parcours original atteint le deuxième moine, le repos du père, puis le village. Les deux compagnons quittent réellement l’armée et occupent la garnison ; les fonctions de préparation des habitations et coffres s’exécutent sans erreur de cible. Le piquier lent est laissé sur la carte par l’action WoG normale avant le repos. Aucun drapeau de quête, point de déplacement, délai, script ou archive n’est modifié pour franchir le parcours.
+
+WebKit recharge un incendie en cours et franchit les cendres jusqu’au père. La vraie garnison du village est vérifiée en six formats : contrôles DOM conservés entre mises à jour, défilement autorisé, validation tactile visible et une seule fermeture. Elle ne gagne pas une permission de sauvegarde pendant sa fenêtre native.
+
+Preuves : [contrat statique](../outputs/wog-priorities-0.4.147/campaign-runtime/fire-and-clock-source-contract-199.json), [parcours et garnison](../outputs/wog-priorities-0.4.147/campaign-runtime/native-fire-and-clock-199.json). Compilation `ninja -j32 html5` vérifiée ; 741 tests passent, 34 sont ignorés. Ce parcours ne valide pas encore la victoire du scénario. Les douze programmes originaux restent désactivés.
+
+Le paquet 0.4.199 est également contrôlé sans remplacement privé du moteur ni des images : reprise WebKit du feu, vraie garnison et six formats, puis cartes publiques 003/004, sauvegardes/rechargements, tours solo/hotseat et premier tour positif d’un combat réel. Les empreintes des Mods et cartes installés restent inchangées.

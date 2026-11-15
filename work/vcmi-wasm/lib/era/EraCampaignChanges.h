@@ -8,6 +8,7 @@
 #include "../mapObjects/CGCreature.h"
 #include "../mapObjects/CGPandoraBox.h"
 #include "../mapObjects/CGTownInstance.h"
+#include "../mapObjects/ObjectTemplate.h"
 #include "../mapObjects/MiscObjects.h"
 #include "../mapObjects/army/CStackInstance.h"
 #include "../bonuses/BonusSelector.h"
@@ -124,7 +125,12 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
   const auto id=ObjectInstanceID(campaignInteger(change["object"]));
   auto * object=gs.getObjInstance(id);
   if(!object)throw std::runtime_error("Original campaign mutation target missing");
-  if(kind=="heroText")
+  if(kind=="firePhase")
+  {
+   const int phase=campaignInteger(change["phase"]);if(phase<0||phase>5||!object->appearance)throw std::runtime_error("Invalid source fire phase");
+   auto appearance=std::make_shared<ObjectTemplate>(*object->appearance);appearance->animationFile=AnimationPath::builtin("era-campaign/fire/phase"+std::to_string(phase));object->appearance=std::move(appearance);
+  }
+  else if(kind=="heroText")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);
    const int field=campaignInteger(change["field"]);

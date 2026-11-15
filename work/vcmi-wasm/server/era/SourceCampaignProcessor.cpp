@@ -21,6 +21,7 @@
 #include "../../lib/era/EraCampaignTownRule.h"
 #include "../../lib/era/EraCampaignTerrainRule.h"
 #include "../../lib/era/EraCampaignDemolition.h"
+#include "../../lib/era/EraCampaignFire.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
@@ -280,7 +281,13 @@ struct SourceCampaignProcessor::Impl final:Host
   const auto raw=era_campaign_town_clock_json::read(state,who.getNum());if(!raw)return false;
   const auto key=std::to_string(who.getNum());
   if(!owner->getTowns().empty())
-  {state["townClocks"].Struct().erase(key);persist(townClockMutation(who,255));return false;}
+  {
+   // The original checker restores the byte255, rather than forgetting the
+   // source clock. Its first subsequent positive countdown starts at the next
+   // loss check after the town is relinquished.
+   if(*raw!=255||owner->daysWithoutCastle.has_value()){state["townClocks"][key].Integer()=255;persist(townClockMutation(who,255));}
+   return false;
+  }
   int next=advance?era_campaign_town_clock::tick(*raw):*raw;
   // The original loss checker initializes its255 sentinel to the default7.
   if(next==255)next=7;
@@ -288,6 +295,48 @@ struct SourceCampaignProcessor::Impl final:Host
   if(next!=*raw||owner->daysWithoutCastle!=shadow)
   {state["townClocks"][key].Integer()=next;persist(townClockMutation(who,next));}
   return true;
+ }
+ void fireTurn(int day)
+ {
+  auto world=gh.gameState().getMap().sourceCampaignWorld;
+  if(!era_campaign_admission::worldMatches(state,world))
+  {
+   world=JsonNode();world["contract"].String()="source-campaign-world-v1";world["programId"]=state["programId"];world["programSha256"]=state["vm"]["programSha256"];
+  }
+  auto & fire=world["fire"];const bool initialize=fire["trees"].isNull();
+  std::vector<era_campaign_fire::Tree> trees;JsonNode changes;changes.Vector();
+  const auto & map=gh.gameState().getMap();
+  if(initialize)
+  {
+   for(const auto & object:map.objects)if(object)
+   {const auto source=identity(object.get());if(source.ID!=Obj(207)||source.subID!=1)continue;const auto pos=object->anchorPos();era_campaign_fire::Tree tree;tree.object=object->id.getNum();tree.x=pos.x;tree.y=pos.y;tree.z=pos.z;trees.push_back(tree);}
+   require(trees.size()<=1000,"source animated object limit exceeded");
+  }
+  else for(const auto & node:fire["trees"].Vector())
+  {
+   era_campaign_fire::Tree tree;tree.object=era_campaign_json::integer(node["object"]);tree.x=era_campaign_json::integer(node["x"]);tree.y=era_campaign_json::integer(node["y"]);tree.z=era_campaign_json::integer(node["z"]);
+   tree.mode=era_campaign_json::integer(node["mode"]);tree.phase=era_campaign_json::integer(node["phase"]);tree.time=era_campaign_json::integer(node["time"]);tree.next=era_campaign_json::integer(node["next"]);tree.delay=era_campaign_json::integer(node["delay"]);
+   require(trees.size()<1000&&tree.mode>=0&&tree.mode<=2&&tree.phase>=0&&tree.phase<=5&&tree.next>=0&&tree.next<=5&&tree.time>=0&&tree.time<=255&&tree.delay>=0&&tree.delay<=9,"invalid source animated object state");trees.push_back(tree);
+  }
+  std::vector<int> changed;
+  if(initialize){fire["day"].Integer()=day;for(const auto & tree:trees)changed.push_back(tree.object);}
+  else if(era_campaign_json::integer(fire["day"])<day){changed=era_campaign_fire::advance(trees);fire["day"].Integer()=day;}
+  // Original DaylyCastle follows GlbAnimation, including neutral ruined towns.
+  for(const auto & object:map.objects)if(const auto * town=dynamic_cast<const CGTownInstance *>(object.get());town&&CGMysteriousCave::sourceTownRuin(town)&&day>CGMysteriousCave::townRebuildReadyDay(town)-6)
+  {const auto pos=town->visitablePos();era_campaign_fire::provoke(trees,pos.x-2,pos.y-2,pos.z,5,3);}
+  for(const auto id:changed)
+  {
+   const auto found=std::find_if(trees.begin(),trees.end(),[&](const auto & tree){return tree.object==id;});require(found!=trees.end(),"missing source animated object");
+   if(!gh.gameState().getObj(ObjectInstanceID(id)))continue;
+   auto change=mutation("firePhase",ObjectInstanceID(id));change["phase"].Integer()=found->phase;changes.Vector().push_back(std::move(change));
+   change=mutation("terrainAccess",ObjectInstanceID::NONE);change["x"].Integer()=found->x;change["y"].Integer()=found->y;change["z"].Integer()=found->z;change["operation"].String()="P";change["enabled"].Bool()=found->phase==4;changes.Vector().push_back(std::move(change));
+  }
+  fire["trees"].Vector().clear();
+  for(const auto & tree:trees)
+  {
+   JsonNode node;node["object"].Integer()=tree.object;node["x"].Integer()=tree.x;node["y"].Integer()=tree.y;node["z"].Integer()=tree.z;node["mode"].Integer()=tree.mode;node["phase"].Integer()=tree.phase;node["time"].Integer()=tree.time;node["next"].Integer()=tree.next;node["delay"].Integer()=tree.delay;fire["trees"].Vector().push_back(std::move(node));
+  }
+  if(world!=map.sourceCampaignWorld||!changes.Vector().empty())persist(std::move(changes),nullptr,nullptr,std::move(world));
  }
  void migrateEntrances()
  {
@@ -1473,7 +1522,7 @@ bool SourceCampaignProcessor::beginTurn(PlayerColor player)
  require(player.isValidPlayer(),"invalid source turn player");const auto day=int(impl->gh.gameState().day);
  auto & previous=impl->state["queuedTurnDays"][std::to_string(player.getNum())];
  if(previous.isNumber()&&era_campaign_json::integer(previous)==day)return true;
- previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=28,"excessive queued source turns");
+ impl->fireTurn(day);previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=28,"excessive queued source turns");
  for(const auto & kind:{"prepare","timers","globals","finish"})
  {
   JsonNode pass;pass["kind"].String()=kind;pass["player"].Integer()=player.getNum();pass["day"].Integer()=day;pass["cursor"].Integer()=std::string(kind)=="timers"?1:0;queue.push_back(std::move(pass));

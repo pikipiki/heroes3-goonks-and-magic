@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "method": "Bounded static LLVM inspection of the pinned original executable, corroborated with later source. No Windows execution or external binary upload.",
+  "boundedAssemblySha256": "996220bc2e49b9438be73518e621a1c8d14b9e040e476a2f2dee744688e0085f",
+  "observations": [
+    {
+      "range": "0x786820;0x786854",
+      "behavior": "Animated object207/1, six phases, four DEF frames, destination-phase delays9/1/2/1/2/2, ash phase4 opens the anchor."
+    },
+    {
+      "range": "0x709260..0x7095d5",
+      "behavior": "Native draw-code x counts from the right edge. Phase5 reuses draw-code0. Each transition resets the unsigned time byte; the next delay belongs to the destination phase."
+    },
+    {
+      "range": "0x7095e0..0x7096b9;0x7099a0..0x709a32",
+      "behavior": "Daily infection scan precedes animation transitions; time increments modulo256 after the transition. Only touching idle objects on the same level can be infected."
+    },
+    {
+      "range": "0x709a40..0x709b88;call0x70c43c",
+      "behavior": "Ruined-town scan provokes a5x3 rectangle offset-2/-2 from the native town entrance; active animations are not reset."
+    }
+  ],
+  "definedBehaviorPreserved": [
+    "The destination-delay rule also retains the original short maximum-fire phase; the default automatic sequence does not reach its infection threshold. No undocumented timing repair is applied.",
+    "Only ash phase4 opens the anchor; normal phase5 blocks it again. Ruined towns may ignite idle nearby objects on later scans."
+  ],
+  "scope": "Map-local, replicated and serialized fire state in admitted original campaign programs only. All54 converted207/1 fire objects occur in zc1-2. The original scripts and archives remain unchanged.",
+  "limits": [
+    "Private native scenario journey and production checks are recorded separately before publication.",
+    "Campaigns remain gated until all their required source gameplay has been validated."
+  ],
+  "townCountdownTransition": {
+    "boundedTownOwnerAssemblySha256": "7e817359f756aa908aa9ed5b5b30875713b5f1e5f10e163dcd3601a4cfd0358b",
+    "boundedTownRelinquishAssemblySha256": "71ff3d9b165d97ee312aee6c8d38fa5979a28b33e4c8221262fefa81f89c2b7e",
+    "observations": [
+      {
+        "range": "0x70d997..0x70d9db;0x4c5ea0..0x4c60ee",
+        "behavior": "Absolute CA:O calls native town ownership transfer, including the player town list. This is not merely a raw owner-byte write."
+      },
+      {
+        "range": "0x4f34f3..0x4f361c",
+        "behavior": "The original loss checker restores source byte255 while a town is owned. It does not erase the source player clock."
+      },
+      {
+        "range": "0x5be6d0..0x5be865",
+        "behavior": "CasDem relinquishes a ruined town through this removal routine without invoking4f3370. The next ordinary loss check initializes the255 sentinel after the signed-byte tick."
+      }
+    ],
+    "supersedes": "The unproved acquired-town transition noted in town-clock-source-contract-185.json; finite4 and immortal254 controls remain unchanged."
+  },
+  "release": "0.4.199"
+}

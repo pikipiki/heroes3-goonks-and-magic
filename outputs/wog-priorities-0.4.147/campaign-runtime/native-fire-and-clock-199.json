@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.199",
+  "scope": "Original animated fire207/1 and acquired/ruined-town countdown transition; actual second-scenario journey through the original village. No scenario or campaign victory claimed.",
+  "engineSha256": "b0cfe010879ec94a924a7adee0cdc633a13cf0f827b6d4fd8ffd9658473a8abe",
+  "build": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "logSha256": "ef937e1066a6fac45153561f0a3e4d67f31ddb0554965cd1e440e06341384f52"
+  },
+  "unitChecks": {
+    "passed": 741,
+    "skipped": 34,
+    "failed": 0,
+    "logSha256": "71299d1a4e3968b84190f73fb2bfcf86e2a2aeec48d7b39e465173faff4c6c09"
+  },
+  "sourceContract": "fire-and-clock-source-contract-199.json",
+  "cases": [
+    {
+      "case": "Unchanged source UN:I/CA decorative town creation from a precreation save",
+      "browser": "chromium",
+      "resultSha256": "4eda942bcba20bf7c33371f3c98fc2edfe8aacd38cbb0ce3b3b1fdc2340397b9",
+      "nativeSaveSha256": "03126c7d59efeff7ae917067da9bf983c7df39fc89b105f3c920fd086138545d",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": [
+        9
+      ]
+    },
+    {
+      "case": "Actual native town visit and Nightmare army transfer",
+      "browser": "chromium",
+      "resultSha256": "963dc96f6f3192508a63e70df0c263a018b337a108ba917e85ab9ada8e028876",
+      "nativeSaveSha256": "1b6a168407d0c80ec0b803e822dd2d76f01480fe2b0ddad372142ddb94c4f8b6",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "case": "Original town demolition and seven actual turns, retaining the source255 sentinel",
+      "browser": "chromium",
+      "resultSha256": "0dad81ef193f649f9e2e3925873c5796667f0842953dedbdbd0e4bf52ebb79bc",
+      "nativeSaveSha256": "828eb6bd9cc8ac814b78e5e75531c3637576924b5b53a4ecbf0d70a0ac655d5c",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "case": "WebKit reload before ash, native ash crossing, original monk and father events",
+      "browser": "webkit",
+      "resultSha256": "74f5b2e0cd03d17e244757c652abf92bcb4d1dd4b3dcbf2fdd71d58c8b453b3e",
+      "nativeSaveSha256": "b20c70e3842d71375bfe5776cd4b7f810b2298dfd7c8fe3b3269c8a30129cfbd",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": [
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "case": "Native leave-creatures action for the slow guard, then original forced rest",
+      "browser": "chromium",
+      "resultSha256": "724aaec807091e7930169bfa2ba8dcb40899965cca8371d15b2ac243c24137af",
+      "nativeSaveSha256": "6ee0c27cfd88d0d2b4896c1bc1d9d894c2b66e31a8bcb0f30630b7cf20bbb856",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": [
+        20
+      ]
+    },
+    {
+      "case": "Original route, movement objects, Finally! village event and FU111/FU112 service",
+      "browser": "chromium",
+      "resultSha256": "5495205c288ba0d25eb624aa46de2b8457d44fcc5e4b3c7c58658293442df6a0",
+      "nativeSaveSha256": "2de43365c096904cc69f45876a305cf632c131cec1c85c70c4ab37fd3411d611",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "case": "Actual original village garrison with both mandatory companions, six tactile layouts",
+      "browser": "chromium",
+      "resultSha256": "75eb9216677ac68cc9f257c3e383e70de1728b634dc72f4bb5e65337a7ecdfac",
+      "nativeSaveSha256": "aa8863acd33fd75830ca84f4164506b4b3751cefa4c9828820462d4294af8678",
+      "archiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "days": []
+    }
+  ],
+  "actualGarrison": {
+    "owned": true,
+    "withdrawAllowed": true,
+    "normalGarrisonAutosaveAllowed": false,
+    "creatures": [
+      {
+        "key": "wake-of-gods.creatures:gorynych",
+        "count": 1
+      },
+      {
+        "key": "wake-of-gods.creatures:nightmare",
+        "count": 1
+      }
+    ],
+    "heroArmyEmptyAfterSourceTransfer": true,
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stableControls": true,
+        "confirmVisible": true,
+        "singleClose": true,
+        "scrollAllowed": true
+      }
+    ]
+  },
+  "strategy": "The native leave-creatures action parks the optional slow pikeman before the father rest; mandatory Gorynych and Nightmare remain with the hero until the original village script transfers them. Rally Flag and Fountain of Youth grant their normal movement rewards. No coordinates, movement totals, timers, quest flags, victory conditions, archive bytes or script operations were edited.",
+  "sourceCommandErrors": 0,
+  "remaining": [
+    "All12 original registry programs remain disabled. Later quests, actual town demolition combats, victories and the other scenarios still require validation.",
+    "Source timing is corroborated statically in the pinned original executable; no Windows execution is claimed."
+  ],
+  "deliveredPackageChecks": {
+    "productionMaps": {
+      "passed": true,
+      "resultSha256": "1efc16b26ed0d111e9c46773be7f2e297db65c6b20c1bad84c2acedbe8b65276",
+      "privateEngineOrArtReplacement": false,
+      "maps": [
+        "003-Goonks-WoG",
+        "004-Goonks-WoG-Online"
+      ],
+      "nativeSaveReload": true,
+      "nativeSoloAndHotseatTurns": true,
+      "actualPositiveBattleRound": true,
+      "installedModsAndMapsUnchanged": true
+    },
+    "originalGarrison": {
+      "passed": true,
+      "resultSha256": "75eb9216677ac68cc9f257c3e383e70de1728b634dc72f4bb5e65337a7ecdfac",
+      "privateEngineOrArtReplacement": false
+    },
+    "fireReloadWebKit": {
+      "passed": true,
+      "resultSha256": "ec912827e6c7fdd1acccd2852c4b7a8ca54330ba85ebd0aa335cd56bb0979346",
+      "privateEngineOrArtReplacement": false
+    }
+  }
+}

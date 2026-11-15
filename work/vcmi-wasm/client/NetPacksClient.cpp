@@ -158,6 +158,9 @@ void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange &
     if(mode==2&&item["lower"].Integer()>=0)callInterfaceIfPresent(cl,town->getOwner(),&IGameEventsReceiver::buildChanged,town,BuildingID(item["lower"].Integer()),1);
     if(ENGINE){GAME->map().onObjectInstantRemove(town,town->getOwner());GAME->map().onObjectInstantAdd(town,town->getOwner());}
    }
+  if(item["kind"].String()=="firePhase")
+   if(ENGINE)if(const auto * object=cl.gameInfo().getObjInstance(ObjectInstanceID(item["object"].Integer())))
+   {GAME->map().onObjectInstantRemove(object,object->getOwner());GAME->map().onObjectInstantAdd(object,object->getOwner());}
   if(item["kind"].String()=="heroAppearance")
    if(const auto * hero=cl.gameInfo().getHero(ObjectInstanceID(item["object"].Integer())))callAllInterfaces(cl,&IGameEventsReceiver::heroAppearanceChanged,hero);
  }
