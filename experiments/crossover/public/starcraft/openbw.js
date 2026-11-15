@@ -7,7 +7,7 @@ import {compiledEngine} from '../preparation.js';
 // Local adaptation: player-owned archives from IndexedDB; no remote game data.
 
 // Build id — CI replaces the placeholder with the commit SHA for cache-busting.
-const BUILD = 'openbw-ae6e35826f489b88';
+const BUILD = 'openbw-fe1da4a549908203';
 
 // Any build whose SHA wasn't stamped in by CI is a local/dev build. CI's stamp is a
 // GLOBAL sed of the placeholder, which also rewrites comparisons that spell it out —
@@ -606,11 +606,11 @@ async function boot(session) {
   // wasm caching so rebuilds are picked up. In production we want the opposite:
   // let the browser cache and reuse the compiled module across visits.
   // Any build whose SHA wasn't stamped in by CI is a local/dev build — including one served
-  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-ae6e35826f489b88
+  // to a phone over a LAN IP. Treat it as dev so the wasm is fetched fresh (the ?v=openbw-fe1da4a549908203
   // cache-buster is a constant locally, so a plain fetch would serve a stale, skewed wasm).
   // BUILD is replaced by CI with the commit SHA (see .github/workflows/pages.yml), so a
   // new deploy fetches a fresh wasm URL instead of a stale cached one. Locally it stays
-  // the 'openbw-ae6e35826f489b88' placeholder and we cache-bust per load instead.
+  // the 'openbw-fe1da4a549908203' placeholder and we cache-bust per load instead.
   // vs-Computer loads a bot-enabled module (sandbox + BWAPI server + the chosen bot);
   // each exports the same surface plus openbw_bot_*, so everything else is identical.
   const wasmName = session.bot ? session.bot.module : 'openbw.wasm';

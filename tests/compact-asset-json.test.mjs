@@ -1,0 +1,3 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {compactAssetJson} from '../scripts/compact-asset-json.mjs';
+test('asset compaction preserves exact JSON tokens, large integers, escapes and duplicate keys',()=>{const source=' { "large" : 18446744073709551615, "text" : "a b\\n\\\" c", "x" : 1, "x" : 2 }\n';assert.equal(compactAssetJson(source),'{"large":18446744073709551615,"text":"a b\\n\\\" c","x":1,"x":2}');assert.deepEqual(JSON.parse(compactAssetJson(source)),JSON.parse(source));});
+test('commented or invalid legacy JSON remains byte-for-byte unchanged',()=>{for(const text of ['{ // comment\n "x":1\n}','{ "x": 1, }','\ufeff{"x":1}'])assert.equal(compactAssetJson(text),text);});

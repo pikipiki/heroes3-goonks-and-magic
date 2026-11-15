@@ -1,3 +1,4 @@
+import {compactAssetJson} from './compact-asset-json.mjs';
 import {fetchEnginePackage} from '../web/engine-startup.mjs';
 import {inlineBootScreen} from './boot-screen.mjs';
 import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './version-runtime.mjs';
@@ -18,6 +19,7 @@ fs.copyFileSync('work/vcmi-wasm/lib/html5/opfs-worker.js',path.join(dist,'opfs-w
 const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursive:true,force:true});fs.mkdirSync(publicData+'/Maps',{recursive:true});fs.cpSync('mod',publicData+'/Mods',{recursive:true});for(const file of fs.readdirSync('maps').filter(f=>f.endsWith('.vmap')))fs.copyFileSync('maps/'+file,publicData+'/Maps/'+file);
 // Normalize runtime object identifiers and their references without rewriting source fixtures or saves.
 execFileSync('python3',['scripts/normalize-map-instances.py',publicData+'/Maps']);
+if(process.env.GOONK_CROSSOVER==='1'){const compact=dir=>{for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const filename=path.join(dir,entry.name);if(entry.isDirectory())compact(filename);else if(entry.name.toLowerCase().endsWith('.json')){const original=fs.readFileSync(filename,'utf8'),packed=compactAssetJson(original);if(packed!==original)fs.writeFileSync(filename,packed);}}};compact(publicData);}
 const manifest=makeManifest(publicData,{includeBase:false});
 for(const file of manifest.files)file.url='.'+file.url;
 deduplicateAssetURLs(manifest.files);

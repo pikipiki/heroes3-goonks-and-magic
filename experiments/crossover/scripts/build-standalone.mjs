@@ -1,3 +1,4 @@
+import {compressClassicEngine} from './compress-classic-engine.mjs';
 // Separate static publish directory, built from the verified Heroes bundle and crossover.
 import fs from 'node:fs';
 import crypto from 'node:crypto';
@@ -33,13 +34,15 @@ fs.writeFileSync(output+'/robots.txt','User-agent: *\nDisallow: /\n');
 fs.writeFileSync(output+'/netlify.toml','[build]\n  publish = "."\n');
 console.log('Separate publish directory: '+output);
 
+if(process.env.GOONK_PAGES==='1')compressClassicEngine(output);
+
 // Packaging changes the entry HTML and adds crossover files: refresh cache integrity.
 const previous=JSON.parse(fs.readFileSync(output+'/coi-serviceworker.js','utf8').match(/^const release = (.+);$/m)[1]);
-const files=new Set(Object.keys(previous.files).filter(file=>!file.endsWith('.symbols')));
+const files=new Set(Object.keys(previous.files).filter(file=>!file.endsWith('.symbols')&&fs.existsSync(path.join(output,file))));
 for(const entry of fs.readdirSync(output,{recursive:true,withFileTypes:true})){
  if(!entry.isFile())continue;
  const file=path.relative(output,path.join(entry.parentPath,entry.name)).split(path.sep).join('/');
- if(!file.startsWith('assets/')&&!file.startsWith('starcraft/data/')&&/\.(js|mjs|css|html|wasm|scx)$/.test(file)&&file!=='coi-serviceworker.js')files.add(file);
+ if(!file.startsWith('assets/')&&!file.startsWith('starcraft/data/')&&/\.(js|mjs|css|html|wasm|scx|wasm\.gz|data\.gz)$/.test(file)&&file!=='coi-serviceworker.js')files.add(file);
 }
 const hashes=Object.fromEntries([...files].sort().map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(output,decodeURIComponent(file)))).digest('base64')]));
 const worker=fs.readFileSync(path.join(root,'web/coi-serviceworker.js'),'utf8');

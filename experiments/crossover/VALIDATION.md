@@ -136,3 +136,18 @@ La compilation du moteur démarre en parallèle avec la lecture/vérification de
 Un toucher normal privilégie désormais les alliés réellement touchés, même avec une sélection précédente et plusieurs ennemis superposés. Les pixels transparents ne suffisent plus à intercepter un toucher ; les barres de vie servent aussi de poignée de sélection. Le ciblage d’attaque explicite conserve la priorité aux ennemis. Sélectionner une autre troupe désarme un ancien ordre d’attaque et remet le bouton dans son état normal.
 
 49 tests du crossover et `verify:web` passent. Le test de composant navigateur `melee-selection-browser.mjs` utilise un pont espion, sans simuler de dégâts : sur Chromium et WebKit, portrait et paysage, il vérifie le corps et la barre d’un allié entouré de douze ennemis, l’absence d’ordre envoyé par l’ancienne sélection, le clic direct sur un ennemi distinct et le ciblage explicite dans la mêlée. Le parcours complet du vrai combat avec sorts, résurrection, dégâts et morts passe également sous Chromium.
+
+## Retour classique, Bouclier de feu et rebase — 15 novembre 2026
+
+Rebase des 30 commits du crossover sur `origin/main` (`8bae90cd4b2abc82d555b5c2eabb7260b073e79c`, version 0.4.201). Le dépôt n’a pas de branche `master`. Les messages de campagne 270–272 sont conservés ; le message crossover utilise désormais l’identifiant libre 273. Reconstruction complète du moteur Heroes avec `ninja -j32 html5`, reconstruction OpenBW et vérification des deux sites réussies.
+
+Les ennemis survivants possédaient leurs sprites, mais leurs petits corps pouvaient être recouverts par les grands Heroes et les repères de cible. Les vues mobiles classique et verticale redessinent leur pose native réelle au-dessus de ces recouvrements, avec un contour de repérage, sans créer de troupe ni changer la taille, les effectifs ou les cases.
+
+Bouclier de feu reflète les dégâts physiques effectivement subis après réduction, plafonnés à la santé disponible. Les boucliers Protoss absorbent la riposte avant les points de vie. Les tirs restent exclus, conformément à Heroes. Les contacts réfléchis publient leur effet natif ; la protection garde son animation tant qu’elle est active.
+
+- 50 tests du crossover et 734 tests Heroes réussis, 48 ignorés.
+- Chromium et WebKit : vrais coups natifs Zergling/Zealot/Marine, avec et sans Bouclier de feu ; perte de santé Zergling, perte de bouclier Zealot sans perte de santé, aucune réflexion de tir Marine.
+- Chromium et WebKit : sort 29 lancé depuis le vrai livre, ripostes et animation, puis présence des six groupes survivants et de leurs poses non transparentes en classique normal et vertical.
+- Chromium : blessures, boucliers, mana et invocations conservés à travers des tours natifs classiques et le retour RTS.
+
+Le rebase augmente les ressources du site au-delà du plafond Pages. Les JSON stricts du paquet de publication sont compactés sans réécrire leurs tokens, y compris les entiers de 64 bits et les clés dupliquées ; les JSON legacy commentés restent inchangés. Le moteur classique et son paquet de données sont distribués en gzip sans perte, décodés en flux par le navigateur. L’empreinte du WASM décompressé reste identique ; les noms JS, SRI, CSP et empreintes hors ligne sont renouvelés. Les tests contrôlent le retour exact des octets et les autorisations des scripts modifiés. Aucun contenu de campagne n’est retiré. Paquet Pages final : 996 290 951 octets.

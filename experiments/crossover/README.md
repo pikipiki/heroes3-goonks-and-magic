@@ -169,3 +169,9 @@ Le placement Heroes est transmis à OpenBW au lieu de recréer la formation de d
 Les six espèces StarCraft utilisent la même échelle native dans le rendu RTS et dans les animations exportées pour VCMI. Les images classiques sont réextraites dans une instance isolée par espèce ; les proportions ne changent pas avec la pose. Le centre des effets de tir et d’impact suit la nouvelle silhouette. Les ressources MPQ restent les sprites classiques, sans détails HD de remplacement.
 
 La compilation WebAssembly est partagée entre les hôtes d’une même page, identifiée par l’empreinte du moteur, et démarre en parallèle avec la vérification des archives. La promesse et le module appartiennent à la fenêtre principale : ce cache ne conserve ni la simulation ni les archives d’un iframe retiré. Le passage RTS conserve l’écran Heroes derrière un indicateur annulable et n’affiche la nouvelle vue qu’une fois son terrain prêt. Une préparation initiale reste nécessaire.
+
+Le retour classique garde les petites unités StarCraft lisibles au-dessus des grandes silhouettes Heroes et des repères de cible, en vue normale et verticale. Il s’agit de leur pose native et de leurs effectifs survivants, sans modifier le combat.
+
+Bouclier de feu renvoie les dégâts au corps à corps réellement reçus et montre ses ripostes. Les boucliers Protoss sont consommés avant leur santé ; les tirs ne sont pas réfléchis. La protection conserve son animation native tant qu’elle est active.
+
+La branche crossover est rebasée sur `main` 0.4.201. Pour rester sous la limite Pages sans retirer les nouvelles ressources de campagne, son paquet de publication compacte les JSON stricts et compresse sans perte le moteur classique et ses données en gzip. Les navigateurs compatibles doivent prendre en charge `DecompressionStream('gzip')` ; Chromium et WebKit sont vérifiés. La décompression restitue le WASM original et conserve ses contrôles de version et d’intégrité.
