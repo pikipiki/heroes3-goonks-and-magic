@@ -34,6 +34,8 @@ private:
 
 	//animation file name
 	AnimationPath name;
+	int portraitKind = 0;
+	std::map<size_t, std::string> campaignPortraitKeys;
 
 	EImageBlitMode mode;
 

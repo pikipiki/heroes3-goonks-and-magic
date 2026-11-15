@@ -147,6 +147,8 @@ public:
 	{
 		return *map;
 	}
+	/// Also safe while map objects are being loaded before map ownership is set.
+	const JsonNode & getSourceCampaignState() const;
 
 	bool isVisibleFor(int3 pos, const PlayerColor player) const override;
 	bool isVisibleFor(const CGObjectInstance * obj, const PlayerColor player) const override;

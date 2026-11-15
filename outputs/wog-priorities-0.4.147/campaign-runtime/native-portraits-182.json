@@ -1,0 +1,361 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.182",
+  "engineSha256": "a465c259a6b2baad81d266a88cc7d80358a750b8e3b37d89cb16f83487174263",
+  "originalCampaignsEnabled": false,
+  "scope": "Private native two-hero portrait control, actual native framebuffer pixels and mobile canvas. No original campaign victory.",
+  "sourceContract": "portrait-source-contract-182.json",
+  "nativeChecks": [
+    {
+      "case": "fresh-mobile",
+      "passed": true,
+      "resultSha256": "9b8eccf270a3ea4bac5d0dcb5eed1831b3947eacb9dda421ee877a76a04a4907",
+      "fixtureSha256": "6d6dd7d7416d1639b8c18573c2e0c3a6c3b5d75c31d810fa63bbba2088050fe7",
+      "mapSha256": "a036c6bc3ee5fa02aa51a689a14a6f72aaae0feb0512dc642231093f7f1a1414",
+      "loadedPending": false,
+      "comparisons": [
+        {
+          "label": "custom",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "custom",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "68ac019e53ee290f67869e563529ac459ea716f4d0f3bada90384a677dc90980",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-320x568",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-568x320",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-390x844",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-844x390",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-768x1024",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-1024x768",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "mobile-820x1180",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "copied",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "68dae781cb07398eb8a4054ddeaad44fd9a86adbd468a1215528ec5bc1878fa5",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "copied",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "e0f09860e52848d659f559c1064d46f3ec5b9df996a12dfae17590a8e4497f41",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "partial",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "partial",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "e0f09860e52848d659f559c1064d46f3ec5b9df996a12dfae17590a8e4497f41",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "reset",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "7b4d3dc0e04589b72e39ec2d8d34b41250239b7eb3ec236ac3a257f93c384b5e",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "reset",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "53ce466d2519658a3afe7084a80e4eead9a495225f3f80f4471699a4f8275f96",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "other-after-reset",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "105cd94bc70adc8a88d23f0c4b14090d08142f59a26abc7b17cb08f20762c71c",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "other-after-reset",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "1de1abc09e5ab43d87520afa6451be0d2d9843f96c33a93e0e1d626ed33515a6",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        }
+      ],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "stableNode": true,
+          "stablePixels": true,
+          "exitVisible": true,
+          "visibleExits": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "case": "pending-reload",
+      "passed": true,
+      "resultSha256": "818104335727534e01a45102250d7cbc0980f51e6e572040a4ff7dbab9357407",
+      "fixtureSha256": "6d6dd7d7416d1639b8c18573c2e0c3a6c3b5d75c31d810fa63bbba2088050fe7",
+      "mapSha256": "a036c6bc3ee5fa02aa51a689a14a6f72aaae0feb0512dc642231093f7f1a1414",
+      "loadedPending": true,
+      "comparisons": [
+        {
+          "label": "custom",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "custom",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "68ac019e53ee290f67869e563529ac459ea716f4d0f3bada90384a677dc90980",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "copied",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "68dae781cb07398eb8a4054ddeaad44fd9a86adbd468a1215528ec5bc1878fa5",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "copied",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "e0f09860e52848d659f559c1064d46f3ec5b9df996a12dfae17590a8e4497f41",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "partial",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "8b58eb7b472bafae3e23b11a83c8d8d76543b354b2852a4c4e4869e06d35a0c4",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "partial",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "e0f09860e52848d659f559c1064d46f3ec5b9df996a12dfae17590a8e4497f41",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "reset",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "7b4d3dc0e04589b72e39ec2d8d34b41250239b7eb3ec236ac3a257f93c384b5e",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "reset",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "53ce466d2519658a3afe7084a80e4eead9a495225f3f80f4471699a4f8275f96",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        },
+        {
+          "label": "other-after-reset",
+          "size": "large",
+          "nativeSelectionBorderExcluded": false,
+          "referenceSha256": "105cd94bc70adc8a88d23f0c4b14090d08142f59a26abc7b17cb08f20762c71c",
+          "matching": 3712,
+          "total": 3712,
+          "ratio": 1
+        },
+        {
+          "label": "other-after-reset",
+          "size": "small",
+          "nativeSelectionBorderExcluded": true,
+          "referenceSha256": "1de1abc09e5ab43d87520afa6451be0d2d9843f96c33a93e0e1d626ed33515a6",
+          "matching": 1380,
+          "total": 1380,
+          "ratio": 1
+        }
+      ],
+      "layouts": [],
+      "errors": []
+    }
+  ],
+  "regressions": [
+    {
+      "case": "original-gerfrex-old-checkpoint",
+      "passed": true,
+      "resultSha256": "f58d8e16504e11ca2c06b97a20636d9bb5d8af0dfccabd6ec5239f24a84d3a6c",
+      "scope": "Controlled hero relocation, original Gerfrex dialogue and seven native Faerie Dragons recruited; full map victory not validated"
+    },
+    {
+      "case": "production-maps-save-turns-combat",
+      "passed": true,
+      "resultSha256": "84744aa71267e7705cfc4b5557cc51792bc97c68e1f98f401487f9f23fc40a55",
+      "scope": "Actual production manifest/assets, both adventure maps, native save/reload, names/roles and real solo/hotseat turn transitions plus003 BattleStart policy parsing; no private overlay or installed asset write.",
+      "actualFetchedWasmSha256": "a465c259a6b2baad81d266a88cc7d80358a750b8e3b37d89cb16f83487174263",
+      "nativePositiveRound": 1
+    }
+  ],
+  "unitTests": {
+    "total": 761,
+    "passed": 727,
+    "skipped": 34,
+    "failed": 0
+  },
+  "build": {
+    "wasm": "ninja -j32 html5 passed37/37",
+    "site": "prepare/build/verify passed"
+  },
+  "pendingSaveSha256": "6fb62e7ef1e7a6d00148ce83a61aaf6f30807efafb93e3c11dd74bd5c3b21cb6"
+}

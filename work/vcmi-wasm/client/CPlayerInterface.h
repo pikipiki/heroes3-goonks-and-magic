@@ -116,6 +116,7 @@ protected: // Call-ins from server, should not be called directly, but only via 
 	void heroInGarrisonChange(const CGTownInstance *town) override;
 	void heroMoved(const TryMoveHero & details, bool verbose = true) override;
 	void heroExperienceChanged(const CGHeroInstance * hero, si64 val) override;
+	void heroAppearanceChanged(const CGHeroInstance * hero) override;
 	void heroPrimarySkillChanged(const CGHeroInstance * hero, PrimarySkill which, si64 val) override;
 	void heroSecondarySkillChanged(const CGHeroInstance * hero, int which, int val) override;
 	void heroManaPointsChanged(const CGHeroInstance * hero) override;

@@ -485,6 +485,15 @@ void CPlayerInterface::heroExperienceChanged(const CGHeroInstance * hero, si64 v
 		ctw->updateExperience();
 }
 
+void CPlayerInterface::heroAppearanceChanged(const CGHeroInstance * hero)
+{
+	EVENT_HANDLER_CALLED_BY_CLIENT;
+	adventureInt->onHeroChanged(hero);
+	for(const auto & window : ENGINE->windows().findWindows<CHeroWindow>())
+		if(window->curHero == hero)window->refreshPortrait();
+	ENGINE->windows().totalRedraw();
+}
+
 void CPlayerInterface::heroPrimarySkillChanged(const CGHeroInstance * hero, PrimarySkill which, si64 val)
 {
 	EVENT_HANDLER_CALLED_BY_CLIENT;

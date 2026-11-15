@@ -185,6 +185,12 @@ CHeroWindow::CHeroWindow(const CGHeroInstance * hero)
 	CHeroWindow::updateArtifacts();
 }
 
+void CHeroWindow::refreshPortrait()
+{
+	portraitImage->setFrame(curHero->getIconIndex());
+	redraw();
+}
+
 void CHeroWindow::updateArtifacts()
 {
 	OBJECT_CONSTRUCTION;

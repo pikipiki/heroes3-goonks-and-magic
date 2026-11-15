@@ -15,6 +15,7 @@
 #include "../../lib/era/EraCampaignPictures.h"
 #include "../../lib/era/EraCampaignObjectAccess.h"
 #include "../../lib/era/EraCampaignHints.h"
+#include "../../lib/era/EraCampaignMedia.h"
 #include "../../lib/era/EraCampaignTimers.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
 #include "../../lib/GameLibrary.h"
@@ -42,6 +43,7 @@
 #include "../../lib/battle/BattleLayout.h"
 #include "../../lib/texts/CGeneralTextHandler.h"
 #include "../../lib/entities/hero/CHero.h"
+#include "../../lib/entities/hero/CHeroHandler.h"
 #include "../../lib/mapping/MapFormatSettings.h"
 #include "../../lib/mapObjectConstructors/CObjectClassesHandler.h"
 #include "../../lib/mapObjectConstructors/AObjectTypeHandler.h"
@@ -577,6 +579,51 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
     require(field!=3&&args[1].access==Access::Read,"hero text requires set or get access");
     auto change=mutation("heroText",h->id);change["field"].Integer()=field;change["text"].String()=readText(args[1],vm,context);persist(change);
    }
+  }
+  else if(op.code=="L")
+  {
+   require(!args.empty()&&!query(op),"portrait arguments must be values");const int mode=number(args[0]);
+   require(mode>=1&&mode<=5,"custom portrait presets are not admitted");
+   const auto key=std::to_string(h->getHeroType()->getIconIndex());
+   if(mode==3)
+   {arity(op,1);if(!state["heroPortraits"].isNull())state["heroPortraits"].Struct().erase(key);persist(mutation("heroAppearance",h->id));return Step::Continue;}
+   if(mode==4)
+   {
+    arity(op,2);const int source=number(args[1]);require(source>=0&&source<156,"original portrait source outside0..155");
+    const auto & original=(*LIBRARY->heroh)[source];
+    auto & pair=state["heroPortraits"][key];pair["large"].String().clear();pair["small"].String().clear();pair["largeFrame"].Integer()=original->getIconIndex();pair["smallFrame"].Integer()=original->getIconIndex();
+    persist(mutation("heroAppearance",h->id));return Step::Continue;
+   }
+   arity(op,mode==5?3:2);
+   const auto filename=[&](const Operand & input)->std::optional<std::string>
+   {
+    const auto & argument=resolveMacro(input,vm);std::string text;
+    if(textOperand(argument,vm))text=readText(argument,vm,context);
+    else
+    {
+     const int index=number(argument);if(index==0)return std::nullopt;
+     require((index>=1&&index<=1000)||(index>=-10&&index<=-1),"external portrait string table is not admitted");text=lookup(vm.z,index);
+    }
+    for(const auto & candidate:era_campaign_media::candidates(text.substr(0,12)))
+     if(CResourceHandler::get()->existsResource(ResourcePath(candidate.resource,EResType::IMAGE)))return candidate.resource;
+    throw std::runtime_error("Original campaign portrait asset unavailable: "+text);
+   };
+   std::optional<std::string> large,small;
+   if(mode==5){large=filename(args[1]);small=filename(args[2]);}
+   else if(mode==1)small=filename(args[1]);else large=filename(args[1]);
+   if(!large&&!small){if(!state["heroPortraits"].isNull())state["heroPortraits"].Struct().erase(key);}
+   else
+   {
+    auto & pair=state["heroPortraits"][key];
+    if(!pair.isStruct())
+    {
+     const auto & fallback=(*LIBRARY->heroh)[h->getPortraitSource().getNum()];
+     pair["large"].String().clear();pair["small"].String().clear();pair["largeFrame"].Integer()=fallback->getIconIndex();pair["smallFrame"].Integer()=fallback->getIconIndex();
+    }
+    if(large)pair["large"].String()=*large;if(small)pair["small"].String()=*small;
+   }
+   if(mode==1||mode==2)writeFlag(mode,vm,true);
+   persist(mutation("heroAppearance",h->id));return Step::Continue;
   }
   else if(op.code=="N")
   {arity(op,1);require(query(op),"hero identity is read-only");value(h->getHeroTypeID().getNum(),args[0]);}

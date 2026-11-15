@@ -60,6 +60,7 @@ public:
 	virtual void heroInGarrisonChange(const CGTownInstance *town){};
 	virtual void heroMoved(const TryMoveHero & details, bool verbose = true){};
 	virtual void heroExperienceChanged(const CGHeroInstance * hero, si64 val){};
+	virtual void heroAppearanceChanged(const CGHeroInstance * hero){};
 	virtual void heroPrimarySkillChanged(const CGHeroInstance * hero, PrimarySkill which, si64 val){};
 	virtual void heroSecondarySkillChanged(const CGHeroInstance * hero, int which, int val){};
 	virtual void heroManaPointsChanged(const CGHeroInstance * hero){} //not called at the beginning of turn and after spell casts

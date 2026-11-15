@@ -133,6 +133,8 @@ void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange &
  {
   if(item["kind"].String()=="playerResource")changed.insert(PlayerColor(item["player"].Integer()));
   if(item["kind"].String()=="playerKey")pathsChanged=true;
+  if(item["kind"].String()=="heroAppearance")
+   if(const auto * hero=cl.gameInfo().getHero(ObjectInstanceID(item["object"].Integer())))callAllInterfaces(cl,&IGameEventsReceiver::heroAppearanceChanged,hero);
  }
  for(const auto color:changed)callInterfaceIfPresent(cl,color,&IGameEventsReceiver::receivedResource);
  if(pathsChanged)callAllInterfaces(cl,&CGameInterface::invalidatePaths);

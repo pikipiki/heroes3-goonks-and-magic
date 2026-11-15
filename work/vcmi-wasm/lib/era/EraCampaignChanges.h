@@ -75,6 +75,11 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    if(text.empty())target.clear();
    else target=mapRegisterLocalizedString("map",gs.getMap(),TextIdentifier("map","sourceCampaign","heroes",id.getNum(),field==0?"name":"biography"),text,"english");
   }
+  else if(kind=="heroAppearance")
+  {
+   if(!dynamic_cast<CGHeroInstance *>(object))throw std::runtime_error("Original portrait target is not a hero");
+   // Definitions live in the replicated map state, not global hero types.
+  }
   else if(kind=="heroGender")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);

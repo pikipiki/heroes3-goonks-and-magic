@@ -169,6 +169,12 @@ CGameState::~CGameState()
 	currentBattles.clear();
 }
 
+const JsonNode & CGameState::getSourceCampaignState() const
+{
+	static const JsonNode empty;
+	return map ? map->sourceCampaignState : empty;
+}
+
 const IGameSettings & CGameState::getSettings() const
 {
 	// H3M loads army slots before returning the map to CGameState. Rank

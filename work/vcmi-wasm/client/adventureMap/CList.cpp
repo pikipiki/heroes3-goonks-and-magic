@@ -237,6 +237,7 @@ CHeroList::CHeroItem::CHeroItem(CHeroList *parent, const CGHeroInstance * Hero)
 
 void CHeroList::CHeroItem::update()
 {
+	portrait->setFrame(hero->getIconIndex());
 	movement->setFrame(std::min<size_t>(movement->size()-1, hero->movementPointsRemaining() / 100));
 	mana->setFrame(std::min<size_t>(mana->size()-1, hero->mana / 5));
 	redraw();

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "navigationSource": {
+    "url": "http://wforum.heroes35.net/files/wog358_sources.rar",
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "warning": "Archive includes changes later than3.58f. Bounded assembly below corroborates the selected rules in the original3.58f binary."
+  },
+  "analysis": "New evidence is ordinary address-bounded LLVM objdump and PE byte/reference inspection, not newly returned REA dossiers or original execution. Hopper could not launch its local bridge (Connection is invalid); its retained180 evidence was exported, but cleanup acknowledgement was unavailable. No reinstall, external binary upload or Windows execution was attempted.",
+  "release": "0.4.182",
+  "contracts": [
+    "https://h3era.github.io/ERM-Help/Rec/HE.htm"
+  ],
+  "boundedAssemblySha256": {
+    "heroL": "d13823067a6e8aa759bb06b8cff6898f5cf3798274c5ded63bb6844c53d5a63f",
+    "pictureFunctions": "240e22310b0303d2b1dc4777f894930a92aa8a3585b637bb20135a4900b13572"
+  },
+  "observations": [
+    {
+      "address": "0x74272e",
+      "fact": "HE:L3 calls ChangeHeroPic0x750070 with null/null to restore the original portrait."
+    },
+    {
+      "address": "0x7500ca..0x750116",
+      "fact": "Null/null clears the customized record and restores original backup pointers."
+    },
+    {
+      "address": "0x750121..0x750179",
+      "fact": "Non-null sides are copied separately into the per-hero record with a13-byte filename buffer."
+    },
+    {
+      "address": "0x742754 and0x75022b..0x750259",
+      "fact": "HE:L4 calls ChangeHeroPicN0x750190 and copies the original target backup, not the current customized image."
+    }
+  ],
+  "implementation": [
+    "Map-local replicated heroPortraits definitions and optional original frame fallback; no global hero type or image-list mutation.",
+    "HE:L1 small, L2 large, L3 reset, L4 original backup copy, L5 pair/one-sided changes. Original campaign inventory uses7L5 and1L4.",
+    "Native portrait cache invalidation and existing hero-sheet repaint preserve controls. Saved in the existing903 map state."
+  ],
+  "limitations": [
+    "Original Windows executable was only read statically, never executed or uploaded.",
+    "HE:L0 custom dialog presets and external string tables are unadmitted. Neither appears in the original campaign HE:L inventory.",
+    "Original scenario victories, complete quests/combat/media and campaign carryover remain unvalidated."
+  ]
+}

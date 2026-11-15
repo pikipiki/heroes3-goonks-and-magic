@@ -13,6 +13,7 @@
 #include "../era/EraGooseReflectionRuntime.h"
 #include "../era/EraAdvancedArtifactRuntimeNative.h"
 #include "CGHeroInstance.h"
+#include "../era/EraCampaignPortraits.h"
 #include "../era/EraCreatureArtifactMimic.h"
 #include "../era/EraConfluxPolicies.h"
 
@@ -21,6 +22,7 @@
 #include <vstd/RNG.h>
 
 #include "../callback/IGameInfoCallback.h"
+#include "../callback/CGameInfoCallback.h"
 #include "../callback/IGameEventCallback.h"
 #include "../callback/IGameRandomizer.h"
 #include "../callback/EditorCallback.h"
@@ -1163,6 +1165,12 @@ si32 CGHeroInstance::manaLimit() const
 
 HeroTypeID CGHeroInstance::getPortraitSource() const
 {
+	if(const auto * game = dynamic_cast<const CGameInfoCallback *>(cb))
+	{
+		const auto & state = game->gameState().getSourceCampaignState();
+		if(state["heroPortraits"].isStruct() && getHeroTypeID().isValid() && era_campaign_portraits::definition(state, getHeroType()->getIconIndex()).isStruct())
+			return getHeroTypeID();
+	}
 	if (customPortraitSource.isValid())
 		return customPortraitSource;
 	else

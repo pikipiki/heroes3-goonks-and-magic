@@ -11,12 +11,17 @@
 #include "CAnimation.h"
 
 #include "../GameEngine.h"
+#include "../GameInstance.h"
+#include "../CPlayerInterface.h"
 #include "../render/IImage.h"
 #include "../render/IRenderHandler.h"
 #include "../render/IScreenHandler.h"
 
 #include "../../lib/filesystem/Filesystem.h"
 #include "../../lib/json/JsonUtils.h"
+#include "../../lib/callback/CCallback.h"
+#include "../../lib/gameState/CGameState.h"
+#include "../../lib/era/EraCampaignPortraits.h"
 
 bool CAnimation::loadFrame(size_t frame, size_t group, bool verbose)
 {
@@ -27,10 +32,31 @@ bool CAnimation::loadFrame(size_t frame, size_t group, bool verbose)
 		return false;
 	}
 
+	std::string portraitFile;
+	int portraitFrame = -1;
+	if(portraitKind && group == 0)
+	{
+		if(GAME && GAME->interface() && GAME->interface()->cb)
+		{
+			const auto & state = static_cast<const IGameInfoCallback &>(*GAME->interface()->cb).gameState().getSourceCampaignState();
+			portraitFile = era_campaign_portraits::image(state, static_cast<int>(frame), portraitKind == 2);
+			portraitFrame = era_campaign_portraits::originalFrame(state, static_cast<int>(frame), portraitKind == 2);
+		}
+		const auto portraitKey = !portraitFile.empty() ? "file:" + portraitFile : portraitFrame >= 0 ? "frame:" + std::to_string(portraitFrame) : std::string();
+		const auto previous = campaignPortraitKeys.find(frame);
+		if((previous == campaignPortraitKeys.end() ? std::string() : previous->second) != portraitKey)
+		{
+			images[group].erase(frame);
+			if(portraitKey.empty())campaignPortraitKeys.erase(frame);
+			else campaignPortraitKeys[frame] = portraitKey;
+		}
+	}
 	if(auto image = getImageImpl(frame, group, false))
 		return true;
 
-	std::shared_ptr<IImage> image = ENGINE->renderHandler().loadImage(getImageLocator(frame, group));
+	std::shared_ptr<IImage> image = portraitFile.empty()
+		? ENGINE->renderHandler().loadImage(getImageLocator(portraitFrame >= 0 ? static_cast<size_t>(portraitFrame) : frame, group))
+		: ENGINE->renderHandler().loadImage(ImagePath::builtin(portraitFile), mode);
 
 	if(image)
 	{
@@ -106,6 +132,8 @@ CAnimation::CAnimation(const AnimationPath & Name, std::map<size_t, std::vector 
 	source(layout),
 	mode(mode)
 {
+	if(name == AnimationPath::builtin("SPRITES/PortraitsSmall"))portraitKind = 1;
+	if(name == AnimationPath::builtin("SPRITES/PortraitsLarge"))portraitKind = 2;
 	if(source.empty())
 		logAnim->error("Animation %s failed to load", Name.getOriginalName());
 }
