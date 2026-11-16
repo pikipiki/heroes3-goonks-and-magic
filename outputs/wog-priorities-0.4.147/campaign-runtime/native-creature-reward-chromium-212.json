@@ -1,0 +1,207 @@
+{
+  "passed": true,
+  "browser": "chromium",
+  "engineSha256": "694d12bb472cdeb9579012fe4f1a721c0df84df146a1bd0547231a40444bb166",
+  "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "inputSaveSha256": "1f2e68119269e9b125cff29985f52def95fd286835388852022d610bb184e5a5",
+  "outputSaveSha256": "bbf7baea90f438c578f5d74a97025089740dfe57a3e7702354c2dbae7966c23c",
+  "saveVersion": 906,
+  "scope": "Private source registry admission; exact original LE script and native event reward. Seven original dragon stacks received through mobile swaps; all seven viewports retain controls/scroll. Native overflow query is not saved mid-exchange; after-close906 save succeeds.",
+  "received": [
+    {
+      "key": "core:azureDragon",
+      "count": 3
+    },
+    {
+      "key": "core:crystalDragon",
+      "count": 3
+    },
+    {
+      "key": "core:fairieDragon",
+      "count": 2
+    },
+    {
+      "key": "core:rustDragon",
+      "count": 2
+    },
+    {
+      "key": "wake-of-gods.creatures:gorynych",
+      "count": 3
+    },
+    {
+      "key": "wake-of-gods.level8units:darknessDragon",
+      "count": 2
+    },
+    {
+      "key": "wake-of-gods.level8units:diamondDragon",
+      "count": 2
+    }
+  ],
+  "moves": [
+    {
+      "replaced": "core:grandElf",
+      "incoming": {
+        "key": "core:crystalDragon",
+        "count": 3
+      }
+    },
+    {
+      "replaced": "core:sprite",
+      "incoming": {
+        "key": "core:rustDragon",
+        "count": 2
+      }
+    },
+    {
+      "replaced": "core:archangel",
+      "incoming": {
+        "key": "wake-of-gods.level8units:darknessDragon",
+        "count": 2
+      }
+    }
+  ],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "scrollTop": 119,
+      "overflow": true,
+      "touch": true,
+      "close": {
+        "x": 254.921875,
+        "y": 5,
+        "w": 57.078125,
+        "h": 44
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "scrollTop": 231,
+      "overflow": true,
+      "touch": true,
+      "close": {
+        "x": 502.921875,
+        "y": 38.796875,
+        "w": 57.078125,
+        "h": 44
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollTop": 0,
+      "overflow": false,
+      "touch": true,
+      "close": {
+        "x": 324.921875,
+        "y": 5,
+        "w": 57.078125,
+        "h": 44
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollTop": 0,
+      "overflow": false,
+      "touch": true,
+      "close": {
+        "x": 778.921875,
+        "y": 38.796875,
+        "w": 57.078125,
+        "h": 44
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scrollTop": 0,
+      "overflow": false,
+      "touch": true,
+      "close": {
+        "x": 702.921875,
+        "y": 5,
+        "w": 57.078125,
+        "h": 44
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scrollTop": 0,
+      "overflow": false,
+      "touch": true,
+      "close": {
+        "x": 958.921875,
+        "y": 38.796875,
+        "w": 57.078125,
+        "h": 44
+      }
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "scrollTop": 0,
+      "overflow": false,
+      "touch": true,
+      "close": {
+        "x": 754.921875,
+        "y": 5,
+        "w": 57.078125,
+        "h": 44
+      }
+    }
+  ],
+  "dialogs": [
+    {
+      "cancel": true,
+      "choices": [],
+      "lines": [
+        "My disciple, \n \nWe must purge all the evil inside yourself. \nPrepare to fight against your nemesis. \n \nIf you win, you'll continue to be my disciple \nand help me to save Erathia from destruction... \n \nIf not... Armageddon will become a reality!"
+      ],
+      "queryId": 711,
+      "scriptDialog": {
+        "canCancel": true,
+        "choiceLabel": "",
+        "choices": [],
+        "contract": "source-campaign-dialog-v1",
+        "draft": null,
+        "inputLabel": "",
+        "kind": "extended",
+        "pictures": [
+          {
+            "file": "..\\Data\\Zvs\\Cmp.res\\21_006.BMP",
+            "hint": "Gaïa, the Master of Trees",
+            "mediaKey": "cmp.res/21_006.bmp",
+            "rect": {
+              "h": 100,
+              "w": 100,
+              "x": 110,
+              "y": 300
+            }
+          },
+          {
+            "file": "",
+            "hint": ""
+          },
+          {
+            "file": "",
+            "hint": ""
+          },
+          {
+            "file": "",
+            "hint": ""
+          }
+        ],
+        "queryId": 711,
+        "resultVariable": 1,
+        "selection": 0,
+        "text": "My disciple, \n \nWe must purge all the evil inside yourself. \nPrepare to fight against your nemesis. \n \nIf you win, you'll continue to be my disciple \nand help me to save Erathia from destruction... \n \nIf not... Armageddon will become a reality!"
+      },
+      "title": "Game message",
+      "visitedObject": "Event"
+    }
+  ],
+  "errors": []
+}

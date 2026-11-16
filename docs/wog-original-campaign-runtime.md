@@ -515,3 +515,13 @@ La scène originale de Gaïa peut poser le héros sur une case d’eau vide puis
 Contrat : `samaritan-source-contract-211.json`. Parcours : `native-samaritan-progress-211.json`. Les preuves de ce répertoire distinguent les contrôles privés de commandes, les archives originales inchangées et les cartes Goonk livrées. Compilation WebAssembly,755 tests réussis et34 ignorés, construction/vérification du site, sauvegardes et tours003/004 et combat natif passent. Le lancement de zc1 et ses formulaires stables sur sept formats sont revérifiés. Les diagnostics temporaires sont absents du moteur publié.
 
 Zc1 reste activée. Zc2, zc3, zc4 et Cave attendent toujours leurs propres victoires et transferts validés.
+
+## Récompenses d’armée tactiles en 0.4.212
+
+Une récompense locale `LE:C` qui dépasse les sept emplacements utilise maintenant le panneau tactile d’échange existant. L’admission vérifie la vraie fenêtre native, l’événement de carte, son tableau de récompenses source et le héros du joueur. La requête et les échanges restent gérés par le moteur. Les autres fenêtres de garnison conservent leurs règles. Cette requête native de débordement ne se sauvegarde pas pendant l’échange ; la sauvegarde906 après fermeture est vérifiée.
+
+La récompense originale du premier scénario de Samaritan donne effectivement les sept groupes, soit17 dragons. Chromium et WebKit vérifient les vrais boutons de permutation, sept formats de320×568 à820×1180, le défilement tactile, les mêmes nœuds conservés aux mises à jour et une seule fermeture. Le témoin reçoit tous les dragons en écartant les anciennes troupes et les Archanges de test. Les preuves `native-creature-reward-*-212.json` distinguent ce témoin du contrôle de victoire.
+
+La victoire native contre Nemesis est obtenue dans une variante conservant50 Archanges de test et six types de dragons. Les quêtes, le défenseur et les conditions de victoire restent originaux ; cela valide la victoire et ne constitue pas un contrôle de difficulté. Le passage vers le deuxième scénario atteint son initialisation mais s’arrête sur les changements actifs `OB:T/U` d’arène, bibliothèque et fabrique. `native-samaritan-first-victory-212.json` décrit précisément cette limite ; aucune admission de Samaritan n’est ajoutée.
+
+Compilation `ninja -j32 html5`,755 tests réussis et34 ignorés, construction/vérification web et non-régressions des cartes003/004, sauvegardes, tours et combat passent. Zc1 reste la seule campagne admise ; les trois autres et Cave restent à terminer.

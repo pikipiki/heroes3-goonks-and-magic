@@ -1,0 +1,158 @@
+{
+  "version": "0.4.212",
+  "engineSha256": "694d12bb472cdeb9579012fe4f1a721c0df84df146a1bd0547231a40444bb166",
+  "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "sourceProgramSha256": "683f5d5bcaa7f8ec4cf2a3d0cc4c18f8dbda5fe70ae9697d90fbe6deacdd8d5d",
+  "inputSaveSha256": "5c4fe99963f64bb759434794cf4aecf16db91f0f56f20462d6a068a12a2ab0ed",
+  "nativeScenarioVictory": true,
+  "nextScenarioInitialized": false,
+  "samaritanEnabled": false,
+  "scope": "Original first-scenario quests, real Nemesis battle and native completed0/available1 selection. Controlled50 Archangels retained with6 original dragon types; accelerated travel and official battle animation preset18. No enemy, program, quest flag or victory-condition rewrite; no win cheat. Difficulty is not validated.",
+  "nativeBattleResult": {
+    "description": "A glorious victory!\n\nFor valor in combat, Samaritan receives 11290 experience",
+    "sides": [
+      {
+        "losses": [
+          {
+            "count": 11,
+            "icon": "",
+            "id": 13,
+            "name": "Archangel"
+          },
+          {
+            "count": 2,
+            "icon": "",
+            "id": 135,
+            "name": "Rust Dragon"
+          },
+          {
+            "count": 2,
+            "icon": "creatures/gorynych/CPrL168M",
+            "id": 154,
+            "name": "Gorynych"
+          },
+          {
+            "count": 2,
+            "icon": "creatures/diamondDragon/CPrL151Z",
+            "id": 165,
+            "name": "Diamond Dragon"
+          },
+          {
+            "count": 1,
+            "icon": "commanders/CPrL175n",
+            "id": 238,
+            "name": "Hierophant"
+          }
+        ],
+        "name": "Samaritan",
+        "portrait": [
+          186,
+          58,
+          58,
+          64
+        ],
+        "winner": true
+      },
+      {
+        "losses": [
+          {
+            "count": 3,
+            "icon": "",
+            "id": 132,
+            "name": "Azure Dragon"
+          },
+          {
+            "count": 3,
+            "icon": "tum-era/creatures/133/large.png",
+            "id": 133,
+            "name": "Ruby Crystal Dragon"
+          },
+          {
+            "count": 2,
+            "icon": "",
+            "id": 134,
+            "name": "Faerie Dragon"
+          },
+          {
+            "count": 2,
+            "icon": "",
+            "id": 135,
+            "name": "Rust Dragon"
+          },
+          {
+            "count": 3,
+            "icon": "creatures/gorynych/CPrL168M",
+            "id": 154,
+            "name": "Gorynych"
+          },
+          {
+            "count": 2,
+            "icon": "creatures/darknessDragon/CPrL155Z",
+            "id": 164,
+            "name": "Darkness Dragon"
+          },
+          {
+            "count": 2,
+            "icon": "creatures/diamondDragon/CPrL151Z",
+            "id": 165,
+            "name": "Diamond Dragon"
+          },
+          {
+            "count": 1,
+            "icon": "commanders/CPrL175n",
+            "id": 238,
+            "name": "Hierophant"
+          }
+        ],
+        "name": "Samaritan",
+        "portrait": [
+          557,
+          58,
+          58,
+          64
+        ],
+        "winner": false
+      }
+    ],
+    "won": true
+  },
+  "nativeCampaignSelection": {
+    "bonus": -1,
+    "bonuses": [],
+    "canStart": true,
+    "chooseDifficulty": true,
+    "description": "He is called the Samaritan. \r\nNobody knows his real power. \r\nPlease play and discover his history.\r\n\r\nby Bruno",
+    "difficulty": 1,
+    "mapRect": {
+      "h": 600,
+      "w": 456,
+      "x": 0,
+      "y": 0
+    },
+    "name": "The Samaritan",
+    "scenarioDescription": "Gaïa has a new mission for you: you must save the behemoths from the horrible humans and Necromancers...\n\n",
+    "scenarioName": "Save behemot",
+    "scenarios": [
+      {
+        "available": false,
+        "completed": true,
+        "id": 0,
+        "name": "Gaia, where are you?"
+      },
+      {
+        "available": true,
+        "completed": false,
+        "id": 1,
+        "name": "Save behemot"
+      },
+      {
+        "available": false,
+        "completed": false,
+        "id": 2,
+        "name": "map.zc2:3.header.name"
+      }
+    ],
+    "selected": 1
+  },
+  "remainingBlock": "Next source program081f9193109c231b7dd0d5de9c3cd9d6220464b7c423a523b61207a7e93a7746 initializes active OB:T/U arena/library/factory replacements; host rejects these until native retyping is ported."
+}
