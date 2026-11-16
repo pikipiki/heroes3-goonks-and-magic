@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "BattleProcessor.h"
+#include "../era/SourceCampaignProcessor.h"
 
 #include "BattleActionProcessor.h"
 #include "BattleFlowProcessor.h"
@@ -97,6 +98,14 @@ void BattleProcessor::restartBattle(const BattleID & battleID, const CArmedInsta
 }
 
 void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile,
+ const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town)
+{
+ if(gameHandler->sourceCampaigns->battleEvent(0,army1->id,army2->id,hero1?hero1->id:ObjectInstanceID::NONE,hero2?hero2->id:ObjectInstanceID::NONE,
+  [this,army1,army2,tile,hero1,hero2,layout,town](){startBattlePrepared(army1,army2,tile,hero1,hero2,layout,town);}))return;
+ startBattlePrepared(army1,army2,tile,hero1,hero2,layout,town);
+}
+
+void BattleProcessor::startBattlePrepared(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile,
 								const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town)
 {
 	assert(gameHandler->gameState().getBattle(army1->getOwner()) == nullptr);

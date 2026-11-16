@@ -1,0 +1,330 @@
+{
+  "version": "0.4.206",
+  "passed": true,
+  "scope": "Controlled terminal validation of original zc1 second-scenario victory and actual transfer to third scenario; not an unassisted balance/playthrough proof",
+  "engineSha256": "43c2b3ea064350f5a3a04cfbd1dbf237b33c713b9b58109ee9a7fc7310e90f14",
+  "originalArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "originalScriptsEdited": false,
+  "questFlagsEdited": false,
+  "enemyArmiesEdited": false,
+  "winningCheatUsed": false,
+  "controls": {
+    "playerArmy": "Offline native vcmiarmy core:archangel 30 in four empty slots, merged normally to120 Archangels; original companions and ghosts retained",
+    "unchangedGrantHeroFields": [
+      "primarySkills",
+      "experience",
+      "level",
+      "skills",
+      "mana",
+      "manaLimit",
+      "slots",
+      "backpack"
+    ],
+    "acceleratedTravel": "Native offline vcmimove and vcmimap, actual pathfinding and visits; no teleport",
+    "sourceResetOnTransfer": "Original GE1 removes the reinforcement army; transferred hero has exactly one Monk"
+  },
+  "unassistedEarlierEvidence": [
+    "native-seven-quests-transfer-202.json",
+    "native-ruin-town-clock-205.json",
+    "native-fortress-demolition-205.json",
+    "native-original-crypt-205.json"
+  ],
+  "finalQuest": {
+    "companions": "Original Water and Earth Messenger dialogues and real joins completed after Air/Fire recruitment",
+    "necroTown": "Original Vokial combat, real capture and Village Hall demolition",
+    "monk": "Original final dialogue, resets army, actual Monk join/removal and native objective victory"
+  },
+  "victory": {
+    "bonus": -1,
+    "bonuses": [
+      {
+        "description": "Start with 16 Crystal",
+        "id": 0,
+        "rect": {
+          "h": 64,
+          "w": 58,
+          "x": 475,
+          "y": 455
+        }
+      },
+      {
+        "description": "Start with 4 Sulfur, Mercury, Crystal, and Gems",
+        "id": 1,
+        "rect": {
+          "h": 64,
+          "w": 58,
+          "x": 543,
+          "y": 455
+        }
+      },
+      {
+        "description": "Start with 20 Wood and Ore",
+        "id": 2,
+        "rect": {
+          "h": 64,
+          "w": 58,
+          "x": 611,
+          "y": 455
+        }
+      }
+    ],
+    "canStart": false,
+    "chooseDifficulty": true,
+    "description": "Fire and Smoke, peal of swords and whistle of arrows...\r\nMany years have passed since those glorious battles.\r\nLife is more or less peaceful now. All clans and groups licked their wounds.\r\nBut what is a life without fighting!?",
+    "difficulty": 1,
+    "mapRect": {
+      "h": 600,
+      "w": 456,
+      "x": 0,
+      "y": 0
+    },
+    "name": "In the Wake of Gods",
+    "scenarioDescription": "The journey here was long.\nGorynych nagged you the entire time in a tiresome voice:\n\"How would you make it without me!?\"\nYour blind belief Gorynych's divine destiny is starting to fade.\nAll the while, your new companion, Monk, kept his silence.\nYou are unsure that you choose the right way.",
+    "scenarioName": "In the Wake of Gods",
+    "scenarios": [
+      {
+        "available": true,
+        "completed": false,
+        "id": 0,
+        "name": "In the Wake of Gods"
+      },
+      {
+        "available": false,
+        "completed": true,
+        "id": 1,
+        "name": "The Beginning"
+      },
+      {
+        "available": false,
+        "completed": true,
+        "id": 2,
+        "name": "Gorynych"
+      }
+    ],
+    "selected": 0
+  },
+  "dialogs": [
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Monks",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 313
+          }
+        }
+      ],
+      "lines": [
+        "I am not sure that this is enough,\nbut I hope that you come up to a good way.\nAnd to watch over you I would like to follow you."
+      ],
+      "queryId": 1723,
+      "title": "Game message",
+      "visitedObject": "Monks"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Gorynyches",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 321,
+            "y": 313
+          }
+        },
+        {
+          "description": "",
+          "label": "Nightmares",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 421,
+            "y": 313
+          }
+        }
+      ],
+      "lines": [
+        "Hey, hey!\nDo not even think about going without me!\nWait...I am back...with my friend!"
+      ],
+      "queryId": 1724,
+      "title": "Game message",
+      "visitedObject": "Monks"
+    },
+    {
+      "cancel": true,
+      "lines": [
+        "{Followers}\n\nA group of Monk with a desire for greater glory wish to join you. Do you accept? "
+      ],
+      "queryId": 1725,
+      "title": "Game message",
+      "visitedObject": "Monks"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Teal",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 313
+          }
+        }
+      ],
+      "lines": [
+        "Congratulations! You have completed your quest to kill the fearsome beast, and can claim victory!"
+      ],
+      "queryId": -1,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Gorynyches",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 345
+          }
+        }
+      ],
+      "lines": [
+        "Well, well, well.\nYou are not a knight... well... the wrong knight.\nI am very very disappointed.\nYou have destroyed all of my hopes!\nI should think it over.\nI will think a long time...\n... very, very long time...\n...looooooooong time..."
+      ],
+      "queryId": 3,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Gorynyches",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 321,
+            "y": 345
+          }
+        },
+        {
+          "description": "",
+          "label": "Nightmares",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 421,
+            "y": 345
+          }
+        }
+      ],
+      "lines": [
+        "That's it.\nI'm leaving you.\nFind your way yourself.\nBut mark my word, get back to those fields.\n...\nKitty-kitty-kitty!\nPuss-puss!\nCome with me my lovely horse."
+      ],
+      "queryId": 4,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        " What will you do now?"
+      ],
+      "queryId": -1,
+      "title": "Game message"
+    }
+  ],
+  "transferredHero": {
+    "heroId": 663,
+    "heroName": "Native hero",
+    "day": 1,
+    "movement": 1630,
+    "armies": [
+      {
+        "id": 663,
+        "name": "Native hero",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 485,
+            "attack": 12,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              400,
+              0
+            ],
+            "count": 1,
+            "damageMax": 12,
+            "damageMin": 10,
+            "defense": 7,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 485,
+            "growth": 3,
+            "health": 30,
+            "icon": "",
+            "id": 8,
+            "key": "core:monk",
+            "name": "Monk",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 5
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      },
+      {
+        "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+        "icon": 0,
+        "name": "Spell Book",
+        "slot": 17
+      }
+    ]
+  },
+  "saveSha256": "f0d818113c42ee650b295a4a8b2addab4a078198c591c1e4328ecc49153977e3",
+  "saveVersion": 906,
+  "finalScenarioVictoryValidated": false,
+  "campaignsEnabled": false,
+  "errors": []
+}

@@ -3,6 +3,7 @@
 #include "../../lib/constants/EntityIdentifiers.h"
 #include "../../lib/int3.h"
 #include <memory>
+#include <functional>
 #include <string>
 class CGameHandler;
 VCMI_LIB_NAMESPACE_BEGIN
@@ -18,6 +19,7 @@ class SourceCampaignProcessor
 public:
  explicit SourceCampaignProcessor(CGameHandler & handler);
  ~SourceCampaignProcessor();
+ bool battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume);
  bool demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building);
  void demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);
  void demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);

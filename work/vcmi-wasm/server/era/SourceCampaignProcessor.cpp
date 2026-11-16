@@ -133,6 +133,18 @@ struct SourceCampaignProcessor::Impl final:Host
  PlayerColor player=PlayerColor::NEUTRAL;
  std::optional<QueryID> shown;
  std::optional<bool> comparison;
+ struct BattleScope
+ {
+  std::vector<Frame> frames;
+  std::vector<Continuation> continuations;
+  JsonNode pending;
+  ObjectInstanceID hero,object;
+  PlayerColor player;
+  std::optional<QueryID> shown;
+  std::array<ObjectInstanceID,2> armies,heroes;
+  std::function<void()> resume;
+ };
+ std::optional<BattleScope> battleScope;
  bool pumping=false;
  bool demolitionResumeChecked=false;
  std::map<PlayerColor,QueryPtr> turnBarriers;
@@ -589,13 +601,36 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   catch(...){pumping=false;throw;}
  }
+ bool battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume)
+ {
+  bind();if(!active)return false;
+  require(stage==0||stage==1,"unsupported battle event stage");
+  bool found=false;
+  for(const auto & block:program.blocks)
+   if(block.receiver=="BA"&&!block.post&&block.selectors.size()==1&&readNumber(block.selectors[0],vm,context)==stage){found=true;break;}
+  if(!found)return false;
+  require(!executing&&!battleScope,"recursive battle event entry");
+  BattleScope scope{std::move(vm.frames),std::move(vm.continuations),std::move(pending),heroId,objectId,player,shown,{attacker,defender},{attackerHero,defenderHero},std::move(resume)};
+  battleScope=std::move(scope);vm.frames={Frame{}};vm.continuations.clear();pending=JsonNode();shown.reset();
+  heroId=attackerHero;objectId=ObjectInstanceID::NONE;
+  if(const auto * attackerArmy=gh.gameState().getObj(attacker);attackerArmy&&attackerArmy->getOwner().isValidPlayer())player=attackerArmy->getOwner();
+  for(const auto armyId:{attacker,defender})if(const auto * army=gh.gameState().getObj(armyId))
+   if(const auto * owner=gh.gameInfo().getPlayerState(army->getOwner(),false);owner&&owner->isHuman()){player=army->getOwner();break;}
+  state["battleHook"].Bool()=true;updateContext();Executor executor(program,vm,context,*this);executor.dispatch("BA",{stage});run();return true;
+ }
  void run()
  {
   require(!executing,"recursive event entry");executing=true;
   try
   {
-   updateContext();Executor executor(program,vm,context,*this);const bool done=executor.run();persist();executing=false;
+   updateContext();Executor executor(program,vm,context,*this);const bool done=executor.run();if(!done||!battleScope)persist();executing=false;
    if(!done){show();return;}
+   if(battleScope)
+   {
+    auto scope=std::move(*battleScope);battleScope.reset();
+    vm.frames=std::move(scope.frames);vm.continuations=std::move(scope.continuations);pending=std::move(scope.pending);
+    heroId=scope.hero;objectId=scope.object;player=scope.player;shown=scope.shown;state["battleHook"].Bool()=false;updateContext();persist();scope.resume();return;
+   }
    const auto completedObject=objectId,completedHero=heroId;
    heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;pending=JsonNode();persist();
    completeTurnEvent();
@@ -1196,6 +1231,35 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
+ if(c.receiver=="BA")
+ {
+  require(c.selectors.empty()&&battleScope.has_value(),"battle receiver outside a battle event");
+  if(op.code=="E")
+  {
+   arity(op,1);require(query(op),"battle network classification is read-only");
+   // Original offline/hotseat classification. Remote campaign play is not admitted.
+   value(0,args[0]);return Step::Continue;
+  }
+  require(!args.empty()&&args[0].access==Access::Read,"battle side must be a value");
+  const int side=number(args[0]);require(side==0||side==1,"battle side outside 0..1");
+  if(op.code=="H")
+  {
+   arity(op,2);require(query(op),"battle hero replacement is not admitted");
+   const auto * h=gh.gameState().getHero(battleScope->heroes[side]);value(h?h->getHeroTypeID().getNum():-2,args[1]);return Step::Continue;
+  }
+  require(op.code=="M","unsupported battle operation "+op.code);arity(op,4);
+  require(args[1].access==Access::Read,"battle slot must be a value");const int index=number(args[1]);require(index>=0&&index<7,"battle army slot outside 0..6");
+  const auto * army=dynamic_cast<const CArmedInstance *>(gh.gameState().getObj(battleScope->armies[side]));require(army!=nullptr,"battle army missing");
+  const SlotID slot(index);const auto * stack=army->getStackPtr(slot);
+  const int type=value(stack?sourceCreature(stack->getId()):-1,args[2]),count=value(stack?stack->getCount():0,args[3]);
+  if(!query(op))
+  {
+   if(type<0||count<=0){if(stack)gh.eraseStack({army->id,slot},true);}
+   else if(!stack)gh.insertNewStack({army->id,slot},creature(type).toCreature(),count);
+   else {gh.changeStackType({army->id,slot},creature(type).toCreature());gh.changeStackCount({army->id,slot},count,ChangeValueMode::ABSOLUTE);}
+  }
+  return Step::Continue;
+ }
  if(c.receiver=="OW")
  {
   require(c.selectors.empty(),"player receiver does not take selectors");
@@ -1671,6 +1735,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 }
 SourceCampaignProcessor::SourceCampaignProcessor(CGameHandler & game):impl(std::make_unique<Impl>(game)){}
 SourceCampaignProcessor::~SourceCampaignProcessor()=default;
+bool SourceCampaignProcessor::battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume){return impl->battleEvent(stage,attacker,defender,attackerHero,defenderHero,std::move(resume));}
 bool SourceCampaignProcessor::demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building){return impl->demolitionFight(hero,town,building);}
 void SourceCampaignProcessor::demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnding(attacker,defender,won);}
 void SourceCampaignProcessor::demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnded(attacker,defender,won);}

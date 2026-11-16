@@ -203,6 +203,11 @@ bool mobileCampaignBusy(const CPlayerInterface & player)
  return state.isStruct()&&state["contract"].String()=="source-campaign-state-v1"&&
   (state["pending"].isStruct()||state["running"].Bool())&&state["player"].Integer()==player.playerID.getNum();
 }
+bool mobileCampaignBattleHook(const CPlayerInterface & player)
+{
+ const auto & state=static_cast<const IGameInfoCallback &>(*player.cb).gameState().getMap().sourceCampaignState;
+ return state["battleHook"].Bool();
+}
 bool mobileCampaignPrompt(const CPlayerInterface & player)
 {
  const auto info=ENGINE->windows().topWindow<CInfoWindow>();
@@ -1313,7 +1318,7 @@ void publishMobileState(){
   if(p->makingTurn&&p->cb->getStartInfo()->turnTimerInfo.turnTimer>0)
    n["turnRemainingMs"].Integer()=p->cb->getPlayerTurnTime(p->playerID).valueMs();
   const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,garrisonWindow.get());
-  n["autosaveAllowed"].Bool()=(!server.inLobbyRoom()||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);
+  n["autosaveAllowed"].Bool()=!mobileCampaignBattleHook(*p)&&(!server.inLobbyRoom()||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
   if(p->localState->getCurrentTown())n["selectedTownName"].String()=p->localState->getCurrentTown()->getNameTranslated();
@@ -2133,7 +2138,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();if(town->getOwner()!=p->playerID)return;auto budget=p->cb->getResourceAmount();auto dest=town->getUpperArmy();std::set<CreatureID> types;int free=0;for(int i=0;i<7;i++){auto c=dest->getCreature(SlotID(i));if(c)types.insert(c->getId());else free++;}
  for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=creature->getRecruitCost(resource);if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*creature->getRecruitCost(resource);if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
  lastPublished=0;return;}
- if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get());const bool allowed=(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
+ if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get());const bool allowed=!mobileCampaignBattleHook(*p)&&(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
   static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
   if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;

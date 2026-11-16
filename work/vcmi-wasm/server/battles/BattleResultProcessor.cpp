@@ -342,6 +342,16 @@ void BattleResultProcessor::endBattle(const CBattleInfoCallback & battle)
 
 void BattleResultProcessor::endBattleConfirm(const CBattleInfoCallback & battle)
 {
+ const auto * attacker=battle.battleGetFightingHero(BattleSide::ATTACKER);
+ const auto * defender=battle.battleGetFightingHero(BattleSide::DEFENDER);
+ if(gameHandler->sourceCampaigns->battleEvent(1,battle.battleGetArmyObject(BattleSide::ATTACKER)->id,battle.battleGetArmyObject(BattleSide::DEFENDER)->id,
+  attacker?attacker->id:ObjectInstanceID::NONE,defender?defender->id:ObjectInstanceID::NONE,
+  [this,battleID=battle.getBattle()->getBattleID()](){const auto * current=gameHandler->gameState().getBattle(battleID);assert(current);endBattleConfirmPrepared(*current);}))return;
+ endBattleConfirmPrepared(battle);
+}
+
+void BattleResultProcessor::endBattleConfirmPrepared(const CBattleInfoCallback & battle)
+{
 	auto battleQuery = std::dynamic_pointer_cast<CBattleQuery>(gameHandler->queries->topQuery(battle.sideToPlayer(BattleSide::ATTACKER)));
 	if(!battleQuery)
 		battleQuery = std::dynamic_pointer_cast<CBattleQuery>(gameHandler->queries->topQuery(battle.sideToPlayer(BattleSide::DEFENDER)));

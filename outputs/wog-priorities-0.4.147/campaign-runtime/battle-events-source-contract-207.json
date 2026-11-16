@@ -1,0 +1,33 @@
+{
+  "version": "0.4.207",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "evidence": "Bounded static disassembly of pinned h3wog.exe, no Windows execution",
+  "addresses": {
+    "BA_dispatch": "0x749470",
+    "BA0_local": "0x756d1e",
+    "BA1_local": "0x7572de",
+    "BA_receiver": "0x75e790",
+    "BA_H": "0x75e7f2",
+    "BA_M": "0x75e8e4",
+    "BA_E": "0x75ec55"
+  },
+  "admitted": {
+    "triggers": [
+      "BA0",
+      "BA1"
+    ],
+    "BA_H": "Read fighting hero type for side0/1, -2 if absent",
+    "BA_E": "Read0 for offline/hotseat campaign play; remote classifications remain outside this port",
+    "BA_M": "Read and write seven battle army slots for side0/1, mapped original creature IDs and counts"
+  },
+  "lifecycle": "BA0 completes before native battle setup. BA1 completes after battle-result confirmation and before result settlement, while the native battle query and both hero instances still exist. Suspended outer script frames, continuations, pending query, current hero/object/player are restored. Global variables and potion doses retain source changes.",
+  "saving": "Saving is refused while a battle-hook dialog is pending because its native continuation owns live battle state. The normal save format906 is unchanged and resumes are allowed after settlement.",
+  "notAdmitted": [
+    "Remote BA50/51/52/53 events",
+    "Hero replacement BA:H writes",
+    "Background BA:B",
+    "Unnumbered BA trigger",
+    "BF/BR/BG/BH/BU/BM lifecycle hooks"
+  ],
+  "campaignsEnabled": false
+}

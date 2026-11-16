@@ -72,6 +72,7 @@ class BattleResultProcessor : boost::noncopyable
 
 	std::map<BattleID, std::unique_ptr<BattleResult>> battleResults;
 	std::map<BattleID, std::unique_ptr<FinishingBattleHelper>> finishingBattles;
+	void endBattleConfirmPrepared(const CBattleInfoCallback & battle);
 
 public:
 	explicit BattleResultProcessor(CGameHandler * gameHandler);
