@@ -912,6 +912,17 @@ bool CGameHandler::moveHeroImpl(ObjectInstanceID hid, int3 dst, EMovementMode mo
 	}
 
 	const TerrainTile t = *gameInfo().getTile(hmpos);
+	TerrainTile visitTile = t;
+	if(movementMode == EMovementMode::STANDARD && h->inBoat() && hmpos != h->visitablePos())
+	{
+		// Sailing out of a multi-tile exit must not visit that whirlpool again.
+		// Preserve every other object and the normal guarding-creature checks.
+		vstd::erase_if(visitTile.visitableObjects, [&](ObjectInstanceID objectID)
+		{
+			const auto * object = gameState().getObjInstance(objectID);
+			return object && object->ID == Obj::WHIRLPOOL && object->visitableAt(h->visitablePos());
+		});
+	}
 	const int3 guardPos = gameState().guardingCreaturePosition(hmpos);
 	const CGObjectInstance * objectToVisit = nullptr;
 	const CGObjectInstance * guardian = nullptr;
@@ -1067,17 +1078,18 @@ bool CGameHandler::moveHeroImpl(ObjectInstanceID hid, int3 dst, EMovementMode mo
 
 		if (visitDest == VISIT_DEST && objectToVisit && objectToVisit->id == h->id)
 		{ // Hero should be always able to visit any object he is staying on even if there are guards around
-			visitObjectOnTile(t, h, hmpos);
+			visitObjectOnTile(visitTile, h, hmpos);
 		}
 		else if (lookForGuards == CHECK_FOR_GUARDS && gameInfo().isInTheMap(guardPos))
 		{
 			objectVisited(guardian, h);
 
-			moveQuery->visitDestAfterVictory = visitDest==VISIT_DEST;
+			moveQuery->visitDestAfterVictory = visitDest==VISIT_DEST
+				&& (!visitTile.visitableObjects.empty() || visitTile.sourceForceVisitable);
 		}
 		else if (visitDest == VISIT_DEST)
 		{
-			visitObjectOnTile(t, h, hmpos);
+			visitObjectOnTile(visitTile, h, hmpos);
 		}
 
 		queries->popIfTop(moveQuery);
@@ -3698,7 +3710,9 @@ void CGameHandler::objectVisited(const CGObjectInstance * obj, const CGHeroInsta
 		hv.starting = true;
 		sendAndApply(hv);
 
-		if(!sourceCampaigns->visit(obj,h))
+		// A hero defending inside a town is a town visit. Use the same object
+		// as the native visit query so coordinate-based OB scripts run as well.
+		if(!sourceCampaigns->visit(visitedObject,h))
 			obj->onHeroVisit(*this, h);
 	};
 

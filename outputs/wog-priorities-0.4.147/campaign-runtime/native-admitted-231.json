@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "productionOnly": true,
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "reports": [
+    {
+      "id": "zc3",
+      "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+      "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+      "productionOnly": true,
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "singleExit": true,
+          "stableControls": true,
+          "scrollAllowed": true
+        }
+      ],
+      "started": {
+        "heroName": "Nailag Ciad",
+        "day": 1,
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 1307,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1805,
+            "movementLimit": 1630,
+            "name": "Nailag Ciad"
+          }
+        ]
+      },
+      "saveSha256": "e8321e46bad4f396c9eb5b23fb60e10ee7414615857995da0da18c19ec60d7b7",
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "{Emokon, part 1 -} \n{The quest for Adventure v1.1}\n\n{Playtesters:}\n{Fnord}\n{Simon Mooncalf}\n"
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Village Hall, Rampart"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "{Special Thanks}\n\n{Fnord}\n{For going through all text and {editing it}\n\n{All in the WoG team}\n{for making this map possible}"
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Village Hall, Rampart"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "You are Nailag Ciad, an orphan living in a small farming village, son of nobody and all. A week ago, you turned 17 and became a free man. Had you been like most of the boys, you would soon had settled with a small farm, but while all of you always have dreamed of adventure, you are the only one who has been dead serious about it. The elders soon realized that there would be no way of stopping you, so they told all the villagers to aid you. You even overheard them talking about the sword and armor Gonenis, the blacksmith, was making for you. A sword and armor! You could slay dragons, rescue damsels in distress and receive half the kingdom! But, what should you do first? After some thinking, you come up with the idea that you might find something useful in the cellar at the back of the Village hall. You know that nobody would mind, since they believe that it is haunted. You are not afraid of such stories! Now it's time for your {A-d-v-e-n-t-u-r-e}."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Village Hall, Rampart"
+        }
+      ],
+      "nativeReload": true
+    }
+  ],
+  "errors": []
+}

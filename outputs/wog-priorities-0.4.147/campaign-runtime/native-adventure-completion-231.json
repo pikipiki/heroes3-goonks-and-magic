@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "originalArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+  "originalScriptsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 1,
+    "days": 1,
+    "name": "A Life of A-d-v-e-n-t-u-r-e",
+    "playerName": "Goonk",
+    "queryId": 111103196,
+    "score": 199,
+    "unranked": true,
+    "won": true
+  },
+  "realFinalBattle": true,
+  "nativeSandalsArtifactVictory": true,
+  "originalFinalDialogue": true,
+  "endingLayouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "stableInput": true,
+      "actionsVisible": true
+    }
+  ],
+  "proofSha256": "65327ee07dfd71c0d4ce45fc70535805b77c4f652920a346df94864a9b87ae3a",
+  "completionSha256": "610547afdb30da54968a43c29cc227eccf92df1909923f6bf8013995a77af7e2",
+  "limitation": "Declared offline QA army and resources, accelerated native pathfinder travel; validates unchanged quest/victory behavior, not difficulty."
+}

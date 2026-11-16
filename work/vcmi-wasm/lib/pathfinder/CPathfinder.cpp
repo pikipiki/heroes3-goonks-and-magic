@@ -46,6 +46,12 @@ bool CPathfinderHelper::canMoveFromNode(const PathNodeInfo & source) const
 	if (source.node->isTeleportAction())
 		return true;
 
+	// Whirlpool exits cover several visitable tiles. Moving within the exit
+	// footprint is still leaving the same object, rather than entering it again.
+	if(source.nodeObject->ID == Obj::WHIRLPOOL
+		&& hero->inBoat() && source.nodeObject->visitableAt(hero->visitablePos()))
+		return true;
+
 	// we can not go through teleporters since moving onto a teleport will teleport hero and may invalidate path (e.g. one-way teleport or enemy hero on other side)
 	if (dynamic_cast<const CGTeleport*>(source.nodeObject) != nullptr)
 		return false;
@@ -71,7 +77,9 @@ void CPathfinderHelper::calculateNeighbourTiles(NeighbourTilesVector & result, c
 	{
 		vstd::erase_if(result, [&](const int3 & tile) -> bool
 		{
-			return !canMoveBetween(tile, source.nodeObject->visitablePos());
+			const auto origin = source.nodeObject->ID == Obj::WHIRLPOOL
+				? source.node->coord : source.nodeObject->visitablePos();
+			return !canMoveBetween(tile, origin);
 		});
 	}
 }

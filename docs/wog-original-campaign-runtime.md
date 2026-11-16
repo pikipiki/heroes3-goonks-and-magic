@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Les campagnes « In the Wake of Gods » (zc1) et « The Samaritan » (zc2) sont activées : chacune dispose de trois victoires natives, de ses deux transferts et de son résultat final vérifiés. Les deux autres campagnes et Cave of Gerfrex restent désactivés. Les sections suivantes conservent l’historique ; les sections 0.4.210 et 0.4.215 décrivent les admissions actuelles.
+Les campagnes « In the Wake of Gods » (zc1), « The Samaritan » (zc2) et « A Life of A-d-v-e-n-t-u-r-e » (zc3) sont activées après leurs victoires natives et les transferts requis. Evil Way Home (zc4) et Cave of Gerfrex restent désactivés. Les sections suivantes conservent l’historique ; la section 0.4.231 décrit l’admission la plus récente.
 
 ## Ce qui est implémenté
 
@@ -75,7 +75,7 @@ L’interface tactile réutilise l’écran d’échange, avec une vue limitée 
 
 Le [relevé 173](../outputs/wog-priorities-0.4.147/campaign-runtime/native-army-exchange-173.json) distingue la fonction testée des six autres occurrences seulement inventoriées. Le moteur vérifié est `bd27a4cb6401c0cdca23212539945c82592f3deba1707df51403c56711a105bb`. La compilation WebAssembly, les 751 tests (717 réussis, 34 ignorés), les deux cartes Goonk et l’ancienne sauvegarde du levier passent. Le format 903 est conservé. Cette étape ne valide pas les onze scénarios et ne les active pas.
 
-## Ce qui empêche encore l’activation
+## Blocages recensés en 0.4.173 (historique)
 
 1. Les autres branches de Cave et son parcours complet jusqu’à une victoire native.
 2. Les adaptations natives des commandes d’aventure, de combat et de minuterie des onze scénarios des campagnes, et leur raccordement aux événements du jeu.
@@ -675,3 +675,16 @@ Le moteur est `2f5c46654fa5fe9d8a910e3f153864f3161103bc2878f89d8c6251b7a0bc48f5`
 Le retour original de zc3 après Vidomina masque une zone pour la couleur bleue, absente de cette carte. Les fonctions originales de brouillard adressent les huit couleurs ; le port accepte désormais une couleur valide sans joueur natif et ne modifie aucune équipe présente. Les positions, rayons et couleurs invalides restent refusés ; les joueurs existants conservent le traitement antérieur de leur visibilité et de celle de leurs alliés. Le contrôle indépendant exécute révélation puis masquage pour la couleur rose inutilisée et vérifie que la carte du joueur actif reste cachée hors de son champ de vision. Le véritable événement de retour de zc3 reprend, téléporte Nailag en32/12/0 et termine son dialogue.
 
 Le moteur combiné `485f92cf6de3a95df800559bbc94b76643084c2b45fe0cee1017fb52e4fd9605` conserve les changements228 de campagne et la consultation du grimoire des héros de taverne publiée séparément en228. Compilation WebAssembly et site vérifiés ;760 tests réussis et34 ignorés. Les deux cartes003/004 passent de nouveau sauvegardes, rechargements, tours et début de combat ; Chromium et WebKit passent les coffres, et les contrôles de taverne passent commandant, grimoire en lecture seule, retour et recrutement. Voir `native-integration-fog-229.json`. Les preuves228 sont des validations intermédiaires, intégrées ici avant leur publication ; les campagnes zc3/zc4 restent en validation finale.
+
+
+## Victoire d’A Life of Adventure et navigation en 0.4.231
+
+Le parcours original de Nailag est terminé : maison sinistre et anneau, arènes et six points d’attaque/défense, tombeaux et médaille, cage thoracique et portail, combat de Vidomina, compagnon archer, traversée en bateau, forteresse ogre, route ouest, puis Bron et les Sandales du Saint. Le moteur confirme une victoire de campagne avec son unique scénario terminé. Le formulaire de fin conserve sa saisie et ses commandes sur sept formats mobile/iPad. Voir [la preuve de fin](../outputs/wog-priorities-0.4.147/campaign-runtime/native-adventure-completion-231.json) et le reçu `admissions/zc3.json`.
+
+Une attaque contre un héros défendant à l’intérieur d’une ville utilise maintenant la ville pour les déclencheurs OB, comme la requête native de visite. Cela permet à la prise de la forteresse ogre d’ouvrir la route ouest. Le contrôle isolé vérifie le déclencheur avant le siège, la récompense unique de17 or et la vraie capture de ville.
+
+La sortie d’un tourbillon à plusieurs cases est praticable sans déclencher une nouvelle entrée en traversant son empreinte. Le calcul du chemin utilise la case courante ; le serveur conserve les validations de terrain et les gardes tout en évitant cette seconde visite. Une nouvelle entrée conserve la téléportation et la perte de troupes. Le contrôleur ignore un second départ pendant le déplacement déjà engagé : deux validations rapides ne peuvent plus envoyer deux fois le premier pas et réactiver l’objet sous le héros. Chromium et WebKit vérifient20 dragons avant l’entrée,10 à l’arrivée,10 après la sortie réelle et5 après la rentrée. Voir [les contrôles de navigation](../outputs/wog-priorities-0.4.147/campaign-runtime/native-navigation-231.json).
+
+La validation d’Evil Way Home a atteint les villes du nord du dernier scénario, payé10 momies recrutées dans les tombeaux et remis le Collier de navigation original. Le parcours de test avait omis Tamika dans le deuxième scénario ; la branche de son sauvetage et de ses transferts est reprise avant de valider la porte noire et les deux dernières villes. Cette campagne reste désactivée.
+
+Le moteur `4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020` conserve le correctif WebKit/dlmalloc de0.4.230. Compilation WebAssembly, site,760 tests réussis/34 ignorés et les cartes003/004 passent. Les preuves utilisent des armées et ressources QA déclarées et le déplacement natif accéléré, sans modification des scripts, objets de quête ou drapeaux. Elles ne valident pas la difficulté ni toutes les branches facultatives. Les quatre archives de campagne restent liées à leurs empreintes ; le catalogue ne publie que les admissions terminées.

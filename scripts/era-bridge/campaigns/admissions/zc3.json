@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "zc3",
+  "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "originalScriptsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 1,
+    "days": 1,
+    "name": "A Life of A-d-v-e-n-t-u-r-e",
+    "playerName": "Goonk",
+    "queryId": 111103196,
+    "score": 199,
+    "unranked": true,
+    "won": true
+  },
+  "scenarios": [
+    {
+      "id": "zc3-0",
+      "programSha256": "93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a",
+      "nativeVictory": true
+    }
+  ],
+  "transfers": [],
+  "evidence": [
+    "native-house-combination-225.json",
+    "native-navigation-231.json",
+    "native-adventure-completion-231.json"
+  ],
+  "limitation": "Unchanged original quests, earned quest artifacts, original final battle and artifact victory. Declared offline QA army, resources and accelerated native travel; not difficulty validation."
+}

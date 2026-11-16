@@ -64,12 +64,12 @@
     },
     {
       "id": "zc3-0",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc3-0",
       "programSha256": "93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a",
       "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
       "scenarioMember": "g_-~-_01e.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc4-0",

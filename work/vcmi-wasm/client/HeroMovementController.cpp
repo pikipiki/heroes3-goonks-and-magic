@@ -340,6 +340,10 @@ bool HeroMovementController::canHeroStopAtNode(const CGPathNode & node) const
 
 void HeroMovementController::requestMovementStart(const CGHeroInstance * h, const CGPath & path)
 {
+	// A second tap can arrive before the first movement acknowledgement.
+	// Sending the first step twice would revisit an object under the hero.
+	if(duringMovement)
+		return;
 	assert(duringMovement == false);
 
 	duringMovement = true;

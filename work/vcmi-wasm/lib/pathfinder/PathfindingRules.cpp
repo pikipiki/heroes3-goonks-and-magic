@@ -140,6 +140,14 @@ void DestinationActionRule::process(
 		if(destination.isNodeObjectVisitable())
 		{
 			auto objRel = destination.objectRelations;
+			if(destination.nodeObject->ID == Obj::WHIRLPOOL && hero->inBoat()
+				&& !destination.nodeHero
+				&& destination.nodeObject->visitableAt(hero->visitablePos())
+				&& destination.nodeObject->visitableAt(source.node->coord))
+			{
+				action = destination.guarded ? EPathNodeAction::BATTLE : EPathNodeAction::NORMAL;
+				break;
+			}
 
 			if(destination.nodeObject->ID == Obj::BOAT)
 				action = EPathNodeAction::EMBARK;

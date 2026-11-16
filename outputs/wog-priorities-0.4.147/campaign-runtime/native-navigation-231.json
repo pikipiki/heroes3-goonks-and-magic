@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "whirlpool": [
+    {
+      "browser": "chromium",
+      "passed": true,
+      "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+      "arrivalCount": 10,
+      "exitCount": 10,
+      "reentryCount": 5,
+      "nativeExitPosition": [
+        3,
+        33,
+        1
+      ],
+      "nativeEntryAndReentry": true,
+      "proofSha256": "e6bc0df10b33413bf9dd21e9ea6426be54c6ef0c967144efbbff3495555f9feb"
+    },
+    {
+      "browser": "webkit",
+      "passed": true,
+      "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+      "arrivalCount": 10,
+      "exitCount": 10,
+      "reentryCount": 5,
+      "nativeExitPosition": [
+        3,
+        33,
+        1
+      ],
+      "nativeEntryAndReentry": true,
+      "proofSha256": "c9e6ed4b34725bae36c54c2b16f17c51192a21097175f81fae225ffe872a7cc2"
+    }
+  ],
+  "defendedTown": {
+    "passed": true,
+    "nativeTownCountBefore": 1,
+    "nativeTownCountAfter": 2,
+    "scriptGoldDelta": 17,
+    "nativeScriptBeforeSiege": true,
+    "proofSha256": "6cac16b29759c0fbad8b9643cf6b076b23a82249ce5d60e316bbbc387d490fa0"
+  },
+  "originalOgreTownAndRoad": {
+    "passed": true,
+    "originalScriptUnchanged": true,
+    "questFlagsUnmodified": true,
+    "nativeRoadReached": [
+      8,
+      25,
+      0
+    ],
+    "proofSha256": "f688108cabe2c5da8ccb8e5cd9c3920692213fe52343fa492c19646562815c4c"
+  }
+}
