@@ -362,6 +362,11 @@ struct SourceCampaignProcessor::Impl final:Host
   state["vm"]=era_campaign_json::writeState(vm);
   state["running"].Bool()=!vm.continuations.empty()||!state["turnQueue"].Vector().empty();
   state["hero"].Integer()=heroId.getNum();state["object"].Integer()=objectId.getNum();state["player"].Integer()=player.getNum();state["pending"]=pending;
+  // WoG's town-demolition tables exist even when a map has no CD commands.
+  // Bind their defaults only after this admitted source program initialized;
+  // explicit CD settings and saved quotas already attached to it are retained.
+  if(world.isNull()&&vm.initialized&&!era_campaign_demolition::active(state,gh.gameState().getMap().sourceCampaignWorld))
+   world=era_campaign_demolition::bind(state,gh.gameState().getMap().sourceCampaignWorld);
   SourceCampaignChange packet;packet.state=state;packet.worldState=std::move(world);packet.changes.Vector();
   if(change.isVector())packet.changes=std::move(change);
   else if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
@@ -824,6 +829,9 @@ struct SourceCampaignProcessor::Impl final:Host
  bool onReady(PlayerColor who)
  {
   bind();if(!active)return false;
+  // Existing906 saves may predate implicit CD defaults. Migrate the world
+  // policy without replaying the initialized VM or its pending visit.
+  if(vm.initialized&&!era_campaign_demolition::active(state,gh.gameState().getMap().sourceCampaignWorld))persist();
   if(!demolitionResumeChecked){demolitionResumeChecked=true;if(resumeDemolitionBattle())return true;}
   ensureTurnBarriers();
   if(!vm.initialized&&!vm.initializing)
@@ -847,7 +855,10 @@ struct SourceCampaignProcessor::Impl final:Host
  bool visitPosition(const int3 & position,const CGHeroInstance * h)
  {
   bind();if(!active||!vm.initialized)return false;const auto source=tileIdentity(position);if(!source)return false;
-  require(source->subID>=0,"plot tile subtype is incomplete");const auto key=era_campaign_hints::positionKey(position);
+  // T91 followed by OB:S can mark an empty map cell without assigning U.
+  // Its sentinel subtype still permits the original coordinate/type triggers;
+  // access below must remain disabled so no native sign effect is invented.
+  const auto key=era_campaign_hints::positionKey(position);
   require(!state["objectAccessPositions"][key].isNull()&&era_campaign_json::integer(state["objectAccessPositions"][key])==0,"native default effect of a retyped plot tile is not admitted");
   if(!vm.continuations.empty())
   {require(heroId==h->id&&lookup(vm.v,998)==position.x&&lookup(vm.v,999)==position.y&&lookup(vm.v,1000)==position.z,"another plot tile visited while a script is suspended");return true;}
@@ -2146,12 +2157,18 @@ void SourceCampaignProcessor::visitEnded(ObjectInstanceID object,ObjectInstanceI
  if(saved.isNull()||saved["object"].Integer()!=object.getNum())return;
  impl->state["postVisits"].Struct().erase(key);impl->persist();
  const auto * visiting=impl->gh.gameState().getHero(hero);if(!visiting||!visiting->getOwner().isValidPlayer())return;
+ const int x=saved["x"].Integer(),y=saved["y"].Integer(),z=saved["z"].Integer();
+ const std::vector<std::vector<std::int32_t>> selectors={{int(saved["type"].Integer())},{int(saved["type"].Integer()),int(saved["subtype"].Integer())},{x,y,z}};
+ // A scripted teleport can finish its native visit while HE:P is executing.
+ // Unrelated objects have no post trigger and must not re-enter the VM merely
+ // because this campaign declares a post trigger for some other coordinate.
+ Executor probe(impl->program,impl->vm,impl->context,*impl);
+ if(!probe.hasMatchingAny("OB",selectors,true))return;
  require(impl->vm.continuations.empty(),"post visit while another script is suspended");
  impl->heroId=hero;impl->objectId=ObjectInstanceID::NONE;impl->player=visiting->getOwner();impl->updateContext();
- const int x=saved["x"].Integer(),y=saved["y"].Integer(),z=saved["z"].Integer();
  impl->vm.v[998]=x;impl->vm.v[999]=y;impl->vm.v[1000]=z;
  Executor executor(impl->program,impl->vm,impl->context,*impl);
- if(executor.dispatchAny("OB",{{int(saved["type"].Integer())},{int(saved["type"].Integer()),int(saved["subtype"].Integer())},{x,y,z}},true))impl->run();
+ if(executor.dispatchAny("OB",selectors,true))impl->run();
  else{impl->heroId=ObjectInstanceID::NONE;impl->persist();}
 }
 bool SourceCampaignProcessor::visitPosition(const int3 & position,const CGHeroInstance * hero){return impl->visitPosition(position,hero);}

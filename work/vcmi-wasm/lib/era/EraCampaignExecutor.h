@@ -159,6 +159,12 @@ public:
   if(!state.continuations.empty())throw std::runtime_error("Campaign event entered while a dialog is suspended");
   Continuation call;call.programSha256=program.sha256;call.blocks=matching(receiver,selectors,post,allBlocks);state.continuations.push_back(std::move(call));
  }
+ // Inspect trigger identities without entering or altering a suspended event.
+ bool hasMatchingAny(const std::string & receiver,const std::vector<std::vector<std::int32_t>> & selectors,bool post=false)const
+ {
+  for(const auto & candidate:selectors)if(!matching(receiver,candidate,post,allBlocks).empty())return true;
+  return false;
+ }
  bool dispatchAny(const std::string & receiver,const std::vector<std::vector<std::int32_t>> & selectors,bool post=false)
  {
   if(!state.continuations.empty())throw std::runtime_error("Campaign event entered while a dialog is suspended");

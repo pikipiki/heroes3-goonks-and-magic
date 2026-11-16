@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "version": "0.4.218",
+  "engineSha256": "d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30",
+  "saveVersion": 906,
+  "campaignAdmissionChanged": false,
+  "activeCampaigns": [
+    "zc1",
+    "zc2"
+  ],
+  "pendingCampaigns": [
+    "zc3",
+    "zc4"
+  ],
+  "changes": [
+    {
+      "feature": "Implicit original CD tables",
+      "sourceContract": "demolition-source-contract-194.json",
+      "behavior": "Initialize verified WoG defaults after an admitted source VM initializes; migrate initialized906 saves without VM replay, retaining existing explicit settings and quotas.",
+      "native": "Original zc4 castle has no CD commands; paid demolition, day7 ghost recruitment and Necropolis reconstruction completed."
+    },
+    {
+      "feature": "Non-human HE:P scenery placement",
+      "source": "zc3-0 LE3/45, LE16/43, LE9/38",
+      "behavior": "Permit source-script relocation of non-human, unboated quest actors onto unoccupied blocked scenery. Ordinary movement, occupied destinations and human blocked-terrain checks retained.",
+      "native": "Original Knight Edric placed in shrubbery and on road; shrubbery quest returned and companion departure completed."
+    },
+    {
+      "feature": "Empty disabled plot subtype",
+      "source": "zc4-0 original TR23/3:P1 E0; OB23/3:T91; OB23/3:S, without U",
+      "behavior": "Permit the existing -1 subtype sentinel for disabled plot coordinate/type trigger dispatch. Native default effect remains disabled.",
+      "native": "Empty independent plot and unchanged statue north/west choices completed, including native reward exchange."
+    },
+    {
+      "feature": "Unrelated native post visits during HE:P",
+      "source": "zc3-0 OB58/5 teleports to65/2/1 while only postOB11/67 exists",
+      "behavior": "Check matching post trigger identities before enforcing an idle VM. Do not enter unrelated post events or alter a suspended instruction pointer.",
+      "native": "Original inn teleports to65/2/1; existing Peasant post visit still removes NPC and permits entry to11/67."
+    }
+  ],
+  "verification": {
+    "ninja": "PASS ninja -j32 html5",
+    "unitTests": {
+      "pass": 755,
+      "skip": 34,
+      "fail": 0
+    },
+    "site": "prepare/build/verify PASS",
+    "production003004": "Native saves/reloads, roles, turns and BattleStart PASS",
+    "mobileWebKit": "Seven formats, native demolition combat and906 save PASS",
+    "temporaryDiagnosticsPublished": false
+  },
+  "remaining": "zc3/zc4 final victories and transfers not yet validated; campaigns remain disabled. Inert monster traversal and further original quest routes are still under investigation."
+}

@@ -84,6 +84,12 @@ int main()
  // A suspended command keeps its already-accepted condition and exact PC.
  Program dialog;dialog.sha256="dialog";Command sequence;sequence.receiver="IF";sequence.operations={{"Prompt",{}},{"Reply",{}}};Predicate flag;flag.isFlag=true;flag.flag=1;sequence.conditions={{flag}};
  dialog.blocks={block("LE",{}, {sequence})};State ds;ds.flags[1]=true;Executor de(dialog,ds,context,host);de.dispatch("LE");assert(!de.run());assert(host.prompts==1&&host.replies==0&&!ds.flags[1]);
+ // Testing post-trigger identity during a suspended HE:P/IF continuation
+ // must not enter that event or move its instruction pointer.
+ auto post=block("OB",{num(11),num(67),num(0)},{cmd("IF",{},"Reply")});post.post=true;dialog.blocks.push_back(post);
+ assert(!de.hasMatchingAny("OB",{{58,5,0}},true));
+ assert(de.hasMatchingAny("OB",{{11,67,0}},true));
+ assert(ds.continuations.size()==1&&host.prompts==1&&host.replies==0);
  State restored=ds;Executor resumed(dialog,restored,context,host);assert(resumed.run());assert(host.prompts==1&&host.replies==1&&restored.v[2]==1&&restored.continuations.empty());
  // Signed Win32 arithmetic and source random addition are not C++ UB.
  Program math;math.sha256="math";math.blocks={block("LE",{}, {cmd("VR",{var('v',1)},"S",{num(INT_MAX)}),cmd("VR",{var('v',1)},"+",{num(1)}),cmd("VR",{var('v',2)},"S",{num(1)}),cmd("VR",{var('v',2)},"T",{num(35)})})};

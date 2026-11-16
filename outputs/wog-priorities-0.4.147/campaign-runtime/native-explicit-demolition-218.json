@@ -1,0 +1,3868 @@
+{
+  "passed": true,
+  "browser": "webkit",
+  "defaultPolicyWithoutCdCommands": false,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "dcdd284e3c16d419",
+    "wasm": "vcmiclient.00d0c7926cd8f45b.wasm",
+    "sha256": "00d0c7926cd8f45b41ad467f2173d6533cdc6439b895731d9f562633b40d85dc",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "before": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 0,
+        "name": "Garnison",
+        "needsLastStack": false,
+        "slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Christian",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 10,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "armyTownId": 0,
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "buildings": [
+      {
+        "allowed": true,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 0,
+        "key": "goonk:mageGuild1",
+        "name": "Mage Guild 1",
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 1,
+        "key": "goonk:mageGuild2",
+        "missingPrerequisites": [
+          0
+        ],
+        "name": "Mage Guild 2",
+        "state": 8,
+        "upgradeId": 0
+      },
+      {
+        "allowed": false,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 2,
+        "key": "goonk:mageGuild3",
+        "missingPrerequisites": [
+          1,
+          0
+        ],
+        "name": "Mage Guild 3",
+        "state": 8,
+        "upgradeId": 1
+      },
+      {
+        "allowed": false,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 3,
+        "key": "goonk:mageGuild4",
+        "missingPrerequisites": [
+          2,
+          1,
+          0
+        ],
+        "name": "Mage Guild 4",
+        "state": 8,
+        "upgradeId": 2
+      },
+      {
+        "allowed": false,
+        "baseId": 5,
+        "built": true,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 5,
+        "key": "goonk:tavern",
+        "name": "Plush Tavern",
+        "rect": {
+          "h": 85,
+          "w": 94,
+          "x": 12,
+          "y": 172
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 6,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 6,
+        "key": "goonk:shipyard",
+        "name": "Little Boat Shipyard",
+        "state": 1,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 7,
+        "built": true,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 7,
+        "key": "goonk:fort",
+        "name": "Goonk Ramparts",
+        "rect": {
+          "h": 132,
+          "w": 155,
+          "x": 430,
+          "y": 74
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 7,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 8,
+        "key": "goonk:citadel",
+        "name": "Citadel of Noses",
+        "state": 7,
+        "upgradeId": 7
+      },
+      {
+        "allowed": false,
+        "baseId": 7,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 9,
+        "key": "goonk:castle",
+        "missingPrerequisites": [
+          8
+        ],
+        "name": "Castle of the Seven Goonks",
+        "state": 8,
+        "upgradeId": 8
+      },
+      {
+        "allowed": false,
+        "baseId": 10,
+        "built": true,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 10,
+        "key": "goonk:villageHall",
+        "name": "Goonk House",
+        "rect": {
+          "h": 106,
+          "w": 125,
+          "x": 112,
+          "y": 215
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 10,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 11,
+        "key": "goonk:townHall",
+        "name": "Town Hall of Noses",
+        "state": 7,
+        "upgradeId": 10
+      },
+      {
+        "allowed": false,
+        "baseId": 10,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 12,
+        "key": "goonk:cityHall",
+        "missingPrerequisites": [
+          11,
+          0,
+          16
+        ],
+        "name": "Plush Palace",
+        "state": 8,
+        "upgradeId": 11
+      },
+      {
+        "allowed": false,
+        "baseId": 10,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 13,
+        "key": "goonk:capitol",
+        "missingPrerequisites": [
+          12,
+          11,
+          0,
+          16,
+          9,
+          8
+        ],
+        "name": "Goonk Grand Palace",
+        "state": 8,
+        "upgradeId": 12
+      },
+      {
+        "allowed": false,
+        "baseId": 14,
+        "built": true,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 14,
+        "key": "goonk:marketplace",
+        "name": "Plush Marketplace",
+        "rect": {
+          "h": 83,
+          "w": 112,
+          "x": 250,
+          "y": 263
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 15,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 15,
+        "key": "goonk:resourceSilo",
+        "name": "Plush Storehouse",
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 16,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 16,
+        "key": "goonk:blacksmith",
+        "name": "Goonk Forge",
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 17,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 17,
+        "key": "goonk:special1",
+        "missingPrerequisites": [
+          6
+        ],
+        "name": "Plush Lighthouse",
+        "state": 8,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 18,
+        "key": "goonk:horde1",
+        "missingPrerequisites": [
+          32,
+          31
+        ],
+        "name": "Storm Targets",
+        "state": 8,
+        "upgradeId": 32
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 19,
+        "key": "goonk:horde1Upgr",
+        "missingPrerequisites": [
+          39,
+          32,
+          31,
+          18
+        ],
+        "name": "Royal Targets",
+        "state": 8,
+        "upgradeId": 39
+      },
+      {
+        "allowed": false,
+        "baseId": 6,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 20,
+        "key": "goonk:ship",
+        "missingPrerequisites": [
+          6
+        ],
+        "name": "Goonk Boat",
+        "state": 8,
+        "upgradeId": 6
+      },
+      {
+        "allowed": false,
+        "baseId": 21,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 21,
+        "key": "goonk:special2",
+        "missingPrerequisites": [
+          33,
+          32,
+          31
+        ],
+        "name": "Nose Stables",
+        "state": 8,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 5,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 22,
+        "key": "goonk:special3",
+        "name": "Grand Goonk Tavern",
+        "state": 7,
+        "upgradeId": 5
+      },
+      {
+        "allowed": false,
+        "baseId": 26,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "The Grail of Goonk Castle provides 5,000 gold per day, increases weekly creature growth in this town by 50%, and grants +2 morale to all your heroes.",
+        "id": 26,
+        "key": "goonk:grail",
+        "name": "Great Sacred Nose",
+        "needsGrail": true,
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 30,
+        "built": true,
+        "cost": [
+          4,
+          0,
+          4,
+          0,
+          0,
+          0,
+          210,
+          0
+        ],
+        "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+        "id": 30,
+        "key": "goonk:dwellingLvl1",
+        "name": "Nose Workshop",
+        "rect": {
+          "h": 90,
+          "w": 95,
+          "x": 12,
+          "y": 272
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 31,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          420,
+          0
+        ],
+        "description": "Fights with a sword-lance, also striking the hex behind the target.",
+        "id": 31,
+        "key": "goonk:dwellingLvl2",
+        "name": "Sword-Lance Forge",
+        "state": 7,
+        "unlocksCreature": {
+          "id": 261,
+          "key": "goonk:picpique",
+          "name": "Picpique"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          6,
+          0,
+          6,
+          0,
+          0,
+          0,
+          660,
+          0
+        ],
+        "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
+        "id": 32,
+        "key": "goonk:dwellingLvl3",
+        "missingPrerequisites": [
+          31
+        ],
+        "name": "Storm Archery Range",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 264,
+          "key": "goonk:zinzeclair",
+          "name": "Sonic"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 33,
+        "built": false,
+        "cost": [
+          7,
+          0,
+          7,
+          0,
+          0,
+          0,
+          990,
+          0
+        ],
+        "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+        "id": 33,
+        "key": "goonk:dwellingLvl4",
+        "missingPrerequisites": [
+          32,
+          31
+        ],
+        "name": "Fart Garden",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 248,
+          "key": "goonk:bubu",
+          "name": "Bubu"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 34,
+        "built": false,
+        "cost": [
+          8,
+          0,
+          8,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
+        "id": 34,
+        "key": "goonk:dwellingLvl5",
+        "missingPrerequisites": [
+          33,
+          32,
+          31
+        ],
+        "name": "Vomit Laboratory",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 251,
+          "key": "goonk:glouglou",
+          "name": "Bobope"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 35,
+        "built": false,
+        "cost": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0,
+          2550,
+          0
+        ],
+        "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
+        "id": 35,
+        "key": "goonk:dwellingLvl6",
+        "missingPrerequisites": [
+          34,
+          33,
+          32,
+          31
+        ],
+        "name": "DioupDioup’s Quarry",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 245,
+          "key": "goonk:bobope",
+          "name": "DioupDioup"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          10,
+          0,
+          10,
+          0,
+          0,
+          0,
+          6600,
+          0
+        ],
+        "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
+        "id": 36,
+        "key": "goonk:dwellingLvl7",
+        "missingPrerequisites": [
+          35,
+          34,
+          33,
+          32,
+          31
+        ],
+        "name": "Ember Tower",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 254,
+          "key": "goonk:maillemaille",
+          "name": "Big Maille Maille"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 30,
+        "built": false,
+        "cost": [
+          4,
+          0,
+          4,
+          0,
+          0,
+          0,
+          210,
+          0
+        ],
+        "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+        "id": 37,
+        "key": "goonk:dwellingUpLvl1",
+        "name": "Nose Workshop Royal",
+        "state": 7,
+        "unlocksCreature": {
+          "id": 260,
+          "key": "goonk:paingpaingRoyal",
+          "name": "Paingpaing, Royal Ram"
+        },
+        "upgradeId": 30
+      },
+      {
+        "allowed": false,
+        "baseId": 31,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          420,
+          0
+        ],
+        "description": "Fights with a sword-lance, also striking the hex behind the target.",
+        "id": 38,
+        "key": "goonk:dwellingUpLvl2",
+        "missingPrerequisites": [
+          31
+        ],
+        "name": "Sword-Lance Forge Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 263,
+          "key": "goonk:picpiqueRoyal",
+          "name": "Picpique, Lance Paladin"
+        },
+        "upgradeId": 31
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          6,
+          0,
+          6,
+          0,
+          0,
+          0,
+          660,
+          0
+        ],
+        "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
+        "id": 39,
+        "key": "goonk:dwellingUpLvl3",
+        "missingPrerequisites": [
+          32,
+          31
+        ],
+        "name": "Storm Archery Range Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 266,
+          "key": "goonk:zinzeclairRoyal",
+          "name": "Sonic, Explosive Storm"
+        },
+        "upgradeId": 32
+      },
+      {
+        "allowed": false,
+        "baseId": 33,
+        "built": false,
+        "cost": [
+          7,
+          0,
+          7,
+          0,
+          0,
+          0,
+          990,
+          0
+        ],
+        "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+        "id": 40,
+        "key": "goonk:dwellingUpLvl4",
+        "missingPrerequisites": [
+          33,
+          32,
+          31
+        ],
+        "name": "Fart Garden Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 250,
+          "key": "goonk:bubuRoyal",
+          "name": "Bubu, Grand Fartomancer"
+        },
+        "upgradeId": 33
+      },
+      {
+        "allowed": false,
+        "baseId": 34,
+        "built": false,
+        "cost": [
+          8,
+          0,
+          8,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
+        "id": 41,
+        "key": "goonk:dwellingUpLvl5",
+        "missingPrerequisites": [
+          34,
+          33,
+          32,
+          31
+        ],
+        "name": "Vomit Laboratory Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 253,
+          "key": "goonk:glouglouRoyal",
+          "name": "Bobope, Acid Alchemist"
+        },
+        "upgradeId": 34
+      },
+      {
+        "allowed": false,
+        "baseId": 35,
+        "built": false,
+        "cost": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0,
+          2550,
+          0
+        ],
+        "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
+        "id": 42,
+        "key": "goonk:dwellingUpLvl6",
+        "missingPrerequisites": [
+          35,
+          34,
+          33,
+          32,
+          31
+        ],
+        "name": "DioupDioup’s Quarry Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 247,
+          "key": "goonk:bobopeRoyal",
+          "name": "DioupDioup, Rock King"
+        },
+        "upgradeId": 35
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          10,
+          0,
+          10,
+          0,
+          0,
+          0,
+          6600,
+          0
+        ],
+        "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
+        "id": 43,
+        "key": "goonk:dwellingUpLvl7",
+        "missingPrerequisites": [
+          36,
+          35,
+          34,
+          33,
+          32,
+          31
+        ],
+        "name": "Ember Tower Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 256,
+          "key": "goonk:maillemailleRoyal",
+          "name": "Big Maille Maille, Blaze Archmage"
+        },
+        "upgradeId": 36
+      },
+      {
+        "allowed": false,
+        "baseId": 30,
+        "built": false,
+        "cost": [
+          6,
+          0,
+          6,
+          0,
+          0,
+          0,
+          608,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Paingpaing, Nose Emperor.",
+        "id": 44,
+        "key": "goonk:dwellingUp2Lvl1",
+        "missingPrerequisites": [
+          37,
+          9,
+          8
+        ],
+        "name": "Paingpaing, Nose Emperor Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 259,
+          "key": "goonk:paingpaingExalted",
+          "name": "Paingpaing, Nose Emperor"
+        },
+        "upgradeId": 37
+      },
+      {
+        "allowed": false,
+        "baseId": 31,
+        "built": false,
+        "cost": [
+          7,
+          0,
+          7,
+          0,
+          0,
+          0,
+          1216,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Picpique, Crystal Lancer.",
+        "id": 45,
+        "key": "goonk:dwellingUp2Lvl2",
+        "missingPrerequisites": [
+          38,
+          31,
+          9,
+          8
+        ],
+        "name": "Picpique, Crystal Lancer Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 262,
+          "key": "goonk:picpiqueExalted",
+          "name": "Picpique, Crystal Lancer"
+        },
+        "upgradeId": 38
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          8,
+          0,
+          8,
+          0,
+          0,
+          0,
+          1908,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Sonic, Storm Sovereign.",
+        "id": 46,
+        "key": "goonk:dwellingUp2Lvl3",
+        "missingPrerequisites": [
+          39,
+          32,
+          31,
+          9,
+          8
+        ],
+        "name": "Sonic, Storm Sovereign Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 265,
+          "key": "goonk:zinzeclairExalted",
+          "name": "Sonic, Storm Sovereign"
+        },
+        "upgradeId": 39
+      },
+      {
+        "allowed": false,
+        "baseId": 33,
+        "built": false,
+        "cost": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0,
+          2864,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Bubu, Supreme Fartomancer.",
+        "id": 47,
+        "key": "goonk:dwellingUp2Lvl4",
+        "missingPrerequisites": [
+          40,
+          33,
+          32,
+          31,
+          9,
+          8
+        ],
+        "name": "Bubu, Supreme Fartomancer Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 249,
+          "key": "goonk:bubuExalted",
+          "name": "Bubu, Supreme Fartomancer"
+        },
+        "upgradeId": 40
+      },
+      {
+        "allowed": false,
+        "baseId": 34,
+        "built": false,
+        "cost": [
+          10,
+          0,
+          10,
+          0,
+          7,
+          0,
+          4340,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Bobope, Grand Alchemist.",
+        "id": 48,
+        "key": "goonk:dwellingUp2Lvl5",
+        "missingPrerequisites": [
+          41,
+          34,
+          33,
+          32,
+          31,
+          9,
+          8
+        ],
+        "name": "Bobope, Grand Alchemist Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 252,
+          "key": "goonk:glouglouExalted",
+          "name": "Bobope, Grand Alchemist"
+        },
+        "upgradeId": 41
+      },
+      {
+        "allowed": false,
+        "baseId": 35,
+        "built": false,
+        "cost": [
+          11,
+          0,
+          11,
+          0,
+          8,
+          0,
+          7380,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to DioupDioup, Crystal Rock Emperor.",
+        "id": 49,
+        "key": "goonk:dwellingUp2Lvl6",
+        "missingPrerequisites": [
+          42,
+          35,
+          34,
+          33,
+          32,
+          31,
+          9,
+          8
+        ],
+        "name": "DioupDioup, Crystal Rock Emperor Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 246,
+          "key": "goonk:bobopeExalted",
+          "name": "DioupDioup, Crystal Rock Emperor"
+        },
+        "upgradeId": 42
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          12,
+          0,
+          12,
+          0,
+          9,
+          0,
+          19096,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Big Maille Maille, Phoenix Archmage.",
+        "id": 50,
+        "key": "goonk:dwellingUp2Lvl7",
+        "missingPrerequisites": [
+          43,
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          9,
+          8
+        ],
+        "name": "Big Maille Maille, Phoenix Archmage Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 255,
+          "key": "goonk:maillemailleExalted",
+          "name": "Big Maille Maille, Phoenix Archmage"
+        },
+        "upgradeId": 43
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          15,
+          0,
+          15,
+          0,
+          12,
+          0,
+          24000,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Big Maille Maille, Living Sun.",
+        "id": 57,
+        "key": "goonk:dwellingUp3Lvl7",
+        "missingPrerequisites": [
+          50,
+          43,
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          9,
+          8
+        ],
+        "name": "Solar Crucible",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 257,
+          "key": "goonk:maillemailleSolar",
+          "name": "Big Maille Maille, Living Sun"
+        },
+        "upgradeId": 50
+      }
+    ],
+    "campaignPending": false,
+    "caveBuilder": {
+      "available": true,
+      "buildings": [
+        {
+          "building": 5,
+          "enabled": true,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 100,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Plush Tavern",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "",
+          "salvage": [
+            2,
+            0,
+            2,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 7,
+          "enabled": false,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 1500,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Goonk Ramparts",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "Demolish the dependent buildings first.",
+          "salvage": [
+            8,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 10,
+          "enabled": false,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 500,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Goonk House",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "Demolish the dependent buildings first.",
+          "salvage": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 14,
+          "enabled": false,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 200,
+          "minimumArmyHealth": 0,
+          "minimumExperience": 2001,
+          "name": "Plush Marketplace",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "The hero needs more experience.",
+          "salvage": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 30,
+          "enabled": true,
+          "evacuationGold": 640,
+          "fightEnabled": true,
+          "gold": 100,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Nose Workshop",
+          "occupantCreature": 258,
+          "occupantTier": 0,
+          "occupants": 16,
+          "reason": "",
+          "salvage": [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "canAct": true,
+      "combatPending": false,
+      "dailyLimit": 4,
+      "faction": 10,
+      "ghosts": 0,
+      "ghostsReady": false,
+      "goonkFaction": 10,
+      "hero": 1,
+      "movementCost": 500,
+      "rebuildFactions": [
+        0,
+        10
+      ],
+      "rebuildGold": 500,
+      "rebuildMinimumArmyHealth": 1000,
+      "rebuildMinimumExperience": 2000,
+      "rebuildReady": false,
+      "rebuildReadyDay": 0,
+      "rebuildReason": "",
+      "remaining": 4,
+      "ruined": false,
+      "sourceFaction": 0,
+      "town": 0
+    },
+    "cheatReady": true,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 1,
+    "heroMoving": false,
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 1,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1759,
+        "movementLimit": 2000,
+        "name": "Christian"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "town",
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "recruits": [
+      {
+        "aiValue": 84,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70,
+          0
+        ],
+        "count": 16,
+        "damageMax": 4,
+        "damageMin": 2,
+        "defense": 5,
+        "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+        "fightValue": 84,
+        "growth": 16,
+        "health": 12,
+        "icon": "goonk/pink-large.png",
+        "id": 258,
+        "key": "goonk:paingpaing",
+        "level": 0,
+        "name": "Paingpaing",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 5,
+        "variant": 0
+      }
+    ],
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      28,
+      10,
+      28,
+      10,
+      10,
+      10,
+      500000,
+      0
+    ],
+    "selectedTownName": "Goonkbourg",
+    "sessionState": 6,
+    "soundVolume": 88,
+    "townFaction": "goonk:goonk",
+    "townName": "Goonkbourg",
+    "townSpells": [
+      [
+        41,
+        53,
+        46,
+        35,
+        3,
+        37,
+        5,
+        0,
+        42,
+        54,
+        15,
+        32,
+        43,
+        31,
+        27
+      ],
+      [
+        1,
+        44,
+        4,
+        51,
+        16,
+        64,
+        62,
+        24,
+        10,
+        45,
+        17,
+        47,
+        2,
+        30,
+        13
+      ],
+      [
+        25,
+        12,
+        49,
+        11,
+        52,
+        39,
+        21,
+        61,
+        63,
+        28,
+        34,
+        14,
+        60,
+        20,
+        33
+      ],
+      [
+        22,
+        56,
+        7,
+        65,
+        26,
+        59,
+        38,
+        50,
+        9,
+        48,
+        58,
+        19,
+        29,
+        23,
+        55
+      ],
+      [
+        8,
+        69,
+        67,
+        6,
+        36,
+        40,
+        66,
+        68,
+        18
+      ]
+    ],
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": true,
+    "windowToken": 126147056
+  },
+  "occupants": {
+    "building": 30,
+    "enabled": true,
+    "evacuationGold": 640,
+    "fightEnabled": true,
+    "gold": 100,
+    "minimumArmyHealth": 1000,
+    "minimumExperience": 2000,
+    "name": "Nose Workshop",
+    "occupantCreature": 258,
+    "occupantTier": 0,
+    "occupants": 16,
+    "reason": "",
+    "salvage": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "geometry": {
+        "x": 12,
+        "y": 22,
+        "w": 298,
+        "h": 538,
+        "buttons": [
+          {
+            "x": 247,
+            "y": 31,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 27,
+            "y": 503,
+            "w": 268,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "geometry": {
+        "x": 12,
+        "y": 6,
+        "w": 546,
+        "h": 306,
+        "buttons": [
+          {
+            "x": 501,
+            "y": 11,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 402,
+            "y": 100,
+            "w": 141,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "x": 12,
+        "y": 213.984375,
+        "w": 368,
+        "h": 622,
+        "buttons": [
+          {
+            "x": 317,
+            "y": 222.984375,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 27,
+            "y": 778.984375,
+            "w": 338,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "geometry": {
+        "x": 179.984375,
+        "y": 6,
+        "w": 652,
+        "h": 376,
+        "buttons": [
+          {
+            "x": 774.984375,
+            "y": 11,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 675.984375,
+            "y": 100,
+            "w": 141,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "geometry": {
+        "x": 134,
+        "y": 394,
+        "w": 622,
+        "h": 622,
+        "buttons": [
+          {
+            "x": 693,
+            "y": 403,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 149,
+            "y": 959,
+            "w": 592,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "geometry": {
+        "x": 360,
+        "y": 138,
+        "w": 652,
+        "h": 622,
+        "buttons": [
+          {
+            "x": 955,
+            "y": 143,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 856,
+            "y": 232,
+            "w": 141,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "geometry": {
+        "x": 186,
+        "y": 550,
+        "w": 622,
+        "h": 622,
+        "buttons": [
+          {
+            "x": 745,
+            "y": 559,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 201,
+            "y": 1115,
+            "w": 592,
+            "h": 48
+          }
+        ],
+        "ancestorTouchNone": false
+      }
+    }
+  ],
+  "beforeSaveSha256": "f5a3bdf14bf656810720838a95b07235bfa9481ba9251f97454dd65c90a54dce",
+  "battle": [
+    {
+      "aiValue": 84,
+      "armySlot": 0,
+      "attack": 6,
+      "canMeleeAt": true,
+      "canShootAt": false,
+      "cloned": false,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        70,
+        0
+      ],
+      "count": 16,
+      "currentHealth": 12,
+      "damageMax": 4,
+      "damageMin": 2,
+      "defense": 6,
+      "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+      "enemy": true,
+      "eraSlot": 0,
+      "experience": 0,
+      "experiencePerUnit": 0,
+      "experienceRank": 0,
+      "fightValue": 84,
+      "growth": 16,
+      "health": 12,
+      "icon": "goonk/pink-large.png",
+      "id": 258,
+      "key": "goonk:paingpaing",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 12,
+      "morale": 1,
+      "name": "Paingpaing",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": false,
+        "living": true,
+        "mindImmune": false,
+        "noMorale": false,
+        "nonLiving": false,
+        "undead": false
+      },
+      "occupied": [
+        100
+      ],
+      "remainingCasts": 0,
+      "remainingRetaliations": 1,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 0,
+      "speed": 6,
+      "spellEffects": [],
+      "stackId": 1,
+      "x": 696,
+      "y": 322
+    },
+    {
+      "aiValue": 156,
+      "armySlot": -2,
+      "attack": 8,
+      "canMeleeAt": true,
+      "canShootAt": false,
+      "cloned": false,
+      "cost": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        140,
+        0
+      ],
+      "count": 1,
+      "currentHealth": 40,
+      "damageMax": 12,
+      "damageMin": 6,
+      "defense": 8,
+      "description": "",
+      "enemy": false,
+      "eraSlot": 1,
+      "experience": 2000,
+      "experiencePerUnit": 2000,
+      "experienceRank": 3,
+      "fightValue": 130,
+      "growth": 9,
+      "health": 40,
+      "icon": "commanders/CPrL174n",
+      "id": 240,
+      "key": "wake-of-gods.commanders:paladin1",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 40,
+      "morale": 2,
+      "name": "Paladin",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": false,
+        "living": true,
+        "mindImmune": false,
+        "noMorale": false,
+        "nonLiving": false,
+        "undead": false
+      },
+      "occupied": [
+        88
+      ],
+      "remainingCasts": 1,
+      "remainingRetaliations": 1,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 24,
+      "speed": 5,
+      "spellEffects": [],
+      "stackId": 2,
+      "x": 168,
+      "y": 322
+    },
+    {
+      "aiValue": 8721,
+      "armySlot": 0,
+      "attack": 27,
+      "canMeleeAt": true,
+      "canShootAt": false,
+      "cloned": false,
+      "cost": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        4000,
+        0
+      ],
+      "count": 10,
+      "currentHealth": 300,
+      "damageMax": 50,
+      "damageMin": 40,
+      "defense": 27,
+      "description": "",
+      "enemy": false,
+      "eraSlot": 0,
+      "experience": 0,
+      "experiencePerUnit": 0,
+      "experienceRank": 0,
+      "fightValue": 6783,
+      "growth": 1,
+      "health": 300,
+      "icon": "",
+      "id": 83,
+      "key": "core:blackDragon",
+      "luck": 0,
+      "magicResistance": 0,
+      "maximumHealth": 300,
+      "morale": 2,
+      "name": "Black Dragon",
+      "nativeFlags": {
+        "attacksAllAdjacent": false,
+        "blocksRetaliation": false,
+        "chargeImmune": false,
+        "flying": true,
+        "living": true,
+        "mindImmune": false,
+        "noMorale": false,
+        "nonLiving": false,
+        "undead": false
+      },
+      "occupied": [
+        87,
+        86
+      ],
+      "remainingCasts": 0,
+      "remainingRetaliations": 1,
+      "remainingShots": 0,
+      "shooter": false,
+      "shots": 0,
+      "speed": 15,
+      "spellEffects": [],
+      "stackId": 0,
+      "x": 124,
+      "y": 322
+    }
+  ],
+  "after": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 0,
+        "name": "Garnison",
+        "needsLastStack": false,
+        "slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Christian",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 8721,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              4000,
+              0
+            ],
+            "count": 10,
+            "damageMax": 50,
+            "damageMin": 40,
+            "defense": 25,
+            "description": "",
+            "experience": 1920,
+            "experiencePerUnit": 192,
+            "experienceRank": 0,
+            "fightValue": 6783,
+            "growth": 1,
+            "health": 300,
+            "icon": "",
+            "id": 83,
+            "key": "core:blackDragon",
+            "name": "Black Dragon",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 15
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "armyTownId": 0,
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "buildings": [
+      {
+        "allowed": true,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 0,
+        "key": "goonk:mageGuild1",
+        "name": "Mage Guild 1",
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 1,
+        "key": "goonk:mageGuild2",
+        "missingPrerequisites": [
+          0
+        ],
+        "name": "Mage Guild 2",
+        "state": 8,
+        "upgradeId": 0
+      },
+      {
+        "allowed": false,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 2,
+        "key": "goonk:mageGuild3",
+        "missingPrerequisites": [
+          1,
+          0
+        ],
+        "name": "Mage Guild 3",
+        "state": 8,
+        "upgradeId": 1
+      },
+      {
+        "allowed": false,
+        "baseId": 0,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 3,
+        "key": "goonk:mageGuild4",
+        "missingPrerequisites": [
+          2,
+          1,
+          0
+        ],
+        "name": "Mage Guild 4",
+        "state": 8,
+        "upgradeId": 2
+      },
+      {
+        "allowed": false,
+        "baseId": 5,
+        "built": true,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 5,
+        "key": "goonk:tavern",
+        "name": "Plush Tavern",
+        "rect": {
+          "h": 85,
+          "w": 94,
+          "x": 12,
+          "y": 172
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 6,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 6,
+        "key": "goonk:shipyard",
+        "name": "Little Boat Shipyard",
+        "state": 1,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 7,
+        "built": true,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 7,
+        "key": "goonk:fort",
+        "name": "Goonk Ramparts",
+        "rect": {
+          "h": 132,
+          "w": 155,
+          "x": 430,
+          "y": 74
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 7,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 8,
+        "key": "goonk:citadel",
+        "name": "Citadel of Noses",
+        "state": 7,
+        "upgradeId": 7
+      },
+      {
+        "allowed": false,
+        "baseId": 7,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 9,
+        "key": "goonk:castle",
+        "missingPrerequisites": [
+          8
+        ],
+        "name": "Castle of the Seven Goonks",
+        "state": 8,
+        "upgradeId": 8
+      },
+      {
+        "allowed": false,
+        "baseId": 10,
+        "built": true,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 10,
+        "key": "goonk:villageHall",
+        "name": "Goonk House",
+        "rect": {
+          "h": 106,
+          "w": 125,
+          "x": 112,
+          "y": 215
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 10,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 11,
+        "key": "goonk:townHall",
+        "name": "Town Hall of Noses",
+        "state": 7,
+        "upgradeId": 10
+      },
+      {
+        "allowed": false,
+        "baseId": 10,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 12,
+        "key": "goonk:cityHall",
+        "missingPrerequisites": [
+          11,
+          0,
+          16
+        ],
+        "name": "Plush Palace",
+        "state": 8,
+        "upgradeId": 11
+      },
+      {
+        "allowed": false,
+        "baseId": 10,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 13,
+        "key": "goonk:capitol",
+        "missingPrerequisites": [
+          12,
+          11,
+          0,
+          16,
+          9,
+          8
+        ],
+        "name": "Goonk Grand Palace",
+        "state": 8,
+        "upgradeId": 12
+      },
+      {
+        "allowed": false,
+        "baseId": 14,
+        "built": true,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 14,
+        "key": "goonk:marketplace",
+        "name": "Plush Marketplace",
+        "rect": {
+          "h": 83,
+          "w": 112,
+          "x": 250,
+          "y": 263
+        },
+        "state": 4,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 15,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 15,
+        "key": "goonk:resourceSilo",
+        "name": "Plush Storehouse",
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 16,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 16,
+        "key": "goonk:blacksmith",
+        "name": "Goonk Forge",
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 17,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 17,
+        "key": "goonk:special1",
+        "missingPrerequisites": [
+          6
+        ],
+        "name": "Plush Lighthouse",
+        "state": 8,
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 18,
+        "key": "goonk:horde1",
+        "missingPrerequisites": [
+          32,
+          31,
+          30
+        ],
+        "name": "Storm Targets",
+        "state": 8,
+        "upgradeId": 32
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 19,
+        "key": "goonk:horde1Upgr",
+        "missingPrerequisites": [
+          39,
+          32,
+          31,
+          30,
+          18
+        ],
+        "name": "Royal Targets",
+        "state": 8,
+        "upgradeId": 39
+      },
+      {
+        "allowed": false,
+        "baseId": 6,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 20,
+        "key": "goonk:ship",
+        "missingPrerequisites": [
+          6
+        ],
+        "name": "Goonk Boat",
+        "state": 8,
+        "upgradeId": 6
+      },
+      {
+        "allowed": false,
+        "baseId": 21,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 21,
+        "key": "goonk:special2",
+        "missingPrerequisites": [
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "Nose Stables",
+        "state": 8,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 5,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "A building of Goonk Castle.",
+        "id": 22,
+        "key": "goonk:special3",
+        "name": "Grand Goonk Tavern",
+        "state": 7,
+        "upgradeId": 5
+      },
+      {
+        "allowed": false,
+        "baseId": 26,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "description": "The Grail of Goonk Castle provides 5,000 gold per day, increases weekly creature growth in this town by 50%, and grants +2 morale to all your heroes.",
+        "id": 26,
+        "key": "goonk:grail",
+        "name": "Great Sacred Nose",
+        "needsGrail": true,
+        "state": 7,
+        "upgradeId": -1
+      },
+      {
+        "allowed": true,
+        "baseId": 30,
+        "built": false,
+        "cost": [
+          4,
+          0,
+          4,
+          0,
+          0,
+          0,
+          210,
+          0
+        ],
+        "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+        "id": 30,
+        "key": "goonk:dwellingLvl1",
+        "name": "Nose Workshop",
+        "state": 7,
+        "unlocksCreature": {
+          "id": 258,
+          "key": "goonk:paingpaing",
+          "name": "Paingpaing"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 31,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          420,
+          0
+        ],
+        "description": "Fights with a sword-lance, also striking the hex behind the target.",
+        "id": 31,
+        "key": "goonk:dwellingLvl2",
+        "missingPrerequisites": [
+          30
+        ],
+        "name": "Sword-Lance Forge",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 261,
+          "key": "goonk:picpique",
+          "name": "Picpique"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          6,
+          0,
+          6,
+          0,
+          0,
+          0,
+          660,
+          0
+        ],
+        "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
+        "id": 32,
+        "key": "goonk:dwellingLvl3",
+        "missingPrerequisites": [
+          31,
+          30
+        ],
+        "name": "Storm Archery Range",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 264,
+          "key": "goonk:zinzeclair",
+          "name": "Sonic"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 33,
+        "built": false,
+        "cost": [
+          7,
+          0,
+          7,
+          0,
+          0,
+          0,
+          990,
+          0
+        ],
+        "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+        "id": 33,
+        "key": "goonk:dwellingLvl4",
+        "missingPrerequisites": [
+          32,
+          31,
+          30
+        ],
+        "name": "Fart Garden",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 248,
+          "key": "goonk:bubu",
+          "name": "Bubu"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 34,
+        "built": false,
+        "cost": [
+          8,
+          0,
+          8,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
+        "id": 34,
+        "key": "goonk:dwellingLvl5",
+        "missingPrerequisites": [
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "Vomit Laboratory",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 251,
+          "key": "goonk:glouglou",
+          "name": "Bobope"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 35,
+        "built": false,
+        "cost": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0,
+          2550,
+          0
+        ],
+        "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
+        "id": 35,
+        "key": "goonk:dwellingLvl6",
+        "missingPrerequisites": [
+          34,
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "DioupDioup’s Quarry",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 245,
+          "key": "goonk:bobope",
+          "name": "DioupDioup"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          10,
+          0,
+          10,
+          0,
+          0,
+          0,
+          6600,
+          0
+        ],
+        "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
+        "id": 36,
+        "key": "goonk:dwellingLvl7",
+        "missingPrerequisites": [
+          35,
+          34,
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "Ember Tower",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 254,
+          "key": "goonk:maillemaille",
+          "name": "Big Maille Maille"
+        },
+        "upgradeId": -1
+      },
+      {
+        "allowed": false,
+        "baseId": 30,
+        "built": false,
+        "cost": [
+          4,
+          0,
+          4,
+          0,
+          0,
+          0,
+          210,
+          0
+        ],
+        "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+        "id": 37,
+        "key": "goonk:dwellingUpLvl1",
+        "missingPrerequisites": [
+          30
+        ],
+        "name": "Nose Workshop Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 260,
+          "key": "goonk:paingpaingRoyal",
+          "name": "Paingpaing, Royal Ram"
+        },
+        "upgradeId": 30
+      },
+      {
+        "allowed": false,
+        "baseId": 31,
+        "built": false,
+        "cost": [
+          5,
+          0,
+          5,
+          0,
+          0,
+          0,
+          420,
+          0
+        ],
+        "description": "Fights with a sword-lance, also striking the hex behind the target.",
+        "id": 38,
+        "key": "goonk:dwellingUpLvl2",
+        "missingPrerequisites": [
+          31,
+          30
+        ],
+        "name": "Sword-Lance Forge Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 263,
+          "key": "goonk:picpiqueRoyal",
+          "name": "Picpique, Lance Paladin"
+        },
+        "upgradeId": 31
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          6,
+          0,
+          6,
+          0,
+          0,
+          0,
+          660,
+          0
+        ],
+        "description": "Fires lightning arrows, triggering a magical explosion on the target and nearby units. Watch out for nearby allies.",
+        "id": 39,
+        "key": "goonk:dwellingUpLvl3",
+        "missingPrerequisites": [
+          32,
+          31,
+          30
+        ],
+        "name": "Storm Archery Range Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 266,
+          "key": "goonk:zinzeclairRoyal",
+          "name": "Sonic, Explosive Storm"
+        },
+        "upgradeId": 32
+      },
+      {
+        "allowed": false,
+        "baseId": 33,
+        "built": false,
+        "cost": [
+          7,
+          0,
+          7,
+          0,
+          0,
+          0,
+          990,
+          0
+        ],
+        "description": "Attacks with farts. The cloud weakens its target; the upgraded form also slows it.",
+        "id": 40,
+        "key": "goonk:dwellingUpLvl4",
+        "missingPrerequisites": [
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "Fart Garden Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 250,
+          "key": "goonk:bubuRoyal",
+          "name": "Bubu, Grand Fartomancer"
+        },
+        "upgradeId": 33
+      },
+      {
+        "allowed": false,
+        "baseId": 34,
+        "built": false,
+        "cost": [
+          8,
+          0,
+          8,
+          0,
+          0,
+          0,
+          1500,
+          0
+        ],
+        "description": "Spits a ranged cartoon vomit jet that reduces defence. The upgraded form also poisons.",
+        "id": 41,
+        "key": "goonk:dwellingUpLvl5",
+        "missingPrerequisites": [
+          34,
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "Vomit Laboratory Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 253,
+          "key": "goonk:glouglouRoyal",
+          "name": "Bobope, Acid Alchemist"
+        },
+        "upgradeId": 34
+      },
+      {
+        "allowed": false,
+        "baseId": 35,
+        "built": false,
+        "cost": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0,
+          2550,
+          0
+        ],
+        "description": "Throws large rocks like a Cyclops. The upgraded form can also bombard siege walls.",
+        "id": 42,
+        "key": "goonk:dwellingUpLvl6",
+        "missingPrerequisites": [
+          35,
+          34,
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "DioupDioup’s Quarry Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 247,
+          "key": "goonk:bobopeRoyal",
+          "name": "DioupDioup, Rock King"
+        },
+        "upgradeId": 35
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          10,
+          0,
+          10,
+          0,
+          0,
+          0,
+          6600,
+          0
+        ],
+        "description": "Fires ranged flames and can cast Fireball. The upgraded form also masters Inferno.",
+        "id": 43,
+        "key": "goonk:dwellingUpLvl7",
+        "missingPrerequisites": [
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          30
+        ],
+        "name": "Ember Tower Royal",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 256,
+          "key": "goonk:maillemailleRoyal",
+          "name": "Big Maille Maille, Blaze Archmage"
+        },
+        "upgradeId": 36
+      },
+      {
+        "allowed": false,
+        "baseId": 30,
+        "built": false,
+        "cost": [
+          6,
+          0,
+          6,
+          0,
+          0,
+          0,
+          608,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Paingpaing, Nose Emperor.",
+        "id": 44,
+        "key": "goonk:dwellingUp2Lvl1",
+        "missingPrerequisites": [
+          37,
+          30,
+          9,
+          8
+        ],
+        "name": "Paingpaing, Nose Emperor Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 259,
+          "key": "goonk:paingpaingExalted",
+          "name": "Paingpaing, Nose Emperor"
+        },
+        "upgradeId": 37
+      },
+      {
+        "allowed": false,
+        "baseId": 31,
+        "built": false,
+        "cost": [
+          7,
+          0,
+          7,
+          0,
+          0,
+          0,
+          1216,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Picpique, Crystal Lancer.",
+        "id": 45,
+        "key": "goonk:dwellingUp2Lvl2",
+        "missingPrerequisites": [
+          38,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "Picpique, Crystal Lancer Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 262,
+          "key": "goonk:picpiqueExalted",
+          "name": "Picpique, Crystal Lancer"
+        },
+        "upgradeId": 38
+      },
+      {
+        "allowed": false,
+        "baseId": 32,
+        "built": false,
+        "cost": [
+          8,
+          0,
+          8,
+          0,
+          0,
+          0,
+          1908,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Sonic, Storm Sovereign.",
+        "id": 46,
+        "key": "goonk:dwellingUp2Lvl3",
+        "missingPrerequisites": [
+          39,
+          32,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "Sonic, Storm Sovereign Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 265,
+          "key": "goonk:zinzeclairExalted",
+          "name": "Sonic, Storm Sovereign"
+        },
+        "upgradeId": 39
+      },
+      {
+        "allowed": false,
+        "baseId": 33,
+        "built": false,
+        "cost": [
+          9,
+          0,
+          9,
+          0,
+          0,
+          0,
+          2864,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Bubu, Supreme Fartomancer.",
+        "id": 47,
+        "key": "goonk:dwellingUp2Lvl4",
+        "missingPrerequisites": [
+          40,
+          33,
+          32,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "Bubu, Supreme Fartomancer Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 249,
+          "key": "goonk:bubuExalted",
+          "name": "Bubu, Supreme Fartomancer"
+        },
+        "upgradeId": 40
+      },
+      {
+        "allowed": false,
+        "baseId": 34,
+        "built": false,
+        "cost": [
+          10,
+          0,
+          10,
+          0,
+          7,
+          0,
+          4340,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Bobope, Grand Alchemist.",
+        "id": 48,
+        "key": "goonk:dwellingUp2Lvl5",
+        "missingPrerequisites": [
+          41,
+          34,
+          33,
+          32,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "Bobope, Grand Alchemist Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 252,
+          "key": "goonk:glouglouExalted",
+          "name": "Bobope, Grand Alchemist"
+        },
+        "upgradeId": 41
+      },
+      {
+        "allowed": false,
+        "baseId": 35,
+        "built": false,
+        "cost": [
+          11,
+          0,
+          11,
+          0,
+          8,
+          0,
+          7380,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to DioupDioup, Crystal Rock Emperor.",
+        "id": 49,
+        "key": "goonk:dwellingUp2Lvl6",
+        "missingPrerequisites": [
+          42,
+          35,
+          34,
+          33,
+          32,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "DioupDioup, Crystal Rock Emperor Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 246,
+          "key": "goonk:bobopeExalted",
+          "name": "DioupDioup, Crystal Rock Emperor"
+        },
+        "upgradeId": 42
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          12,
+          0,
+          12,
+          0,
+          9,
+          0,
+          19096,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Big Maille Maille, Phoenix Archmage.",
+        "id": 50,
+        "key": "goonk:dwellingUp2Lvl7",
+        "missingPrerequisites": [
+          43,
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "Big Maille Maille, Phoenix Archmage Sanctuary",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 255,
+          "key": "goonk:maillemailleExalted",
+          "name": "Big Maille Maille, Phoenix Archmage"
+        },
+        "upgradeId": 43
+      },
+      {
+        "allowed": false,
+        "baseId": 36,
+        "built": false,
+        "cost": [
+          15,
+          0,
+          15,
+          0,
+          12,
+          0,
+          24000,
+          0
+        ],
+        "description": "Allows recruitment and paid upgrades to Big Maille Maille, Living Sun.",
+        "id": 57,
+        "key": "goonk:dwellingUp3Lvl7",
+        "missingPrerequisites": [
+          50,
+          43,
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          30,
+          9,
+          8
+        ],
+        "name": "Solar Crucible",
+        "state": 8,
+        "unlocksCreature": {
+          "id": 257,
+          "key": "goonk:maillemailleSolar",
+          "name": "Big Maille Maille, Living Sun"
+        },
+        "upgradeId": 50
+      }
+    ],
+    "campaignPending": false,
+    "caveBuilder": {
+      "available": true,
+      "buildings": [
+        {
+          "building": 5,
+          "enabled": true,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 1100,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Plush Tavern",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "",
+          "salvage": [
+            2,
+            0,
+            2,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 7,
+          "enabled": true,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 2500,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Goonk Ramparts",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "",
+          "salvage": [
+            8,
+            0,
+            8,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 10,
+          "enabled": false,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 1500,
+          "minimumArmyHealth": 1000,
+          "minimumExperience": 2000,
+          "name": "Goonk House",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "Demolish the dependent buildings first.",
+          "salvage": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "building": 14,
+          "enabled": true,
+          "evacuationGold": 0,
+          "fightEnabled": false,
+          "gold": 1200,
+          "minimumArmyHealth": 0,
+          "minimumExperience": 2001,
+          "name": "Plush Marketplace",
+          "occupantTier": -1,
+          "occupants": 0,
+          "reason": "",
+          "salvage": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "canAct": true,
+      "combatPending": false,
+      "dailyLimit": 4,
+      "faction": 10,
+      "ghosts": 0,
+      "ghostsReady": false,
+      "goonkFaction": 10,
+      "hero": 1,
+      "movementCost": 500,
+      "rebuildFactions": [
+        0,
+        10
+      ],
+      "rebuildGold": 1500,
+      "rebuildMinimumArmyHealth": 1000,
+      "rebuildMinimumExperience": 2000,
+      "rebuildReady": false,
+      "rebuildReadyDay": 0,
+      "rebuildReason": "",
+      "remaining": 3,
+      "ruined": false,
+      "sourceFaction": 0,
+      "town": 0
+    },
+    "cheatReady": true,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 1,
+    "heroMoving": false,
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 1,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1259,
+        "movementLimit": 2000,
+        "name": "Christian"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "town",
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "recruits": [
+      {
+        "aiValue": 84,
+        "attack": 5,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70,
+          0
+        ],
+        "count": 0,
+        "damageMax": 4,
+        "damageMin": 2,
+        "defense": 5,
+        "description": "Strikes in melee with a huge nose. The upgraded form makes two nose strikes per attack.",
+        "fightValue": 84,
+        "growth": 16,
+        "health": 12,
+        "icon": "goonk/pink-large.png",
+        "id": 258,
+        "key": "goonk:paingpaing",
+        "level": 0,
+        "name": "Paingpaing",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": false,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "shooter": false,
+        "shots": 0,
+        "speed": 5,
+        "variant": 0
+      }
+    ],
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      31,
+      10,
+      28,
+      10,
+      10,
+      10,
+      499900,
+      0
+    ],
+    "selectedTownName": "Goonkbourg",
+    "sessionState": 6,
+    "soundVolume": 88,
+    "townFaction": "goonk:goonk",
+    "townName": "Goonkbourg",
+    "townSpells": [
+      [
+        41,
+        53,
+        46,
+        35,
+        3,
+        37,
+        5,
+        0,
+        42,
+        54,
+        15,
+        32,
+        43,
+        31,
+        27
+      ],
+      [
+        1,
+        44,
+        4,
+        51,
+        16,
+        64,
+        62,
+        24,
+        10,
+        45,
+        17,
+        47,
+        2,
+        30,
+        13
+      ],
+      [
+        25,
+        12,
+        49,
+        11,
+        52,
+        39,
+        21,
+        61,
+        63,
+        28,
+        34,
+        14,
+        60,
+        20,
+        33
+      ],
+      [
+        22,
+        56,
+        7,
+        65,
+        26,
+        59,
+        38,
+        50,
+        9,
+        48,
+        58,
+        19,
+        29,
+        23,
+        55
+      ],
+      [
+        8,
+        69,
+        67,
+        6,
+        36,
+        40,
+        66,
+        68,
+        18
+      ]
+    ],
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": true,
+    "windowToken": 126147056
+  },
+  "completedSaveSha256": "7dd9ac2efe880b83a2ebb327059005da9d8d643128dcf31399ff80ee00382f3d",
+  "dialogs": [
+    {
+      "cancel": false,
+      "lines": [
+        "Native CD control 2001/0"
+      ],
+      "queryId": 3,
+      "title": "Game message"
+    }
+  ],
+  "errors": []
+}

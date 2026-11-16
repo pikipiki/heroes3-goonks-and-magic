@@ -3,7 +3,7 @@ const archive=readEraArchive(fs.readFileSync('work/downloads/wog-port185/root/hm
 const rows=archive.extract('zobjcts.txt').toString('latin1').split(/\r?\n/);
 const template=(type,subtype=0)=>{const row=rows.find(line=>{const p=line.trim().split(/\s+/);return p.length===9&&+p[5]===type&&+p[6]===subtype;});if(!row)throw Error('No original template '+type+':'+subtype);const name=row.trim().split(/\s+/)[0];const mask=name.replace(/\.def$/i,'.msk');return convertObjectTemplate(row,archive.names.some(n=>n.toLowerCase()===mask.toLowerCase())?{maskBytes:archive.extract(mask)}:{}).template;};
 export function caveFixture(options={}){
- const candidate=process.env.CAVE185_CANDIDATE||'/tmp/goonk-cave185-candidate-final';
+ const candidate=process.env.CAVE185_CANDIDATE||'mod/tum-era';
  const cave=JSON.parse(fs.readFileSync(candidate+'/content/config/objects/mysterious-cave.json')).mysteriousCave.types.mysteriousCave.templates.default;
  const extras=[{type:'tum-era:mysteriousCave',subtype:'tum-era:mysteriousCave',name:'sourceCave',at:[13,11],template:cave,options:{}},
  {type:'core:resource',subtype:'core:gold',name:'fixtureGold',at:[12,11],template:template(79,6),options:{amount:1000000}},

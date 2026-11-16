@@ -986,7 +986,13 @@ bool CGameHandler::moveHeroImpl(ObjectInstanceID hid, int3 dst, EMovementMode mo
 
 	//it's a rock or blocked and not visitable tile
 	//OR hero is on land and dest is water and (there is not present only one object - boat)
-	if (!t.getTerrain()->isPassable() || (movingOntoObstacle && !canFly))
+	// Original HE:P parks non-player quest actors in scenery before bringing
+	// them onto the road (Edric in A Life of A-d-v-e-n-t-u-r-e). Keep this
+	// permission confined to source-script relocation onto an unoccupied tile.
+	const auto * sourceOwner = scriptedWaterLanding ? gameInfo().getPlayerState(h->getOwner(), false) : nullptr;
+	const bool sourceNpcScenery = scriptedWaterLanding && (!sourceOwner || !sourceOwner->isHuman())
+		&& !h->inBoat() && t.visitableObjects.empty();
+	if ((!t.getTerrain()->isPassable() || (movingOntoObstacle && !canFly)) && !sourceNpcScenery)
 		return complainRet("Cannot move hero, destination tile is blocked!");
 
 	//hero is not on boat/water walking and dst water tile doesn't contain boat/hero (objs visitable from land) -> we test back cause boat may be on top of another object (#276)

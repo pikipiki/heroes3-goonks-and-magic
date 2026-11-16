@@ -1,0 +1,546 @@
+{
+  "passed": true,
+  "scope": "Partial unchanged original quest journeys; no complete zc3/zc4 victory or admission. Source flags, scripts and enemies unchanged. QA60 Archangels in zc3 and300 in zc4 plus native unlimited movement/reveal shorten traversal; original quest items and rewards earned in game.",
+  "quests": {
+    "knightsShrubbery": {
+      "passed": true,
+      "engineSha256": "2a01065e465e8a14d06ff1b611715474b21b93b1d87b3f35f526fac2f3880afb",
+      "originalArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+      "saveSha256": "701a1c419a829ed86df73db1b7dcf8effa462bba69ad46d4b04b410eacceeb97",
+      "errors": [],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "These goblins appear to be wounded. Perhaps a fight with some other rogues."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Goblins"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Nailag Ciad can gain no more experience in this scenario."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Goblins"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "36 Gold",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 359,
+                "y": 267
+              }
+            }
+          ],
+          "lines": [
+            "Nailag Ciad has found treasure."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Goblins"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "You pick up a piece of shrubbery for the Knights who say {Neeh!}"
+          ],
+          "queryId": 666,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "You chance upon a shrubbery."
+          ],
+          "queryId": 667,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "The Knights who say {Neeh!} booms out:\n\"We see that you have brought us a shrubbery. You may pass.\""
+          ],
+          "queryId": 681,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            " Aned comes up to you to speak.\n \"We'll soon be at a waypost. Maybe we'll find some traveling company there. Otherwise, it will be a very nice, if a bit pricy, place to rest in. Have you thought about where we should travel then?\"\n You haven't really thought about it, so you give your head a shake and answer:\n \"I don't really know, but I think we should try to find a bit more company. I think we should try Emokon before anywhere else.\"\n \"That sounds like a good idea. Emokon is to the east along the Way of the Wolf.\""
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "When you enter the Waypost, you notice that it is empty, except for a couple of dogs. It doesn't look damaged, nor abandoned in a hurry. Just, empty, like all inhabitants have just disappeared. Looking into the houses,  you can't find any clues to what might have happened. The only odd thing you find is that there are pools of water everywhere. Both Ellam and Aned express wishes to leave as soon as possible, and you couldn't agree more."
+          ],
+          "queryId": 696,
+          "title": "Game message",
+          "visitedObject": "Barracks"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "Ellam walks up to you. He glances nervously around him, looking afraid of something.\n Me... me must leave you here Nailag. Me... me must go back to me home.\"\n \"Of course you can leave if you wish too, though I'm sad that you have to.\"\n As you  part ways, you can't help but feel sad for your lost companion. But there is something else also. Why did he have to go home? Why was he so nervous. You guess you have to ask him sometime later, if you ever see him again."
+          ],
+          "queryId": 701,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            " You and Aned watch as Ellam goes back the way you came. Then, you ask:\n \"Any idea of where we should go next?\"\n \"Well, there's always Emokon.\"\n \"Then Emokon it is.\"\n \"Let us then follow the Way of the Wolf, as that will be the fastest and safest way. A suggestion, though. Most people are afraid of mages, perhaps rightfully so. I would advise that we should try to keep it secret what we are, at least until we know the person we're dealing with\"\n \"That sounds like good advice. I'll follow it.\"\n\nNow, it is finally time for some {A-d-v-e-n-t-u-r-e}."
+          ],
+          "queryId": 702,
+          "title": "Game message",
+          "visitedObject": "Event"
+        }
+      ],
+      "hero": {
+        "position": [
+          15,
+          33,
+          0
+        ],
+        "level": 1,
+        "primarySkills": [
+          0,
+          2,
+          2,
+          1
+        ],
+        "army": [
+          {
+            "key": "core:swordsman",
+            "count": 1
+          },
+          {
+            "key": "core:archangel",
+            "count": 60
+          },
+          {
+            "key": "core:mage",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "statueNorth": {
+      "passed": true,
+      "engineSha256": "1b2f4483eb58313e57457777aa40dac1d83401dc2d91befaa40fd5c959b9416e",
+      "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "saveSha256": "c240e6b1d50ac1bc8681864d6cb8b0a0fcbe497a2f1629f3a84b7acf73bcb4b0",
+      "errors": [],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [],
+          "lines": [
+            "{Search the Statue} Where do you want to search"
+          ],
+          "queryId": 346,
+          "scriptDialog": {
+            "canCancel": false,
+            "choices": [
+              {
+                "label": "North",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 300
+                },
+                "value": 1
+              },
+              {
+                "label": "Blue`s Experience",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 306,
+                  "y": 300
+                },
+                "value": 2
+              },
+              {
+                "label": "South",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 502,
+                  "y": 300
+                },
+                "value": 4
+              },
+              {
+                "label": "West",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 348
+                },
+                "value": 8
+              }
+            ],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "initial": 0,
+            "inputLabel": "",
+            "kind": "checklist",
+            "multiple": true,
+            "pictures": [],
+            "queryId": 346,
+            "resultVariable": 265,
+            "selection": 0,
+            "text": "{Search the Statue} Where do you want to search"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Black Knights",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 273
+              }
+            }
+          ],
+          "lines": [
+            "You look to the north of the staue and some Black Knights appear!"
+          ],
+          "queryId": 347,
+          "title": "Game message"
+        }
+      ],
+      "hero": {
+        "position": [
+          23,
+          3,
+          0
+        ],
+        "level": 4,
+        "primarySkills": [
+          4,
+          3,
+          4,
+          3
+        ],
+        "army": [
+          {
+            "key": "core:skeletonWarrior",
+            "count": 13
+          },
+          {
+            "key": "core:archangel",
+            "count": 300
+          },
+          {
+            "key": "third-upgrades:tumSkeletonKnight",
+            "count": 5
+          },
+          {
+            "key": "wake-of-gods.creatures:ghost",
+            "count": 5
+          },
+          {
+            "key": "core:blackKnight",
+            "count": 10
+          }
+        ]
+      },
+      "receivedOriginalRewards": [
+        [
+          {
+            "key": "core:blackKnight",
+            "count": 10
+          }
+        ]
+      ]
+    },
+    "statueWest": {
+      "passed": true,
+      "engineSha256": "1b2f4483eb58313e57457777aa40dac1d83401dc2d91befaa40fd5c959b9416e",
+      "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "saveSha256": "a812cd7c6459622cb069a426ce4647601917e4217ddc009942be31a5a278ee4f",
+      "errors": [],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [],
+          "lines": [
+            "{Search the Statue} Where do you want to search"
+          ],
+          "queryId": 352,
+          "scriptDialog": {
+            "canCancel": false,
+            "choices": [
+              {
+                "label": "North",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 300
+                },
+                "value": 1
+              },
+              {
+                "label": "Blue`s Experience",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 306,
+                  "y": 300
+                },
+                "value": 2
+              },
+              {
+                "label": "South",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 502,
+                  "y": 300
+                },
+                "value": 4
+              },
+              {
+                "label": "West",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 348
+                },
+                "value": 8
+              }
+            ],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "initial": 0,
+            "inputLabel": "",
+            "kind": "checklist",
+            "multiple": true,
+            "pictures": [],
+            "queryId": 352,
+            "resultVariable": 265,
+            "selection": 0,
+            "text": "{Search the Statue} Where do you want to search"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "You look to the west of the statue and find a blue key!"
+          ],
+          "queryId": 353,
+          "title": "Game message"
+        }
+      ],
+      "hero": {
+        "position": [
+          23,
+          3,
+          0
+        ],
+        "level": 4,
+        "primarySkills": [
+          4,
+          3,
+          4,
+          3
+        ],
+        "army": [
+          {
+            "key": "core:skeletonWarrior",
+            "count": 13
+          },
+          {
+            "key": "core:archangel",
+            "count": 300
+          },
+          {
+            "key": "third-upgrades:tumSkeletonKnight",
+            "count": 5
+          },
+          {
+            "key": "wake-of-gods.creatures:ghost",
+            "count": 5
+          },
+          {
+            "key": "core:blackKnight",
+            "count": 10
+          }
+        ]
+      }
+    },
+    "innTeleport": {
+      "passed": true,
+      "engineSha256": "d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30",
+      "originalArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+      "saveSha256": "7c4c80a8ab9cbb68cb1ff0b7eeb9b7551ba24860b18026c45e8e60bcedc7f1bc",
+      "errors": [],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "You find yourself in front of a bustling inn. The sign over the door reads \"Smoldering Corpse Inn\". This looks like a good place to find fellow adventurers in."
+          ],
+          "queryId": 817,
+          "title": "Game message",
+          "visitedObject": "Tavern"
+        }
+      ],
+      "hero": {
+        "position": [
+          65,
+          2,
+          1
+        ],
+        "level": 1,
+        "primarySkills": [
+          0,
+          2,
+          2,
+          1
+        ],
+        "army": [
+          {
+            "key": "core:swordsman",
+            "count": 1
+          },
+          {
+            "key": "core:archangel",
+            "count": 60
+          },
+          {
+            "key": "core:mage",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "existingPostVisit": {
+      "passed": true,
+      "engineSha256": "d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30",
+      "originalArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+      "saveSha256": "915f590fcb703c64d8a89f2a047a08c8282e9dc2c2c6b21e28fa269962c916ca",
+      "errors": [],
+      "dialogs": [],
+      "hero": {
+        "position": [
+          11,
+          67,
+          0
+        ],
+        "level": 1,
+        "primarySkills": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "army": [
+          {
+            "key": "core:swordsman",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "backEntrance": {
+      "passed": true,
+      "engineSha256": "d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30",
+      "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "saveSha256": "9db3d1f9db749797423d0ad58045e8c6261fd8b9edc57c4a1576712c3676af91",
+      "errors": [],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "You again? You know the way!"
+          ],
+          "queryId": 384,
+          "title": "Game message",
+          "visitedObject": "Object (doesn't work yet)"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "You find a tunnel to go through!"
+          ],
+          "queryId": 396,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "This tunnel was not stabil. You`re lucky and notice that it breaks down after your walked through."
+          ],
+          "queryId": 398,
+          "title": "Game message"
+        }
+      ],
+      "hero": {
+        "position": [
+          30,
+          19,
+          0
+        ],
+        "level": 4,
+        "primarySkills": [
+          4,
+          3,
+          4,
+          3
+        ],
+        "army": [
+          {
+            "key": "core:skeletonWarrior",
+            "count": 13
+          },
+          {
+            "key": "core:archangel",
+            "count": 300
+          },
+          {
+            "key": "third-upgrades:tumSkeletonKnight",
+            "count": 5
+          },
+          {
+            "key": "wake-of-gods.creatures:ghost",
+            "count": 5
+          },
+          {
+            "key": "core:blackKnight",
+            "count": 10
+          }
+        ]
+      }
+    }
+  }
+}
