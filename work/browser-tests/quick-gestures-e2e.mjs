@@ -50,7 +50,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  await page.evaluate(()=>dispatchEvent(new CustomEvent('goonk-state',{detail:{...goonkMobileState,hasPath:true}})));
 
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),1);
- assert.equal(await page.locator('[data-ui=move]').count(),0,'No Move button on the map');
+ assert.equal(await page.locator('[data-ui=move]').count(),1,'Map has its Move button');
  await page.locator('#game-menu-toggle').click();
  await page.locator('[data-menu=settings]').click();
  await page.locator('[data-map-two-clicks]').check();
@@ -62,6 +62,14 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),0,'First click only previews with the option enabled');
  await page.waitForTimeout(700);await page.touchscreen.tap(x,y);
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),1,'Second click confirms with no double-tap timer');
+ for(const size of [{width:390,height:844},{width:844,height:390}]){
+ await page.setViewportSize(size);await page.waitForTimeout(250);
+ const move=page.locator('[data-ui=move]'),r=await move.boundingBox(),nav=await page.locator('.mobile-nav').boundingBox();
+ assert(r&&r.x>=nav.x-1&&r.y>=nav.y-1&&r.x+r.width<=size.width+1&&r.y+r.height<=size.height+1,'Move fits the action rail');
+ assert(size.width<size.height?nav.y>size.height/2:nav.x>size.width/2,'Action rail is below in portrait and right in landscape');
+ await page.evaluate(()=>calls=[]);await move.tap();
+ assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),1,'Move follows the selected path exactly once');
+ }
  await page.evaluate(()=>{
  calls=[];dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'spellbook',heroId:1,spellbook:{inCombat:true,mana:30,school:-1,page:0,pages:1,spells:[{id:15,name:'Magic Arrow',cost:5,level:1,enabled:true,target:'enemy'}]}}}));
  });

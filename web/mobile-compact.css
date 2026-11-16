@@ -231,5 +231,5 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 }
 
 @container goonk-viewport (orientation:portrait){
- html.goonk-mobile #mobile-app[data-mode=map]>.mobile-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ html.goonk-mobile #mobile-app[data-mode=map]>.mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 }

@@ -185,7 +185,7 @@ function mount(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
   const fr=getLanguage()==='fr';
   if(state.dialogKind==='battle-result'&&state.battleResult)items=[];
-  else if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn('<img class="troops-nav-icon" src="./web/h3-theme/troops.svg" alt="" aria-hidden="true">'+(fr?'Troupes':'Troops'),'heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Fin tour':'☀ End turn','endturn',false,!state.turn)];
+  else if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn('<img class="troops-nav-icon" src="./web/h3-theme/troops.svg" alt="" aria-hidden="true">'+(fr?'Troupes':'Troops'),'heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Fin tour':'☀ End turn','endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
     ...(state.onlineInvitation?[btn((fr?'Invitation de ':'Invitation from ')+escape(state.onlineInvitation),'online-invitation',true)]:[]),
@@ -553,6 +553,7 @@ function mount(){
    return;
   }
 
+  if(ui==='move'&&state.mode==='map'&&state.turn&&state.hasPath){pendingMapMove=null;selectedPoint=null;command(2);return;}
   if(ui==='battle-action'&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
    const action=contextualBattleAction(state,selectedPoint);
    if(!action.enabled)return;
