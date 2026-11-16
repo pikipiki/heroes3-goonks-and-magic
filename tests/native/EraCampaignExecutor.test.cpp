@@ -60,6 +60,21 @@ int main()
   block("FU",{num(8)},{cmd("VR",{var('y',1)},"S",{num(999)})})};
  State localState;Recorder localHost;Executor localLoop(locals,localState,context,localHost);localLoop.dispatch("LE");assert(!localLoop.run());assert(localState.frames.back().y.at(1)==2&&localState.frames.back().x.at(8)==20);
  State reloadedLocals=localState;Executor resumeLocals(locals,reloadedLocals,context,localHost);assert(resumeLocals.run());assert(reloadedLocals.v[1]==6&&reloadedLocals.v[2]==60&&reloadedLocals.frames.size()==1&&reloadedLocals.frames[0].y.at(1)==700);
+ // Trigger-local NEGATIVE y cells reset before each non-FU condition.
+ // Positive y cells remain shared; suspended commands retain both banks.
+ Program triggers;triggers.sha256="trigger-local-y";
+ auto secondTrigger=block("LE",{}, {cmd("VR",{var('v',8)},"S",{var('y',-1)}),cmd("VR",{var('v',9)},"S",{var('y',1)})});
+ Predicate fresh;fresh.left=var('y',-1);fresh.comparison="=";fresh.right=num(0);secondTrigger.conditions={{fresh}};
+ triggers.blocks={block("LE",{}, {cmd("VR",{var('y',-1)},"S",{num(17)}),cmd("VR",{var('y',1)},"S",{num(42)}),cmd("IF",{},"Prompt"),cmd("VR",{var('v',7)},"S",{var('y',-1)})}),secondTrigger};
+ State triggerState;triggerState.v[8]=99;Recorder triggerHost;Executor triggerRun(triggers,triggerState,context,triggerHost);triggerRun.dispatch("LE");assert(!triggerRun.run());
+ assert(triggerState.frames.back().y.at(-1)==17);State triggerReload=triggerState;Executor triggerResume(triggers,triggerReload,context,triggerHost);assert(triggerResume.run());
+ assert(triggerReload.v[7]==17&&triggerReload.v[8]==0&&triggerReload.v[9]==42&&triggerHost.prompts==1);
+ Program inherited;inherited.sha256="function-trigger-locals";
+ inherited.blocks={block("LE",{}, {cmd("VR",{var('y',-1)},"S",{num(7)}),cmd("FU",{num(1)},"P"),cmd("VR",{var('v',12)},"S",{var('y',-1)})}),
+  block("FU",{num(1)}, {cmd("VR",{var('v',10)},"S",{var('y',-1)}),cmd("VR",{var('y',-1)},"S",{num(99)}),cmd("VR",{var('y',1)},"S",{num(13)})}),
+  block("FU",{num(1)}, {cmd("VR",{var('v',11)},"S",{var('y',-1)}),cmd("VR",{var('v',13)},"S",{var('y',1)})})};
+ State inheritedState;Executor inheritance(inherited,inheritedState,context,host);inheritance.dispatch("LE");assert(inheritance.run());
+ assert(inheritedState.v[10]==7&&inheritedState.v[11]==7&&inheritedState.v[12]==7&&inheritedState.v[13]==13);
  // A suspended command keeps its already-accepted condition and exact PC.
  Program dialog;dialog.sha256="dialog";Command sequence;sequence.receiver="IF";sequence.operations={{"Prompt",{}},{"Reply",{}}};Predicate flag;flag.isFlag=true;flag.flag=1;sequence.conditions={{flag}};
  dialog.blocks={block("LE",{}, {sequence})};State ds;ds.flags[1]=true;Executor de(dialog,ds,context,host);de.dispatch("LE");assert(!de.run());assert(host.prompts==1&&host.replies==0&&!ds.flags[1]);

@@ -1,0 +1,41 @@
+{
+  "release": "0.4.214",
+  "engineSha256": "348b405a2ae1f05b17bc4c8d96d73f80be63e0c61f60a998cd89ebd5d73b37ec",
+  "reference": {
+    "file": "h3wog.exe",
+    "sha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+    "analysis": "Bounded LLVM disassembly of the pinned358f PE; later source used for navigation only. No Windows execution.",
+    "assemblySha256": {
+      "goonk-campaign214-trigger-local-358f.asm": "b0bc3bcac99cd1d8eebe4b8ced57a328500db3d005151306ac4eb2340f4f5a5e",
+      "goonk-campaign214-y-selector-358f.asm": "18fb176538b8e6f4a7fc5eaa1b329e208ec1587581bf594ab3f9e3b934dc0855"
+    }
+  },
+  "observations": [
+    {
+      "address": "0x729998..0x7299c9",
+      "fact": "Negative y indices read the trigger bank at0x27e88b8; positive y indices read the separate bank at0x257c9d8."
+    },
+    {
+      "address": "0x748fce..0x7490e0",
+      "fact": "Each matching enabled ProcessERM handler saves the trigger bank. Events numbered>=30000 clear it before checking conditions; FU handlers keep the inherited values."
+    },
+    {
+      "address": "0x749226..0x749264",
+      "fact": "The saved trigger bank is restored after that handler. Positive FU/DO locals are a separate bank and must not be cleared at these boundaries."
+    }
+  ],
+  "implementation": [
+    "Only negative y cells reset before each non-FU trigger condition. Positive y cells remain shared across matching handlers.",
+    "Each FU handler inherits the caller trigger cells anew; nested functions and DO iterations cannot leak their negative writes back into the caller or sibling handler.",
+    "Suspended commands retain both banks until the current handler completes. No continuation field or native save-format change."
+  ],
+  "validation": [
+    "Sanitized native C++ executor: paused command resumption, fresh trigger conditions, shared positive cells, inherited negative cells, nested FU restoration and sibling FU handlers.",
+    "Private WebAssembly controls wrap unchanged original potion BA0/BA1 and FU800..816 blocks. Chromium and WebKit verify boundary0/55 and nested7/99/99/7/7/99/42 through a real nested battle and native dialogue barriers.",
+    "All12 original compiled campaign programs contain no negative y operands; their positive y sharing is preserved, including the seven matching FU100 handlers ofzc1-2."
+  ],
+  "limitations": [
+    "The evidence concerns supported integer y cells; it does not establish floating-point ERM bank support.",
+    "Private controls and the final906 save are not a new original campaign completion or a mid-battle save admission."
+  ]
+}

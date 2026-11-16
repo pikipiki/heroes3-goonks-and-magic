@@ -180,6 +180,18 @@ public:
    if(!call.initializer&&call.blockCursor>=call.blocks.size()){finishFrame();continue;}
    if(!call.initializer&&call.blocks[call.blockCursor]>=program.blocks.size())throw std::runtime_error("Invalid saved campaign block");
    const auto * block=call.initializer?nullptr:&program.blocks[call.blocks[call.blockCursor]];
+   // 358f ProcessERM scopes NEGATIVE y cells separately for each trigger.
+   // Non-FU triggers clear them; FU inherits the caller's trigger cells.
+   // Positive y cells remain shared across matching handlers and DO turns.
+   // A resumed command must retain both banks until this handler ends.
+   if(block&&call.command==0&&call.operation==0&&!call.commandConditionAccepted&&
+      !lookup(state.disabledBlocks,static_cast<std::int32_t>(call.blocks[call.blockCursor])))
+   {
+    auto & cells=state.frames.back().y;
+    for(auto it=cells.begin();it!=cells.end();)if(it->first<0)it=cells.erase(it);else ++it;
+    if(block->receiver=="FU"&&state.frames.size()>1)
+     for(const auto & [index,value]:state.frames[state.frames.size()-2].y)if(index<0)cells[index]=value;
+   }
    if(block&&call.command==0&&call.operation==0&&!call.commandConditionAccepted&&
       (lookup(state.disabledBlocks,static_cast<std::int32_t>(call.blocks[call.blockCursor]))||!accepts(block->conditions,state,context)))
    {call.blockCursor++;continue;}

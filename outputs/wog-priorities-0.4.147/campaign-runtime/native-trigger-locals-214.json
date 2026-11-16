@@ -1,0 +1,244 @@
+{
+  "release": "0.4.214",
+  "engineSha256": "348b405a2ae1f05b17bc4c8d96d73f80be63e0c61f60a998cd89ebd5d73b37ec",
+  "scope": "Private permanent trigger-local controls plus unchanged original battle potion source blocks. Real nested battle and dialogs in Chromium and WebKit; no original campaign completion claimed.",
+  "cases": {
+    "chromium": {
+      "passed": true,
+      "engineSha256": "348b405a2ae1f05b17bc4c8d96d73f80be63e0c61f60a998cd89ebd5d73b37ec",
+      "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "sourceProgramSha256": "33a5eed68c382c040145c128918771542f747f97fd99c130a7fec628c051e900",
+      "originalBlocksSha256": "d6a4257716a8809af210c25efc3c82a1278eedf4af0ae8560707306b4674b2f3",
+      "fixtureSha256": "5e94b0b7efd878c073a9d5c91bd6313453de27714a3a8b0e0201a509f605adc4",
+      "routedPrivateWasm": 0,
+      "observations": [
+        "{\"cancel\":false,\"lines\":[\"OUTER AFTER 2/2/1/1 DOSES 0 LOCAL 42\"],\"queryId\":14,\"title\":\"Game message\"}"
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "BATTLE READY"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {},
+        {
+          "cancel": false,
+          "lines": [
+            "TRIGGER LOCALS BEFORE"
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "TRIGGER LOCALS BOUNDARY 0/55"
+          ],
+          "queryId": 7,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": true,
+          "choices": [
+            {
+              "description": "{Attack}\n\nAttack skill is a bonus added to the attack skill of any troops your hero commands, allowing them to inflict more damage in combat.",
+              "label": "+2 Attack Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 323
+              }
+            },
+            {
+              "description": "{Defense}\n\nDefense skill is a bonus added to the defense skill of any troops your hero commands, allowing them to resist more damage in combat.",
+              "label": "+2 Defense Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 323
+              }
+            }
+          ],
+          "lines": [
+            "{Hydromel} {Potion}    (1 dose left) \n \nIf  drinks a Hydromel Potion, he will gain +2 Attack and +2 Defense for this combat... \n \n, do you want to drink a Hydromel Potion?\n\n(if you drink {Hydromel} {Potion} and {Berserker} {Potion} at the same time, you get a chance to lose 1 Spell Power after a battle, so use them with care)\n"
+          ],
+          "queryId": 9,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "BATTLE PROBE 0/-2 TYPE 0 COUNT 10 EMPTY -1/0 PRIMARY 4/4/1/1"
+          ],
+          "queryId": 10,
+          "title": "Game message"
+        },
+        {},
+        {
+          "cancel": false,
+          "lines": [
+            "POST BATTLE BARRIER"
+          ],
+          "queryId": 13,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "OUTER AFTER 2/2/1/1 DOSES 0 LOCAL 42"
+          ],
+          "queryId": 14,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "TRIGGER LOCALS NESTED 7/99/99/7/7/99/42"
+          ],
+          "queryId": 15,
+          "title": "Game message"
+        }
+      ],
+      "saveRejections": [
+        {
+          "id": 900,
+          "accepted": false
+        },
+        {
+          "id": 901,
+          "accepted": false
+        },
+        {
+          "id": 902,
+          "accepted": false
+        }
+      ],
+      "errors": []
+    },
+    "webkit": {
+      "passed": true,
+      "engineSha256": "348b405a2ae1f05b17bc4c8d96d73f80be63e0c61f60a998cd89ebd5d73b37ec",
+      "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "sourceProgramSha256": "33a5eed68c382c040145c128918771542f747f97fd99c130a7fec628c051e900",
+      "originalBlocksSha256": "d6a4257716a8809af210c25efc3c82a1278eedf4af0ae8560707306b4674b2f3",
+      "fixtureSha256": "5e94b0b7efd878c073a9d5c91bd6313453de27714a3a8b0e0201a509f605adc4",
+      "routedPrivateWasm": 0,
+      "observations": [
+        "{\"cancel\":false,\"lines\":[\"OUTER AFTER 2/2/1/1 DOSES 0 LOCAL 42\"],\"queryId\":14,\"title\":\"Game message\"}"
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "BATTLE READY"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "TRIGGER LOCALS BEFORE"
+          ],
+          "queryId": 6,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "TRIGGER LOCALS BOUNDARY 0/55"
+          ],
+          "queryId": 7,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": true,
+          "choices": [
+            {
+              "description": "{Attack}\n\nAttack skill is a bonus added to the attack skill of any troops your hero commands, allowing them to inflict more damage in combat.",
+              "label": "+2 Attack Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 323
+              }
+            },
+            {
+              "description": "{Defense}\n\nDefense skill is a bonus added to the defense skill of any troops your hero commands, allowing them to resist more damage in combat.",
+              "label": "+2 Defense Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 323
+              }
+            }
+          ],
+          "lines": [
+            "{Hydromel} {Potion}    (1 dose left) \n \nIf  drinks a Hydromel Potion, he will gain +2 Attack and +2 Defense for this combat... \n \n, do you want to drink a Hydromel Potion?\n\n(if you drink {Hydromel} {Potion} and {Berserker} {Potion} at the same time, you get a chance to lose 1 Spell Power after a battle, so use them with care)\n"
+          ],
+          "queryId": 9,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "BATTLE PROBE 0/-2 TYPE 0 COUNT 10 EMPTY -1/0 PRIMARY 4/4/1/1"
+          ],
+          "queryId": 10,
+          "title": "Game message"
+        },
+        {},
+        {
+          "cancel": false,
+          "lines": [
+            "POST BATTLE BARRIER"
+          ],
+          "queryId": 13,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "OUTER AFTER 2/2/1/1 DOSES 0 LOCAL 42"
+          ],
+          "queryId": 14,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "TRIGGER LOCALS NESTED 7/99/99/7/7/99/42"
+          ],
+          "queryId": 15,
+          "title": "Game message"
+        }
+      ],
+      "saveRejections": [
+        {
+          "id": 900,
+          "accepted": false
+        },
+        {
+          "id": 901,
+          "accepted": false
+        },
+        {
+          "id": 902,
+          "accepted": false
+        }
+      ],
+      "errors": []
+    }
+  }
+}
