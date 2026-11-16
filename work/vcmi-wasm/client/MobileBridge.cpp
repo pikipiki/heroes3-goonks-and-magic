@@ -1489,7 +1489,7 @@ void publishMobileState(){
     addHeroIcon(icons, entry["icon"], "SECSKILL", skill->getIconIndex(level - 1));
     skills.push_back(std::move(entry));
    }
-   if(h["owned"].Bool() && hero->getCommander())
+   if(hero->getCommander())
     addHeroIcon(icons, h["commanderIcon"], "heroWindow/commanderButtonIcon");
    publishHeroIcons(icons);
    const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
@@ -1809,7 +1809,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  {
   const auto player=GAME->interface();
   const auto window=ENGINE->windows().topWindow<CHeroWindow>();
-  if(player && window && window->curHero && window->curHero->getOwner()==player->playerID
+  if(player && window && window->curHero
      && window->curHero->getCommander() && !window->getPickedArtifact())
   {
    window->commanderWindow();

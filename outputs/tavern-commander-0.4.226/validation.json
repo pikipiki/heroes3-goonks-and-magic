@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "candidate": "Bubu Keeper",
+  "commander": "Paladin",
+  "nativeCost": 2500,
+  "previewFree": true,
+  "portraitLandscapeAndIPad": true,
+  "errors": [],
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.226-engine.tar.gz",
+  "archiveSha256": "4bfd5796cca6870a70f00f05b66d10e8d4f0d0cec56e454b33cba2a709e5b416",
+  "nativeBuild": "ninja -j32 html5",
+  "sourceBase": "df1451b075e2a0389145ffb1c6b481e3bf0737db",
+  "scope": "Commander inspection from tavern hero equipment, before and after recruitment; native equipment and recruitment rules unchanged."
+}
