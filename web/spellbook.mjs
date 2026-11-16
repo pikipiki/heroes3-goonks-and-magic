@@ -76,9 +76,12 @@ export function createMobileSpellbook({root,command}){
    </footer>`;
   panel.querySelector('.spell-list').scrollTop=scroll;
  }
- return{update(next){state=next;const mana=next.spellbook?.mana??next.heroMana;
+ return{update(next){const wasBook=state.mode==='spellbook';state=next;const mana=next.spellbook?.mana??next.heroMana;
   if(pending&&hero()===pending.hero&&Number.isFinite(mana)&&mana<pending.mana){used.set(pending.hero,{...pending});pending=null;signature='';}
-  if(pending&&next.mode!=='spellbook'&&(next.mode!=='battle'||(!next.spellTargeting&&next.canAct)))pending=null;
+  // Closing the book and ending targeting can both precede the mana update.
+  // Keep the candidate through battle snapshots; reopening without a mana debit
+  // confirms cancellation and must not replace the last successfully used spell.
+  if(pending&&(hero()!==pending.hero||(next.mode==='spellbook'&&!wasBook)||!['spellbook','battle'].includes(next.mode)))pending=null;
   panel.hidden=next.mode!=='spellbook';if(panel.hidden){signature='';reusing=null;selected=null;return;}
   book=next.spellbook||{};const previous=used.get(hero()),key=JSON.stringify([book,previous,reusing]);if(key===signature)return;signature=key;
   render();
