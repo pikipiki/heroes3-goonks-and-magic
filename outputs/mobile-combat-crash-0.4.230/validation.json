@@ -1,0 +1,149 @@
+{
+  "continuousSessionsBeforeMainIntegration": {
+    "webkit": {
+      "passed": true,
+      "completed": 30,
+      "startedAt": "2026-11-16T21:34:13.138Z",
+      "finishedAt": "2026-11-16T21:41:37.898Z",
+      "storage": "opfs",
+      "testEngineSha256": "5fd2c85aebab1c806f5e2fcbd9e0f38bf1c2f1bb2c219bf5993646dda17e78ec",
+      "physicalDevice": false,
+      "interactions": {
+        "hires": 30,
+        "dismissals": 30,
+        "equipment": 30,
+        "commanders": 30,
+        "spellbooks": 16
+      },
+      "rotations": 177,
+      "viewChanges": 150,
+      "cancelledSpells": 12,
+      "spells": [
+        "Bless",
+        "Fire Shield",
+        "Fireball",
+        "Haste",
+        "Ice Bolt",
+        "Magic Arrow",
+        "Prayer",
+        "Shield",
+        "Slow",
+        "Water Elemental"
+      ],
+      "wasmBytesMin": 268435456,
+      "wasmBytesMax": 268435456,
+      "canvasBytesMax": 7122992,
+      "jsHeapBytesMax": null,
+      "failures": []
+    },
+    "chromium": {
+      "passed": true,
+      "completed": 30,
+      "startedAt": "2026-11-16T21:33:32.540Z",
+      "finishedAt": "2026-11-16T21:41:11.615Z",
+      "storage": "opfs",
+      "testEngineSha256": "5fd2c85aebab1c806f5e2fcbd9e0f38bf1c2f1bb2c219bf5993646dda17e78ec",
+      "physicalDevice": false,
+      "interactions": {
+        "hires": 30,
+        "dismissals": 30,
+        "equipment": 30,
+        "commanders": 30,
+        "spellbooks": 17
+      },
+      "rotations": 177,
+      "viewChanges": 150,
+      "cancelledSpells": 12,
+      "spells": [
+        "Bless",
+        "Fire Shield",
+        "Fireball",
+        "Haste",
+        "Ice Bolt",
+        "Magic Arrow",
+        "Prayer",
+        "Shield",
+        "Slow",
+        "Water Elemental"
+      ],
+      "wasmBytesMin": 268435456,
+      "wasmBytesMax": 268435456,
+      "canvasBytesMax": 7422000,
+      "jsHeapBytesMax": 99478478,
+      "failures": []
+    }
+  },
+  "baselineCrashes": [
+    {
+      "storage": "OPFS",
+      "cycle": 3,
+      "spell": "Fireball",
+      "browser": "webkit",
+      "failure": "Out of bounds memory access in mi_thread_init / __memset"
+    },
+    {
+      "storage": "OPFS repeated",
+      "cycle": 3,
+      "spell": "Fireball",
+      "browser": "webkit",
+      "failure": "Out of bounds memory access in mi_thread_init / __memset"
+    },
+    {
+      "storage": "temporary",
+      "cycle": 3,
+      "spell": "Fireball",
+      "browser": "webkit",
+      "failure": "Out of bounds memory access in mi_thread_init / __memset"
+    }
+  ],
+  "generalTests": {
+    "executed": 743,
+    "failed": 0,
+    "skipped": 48
+  },
+  "publishedEngine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "f524bbf3d55cb187",
+    "wasm": "vcmiclient.4f5bd98b87bf1eec.wasm",
+    "sha256": "4f5bd98b87bf1eec68fc904d201895bfaa0d93a49c44145dce733ed33ac29515",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "integratedMainRevision": "5960228f",
+  "finalBuild": {
+    "wasm": "ninja -j32 html5: passed",
+    "site": "prepare:web, build:web, verify:web: passed"
+  },
+  "finalProductionArtifactTests": {
+    "mixed": {
+      "passed": true,
+      "completed": 20,
+      "physicalDevice": false,
+      "engineSha256": "4f5bd98b87bf1eec68fc904d201895bfaa0d93a49c44145dce733ed33ac29515",
+      "interactions": {
+        "hires": 20,
+        "dismissals": 20,
+        "equipment": 20,
+        "commanders": 20,
+        "spellbooks": 11
+      },
+      "wasmBytesMin": 268435456,
+      "wasmBytesMax": 268435456,
+      "failures": []
+    },
+    "battleMatrix": {
+      "passed": true,
+      "completed": 20,
+      "physicalDevice": false,
+      "engineSha256": "4f5bd98b87bf1eec68fc904d201895bfaa0d93a49c44145dce733ed33ac29515",
+      "interactions": null,
+      "wasmBytesMin": 268435456,
+      "wasmBytesMax": 268435456,
+      "failures": []
+    }
+  },
+  "totalPostFixBattles": 100
+}

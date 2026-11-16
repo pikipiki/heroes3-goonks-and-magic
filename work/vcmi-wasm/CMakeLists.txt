@@ -192,7 +192,10 @@ if(EMSCRIPTEN)
 		"-sEXPORTED_FUNCTIONS=['_main', '_malloc', '_free', '_vcmiOnCanvasResize']"
 		"-pthread"
 		"-fwasm-exceptions"
-		"-sMALLOC=mimalloc"
+		# Combat repeatedly creates short-lived pthreads. The mimalloc thread-heap
+		# initialization can trap in WebKit after repeated battles; use the shared,
+		# thread-safe allocator instead of per-thread heaps on the web build.
+		"-sMALLOC=dlmalloc"
 		"${RELEASE_OPT}"
 		"--emit-symbol-map"
 		"--js-library" "${CMAKE_CURRENT_LIST_DIR}/lib/html5/libopfs.js"
