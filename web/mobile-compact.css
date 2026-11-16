@@ -214,3 +214,14 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 @container goonk-viewport (orientation:landscape) and (max-width:700px){
  .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* Resources get the full phone width, below the menu and calendar. */
+@container goonk-viewport (orientation:portrait){
+ html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top{display:grid!important;grid-template-columns:44px minmax(0,1fr)!important;grid-template-rows:44px auto!important;gap:3px 6px!important;padding:4px!important}
+ html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top>#game-menu-toggle{grid-column:1!important;grid-row:1!important}
+ html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top>.mobile-title{display:none!important}
+ html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:2!important;grid-row:1!important;width:100%!important;position:static!important;min-width:0!important;border-top:0}
+ html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-resources{grid-column:1/-1!important;grid-row:2!important;width:100%!important;max-width:none!important;box-sizing:border-box;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr)) minmax(48px,1.5fr) minmax(0,1fr)!important;gap:4px!important;padding:2px 0!important;overflow:visible!important}
+ html.goonk-mobile #mobile-app[data-has-resources=true] .mobile-resources .mobile-resource{display:flex;flex-direction:column;align-items:center;min-width:0!important;overflow:visible!important}
+ html.goonk-mobile #mobile-app[data-has-resources=true] .mobile-resources .resource-quantity{font-size:clamp(10px,3vw,12px)!important;line-height:16px!important;white-space:nowrap;overflow:visible!important}
+}
