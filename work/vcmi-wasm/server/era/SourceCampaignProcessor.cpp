@@ -60,12 +60,16 @@
 #include "../../lib/networkPacks/PacksForServer.h"
 #include "../../lib/networkPacks/ArtifactLocation.h"
 #include "../../lib/networkPacks/StackLocation.h"
+#include "../../lib/networkPacks/SetStackEffect.h"
 #include "../../lib/filesystem/Filesystem.h"
 #include "../../lib/callback/GameRandomizer.h"
 #include "../../lib/modding/IdentifierStorage.h"
 #include "../../lib/modding/ModScope.h"
 #include "../../lib/bonuses/Bonus.h"
 #include "../../lib/battle/BattleLayout.h"
+#include "../../lib/battle/BattleInfo.h"
+#include "../../lib/CStack.h"
+#include "../../lib/spells/ISpellMechanics.h"
 #include "../../lib/texts/CGeneralTextHandler.h"
 #include "../../lib/entities/hero/CHero.h"
 #include "../../lib/entities/faction/CTown.h"
@@ -162,6 +166,7 @@ struct SourceCampaignProcessor::Impl final:Host
   std::optional<QueryID> shown;
   std::array<ObjectInstanceID,2> armies,heroes;
   std::function<void()> resume;
+  BattleID battle=BattleID::NONE;
  };
  std::optional<BattleScope> battleScope;
  bool wanderingBattle=false;
@@ -792,20 +797,32 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  bool battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume)
  {
-  bind();if(!active)return false;
   require(stage==0||stage==1,"unsupported battle event stage");
-  bool found=false;
-  for(const auto & block:program.blocks)
-   if(block.receiver=="BA"&&!block.post&&block.selectors.size()==1&&readNumber(block.selectors[0],vm,context)==stage){found=true;break;}
-  if(!found)return false;
+  return battleHook("BA",{stage},attacker,defender,attackerHero,defenderHero,std::move(resume));
+ }
+ bool battleRound(BattleID battleId,int sourceRound,std::function<void()> resume)
+ {
+  bind();if(!active)return false;
+  const auto * battle=gh.gameState().getBattle(battleId);require(battle!=nullptr,"round event without a live battle");
+  const auto army=[&](BattleSide side){const auto * a=battle->battleGetArmyObject(side);return a?a->id:ObjectInstanceID::NONE;};
+  const auto hero=[&](BattleSide side){const auto * h=battle->battleGetFightingHero(side);return h?h->id:ObjectInstanceID::NONE;};
+  // BACall2(2,round) publishes the original round number in v997.
+  vm.v[997]=sourceRound;
+  return battleHook("BR",{},army(BattleSide::ATTACKER),army(BattleSide::DEFENDER),hero(BattleSide::ATTACKER),hero(BattleSide::DEFENDER),std::move(resume),battleId);
+ }
+ bool battleHook(const std::string & receiver,const std::vector<std::int32_t> & selectors,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume,BattleID battle=BattleID::NONE)
+ {
+  bind();if(!active)return false;
+  updateContext();Executor probe(program,vm,context,*this);
+  if(!probe.hasMatchingAny(receiver,{selectors}))return false;
   require(!executing&&!battleScope,"recursive battle event entry");
   BattleScope scope{std::move(vm.frames),std::move(vm.continuations),std::move(pending),heroId,objectId,player,shown,{attacker,defender},{attackerHero,defenderHero},std::move(resume)};
-  battleScope=std::move(scope);vm.frames={Frame{}};vm.continuations.clear();pending=JsonNode();shown.reset();
+  scope.battle=battle;battleScope=std::move(scope);vm.frames={Frame{}};vm.continuations.clear();pending=JsonNode();shown.reset();
   heroId=attackerHero;objectId=ObjectInstanceID::NONE;
   if(const auto * attackerArmy=gh.gameState().getObj(attacker);attackerArmy&&attackerArmy->getOwner().isValidPlayer())player=attackerArmy->getOwner();
   for(const auto armyId:{attacker,defender})if(const auto * army=gh.gameState().getObj(armyId))
    if(const auto * owner=gh.gameInfo().getPlayerState(army->getOwner(),false);owner&&owner->isHuman()){player=army->getOwner();break;}
-  state["battleHook"].Bool()=true;updateContext();Executor executor(program,vm,context,*this);executor.dispatch("BA",{stage});run();return true;
+  state["battleHook"].Bool()=true;updateContext();Executor executor(program,vm,context,*this);executor.dispatch(receiver,selectors);run();return true;
  }
  void run()
  {
@@ -1706,6 +1723,55 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
+ if(c.receiver=="BH")
+ {
+  require(battleScope&&battleScope->battle!=BattleID::NONE&&c.selectors.size()==1,"battle hero receiver outside a live battle");
+  const int side=number(c.selectors[0]);require(side==0||side==1,"battle hero side outside0..1");
+  require(op.code=="N","unsupported battle hero operation "+op.code);arity(op,1);require(query(op),"battle hero number is read-only");
+  const auto * h=gh.gameState().getHero(battleScope->heroes[side]);value(h?h->getHeroTypeID().getNum():-1,args[0]);return Step::Continue;
+ }
+ if(c.receiver=="BM")
+ {
+  require(battleScope&&battleScope->battle!=BattleID::NONE&&c.selectors.size()==1,"battle stack receiver outside a live battle");
+  const int sourceSlot=number(c.selectors[0]);require(sourceSlot>=0&&sourceSlot<42,"battle stack index outside0..41");
+  const auto * battle=gh.gameState().getBattle(battleScope->battle);require(battle!=nullptr,"battle stack event lost its battle");
+  const CStack * target=nullptr;
+  for(const auto * stack:battle->battleGetAllStacks(true))
+   if(stack->sourceMassSlot()>=0&&stack->sourceMassSlot()+21*static_cast<int>(stack->unitSide())==sourceSlot){target=stack;break;}
+  if(op.code=="I"||op.code=="N"||op.code=="T"||op.code=="P")
+  {
+   arity(op,1);require(query(op),"battle stack field mutation is not admitted");
+   const int result=op.code=="I"?sourceSlot/21:op.code=="N"?(target?target->getCount():0):op.code=="T"?(target?sourceCreature(target->creatureId()):-1):(target?target->getPosition().toInt():-1);
+   value(result,args[0]);return Step::Continue;
+  }
+  require(op.code=="M","unsupported battle stack operation "+op.code);arity(op,3);
+  for(const auto & arg:args)require(arg.access==Access::Read,"battle enchantment needs values");
+  const int spell=number(args[0]),duration=number(args[1]),mastery=number(args[2]);
+  require(spell==29||spell==46||spell==45||spell==54||spell==71||spell==73,"unvalidated direct battle enchantment");
+  require(duration>0&&mastery>=0&&mastery<=3,"unvalidated direct battle enchantment duration or mastery");
+  if(!target||!target->alive())return Step::Continue;
+  // SetMonMagic directly imposes the effect: no target filtering, immunity,
+  // resistance, mana or creature charge. Existing spell slots are unchanged.
+  const SpellID id(spell);
+  if(!target->getBonuses(Selector::source(BonusSource::SPELL_EFFECT,BonusSourceID(id)))->empty())return Step::Continue;
+  if(spell==71)
+  {
+   // BM:M imposes poison without its attack-time HP reduction. The first
+   // combat round remains intact; later resets subtract10%, up to50%.
+   // A local spell-owned profile marker selects the existing source HP
+   // arithmetic and disappears with this poison, including Dispel.
+   Bonus health;health.type=BonusType::STACK_HEALTH;health.val=0;
+   health.valType=BonusValueType::PERCENT_TO_ALL;health.duration=BonusDuration::N_TURNS;
+   health.turnsRemain=duration;health.source=BonusSource::SPELL_EFFECT;health.sid=BonusSourceID(id);
+   Bonus limit=health;limit.type=BonusType::POISON;limit.val=50;limit.valType=BonusValueType::INDEPENDENT_MAX;
+   Bonus profile=health;profile.type=BonusType::ERA_SOURCE_STATUS_HEALTH;profile.val=1;
+   profile.valType=BonusValueType::BASE_NUMBER;profile.hidden=true;
+   SetStackEffect effect;effect.battleID=battleScope->battle;effect.toAdd.emplace_back(target->unitId(),std::vector<Bonus>{limit,health,profile});gh.sendAndApply(effect);return Step::Continue;
+  }
+  spells::BattleCast cast(battle,target,spells::Mode::PASSIVE,id.toSpell());
+  cast.setSpellLevel(mastery);cast.setEffectDuration(duration);cast.setEffectPower(0);
+  spells::Target aim;aim.emplace_back(target);cast.applyEffects(gh.spellcastEnvironment(),aim,false,true);return Step::Continue;
+ }
  if(c.receiver=="BA")
  {
   require(c.selectors.empty()&&battleScope.has_value(),"battle receiver outside a battle event");
@@ -2328,6 +2394,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 SourceCampaignProcessor::SourceCampaignProcessor(CGameHandler & game):impl(std::make_unique<Impl>(game)){}
 SourceCampaignProcessor::~SourceCampaignProcessor()=default;
 bool SourceCampaignProcessor::battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume){return impl->battleEvent(stage,attacker,defender,attackerHero,defenderHero,std::move(resume));}
+bool SourceCampaignProcessor::battleRound(BattleID battle,int sourceRound,std::function<void()> resume){return impl->battleRound(battle,sourceRound,std::move(resume));}
 bool SourceCampaignProcessor::demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building){return impl->demolitionFight(hero,town,building);}
 void SourceCampaignProcessor::demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnding(attacker,defender,won);}
 void SourceCampaignProcessor::demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnded(attacker,defender,won);}

@@ -36,6 +36,17 @@ int main()
  assert(era_campaign_hero_experience::levelFor(1000,4,required)==2&&era_campaign_hero_experience::levelFor(2000,4,required)==3);
  assert(era_campaign_hero_experience::levelFor(INT_MAX,4,required)==4);
  Context context;Recorder host;
+ // A Life of Adventure uses !?BA&889 without a selector. It is BA0,
+ // interleaved with explicit BA0 in source order, and never a BA1 event.
+ Program battleDefaults;battleDefaults.sha256="battle-default-zero";
+ auto implicit=block("BA",{}, {cmd("VR",{var('v',80)},"*",{num(10)}),cmd("VR",{var('v',80)},"+",{num(2)})});
+ Predicate house;house.isFlag=true;house.flag=889;implicit.conditions={{house}};
+ battleDefaults.blocks={block("BA",{num(0)}, {cmd("VR",{var('v',80)},"S",{num(1)})}),implicit,
+  block("BA",{num(0)}, {cmd("VR",{var('v',80)},"*",{num(10)}),cmd("VR",{var('v',80)},"+",{num(3)})})};
+ State battleDefaultState;battleDefaultState.flags[889]=true;Executor battleDefaultVm(battleDefaults,battleDefaultState,context,host);
+ assert(battleDefaultVm.hasMatchingAny("BA",{{0}}));assert(!battleDefaultVm.hasMatchingAny("BA",{{1}}));
+ battleDefaultVm.dispatch("BA",{0});assert(battleDefaultVm.run()&&battleDefaultState.v[80]==123);
+ battleDefaultState.flags[889]=false;battleDefaultVm.dispatch("BA",{0});assert(battleDefaultVm.run()&&battleDefaultState.v[80]==13);
  // Original VCMI ERM_FU regression: output parameters and immediate FU:E.
  Program p;p.sha256="functions";
  p.blocks={block("LE",{num(1)},{cmd("VR",{var('v',1)},"S",{num(30)}),cmd("FU",{num(7)},"P",{num(33),var('v',1,Access::Write)})}),

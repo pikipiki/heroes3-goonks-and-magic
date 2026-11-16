@@ -25,6 +25,9 @@
 #include "../era/EraDwellingPeriodicSummons.h"
 #include "../era/EraMysteriousCaveBattle.h"
 #include "../era/EraImposedSpells.h"
+#include "../era/SourceCampaignProcessor.h"
+#include "../../lib/gameState/CGameState.h"
+#include "../../lib/battle/BattleInfo.h"
 #include "../era/EraRoundTwoDemons.h"
 #include "../era/EraDemilichSummonRuntime.h"
 #include "../era/EraRebirth.h"
@@ -192,6 +195,16 @@ void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 
     era_compat_server::initializeMysteriousCaveBattle(*gameHandler,battle);
 
+	const auto id=battle.getBattle()->getBattleID();
+	if(gameHandler->sourceCampaigns->battleRound(id,-1,[this,id]()
+	{
+		if(const auto * live=gameHandler->gameState().getBattle(id))finishBattleStarted(*live);
+	}))return;
+	finishBattleStarted(battle);
+}
+
+void BattleFlowProcessor::finishBattleStarted(const CBattleInfoCallback & battle)
+{
 	tryPlaceMoats(battle);
 
 	gameHandler->turnTimerHandler->onBattleStart(battle.getBattle()->getBattleID());
@@ -400,11 +413,11 @@ void BattleFlowProcessor::onTacticsEnded(const CBattleInfoCallback & battle)
 	if (owner->checkBattleStateChanges(battle))
 		return;
 
-	startNextRound(battle, true);
+	if(startNextRound(battle, true))return;
 	activateNextStack(battle);
 }
 
-void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, bool isFirstRound)
+bool BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, bool isFirstRound)
 {
     auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);
     era_compat::XpTimed184NativeAccessScope sourceNativeScope(sourceNativeAccess);
@@ -437,6 +450,11 @@ void BattleFlowProcessor::startNextRound(const CBattleInfoCallback & battle, boo
             applyEraConfluxRoundTwo(*gameHandler,battle,stack);
         }
 	}
+	const auto id=battle.getBattle()->getBattleID();
+	return gameHandler->sourceCampaigns->battleRound(id,battle.battleGetRound()-1,[this,id]()
+	{
+		if(const auto * live=gameHandler->gameState().getBattle(id))activateNextStack(*live);
+	});
 }
 
 const CStack * BattleFlowProcessor::getNextStack(const CBattleInfoCallback & battle)
@@ -519,7 +537,7 @@ void BattleFlowProcessor::activateNextStack(const CBattleInfoCallback & battle)
 		if (!next)
 		{
 			// No stacks to move - start next round
-			startNextRound(battle, false);
+			if(startNextRound(battle, false))return;
 			next = getNextStack(battle);
 			if (!next)
 				throw std::runtime_error("Failed to find valid stack to act!");

@@ -707,7 +707,10 @@ void BattleInfo::nextRound()
         {
             auto poison=s->getLocalBonus(Selector::source(BonusSource::SPELL_EFFECT,SpellID(SpellID::POISON))
                 .And(Selector::type()(BonusType::STACK_HEALTH)));
-            if(poison)
+            const bool imposedBeforeFirstRound=round==1&&s->getLocalBonus(
+                Selector::type()(BonusType::ERA_SOURCE_STATUS_HEALTH)
+                    .And(Selector::source(BonusSource::SPELL_EFFECT,SpellID(SpellID::POISON))));
+            if(poison&&!imposedBeforeFirstRound)
             {
                 poison->val=-::era_bridge::sourcePoisonNextPercent(-poison->val);
                 s->nodeHasChanged();

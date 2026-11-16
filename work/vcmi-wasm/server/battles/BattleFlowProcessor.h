@@ -51,7 +51,8 @@ class BattleFlowProcessor : boost::noncopyable
 	void tryPlaceMoats(const CBattleInfoCallback & battle);
 	void castOpeningSpells(const CBattleInfoCallback & battle);
 	void activateNextStack(const CBattleInfoCallback & battle);
-	void startNextRound(const CBattleInfoCallback & battle, bool isFirstRound);
+	bool startNextRound(const CBattleInfoCallback & battle, bool isFirstRound);
+	void finishBattleStarted(const CBattleInfoCallback & battle);
 
 	void stackEnchantedTrigger(const CBattleInfoCallback & battle, const CStack * stack);
 	void removeObstacle(const CBattleInfoCallback & battle, const CObstacleInstance & obstacle);

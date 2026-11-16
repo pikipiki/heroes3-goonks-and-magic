@@ -20,6 +20,7 @@ public:
  explicit SourceCampaignProcessor(CGameHandler & handler);
  ~SourceCampaignProcessor();
  bool battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume);
+ bool battleRound(BattleID battle,int sourceRound,std::function<void()> resume);
  bool demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building);
  void demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);
  void demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);
