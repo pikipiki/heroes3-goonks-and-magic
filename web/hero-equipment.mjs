@@ -250,7 +250,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   if(button.dataset.heroSlot!==undefined){
    const slot=Number(button.dataset.heroSlot);
    if(state.heroWindow?.picked){if(slots().find(a=>a.slot===slot)?.allowed)command(62,slot);}
-   else if(slot===17&&slots().find(a=>a.slot===slot)?.name&&state.heroWindow?.owned!==false&&state.turn){command(62,slot);}
+   else if(slot===17&&slots().find(a=>a.slot===slot)?.name&&(state.heroWindow?.owned===false||state.turn)){command(62,slot);}
    else{selected=slot;render();}
    return;
   }

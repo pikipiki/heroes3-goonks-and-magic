@@ -1816,6 +1816,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==0){deferredMapAction.reset();ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_CANCEL,EShortcut::GLOBAL_RETURN});return;}if(action==1){ENGINE->events().dispatchShortcutPressed({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});ENGINE->events().dispatchShortcutReleased({EShortcut::GLOBAL_ACCEPT,EShortcut::GLOBAL_RETURN});return;}
  // A dedicated cancel operation cannot also accept a dialog or close the town
  // below it. Ignore delayed taps once the taverne is no longer on top.
+ // Spellbooks in tavern equipment previews are inspectable without hiring.
+ if(action==62&&a==int(ArtifactPosition::SPELLBOOK))
+ {
+  const auto player=GAME->interface();const auto window=ENGINE->windows().topWindow<CHeroWindow>();
+  if(player&&window&&window->curHero&&window->curHero->getOwner()!=player->playerID
+     &&window->curHero->hasSpellbook()&&!window->getPickedArtifact())
+  {
+   ENGINE->windows().createAndPushWindow<CSpellWindow>(window->curHero,player,true);
+   lastPublished=0;return;
+  }
+ }
  if(action==62||action==63||action==64){if(auto window=ENGINE->windows().topWindow<CHeroWindow>()){if(action==63)window->close();else if(action==64){for(const auto & set:window->artSets)if(set)set->putBackPickedArtifact();}else if(window->curHero&&GAME->interface()&&window->curHero->getOwner()==GAME->interface()->playerID&&a>=0&&a<=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size())){GAME->interface()->cb->refreshConfluxTome(window->curHero);window->clickPressedOnArtPlace(window->curHero,ArtifactPosition(a),true,false,false,window->pos.center());}lastPublished=0;}return;}
  if(action==88)
  {

@@ -710,7 +710,14 @@ void CSpellWindow::SpellArea::clickPressed(const Point & cursorPosition)
 			return;
 		}
 
-		auto spellCost = owner->myInt->cb->getSpellCost(mySpell, owner->myHero);
+		if(owner->myHero->getOwner() != owner->myInt->playerID)
+		{
+			std::vector<std::shared_ptr<CComponent>> help(1, std::make_shared<CComponent>(ComponentType::SPELL, mySpell->id));
+			owner->myInt->showInfoDialog(mySpell->getDescriptionTranslated(schoolLevel), help);
+			return;
+		}
+
+		auto spellCost = (owner->myHero->getOwner()!=owner->myInt->playerID?owner->myHero->getSpellCost(mySpell):owner->myInt->cb->getSpellCost(mySpell, owner->myHero));
 		if(spellCost > owner->myHero->mana) //insufficient mana
 		{
 			GAME->interface()->showInfoDialog(boost::str(boost::format(LIBRARY->generaltexth->allTexts[206]) % spellCost % owner->myHero->mana));
@@ -834,7 +841,7 @@ void CSpellWindow::SpellArea::setSpell(const CSpell * spell)
 	{
 		SpellSchool whichSchool;
 		schoolLevel = owner->myHero->getSpellSchoolLevel(mySpell, &whichSchool);
-		auto spellCost = owner->myInt->cb->getSpellCost(mySpell, owner->myHero);
+		auto spellCost = (owner->myHero->getOwner()!=owner->myInt->playerID?owner->myHero->getSpellCost(mySpell):owner->myInt->cb->getSpellCost(mySpell, owner->myHero));
 
 		image->setFrame(mySpell->id.getNum());
 		image->visible = true;
@@ -890,7 +897,7 @@ void CSpellWindow::SpellArea::setSpell(const CSpell * spell)
 
 JsonNode CSpellWindow::mobileSnapshot()
 {
- JsonNode n;n["pages"].Integer()=pagesWithinCurrentTab();n["page"].Integer()=currentPage;n["school"].Integer()=selectedTab.getNum();n["mana"].Integer()=myHero->mana;n["manaLimit"].Integer()=myHero->manaLimit();n["inCombat"].Bool()=myInt->battleInt!=nullptr;n["combatSpells"].Bool()=battleSpellsOnly;
+ JsonNode n;n["readOnly"].Bool()=myHero->getOwner()!=myInt->playerID;n["heroName"].String()=myHero->getNameTranslated();n["pages"].Integer()=pagesWithinCurrentTab();n["page"].Integer()=currentPage;n["school"].Integer()=selectedTab.getNum();n["mana"].Integer()=myHero->mana;n["manaLimit"].Integer()=myHero->manaLimit();n["inCombat"].Bool()=myInt->battleInt!=nullptr;n["combatSpells"].Bool()=battleSpellsOnly;
  const bool scrollingCombat=myInt->battleInt!=nullptr;
  n["scrollable"].Bool()=scrollingCombat;
  if(scrollingCombat){n["page"].Integer()=0;n["pages"].Integer()=1;}
@@ -901,7 +908,7 @@ JsonNode CSpellWindow::mobileSnapshot()
   row["name"].String()=spell->getNameTranslated();
   row["description"].String()=spell->getDescriptionTranslated(schoolLevel);
   row["level"].Integer()=spell->getLevel();
-  row["cost"].Integer()=myInt->cb->getSpellCost(spell,myHero);
+  row["cost"].Integer()=myHero->getOwner()!=myInt->playerID?myHero->getSpellCost(spell):myInt->cb->getSpellCost(spell,myHero);
   row["enabled"].Bool()=row["cost"].Integer()<=myHero->mana;
   if(row["enabled"].Bool()&&myInt->battleInt&&spell->isCombat())
   {
@@ -934,6 +941,7 @@ JsonNode CSpellWindow::mobileSnapshot()
 }
 void CSpellWindow::mobileSelectSpell(int id)
 {
+ if(myHero->getOwner()!=myInt->playerID)return;
  // Resolve the native slot only at casting time; mobile browsing never turns pages.
  if(myInt->battleInt)
  {

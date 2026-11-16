@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "candidate": "Serena",
+  "commander": "Temple Guardian",
+  "nativeCost": 2500,
+  "previewFree": true,
+  "spellbookReadOnly": true,
+  "ownedSpellbookControls": true,
+  "portraitLandscapeAndIPad": true,
+  "errors": [],
+  "sourceBase": "b520b55ad56fc9f2ecf6bf68ea0900f37915d485",
+  "archive": "outputs/vcmi-wasm-goonk-0.4.228-engine.tar.gz",
+  "archiveSha256": "47bc54d13a0c6ae6f85854c1e7c285cd188256ff46d98034e0cc284411dbaf7e",
+  "engineSha256": "cbc5d2e17b1f26acc81c9d824d647a275876d09fe3aaf9298172deacf903c6cd",
+  "nativeBuild": "ninja -j32 html5",
+  "browsers": [
+    "Chromium native engine",
+    "Chromium and WebKit spellbook selection and reuse regression"
+  ],
+  "nodeTests": {
+    "passed": 743,
+    "skipped": 48,
+    "failed": 0
+  },
+  "candidateSpellCosts": "native hero cost at its own spell-school mastery",
+  "castProtection": "native command and spell clicks cannot cast while the candidate is unowned"
+}

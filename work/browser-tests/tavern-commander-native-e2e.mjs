@@ -8,8 +8,9 @@ with zipfile.ZipFile('maps/000-Goonk.vmap') as src:
 objects=[o for o in json.loads(entries['objects.json']) if o.get('instanceName') in ['goonkTown','goonkHero','enemyTown']]
 for o in objects:
  if o['instanceName']=='goonkHero':o['x']=7;o['y']=11
+ if o['instanceName']=='goonkTown':o['subtype']='core:tower';o['options']['buildings']={'allOf':['core:villageHall','core:tavern','core:fort','core:dwellingLvl1']}
 entries['objects.json']=json.dumps(objects).encode()
-h=json.loads(entries['header.json']);h['name']='000 - Commander recruitment validation';entries['header.json']=json.dumps(h).encode()
+h=json.loads(entries['header.json']);h['name']='000 - Commander recruitment validation';h['players']['red']['allowedFactions']={'anyOf':['core:tower']};entries['header.json']=json.dumps(h).encode()
 for name in ['english.json','french.json']:
  t=json.loads(entries[name]);t['mapName']='000 - Commander recruitment validation';entries[name]=json.dumps(t).encode()
 out=io.BytesIO()
@@ -28,7 +29,19 @@ try{
  console.log('Native map started');await cmd(5,0);await wait(()=>goonkMobileState.mode==='town');await p.locator('[data-ui=recruit-heroes]').tap();await wait(()=>goonkMobileState.dialogKind==='tavern'&&Object.keys(goonkMobileState.tavernHeroes||{}).length>0);
  console.log('Native tavern opened');const before=await state(),candidate=before.tavernHeroes[0],gold=before.resources[6],count=before.heroes.length;
  await p.locator('[data-tavern-equipment="0"]').tap();await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow?.owned===false);
- console.log('Hero equipment preview opened');assert(Number.isInteger((await state()).heroWindow.commanderIcon),'A hero for hire exposes its native commander icon');
+ console.log('Hero equipment preview opened');
+ assert((await state()).heroWindow.slots.some(s=>s.slot===17&&s.name),'Candidate has a native spellbook');
+ await p.locator('[data-hero-slot="17"]').tap();await wait(()=>goonkMobileState.mode==='spellbook'&&goonkMobileState.spellbook?.readOnly===true);
+ const previewBook=(await state()).spellbook;assert.equal(previewBook.heroName,candidate.name);assert(previewBook.spells.length>0);assert(previewBook.spells.every(s=>Number.isInteger(s.cost)&&s.cost>=0),'Candidate spell costs use its actual native school mastery');
+ assert.equal(await p.locator('[data-cast-spell],[data-reuse]').count(),0,'Inspection has no cast or reuse control');
+ await p.locator('.spell-row').first().tap();assert(await p.locator('.spell-selection h3').textContent());
+ await cmd(49,previewBook.spells[0].id);await p.waitForTimeout(150);assert.equal((await state()).mode,'spellbook','Native cast commands cannot launch a candidate spell');assert.equal((await state()).spellbook.mana,previewBook.mana);
+ for(const size of [{width:390,height:844},{width:844,height:390},{width:1024,height:768}]){await p.setViewportSize(size);await p.waitForTimeout(150);const r=await p.locator('[data-close-book]').boundingBox();assert(r&&r.x>=0&&r.y>=0&&r.x+r.width<=size.width+1&&r.y+r.height<=size.height+1);await p.screenshot({path:path.join(out,'spellbook-'+size.width+'x'+size.height+'.png')});}
+ await p.locator('[data-spell-context="0"]').tap();await wait(()=>goonkMobileState.spellbook?.combatSpells===false);assert.equal(await p.locator('[data-cast-spell]').count(),0);
+ await p.locator('[data-spell-context="1"]').tap();await wait(()=>goonkMobileState.spellbook?.combatSpells===true);
+ await p.locator('[data-close-book]').tap();await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow?.owned===false);
+ assert.equal((await state()).resources[6],gold,'Spellbook inspection does not spend gold');assert.equal((await state()).heroes.length,count);
+ assert(Number.isInteger((await state()).heroWindow.commanderIcon),'A hero for hire exposes its native commander icon');
  const button=p.locator('[data-hero-commander]');await button.scrollIntoViewIfNeeded();assert(await button.isEnabled());await button.tap();await wait(()=>goonkMobileState.dialogKind==='commander');
  console.log('Native commander preview opened');const preview=await state();assert.equal(preview.dialogPresentation.commanderTree.skills.length,6);assert(preview.dialogPresentation.commanderTree.skills.every(s=>!s.selectable),'Preview is inspection, not a level-up');
  assert.equal(preview.resources[6],gold,'Inspecting the commander costs no gold');assert.equal(preview.heroes.length,count,'Inspecting does not recruit the hero');
@@ -39,6 +52,6 @@ try{
  await p.setViewportSize({width:390,height:844});await p.locator('[data-tavern-recruit="0"]').tap();await wait(expected=>goonkMobileState.heroes?.length===expected,count+1);assert.equal((await state()).resources[6],gold-before.tavern.cost,'Recruitment charges the native cost exactly once');
  if((await state()).dialogKind==='tavern')await cmd(40);if((await state()).mode==='town')await cmd(0);await wait(()=>goonkMobileState.mode==='map');
  const index=(await state()).heroes.findIndex(h=>h.name===candidate.name);assert(index>=0);await cmd(4,index);await cmd(55);await wait(name=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow?.name===name,candidate.name);
- assert.equal((await state()).heroWindow.owned,true);await p.locator('[data-hero-commander]').scrollIntoViewIfNeeded();await p.locator('[data-hero-commander]').tap();await wait(()=>goonkMobileState.dialogKind==='commander');assert.equal((await state()).creatureUnit.name,commander,'The recruited hero keeps the commander inspected before hiring');
- assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,candidate:candidate.name,commander,nativeCost:before.tavern.cost,previewFree:true,portraitLandscapeAndIPad:true,errors},null,2));console.log('PASS native tavern commander preview, return, recruitment and owned hero access');
+ assert.equal((await state()).heroWindow.owned,true);await p.locator('[data-hero-slot="17"]').tap();await wait(()=>goonkMobileState.mode==='spellbook'&&goonkMobileState.spellbook?.readOnly===false);assert.equal(await p.locator('[data-cast-spell]').count(),1,'Recruited hero keeps normal spell controls');await p.locator('[data-close-book]').tap();await wait(()=>goonkMobileState.mode==='hero');await p.locator('[data-hero-commander]').scrollIntoViewIfNeeded();await p.locator('[data-hero-commander]').tap();await wait(()=>goonkMobileState.dialogKind==='commander');assert.equal((await state()).creatureUnit.name,commander,'The recruited hero keeps the commander inspected before hiring');
+ assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,candidate:candidate.name,commander,nativeCost:before.tavern.cost,previewFree:true,spellbookReadOnly:true,ownedSpellbookControls:true,portraitLandscapeAndIPad:true,errors},null,2));console.log('PASS native tavern commander and read-only spellbook, return, recruitment and owned hero access');
 }catch(e){const native=await p.evaluate(()=>{try{const dir='/home/web_user/.cache/vcmi';return Object.fromEntries(Module.FS.readdir(dir).filter(n=>/log\.txt$/i.test(n)).map(n=>[n,Module.FS.readFile(dir+'/'+n,{encoding:'utf8'}).slice(-50000)]))}catch{return {}}});fs.writeFileSync(path.join(out,'native-logs.json'),JSON.stringify(native,null,2));fs.writeFileSync(path.join(out,'failure-state.json'),JSON.stringify(await state().catch(()=>null),null,2));await p.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});throw e;}finally{await browser.close();}

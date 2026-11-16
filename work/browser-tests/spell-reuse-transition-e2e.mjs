@@ -29,6 +29,8 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  assert.equal(await p.locator('[data-reuse] strong').textContent(),'Magic Arrow');
  await p.evaluate(()=>send('spellbook',{heroId:2}));assert(await p.locator('[data-reuse]').isDisabled(),'History is separate for each hero');
  await p.evaluate(()=>{book.mana=2;send();});assert(await p.locator('[data-reuse]').isDisabled(),'Insufficient mana still disables reuse');
+ await p.evaluate(()=>{book.readOnly=true;book.mana=30;book.spells.forEach(s=>s.enabled=true);send();calls=[];});
+ assert.equal(await p.locator('[data-cast-spell],[data-reuse]').count(),0,'Read-only spellbooks expose no casting controls');await p.locator('[data-spell="16"]').click();assert.equal(await p.locator('.spell-selection h3').textContent(),'Ice Bolt');assert.deepEqual(await p.evaluate(()=>calls),[],'Inspecting a spell sends no cast request');
  console.log('PASS',name,'late mana, intermediate targeting states, canceled selection and per-hero history');
  }finally{await browser.close();}
 }

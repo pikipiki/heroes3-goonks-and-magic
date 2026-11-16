@@ -17,12 +17,12 @@ export function createMobileSpellbook({root,command}){
  const panel=document.createElement('section');panel.className='mobile-spellbook';panel.hidden=true;panel.setAttribute('aria-label','Spellbook');root.querySelector('.mobile-play').append(panel);
  let signature='',state={},book={},pending=null,reusing=null,navigation=null,selected=null;const used=new Map();
  const hero=()=>state.heroId??state.heroName??'current';
- function choose(spell){if(pending)return;pending={...spell,hero:hero(),mana:book.mana,school:book.school,page:book.page,combatSpells:book.combatSpells};reusing=null;command(49,spell.id);}
+ function choose(spell){if(pending||book.readOnly)return;pending={...spell,hero:hero(),mana:book.mana,school:book.school,page:book.page,combatSpells:book.combatSpells};reusing=null;command(49,spell.id);}
  panel.addEventListener('error',event=>{const img=event.target;if(!img.matches?.('.spell-icon'))return;const spell=book.spells?.find(s=>s.id===Number(img.dataset.icon));const original=document.querySelector('#canvas');if(spell&&original&&Number.isFinite(spell.x)&&Number.isFinite(spell.y)){const canvas=document.createElement('canvas');canvas.width=65;canvas.height=64;canvas.setAttribute('aria-hidden','true');canvas.getContext('2d').drawImage(original,spell.x,spell.y,65,64,0,0,65,64);img.replaceWith(canvas);}else img.hidden=true;},true);
  panel.addEventListener('click',event=>{const b=event.target.closest('button');if(!b||b.disabled)return;
-  if(b.dataset.spell!==undefined){const spell=book.spells?.find(s=>s.id===Number(b.dataset.spell));if(spell){selected=spell.id;if(book.inCombat===true&&spell.enabled){choose(spell);return;}signature='';render();panel.querySelector('[data-spell="'+selected+'"]')?.focus({preventScroll:true});}return;}
+  if(b.dataset.spell!==undefined){const spell=book.spells?.find(s=>s.id===Number(b.dataset.spell));if(spell){selected=spell.id;if(book.inCombat===true&&!book.readOnly&&spell.enabled){choose(spell);return;}signature='';render();panel.querySelector('[data-spell="'+selected+'"]')?.focus({preventScroll:true});}return;}
   if(b.dataset.castSpell!==undefined){const spell=book.spells?.find(s=>s.id===selected);if(spell?.enabled)choose(spell);return;}
-  if(b.dataset.reuse!==undefined){const previous=used.get(hero());if(!previous||book.mana<previous.cost)return;reusing={...previous};navigation=null;signature='';advanceReuse();return;}
+  if(b.dataset.reuse!==undefined){const previous=used.get(hero());if(book.readOnly||!previous||book.mana<previous.cost)return;reusing={...previous};navigation=null;signature='';advanceReuse();return;}
   reusing=null;if(b.dataset.spellContext!==undefined){selected=null;command(70,Number(b.dataset.spellContext));return;}if(b.dataset.school!==undefined||b.dataset.page!==undefined){selected=null;panel.querySelector('.spell-list').scrollTop=0;}if(b.dataset.school!==undefined)command(51,Number(b.dataset.school));if(b.dataset.page!==undefined)command(50,Number(b.dataset.page));if(b.dataset.closeBook!==undefined){pending=null;command(0);}
  });
  function advanceReuse(){if(!reusing)return;const position=JSON.stringify(book);if(position===navigation)return;navigation=position;const spell=book.spells?.find(s=>s.id===reusing.id);if(spell){if(spell.enabled)choose(spell);else reusing=null;return;}
@@ -37,7 +37,7 @@ export function createMobileSpellbook({root,command}){
   panel.dataset.spellPalette=String(Math.max(0,spellSchoolIndex(book.school)));
   const scroll=panel.querySelector('.spell-list')?.scrollTop||0;
   const previous=used.get(hero()),spells=book.spells||[];if(!spells.some(s=>s.id===selected))selected=(spells.find(s=>s.enabled)||spells[0])?.id;const active=spells.find(s=>s.id===selected);
-  const reuseDisabled=!previous||book.mana<previous.cost||!!reusing;
+  const reuseDisabled=book.readOnly||!previous||book.mana<previous.cost||!!reusing;
   const target=targets[active?.target];
   const warning=book.mana<active?.cost?'Not enough mana':'Spell unavailable now';
   const power=book.inCombat===true?book.heroSpellPower:undefined;
@@ -49,11 +49,11 @@ export function createMobileSpellbook({root,command}){
     <h2>Spellbook <small>${book.mana??0}${manaLimit} mana</small>${powerText?`<small class="spell-effective-power">${esc(powerText)}</small>`:''}</h2>
     <button data-close-book aria-label="Close spellbook">✕</button>
    </header>
-   <div class="spell-top-actions">
+   ${book.readOnly?`<p class="spell-top-actions spell-inspection-note">${getLanguage()==='fr'?'Grimoire du héros à recruter · consultation uniquement.':'Hero for hire spellbook · read only.'}</p>`:`<div class="spell-top-actions">
     <button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy="true"':''} title="${esc(previous?previous.name:'No spell used yet')}">
      ${previous?`<img class="last-spell-icon" decoding="sync" src="${spellIconURL(previous.id)}" alt=""><span><small>Reuse last spell</small><strong>${esc(previous.name)}</strong></span><small>${previous.cost} mana</small>`:'Reuse last spell'}
     </button>
-   </div>
+   </div>`}
    ${book.inCombat===false?`<nav class="spell-contexts" aria-label="Spell types"><button data-spell-context="0" aria-pressed="${!book.combatSpells}">Adventure spells</button><button data-spell-context="1" aria-pressed="${!!book.combatSpells}">Combat spells</button></nav>`:''}
    <nav class="spell-schools" aria-label="Spell categories">${schools.map(([symbol,name],i)=>`<button data-school="${i}" aria-pressed="${spellSchoolIds[i]===book.school}"><span aria-hidden="true">${symbol}</span> ${name}</button>`).join('')}</nav>
    <div class="spell-content">
@@ -67,12 +67,12 @@ export function createMobileSpellbook({root,command}){
       <small>Level ${active.level} · ${active.cost} mana</small>
       ${target?`<p class="spell-target" data-spell-target="${active.target}"><span aria-hidden="true">${target[0]}</span> ${target[1]}</p>`:''}</div></div>
       <p>${esc(active.description).replace(/[{}]/g,'')}</p>
-      ${active.enabled?'':`<p class="spell-warning">${warning}</p>`}`:'<p>Select a spell to see its effects.</p>'}
+      ${active.enabled||book.readOnly?'':`<p class="spell-warning">${warning}</p>`}`:'<p>Select a spell to see its effects.</p>'}
     </article>
    </div>
    <footer>
     ${book.inCombat===true?'':`<div class="spell-pagination"><button data-page="-1" ${book.page>0?'':'disabled'}>← Previous page</button><span>Page ${(book.page??0)+1}</span><button data-page="1" ${book.page+1>=book.pages?'disabled':''}>Next page →</button></div>`}
-    <button class="spell-confirm primary" data-cast-spell ${active?.enabled?'':'disabled'}>${castLabel}${active?` · ${active.cost} mana`:''}</button>
+    ${book.readOnly?'':`<button class="spell-confirm primary" data-cast-spell ${active?.enabled?'':'disabled'}>${castLabel}${active?` · ${active.cost} mana`:''}</button>`}
    </footer>`;
   panel.querySelector('.spell-list').scrollTop=scroll;
  }
