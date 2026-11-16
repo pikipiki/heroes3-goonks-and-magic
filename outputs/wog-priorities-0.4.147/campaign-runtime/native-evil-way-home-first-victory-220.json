@@ -1,0 +1,481 @@
+{
+  "passed": true,
+  "scope": "Unchanged original zc4 scenario0 native Pendant delivery victory, actual transition0->1 and initial Grand Elves placement timer. Not a full campaign victory or admission. Native offline QA armies/travel were used earlier; scripts, enemies and quest flags were unchanged.",
+  "engineSha256": "7da850ddca692af2ce40036098b8c24811e2fee344b40206b7f24abbab3f5c45",
+  "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+  "victory": {
+    "audioMuted": false,
+    "campaignScenario": {
+      "bonus": 0,
+      "bonuses": [
+        {
+          "description": "Start with 10 Wraiths",
+          "id": 0,
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 475,
+            "y": 455
+          }
+        },
+        {
+          "description": "Start with 5 Vampires",
+          "id": 1,
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 543,
+            "y": 455
+          }
+        },
+        {
+          "description": "Start with 1 Liches",
+          "id": 2,
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 611,
+            "y": 455
+          }
+        }
+      ],
+      "canStart": true,
+      "chooseDifficulty": true,
+      "description": "Xsi had the order to spy the humans for the Necromancer. But she wasn\u00b4t lucky. The humans realised her plans, hunted and prisonded her in a small valley. Now it`s on you to bring Xsi back home to the Necromancer. All maps are planed to play \"expert\". If you want choose your difficulty!",
+      "difficulty": 1,
+      "mapRect": {
+        "h": 600,
+        "w": 456,
+        "x": 0,
+        "y": 0
+      },
+      "name": "Evil Way Home",
+      "scenarioDescription": "You have to build a Grail Structure in Castle \"Hell Hole\". Heroes experience is limited to level 20. Xsi, Isra and Tamika would go to the next Map and take there Spells, Experience, Primary and secondary Skills with them.",
+      "scenarioName": "Through Elves Land",
+      "scenarios": [
+        {
+          "available": false,
+          "completed": true,
+          "id": 0,
+          "name": "Evil Way Home"
+        },
+        {
+          "available": true,
+          "completed": false,
+          "id": 1,
+          "name": "Through Elves Land"
+        },
+        {
+          "available": false,
+          "completed": false,
+          "id": 2,
+          "name": "map.zc4:2.header.name"
+        },
+        {
+          "available": false,
+          "completed": false,
+          "id": 3,
+          "name": "map.zc4:3.header.name"
+        }
+      ],
+      "selected": 1
+    },
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "campaign-scenario",
+    "musicVolume": 88,
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "sessionState": 4,
+    "soundVolume": 88,
+    "windowToken": 131315340
+  },
+  "nextScenarioState": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 433,
+        "name": "Isra",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 60,
+            "attack": 5,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 27,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 4,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 75,
+            "growth": 12,
+            "health": 6,
+            "icon": "",
+            "id": 56,
+            "key": "core:skeleton",
+            "name": "Skeleton",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 98,
+            "attack": 5,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 6,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 140,
+            "growth": 8,
+            "health": 15,
+            "icon": "",
+            "id": 58,
+            "key": "core:walkingDead",
+            "name": "Walking Dead",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 3
+          },
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "campaignPending": false,
+    "cheatReady": true,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 1,
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      },
+      {
+        "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+        "icon": 0,
+        "name": "Spell Book",
+        "slot": 17
+      }
+    ],
+    "exchangePartners": [
+      {
+        "id": 434,
+        "name": "Xsi"
+      }
+    ],
+    "heroHasSpellbook": true,
+    "heroId": 433,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Isra",
+    "heroes": [
+      {
+        "hasSpellbook": true,
+        "id": 433,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1500,
+        "movementLimit": 1500,
+        "name": "Isra"
+      },
+      {
+        "hasSpellbook": true,
+        "id": 434,
+        "index": 1,
+        "mana": 40,
+        "manaLimit": 40,
+        "movement": 1500,
+        "movementLimit": 1500,
+        "name": "Xsi"
+      }
+    ],
+    "mapOverview": {
+      "height": 72,
+      "level": 0,
+      "rect": {
+        "h": 144,
+        "w": 144,
+        "x": 630,
+        "y": 26
+      },
+      "view": {
+        "h": 546,
+        "w": 594,
+        "x": 7,
+        "y": 7
+      },
+      "viewport": {
+        "h": 19,
+        "w": 20,
+        "x": 61,
+        "y": 62
+      },
+      "width": 72
+    },
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "map",
+    "movement": 1500,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      },
+      {
+        "color": 2,
+        "human": false,
+        "name": "Computer"
+      },
+      {
+        "color": 3,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      20,
+      10,
+      20,
+      10,
+      10,
+      10,
+      20000,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 2221,
+        "index": 0,
+        "name": "Skullhill Gate"
+      }
+    ],
+    "turn": true,
+    "windowToken": 146100304,
+    "worldView": false
+  },
+  "beforeHero": {
+    "name": "Isra",
+    "primarySkills": [
+      1,
+      2,
+      3,
+      1
+    ],
+    "experience": 1285
+  },
+  "afterHero": {
+    "name": "Isra",
+    "primarySkills": [
+      1,
+      2,
+      3,
+      1
+    ],
+    "experience": 1285
+  },
+  "dialogs": [
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Red",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 281
+          }
+        }
+      ],
+      "lines": [
+        "Congratulations! You have reached your destination, precious cargo intact, and can claim victory!"
+      ],
+      "queryId": -1,
+      "title": "Game message",
+      "visitedObject": "Skullhill Gate, Necropolis"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "Better you had saved the Artefacts of Sir Edric. Now you could need them!"
+      ],
+      "queryId": 3,
+      "title": "Game message",
+      "visitedObject": "Skullhill Gate, Necropolis"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Grand Elves",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 273
+          }
+        }
+      ],
+      "lines": [
+        "The Grand Elves behind the green Borderguard increase. The Army is now 23 creatures strong!"
+      ],
+      "queryId": 4,
+      "title": "Game message",
+      "visitedObject": "Skullhill Gate, Necropolis"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "You hear that {Tamika} is prisoned anywhere in this country. Free her and don`t loose her. It would be very usefull if there are 3 heroes crossing the next country."
+      ],
+      "queryId": -1,
+      "title": "Game message",
+      "visitedObject": "Skullhill Gate, Necropolis"
+    }
+  ],
+  "nativeSaveSha256": "999e33f4c2f22b5f418e6bd50fe6be7717b032c1a81c28646949b45c36c73b70",
+  "errors": []
+}

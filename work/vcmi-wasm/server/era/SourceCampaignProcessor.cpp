@@ -1359,6 +1359,32 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    arity(op,1);require(args[0].access==Access::Read,"redraw mode needs a value");const int mode=number(args[0]);require(mode==1||mode==2,"unsupported source redraw mode");
    auto change=mutation("mapRefresh",ObjectInstanceID::NONE);change["mode"].Integer()=mode;change["player"].Integer()=player.getNum();persist(change);return Step::Continue;
   }
+  if(op.code=="E")
+  {
+   arity(op,3);for(const auto & arg:args)require(arg.access==Access::Read,"source placement query needs coordinates");
+   const int3 pos(number(args[0]),number(args[1]),number(args[2]));const auto & map=gh.gameState().getMap();require(map.isInTheMap(pos),"source placement query outside map");
+   // EmptyPlace2 delegates to EmptyPlace: an entrance, blocked cell,
+   // water, rock or local event makes flag1 true (placement is impossible).
+   const auto & tile=map.getTile(pos);bool occupied=tile.visitable()||tile.blocked()||tile.isWater()||!tile.getTerrain()->isPassable();
+   if(!occupied)for(const auto & object:map.objects)if(object&&object->ID==Obj::EVENT&&object->visitablePos()==pos){occupied=true;break;}
+   writeFlag(1,vm,occupied);return Step::Continue;
+  }
+  if(op.code=="D")
+  {
+   require(args.size()==3||args.size()==4,"invalid source water path arity");
+   for(const auto & arg:args)require(arg.access==Access::Read,"source water path needs value arguments");
+   const int3 pos(number(args[0]),number(args[1]),number(args[2]));require(gh.gameState().getMap().isInTheMap(pos),"source water path outside map");
+   const int enabled=args.size()==4?number(args[3]):1;require(enabled==1,"removing an untracked original water path is not admitted");
+   // Original StepWater changes the terrain to swamp and draws208/1 with
+   // ZObrevno.def. Its omitted fourth operand uniquely defaults to1.
+   const auto handler=LIBRARY->objtypeh->getHandlerFor(Obj::LOG,MapObjectSubID(0));
+   std::shared_ptr<const ObjectTemplate> appearance;
+   for(const auto & candidate:handler->getTemplates())if(candidate->animationFile==AnimationPath::builtin("objects/zobrevno.def")){appearance=candidate;break;}
+   require(appearance!=nullptr,"original water path artwork unavailable");
+   auto change=mutation("terrainAppearance",ObjectInstanceID::NONE);change["x"].Integer()=pos.x;change["y"].Integer()=pos.y;change["z"].Integer()=pos.z;change["terrain"].Integer()=4;persist(change);
+   auto logs=gh.createNewObject(pos,Obj::LOG,MapObjectSubID(0));logs->appearance=appearance;logs->setAnchorPos(pos);gh.newObject(logs,player);
+   state["objectIdentities"][std::to_string(logs->id.getNum())].Vector()={JsonNode(208),JsonNode(1)};persist();return Step::Continue;
+  }
   if(op.code=="S"||op.code=="H")
   {
    arity(op,5);require(!query(op),"fog arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const PlayerColor owner(number(args[3]));const int radius=number(args[4]);
