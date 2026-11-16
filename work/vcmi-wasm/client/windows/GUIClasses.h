@@ -325,6 +325,7 @@ public:
 /// Here you can buy ships
 class CShipyardWindow : public CStatusbarWindow
 {
+	TResources mobileCost;
 	std::shared_ptr<CPicture> bgWater;
 	std::shared_ptr<CShowableAnim> bgShip;
 
@@ -341,6 +342,9 @@ class CShipyardWindow : public CStatusbarWindow
 
 public:
 	CShipyardWindow(const TResources & cost, int state, BoatId boatType, const std::function<void()> & onBuy);
+	const TResources & getMobileCost() const;
+	bool canBuildMobile() const;
+	Rect getMobileResourceRect(GameResID resource) const;
 };
 
 /// Creature transformer window

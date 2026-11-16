@@ -1,0 +1,1259 @@
+{
+  "passed": true,
+  "browser": "chromium",
+  "poor": false,
+  "loadedPending": false,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "a0267799fb1656ec",
+    "wasm": "vcmiclient.37f3e381a3f470bf.wasm",
+    "sha256": "37f3e381a3f470bffea91e596cce9bc62a28f02f717626239e0e4e6d3ffc27d9",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "fixtureSha256": "35962ef9452ad2c7e3af285d02a89f6df99fa5f51189332c3cbb8e516904cd74",
+  "mapSha256": "f46ebcad043848adb382da1d5a032dd351bcb08841f8529eb89a7ec830529383",
+  "scope": "Private actual native shipyard, exact resource charge or unaffordable refusal, stable seven viewport dialog, boat embarkation and travel on authored water terrain after next turn and native906 save/reload. No campaign victory.",
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 18,
+        "y": 413,
+        "w": 138,
+        "h": 48
+      },
+      "close": {
+        "x": 164,
+        "y": 413,
+        "w": 138,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 311,
+        "y": 203,
+        "w": 244,
+        "h": 48
+      },
+      "close": {
+        "x": 311,
+        "y": 259,
+        "w": 244,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 18,
+        "y": 551,
+        "w": 173,
+        "h": 48
+      },
+      "close": {
+        "x": 199,
+        "y": 551,
+        "w": 173,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 577.25,
+        "y": 264,
+        "w": 244.75,
+        "h": 48
+      },
+      "close": {
+        "x": 577.25,
+        "y": 320,
+        "w": 244.75,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 18,
+        "y": 642.75,
+        "w": 362,
+        "h": 48
+      },
+      "close": {
+        "x": 388,
+        "y": 642.75,
+        "w": 362,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 705.046875,
+        "y": 698,
+        "w": 144.46875,
+        "h": 48
+      },
+      "close": {
+        "x": 857.515625,
+        "y": 698,
+        "w": 144.484375,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "same": true,
+      "scrollStable": true,
+      "disabled": false,
+      "buy": {
+        "x": 18,
+        "y": 721.640625,
+        "w": 388,
+        "h": 48
+      },
+      "close": {
+        "x": 414,
+        "y": 721.640625,
+        "w": 388,
+        "h": 48
+      },
+      "singleClose": true,
+      "text": "Build A New ShipResource cost:10 Wood1000 GoldBuild boatBack"
+    }
+  ],
+  "before": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 10,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 126,
+            "attack": 6,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 5,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 3,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 10,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": false,
+    "backpackCount": 0,
+    "campaignPending": false,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 1,
+    "dialogKind": "shipyard",
+    "dialogPresentation": {
+      "cancel": true,
+      "choices": [
+        {
+          "label": "10 Wood",
+          "rect": {
+            "h": 32,
+            "w": 32,
+            "x": 432,
+            "y": 350
+          }
+        },
+        {
+          "label": "1000 Gold",
+          "rect": {
+            "h": 32,
+            "w": 32,
+            "x": 336,
+            "y": 350
+          }
+        }
+      ],
+      "confirmDisabled": false,
+      "lines": [
+        "Resource cost:"
+      ],
+      "title": "Build A New Ship"
+    },
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 9036,
+        "movementLimit": 1560,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "dialog",
+    "movement": 9036,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 388,
+      "w": 329,
+      "x": 236,
+      "y": 106
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      25,
+      10,
+      28,
+      10,
+      10,
+      10,
+      7000,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": true,
+    "windowToken": 34084628
+  },
+  "after": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 10,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 126,
+            "attack": 6,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 5,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 3,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 10,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "campaignPending": false,
+    "cheatReady": true,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 1,
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 9036,
+        "movementLimit": 1560,
+        "name": "Orrin"
+      }
+    ],
+    "mapOverview": {
+      "height": 72,
+      "level": 0,
+      "rect": {
+        "h": 144,
+        "w": 144,
+        "x": 630,
+        "y": 26
+      },
+      "view": {
+        "h": 546,
+        "w": 594,
+        "x": 7,
+        "y": 7
+      },
+      "viewport": {
+        "h": 19,
+        "w": 20,
+        "x": 12,
+        "y": 9
+      },
+      "width": 72
+    },
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "map",
+    "movement": 9036,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      15,
+      10,
+      28,
+      10,
+      10,
+      10,
+      6000,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": true,
+    "windowToken": 34071520,
+    "worldView": false
+  },
+  "dialogs": [
+    {
+      "day": 1,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "Shipyard ready"
+        ],
+        "queryId": 3,
+        "title": "Game message"
+      }
+    },
+    {
+      "day": 1,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "Naval at 17/18/0"
+        ],
+        "queryId": 4,
+        "title": "Game message"
+      }
+    },
+    {
+      "day": 2,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "Naval at 19/19/0"
+        ],
+        "queryId": 30,
+        "title": "Game message",
+        "visitedObject": "Shipyard"
+      }
+    },
+    {
+      "day": 3,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "Naval at 19/21/0"
+        ],
+        "queryId": 37,
+        "title": "Game message"
+      }
+    }
+  ],
+  "errors": [],
+  "boarded": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 10,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 126,
+            "attack": 6,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 5,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 3,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 10,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "campaignPending": true,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 2,
+    "dialogKind": "source-campaign",
+    "dialogPresentation": {
+      "cancel": false,
+      "lines": [
+        "Naval at 19/19/0"
+      ],
+      "queryId": 30,
+      "title": "Game message",
+      "visitedObject": "Shipyard"
+    },
+    "dialogTitle": "Game message",
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1500,
+        "movementLimit": 1500,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "dialog",
+    "movement": 1500,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 162,
+      "w": 292,
+      "x": 254,
+      "y": 219
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      15,
+      10,
+      28,
+      10,
+      10,
+      10,
+      6500,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": false,
+    "windowToken": 116833484
+  },
+  "sailed": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 10,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 126,
+            "attack": 6,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 5,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 3,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 10,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "campaignPending": true,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 3,
+    "dialogKind": "source-campaign",
+    "dialogPresentation": {
+      "cancel": false,
+      "lines": [
+        "Naval at 19/21/0"
+      ],
+      "queryId": 37,
+      "title": "Game message"
+    },
+    "dialogTitle": "Game message",
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1500,
+        "movementLimit": 1500,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "dialog",
+    "movement": 1500,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 162,
+      "w": 292,
+      "x": 254,
+      "y": 219
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      15,
+      10,
+      28,
+      10,
+      10,
+      10,
+      7000,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": false,
+    "windowToken": 116827548
+  }
+}

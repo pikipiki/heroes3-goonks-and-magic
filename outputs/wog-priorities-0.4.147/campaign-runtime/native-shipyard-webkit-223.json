@@ -1,0 +1,287 @@
+{
+  "passed": true,
+  "browser": "webkit",
+  "poor": false,
+  "loadedPending": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "a0267799fb1656ec",
+    "wasm": "vcmiclient.37f3e381a3f470bf.wasm",
+    "sha256": "37f3e381a3f470bffea91e596cce9bc62a28f02f717626239e0e4e6d3ffc27d9",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "fixtureSha256": "35962ef9452ad2c7e3af285d02a89f6df99fa5f51189332c3cbb8e516904cd74",
+  "mapSha256": "f46ebcad043848adb382da1d5a032dd351bcb08841f8529eb89a7ec830529383",
+  "scope": "Private actual native shipyard, exact resource charge or unaffordable refusal, stable seven viewport dialog, boat embarkation and travel on authored water terrain after next turn and native906 save/reload. No campaign victory.",
+  "layouts": [],
+  "dialogs": [
+    {
+      "day": 4,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "Naval at 19/23/0"
+        ],
+        "queryId": 44,
+        "title": "Game message"
+      }
+    }
+  ],
+  "errors": [],
+  "sailed": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 10,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 126,
+            "attack": 6,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 5,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 3,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 10,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "campaignPending": true,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 4,
+    "dialogKind": "source-campaign",
+    "dialogPresentation": {
+      "cancel": false,
+      "lines": [
+        "Naval at 19/23/0"
+      ],
+      "queryId": 44,
+      "title": "Game message"
+    },
+    "dialogTitle": "Game message",
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1500,
+        "movementLimit": 1500,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "dialog",
+    "movement": 1500,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 162,
+      "w": 292,
+      "x": 254,
+      "y": 219
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      15,
+      10,
+      28,
+      10,
+      10,
+      10,
+      7500,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": false,
+    "windowToken": 34064476
+  }
+}

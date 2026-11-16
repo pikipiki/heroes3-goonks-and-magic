@@ -1031,6 +1031,21 @@ void publishMobileState(){
  else if((ENGINE->windows().topWindow<CPrologEpilogVideo>()||ENGINE->windows().topWindow<VideoWindow>())&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-intro";
  else if(ENGINE->windows().topWindow<CLoadingScreen>()&&GAME->server().si&&GAME->server().si->campState)n["mode"].String()="campaign-loading";
  else if(ENGINE->windows().topWindow<CInfoWindow>()){n["mode"].String()="dialog";n["dialogTitle"].String()="Game message";}
+ else if(const auto shipyard=ENGINE->windows().topWindow<CShipyardWindow>())
+ {
+  n["mode"].String()="dialog";n["dialogKind"].String()="shipyard";
+  auto & presentation=n["dialogPresentation"];
+  presentation["title"].String()=LIBRARY->generaltexth->jktexts[13];
+  presentation["lines"].Vector().emplace_back(LIBRARY->generaltexth->jktexts[14]);
+  presentation["cancel"].Bool()=true;presentation["confirmDisabled"].Bool()=!shipyard->canBuildMobile();
+  for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())
+  {
+   const int amount=shipyard->getMobileCost()[resource];if(amount<=0)continue;
+   JsonNode item;item["label"].String()=std::to_string(amount)+" "+LIBRARY->resourceTypeHandler->getById(resource)->getNameTranslated();
+   item["rect"]=rect(shipyard->getMobileResourceRect(resource));
+   presentation["choices"].Vector().push_back(std::move(item));
+  }
+ }
  else if(const auto market=mobileResourceMarket())
  {
   n["mode"].String()="market";

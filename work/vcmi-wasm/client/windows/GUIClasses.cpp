@@ -850,6 +850,7 @@ void CTavernWindow::HeroSelector::recreate()
 
 CShipyardWindow::CShipyardWindow(const TResources & cost, int state, BoatId boatType, const std::function<void()> & onBuy)
 	: CWindowObject(PLAYER_COLORED, ImagePath::builtin("TPSHIP"))
+	, mobileCost(cost)
 {
 	OBJECT_CONSTRUCTION;
 
@@ -898,6 +899,23 @@ CShipyardWindow::CShipyardWindow(const TResources & cost, int state, BoatId boat
 
 	title = std::make_shared<CLabel>(164, 27,  FONT_BIG, ETextAlignment::CENTER, Colors::YELLOW, LIBRARY->generaltexth->jktexts[13]);
 	costLabel = std::make_shared<CLabel>(164, 220, FONT_MEDIUM, ETextAlignment::CENTER, Colors::WHITE, LIBRARY->generaltexth->jktexts[14]);
+}
+
+const TResources & CShipyardWindow::getMobileCost() const
+{
+	return mobileCost;
+}
+
+bool CShipyardWindow::canBuildMobile() const
+{
+	return build && !build->isBlocked();
+}
+
+Rect CShipyardWindow::getMobileResourceRect(GameResID resource) const
+{
+	if(resource==EGameResID::WOOD)return woodPic->pos;
+	if(resource==EGameResID::GOLD)return goldPic->pos;
+	return {};
 }
 
 void CTransformerWindow::CItem::move()
