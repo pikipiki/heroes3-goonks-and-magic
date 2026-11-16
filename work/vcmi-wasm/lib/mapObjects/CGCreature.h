@@ -54,6 +54,8 @@ public:
 	bool refusedJoining = false;
 
 	void onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstance * h) const override;
+	// WoG wandering attacks use ordinary stack deployment, without diplomacy.
+	void onWanderingAttack(IGameEventCallback & gameEvents, const CGHeroInstance * h) const;
 	std::string getHoverText(PlayerColor player) const override;
 	std::string getHoverText(const CGHeroInstance * hero) const override;
 	std::string getPopupText(PlayerColor player) const override;

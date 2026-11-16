@@ -1,0 +1,3435 @@
+{
+  "passed": true,
+  "browser": "chromium",
+  "lossControl": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "6db7b70e7ec339fe",
+    "wasm": "vcmiclient.dc4df6405822ec9a.wasm",
+    "sha256": "dc4df6405822ec9a73cb8393f3102b3694cdaffb62609a2d6463e9b6d0d8cc14",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "mapSha256": "aacd7cf258c737c35e6694312e5b306f3aff15f3267398c5b949c7004b03aef8",
+  "fixtureSha256": "0414c17e2c5fa4a3fa03f456755f8a25c6b4004010a66db56df0f1650f3c780b",
+  "scope": "Private native MW conversion, identity reuse, radius byte, daily pursuit, occupied fallback refusal, forced native battle and turn continuation. Tests do not admit any campaign.",
+  "loadedPending": false,
+  "second": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 11,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 126,
+            "attack": 6,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 4,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 3,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 10,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 4
+          },
+          {
+            "aiValue": 351,
+            "attack": 8,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              200,
+              0
+            ],
+            "count": 3,
+            "damageMax": 6,
+            "damageMin": 3,
+            "defense": 8,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 324,
+            "growth": 7,
+            "health": 25,
+            "icon": "",
+            "id": 4,
+            "key": "core:griffin",
+            "name": "Griffin",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 6
+          },
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": true,
+    "backpackCount": 0,
+    "campaignPending": true,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 2,
+    "dialogKind": "source-campaign",
+    "dialogPresentation": {
+      "cancel": false,
+      "lines": [
+        "MW day 2 slots 0/1/0/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+      ],
+      "queryId": 6,
+      "title": "Game message"
+    },
+    "dialogTitle": "Game message",
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1560,
+        "movementLimit": 1560,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "dialog",
+    "movement": 1560,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 290,
+      "w": 292,
+      "x": 254,
+      "y": 155
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      30,
+      10,
+      30,
+      10,
+      10,
+      10,
+      20500,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "turn": false,
+    "windowToken": 116790252
+  },
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 417,
+        "clientHeight": 417,
+        "rect": {
+          "x": 18,
+          "y": 73,
+          "w": 284,
+          "h": 421
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 18,
+            "y": 502,
+            "w": 284,
+            "h": 48
+          }
+        ]
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 290,
+        "clientHeight": 290,
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "w": 292,
+          "h": 294
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 311,
+            "y": 259,
+            "w": 244,
+            "h": 48
+          }
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 693,
+        "clientHeight": 693,
+        "rect": {
+          "x": 18,
+          "y": 73,
+          "w": 354,
+          "h": 697
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 18,
+            "y": 778,
+            "w": 354,
+            "h": 48
+          }
+        ]
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 342,
+        "clientHeight": 342,
+        "rect": {
+          "x": 22,
+          "y": 22,
+          "w": 543.25,
+          "h": 346
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 577.25,
+            "y": 320,
+            "w": 244.75,
+            "h": 48
+          }
+        ]
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 870,
+        "clientHeight": 870,
+        "rect": {
+          "x": 18,
+          "y": 76.5,
+          "w": 732,
+          "h": 873.5
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 18,
+            "y": 958,
+            "w": 732,
+            "h": 48
+          }
+        ]
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 720,
+        "clientHeight": 720,
+        "rect": {
+          "x": 22,
+          "y": 22,
+          "w": 671.046875,
+          "h": 724
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 705.046875,
+            "y": 698,
+            "w": 296.953125,
+            "h": 48
+          }
+        ]
+      }
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "before": {
+        "scrollTop": 0,
+        "scrollHeight": 1024,
+        "clientHeight": 1024,
+        "rect": {
+          "x": 18,
+          "y": 78.28125,
+          "w": 784,
+          "h": 1027.71875
+        }
+      },
+      "after": {
+        "same": true,
+        "scrollTop": 0,
+        "buttons": [
+          {
+            "x": 18,
+            "y": 1114,
+            "w": 784,
+            "h": 48
+          }
+        ]
+      }
+    }
+  ],
+  "stages": [
+    {
+      "anyHeroCanMove": true,
+      "armies": [
+        {
+          "id": 2,
+          "name": "Orrin",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 11,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                0
+              ],
+              "count": 4,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 3,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 115,
+              "growth": 9,
+              "health": 10,
+              "icon": "",
+              "id": 2,
+              "key": "core:archer",
+              "name": "Archer",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "speed": 4
+            },
+            {
+              "aiValue": 351,
+              "attack": 8,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 3,
+              "damageMax": 6,
+              "damageMin": 3,
+              "defense": 8,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 324,
+              "growth": 7,
+              "health": 25,
+              "icon": "",
+              "id": 4,
+              "key": "core:griffin",
+              "name": "Griffin",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 6
+            },
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "audioMuted": false,
+      "autosaveAllowed": true,
+      "backpackCount": 0,
+      "campaignPending": true,
+      "cheatReady": false,
+      "cheatsAllowed": true,
+      "currentPlayer": 0,
+      "day": 3,
+      "dialogKind": "source-campaign",
+      "dialogPresentation": {
+        "cancel": false,
+        "lines": [
+          "MW day 3 slots 0/0/1/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+        ],
+        "queryId": 9,
+        "title": "Game message"
+      },
+      "dialogTitle": "Game message",
+      "equipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "heroHasSpellbook": false,
+      "heroId": 2,
+      "heroMana": 10,
+      "heroManaLimit": 10,
+      "heroMoving": false,
+      "heroName": "Orrin",
+      "heroes": [
+        {
+          "hasSpellbook": false,
+          "id": 2,
+          "index": 0,
+          "mana": 10,
+          "manaLimit": 10,
+          "movement": 1560,
+          "movementLimit": 1560,
+          "name": "Orrin"
+        }
+      ],
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "dialog",
+      "movement": 1560,
+      "musicVolume": 88,
+      "onlineGame": false,
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "rect": {
+        "h": 290,
+        "w": 292,
+        "x": 254,
+        "y": 155
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        30,
+        10,
+        30,
+        10,
+        10,
+        10,
+        21000,
+        0
+      ],
+      "sessionState": 6,
+      "soundVolume": 88,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "turn": false,
+      "windowToken": 116799772
+    },
+    {
+      "audioMuted": false,
+      "autosaveAllowed": true,
+      "campaignPending": true,
+      "cheatReady": false,
+      "cheatsAllowed": true,
+      "currentPlayer": 0,
+      "day": 4,
+      "dialogKind": "source-campaign",
+      "dialogPresentation": {
+        "cancel": false,
+        "lines": [
+          "MW day 4 slots 0/0/1/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+        ],
+        "queryId": 15,
+        "title": "Game message"
+      },
+      "dialogTitle": "Game message",
+      "heroMoving": false,
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "dialog",
+      "musicVolume": 88,
+      "onlineGame": false,
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "rect": {
+        "h": 290,
+        "w": 292,
+        "x": 254,
+        "y": 155
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        30,
+        10,
+        30,
+        10,
+        10,
+        10,
+        21500,
+        0
+      ],
+      "selectedTownName": "Goonkbourg",
+      "sessionState": 6,
+      "soundVolume": 88,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "turn": false,
+      "windowToken": 116811084
+    }
+  ],
+  "battles": [
+    {
+      "activeStack": 2,
+      "activeUnit": {
+        "aiValue": 351,
+        "attack": 8,
+        "canShoot": false,
+        "commander": false,
+        "controlled": true,
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          200,
+          0
+        ],
+        "count": 3,
+        "damageMax": 6,
+        "damageMin": 3,
+        "defense": 8,
+        "description": "",
+        "fightValue": 324,
+        "growth": 7,
+        "health": 25,
+        "icon": "",
+        "id": 4,
+        "key": "core:griffin",
+        "name": "Griffin",
+        "nativeFlags": {
+          "attacksAllAdjacent": false,
+          "blocksRetaliation": false,
+          "chargeImmune": false,
+          "flying": true,
+          "living": true,
+          "mindImmune": false,
+          "noMorale": false,
+          "nonLiving": false,
+          "undead": false
+        },
+        "remainingShots": 0,
+        "shooter": false,
+        "shots": 0,
+        "speed": 6,
+        "stackId": 2
+      },
+      "anyHeroCanMove": true,
+      "armies": [
+        {
+          "id": 2,
+          "name": "Orrin",
+          "needsLastStack": true,
+          "slots": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 11,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                0
+              ],
+              "count": 4,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 3,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 115,
+              "growth": 9,
+              "health": 10,
+              "icon": "",
+              "id": 2,
+              "key": "core:archer",
+              "name": "Archer",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "speed": 4
+            },
+            {
+              "aiValue": 351,
+              "attack": 8,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                0
+              ],
+              "count": 3,
+              "damageMax": 6,
+              "damageMin": 3,
+              "defense": 8,
+              "description": "",
+              "experience": 0,
+              "experiencePerUnit": 0,
+              "experienceRank": 0,
+              "fightValue": 324,
+              "growth": 7,
+              "health": 25,
+              "icon": "",
+              "id": 4,
+              "key": "core:griffin",
+              "name": "Griffin",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": true,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "speed": 6
+            },
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "audioMuted": false,
+      "autoCombat": false,
+      "autosaveAllowed": false,
+      "backpackCount": 0,
+      "battleCamera": {
+        "active": false,
+        "kind": "",
+        "label": "",
+        "sequence": 0
+      },
+      "battleCells": [
+        {
+          "actionLabel": "",
+          "hex": 1,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 2,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 3,
+          "kind": 0,
+          "reachable": false,
+          "x": 190,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 4,
+          "kind": 0,
+          "reachable": false,
+          "x": 234,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 5,
+          "kind": 0,
+          "reachable": false,
+          "x": 278,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 6,
+          "kind": 0,
+          "reachable": false,
+          "x": 322,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 7,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 8,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 9,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 10,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 11,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 12,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 13,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 14,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 112
+        },
+        {
+          "actionLabel": "",
+          "hex": 15,
+          "kind": 1,
+          "reachable": false,
+          "x": 718,
+          "y": 112
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 18,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 154
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 19,
+          "kind": 0,
+          "reachable": true,
+          "x": 124,
+          "y": 154
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 20,
+          "kind": 0,
+          "reachable": true,
+          "x": 168,
+          "y": 154
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 21,
+          "kind": 0,
+          "reachable": true,
+          "x": 212,
+          "y": 154
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 22,
+          "kind": 0,
+          "reachable": true,
+          "x": 256,
+          "y": 154
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 23,
+          "kind": 0,
+          "reachable": true,
+          "x": 300,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 24,
+          "kind": 0,
+          "reachable": false,
+          "x": 344,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 25,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 26,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 27,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 28,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 29,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 30,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 31,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 32,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 154
+        },
+        {
+          "actionLabel": "",
+          "hex": 35,
+          "kind": 1,
+          "reachable": false,
+          "x": 102,
+          "y": 196
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 36,
+          "kind": 0,
+          "reachable": false,
+          "x": 146,
+          "y": 196
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 37,
+          "kind": 0,
+          "reachable": true,
+          "x": 190,
+          "y": 196
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 38,
+          "kind": 0,
+          "reachable": true,
+          "x": 234,
+          "y": 196
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 39,
+          "kind": 0,
+          "reachable": true,
+          "x": 278,
+          "y": 196
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 40,
+          "kind": 0,
+          "reachable": true,
+          "x": 322,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 41,
+          "kind": 0,
+          "reachable": false,
+          "x": 366,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 42,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 43,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 44,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 45,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 46,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 47,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 48,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 196
+        },
+        {
+          "actionLabel": "",
+          "hex": 49,
+          "kind": 1,
+          "reachable": false,
+          "x": 718,
+          "y": 196
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 52,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 238
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 53,
+          "kind": 0,
+          "reachable": true,
+          "x": 124,
+          "y": 238
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 54,
+          "kind": 0,
+          "reachable": true,
+          "x": 168,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 55,
+          "kind": 2,
+          "reachable": false,
+          "x": 212,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 56,
+          "kind": 2,
+          "reachable": false,
+          "x": 256,
+          "y": 238
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 57,
+          "kind": 0,
+          "reachable": false,
+          "x": 300,
+          "y": 238
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 58,
+          "kind": 0,
+          "reachable": true,
+          "x": 344,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 59,
+          "kind": 0,
+          "reachable": false,
+          "x": 388,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 60,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 61,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 62,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 63,
+          "kind": 2,
+          "reachable": false,
+          "x": 564,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 64,
+          "kind": 2,
+          "reachable": false,
+          "x": 608,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 65,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 238
+        },
+        {
+          "actionLabel": "",
+          "hex": 66,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 238
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 69,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 280
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 70,
+          "kind": 0,
+          "reachable": true,
+          "x": 146,
+          "y": 280
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 71,
+          "kind": 0,
+          "reachable": true,
+          "x": 190,
+          "y": 280
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 72,
+          "kind": 0,
+          "reachable": true,
+          "x": 234,
+          "y": 280
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 73,
+          "kind": 0,
+          "reachable": true,
+          "x": 278,
+          "y": 280
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 74,
+          "kind": 0,
+          "reachable": true,
+          "x": 322,
+          "y": 280
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 75,
+          "kind": 0,
+          "reachable": true,
+          "x": 366,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 76,
+          "kind": 0,
+          "reachable": false,
+          "x": 410,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 77,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 78,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 79,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 80,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 81,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 82,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 83,
+          "kind": 1,
+          "reachable": false,
+          "x": 718,
+          "y": 280
+        },
+        {
+          "actionLabel": "",
+          "hex": 86,
+          "kind": 1,
+          "reachable": false,
+          "x": 80,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 87,
+          "kind": 0,
+          "reachable": false,
+          "x": 124,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 88,
+          "kind": 1,
+          "reachable": false,
+          "x": 168,
+          "y": 322
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 89,
+          "kind": 0,
+          "reachable": false,
+          "x": 212,
+          "y": 322
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 90,
+          "kind": 0,
+          "reachable": true,
+          "x": 256,
+          "y": 322
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 91,
+          "kind": 0,
+          "reachable": true,
+          "x": 300,
+          "y": 322
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 92,
+          "kind": 0,
+          "reachable": true,
+          "x": 344,
+          "y": 322
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 93,
+          "kind": 0,
+          "reachable": true,
+          "x": 388,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 94,
+          "kind": 0,
+          "reachable": false,
+          "x": 432,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 95,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 96,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 97,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 98,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 99,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 322
+        },
+        {
+          "actionLabel": "",
+          "hex": 100,
+          "kind": 1,
+          "reachable": false,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 103,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 104,
+          "kind": 0,
+          "reachable": true,
+          "x": 146,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 105,
+          "kind": 0,
+          "reachable": true,
+          "x": 190,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 106,
+          "kind": 0,
+          "reachable": true,
+          "x": 234,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 107,
+          "kind": 0,
+          "reachable": true,
+          "x": 278,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 108,
+          "kind": 0,
+          "reachable": true,
+          "x": 322,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 109,
+          "kind": 0,
+          "reachable": true,
+          "x": 366,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 110,
+          "kind": 2,
+          "reachable": false,
+          "x": 410,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 111,
+          "kind": 2,
+          "reachable": false,
+          "x": 454,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 112,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 113,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 114,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 115,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 116,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 364
+        },
+        {
+          "actionLabel": "",
+          "hex": 117,
+          "kind": 1,
+          "reachable": false,
+          "x": 718,
+          "y": 364
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 120,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 121,
+          "kind": 0,
+          "reachable": true,
+          "x": 124,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 122,
+          "kind": 0,
+          "reachable": true,
+          "x": 168,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 123,
+          "kind": 0,
+          "reachable": true,
+          "x": 212,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 124,
+          "kind": 0,
+          "reachable": true,
+          "x": 256,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 125,
+          "kind": 0,
+          "reachable": true,
+          "x": 300,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 126,
+          "kind": 0,
+          "reachable": true,
+          "x": 344,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 127,
+          "kind": 0,
+          "reachable": true,
+          "x": 388,
+          "y": 406
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 128,
+          "kind": 0,
+          "reachable": true,
+          "x": 432,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 129,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 130,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 131,
+          "kind": 0,
+          "reachable": false,
+          "x": 564,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 132,
+          "kind": 0,
+          "reachable": false,
+          "x": 608,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 133,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 134,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 406
+        },
+        {
+          "actionLabel": "",
+          "hex": 137,
+          "kind": 1,
+          "reachable": false,
+          "x": 102,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 138,
+          "kind": 1,
+          "reachable": true,
+          "x": 146,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 139,
+          "kind": 0,
+          "reachable": true,
+          "x": 190,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 140,
+          "kind": 0,
+          "reachable": true,
+          "x": 234,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 141,
+          "kind": 0,
+          "reachable": true,
+          "x": 278,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 142,
+          "kind": 0,
+          "reachable": true,
+          "x": 322,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 143,
+          "kind": 0,
+          "reachable": true,
+          "x": 366,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 144,
+          "kind": 0,
+          "reachable": true,
+          "x": 410,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 145,
+          "kind": 0,
+          "reachable": true,
+          "x": 454,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 146,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 147,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 148,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 149,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 150,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 448
+        },
+        {
+          "actionLabel": "",
+          "hex": 151,
+          "kind": 1,
+          "reachable": false,
+          "x": 718,
+          "y": 448
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 154,
+          "kind": 0,
+          "reachable": false,
+          "x": 80,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 155,
+          "kind": 0,
+          "reachable": true,
+          "x": 124,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 156,
+          "kind": 0,
+          "reachable": true,
+          "x": 168,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 157,
+          "kind": 0,
+          "reachable": true,
+          "x": 212,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 158,
+          "kind": 0,
+          "reachable": true,
+          "x": 256,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 159,
+          "kind": 0,
+          "reachable": true,
+          "x": 300,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 160,
+          "kind": 0,
+          "reachable": true,
+          "x": 344,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 161,
+          "kind": 0,
+          "reachable": true,
+          "x": 388,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 162,
+          "kind": 0,
+          "reachable": true,
+          "x": 432,
+          "y": 490
+        },
+        {
+          "actionLabel": "",
+          "hex": 163,
+          "kind": 0,
+          "reachable": false,
+          "x": 476,
+          "y": 490
+        },
+        {
+          "actionLabel": "",
+          "hex": 164,
+          "kind": 0,
+          "reachable": false,
+          "x": 520,
+          "y": 490
+        },
+        {
+          "actionLabel": "",
+          "hex": 165,
+          "kind": 2,
+          "reachable": false,
+          "x": 564,
+          "y": 490
+        },
+        {
+          "actionLabel": "",
+          "hex": 166,
+          "kind": 2,
+          "reachable": false,
+          "x": 608,
+          "y": 490
+        },
+        {
+          "actionLabel": "",
+          "hex": 167,
+          "kind": 0,
+          "reachable": false,
+          "x": 652,
+          "y": 490
+        },
+        {
+          "actionLabel": "",
+          "hex": 168,
+          "kind": 0,
+          "reachable": false,
+          "x": 696,
+          "y": 490
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 171,
+          "kind": 0,
+          "reachable": false,
+          "x": 102,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 172,
+          "kind": 0,
+          "reachable": true,
+          "x": 146,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 173,
+          "kind": 0,
+          "reachable": true,
+          "x": 190,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 174,
+          "kind": 0,
+          "reachable": true,
+          "x": 234,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 175,
+          "kind": 0,
+          "reachable": true,
+          "x": 278,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 176,
+          "kind": 0,
+          "reachable": true,
+          "x": 322,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 177,
+          "kind": 0,
+          "reachable": true,
+          "x": 366,
+          "y": 532
+        },
+        {
+          "actionLabel": "Move",
+          "hex": 178,
+          "kind": 0,
+          "reachable": true,
+          "x": 410,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 179,
+          "kind": 0,
+          "reachable": false,
+          "x": 454,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 180,
+          "kind": 0,
+          "reachable": false,
+          "x": 498,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 181,
+          "kind": 0,
+          "reachable": false,
+          "x": 542,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 182,
+          "kind": 0,
+          "reachable": false,
+          "x": 586,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 183,
+          "kind": 0,
+          "reachable": false,
+          "x": 630,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 184,
+          "kind": 0,
+          "reachable": false,
+          "x": 674,
+          "y": 532
+        },
+        {
+          "actionLabel": "",
+          "hex": 185,
+          "kind": 1,
+          "reachable": false,
+          "x": 718,
+          "y": 532
+        }
+      ],
+      "battlePlayerAttacks": true,
+      "battleUnits": [
+        {
+          "aiValue": 98,
+          "armySlot": 0,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 15,
+          "currentHealth": 15,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 0,
+          "experience": 6000,
+          "experiencePerUnit": 400,
+          "experienceRank": 0,
+          "fightValue": 140,
+          "growth": 8,
+          "health": 15,
+          "icon": "",
+          "id": 58,
+          "key": "core:walkingDead",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 15,
+          "morale": 0,
+          "name": "Walking Dead",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            15
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 3,
+          "spellEffects": [],
+          "stackId": 3,
+          "x": 718,
+          "y": 112
+        },
+        {
+          "aiValue": 98,
+          "armySlot": 1,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 15,
+          "currentHealth": 15,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 1,
+          "experience": 6000,
+          "experiencePerUnit": 400,
+          "experienceRank": 0,
+          "fightValue": 140,
+          "growth": 8,
+          "health": 15,
+          "icon": "",
+          "id": 58,
+          "key": "core:walkingDead",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 15,
+          "morale": 0,
+          "name": "Walking Dead",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            49
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 3,
+          "spellEffects": [],
+          "stackId": 4,
+          "x": 718,
+          "y": 196
+        },
+        {
+          "aiValue": 98,
+          "armySlot": 2,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 14,
+          "currentHealth": 15,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 2,
+          "experience": 5600,
+          "experiencePerUnit": 400,
+          "experienceRank": 0,
+          "fightValue": 140,
+          "growth": 8,
+          "health": 15,
+          "icon": "",
+          "id": 58,
+          "key": "core:walkingDead",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 15,
+          "morale": 0,
+          "name": "Walking Dead",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            83
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 3,
+          "spellEffects": [],
+          "stackId": 5,
+          "x": 718,
+          "y": 280
+        },
+        {
+          "aiValue": 128,
+          "armySlot": 3,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            125,
+            0
+          ],
+          "count": 14,
+          "currentHealth": 20,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 3,
+          "experience": 4200,
+          "experiencePerUnit": 300,
+          "experienceRank": 0,
+          "fightValue": 160,
+          "growth": 8,
+          "health": 20,
+          "icon": "",
+          "id": 59,
+          "key": "core:zombieLord",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 20,
+          "morale": 0,
+          "name": "Zombie",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            100
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 4,
+          "spellEffects": [],
+          "stackId": 6,
+          "x": 696,
+          "y": 322
+        },
+        {
+          "aiValue": 98,
+          "armySlot": 4,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 14,
+          "currentHealth": 15,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 4,
+          "experience": 5600,
+          "experiencePerUnit": 400,
+          "experienceRank": 0,
+          "fightValue": 140,
+          "growth": 8,
+          "health": 15,
+          "icon": "",
+          "id": 58,
+          "key": "core:walkingDead",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 15,
+          "morale": 0,
+          "name": "Walking Dead",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            117
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 3,
+          "spellEffects": [],
+          "stackId": 7,
+          "x": 718,
+          "y": 364
+        },
+        {
+          "aiValue": 98,
+          "armySlot": 5,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 14,
+          "currentHealth": 15,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 5,
+          "experience": 5600,
+          "experiencePerUnit": 400,
+          "experienceRank": 0,
+          "fightValue": 140,
+          "growth": 8,
+          "health": 15,
+          "icon": "",
+          "id": 58,
+          "key": "core:walkingDead",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 15,
+          "morale": 0,
+          "name": "Walking Dead",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            151
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 3,
+          "spellEffects": [],
+          "stackId": 8,
+          "x": 718,
+          "y": 448
+        },
+        {
+          "aiValue": 98,
+          "armySlot": 6,
+          "attack": 5,
+          "canMeleeAt": false,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 14,
+          "currentHealth": 15,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "enemy": true,
+          "eraSlot": 6,
+          "experience": 5600,
+          "experiencePerUnit": 400,
+          "experienceRank": 0,
+          "fightValue": 140,
+          "growth": 8,
+          "health": 15,
+          "icon": "",
+          "id": 58,
+          "key": "core:walkingDead",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 15,
+          "morale": 0,
+          "name": "Walking Dead",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "occupied": [
+            185
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 3,
+          "spellEffects": [],
+          "stackId": 9,
+          "x": 718,
+          "y": 532
+        },
+        {
+          "aiValue": 156,
+          "armySlot": -2,
+          "attack": 8,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            140,
+            0
+          ],
+          "count": 1,
+          "currentHealth": 40,
+          "damageMax": 12,
+          "damageMin": 6,
+          "defense": 8,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 3,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 1,
+          "fightValue": 130,
+          "growth": 9,
+          "health": 40,
+          "icon": "commanders/CPrL174n",
+          "id": 240,
+          "key": "wake-of-gods.commanders:paladin1",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 40,
+          "morale": 2,
+          "name": "Paladin",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            88
+          ],
+          "remainingCasts": 1,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 24,
+          "speed": 5,
+          "spellEffects": [],
+          "stackId": 10,
+          "x": 168,
+          "y": 322
+        },
+        {
+          "aiValue": 80,
+          "armySlot": 0,
+          "attack": 7,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 11,
+          "currentHealth": 10,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 8,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 0,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 10,
+          "morale": 2,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            35
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 5,
+          "spellEffects": [],
+          "stackId": 0,
+          "x": 102,
+          "y": 196
+        },
+        {
+          "aiValue": 126,
+          "armySlot": 1,
+          "attack": 9,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 4,
+          "currentHealth": 10,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 6,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 1,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 10,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 10,
+          "morale": 2,
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            86
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 1,
+          "remainingShots": 12,
+          "shooter": true,
+          "shots": 12,
+          "speed": 5,
+          "spellEffects": [],
+          "stackId": 1,
+          "x": 80,
+          "y": 322
+        },
+        {
+          "aiValue": 351,
+          "armySlot": 2,
+          "attack": 11,
+          "canMeleeAt": true,
+          "canShootAt": false,
+          "cloned": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            200,
+            0
+          ],
+          "count": 3,
+          "currentHealth": 25,
+          "damageMax": 6,
+          "damageMin": 3,
+          "defense": 11,
+          "description": "",
+          "enemy": false,
+          "eraSlot": 2,
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 324,
+          "growth": 7,
+          "health": 25,
+          "icon": "",
+          "id": 4,
+          "key": "core:griffin",
+          "luck": 0,
+          "magicResistance": 0,
+          "maximumHealth": 25,
+          "morale": 2,
+          "name": "Griffin",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "occupied": [
+            138,
+            137
+          ],
+          "remainingCasts": 0,
+          "remainingRetaliations": 2,
+          "remainingShots": 0,
+          "shooter": false,
+          "shots": 0,
+          "speed": 7,
+          "spellEffects": [],
+          "stackId": 2,
+          "x": 146,
+          "y": 448
+        }
+      ],
+      "campaignPending": true,
+      "canAct": true,
+      "canAutoCombat": true,
+      "canEndTactics": false,
+      "canQueueAutoCombat": false,
+      "canRetreat": true,
+      "canUseMagic": true,
+      "canWait": true,
+      "cheatReady": false,
+      "cheatsAllowed": true,
+      "creatureCanCast": false,
+      "creatureSpellTargeting": false,
+      "currentPlayer": 0,
+      "day": 4,
+      "equipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "focus": {
+        "x": 146,
+        "y": 448
+      },
+      "heroCanCast": false,
+      "heroHasSpellbook": false,
+      "heroId": 2,
+      "heroMana": 10,
+      "heroManaLimit": 10,
+      "heroMoving": false,
+      "heroName": "Orrin",
+      "heroSpellCastLimitReached": false,
+      "heroSpellPower": {
+        "effective": 1,
+        "interference": false,
+        "original": 1
+      },
+      "heroes": [
+        {
+          "hasSpellbook": false,
+          "id": 2,
+          "index": 0,
+          "mana": 10,
+          "manaLimit": 10,
+          "movement": 1560,
+          "movementLimit": 1630,
+          "name": "Orrin"
+        }
+      ],
+      "manualControl": true,
+      "mapSettings": {
+        "enemyMoveTime": 150,
+        "moveTime": 150
+      },
+      "mode": "battle",
+      "movement": 1560,
+      "musicVolume": 88,
+      "onlineGame": false,
+      "players": [
+        {
+          "color": 0,
+          "human": true,
+          "name": "Player 1"
+        },
+        {
+          "color": 1,
+          "human": false,
+          "name": "Computer"
+        }
+      ],
+      "rect": {
+        "h": 600,
+        "w": 800,
+        "x": 0,
+        "y": 0
+      },
+      "resourceTypes": [
+        {
+          "icon": "",
+          "id": 0,
+          "key": "wood",
+          "name": "Wood",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 1,
+          "key": "mercury",
+          "name": "Mercury",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 2,
+          "key": "ore",
+          "name": "Ore",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 3,
+          "key": "sulfur",
+          "name": "Sulfur",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 4,
+          "key": "crystal",
+          "name": "Crystal",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 5,
+          "key": "gems",
+          "name": "Gems",
+          "scope": "core"
+        },
+        {
+          "icon": "",
+          "id": 6,
+          "key": "gold",
+          "name": "Gold",
+          "scope": "core"
+        },
+        {
+          "icon": "mithril/small.png",
+          "id": 7,
+          "key": "mithril",
+          "name": "Mithril",
+          "scope": "wake-of-gods.mithril"
+        }
+      ],
+      "resources": [
+        30,
+        10,
+        30,
+        10,
+        10,
+        10,
+        21500,
+        0
+      ],
+      "round": 1,
+      "sessionState": 6,
+      "soundVolume": 88,
+      "spellTargeting": false,
+      "tacticsMode": false,
+      "towns": [
+        {
+          "id": 0,
+          "index": 0,
+          "name": "Goonkbourg"
+        }
+      ],
+      "turn": false,
+      "windowToken": 125983056
+    }
+  ],
+  "dialogs": [
+    {
+      "day": 1,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "MW day 1 slots 1/0/0/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+        ],
+        "queryId": 3,
+        "title": "Game message"
+      }
+    },
+    {
+      "day": 1
+    },
+    {
+      "day": 2,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "MW day 2 slots 0/1/0/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+        ],
+        "queryId": 6,
+        "title": "Game message"
+      }
+    },
+    {
+      "day": 3,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "MW day 3 slots 0/0/1/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+        ],
+        "queryId": 9,
+        "title": "Game message"
+      }
+    },
+    {
+      "day": 4,
+      "presentation": {
+        "cancel": false,
+        "lines": [
+          "MW day 4 slots 0/0/1/0 blocked 2 alive 1 ids 1/2/1/0 radius 10. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. Native pursuit retains map guards, terrain limits and stable controls. "
+        ],
+        "queryId": 15,
+        "title": "Game message"
+      }
+    }
+  ],
+  "errors": [],
+  "nativeBattleResult": {
+    "description": "Your forces suffer a bitter defeat.",
+    "sides": [
+      {
+        "losses": [
+          {
+            "count": 11,
+            "icon": "",
+            "id": 0,
+            "name": "Pikeman"
+          },
+          {
+            "count": 4,
+            "icon": "",
+            "id": 2,
+            "name": "Archer"
+          },
+          {
+            "count": 3,
+            "icon": "",
+            "id": 4,
+            "name": "Griffin"
+          },
+          {
+            "count": 1,
+            "icon": "commanders/CPrL174n",
+            "id": 240,
+            "name": "Paladin"
+          }
+        ],
+        "name": "Orrin",
+        "portrait": [
+          186,
+          58,
+          58,
+          64
+        ],
+        "winner": false
+      },
+      {
+        "losses": [
+          {
+            "count": 9,
+            "icon": "",
+            "id": 58,
+            "name": "Walking Dead"
+          },
+          {
+            "count": 1,
+            "icon": "",
+            "id": 59,
+            "name": "Zombie"
+          }
+        ],
+        "name": "Zombies",
+        "portrait": [
+          557,
+          58,
+          58,
+          64
+        ],
+        "winner": true
+      }
+    ],
+    "won": false
+  }
+}

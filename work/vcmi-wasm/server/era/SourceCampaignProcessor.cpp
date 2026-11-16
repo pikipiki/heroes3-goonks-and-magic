@@ -27,6 +27,7 @@
 #include "../../lib/era/EraCampaignHeroExperienceRule.h"
 #include "../../lib/era/EraCampaignDrawingDepth.h"
 #include "../../lib/era/EraCampaignRemovalBatch.h"
+#include "../../lib/era/EraCampaignWanderingRule.h"
 #include "../../lib/era/EraCampaignCreatureAttributes.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
@@ -108,6 +109,20 @@ public:
  {require(std::dynamic_pointer_cast<CGarrisonDialogQuery>(previous)!=nullptr,"army exchange ended without its query");owner->popQuery(*this);}
  void onRemoval(PlayerColor)override{continuation();}
 };
+class CampaignWanderingBattleQuery final:public CQuery
+{
+ std::function<void(const BattleResult &)> continuation;
+ std::optional<BattleResult> result;
+public:
+ CampaignWanderingBattleQuery(CGameHandler & game,PlayerColor player,std::function<void(const BattleResult &)> done):CQuery(&game),continuation(std::move(done)){addPlayer(player);}
+ bool blocksPack(const CPackForServer *)const override{return true;}
+ void onExposure(QueryPtr previous)override
+ {
+  const auto battle=std::dynamic_pointer_cast<CBattleQuery>(previous);require(battle&&battle->result.has_value(),"wandering battle ended without a result");
+  result=battle->result;owner->popQuery(*this);
+ }
+ void onRemoval(PlayerColor)override{require(result.has_value(),"wandering result missing");continuation(*result);}
+};
 class CampaignTurnQuery final:public CQuery
 {
 public:
@@ -149,6 +164,7 @@ struct SourceCampaignProcessor::Impl final:Host
   std::function<void()> resume;
  };
  std::optional<BattleScope> battleScope;
+ bool wanderingBattle=false;
  bool pumping=false;
  bool demolitionResumeChecked=false;
  std::map<PlayerColor,QueryPtr> turnBarriers;
@@ -558,6 +574,128 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int32_t random(int32_t maximum,bool)override{return gh.randomizer->getDefault().nextInt(maximum);}
  Step execute(const Command &,const Operation &,State &,const Context &)override;
+ bool wanderingFree(const int3 & pos)const
+ {
+  const auto & map=gh.gameState().getMap();if(!map.isInTheMap(pos))return false;
+  const auto & tile=map.getTile(pos);
+  if(tile.visitable()||tile.blocked()||tile.isWater()||!tile.getTerrain()->isPassable())return false;
+  for(const auto & obj:map.objects)if(obj&&obj->ID==Obj::EVENT&&obj->visitablePos()==pos)return false;
+  return true;
+ }
+ const CGCreature * wanderingMonster(const JsonNode & row)const
+ {
+  const auto & coordinates=era_campaign_json::array(row["position"]);require(coordinates.size()==3,"invalid wandering position");
+  const int3 pos(coordinates[0].Integer(),coordinates[1].Integer(),coordinates[2].Integer());
+  for(const auto & obj:gh.gameState().getMap().objects)
+   if(const auto * monster=dynamic_cast<const CGCreature *>(obj.get());monster&&monster->visitablePos()==pos&&identity(monster).ID==Obj::MONSTER)return monster;
+  return nullptr;
+ }
+ void prepareWanderingDay(int day)
+ {
+  if(state["wanderingDay"].isNumber()&&state["wanderingDay"].Integer()==day)return;
+  state["wanderingDay"].Integer()=day;
+  const auto & map=gh.gameState().getMap();auto & rows=state["wanderingMonsters"].Vector();
+  for(auto & row:rows)
+  {
+   if(row.isNull())continue;
+   const auto * monster=wanderingMonster(row);
+   if(!monster){row=JsonNode();continue;}
+   row["object"].Integer()=monster->id.getNum();
+   const auto pos=monster->visitablePos();row["mode"].Integer()=1;
+   const int radius=era_campaign_json::integer(row["radius"]);
+   // The original scans hero records in source-number order, compares
+   // Manhattan distance and keeps the first tie within the square radius.
+   const CGHeroInstance * nearest=nullptr;int distance=std::numeric_limits<int>::max();
+   for(const auto & obj:map.objects)if(const auto * h=dynamic_cast<const CGHeroInstance *>(obj.get());h&&h->getOwner().isValidPlayer()&&!h->isGarrisoned())
+   {
+    const auto destination=h->visitablePos();if(destination.z!=pos.z)continue;
+    const int dx=std::abs(destination.x-pos.x),dy=std::abs(destination.y-pos.y);if(dx>radius||dy>radius)continue;
+    if(dx+dy<distance||(dx+dy==distance&&nearest&&h->getHeroTypeID()<nearest->getHeroTypeID())){nearest=h;distance=dx+dy;}
+   }
+   const auto stepTo=[&](const int3 & target)
+   {
+    return era_campaign_wandering::findStep(map.width,map.height,{pos.x,pos.y,pos.z},{target.x,target.y,target.z},[&](const auto & p){return wanderingFree(int3(p.x,p.y,p.z));});
+   };
+   if(nearest)
+   {
+    const auto step=stepTo(nearest->visitablePos());
+    if(step.code>=1&&step.code<=5)
+    {
+     row["mode"].Integer()=(step.code==2||step.code==3)?3:2;
+     row["owner"].Integer()=nearest->getOwner().getNum();row["targetHero"].Integer()=nearest->id.getNum();
+     row["next"].Vector()={JsonNode(step.next.x),JsonNode(step.next.y),JsonNode(step.next.z)};
+    }
+   }
+   if(row["mode"].Integer()!=1)continue;
+   const CGTownInstance * town=nullptr;distance=std::numeric_limits<int>::max();
+   for(const auto townId:map.getAllTowns())
+   {
+    const auto * candidate=dynamic_cast<const CGTownInstance *>(gh.gameState().getObj(townId));if(!candidate)continue;
+    const auto entrance=candidate->visitablePos();if(entrance.z!=pos.z)continue;
+    const int dx=std::abs(entrance.x-pos.x),dy=std::abs(entrance.y-1-pos.y);if(dx>radius||dy>radius)continue;
+    if(dx+dy<distance){town=candidate;distance=dx+dy;}
+   }
+   if(town)
+   {
+    const auto step=stepTo(town->visitablePos());
+    if(step.code==1||step.code==2||step.code==4||step.code==5)
+    {
+     row["mode"].Integer()=2;row["owner"].Integer()=town->getOwner().getNum();
+     row["next"].Vector()={JsonNode(step.next.x),JsonNode(step.next.y),JsonNode(step.next.z)};
+    }
+   }
+  }
+  persist();
+ }
+ bool completeWanderingTurn(JsonNode & pass)
+ {
+  auto & rows=state["wanderingMonsters"].Vector();int cursor=era_campaign_json::integer(pass["cursor"]);
+  require(cursor>=0&&cursor<=int(rows.size()),"invalid wandering cursor");
+  for(;cursor<int(rows.size());++cursor)
+  {
+   pass["cursor"].Integer()=cursor+1;auto & row=rows[cursor];
+   if(row.isNull())continue;
+   const auto * monster=wanderingMonster(row);
+   if(!monster){row=JsonNode();persist();continue;}
+   row["object"].Integer()=monster->id.getNum();
+   if(row["owner"].Integer()!=player.getNum())continue;
+   const int mode=era_campaign_json::integer(row["mode"]);if(mode!=2&&mode!=3)continue;
+   const auto & values=era_campaign_json::array(row["next"]);require(values.size()==3,"invalid wandering step");
+   const int3 next(values[0].Integer(),values[1].Integer(),values[2].Integer());row["mode"].Integer()=1;
+   if(mode==2)
+   {
+    if(wanderingFree(next))
+    {
+     ChangeObjPos move;move.objid=monster->id;move.nPos=monster->anchorPos()+next-monster->visitablePos();move.initiator=player;gh.sendAndApply(move);
+     row["position"].Vector()={JsonNode(next.x),JsonNode(next.y),JsonNode(next.z)};
+     persist(mutation("guardAccessRefresh",ObjectInstanceID::NONE));
+    }
+    else persist();
+    continue;
+   }
+   const auto * h=gh.gameState().getHero(ObjectInstanceID(row["targetHero"].Integer()));
+   if(!h||h->getOwner()!=player||h->visitablePos()!=next){persist();continue;}
+   const auto monsterId=monster->id,attackedHero=h->id;const auto who=player;
+   wanderingBattle=true;persist();
+   auto barrier=std::make_shared<CampaignWanderingBattleQuery>(gh,who,[this,monsterId,attackedHero,who](const BattleResult & result)
+   {
+    if(const auto * remaining=dynamic_cast<const CGCreature *>(gh.gameState().getObj(monsterId)))
+    {
+     // CompleteWoMo removes a defeated attacker without awarding its map
+     // resources/artifact. Surviving groups retain their casualties.
+     if(result.winner!=BattleSide::DEFENDER)
+     {
+      gh.removeObject(remaining,who);
+      for(auto & entry:state["wanderingMonsters"].Vector())if(!entry.isNull()&&entry["object"].Integer()==monsterId.getNum())entry=JsonNode();
+     }
+     else remaining->battleFinished(gh,gh.gameState().getHero(attackedHero),result);
+    }
+    wanderingBattle=false;persist();pumpTurns();
+   });
+   gh.queries->addQuery(barrier);monster->onWanderingAttack(gh,h);if(wanderingBattle)return true;
+  }
+  return false;
+ }
  era_campaign_timers::Settings timer(int id)const
  {
   const auto & values=state["timers"][std::to_string(id)];if(values.isNull())return {};
@@ -573,7 +711,7 @@ struct SourceCampaignProcessor::Impl final:Host
  void ensureTurnBarriers()
  {
   if(state["turnQueue"].isNull())return;
-  const auto & queue=era_campaign_json::array(state["turnQueue"]);require(queue.size()<=32,"excessive turn queue");
+  const auto & queue=era_campaign_json::array(state["turnQueue"]);require(queue.size()<=40,"excessive turn queue");
   for(const auto & item:queue)if(item["kind"].String()=="finish")
   {
    const PlayerColor who(era_campaign_json::integer(item["player"]));require(who.isValidPlayer(),"invalid queued turn player");
@@ -593,7 +731,7 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  void pumpTurns()
  {
-  if(pumping||!vm.initialized||!vm.continuations.empty())return;
+  if(pumping||wanderingBattle||!vm.initialized||!vm.continuations.empty())return;
   pumping=true;
   try
   {
@@ -607,6 +745,11 @@ struct SourceCampaignProcessor::Impl final:Host
     if(kind=="prepare")
     {
      const auto who=player;queue.erase(queue.begin());persist();gh.newTurnProcessor->preparePlayerTurnStarted(who);applyDailyCurses(who);
+    }
+    else if(kind=="wandering")
+    {
+     if(completeWanderingTurn(pass)){pumping=false;return;}
+     queue.erase(queue.begin());persist();
     }
     else if(kind=="timers")
     {
@@ -1006,6 +1149,46 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
 {
  const auto & args=op.args;
  comparison.reset();
+ if(c.receiver=="MW")
+ {
+  auto & rows=state["wanderingMonsters"].Vector();
+  if(op.code=="M"||op.code=="C")
+  {
+   require(c.selectors.empty(),"wandering conversion takes no selector");arity(op,4);
+   for(int i=0;i<3;++i)require(args[i].access==Access::Read,"wandering coordinates must be values");
+   require(args[3].access==Access::Write||args[3].access==Access::Compare,"wandering identity output is required");
+   const int3 pos(number(args[0]),number(args[1]),number(args[2]));require(gh.gameState().getMap().isInTheMap(pos),"wandering coordinates outside map");
+   const CGCreature * monster=nullptr;
+   for(const auto & obj:gh.gameState().getMap().objects)
+    if(const auto * candidate=dynamic_cast<const CGCreature *>(obj.get());candidate&&candidate->visitablePos()==pos&&identity(candidate).ID==Obj::MONSTER){monster=candidate;break;}
+   int index=-1;
+   if(monster||op.code=="C")for(std::size_t i=0;i<rows.size();++i)if(!rows[i].isNull())
+   {
+    const auto & position=era_campaign_json::array(rows[i]["position"]);require(position.size()==3,"invalid wandering position");
+    if(position[0].Integer()==pos.x&&position[1].Integer()==pos.y&&position[2].Integer()==pos.z){index=i;break;}
+   }
+   if(index<0&&monster&&op.code=="M")
+   {
+    std::size_t slot=0;while(slot<rows.size()&&!rows[slot].isNull())++slot;
+    if(slot<1000)
+    {
+     if(slot==rows.size())rows.emplace_back();auto & row=rows[slot];row["object"].Integer()=monster->id.getNum();
+     row["position"].Vector()={JsonNode(pos.x),JsonNode(pos.y),JsonNode(pos.z)};
+     row["radius"].Integer()=20;row["mode"].Integer()=1;row["owner"].Integer()=-1;index=slot;persist();
+    }
+   }
+   value(index+1,args[3]);return Step::Continue;
+  }
+  require(c.selectors.size()==1&&c.selectors[0].access==Access::Read,"wandering receiver needs an index");
+  const int id=number(c.selectors[0]);require(id>=1&&id<=1000,"wandering index outside1..1000");
+  const bool exists=id<=int(rows.size())&&!rows[id-1].isNull();
+  if(op.code=="E"){arity(op,1);require(query(op),"wandering existence is read-only");value(exists?1:0,args[0]);return Step::Continue;}
+  require(op.code=="A","unsupported wandering operation "+op.code);arity(op,2);
+  require(exists&&args[0].access==Access::Read&&number(args[0])==4,"only validated wandering radius setting is admitted");
+  auto & row=rows[id-1];const int radius=value(era_campaign_json::integer(row["radius"]),args[1]);
+  if(!query(op)){row["radius"].Integer()=era_campaign_wandering::byte(radius);persist();}
+  return Step::Continue;
+ }
  if(c.receiver=="MA")
  {
   if(op.code=="U"||op.code=="X")
@@ -2206,8 +2389,8 @@ bool SourceCampaignProcessor::beginTurn(PlayerColor player)
  require(player.isValidPlayer(),"invalid source turn player");const auto day=int(impl->gh.gameState().day);
  auto & previous=impl->state["queuedTurnDays"][std::to_string(player.getNum())];
  if(previous.isNumber()&&era_campaign_json::integer(previous)==day)return true;
- impl->expireSlotCurses(player,day);impl->fireTurn(day);previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=28,"excessive queued source turns");
- for(const auto & kind:{"prepare","timers","globals","finish"})
+ impl->expireSlotCurses(player,day);impl->fireTurn(day);impl->prepareWanderingDay(day);previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=35,"excessive queued source turns");
+ for(const auto & kind:{"prepare","wandering","timers","globals","finish"})
  {
   JsonNode pass;pass["kind"].String()=kind;pass["player"].Integer()=player.getNum();pass["day"].Integer()=day;pass["cursor"].Integer()=std::string(kind)=="timers"?1:0;queue.push_back(std::move(pass));
  }

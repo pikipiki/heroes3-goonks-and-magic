@@ -481,6 +481,11 @@ void CGCreature::joinDecision(IGameEventCallback & gameEvents, const CGHeroInsta
 	}
 }
 
+void CGCreature::onWanderingAttack(IGameEventCallback & gameEvents, const CGHeroInstance * h) const
+{
+	fight(gameEvents, h);
+}
+
 void CGCreature::fight(IGameEventCallback & gameEvents, const CGHeroInstance * h) const
 {
 	//split stacks
