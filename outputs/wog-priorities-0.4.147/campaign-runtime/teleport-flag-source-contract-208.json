@@ -1,0 +1,30 @@
+{
+  "version": "0.4.208",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Bounded static disassembly, no Windows executable execution",
+  "navigationArchiveSha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+  "sourceAddresses": {
+    "receiver": "0x7409a0..0x740aab",
+    "jumpHelper": "0x711520..0x711641",
+    "nativeWarpCall": "0x71162f..0x711634 ->0x41dab0"
+  },
+  "boundedAssemblySha256": {
+    "hero-position": "6b12e709443c99ee6bbd83f510227a69a64427632a42ccc3a4514a1e7b66623a",
+    "jump-hero": "427ddf1b958614fbff450ab7581a6d34d1c954f986d8667635d80f779f989f43"
+  },
+  "admitted": "HE:P with three coordinates and explicit fourth literal/value1 uses the native warp path; coordinate reads retain the existing behavior. This admits all five four-argument forms present in the eleven original scenarios.",
+  "observedSourceSemantics": "The helper handles raw coordinate-only flags2 and3 separately. Flag0 may silently relocate another owner. Flag1 enters the native warp branch regardless of owner; current-owner flag0 already uses that branch.",
+  "unadmitted": [
+    "Raw coordinate-only teleport flags2/3",
+    "Other explicit fourth flag values"
+  ],
+  "fixture": "Exact original FU16/FU19 plus original H0..H3 macro bindings; relocates selected hero and another owned hero, queries source coordinates and independently inspects all four native hero positions.",
+  "saveFormatChanged": false,
+  "campaignsEnabled": false,
+  "armyTypeCorrection": {
+    "source": "0x740e18..0x740e37 preserves existing type for mode0 absolute -1; 0x740e40..0x740e68 clears source type bit0 for -2; 0x740ee4..0x740f1f clears empty/nonpositive count slots",
+    "semantics": "Apply to original source IDs, not reordered native creature IDs. Retain the compiled358f no-op behavior for -1, even though the later navigation source labels it an upgrade.",
+    "undefinedException": "A positive count with an empty/negative invalid creature type cannot form a native stack and remains empty. The real campaign transfer filter already leaves an empty slot before GE1 C0/1/-1/1.",
+    "assemblySha256": "7abaf2dc10c3d73843ba37eda9b960454c6918a4091d045c0f6bb1f5f705b8aa"
+  }
+}

@@ -21,7 +21,7 @@
       "backpack"
     ],
     "acceleratedTravel": "Native offline vcmimove and vcmimap, actual pathfinding and visits; no teleport",
-    "sourceResetOnTransfer": "Original GE1 removes the reinforcement army; transferred hero has exactly one Monk"
+    "sourceResetOnTransfer": "Clarified208: native transfer filtering removes the reinforcement army before GE1; GE1 then initializes the visible Monk army. The observed one-Monk result is unchanged."
   },
   "unassistedEarlierEvidence": [
     "native-seven-quests-transfer-202.json",

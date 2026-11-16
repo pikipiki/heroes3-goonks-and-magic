@@ -1,0 +1,32 @@
+{
+  "version": "0.4.208",
+  "passed": true,
+  "scope": "Replay of real controlled second-scenario victory/transfer, then whole-package WebKit reload at original third-scenario GE1 dialogue before its army command; final third-scenario victory remains unvalidated",
+  "chromeTransitionEngineSha256": "ca6e53e271adaf2d8cdffe93830a3ba552677a8e1b169641eb0481fb97cf30ae",
+  "chromeTransitionPrivateWasmRoute": true,
+  "webkitEngineSha256": "ca6e53e271adaf2d8cdffe93830a3ba552677a8e1b169641eb0481fb97cf30ae",
+  "webkitPrivateWasmRoute": false,
+  "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "pendingCheckpointPhase": "Original GE1 first dialogue, after native transfer filtering and before the GE1 army command",
+  "pendingSaveSha256": "a5eb6d2a2191593b316d39bcbab35df6d8fb3800d86424e7f5327732bed3722e",
+  "armyBeforeGE1ArmyCommand": [
+    [
+      "core:monk",
+      1
+    ]
+  ],
+  "armyAfterWebkitInitialization": [
+    [
+      "core:monk",
+      1
+    ]
+  ],
+  "heroCount": 4,
+  "controls": "Historical second-scenario QA used player army reinforcements and accelerated native movement. The native transfer filter removed these reinforcements before this checkpoint. No new reinforcement or teleport cheat is applied in the WebKit replay.",
+  "undefinedException": "GE1 C0/1/-1/1 refers to an already empty slot after filtering; keep it empty instead of materializing a positive-count invalid negative creature type.",
+  "originalProgramsEdited": false,
+  "questFlagsEdited": false,
+  "winningCheatUsed": false,
+  "finalScenarioVictoryValidated": false,
+  "errors": []
+}

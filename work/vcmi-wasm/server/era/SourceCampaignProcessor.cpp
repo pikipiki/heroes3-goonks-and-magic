@@ -1370,7 +1370,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   else if(op.code=="P")
   {
-   arity(op,3);const auto old=h->visitablePos();const int3 pos(value(old.x,args[0]),value(old.y,args[1]),value(old.z,args[2]));
+   require(args.size()==3||(args.size()==4&&args[3].access==Access::Read&&number(args[3])==1),"unsupported hero teleport flag");const auto old=h->visitablePos();const int3 pos(value(old.x,args[0]),value(old.y,args[1]),value(old.z,args[2]));
    if(!query(op))require(gh.moveHero(h->id,h->convertFromVisitablePos(pos),EMovementMode::MONOLITH),"hero teleport failed");
   }
   else if(op.code=="I"||op.code=="W")
@@ -1490,7 +1490,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    if(slots.empty()&&query(op)){value(0,args[2]);value(0,args[3]);}
    for(const auto slot:slots)
    {
-    const auto * stack=h->getStackPtr(slot);const int type=args[2].access==Access::Read&&!unchangedOperand(args[2])?number(args[2]):value(stack?sourceCreature(stack->getId()):-1,args[2]);const int count=value(stack?stack->getCount():0,args[3]);
+    const auto * stack=h->getStackPtr(slot);int type=args[2].access==Access::Read&&!unchangedOperand(args[2])?number(args[2]):value(stack?sourceCreature(stack->getId()):-1,args[2]);const int count=value(stack?stack->getCount():0,args[3]);
+    if(mode==0&&args[2].access==Access::Read&&!unchangedOperand(args[2]))
+    {
+     // 358f740E18..68: -1 assigns the old source type back unchanged;
+     // -2 clears its low bit. Apply this to SOURCE IDs, not remapped IDs.
+     if(type==-1)type=stack?sourceCreature(stack->getId()):-1;
+     else if(type==-2&&stack)type=sourceCreature(stack->getId())&~1;
+    }
     if(query(op))continue;
     if(type<0||count<=0){if(stack)gh.eraseStack({h->id,slot},true);}
     else if(!stack)gh.insertNewStack({h->id,slot},creature(type).toCreature(),count);
