@@ -28,3 +28,6 @@ outputs/heroes-goonk-netlify-pages.zip
 
 # Local persistent code-navigation index (rebuildable, never a Pages asset)
 /graphify-out/
+
+# Private campaign checkpoints and replay data; never publish saves
+/work/campaign-validation217/
