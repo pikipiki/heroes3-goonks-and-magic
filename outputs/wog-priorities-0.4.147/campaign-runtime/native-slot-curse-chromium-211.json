@@ -1,0 +1,1693 @@
+{
+  "passed": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "97c0e8bc0fb5cbdf",
+    "wasm": "vcmiclient.2784e8374794e396.wasm",
+    "sha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "fixtureSha256": "db93957dcafcca3886a1e3b8f9a13b1b2c8c16517f0447957e546903b7274fc0",
+  "saveSha256": "d0bed1e158c75ef140716eca273489e1020f9138f13304ba106b5dd28ca11687",
+  "loaded": false,
+  "originalFlag0KeepsSlotLocked": true,
+  "mode3RestoresArtifact": true,
+  "inclusiveExpiryRestoresArtifact": true,
+  "combinedRecipeRespectsLocks": true,
+  "dialogs": [
+    {
+      "cancel": false,
+      "lines": [
+        "OPTION 0"
+      ],
+      "queryId": 3,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "RING BEFORE 95"
+      ],
+      "queryId": 4,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "LOCKED 3078/99/-1"
+      ],
+      "queryId": 5,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "RESTORED 95"
+      ],
+      "queryId": 6,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "DELETED 0/0 ELIXIR 1/0"
+      ],
+      "queryId": 7,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "CURSE READY"
+      ],
+      "queryId": 8,
+      "title": "Game message"
+    }
+  ],
+  "locked": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 12931,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              5,
+              0,
+              7000,
+              0
+            ],
+            "count": 1,
+            "damageMax": 50,
+            "damageMin": 25,
+            "defense": 30,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 12272,
+            "growth": 1,
+            "health": 500,
+            "icon": "creatures/gorynych/CPrL168M",
+            "id": 154,
+            "key": "wake-of-gods.creatures:gorynych",
+            "name": "Gorynych",
+            "nativeFlags": {
+              "attacksAllAdjacent": true,
+              "blocksRetaliation": true,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 14
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 128,
+            "attack": 5,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              125,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 160,
+            "growth": 8,
+            "health": 20,
+            "icon": "",
+            "id": 59,
+            "key": "core:zombieLord",
+            "name": "Zombie",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": false,
+    "backpackCount": 1,
+    "campaignPending": false,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 1,
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroWindow": {
+      "backpack": [
+        {
+          "allowed": false,
+          "description": "{Elixir of Life}\n\nAll creatures get a 25% health bonus and gain the regeneration ability.  Does not work on Undead or unliving creatures",
+          "icon": 131,
+          "locked": false,
+          "movable": true,
+          "name": "Elixir of Life",
+          "slot": 19
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 20
+        }
+      ],
+      "canRebalanceSourceArtifacts": false,
+      "caveEffects": "",
+      "className": "Knight",
+      "commanderIcon": 11,
+      "experience": 0,
+      "experienceIcon": 4,
+      "id": 2,
+      "level": 1,
+      "luck": {
+        "icon": 8,
+        "value": 0
+      },
+      "mana": 10,
+      "manaIcon": 5,
+      "manaLimit": 10,
+      "morale": {
+        "icon": 7,
+        "value": -1
+      },
+      "name": "Orrin",
+      "owned": true,
+      "portrait": {
+        "h": 64,
+        "w": 58,
+        "x": 83,
+        "y": 26
+      },
+      "primaryIcons": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "primarySkills": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "skills": [
+        {
+          "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+          "icon": 9,
+          "mastery": "Basic",
+          "name": "Leadership"
+        },
+        {
+          "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+          "icon": 10,
+          "mastery": "Basic",
+          "name": "Archery"
+        }
+      ],
+      "slots": [
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 0
+        },
+        {
+          "allowed": false,
+          "locked": true,
+          "movable": false,
+          "slot": 1
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 2
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 3
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 4
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 5
+        },
+        {
+          "allowed": false,
+          "locked": true,
+          "movable": false,
+          "slot": 6
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 7
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 8
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 9
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 10
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 11
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 12
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 13
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 14
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 15
+        },
+        {
+          "allowed": false,
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "locked": false,
+          "movable": false,
+          "name": "Catapult",
+          "slot": 16
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 17
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 18
+        }
+      ],
+      "specialty": {
+        "description": "Receives a 5% per level bonus to Archery skill percentage.",
+        "icon": 6,
+        "name": "Archery"
+      }
+    },
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1560,
+        "movementLimit": 1560,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "hero",
+    "movement": 1560,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 586,
+      "w": 672,
+      "x": 64,
+      "y": 7
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      29,
+      10,
+      29,
+      10,
+      10,
+      10,
+      20000,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "troopDeployment": {
+      "heroId": 2,
+      "origin": [
+        17,
+        18,
+        0
+      ],
+      "revision": 0,
+      "targets": [
+        {
+          "available": false,
+          "direction": 0,
+          "x": 17,
+          "y": 17
+        },
+        {
+          "available": true,
+          "direction": 1,
+          "x": 18,
+          "y": 17
+        },
+        {
+          "available": true,
+          "direction": 2,
+          "x": 18,
+          "y": 18
+        },
+        {
+          "available": true,
+          "direction": 3,
+          "x": 18,
+          "y": 19
+        },
+        {
+          "available": true,
+          "direction": 4,
+          "x": 17,
+          "y": 19
+        },
+        {
+          "available": true,
+          "direction": 5,
+          "x": 16,
+          "y": 19
+        },
+        {
+          "available": true,
+          "direction": 6,
+          "x": 16,
+          "y": 18
+        },
+        {
+          "available": false,
+          "direction": 7,
+          "x": 16,
+          "y": 17
+        }
+      ],
+      "troops": [
+        {
+          "aiValue": 12931,
+          "attack": 25,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            7000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 50,
+          "damageMin": 25,
+          "defense": 30,
+          "description": "",
+          "fightValue": 12272,
+          "growth": 1,
+          "health": 500,
+          "icon": "creatures/gorynych/CPrL168M",
+          "id": 154,
+          "key": "wake-of-gods.creatures:gorynych",
+          "maximum": 1,
+          "name": "Gorynych",
+          "nativeFlags": {
+            "attacksAllAdjacent": true,
+            "blocksRetaliation": true,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 0,
+          "speed": 14
+        },
+        {
+          "aiValue": 80,
+          "attack": 4,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 5,
+          "description": "",
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "maximum": 1,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 1,
+          "speed": 4
+        },
+        {
+          "aiValue": 128,
+          "attack": 5,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            125,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "fightValue": 160,
+          "growth": 8,
+          "health": 20,
+          "icon": "",
+          "id": 59,
+          "key": "core:zombieLord",
+          "maximum": 1,
+          "name": "Zombie",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 2,
+          "speed": 4
+        }
+      ]
+    },
+    "troopEquipment": {
+      "canAct": true,
+      "heroId": 2,
+      "heroName": "Orrin",
+      "troops": [
+        {
+          "aiValue": 12931,
+          "attack": 27,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            7000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 50,
+          "damageMin": 25,
+          "defense": 32,
+          "description": "",
+          "fightValue": 12272,
+          "growth": 1,
+          "health": 500,
+          "icon": "creatures/gorynych/CPrL168M",
+          "id": 154,
+          "key": "wake-of-gods.creatures:gorynych",
+          "magicDamageReduction": 0,
+          "name": "Gorynych",
+          "nativeFlags": {
+            "attacksAllAdjacent": true,
+            "blocksRetaliation": true,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "physicalDamageBonus": 0,
+          "rangedDamageBonus": 10,
+          "shooter": false,
+          "shots": 0,
+          "slot": 0,
+          "speed": 14
+        },
+        {
+          "aiValue": 80,
+          "attack": 6,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 7,
+          "description": "",
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "magicDamageReduction": 0,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "physicalDamageBonus": 0,
+          "rangedDamageBonus": 10,
+          "shooter": false,
+          "shots": 0,
+          "slot": 1,
+          "speed": 4
+        },
+        {
+          "aiValue": 128,
+          "attack": 7,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            125,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 7,
+          "description": "",
+          "fightValue": 160,
+          "growth": 8,
+          "health": 20,
+          "icon": "",
+          "id": 59,
+          "key": "core:zombieLord",
+          "magicDamageReduction": 0,
+          "name": "Zombie",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "physicalDamageBonus": 0,
+          "rangedDamageBonus": 10,
+          "shooter": false,
+          "shots": 0,
+          "slot": 2,
+          "speed": 4
+        }
+      ]
+    },
+    "turn": true,
+    "windowToken": 59073640
+  },
+  "restored": {
+    "anyHeroCanMove": true,
+    "armies": [
+      {
+        "id": 2,
+        "name": "Orrin",
+        "needsLastStack": true,
+        "slots": [
+          {
+            "aiValue": 12931,
+            "attack": 25,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              5,
+              0,
+              7000,
+              0
+            ],
+            "count": 1,
+            "damageMax": 50,
+            "damageMin": 25,
+            "defense": 30,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 12272,
+            "growth": 1,
+            "health": 500,
+            "icon": "creatures/gorynych/CPrL168M",
+            "id": 154,
+            "key": "wake-of-gods.creatures:gorynych",
+            "name": "Gorynych",
+            "nativeFlags": {
+              "attacksAllAdjacent": true,
+              "blocksRetaliation": true,
+              "chargeImmune": false,
+              "flying": true,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 14
+          },
+          {
+            "aiValue": 80,
+            "attack": 4,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              60,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 1,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 100,
+            "growth": 14,
+            "health": 10,
+            "icon": "",
+            "id": 0,
+            "key": "core:pikeman",
+            "name": "Pikeman",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": true,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          {
+            "aiValue": 128,
+            "attack": 5,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              125,
+              0
+            ],
+            "count": 1,
+            "damageMax": 3,
+            "damageMin": 2,
+            "defense": 5,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 160,
+            "growth": 8,
+            "health": 20,
+            "icon": "",
+            "id": 59,
+            "key": "core:zombieLord",
+            "name": "Zombie",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": false,
+              "mindImmune": false,
+              "noMorale": false,
+              "nonLiving": false,
+              "undead": true
+            },
+            "shooter": false,
+            "shots": 0,
+            "speed": 4
+          },
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "audioMuted": false,
+    "autosaveAllowed": false,
+    "backpackCount": 1,
+    "campaignPending": false,
+    "cheatReady": false,
+    "cheatsAllowed": true,
+    "currentPlayer": 0,
+    "day": 2,
+    "equipment": [
+      {
+        "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+        "icon": 78,
+        "name": "Cape of Conjuring",
+        "slot": 1
+      },
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ],
+    "heroHasSpellbook": false,
+    "heroId": 2,
+    "heroMana": 10,
+    "heroManaLimit": 10,
+    "heroMoving": false,
+    "heroName": "Orrin",
+    "heroWindow": {
+      "backpack": [
+        {
+          "allowed": false,
+          "description": "{Elixir of Life}\n\nAll creatures get a 25% health bonus and gain the regeneration ability.  Does not work on Undead or unliving creatures",
+          "icon": 131,
+          "locked": false,
+          "movable": true,
+          "name": "Elixir of Life",
+          "slot": 19
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 20
+        }
+      ],
+      "canRebalanceSourceArtifacts": false,
+      "caveEffects": "",
+      "className": "Knight",
+      "commanderIcon": 11,
+      "experience": 0,
+      "experienceIcon": 4,
+      "id": 2,
+      "level": 1,
+      "luck": {
+        "icon": 8,
+        "value": 0
+      },
+      "mana": 10,
+      "manaIcon": 5,
+      "manaLimit": 10,
+      "morale": {
+        "icon": 7,
+        "value": -1
+      },
+      "name": "Orrin",
+      "owned": true,
+      "portrait": {
+        "h": 64,
+        "w": 58,
+        "x": 83,
+        "y": 26
+      },
+      "primaryIcons": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "primarySkills": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "skills": [
+        {
+          "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+          "icon": 9,
+          "mastery": "Basic",
+          "name": "Leadership"
+        },
+        {
+          "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+          "icon": 10,
+          "mastery": "Basic",
+          "name": "Archery"
+        }
+      ],
+      "slots": [
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 0
+        },
+        {
+          "allowed": false,
+          "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+          "icon": 78,
+          "locked": false,
+          "movable": true,
+          "name": "Cape of Conjuring",
+          "slot": 1
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 2
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 3
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 4
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 5
+        },
+        {
+          "allowed": false,
+          "locked": true,
+          "movable": false,
+          "slot": 6
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 7
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 8
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 9
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 10
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 11
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 12
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 13
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 14
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 15
+        },
+        {
+          "allowed": false,
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "locked": false,
+          "movable": false,
+          "name": "Catapult",
+          "slot": 16
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 17
+        },
+        {
+          "allowed": false,
+          "locked": false,
+          "movable": false,
+          "slot": 18
+        }
+      ],
+      "specialty": {
+        "description": "Receives a 5% per level bonus to Archery skill percentage.",
+        "icon": 6,
+        "name": "Archery"
+      }
+    },
+    "heroes": [
+      {
+        "hasSpellbook": false,
+        "id": 2,
+        "index": 0,
+        "mana": 10,
+        "manaLimit": 10,
+        "movement": 1560,
+        "movementLimit": 1560,
+        "name": "Orrin"
+      }
+    ],
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "hero",
+    "movement": 1560,
+    "musicVolume": 88,
+    "onlineGame": false,
+    "players": [
+      {
+        "color": 0,
+        "human": true,
+        "name": "Player 1"
+      },
+      {
+        "color": 1,
+        "human": false,
+        "name": "Computer"
+      }
+    ],
+    "rect": {
+      "h": 586,
+      "w": 672,
+      "x": 64,
+      "y": 7
+    },
+    "resourceTypes": [
+      {
+        "icon": "",
+        "id": 0,
+        "key": "wood",
+        "name": "Wood",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 1,
+        "key": "mercury",
+        "name": "Mercury",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 2,
+        "key": "ore",
+        "name": "Ore",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 3,
+        "key": "sulfur",
+        "name": "Sulfur",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 4,
+        "key": "crystal",
+        "name": "Crystal",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 5,
+        "key": "gems",
+        "name": "Gems",
+        "scope": "core"
+      },
+      {
+        "icon": "",
+        "id": 6,
+        "key": "gold",
+        "name": "Gold",
+        "scope": "core"
+      },
+      {
+        "icon": "mithril/small.png",
+        "id": 7,
+        "key": "mithril",
+        "name": "Mithril",
+        "scope": "wake-of-gods.mithril"
+      }
+    ],
+    "resources": [
+      29,
+      10,
+      29,
+      10,
+      10,
+      10,
+      20500,
+      0
+    ],
+    "sessionState": 6,
+    "soundVolume": 88,
+    "towns": [
+      {
+        "id": 0,
+        "index": 0,
+        "name": "Goonkbourg"
+      }
+    ],
+    "troopDeployment": {
+      "heroId": 2,
+      "origin": [
+        17,
+        18,
+        0
+      ],
+      "revision": 0,
+      "targets": [
+        {
+          "available": false,
+          "direction": 0,
+          "x": 17,
+          "y": 17
+        },
+        {
+          "available": true,
+          "direction": 1,
+          "x": 18,
+          "y": 17
+        },
+        {
+          "available": true,
+          "direction": 2,
+          "x": 18,
+          "y": 18
+        },
+        {
+          "available": true,
+          "direction": 3,
+          "x": 18,
+          "y": 19
+        },
+        {
+          "available": true,
+          "direction": 4,
+          "x": 17,
+          "y": 19
+        },
+        {
+          "available": true,
+          "direction": 5,
+          "x": 16,
+          "y": 19
+        },
+        {
+          "available": true,
+          "direction": 6,
+          "x": 16,
+          "y": 18
+        },
+        {
+          "available": false,
+          "direction": 7,
+          "x": 16,
+          "y": 17
+        }
+      ],
+      "troops": [
+        {
+          "aiValue": 12931,
+          "attack": 25,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            7000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 50,
+          "damageMin": 25,
+          "defense": 30,
+          "description": "",
+          "fightValue": 12272,
+          "growth": 1,
+          "health": 500,
+          "icon": "creatures/gorynych/CPrL168M",
+          "id": 154,
+          "key": "wake-of-gods.creatures:gorynych",
+          "maximum": 1,
+          "name": "Gorynych",
+          "nativeFlags": {
+            "attacksAllAdjacent": true,
+            "blocksRetaliation": true,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 0,
+          "speed": 14
+        },
+        {
+          "aiValue": 80,
+          "attack": 4,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 5,
+          "description": "",
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "maximum": 1,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 1,
+          "speed": 4
+        },
+        {
+          "aiValue": 128,
+          "attack": 5,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            125,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 5,
+          "description": "",
+          "fightValue": 160,
+          "growth": 8,
+          "health": 20,
+          "icon": "",
+          "id": 59,
+          "key": "core:zombieLord",
+          "maximum": 1,
+          "name": "Zombie",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "shooter": false,
+          "shots": 0,
+          "slot": 2,
+          "speed": 4
+        }
+      ]
+    },
+    "troopEquipment": {
+      "canAct": true,
+      "heroId": 2,
+      "heroName": "Orrin",
+      "troops": [
+        {
+          "aiValue": 12931,
+          "attack": 27,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            7000,
+            0
+          ],
+          "count": 1,
+          "damageMax": 50,
+          "damageMin": 25,
+          "defense": 32,
+          "description": "",
+          "fightValue": 12272,
+          "growth": 1,
+          "health": 500,
+          "icon": "creatures/gorynych/CPrL168M",
+          "id": 154,
+          "key": "wake-of-gods.creatures:gorynych",
+          "magicDamageReduction": 0,
+          "name": "Gorynych",
+          "nativeFlags": {
+            "attacksAllAdjacent": true,
+            "blocksRetaliation": true,
+            "chargeImmune": false,
+            "flying": true,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "physicalDamageBonus": 0,
+          "rangedDamageBonus": 10,
+          "shooter": false,
+          "shots": 0,
+          "slot": 0,
+          "speed": 14
+        },
+        {
+          "aiValue": 80,
+          "attack": 6,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            60,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 1,
+          "defense": 7,
+          "description": "",
+          "fightValue": 100,
+          "growth": 14,
+          "health": 10,
+          "icon": "",
+          "id": 0,
+          "key": "core:pikeman",
+          "magicDamageReduction": 0,
+          "name": "Pikeman",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": true,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": false
+          },
+          "physicalDamageBonus": 0,
+          "rangedDamageBonus": 10,
+          "shooter": false,
+          "shots": 0,
+          "slot": 1,
+          "speed": 4
+        },
+        {
+          "aiValue": 128,
+          "attack": 7,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            125,
+            0
+          ],
+          "count": 1,
+          "damageMax": 3,
+          "damageMin": 2,
+          "defense": 7,
+          "description": "",
+          "fightValue": 160,
+          "growth": 8,
+          "health": 20,
+          "icon": "",
+          "id": 59,
+          "key": "core:zombieLord",
+          "magicDamageReduction": 0,
+          "name": "Zombie",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": false,
+            "mindImmune": false,
+            "noMorale": false,
+            "nonLiving": false,
+            "undead": true
+          },
+          "physicalDamageBonus": 0,
+          "rangedDamageBonus": 10,
+          "shooter": false,
+          "shots": 0,
+          "slot": 2,
+          "speed": 4
+        }
+      ]
+    },
+    "turn": true,
+    "windowToken": 59066472
+  },
+  "errors": []
+}

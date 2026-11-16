@@ -14,6 +14,8 @@
 #include "../../lib/era/EraCampaignDialogs.h"
 #include "../../lib/era/EraCampaignPictures.h"
 #include "../../lib/era/EraCampaignObjectAccess.h"
+#include "../../lib/era/EraCampaignSlotCurseRule.h"
+#include "../../lib/era/EraCampaignEventTemplate.h"
 #include "../../lib/era/EraCampaignHints.h"
 #include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignArtifactRule.h"
@@ -242,7 +244,9 @@ struct SourceCampaignProcessor::Impl final:Host
  int3 position(const Command & c)const
  {
   const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH"||c.receiver=="DW"||c.receiver=="GR";
-  const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4&&c.selectors[3].access==Access::Read&&number(c.selectors[3])==1;
+  // WoG 3.58f's MO parser (0x747f9e) retains only x/y/z when
+  // accepting a fourth selector. Both /0 and /1 occur in original maps.
+  const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4;
   require(c.selectors.size()==3||(indirect&&c.selectors.size()==1)||dynamicMonster,"object needs three coordinates or a coordinate variable");
   int3 pos;
   if(c.selectors.size()==1){const int index=number(c.selectors[0]);require(index>=1&&index<=9998,"invalid OB coordinate variable");pos=int3(lookup(vm.v,index),lookup(vm.v,index+1),lookup(vm.v,index+2));}
@@ -346,6 +350,9 @@ struct SourceCampaignProcessor::Impl final:Host
   SourceCampaignChange packet;packet.state=state;packet.worldState=std::move(world);packet.changes.Vector();
   if(change.isVector())packet.changes=std::move(change);
   else if(!change.isNull())packet.changes.Vector().push_back(std::move(change));
+  const auto & previous=gh.gameState().getMap().sourceCampaignState;
+  if(previous["objectAccess"]!=state["objectAccess"]||previous["objectAccessPositions"]!=state["objectAccessPositions"]||previous["guardAccessRevision"]!=state["guardAccessRevision"])
+   packet.changes.Vector().push_back(mutation("guardAccessRefresh",ObjectInstanceID::NONE));
   if(event&&reward)packet.rewardConfigurations.emplace(event->id,*reward);
   gh.sendAndApply(packet);
  }
@@ -455,6 +462,19 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   state["terrainEncoding"].Integer()=2;persist(std::move(changes));
  }
+ void migrateCreatedEvents()
+ {
+  if(!state["eventTemplateRevision"].isNull()){require(era_campaign_json::integer(state["eventTemplateRevision"])==1,"unknown event template revision");return;}
+  JsonNode changes;changes.Vector();
+  if(state["objectIdentities"].isStruct())for(const auto & entry:state["objectIdentities"].Struct())
+  {
+   const auto & identity=era_campaign_json::array(entry.second);
+   if(identity.size()!=2||era_campaign_json::integer(identity[0])!=26)continue;
+   const auto * event=dynamic_cast<const CGEvent *>(gh.gameState().getObj(ObjectInstanceID(std::stoi(entry.first))));
+   if(event&&event->appearance&&event->appearance->id==Obj::EVENT&&event->appearance->isBlockedAt(0,0))changes.Vector().push_back(mutation("eventPassability",event->id));
+  }
+  state["eventTemplateRevision"].Integer()=1;persist(std::move(changes));
+ }
  void bind()
  {
   if(checked)return;checked=true;
@@ -498,6 +518,9 @@ struct SourceCampaignProcessor::Impl final:Host
    if(state["player"].isNumber())player=PlayerColor(state["player"].Integer());
    active=true;
    if(saved.isNull())state["terrainEncoding"].Integer()=2;else migrateEntrances();
+   migrateCreatedEvents();
+   if(state["guardAccessRevision"].isNull()){state["guardAccessRevision"].Integer()=1;persist();}
+   else require(era_campaign_json::integer(state["guardAccessRevision"])==1,"unknown guard access revision");
    return;
   }
  }
@@ -817,6 +840,32 @@ struct SourceCampaignProcessor::Impl final:Host
   Executor executor(program,vm,context,*this);
   if(executor.dispatchAny("OB",{{int(source->ID)},{int(source->ID),source->subID},{position.x,position.y,position.z}})){run();return true;}
   heroId=ObjectInstanceID::NONE;return false;
+ }
+ void restoreSlotCurse(const JsonNode & row)
+ {
+  const int type=era_campaign_json::integer(row["hero"]),encoded=era_campaign_json::integer(row["value"]);
+  const int source=era_campaign_slot_curse::slot(encoded),slot=era_campaign_slot_curse::nativeSlot(source);
+  auto & count=state["artifactSlotLocks"][std::to_string(type)][std::to_string(slot)];
+  count.Integer()=era_campaign_slot_curse::lockCount(count.isNull()?0:era_campaign_json::integer(count),-1);
+  const auto * target=hero(type);const int old=era_campaign_slot_curse::artifact(encoded);
+  if(target&&old>=0&&source!=8&&row["restore"].Bool())
+  {
+   const auto id=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(old));
+   persist();gh.giveHeroNewArtifact(target,id,ArtifactPosition(slot));
+  }
+ }
+ void expireSlotCurses(PlayerColor owner,int day)
+ {
+  if(state["slotCurses"].isNull())return;
+  auto & rows=state["slotCurses"].Vector();bool changed=false;
+  for(auto it=rows.begin();it!=rows.end();)
+  {
+   const auto * target=hero(era_campaign_json::integer((*it)["hero"]));
+   if(target&&target->getOwner()==owner&&era_campaign_slot_curse::expired(era_campaign_json::integer((*it)["start"]),era_campaign_json::integer((*it)["length"]),day))
+   {const auto row=*it;it=rows.erase(it);restoreSlotCurse(row);changed=true;}
+   else ++it;
+  }
+  if(changed)persist();
  }
  // WoG 3.58f 0x7059e0 runs before ERM2Object: the same dwelling
  // changes its recruit type with the absolute day and restores guard slot 0.
@@ -1159,6 +1208,13 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  if(c.receiver=="UN")
  {
   require(c.selectors.empty(),"universal receiver does not take selectors");
+  if(op.code=="P")
+  {
+   arity(op,2);require(args[0].access==Access::Read&&number(args[0])==17&&args[1].access==Access::Write,"unvalidated original WoG option access");
+   // The global Potion Fountains WoGification script is not installed or
+   // enabled by this host. Campaign battle potions are a separate mechanism.
+   value(0,args[1]);return Step::Continue;
+  }
   if(op.code=="N")
   {
    require(args.size()==3||args.size()==4,"invalid source name arity");
@@ -1312,7 +1368,11 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   // CGDwelling::initObj configures its recruit rows and guards in newObject.
   // Configuring it here as well appends a second native guard army.
   if(source!=17&&source!=20)handler->configureObject(created.get(),*gh.randomizer);
-  gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=originalTemplate?templates.back():templates.front();created->setAnchorPos(anchor);
+  gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=originalTemplate?templates.back():templates.front();
+  // Original DEF rows precede the native event fixup. An event must remain
+  // passable; retaining their blocked bit can seal a one-tile passage.
+  if(type==Obj::EVENT&&visualMapped.ID==Obj::EVENT){created->appearance=era_compat::sourceEventTemplate(*created->appearance);}
+  created->setAnchorPos(anchor);
   if(auto monster=std::dynamic_pointer_cast<CGCreature>(created)){monster->initialCharacter=CGCreature::Character::SAVAGE;monster->neverFlees=true;monster->notGrowingTeam=false;monster->gainedArtifact=ArtifactID::NONE;monster->resources=TResources{};monster->message.clear();monster->clearSlots();monster->putStack(SlotID(0),std::make_unique<CStackInstance>(&gh.gameInfo(),CreatureID(sub.getNum()),5));}
   if(auto resource=std::dynamic_pointer_cast<CGResource>(created)){resource->clearSlots();resource->setAmount(5*resource->getResourceHandler()->getAmountMultiplier());}
   if(auto event=std::dynamic_pointer_cast<CGEvent>(created)){event->humanActivate=true;event->computerActivate=false;event->removeAfterVisit=false;event->availableFor.clear();for(int color=0;color<8;++color)event->availableFor.insert(PlayerColor(color));event->configuration.info.clear();event->configuration.info.emplace_back();event->configuration.info.back().visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;}
@@ -1405,7 +1465,47 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(op.code=="O")
   {arity(op,1);const int owner=value(h?h->getOwner().getNum():-1,args[0]);if(!query(op)&&h)gh.setOwner(h,PlayerColor(owner));return Step::Continue;}
   require(h!=nullptr,"source hero missing for HE"+std::to_string(number(c.selectors[0]))+":"+op.code);
-  if(op.code=="B")
+  if(op.code=="Y")
+  {
+   arity(op,4);require(args[0].access==Access::Read&&args[3].access==Access::Read,"curse identity and mode must be values");
+   const int kind=number(args[0]),mode=number(args[3]),type=h->getHeroTypeID().getNum();
+   require(kind==2&&mode>=0&&mode<=3,"unvalidated original curse family or mode");
+   auto & rows=state["slotCurses"].Vector();require(rows.size()<=1000,"source curse table overflow");
+   auto found=std::find_if(rows.begin(),rows.end(),[&](const JsonNode & row){return era_campaign_json::integer(row["hero"])==type;});
+   if(query(op))
+   {
+    const int power=found==rows.end()?0:era_campaign_json::integer((*found)["value"]);
+    const int length=found==rows.end()?0:era_campaign_slot_curse::subtract(era_campaign_slot_curse::add(era_campaign_json::integer((*found)["start"]),era_campaign_json::integer((*found)["length"])),int(gh.gameState().day));
+    value(power,args[1]);value(length,args[2]);return Step::Continue;
+   }
+   require(args[1].access==Access::Read&&args[2].access==Access::Read,"curse values require set/get access");
+   const int power=number(args[1]),length=number(args[2]),day=gh.gameState().day;
+   if(mode==3){if(found!=rows.end()){const auto row=*found;rows.erase(found);restoreSlotCurse(row);}persist();return Step::Continue;}
+   if(found!=rows.end())
+   {
+    // In the pinned 3.58f branch flag0 deletes its row without _DelCurse.
+    if(mode==0)rows.erase(found);
+    else if(mode==1){(*found)["start"].Integer()=day;(*found)["length"].Integer()=length;(*found)["value"].Integer()=power;}
+    else {(*found)["length"].Integer()=era_campaign_slot_curse::add(era_campaign_json::integer((*found)["length"]),length);(*found)["value"].Integer()=era_campaign_slot_curse::add(era_campaign_json::integer((*found)["value"]),power);}
+    persist();return Step::Continue;
+   }
+   if(mode==0)return Step::Continue;
+   require(rows.size()<1000,"source curse table full");
+   const int source=power==-1?random(8,false):power,slot=era_campaign_slot_curse::nativeSlot(source);
+   int old=-1;bool restore=false;const auto * place=h->getSlot(ArtifactPosition(slot));
+   if(source!=8&&place&&!place->locked&&place->getArt())
+   {
+    const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+    for(int candidate=0;candidate<=143;++candidate)if(mapping.remap(ArtifactID(candidate))==place->getArt()->getTypeId()){old=candidate;break;}
+    require(old>=0,"foreign artifact in original slot curse");restore=true;
+    gh.removeArtifact(ArtifactLocation(h->id,ArtifactPosition(slot)));
+   }
+   JsonNode row;row["hero"].Integer()=type;row["start"].Integer()=day;row["length"].Integer()=length;
+   row["value"].Integer()=era_campaign_slot_curse::encode(source,old);row["restore"].Bool()=restore;rows.push_back(std::move(row));
+   auto & count=state["artifactSlotLocks"][std::to_string(type)][std::to_string(slot)];count.Integer()=era_campaign_slot_curse::lockCount(count.isNull()?0:era_campaign_json::integer(count),1);
+   persist();return Step::Continue;
+  }
+  else if(op.code=="B")
   {
    arity(op,2);require(args[0].access==Access::Read,"hero text field must be a value");
    const int field=number(args[0]);require(field==0||field==1||field==3,"unsupported hero text field");
@@ -1494,7 +1594,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   else if(op.code=="P")
   {
    require(args.size()==3||(args.size()==4&&args[3].access==Access::Read&&number(args[3])==1),"unsupported hero teleport flag");const auto old=h->visitablePos();const int3 pos(value(old.x,args[0]),value(old.y,args[1]),value(old.z,args[2]));
-   if(!query(op))require(gh.moveHero(h->id,h->convertFromVisitablePos(pos),EMovementMode::MONOLITH),"hero teleport failed");
+   if(!query(op))require(gh.moveSourceCampaignHero(h->id,h->convertFromVisitablePos(pos)),"hero teleport failed");
   }
   else if(op.code=="I"||op.code=="W")
   {arity(op,1);const int changed=value(op.code=="I"?h->mana:h->movementPointsRemaining(),args[0]);if(!query(op)){if(op.code=="I")gh.setManaPoints(h->id,changed);else gh.setMovePoints(h->id,changed);}}
@@ -1926,7 +2026,7 @@ bool SourceCampaignProcessor::beginTurn(PlayerColor player)
  require(player.isValidPlayer(),"invalid source turn player");const auto day=int(impl->gh.gameState().day);
  auto & previous=impl->state["queuedTurnDays"][std::to_string(player.getNum())];
  if(previous.isNumber()&&era_campaign_json::integer(previous)==day)return true;
- impl->fireTurn(day);previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=28,"excessive queued source turns");
+ impl->expireSlotCurses(player,day);impl->fireTurn(day);previous.Integer()=day;auto & queue=impl->state["turnQueue"].Vector();require(queue.size()<=28,"excessive queued source turns");
  for(const auto & kind:{"prepare","timers","globals","finish"})
  {
   JsonNode pass;pass["kind"].String()=kind;pass["player"].Integer()=player.getNum();pass["day"].Integer()=day;pass["cursor"].Integer()=std::string(kind)=="timers"?1:0;queue.push_back(std::move(pass));

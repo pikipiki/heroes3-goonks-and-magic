@@ -63,6 +63,7 @@ class SourceCampaignProcessor;
 class CGameHandler : public Environment, public IGameEventCallback
 {
 	IGameServer & server;
+	bool moveHeroImpl(ObjectInstanceID hid, int3 dst, EMovementMode movementMode, bool transit, PlayerColor asker, bool scriptedWaterLanding);
 
 public:
 	std::unique_ptr<HeroPoolProcessor> heroPool;
@@ -167,6 +168,7 @@ public:
 	void startBattle(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile, const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town) override; //use hero=nullptr for no hero
 	void startBattle(const CArmedInstance *army1, const CArmedInstance *army2) override; //if any of armies is hero, hero will be used, visitable tile of second obj is place of battle
 	bool moveHero(ObjectInstanceID hid, int3 dst, EMovementMode movementMode, bool transit = false, PlayerColor asker = PlayerColor::NEUTRAL) override;
+	bool moveSourceCampaignHero(ObjectInstanceID hid, int3 dst);
 	void giveHeroBonus(GiveBonus * bonus) override;
 	void setMovePoints(SetMovePoints * smp) override;
 	void setMovePoints(ObjectInstanceID hid, int val) override;

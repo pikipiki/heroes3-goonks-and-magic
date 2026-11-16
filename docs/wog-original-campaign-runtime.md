@@ -501,3 +501,17 @@ Le dernier scénario couvre le sauvetage des quatre héros, leur placement simul
 L’écran tactile de victoire/défaite réutilise le calcul et le stockage natifs des scores. Le nom reste modifiable sans recréation du champ aux mises à jour d’état ; enregistrer ou continuer sans enregistrer ramène au menu sous-jacent. Les sept formats de 320×568 à 1280×720 conservent les actions visibles, avec commandes à droite en paysage étroit.
 
 L’admission ne s’étend pas à zc2, zc3, zc4 ou Cave. Leurs scripts et victoires exigent encore une validation propre.
+
+## Progression réelle de Samaritan en 0.4.211
+
+Le début original de `zc2-0` a été joué avec son armée de départ : sauvetage, sépulture, obélisque, huit combats de gremlins, dépôt natif du Troll et guérison de Gaïa, puis forêt, renforts, chef du village, réparation du puits et remise de la plante. Le recrutement effectif ajoute vingt Grands Elfes et cent Sprites. Les déplacements et la révélation sont accélérés par les commandes natives hors ligne ; les ressources, armées, variables de quête, adversaires et scripts ne sont pas réécrits. Cette preuve de progression ne constitue pas encore une victoire de Samaritan.
+
+`HE:Y` famille2 retire réellement l’objet porté, verrouille son emplacement dans les échanges et assemblages natifs et restaure l’objet par le mode3 ou l’expiration. Le mode0 conserve le défaut du binaire358f : sa ligne disparaît sans déverrouiller l’emplacement. La durée d’une malédiction absente, indéfinie dans l’original, est normalisée à zéro. Les autres familles et le blocage de l’incantation par l’emplacement du livre ne sont pas déclarés validés.
+
+Les événements créés par `UN:I` appliquent la normalisation native des masques de passage ; les sauvegardes contenant leurs anciens masques bloqués sont réparées. Un monstre utilisé comme personnage de dialogue avec son effet natif entièrement désactivé ne garde plus une zone de bataille autour de lui. Les changements d’accès recalculent les gardes et invalident les chemins ; les sauvegardes existantes bénéficient également de cette reprise. Les masques non nuls gardent leurs zones natives : ce lot ne prétend pas résoudre les zones de garde distinctes par joueur.
+
+La scène originale de Gaïa peut poser le héros sur une case d’eau vide puis le ramener à terre, comme le demandent ses deux `HE:P` successifs. Les mouvements et sorts ordinaires gardent leurs contrôles. Le quatrième paramètre de `MOx/y/z/0` est ignoré, conformément au parseur358f ; cela permet aux renforts originaux de prendre leurs effectifs et leur attitude de recrutement.
+
+Contrat : `samaritan-source-contract-211.json`. Parcours : `native-samaritan-progress-211.json`. Les preuves de ce répertoire distinguent les contrôles privés de commandes, les archives originales inchangées et les cartes Goonk livrées. Compilation WebAssembly,755 tests réussis et34 ignorés, construction/vérification du site, sauvegardes et tours003/004 et combat natif passent. Le lancement de zc1 et ses formulaires stables sur sept formats sont revérifiés. Les diagnostics temporaires sont absents du moteur publié.
+
+Zc1 reste activée. Zc2, zc3, zc4 et Cave attendent toujours leurs propres victoires et transferts validés.

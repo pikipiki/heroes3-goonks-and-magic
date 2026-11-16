@@ -16,6 +16,8 @@
 #include "../../era/EraEye278Native.h"
 
 #include "../../constants/StringConstants.h"
+#include "../../mapObjects/CGHeroInstance.h"
+#include "../../callback/IGameInfoCallback.h"
 #include "../../gameState/CGameState.h"
 #include "../../mapping/CMap.h"
 #include "../../serializer/JsonSerializeFormat.h"
@@ -308,8 +310,24 @@ void CArtifactSet::lockSlot(const ArtifactPosition & pos)
 	}
 }
 
+std::set<ArtifactPosition> CArtifactSet::getSourceSlotLocks() const
+{
+	const auto * hero=dynamic_cast<const CGHeroInstance *>(this);
+	if(!hero||!getCallback()||hero->getHeroTypeID().getNum()<0)return sourceSlotLocks;
+	std::set<ArtifactPosition> result;
+	const auto & map=getCallback()->gameState().getMap();
+	const auto & locks=map.sourceCampaignState["artifactSlotLocks"][std::to_string(hero->getHeroTypeID().getNum())];
+	if(locks.isStruct())for(const auto & entry:locks.Struct())
+	{
+		const int slot=std::stoi(entry.first);
+		if(slot>=0&&slot<=18&&entry.second.isNumber()&&entry.second.Integer()!=0)result.insert(ArtifactPosition(slot));
+	}
+	return result;
+}
+
 bool CArtifactSet::isPositionFree(const ArtifactPosition & pos, bool onlyLockCheck) const
 {
+	if(getSourceSlotLocks().count(pos))return false;
 	if(bearerType() == ArtBearer::ALTAR)
 		return artifactsInBackpack.size() < GameConstants::ALTAR_ARTIFACTS_SLOTS;
 

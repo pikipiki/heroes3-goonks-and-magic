@@ -1,6 +1,6 @@
 # Inventaire de compatibilité WoG / ERA
 
-Référence : **TUM 3.5.0 fourni**, port WoG VCMI **9.1.82**, jeu **0.4.210**.
+Référence : **TUM 3.5.0 fourni**, port WoG VCMI **9.1.82**, jeu **0.4.211**.
 
 Cet inventaire couvre toutes les déclarations des fichiers source recensés. Il ne certifie pas la compatibilité intégrale ERA. « À rapprocher » indique l’absence d’un lien de preuve sémantique précis dans cet inventaire ; cela ne signifie pas que la fonctionnalité est absente du jeu.
 
@@ -54,7 +54,7 @@ Critère de clôture : Combinaisons supportées, interface tactile, persistance 
 
 ### 4. Cartes et campagnes originales WoG
 
-Quatre campagnes, onze scénarios et Cave inventoriés ; les 137 sources des campagnes compilent avec exceptions documentées. Noyau natif de fonctions, boucles et reprise après sérialisation vérifié ; adaptations des événements, quêtes et combats et validation des victoires non terminées. Sous-mod Maps maintenu désactivé. État détaillé : docs/wog-original-campaign-runtime.md.
+Campagne zc1 activée : trois victoires natives et deux transferts validés. Les trois autres campagnes et Cave restent désactivés ; leurs 137 sources compilent mais leurs quêtes, combats et victoires restent à terminer et valider. Le sous-mod Maps historique reste désactivé ; le catalogue actif expose uniquement les archives admises. État détaillé : docs/wog-original-campaign-runtime.md.
 
 Critère de clôture : Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire.
 

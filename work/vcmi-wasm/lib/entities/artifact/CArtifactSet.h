@@ -10,6 +10,7 @@
 #pragma once
 
 #include "ArtBearer.h"
+#include <set>
 #include "ArtSlotInfo.h"
 #include "../../serializer/Serializeable.h"
 
@@ -25,6 +26,10 @@ public:
 
 	std::vector<ArtSlotInfo> artifactsInBackpack; //hero's artifacts from bag
 	std::map<ArtifactPosition, ArtSlotInfo> artifactsWorn; //map<position,artifact_id>; positions: 0 - head; 1 - shoulders; 2 - neck; 3 - right hand; 4 - left hand; 5 - torso; 6 - right ring; 7 - left ring; 8 - feet; 9 - misc1; 10 - misc2; 11 - misc3; 12 - misc4; 13 - mach1; 14 - mach2; 15 - mach3; 16 - mach4; 17 - spellbook; 18 - misc5
+	// Fitting copies inherit these constraints. Real heroes read the replicated
+	// campaign state, so saves retain one authoritative representation.
+	std::set<ArtifactPosition> sourceSlotLocks;
+	std::set<ArtifactPosition> getSourceSlotLocks() const;
 	ArtSlotInfo artifactsTransitionPos; // Used as transition position for dragAndDrop artifact exchange
 
 	const ArtSlotInfo * getSlot(const ArtifactPosition & pos) const;

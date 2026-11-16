@@ -23,6 +23,7 @@ CArtifactFittingSet::CArtifactFittingSet(IGameInfoCallback *cb, ArtBearer bearer
 CArtifactFittingSet::CArtifactFittingSet(const CArtifactSet & artSet)
 	: CArtifactFittingSet(artSet.getCallback(), artSet.bearerType())
 {
+	sourceSlotLocks = artSet.getSourceSlotLocks();
 	artifactsWorn = artSet.artifactsWorn;
 	artifactsInBackpack = artSet.artifactsInBackpack;
 	artifactsTransitionPos = artSet.artifactsTransitionPos;

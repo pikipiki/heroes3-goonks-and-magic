@@ -18,6 +18,7 @@
 #include "../networkPacks/SourceCampaignChange.h"
 #include "../entities/ResourceTypeHandler.h"
 #include "EraCampaignTerrainRule.h"
+#include "EraCampaignEventTemplate.h"
 #include "EraCampaignCreatureAttributes.h"
 #include <stdexcept>
 #include <set>
@@ -56,6 +57,11 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="guardAccessRefresh")
+  {
+   gs.getMap().calculateGuardingGreaturePositions();
+   continue;
+  }
   if(kind=="creatureAttribute")
   {
    const auto & field=change["field"].String();
@@ -147,6 +153,14 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    const auto & text=change["text"].String();
    if(text.empty())target.clear();
    else target=mapRegisterLocalizedString("map",gs.getMap(),TextIdentifier("map","sourceCampaign","heroes",id.getNum(),field==0?"name":"biography"),text,"english");
+  }
+  else if(kind=="eventPassability")
+  {
+   auto * event=dynamic_cast<CGEvent *>(object);
+   if(!event||!event->appearance||event->appearance->id!=Obj::EVENT)throw std::runtime_error("Invalid original event passability repair");
+   gs.getMap().hideObject(event);
+   event->appearance=sourceEventTemplate(*event->appearance);
+   gs.getMap().showObject(event);
   }
   else if(kind=="heroAppearance")
   {

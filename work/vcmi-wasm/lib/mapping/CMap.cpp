@@ -27,6 +27,7 @@
 #include "../entities/artifact/CArtHandler.h"
 #include "../entities/hero/CHeroHandler.h"
 #include "../gameState/CGameState.h"
+#include "../era/EraCampaignHints.h"
 #include "../mapObjects/CGHeroInstance.h"
 #include "../mapObjects/CGTownInstance.h"
 #include "../mapObjects/CQuest.h"
@@ -362,6 +363,16 @@ bool CMap::checkForVisitableDir(const int3 & src, const TerrainTile * pom, const
 
 int3 CMap::guardingCreaturePosition (int3 pos) const
 {
+	const auto guards = [this](const CGObjectInstance * object)
+	{
+		if(object->ID != Obj::MONSTER)return false;
+		// OB:S keeps a scripted NPC visitable while disabling its native
+		// battle. Such an NPC must not seal adjacent paths with a guard zone.
+		const auto & positionMask=sourceCampaignState["objectAccessPositions"][era_campaign_hints::positionKey(object->visitablePos())];
+		if(positionMask.isNumber())return positionMask.Integer()!=0;
+		const auto & objectMask=sourceCampaignState["objectAccess"][std::to_string(object->id.getNum())];
+		return !objectMask.isNumber()||objectMask.Integer()!=0;
+	};
 	const int3 originalPos = pos;
 	// Give monster at position priority.
 	if (!isInTheMap(pos))
@@ -372,7 +383,7 @@ int3 CMap::guardingCreaturePosition (int3 pos) const
 		for (const auto & objID : posTile.visitableObjects)
 		{
 			const auto * object = getObject(objID);
-			if (object->ID == Obj::MONSTER)
+			if (guards(object))
 				return pos;
 		}
 	}
@@ -393,7 +404,7 @@ int3 CMap::guardingCreaturePosition (int3 pos) const
 					for (const auto & objID : tile.visitableObjects)
 					{
 						const auto * object = getObject(objID);
-						if (object->ID == Obj::MONSTER  &&  checkForVisitableDir(pos, &posTile, originalPos)) // Monster being able to attack investigated tile
+						if (guards(object) && checkForVisitableDir(pos, &posTile, originalPos)) // Monster being able to attack investigated tile
 							return pos;
 					}
 				}

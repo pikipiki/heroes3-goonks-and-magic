@@ -881,6 +881,16 @@ bool CGameHandler::removeObject(const CGObjectInstance * obj, const PlayerColor 
 
 bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode movementMode, bool transit, PlayerColor asker)
 {
+ return moveHeroImpl(hid,dst,movementMode,transit,asker,false);
+}
+
+bool CGameHandler::moveSourceCampaignHero(ObjectInstanceID hid, int3 dst)
+{
+ return moveHeroImpl(hid,dst,EMovementMode::MONOLITH,false,PlayerColor::NEUTRAL,true);
+}
+
+bool CGameHandler::moveHeroImpl(ObjectInstanceID hid, int3 dst, EMovementMode movementMode, bool transit, PlayerColor asker, bool scriptedWaterLanding)
+{
 	const CGHeroInstance *h = gameInfo().getHero(hid);
 	// not turn of that hero or player can't simply teleport hero (at least not with this function)
 	if(!h || (asker != PlayerColor::NEUTRAL && movementMode != EMovementMode::STANDARD))
@@ -980,7 +990,11 @@ bool CGameHandler::moveHero(ObjectInstanceID hid, int3 dst, EMovementMode moveme
 		return complainRet("Cannot move hero, destination tile is blocked!");
 
 	//hero is not on boat/water walking and dst water tile doesn't contain boat/hero (objs visitable from land) -> we test back cause boat may be on top of another object (#276)
-	if(movingOntoWater && !canFly && !canWalkOnSea)
+	// Original HE:P can deliberately land on empty water without a boat (the
+	// Samaritan's Gaia scene immediately follows it with an apology and return).
+	// Player movement and spell/monolith callers retain their normal checks.
+	const bool sourceWater = scriptedWaterLanding && !h->inBoat() && t.isWater() && !t.blocked() && t.visitableObjects.empty();
+	if(movingOntoWater && !canFly && !canWalkOnSea && !sourceWater)
 		return complainRet("Cannot move hero, destination tile is on water!");
 
 	if(h->inBoat() && h->getBoat()->layer == EPathfindingLayer::SAIL && t.isLand() && t.blocked())

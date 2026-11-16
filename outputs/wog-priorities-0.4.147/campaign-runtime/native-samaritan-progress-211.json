@@ -1,0 +1,186 @@
+{
+  "passed": true,
+  "version": "0.4.211",
+  "scope": "Unchanged original Samaritan first-scenario quest progression; not a scenario victory or campaign completion. Native movement/reveal accelerated; no army/resource/quest flag/enemy edits.",
+  "nativeReinforcements": {
+    "grandElvesAdded": 20,
+    "spritesAdded": 100
+  },
+  "steps": [
+    {
+      "step": "water-scene",
+      "engineSha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+      "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "saveSha256": "d73f50ee9b4f77a4a57506b3783fe63d4b24389f8177e15de212a76b4a5c3c9e",
+      "position": [
+        26,
+        18,
+        0
+      ],
+      "army": [
+        {
+          "key": "core:grandElf",
+          "count": 11
+        }
+      ],
+      "dialogs": [
+        [
+          " \nI feel Better Samaritan. \n \nI chased the remaining gremlins out of my territory. \n \nPeople here need your help. \nListen to your heart... \nDon't forget that my power is with you..."
+        ],
+        [
+          "Sorry..."
+        ],
+        [
+          "Good luck... \n \nI am with you..."
+        ]
+      ]
+    },
+    {
+      "step": "native-reinforcements",
+      "engineSha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+      "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "saveSha256": "3e19cad79e274bef01dccbe04056d933fedd4348053d3683168d381af8b9d24e",
+      "position": [
+        30,
+        17,
+        0
+      ],
+      "army": [
+        {
+          "key": "core:grandElf",
+          "count": 31
+        },
+        {
+          "key": "core:sprite",
+          "count": 100
+        }
+      ],
+      "dialogs": [
+        [
+          "{Followers}\n\nA group of Grand Elves with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        [
+          "{Followers}\n\nA group of Sprites with a desire for greater glory wish to join you. Do you accept? "
+        ]
+      ]
+    },
+    {
+      "step": "chief-and-alexander",
+      "engineSha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+      "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "saveSha256": "be4cfe240d3081c38363590e6676e822c5b8a748d4a28ad413f9ddb65c123f9a",
+      "position": [
+        31,
+        6,
+        0
+      ],
+      "army": [
+        {
+          "key": "core:grandElf",
+          "count": 31
+        },
+        {
+          "key": "core:sprite",
+          "count": 100
+        }
+      ],
+      "dialogs": [
+        [
+          "Welcome Samaritan... \n \nMy name is Cox. \nI am the chief of this village. \n \nThanks again for helping us against the rogues... \nBut we still have a big problem. \nA legion of rogues is in front of the boss's lair. \n \nI have a solution but... I can't do it yet... \nI can create an illusion to make the rogues afraid. \nSome will run away and only the bravest ones will remain. \n \nBut I need a special type of plant. \nAsk Alexander about this -- he knows about plants."
+        ],
+        [
+          " \nHello Samaritan \n \nSo Cox needs a plant to cast his illusion. \nBut my field needs water... \n \nThe rogues have broken the well. \nCan you repair it?"
+        ]
+      ]
+    },
+    {
+      "step": "broken-well-and-timothy",
+      "engineSha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+      "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "saveSha256": "505afc01a4dffc99c54d02e5a28870044851e204d768cac7d737e61aecb304ed",
+      "position": [
+        34,
+        11,
+        0
+      ],
+      "army": [
+        {
+          "key": "core:grandElf",
+          "count": 31
+        },
+        {
+          "key": "core:sprite",
+          "count": 100
+        }
+      ],
+      "dialogs": [
+        [
+          " \n \nOh my god... \n \nThose are my gloves... \n \nGive them back to me and I'll return to my lair."
+        ],
+        [
+          "Ouch, the well is broken... \nYou need at least two ore to repair it."
+        ],
+        [
+          " \nSo... to repair the well you need ore! \nOk come with me... \n \nStay Enchanted!"
+        ],
+        [
+          "Wow this guy is fast... \nWhere did he disappear to? Perhaps in the south..."
+        ]
+      ]
+    },
+    {
+      "step": "well-repaired-and-plant-received",
+      "engineSha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+      "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "saveSha256": "59969c0e23ec00851490eba722d93f9eb9053c0ab0cd4c6af5a341025ceb433a",
+      "position": [
+        31,
+        6,
+        0
+      ],
+      "army": [
+        {
+          "key": "core:grandElf",
+          "count": 31
+        },
+        {
+          "key": "core:sprite",
+          "count": 100
+        }
+      ],
+      "dialogs": [
+        [
+          " \nSuddenly a huge fireball hits the rock and causes it to explode. \n \n- Here's two ore. Take them. These should help you. \nA long time ago, I was called Fnord the Wizard \nI promised to never use my art against life..."
+        ],
+        [
+          "Gaïa be with you. \n \nStay Enchanted."
+        ],
+        [
+          "Thanks to Timothy... \n \nWith the two ore you repair the well."
+        ],
+        [
+          "Thanks for repairing the well. \nI'll water my field. Wait a bit."
+        ],
+        [
+          "Ok... I wait."
+        ],
+        [
+          "Please friends, call Gaïa."
+        ],
+        [
+          "Ok... "
+        ],
+        [
+          " \nYes, I know my Chosen..."
+        ],
+        [
+          "Thanks to Gaïa. Here's the plant you need."
+        ],
+        [
+          "Gaïa be with you."
+        ]
+      ]
+    }
+  ],
+  "samaritanEnabled": false
+}

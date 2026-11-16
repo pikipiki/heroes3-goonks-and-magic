@@ -1,0 +1,35 @@
+{
+  "version": "0.4.211",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "analysis": "Bounded static disassembly; original Windows binary not executed",
+  "originalCampaignArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "sourceAddresses": {
+    "slotCurseReceiver": "0x7434c2..0x7435af",
+    "slotCurseLookup": "0x7518a0",
+    "slotCurseMutation": "0x751940",
+    "slotCurseRemoveWithoutRestore": "0x751af0",
+    "slotCurseApply": "0x751c50",
+    "slotCurseRestore": "0x751d40",
+    "monsterCoordinates": "0x747f9e..0x748098",
+    "heroWarp": "0x711520..0x711641"
+  },
+  "contracts": {
+    "slotCurse": "HE:Y family2; native worn-slot removal, native equipment restriction, query, mode3 restoration and inclusive expiry. Source slots6/7/8 map to native6/8/17. Existing source mode1/2 signed-word updates and byte lock counts retained.",
+    "originalFlag0Bug": "Original branch removes the curse table row without decrementing the slot lock or restoring the old item. Samaritan FU19 relies on this exact branch; retain and document rather than silently change it.",
+    "undefinedQueryRepair": "Absent source curse returns power0 and remaining duration0; the original lookup leaves duration undefined.",
+    "monsterFourthSelector": "Pinned parser accepts >=3 arguments and retains only first3 coordinates. Original Samaritan FU29 uses MO30/17/0/0 and MO30/16/0/0. Optional fourth selector is ignored. The port limits selector arity to supported3 or4.",
+    "scriptedWaterLanding": "Original Samaritan FU12 explicitly warps21 to24/13/0, apologizes, then warps21 to26/18/0. Permit the source warp to empty, unblocked water only; normal movement/spells retain native restrictions.",
+    "createdEventPassability": "Source UN:I EVENT templates must undergo the same normalization as native loaded events. Repair blocked created events in existing saves with revisioned migration and invalidate client paths.",
+    "potionFountainsOption": "UN:P17 is read-only0: global Potion Fountains WoGification option is not installed/enabled; campaign battle potions are a separate system.",
+    "scriptedNpcGuardZone": "A monster with OB:S native-effect mask0 remains explicitly visitable for its source dialogue, but cannot retain a native battle guard zone on adjacent tiles. Recompute guard positions and invalidate paths on access changes; migrate cached guard positions on saved campaign bind. Nonzero/per-player masks keep native guarding; per-player guard-zone filtering is outside this change."
+  },
+  "limits": [
+    "Other HE:Y curse families remain rejected",
+    "Spellbook-slot casting behavior has not been validated",
+    "Samaritan completion and admission require native victories and transfers for all3 scenarios"
+  ],
+  "saveFormatChanged": false,
+  "samaritanEnabled": false,
+  "engineSha256": "2784e8374794e396a7ad401f99b8af260ba765043762716f5d97ced4bbcb765d",
+  "temporaryDiagnosticsAbsent": true
+}

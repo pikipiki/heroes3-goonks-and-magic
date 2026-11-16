@@ -133,7 +133,7 @@ void ApplyClientNetPackVisitor::visitSourceCampaignChange(SourceCampaignChange &
  {
   if(item["kind"].String()=="playerResource")changed.insert(PlayerColor(item["player"].Integer()));
   if(item["kind"].String()=="playerKey")pathsChanged=true;
-  if(item["kind"].String()=="terrainAccess")pathsChanged=true;
+  if(item["kind"].String()=="terrainAccess"||item["kind"].String()=="eventPassability"||item["kind"].String()=="guardAccessRefresh")pathsChanged=true;
   if(item["kind"].String()=="terrainAppearance")
   {
    pathsChanged=true;
