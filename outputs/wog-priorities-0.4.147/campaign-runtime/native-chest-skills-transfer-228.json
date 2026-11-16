@@ -1,0 +1,773 @@
+{
+  "passed": true,
+  "engineSha256": "2f5c46654fa5fe9d8a910e3f153864f3161103bc2878f89d8c6251b7a0bc48f5",
+  "scope": "UN:B1 native reward isolation and exact final zc4 all-Expert skill grant; original third victory and transfer to final map. Final campaign completion still pending.",
+  "sourceArchiveReference": {
+    "sha256": "7ae1f6e9822f072c7c6cc9bbbd79adeee415cd2022f6966eb57f5a904c1ed327",
+    "chest": [
+      "erm.cpp:2131",
+      "_B1.cpp:4082",
+      "_B1.cpp:4191"
+    ],
+    "skills": [
+      "erm.cpp:6874",
+      "erm.cpp:6897"
+    ]
+  },
+  "originalProgramSha256": "a8a9dfef1ccd7bbc3587d1a2bdad12e4c9a15e182d77d3948fd2199a36940fa9",
+  "chestControls": [
+    {
+      "passed": true,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "711e7ca7b6c7d2eb",
+        "wasm": "vcmiclient.84d35f96eab121cf.wasm",
+        "sha256": "84d35f96eab121cfdd1d32ecd659472fce9ef2bcb37bbea2caf4e0023f945c21",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "firstChest": {
+        "beforeGold": 20000,
+        "afterGold": 20017,
+        "scriptOnly": true,
+        "removed": true
+      },
+      "policySaveSha256": "dd86a62b5ac7d79b49252006b061566bc8ede4e93dd6bee0b43f080d61cdf52e",
+      "savedPolicyRespected": false,
+      "secondChestScriptOnly": true,
+      "standardChest": {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "1500 Gold",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 297,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": true
+          },
+          {
+            "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+            "label": "1000 experience",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 421,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": false
+          }
+        ],
+        "lines": [
+          "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+          "or"
+        ],
+        "queryId": 39,
+        "title": "Game message",
+        "visitedObject": "Treasure Chest"
+      },
+      "restoredChest": {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "1500 Gold",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 297,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": true
+          },
+          {
+            "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+            "label": "1000 experience",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 421,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": false
+          }
+        ],
+        "lines": [
+          "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+          "or"
+        ],
+        "queryId": 56,
+        "title": "Game message",
+        "visitedObject": "Treasure Chest"
+      },
+      "nativePolicyRestored": true,
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "POLICY 1"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "SCRIPT ONLY 1"
+          ],
+          "queryId": 8,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "SCRIPT ONLY 1"
+          ],
+          "queryId": 20,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "1500 Gold",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": true
+            },
+            {
+              "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+              "label": "1000 experience",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": false
+            }
+          ],
+          "lines": [
+            "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+            "or"
+          ],
+          "queryId": 39,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "RESTORED 0"
+          ],
+          "queryId": 52,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "1500 Gold",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": true
+            },
+            {
+              "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+              "label": "1000 experience",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": false
+            }
+          ],
+          "lines": [
+            "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+            "or"
+          ],
+          "queryId": 56,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "8adb0df5043b7f22",
+        "wasm": "vcmiclient.2f5c46654fa5fe9d.wasm",
+        "sha256": "2f5c46654fa5fe9d8a910e3f153864f3161103bc2878f89d8c6251b7a0bc48f5",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "savedPolicyRespected": true,
+      "secondChestScriptOnly": true,
+      "standardChest": {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "1500 Gold",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 297,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": true
+          },
+          {
+            "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+            "label": "1000 experience",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 421,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": false
+          }
+        ],
+        "lines": [
+          "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+          "or"
+        ],
+        "queryId": 38,
+        "title": "Game message",
+        "visitedObject": "Treasure Chest"
+      },
+      "restoredChest": {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "1500 Gold",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 297,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": true
+          },
+          {
+            "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+            "label": "1000 experience",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 421,
+              "y": 331
+            },
+            "selectable": true,
+            "selected": false
+          }
+        ],
+        "lines": [
+          "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+          "or"
+        ],
+        "queryId": 57,
+        "title": "Game message",
+        "visitedObject": "Treasure Chest"
+      },
+      "nativePolicyRestored": true,
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "SCRIPT ONLY 1"
+          ],
+          "queryId": 20,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "1500 Gold",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": true
+            },
+            {
+              "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+              "label": "1000 experience",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": false
+            }
+          ],
+          "lines": [
+            "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+            "or"
+          ],
+          "queryId": 38,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "RESTORED 0"
+          ],
+          "queryId": 52,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "1500 Gold",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": true
+            },
+            {
+              "description": "{Experience}\n\nExperience allows your heroes to go up levels, increasing their primary and secondary skills.",
+              "label": "1000 experience",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 331
+              },
+              "selectable": true,
+              "selected": false
+            }
+          ],
+          "lines": [
+            "{Chest}\n\nAfter scouring the area, you fall upon a hidden treasure cache.  You may take the gold or distribute it to the peasants for experience.  Which do you choose?",
+            "or"
+          ],
+          "queryId": 57,
+          "title": "Game message",
+          "visitedObject": "Treasure Chest"
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "thirdVictory": {
+    "native": true,
+    "sourceSaveSha256": "7dd856a73b1f695a62f7b9334c41d05d61c635e1a8a49c21e833a29075b5274b",
+    "destinationSaveSha256": "bda87ea92e57a93978a28f6c1d1e75751fd6c92f61215201f7d6187750090ee6",
+    "scenario": {
+      "bonus": -1,
+      "bonuses": [],
+      "canStart": true,
+      "chooseDifficulty": true,
+      "description": "Xsi had the order to spy the humans for the Necromancer. But she wasn´t lucky. The humans realised her plans, hunted and prisonded her in a small valley. Now it`s on you to bring Xsi back home to the Necromancer. All maps are planed to play \"expert\". If you want choose your difficulty!",
+      "difficulty": 1,
+      "mapRect": {
+        "h": 600,
+        "w": 456,
+        "x": 0,
+        "y": 0
+      },
+      "name": "Evil Way Home",
+      "scenarioDescription": "You have to fight all enemies. Heroes experience is not limited. I hope you have done the Obelisk Quiz right. Don`t loose Xsi",
+      "scenarioName": "Home again",
+      "scenarios": [
+        {
+          "available": false,
+          "completed": true,
+          "id": 0,
+          "name": "Evil Way Home"
+        },
+        {
+          "available": false,
+          "completed": true,
+          "id": 1,
+          "name": "Through Elves Land"
+        },
+        {
+          "available": true,
+          "completed": false,
+          "id": 2,
+          "name": "Home again"
+        },
+        {
+          "available": false,
+          "completed": true,
+          "id": 3,
+          "name": "Evil way home 3"
+        }
+      ],
+      "selected": 2
+    },
+    "from": "zc4-3",
+    "to": "zc4-2",
+    "nativeTransfer": true,
+    "dialogs": [
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "",
+            "label": "Red",
+            "rect": {
+              "h": 64,
+              "w": 58,
+              "x": 371,
+              "y": 281
+            }
+          }
+        ],
+        "lines": [
+          "Congratulations! You captured Iced Isle, and are victorious!"
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Iced Isle, Tower"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "Your Heroes start with all skills"
+        ],
+        "queryId": 3,
+        "title": "Game message",
+        "visitedObject": "Iced Isle, Tower"
+      }
+    ]
+  },
+  "skills": {
+    "passed": true,
+    "engineSha256": "2f5c46654fa5fe9d8a910e3f153864f3161103bc2878f89d8c6251b7a0bc48f5",
+    "hero": "Xsi",
+    "skills": [
+      {
+        "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+        "icon": 9,
+        "mastery": "Expert",
+        "name": "Wisdom"
+      },
+      {
+        "description": "{Expert Necromancy}\n\nRaises up to 30% of defeated living creatures as Skeleton Knights, limited by their health. With the Cloak of the Undead King: Lich Kings.",
+        "icon": 10,
+        "mastery": "Expert",
+        "name": "Necromancy"
+      },
+      {
+        "description": "{Expert Learning}\n\nExpert Learning increases a hero's earned experience by 15%.",
+        "icon": 11,
+        "mastery": "Expert",
+        "name": "Learning"
+      },
+      {
+        "description": "{Expert Armorer}\n\nExpert Armorer reduces all damage inflicted against the hero's troops by 15%.",
+        "icon": 12,
+        "mastery": "Expert",
+        "name": "Armorer"
+      },
+      {
+        "description": "{Expert Fire Magic}\n\nExpert Fire Magic allows your hero to cast Fire spells at reduced cost and maximum effectiveness.",
+        "icon": 13,
+        "mastery": "Expert",
+        "name": "Fire Magic"
+      },
+      {
+        "description": "{Expert Artillery}\n\nExpert Artillery gives control of the ballista to the hero, allowing two shots which inflict double damage.",
+        "icon": 14,
+        "mastery": "Expert",
+        "name": "Artillery"
+      },
+      {
+        "description": "{Expert Mysticism}\n\nExpert Mysticism allows your hero to regenerate 4 spell points per day.",
+        "icon": 15,
+        "mastery": "Expert",
+        "name": "Mysticism"
+      },
+      {
+        "description": "{Expert Eagle Eye}\n\nExpert Eagle Eye gives your hero a 60% chance to learn any spell up to 4th level used in combat.",
+        "icon": 16,
+        "mastery": "Expert",
+        "name": "Eagle Eye"
+      },
+      {
+        "description": "{Expert Pathfinding}\n\nExpert Pathfinding reduces the movement penalty for rough terrain by 75%.",
+        "icon": 17,
+        "mastery": "Expert",
+        "name": "Pathfinding"
+      },
+      {
+        "description": "{Expert Archery}\n\nExpert Archery increases the damage done by range attacking creatures by 50%.",
+        "icon": 18,
+        "mastery": "Expert",
+        "name": "Archery"
+      },
+      {
+        "description": "{Expert Logistics}\n\nExpert Logistics increases your hero's movement points over land by 30%.",
+        "icon": 19,
+        "mastery": "Expert",
+        "name": "Logistics"
+      },
+      {
+        "description": "{Expert Scouting}\n\nExpert Scouting allows your hero to see 3 squares further into the shroud.",
+        "icon": 20,
+        "mastery": "Expert",
+        "name": "Scouting"
+      },
+      {
+        "description": "{Expert Diplomacy}\n\nExpert Diplomacy allows you to negotiate with monsters who are weaker than your group, and reduces the cost of surrendering by 60%.",
+        "icon": 21,
+        "mastery": "Expert",
+        "name": "Diplomacy"
+      },
+      {
+        "description": "{Expert Navigation}\n\nExpert Navigation increases your hero's movement points at sea by 150%.",
+        "icon": 22,
+        "mastery": "Expert",
+        "name": "Navigation"
+      },
+      {
+        "description": "{Expert Leadership}\n\nExpert Leadership increases your hero's troops' morale by 3.",
+        "icon": 23,
+        "mastery": "Expert",
+        "name": "Leadership"
+      },
+      {
+        "description": "{Expert Luck}\n\nExpert Luck increases your hero's luck by 3.",
+        "icon": 24,
+        "mastery": "Expert",
+        "name": "Luck"
+      },
+      {
+        "description": "{Expert Ballistics}\n\nExpert Ballistics gives control of the catapult to the hero, allowing two aimed shots at maximum damage.",
+        "icon": 25,
+        "mastery": "Expert",
+        "name": "Ballistics"
+      },
+      {
+        "description": "{Expert Estates}\n\nWith Estates, a hero contributes 500 gold per day to your cause.",
+        "icon": 26,
+        "mastery": "Expert",
+        "name": "Estates"
+      },
+      {
+        "description": "{Expert Air Magic}\n\nExpert Air Magic allows your hero to cast Air spells at reduced cost and maximum effectiveness.",
+        "icon": 27,
+        "mastery": "Expert",
+        "name": "Air Magic"
+      },
+      {
+        "description": "{Expert Water Magic}\n\nExpert Water Magic allows your hero to cast Water spells at reduced cost and maximum effectiveness.",
+        "icon": 28,
+        "mastery": "Expert",
+        "name": "Water Magic"
+      },
+      {
+        "description": "{Expert Earth Magic}\n\nExpert Earth Magic allows your hero to cast Earth spells at reduced cost and maximum effectiveness.",
+        "icon": 29,
+        "mastery": "Expert",
+        "name": "Earth Magic"
+      },
+      {
+        "description": "{Expert Scholar}\n\nExpert Scholar allows heroes to teach each other any spell up to 4th level, effectively trading spells between spell books.",
+        "icon": 30,
+        "mastery": "Expert",
+        "name": "Scholar"
+      },
+      {
+        "description": "{Expert Tactics}\n\nExpert Tactics allows you to rearrange your troops just before combat, within seven hex rows of the commanding hero.",
+        "icon": 31,
+        "mastery": "Expert",
+        "name": "Tactics"
+      },
+      {
+        "description": "{Expert Offense}\n\nExpert Offense increases all hand-to-hand damage inflicted by the hero's troops by 30%.",
+        "icon": 32,
+        "mastery": "Expert",
+        "name": "Offense"
+      },
+      {
+        "description": "{Expert Intelligence}\n\nExpert Intelligence doubles a hero's normal maximum spell points.",
+        "icon": 33,
+        "mastery": "Expert",
+        "name": "Intelligence"
+      },
+      {
+        "description": "{Expert Sorcery}\n\nExpert Sorcery causes a hero's spells to inflict an additional 15% damage in combat.",
+        "icon": 34,
+        "mastery": "Expert",
+        "name": "Sorcery"
+      },
+      {
+        "description": "{Expert Resistance}\n\nExpert Resistance endows a hero's troops with 20% magic resistance.",
+        "icon": 35,
+        "mastery": "Expert",
+        "name": "Resistance"
+      },
+      {
+        "description": "{Expert First Aid}\n\nExpert First Aid gives control of the first aid tent to the hero, healing 100 points of damage to the first unit of the selected stack.",
+        "icon": 36,
+        "mastery": "Expert",
+        "name": "First Aid"
+      }
+    ],
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "top": 3804,
+        "touch": true,
+        "close": {
+          "x": 266,
+          "y": 66,
+          "w": 44,
+          "h": 48
+        },
+        "scrollable": true,
+        "stable": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "top": 3756,
+        "touch": true,
+        "close": {
+          "x": 520,
+          "y": 2,
+          "w": 44,
+          "h": 44
+        },
+        "scrollable": true,
+        "stable": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "top": 3219,
+        "touch": true,
+        "close": {
+          "x": 336,
+          "y": 66,
+          "w": 44,
+          "h": 48
+        },
+        "scrollable": true,
+        "stable": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "top": 1871,
+        "touch": true,
+        "close": {
+          "x": 796,
+          "y": 2,
+          "w": 44,
+          "h": 44
+        },
+        "scrollable": true,
+        "stable": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "top": 1113,
+        "touch": true,
+        "close": {
+          "x": 714,
+          "y": 66,
+          "w": 44,
+          "h": 48
+        },
+        "scrollable": true,
+        "stable": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "top": 1227,
+        "touch": true,
+        "close": {
+          "x": 974,
+          "y": 2,
+          "w": 44,
+          "h": 48
+        },
+        "scrollable": true,
+        "stable": true
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "top": 903,
+        "touch": true,
+        "close": {
+          "x": 766,
+          "y": 66,
+          "w": 44,
+          "h": 48
+        },
+        "scrollable": true,
+        "stable": true
+      }
+    ],
+    "scope": "All28 Expert skills granted by unchanged final zc4 initializer; native storage and mobile visibility/scroll stability. No level-up cap change."
+  },
+  "node": {
+    "pass": 760,
+    "skip": 34,
+    "fail": 0
+  }
+}

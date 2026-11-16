@@ -336,6 +336,15 @@ struct SourceCampaignProcessor::Impl final:Host
   }
   return era_campaign_object_access::allows(objectMask(obj->id),h->getOwner().getNum());
  }
+ bool consumeScriptChest(const CGObjectInstance * obj,const CGHeroInstance * h)
+ {
+  const auto & policy=std::as_const(state)["scriptChestOnly"];
+  if(policy.isNull()||!policy.Bool())return false;
+  const auto source=identity(obj);if(source.ID!=Obj::TREASURE_CHEST||source.subID!=1)return false;
+  // Original EnableChest[1] silently collects a zero-XP/temporary-gold chest
+  // after ERM, then restores gold. Preserve its net reward and removal directly.
+  return gh.removeObject(obj,h->getOwner());
+ }
  bool consumeLeftTroop(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
   if(obj->ID!=Obj::MONSTER||!gh.gameInfo().getPlayerState(h->getOwner())->isHuman())return false;
@@ -885,7 +894,7 @@ struct SourceCampaignProcessor::Impl final:Host
     const auto * h=gh.gameState().getHero(completedHero);
     // The event still grants its reward after a scripted teleport. The
     // mountain passage, for example, grants morale before moving the hero.
-    if(obj&&h&&allowsObject(obj,h)&&!consumeEmptyMonster(obj,h)&&!consumeLeftTroop(obj,h))obj->onHeroVisit(gh,h);
+    if(obj&&h&&allowsObject(obj,h)&&!consumeScriptChest(obj,h)&&!consumeEmptyMonster(obj,h)&&!consumeLeftTroop(obj,h))obj->onHeroVisit(gh,h);
    }
    pumpTurns();
   }
@@ -1193,7 +1202,7 @@ struct SourceCampaignProcessor::Impl final:Host
     const auto source=identity(obj);
     if(executor.dispatchAny("OB",{{int(source.ID)},{int(source.ID),source.subID},{pos.x,pos.y,pos.z}})){run();return true;}
    }
-   const bool handled=!allowsObject(obj,h)||consumeEmptyMonster(obj,h)||consumeLeftTroop(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
+   const bool handled=!allowsObject(obj,h)||consumeScriptChest(obj,h)||consumeEmptyMonster(obj,h)||consumeLeftTroop(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
   }
   const auto * local=dynamic_cast<const CGEvent *>(obj);
   const bool human=gh.gameInfo().getPlayerState(h->getOwner())->isHuman();
@@ -1544,6 +1553,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  if(c.receiver=="UN")
  {
   require(c.selectors.empty(),"universal receiver does not take selectors");
+  if(op.code=="B")
+  {
+   arity(op,2);require(args[0].access==Access::Read&&number(args[0])==1,"unvalidated native object reward override");
+   const auto & policy=std::as_const(state)["scriptChestOnly"];const int previous=!policy.isNull()&&policy.Bool()?1:0;
+   const int changed=value(previous,args[1]);
+   if(!query(op)){require(changed==0||changed==1,"native chest override outside0..1");state["scriptChestOnly"].Bool()=changed!=0;persist();}
+   return Step::Continue;
+  }
   if(op.code=="P")
   {
    arity(op,2);require(args[0].access==Access::Read&&number(args[0])==17&&args[1].access==Access::Write,"unvalidated original WoG option access");
@@ -1627,7 +1644,10 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(op.code=="S"||op.code=="H")
   {
    arity(op,5);require(!query(op),"fog arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const PlayerColor owner(number(args[3]));const int radius=number(args[4]);
-   require(gh.gameState().getMap().isInTheMap(center)&&owner.isValidPlayer()&&gh.gameInfo().getPlayerState(owner,false)&&radius>=0,"invalid source reveal area");
+   require(gh.gameState().getMap().isInTheMap(center)&&owner.isValidPlayer()&&radius>=0,"invalid source reveal area");
+   // Original fog has a mask for every color, including unused player slots.
+   // An absent native player has no team/observer whose visibility can change.
+   if(!gh.gameInfo().getPlayerState(owner,false))return Step::Continue;
    if(op.code=="S")gh.changeFogOfWar(center,radius,owner,ETileVisibility::REVEALED);
    else
    {
@@ -2185,7 +2205,12 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    if(!query(op))
    {
     require(level>=0&&level<=3,"source secondary skill outside standard levels0..3");
-    require(old!=0||level==0||h->secSkills.size()<8,"hidden source skills beyond eight visible slots are not admitted");
+    // The final original zc4 scenario explicitly grants all28 Expert skills.
+    // Original SSkill keeps the extra skills active after SShow's eight slots
+    // fill. Native storage supports that list, with classic/touch scrolling;
+    // ordinary learning and other unvalidated script contexts keep their cap.
+    const bool finalCampaignSkills=program.sha256=="a8a9dfef1ccd7bbc3587d1a2bdad12e4c9a15e182d77d3948fd2199a36940fa9"&&level==3;
+    require(old!=0||level==0||h->secSkills.size()<8||finalCampaignSkills,"hidden source skills beyond eight visible slots are not admitted");
     gh.changeSecSkill(h,skill,level,ChangeValueMode::ABSOLUTE);
    }
   }
