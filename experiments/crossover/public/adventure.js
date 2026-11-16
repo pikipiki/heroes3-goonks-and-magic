@@ -92,7 +92,22 @@ export function installAdventure(target, base, onExit, trial = false) {
     desktop.id = 'crossover-desktop';
     desktop.setAttribute('aria-label', 'Heroes × StarCraft');
     const cancelled = new Set();
+    let observedMenu = null, menuObserver, controlsQueued = false;
+    const mountAfterRender = () => { if (disposed || controlsQueued)
+        return; controlsQueued = true; win.queueMicrotask(() => { controlsQueued = false; if (!disposed)
+        mountControls(); }); };
     const mountControls = () => {
+        // The native bridge can arrive before the mobile module; home rendering may
+        // replace its children after our state listener has already run.
+        const mobileMenu = doc.querySelector('#mobile-app .mobile-menu');
+        if (mobileMenu !== observedMenu) {
+            menuObserver?.disconnect();
+            observedMenu = mobileMenu;
+            if (mobileMenu) {
+                menuObserver = new MutationObserver(mountAfterRender);
+                menuObserver.observe(mobileMenu, { childList: true });
+            }
+        }
         const nativeDesktop = !doc.querySelector('#mobile-app');
         if (nativeDesktop) {
             if (!desktop.isConnected)
@@ -102,7 +117,14 @@ export function installAdventure(target, base, onExit, trial = false) {
             demo.hidden = !['menu', 'map'].includes(latestMode);
             realTime.hidden = latestMode !== 'battle';
         }
+        else {
+            desktop.remove();
+            doc.body.classList.remove('crossover-desktop');
+        }
         const home = doc.querySelector('#mobile-app .mobile-menu[data-kind="menu"]');
+        if (home)
+            demo.hidden = false;
+        realTime.hidden = latestMode !== 'battle';
         if (home && !home.contains(demo)) {
             const first = home.querySelector('[data-action="20"]');
             if (first)
@@ -695,6 +717,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         latestOnline = !!state.onlineGame;
         latestTurn = !!state.turn;
         mountControls();
+        mountAfterRender();
         demo.disabled = !assetsReady || !!state.onlineGame || trial || !['menu', 'map'].includes(state.mode);
         menuDemo.hidden = !['menu', 'map'].includes(state.mode);
         toggle.hidden = state.mode !== 'map';
@@ -804,7 +827,7 @@ export function installAdventure(target, base, onExit, trial = false) {
     win.addEventListener('goonk-state', observe);
     mountControls();
     void prepareEngine().catch(() => { });
-    return () => { disposed = true; ++switchEpoch; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); warmFrame?.remove(); if (settingsButton)
+    return () => { disposed = true; menuObserver?.disconnect(); ++switchEpoch; delete win.goonkCrossoverInstalled; doc.removeEventListener('click', click, true); win.removeEventListener('goonk-mobile-mounted', mountControls); win.removeEventListener('goonk-save-persisted', persisted); win.removeEventListener('goonk-crossover-checkpoint', checkpointReply); win.removeEventListener('goonk-crossover-demo', demoAction); win.removeEventListener('goonk-state', observe); closePanel(); warmFrame?.remove(); if (settingsButton)
         doc.querySelector('#mobile-app .mobile-top')?.prepend(settingsButton); doc.body.classList.remove('crossover-desktop'); desktop.remove(); for (const node of [demo, menuDemo, toggle, realTime, modeStatus, mainStatus, menuStatus, style])
         node.remove(); };
 }
