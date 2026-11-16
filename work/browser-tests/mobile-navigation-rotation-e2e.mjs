@@ -11,6 +11,26 @@ for(const kind of ['chromium','webkit']){
   const send=s=>p.evaluate(s=>dispatchEvent(new CustomEvent('goonk-state',{detail:s})),s);
   const base={mode:'map',turn:true,day:1,week:1,month:1,resources:[20,10,20,10,10,10,15000,0],heroName:'Christian',heroMovement:1500,heroMana:10};
   await send(base);
+  const verifyToolbarBounds=async()=>{
+  // Chrome iOS may keep 100dvh/innerHeight taller than the visible toolbar area.
+  await p.evaluate(()=>Object.defineProperty(visualViewport,'height',{configurable:true,get:()=>720}));
+  await p.evaluate(()=>visualViewport.dispatchEvent(new Event('resize')));await p.waitForTimeout(300);
+  const visible=await p.locator('#mobile-viewport').boundingBox();assert.equal(Math.round(visible.height),720,'Visible toolbar bounds override a stale 844px CSS height');
+  const endTurn=p.locator('[data-ui=endturn]'),endBox=await endTurn.boundingBox();assert(endBox.y+endBox.height<=720,'Bottom action remains above browser toolbar');
+  const before=await p.evaluate(()=>calls.length);await endTurn.tap();assert.deepEqual(await p.evaluate(n=>calls.slice(n).filter(c=>c[0]===3).length,before),1,'Tap activates the displayed button exactly once');
+  await p.screenshot({path:path.join(out,kind+'-short-visible-viewport.png')});
+  await send({...base,mode:'battle',round:1,canAct:true,activeStack:1,activeUnit:{name:'Winged Magog',count:8,controlled:true,attack:10,defense:7,speed:9,damageMin:2,damageMax:4},battleUnits:[{stackId:1,name:'Winged Magog',count:8,x:100,y:200}],battleCells:[]});
+  await p.locator('[data-ui=battle-view]').tap();await p.waitForTimeout(150);
+  for(const button of await p.locator('.mobile-nav button:visible').all()){const r=await button.boundingBox();assert(r.y>=0&&r.y+r.height<=720,'Every battle action fits above the toolbar');}
+  const battleBefore=await p.evaluate(()=>calls.length);await p.locator('[data-ui=defend]').tap();
+  assert.deepEqual(await p.evaluate(n=>calls.slice(n).filter(c=>[12,13].includes(c[0])).map(c=>c[0]),battleBefore),[13],'Defend never activates Wait underneath');
+  await p.screenshot({path:path.join(out,kind+'-battle-short-visible-viewport.png')});
+  await send(base);
+
+  await p.evaluate(()=>{delete visualViewport.height;visualViewport.dispatchEvent(new Event('resize'));});await p.waitForTimeout(200);
+
+  };
+  await verifyToolbarBounds();
   // Reproduce the stale JS measurements and auto-scale visible in the iPhone photo.
   await p.evaluate(()=>{window.savedViewportProperties=Object.fromEntries(['orientation','innerWidth','innerHeight'].map(key=>[key,Object.getOwnPropertyDescriptor(window,key)]));window.stale={orientation:0,width:390,height:844,vw:390,vh:844,scale:1};for(const [key,value]of[['orientation','orientation'],['innerWidth','width'],['innerHeight','height']])Object.defineProperty(window,key,{configurable:true,get:()=>stale[value]});for(const [key,value]of[['width','vw'],['height','vh'],['scale','scale']])Object.defineProperty(visualViewport,key,{configurable:true,get:()=>stale[value]});});
   for(const size of [{width:844,height:390},{width:390,height:844},{width:1280,height:590},{width:590,height:1280}]){
@@ -19,13 +39,14 @@ for(const kind of ['chromium','webkit']){
    await p.evaluate(size=>{Object.assign(stale,{vw:size.width,vh:size.height,scale:size.width>size.height?.46:2});dispatchEvent(new Event('orientationchange'));},size);await p.waitForTimeout(400);
    const rect=await p.locator('#mobile-viewport').boundingBox();assert(Math.abs(rect.width-size.width)<2&&Math.abs(rect.height-size.height)<2,'Auto-scale never leaves half the viewport black '+JSON.stringify({size,rect}));await p.screenshot({path:path.join(out,kind+'-rotation-'+size.width+'.png')});
   }
-  await p.evaluate(()=>{for(const key of ['orientation','innerWidth','innerHeight']){const descriptor=savedViewportProperties[key];if(descriptor)Object.defineProperty(window,key,descriptor);else delete window[key];}for(const key of ['width','height','scale'])delete visualViewport[key];dispatchEvent(new Event('resize'));});await p.setViewportSize({width:390,height:844});
+  await p.evaluate(()=>{for(const key of ['orientation','innerWidth','innerHeight']){const descriptor=savedViewportProperties[key];if(descriptor)Object.defineProperty(window,key,descriptor);else delete window[key];}for(const key of ['width','height','scale'])delete visualViewport[key];dispatchEvent(new Event('resize'));});await p.setViewportSize({width:390,height:844});await verifyToolbarBounds();
   await send({...base,mode:'town',townName:'Castle',armyTownId:1,armies:[{id:1,name:'Garrison',slots:[]},{id:2,name:'Christian',needsLastStack:true,slots:[]}]});await p.locator('[data-ui=army]').tap();await p.waitForTimeout(100);
   assert(await p.locator('.sheet-head [data-ui=sheet-back]').isHidden());assert(await p.locator('.sheet-head [data-ui=close-sheet]').isVisible());
   await p.locator('.sheet-body').evaluate(e=>e.insertAdjacentHTML('beforeend','<button data-ui="close-sheet">Back</button>'));await p.waitForTimeout(100);assert(await p.locator('.sheet-body [data-ui=close-sheet]').isHidden(),'Dynamically inserted duplicate exits are suppressed');await p.locator('.sheet-head [data-ui=close-sheet]').tap();
   await send({...base,mode:'creature',creatureUnit:{id:1,name:'Sprite',count:0,attack:2,defense:2,health:3,speed:9,damageMin:1,damageMax:3}});await p.locator('[data-presentation-close]').waitFor({state:'visible'});assert.equal(await p.locator('.mobile-nav button:visible').count(),0,'Creature detail owns its single Back');await p.locator('[data-presentation-close]').tap();assert(await p.evaluate(()=>calls.at(-1)[0]===43));
   for(const dialogKind of ['blacksmith','thieves-guild']){await send({...base,mode:'dialog',dialogKind,blacksmith:{cost:2500,unit:{name:'Ballista'},alreadyOwned:true},thievesGuild:{players:[],rows:[]}});await p.waitForTimeout(80);assert.equal(await p.locator('.town-service [data-service-back]:visible').count(),1,'Single service exit');}
-  await send(base);await p.locator('#game-menu-toggle').tap();await p.evaluate(async()=>{const {mountHostedCastles}=await import('/web/hosted-castles.mjs');const menu=document.querySelector('#game-menu');menu.querySelector('nav').hidden=true;const body=menu.querySelector('.game-menu-body');body.innerHTML='<div id="hosted-review"></div>';const castles=mountHostedCastles(body.querySelector('div'),false,()=>{});document.addEventListener('click',event=>{const b=event.target.closest('button');if(b&&castles.activate(b)){event.preventDefault();event.stopImmediatePropagation();}},true);castles.update({castles:[[{id:0,name:'Castle'}],[{id:0,name:'Castle'}]],seats:[{color:0,human:true,computer:true},{color:1,human:true,computer:true}]});});
+  await send(base);
+await p.locator('#game-menu-toggle').tap();await p.evaluate(async()=>{const {mountHostedCastles}=await import('/web/hosted-castles.mjs');const menu=document.querySelector('#game-menu');menu.querySelector('nav').hidden=true;const body=menu.querySelector('.game-menu-body');body.innerHTML='<div id="hosted-review"></div>';const castles=mountHostedCastles(body.querySelector('div'),false,()=>{});document.addEventListener('click',event=>{const b=event.target.closest('button');if(b&&castles.activate(b)){event.preventDefault();event.stopImmediatePropagation();}},true);castles.update({castles:[[{id:0,name:'Castle'}],[{id:0,name:'Castle'}]],seats:[{color:0,human:true,computer:true},{color:1,human:true,computer:true}]});});
   for(const size of [{width:1280,height:590},{width:844,height:390},{width:390,height:844},{width:1024,height:768}]){await p.setViewportSize(size);await p.waitForTimeout(180);const cards=await p.locator('#game-menu .hosted-castle-list .lobby-choice-card').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().toJSON()));if(size.width>size.height)assert(Math.abs(cards[0].y-cards[1].y)<2,'Host and role-switch cards align');assert(cards.every(r=>r.x>=0&&r.right<=size.width+1));await p.screenshot({path:path.join(out,kind+'-menu-'+size.width+'.png')});}
   await p.locator('[data-castle-seat="1"]').tap();await p.locator('#hosted-castle-picker header [data-castle-close]').waitFor({state:'visible'});assert(await p.locator('#hosted-castle-picker footer [data-castle-close]').isHidden(),'Picker has one exit');
   assert.deepEqual(errors,[]);console.log('PASS',kind,'stale iPhone rotation/scale, unique return controls and aligned multiplayer seats');

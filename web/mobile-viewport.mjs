@@ -79,7 +79,7 @@ export function anchorMobileViewport(root,win=window){
   const autoScaled=scale<.99&&viewport?.width>0&&viewport.height>0;
   if(cssViewport){
    finalWidth=dynamic.width;finalHeight=dynamic.height;
-   if(viewport?.width>0&&Math.abs(viewport.width-finalWidth)<2&&Math.abs(win.innerHeight-finalHeight)>=2)finalHeight=Math.min(finalHeight,viewport.height);
+   if(viewport?.width>0&&Math.abs(viewport.width-finalWidth)<2&&scale>=.99&&scale<=1.01)finalHeight=Math.min(finalHeight,viewport.height);
    isLandscape=finalWidth>finalHeight;
   }
   if(autoScaled){

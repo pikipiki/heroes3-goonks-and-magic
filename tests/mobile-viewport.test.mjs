@@ -182,12 +182,12 @@ test('Aligned current viewport bounds reject stale post-rotation height and scro
  assert.equal(root.style.height,'340px');assert.equal(root.dataset.orientation,'landscape');assert.equal(root.style.top,'0px');anchor.dispose();
 });
 
-test('Chrome rotation recovers a stale smaller visual height and document height from dynamic viewport',()=>{
+test('Chrome toolbar bounds remain authoritative when CSS and innerHeight exceed the visible area',()=>{
  const win=new EventTarget(),viewport=new EventTarget(),queue=[];let tick;
  const probe={style:{},setAttribute(){},remove(){},getBoundingClientRect:()=>({width:390,height:844})};
  Object.assign(win,{innerWidth:390,innerHeight:844,visualViewport:viewport,document:{documentElement:{clientWidth:390,clientHeight:740},activeElement:null,createElement:()=>probe,body:{append(){}}},requestAnimationFrame:f=>queue.push(f),setInterval:f=>(tick=f,1),clearInterval(){}});
  Object.assign(viewport,{width:390,height:740,scale:1,pageTop:0,offsetTop:0});
- const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.height,'844px');
+ const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.height,'740px');
  // iOS may settle its toolbar without a resize event. The watchdog still updates.
  probe.getBoundingClientRect=()=>({width:390,height:800});win.innerHeight=800;viewport.height=800;tick();queue.shift()();assert.equal(root.style.height,'800px');anchor.dispose();
 });

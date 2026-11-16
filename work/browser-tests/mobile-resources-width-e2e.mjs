@@ -16,12 +16,12 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  await page.waitForTimeout(150);
  const metrics=await page.locator('.mobile-resources').evaluate(el=>{
  const r=el.getBoundingClientRect(),top=el.closest('header').getBoundingClientRect();
- return {width:r.width,topWidth:top.width,items:[...el.querySelectorAll('.resource-quantity')].map(e=>{const r=e.getBoundingClientRect();return {x:r.x,right:r.right,width:r.width,needed:e.scrollWidth}})};
+ const menu=document.querySelector('#game-menu-toggle').getBoundingClientRect(),calendar=document.querySelector('.mobile-calendar').getBoundingClientRect();return {width:r.width,available:(calendar.top<r.bottom&&calendar.bottom>r.top?calendar.left:top.right)-menu.right,items:[...el.querySelectorAll('.resource-quantity')].map(e=>{const r=e.getBoundingClientRect();return {x:r.x,right:r.right,width:r.width,needed:e.scrollWidth}})};
  });
- assert(metrics.width>=metrics.topWidth-12,'Resources use the entire header width');assert.equal(metrics.items.length,8);
+ assert(metrics.width>=metrics.available-12,'Resources use the entire header width');assert.equal(metrics.items.length,8);
  for(let i=0;i<metrics.items.length;i++){const item=metrics.items[i];assert(item.x>=0&&item.right<=width,'Quantity remains on screen');assert(item.needed<=item.width+1,'Quantity is not clipped');if(i)assert(item.x>=metrics.items[i-1].right,'Quantities do not overlap');}
  if(width===390)await page.screenshot({path:'/tmp/resources-'+name+'.png'});
  }
- assert.deepEqual(errors,[]);console.log(name+': full-width resources passed at 320–430px');
+ assert.deepEqual(errors,[]);console.log(name+': single-row resources passed at 320–430px');
  }finally{await browser.close();}
 }

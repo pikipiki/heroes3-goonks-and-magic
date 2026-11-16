@@ -4,3 +4,14 @@ test('A held touch activates once, not twice when its compatibility click follow
 test('Drags and canceled touches do not turn into a view toggle',()=>{const b=setup();b.send('pointerdown');b.send('pointerup',{clientX:65});b.send('click');assert.equal(b.count,0);b.send('pointerdown');b.send('pointercancel');b.send('click');assert.equal(b.count,0);});
 
 test('A delayed touch click without a completed pointer pair never activates a control',()=>{const b=setup();b.send('pointerdown');b.send('pointercancel');b.time=2500;b.send('click',{detail:0,pointerType:'touch'});assert.equal(b.count,0);b.send('click',{detail:0});assert.equal(b.count,1);});
+
+test('iOS detail-zero touch compatibility clicks are suppressed while keyboard activation remains usable',()=>{
+ const listeners=new Map(),button={dataset:{},disabled:false,addEventListener(type,listener){listeners.set(type,listener);},getBoundingClientRect:()=>({left:0,top:0,right:100,bottom:50}),setPointerCapture(){},hasPointerCapture:()=>false};
+ let time=0,count=0;bindPress(button,()=>count++,{clock:()=>time});
+ const send=(type,patch={})=>listeners.get(type)?.({pointerId:1,isPrimary:true,button:0,clientX:40,clientY:25,isTrusted:true,detail:0,preventDefault(){},stopPropagation(){},...patch});
+ send('pointerdown');time=250;send('pointerup');assert.equal(count,1);
+ time=550;send('click');assert.equal(count,1,'Delayed iOS touch click must not activate a second control');
+ send('keydown',{key:'Enter'});send('click');assert.equal(count,2);
+ time=600;send('pointerdown');send('pointercancel');time=800;send('click');assert.equal(count,2,'Canceled touch does not become a keyboard click');
+ time=1800;send('click');assert.equal(count,3,'Independent assistive activation remains usable');
+});

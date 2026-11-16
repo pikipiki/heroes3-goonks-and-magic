@@ -777,8 +777,11 @@ void BattleFieldController::renderMobilePlane(Canvas & canvas, bool effects)
  if(!effects){
   // Moats are terrain: they follow board coordinates. Scenery remains upright.
   if(owner.siegeController)owner.siegeController->showAbsoluteObstacles(clipped);
-  clipped.setMobileUprightImages(1);
+  // Ground obstacles must rotate with their blocked hexes. Counter-rotating
+  // lava pools shifts their artwork onto reachable cells. Only foreground
+  // scenery below is upright, as are creatures supplied by the atlas.
   owner.obstacleController->showAbsoluteObstacles(clipped);
+  clipped.setMobileUprightImages(1);
  }else clipped.setMobileUprightImages(2);
  BattleRenderer renderer(owner);renderer.executeMobilePlane(clipped,effects);
  clipped.setMobileUprightImages(effects?4:0);

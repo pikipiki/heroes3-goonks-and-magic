@@ -1,0 +1,35 @@
+{
+  "engineSha256": "74d25422e3295dd2268457543246c7308e0280464a3215b31fbaf101bca2b66b",
+  "compile": "ninja -j32 html5",
+  "unitTests": {
+    "passed": 759,
+    "skipped": 34,
+    "failed": 0
+  },
+  "browserChecks": [
+    "Chromium and WebKit: portrait visible height 720 when CSS/innerHeight remain 844",
+    "Landscape to portrait rotations, visible map/battle actions and correct Defend activation",
+    "Resources on one header row at phone widths; narrow phones retain a separate calendar row",
+    "iOS trusted detail=0 compatibility click suppressed after touch; keyboard Enter remains valid"
+  ],
+  "nativeLavaChecks": {
+    "chromium": "passed",
+    "webkit": "passed after retrying menu startup alone",
+    "sampleFrames": 16,
+    "groundCreatureMovement": "lands outside native blocked cells",
+    "blockedCellArtworkSampleBefore": {
+      "painted": 1606,
+      "total": 3969,
+      "ratio": 0.40463592844545226
+    },
+    "blockedCellArtworkSampleAfter": {
+      "painted": 3449,
+      "total": 3969,
+      "ratio": 0.8689846308893928
+    }
+  },
+  "limits": [
+    "Physical iPhone Chrome was not directly available for testing.",
+    "The intermittent obstacle flicker was not reproduced in the baseline. The corrected terrain alignment and obstacle layer remained stable in the native frame samples."
+  ]
+}
