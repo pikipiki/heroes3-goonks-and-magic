@@ -1,0 +1,939 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.209",
+  "passed": true,
+  "engineSha256": "3f888fdfe37b702f0f767415e8331a6ddfbea9728b35ff4c1031841ab6d2d3e3",
+  "engineArchiveSha256": "e7b3aca6e3ebe19a71eb49d03850986fdededd486f70e0835d9cd8e09e4a2ea1",
+  "engineReplacementUsed": false,
+  "sourceContract": "adventure-batch-source-contract-209.json",
+  "scope": "Grouped adventure receiver integration, native effects, saves and reused mobile dialogs. All12 original program admissions remain false; no additional campaign victory claimed.",
+  "tests": {
+    "total": 784,
+    "passed": 750,
+    "skipped": 34,
+    "failed": 0,
+    "webAssemblyCommand": "ninja -j32 html5",
+    "siteVerified": true,
+    "compatibilityInventoryReproduced": true
+  },
+  "adventure": {
+    "chromium": {
+      "passed": true,
+      "fixtureSha256": "d9f354e43aff9823a34bd091e23ecc86fa0178f1d47b0ff34ac878e8ed1beb85",
+      "originalSpeedSha256": "8d36e1081b8939cb9bd526967deb673d6f4243b3623dd15731ec7b19b72cc792",
+      "batchDialogs": [
+        "VERSION 358/281",
+        "NAMES Deep Iron Helmet | Magic Arrow | Zombie | Zombies | Archery",
+        "COST 125/0",
+        "SPEED 4/7",
+        "TACTICS OFF 0",
+        "TACTICS ON 1",
+        "SIGNED -128/127",
+        "MODIFIERS -3/2",
+        "EVENT EXP 1000"
+      ],
+      "observations": [
+        "ATTR before 500/25/50",
+        "ATTR after 20000/50/50/100/100",
+        "ATTR relative 19900 baseline 500/25/50"
+      ],
+      "modified": {
+        "morale": -3,
+        "luck": 2,
+        "experience": 0,
+        "equipment": [
+          "Catapult"
+        ],
+        "troops": [
+          {
+            "key": "wake-of-gods.creatures:gorynych",
+            "health": 20000,
+            "speed": 14
+          },
+          {
+            "key": "core:pikeman",
+            "health": 10,
+            "speed": 4
+          },
+          {
+            "key": "core:zombieLord",
+            "health": 20,
+            "speed": 7
+          }
+        ]
+      },
+      "newGame": {
+        "morale": -1,
+        "luck": 0,
+        "experience": 0,
+        "equipment": [
+          "Pendant of Dispassion",
+          "Catapult"
+        ],
+        "troops": [
+          {
+            "key": "wake-of-gods.creatures:gorynych",
+            "health": 500,
+            "speed": 14
+          },
+          {
+            "key": "core:pikeman",
+            "health": 10,
+            "speed": 4
+          },
+          {
+            "key": "core:zombieLord",
+            "health": 20,
+            "speed": 4
+          }
+        ]
+      },
+      "battleUnits": [
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "enemy": true,
+          "health": 20000,
+          "speed": 14,
+          "attack": 50,
+          "defense": 50,
+          "damageMin": 100,
+          "damageMax": 100
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "health": 60,
+          "speed": 6,
+          "attack": 8,
+          "defense": 9,
+          "damageMin": 8,
+          "damageMax": 16
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "enemy": false,
+          "health": 20000,
+          "speed": 14,
+          "attack": 52,
+          "defense": 53,
+          "damageMin": 100,
+          "damageMax": 100
+        },
+        {
+          "key": "core:pikeman",
+          "enemy": false,
+          "health": 10,
+          "speed": 5,
+          "attack": 7,
+          "defense": 9,
+          "damageMin": 1,
+          "damageMax": 3
+        },
+        {
+          "key": "core:zombieLord",
+          "enemy": false,
+          "health": 20,
+          "speed": 7,
+          "attack": 7,
+          "defense": 8,
+          "damageMin": 2,
+          "damageMax": 3
+        }
+      ]
+    },
+    "webkit": {
+      "passed": true,
+      "fixtureSha256": "d9f354e43aff9823a34bd091e23ecc86fa0178f1d47b0ff34ac878e8ed1beb85",
+      "originalSpeedSha256": "8d36e1081b8939cb9bd526967deb673d6f4243b3623dd15731ec7b19b72cc792",
+      "batchDialogs": [],
+      "observations": [
+        "ATTR after 20000/50/50/100/100",
+        "ATTR relative 19900 baseline 500/25/50"
+      ],
+      "modified": {
+        "morale": -3,
+        "luck": 2,
+        "experience": 0,
+        "equipment": [
+          "Catapult"
+        ],
+        "troops": [
+          {
+            "key": "wake-of-gods.creatures:gorynych",
+            "health": 20000,
+            "speed": 14
+          },
+          {
+            "key": "core:pikeman",
+            "health": 10,
+            "speed": 4
+          },
+          {
+            "key": "core:zombieLord",
+            "health": 20,
+            "speed": 7
+          }
+        ]
+      },
+      "newGame": {
+        "morale": -1,
+        "luck": 0,
+        "experience": 0,
+        "equipment": [
+          "Catapult"
+        ],
+        "troops": [
+          {
+            "key": "wake-of-gods.creatures:gorynych",
+            "health": 500,
+            "speed": 14
+          },
+          {
+            "key": "core:pikeman",
+            "health": 10,
+            "speed": 4
+          },
+          {
+            "key": "core:zombieLord",
+            "health": 20,
+            "speed": 4
+          }
+        ]
+      },
+      "battleUnits": [
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "enemy": true,
+          "health": 20000,
+          "speed": 14,
+          "attack": 50,
+          "defense": 50,
+          "damageMin": 100,
+          "damageMax": 100
+        },
+        {
+          "key": "wake-of-gods.commanders:paladin1",
+          "enemy": false,
+          "health": 60,
+          "speed": 5,
+          "attack": 10,
+          "defense": 9,
+          "damageMin": 8,
+          "damageMax": 16
+        },
+        {
+          "key": "wake-of-gods.creatures:gorynych",
+          "enemy": false,
+          "health": 20000,
+          "speed": 14,
+          "attack": 52,
+          "defense": 53,
+          "damageMin": 100,
+          "damageMax": 100
+        },
+        {
+          "key": "core:pikeman",
+          "enemy": false,
+          "health": 10,
+          "speed": 5,
+          "attack": 7,
+          "defense": 9,
+          "damageMin": 1,
+          "damageMax": 3
+        },
+        {
+          "key": "core:zombieLord",
+          "enemy": false,
+          "health": 20,
+          "speed": 7,
+          "attack": 7,
+          "defense": 8,
+          "damageMin": 2,
+          "damageMax": 3
+        }
+      ]
+    }
+  },
+  "wagon": {
+    "chromium": {
+      "passed": true,
+      "originalBlockSha256": "a82f20714965b2834b3c0baceede7932fe52e958427ce6e6536b34f5e44864f8",
+      "fixtureSha256": "60dd110231f522bceefac5956cbabb85ab2ec527c011ec4ad1e83048dc1c00b9",
+      "oreBefore": 30,
+      "oreAfterVisits": [
+        35,
+        35,
+        40
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "WAGON READY"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "5 Ore",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 359,
+                "y": 331
+              }
+            }
+          ],
+          "lines": [
+            "{Wagon}\n\nYou come across an old wagon left by a trader who didn't quite make it to safe terrain.  Inside, you find some of the wagon's cargo still intact."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Wagon"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "{Wagon}\n\nYou come across an old wagon left by a trader who didn't quite make it to safe terrain.  Unfortunately, others have found it first, and the wagon is empty."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Wagon"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "REFILL CONTROL READY"
+          ],
+          "queryId": 14,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "5 Ore",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 359,
+                "y": 331
+              }
+            }
+          ],
+          "lines": [
+            "{Wagon}\n\nYou come across an old wagon left by a trader who didn't quite make it to safe terrain.  Inside, you find some of the wagon's cargo still intact."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Wagon"
+        }
+      ],
+      "saveSha256": "6af59c3fc9f77746f8fd0c8e840c4b740015fda4ba0f60c6a64e1a41cd2ae56e",
+      "scope": "Unchanged original Samaritan wagon block: actual5ore, empty repeat, then private counter-reset control and native5ore refill. Not a campaign victory."
+    },
+    "webkit": {
+      "passed": true,
+      "originalBlockSha256": "a82f20714965b2834b3c0baceede7932fe52e958427ce6e6536b34f5e44864f8",
+      "fixtureSha256": "60dd110231f522bceefac5956cbabb85ab2ec527c011ec4ad1e83048dc1c00b9",
+      "oreBefore": 30,
+      "oreAfterVisits": [
+        35,
+        35,
+        40
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "WAGON READY"
+          ],
+          "queryId": 5,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "5 Ore",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 359,
+                "y": 331
+              }
+            }
+          ],
+          "lines": [
+            "{Wagon}\n\nYou come across an old wagon left by a trader who didn't quite make it to safe terrain.  Inside, you find some of the wagon's cargo still intact."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Wagon"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "{Wagon}\n\nYou come across an old wagon left by a trader who didn't quite make it to safe terrain.  Unfortunately, others have found it first, and the wagon is empty."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Wagon"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "REFILL CONTROL READY"
+          ],
+          "queryId": 16,
+          "title": "Game message",
+          "visitedObject": "Event"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "5 Ore",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 359,
+                "y": 331
+              }
+            }
+          ],
+          "lines": [
+            "{Wagon}\n\nYou come across an old wagon left by a trader who didn't quite make it to safe terrain.  Inside, you find some of the wagon's cargo still intact."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Wagon"
+        }
+      ],
+      "saveSha256": "9f160a3db4f6cd7d076575eaf5fd972259a8bcd88bf62592ff5787c373c9dc3a",
+      "scope": "Unchanged original Samaritan wagon block: actual5ore, empty repeat, then private counter-reset control and native5ore refill. Not a campaign victory."
+    }
+  },
+  "hints": {
+    "chromium": {
+      "passed": true,
+      "fixtureSha256": "acf58186936108e12540769591f610bad78d809d4e30630a79c16d58714cdc5c",
+      "loadedPending": false,
+      "texts": [
+        "TYPE DEFAULT. Native hint initial. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. ",
+        "TYPE GLOBAL. Native hint initial. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. ",
+        "TYPE HERO.",
+        "TYPE WILDCARD.",
+        "TYPE EXACT.",
+        "TYPE COORDINATE.",
+        "TYPE EXACT."
+      ],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 234,
+            "scrollHeight": 457,
+            "clientHeight": 223,
+            "rect": {
+              "x": 18,
+              "y": 166.1015625,
+              "w": 284,
+              "h": 226.796875
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 234,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 400.8984375,
+                "w": 284,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 182,
+            "scrollHeight": 472,
+            "clientHeight": 290,
+            "rect": {
+              "x": 13,
+              "y": 13,
+              "w": 292,
+              "h": 294
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 182,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 75,
+            "scrollHeight": 394,
+            "clientHeight": 319,
+            "rect": {
+              "x": 18,
+              "y": 255.8046875,
+              "w": 354,
+              "h": 323.390625
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 75,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 587.1953125,
+                "w": 354,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 30,
+            "scrollHeight": 372,
+            "clientHeight": 342,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 543.25,
+              "h": 346
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 30,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 289,
+            "clientHeight": 289,
+            "rect": {
+              "x": 18,
+              "y": 362.75,
+              "w": 732,
+              "h": 293
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 663.75,
+                "w": 732,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 720,
+            "clientHeight": 720,
+            "rect": {
+              "x": 22,
+              "y": 22,
+              "w": 671.046875,
+              "h": 724
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48
+              }
+            ]
+          }
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "scrollHeight": 289,
+            "clientHeight": 289,
+            "rect": {
+              "x": 18,
+              "y": 441.640625,
+              "w": 784,
+              "h": 293
+            }
+          },
+          "after": {
+            "same": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 742.640625,
+                "w": 784,
+                "h": 48
+              }
+            ]
+          }
+        }
+      ],
+      "scope": "Native conditional HT:T/W/V: current hero variable, global variable, deletion/reused registration, exact-before-wildcard priority, coordinate override, pending save/load and stable seven-size mobile presentation. Not a campaign victory."
+    },
+    "webkit": {
+      "passed": true,
+      "fixtureSha256": "acf58186936108e12540769591f610bad78d809d4e30630a79c16d58714cdc5c",
+      "loadedPending": true,
+      "texts": [
+        "TYPE GLOBAL. Native hint initial. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. A path through the Goonk hills reveals a gate whose description must remain readable on a small screen. ",
+        "TYPE HERO.",
+        "TYPE WILDCARD.",
+        "TYPE EXACT.",
+        "TYPE COORDINATE.",
+        "TYPE EXACT."
+      ],
+      "layouts": [],
+      "scope": "Native conditional HT:T/W/V: current hero variable, global variable, deletion/reused registration, exact-before-wildcard priority, coordinate override, pending save/load and stable seven-size mobile presentation. Not a campaign victory."
+    }
+  },
+  "coordinateRegression": {
+    "passed": true,
+    "scope": "Private Goonk-derived native control: OB:H live z reference and index query, coordinate persistence after UN:O/I and pending save/load, H0 keeps disabled visits, B clears both hint and access and restores a real500gold collection, native touch dialog stability and seven viewport layouts. No original quest or victory.",
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "before": {
+          "scrollTop": 234,
+          "scrollHeight": 457,
+          "clientHeight": 223,
+          "rect": {
+            "x": 18,
+            "y": 166.1015625,
+            "w": 284,
+            "h": 226.796875
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 234,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 400.8984375,
+              "w": 284,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "before": {
+          "scrollTop": 169,
+          "scrollHeight": 459,
+          "clientHeight": 290,
+          "rect": {
+            "x": 13,
+            "y": 13,
+            "w": 292,
+            "h": 294
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 169,
+          "buttons": [
+            {
+              "x": 311,
+              "y": 259,
+              "w": 244,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "before": {
+          "scrollTop": 75,
+          "scrollHeight": 394,
+          "clientHeight": 319,
+          "rect": {
+            "x": 18,
+            "y": 255.8046875,
+            "w": 354,
+            "h": 323.390625
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 75,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 587.1953125,
+              "w": 354,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "before": {
+          "scrollTop": 30,
+          "scrollHeight": 372,
+          "clientHeight": 342,
+          "rect": {
+            "x": 22,
+            "y": 22,
+            "w": 543.25,
+            "h": 346
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 30,
+          "buttons": [
+            {
+              "x": 577.25,
+              "y": 320,
+              "w": 244.75,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "before": {
+          "scrollTop": 0,
+          "scrollHeight": 289,
+          "clientHeight": 289,
+          "rect": {
+            "x": 18,
+            "y": 362.75,
+            "w": 732,
+            "h": 293
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 663.75,
+              "w": 732,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "before": {
+          "scrollTop": 0,
+          "scrollHeight": 720,
+          "clientHeight": 720,
+          "rect": {
+            "x": 22,
+            "y": 22,
+            "w": 671.046875,
+            "h": 724
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 705.046875,
+              "y": 698,
+              "w": 296.953125,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "before": {
+          "scrollTop": 0,
+          "scrollHeight": 268,
+          "clientHeight": 268,
+          "rect": {
+            "x": 18,
+            "y": 452.140625,
+            "w": 784,
+            "h": 272
+          }
+        },
+        "after": {
+          "same": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 732.140625,
+              "w": 784,
+              "h": 48
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "production": {
+    "passed": true,
+    "productionOnly": true,
+    "actualFetchedWasmSha256": "3f888fdfe37b702f0f767415e8331a6ddfbea9728b35ff4c1031841ab6d2d3e3",
+    "trackedProductionAssetsUnchanged": true,
+    "maps": [
+      {
+        "name": "003-Goonks-WoG.vmap",
+        "passed": true,
+        "nativeHotseat": false,
+        "saveReloadValidated": true,
+        "resumedTurnCycle": {
+          "passed": true,
+          "roles": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "observations": [
+            {
+              "day": 1,
+              "currentPlayer": 0
+            },
+            {
+              "day": 2,
+              "currentPlayer": 0
+            }
+          ]
+        },
+        "saveSha256": "6efcc898ae06b583ffdde001594c59a84895a11b119e8653376e86108b197fb8"
+      },
+      {
+        "name": "004-Goonks-WoG-Online.vmap",
+        "passed": true,
+        "nativeHotseat": true,
+        "saveReloadValidated": true,
+        "resumedTurnCycle": {
+          "passed": true,
+          "roles": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Player 1"
+            },
+            {
+              "color": 1,
+              "human": true,
+              "name": "Player 2"
+            }
+          ],
+          "observations": [
+            {
+              "day": 1,
+              "currentPlayer": 0
+            },
+            {
+              "day": 1,
+              "currentPlayer": 1
+            },
+            {
+              "day": 2,
+              "currentPlayer": 0
+            }
+          ]
+        },
+        "saveSha256": "927e138f448262181e63fd9ec58f8b9086f91356bcda56667acdc15ad0d3dd90"
+      }
+    ],
+    "combat": {
+      "passed": true,
+      "positiveRound": 1,
+      "battleOutcomeValidated": false,
+      "scope": "Actual delivered map/army and positive native battle round demonstrate successful BattleStart through initializeSourceXpAdmission, which loads all three production XP policies before checking participating actors. No victory, new54 ability, or new54 admission-enrollment claim. The battle is closed after the positive-round snapshot."
+    }
+  },
+  "pendingSaves": {
+    "adventure": {
+      "version": 906,
+      "sha256": "8e5b99c902229e286d06f2c0dcd73a95a5bdb940ba901d4e8c6711d3cb3f5d35"
+    },
+    "wagon": {
+      "version": 906,
+      "sha256": "103d66d6dcb6f411953d3aed65cc45fe16cb41a081092d42f2510c31af5bc566"
+    },
+    "hints": {
+      "version": 906,
+      "sha256": "21292440f8ce5abaa8db0f868e598237d772d6cb236d0d5b3d2a62c3e182b77c"
+    }
+  }
+}

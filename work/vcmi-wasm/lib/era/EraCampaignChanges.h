@@ -159,6 +159,19 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    if(!hero||level<-32768||level>32767)throw std::runtime_error("Invalid original hero level mutation");
    hero->level=static_cast<std::uint32_t>(level);hero->nodeHasChanged();
   }
+  else if(kind=="heroTactics")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);if(!hero||!change["enabled"].isBool())throw std::runtime_error("Invalid original hero tactics switch");
+   hero->tacticFormationEnabled=change["enabled"].Bool();
+  }
+  else if(kind=="heroModifier")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);const int field=campaignInteger(change["field"]),amount=campaignInteger(change["amount"]);
+   if(!hero||field<0||field>1||amount<-128||amount>127)throw std::runtime_error("Invalid original hero modifier");
+   const BonusSourceID source{BonusCustomSource(0x57110000+field)};
+   hero->removeBonuses(Selector::source(BonusSource::OTHER,source));
+   if(amount)hero->addNewBonus(std::make_shared<Bonus>(BonusDuration::PERMANENT,field==0?BonusType::MORALE:BonusType::LUCK,BonusSource::OTHER,amount,source));
+  }
   else if(kind=="heroGender")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);

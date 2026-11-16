@@ -866,7 +866,7 @@ void AdventureMapInterface::onTileRightClicked(const int3 &mapPos)
 		const auto & game = static_cast<const IGameInfoCallback &>(*GAME->interface()->cb).gameState();
 		const auto * hero = GAME->interface()->localState->getCurrentHero();
 		const auto * owner = game.getPlayerState(GAME->interface()->playerID);
-		if(const auto hint = era_campaign_hints::text(game.getMap().sourceCampaignState, mapPos, game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman()))
+		if(const auto hint = era_campaign_hints::text(game.getMap().sourceCampaignState, mapPos, game.day, hero ? hero->getHeroTypeID().getNum() : -1, owner && owner->isHuman(), obj))
 		{
 #ifdef VCMI_HTML5_BUILD
 			if(isMobilePresentationActive())CInfoWindow::showInfoDialog(*hint, {}, GAME->interface()->playerID);

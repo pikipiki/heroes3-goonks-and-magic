@@ -34,6 +34,8 @@
 #include "../../lib/GameLibrary.h"
 #include "../../lib/CPlayerState.h"
 #include "../../lib/CCreatureHandler.h"
+#include "../../lib/CSkillHandler.h"
+#include "../../lib/spells/CSpellHandler.h"
 #include "../../lib/StartInfo.h"
 #include "../../lib/campaign/CampaignState.h"
 #include "../../lib/era/EraCampaignCarryover.h"
@@ -873,14 +875,25 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  comparison.reset();
  if(c.receiver=="MA")
  {
+  if(op.code=="C")
+  {
+   require(c.selectors.empty(),"source creature cost takes no selector");arity(op,3);
+   require(args[0].access==Access::Read&&args[1].access==Access::Read,"source creature cost needs fixed indices");require(number(args[0])>=0,"negative source creature cost index");
+   require(query(op),"source creature cost writes are not admitted");
+   const auto selected=creature(number(args[0]));const int resource=number(args[1]);require(resource>=0&&resource<=7,"source creature cost resource outside0..7");
+   GameResID mapped(resource);
+   if(resource==7){const auto id=LIBRARY->identifiers()->getIdentifier(ModScope::scopeGame(),"resource","wake-of-gods.mithril:mithril",true);require(id.has_value(),"source mithril unavailable");mapped=GameResID(*id);}
+   value(selected.toCreature()->getRecruitCost(mapped),args[2]);return Step::Continue;
+  }
   require(c.selectors.empty()&&op.code.size()==1,"source creature attribute takes no selector");arity(op,2);
-  require(args[0].access==Access::Read,"source creature attribute needs a creature value");
+  require(args[0].access==Access::Read&&number(args[0])>=0,"source creature attribute needs a nonnegative creature value");
   const auto selected=creature(number(args[0]));const char field=op.code.front();era_campaign_creature_attributes::fieldIndex(field);
   const auto key=std::to_string(selected.getNum());const auto & previous=std::as_const(state)["creatureAttributes"][key][op.code];
-  const int changed=value(previous.isNull()?era_campaign_creature_attributes::base(*selected.toCreature(),field):era_campaign_json::integer(previous),args[1]);
+  int changed=value(previous.isNull()?era_campaign_creature_attributes::base(*selected.toCreature(),field):era_campaign_json::integer(previous),args[1]);
   if(!query(op))
   {
    require(!gh.gameState().getBattle(player),"source creature attributes during an active battle are not admitted");
+   if(field=='S')changed=std::max(1,changed); // 358f MA:S clamps writes after Apply, not reads.
    require(changed>=(field=='P'?1:0),"nonpositive health or negative source creature attributes are not admitted");
    state["creatureAttributes"][key][op.code].Integer()=changed;
    auto change=mutation("creatureAttribute",ObjectInstanceID::NONE);change["creature"].Integer()=selected.getNum();change["field"].String()=op.code;change["amount"].Integer()=changed;persist(change);
@@ -1010,6 +1023,60 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   else throw std::runtime_error("Original campaign: unsupported dwelling operation "+op.code);
   return Step::Continue;
  }
+ if(c.receiver=="WG")
+ {
+  const auto * wagon=dynamic_cast<const CRewardableObject *>(object(c,Obj::WAGON));if(!wagon)return sourceCommandError(c,"not a wagon");
+  require(op.code=="S"||op.code=="B"||op.code=="A"||op.code=="R","unsupported wagon operation");arity(op,op.code=="R"?2:1);
+  auto & data=state["wagons"][std::to_string(wagon->id.getNum())];
+  if(data.isNull())
+  {
+   int present=0,artifactMode=0,artifact=0,resource=0,count=0;
+   for(const auto & info:wagon->configuration.info)if(info.visitType==Rewardable::EEventType::EVENT_FIRST_VISIT)
+   {
+    if(!info.reward.grantedArtifacts.empty())
+    {
+     present=artifactMode=1;const auto id=info.reward.grantedArtifacts.front();bool found=false;
+     for(int source=0;source<=170;++source)if(LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(source))==id){artifact=source;found=true;break;}
+     if(!found){artifact=-1;data["nativeArtifact"].Integer()=id.getNum();}
+    }
+    for(int index=0;index<7;++index)if(info.reward.resources[GameResID(index)]>0){present=1;resource=index;count=info.reward.resources[GameResID(index)];break;}
+   }
+   data["S"].Integer()=present;data["B"].Integer()=artifactMode;data["A"].Integer()=artifact;data["resource"].Integer()=resource;data["count"].Integer()=count;
+  }
+  // Native visitor records retain consumption for every player. S resets
+  // them and the once-only flag, as the original clears Whom even for S0.
+  if(std::any_of(gh.gameState().players.begin(),gh.gameState().players.end(),[&](const auto & entry){return entry.second.visitedObjects.count(wagon->id)!=0;}))data["S"].Integer()=0;
+  if(op.code=="R")
+  {
+   const int resource=value(era_campaign_json::integer(data["resource"]),args[0]),count=value(era_campaign_json::integer(data["count"]),args[1]);
+   if(!query(op)){data["resource"].Integer()=static_cast<std::uint32_t>(resource)&15u;data["count"].Integer()=static_cast<std::uint32_t>(count)&31u;}
+  }
+  else
+  {
+   require(op.code!="A"||!query(op)||era_campaign_json::integer(data["A"])>=0,"foreign artifact in source wagon query");
+   const int changed=value(era_campaign_json::integer(data[op.code]),args[0]);
+   if(!query(op)){data[op.code].Integer()=static_cast<std::uint32_t>(changed)&(op.code=="A"?1023u:1u);if(op.code=="A")data.Struct().erase("nativeArtifact");}
+  }
+  if(query(op)){persist();return Step::Continue;}
+  auto config=wagon->configuration;config.visitMode=Rewardable::VISIT_ONCE;config.selectMode=Rewardable::SELECT_FIRST;config.canRefuse=false;
+  config.info.clear();config.info.emplace_back();auto & info=config.info.back();info.visitType=Rewardable::EEventType::EVENT_FIRST_VISIT;
+  if(data["S"].Integer()==0)info.message.appendLocalString(EMetaText::ADVOB_TXT,156);
+  else if(data["B"].Integer()!=0)
+  {
+   const int source=era_campaign_json::integer(data["A"]);require(source<=170&&(source>=0||data["nativeArtifact"].isNumber()),"unbound source wagon artifact");
+   info.reward.grantedArtifacts.push_back(source<0?ArtifactID(era_campaign_json::integer(data["nativeArtifact"])):LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(source)));info.message.appendLocalString(EMetaText::ADVOB_TXT,155);
+  }
+  else
+  {
+   const int source=era_campaign_json::integer(data["resource"]);require(source<8,"unbound source wagon resource");GameResID resource(source);
+   if(source==7){const auto id=LIBRARY->identifiers()->getIdentifier(ModScope::scopeGame(),"resource","wake-of-gods.mithril:mithril",true);require(id.has_value(),"source mithril unavailable");resource=GameResID(*id);}
+   info.reward.resources[resource]=era_campaign_json::integer(data["count"]);info.message.appendLocalString(EMetaText::ADVOB_TXT,154);
+  }
+  config.info.emplace_back();config.info.back().visitType=Rewardable::EEventType::EVENT_ALREADY_VISITED;config.info.back().message.appendLocalString(EMetaText::ADVOB_TXT,156);
+  persist(JsonNode(),wagon,&config);
+  if(op.code=="S"){gh.setObjPropertyValue(wagon->id,ObjProperty::REWARD_CLEARED,false);ChangeObjectVisitors cleared(ChangeObjectVisitors::VISITOR_CLEAR,wagon->id);gh.sendAndApply(cleared);}
+  return Step::Continue;
+ }
  if(c.receiver=="CH")
  {
   arity(op,1);require(op.code=="S"||op.code=="B"||op.code=="A","unadmitted chest operation");
@@ -1092,6 +1159,41 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  if(c.receiver=="UN")
  {
   require(c.selectors.empty(),"universal receiver does not take selectors");
+  if(op.code=="N")
+  {
+   require(args.size()==3||args.size()==4,"invalid source name arity");
+   for(const auto & arg:args)require(arg.access==Access::Read,"source name arguments must be values");
+   const int kind=number(args[0]),destination=number(args[1]),source=number(args[2]);
+   require((destination>=1&&destination<=1000)||(destination>=-10&&destination<=-1),"source name string index outside local tables");
+   std::string name;
+   if(kind==0)
+   {
+    arity(op,3);require(source>=0&&source<=170,"source artifact name index outside0..170");
+    const auto * artifact=LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(ArtifactID(source)).toArtifact();require(artifact!=nullptr,"unbound source artifact name");name=artifact->getNameTranslated();
+   }
+   else if(kind==1)
+   {
+    arity(op,3);require(source>=0&&source<70,"source spell name index outside0..69");const auto * spell=SpellID(source).toSpell();require(spell!=nullptr,"unbound source spell name");name=spell->getNameTranslated();
+   }
+   else if(kind==3)
+   {
+    arity(op,4);require(number(args[3])>=0,"negative source creature name plurality");const auto * type=creature(source).toCreature();name=number(args[3])?type->getNamePluralTranslated():type->getNameSingularTranslated();
+   }
+   else if(kind==4)
+   {
+    arity(op,3);require(source>=0&&source<28,"source secondary skill name outside0..27");const auto * skill=SecondarySkill(source).toSkill();require(skill!=nullptr,"unbound source secondary skill name");name=skill->getNameTranslated();
+   }
+   else throw std::runtime_error("Original campaign: unsupported source name kind");
+   const auto count=TextOperations::getUnicodeCharactersCount(name);if(count>511)TextOperations::trimRightUnicode(name,count-511);
+   vm.z[destination]=std::move(name);return Step::Continue;
+  }
+  if(op.code=="V")
+  {
+   arity(op,2);for(const auto & arg:args)require(arg.access==Access::Write||arg.access==Access::Compare,"source version is read-only");
+   // Pinned 358f 72EA9D..CA. Report the emulated script contract, not a
+   // fabricated ERA version or native memory addresses from Windows.
+   value(358,args[0]);value(281,args[1]);return Step::Continue;
+  }
   if(op.code=="R")
   {
    arity(op,1);require(args[0].access==Access::Read,"redraw mode needs a value");const int mode=number(args[0]);require(mode==1||mode==2,"unsupported source redraw mode");
@@ -1364,9 +1466,30 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   {arity(op,1);require(query(op),"hero identity is read-only");value(h->getHeroTypeID().getNum(),args[0]);}
   else if(op.code=="R")
   {
-   arity(op,2);require(args[0].access==Access::Read&&number(args[0])==2,"unsupported hero status field");
-   const int changed=value(static_cast<int>(h->gender),args[1]);
-   if(!query(op)){require(changed==0||changed==1,"invalid hero gender");auto change=mutation("heroGender",h->id);change["gender"].Integer()=changed;persist(change);}
+   require(args.size()==2||args.size()==3,"invalid hero status arity");require(args[0].access==Access::Read,"hero status needs a fixed field");
+   const int field=number(args[0]);require((field>=0&&field<=2)||field==4,"unsupported hero status field");
+   if(args.size()==3)require(args[2].access==Access::Read,"hero status redraw needs a value");
+   if(field==4)
+   {
+    const int changed=value(h->tacticFormationEnabled?1:0,args[1]);
+    if(!query(op)){auto change=mutation("heroTactics",h->id);change["enabled"].Bool()=changed!=0;persist(change);}
+   }
+   else if(field==2)
+   {
+    const int changed=value(static_cast<int>(h->gender),args[1]);
+    if(!query(op)){require(changed==0||changed==1,"invalid hero gender");auto change=mutation("heroGender",h->id);change["gender"].Integer()=changed;persist(change);}
+   }
+   else
+   {
+    const auto key=std::to_string(h->id.getNum());const std::string name=field==0?"morale":"luck";
+    const auto & stored=std::as_const(state)["heroModifiers"][key][name];
+    const int changed=value(stored.isNull()?0:era_campaign_terrain::byteQuery(era_campaign_json::integer(stored)),args[1]);
+    if(!query(op))
+    {
+     const int raw=era_campaign_terrain::byteWord(changed);state["heroModifiers"][key][name].Integer()=raw;
+     auto change=mutation("heroModifier",h->id);change["field"].Integer()=field;change["amount"].Integer()=era_campaign_terrain::byteQuery(raw);persist(change);
+    }
+   }
   }
   else if(op.code=="P")
   {
@@ -1555,6 +1678,24 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   return Step::Continue;
  }
+ if(c.receiver=="HT")
+ {
+  require(c.selectors.size()==2,"source type hint needs type and subtype");
+  for(const auto & selector:c.selectors)require(selector.access==Access::Read,"source type hint selectors must be values");
+  require(op.code=="T"||op.code=="W"||op.code=="V","unsupported source type hint mode");arity(op,op.code=="T"?1:3);
+  for(const auto & arg:args)require(arg.access==Access::Read,"source type hint arguments must be values");
+  const auto packed=era_campaign_type_hints::key(number(c.selectors[0]),number(c.selectors[1]),op.code.front(),op.code=="T"?0:number(args[0]),op.code=="T"?0:number(args[1]));
+  const int string=number(args.back());require(string>=0&&string<=1000,"external source type hint strings are not admitted");
+  auto & hints=state["typeHints"].Vector();auto found=std::find_if(hints.begin(),hints.end(),[&](const JsonNode & entry){return !entry.isNull()&&entry["key"].Integer()==packed;});
+  if(string==0){if(found!=hints.end())*found=JsonNode();}
+  else
+  {
+   if(found==hints.end())found=std::find_if(hints.begin(),hints.end(),[](const JsonNode & entry){return entry.isNull();});
+   if(found==hints.end()){hints.emplace_back();found=std::prev(hints.end());}
+   (*found)["key"].Integer()=packed;(*found)["string"].Integer()=string;
+  }
+  persist();return Step::Continue;
+ }
  if(c.receiver=="HO")
  {
   require(c.selectors.size()==1,"hero interaction needs a hero number");const int target=number(c.selectors[0]);require(target>=0&&target<156,"original hero interaction number outside0..155");
@@ -1694,7 +1835,9 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    else {arity(op,1);state["guardsEnabled"][key].Bool()=number(args[0])!=0;}
    auto change=mutation("eventGuards",event->id);change["slots"].Vector();if(state["guardsEnabled"][key].Bool())change["slots"]=slots;persist(change);return Step::Continue;
   }
-  if(op.code=="R")
+  if(op.code=="E")
+  {arity(op,1);const int changed=value(reward.heroExperience,args[0]);if(!query(op))reward.heroExperience=changed;}
+  else if(op.code=="R")
   {arity(op,2);const GameResID resource(number(args[0]));reward.resources[resource]=value(reward.resources[resource],args[1]);}
   else if(op.code=="C")
   {

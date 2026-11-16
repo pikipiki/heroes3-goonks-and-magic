@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "release": "0.4.209",
+  "evidenceType": "Bounded static supplied3.58f PE inspection; no Windows execution. Native controls recorded separately.",
+  "binarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "assemblySha256": {
+    "hero-status": "a0b0bd8cf0587f9ae0b2a5ffb69c35eae04024df4e7a80d9c14fb96306275ac8",
+    "version": "b82e951f94b4dd03e130bb89764fe7c9b630dbe27401752aaa3dc1d4ee39d841",
+    "names": "59dd38a93f5f8e31657d7677f3f5470ddc683beb0f563f75bcdd4e94338ec080",
+    "cost": "d3e057aab7c746908619e1efc07a27338b28145413c589d32213844cbebf4554",
+    "speed": "abb6e88998a545a9793b938c5f1c9cdc56a956ba9819f84e15a7b13e908b9073",
+    "event-xp": "5731dafd1604962476f3d7afed866e5e813f0489838634ca3f36665101a9b6b5",
+    "wagon": "7b9143d883a4f83d7022fd0085ec4c216b21797274f71a3719dd3241cca9acd9",
+    "type-hints": "fe54d92f7297d79b6ae733f29be93cbd0c5a18646ec06331c24cc7f0d2c52cd2",
+    "hint-lookup": "9be9e153cfe8b691c1b8ccab899af2fc0c36f86ff2bfc3f66f53219e028fec25"
+  },
+  "observations": [
+    {
+      "range": "74308F..743122",
+      "contract": "HE:R0/R1 use signed1-byte Apply on the hero additional morale/luck fields; R2 uses the gender byte."
+    },
+    {
+      "range": "74328A..74330A",
+      "contract": "HE:R4 updates the tactics flag mask0x02; any nonzero input enables it."
+    },
+    {
+      "range": "72EA9D..72EACA",
+      "contract": "UN:V returns358 and281 through two read-only operands."
+    },
+    {
+      "range": "72E28E..72E525",
+      "contract": "UN:N resolves artifact, spell, building, singular/plural creature and secondary-skill names into a z cell."
+    },
+    {
+      "range": "7526B8..752728",
+      "contract": "MA:C reads/writes a resource-indexed signed word. This adapter admits the read forms used by shipped scripts."
+    },
+    {
+      "range": "75283A..75288B",
+      "contract": "MA:S applies a speed word, clamps writes below1 to1, then notifies the original creature change."
+    },
+    {
+      "range": "73F189..73F1B2",
+      "contract": "LE:E applies a signed4-byte experience reward."
+    },
+    {
+      "range": "735D84..735F16",
+      "contract": "WG S/B/A/R use original1/1/10/4/5-bit fields; S also clears the visitor byte."
+    },
+    {
+      "range": "733165..733738",
+      "contract": "HT:T/W/V create/delete encoded hint registrations. W packs index-1 in7bits and value in5bits, including32 aliasing0. V packs index-1 in10bits and value in2bits."
+    },
+    {
+      "range": "732B00..732F50",
+      "contract": "Original hint lookup scans exact subtype before255, matching current player-selected hero W variables or global V variables, in reusable registration slots."
+    }
+  ],
+  "scope": [
+    "Map-local morale/luck replacement, existing native tactics flag, source name/version reads, source creature cost reads, map-local speed and event experience.",
+    "Original resource wagon commands and repeated/empty/refill visits. A foreign native starting artifact is preserved until the source explicitly replaces its mode; it cannot be returned as a fabricated source ID.",
+    "HT T/W/V live bindings, exact/wildcard and coordinate priority, deleted slot reuse; native mobile presentation reused."
+  ],
+  "limits": [
+    "No campaign admission is enabled by an isolated control. Original victories and transfers remain separate acceptance gates.",
+    "Other battle hooks, quest notes, curses, original creature upgrade/flag writes and remaining universal operations are not claimed complete.",
+    "External name/hint string tables, the shared1000-record saturation behavior, HT:P and unrestricted wagon artifact-mode equivalence are not validated by this lot.",
+    "No source memory address is exposed as an ERA pointer. The source version denotes the emulated358f contract."
+  ]
+}

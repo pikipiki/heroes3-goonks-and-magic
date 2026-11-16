@@ -1,4 +1,4 @@
-/* Map-local counterparts of the five numeric MA fields used by zc1-0. */
+/* Map-local numeric MA fields. Shared creature definitions stay immutable. */
 #pragma once
 #include "../CCreatureHandler.h"
 #include "../gameState/CGameState.h"
@@ -13,7 +13,7 @@ namespace era_campaign_creature_attributes
 {
 inline int fieldIndex(char field)
 {
- switch(field){case 'P':return 0;case 'A':return 1;case 'D':return 2;case 'M':return 3;case 'E':return 4;}
+ switch(field){case 'P':return 0;case 'A':return 1;case 'D':return 2;case 'M':return 3;case 'E':return 4;case 'S':return 5;}
  throw std::runtime_error("Unadmitted original creature attribute");
 }
 inline int base(const CCreature & creature,char field)
@@ -21,13 +21,13 @@ inline int base(const CCreature & creature,char field)
  switch(field)
  {
   case 'P':return creature.getBaseHitPoints();case 'A':return creature.getBaseAttack();
-  case 'D':return creature.getBaseDefense();case 'M':return creature.getBaseDamageMin();case 'E':return creature.getBaseDamageMax();
+  case 'D':return creature.getBaseDefense();case 'M':return creature.getBaseDamageMin();case 'E':return creature.getBaseDamageMax();case 'S':return creature.getBaseSpeed();
  }
  throw std::runtime_error("Unadmitted original creature attribute");
 }
 inline void apply(CGameState & game,CreatureID id,char field,int amount)
 {
- if(id.getNum()<0||id.getNum()>65535||amount<(field=='P'?1:0))throw std::runtime_error("Invalid original creature attribute");
+ if(id.getNum()<0||id.getNum()>65535||amount<(field=='P'||field=='S'?1:0))throw std::runtime_error("Invalid original creature attribute");
  const auto * creature=id.toCreature();const int index=fieldIndex(field);
  if(!creature)throw std::runtime_error("Unbound original creature attribute");
  const auto delta=std::int64_t(amount)-base(*creature,field);
@@ -35,7 +35,7 @@ inline void apply(CGameState & game,CreatureID id,char field,int amount)
  const BonusSourceID source{BonusCustomSource(0x57000000+id.getNum()*16+index)};
  game.globalEffects.removeBonuses(Selector::source(BonusSource::OTHER,source));
  if(delta==0)return;
- const auto type=field=='P'?BonusType::STACK_HEALTH:(field=='A'||field=='D')?BonusType::PRIMARY_SKILL:BonusType::CREATURE_DAMAGE;
+ const auto type=field=='P'?BonusType::STACK_HEALTH:field=='S'?BonusType::STACKS_SPEED:(field=='A'||field=='D')?BonusType::PRIMARY_SKILL:BonusType::CREATURE_DAMAGE;
  auto bonus=std::make_shared<Bonus>(BonusDuration::PERMANENT,type,BonusSource::OTHER,int(delta),source);
  if(field=='A'||field=='D')bonus->subtype=BonusSubtypeID(field=='A'?PrimarySkill::ATTACK:PrimarySkill::DEFENSE);
  if(field=='M'||field=='E')bonus->subtype=field=='M'?BonusCustomSubtype::creatureDamageMin:BonusCustomSubtype::creatureDamageMax;
