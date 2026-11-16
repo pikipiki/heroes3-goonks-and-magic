@@ -34,6 +34,9 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  return {x:r.x+l.dx+(cell.x-l.x)*l.scale,y:r.y+l.dy+(cell.y-l.y)*l.scale};
  },destination);
  await page.touchscreen.tap(position.x,position.y);
+ assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===14).length),0,'First tap only previews movement');
+ await page.waitForTimeout(700);
+ await page.touchscreen.tap(position.x,position.y);
 
  assert.deepEqual(await page.evaluate(()=>calls.filter(c=>c[0]===14).map(c=>c.slice(0,3))),[[14,4,88]]);
  await page.setViewportSize({width:390,height:844});
@@ -51,6 +54,6 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  });
  await page.locator('[data-spell="15"]').click();
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===49&&c[1]===15).length),1);
- assert.deepEqual(errors,[]);console.log(name+': single tap hero movement, battle movement, attack and spell passed');
+ assert.deepEqual(errors,[]);console.log(name+': two-click battle movement and single-click map/attack/spell passed');
  }finally{await browser.close();}
 }
