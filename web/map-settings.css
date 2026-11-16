@@ -12,6 +12,7 @@
 #game-menu[data-page=settings] .setting-toggle{display:grid;grid-template-columns:24px 36px minmax(0,1fr);gap:10px;align-items:center;min-height:48px}
 #game-menu[data-page=settings] .setting-toggle .setting-icon{display:block;width:36px;height:36px;object-fit:contain}
 #game-menu[data-page=settings] input:is([type=checkbox],[type=radio]){appearance:none;-webkit-appearance:none;box-sizing:border-box;width:24px;height:24px;margin:0;border:2px ridge #b89c5d;border-radius:0;background:#24190e;cursor:pointer}
-#game-menu[data-page=settings] input:is([type=checkbox],[type=radio]):checked{background:#74521e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M3 10l5 5L17 4' fill='none' stroke='%23ffedb6' stroke-width='3'/%3E%3C/svg%3E") center/20px no-repeat}
+#game-menu[data-page=settings] input[type=checkbox]:checked{background:#74521e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M3 10l5 5L17 4' fill='none' stroke='%23ffedb6' stroke-width='3'/%3E%3C/svg%3E") center/20px no-repeat}
 
-#game-menu[data-page=settings] input[type=radio]{border-radius:50%}
+#game-menu[data-page=settings] input[type=radio]{display:block;flex-shrink:0;width:24px;height:24px;min-width:24px;max-width:24px;min-height:24px;max-height:24px;aspect-ratio:1;padding:0;border:2px solid #b89c5d;border-image:none;border-radius:50%;clip-path:none;background:#24190e}
+#game-menu[data-page=settings] input[type=radio]:checked{border-color:#ffe3a0;background:radial-gradient(circle at center,#ffe3a0 0 5px,#24190e 5.5px)}
