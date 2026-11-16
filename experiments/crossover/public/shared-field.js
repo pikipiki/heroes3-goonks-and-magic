@@ -41,6 +41,11 @@ export function sharedField(win, canvas, api, plan) {
     const bodyHits = new Map();
     const sprites = new Map(), positions = new Map();
     const makeSprite = () => { const image = win.document.createElement('canvas'); image.width = image.height = 320; return image; };
+    const effectCanvas = win.document.createElement('canvas');
+    effectCanvas.width = 96;
+    effectCanvas.height = 96;
+    let weaponEffects = [];
+    const previousEffects = new Map();
     const heroCanvases = new Map();
     let previousArt;
     let restoredCasualties = false;
@@ -136,6 +141,16 @@ export function sharedField(win, canvas, api, plan) {
                     oldUnits.set(unit.id, unit);
                 nativeFrame = snapshot.frame;
                 timeline.receive(nativeFrame, now, api.tickDuration?.() || 42);
+                previousEffects.clear();
+                for (const effect of weaponEffects)
+                    previousEffects.set(effect.id, effect);
+                const nativeEffects = api.effects?.();
+                weaponEffects = nativeEffects?.rows || [];
+                if (nativeEffects?.pixels.length) {
+                    if (effectCanvas.height < weaponEffects.length * 96)
+                        effectCanvas.height = weaponEffects.length * 96;
+                    effectCanvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(nativeEffects.pixels), 96, weaponEffects.length * 96), 0, 0);
+                }
                 units = snapshot.units.filter(unit => unit.auxiliary || (unit.stackId !== undefined && unit.stackId >= 0));
                 camera = api.camera();
                 if (!view && units.length) {
@@ -468,6 +483,25 @@ export function sharedField(win, canvas, api, plan) {
             context.stroke();
             context.globalAlpha = 1;
         }
+        // Actual OpenBW bullets, including impact frames. Keep their direction in
+        // board coordinates while the surrounding field rotates on phones.
+        context.save();
+        context.imageSmoothingEnabled = true;
+        context.filter = 'drop-shadow(0px 0px 2px #fff8)';
+        const actors = [...units, ...corpses.values()];
+        const actorNear = (id, x, y, stack) => actors.find(u => u.id === id) || actors.filter(u => stack === undefined || u.stackId === stack).filter(u => Math.hypot(u.x - x, u.y - y) < 45).sort((a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y))[0];
+        const visualShift = (actor) => { if (!actor)
+            return { x: 0, y: 0 }; const centre = bodyPoint(actor), b = starBounds.get(actor.id), nativeX = b ? (b.x + b.width / 2) / 2 - 80 : 0, nativeY = b ? (b.y + b.height / 2) / 2 - 96 : -12; return { x: centre.x - (actor.x - camera.x) - nativeX, y: centre.y - (actor.y - camera.y) - nativeY }; };
+        for (const [index, effect] of weaponEffects.entries()) {
+            const old = previousEffects.get(effect.id), blend = old && old.weapon === effect.weapon && old.source === effect.source && effect.remaining <= old.remaining ? amount : 1;
+            let x = (old ? old.x + (effect.x - old.x) * blend : effect.x) - camera.x, y = (old ? old.y + (effect.y - old.y) * blend : effect.y) - camera.y;
+            const source = visualShift(actorNear(effect.origin, effect.ox, effect.oy, effect.source)), target = visualShift(actorNear(effect.target, effect.tx, effect.ty)), dx = effect.tx - effect.ox, dy = effect.ty - effect.oy, t = effect.state === 5 ? 1 : Math.max(0, Math.min(1, ((effect.x - effect.ox) * dx + (effect.y - effect.oy) * dy) / Math.max(1, dx * dx + dy * dy)));
+            x += source.x * (1 - t) + target.x * t;
+            y += source.y * (1 - t) + target.y * t;
+            const size = 172;
+            context.drawImage(effectCanvas, 0, index * 96, 96, 96, x - size / 2, y - size / 2, size, size);
+        }
+        context.restore();
         while (shots.length && now - shots[0].at > 380)
             shots.shift();
         for (const shot of shots) {

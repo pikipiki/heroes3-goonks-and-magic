@@ -1,4 +1,4 @@
-import {paintStarcraftUnits} from './battle-starcraft.mjs';
+import {paintStarcraftUnits,starcraftAttackActive} from './battle-starcraft.mjs';
 import {siegeTargets,paintSiegeTargets} from './battle-siege.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {paintBattleFloor} from './battle-floor.mjs';
@@ -93,7 +93,7 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
  function paint(original,detail,selected,view,isMove=true){if(!sync())return;const text=view?.label||'Vue rapprochée · Choisissez une case ou une cible';if(detailDescription.textContent!==text)detailDescription.textContent=text;const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const pixels=surfaceSize.fit(canvas,w,h,Math.min(devicePixelRatio||1,2));ctx.setTransform(pixels.x,0,0,pixels.y,0,0);ctx.clearRect(0,0,w,h);
   const scale=Math.min(w/800,h/555);const dy=Math.max(0,(h-555*scale)/2);currentLayout={x:0,y:0,w:800,h:555,scale,dx:(w-800*scale)/2,dy};const l=currentLayout;ctx.drawImage(original,0,0,original.width,original.height*555/600,l.dx,l.dy,800*scale,555*scale);
   const state=getState(),guidance=battleGuidance(state);paintBattleFloor(ctx,state,l);paintSiegeTargets(ctx,state,p=>({x:l.dx+(p.x-l.x)*l.scale,y:l.dy+(p.y-l.y)*l.scale}));paintShotTargets(ctx,guidance.shotTargets,l);paintMeleeTargets(ctx,guidance.meleeTargets,l);paintActiveCreature(ctx,guidance,l);
-  if(!view?.preview)paintBattleAction(ctx,view,l);
+  if(!view?.preview&&!starcraftAttackActive(state))paintBattleAction(ctx,view,l);
   paintSpellTargets(ctx,[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])],l);paintSpellTargets(ctx,guidance.invalidSpellTargets,l,true);
   if(selected){
    paintSelectedTile(ctx,selected,l,state,isMove);

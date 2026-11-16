@@ -1,0 +1,65 @@
+{
+  "battlecruiser": {
+    "weapons": [
+      19
+    ],
+    "states": {
+      "1": 2,
+      "5": 352
+    },
+    "flightFrames": 2,
+    "impactFrames": 16,
+    "fighterFrames": 0,
+    "visible": 354
+  },
+  "siegeTank": {
+    "weapons": [
+      11
+    ],
+    "states": {
+      "5": 520
+    },
+    "flightFrames": 0,
+    "impactFrames": 16,
+    "fighterFrames": 0,
+    "visible": 520
+  },
+  "guardian": {
+    "weapons": [
+      46
+    ],
+    "states": {
+      "2": 12,
+      "5": 12
+    },
+    "flightFrames": 8,
+    "impactFrames": 12,
+    "fighterFrames": 0,
+    "visible": 24
+  },
+  "archon": {
+    "weapons": [
+      70
+    ],
+    "states": {
+      "5": 552
+    },
+    "flightFrames": 0,
+    "impactFrames": 16,
+    "fighterFrames": 0,
+    "visible": 552
+  },
+  "carrier": {
+    "weapons": [
+      79
+    ],
+    "states": {
+      "1": 34,
+      "5": 4
+    },
+    "flightFrames": 8,
+    "impactFrames": 12,
+    "fighterFrames": 8,
+    "visible": 38
+  }
+}

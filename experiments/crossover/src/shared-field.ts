@@ -2,7 +2,7 @@ import {eligibleSpellTarget} from './spell-targets.js';
 import {opaqueBounds,smoothSprite2x,spritePlacement,starcraftPlacement,COMBAT_BODY_HEIGHT,type SpriteBounds} from './sprite-scale.js';
 import {RenderClock,RenderDensity,SimulationTimeline,interpolatedPosition,attackCycle,heroAnimation,type AttackCycle} from './animation.js';
 import type {BattlePlan} from './battle.js';
-import type {NativeBridge,NativeUnit} from './native-bridge.js';
+import type {NativeBridge,NativeUnit,NativeWeaponEffect} from './native-bridge.js';
 type Art={battleId:number;cell?:number;canvas:HTMLCanvasElement;rows:{id:number;row:number;canvas?:HTMLCanvasElement}[]};
 type SpellClip={id:number;kind:string;canvas:HTMLCanvasElement;frames:number};
 type VisualWindow=Window & {goonkCrossoverSpellArt?:{battleId:number;rows:SpellClip[]};goonkCrossoverBackground?:{battleId:number;canvas:HTMLCanvasElement};goonkBattlePlanes?:{background?:HTMLCanvasElement};goonkCrossoverArt?:Art};
@@ -43,6 +43,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  type BodyHit={image:HTMLCanvasElement;x:number;y:number;scale:number;flip:boolean;height:number};const bodyHits=new Map<number,BodyHit>();
  const sprites=new Map<number,SpritePair>(),positions=new Map<number,{x:number;y:number}>();
  const makeSprite=():HTMLCanvasElement=>{const image=win.document.createElement('canvas');image.width=image.height=320;return image;};
+ const effectCanvas=win.document.createElement('canvas');effectCanvas.width=96;effectCanvas.height=96;let weaponEffects:NativeWeaponEffect[]=[];const previousEffects=new Map<number,NativeWeaponEffect>();
  const heroCanvases=new Map<number,HTMLCanvasElement>();let previousArt:HTMLCanvasElement|undefined;
  let restoredCasualties=false;
  let request=0,closed=false,selected:number|undefined,attackMode=false,units:NativeUnit[]=[],nativeFrame=-1,view:ReturnType<typeof battleView>|undefined;
@@ -78,6 +79,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    if(snapshot.frame!==nativeFrame){
     oldUnits.clear();for(const unit of units)oldUnits.set(unit.id,unit);
     nativeFrame=snapshot.frame;timeline.receive(nativeFrame,now,api.tickDuration?.()||42);
+    previousEffects.clear();for(const effect of weaponEffects)previousEffects.set(effect.id,effect);const nativeEffects=api.effects?.();weaponEffects=nativeEffects?.rows||[];if(nativeEffects?.pixels.length){if(effectCanvas.height<weaponEffects.length*96)effectCanvas.height=weaponEffects.length*96;effectCanvas.getContext('2d')!.putImageData(new ImageData(new Uint8ClampedArray(nativeEffects.pixels),96,weaponEffects.length*96),0,0);}
     units=snapshot.units.filter(unit=>unit.auxiliary||(unit.stackId!==undefined&&unit.stackId>=0));camera=api.camera();
     if(!view&&units.length){view=battleView(units,camera);const mean=(owner:number)=>{const rows=units.filter(u=>u.owner===owner);return rows.reduce((n,u)=>n+u.x,0)/Math.max(1,rows.length);};mirrorBackground=mean(0)>mean(1);}
     // A classic return has no native actors for eliminated cohorts. Keep only
@@ -158,6 +160,15 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
    const targetId=marker.target,actor=targetId===undefined?undefined:units.find(u=>u.id===targetId),aim=actor?bodyPoint({...actor,...positions.get(actor.id)}):undefined,mx=aim?.x??marker.x,my=aim?.y??marker.y;
    const age=(now-marker.at)/1000,r=14+Math.sin(age*Math.PI*4)*4;context.globalAlpha=1-age*.7;context.strokeStyle=marker.attack?'#ff735f':'#9feeab';context.lineWidth=3;context.beginPath();context.arc(mx,my,r,0,Math.PI*2);context.moveTo(mx-r-8,my);context.lineTo(mx-5,my);context.moveTo(mx+5,my);context.lineTo(mx+r+8,my);context.moveTo(mx,my-r-8);context.lineTo(mx,my-5);context.moveTo(mx,my+5);context.lineTo(mx,my+r+8);context.stroke();context.globalAlpha=1;
   }
+  // Actual OpenBW bullets, including impact frames. Keep their direction in
+  // board coordinates while the surrounding field rotates on phones.
+  context.save();context.imageSmoothingEnabled=true;context.filter='drop-shadow(0px 0px 2px #fff8)';
+  const actors=[...units,...corpses.values()];
+  const actorNear=(id:number,x:number,y:number,stack?:number):NativeUnit|undefined=>actors.find(u=>u.id===id)||actors.filter(u=>stack===undefined||u.stackId===stack).filter(u=>Math.hypot(u.x-x,u.y-y)<45).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];
+  const visualShift=(actor:NativeUnit|undefined):{x:number;y:number}=>{if(!actor)return {x:0,y:0};const centre=bodyPoint(actor),b=starBounds.get(actor.id),nativeX=b?(b.x+b.width/2)/2-80:0,nativeY=b?(b.y+b.height/2)/2-96:-12;return {x:centre.x-(actor.x-camera.x)-nativeX,y:centre.y-(actor.y-camera.y)-nativeY};};
+  for(const [index,effect]of weaponEffects.entries()){const old=previousEffects.get(effect.id),blend=old&&old.weapon===effect.weapon&&old.source===effect.source&&effect.remaining<=old.remaining?amount:1;let x=(old?old.x+(effect.x-old.x)*blend:effect.x)-camera.x,y=(old?old.y+(effect.y-old.y)*blend:effect.y)-camera.y;
+   const source=visualShift(actorNear(effect.origin,effect.ox,effect.oy,effect.source)),target=visualShift(actorNear(effect.target,effect.tx,effect.ty)),dx=effect.tx-effect.ox,dy=effect.ty-effect.oy,t=effect.state===5?1:Math.max(0,Math.min(1,((effect.x-effect.ox)*dx+(effect.y-effect.oy)*dy)/Math.max(1,dx*dx+dy*dy)));x+=source.x*(1-t)+target.x*t;y+=source.y*(1-t)+target.y*t;
+   const size=172;context.drawImage(effectCanvas,0,index*96,96,96,x-size/2,y-size/2,size,size);}context.restore();
   while(shots.length&&now-shots[0].at>380)shots.shift();for(const shot of shots){const age=now-shot.at,t=Math.min(1,age/180),x=shot.from.x+(shot.to.x-shot.from.x)*t,y=shot.from.y+(shot.to.y-shot.from.y)*t;const clip=spellArt?.rows.find(c=>c.id===200000+shot.stack&&c.kind==='weapon');if(clip)drawClip(clip,x,y,age*2,100);}
   while(spellEffects.length&&now-spellEffects[0].at>1200)spellEffects.shift();
   for(const effect of spellEffects){const age=now-effect.at,actors=[...units,...corpses.values()],caster=actors.find(u=>u.stackId===effect.caster),from=caster?bodyPoint(caster):{x:mirrorBackground?750:50,y:280};const targets=actors.filter(u=>effect.targets.includes(u.stackId!));

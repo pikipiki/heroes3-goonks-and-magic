@@ -1,3 +1,5 @@
+// Actual StarCraft weapons replace the generic action-preview beam during fire.
+export function starcraftAttackActive(state){const camera=state.battleCamera;return !!(camera?.active&&camera.kind==='attack'&&(state.battleUnits||[]).some(u=>u.stackId===camera.actor?.stackId&&u.key?.startsWith('heroes-starcraft:')));}
 // Preserve native animation playback. Only lift living silhouettes above idle
 // target overlays; the vertical compositor already draws its interpolated bodies.
 export function paintStarcraftUnits(ctx,state,layout,atlas=globalThis.goonkBattleAtlas,ids=globalThis.goonkBattleAtlasIds,bounds=globalThis.goonkBattleSpriteBounds){

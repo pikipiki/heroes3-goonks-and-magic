@@ -2,6 +2,8 @@
 import {STARCRAFT_UNITS,validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
 export type CreatureSoundKind='attack'|'hit'|'death'|`spell:${number}`;
 export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;auxiliary?:boolean;maxHp?:number;hp256?:number;shields256?:number;shields?:number;maxShields?:number;order?:number;cooldown?:number;target?:number; x: number; y: number};
+export type NativeWeaponEffect={id:number;weapon:number;state:number;remaining:number;source:number;x:number;y:number;origin:number;target:number;ox:number;oy:number;tx:number;ty:number};
+export type NativeEffects={rows:NativeWeaponEffect[];pixels:Uint8ClampedArray};
 export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
 export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
 export type NativeSample = {frame: number; checksum: number; outcome: number; cohort?: NativeCohort};
@@ -32,12 +34,15 @@ export type NativeBridge = {
   stop(stack:number):void;
   target(stack:number,id:number):void;
   camera():{x:number;y:number};
+  effects?():NativeEffects;
   sprite(id:number):Uint8ClampedArray;
   layer():{pixels:Uint8ClampedArray;x:number;y:number;width:number;height:number};
   order(stack:number,x:number,y:number,attack:boolean):void;
 };
 export type CrossoverWindow = Window & {openbwCrossover?: NativeBridge};
 type NativeExports = {
+  openbw_crossover_effects?():number;
+  openbw_crossover_effect_pixels?():number;
   openbw_crossover_obstacles?(count:number):number;
   openbw_crossover_contacts?():number;
   openbw_crossover_damage_rules?(count:number):number;
@@ -120,6 +125,16 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
       if(closed||!x.openbw_crossover_sprite||!Number.isSafeInteger(id)||id<1||id>65535)throw Error('Sprite indisponible.');
       const pointer=x.openbw_crossover_sprite(id);if(!pointer)throw Error('Unité indisponible.');
       return new Uint8ClampedArray(memory.buffer,pointer,160*160*4).slice();
+    },
+    effects(){
+      if(closed)throw Error('Moteur StarCraft fermé.');
+      if(!x.openbw_crossover_effects||!x.openbw_crossover_effect_pixels)return {rows:[],pixels:new Uint8ClampedArray()};
+      const pointer=x.openbw_crossover_effects(),bytes=new Uint8Array(memory.buffer);let end=pointer;
+      while(end<bytes.length&&end-pointer<65536&&bytes[end])end++;
+      if(end>=bytes.length||bytes[end])throw Error('Effets natifs invalides.');
+      const rows=JSON.parse(new TextDecoder().decode(bytes.subarray(pointer,end))).rows as NativeWeaponEffect[];
+      if(!Array.isArray(rows)||rows.length>96||rows.some(r=>!['id','weapon','state','remaining','source','x','y','origin','target','ox','oy','tx','ty'].every(k=>Number.isFinite(r[k as keyof NativeWeaponEffect]))))throw Error('Effets natifs invalides.');
+      const pixels=x.openbw_crossover_effect_pixels();return {rows,pixels:rows.length&&pixels?new Uint8ClampedArray(memory.buffer,pixels,rows.length*96*96*4).slice():new Uint8ClampedArray()};
     },
     layer(){
       if(closed||!x.openbw_crossover_layer)throw Error('Rendu partagé indisponible.');

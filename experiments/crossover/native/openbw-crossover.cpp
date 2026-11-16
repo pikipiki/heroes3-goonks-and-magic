@@ -372,6 +372,52 @@ OPENBW_EXPORT(openbw_crossover_sprite) const uint8_t* openbw_crossover_sprite(in
  return pixels.data();
 }
 
+// Native weapon artwork shared by the live field and the classic art exporter.
+// Temporary view/directional-image changes are restored before returning.
+namespace {
+constexpr int crossover_fx_cell=96;
+bwgame::a_string crossover_fx_json;
+bwgame::a_vector<uint8_t> crossover_fx_pixels;
+const uint8_t* crossover_render_fx(bwgame::sprite_t* sprite,int heading){
+ if(!sprite)return nullptr;
+ struct ImagePose{bwgame::image_t* image;size_t offset,index;int flags;bwgame::xy position;};
+ std::vector<ImagePose> poses;if(heading>=0)for(auto* image:bwgame::ptr(sprite->images)){poses.push_back({image,image->frame_index_offset,image->frame_index,image->flags,image->offset});g_ui->set_image_heading(image,g_ui->direction_from_index(heading&255));}
+ std::array<uint8_t,crossover_fx_cell*crossover_fx_cell> indexed{};
+ const auto camera=g_ui->screen_pos;const int vw=g_ui->view_width,vh=g_ui->view_height,sw=g_ui->screen_width,sh=g_ui->screen_height;
+ g_ui->screen_pos=sprite->position-bwgame::xy(48,48);g_ui->view_width=g_ui->screen_width=crossover_fx_cell;g_ui->view_height=g_ui->screen_height=crossover_fx_cell;
+ g_ui->draw_sprite(sprite,indexed.data(),crossover_fx_cell);
+ g_ui->screen_pos=camera;g_ui->view_width=vw;g_ui->view_height=vh;g_ui->screen_width=sw;g_ui->screen_height=sh;
+ for(const auto& pose:poses){pose.image->frame_index_offset=pose.offset;pose.image->frame_index=pose.index;pose.image->flags=pose.flags;pose.image->offset=pose.position;}
+ static std::array<uint8_t,crossover_fx_cell*crossover_fx_cell*4> rgba;
+ for(size_t i=0;i<indexed.size();++i){const auto color=indexed[i];for(int c=0;c<3;++c)rgba[i*4+c]=g_ui->tileset_img.wpe[color*4+c];rgba[i*4+3]=color?255:0;}return rgba.data();
+}
+bool crossover_sc_bullet(const bwgame::bullet_t* bullet){
+ const int stack=crossover_stack_for(bullet->bullet_owner_unit);for(const auto& group:crossover_groups)if(group.stack==stack)return !group.heroes;return false;
+}
+}
+OPENBW_EXPORT(openbw_crossover_effects) const char* openbw_crossover_effects(){
+ if(!g_ui||crossover_battle<0)return "{\"rows\":[]}";
+ crossover_fx_pixels.clear();crossover_fx_json="{\"rows\":[";bool comma=false;int count=0;
+ for(auto* bullet:bwgame::ptr(g_ui->st.active_bullets))if(bullet->sprite&&crossover_sc_bullet(bullet)&&count<96){
+  const auto* pixels=crossover_render_fx(bullet->sprite,-1);if(!pixels)continue;
+  bool opaque=false;for(int i=3;i<crossover_fx_cell*crossover_fx_cell*4;i+=4)if(pixels[i]){opaque=true;break;}if(!opaque)continue;
+  if(comma)crossover_fx_json+=',';comma=true;
+  const int source=crossover_stack_for(bullet->bullet_owner_unit);
+  const auto* origin=bullet->bullet_owner_unit;const auto* target=bullet->bullet_target;
+  const auto from=origin&&origin->sprite?origin->sprite->position:bullet->sprite->position,to=target&&target->sprite?target->sprite->position:bullet->bullet_target_pos;
+  crossover_fx_json+=bwgame::format("{\"id\":%d,\"weapon\":%d,\"state\":%d,\"remaining\":%d,\"source\":%d,\"x\":%d,\"y\":%d,\"origin\":%u,\"target\":%u,\"ox\":%d,\"oy\":%d,\"tx\":%d,\"ty\":%d}",int(bullet->index),int(bullet->weapon_type->id),bullet->bullet_state,bullet->remaining_time,source,bullet->sprite->position.x,bullet->sprite->position.y,origin?unsigned(g_ui->get_unit_id(origin).raw_value):0,target?unsigned(g_ui->get_unit_id(target).raw_value):0,from.x,from.y,to.x,to.y);
+  crossover_fx_pixels.insert(crossover_fx_pixels.end(),pixels,pixels+crossover_fx_cell*crossover_fx_cell*4);++count;
+ }
+ crossover_fx_json+="]}";return crossover_fx_json.c_str();
+}
+OPENBW_EXPORT(openbw_crossover_effect_pixels) const uint8_t* openbw_crossover_effect_pixels(){return crossover_fx_pixels.empty()?nullptr:crossover_fx_pixels.data();}
+OPENBW_EXPORT(openbw_crossover_fx_sprite) const uint8_t* openbw_crossover_fx_sprite(int kind,int id,int heading){
+ if(!g_ui||crossover_battle<0)return nullptr;
+ if(kind==0){for(auto* bullet:bwgame::ptr(g_ui->st.active_bullets))if(int(bullet->index)==id&&crossover_sc_bullet(bullet))return crossover_render_fx(bullet->sprite,heading);}
+ else if(kind==1){auto* unit=g_ui->get_unit(bwgame::unit_id(uint16_t(id)));if(unit&&unit->unit_type->id==bwgame::UnitTypes::Protoss_Interceptor)return crossover_render_fx(unit->sprite,heading);}
+ return nullptr;
+}
+
 OPENBW_EXPORT(openbw_crossover_stop) void openbw_crossover_stop(int stack) {
  if(!g_ui || crossover_battle<0)return;
  for(const auto& group:crossover_groups)if(stack<0 || group.stack==stack)for(auto id:group.ids){

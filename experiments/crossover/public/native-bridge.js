@@ -82,6 +82,23 @@ export function installNativeBridge(x, memory, target = window) {
                 throw Error('Unité indisponible.');
             return new Uint8ClampedArray(memory.buffer, pointer, 160 * 160 * 4).slice();
         },
+        effects() {
+            if (closed)
+                throw Error('Moteur StarCraft fermé.');
+            if (!x.openbw_crossover_effects || !x.openbw_crossover_effect_pixels)
+                return { rows: [], pixels: new Uint8ClampedArray() };
+            const pointer = x.openbw_crossover_effects(), bytes = new Uint8Array(memory.buffer);
+            let end = pointer;
+            while (end < bytes.length && end - pointer < 65536 && bytes[end])
+                end++;
+            if (end >= bytes.length || bytes[end])
+                throw Error('Effets natifs invalides.');
+            const rows = JSON.parse(new TextDecoder().decode(bytes.subarray(pointer, end))).rows;
+            if (!Array.isArray(rows) || rows.length > 96 || rows.some(r => !['id', 'weapon', 'state', 'remaining', 'source', 'x', 'y', 'origin', 'target', 'ox', 'oy', 'tx', 'ty'].every(k => Number.isFinite(r[k]))))
+                throw Error('Effets natifs invalides.');
+            const pixels = x.openbw_crossover_effect_pixels();
+            return { rows, pixels: rows.length && pixels ? new Uint8ClampedArray(memory.buffer, pixels, rows.length * 96 * 96 * 4).slice() : new Uint8ClampedArray() };
+        },
         layer() {
             if (closed || !x.openbw_crossover_layer)
                 throw Error('Rendu partagé indisponible.');

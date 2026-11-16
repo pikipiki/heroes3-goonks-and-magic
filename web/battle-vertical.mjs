@@ -1,4 +1,4 @@
-import {paintStarcraftUnits} from './battle-starcraft.mjs';
+import {paintStarcraftUnits,starcraftAttackActive} from './battle-starcraft.mjs';
 import {paintSiegeTargets,paintVerticalFortifications} from './battle-siege.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 import {paintBattleAction} from './battle-director.mjs';
@@ -83,7 +83,7 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  }
  if(planes.effects)plane(planes.effects);
  // Project action paths into the upright field, keeping arrows and labels upright.
- paintBattleAction(ctx,tracking,{project,scale,dx:0,dy:0,w:width/scale,h:height/scale});
+ if(!starcraftAttackActive(state))paintBattleAction(ctx,tracking,{project,scale,dx:0,dy:0,w:width/scale,h:height/scale});
  // The same target categories as the classic field, above sprites and effects.
  geometry.markers=[];
  const marker=(unit,kind,color)=>{const p=project(unit),r=Math.max(7,10*scale),x=p.x+18*scale,y=p.y-8*scale;geometry.markers.push({unit,x,y,r:Math.max(14,r+4)});ctx.save();ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle='#101418e8';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();if(kind==='invalid'){ctx.moveTo(x-r*.7,y+r*.7);ctx.lineTo(x+r*.7,y-r*.7);}else if(kind==='spell'){ctx.moveTo(x,y-r*.7);ctx.lineTo(x+r*.7,y);ctx.lineTo(x,y+r*.7);ctx.lineTo(x-r*.7,y);ctx.closePath();}else if(kind==='heal'){ctx.moveTo(x-r*.6,y);ctx.lineTo(x+r*.6,y);ctx.moveTo(x,y-r*.6);ctx.lineTo(x,y+r*.6);}else if(kind==='shot'){ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);}else{ctx.moveTo(x-r*.5,y+r*.5);ctx.lineTo(x+r*.5,y-r*.5);ctx.moveTo(x-r*.5,y-r*.5);ctx.lineTo(x+r*.5,y+r*.5);}ctx.stroke();ctx.restore();};

@@ -160,6 +160,41 @@ void ProjectileRay::tick(uint32_t msPassed)
 	progress += timePassed * speed;
 }
 
+void ProjectileStarcraft::tick(uint32_t msPassed)
+{
+ const float seconds=msPassed/1000.f;elapsed+=seconds;progress+=seconds*speed;
+}
+
+void ProjectileStarcraft::show(Canvas & canvas)
+{
+ const bool vertical=canvas.hasMobileUprightImages()&&mobileAnchored;
+ const auto upright=[](const Point & p,const Point & anchor){return Point(anchor.x+anchor.y-p.y,anchor.y+p.x-anchor.x);};
+ const Point start=vertical?upright(from,mobileFromAnchor):from,end=vertical?upright(dest,mobileDestAnchor):dest;
+ constexpr double pi=3.14159265358979323846;
+ const auto direction=[&](Point velocity){if(vertical)velocity=Point(velocity.y,-velocity.x);return (int(std::lround((std::atan2(double(velocity.y),double(velocity.x))+pi/2)*16/pi))+32)%32;};
+ const auto artwork=[&](const std::shared_ptr<CAnimation> & art,int group,Point point,double age,bool loop){if(!art)return;const size_t count=art->size(group);if(!count)return;const size_t frame=loop?size_t(std::max(0.,age)*24)%count:std::min(count-1,size_t(std::max(0.,age)*24));auto image=art->getImage(frame,group,true);if(image)canvas.draw(image,point-Point(image->width()/2,image->height()/2));};
+ const auto impact=[&](double begin,Point point){if(progress>=begin)artwork(animation,32,point,(progress-begin)/speed,false);};
+ const Point delta=end-start;
+ if(kind==1){
+  // Eight Interceptors per Carrier, staggered launch, attack orbits, then return.
+  for(int i=0;i<fighterCount;++i){const double launch=i*.009;if(progress<launch)continue;const double t=(progress-launch)/(1-launch),angle=2*pi*i/fighterCount,radius=36+(i%4)*10;
+   const Point entry=end+Point(std::lround(std::cos(angle)*radius),std::lround(std::sin(angle)*radius)),exit=end+Point(std::lround(std::cos(angle+.34*15)*radius),std::lround(std::sin(angle+.34*15)*radius));
+   const auto flight=[&](double phase){if(phase<.38){const double u=std::clamp(phase/.38,0.,1.);return Point(std::lround(start.x+(entry.x-start.x)*u+std::sin(pi*u)*std::cos(angle)*24),std::lround(start.y+(entry.y-start.y)*u+std::sin(pi*u)*std::sin(angle)*24));}if(phase<.72){const double orbit=angle+(phase-.38)*15;return end+Point(std::lround(std::cos(orbit)*radius),std::lround(std::sin(orbit)*radius));}const double u=std::clamp((phase-.72)/.28,0.,1.);return Point(std::lround(exit.x+(start.x-exit.x)*u+std::sin(pi*u)*std::cos(angle)*20),std::lround(exit.y+(start.y-exit.y)*u+std::sin(pi*u)*std::sin(angle)*20));};
+   const Point point=flight(t),next=flight(std::min(1.,t+.008));artwork(fighters,direction(next-point),point,elapsed+i*.03,true);
+   if(t>.38&&t<.72){const double pulse=std::fmod(t*18+i*.17,1.);const Point shot(std::lround(point.x+(end.x-point.x)*pulse),std::lround(point.y+(end.y-point.y)*pulse));artwork(animation,direction(end-point),shot,elapsed,true);}
+  }
+  if(progress>.4&&progress<.86)impact(.4,end);
+ }else if(kind==2||kind==4){
+  // The original Arclite cannon / Psionic Shockwave resolve at their target.
+  // Their native impact sprites are not replaced by a generic Heroes beam.
+  for(int i=0;i<volleyCount;++i)impact(.12+i*.10,end+Point((i%2)*8-4,(i%3)*5-5));
+ }else{
+  const int shots=kind==0?std::max(4,volleyCount*3):volleyCount;
+  for(int i=0;i<shots;++i){const double launch=i*.045,t=(progress-launch)/.66;if(t<0||t>1)continue;const Point point(std::lround(start.x+delta.x*t),std::lround(start.y+delta.y*t));artwork(animation,direction(delta),point,elapsed+i*.02,true);}
+  impact(.67,end);
+ }
+}
+
 BattleProjectileController::BattleProjectileController(BattleInterface & owner):
 	owner(owner)
 {}
@@ -202,6 +237,8 @@ void BattleProjectileController::initStackProjectile(const CStack * stack)
 std::shared_ptr<CAnimation> BattleProjectileController::createProjectileImage(const AnimationPath & path )
 {
 	std::shared_ptr<CAnimation> projectile = ENGINE->renderHandler().loadAnimation(path, EImageBlitMode::COLORKEY);
+
+	if(path.getOriginalName().starts_with("crossover/weapons/"))return projectile;
 
 	if(projectile->size(1) != 0)
 		logAnim->error("Expected empty group 1 in stack projectile");
@@ -339,8 +376,17 @@ void BattleProjectileController::createProjectile(const CStack * shooter, Point 
 		logAnim->error("Mod error: Creature '%s' has both missile and ray projectiles configured. Mod should be fixed. Using ray projectile configuration...", shooterInfo.getNameSingularTranslated());
 	}
 
-	if (stackUsesRayProjectile(shooter))
-	{
+ if(shooterInfo.animation.projectileImageName.getOriginalName().starts_with("crossover/weapons/"))
+ {
+  auto native=std::make_shared<ProjectileStarcraft>();native->animation=getProjectileImage(shooter);const auto key=shooterInfo.getJsonKey();
+  native->kind=key.ends_with(":carrier")?1:key.ends_with(":siegeTank")?2:key.ends_with(":guardian")?3:key.ends_with(":archon")?4:0;
+  native->volleyCount=std::clamp<int64_t>(shooter->getCount(),1,3);native->fighterCount=std::clamp<int64_t>(shooter->getCount()*8,8,32);
+  native->speed=native->kind==1?1.f/1.8f:native->kind==2?1.f/.75f:native->kind==3?1.f/.9f:1.f/.8f;
+  if(native->kind==1){const auto path=AnimationPath::builtin("crossover/weapons/interceptor");auto & art=projectilesCache[path];if(!art)art=createProjectileImage(path);native->fighters=art;}
+  projectile=native;
+ }
+ else if (stackUsesRayProjectile(shooter))
+ {
 		auto rayProjectile = new ProjectileRay();
 		projectile.reset(rayProjectile);
 

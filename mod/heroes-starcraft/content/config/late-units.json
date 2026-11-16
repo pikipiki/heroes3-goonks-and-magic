@@ -60,22 +60,7 @@
         },
         "attackClimaxFrame": 5,
         "minimumRayFlightTime": 0.35,
-        "ray": [
-          {
-            "start": [
-              255,
-              230,
-              70,
-              255
-            ],
-            "end": [
-              255,
-              65,
-              10,
-              255
-            ]
-          }
-        ]
+        "projectile": "crossover/weapons/battlecruiser"
       }
     },
     "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
@@ -143,22 +128,7 @@
         },
         "attackClimaxFrame": 5,
         "minimumRayFlightTime": 0.35,
-        "ray": [
-          {
-            "start": [
-              255,
-              230,
-              70,
-              255
-            ],
-            "end": [
-              255,
-              65,
-              10,
-              255
-            ]
-          }
-        ]
+        "projectile": "crossover/weapons/siegeTank"
       }
     },
     "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
@@ -308,22 +278,7 @@
         },
         "attackClimaxFrame": 5,
         "minimumRayFlightTime": 0.35,
-        "ray": [
-          {
-            "start": [
-              255,
-              230,
-              70,
-              255
-            ],
-            "end": [
-              255,
-              65,
-              10,
-              255
-            ]
-          }
-        ]
+        "projectile": "crossover/weapons/guardian"
       }
     },
     "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
@@ -394,22 +349,7 @@
         },
         "attackClimaxFrame": 5,
         "minimumRayFlightTime": 0.35,
-        "ray": [
-          {
-            "start": [
-              255,
-              230,
-              70,
-              255
-            ],
-            "end": [
-              255,
-              65,
-              10,
-              255
-            ]
-          }
-        ]
+        "projectile": "crossover/weapons/carrier"
       }
     },
     "description": "Unité StarCraft de fin de partie, améliorations maximales. Carrier chargé de huit Interceptors en temps réel ; attaque de groupe adaptée aux tours Heroes.",
@@ -478,22 +418,7 @@
         },
         "attackClimaxFrame": 5,
         "minimumRayFlightTime": 0.35,
-        "ray": [
-          {
-            "start": [
-              255,
-              230,
-              70,
-              255
-            ],
-            "end": [
-              255,
-              65,
-              10,
-              255
-            ]
-          }
-        ]
+        "projectile": "crossover/weapons/archon"
       }
     },
     "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",

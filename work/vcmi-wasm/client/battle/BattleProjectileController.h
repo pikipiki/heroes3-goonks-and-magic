@@ -79,6 +79,18 @@ struct ProjectileRay : ProjectileBase
 	std::vector<CCreature::CreatureAnimation::RayColor> rayConfig;
 };
 
+/// StarCraft artwork and attack choreography, resolved as one Heroes shot.
+struct ProjectileStarcraft : ProjectileBase
+{
+ void show(Canvas & canvas) override;
+ void tick(uint32_t msPassed) override;
+ std::shared_ptr<CAnimation> animation, fighters;
+ int kind = 0;
+ int fighterCount = 8;
+ int volleyCount = 1;
+ float elapsed = 0;
+};
+
 /// Class that manages all ongoing projectiles in the game
 /// ... even though in H3 only 1 projectile can be on screen at any point of time
 class BattleProjectileController
