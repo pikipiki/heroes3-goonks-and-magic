@@ -1166,5 +1166,9 @@
       ]
     }
   ],
-  "originalCampaignsEnabled": false
+  "originalCampaignsEnabled": true,
+  "enabledOriginalCampaigns": [
+    "zc1"
+  ],
+  "allOriginalCampaignsEnabled": false
 }

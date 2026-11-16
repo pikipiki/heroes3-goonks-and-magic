@@ -1,4 +1,5 @@
 import {campaignDialogDraft,renderCampaignDialogForm,sendCampaignDialogReply,sendCampaignDialogDraft} from './campaign-dialog-form.mjs';
+import {highScorePresentation} from './high-score-presentation.mjs';
 import {plainGameText} from './game-text.mjs';
 import {closeCampaignMediaViewer} from './campaign-media.mjs';
 import {renderCommanderTree} from './commander-tree.mjs';
@@ -15,7 +16,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
-  if(state?.dialogKind==='source-campaign'&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
+  if(['source-campaign','high-score'].includes(state?.dialogKind)&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
   if(state?.dialogPresentation?.scriptDialog&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){
    const model=state.dialogPresentation.scriptDialog;
    const selection=button.hasAttribute('data-dialog-cancel')?(model.kind==='extended'?-1:0):campaignDraft.selection;
@@ -38,12 +39,12 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   }
   // Keep the current text and scroll position while the native reply travels
   // to the server. A transient adventure frame must not flash behind a quest.
-  if(state?.dialogKind==='source-campaign'&&next.campaignPending&&
+  if(['source-campaign','high-score'].includes(state?.dialogKind)&&next.campaignPending&&
      (next.mode==='map'||(next.mode==='dialog'&&!next.dialogPresentation)||(replyingTo!==null&&next.mode==='dialog'&&next.dialogPresentation?.queryId===replyingTo))){holdCampaign();return;}
   replyingTo=null;if(panel.dataset.waiting){delete panel.dataset.waiting;for(const button of panel.querySelectorAll('button,input'))button.disabled=false;}
   if(progression.update(next)){state=next;panel.hidden=true;key=undefined;icons=[];root.setAttribute('data-dialog-presentation','');return;}
   if(!['commander','commander-level-up'].includes(next.dialogKind)){treeOpen=false;treeFilter=null;}
-  state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&next.dialogPresentation;
+  state=next;if(next.mode!==lastMode||next.dialogKind!=='commander'){classic=false;inspect=0;}lastMode=next.mode;const data=next.mode==='dialog'&&!classic&&(next.dialogKind==='high-score'?highScorePresentation(next.highScore,getLanguage()):next.dialogPresentation);
   panel.hidden=!data;root.toggleAttribute('data-dialog-presentation',!!data);
   if(!data){closeCampaignMediaViewer();key=undefined;icons=[];hasSnapshot=false;campaignDraft=null;return;}
   const nextKey=JSON.stringify(data);if(nextKey===key)return;closeCampaignMediaViewer();key=nextKey;
@@ -73,9 +74,9 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
    if(campaignDraft?.queryId!==data.scriptDialog.queryId)campaignDraft=campaignDialogDraft(data.scriptDialog);
    content.append(renderCampaignDialogForm(data.scriptDialog,campaignDraft,{icons,onDraft:scriptDraft,confirm:()=>panel.querySelector('[data-dialog-confirm]')?.click()}));
   }else campaignDraft=null;
-  const actions=document.createElement('footer'),confirm=document.createElement('button');confirm.type='button';confirm.className='primary';confirm.dataset.dialogConfirm='';confirm.textContent=next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'✓ Valider':data.cancel?'✓ Oui':'✓ Continuer'):(data.scriptDialog?'✓ Confirm':data.cancel?'✓ Yes':'✓ Continue')):next.dialogKind==='commander'?'← Back':next.dialogKind==='commander-level-up'?'✓ Confirm skill':'✓ Confirm';actions.append(confirm);
+  const actions=document.createElement('footer'),confirm=document.createElement('button');confirm.type='button';confirm.className='primary';confirm.dataset.dialogConfirm='';confirm.textContent=next.dialogKind==='high-score'?(getLanguage()==='fr'?(next.highScore.won?'✓ Enregistrer le score':'✓ Continuer'):(next.highScore.won?'✓ Save score':'✓ Continue')):next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'✓ Valider':data.cancel?'✓ Oui':'✓ Continuer'):(data.scriptDialog?'✓ Confirm':data.cancel?'✓ Yes':'✓ Continue')):next.dialogKind==='commander'?'← Back':next.dialogKind==='commander-level-up'?'✓ Confirm skill':'✓ Confirm';actions.append(confirm);
   if(next.dialogKind==='commander'){const classicButton=document.createElement('button');classicButton.type='button';classicButton.dataset.dialogClassic='';classicButton.textContent='Classic view';actions.append(classicButton);}
-  if((data.scriptDialog?data.scriptDialog.canCancel:data.cancel)&&next.dialogKind!=='commander'){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent=next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'← Annuler':'← Non'):(data.scriptDialog?'← Cancel':'← No')):'← Back';actions.append(cancel);}
+  if((data.scriptDialog?data.scriptDialog.canCancel:data.cancel)&&next.dialogKind!=='commander'){const cancel=document.createElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent=next.dialogKind==='high-score'?(getLanguage()==='fr'?'Continuer sans enregistrer':'Continue without saving'):next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'← Annuler':'← Non'):(data.scriptDialog?'← Cancel':'← No')):'← Back';actions.append(cancel);}
   panel.append(header,content,choices,actions);
   if(treeOpen&&data.commanderTree){const pending=(data.choices||[]).find(c=>c.selected);if(next.dialogKind==='commander-level-up'&&pending){confirm.textContent='✓ '+text(pending.label);}const tree=renderCommanderTree(data.commanderTree,data.choices||[],{filter:treeFilter,onFilter:id=>{treeFilter=id;key=undefined;update(state);},onSelect:id=>command(96,id)});content.hidden=true;choices.hidden=true;panel.insertBefore(tree,actions);tree.scrollTop=scroll;}
   dirty=true;captureAfter=performance.now()+80;panel.setAttribute('aria-busy','true');

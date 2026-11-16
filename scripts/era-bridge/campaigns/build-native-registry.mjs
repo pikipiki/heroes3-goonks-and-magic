@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {compileCaveFile,extractCaveScripts,readOriginalCampaign} from './importer.mjs';
+import {validateCampaignAdmission} from './admission.mjs';
 import {compileNativeCampaign} from './native-compiler.mjs';
 
 export function buildNativeCampaignRegistry(destination='mod/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns'){
@@ -15,11 +16,13 @@ export function buildNativeCampaignRegistry(destination='mod/wake-of-gods/Mods/m
   reason:'Native quest host is under validation; the original maps remain disabled.'}]};
  for(const id of ['zc1','zc2','zc3','zc4']){
   const file=`mod/wake-of-gods/Mods/maps/content/maps/${id}.vcmp`,campaign=readOriginalCampaign(file),compiled=compileNativeCampaign(file);
+  const receiptFile=`scripts/era-bridge/campaigns/admissions/${id}.json`;
+  const admitted=validateCampaignAdmission(id,campaign,compiled,fs.existsSync(receiptFile)?JSON.parse(fs.readFileSync(receiptFile)):null);
   for(const [index,scenario] of compiled.scenarios.entries()){
    const key=id+'-'+index,program=scenario.program;
    program.originalMessages=campaign.maps[index].sources.map(source=>source.bytes.toString('utf8'));
    fs.writeFileSync(path.join(destination,key+'.json'),JSON.stringify(program)+'\n');
-   registry.programs.push({id:key,enabled:false,resource:'config/era-campaigns/'+key,programSha256:program.sha256,sourceArchiveSha256:campaign.sha256,scenarioMember:scenario.member,reason:'Original quests, combat, victory and campaign transfer require native validation.'});
+   registry.programs.push({id:key,enabled:admitted,resource:'config/era-campaigns/'+key,programSha256:program.sha256,sourceArchiveSha256:campaign.sha256,scenarioMember:scenario.member,reason:admitted?'Original scenarios, native victories and campaign transfers validated.':'Original quests, combat, victory and campaign transfer require native validation.'});
   }
  }
  fs.writeFileSync(path.join(destination,'registry.json'),JSON.stringify(registry,null,2)+'\n');

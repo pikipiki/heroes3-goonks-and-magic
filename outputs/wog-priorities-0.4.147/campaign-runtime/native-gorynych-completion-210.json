@@ -1,0 +1,210 @@
+{
+  "version": "0.4.210",
+  "passed": true,
+  "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "engineSha256": "ba7489c24d75e58293c816f50ada3cf909ab94cbe75063aece1a49d3901dad99",
+  "scope": "Real original third-scenario quest progression, final native battle and full campaign completion; controlled player army and accelerated movement, not difficulty validation",
+  "originalScriptsEdited": false,
+  "questFlagsEdited": false,
+  "enemyArmiesEdited": false,
+  "winningCheatUsed": false,
+  "controls": {
+    "playerArmy": "Native offline vcmiarmy in empty slots, normally merged; original companions retained",
+    "movementAndReveal": "Native offline movement/reveal codes; pathfinding and visits remain native"
+  },
+  "ritual": {
+    "before": {
+      "Native hero": [
+        55,
+        34,
+        0
+      ],
+      "Ilya": [
+        35,
+        48,
+        0
+      ],
+      "Dobrynya": [
+        51,
+        67,
+        0
+      ],
+      "Alesha": [
+        71,
+        52,
+        0
+      ]
+    },
+    "after": {
+      "Native hero": [
+        70,
+        51,
+        0
+      ],
+      "Ilya": [
+        53,
+        35,
+        0
+      ],
+      "Dobrynya": [
+        34,
+        49,
+        0
+      ],
+      "Alesha": [
+        53,
+        68,
+        0
+      ]
+    },
+    "dialogue": [
+      [
+        "Get ready for a magical transference!"
+      ]
+    ]
+  },
+  "fourCastlesCaptured": true,
+  "originalFinalGateDialogs": [
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Teal",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 281
+          }
+        }
+      ],
+      "lines": [
+        "The guards here say they will only let those who fly the Teal flag pass."
+      ],
+      "queryId": -1,
+      "title": "Game message",
+      "visitedObject": "Quest Guard"
+    },
+    {
+      "cancel": true,
+      "choices": [],
+      "lines": [
+        "The guards note your Teal flag and offer to let you pass.  Do you accept?"
+      ],
+      "queryId": 1185,
+      "title": "Game message",
+      "visitedObject": "Quest Guard"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Hell Barons",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 273
+          }
+        }
+      ],
+      "lines": [
+        "Damn it!\nYou did it!\nWe leave this land!"
+      ],
+      "queryId": 1190,
+      "title": "Game message",
+      "visitedObject": "Magic Fire Mushroom"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Gorynyches",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 313
+          }
+        }
+      ],
+      "lines": [
+        "NO !!!\nYou are not a winner yet!\nTry face to face battle!\nCome!"
+      ],
+      "queryId": 1191,
+      "title": "Game message",
+      "visitedObject": "Magic Fire Mushroom"
+    }
+  ],
+  "finalNativeEnemy": {
+    "key": "wake-of-gods.creatures:gorynych",
+    "count": 1,
+    "attack": 50,
+    "defense": 50,
+    "damageMin": 100,
+    "damageMax": 100,
+    "maximumHealth": 20000
+  },
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 3,
+    "days": 115,
+    "name": "In the Wake of Gods",
+    "playerName": "Goonk",
+    "queryId": 57254412,
+    "score": 1321,
+    "unranked": true,
+    "won": true
+  },
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "stableInput": true,
+      "actionsVisible": true
+    }
+  ],
+  "scoreCancelledReturnsToMenu": true,
+  "errors": [],
+  "scoreSavedThroughNativeStorage": true,
+  "nativeUnrankedScoreIsZero": true
+}

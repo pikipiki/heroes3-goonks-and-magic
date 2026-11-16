@@ -10,30 +10,30 @@
     },
     {
       "id": "zc1-0",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc1-0",
       "programSha256": "1e984bbcb3ecd03d048bcd2f59e64b81bd1908113ed31b522cac2fa7f53b0a14",
       "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
       "scenarioMember": "z_-~-_03e.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc1-1",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc1-1",
       "programSha256": "af10bd72c945d90635dc55109806bca2c8ce19a38cd6a48a8a3d5b2a2e083b62",
       "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
       "scenarioMember": "z_-~-_01e.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc1-2",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc1-2",
       "programSha256": "5f47e04085c8e6761235bc96683c8fb6f170f80e11c5f8d37050da693331ee73",
       "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
       "scenarioMember": "z_-~-_02e.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc2-0",

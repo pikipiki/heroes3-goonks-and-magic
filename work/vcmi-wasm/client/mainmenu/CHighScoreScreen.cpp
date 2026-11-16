@@ -316,6 +316,33 @@ void CHighScoreInputScreen::showAll(Canvas & to)
 	CWindowObject::showAll(to);
 }
 
+JsonNode CHighScoreInputScreen::mobilePresentation()
+{
+	JsonNode result;
+	const auto score = calc.calculate();
+	result["won"].Bool() = won;
+	result["campaign"].Bool() = calc.isCampaign;
+	result["completedScenarios"].Integer() = calc.parameters.size();
+	result["days"].Integer() = score.sumDays;
+	result["score"].Integer() = score.total;
+	result["unranked"].Bool() = score.cheater;
+	result["queryId"].Integer() = reinterpret_cast<uintptr_t>(this) & 0x7fffffff;
+	if(!calc.parameters.empty())
+	{
+		result["name"].String() = calc.isCampaign ? calc.parameters.front().campaignName : calc.parameters.front().scenarioName;
+		result["playerName"].String() = calc.parameters.front().playerName;
+	}
+	return result;
+}
+
+void CHighScoreInputScreen::submitMobileScore(const std::string & name, bool save)
+{
+	// Reuse native score storage; closing returns to the underlying campaign menu.
+	if(won && save && !name.empty())
+		addEntry(name);
+	stopMusicAndClose();
+}
+
 void CHighScoreInputScreen::clickPressed(const Point & cursorPosition)
 {
 	if(statisticButton && statisticButton->pos.isInside(cursorPosition))

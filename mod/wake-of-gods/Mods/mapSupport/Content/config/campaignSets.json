@@ -1,0 +1,38 @@
+{
+  "wog": {
+    "text": "vcmi.campaignSet.wog",
+    "images": [
+      {
+        "x": 0,
+        "y": 0,
+        "name": "CampaignBackground4"
+      }
+    ],
+    "nextbutton": {
+      "x": 715,
+      "y": 5,
+      "name": "campaigns/next"
+    },
+    "backbutton": {
+      "x": 5,
+      "y": 5,
+      "name": "campaigns/back"
+    },
+    "exitbutton": {
+      "x": 658,
+      "y": 482,
+      "name": "CMPSCAN"
+    },
+    "items": [
+      {
+        "id": 1,
+        "x": 90,
+        "y": 72,
+        "file": "Maps/zc1",
+        "image": "zc1",
+        "video": "",
+        "requires": []
+      }
+    ]
+  }
+}

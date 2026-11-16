@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Le port complet de la priorité 6 n’est pas terminé. Les quatre campagnes, leurs onze scénarios et Cave of Gerfrex restent désactivés. Les versions 0.4.170 à 0.4.204 raccordent progressivement l’hôte Cave, les formulaires et illustrations, une forme de combat scripté, les échanges de troupes, les visites d’objets, les minuteries, les textes de héros, les ressources, les clés de gardiens et la création/suppression d’objets et leurs descriptions. Chaque section distingue les contrôles natifs des quêtes et victoires originales encore à valider.
+La campagne « In the Wake of Gods » (zc1) est activée depuis la version 0.4.210 : ses trois scénarios, les deux transferts et la victoire finale ont été validés dans le moteur natif. Les trois autres campagnes et Cave of Gerfrex restent désactivés. Les sections suivantes conservent l’historique des intégrations ; la section 0.4.210 décrit l’admission actuelle.
 
 ## Ce qui est implémenté
 
@@ -488,3 +488,16 @@ Les descriptions `HT:T/W/V` lisent la valeur actuelle des variables de quête et
 [Le contrat209](../outputs/wog-priorities-0.4.147/campaign-runtime/adventure-batch-source-contract-209.json) distingue les observations statiques du binaire358f, les adaptations natives et les limites. [Le contrôle groupé209](../outputs/wog-priorities-0.4.147/campaign-runtime/native-adventure-batch-209.json) rassemble Chromium, les reprises WebKit et les non-régressions du paquet entier, sans substitution privée du moteur. Les objets de départ aléatoires et le malus natif d’une armée mixte sont conservés dans les témoins ; un bonus légitime de ces objets n’est pas pris pour une fuite d’état.
 
 Compilation `ninja -j32 html5`,750 tests réussis et34 ignorés, inventaire de compatibilité et vérification du site passent. Les contrôles portent sur les effets réels, les sauvegardes906 et les cartes003/004. Ce lot ne valide pas une victoire originale supplémentaire. Les douze admissions restent désactivées : les événements de combat encore absents, les autres opérations de quête et les victoires/transferts restants doivent être portés et validés avant activation.
+
+
+## Première campagne activée en 0.4.210
+
+L’archive zc1 est copiée sans modification dans le sous-module actif mapSupport. Le sous-module historique maps reste désactivé afin de ne pas exposer les autres campagnes ni Cave. Le catalogue généré ne contient que les archives dont tous les scénarios ont une preuve d’admission liée à leurs empreintes.
+
+La première victoire et les sept quêtes secondaires ont été jouées sans renforts de test (0.4.202). La seconde victoire, son transfert corrigé (0.4.208), puis le dernier scénario ont été validés avec des renforts d’armée et déplacements accélérés via les commandes hors ligne natives. Les scripts, drapeaux de quête, armées adverses et conditions de victoire sont restés inchangés ; aucun code de victoire n’a été utilisé. Cette validation ne constitue pas une mesure de difficulté.
+
+Le dernier scénario couvre le sauvetage des quatre héros, leur placement simultané et le rituel original, les quatre assistants et forteresses, la porte réservée au joueur turquoise, la rencontre finale et le véritable combat contre Gorynych (20 000 PV, attaque/défense 50). Le calcul natif final indique trois scénarios terminés et une campagne gagnée. Preuve : `outputs/wog-priorities-0.4.147/campaign-runtime/native-gorynych-completion-210.json`.
+
+L’écran tactile de victoire/défaite réutilise le calcul et le stockage natifs des scores. Le nom reste modifiable sans recréation du champ aux mises à jour d’état ; enregistrer ou continuer sans enregistrer ramène au menu sous-jacent. Les sept formats de 320×568 à 1280×720 conservent les actions visibles, avec commandes à droite en paysage étroit.
+
+L’admission ne s’étend pas à zc2, zc3, zc4 ou Cave. Leurs scripts et victoires exigent encore une validation propre.

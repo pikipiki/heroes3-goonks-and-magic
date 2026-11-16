@@ -93,6 +93,8 @@ public:
 	CHighScoreInputScreen(bool won, HighScoreCalculation calc, const StatisticDataSet & statistic);
 
 	int addEntry(std::string text);
+	JsonNode mobilePresentation();
+	void submitMobileScore(const std::string & name, bool save);
 
 	void clickPressed(const Point & cursorPosition) override;
 	void keyPressed(EShortcut key) override;

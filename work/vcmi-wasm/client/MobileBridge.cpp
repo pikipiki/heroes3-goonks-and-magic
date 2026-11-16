@@ -66,6 +66,7 @@
 #include "windows/GUIClasses.h"
 #include "windows/InfoWindows.h"
 #include "windows/CSourceCampaignDialog.h"
+#include "mainmenu/CHighScoreScreen.h"
 #include "widgets/Buttons.h"
 #include "windows/CHeroWindow.h"
 #include "windows/CExchangeWindow.h"
@@ -1033,6 +1034,20 @@ void publishMobileState(){
     }
    }
  }
+ else if(const auto result=ENGINE->windows().topWindow<CHighScoreInputScreen>())
+ {
+  n["mode"].String()="dialog";n["dialogKind"].String()="high-score";
+  n["highScore"]=result->mobilePresentation();
+  auto & presentation=n["dialogPresentation"];
+  presentation["queryId"]=n["highScore"]["queryId"];
+  if(n["highScore"]["won"].Bool())
+  {
+   auto & form=presentation["scriptDialog"];
+   form["kind"].String()="extended";form["queryId"]=presentation["queryId"];
+   form["inputLabel"].String()="Name";form["initialText"]=n["highScore"]["playerName"];
+   form["canCancel"].Bool()=true;form["selection"].Integer()=0;
+  }
+ }
  else if(const auto result=ENGINE->windows().topWindow<BattleResultWindow>()){
   n["mode"].String()="dialog";n["dialogKind"].String()="battle-result";n["battleResult"]=result->mobileResult;
  }
@@ -1691,6 +1706,11 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCampaignReply(int query,int selec
 {
  if(!ENGINE||!input)return;const std::string answer(input);if(answer.size()>2048)return;
  ENGINE->dispatchMainThread([query,selection,answer](){
+  if(const auto window=ENGINE->windows().topWindow<CHighScoreInputScreen>())
+  {
+   if(window->mobilePresentation()["queryId"].Integer()==query)window->submitMobileScore(answer,selection>=0);
+   lastPublished=0;return;
+  }
   if(!GAME||!GAME->interface())return;
   if(const auto window=ENGINE->windows().topWindow<CSourceCampaignDialog>();window&&window->ID.getNum()==query)
    window->submit(selection,answer);

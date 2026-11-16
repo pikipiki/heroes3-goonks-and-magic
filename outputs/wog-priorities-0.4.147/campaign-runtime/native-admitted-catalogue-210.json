@@ -1,0 +1,862 @@
+{
+  "version": "0.4.210",
+  "passed": true,
+  "engineSha256": "ba7489c24d75e58293c816f50ada3cf909ab94cbe75063aece1a49d3901dad99",
+  "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+  "privateArchiveOrRegistryWrites": false,
+  "privateWasmRoute": false,
+  "localPreviewCspBypassed": true,
+  "chromium": {
+    "catalogueLaunch": true,
+    "layouts": [
+      {
+        "label": "original-name",
+        "width": 320,
+        "height": 568,
+        "before": {
+          "scrollTop": 264,
+          "overflow": true,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 264,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 502,
+              "w": 284,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-name",
+        "width": 568,
+        "height": 320,
+        "before": {
+          "scrollTop": 407,
+          "overflow": true,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 407,
+          "buttons": [
+            {
+              "x": 311,
+              "y": 259,
+              "w": 244,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-name",
+        "width": 390,
+        "height": 844,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 778,
+              "w": 354,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-name",
+        "width": 844,
+        "height": 390,
+        "before": {
+          "scrollTop": 258,
+          "overflow": true,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 258,
+          "buttons": [
+            {
+              "x": 577.25,
+              "y": 320,
+              "w": 244.75,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-name",
+        "width": 768,
+        "height": 1024,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 958,
+              "w": 732,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-name",
+        "width": 1024,
+        "height": 768,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 705.046875,
+              "y": 698,
+              "w": 296.953125,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-name",
+        "width": 820,
+        "height": 1180,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 1114,
+              "w": 784,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 320,
+        "height": 568,
+        "before": {
+          "scrollTop": 41,
+          "overflow": true,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 41,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 502,
+              "w": 138,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 164,
+              "y": 502,
+              "w": 138,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 568,
+        "height": 320,
+        "before": {
+          "scrollTop": 184,
+          "overflow": true,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 184,
+          "buttons": [
+            {
+              "x": 311,
+              "y": 203,
+              "w": 244,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 311,
+              "y": 259,
+              "w": 244,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 390,
+        "height": 844,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 778,
+              "w": 173,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 199,
+              "y": 778,
+              "w": 173,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 844,
+        "height": 390,
+        "before": {
+          "scrollTop": 31,
+          "overflow": true,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 31,
+          "buttons": [
+            {
+              "x": 577.25,
+              "y": 264,
+              "w": 244.75,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 577.25,
+              "y": 320,
+              "w": 244.75,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 768,
+        "height": 1024,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 958,
+              "w": 362,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 388,
+              "y": 958,
+              "w": 362,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 1024,
+        "height": 768,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 705.046875,
+              "y": 698,
+              "w": 144.46875,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 857.515625,
+              "y": 698,
+              "w": 144.484375,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      },
+      {
+        "label": "original-story",
+        "width": 820,
+        "height": 1180,
+        "before": {
+          "scrollTop": 0,
+          "overflow": false,
+          "ancestors": [
+            {
+              "tag": "DIV",
+              "cls": "dialog-copy",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "dialog-presentation",
+              "touch": "pan-y"
+            },
+            {
+              "tag": "SECTION",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "DIV",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "BODY",
+              "cls": "",
+              "touch": "auto"
+            },
+            {
+              "tag": "HTML",
+              "cls": "goonk-mobile",
+              "touch": "auto"
+            }
+          ]
+        },
+        "after": {
+          "stableCopy": true,
+          "stableForm": true,
+          "scrollTop": 0,
+          "buttons": [
+            {
+              "x": 18,
+              "y": 1114,
+              "w": 388,
+              "h": 48,
+              "confirm": true,
+              "cancel": false
+            },
+            {
+              "x": 414,
+              "y": 1114,
+              "w": 388,
+              "h": 48,
+              "confirm": false,
+              "cancel": true
+            }
+          ]
+        }
+      }
+    ],
+    "pendingSaveSha256": "032c1f565935dded4ba84d6dc9cf0663d5b405fc7b40a1f9f0ced4b5120fb70c",
+    "readySaveSha256": "82120282d2ad66231318861fcdf8ea0e75bfb1f167d9c666a567516f8df0e1a1"
+  },
+  "webkit": {
+    "nativePendingSaveReload": true,
+    "loadedVersion": 906,
+    "readySaveSha256": "4e113a24dd1ca85cab41f16c114acbf65b8afdbba6d0925d8691759098b75629"
+  },
+  "errors": []
+}
