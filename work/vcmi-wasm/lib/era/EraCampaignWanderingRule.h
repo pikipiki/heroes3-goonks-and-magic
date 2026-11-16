@@ -69,7 +69,8 @@ Step findStep(int width,int height,Point source,Point destination,Free free)
    const Point p{cell%width,cell/width,source.z};
    for(int dx=-1;dx<=1;++dx)for(int dy=-1;dy<=1;++dy)
    {
-    if(!dx&&!dy)continue;const Point next{p.x+dx,p.y+dy,source.z};
+    if(!dx&&!dy)continue;
+    const Point next{p.x+dx,p.y+dy,source.z};
     if(!inside(next)||(!(next==source)&&!(next==target)&&!free(next)))continue;
     const int candidate=distance+(dx&&dy?3:2);
     if(candidate<distances[index(next)]){distances[index(next)]=candidate;queue.push({candidate,index(next)});}
@@ -84,7 +85,8 @@ Step findStep(int width,int height,Point source,Point destination,Free free)
    Point best=p;int value=distances[index(p)];
    for(int dx=-1;dx<=1;++dx)for(int dy=-1;dy<=1;++dy)
    {
-    if(!dx&&!dy)continue;Point next{p.x+dx,p.y+dy,source.z};
+    if(!dx&&!dy)continue;
+    Point next{p.x+dx,p.y+dy,source.z};
     if(inside(next)&&distances[index(next)]<value){value=distances[index(next)];best=next;}
    }
    if(best==p)throw std::runtime_error("Wandering route did not descend");
