@@ -84,7 +84,7 @@ export function installAdventure(target:Window,base:URL,onExit:()=>void,trial=fa
   const sound=panel.querySelector<HTMLButtonElement>('#crossover-sound')!;
   const audio=():void=>{const api=(activeFrame.contentWindow as StarWindow).openbwCrossover;void api?.enableAudio?.().catch(()=>{sound.textContent='Activer le son';selection.textContent='Touche « Activer le son » pour autoriser les sons du combat.';});};
   activePanel.addEventListener('pointerdown',audio,{capture:true});
-  sound.onclick=()=>{const api=(activeFrame.contentWindow as StarWindow).openbwCrossover;api?.setMuted?.(!api.audioState?.().muted);audio();updateSound();};
+  sound.onclick=()=>{const api=(activeFrame.contentWindow as StarWindow).openbwCrossover;const muted=!api?.audioState?.().muted;api?.setMuted?.(muted);win.Module?._vcmiMobileCommand?.(28,muted?1:0,0,0,0,0);audio();updateSound();};
   const updateSound=():void=>{const muted=(activeFrame.contentWindow as StarWindow).openbwCrossover?.audioState?.().muted??false;sound.textContent=muted?'Son coupé':'Son activé';sound.setAttribute('aria-pressed',String(!muted));sound.setAttribute('aria-label',muted?'Activer les sons du combat':'Couper les sons du combat');};
   const roster=panel.querySelector<HTMLElement>('#crossover-roster')!,cards=new Map<number,{button:HTMLButtonElement;count:HTMLElement}>();
   let ready=false,chosen:number|undefined,returnTimer:number|undefined;
@@ -174,7 +174,7 @@ for(const [id,{button}] of cards)button.setAttribute('aria-pressed',String(chose
   })();
  };
  const observe=(event:Event):void=>{
-  const state=(event as CustomEvent).detail;if(!state||disposed)return;if(!doc.querySelector('#mobile-app'))win.goonkMobileState=state;latestMode=state.mode;latestBattleId=state.battleId??-1;canSwitch=!!state.canStartCrossover;if(state.crossover){if(switchPending){switchPending=false;++switchEpoch;}modeStatus.textContent='';}realTime.disabled=!canSwitch||switchPending;realTime.textContent=switchPending?(assetsReady?'Activation…':'Préparation…'):'▶ Temps réel';if(state.mode!=='battle')modeStatus.textContent='';latestOnline=!!state.onlineGame;latestTurn=!!state.turn;mountControls();mountAfterRender();
+  const state=(event as CustomEvent).detail;if(!state||disposed)return;const soundApi=(frame?.contentWindow as StarWindow|null)?.openbwCrossover;if(typeof state.audioMuted==='boolean'&&soundApi?.audioState?.().muted!==state.audioMuted)soundApi?.setMuted?.(state.audioMuted);if(!doc.querySelector('#mobile-app'))win.goonkMobileState=state;latestMode=state.mode;latestBattleId=state.battleId??-1;canSwitch=!!state.canStartCrossover;if(state.crossover){if(switchPending){switchPending=false;++switchEpoch;}modeStatus.textContent='';}realTime.disabled=!canSwitch||switchPending;realTime.textContent=switchPending?(assetsReady?'Activation…':'Préparation…'):'▶ Temps réel';if(state.mode!=='battle')modeStatus.textContent='';latestOnline=!!state.onlineGame;latestTurn=!!state.turn;mountControls();mountAfterRender();
   demo.disabled=!assetsReady||!!state.onlineGame||trial||!['menu','map'].includes(state.mode);
   menuDemo.hidden=!['menu','map'].includes(state.mode);toggle.hidden=state.mode!=='map';menuDemo.disabled=!assetsReady||!!state.onlineGame||checkpoint||(state.mode!=='menu'&&!state.turn);
   toggle.disabled=!!state.onlineGame||!state.turn;menuDemo.textContent=isDemo?'Rejouer la démo':'Démo Heroes × StarCraft';

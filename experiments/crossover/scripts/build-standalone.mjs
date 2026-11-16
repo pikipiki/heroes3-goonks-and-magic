@@ -1,3 +1,4 @@
+import {gzipSync,gunzipSync} from 'node:zlib';
 import {compressClassicEngine} from './compress-classic-engine.mjs';
 // Separate static publish directory, built from the verified Heroes bundle and crossover.
 import fs from 'node:fs';
@@ -34,7 +35,17 @@ fs.writeFileSync(output+'/robots.txt','User-agent: *\nDisallow: /\n');
 fs.writeFileSync(output+'/netlify.toml','[build]\n  publish = "."\n');
 console.log('Separate publish directory: '+output);
 
-if(process.env.GOONK_PAGES==='1')compressClassicEngine(output);
+if(process.env.GOONK_PAGES==='1'){
+ compressClassicEngine(output);
+ // Leave room for combat audio without duplicating the native OpenBW binary.
+ const filename=path.join(output,'starcraft/openbw.wasm'),raw=fs.readFileSync(filename),packed=gzipSync(raw,{level:9});
+ if(!gunzipSync(packed).equals(raw))throw Error('OpenBW compression integrity mismatch');
+ fs.writeFileSync(filename+'.gz',packed);fs.unlinkSync(filename);
+ const metaPath=path.join(output,'starcraft/engine-build.json'),meta=JSON.parse(fs.readFileSync(metaPath));meta.compressedWasm='openbw.wasm.gz';meta.compressedWasmSha256=crypto.createHash('sha256').update(packed).digest('hex');fs.writeFileSync(metaPath,JSON.stringify(meta));
+ const host=path.join(output,'starcraft/openbw.js'),js=fs.readFileSync(host,'utf8');
+ if(!js.includes('const PACKED_WASM=false;'))throw Error('OpenBW compression hook missing');
+ fs.writeFileSync(host,js.replace('const PACKED_WASM=false;','const PACKED_WASM=true;'));
+}
 
 // Packaging changes the entry HTML and adds crossover files: refresh cache integrity.
 const previous=JSON.parse(fs.readFileSync(output+'/coi-serviceworker.js','utf8').match(/^const release = (.+);$/m)[1]);

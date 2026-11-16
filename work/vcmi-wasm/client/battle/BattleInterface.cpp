@@ -166,7 +166,15 @@ void BattleInterface::onIntroSoundPlayed()
 	auto bfieldType = getBattle()->battleGetBattlefieldType();
 	const auto & battlefieldMusic = bfieldType.getInfo()->musicFilename;
 
-	if (!battlefieldMusic.empty())
+	// Keep one native music stream across classic / real-time presentation changes.
+	const auto stacks = getBattle()->battleGetAllStacks();
+	const bool starcraftBattle = std::any_of(stacks.begin(), stacks.end(), [](const CStack * stack)
+	{
+		return stack->unitType()->getJsonKey().starts_with("heroes-starcraft:");
+	});
+	if (starcraftBattle)
+		ENGINE->music().playMusic(AudioPath::builtin("MUSIC/crossover/terran1"), true, false);
+	else if (!battlefieldMusic.empty())
 		ENGINE->music().playMusic(battlefieldMusic, true, true);
 	else
 		ENGINE->music().playMusicFromSet("battle", true, true);

@@ -247,7 +247,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         const sound = panel.querySelector('#crossover-sound');
         const audio = () => { const api = activeFrame.contentWindow.openbwCrossover; void api?.enableAudio?.().catch(() => { sound.textContent = 'Activer le son'; selection.textContent = 'Touche « Activer le son » pour autoriser les sons du combat.'; }); };
         activePanel.addEventListener('pointerdown', audio, { capture: true });
-        sound.onclick = () => { const api = activeFrame.contentWindow.openbwCrossover; api?.setMuted?.(!api.audioState?.().muted); audio(); updateSound(); };
+        sound.onclick = () => { const api = activeFrame.contentWindow.openbwCrossover; const muted = !api?.audioState?.().muted; api?.setMuted?.(muted); win.Module?._vcmiMobileCommand?.(28, muted ? 1 : 0, 0, 0, 0, 0); audio(); updateSound(); };
         const updateSound = () => { const muted = activeFrame.contentWindow.openbwCrossover?.audioState?.().muted ?? false; sound.textContent = muted ? 'Son coupé' : 'Son activé'; sound.setAttribute('aria-pressed', String(!muted)); sound.setAttribute('aria-label', muted ? 'Activer les sons du combat' : 'Couper les sons du combat'); };
         const roster = panel.querySelector('#crossover-roster'), cards = new Map();
         let ready = false, chosen, returnTimer;
@@ -712,6 +712,9 @@ export function installAdventure(target, base, onExit, trial = false) {
         const state = event.detail;
         if (!state || disposed)
             return;
+        const soundApi = frame?.contentWindow?.openbwCrossover;
+        if (typeof state.audioMuted === 'boolean' && soundApi?.audioState?.().muted !== state.audioMuted)
+            soundApi?.setMuted?.(state.audioMuted);
         if (!doc.querySelector('#mobile-app'))
             win.goonkMobileState = state;
         latestMode = state.mode;
