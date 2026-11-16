@@ -19,7 +19,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  },spell);
  if(!await page.locator('.target-picker-list').count())await page.locator('[data-ui=targets]').first().click();
  await page.locator('.target-picker-list [data-battle-target="718,196"]').click();
- if(!spell){assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===14).length),0);await page.locator('[data-ui=battle-action]').click();}
+
  assert.deepEqual(await page.evaluate(()=>calls.filter(c=>c[0]===14).map(c=>c.slice(0,3))),[[14,spell?3:4,2]]);
  }
 
@@ -34,8 +34,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  return {x:r.x+l.dx+(cell.x-l.x)*l.scale,y:r.y+l.dy+(cell.y-l.y)*l.scale};
  },destination);
  await page.touchscreen.tap(position.x,position.y);
- assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===14).length),0);
- await page.waitForTimeout(700);await page.locator('[data-ui=battle-action]').click();
+
  assert.deepEqual(await page.evaluate(()=>calls.filter(c=>c[0]===14).map(c=>c.slice(0,3))),[[14,4,88]]);
  await page.setViewportSize({width:390,height:844});
  await page.evaluate(()=>{
@@ -44,14 +43,14 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  await page.waitForTimeout(200);
  const box=await page.locator('#mobile-scene').boundingBox(),x=box.x+box.width/2,y=box.y+box.height/2;
  await page.touchscreen.tap(x,y);
- assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),0);
- await page.waitForTimeout(700);await page.locator('[data-ui=move]').click();
+ await page.evaluate(()=>dispatchEvent(new CustomEvent('goonk-state',{detail:{...goonkMobileState,hasPath:true}})));
+
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),1);
  await page.evaluate(()=>{
  calls=[];dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'spellbook',heroId:1,spellbook:{inCombat:true,mana:30,school:-1,page:0,pages:1,spells:[{id:15,name:'Magic Arrow',cost:5,level:1,enabled:true,target:'enemy'}]}}}));
  });
  await page.locator('[data-spell="15"]').click();
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===49&&c[1]===15).length),1);
- assert.deepEqual(errors,[]);console.log(name+': movement confirmation and single tap spell passed');
+ assert.deepEqual(errors,[]);console.log(name+': single tap hero movement, battle movement, attack and spell passed');
  }finally{await browser.close();}
 }
