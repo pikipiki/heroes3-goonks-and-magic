@@ -1947,9 +1947,23 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   {
    if(changed==old&&!tileIdentity(pos)&&obj&&(source.ID==Obj::ARENA||source.ID==Obj::LIBRARY_OF_ENLIGHTENMENT||source.ID==Obj::WAR_MACHINE_FACTORY))return Step::Continue;
    const bool disabled=state["objectAccessPositions"][key].isNumber()&&era_campaign_json::integer(state["objectAccessPositions"][key])==0;
-   require(!obj||(obj->ID!=Obj::HERO&&obj->ID!=Obj::MONSTER&&obj->ID!=Obj::EVENT&&obj->ID!=Obj::TOWN),"retyping this native object class is not admitted");
    if(op.code=="T")source.ID=Obj(era_campaign_timers::word(changed));else source.subID=era_campaign_timers::word(changed);
-   if(!disabled)
+   // Original decorative plot initializers write T91 then OB:S in the
+   // immediately following command. Stage that identity until access is
+   // disabled; do not instantiate a sign with an unrelated decoration subtype.
+   bool pairedDisable=false;
+   if(!disabled&&source.ID==Obj::SIGN&&vm.initializing&&!vm.continuations.empty())
+   {
+    const auto & call=vm.continuations.back();
+    if(call.initializer&&call.command+1<program.initializers.size())
+    {
+     const auto & next=program.initializers[call.command+1];
+     pairedDisable=next.receiver=="OB"&&next.conditions.empty()&&next.operations.size()==1&&next.operations[0].code=="S"&&next.operations[0].args.size()==1&&next.operations[0].args[0].kind==Kind::Default&&position(next)==pos;
+    }
+   }
+   const bool inertMonsterSign=obj&&obj->ID==Obj::MONSTER&&source.ID==Obj::SIGN&&(disabled||pairedDisable);
+   require(!obj||(obj->ID!=Obj::HERO&&obj->ID!=Obj::EVENT&&obj->ID!=Obj::TOWN&&(obj->ID!=Obj::MONSTER||inertMonsterSign)),"retyping this native object class is not admitted");
+   if(!disabled&&!pairedDisable)
    {
     require(source.ID==Obj::ARENA||source.ID==Obj::LIBRARY_OF_ENLIGHTENMENT||source.ID==Obj::WAR_MACHINE_FACTORY,"unvalidated active source object type");
     // The original new-design commands are T106U0/T4U0/T41U0. Their

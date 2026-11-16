@@ -1,0 +1,26 @@
+{
+  "version": "0.4.217",
+  "sourceBinarySha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "archiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+  "programSha256": "14ecebd8c965de6024aa2c3ba02f6e3d28d471c261838d3e7dd01f24213b19f3",
+  "facts": [
+    {
+      "addresses": "7337f3..733823",
+      "behavior": "OB:T/U write independent two-byte logical map-cell type/subtype fields while retaining appearance."
+    },
+    {
+      "addresses": "73e53c",
+      "behavior": "Two-byte queries sign-extend their stored short."
+    }
+  ],
+  "sourceUse": [
+    "TR32/33/0:P1",
+    "TR32/33/0:E0",
+    "OB32/33/0:T91",
+    "OB32/33/0:S",
+    "OB32/33/0 visit displays Protection/Armageddon advice"
+  ],
+  "implementation": "An initializer T91 immediately followed by unconditional OB:S at the same coordinates can stage the sign identity before its native default is disabled. A monster may retain its native container only for that disabled sign case; its artwork and original subtype remain. Ordinary active monsters remain guarded combatants.",
+  "limits": "No general active monster/hero/town retyping is admitted; source service conversions retain their earlier restrictions. No original campaign victory is claimed by these controls.",
+  "nativeSaveVersion": 906
+}

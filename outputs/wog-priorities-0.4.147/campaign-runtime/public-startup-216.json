@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "origin": "https://pikipiki.github.io/heroes3-goonks-and-magic/",
+  "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+  "actualFetchedWasmSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+  "cspBypassed": false,
+  "crossOriginIsolated": true,
+  "wogOptionsUiAndNativeAcknowledgement": true,
+  "productionGates": {
+    "bank": "validated-all6",
+    "dwelling": "validated-all17",
+    "services": 44,
+    "replacements": 102
+  },
+  "maps": [
+    {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 1,
+      "humanSeats": 1,
+      "index": 0,
+      "name": "Goonks — Trésors de WoG",
+      "path": "MAPS/003-Goonks-WoG",
+      "players": 2,
+      "width": 144
+    },
+    {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 2,
+      "humanSeats": 2,
+      "index": 1,
+      "name": "Goonks — Trésors de WoG en ligne",
+      "path": "MAPS/004-Goonks-WoG-Online",
+      "players": 2,
+      "width": 144
+    }
+  ],
+  "errors": []
+}
