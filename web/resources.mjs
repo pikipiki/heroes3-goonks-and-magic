@@ -2,6 +2,7 @@ import {getLanguage} from './i18n.mjs';
 export const RESOURCE_TYPES=[['wood','Bois'],['mercury','Mercure'],['ore','Minerai'],['sulfur','Soufre'],['crystal','Cristaux'],['gems','Gemmes'],['gold','Or']];
 const locale=()=>getLanguage()==='fr'?'fr-FR':'en-US';
 const decimal={format:value=>new Intl.NumberFormat(locale(),{maximumFractionDigits:1}).format(value)},integer={format:value=>new Intl.NumberFormat(locale(),{maximumFractionDigits:0}).format(value)};
+const goldInteger=new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0});
 const amount=value=>Number.isFinite(Number(value))?Math.trunc(Number(value)):0;
 export function compactResource(value){const n=amount(value);if(Math.abs(n)<1000)return String(n);const divisor=Math.abs(n)>=1e6?1e6:1e3,suffix=divisor===1e6?'M':'k';return decimal.format(Math.trunc(n/divisor*10)/10)+suffix;}
 /** Snapshot arrays follow the active native resource registry, not fixed IDs.
@@ -52,6 +53,6 @@ export function renderResources(container,values,metadata=[],{assets=globalThis.
   }
   container.dataset.resourceSignature=signature;
  }
- rows.forEach((row,index)=>{const item=container.children[index],label=row.name+' : '+integer.format(row.value),text=compactResource(row.value);item.title=label;item.setAttribute('aria-label',label);if(item.lastElementChild.textContent!==text)item.lastElementChild.textContent=text;});
+ rows.forEach((row,index)=>{const item=container.children[index],label=row.name+' : '+integer.format(row.value),text=row.key==='gold'?goldInteger.format(row.value):compactResource(row.value);item.title=label;item.setAttribute('aria-label',label);if(item.lastElementChild.textContent!==text)item.lastElementChild.textContent=text;});
  return true;
 }

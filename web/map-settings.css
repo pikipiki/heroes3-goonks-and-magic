@@ -2,7 +2,7 @@
 #game-menu .map-movement-settings label{display:flex;gap:10px;align-items:center;min-height:48px;margin:12px 0;color:#fff0c2;font-size:16px}
 #game-menu .map-speed-label{flex-direction:column;align-items:stretch!important}
 #game-menu .map-movement-settings select{width:100%;min-height:52px;padding:8px;color:#fff0c2;background:#2c1e13;border:2px solid #b59750;font:16px Georgia,serif;touch-action:manipulation}
-#game-menu .map-movement-settings input[type=checkbox]{width:24px;height:24px;flex:0 0 24px;accent-color:#d9b66b}
+#game-menu .map-movement-settings input:is([type=checkbox],[type=radio]){width:24px;height:24px;flex:0 0 24px;accent-color:#d9b66b}
 #game-menu .map-movement-settings p{font-size:14px;margin:8px 0}
 #game-menu header button[aria-label="Fermer le menu"]{min-width:56px;min-height:56px}
 
@@ -11,5 +11,7 @@
 #game-menu[data-page=settings] select{appearance:none;-webkit-appearance:none;box-sizing:border-box;display:block;width:100%;max-width:100%;min-width:0;min-height:48px;margin:0;padding:10px 36px 10px 12px;border:2px ridge #b89c5d;border-radius:0;background:#24190e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12' viewBox='0 0 16 12'%3E%3Cpath d='M2 3l6 6 6-6' fill='none' stroke='%23ffedb6' stroke-width='2'/%3E%3C/svg%3E") right 10px center/16px 12px no-repeat;color:#ffedb6;font:16px/1.4 Georgia,serif;touch-action:manipulation}
 #game-menu[data-page=settings] .setting-toggle{display:grid;grid-template-columns:24px 36px minmax(0,1fr);gap:10px;align-items:center;min-height:48px}
 #game-menu[data-page=settings] .setting-toggle .setting-icon{display:block;width:36px;height:36px;object-fit:contain}
-#game-menu[data-page=settings] input[type=checkbox]{appearance:none;-webkit-appearance:none;box-sizing:border-box;width:24px;height:24px;margin:0;border:2px ridge #b89c5d;border-radius:0;background:#24190e;cursor:pointer}
-#game-menu[data-page=settings] input[type=checkbox]:checked{background:#74521e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M3 10l5 5L17 4' fill='none' stroke='%23ffedb6' stroke-width='3'/%3E%3C/svg%3E") center/20px no-repeat}
+#game-menu[data-page=settings] input:is([type=checkbox],[type=radio]){appearance:none;-webkit-appearance:none;box-sizing:border-box;width:24px;height:24px;margin:0;border:2px ridge #b89c5d;border-radius:0;background:#24190e;cursor:pointer}
+#game-menu[data-page=settings] input:is([type=checkbox],[type=radio]):checked{background:#74521e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M3 10l5 5L17 4' fill='none' stroke='%23ffedb6' stroke-width='3'/%3E%3C/svg%3E") center/20px no-repeat}
+
+#game-menu[data-page=settings] input[type=radio]{border-radius:50%}

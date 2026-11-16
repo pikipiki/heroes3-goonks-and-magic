@@ -40,6 +40,11 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  await page.touchscreen.tap(position.x,position.y);
 
  assert.deepEqual(await page.evaluate(()=>calls.filter(c=>c[0]===14).map(c=>c.slice(0,3))),[[14,4,88]]);
+ await page.waitForTimeout(650);
+ await page.evaluate(async()=>{const {setBattleOneClick}=await import('/web/battle-preferences.mjs');setBattleOneClick(true);calls=[];});
+ await page.touchscreen.tap(position.x,position.y);
+ assert.deepEqual(await page.evaluate(()=>calls.filter(c=>c[0]===14).map(c=>c.slice(0,3))),[[14,4,88]],'One-click option moves immediately to a reachable tile');
+ await page.evaluate(async()=>{const {setBattleOneClick}=await import('/web/battle-preferences.mjs');setBattleOneClick(false);});
  await page.setViewportSize({width:390,height:844});
  await page.evaluate(()=>{
  calls=[];dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'map',turn:true,heroId:1,day:1,heroName:'Hero',resources:[],heroMovement:100,hasPath:true}}));
