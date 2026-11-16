@@ -51,6 +51,7 @@
 #include "../lib/StartInfo.h"
 #include "GameInstance.h"
 #include "CPlayerInterface.h"
+#include "ArtifactsUIController.h"
 #include "CServerHandler.h"
 #include "PlayerLocalState.h"
 #include "HeroMovementController.h"
@@ -260,6 +261,20 @@ void mobileSpellEffects(JsonNode & result,const CStack & stack)
   effect["name"].String()=spell->getNameTranslated();effect["turns"].Integer()=(*visible)->turnsRemain;
   result["spellEffects"].Vector().push_back(std::move(effect));
  }
+}
+bool mobileArtifactCombinationPending=false;
+std::pair<bool,bool> mobileArtifactCombination(const CGHeroInstance & hero,ArtifactPosition position)
+{
+ const auto * art=hero.getArt(position,false);
+ if(!art||hero.getSourceSlotLocks().count(position)||era_compat::eye278LockOwner(hero,position))return {false,false};
+ if(const auto worn=hero.artifactsWorn.find(position);worn!=hero.artifactsWorn.end()&&worn->second.locked)return {false,false};
+ const auto choices=ArtifactUtils::assemblyPossibilities(&hero,art->getTypeId());
+ const bool assemble=std::any_of(choices.begin(),choices.end(),[&](const CArtifact * type)
+ {return !era_compat::eye278Type(type)||era_compat::planEye278Assembly(hero,type,position).has_value();});
+ const auto parts=art->getType()->getConstituents().size();
+ const bool disassemble=art->hasParts()&&era_compat::eye278GuiUncombineAllowed(art->getType())
+  &&(!ArtifactUtils::isSlotBackpack(position)||(parts>0&&ArtifactUtils::isBackpackFreeSlots(&hero,parts-1)));
+ return {assemble,disassemble};
 }
 JsonNode recruitmentIdentity(CreatureID id)
 {
@@ -892,6 +907,7 @@ void publishMobileState(){
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top){n["rect"]=rect(top->pos);n["windowToken"].Integer()=reinterpret_cast<uintptr_t>(top.get());}
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
+ if(!heroWindow)mobileArtifactCombinationPending=false;
  const auto exchangeWindow=mobileEnabled?ENGINE->windows().topWindow<CExchangeWindow>():nullptr;
  const auto garrisonWindow=mobileEnabled?ENGINE->windows().topWindow<CGarrisonWindow>():nullptr;
  const bool sourceArmyWindow=p&&(mobileCampaignExchange(*p,garrisonWindow.get())||mobileGarrisonExchange(*p,garrisonWindow.get())||mobileCampaignRewardExchange(*p,garrisonWindow.get()));
@@ -1493,7 +1509,7 @@ void publishMobileState(){
     addHeroIcon(icons, h["commanderIcon"], "heroWindow/commanderButtonIcon");
    publishHeroIcons(icons);
    const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
-   auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=era_compat::eye278LockOwner(*hero,position)?nullptr:hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}if(picked&&era_compat::canMoveIntoEye278(*hero,position,*picked))locked=false;locked=locked||hero->getSourceSlotLocks().count(position);item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());}h[backpack?"backpack":"slots"].Vector().push_back(item);};
+   auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=era_compat::eye278LockOwner(*hero,position)?nullptr:hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}if(picked&&era_compat::canMoveIntoEye278(*hero,position,*picked))locked=false;locked=locked||hero->getSourceSlotLocks().count(position);item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());if(!picked&&!locked&&hero->getOwner()==p->playerID&&p->makingTurn){const auto combination=mobileArtifactCombination(*hero,position);item["canAssemble"].Bool()=combination.first;item["canDisassemble"].Bool()=combination.second;}}h[backpack?"backpack":"slots"].Vector().push_back(item);};
    for(int i=0;i<19;i++)addSlot(i,false);for(size_t i=0;i<=hero->artifactsInBackpack.size();i++)addSlot(int(ArtifactPosition::BACKPACK_START)+int(i),true);
   }
   if(hero){for(const auto & slot:hero->artifactsWorn){auto artifact=slot.second.getArt();if(!artifact||(slot.second.locked&&era_compat::eye278LockOwner(*hero,slot.first)))continue;auto type=artifact->getType();JsonNode item;item["slot"].Integer()=slot.first.getNum();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();n["equipment"].Vector().push_back(item);}n["backpackCount"].Integer()=hero->artifactsInBackpack.size();}
@@ -1758,6 +1774,17 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCampaignReply(int query,int selec
  });
 }
 extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,int c,int d,int e){if(!ENGINE)return;ENGINE->dispatchMainThread([action,a,b,c,d,e](){
+ if(action==111)
+ {
+  const auto player=GAME?GAME->interface():nullptr;const auto window=ENGINE->windows().topWindow<CHeroWindow>();
+  if(mobileArtifactCombinationPending||!player||!player->makingTurn||!window||!window->curHero||window->curHero->id.getNum()!=a
+   ||window->curHero->getOwner()!=player->playerID||window->getPickedArtifact()||b<0
+   ||b>=int(ArtifactPosition::BACKPACK_START)+int(window->curHero->artifactsInBackpack.size()))return;
+  const ArtifactPosition position(b);const auto available=mobileArtifactCombination(*window->curHero,position);
+  if(c==0&&available.first)mobileArtifactCombinationPending=player->artifactController->askToAssemble(window->curHero,position);
+  if(c==1&&available.second)mobileArtifactCombinationPending=player->artifactController->askToDisassemble(window->curHero,position);
+  lastPublished=0;return;
+ }
  if(action==109)
  {
   if(!GAME)return;

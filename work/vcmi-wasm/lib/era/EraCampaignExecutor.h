@@ -30,9 +30,9 @@ class Executor
   {
    const auto & b=program.blocks[i];
    if(b.receiver!=receiver||b.post!=post)continue;
-   // GetNumAutoFl initializes an omitted BA selector to zero. Preserve
+   // GetNumAutoFl initializes an omitted BA/BG selector to zero. Preserve
    // source order with explicit BA0 blocks (not a second dispatch group).
-   if(receiver=="BA"&&b.selectors.empty()&&selectors==std::vector<std::int32_t>{0})
+   if((receiver=="BA"||receiver=="BG")&&b.selectors.empty()&&selectors==std::vector<std::int32_t>{0})
    {found.push_back(i);continue;}
    if(b.selectors.size()!=selectors.size())continue;
    bool same=true;for(std::size_t n=0;n<selectors.size();++n)if(readNumber(b.selectors[n],state,context)!=selectors[n]){same=false;break;}

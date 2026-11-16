@@ -50,7 +50,7 @@
 .hero-artifact-detail{border-top:2px ridge #b99b57;padding:7px 10px;display:flex;flex-direction:column;gap:5px;background:#22170fe8;min-height:0}
 .hero-artifact-detail h3{font-size:15px;line-height:18px;margin:0;max-height:36px;overflow:hidden;text-overflow:ellipsis;color:#ffe5a2}
 .hero-artifact-description{font-size:12.5px;line-height:17px;margin:0;flex:1;min-height:0;overflow:auto;touch-action:pan-y;overscroll-behavior:contain;color:#dfcaa0}
-.hero-artifact-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hero-artifact-actions button{min-height:42px;font-size:13px}
+.hero-artifact-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hero-artifact-actions button{min-height:44px;font-size:13px}
 
 /* Army Dock Controls */
 .hero-army-dock-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px}

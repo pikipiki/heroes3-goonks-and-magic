@@ -68,6 +68,10 @@
 #include "../../lib/bonuses/Bonus.h"
 #include "../../lib/battle/BattleLayout.h"
 #include "../../lib/battle/BattleInfo.h"
+#include "../../lib/battle/BattleAction.h"
+#include "../../lib/battle/CObstacleInstance.h"
+#include "../../lib/networkPacks/PacksForClientBattle.h"
+#include "../../lib/spells/AbilityCaster.h"
 #include "../../lib/CStack.h"
 #include "../../lib/spells/ISpellMechanics.h"
 #include "../../lib/texts/CGeneralTextHandler.h"
@@ -167,6 +171,7 @@ struct SourceCampaignProcessor::Impl final:Host
   std::array<ObjectInstanceID,2> armies,heroes;
   std::function<void()> resume;
   BattleID battle=BattleID::NONE;
+  std::array<int,3> action{{-1,-1,-1}};
  };
  std::optional<BattleScope> battleScope;
  bool wanderingBattle=false;
@@ -402,6 +407,7 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   auto change=mutation("playerTownDays",ObjectInstanceID::NONE);change["player"].Integer()=who.getNum();change["days"]=JsonNode();
   const auto * owner=gh.gameInfo().getPlayerState(who,false);
+
   if(owner&&owner->getTowns().empty())if(const auto shadow=era_campaign_town_clock::shadow(raw))change["days"].Integer()=*shadow;
   return change;
  }
@@ -798,25 +804,58 @@ struct SourceCampaignProcessor::Impl final:Host
  bool battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume)
  {
   require(stage==0||stage==1,"unsupported battle event stage");
+  bind();if(!active)return false;
+  if(stage==0)state["battleSetup"]=JsonNode();
   return battleHook("BA",{stage},attacker,defender,attackerHero,defenderHero,std::move(resume));
+ }
+ bool battleField(BattleID battleId,std::function<void()> resume)
+ {return liveBattleHook("BF",{},battleId,std::move(resume));}
+ void battleAction(BattleID battleId,int stage,const BattleAction & action)
+ {
+  bind();if(!active)return;
+  require(stage==0||stage==1,"invalid battle action event stage");
+  liveBattleHook("BG",{stage},battleId,[]{},&action);
+  require(!battleScope,"dialogue inside a battle action is not admitted");
+ }
+ bool liveBattleHook(const std::string & receiver,const std::vector<std::int32_t> & selectors,BattleID battleId,std::function<void()> resume,const BattleAction * action=nullptr)
+ {
+  bind();if(!active)return false;
+  const auto * battle=gh.gameState().getBattle(battleId);require(battle!=nullptr,"event without a live battle");
+  const auto army=[&](BattleSide side){const auto * a=battle->battleGetArmyObject(side);return a?a->id:ObjectInstanceID::NONE;};
+  const auto hero=[&](BattleSide side){const auto * h=battle->battleGetFightingHero(side);return h?h->id:ObjectInstanceID::NONE;};
+  return battleHook(receiver,selectors,army(BattleSide::ATTACKER),army(BattleSide::DEFENDER),hero(BattleSide::ATTACKER),hero(BattleSide::DEFENDER),std::move(resume),battleId,action);
  }
  bool battleRound(BattleID battleId,int sourceRound,std::function<void()> resume)
  {
   bind();if(!active)return false;
-  const auto * battle=gh.gameState().getBattle(battleId);require(battle!=nullptr,"round event without a live battle");
-  const auto army=[&](BattleSide side){const auto * a=battle->battleGetArmyObject(side);return a?a->id:ObjectInstanceID::NONE;};
-  const auto hero=[&](BattleSide side){const auto * h=battle->battleGetFightingHero(side);return h?h->id:ObjectInstanceID::NONE;};
   // BACall2(2,round) publishes the original round number in v997.
   vm.v[997]=sourceRound;
-  return battleHook("BR",{},army(BattleSide::ATTACKER),army(BattleSide::DEFENDER),hero(BattleSide::ATTACKER),hero(BattleSide::DEFENDER),std::move(resume),battleId);
+  return liveBattleHook("BR",{},battleId,std::move(resume));
  }
- bool battleHook(const std::string & receiver,const std::vector<std::int32_t> & selectors,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume,BattleID battle=BattleID::NONE)
+ bool battleHook(const std::string & receiver,const std::vector<std::int32_t> & selectors,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume,BattleID battle=BattleID::NONE,const BattleAction * action=nullptr)
  {
   bind();if(!active)return false;
   updateContext();Executor probe(program,vm,context,*this);
   if(!probe.hasMatchingAny(receiver,{selectors}))return false;
   require(!executing&&!battleScope,"recursive battle event entry");
   BattleScope scope{std::move(vm.frames),std::move(vm.continuations),std::move(pending),heroId,objectId,player,shown,{attacker,defender},{attackerHero,defenderHero},std::move(resume)};
+  if(action)
+  {
+   const auto * live=gh.gameState().getBattle(battle);const auto * actor=live->battleGetStackByID(action->stackNumber,false);
+   const auto target=action->getTarget(live);
+   int kind=0;
+   switch(action->actionType)
+   {
+    case EActionType::HERO_SPELL:kind=1;break;case EActionType::WALK:kind=2;break;
+    case EActionType::DEFEND:kind=3;break;case EActionType::RETREAT:kind=4;break;
+    case EActionType::SURRENDER:kind=5;break;case EActionType::WALK_AND_ATTACK:kind=6;break;
+    case EActionType::SHOOT:kind=7;break;case EActionType::WAIT:kind=8;break;
+    case EActionType::CATAPULT:kind=9;break;case EActionType::MONSTER_SPELL:kind=10;break;
+    case EActionType::STACK_HEAL:kind=11;break;default:break;
+   }
+   scope.action={{kind,actor?actor->sourceMassSlot()+21*static_cast<int>(actor->unitSide()):-1,
+    target.empty()?-1:target.front().unitValue?target.front().unitValue->getPosition().toInt():target.front().hexValue.toInt()}};
+  }
   scope.battle=battle;battleScope=std::move(scope);vm.frames={Frame{}};vm.continuations.clear();pending=JsonNode();shown.reset();
   heroId=attackerHero;objectId=ObjectInstanceID::NONE;
   if(const auto * attackerArmy=gh.gameState().getObj(attacker);attackerArmy&&attackerArmy->getOwner().isValidPlayer())player=attackerArmy->getOwner();
@@ -1723,6 +1762,37 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   if(!state["tileIdentities"].isNull())state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(created->visitablePos()));auto & legacy=state["objectIdentities"][std::to_string(created->id.getNum())].Vector();legacy={JsonNode(source),JsonNode(subtype)};persist();return Step::Continue;
  }
+ if(c.receiver=="BF")
+ {
+  require(battleScope&&battleScope->battle!=BattleID::NONE&&c.selectors.empty(),"battlefield receiver outside a live battle");
+  require(op.code=="C","unsupported battlefield operation "+op.code);
+  require(args.empty()||(args.size()==1&&args[0].kind==Kind::Default),"battlefield clear does not take values");
+  const auto * battle=gh.gameState().getBattle(battleScope->battle);require(battle!=nullptr,"battlefield event lost its battle");
+  BattleObstaclesChanged changed;changed.battleID=battleScope->battle;
+  for(const auto & obstacle:battle->battleGetAllObstacles())changed.changes.emplace_back(obstacle->uniqueID,ObstacleChanges::EOperation::REMOVE);
+  if(!changed.changes.empty())gh.sendAndApply(changed);
+  return Step::Continue;
+ }
+ if(c.receiver=="BU")
+ {
+  require(battleScope&&battleScope->battle!=BattleID::NONE&&c.selectors.empty(),"battle units receiver outside a live battle");
+  require(op.code=="S","unsupported battle unit operation "+op.code);arity(op,6);
+  for(const auto & arg:args)require(arg.access==Access::Read,"battle summon needs values");
+  const auto type=creature(number(args[0]));const int count=number(args[1]),hex=number(args[2]),side=number(args[3]);
+  require(type.hasValue()&&count>0&&hex>=0&&hex<187&&(side==0||side==1)&&number(args[4])==-1&&(number(args[5])==0||number(args[5])==1),"unvalidated battle summon arguments");
+  const auto * battle=gh.gameState().getBattle(battleScope->battle);require(battle!=nullptr,"battle summon lost its battle");
+  const BattleHex position(hex);const auto owner=static_cast<BattleSide>(side);
+  if(!battle->getAccessibility().accessible(position,type.toCreature()->isDoubleWide(),owner))return Step::Continue;
+  battle::UnitInfo info;info.id=battle->battleNextUnitId();info.count=count;info.type=type;info.side=owner;info.position=position;info.summoned=true;
+  BattleUnitsChanged changed;changed.battleID=battleScope->battle;changed.changedStacks.emplace_back(info.id,UnitChanges::EOperation::ADD);info.save(changed.changedStacks.back().data);gh.sendAndApply(changed);return Step::Continue;
+ }
+ if(c.receiver=="BG")
+ {
+  require(battleScope&&battleScope->battle!=BattleID::NONE&&c.selectors.empty(),"battle action receiver outside a live action");
+  arity(op,1);require(query(op),"battle action mutation is not admitted");
+  require(op.code=="A"||op.code=="N"||op.code=="D","unsupported battle action operation "+op.code);
+  value(battleScope->action[op.code=="A"?0:op.code=="N"?1:2],args[0]);return Step::Continue;
+ }
  if(c.receiver=="BH")
  {
   require(battleScope&&battleScope->battle!=BattleID::NONE&&c.selectors.size()==1,"battle hero receiver outside a live battle");
@@ -1744,9 +1814,27 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const int result=op.code=="I"?sourceSlot/21:op.code=="N"?(target?target->getCount():0):op.code=="T"?(target?sourceCreature(target->creatureId()):-1):(target?target->getPosition().toInt():-1);
    value(result,args[0]);return Step::Continue;
   }
+  if(op.code=="C")
+  {
+   arity(op,5);for(const auto & arg:args)require(arg.access==Access::Read,"battle cast needs values");
+   const int spell=number(args[0]),hex=number(args[1]),mastery=number(args[2]),power=number(args[3]),check=number(args[4]);
+   // The original house restores a Windows global active-stack pointer with
+   // a non-combat View Air cast. Native passive casting never changes that
+   // pointer, so this exact pinned restoration command has no side effect.
+   const bool originalHouse=program.sha256=="93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a"&&vm.flags[887];
+   if(originalHouse&&spell==2&&mastery==0&&power==0&&check==0)return Step::Continue;
+   require(spell==15||spell==42||spell==45||spell==47||spell==50||spell==52||spell==54,"unvalidated battle cast spell");
+   require(hex>=0&&hex<187&&mastery>=0&&mastery<=3&&power>=0&&check==1,"unvalidated battle cast arguments");
+   const auto * destination=battle->battleGetStackByPos(BattleHex(hex));if(!target||!target->alive()||!destination)return Step::Continue;
+   spells::AbilityCaster caster(target,mastery);spells::BattleCast cast(battle,&caster,spells::Mode::PASSIVE,SpellID(spell).toSpell());
+   cast.setSpellLevel(mastery);cast.setEffectPower(power);cast.setEffectDuration(power);spells::Target aim;aim.emplace_back(destination);cast.castIfPossible(gh.spellcastEnvironment(),aim);return Step::Continue;
+  }
   require(op.code=="M","unsupported battle stack operation "+op.code);arity(op,3);
   for(const auto & arg:args)require(arg.access==Access::Read,"battle enchantment needs values");
-  const int spell=number(args[0]),duration=number(args[1]),mastery=number(args[2]);
+  const int spell=number(args[0]),duration=number(args[1]);int mastery=number(args[2]);
+  // The source house supplies skill99 for its two-round Stone Skin, outside
+  // SetMonMagic's0..3 table. Bound only this pinned undefined value to Expert.
+  if(program.sha256=="93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a"&&vm.flags[888]&&spell==46&&duration==2&&mastery==99)mastery=3;
   require(spell==29||spell==46||spell==45||spell==54||spell==71||spell==73,"unvalidated direct battle enchantment");
   require(duration>0&&mastery>=0&&mastery<=3,"unvalidated direct battle enchantment duration or mastery");
   if(!target||!target->alive())return Step::Continue;
@@ -1781,12 +1869,34 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    // Original offline/hotseat classification. Remote campaign play is not admitted.
    value(0,args[0]);return Step::Continue;
   }
+  if(op.code=="B")
+  {
+   arity(op,1);require(args[0].access==Access::Read&&number(args[0])==12&&battleScope->battle==BattleID::NONE,"unvalidated battle background");
+   state["battleSetup"]["background"].Integer()=12;return Step::Continue;
+  }
   require(!args.empty()&&args[0].access==Access::Read,"battle side must be a value");
   const int side=number(args[0]);require(side==0||side==1,"battle side outside 0..1");
   if(op.code=="H")
   {
-   arity(op,2);require(query(op),"battle hero replacement is not admitted");
-   const auto * h=gh.gameState().getHero(battleScope->heroes[side]);value(h?h->getHeroTypeID().getNum():-2,args[1]);return Step::Continue;
+   arity(op,2);const auto * h=gh.gameState().getHero(battleScope->heroes[side]);const int next=value(h?h->getHeroTypeID().getNum():-2,args[1]);
+   if(!query(op))
+   {
+    require(battleScope->battle==BattleID::NONE,"battle hero mutation after preparation");
+    const auto * changed=next>=0?hero(next):nullptr;
+    require(next<0||(changed&&gh.gameState().getObj(changed->id)==changed),"battle hero must be an existing map hero");
+    battleScope->heroes[side]=changed?changed->id:ObjectInstanceID::NONE;state["battleSetup"]["heroes"][std::to_string(side)].Integer()=battleScope->heroes[side].getNum();
+    if(changed)
+    {
+     const auto * army=gh.gameState().getObj(battleScope->armies[side]);require(army!=nullptr,"battle hero army missing");
+     require(changed->getOwner().isValidPlayer(),"battle hero has no player");
+     if(army->getOwner()!=changed->getOwner())
+     {
+      require(army->ID==Obj::EVENT,"battle hero owner replacement requires a scripted army");
+      gh.setOwner(army,changed->getOwner());
+     }
+    }
+   }
+   return Step::Continue;
   }
   require(op.code=="M","unsupported battle operation "+op.code);arity(op,4);
   require(args[1].access==Access::Read,"battle slot must be a value");const int index=number(args[1]);require(index>=0&&index<7,"battle army slot outside 0..6");
@@ -1809,6 +1919,18 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   require(!args.empty()&&args[0].access==Access::Read,"player needs a color value");
   const int selected=number(args[0]);const PlayerColor who(selected==-1?player.getNum():selected);require(who.isValidPlayer(),"player outside 0..7");
   const auto * owner=gh.gameInfo().getPlayerState(who,false);
+  if(op.code=="A")
+  {
+   arity(op,2);require(query(op),"selected hero mutation is not admitted");
+   // OW:A reads PlayerSetup::CurHero, not a player color. In the pinned
+   // house continuation the selected hero is the still-visiting HE:T hero.
+   // Other contexts need a synchronized selection provider before admission.
+   require(program.sha256=="93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a"
+    &&who==player&&!battleScope&&objectId!=ObjectInstanceID::NONE,"selected hero query outside the validated visit continuation");
+   const auto * selectedHero=gh.gameState().getHero(heroId);
+   require(selectedHero&&selectedHero->getOwner()==who,"selected visiting hero missing");
+   value(selectedHero->getHeroTypeID().getNum(),args[1]);return Step::Continue;
+  }
   if(op.code=="D")
   {
    arity(op,2);require(owner!=nullptr&&args[1].access==Access::Read,"town countdown needs an owner and a byte value");
@@ -2395,6 +2517,21 @@ SourceCampaignProcessor::SourceCampaignProcessor(CGameHandler & game):impl(std::
 SourceCampaignProcessor::~SourceCampaignProcessor()=default;
 bool SourceCampaignProcessor::battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume){return impl->battleEvent(stage,attacker,defender,attackerHero,defenderHero,std::move(resume));}
 bool SourceCampaignProcessor::battleRound(BattleID battle,int sourceRound,std::function<void()> resume){return impl->battleRound(battle,sourceRound,std::move(resume));}
+bool SourceCampaignProcessor::battleField(BattleID battle,std::function<void()> resume){return impl->battleField(battle,std::move(resume));}
+void SourceCampaignProcessor::battleAction(BattleID battle,int stage,const BattleAction & action){impl->battleAction(battle,stage,action);}
+const CGHeroInstance * SourceCampaignProcessor::battleHero(int side,const CGHeroInstance * fallback)
+{
+ impl->bind();if(!impl->active)return fallback;
+ const auto & row=std::as_const(impl->state)["battleSetup"]["heroes"][std::to_string(side)];
+ return row.isNull()?fallback:impl->gh.gameState().getHero(ObjectInstanceID(era_campaign_json::integer(row)));
+}
+int SourceCampaignProcessor::battleBackground()
+{
+ impl->bind();if(!impl->active)return -1;
+ const auto & row=std::as_const(impl->state)["battleSetup"]["background"];return row.isNull()?-1:era_campaign_json::integer(row);
+}
+void SourceCampaignProcessor::battlePrepared()
+{impl->bind();if(impl->active&&!impl->state["battleSetup"].isNull()){impl->state["battleSetup"]=JsonNode();impl->persist();}}
 bool SourceCampaignProcessor::demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building){return impl->demolitionFight(hero,town,building);}
 void SourceCampaignProcessor::demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnding(attacker,defender,won);}
 void SourceCampaignProcessor::demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnded(attacker,defender,won);}

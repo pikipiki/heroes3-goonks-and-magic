@@ -108,6 +108,8 @@ void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInsta
 void BattleProcessor::startBattlePrepared(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile,
 								const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town)
 {
+	hero1=gameHandler->sourceCampaigns->battleHero(0,hero1);
+	hero2=gameHandler->sourceCampaigns->battleHero(1,hero2);
 	assert(gameHandler->gameState().getBattle(army1->getOwner()) == nullptr);
 	assert(gameHandler->gameState().getBattle(army2->getOwner()) == nullptr);
 
@@ -177,6 +179,8 @@ BattleID BattleProcessor::setupBattle(int3 tile, BattleSideArray<const CArmedIns
 	else if (heroes[BattleSide::ATTACKER] && heroes[BattleSide::ATTACKER]->inBoat() && heroes[BattleSide::DEFENDER] && heroes[BattleSide::DEFENDER]->inBoat())
 		battlefieldType = BattleField(*LIBRARY->identifiers()->getIdentifier("core", "battlefield.ship_to_ship"));
 
+	if(gameHandler->sourceCampaigns->battleBackground()==12)
+		battlefieldType=BattleField(*LIBRARY->identifiers()->getIdentifier("core","battlefield.subterranean"));
 	//send info about battles
 	BattleStart bs;
 	bs.info = BattleInfo::setupBattle(&gameHandler->gameInfo(), tile, terrain, battlefieldType, armies, heroes, layout, town);
@@ -195,6 +199,7 @@ BattleID BattleProcessor::setupBattle(int3 tile, BattleSideArray<const CArmedIns
 	bs.info->replayAllowed = lastBattleQuery == nullptr && onlyOnePlayerHuman;
 
 	gameHandler->sendAndApply(bs);
+	gameHandler->sourceCampaigns->battlePrepared();
 
 	return bs.battleID;
 }

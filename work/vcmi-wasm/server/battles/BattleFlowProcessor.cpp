@@ -172,6 +172,16 @@ void BattleFlowProcessor::tryPlaceMoats(const CBattleInfoCallback & battle)
 
 void BattleFlowProcessor::onBattleStarted(const CBattleInfoCallback & battle)
 {
+	const auto id=battle.getBattle()->getBattleID();
+	if(gameHandler->sourceCampaigns->battleField(id,[this,id]()
+	{
+		if(const auto * live=gameHandler->gameState().getBattle(id))finishBattleField(*live);
+	}))return;
+	finishBattleField(battle);
+}
+
+void BattleFlowProcessor::finishBattleField(const CBattleInfoCallback & battle)
+{
     era_compat_server::initializeSourceXpAdmission(*gameHandler,battle);
     era_compat_server::enrollSourceDefendNewBattle(*gameHandler,battle);
     auto sourceNativeAccess=era_compat_server::sourceXpNativeAccess(battle);

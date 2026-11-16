@@ -18,16 +18,31 @@
 #include "../../lib/gameState/GameStatePackVisitor.h"
 #include "../../lib/networkPacks/PacksForClientBattle.h"
 #include "../../lib/networkPacks/SetStackEffect.h"
+#include "../../lib/era/EraWeakness45State.h"
 
 #if SCRIPTING_ENABLED
 using scripting::Pool;
 #endif
 
+static bool sameUpdatedEffect(const Bonus & existing, const Bonus & value)
+{
+	// Match the live battle's addOrUpdateUnitBonus contract. A duration refresh
+	// must not change another spell, or a projection owned by a typed lifecycle.
+	return existing.source == value.source && existing.sid == value.sid
+		&& existing.type == value.type && existing.subtype == value.subtype
+		&& existing.valType == value.valType
+		&& (!(era_compat::sourceTimedOwnedTag(existing.stacking)
+			|| era_compat::sourceTimedOwnedTag(value.stacking)
+			|| era_bridge::weakness45OwnedTag(existing.stacking)
+			|| era_bridge::weakness45OwnedTag(value.stacking))
+			|| existing.stacking == value.stacking);
+}
+
 void actualizeEffect(TBonusListPtr target, const Bonus & ef)
 {
 	for(auto & bonus : *target) //TODO: optimize
 	{
-		if(bonus->source == BonusSource::SPELL_EFFECT && bonus->type == ef.type && bonus->subtype == ef.subtype)
+		if(sameUpdatedEffect(*bonus, ef))
 		{
 			if(bonus->turnsRemain < ef.turnsRemain)
 			{
@@ -148,7 +163,7 @@ TConstBonusListPtr StackWithBonuses::getAllBonuses(const CSelector & selector, c
 	{
 		if(selector(&bonus))
 		{
-			if(ret->getFirst(Selector::source(BonusSource::SPELL_EFFECT, bonus.sid).And(Selector::typeSubtype(bonus.type, bonus.subtype))))
+			if(ret->getFirst(CSelector([&bonus](const Bonus * existing){return sameUpdatedEffect(*existing, bonus);})))
 			{
 				actualizeEffect(ret, bonus);
 			}
@@ -200,6 +215,10 @@ void StackWithBonuses::removeUnitBonus(const std::vector<Bonus> & bonus)
 	{
 		CSelector selector([&one](const Bonus * b) -> bool
 		{
+			const auto timed = era_compat::xpTimed184RemovalIdentity(one, *b);
+			if(timed && !*timed)return false;
+			const auto weakness = era_compat::sourceWeakness45RemovalIdentity(one, *b);
+			if(weakness && !*weakness)return false;
 			//compare everything but turnsRemain, limiter and propagator
 			return one.duration == b->duration
 				&& one.type == b->type

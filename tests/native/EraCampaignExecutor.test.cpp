@@ -47,6 +47,11 @@ int main()
  assert(battleDefaultVm.hasMatchingAny("BA",{{0}}));assert(!battleDefaultVm.hasMatchingAny("BA",{{1}}));
  battleDefaultVm.dispatch("BA",{0});assert(battleDefaultVm.run()&&battleDefaultState.v[80]==123);
  battleDefaultState.flags[889]=false;battleDefaultVm.dispatch("BA",{0});assert(battleDefaultVm.run()&&battleDefaultState.v[80]==13);
+ // !?BG also defaults to its pre-action selector0, not its post-action1.
+ for(auto & trigger:battleDefaults.blocks)trigger.receiver="BG";
+ State actionDefaultState;actionDefaultState.flags[889]=true;Executor actionDefaultVm(battleDefaults,actionDefaultState,context,host);
+ assert(actionDefaultVm.hasMatchingAny("BG",{{0}})&&!actionDefaultVm.hasMatchingAny("BG",{{1}}));
+ actionDefaultVm.dispatch("BG",{0});assert(actionDefaultVm.run()&&actionDefaultState.v[80]==123);
  // Original VCMI ERM_FU regression: output parameters and immediate FU:E.
  Program p;p.sha256="functions";
  p.blocks={block("LE",{num(1)},{cmd("VR",{var('v',1)},"S",{num(30)}),cmd("FU",{num(7)},"P",{num(33),var('v',1,Access::Write)})}),

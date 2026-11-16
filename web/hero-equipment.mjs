@@ -174,7 +174,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     <p class="hero-artifact-description">${picked?'Choose a highlighted destination. Switch between Equipment and Backpack to move the item.':esc(item?.description?.replace(/[{}]/g,'')||hint)}</p>
     ${hero.owned===false?'':`<div class="hero-artifact-actions">
      <button class="primary" data-hero-move ${!item?.name||item.locked||item.movable===false||picked||!state.turn?'disabled':''}>Move item</button>
-     <button data-hero-cancel ${!picked?'disabled':''}>Cancel move</button>
+     ${!picked&&item?.canDisassemble?`<button data-hero-combine="1" ${!state.turn?'disabled':''}>${fr?'Démonter':'Disassemble'}</button>`:!picked&&item?.canAssemble?`<button data-hero-combine="0" ${!state.turn?'disabled':''}>${fr?'Assembler':'Assemble'}</button>`:`<button data-hero-cancel ${!picked?'disabled':''}>Cancel move</button>`}
     </div>`}
    `}
   </section>`;
@@ -184,6 +184,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  }
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
+  if(button.hasAttribute('data-hero-combine')){if(Number.isInteger(selected)&&!state.heroWindow?.picked){button.disabled=true;command(111,state.heroWindow.id,selected,Number(button.dataset.heroCombine));}return;}
   if(button.hasAttribute('data-hero-source-rebalance')){command(102,state.heroWindow.id);notify(getLanguage()==='fr'?'Actualisation des bonus demandée.':'Artifact refresh requested.');return;}
   if(button.hasAttribute('data-hero-leave-troops')){troopDeployment.show(selectedArmySlot);return;}
   if(button.hasAttribute('data-hero-troop-equipment')){troopEquipment.show(selectedArmySlot);return;}

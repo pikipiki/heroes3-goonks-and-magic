@@ -11,6 +11,7 @@ class CGObjectInstance;
 class CGHeroInstance;
 class CMapEvent;
 class MetaString;
+class BattleAction;
 VCMI_LIB_NAMESPACE_END
 class SourceCampaignProcessor
 {
@@ -21,6 +22,11 @@ public:
  ~SourceCampaignProcessor();
  bool battleEvent(int stage,ObjectInstanceID attacker,ObjectInstanceID defender,ObjectInstanceID attackerHero,ObjectInstanceID defenderHero,std::function<void()> resume);
  bool battleRound(BattleID battle,int sourceRound,std::function<void()> resume);
+ bool battleField(BattleID battle,std::function<void()> resume);
+ void battleAction(BattleID battle,int stage,const BattleAction & action);
+ const CGHeroInstance * battleHero(int side,const CGHeroInstance * fallback);
+ int battleBackground();
+ void battlePrepared();
  bool demolitionFight(ObjectInstanceID hero,ObjectInstanceID town,int building);
  void demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);
  void demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won);

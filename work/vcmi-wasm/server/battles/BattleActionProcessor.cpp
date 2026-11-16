@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../era/SourceCampaignProcessor.h"
 #include "../era/EraDragonFly241AdmissionRuntime.h"
 #include "../era/EraSourceExperienceRuntime.h"
 #include "../era/EraBankDeathStare.h"
@@ -908,6 +909,7 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
 		gameHandler->sendAndApply(startAction);
 	}
 
+	if(!ba.isBattleEndAction()&&!ba.isTacticsAction())gameHandler->sourceCampaigns->battleAction(battle.getBattle()->getBattleID(),0,ba);
 	bool result = dispatchBattleAction(battle, ba);
 
     if(result && (ba.actionType == EActionType::SHOOT
@@ -940,6 +942,7 @@ bool BattleActionProcessor::makeBattleActionImpl(const CBattleInfoCallback & bat
         removeEraOblivionCorpses(*gameHandler,battle);
     }
 
+	if(result&&!ba.isBattleEndAction()&&!ba.isTacticsAction())gameHandler->sourceCampaigns->battleAction(battle.getBattle()->getBattleID(),1,ba);
 	if (!ba.isBattleEndAction())
 	{
 		EndAction endAction;

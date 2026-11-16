@@ -1,0 +1,399 @@
+{
+  "passed": true,
+  "engineSha256": "8a755f3d0f3d4a5fbc9132c2fa1a78fd4a3697de8f6639d4d4aa77598b6dd318",
+  "scope": "Native source battle field/action/casts plus mobile native artifact combination. No new campaign admission; original final victories/transfers remain pending.",
+  "sourceCampaignProgramSha256": "93fa71cb6d8768cb610c0c675f65f9fd3454823939167d3ac7474e59926fe59a",
+  "originalHouse": {
+    "passed": true,
+    "archiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+    "saveSha256": "8d61bbdc66640bbf5d983c88d0feac597e798f902d89f60b0742f5911f65feb8",
+    "dialogs": [
+      {
+        "cancel": true,
+        "lines": [
+          "The doors of this house are standing wide open. You get the feeling something sinister is lurking on the inside. Do you wish to take a look?"
+        ],
+        "queryId": 856,
+        "title": "Game message",
+        "visitedObject": "Monastery"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "When you stick your head into it to take a look, you feel a strong pull, and you find yourself facing a group of strange creatures and humans.\nThey attack!"
+        ],
+        "queryId": 857,
+        "title": "Game message",
+        "visitedObject": "Monastery"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "Nailag Ciad can gain no more experience in this scenario."
+        ],
+        "queryId": -1,
+        "title": "Game message"
+      },
+      {
+        "cancel": true,
+        "lines": [
+          "After the battle, you search the house and find asome strange robes, that seems to be able to give the other mages in the partya similar protection as the mage you just fought, as well as an odd ring. It emanetes strong magics, but it doesn't seem to be entirely beneficial, and you don't think you can remove it after donning it. Do you wish to do so anyway?"
+        ],
+        "queryId": 861,
+        "title": "Game message"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "When you don the ring, you feel sick, and pass out for a moment. When you wake up, you feel much stronger, but also as if your magic has grown weaker!"
+        ],
+        "queryId": 862,
+        "title": "Game message"
+      }
+    ],
+    "finalPrimary": [
+      3,
+      5,
+      1,
+      1
+    ],
+    "beholderShotObserved": true,
+    "battleReachedVictory": true,
+    "qaArmyUsed": true,
+    "qaScope": "Retained native offline test Archangels accelerate combat; no source, defender, quest flag or reward rewrite."
+  },
+  "isolatedCastControl": {
+    "passed": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "f08a476a6e95db0c",
+      "wasm": "vcmiclient.8a755f3d0f3d4a5f.wasm",
+      "sha256": "8a755f3d0f3d4a5fbc9132c2fa1a78fd4a3697de8f6639d4d4aa77598b6dd318",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "fixtureSha256": "0a83c21a0bab4737b815a40d2d4f394a9a30e3597eb42ac841733df7b7e8030e",
+    "scope": "Isolated BG0/BG1, original stack index and target, physical shot followed by seven BM:C spells; no extra shot, mana or creature charge. No campaign admission.",
+    "errors": []
+  },
+  "robes": {
+    "originalBlocks": [
+      "BA&889",
+      "BR&886/889/v997=0",
+      "FU3"
+    ],
+    "futureAlliedMageFireShield": true
+  },
+  "mobileCombination": [
+    {
+      "passed": true,
+      "browser": "chromium",
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "f08a476a6e95db0c",
+        "wasm": "vcmiclient.8a755f3d0f3d4a5f.wasm",
+        "sha256": "8a755f3d0f3d4a5fbc9132c2fa1a78fd4a3697de8f6639d4d4aa77598b6dd318",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "9620674c18abecc772800bdca511976e067b84790a249c18ca763ef2bcf53262",
+      "scope": "Native three-part Elixir assembly/disassembly from mobile equipment; stale hero and picked-item refusal, double-tap guard, cancel/accept, 906 save and seven stable mobile/iPad layouts. No campaign admission.",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "rect": {
+            "x": 164,
+            "y": 513,
+            "width": 146,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 66,
+            "overflows": true
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "rect": {
+            "x": 450,
+            "y": 274,
+            "width": 114,
+            "height": 44
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "rect": {
+            "x": 199,
+            "y": 789,
+            "width": 181,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "rect": {
+            "x": 725.625,
+            "y": 344,
+            "width": 114.375,
+            "height": 44
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "rect": {
+            "x": 388,
+            "y": 969,
+            "width": 370,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "rect": {
+            "x": 879.515625,
+            "y": 718,
+            "width": 136.484375,
+            "height": 44
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "rect": {
+            "x": 414,
+            "y": 1125,
+            "width": 396,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "browser": "webkit",
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "f08a476a6e95db0c",
+        "wasm": "vcmiclient.8a755f3d0f3d4a5f.wasm",
+        "sha256": "8a755f3d0f3d4a5fbc9132c2fa1a78fd4a3697de8f6639d4d4aa77598b6dd318",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "fixtureSha256": "9620674c18abecc772800bdca511976e067b84790a249c18ca763ef2bcf53262",
+      "scope": "Native three-part Elixir assembly/disassembly from mobile equipment; stale hero and picked-item refusal, double-tap guard, cancel/accept, 906 save and seven stable mobile/iPad layouts. No campaign admission.",
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "rect": {
+            "x": 164,
+            "y": 513,
+            "width": 146,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 66,
+            "overflows": true
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "rect": {
+            "x": 450,
+            "y": 274,
+            "width": 114,
+            "height": 44
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "rect": {
+            "x": 199,
+            "y": 788.984375,
+            "width": 181,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "rect": {
+            "x": 725.609375,
+            "y": 344,
+            "width": 114.375,
+            "height": 44
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "rect": {
+            "x": 388,
+            "y": 969,
+            "width": 370,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "rect": {
+            "x": 879.515625,
+            "y": 718,
+            "width": 136.484375,
+            "height": 44
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "rect": {
+            "x": 414,
+            "y": 1125,
+            "width": 396,
+            "height": 48
+          },
+          "scrolling": {
+            "allowed": true,
+            "top": 0,
+            "overflows": false
+          },
+          "stableControls": true,
+          "singleClose": true
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "regressions": {
+    "originalTrapRounds": true,
+    "production003004": true,
+    "node": {
+      "pass": 760,
+      "skip": 34,
+      "fail": 0
+    },
+    "linuxGccExecutorAsanUbsan": true,
+    "wasmBuild": "ninja -j32 html5 passed",
+    "privateDiagnosticMarkerAbsent": true
+  },
+  "exceptions": [
+    {
+      "command": "BM:M46/2/99",
+      "scope": "Only pinned zc3-0 house flag888",
+      "behavior": "Undefined mastery99 bounded to Expert3; duration2 retained."
+    },
+    {
+      "command": "BM:C2/<spell>/0/0/0",
+      "scope": "Only pinned zc3-0 house flag887",
+      "behavior": "Original Windows active-stack restoration is a no-op: native passive casts preserve the active stack."
+    },
+    {
+      "command": "OW:A-1/?y1",
+      "scope": "Only pinned zc3-0 active visiting-hero continuation",
+      "behavior": "Returns the still-visiting owned hero type, as the original selected-hero query; unsupported contexts remain refused."
+    }
+  ]
+}
