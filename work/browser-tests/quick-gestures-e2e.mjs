@@ -7,7 +7,8 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true}),errors=[];
  page.on('pageerror',e=>errors.push(e.message));await silenceTestAudio(page);
  await page.route('**/web/**',r=>{const file=path.resolve('web',new URL(r.request().url()).pathname.split('/web/')[1]);return fs.existsSync(file)?r.fulfill({path:file}):r.abort();});
- await page.route('**/eligibility',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><canvas id=canvas width=800 height=600></canvas><script>Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...args){(window.calls||=[]).push(args)}};</script><script type=module src=/web/mobile.mjs></script>'}));
+ await page.route('**/eligibility',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><canvas id=canvas width=800 height=600></canvas><script>Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...args){(window.calls||=[]).push(args)}};</script><script type=module src=/web/mobile.mjs></script><script type=module src=/web/game-menu.mjs></script>'}));
+ await page.route('**/opfs-worker.js',r=>r.fulfill({path:path.resolve('work/vcmi-wasm/lib/html5/opfs-worker.js'),contentType:'text/javascript'}));
  await page.goto('http://localhost/eligibility');await page.waitForSelector('#mobile-app');
 
  for(const spell of [false,true]){
@@ -49,11 +50,25 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
  await page.evaluate(()=>dispatchEvent(new CustomEvent('goonk-state',{detail:{...goonkMobileState,hasPath:true}})));
 
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),1);
+ assert.equal(await page.locator('[data-ui=move]').count(),0,'No Move button on the map');
+ await page.locator('#game-menu-toggle').click();
+ await page.locator('[data-menu=settings]').click();
+ await page.locator('[data-map-two-clicks]').check();
+ assert.equal(await page.evaluate(()=>localStorage.getItem('heroes-goonk.map-two-clicks')),'true');
+ await page.locator('[data-menu=close]').click();
+ await page.evaluate(()=>{calls=[];dispatchEvent(new CustomEvent('goonk-state',{detail:{...goonkMobileState,hasPath:false}}));});
+ await page.waitForTimeout(150);await page.touchscreen.tap(x,y);
+ await page.evaluate(()=>dispatchEvent(new CustomEvent('goonk-state',{detail:{...goonkMobileState,hasPath:true}})));
+ assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),0,'First click only previews with the option enabled');
+ await page.waitForTimeout(700);await page.touchscreen.tap(x,y);
+ assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===2).length),1,'Second click confirms with no double-tap timer');
  await page.evaluate(()=>{
  calls=[];dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'spellbook',heroId:1,spellbook:{inCombat:true,mana:30,school:-1,page:0,pages:1,spells:[{id:15,name:'Magic Arrow',cost:5,level:1,enabled:true,target:'enemy'}]}}}));
  });
  await page.locator('[data-spell="15"]').click();
  assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===49&&c[1]===15).length),1);
+ await page.reload();await page.locator('#game-menu-toggle').click();await page.locator('[data-menu=settings]').click();
+ assert(await page.locator('[data-map-two-clicks]').isChecked(),'Map click option survives a reload');
  assert.deepEqual(errors,[]);console.log(name+': two-click battle movement and single-click map/attack/spell passed');
  }finally{await browser.close();}
 }
