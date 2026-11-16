@@ -394,12 +394,12 @@ void BattleResultProcessor::endBattleConfirmPrepared(const CBattleInfoCallback &
 		const CGHeroInstance * loserHero = battle.battleGetFightingHero(CBattleInfoEssentials::otherSide(finishingBattle->winnerSide));
 		const CGHeroInstance * strongestHero = nullptr;
 
-		if (loserHero != nullptr)
+		if (loserHero != nullptr && finishingBattle->victor.isValidPlayer())
 		{
 			for(auto & hero : gameHandler->gameState().getPlayerState(finishingBattle->loser)->getHeroes())
 				if(!strongestHero || hero->exp > strongestHero->exp)
 					strongestHero = hero;
-			if(strongestHero->id == finishingBattle->loserId && strongestHero->level > 5)
+			if(strongestHero && strongestHero->id == finishingBattle->loserId && strongestHero->level > 5)
 				gameHandler->statistics->getPlayerAccumulator(finishingBattle->victor).lastDefeatedStrongestHeroDay = gameHandler->gameState().getDate(Date::DAY);
 		}
 	}

@@ -879,6 +879,30 @@ struct SourceCampaignProcessor::Impl final:Host
   if(!guard)gh.insertNewStack({dwelling->id,slot},selected.toCreature(),10);
   else {gh.changeStackType({dwelling->id,slot},selected.toCreature());gh.changeStackCount({dwelling->id,slot},10,ChangeValueMode::ABSOLUTE);}
  }
+ void retypeService(const CGObjectInstance * object,const ObjectTypeIdentifier & target)
+ {
+  require(vm.initializing&&!vm.initialized,"active service retyping is only admitted during initialization");
+  require(object&&object->appearance,"active service retyping needs an existing original object");
+  require(!object->getOwner().isValidPlayer(),"player-owned service replacement is not admitted");
+  const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+  const auto original=mapping.originalObject({Obj(object->ID.getNum()),object->subID.getNum()});
+  require(original&&original->ID==Obj(63)&&target.subID==0&&
+   ((original->subID==24&&target.ID==Obj::ARENA)||(original->subID==25&&target.ID==Obj::LIBRARY_OF_ENLIGHTENMENT)||(original->subID==26&&target.ID==Obj::WAR_MACHINE_FACTORY)),"unvalidated active source service replacement");
+  const auto * armed=dynamic_cast<const CArmedInstance *>(object);require(!armed||armed->stacksCount()==0,"armed service replacement is not admitted");
+  const auto native=mapping.remapObject(target);const auto handler=LIBRARY->objtypeh->getHandlerFor(native.ID,native.subID);
+  auto replacement=handler->create(&gh.gameInfo(),nullptr);
+  replacement->id=object->id;replacement->instanceName=object->instanceName;replacement->tempOwner=object->getOwner();
+  auto appearance=std::make_shared<ObjectTemplate>(*object->appearance);appearance->id=native.ID;appearance->subid=MapObjectSubID(native.subID);
+  replacement->appearance=appearance;replacement->setAnchorPos(object->anchorPos());
+  const auto id=object->id;const auto position=object->visitablePos();
+  // Native removal detaches the old bonus node and renderer; NewObject can
+  // reuse the vacated ID. Initialize/configure the new class exactly once.
+  // Avoid an intermediate victory check while the stable map ID is vacant.
+  RemoveObject removal;removal.objectID=id;removal.initiator=player;gh.sendAndApply(removal);
+  gh.newObject(replacement,player);
+  state["objectIdentities"][std::to_string(id.getNum())].Vector()={JsonNode(int(target.ID)),JsonNode(target.subID)};
+  state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(position));persist();
+ }
  bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
  {
   bind();if(!active)return false;
@@ -1848,9 +1872,18 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   const int old=raw>=32768?raw-65536:raw;const int changed=value(old,args[0]);
   if(!query(op))
   {
-   const auto & access=state["objectAccessPositions"][key];require(!access.isNull()&&era_campaign_json::integer(access)==0,"retyping requires disabled native object effects");
+   if(changed==old&&!tileIdentity(pos)&&obj&&(source.ID==Obj::ARENA||source.ID==Obj::LIBRARY_OF_ENLIGHTENMENT||source.ID==Obj::WAR_MACHINE_FACTORY))return Step::Continue;
+   const bool disabled=state["objectAccessPositions"][key].isNumber()&&era_campaign_json::integer(state["objectAccessPositions"][key])==0;
    require(!obj||(obj->ID!=Obj::HERO&&obj->ID!=Obj::MONSTER&&obj->ID!=Obj::EVENT&&obj->ID!=Obj::TOWN),"retyping this native object class is not admitted");
    if(op.code=="T")source.ID=Obj(era_campaign_timers::word(changed));else source.subID=era_campaign_timers::word(changed);
+   if(!disabled)
+   {
+    require(source.ID==Obj::ARENA||source.ID==Obj::LIBRARY_OF_ENLIGHTENMENT||source.ID==Obj::WAR_MACHINE_FACTORY,"unvalidated active source object type");
+    // The original new-design commands are T106U0/T4U0/T41U0. Their
+    // decoration subtype24..26 is invalid for the target class until U0.
+    const bool pairedSubtype=op.code=="T"&&c.operations.size()==2&&c.operations[1].code=="U"&&c.operations[1].args.size()==1&&c.operations[1].args[0].access==Access::Read;
+    if(!pairedSubtype){retypeService(obj,source);return Step::Continue;}
+   }
    state["tileIdentities"][key].Vector()={JsonNode(int(source.ID)),JsonNode(source.subID)};persist();
   }
   return Step::Continue;

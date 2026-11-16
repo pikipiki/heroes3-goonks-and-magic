@@ -1,0 +1,99 @@
+{
+  "version": "0.4.213",
+  "engineSha256": "0a7656c948f169971fa6302ed66d45aa98dd404bc8b6e2b87c2a3ce9fa5667e2",
+  "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "sourceProgramsUnchanged": true,
+  "nativeFirstVictory": true,
+  "nativeCampaignSelection": {
+    "bonus": -1,
+    "bonuses": [],
+    "canStart": true,
+    "chooseDifficulty": true,
+    "description": "He is called the Samaritan. \r\nNobody knows his real power. \r\nPlease play and discover his history.\r\n\r\nby Bruno",
+    "difficulty": 1,
+    "mapRect": {
+      "h": 600,
+      "w": 456,
+      "x": 0,
+      "y": 0
+    },
+    "name": "The Samaritan",
+    "scenarioDescription": "Ga\u00efa has a new mission for you: you must save the behemoths from the horrible humans and Necromancers...\n\n",
+    "scenarioName": "Save behemot",
+    "scenarios": [
+      {
+        "available": false,
+        "completed": true,
+        "id": 0,
+        "name": "Gaia, where are you?"
+      },
+      {
+        "available": true,
+        "completed": false,
+        "id": 1,
+        "name": "Save behemot"
+      },
+      {
+        "available": false,
+        "completed": false,
+        "id": 2,
+        "name": "map.zc2:3.header.name"
+      }
+    ],
+    "selected": 1
+  },
+  "secondScenarioInitialized": true,
+  "saveVersion": 906,
+  "transferSaveSha256": "39ce50a44e44225508a83971dc9b8d5fa685f25b7bbf246ab357ac63a98f62ab",
+  "webkitReloadPassed": true,
+  "webkitReloadSaveSha256": "6b708ca75924a30a48f30b5fbcd847ec86dabc16ed36d2ce817524345e7844dd",
+  "secondScenarioHero": {
+    "name": "Gus",
+    "position": [
+      4,
+      6,
+      0
+    ],
+    "level": 11,
+    "primarySkills": [
+      6,
+      3,
+      2,
+      5
+    ],
+    "army": [
+      {
+        "key": "core:centaur",
+        "count": 12
+      },
+      {
+        "key": "core:woodElf",
+        "count": 5
+      },
+      {
+        "key": "core:woodElf",
+        "count": 6
+      }
+    ],
+    "resources": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "equipment": [
+      {
+        "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+        "icon": 3,
+        "name": "Catapult",
+        "slot": 16
+      }
+    ]
+  },
+  "samaritanEnabled": false,
+  "limitation": "First-scenario win retains50 QA Archangels with6 original dragon types. The original transfer drops the army and artifacts; second scenario starts with20 Centaurs and4 Wood Elves. Accelerated native travel; scripts, quests, defenders and victory conditions unchanged. This is not difficulty validation."
+}

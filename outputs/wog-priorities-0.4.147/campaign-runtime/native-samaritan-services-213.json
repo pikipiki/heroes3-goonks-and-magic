@@ -1,0 +1,544 @@
+{
+  "version": "0.4.213",
+  "engineSha256": "0a7656c948f169971fa6302ed66d45aa98dd404bc8b6e2b87c2a3ce9fa5667e2",
+  "originalArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "originalProgramsAndQuestFlagsUnchanged": true,
+  "privateRegistryAdmission": true,
+  "saveVersion": 906,
+  "reproducibleFixture": "work/browser-tests/wog-campaign-services-native-e2e.mjs",
+  "cases": {
+    "library-chromium": {
+      "passed": true,
+      "browser": "chromium",
+      "inputSaveSha256": "180da0cda4d6c5a4664a50d6679b431a5506fa9e11d6f34513fff0c660e3df1c",
+      "outputSaveSha256": "7d023f0a196dc055bf895bbc6b1e25134191f63ccbeb89fa537cec07c031b12f",
+      "beforePrimary": [
+        6,
+        3,
+        3,
+        6
+      ],
+      "afterPrimary": [
+        8,
+        5,
+        5,
+        8
+      ],
+      "beforeResources": [
+        10,
+        3,
+        17,
+        0,
+        0,
+        0,
+        2000,
+        0
+      ],
+      "afterResources": [
+        10,
+        3,
+        17,
+        0,
+        0,
+        0,
+        2000,
+        0
+      ],
+      "afterEquipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "afterHeroId": 485,
+      "afterTowns": [
+        {
+          "id": 1837,
+          "index": 0,
+          "name": "Okinaki"
+        }
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "{Attack}\n\nAttack skill is a bonus added to the attack skill of any troops your hero commands, allowing them to inflict more damage in combat.",
+              "label": "+2 Attack Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 173,
+                "y": 291
+              }
+            },
+            {
+              "description": "{Defense}\n\nDefense skill is a bonus added to the defense skill of any troops your hero commands, allowing them to resist more damage in combat.",
+              "label": "+2 Defense Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 291
+              }
+            },
+            {
+              "description": "{Spell Power}\n\nSpell power determines the duration or strength of a spell.",
+              "label": "+2 Spell Power",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 291
+              }
+            },
+            {
+              "description": "{Knowledge}\n\nKnowledge determines how many spell points your hero may have.  Under normal circumstances, a hero is limited to 10 spell points per level of Knowledge.",
+              "label": "+2 Knowledge",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 545,
+                "y": 291
+              }
+            }
+          ],
+          "lines": [
+            "{Library of Enlightenment}\n\nThe caretaker admits you into the Library of Enlightenment.  You are able to learn much in the short time you spend here."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Library of Enlightenment"
+        }
+      ],
+      "battles": [],
+      "layouts": [],
+      "errors": []
+    },
+    "arena-chromium": {
+      "passed": true,
+      "browser": "chromium",
+      "inputSaveSha256": "5a34653229d2f84e52fa34d5933b6f12846d3238f192223b0dbb641365896f96",
+      "outputSaveSha256": "281a730ec44a33edd83db81875e384f9ff029d8dd8339c88c15e579d6d36c788",
+      "beforePrimary": [
+        8,
+        5,
+        5,
+        8
+      ],
+      "afterPrimary": [
+        10,
+        5,
+        5,
+        8
+      ],
+      "beforeResources": [
+        10,
+        3,
+        17,
+        0,
+        0,
+        0,
+        2000,
+        0
+      ],
+      "afterResources": [
+        10,
+        3,
+        17,
+        0,
+        0,
+        0,
+        2000,
+        0
+      ],
+      "afterEquipment": [
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "afterHeroId": 485,
+      "afterTowns": [
+        {
+          "id": 1837,
+          "index": 0,
+          "name": "Okinaki"
+        }
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "{Attack}\n\nAttack skill is a bonus added to the attack skill of any troops your hero commands, allowing them to inflict more damage in combat.",
+              "label": "+2 Attack Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 297,
+                "y": 323
+              },
+              "selectable": true,
+              "selected": true
+            },
+            {
+              "description": "{Defense}\n\nDefense skill is a bonus added to the defense skill of any troops your hero commands, allowing them to resist more damage in combat.",
+              "label": "+2 Defense Skill",
+              "rect": {
+                "h": 93,
+                "w": 82,
+                "x": 421,
+                "y": 323
+              },
+              "selectable": true,
+              "selected": false
+            }
+          ],
+          "lines": [
+            "You enter the arena and face a pack of vicious lions.  You handily defeat them, to the wild cheers of the crowd.  Impressed by your skill, the aged trainer of gladiators agrees to train you in a skill of your choice.",
+            "or"
+          ],
+          "queryId": 285,
+          "title": "Game message",
+          "visitedObject": "Arena"
+        }
+      ],
+      "battles": [],
+      "layouts": [],
+      "errors": []
+    },
+    "factory-chromium": {
+      "passed": true,
+      "browser": "chromium",
+      "inputSaveSha256": "02b6d1b41e4ad9e3f66137e3dc2515899ab297b85f38da3359064a6b3f2deafc",
+      "outputSaveSha256": "b9dbddb5c2b342263250b59361e65d782865a2ee6d08212a101ddd70a319d84b",
+      "beforePrimary": [
+        10,
+        5,
+        5,
+        8
+      ],
+      "afterPrimary": [
+        10,
+        5,
+        5,
+        8
+      ],
+      "beforeResources": [
+        10,
+        3,
+        17,
+        0,
+        5,
+        0,
+        7500,
+        0
+      ],
+      "afterResources": [
+        10,
+        3,
+        17,
+        0,
+        5,
+        0,
+        5000,
+        0
+      ],
+      "afterEquipment": [
+        {
+          "description": "{Ballista}\n\nUse this war machine to target your enemy's troops in combat.",
+          "icon": 4,
+          "name": "Ballista",
+          "slot": 13
+        },
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "afterHeroId": 485,
+      "afterTowns": [
+        {
+          "id": 1837,
+          "index": 0,
+          "name": "Okinaki"
+        }
+      ],
+      "dialogs": [
+        {
+          "cancel": true,
+          "lines": [
+            "{War Machine Factory}\n\nWould you like to purchase War Machines?"
+          ],
+          "queryId": 656,
+          "title": "Game message",
+          "visitedObject": "War Machine Factory"
+        }
+      ],
+      "battles": [],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "stableControls": true,
+          "singleVisibleClose": true
+        }
+      ],
+      "errors": []
+    },
+    "factory-webkit": {
+      "passed": true,
+      "browser": "webkit",
+      "inputSaveSha256": "02b6d1b41e4ad9e3f66137e3dc2515899ab297b85f38da3359064a6b3f2deafc",
+      "outputSaveSha256": "b9dbddb5c2b342263250b59361e65d782865a2ee6d08212a101ddd70a319d84b",
+      "beforePrimary": [
+        10,
+        5,
+        5,
+        8
+      ],
+      "afterPrimary": [
+        10,
+        5,
+        5,
+        8
+      ],
+      "beforeResources": [
+        10,
+        3,
+        17,
+        0,
+        5,
+        0,
+        7500,
+        0
+      ],
+      "afterResources": [
+        10,
+        3,
+        17,
+        0,
+        5,
+        0,
+        5000,
+        0
+      ],
+      "afterEquipment": [
+        {
+          "description": "{Ballista}\n\nUse this war machine to target your enemy's troops in combat.",
+          "icon": 4,
+          "name": "Ballista",
+          "slot": 13
+        },
+        {
+          "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+          "icon": 3,
+          "name": "Catapult",
+          "slot": 16
+        }
+      ],
+      "afterHeroId": 485,
+      "afterTowns": [
+        {
+          "id": 1837,
+          "index": 0,
+          "name": "Okinaki"
+        }
+      ],
+      "dialogs": [
+        {
+          "cancel": true,
+          "lines": [
+            "{War Machine Factory}\n\nWould you like to purchase War Machines?"
+          ],
+          "queryId": 656,
+          "title": "Game message",
+          "visitedObject": "War Machine Factory"
+        }
+      ],
+      "battles": [],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "stableControls": true,
+          "singleVisibleClose": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "stableControls": true,
+          "singleVisibleClose": true
+        }
+      ],
+      "errors": []
+    },
+    "neutral-defeat-chromium": {
+      "passed": true,
+      "browser": "chromium",
+      "inputSaveSha256": "1a69bea4ad1506dff7779801c53f360317d38c0f7acc414a5b92ae9033502826",
+      "outputSaveSha256": "7bd1ea67088a2aebc52d809645b6048a528998e6be9100bd580e054b81ef0d8f",
+      "beforePrimary": [
+        6,
+        3,
+        2,
+        6
+      ],
+      "afterPrimary": null,
+      "beforeResources": [
+        10,
+        0,
+        17,
+        0,
+        0,
+        0,
+        2000,
+        0
+      ],
+      "afterResources": [
+        10,
+        0,
+        17,
+        0,
+        0,
+        0,
+        2000,
+        0
+      ],
+      "afterEquipment": [],
+      "afterHeroId": null,
+      "afterTowns": [
+        {
+          "id": 1837,
+          "index": 0,
+          "name": "Okinaki"
+        }
+      ],
+      "dialogs": [],
+      "battles": [
+        {
+          "description": "Your forces suffer a bitter defeat.",
+          "sides": [
+            {
+              "losses": [
+                {
+                  "count": 4,
+                  "icon": "",
+                  "id": 18,
+                  "name": "Wood Elf"
+                },
+                {
+                  "count": 2,
+                  "icon": "",
+                  "id": 96,
+                  "name": "Behemoth"
+                },
+                {
+                  "count": 11,
+                  "icon": "creatures/arcticSharpshooter/CPrL170M",
+                  "id": 151,
+                  "name": "Arctic Sharpshooter"
+                }
+              ],
+              "name": "Gus",
+              "portrait": [
+                186,
+                58,
+                58,
+                64
+              ],
+              "winner": false
+            },
+            {
+              "name": "Ghost Behemots",
+              "portrait": [
+                557,
+                58,
+                58,
+                64
+              ],
+              "winner": true
+            }
+          ],
+          "won": false
+        }
+      ],
+      "layouts": [],
+      "errors": []
+    }
+  },
+  "limitation": "Native checkpoints from original scenario2. Service branch retains400 QA Archangels added with native offline console before previous fights; quests, enemies and victory conditions unchanged. Defeat branch has original2 Behemoths,4 Wood Elves,11 Arctic Sharpshooters and no QA reinforcements. This does not validate overall campaign difficulty or completion."
+}

@@ -1,0 +1,71 @@
+{
+  "version": "0.4.213",
+  "engineSha256": "0a7656c948f169971fa6302ed66d45aa98dd404bc8b6e2b87c2a3ce9fa5667e2",
+  "archiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "programSha256": "081f9193109c231b7dd0d5de9c3cd9d6220464b7c423a523b61207a7e93a7746",
+  "scope": "Original Samaritan second-scenario initializer; eight active service conversions, unchanged ERM",
+  "sourceCommands": [
+    "OB50/9/0:T106U0",
+    "OB4/23/0:T106U0",
+    "OB49/3/0:T4U0",
+    "OB12/27/0:T4U0",
+    "OB69/24/0:T4U0",
+    "OB26/53/0:T41U0",
+    "OB37/12/0:T41U0",
+    "OB21/29/0:T41U0"
+  ],
+  "admittedConversions": [
+    {
+      "source": [
+        63,
+        24
+      ],
+      "target": [
+        4,
+        0
+      ],
+      "nativeClass": "Arena rewardable"
+    },
+    {
+      "source": [
+        63,
+        25
+      ],
+      "target": [
+        41,
+        0
+      ],
+      "nativeClass": "Library of Enlightenment rewardable"
+    },
+    {
+      "source": [
+        63,
+        26
+      ],
+      "target": [
+        106,
+        0
+      ],
+      "nativeClass": "War Machine Factory dwelling"
+    }
+  ],
+  "nativeReconstruction": {
+    "initializationOnly": true,
+    "nonPlayerOwnedOnly": true,
+    "armedOriginalRejected": true,
+    "stableObjectId": true,
+    "stableInstanceName": true,
+    "stableOwner": true,
+    "stableAnchor": true,
+    "originalAppearanceAndFootprintPreserved": true,
+    "nativeRemovalAndNewObjectPackets": true,
+    "nativeInitializationExactlyOnce": true,
+    "noNewPacketOrSaveFormat": true,
+    "pairedTUStagesUntilSubtypeZero": true
+  },
+  "limitations": [
+    "Only the three listed active conversions are admitted; arbitrary runtime active object retyping remains rejected.",
+    "358f object-identity semantics are retained; VCMI additionally reconstructs the native service class to execute its effects.",
+    "Campaign admission still requires all three native wins, both transfers and the final campaign score."
+  ]
+}
