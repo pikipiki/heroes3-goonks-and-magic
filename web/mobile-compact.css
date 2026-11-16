@@ -215,19 +215,19 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
  .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* One phone header row: resources consume the space between menu and calendar. */
-@container goonk-viewport (orientation:portrait){
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top{display:grid!important;grid-template-columns:44px minmax(0,1fr) 76px!important;grid-template-rows:44px!important;gap:4px!important;padding:4px!important}
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top>#game-menu-toggle{grid-column:1!important;grid-row:1!important}
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top>.mobile-title{display:none!important}
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:3!important;grid-row:1!important;width:100%!important;position:static!important;min-width:0!important;border-top:0;font-size:10px!important}
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-resources{grid-column:2!important;grid-row:1!important;width:100%!important;max-width:none!important;box-sizing:border-box;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr)) minmax(40px,1.6fr) minmax(0,1fr)!important;gap:2px!important;padding:2px 0!important;overflow:visible!important}
- html.goonk-mobile #mobile-app[data-has-resources=true] .mobile-resources .mobile-resource{display:flex;flex-direction:column;align-items:center;min-width:0!important;overflow:visible!important}
- html.goonk-mobile #mobile-app[data-has-resources=true] .mobile-resources .resource-quantity{font-size:clamp(9px,2.5vw,12px)!important;line-height:15px!important;white-space:nowrap;overflow:visible!important}
-}
-@container goonk-viewport (orientation:portrait) and (max-width:360px){
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top{grid-template-columns:44px minmax(0,1fr)!important;grid-template-rows:44px auto!important}
- html.goonk-mobile #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:1/-1!important;grid-row:2!important}
+/* Use the measured orientation as well as CSS: older Android browsers can
+   skip container rules. Resources still stretch across the available row. */
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top{display:grid!important;grid-template-columns:44px minmax(0,1fr) 80px!important;grid-template-rows:44px!important;gap:6px!important;padding:4px!important}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top>#game-menu-toggle{grid-column:1!important;grid-row:1!important}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top>.mobile-title{display:none!important}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:3!important;grid-row:1!important;width:100%!important;position:static!important;min-width:0!important;border-top:0;font-size:10px!important}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top .mobile-resources{grid-column:2!important;grid-row:1!important;width:100%!important;max-width:none!important;box-sizing:border-box;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr)) minmax(40px,1.6fr) minmax(0,1fr)!important;gap:2px!important;padding:2px 8px 2px 0!important;overflow:visible!important}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true] .mobile-resources .mobile-resource{display:flex;flex-direction:column;align-items:center;min-width:0!important;overflow:visible!important}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true] .mobile-resources img{width:20px!important;height:20px!important;max-width:100%;object-fit:contain}
+html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true] .mobile-resources .resource-quantity{font-size:clamp(9px,2.5vw,12px)!important;line-height:15px!important;white-space:nowrap;overflow:visible!important}
+@media(max-width:360px){
+ html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top{grid-template-columns:44px minmax(0,1fr)!important;grid-template-rows:44px auto!important}
+ html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-has-resources=true]>.mobile-top .mobile-calendar{grid-column:1/-1!important;grid-row:2!important}
 }
 
 @container goonk-viewport (orientation:portrait){

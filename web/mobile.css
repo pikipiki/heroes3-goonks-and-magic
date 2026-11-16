@@ -84,3 +84,8 @@
 #mobile-app .building-detail [data-building-prerequisite],#mobile-app .building-detail [data-building-goal]{min-height:44px}
 
 #mobile-viewport{container:goonk-viewport / size}
+
+/* iOS standalone can retain scrollY after rotation. The document-positioned
+   app frame must not be clipped by the shorter, scrolled body box.
+   html and #mobile-viewport retain their own overflow boundaries. */
+html.goonk-mobile body{overflow:visible!important}

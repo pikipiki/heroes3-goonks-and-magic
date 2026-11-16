@@ -1,0 +1,66 @@
+{
+  "physicalIphoneInspection": true,
+  "standalone": true,
+  "reproduction": "portrait -> landscape -> portrait",
+  "before": {
+    "scrollY": 59,
+    "visualHeight": 873,
+    "frameBottom": 872.984375,
+    "bodyBottom": 814,
+    "bodyOverflow": "hidden",
+    "buttonBottom": 833.984375,
+    "hitTargets": [
+      {
+        "y": 794.984375,
+        "tag": "BUTTON",
+        "ui": "endturn",
+        "id": ""
+      },
+      {
+        "y": 811.984375,
+        "tag": "BUTTON",
+        "ui": "endturn",
+        "id": ""
+      },
+      {
+        "y": 831.984375,
+        "tag": "HTML",
+        "id": ""
+      }
+    ]
+  },
+  "after": {
+    "scrollY": 59,
+    "bodyOverflow": "visible",
+    "hitTargets": [
+      {
+        "y": 794.984375,
+        "tag": "BUTTON",
+        "ui": "endturn",
+        "id": ""
+      },
+      {
+        "y": 811.984375,
+        "tag": "BUTTON",
+        "ui": "endturn",
+        "id": ""
+      },
+      {
+        "y": 831.984375,
+        "tag": "BUTTON",
+        "ui": "endturn",
+        "id": ""
+      }
+    ],
+    "userConfirmedVisibleAfterRotation": true
+  },
+  "fix": "Keep html and app frame clipped, but allow the scrolled body to paint its document-positioned app child.",
+  "settingsChecks": [
+    "Three consistent select controls",
+    "Embedded predecoded Heroes III Haste/Disguise icons",
+    "Two-click option visible on entering and reopening settings",
+    "Android resource row works without container queries",
+    "Mithril keeps a gap before Recruits"
+  ],
+  "deviceDataPolicy": "No device identifiers, browsing history, saves or credentials included."
+}
