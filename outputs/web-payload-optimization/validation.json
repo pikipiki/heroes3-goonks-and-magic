@@ -1,0 +1,165 @@
+{
+  "version": "0.4.232",
+  "baselineCommit": "c7ef9198",
+  "nativeFiles": 10460,
+  "nativeNamespaceAndContentsUnchanged": true,
+  "nativeFileOrderUnchanged": true,
+  "engineUnchanged": true,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "a211cec3289ee78e",
+    "wasm": "vcmiclient.4eaf88131cb6ec1a.wasm",
+    "sha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "siteBytesBefore": 916675908,
+  "siteBytesAfter": 841573100,
+  "siteBytesSaved": 75102808,
+  "uniqueDataBytesBefore": 752574358,
+  "uniqueDataBytesAfter": 702280562,
+  "uniqueDataBytesSaved": 50293796,
+  "logicalInstalledDataBytes": 752574358,
+  "newCompressionOrDecoder": false,
+  "browserLoaderSourceChanged": false,
+  "startupComparisons": {
+    "webkit-temporary": {
+      "before": {
+        "boot": {
+          "elapsedMs": 3805,
+          "bytes": 205626265,
+          "requests": 1104,
+          "storageMode": "temporary",
+          "install": null
+        },
+        "firstMap": {
+          "elapsedMs": 5673,
+          "bytes": 253577638,
+          "requests": 1160
+        },
+        "physicalDevice": false
+      },
+      "optimized": {
+        "boot": {
+          "elapsedMs": 3141,
+          "bytes": 200266729,
+          "requests": 1103,
+          "storageMode": "temporary",
+          "install": null
+        },
+        "firstMap": {
+          "elapsedMs": 4990,
+          "bytes": 241670660,
+          "requests": 1158
+        },
+        "physicalDevice": false
+      }
+    },
+    "chromium-temporary": {
+      "before": {
+        "boot": {
+          "elapsedMs": 3076,
+          "bytes": 201212331,
+          "requests": 1107,
+          "storageMode": "temporary",
+          "install": null
+        },
+        "firstMap": {
+          "elapsedMs": 4778,
+          "bytes": 246006979,
+          "requests": 1155
+        },
+        "physicalDevice": false
+      },
+      "optimized": {
+        "boot": {
+          "elapsedMs": 2941,
+          "bytes": 193889374,
+          "requests": 1105,
+          "storageMode": "temporary",
+          "install": null
+        },
+        "firstMap": {
+          "elapsedMs": 4582,
+          "bytes": 232136580,
+          "requests": 1152
+        },
+        "physicalDevice": false
+      }
+    },
+    "chromium-opfs": {
+      "before": {
+        "boot": {
+          "elapsedMs": 22521,
+          "bytes": 836787061,
+          "requests": 2067,
+          "storageMode": "opfs",
+          "install": {
+            "downloaded": 752574358,
+            "reused": 0,
+            "files": 10460
+          }
+        },
+        "firstMap": {
+          "elapsedMs": 24126,
+          "bytes": 836792012,
+          "requests": 2068
+        },
+        "physicalDevice": false
+      },
+      "optimized": {
+        "boot": {
+          "elapsedMs": 23352,
+          "bytes": 802378806,
+          "requests": 1976,
+          "storageMode": "opfs",
+          "install": {
+            "downloaded": 752574358,
+            "reused": 0,
+            "files": 10460
+          }
+        },
+        "firstMap": {
+          "elapsedMs": 25091,
+          "bytes": 802383757,
+          "requests": 1977
+        },
+        "physicalDevice": false
+      }
+    }
+  },
+  "regressionTests": {
+    "passed": 754,
+    "skipped": 48,
+    "failed": 0
+  },
+  "nativeRegression": {
+    "combats": {
+      "passed": true,
+      "completed": 20,
+      "interactions": null,
+      "wasmBytesMin": 268435456,
+      "wasmBytesMax": 268435456,
+      "physicalDevice": false,
+      "failures": []
+    },
+    "mixed": {
+      "passed": true,
+      "completed": 10,
+      "interactions": {
+        "hires": 10,
+        "dismissals": 10,
+        "equipment": 10,
+        "commanders": 10,
+        "spellbooks": 6
+      },
+      "wasmBytesMin": 268435456,
+      "wasmBytesMax": 268435456,
+      "physicalDevice": false,
+      "failures": []
+    }
+  }
+}

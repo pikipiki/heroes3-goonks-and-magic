@@ -1,3 +1,4 @@
+import {verifyAssetTransports} from './verify-asset-transports.mjs';
 import {exportedI32Constant} from './wasm-constant.mjs';
 import {inlineScriptHashes} from './script-policy.mjs';
 import crypto from 'node:crypto';
@@ -36,3 +37,6 @@ const memoryExport=fs.readFileSync('dist/'+eraJS,'utf8').match(/Module\["_vcmiWe
 assert(manifest.files.some(f=>f.path==='Mods/hero-paths/mod.json'),'Compatibilité des anciennes sauvegardes des voies manquante');
 assert(manifest.files.some(f=>f.path==='Mods/hero-paths/content/config/hero-paths.json'),'Définitions de compatibilité des voies manquantes');
 assert(!manifest.files.some(f=>f.path.startsWith('Mods/hero-paths-poc/')||/Maps\/900-hero-paths-/.test(f.path)),'Les fixtures du prototype ne doivent pas être publiées');
+
+const verifiedPayload=verifyAssetTransports('dist',manifest.files);
+console.log('Catalogue vérifié octet par octet : '+verifiedPayload.files+' fichiers natifs, '+verifiedPayload.transportBytes+' octets de transport.');

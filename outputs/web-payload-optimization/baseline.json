@@ -1,0 +1,19 @@
+{
+  "baselineCommit": "c7ef9198",
+  "siteBytes": 916675908,
+  "logicalGameBytes": 752574358,
+  "uniqueTransportBytes": 752574358,
+  "transportURLs": 1089,
+  "nativeFiles": 10460,
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "a211cec3289ee78e",
+    "wasm": "vcmiclient.4eaf88131cb6ec1a.wasm",
+    "sha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  }
+}

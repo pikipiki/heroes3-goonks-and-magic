@@ -4,7 +4,7 @@ import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './ver
 import {execFileSync} from 'node:child_process';
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
 import {scriptPolicy,applyScriptPolicy,authorizeExternalScripts} from './script-policy.mjs';
-import {packSmallAssets} from './asset-packs.mjs';
+import {packSmallAssets,deduplicateAssetURLs} from './asset-packs.mjs';
 import {visitBaseGame} from './base-game.mjs';
 import {makeManifest} from './assets.mjs';import {renderPage} from './page.mjs';
 import {publishCampaignMedia} from './publish-campaign-media.mjs';
@@ -20,7 +20,8 @@ const publicData=path.resolve('work/public-data');fs.rmSync(publicData,{recursiv
 execFileSync('python3',['scripts/normalize-map-instances.py',publicData+'/Maps']);
 const manifest=makeManifest(publicData,{includeBase:false});
 for(const file of manifest.files)file.url='.'+file.url;
-for(const file of manifest.files){const target=path.join(dist,decodeURIComponent(file.url));fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(publicData,file.path),target);}
+deduplicateAssetURLs(manifest.files);
+for(const file of manifest.files){const target=path.join(dist,decodeURIComponent(file.url));fs.mkdirSync(path.dirname(target),{recursive:true});if(!fs.existsSync(target))fs.copyFileSync(path.join(publicData,file.path),target);}
 const writePack=(url,bytes)=>{const target=path.join(dist,url);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);};
 if(fs.existsSync('game-data/manifest.json')){
  // The scenario picker scans the bundled map catalogue. Ship small maps
