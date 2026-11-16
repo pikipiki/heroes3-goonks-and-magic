@@ -17,8 +17,8 @@ for(const [name,type]of Object.entries({chromium,webkit}).filter(([n])=>!process
    await sc.waitForFunction(ready=>openbwCrossover.frame()>=ready,ready,{timeout:15000});
    await page.locator('#crossover-spells').click();await book.waitFor({state:'visible'});await book.locator('[data-spell-caster-select]').selectOption('-1');await book.locator('[data-school="0"]').click();
    const spell=book.locator(`[data-spell-id="${id}"][data-spell-caster="-1"]`);
-   for(let p=0;p<6&&!await spell.count();p++)await book.locator('[data-page="1"]').click();
-   const previous=await page.evaluate(()=>speedMagic.length);await spell.click();await book.locator('[data-cast-spell]').click();
+   assert(await spell.count(),'spell exists in the complete book');
+   const previous=await page.evaluate(()=>speedMagic.length);await spell.click();
    await page.waitForFunction(({id,previous})=>speedMagic.slice(previous).some(r=>r.ok&&r.events?.some(e=>e.id===id)),{id,previous},{timeout:15000});
    return await page.evaluate(({id,previous})=>speedMagic.slice(previous).find(r=>r.ok&&r.events?.some(e=>e.id===id)),{id,previous});
   };

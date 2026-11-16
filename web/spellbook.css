@@ -123,10 +123,10 @@ html.goonk-mobile :is(#mobile-app,#crossover-spellbook-root)[data-mode=spellbook
 }
 
 /* Combat spells form one vertically scrollable catalogue, with one cast action. */
-#mobile-app .mobile-spellbook[data-scrolling=true]>footer{grid-template-columns:minmax(0,1fr);grid-template-rows:46px}
-#mobile-app .mobile-spellbook[data-scrolling=true] .spell-list{overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook[data-scrolling=true]>footer{grid-template-columns:minmax(0,1fr);grid-template-rows:46px}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook[data-scrolling=true] .spell-list{overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain}
 
-#mobile-app .mobile-spellbook[data-scrolling=true] .spell-content{height:auto;box-sizing:border-box;overflow:hidden}
+:is(#mobile-app,#crossover-spellbook-root) .mobile-spellbook[data-scrolling=true] .spell-content{height:auto;box-sizing:border-box;overflow:hidden}
 /* Both native and real-time combat use this same spellbook component. */
 #crossover-spellbook-root{position:absolute;inset:0;z-index:40;container:goonk-viewport / size;touch-action:pan-y;color:#ffe8ad}
 #crossover-spellbook-root[hidden]{display:none!important}

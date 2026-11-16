@@ -1,3 +1,4 @@
+import {compactCampaignImages} from './compact-campaign-images.mjs';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {compressClassicEngine} from './compress-classic-engine.mjs';
 // Separate static publish directory, built from the verified Heroes bundle and crossover.
@@ -47,9 +48,13 @@ if(process.env.GOONK_PAGES==='1'){
  fs.writeFileSync(host,js.replace('const PACKED_WASM=false;','const PACKED_WASM=true;'));
 }
 
+const compactImages=process.env.GOONK_PAGES==='1'?compactCampaignImages(output):[];
+if(compactImages.length)console.log('Pages artwork: '+compactImages.reduce((n,row)=>n+row.saved,0)+' bytes saved without changing pixels');
+
 // Packaging changes the entry HTML and adds crossover files: refresh cache integrity.
 const previous=JSON.parse(fs.readFileSync(output+'/coi-serviceworker.js','utf8').match(/^const release = (.+);$/m)[1]);
 const files=new Set(Object.keys(previous.files).filter(file=>!file.endsWith('.symbols')&&fs.existsSync(path.join(output,file))));
+for(const row of compactImages)files.add(row.to);
 for(const entry of fs.readdirSync(output,{recursive:true,withFileTypes:true})){
  if(!entry.isFile())continue;
  const file=path.relative(output,path.join(entry.parentPath,entry.name)).split(path.sep).join('/');

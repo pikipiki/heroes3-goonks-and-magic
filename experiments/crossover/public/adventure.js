@@ -308,7 +308,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                 void launchSpell(spell, -1, 400, 250); }, onClose: () => finishChoice(false), onCaster: caster => { bookCaster = caster; bookPage = 0; renderBook(); } });
         const renderBook = () => { if (!sharedBook)
             throw Error('Livre de sorts Heroes indisponible.'); const all = catalogue?.spells || [], casters = [{ id: -1, name: 'Héros' }, ...[...new Set(all.filter(s => s.caster >= 0).map(s => s.caster))].map(id => ({ id, name: activePlan.stacks.find(s => s.id === id)?.name || 'Créature' }))]; if (!casters.some(c => c.id === bookCaster))
-            bookCaster = -1; const filtered = all.filter(s => s.caster === bookCaster && (bookSchool < 0 || s.schools?.includes(bookSchool))).sort((a, b) => a.level - b.level || a.name.localeCompare(b.name)); const pages = Math.max(1, Math.ceil(filtered.length / 12)); bookPage = Math.min(bookPage, pages - 1); sharedBook.update({ mode: 'spellbook', heroId: `${activePlan.battleId}:${bookCaster}`, heroMana: catalogue?.mana ?? 0, spellbook: { mana: catalogue?.mana ?? 0, manaLimit: win.goonkMobileState?.heroManaLimit, heroSpellPower: win.goonkMobileState?.heroSpellPower, inCombat: true, combatSpells: true, school: bookSchool, page: bookPage, pages, casters, caster: bookCaster, spells: filtered.slice(bookPage * 12, bookPage * 12 + 12).map(s => ({ ...s, ...(s.caster < 0 ? { casts: undefined } : {}), target: s.target === 'ground' ? 'location' : s.target, enabled: s.enabled !== false && s.ready <= (api().frame?.() ?? 0) && (s.caster < 0 ? s.cost <= (catalogue?.mana ?? 0) : s.casts !== 0) })) } }); bookRoot.hidden = false; };
+            bookCaster = -1; const filtered = all.filter(s => s.caster === bookCaster && (bookSchool < 0 || s.schools?.includes(bookSchool))).sort((a, b) => a.level - b.level || a.name.localeCompare(b.name)); const pages = 1; bookPage = 0; sharedBook.update({ mode: 'spellbook', heroId: `${activePlan.battleId}:${bookCaster}`, heroMana: catalogue?.mana ?? 0, spellbook: { mana: catalogue?.mana ?? 0, manaLimit: win.goonkMobileState?.heroManaLimit, heroSpellPower: win.goonkMobileState?.heroSpellPower, inCombat: true, combatSpells: true, school: bookSchool, page: bookPage, pages, casters, caster: bookCaster, spells: filtered.map(s => ({ ...s, ...(s.caster < 0 ? { casts: undefined } : {}), target: s.target === 'ground' ? 'location' : s.target, enabled: s.enabled !== false && s.ready <= (api().frame?.() ?? 0) && (s.caster < 0 ? s.cost <= (catalogue?.mana ?? 0) : s.casts !== 0) })) } }); bookRoot.hidden = false; };
         const api = () => activeFrame.contentWindow.openbwCrossover;
         let magic;
         const friendlyTargets = panel.querySelector('#crossover-friendly-targets');
@@ -760,7 +760,7 @@ export function installAdventure(target, base, onExit, trial = false) {
         if (trial && state.mode === 'lobby' && state.lobbyReady && !selected) {
             selected = true;
             win.setTimeout(() => { if (!disposed)
-                win.Module?._vcmiMobileCommand?.(111, 0, 0, 0, 0, 0); }, 0);
+                win.Module?._vcmiMobileCommand?.(1001, 0, 0, 0, 0, 0); }, 0);
         }
         if (trial && selected && state.mode === 'lobby' && state.selectedMap === 'Crossover - duel StarCraft' && state.lobbyReady) {
             selected = false;
