@@ -1,0 +1,22 @@
+{
+  "version": "0.4.219",
+  "engineSha256": "7e733674e108ae4c79e022310152d77282d4b99b85c6c84b2e6bc1310fbc59bc",
+  "saveVersion": 906,
+  "campaignAdmissionChanged": false,
+  "source": "Original zc4-0 TR:P1 E0, OB:T91 then OB:S on Walking Deads18/8 and24/25; original inset type91 must not retain creature blocking behavior.",
+  "behavior": "Hide only native MONSTER entries underlying a disabled logical SIGN plot from visitableObjects, retaining graphics and the serialized hidden-object list. Source forced entrance and blocking flags still determine coordinate visit versus adjacent blocking visit. Active ordinary monsters and hero entries remain intact.",
+  "migration": "Initialized906 source VMs persist one plotTraversalVersion marker without replay; every replicated source mutation reconciles these disabled sign cells.",
+  "verification": {
+    "ninja": "PASS ninja -j32 html5",
+    "unitTests": {
+      "pass": 755,
+      "skip": 34,
+      "fail": 0
+    },
+    "nativeFresh": "PASS empty sign, passable creature sign enters33/18, blocked creature sign stays34/18 before35/18, active ordinary creature starts battle, seven layouts",
+    "nativeLegacyWebKit": "PASS218 pending906 save, actual source trigger resumes, passable sign crossed, active monster starts battle",
+    "production003004": "PASS native save/reload, solo/hotseat turns, read-only asset hashes, positive BattleStart",
+    "temporaryDiagnosticsPublished": false
+  },
+  "pending": "zc3 full battle-script runtime, zc4 water-log bridge and later scenarios/victories/transfers remain unvalidated; zc1/zc2 remain the only admitted campaigns."
+}

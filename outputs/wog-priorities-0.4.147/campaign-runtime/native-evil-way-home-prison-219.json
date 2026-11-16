@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "engineSha256": "7e733674e108ae4c79e022310152d77282d4b99b85c6c84b2e6bc1310fbc59bc",
+  "scope": "Unchanged original zc4-0 progress, not its victory. Native QA army300 Archangels before losses; no script, enemy, quest flag or item fabrication.",
+  "stages": {
+    "zc4-messengers219": {
+      "passed": true,
+      "saveSha256": "90a24d0b2c1ea05b61b1eb1b57827940f8a22175773c3f1a240dc4bc5248d639",
+      "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "position": [
+        5,
+        13,
+        0
+      ],
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 116,
+          "index": 0,
+          "mana": 1,
+          "manaLimit": 40,
+          "movement": 1000000,
+          "movementLimit": 1700,
+          "name": "Xsi"
+        }
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "18 Skeleton Knights",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 297
+              }
+            }
+          ],
+          "lines": [
+            "Practicing the dark arts of necromancy, your hero is able to raise 18 of the enemy's dead to return under their service as Skeleton Knights."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Garrison"
+        }
+      ]
+    },
+    "zc4-grave-and-isra219": {
+      "passed": true,
+      "saveSha256": "b308e08bddbbd74d419c516ff84a209e46912d82030a9d167e94aa08d9873bfc",
+      "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "position": [
+        3,
+        10,
+        0
+      ],
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 116,
+          "index": 0,
+          "mana": 1,
+          "manaLimit": 40,
+          "movement": 1000000,
+          "movementLimit": 1700,
+          "name": "Xsi"
+        },
+        {
+          "hasSpellbook": true,
+          "id": 332,
+          "index": 1,
+          "mana": 10,
+          "manaLimit": 10,
+          "movement": 1500,
+          "movementLimit": 1500,
+          "name": "Isra"
+        }
+      ],
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [],
+          "lines": [
+            "{Search the Statue} Where do you want to search"
+          ],
+          "queryId": 520,
+          "scriptDialog": {
+            "canCancel": false,
+            "choices": [
+              {
+                "label": "North",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 300
+                },
+                "value": 1
+              },
+              {
+                "label": "Blue`s Experience",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 306,
+                  "y": 300
+                },
+                "value": 2
+              },
+              {
+                "label": "South",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 502,
+                  "y": 300
+                },
+                "value": 4
+              },
+              {
+                "label": "West",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 348
+                },
+                "value": 8
+              }
+            ],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "initial": 0,
+            "inputLabel": "",
+            "kind": "checklist",
+            "multiple": true,
+            "pictures": [],
+            "queryId": 520,
+            "resultVariable": 255,
+            "selection": 0,
+            "text": "{Search the Statue} Where do you want to search"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "You look to the west of the grave and find a blood red key!"
+          ],
+          "queryId": 521,
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "lines": [
+            "As you reign in your horse, a guard steps up to you, \"Welcome.  I have received word of your arrival.  Do you wish to pass at this time?\""
+          ],
+          "queryId": 553,
+          "title": "Game message",
+          "visitedObject": "Red Border Guard"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "In a dazzling display of daring, you break into the local jail and free the hero imprisoned there, who, in return, pledges loyalty to your cause."
+          ],
+          "queryId": -1,
+          "title": "Game message",
+          "visitedObject": "Prison"
+        }
+      ]
+    },
+    "zc4-isra-artifacts219": {
+      "passed": true,
+      "saveSha256": "aa827c83bdd29f9e569ee3e073095befef83e601925a6ce0417dfd46b0139443",
+      "originalArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+      "position": [
+        3,
+        10,
+        0
+      ],
+      "heroes": [
+        {
+          "hasSpellbook": true,
+          "id": 116,
+          "index": 0,
+          "mana": 1,
+          "manaLimit": 40,
+          "movement": 1000000,
+          "movementLimit": 1700,
+          "name": "Xsi"
+        },
+        {
+          "hasSpellbook": true,
+          "id": 332,
+          "index": 1,
+          "mana": 10,
+          "manaLimit": 10,
+          "movement": 1500,
+          "movementLimit": 1500,
+          "name": "Isra"
+        }
+      ],
+      "dialogs": [],
+      "exchangedItems": [
+        {
+          "name": "Blackshard of the Dead Knight",
+          "id": 15,
+          "destination": 3
+        },
+        {
+          "name": "Shield of the Yawning Dead",
+          "id": 2,
+          "destination": 4
+        }
+      ]
+    }
+  }
+}

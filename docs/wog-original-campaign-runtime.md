@@ -588,3 +588,13 @@ Une téléportation de l’auberge de zc3 ne tente plus d’entrer dans un décl
 Les preuves218 de `campaign-runtime/` indiquent le moteur exact de chaque parcours. Le moteur livré est `d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30`. Compilation WebAssembly et site vérifiés ;755 tests réussis,34 ignorés. Les cartes003/004 passent leurs sauvegardes, rechargements, rôles, tours et début de combat. WebKit vérifie sept formats mobiles/iPad, la stabilité des commandes, le défilement et la démolition avec combat. Aucun diagnostic privé ni sauvegarde de test n’est publié.
 
 Ces parcours utilisent une armée QA déclarée pour les combats longs, sans modifier les scripts, ennemis, drapeaux ou récompenses de quête. Ils ne prouvent pas encore les victoires finales : zc1 et zc2 restent actives ; zc3 et zc4 restent désactivées pendant la suite des quêtes, victoires et transferts. Le franchissement des monstres convertis en panneaux reste à examiner.
+
+## Franchissement des panneaux en 0.4.219
+
+Un Walking Dead converti en panneau désactivé conservait son blocage de créature : son conseil s’affichait, mais le héros restait devant et le chemin suivant pouvait être impossible. Les cellules logiques `SIGN` dont l’effet natif est désactivé masquent désormais uniquement l’entrée native de monstre ; l’image et la recherche ERM par coordonnées restent disponibles. Le masque de terrain détermine toujours si le héros entre ou reste devant. Les héros et les monstres ordinaires gardent leurs règles.
+
+Le contrôle indépendant entre réellement sur33/18, reste sur34/18 devant le panneau bloquant35/18, puis déclenche le combat du monstre témoin. Sept formats vérifient les commandes et le défilement stables. WebKit recharge un dialogue906 sauvegardé sous218 et reprend ces visites. Les anciennes parties initialisées reçoivent un marqueur de synchronisation sans rejouer leurs quêtes.
+
+Dans zc4 inchangée, Xsi franchit le passage et la porte bleue, gagne le poste des Messagers, obtient la clé rouge dans la tombe et libère Isra. Le véritable écran d’échange remet à Isra les deux objets déjà gagnés. Ces parcours avec armée QA ne constituent pas une victoire finale. Le pont sur l’eau et les étapes suivantes restent à porter ; les campagnes zc3/zc4 attendent leurs validations complètes.
+
+Le moteur est `7e733674e108ae4c79e022310152d77282d4b99b85c6c84b2e6bc1310fbc59bc`. Compilation WebAssembly, construction et vérification du site,755 tests réussis et34 ignorés ; les cartes003/004 passent leurs sauvegardes, rechargements, tours et début de combat. La publication218 et son démarrage public strict ont réussi ; son reçu est conservé.

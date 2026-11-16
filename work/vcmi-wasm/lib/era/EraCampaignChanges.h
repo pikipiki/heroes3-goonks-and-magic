@@ -24,6 +24,7 @@
 #include <stdexcept>
 #include <set>
 #include <algorithm>
+#include <sstream>
 VCMI_LIB_NAMESPACE_BEGIN
 namespace era_compat
 {
@@ -355,6 +356,32 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    }
   }
   else throw std::runtime_error("Unadmitted original campaign mutation: "+kind);
+ }
+ // A disabled T91 plot retains its original artwork, not the movement rules
+ // of the creature used to draw it. Keep that creature out of the native
+ // visitable list; sourceForceVisitable still dispatches the logical sign.
+ // The existing hidden-object list is serialized in906 and remains available
+ // to original OB/MO coordinate lookup and TR:E restoration.
+ const auto & sourceState=std::as_const(gs.getMap()).sourceCampaignState;
+ const auto & plots=sourceState["tileIdentities"];
+ if(plots.isStruct())for(const auto & [key,identity]:plots.Struct())
+ {
+  if(!identity.isVector()||identity.Vector().size()!=2||campaignInteger(identity.Vector()[0])!=int(Obj::SIGN))continue;
+  const auto & access=sourceState["objectAccessPositions"][key];if(!access.isNumber()||campaignInteger(access)!=0)continue;
+  int3 position;char first=0,second=0;std::istringstream input(key);
+  if(!(input>>position.x>>first>>position.y>>second>>position.z)||first!='/'||second!='/'||!input.eof()||!gs.getMap().isInTheMap(position))throw std::runtime_error("Invalid original plot coordinate");
+  auto & tile=gs.getMap().getTile(position);bool changed=false;
+  for(auto it=tile.visitableObjects.begin();it!=tile.visitableObjects.end();)
+  {
+   const auto * object=gs.getObj(*it);
+   if(object&&object->ID==Obj::MONSTER)
+   {
+    if(std::find(tile.sourceHiddenVisitableObjects.begin(),tile.sourceHiddenVisitableObjects.end(),*it)==tile.sourceHiddenVisitableObjects.end())tile.sourceHiddenVisitableObjects.push_back(*it);
+    it=tile.visitableObjects.erase(it);changed=true;
+   }
+   else ++it;
+  }
+  if(changed)gs.getMap().calculateGuardingGreaturePositions(position-int3(1,1,0),position+int3(1,1,0));
  }
 }
 }

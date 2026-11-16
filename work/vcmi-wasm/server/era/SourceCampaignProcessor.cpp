@@ -360,6 +360,7 @@ struct SourceCampaignProcessor::Impl final:Host
    JsonNode names;names.Struct();for(const auto & [id,fields]:std::as_const(state)["creatureNameBindings"].Struct())for(const auto & [field,index]:fields.Struct())if(index.Integer()!=0)names[id][field].String()=lookup(vm.z,int(index.Integer()));state["creatureNames"]=std::move(names);
   }
   state["vm"]=era_campaign_json::writeState(vm);
+  if(vm.initialized)state["plotTraversalVersion"].Integer()=1;
   state["running"].Bool()=!vm.continuations.empty()||!state["turnQueue"].Vector().empty();
   state["hero"].Integer()=heroId.getNum();state["object"].Integer()=objectId.getNum();state["player"].Integer()=player.getNum();state["pending"]=pending;
   // WoG's town-demolition tables exist even when a map has no CD commands.
@@ -831,7 +832,8 @@ struct SourceCampaignProcessor::Impl final:Host
   bind();if(!active)return false;
   // Existing906 saves may predate implicit CD defaults. Migrate the world
   // policy without replaying the initialized VM or its pending visit.
-  if(vm.initialized&&!era_campaign_demolition::active(state,gh.gameState().getMap().sourceCampaignWorld))persist();
+  if(vm.initialized&&(!era_campaign_demolition::active(state,gh.gameState().getMap().sourceCampaignWorld)
+     ||state["plotTraversalVersion"].isNull()))persist();
   if(!demolitionResumeChecked){demolitionResumeChecked=true;if(resumeDemolitionBattle())return true;}
   ensureTurnBarriers();
   if(!vm.initialized&&!vm.initializing)

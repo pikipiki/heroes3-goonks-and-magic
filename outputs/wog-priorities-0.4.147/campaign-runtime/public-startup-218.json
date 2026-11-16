@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "origin": "https://pikipiki.github.io/heroes3-goonks-and-magic/",
+  "engineSha256": "d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30",
+  "actualFetchedWasmSha256": "d3d1839c27034cffa2fab76d081fb0c3cce8b69641179e478f43f15bd88d6f30",
+  "cspBypassed": false,
+  "crossOriginIsolated": true,
+  "maps": [
+    {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 1,
+      "humanSeats": 1,
+      "index": 0,
+      "name": "Goonks — Trésors de WoG",
+      "path": "MAPS/003-Goonks-WoG",
+      "players": 2,
+      "width": 144
+    },
+    {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 2,
+      "humanSeats": 2,
+      "index": 1,
+      "name": "Goonks — Trésors de WoG en ligne",
+      "path": "MAPS/004-Goonks-WoG-Online",
+      "players": 2,
+      "width": 144
+    },
+    {
+      "castleChoice": false,
+      "height": 108,
+      "humanCastleChoices": 0,
+      "humanSeats": 4,
+      "index": 2,
+      "name": "Âòîðæåíèå íà Ýíäîãàð v1.0",
+      "path": "MAPS/Invasion of Endogar",
+      "players": 4,
+      "width": 108
+    },
+    {
+      "castleChoice": false,
+      "height": 108,
+      "humanCastleChoices": 0,
+      "humanSeats": 1,
+      "index": 3,
+      "name": "Adventuring Gnoll 1.01",
+      "path": "MAPS/L_Adventuring Gnoll",
+      "players": 6,
+      "width": 108
+    }
+  ],
+  "errors": []
+}
