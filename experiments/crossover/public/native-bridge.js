@@ -80,7 +80,7 @@ export function installNativeBridge(x, memory, target = window) {
             const pointer = x.openbw_crossover_sprite(id);
             if (!pointer)
                 throw Error('Unité indisponible.');
-            return new Uint8ClampedArray(memory.buffer, pointer, 96 * 96 * 4).slice();
+            return new Uint8ClampedArray(memory.buffer, pointer, 160 * 160 * 4).slice();
         },
         layer() {
             if (closed || !x.openbw_crossover_layer)

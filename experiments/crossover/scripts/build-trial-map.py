@@ -6,7 +6,7 @@ with zipfile.ZipFile(root / 'maps/000-Goonk.vmap') as source:
     entries = {name: source.read(name) for name in source.namelist()}
 header = json.loads(entries['header.json'])
 header.update(name='Crossover - duel StarCraft', description='Attaque le garde immédiatement à droite de Christian. Sept troupes finales de factions différentes, une créature par troupe, affrontent douze unités Terrans, Zergs et Protoss avec leurs améliorations maximales sur le même champ de bataille. La bataille se joue dans OpenBW ; ses pertes sont appliquées ensuite par VCMI. Test solo limité aux batailles de terrain et à 128 créatures par camp.')
-header['mods'].append({'modId':'heroes-starcraft','name':'Heroes StarCraft','version':'0.2.0'})
+header['mods'].append({'modId':'heroes-starcraft','name':'Heroes StarCraft','version':'0.3.0'})
 spells=[]
 for name in ['offensive','timed','other']:
     text=(root/'work/vcmi-wasm/config/spells'/f'{name}.json').read_text()
@@ -15,7 +15,7 @@ objects = [row for row in json.loads(entries['objects.json']) if row['instanceNa
 for row in objects:
     if row['instanceName'] == 'goonkHero':
         row['options'].update(type='core:christian', army=[{'type':'tum-era:'+key,'amount':1} for key in ['cherub','gemDragon','guardianOfZeus','antichrist','redBonesDragon','chasmDragon','ancestralBehemoth']], artifacts={'spellbook':'core:spellBook','rightHand':'core:titansThunder'}, spellBook=spells, primarySkills={'attack':1,'defence':1,'spellpower':4,'knowledge':30}, secondarySkills={key:'expert' for key in ['core:wisdom','core:airMagic','core:earthMagic','core:fireMagic','core:waterMagic']}, experience=0)
-objects.append({'type':'core:garrisonHorizontal','subtype':'core:normal','instanceName':'starcraftGuard','x':10,'y':11,'l':0,'template':{'animation':'crossover/marine-map','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'removableUnits':False,'army':[{'type':'heroes-starcraft:'+key,'amount':2} for key in ['marine','firebat','zergling','hydralisk','zealot','dragoon']]}})
+objects.append({'type':'core:garrisonHorizontal','subtype':'core:normal','instanceName':'starcraftGuard','x':10,'y':11,'l':0,'template':{'animation':'crossover/marine-map','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'removableUnits':False,'army':[{'type':'heroes-starcraft:'+key,'amount':2} for key in ['battlecruiser','siegeTank','ultralisk','guardian','carrier','archon']]}})
 entries['gameSettings.json']=json.dumps({'modules':{'commanders':False}}).encode()
 entries['header.json'] = json.dumps(header, ensure_ascii=False).encode()
 entries['objects.json'] = json.dumps(objects, ensure_ascii=False).encode()

@@ -8,10 +8,10 @@ Le site expérimental ouvre directement **Heroes Goonk**. Le bouton **Démo Hero
 
 1. Dans l’accueil Heroes, appuyer sur **Démo Heroes × StarCraft**. En partie, cette action se trouve dans **☰ → Démo Heroes × StarCraft**. La carte et l’attaque sont préparées automatiquement. Depuis une aventure en cours, le jeu attend d’abord sa sauvegarde dédiée **Avant-demo-StarCraft** ; celle-ci se recharge par le menu Heroes.
 2. Attendre le téléchargement initial des données, puis appuyer sur **Commencer le combat** : seul le temps démarre, aucun ordre allié n’est envoyé.
-3. Choisir une troupe dans le terrain ou sa carte, puis toucher le terrain pour la déplacer ou un ennemi pour l’attaquer. **Tout sélectionner** sélectionne les groupes alliés. **Attaquer** arme un ordre vers le prochain point choisi ; **Arrêter** annule les ordres et rend la sélection passive. Sans ordre, tes troupes restent immobiles et ne ripostent pas, même sous le feu ennemi. Les Marines ennemis conservent leur IA.
+3. Choisir une troupe dans le terrain ou sa carte, puis toucher le terrain pour la déplacer ou un ennemi pour l’attaquer. **Tout sélectionner** sélectionne les groupes alliés. **Attaquer** arme un ordre vers le prochain point choisi ; **Arrêter** annule les ordres et rend la sélection passive. Sans ordre, tes troupes restent immobiles et ne ripostent pas, même sous le feu ennemi. Les unités StarCraft ennemies conservent leur IA.
 4. Confirmer le bilan Heroes pour poursuivre l’aventure avec les survivants. La sauvegarde après ce retour conserve les pertes.
 
-La démo contient sept créatures finales Heroes, une par groupe, de factions différentes, face à douze unités StarCraft : deux Marines, Firebats, Zerglings, Hydralisks, Zealots et Dragoons, avec leurs améliorations maximales. Les troupes Heroes restent des troupes Heroes ; les Marines ont une véritable définition `heroes-starcraft:marine` dans le catalogue VCMI. Ils ne sont pas des gardes renommés. Chaque type possède ses propres animations originales de déplacement, attaque et mort, ainsi que son son d’attaque, extraits du rendu natif OpenBW. Ces animations fonctionnent aussi dans le combat classique. Les animations et le décor Heroes sont fournis par VCMI.
+La démo contient sept créatures finales Heroes, une par groupe, de factions différentes, face à douze unités StarCraft : deux Battlecruisers, chars de siège, Ultralisks, Guardians, Carriers et Archons, avec leurs améliorations maximales. Les troupes Heroes restent des troupes Heroes ; les unités StarCraft ont leurs propres définitions `heroes-starcraft:*` dans le catalogue VCMI. Chaque Carrier dispose de huit Interceptors natifs en temps réel ; ils restent les munitions du Carrier et ne comptent pas parmi les douze unités principales. Chaque type possède ses propres animations originales de déplacement, attaque et mort, ainsi que son son d’attaque, extraits du rendu natif OpenBW. Ces animations fonctionnent aussi dans le combat classique. Les animations et le décor Heroes sont fournis par VCMI.
 
 Le bouton **▶ Temps réel** est disponible pendant ton tour dans les vues de combat classique et verticale. Il délègue la bataille en cours en conservant les pertes, blessures, effets et mana. Le temps démarre immédiatement ; tes troupes attendent toujours tes ordres. Cette option concerne les combats solo de terrain, côté attaquant, avec au plus 32 groupes et 128 combattants par camp.
 
@@ -134,7 +134,7 @@ Les tests `tests/rts-battle-browser.mjs` et `tests/heroes-rts-browser.mjs` utili
 
 ## Livre de sorts et commandes tactiles
 
-La démo oppose sept cohortes d’une créature finale de factions différentes à douze unités StarCraft (Marine, Firebat, Zergling, Hydralisk, Zealot, Dragoon), avec les améliorations maximales. Le héros dispose du livre de combat complet ; les capacités des créatures utilisent également le moteur VCMI natif.
+La démo oppose sept cohortes d’une créature finale de factions différentes à douze unités StarCraft (Battlecruiser, Siege Tank, Ultralisk, Guardian, Carrier, Archon), avec les améliorations maximales. Le héros dispose du livre de combat complet ; les capacités des créatures utilisent également le moteur VCMI natif.
 
 Avant de commencer, « Préparer 5 sorts » permet d’affecter les cinq raccourcis au héros ou aux créatures. La préparation ne dépense pas de mana et ne démarre pas la simulation. Les préférences sont mémorisées localement par identité de créature. Pendant le combat, les touches 1–5 ou les boutons ouvrent directement le ciblage en pause. Le livre complet reste accessible.
 
@@ -148,7 +148,7 @@ Les mêmes cinq choix sont disponibles dans les combats natifs Heroes, en « Cla
 
 ## Continuité entre les modes
 
-Les deux modes partagent une santé de groupe compatible Heroes : plusieurs membres complets et un membre blessé. Le transfert conserve la santé totale et regroupe les blessures distribuées selon cette règle. Pour les Protoss, cette santé inclut les boucliers (Zealot : 160 ; Dragoon : 180) ; en temps réel, les boucliers absorbent les dégâts avant les PV. Les sorts et créatures invoquées passent par les objets natifs VCMI, et non une reconstruction de leurs noms.
+Les deux modes partagent une santé de groupe compatible Heroes : plusieurs membres complets et un membre blessé. Le transfert conserve la santé totale et regroupe les blessures distribuées selon cette règle. Pour les Protoss, cette santé inclut les boucliers (Carrier : 350 PV + 150 boucliers ; Archon : 10 PV + 350 boucliers) ; en temps réel, les boucliers absorbent les dégâts avant les PV. Les sorts et créatures invoquées passent par les objets natifs VCMI, et non une reconstruction de leurs noms.
 
 `node scripts/export-classic-art.mjs` (depuis ce dossier) régénère les sprites classiques à partir du moteur et des archives locales vérifiées. Il nécessite Playwright et Python avec Pillow. Les PNG indexés réservent les couleurs de transparence, ombres et sélection attendues par VCMI.
 
@@ -166,7 +166,7 @@ Résurrection et Animation des morts exposent les cibles admises par les mécani
 
 Le placement Heroes est transmis à OpenBW au lieu de recréer la formation de départ. Le retour au tour par tour utilise la case légale la plus proche, en tenant compte des obstacles et des créatures à deux cases ; la nouvelle entrée RTS reprend ce placement.
 
-Les six espèces StarCraft utilisent la même échelle native dans le rendu RTS et dans les animations exportées pour VCMI. Les images classiques sont réextraites dans une instance isolée par espèce ; les proportions ne changent pas avec la pose. Le centre des effets de tir et d’impact suit la nouvelle silhouette. Les ressources MPQ restent les sprites classiques, sans détails HD de remplacement.
+Les douze espèces StarCraft disponibles utilisent la même échelle native dans le rendu RTS et dans les animations exportées pour VCMI. Les images classiques sont réextraites dans une instance isolée par espèce ; les proportions ne changent pas avec la pose. Le centre des effets de tir et d’impact suit la nouvelle silhouette. Les ressources MPQ restent les sprites classiques, sans détails HD de remplacement.
 
 La compilation WebAssembly est partagée entre les hôtes d’une même page, identifiée par l’empreinte du moteur, et démarre en parallèle avec la vérification des archives. La promesse et le module appartiennent à la fenêtre principale : ce cache ne conserve ni la simulation ni les archives d’un iframe retiré. Le passage RTS conserve l’écran Heroes derrière un indicateur annulable et n’affiche la nouvelle vue qu’une fois son terrain prêt. Une préparation initiale reste nécessaire.
 
@@ -175,3 +175,5 @@ Le retour classique garde les petites unités StarCraft lisibles au-dessus des g
 Bouclier de feu renvoie les dégâts au corps à corps réellement reçus et montre ses ripostes. Les boucliers Protoss sont consommés avant leur santé ; les tirs ne sont pas réfléchis. La protection conserve son animation native tant qu’elle est active.
 
 La branche crossover est rebasée sur `main` 0.4.201. Pour rester sous la limite Pages sans retirer les nouvelles ressources de campagne, son paquet de publication compacte les JSON stricts et compresse sans perte le moteur classique et ses données en gzip. Les navigateurs compatibles doivent prendre en charge `DecompressionStream('gzip')` ; Chromium et WebKit sont vérifiés. La décompression restitue le WASM original et conserve ses contrôles de version et d’intégrité.
+
+Les gros vaisseaux utilisent une extraction native de 160 × 160 pixels, sans couper leur silhouette. Le cache de rendu est lissé à 2× (320 × 320), afin de garder une mémoire par image inférieure à l’ancien cache 384 × 384. Les créatures Heroes réutilisent leur animation de frappe contre les cibles aériennes, avec des dégâts natifs, sans appeler un script aérien absent de leur doublure.

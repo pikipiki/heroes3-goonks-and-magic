@@ -1,4 +1,4 @@
-export const STARCRAFT_UNITS = { marine: 0, firebat: 32, zergling: 37, hydralisk: 38, zealot: 65, dragoon: 66 };
+export const STARCRAFT_UNITS = { marine: 0, firebat: 32, zergling: 37, hydralisk: 38, zealot: 65, dragoon: 66, siegeTank: 5, battlecruiser: 12, ultralisk: 39, guardian: 44, archon: 68, carrier: 72 };
 export function battlePlan(value) {
     const plan = { version: 1, battleId: value.battleId, magic: value.magic, fromClassic: value.fromClassic, stacks: value.stacks.map(row => ({ ...row, heroes: !row.creature.startsWith("heroes-starcraft:"), unit: row.creature.startsWith('heroes-starcraft:') ? (STARCRAFT_UNITS[row.creature.split(':')[1]] ?? -1) : row.shooter ? 0 : 37 })) };
     validateBattlePlan(plan);

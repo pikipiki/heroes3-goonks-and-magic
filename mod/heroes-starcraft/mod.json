@@ -1,11 +1,12 @@
 {
   "name": "Heroes × StarCraft — experimental",
-  "description": "Six original StarCraft creatures adapted to Heroes III turn-based battles and the shared real-time battlefield.",
-  "version": "0.2.0",
+  "description": "Douze types StarCraft originaux, dont six unités de fin de partie, pour les combats Heroes et temps réel.",
+  "version": "0.3.0",
   "author": "Heroes Goonk crossover",
   "modType": "Creatures",
   "creatures": [
     "config/marine.json",
-    "config/mixed-units.json"
+    "config/mixed-units.json",
+    "config/late-units.json"
   ]
 }

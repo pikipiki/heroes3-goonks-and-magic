@@ -1,4 +1,4 @@
-export const STARCRAFT_UNITS:Readonly<Record<string,number>>={marine:0,firebat:32,zergling:37,hydralisk:38,zealot:65,dragoon:66};
+export const STARCRAFT_UNITS:Readonly<Record<string,number>>={marine:0,firebat:32,zergling:37,hydralisk:38,zealot:65,dragoon:66,siegeTank:5,battlecruiser:12,ultralisk:39,guardian:44,archon:68,carrier:72};
 export type CreatureSpell={id:number;key:string;name:string;casts:number;radius:number;targets:{id:number;resistance:number;damage:number[]}[]};
 export type HeroesStack = {id: number; side: number; count: number; name: string; creature: string; shooter: boolean; x?:number;y?:number; spells?:CreatureSpell[];temporary?:boolean;firstHp?:number;maxCount?:number; health: number; damageMin?:number;damageMax?:number;defense?:number;attack?:number;speed?:number};
 export type BattlePlan = {version: 1; battleId: number; magic?:import('./magic.js').MagicCatalogue;fromClassic?:boolean; stacks: (HeroesStack & {unit: number; heroes?:boolean})[]};

@@ -167,5 +167,174 @@
     "sounds": [
       "attack"
     ]
+  },
+  "siegeTank": {
+    "nativeBounds": {
+      "width": 64,
+      "height": 42
+    },
+    "nativeScale": 1.5,
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 2
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 2
+      },
+      "death": {
+        "count": 12,
+        "distinct": 4
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "battlecruiser": {
+    "nativeBounds": {
+      "width": 100,
+      "height": 69
+    },
+    "nativeScale": 1.5,
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 3
+      },
+      "move": {
+        "count": 8,
+        "distinct": 2
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 9
+      },
+      "death": {
+        "count": 12,
+        "distinct": 4
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "ultralisk": {
+    "nativeBounds": {
+      "width": 78,
+      "height": 57
+    },
+    "nativeScale": 1.5,
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 1
+      },
+      "move": {
+        "count": 8,
+        "distinct": 8
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 5
+      },
+      "death": {
+        "count": 12,
+        "distinct": 5
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "guardian": {
+    "nativeBounds": {
+      "width": 60,
+      "height": 48
+    },
+    "nativeScale": 1.5,
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 5
+      },
+      "move": {
+        "count": 8,
+        "distinct": 7
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 10
+      },
+      "death": {
+        "count": 12,
+        "distinct": 4
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "archon": {
+    "nativeBounds": {
+      "width": 72,
+      "height": 87
+    },
+    "nativeScale": 1.5,
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 8
+      },
+      "move": {
+        "count": 8,
+        "distinct": 8
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 16
+      },
+      "death": {
+        "count": 12,
+        "distinct": 4
+      }
+    },
+    "sounds": [
+      "attack"
+    ]
+  },
+  "carrier": {
+    "nativeBounds": {
+      "width": 115,
+      "height": 63
+    },
+    "nativeScale": 1.5,
+    "frames": {
+      "idle": {
+        "count": 8,
+        "distinct": 2
+      },
+      "move": {
+        "count": 8,
+        "distinct": 1
+      },
+      "attack": {
+        "count": 16,
+        "distinct": 3
+      },
+      "death": {
+        "count": 12,
+        "distinct": 4
+      }
+    },
+    "sounds": [
+      "attack",
+      "death"
+    ]
   }
 }

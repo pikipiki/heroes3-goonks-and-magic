@@ -14,7 +14,7 @@ export function battleView(units, camera) {
 // Explicit attack targeting gives enemies priority; transparent margins do not.
 export function battlePick(units, positions, point, camera, preferEnemy, portrait = false, mirrored = false, hitTest) {
     const distance = (unit) => { const at = positions.get(unit.id) || unit, nx = point.x - (at.x - camera.x), ny = point.y - (at.y - camera.y), dx = portrait ? ny : nx, dy = portrait ? (mirrored ? nx : -nx) : ny; return Math.hypot(dx, Math.max(0, -dy - COMBAT_BODY_HEIGHT, dy - 10)) + Math.abs(dy) * .15; };
-    const candidates = units.filter(unit => unit.hp > 0 && distance(unit) < 28).sort((a, b) => distance(a) - distance(b));
+    const candidates = units.filter(unit => unit.hp > 0 && !unit.auxiliary && distance(unit) < 28).sort((a, b) => distance(a) - distance(b));
     const solid = hitTest ? candidates.filter(unit => { const at = positions.get(unit.id) || unit, nx = point.x - (at.x - camera.x), ny = point.y - (at.y - camera.y); return hitTest(unit, portrait ? ny : nx, portrait ? (mirrored ? nx : -nx) : ny); }) : candidates;
     const targets = solid.length ? solid : candidates;
     return targets.find(unit => unit.owner === (preferEnemy ? 1 : 0)) || targets[0];
@@ -32,12 +32,14 @@ export function sharedField(win, canvas, api, plan) {
     canvas.width = 800;
     canvas.height = 500;
     canvas.setAttribute('aria-label', 'Champ de bataille Heroes III : unités Heroes et StarCraft en temps réel');
+    // Reserve headroom for capital ships when the field is rotated on phones.
+    const portraitView = plan.stacks.some(row => !row.heroes && [5, 12, 39, 44, 68, 72].includes(row.unit)) ? { zoom: .8, x: 80, y: 50 } : { zoom: 1, x: 0, y: 0 };
     const clock = new RenderClock(), resolution = new RenderDensity(), timeline = new SimulationTimeline(), oldUnits = new Map(), cycles = new Map(), deaths = new Set(), hits = new Map();
-    const spriteCache = new Map(), firstPixels = new Uint8ClampedArray(192 * 192 * 4), scaledPixels = new Uint8ClampedArray(384 * 384 * 4);
+    const spriteCache = new Map(), scaledPixels = new Uint8ClampedArray(320 * 320 * 4);
     const heroBounds = new Map(), starBounds = new Map();
     const bodyHits = new Map();
     const sprites = new Map(), positions = new Map();
-    const makeSprite = () => { const image = win.document.createElement('canvas'); image.width = image.height = 384; return image; };
+    const makeSprite = () => { const image = win.document.createElement('canvas'); image.width = image.height = 320; return image; };
     const heroCanvases = new Map();
     let previousArt;
     let request = 0, closed = false, selected, attackMode = false, units = [], nativeFrame = -1, view;
@@ -88,7 +90,7 @@ export function sharedField(win, canvas, api, plan) {
                     oldUnits.set(unit.id, unit);
                 nativeFrame = snapshot.frame;
                 timeline.receive(nativeFrame, now, api.tickDuration?.() || 42);
-                units = snapshot.units.filter(unit => unit.stackId !== undefined && unit.stackId >= 0);
+                units = snapshot.units.filter(unit => unit.auxiliary || (unit.stackId !== undefined && unit.stackId >= 0));
                 camera = api.camera();
                 if (!view && units.length) {
                     view = battleView(units, camera);
@@ -97,7 +99,7 @@ export function sharedField(win, canvas, api, plan) {
                 }
                 const alive = new Set(units.map(unit => unit.id));
                 for (const old of oldUnits.values())
-                    if (!alive.has(old.id) && !revivedBodies.has(old.id)) {
+                    if (!old.auxiliary && !alive.has(old.id) && !revivedBodies.has(old.id)) {
                         corpses.set(old.id, { ...old, hp: 0 });
                         if (!deathTimes.has(old.id))
                             deathTimes.set(old.id, now);
@@ -156,15 +158,15 @@ export function sharedField(win, canvas, api, plan) {
                                     }
                             }
                             if (!image) {
-                                const first = smoothSprite2x(raw, 96, 96, firstPixels), scaled = smoothSprite2x(new Uint8Array(first.buffer), 192, 192, scaledPixels), surface = makeSprite();
+                                const scaled = smoothSprite2x(raw, 160, 160, scaledPixels), surface = makeSprite();
                                 const smooth = surface.getContext('2d');
-                                smooth.putImageData(new ImageData(scaled, 384, 384), 0, 0);
+                                smooth.putImageData(new ImageData(scaled, 320, 320), 0, 0);
                                 smooth.filter = 'blur(1px)';
                                 smooth.globalCompositeOperation = 'copy';
                                 smooth.drawImage(surface, 0, 0);
                                 smooth.filter = 'none';
                                 smooth.globalCompositeOperation = 'source-over';
-                                image = { raw: pixels.slice(), canvas: surface, bounds: opaqueBounds(scaled, 384, 384) };
+                                image = { raw: pixels.slice(), canvas: surface, bounds: opaqueBounds(scaled, 320, 320) };
                                 if (spriteCache.size >= 64)
                                     spriteCache.delete(spriteCache.keys().next().value);
                             }
@@ -224,7 +226,7 @@ export function sharedField(win, canvas, api, plan) {
             }
             context.drawImage(backdrop, 0, 0, portrait ? 500 : 800, portrait ? 800 : 500);
         }
-        const transform = portrait ? { zoom: 1, x: 0, y: 0 } : view || { zoom: 1, x: 0, y: 0 };
+        const transform = portrait ? portraitView : view || { zoom: 1, x: 0, y: 0 };
         if (portrait)
             context.setTransform(0, (mirrorBackground ? 1 : -1) * transform.zoom * density, transform.zoom * density, 0, transform.y * density, (mirrorBackground ? transform.x : 800 - transform.x) * density);
         else
@@ -335,7 +337,7 @@ export function sharedField(win, canvas, api, plan) {
                     context.imageSmoothingEnabled = true;
                     context.imageSmoothingQuality = 'high';
                     const marineBlend = pair.blend, marineContext = marineBlend.getContext('2d');
-                    marineContext.clearRect(0, 0, 384, 384);
+                    marineContext.clearRect(0, 0, 320, 320);
                     marineContext.globalAlpha = 1 - amount;
                     marineContext.drawImage(pair.before, 0, 0);
                     marineContext.globalCompositeOperation = 'lighter';
@@ -343,11 +345,13 @@ export function sharedField(win, canvas, api, plan) {
                     marineContext.drawImage(pair.after, 0, 0);
                     marineContext.globalCompositeOperation = 'source-over';
                     const hitUntil = hits.get(unit.id) || 0, recoil = hitUntil > now ? Math.sin((1 - (hitUntil - now) / 320) * Math.PI) * 7 : 0;
-                    const bounds = starBounds.get(unit.id) || { x: 0, y: 0, width: 384, height: 384 }, place = starcraftPlacement(bounds);
+                    const bounds = starBounds.get(unit.id) || { x: 0, y: 0, width: 320, height: 320 }, place = starcraftPlacement(bounds);
                     bodyHeight = bounds.height * place.scale;
                     bodyHits.set(unit.id, { image: marineBlend, x: place.x + recoil, y: 5 + place.y, scale: place.scale, flip: false, height: bodyHeight });
-                    context.drawImage(marineBlend, x + place.x + recoil, y + 5 + place.y, 384 * place.scale, 384 * place.scale);
+                    context.drawImage(marineBlend, x + place.x + recoil, y + 5 + place.y, 320 * place.scale, 320 * place.scale);
                 }
+                if (unit.auxiliary)
+                    continue;
                 const hitUntil = hits.get(unit.id) || 0;
                 if (hitUntil > now) {
                     const age = 1 - (hitUntil - now) / 320;
@@ -454,7 +458,7 @@ export function sharedField(win, canvas, api, plan) {
         }
         context.setTransform(1, 0, 0, 1, 0, 0);
         canvas.dataset.heroesUnits = String(units.filter(unit => unit.heroes).length);
-        canvas.dataset.starcraftUnits = String(units.filter(unit => !unit.heroes).length);
+        canvas.dataset.starcraftUnits = String(units.filter(unit => !unit.heroes && !unit.auxiliary).length);
         canvas.dataset.frame = String(nativeFrame);
     };
     const hitBody = (unit, x, y) => {
@@ -470,7 +474,7 @@ export function sharedField(win, canvas, api, plan) {
         return body.image.getContext('2d').getImageData(px, py, 1, 1).data[3] > 32;
     };
     const pointer = (event) => {
-        const box = canvas.getBoundingClientRect(), transform = portrait ? { zoom: 1, x: 0, y: 0 } : view || { zoom: 1, x: 0, y: 0 }, camera = api.camera();
+        const box = canvas.getBoundingClientRect(), transform = portrait ? portraitView : view || { zoom: 1, x: 0, y: 0 }, camera = api.camera();
         const sx = (event.clientX - box.left) * (portrait ? 500 : 800) / box.width, sy = (event.clientY - box.top) * (portrait ? 800 : 500) / box.height;
         const x = ((portrait ? (mirrorBackground ? sy : 800 - sy) : sx) - transform.x) / transform.zoom, y = ((portrait ? sx : sy) - transform.y) / transform.zoom;
         const targetKind = canvas.dataset.spellTarget;

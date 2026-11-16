@@ -1,0 +1,506 @@
+{
+  "battlecruiser": {
+    "name": {
+      "singular": "Battlecruiser",
+      "plural": "Battlecruisers"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 2000
+    },
+    "speed": 7,
+    "hitPoints": 500,
+    "attack": 34,
+    "defense": 6,
+    "shots": 32,
+    "damage": {
+      "min": 34,
+      "max": 34
+    },
+    "fightValue": 2000,
+    "aiValue": 2000,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      },
+      "flying": {
+        "type": "FLYING"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/battlecruiser",
+      "map": "crossover/battlecruiser-map",
+      "iconSmall": "crossover/battlecruiser.png",
+      "iconLarge": "crossover/battlecruiser.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
+    "sound": {
+      "attack": "crossover/battlecruiser-attack.wav",
+      "shoot": "crossover/battlecruiser-attack.wav"
+    },
+    "doubleWide": true
+  },
+  "siegeTank": {
+    "name": {
+      "singular": "Siege Tank",
+      "plural": "Siege Tanks"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 2000
+    },
+    "speed": 7,
+    "hitPoints": 150,
+    "attack": 39,
+    "defense": 4,
+    "shots": 32,
+    "damage": {
+      "min": 39,
+      "max": 39
+    },
+    "fightValue": 2000,
+    "aiValue": 2000,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/siegeTank",
+      "map": "crossover/siegeTank-map",
+      "iconSmall": "crossover/siegeTank.png",
+      "iconLarge": "crossover/siegeTank.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
+    "sound": {
+      "attack": "crossover/siegeTank-attack.wav",
+      "shoot": "crossover/siegeTank-attack.wav"
+    },
+    "doubleWide": true
+  },
+  "ultralisk": {
+    "name": {
+      "singular": "Ultralisk",
+      "plural": "Ultralisks"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 2000
+    },
+    "speed": 13,
+    "hitPoints": 400,
+    "attack": 29,
+    "defense": 6,
+    "shots": 0,
+    "damage": {
+      "min": 29,
+      "max": 29
+    },
+    "fightValue": 2000,
+    "aiValue": 2000,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {},
+    "graphics": {
+      "animation": "crossover/ultralisk",
+      "map": "crossover/ultralisk-map",
+      "iconSmall": "crossover/ultralisk.png",
+      "iconLarge": "crossover/ultralisk.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
+    "sound": {
+      "attack": "crossover/ultralisk-attack.wav",
+      "shoot": "crossover/ultralisk-attack.wav"
+    },
+    "doubleWide": true
+  },
+  "guardian": {
+    "name": {
+      "singular": "Guardian",
+      "plural": "Guardians"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 2000
+    },
+    "speed": 6,
+    "hitPoints": 150,
+    "attack": 26,
+    "defense": 5,
+    "shots": 32,
+    "damage": {
+      "min": 26,
+      "max": 26
+    },
+    "fightValue": 2000,
+    "aiValue": 2000,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      },
+      "flying": {
+        "type": "FLYING"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/guardian",
+      "map": "crossover/guardian-map",
+      "iconSmall": "crossover/guardian.png",
+      "iconLarge": "crossover/guardian.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
+    "sound": {
+      "attack": "crossover/guardian-attack.wav",
+      "shoot": "crossover/guardian-attack.wav"
+    },
+    "doubleWide": false
+  },
+  "carrier": {
+    "name": {
+      "singular": "Carrier",
+      "plural": "Carriers"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 2000
+    },
+    "speed": 8,
+    "hitPoints": 500,
+    "attack": 72,
+    "defense": 7,
+    "shots": 32,
+    "damage": {
+      "min": 72,
+      "max": 72
+    },
+    "fightValue": 2000,
+    "aiValue": 2000,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      },
+      "flying": {
+        "type": "FLYING"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/carrier",
+      "map": "crossover/carrier-map",
+      "iconSmall": "crossover/carrier.png",
+      "iconLarge": "crossover/carrier.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    "description": "Unité StarCraft de fin de partie, améliorations maximales. Carrier chargé de huit Interceptors en temps réel ; attaque de groupe adaptée aux tours Heroes.",
+    "sound": {
+      "attack": "crossover/carrier-attack.wav",
+      "shoot": "crossover/carrier-attack.wav",
+      "killed": "crossover/carrier-death.wav"
+    },
+    "doubleWide": true
+  },
+  "archon": {
+    "name": {
+      "singular": "Archon",
+      "plural": "Archons"
+    },
+    "faction": "neutral",
+    "level": 7,
+    "cost": {
+      "gold": 2000
+    },
+    "speed": 10,
+    "hitPoints": 360,
+    "attack": 39,
+    "defense": 3,
+    "shots": 32,
+    "damage": {
+      "min": 39,
+      "max": 39
+    },
+    "fightValue": 2000,
+    "aiValue": 2000,
+    "advMapAmount": {
+      "min": 6,
+      "max": 6
+    },
+    "growth": 0,
+    "hasDoubleWeek": false,
+    "excludeFromRandomization": true,
+    "abilities": {
+      "shooting": {
+        "type": "SHOOTER"
+      }
+    },
+    "graphics": {
+      "animation": "crossover/archon",
+      "map": "crossover/archon-map",
+      "iconSmall": "crossover/archon.png",
+      "iconLarge": "crossover/archon.png",
+      "timeBetweenFidgets": 10,
+      "animationTime": {
+        "walk": 0.7,
+        "attack": 0.8,
+        "idle": 1.5
+      },
+      "missile": {
+        "frameAngles": [
+          0
+        ],
+        "offset": {
+          "upperX": 0,
+          "upperY": -40,
+          "middleX": 0,
+          "middleY": -35,
+          "lowerX": 0,
+          "lowerY": -26
+        },
+        "attackClimaxFrame": 5,
+        "minimumRayFlightTime": 0.35,
+        "ray": [
+          {
+            "start": [
+              255,
+              230,
+              70,
+              255
+            ],
+            "end": [
+              255,
+              65,
+              10,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    "description": "Unité StarCraft de fin de partie, améliorations maximales. Statistiques et animations originales adaptées au combat Heroes et au temps réel.",
+    "sound": {
+      "attack": "crossover/archon-attack.wav",
+      "shoot": "crossover/archon-attack.wav"
+    },
+    "doubleWide": false
+  }
+}

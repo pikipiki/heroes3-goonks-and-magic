@@ -1,7 +1,7 @@
 /** Stable product API over the real OpenBW exports, installed only after native init. */
 import {STARCRAFT_UNITS,validateBattlePlan, type BattlePlan, type BattleState} from './battle.js';
 export type CreatureSoundKind='attack'|'hit'|'death'|`spell:${number}`;
-export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;maxHp?:number;hp256?:number;shields256?:number;shields?:number;maxShields?:number;order?:number;cooldown?:number;target?:number; x: number; y: number};
+export type NativeUnit = {id: number; type: number; owner: number; completed: boolean; hp: number; stackId?:number;heroes?:boolean;auxiliary?:boolean;maxHp?:number;hp256?:number;shields256?:number;shields?:number;maxShields?:number;order?:number;cooldown?:number;target?:number; x: number; y: number};
 export type NativeCensus = {frame: number; view: {x: number; y: number; width: number; height: number}; units: NativeUnit[]};
 export type NativeCohort = {initial: number; present: number; missing: number; missingIds: number[]};
 export type NativeSample = {frame: number; checksum: number; outcome: number; cohort?: NativeCohort};
@@ -119,7 +119,7 @@ export function installNativeBridge(x: NativeExports, memory: WebAssembly.Memory
     sprite(id){
       if(closed||!x.openbw_crossover_sprite||!Number.isSafeInteger(id)||id<1||id>65535)throw Error('Sprite indisponible.');
       const pointer=x.openbw_crossover_sprite(id);if(!pointer)throw Error('Unité indisponible.');
-      return new Uint8ClampedArray(memory.buffer,pointer,96*96*4).slice();
+      return new Uint8ClampedArray(memory.buffer,pointer,160*160*4).slice();
     },
     layer(){
       if(closed||!x.openbw_crossover_layer)throw Error('Rendu partagé indisponible.');

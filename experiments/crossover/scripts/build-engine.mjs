@@ -19,7 +19,7 @@ const adapter=root+'native/openbw-crossover.cpp';
 const adapterSha256=crypto.createHash('sha256').update(fs.readFileSync(adapter)).digest('hex');
 const out=root+'public/starcraft/openbw.wasm';
 fs.mkdirSync(path.dirname(out),{recursive:true});
-const flags=['-std=c++17','-O2','-fno-exceptions','-mexec-model=reactor','-DOPENBW_NO_EXCEPTIONS','-DOPENBW_ENABLE_UI','-DOPENBW_NO_SDL_IMAGE','-DOPENBW_NO_SDL_MIXER','-I'+source,'-I'+source+'/ui','-ffile-prefix-map='+root+'=crossover','-ffile-prefix-map='+source+'=openbw','-Wl,-z,stack-size=8388608','-Wl,--strip-debug'];
+const flags=['-isystem',path.join(process.env.WASI_SDK,'share/wasi-sysroot/include/wasm32-wasip1/noeh/c++/v1'),'-std=c++17','-O2','-fno-exceptions','-mexec-model=reactor','-DOPENBW_NO_EXCEPTIONS','-DOPENBW_ENABLE_UI','-DOPENBW_NO_SDL_IMAGE','-DOPENBW_NO_SDL_MIXER','-I'+source,'-I'+source+'/ui','-ffile-prefix-map='+root+'=crossover','-ffile-prefix-map='+source+'=openbw','-Wl,-z,stack-size=8388608','-Wl,--strip-debug'];
 const workspace=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-openbw-'));
 const adapted=path.join(workspace,'openbw');
 try {
@@ -31,6 +31,8 @@ try {
  const reflectedHit='\t\tunit_deal_damage(target, damage, source_unit, source_owner, weapon->id != WeaponTypes::Irradiate);';
  if(transformed.split(reflectedHit).length!==2)throw Error('Pinned damage application hook changed.');
  transformed=transformed.replace(reflectedHit,'\t\t::crossover_fire_shield(target, source_unit, (damage+shield_damage).raw_value);\n'+reflectedHit);
+ // Heroes stand-ins share their ground attack script for air targets too.
+ transformed=transformed.replaceAll('anim = iscript_anims::AirAttkRpt;', 'anim = ::crossover_heroes_proxy(u) ? iscript_anims::GndAttkRpt : iscript_anims::AirAttkRpt;');
  const speedStart=transformed.indexOf('\tfp8 get_modified_unit_speed(const unit_t* u, fp8 base_speed) const {');
  const speedEnd=transformed.indexOf('\tfp8 get_modified_unit_acceleration(',speedStart);
  const speedSection=transformed.slice(speedStart,speedEnd);
