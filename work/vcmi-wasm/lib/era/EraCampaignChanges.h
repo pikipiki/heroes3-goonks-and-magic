@@ -4,6 +4,7 @@
 #include "../CPlayerState.h"
 #include "EraCampaignJson.h"
 #include "../mapping/CMap.h"
+#include "../callback/GameRandomizer.h"
 #include "../mapObjects/CGHeroInstance.h"
 #include "../mapObjects/CGCreature.h"
 #include "../mapObjects/CGPandoraBox.h"
@@ -57,6 +58,21 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  for(const auto & change:packet.changes.Vector())
  {
   const auto & kind=change["kind"].String();
+  if(kind=="reserveHero")
+  {
+   auto & map=gs.getMap();const int type=campaignInteger(change["hero"]);
+   if(type<0||type>=156||map.tryGetFromHeroPool(HeroTypeID(type))||map.getHero(HeroTypeID(type))
+    ||campaignInteger(change["object"])!=int(map.objects.size()))
+    throw std::runtime_error("Invalid original reserve hero creation");
+   auto hero=std::make_shared<CGHeroInstance>(&gs);hero->subID=type;
+   map.addToHeroPool(hero);map.generateUniqueInstanceName(hero.get());
+   // Initialize on BOTH replicas. initHero creates registered artifacts, so a
+   // server-only initialized pointer would desynchronize artifact instance IDs.
+   GameRandomizer randomizer(gs);randomizer.setSeed(campaignInteger(change["seed"]));hero->initHero(randomizer);
+   // The native tavern availability list deliberately remains unchanged.
+   continue;
+  }
+
   if(kind=="guardAccessRefresh")
   {
    gs.getMap().calculateGuardingGreaturePositions();
@@ -138,6 +154,7 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
   }
   const auto id=ObjectInstanceID(campaignInteger(change["object"]));
   auto * object=gs.getObjInstance(id);
+  if(!object)object=gs.getHero(id);
   if(!object)throw std::runtime_error("Original campaign mutation target missing");
   if(kind=="firePhase")
   {

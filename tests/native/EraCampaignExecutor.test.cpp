@@ -43,6 +43,12 @@ int main()
  State s;Executor e(p,s,context,host);e.dispatch("LE",{1});assert(e.run());assert(s.v[1]==43&&s.v[2]==1);assert(s.frames.size()==1);
  // A known original command error abandons that command, then resumes the trigger after acknowledgement.
  Program recover;recover.sha256="recover";Command failed;failed.receiver="CH";failed.operations={{"StopCommand",{}},{"Reply",{}}};recover.initializers={failed,cmd("VR",{var('v',7)},"S",{num(123)})};State rs;Recorder errorHost;Executor re(recover,rs,context,errorHost);re.initialize();assert(!re.run());assert(errorHost.prompts==1&&errorHost.replies==0);State savedError=rs;Executor rerun(recover,savedError,context,errorHost);assert(rerun.run());assert(errorHost.prompts==1&&errorHost.replies==0&&savedError.v[7]==123&&savedError.initialized);
+ // Original Samaritan TM13 contains !!FU&v91=1:P. The omitted selector is
+ // literal0, not an invalid opcode and not an inferred call to function70.
+ Program omitted;omitted.sha256="omitted-function-zero";
+ omitted.blocks={block("TM",{num(13)},{cmd("FU",{},"P"),cmd("FU",{num(0)},"P"),cmd("VR",{var('v',7)},"S",{num(1)})}),
+  block("FU",{num(70)},{cmd("VR",{var('v',8)},"S",{num(99)})})};
+ State omittedState;Executor omittedVm(omitted,omittedState,context,host);omittedVm.dispatch("TM",{13});assert(omittedVm.run());assert(omittedState.v[7]==1&&omittedState.v[8]==0);
  // Initializers may call only functions declared before that instruction.
  Program init;init.sha256="initializers";auto early=cmd("FU",{num(1)},"P");early.visibleBlocks=0;auto late=early;late.visibleBlocks=1;
  init.initializers={early,late};init.blocks={block("FU",{num(1)},{cmd("VR",{var('v',1)},"+",{num(1)})})};

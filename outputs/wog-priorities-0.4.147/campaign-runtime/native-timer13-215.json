@@ -1,0 +1,16 @@
+{
+  "version": "0.4.215",
+  "passed": true,
+  "engineSha256": "ffdd9c72eeab08f0e479906c8b6935711eafff9012b28c587ce668c802d0044b",
+  "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "originalProgramsUnchanged": true,
+  "nativeDayTransition": {
+    "from": 3,
+    "to": 4
+  },
+  "saveVersion": 906,
+  "inputSaveSha256": "ded0a70b49f401157b2f40973a39e21f1e83c24941ac574ae7350105153b34bd",
+  "outputSaveSha256": "152ae0783459751380c67386c971aa432acf2d3fd932010d2c7e136b5ff83db4",
+  "errors": [],
+  "scope": "Actual original TM13 after all four crystal-sector flags; omitted FU:P defaults to0 and does not crash. No quest or victory modification."
+}

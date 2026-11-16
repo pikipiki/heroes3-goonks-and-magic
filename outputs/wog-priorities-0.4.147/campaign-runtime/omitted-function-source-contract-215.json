@@ -1,0 +1,19 @@
+{
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "facts": [
+    {
+      "addresses": "73b60f..73b659",
+      "behavior": "GetNum initializes numeric value and variable number to0."
+    },
+    {
+      "addresses": "73b186..73b198",
+      "behavior": "Empty/non-numeric GetSubNum branch succeeds without replacing the initial zero."
+    },
+    {
+      "addresses": "73c800,73c907..73c90d",
+      "behavior": "GetNumAutoSelf counts this parsed selector; an omitted FU:P selector is literal0."
+    }
+  ],
+  "sourceUse": "Original zc2-1 TM13 invokes FU&v91=1:P; the original text is unchanged. Function0 has no matching handler. It must not invoke FU70 implicitly.",
+  "nativeUnitControls": "Missing FU and explicit FU0 both no-op; explicit selectors and DO selector arity remain checked."
+}

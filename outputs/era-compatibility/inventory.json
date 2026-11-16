@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reference": {
     "label": "TUM3.5 supplied source + installed VCMI WoG",
-    "release": "0.4.214",
+    "release": "0.4.215",
     "tumMetadata": {
       "caption": {
         "en_US": "Third Upgrade Mod",
@@ -138251,7 +138251,7 @@
       "priority": 4,
       "id": "original-maps",
       "title": "Cartes et campagnes originales WoG",
-      "scope": "Campagne zc1 activée : trois victoires natives et deux transferts validés. Les trois autres campagnes et Cave restent désactivés ; leurs 137 sources compilent mais leurs quêtes, combats et victoires restent à terminer et valider. Le sous-mod Maps historique reste désactivé ; le catalogue actif expose uniquement les archives admises. État détaillé : docs/wog-original-campaign-runtime.md.",
+      "scope": "Campagnes zc1 et zc2 activées : chacune possède trois victoires natives et deux transferts validés. Les deux autres campagnes et Cave restent désactivés ; les 137 sources des campagnes compilent, mais les parcours restants nécessitent encore leurs validations natives. Le sous-mod Maps historique reste désactivé ; le catalogue actif expose uniquement les archives admises. État détaillé : docs/wog-original-campaign-runtime.md.",
       "acceptance": "Inventorier scripts/dépendances puis terminer les scénarios de référence jusqu’à leurs conditions de victoire."
     },
     {

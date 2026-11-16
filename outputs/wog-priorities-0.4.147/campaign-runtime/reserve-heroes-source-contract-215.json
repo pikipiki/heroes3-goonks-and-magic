@@ -1,0 +1,18 @@
+{
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "disassemblySha256": "068fb4738185e9722109252a1bfcd2831565b71f1e34195fe3894e8ac05594fe",
+  "facts": [
+    {
+      "addresses": "710c3c..710c52",
+      "behavior": "GetHeroStr rejects indices below0 or at least156."
+    },
+    {
+      "addresses": "710c54..710c79",
+      "behavior": "Every valid index returns base+0x21620+index*0x492, without a placed-object or owner check."
+    }
+  ],
+  "nativeRepresentation": "Source HE resolves on-map heroes and native reserve records. Missing original banned heroes receive replicated native initialization with one explicit seed, including registered artifacts on both replicas; tavern availability is unchanged.",
+  "neutralExperience": "Native neutral level-ups complete automatically; a player query cannot be used because neutral queries have no participants.",
+  "saveFormat": 906,
+  "newNetworkPacketOrFields": false
+}

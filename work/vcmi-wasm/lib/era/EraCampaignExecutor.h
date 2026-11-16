@@ -236,8 +236,11 @@ public:
    {
     if(op.code=="E"&&command.receiver=="FU"){arity(op,0);finishFrame();continue;}
     if(op.code!="P")throw std::runtime_error("Unimplemented campaign function operation "+op.code);
-    const auto count=command.receiver=="DO"?4u:1u;if(command.selectors.size()!=count)throw std::runtime_error("Invalid campaign function selector");
-    const auto function=readNumber(command.selectors[0],state,context);
+    const auto count=command.receiver=="DO"?4u:1u;
+    if(command.selectors.size()!=count&&!(count==1&&command.selectors.empty()))throw std::runtime_error("Invalid campaign function selector");
+    // 358f GetNumAutoFl parses an omitted selector as literal zero. FU:P
+    // therefore calls the undeclared function0; it does not guess FU70.
+    const auto function=command.selectors.empty()?0:readNumber(command.selectors[0],state,context);
     if(count==1)callFunction(function,op.args,visible);
     else callFunction(function,op.args,visible,true,readNumber(command.selectors[1],state,context),readNumber(command.selectors[2],state,context),readNumber(command.selectors[3],state,context));
     continue;

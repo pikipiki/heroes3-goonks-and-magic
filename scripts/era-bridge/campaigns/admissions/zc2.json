@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "zc2",
+  "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "engineSha256": "ffdd9c72eeab08f0e479906c8b6935711eafff9012b28c587ce668c802d0044b",
+  "originalScriptsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 3,
+    "days": 19,
+    "name": "The Samaritan",
+    "playerName": "Goonk",
+    "queryId": 57250380,
+    "score": 1073,
+    "unranked": true,
+    "won": true
+  },
+  "scenarios": [
+    {
+      "id": "zc2-0",
+      "programSha256": "683f5d5bcaa7f8ec4cf2a3d0cc4c18f8dbda5fe70ae9697d90fbe6deacdd8d5d",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc2-1",
+      "programSha256": "081f9193109c231b7dd0d5de9c3cd9d6220464b7c423a523b61207a7e93a7746",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc2-2",
+      "programSha256": "33a5eed68c382c040145c128918771542f747f97fd99c130a7fec628c051e900",
+      "nativeVictory": true
+    }
+  ],
+  "transfers": [
+    {
+      "from": "zc2-0",
+      "to": "zc2-1",
+      "native": true
+    },
+    {
+      "from": "zc2-1",
+      "to": "zc2-2",
+      "native": true
+    }
+  ],
+  "evidence": [
+    "native-samaritan-first-transfer-213.json",
+    "native-samaritan-completion-215.json",
+    "native-reserve-heroes-215.json"
+  ],
+  "limitation": "Native original quest/victory/transfer validation with declared offline QA armies and accelerated native pathfinder travel; not difficulty validation."
+}

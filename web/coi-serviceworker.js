@@ -12,6 +12,22 @@ const cacheKey = (file, digest) => {
   return url.href;
 };
 
+// Shell installation is atomic: a transient CDN failure must not strand a
+// first launch waiting for a worker that could not install. Keep SRI on every
+// attempt and let persistent failures abort the new release as before.
+async function fetchShell(request, options) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const response = await fetch(request, options);
+      if (![502, 503, 504].includes(response.status) || attempt === 2) return response;
+      await response.body?.cancel();
+    } catch (error) {
+      if (attempt === 2) throw error;
+    }
+    await new Promise(resolve => setTimeout(resolve, 250 * (attempt + 1)));
+  }
+}
+
 self.addEventListener('install', event => {
   if (!release) return;
   event.waitUntil((async () => {
@@ -34,7 +50,7 @@ self.addEventListener('install', event => {
           // Some hosts append their own HTML snippets after the build.
           const htmlVersion = release.htmlVersions[file];
           const integrity = htmlVersion ? '' : 'sha256-' + digest;
-          const response = await fetch(fileURL(file), {cache: 'reload', integrity});
+          const response = await fetchShell(fileURL(file), {cache: 'reload', integrity});
           if (!response.ok) throw new Error('Offline install failed for ' + file);
           if (htmlVersion && !(await response.clone().text()).includes('<meta name="goonk-release" content="' + htmlVersion + '">')) {
             throw new Error('Offline release changed during install');
@@ -117,7 +133,7 @@ self.addEventListener('fetch', event => {
       if (response) return isolated(response);
     }
     try {
-      return isolated(await fetch(request));
+      return isolated(await (digest ? fetchShell(request) : fetch(request)));
     } catch (error) {
       if (request.destination === 'image' && file.startsWith('assets/data/')) {
         const response = await readInstalledImage(file).catch(() => null);

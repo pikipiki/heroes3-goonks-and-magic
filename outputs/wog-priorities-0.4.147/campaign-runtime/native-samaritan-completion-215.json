@@ -1,0 +1,184 @@
+{
+  "version": "0.4.215",
+  "engineSha256": "ffdd9c72eeab08f0e479906c8b6935711eafff9012b28c587ce668c802d0044b",
+  "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+  "originalProgramsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 3,
+    "days": 19,
+    "name": "The Samaritan",
+    "playerName": "Goonk",
+    "queryId": 57250380,
+    "score": 1073,
+    "unranked": true,
+    "won": true
+  },
+  "scenarios": [
+    {
+      "id": "zc2-0",
+      "programSha256": "683f5d5bcaa7f8ec4cf2a3d0cc4c18f8dbda5fe70ae9697d90fbe6deacdd8d5d",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc2-1",
+      "programSha256": "081f9193109c231b7dd0d5de9c3cd9d6220464b7c423a523b61207a7e93a7746",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc2-2",
+      "programSha256": "33a5eed68c382c040145c128918771542f747f97fd99c130a7fec628c051e900",
+      "nativeVictory": true
+    }
+  ],
+  "secondScenario": {
+    "physicalCrystalsRegenerated": 35,
+    "finalReward": "Original artifact106 (Pendant of Negativity), granted by unchanged FU2/FU3",
+    "pendingVictorySaveSha256": "42ca321750a4012037dcdb901158879945fce280ac9958b58b3d133e2a4e088e",
+    "nativeSelection": {
+      "bonus": -1,
+      "bonuses": [],
+      "canStart": true,
+      "chooseDifficulty": true,
+      "description": "He is called the Samaritan. \r\nNobody knows his real power. \r\nPlease play and discover his history.\r\n\r\nby Bruno",
+      "difficulty": 1,
+      "mapRect": {
+        "h": 600,
+        "w": 456,
+        "x": 0,
+        "y": 0
+      },
+      "name": "The Samaritan",
+      "scenarioDescription": "My Disciple, \n\nThis time I send you to a dangerous region... \nBe careful...",
+      "scenarioName": "Choas",
+      "scenarios": [
+        {
+          "available": false,
+          "completed": true,
+          "id": 0,
+          "name": "Gaia, where are you?"
+        },
+        {
+          "available": false,
+          "completed": true,
+          "id": 1,
+          "name": "Save behemot"
+        },
+        {
+          "available": true,
+          "completed": false,
+          "id": 2,
+          "name": "Choas"
+        }
+      ],
+      "selected": 2
+    }
+  },
+  "secondToThirdTransfer": {
+    "chromium": {
+      "passed": true,
+      "saveVersion": 906,
+      "saveSha256": "a676e36115c9ce53cc3704e3971f0ab1d4717d250ab89864e81dfa8c80bfbd3a"
+    },
+    "webkit": {
+      "passed": true,
+      "saveVersion": 906,
+      "saveSha256": "ce37ebb48a8a706df8136f6f4643e2fb98acc7c2355aada777e7f77411df0787"
+    }
+  },
+  "thirdScenario": {
+    "nativeFinalVictory": true,
+    "endingLayouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "stableInput": true,
+        "actionsVisible": true
+      },
+      {
+        "width": 568,
+        "height": 320,
+        "stableInput": true,
+        "actionsVisible": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "stableInput": true,
+        "actionsVisible": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "stableInput": true,
+        "actionsVisible": true
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "stableInput": true,
+        "actionsVisible": true
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "stableInput": true,
+        "actionsVisible": true
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "stableInput": true,
+        "actionsVisible": true
+      }
+    ],
+    "weeklyCycle": {
+      "passed": true,
+      "startDay": 1,
+      "endDay": 8,
+      "saveSha256": "c3d6ccbf55796a0f4a3be489f75055c7566bc09eb6ff276cb4e6923101a521cf"
+    },
+    "ownedTownsBeforeFinalCapture": [
+      {
+        "name": "Hermit Cove",
+        "id": 1858
+      },
+      {
+        "name": "Lostmoor",
+        "id": 1859
+      },
+      {
+        "name": "Marshwall",
+        "id": 1860
+      },
+      {
+        "name": "Stillbog",
+        "id": 1861
+      },
+      {
+        "name": "Mudshire",
+        "id": 1865
+      },
+      {
+        "name": "Edgewater",
+        "id": 1862
+      },
+      {
+        "name": "Deadwood",
+        "id": 1863
+      }
+    ],
+    "finalOriginalTownTarget": [
+      68,
+      69,
+      0
+    ]
+  },
+  "firstVictoryAndTransferEvidence": "native-samaritan-first-transfer-213.json",
+  "limitations": [
+    "Controlled native offline army:50 Archangels for first final battle,400 during crystal journey,2000 during final conquest; source, enemies and quest flags unchanged.",
+    "Native offline movement/reveal cheats accelerate actual pathfinder travel; no hero teleport or victory cheat.",
+    "This validates quest progression, original transfers and native completion, not campaign difficulty."
+  ]
+}

@@ -1,0 +1,2081 @@
+{
+  "version": "0.4.215",
+  "engineSha256": "ffdd9c72eeab08f0e479906c8b6935711eafff9012b28c587ce668c802d0044b",
+  "cases": {
+    "chromium": {
+      "passed": true,
+      "browser": "chromium",
+      "engineSha256": "ffdd9c72eeab08f0e479906c8b6935711eafff9012b28c587ce668c802d0044b",
+      "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "inputSaveSha256": "a676e36115c9ce53cc3704e3971f0ab1d4717d250ab89864e81dfa8c80bfbd3a",
+      "saveSha256": "39bc05eaa6725ed926d580d5daf99fe652ead1bfeb425cfdb9c77b21deaaab96",
+      "originalProgramsUnchanged": true,
+      "nativeResourceCheatUsed": true,
+      "scope": "Original third-scenario global book, experience, mana and school-spell initialization survives actual reserve recruitment; no campaign-victory claim",
+      "offers": {
+        "0": {
+          "className": "Witch",
+          "id": 122,
+          "level": 20,
+          "name": "Voy",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 275,
+            "y": 347
+          }
+        },
+        "1": {
+          "className": "Battle Mage",
+          "id": 107,
+          "level": 20,
+          "name": "Terek",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 365,
+            "y": 347
+          }
+        }
+      },
+      "recruitedHero": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2088,
+            "name": "Voy",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 56,
+                "attack": 3,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 13,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 6,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              {
+                "aiValue": 126,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  110,
+                  0
+                ],
+                "count": 4,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 6,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 115,
+                "growth": 9,
+                "health": 14,
+                "icon": "",
+                "id": 100,
+                "key": "core:lizardman",
+                "name": "Lizardman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 2088,
+        "heroMana": 90,
+        "heroManaLimit": 90,
+        "heroMoving": false,
+        "heroName": "Voy",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Witch",
+          "commanderIcon": 16,
+          "experience": 82052,
+          "experienceIcon": 4,
+          "id": 2088,
+          "level": 20,
+          "luck": {
+            "icon": 8,
+            "value": 3
+          },
+          "mana": 90,
+          "manaIcon": 5,
+          "manaLimit": 90,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Voy",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            3,
+            10,
+            9
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            },
+            {
+              "description": "{Expert Navigation}\n\nExpert Navigation increases your hero's movement points at sea by 150%.",
+              "icon": 10,
+              "mastery": "Expert",
+              "name": "Navigation"
+            },
+            {
+              "description": "{Expert Water Magic}\n\nExpert Water Magic allows your hero to cast Water spells at reduced cost and maximum effectiveness.",
+              "icon": 11,
+              "mastery": "Expert",
+              "name": "Water Magic"
+            },
+            {
+              "description": "{Expert Air Magic}\n\nExpert Air Magic allows your hero to cast Air spells at reduced cost and maximum effectiveness.",
+              "icon": 12,
+              "mastery": "Expert",
+              "name": "Air Magic"
+            },
+            {
+              "description": "{Expert Eagle Eye}\n\nExpert Eagle Eye gives your hero a 60% chance to learn any spell up to 4th level used in combat.",
+              "icon": 13,
+              "mastery": "Expert",
+              "name": "Eagle Eye"
+            },
+            {
+              "description": "{Expert Earth Magic}\n\nExpert Earth Magic allows your hero to cast Earth spells at reduced cost and maximum effectiveness.",
+              "icon": 14,
+              "mastery": "Expert",
+              "name": "Earth Magic"
+            },
+            {
+              "description": "{Expert Luck}\n\nExpert Luck increases your hero's luck by 3.",
+              "icon": 15,
+              "mastery": "Expert",
+              "name": "Luck"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Navigation skill percentage.",
+            "icon": 6,
+            "name": "Navigation"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 122,
+            "index": 0,
+            "mana": 90,
+            "manaLimit": 90,
+            "movement": 2210,
+            "movementLimit": 2210,
+            "name": "Gus"
+          },
+          {
+            "hasSpellbook": true,
+            "id": 2088,
+            "index": 1,
+            "mana": 90,
+            "manaLimit": 90,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Voy"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1560,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 2,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 3,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 4,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 5,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 6,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 7,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          100,
+          100,
+          105,
+          100,
+          100,
+          100,
+          98000,
+          100
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 1858,
+            "index": 0,
+            "name": "Hermit Cove"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2088,
+          "origin": [
+            2,
+            3,
+            1
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": false,
+              "direction": 0,
+              "x": 2,
+              "y": 2
+            },
+            {
+              "available": false,
+              "direction": 1,
+              "x": 3,
+              "y": 2
+            },
+            {
+              "available": false,
+              "direction": 2,
+              "x": 3,
+              "y": 3
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 3,
+              "y": 4
+            },
+            {
+              "available": false,
+              "direction": 4,
+              "x": 2,
+              "y": 4
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 1,
+              "y": 4
+            },
+            {
+              "available": false,
+              "direction": 6,
+              "x": 1,
+              "y": 3
+            },
+            {
+              "available": false,
+              "direction": 7,
+              "x": 1,
+              "y": 2
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 56,
+              "attack": 3,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 13,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 5,
+              "description": "",
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "maximum": 13,
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 4,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 6,
+              "description": "",
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "maximum": 4,
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "slot": 1,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2088,
+          "heroName": "Voy",
+          "troops": [
+            {
+              "aiValue": 56,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 13,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 8,
+              "description": "",
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "magicDamageReduction": 0,
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 7,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 4,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 9,
+              "description": "",
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "magicDamageReduction": 0,
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": true,
+              "shots": 12,
+              "slot": 1,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 59080360
+      },
+      "spells": {
+        "combatSpells": true,
+        "inCombat": false,
+        "mana": 90,
+        "manaLimit": 90,
+        "page": 0,
+        "pages": 1,
+        "school": -1,
+        "scrollable": false,
+        "spells": [
+          {
+            "cost": 4,
+            "description": "{Expert Magic Arrow}\n\nCauses a bolt of magical energy to strike the selected unit.\n\nDamage inflicted is 20 points more than Basic Magic Arrow.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 15,
+            "level": 1,
+            "name": "Magic Arrow",
+            "target": "enemy",
+            "w": 65,
+            "x": 106,
+            "y": 53
+          },
+          {
+            "cost": 4,
+            "description": "{Expert Shield}\n\nShields all friendly units, reducing the amount of damage received from hand-to-hand attacks.\n\nProtection is twice that of Basic Shield.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 27,
+            "level": 1,
+            "name": "Shield",
+            "target": "none",
+            "w": 65,
+            "x": 191,
+            "y": 53
+          },
+          {
+            "cost": 4,
+            "description": "{Expert Stone Skin}\n\nIncreases the defense strength of all friendly units.\n\nEffect is twice that of Basic Stone Skin.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 46,
+            "level": 1,
+            "name": "Stone Skin",
+            "target": "none",
+            "w": 65,
+            "x": 276,
+            "y": 53
+          },
+          {
+            "cost": 8,
+            "description": "{Expert Death Ripple}\n\nSends a wave of death across the battlefield which damages all non-undead units.\n\nDamage inflicted is 20 points more than Basic Death Ripple.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 24,
+            "level": 2,
+            "name": "Death Ripple",
+            "target": "none",
+            "w": 65,
+            "x": 106,
+            "y": 150
+          },
+          {
+            "cost": 6,
+            "description": "{Expert Quicksand}\n\nRandomly places eight small patches of quicksand on the battlefield which are only visible to the caster and creatures native to the terrain.  Walking into quicksand ends a unit's movement for the turn and makes it visible to all.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 10,
+            "level": 2,
+            "name": "Quicksand",
+            "target": "none",
+            "w": 65,
+            "x": 191,
+            "y": 150
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Animate Dead}\n\nRe-animates any destroyed undead in the selected group by restoring a fixed number of hit points to the target.\n\nProvides an additional 130  hit points over Basic Animate Dead.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 39,
+            "level": 3,
+            "name": "Animate Dead",
+            "target": "ally",
+            "w": 65,
+            "x": 276,
+            "y": 150
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Anti-magic}\n\nProtects the selected unit from all spells.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 34,
+            "level": 3,
+            "name": "Anti-Magic",
+            "target": "ally",
+            "w": 65,
+            "x": 106,
+            "y": 247
+          },
+          {
+            "cost": 17,
+            "description": "{Expert Earthquake}\n\nRandomly damages four sections of castle wall in combat.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 14,
+            "level": 3,
+            "name": "Earthquake",
+            "target": "none",
+            "w": 65,
+            "x": 191,
+            "y": 247
+          },
+          {
+            "cost": 9,
+            "description": "{Expert Force Field}\n\nPlaces a medium sized Force Field on the battlefield at a point specified by the caster.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 12,
+            "level": 3,
+            "name": "Force Field",
+            "target": "location",
+            "w": 65,
+            "x": 276,
+            "y": 247
+          },
+          {
+            "cost": 9,
+            "description": "{Expert Protection from Earth}\n\nProtects the selected unit, reducing damage received from Earth spells.\n\nProtection is  nearly twice that of Basic Protection from Earth.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 33,
+            "level": 3,
+            "name": "Prot. from Earth",
+            "target": "none",
+            "w": 65,
+            "x": 106,
+            "y": 344
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Meteor Shower}\n\nCauses a meteor shower to rain down on the selected target and any adjacent units.\n\nDamage inflicted is 75 points more than Basic Meteor Shower.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 23,
+            "level": 4,
+            "name": "Meteor Shower",
+            "target": "location",
+            "w": 65,
+            "x": 191,
+            "y": 344
+          },
+          {
+            "cost": 16,
+            "description": "{Expert Resurrection}\n\nResurrects units in the selected group by restoring a fixed number of hit points to the target. \n\nProvides an additional 120 hit points over Basic Resurrection.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 38,
+            "level": 4,
+            "name": "Resurrection",
+            "target": "ally",
+            "w": 65,
+            "x": 276,
+            "y": 344
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Sorrow}\n\nReduces the morale of all enemy units.\n\nEffect is twice that of Basic Sorrow.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 50,
+            "level": 4,
+            "name": "Sorrow",
+            "target": "none",
+            "w": 65,
+            "x": 446,
+            "y": 53
+          },
+          {
+            "cost": 20,
+            "description": "{Expert Summon Earth Elemental}\n\nAllows you to summon earth elementals.  Once cast, no other elemental types may be summoned.\n\nSummons approximately twice the number of units as Basic Summon Creature.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 67,
+            "level": 5,
+            "name": "Earth Elemental",
+            "target": "none",
+            "w": 65,
+            "x": 531,
+            "y": 53
+          },
+          {
+            "cost": 25,
+            "description": "{Expert Implosion}\n\nInflicts massive damage to a single creature stack.\n\nDamage inflicted 200 points more than Basic Implosion.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 18,
+            "level": 5,
+            "name": "Implosion",
+            "target": "enemy",
+            "w": 65,
+            "x": 616,
+            "y": 53
+          }
+        ]
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        }
+      ],
+      "errors": []
+    },
+    "webkit": {
+      "passed": true,
+      "browser": "webkit",
+      "engineSha256": "ffdd9c72eeab08f0e479906c8b6935711eafff9012b28c587ce668c802d0044b",
+      "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+      "inputSaveSha256": "a676e36115c9ce53cc3704e3971f0ab1d4717d250ab89864e81dfa8c80bfbd3a",
+      "saveSha256": "39bc05eaa6725ed926d580d5daf99fe652ead1bfeb425cfdb9c77b21deaaab96",
+      "originalProgramsUnchanged": true,
+      "nativeResourceCheatUsed": true,
+      "scope": "Original third-scenario global book, experience, mana and school-spell initialization survives actual reserve recruitment; no campaign-victory claim",
+      "offers": {
+        "0": {
+          "className": "Witch",
+          "id": 122,
+          "level": 20,
+          "name": "Voy",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 275,
+            "y": 347
+          }
+        },
+        "1": {
+          "className": "Battle Mage",
+          "id": 107,
+          "level": 20,
+          "name": "Terek",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 365,
+            "y": 347
+          }
+        }
+      },
+      "recruitedHero": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2088,
+            "name": "Voy",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 56,
+                "attack": 3,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  50,
+                  0
+                ],
+                "count": 13,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 70,
+                "growth": 12,
+                "health": 6,
+                "icon": "",
+                "id": 98,
+                "key": "core:gnoll",
+                "name": "Gnoll",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              {
+                "aiValue": 126,
+                "attack": 5,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  110,
+                  0
+                ],
+                "count": 4,
+                "damageMax": 3,
+                "damageMin": 2,
+                "defense": 6,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 115,
+                "growth": 9,
+                "health": 14,
+                "icon": "",
+                "id": 100,
+                "key": "core:lizardman",
+                "name": "Lizardman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": true,
+                "shots": 12,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          },
+          {
+            "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+            "icon": 0,
+            "name": "Spell Book",
+            "slot": 17
+          }
+        ],
+        "heroHasSpellbook": true,
+        "heroId": 2088,
+        "heroMana": 90,
+        "heroManaLimit": 90,
+        "heroMoving": false,
+        "heroName": "Voy",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Witch",
+          "commanderIcon": 16,
+          "experience": 82052,
+          "experienceIcon": 4,
+          "id": 2088,
+          "level": 20,
+          "luck": {
+            "icon": 8,
+            "value": 3
+          },
+          "mana": 90,
+          "manaIcon": 5,
+          "manaLimit": 90,
+          "morale": {
+            "icon": 7,
+            "value": 1
+          },
+          "name": "Voy",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            3,
+            10,
+            9
+          ],
+          "skills": [
+            {
+              "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+              "icon": 9,
+              "mastery": "Expert",
+              "name": "Wisdom"
+            },
+            {
+              "description": "{Expert Navigation}\n\nExpert Navigation increases your hero's movement points at sea by 150%.",
+              "icon": 10,
+              "mastery": "Expert",
+              "name": "Navigation"
+            },
+            {
+              "description": "{Expert Water Magic}\n\nExpert Water Magic allows your hero to cast Water spells at reduced cost and maximum effectiveness.",
+              "icon": 11,
+              "mastery": "Expert",
+              "name": "Water Magic"
+            },
+            {
+              "description": "{Expert Air Magic}\n\nExpert Air Magic allows your hero to cast Air spells at reduced cost and maximum effectiveness.",
+              "icon": 12,
+              "mastery": "Expert",
+              "name": "Air Magic"
+            },
+            {
+              "description": "{Expert Eagle Eye}\n\nExpert Eagle Eye gives your hero a 60% chance to learn any spell up to 4th level used in combat.",
+              "icon": 13,
+              "mastery": "Expert",
+              "name": "Eagle Eye"
+            },
+            {
+              "description": "{Expert Earth Magic}\n\nExpert Earth Magic allows your hero to cast Earth spells at reduced cost and maximum effectiveness.",
+              "icon": 14,
+              "mastery": "Expert",
+              "name": "Earth Magic"
+            },
+            {
+              "description": "{Expert Luck}\n\nExpert Luck increases your hero's luck by 3.",
+              "icon": 15,
+              "mastery": "Expert",
+              "name": "Luck"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "locked": false,
+              "movable": false,
+              "name": "Spell Book",
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Navigation skill percentage.",
+            "icon": 6,
+            "name": "Navigation"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": true,
+            "id": 122,
+            "index": 0,
+            "mana": 90,
+            "manaLimit": 90,
+            "movement": 2210,
+            "movementLimit": 2210,
+            "name": "Gus"
+          },
+          {
+            "hasSpellbook": true,
+            "id": 2088,
+            "index": 1,
+            "mana": 90,
+            "manaLimit": 90,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Voy"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1560,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 2,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 3,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 4,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 5,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 6,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 7,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          100,
+          100,
+          105,
+          100,
+          100,
+          100,
+          98000,
+          100
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 1858,
+            "index": 0,
+            "name": "Hermit Cove"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2088,
+          "origin": [
+            2,
+            3,
+            1
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": false,
+              "direction": 0,
+              "x": 2,
+              "y": 2
+            },
+            {
+              "available": false,
+              "direction": 1,
+              "x": 3,
+              "y": 2
+            },
+            {
+              "available": false,
+              "direction": 2,
+              "x": 3,
+              "y": 3
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 3,
+              "y": 4
+            },
+            {
+              "available": false,
+              "direction": 4,
+              "x": 2,
+              "y": 4
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 1,
+              "y": 4
+            },
+            {
+              "available": false,
+              "direction": 6,
+              "x": 1,
+              "y": 3
+            },
+            {
+              "available": false,
+              "direction": 7,
+              "x": 1,
+              "y": 2
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 56,
+              "attack": 3,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 13,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 5,
+              "description": "",
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "maximum": 13,
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 4,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 6,
+              "description": "",
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "maximum": 4,
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": true,
+              "shots": 12,
+              "slot": 1,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2088,
+          "heroName": "Voy",
+          "troops": [
+            {
+              "aiValue": 56,
+              "attack": 5,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              "count": 13,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 8,
+              "description": "",
+              "fightValue": 70,
+              "growth": 12,
+              "health": 6,
+              "icon": "",
+              "id": 98,
+              "key": "core:gnoll",
+              "magicDamageReduction": 0,
+              "name": "Gnoll",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            },
+            {
+              "aiValue": 126,
+              "attack": 7,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                110,
+                0
+              ],
+              "count": 4,
+              "damageMax": 3,
+              "damageMin": 2,
+              "defense": 9,
+              "description": "",
+              "fightValue": 115,
+              "growth": 9,
+              "health": 14,
+              "icon": "",
+              "id": 100,
+              "key": "core:lizardman",
+              "magicDamageReduction": 0,
+              "name": "Lizardman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": false,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 0,
+              "shooter": true,
+              "shots": 12,
+              "slot": 1,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 59064232
+      },
+      "spells": {
+        "combatSpells": true,
+        "inCombat": false,
+        "mana": 90,
+        "manaLimit": 90,
+        "page": 0,
+        "pages": 1,
+        "school": -1,
+        "scrollable": false,
+        "spells": [
+          {
+            "cost": 4,
+            "description": "{Expert Magic Arrow}\n\nCauses a bolt of magical energy to strike the selected unit.\n\nDamage inflicted is 20 points more than Basic Magic Arrow.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 15,
+            "level": 1,
+            "name": "Magic Arrow",
+            "target": "enemy",
+            "w": 65,
+            "x": 106,
+            "y": 53
+          },
+          {
+            "cost": 4,
+            "description": "{Expert Shield}\n\nShields all friendly units, reducing the amount of damage received from hand-to-hand attacks.\n\nProtection is twice that of Basic Shield.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 27,
+            "level": 1,
+            "name": "Shield",
+            "target": "none",
+            "w": 65,
+            "x": 191,
+            "y": 53
+          },
+          {
+            "cost": 4,
+            "description": "{Expert Stone Skin}\n\nIncreases the defense strength of all friendly units.\n\nEffect is twice that of Basic Stone Skin.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 46,
+            "level": 1,
+            "name": "Stone Skin",
+            "target": "none",
+            "w": 65,
+            "x": 276,
+            "y": 53
+          },
+          {
+            "cost": 8,
+            "description": "{Expert Death Ripple}\n\nSends a wave of death across the battlefield which damages all non-undead units.\n\nDamage inflicted is 20 points more than Basic Death Ripple.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 24,
+            "level": 2,
+            "name": "Death Ripple",
+            "target": "none",
+            "w": 65,
+            "x": 106,
+            "y": 150
+          },
+          {
+            "cost": 6,
+            "description": "{Expert Quicksand}\n\nRandomly places eight small patches of quicksand on the battlefield which are only visible to the caster and creatures native to the terrain.  Walking into quicksand ends a unit's movement for the turn and makes it visible to all.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 10,
+            "level": 2,
+            "name": "Quicksand",
+            "target": "none",
+            "w": 65,
+            "x": 191,
+            "y": 150
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Animate Dead}\n\nRe-animates any destroyed undead in the selected group by restoring a fixed number of hit points to the target.\n\nProvides an additional 130  hit points over Basic Animate Dead.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 39,
+            "level": 3,
+            "name": "Animate Dead",
+            "target": "ally",
+            "w": 65,
+            "x": 276,
+            "y": 150
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Anti-magic}\n\nProtects the selected unit from all spells.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 34,
+            "level": 3,
+            "name": "Anti-Magic",
+            "target": "ally",
+            "w": 65,
+            "x": 106,
+            "y": 247
+          },
+          {
+            "cost": 17,
+            "description": "{Expert Earthquake}\n\nRandomly damages four sections of castle wall in combat.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 14,
+            "level": 3,
+            "name": "Earthquake",
+            "target": "none",
+            "w": 65,
+            "x": 191,
+            "y": 247
+          },
+          {
+            "cost": 9,
+            "description": "{Expert Force Field}\n\nPlaces a medium sized Force Field on the battlefield at a point specified by the caster.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 12,
+            "level": 3,
+            "name": "Force Field",
+            "target": "location",
+            "w": 65,
+            "x": 276,
+            "y": 247
+          },
+          {
+            "cost": 9,
+            "description": "{Expert Protection from Earth}\n\nProtects the selected unit, reducing damage received from Earth spells.\n\nProtection is  nearly twice that of Basic Protection from Earth.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 33,
+            "level": 3,
+            "name": "Prot. from Earth",
+            "target": "none",
+            "w": 65,
+            "x": 106,
+            "y": 344
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Meteor Shower}\n\nCauses a meteor shower to rain down on the selected target and any adjacent units.\n\nDamage inflicted is 75 points more than Basic Meteor Shower.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 23,
+            "level": 4,
+            "name": "Meteor Shower",
+            "target": "location",
+            "w": 65,
+            "x": 191,
+            "y": 344
+          },
+          {
+            "cost": 16,
+            "description": "{Expert Resurrection}\n\nResurrects units in the selected group by restoring a fixed number of hit points to the target. \n\nProvides an additional 120 hit points over Basic Resurrection.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 38,
+            "level": 4,
+            "name": "Resurrection",
+            "target": "ally",
+            "w": 65,
+            "x": 276,
+            "y": 344
+          },
+          {
+            "cost": 12,
+            "description": "{Expert Sorrow}\n\nReduces the morale of all enemy units.\n\nEffect is twice that of Basic Sorrow.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 50,
+            "level": 4,
+            "name": "Sorrow",
+            "target": "none",
+            "w": 65,
+            "x": 446,
+            "y": 53
+          },
+          {
+            "cost": 20,
+            "description": "{Expert Summon Earth Elemental}\n\nAllows you to summon earth elementals.  Once cast, no other elemental types may be summoned.\n\nSummons approximately twice the number of units as Basic Summon Creature.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 67,
+            "level": 5,
+            "name": "Earth Elemental",
+            "target": "none",
+            "w": 65,
+            "x": 531,
+            "y": 53
+          },
+          {
+            "cost": 25,
+            "description": "{Expert Implosion}\n\nInflicts massive damage to a single creature stack.\n\nDamage inflicted 200 points more than Basic Implosion.\n",
+            "enabled": true,
+            "h": 78,
+            "id": 18,
+            "level": 5,
+            "name": "Implosion",
+            "target": "enemy",
+            "w": 65,
+            "x": 616,
+            "y": 53
+          }
+        ]
+      },
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "singleVisibleClose": true,
+          "stableRecruitControl": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  "scope": "Original third-scenario hero-table initialization and actual native tavern recruitment, save906; seven stable sizes per browser."
+}

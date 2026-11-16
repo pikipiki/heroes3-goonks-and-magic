@@ -44,7 +44,16 @@ const CGObjectInstance * MapInfoCallback::getObj(const ObjectInstanceID objId, c
 const CGHeroInstance * MapInfoCallback::getHero(ObjectInstanceID objid) const
 {
 	const CGObjectInstance * obj = getObj(objid, false);
-	return dynamic_cast<const CGHeroInstance *>(obj);
+	if(const auto * hero = dynamic_cast<const CGHeroInstance *>(obj))
+		return hero;
+	// Original ERM addresses the full hero table, including the reserve. These
+	// IDs remain absent from getObj(): a reserve hero is not a map occupant.
+	const auto & map = *getMapConstPtr();
+	if(objid.hasValue() && map.sourceCampaignState["contract"].String() == "source-campaign-state-v1")
+		for(const auto type : map.getHeroesInPool())
+			if(const auto * hero = map.tryGetFromHeroPool(type); hero && hero->id == objid)
+				return hero;
+	return nullptr;
 }
 
 const CGTownInstance * MapInfoCallback::getTown(ObjectInstanceID objid) const

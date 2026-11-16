@@ -168,7 +168,18 @@ struct SourceCampaignProcessor::Impl final:Host
   if(source==-1)return gh.gameState().getHero(heroId);
   for(const auto & obj:gh.gameState().getMap().objects)
    if(const auto * h=dynamic_cast<const CGHeroInstance *>(obj.get());h&&h->getHeroTypeID().getNum()==source)return h;
+  if(source>=0&&source<156)return gh.gameState().getMap().tryGetFromHeroPool(HeroTypeID(source));
   return nullptr;
+ }
+ const CGHeroInstance * ensureHero(int source)
+ {
+  if(const auto * existing=hero(source))return existing;
+  if(source<0||source>=156)return nullptr;
+  // WoG owns one record for every original hero, even when the map bans its
+  // recruitment. Replicate the initialized record without adding tavern access.
+  auto change=mutation("reserveHero",ObjectInstanceID(gh.gameState().getMap().objects.size()));
+  change["hero"].Integer()=source;change["seed"].Integer()=gh.randomizer->getDefault().nextInt();persist(change);
+  return hero(source);
  }
  CreatureID creature(int source)const
  {
@@ -1485,9 +1496,9 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  }
  if(c.receiver=="HE")
  {
-  require(c.selectors.size()==1,"Cave hero selector");const auto * h=hero(number(c.selectors[0]));
+  require(c.selectors.size()==1,"Cave hero selector");const int selected=number(c.selectors[0]);const auto * h=op.code=="O"?hero(selected):ensureHero(selected);
   if(op.code=="O")
-  {arity(op,1);const int owner=value(h?h->getOwner().getNum():-1,args[0]);if(!query(op)&&h)gh.setOwner(h,PlayerColor(owner));return Step::Continue;}
+  {arity(op,1);const int owner=value(h&&h->getOwner().isValidPlayer()?h->getOwner().getNum():-1,args[0]);if(!query(op)&&h)gh.setOwner(h,PlayerColor(owner));return Step::Continue;}
   require(h!=nullptr,"source hero missing for HE"+std::to_string(number(c.selectors[0]))+":"+op.code);
   if(op.code=="Y")
   {
@@ -1641,7 +1652,12 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    if(static_cast<int>(h->level)>target)
    {auto change=mutation("heroLevel",h->id);change["level"].Integer()=target;persist(change);}
    else if(h->gainsLevel())
-   {pending["kind"].String()="hero-experience";pending["hero"].Integer()=h->id.getNum();return Step::Suspend;}
+   {
+    // Reserve heroes have no player to answer or remove a dialog query. Native
+    // neutral level-ups choose automatically and finish synchronously.
+    if(!h->getOwner().isValidPlayer())gh.expGiven(h);
+    else {pending["kind"].String()="hero-experience";pending["hero"].Integer()=h->id.getNum();return Step::Suspend;}
+   }
   }
   else if(op.code=="A")
   {

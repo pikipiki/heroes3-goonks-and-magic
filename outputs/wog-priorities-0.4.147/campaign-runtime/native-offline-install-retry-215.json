@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "scope": "Real browser service workers; one503 is retried, permanent503 and SRI mismatch stop after3 attempts, incomplete caches are removed, verified cached bytes work offline.",
+  "cases": [
+    {
+      "browser": "chromium",
+      "case": "transient",
+      "passed": true,
+      "attempts": 2,
+      "offlineVerifiedBytes": true
+    },
+    {
+      "browser": "chromium",
+      "case": "permanent",
+      "passed": true,
+      "attempts": 3,
+      "incompleteCacheRemoved": true,
+      "unverifiedReleaseNotActivated": true
+    },
+    {
+      "browser": "chromium",
+      "case": "corrupt",
+      "passed": true,
+      "attempts": 3,
+      "incompleteCacheRemoved": true,
+      "unverifiedReleaseNotActivated": true
+    },
+    {
+      "browser": "webkit",
+      "case": "transient",
+      "passed": true,
+      "attempts": 2,
+      "offlineVerifiedBytes": true
+    },
+    {
+      "browser": "webkit",
+      "case": "permanent",
+      "passed": true,
+      "attempts": 3,
+      "incompleteCacheRemoved": true,
+      "unverifiedReleaseNotActivated": true
+    },
+    {
+      "browser": "webkit",
+      "case": "corrupt",
+      "passed": true,
+      "attempts": 3,
+      "incompleteCacheRemoved": true,
+      "unverifiedReleaseNotActivated": true
+    }
+  ]
+}
