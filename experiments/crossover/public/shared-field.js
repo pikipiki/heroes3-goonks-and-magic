@@ -293,7 +293,7 @@ export function sharedField(win, canvas, api, plan) {
         }
         const blendedHeroes = new Map();
         bodyHits.clear();
-        for (const unit of [...corpses.values(), ...units].filter(u => !revivedBodies.has(u.id)).sort((a, b) => portrait ? (mirrorBackground ? 1 : -1) * ((positions.get(a.id) || a).x - (positions.get(b.id) || b).x) : (positions.get(a.id) || a).y - (positions.get(b.id) || b).y)) {
+        for (const unit of [...corpses.values(), ...units].filter(u => !revivedBodies.has(u.id)).sort((a, b) => Number(a.hp > 0) - Number(b.hp > 0) || (portrait ? (mirrorBackground ? 1 : -1) * ((positions.get(a.id) || a).x - (positions.get(b.id) || b).x) : (positions.get(a.id) || a).y - (positions.get(b.id) || b).y))) {
             const point = positions.get(unit.id) || unit, worldX = point.x - camera.x, worldY = point.y - camera.y;
             context.save();
             context.translate(worldX, worldY);
@@ -301,7 +301,9 @@ export function sharedField(win, canvas, api, plan) {
             let bodyHeight = COMBAT_BODY_HEIGHT;
             try {
                 const x = 0, y = 0, old = oldUnits.get(unit.id), moving = !!old && (old.x !== unit.x || old.y !== unit.y);
-                const chosen = unit.owner === 0 && selected !== undefined && (selected < 0 || selected === unit.stackId);
+                if (unit.hp <= 0)
+                    context.globalAlpha = .35;
+                const chosen = unit.hp > 0 && unit.owner === 0 && selected !== undefined && (selected < 0 || selected === unit.stackId);
                 context.strokeStyle = unit.owner === 0 ? '#8de6ff' : '#ff8066';
                 context.lineWidth = 2;
                 if (chosen) {
@@ -429,18 +431,20 @@ export function sharedField(win, canvas, api, plan) {
                 }
                 if (unit.hp <= 0) {
                     const canRaise = canvas.dataset.revive === 'true' && JSON.parse(canvas.dataset.spellTargets || '[]').includes(unit.stackId);
-                    context.globalAlpha = .95;
-                    context.fillStyle = canRaise ? '#ffe39a' : '#201713';
-                    context.strokeStyle = canRaise ? '#ffe39a' : '#ffb19d';
-                    context.lineWidth = 3;
+                    context.globalAlpha = canRaise ? 1 : .35;
+                    context.fillStyle = canRaise ? '#ffe39a' : '#30291f';
+                    context.strokeStyle = canRaise ? '#ffe39a' : '#85765e';
+                    context.lineWidth = canRaise ? 2 : 1;
                     context.beginPath();
-                    context.ellipse(0, 4, 33, 12, 0, 0, Math.PI * 2);
+                    context.ellipse(0, 4, canRaise ? 33 : 18, canRaise ? 12 : 5, 0, 0, Math.PI * 2);
                     context.fill();
                     context.stroke();
-                    context.font = 'bold 15px sans-serif';
-                    context.textAlign = 'center';
-                    context.fillStyle = canRaise ? '#211a10' : '#ffe6db';
-                    context.fillText(canRaise ? 'Réanimer' : '✝ Mort', 0, 9);
+                    if (canRaise) {
+                        context.font = 'bold 15px sans-serif';
+                        context.textAlign = 'center';
+                        context.fillStyle = '#211a10';
+                        context.fillText('Réanimer', 0, 9);
+                    }
                     continue;
                 }
                 if (shields.has(unit.stackId)) {
