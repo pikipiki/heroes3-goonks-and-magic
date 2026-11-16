@@ -15,6 +15,7 @@
 #include "../../lib/mapObjects/CGTownInstance.h"
 #include "../../lib/mapObjects/TownBuildingInstance.h"
 #include "../CGameHandler.h"
+#include "../era/SourceCampaignProcessor.h"
 #include "QueriesProcessor.h"
 
 VisitQuery::VisitQuery(CGameHandler * owner, const CGObjectInstance * Obj, const CGHeroInstance * Hero)
@@ -52,13 +53,13 @@ MapObjectVisitQuery::MapObjectVisitQuery(CGameHandler * owner, const CGObjectIns
 
 void MapObjectVisitQuery::onRemoval(PlayerColor color)
 {
-	auto object = gh->gameState().getObjInstance(visitedObject);
-
 	gh->objectVisitEnded(visitingHero, players.front());
+	gh->sourceCampaigns->visitEnded(visitedObject, visitingHero);
 
 	//Can object visit affect 2 players and what would be desired behavior?
 	if(removeObjectAfterVisit)
-		gh->removeObject(object, color);
+		if(auto object = gh->gameState().getObjInstance(visitedObject))
+			gh->removeObject(object, color);
 }
 
 TownBuildingVisitQuery::TownBuildingVisitQuery(CGameHandler * owner, const CGTownInstance * Obj, std::vector<const CGHeroInstance *> heroes, std::vector<BuildingID> buildingToVisit)

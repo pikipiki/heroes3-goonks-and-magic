@@ -1,0 +1,31 @@
+{
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "facts": [
+    {
+      "addresses": "7518a0..75192b",
+      "behavior": "Curse lookup matches hero and family. An absent family reports power1 if another family exists, otherwise0."
+    },
+    {
+      "addresses": "751940,75196e..751a51",
+      "behavior": "Mode3 removes all families for the hero and restores slot artifacts; mode0 only deletes matching rows."
+    },
+    {
+      "addresses": "751ed7..751f00",
+      "behavior": "Daily processing is owner-scoped; expiry uses signed start+length < current day."
+    },
+    {
+      "addresses": "751fb7,70f55c..70f580",
+      "behavior": "Family4 subtracts power from gold using signed DWORD addition, then clamps negative gold to0."
+    },
+    {
+      "addresses": "75205f..75206b",
+      "behavior": "Family65 adds power directly to the movement DWORD."
+    },
+    {
+      "addresses": "705494,705576",
+      "behavior": "DailyCurse runs before original timers in daily turn setup."
+    }
+  ],
+  "definedException": "The original leaves the missing-curse duration output undefined. The port writes0, as authorized.",
+  "sourceUse": "Unchanged zc3-0 initializers HE0:Y4/500/999/1 and HE0:Y65/175/2/1; later OB69/68 replaces gold tax with990."
+}

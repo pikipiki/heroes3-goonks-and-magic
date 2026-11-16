@@ -44,7 +44,12 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
   if(!vm.isStruct()||vm["contract"].String()!="source-campaign-state-v1"||!packet.worldState.isStruct()||packet.worldState["contract"].String()!="source-campaign-world-v1"||!packet.worldState["programId"].isString()||!packet.worldState["programSha256"].isString()||packet.worldState["programId"]!=vm["programId"]||packet.worldState["programSha256"]!=vm["vm"]["programSha256"])
    throw std::runtime_error("Invalid original campaign world state packet");
  }
- if(!packet.state.isNull())gs.getMap().sourceCampaignState=packet.state;
+ if(!packet.state.isNull())
+ {
+  const bool namesChanged=std::as_const(gs.getMap()).sourceCampaignState["creatureNames"]!=packet.state["creatureNames"];
+  gs.getMap().sourceCampaignState=packet.state;
+  if(namesChanged)gs.getMap().restoreSourceCampaignCreatureNames();
+ }
  if(!packet.worldState.isNull())gs.getMap().sourceCampaignWorld=packet.worldState;
  for(const auto & entry:packet.rewardConfigurations)
  {
@@ -77,6 +82,12 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
   {
    gs.getMap().calculateGuardingGreaturePositions();
    continue;
+  }
+  if(kind=="creatureFlightDisabled")
+  {
+   const auto id=CreatureID(campaignInteger(change["creature"]));const auto * type=id.toCreature();if(!type)throw std::runtime_error("Invalid source flight target");
+   const BonusSourceID source{BonusCustomSource(0x57400000+id.getNum())};gs.globalEffects.removeBonuses(Selector::source(BonusSource::OTHER,source));
+   auto bonus=std::make_shared<Bonus>(BonusDuration::PERMANENT,BonusType::NONE,BonusSource::OTHER,1,source);bonus->stacking="eraCampaign:flightDisabled:v1";bonus->hidden=true;bonus->limiter=std::make_shared<CCreatureTypeLimiter>(*type,false);gs.globalEffects.addNewBonus(bonus);continue;
   }
   if(kind=="creatureAttribute")
   {
@@ -183,6 +194,11 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
   {
    if(!dynamic_cast<CGHeroInstance *>(object))throw std::runtime_error("Original portrait target is not a hero");
    // Definitions live in the replicated map state, not global hero types.
+  }
+  else if(kind=="heroMovementWord")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);if(!hero)throw std::runtime_error("Original movement target is not a hero");
+   hero->setSourceCampaignMovementWord(static_cast<std::uint32_t>(campaignInteger(change["amount"])));
   }
   else if(kind=="heroLevel")
   {

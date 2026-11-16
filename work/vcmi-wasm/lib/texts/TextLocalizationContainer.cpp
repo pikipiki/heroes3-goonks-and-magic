@@ -71,9 +71,21 @@ void TextLocalizationContainer::removeSubContainer(const TextLocalizationContain
 	subContainers.erase(std::remove(subContainers.begin(), subContainers.end(), &container), subContainers.end());
 }
 
+std::string TextLocalizationContainer::translateWithoutMapOverrides(const TextIdentifier & identifier) const
+{
+ std::lock_guard globalLock(globalTextMutex);
+ const auto found=stringsLocalizations.find(identifier.get());if(found!=stringsLocalizations.end())return found->second.translatedText;
+ for(auto it=subContainers.rbegin();it!=subContainers.rend();++it)if(!(*it)->overridesParent&&(*it)->identifierExists(identifier))return (*it)->translateWithoutMapOverrides(identifier);
+ return identifier.get();
+}
+
 const std::string & TextLocalizationContainer::translateString(const TextIdentifier & identifier) const
 {
 	std::lock_guard globalLock(globalTextMutex);
+
+	for(auto it = subContainers.rbegin(); it != subContainers.rend(); ++it)
+		if((*it)->overridesParent && (*it)->identifierExists(identifier))
+			return (*it)->translateString(identifier);
 
 	if(stringsLocalizations.count(identifier.get()) == 0)
 	{
@@ -191,8 +203,15 @@ void TextLocalizationContainer::jsonSerialize(JsonNode & dest) const
 		dest.Struct()[s.first].String() = s.second.translatedText;
 }
 
-TextContainerRegistrable::TextContainerRegistrable()
+void TextLocalizationContainer::replaceStrings(const TextLocalizationContainer & other)
 {
+ std::lock_guard globalLock(globalTextMutex);
+ stringsLocalizations=other.stringsLocalizations;
+}
+
+TextContainerRegistrable::TextContainerRegistrable(bool priority)
+{
+ overridesParent=priority;
 	LIBRARY->generaltexth->addSubContainer(*this);
 }
 

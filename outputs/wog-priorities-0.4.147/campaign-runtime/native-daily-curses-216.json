@@ -1,0 +1,4772 @@
+{
+  "version": "0.4.216",
+  "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+  "cases": {
+    "chromium": {
+      "passed": true,
+      "browser": "chromium",
+      "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+      "fixtureSha256": "6b83aeb66a9f1ca332513c742c20989376da98b17dec011072b9772ccbc577c4",
+      "saveSha256": "c424542a2b33f7ba2884ba3bd7715f93fb7e3f70a0651fe79bffdc2d80f0f927",
+      "loaded": false,
+      "modesAndOwnerIsolation": true,
+      "sourceGoldClamp": true,
+      "inclusiveMovementExpiry": true,
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "stableEffects": true,
+          "scrollPreserved": true
+        }
+      ],
+      "day1": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -500,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 999
+            },
+            {
+              "delta": 175,
+              "kind": 65,
+              "permanent": false,
+              "remainingDays": 2
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1735,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1735,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          734,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            17,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": false,
+              "direction": 0,
+              "x": 17,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 18,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 17,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 16,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 16,
+              "y": 18
+            },
+            {
+              "available": false,
+              "direction": 7,
+              "x": 16,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58947304
+      },
+      "day2": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 2,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -500,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 998
+            },
+            {
+              "delta": 175,
+              "kind": 65,
+              "permanent": false,
+              "remainingDays": 1
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1735,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1735,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          734,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            17,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": false,
+              "direction": 0,
+              "x": 17,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 18,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 17,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 16,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 16,
+              "y": 18
+            },
+            {
+              "available": false,
+              "direction": 7,
+              "x": 16,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58941480
+      },
+      "day3": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 3,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -990,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 998
+            },
+            {
+              "delta": 175,
+              "kind": 65,
+              "permanent": false,
+              "remainingDays": 0
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1735,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1735,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          244,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            19,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": true,
+              "direction": 0,
+              "x": 19,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 20,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 20,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 20,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 19,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 7,
+              "x": 18,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58944616
+      },
+      "day4": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 4,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -990,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 997
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 0
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1560,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          0,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            19,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": true,
+              "direction": 0,
+              "x": 19,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 20,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 20,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 20,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 19,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 7,
+              "x": 18,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58930280
+      },
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "ALL CLEARED 0/0 0/0 FOREIGN 50"
+          ],
+          "queryId": 3,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "ABSENT 1/0"
+          ],
+          "queryId": 4,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "DAILY CURSE READY"
+          ],
+          "queryId": 5,
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "DAILY TAX UPDATED"
+          ],
+          "queryId": 11,
+          "title": "Game message",
+          "visitedObject": "Event"
+        }
+      ],
+      "errors": []
+    },
+    "webkitSaveReload": {
+      "passed": true,
+      "browser": "webkit",
+      "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+      "fixtureSha256": "6b83aeb66a9f1ca332513c742c20989376da98b17dec011072b9772ccbc577c4",
+      "saveSha256": "2436e40028d1112e8380cf0a79e592ae4ff72a8c3181731e7159f6717df08db2",
+      "loaded": true,
+      "modesAndOwnerIsolation": true,
+      "sourceGoldClamp": true,
+      "inclusiveMovementExpiry": true,
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "stableEffects": true,
+          "scrollPreserved": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "stableEffects": true,
+          "scrollPreserved": true
+        }
+      ],
+      "day1": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 1,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+            "icon": 47,
+            "name": "Cards of Prophecy",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -500,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 999
+            },
+            {
+              "delta": 175,
+              "kind": 65,
+              "permanent": false,
+              "remainingDays": 2
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 1
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+              "icon": 47,
+              "locked": false,
+              "movable": true,
+              "name": "Cards of Prophecy",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1735,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1735,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          734,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            17,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": false,
+              "direction": 0,
+              "x": 17,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 18,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 17,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 16,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 16,
+              "y": 18
+            },
+            {
+              "available": false,
+              "direction": 7,
+              "x": 16,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58941928
+      },
+      "day2": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 2,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+            "icon": 47,
+            "name": "Cards of Prophecy",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -500,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 998
+            },
+            {
+              "delta": 175,
+              "kind": 65,
+              "permanent": false,
+              "remainingDays": 1
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 1
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+              "icon": 47,
+              "locked": false,
+              "movable": true,
+              "name": "Cards of Prophecy",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1735,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1735,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          734,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            17,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": false,
+              "direction": 0,
+              "x": 17,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 18,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 17,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 16,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 16,
+              "y": 18
+            },
+            {
+              "available": false,
+              "direction": 7,
+              "x": 16,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58936104
+      },
+      "day3": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 3,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+            "icon": 47,
+            "name": "Cards of Prophecy",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -990,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 998
+            },
+            {
+              "delta": 175,
+              "kind": 65,
+              "permanent": false,
+              "remainingDays": 0
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 1
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+              "icon": 47,
+              "locked": false,
+              "movable": true,
+              "name": "Cards of Prophecy",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1735,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1735,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          244,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            19,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": true,
+              "direction": 0,
+              "x": 19,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 20,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 20,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 20,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 19,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 7,
+              "x": 18,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58938792
+      },
+      "day4": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 2,
+            "name": "Orrin",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 80,
+                "attack": 4,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  60,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 3,
+                "damageMin": 1,
+                "defense": 5,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 100,
+                "growth": 14,
+                "health": 10,
+                "icon": "",
+                "id": 0,
+                "key": "core:pikeman",
+                "name": "Pikeman",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": true,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 4
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": false,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": false,
+        "cheatsAllowed": true,
+        "currentPlayer": 0,
+        "day": 4,
+        "equipment": [
+          {
+            "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+            "icon": 78,
+            "name": "Cape of Conjuring",
+            "slot": 1
+          },
+          {
+            "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+            "icon": 95,
+            "name": "Ring of Life",
+            "slot": 6
+          },
+          {
+            "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+            "icon": 47,
+            "name": "Cards of Prophecy",
+            "slot": 9
+          },
+          {
+            "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+            "icon": 3,
+            "name": "Catapult",
+            "slot": 16
+          }
+        ],
+        "heroHasSpellbook": false,
+        "heroId": 2,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Orrin",
+        "heroWindow": {
+          "backpack": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 19
+            }
+          ],
+          "campaignEffects": [
+            {
+              "delta": -990,
+              "kind": 4,
+              "permanent": false,
+              "remainingDays": 997
+            }
+          ],
+          "canRebalanceSourceArtifacts": false,
+          "caveEffects": "",
+          "className": "Knight",
+          "commanderIcon": 11,
+          "experience": 0,
+          "experienceIcon": 4,
+          "id": 2,
+          "level": 1,
+          "luck": {
+            "icon": 8,
+            "value": 1
+          },
+          "mana": 10,
+          "manaIcon": 5,
+          "manaLimit": 10,
+          "morale": {
+            "icon": 7,
+            "value": 2
+          },
+          "name": "Orrin",
+          "owned": true,
+          "portrait": {
+            "h": 64,
+            "w": 58,
+            "x": 83,
+            "y": 26
+          },
+          "primaryIcons": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primarySkills": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "skills": [
+            {
+              "description": "{Basic Leadership}\n\nBasic Leadership increases your hero's troops' morale by 1.",
+              "icon": 9,
+              "mastery": "Basic",
+              "name": "Leadership"
+            },
+            {
+              "description": "{Basic Archery}\n\nBasic Archery increases the damage done by range attacking creatures by 10%.",
+              "icon": 10,
+              "mastery": "Basic",
+              "name": "Archery"
+            }
+          ],
+          "slots": [
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 0
+            },
+            {
+              "allowed": false,
+              "description": "{Cape of Conjuring}\n\nWorn about the shoulders, this item increases the duration of all your spells by 3.",
+              "icon": 78,
+              "locked": false,
+              "movable": true,
+              "name": "Cape of Conjuring",
+              "slot": 1
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 2
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 3
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 4
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 5
+            },
+            {
+              "allowed": false,
+              "description": "{Ring of Life}\n\nThis item increases the health of all your units by +1.",
+              "icon": 95,
+              "locked": false,
+              "movable": true,
+              "name": "Ring of Life",
+              "slot": 6
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 7
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 8
+            },
+            {
+              "allowed": false,
+              "description": "{Cards of Prophecy}\n\nThe Cards of Prophecy increase your Luck by +1.",
+              "icon": 47,
+              "locked": false,
+              "movable": true,
+              "name": "Cards of Prophecy",
+              "slot": 9
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 10
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 11
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 12
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 13
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 14
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 15
+            },
+            {
+              "allowed": false,
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "locked": false,
+              "movable": false,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 17
+            },
+            {
+              "allowed": false,
+              "locked": false,
+              "movable": false,
+              "slot": 18
+            }
+          ],
+          "specialty": {
+            "description": "Receives a 5% per level bonus to Archery skill percentage.",
+            "icon": 6,
+            "name": "Archery"
+          }
+        },
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 2,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1560,
+            "movementLimit": 1560,
+            "name": "Orrin"
+          }
+        ],
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "hero",
+        "movement": 1560,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": true,
+            "name": "Player 1"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          }
+        ],
+        "rect": {
+          "h": 586,
+          "w": 672,
+          "x": 64,
+          "y": 7
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          20,
+          10,
+          20,
+          10,
+          10,
+          10,
+          0,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "towns": [
+          {
+            "id": 0,
+            "index": 0,
+            "name": "Goonkbourg"
+          }
+        ],
+        "troopDeployment": {
+          "heroId": 2,
+          "origin": [
+            19,
+            18,
+            0
+          ],
+          "revision": 0,
+          "targets": [
+            {
+              "available": true,
+              "direction": 0,
+              "x": 19,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 1,
+              "x": 20,
+              "y": 17
+            },
+            {
+              "available": true,
+              "direction": 2,
+              "x": 20,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 3,
+              "x": 20,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 4,
+              "x": 19,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 5,
+              "x": 18,
+              "y": 19
+            },
+            {
+              "available": true,
+              "direction": 6,
+              "x": 18,
+              "y": 18
+            },
+            {
+              "available": true,
+              "direction": 7,
+              "x": 18,
+              "y": 17
+            }
+          ],
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 4,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 5,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 10,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "maximum": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "troopEquipment": {
+          "canAct": true,
+          "heroId": 2,
+          "heroName": "Orrin",
+          "troops": [
+            {
+              "aiValue": 80,
+              "attack": 6,
+              "cost": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                60,
+                0
+              ],
+              "count": 1,
+              "damageMax": 3,
+              "damageMin": 1,
+              "defense": 7,
+              "description": "",
+              "fightValue": 100,
+              "growth": 14,
+              "health": 11,
+              "icon": "",
+              "id": 0,
+              "key": "core:pikeman",
+              "magicDamageReduction": 0,
+              "name": "Pikeman",
+              "nativeFlags": {
+                "attacksAllAdjacent": false,
+                "blocksRetaliation": false,
+                "chargeImmune": true,
+                "flying": false,
+                "living": true,
+                "mindImmune": false,
+                "noMorale": false,
+                "nonLiving": false,
+                "undead": false
+              },
+              "physicalDamageBonus": 0,
+              "rangedDamageBonus": 10,
+              "shooter": false,
+              "shots": 0,
+              "slot": 0,
+              "speed": 4
+            }
+          ]
+        },
+        "turn": true,
+        "windowToken": 58930280
+      },
+      "dialogs": [
+        {
+          "cancel": false,
+          "lines": [
+            "DAILY TAX UPDATED"
+          ],
+          "queryId": 11,
+          "title": "Game message",
+          "visitedObject": "Event"
+        }
+      ],
+      "errors": []
+    }
+  }
+}

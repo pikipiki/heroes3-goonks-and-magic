@@ -1,0 +1,921 @@
+{
+  "version": "0.4.216",
+  "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+  "case": {
+    "passed": true,
+    "controlledPlayerArmy": false,
+    "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+    "originalArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+    "saveSha256": "1dbbf97a3966a1f53a55a458fb8888048d03ac0b45e2fe92e62329815d591abd",
+    "journey": "gorynych-route",
+    "firstObjective": false,
+    "scope": "Original zc3-0 village exit, Peasant post-visit removal, Aeln rescue battle and teaching reward. Native accelerated movement/reveal; original army and sources. No campaign victory or admission claim.",
+    "victory": null,
+    "stages": [
+      {
+        "target": [
+          11,
+          67
+        ],
+        "after": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1307,
+              "name": "Nailag Ciad",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 445,
+                  "attack": 10,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    300,
+                    0
+                  ],
+                  "count": 1,
+                  "damageMax": 9,
+                  "damageMin": 6,
+                  "defense": 12,
+                  "description": "",
+                  "experience": 0,
+                  "experiencePerUnit": 0,
+                  "experienceRank": 0,
+                  "fightValue": 445,
+                  "growth": 4,
+                  "health": 35,
+                  "icon": "",
+                  "id": 6,
+                  "key": "core:swordsman",
+                  "name": "Swordsman",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": true,
+          "backpackCount": 0,
+          "campaignPending": false,
+          "cheatReady": true,
+          "cheatsAllowed": true,
+          "currentPlayer": 0,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1307,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Nailag Ciad",
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1307,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1000000,
+              "movementLimit": 1630,
+              "name": "Nailag Ciad"
+            }
+          ],
+          "mapOverview": {
+            "height": 72,
+            "level": 0,
+            "rect": {
+              "h": 144,
+              "w": 144,
+              "x": 630,
+              "y": 26
+            },
+            "view": {
+              "h": 546,
+              "w": 594,
+              "x": 7,
+              "y": 7
+            },
+            "viewport": {
+              "h": 19,
+              "w": 20,
+              "x": 2,
+              "y": 57
+            },
+            "width": 72
+          },
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "map",
+          "movement": 1000000,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "players": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Goonk"
+            },
+            {
+              "color": 2,
+              "human": false,
+              "name": "Computer"
+            },
+            {
+              "color": 3,
+              "human": false,
+              "name": "Computer"
+            },
+            {
+              "color": 5,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "rect": {
+            "h": 600,
+            "w": 800,
+            "x": 0,
+            "y": 0
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 4446,
+              "index": 0,
+              "name": "Village Hall"
+            }
+          ],
+          "turn": true,
+          "windowToken": 34065920,
+          "worldView": false
+        }
+      },
+      {
+        "target": [
+          2,
+          71
+        ],
+        "after": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1307,
+              "name": "Nailag Ciad",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 445,
+                  "attack": 10,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    300,
+                    0
+                  ],
+                  "count": 1,
+                  "damageMax": 9,
+                  "damageMin": 6,
+                  "defense": 12,
+                  "description": "",
+                  "experience": 20,
+                  "experiencePerUnit": 20,
+                  "experienceRank": 0,
+                  "fightValue": 445,
+                  "growth": 4,
+                  "health": 35,
+                  "icon": "",
+                  "id": 6,
+                  "key": "core:swordsman",
+                  "name": "Swordsman",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                {
+                  "aiValue": 95,
+                  "attack": 2,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    30,
+                    0
+                  ],
+                  "count": 1,
+                  "damageMax": 3,
+                  "damageMin": 1,
+                  "defense": 2,
+                  "description": "",
+                  "experience": 120,
+                  "experiencePerUnit": 120,
+                  "experienceRank": 0,
+                  "fightValue": 70,
+                  "growth": 20,
+                  "health": 3,
+                  "icon": "",
+                  "id": 119,
+                  "key": "core:sprite",
+                  "name": "Sprite",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": true,
+                    "chargeImmune": false,
+                    "flying": true,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 9
+                },
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": true,
+          "backpackCount": 0,
+          "campaignPending": false,
+          "cheatReady": true,
+          "cheatsAllowed": true,
+          "currentPlayer": 0,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1307,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Nailag Ciad",
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1307,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1000000,
+              "movementLimit": 1630,
+              "name": "Nailag Ciad"
+            }
+          ],
+          "mapOverview": {
+            "height": 72,
+            "level": 0,
+            "rect": {
+              "h": 144,
+              "w": 144,
+              "x": 630,
+              "y": 26
+            },
+            "view": {
+              "h": 546,
+              "w": 594,
+              "x": 7,
+              "y": 7
+            },
+            "viewport": {
+              "h": 19,
+              "w": 20,
+              "x": -7,
+              "y": 62
+            },
+            "width": 72
+          },
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "map",
+          "movement": 1000000,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "players": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Goonk"
+            },
+            {
+              "color": 2,
+              "human": false,
+              "name": "Computer"
+            },
+            {
+              "color": 3,
+              "human": false,
+              "name": "Computer"
+            },
+            {
+              "color": 5,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "rect": {
+            "h": 600,
+            "w": 800,
+            "x": 0,
+            "y": 0
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 4446,
+              "index": 0,
+              "name": "Village Hall"
+            }
+          ],
+          "turn": true,
+          "windowToken": 34065920,
+          "worldView": false
+        }
+      },
+      {
+        "target": [
+          9,
+          65
+        ],
+        "after": {
+          "anyHeroCanMove": true,
+          "armies": [
+            {
+              "id": 1307,
+              "name": "Nailag Ciad",
+              "needsLastStack": true,
+              "slots": [
+                {
+                  "aiValue": 445,
+                  "attack": 10,
+                  "cost": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    300,
+                    0
+                  ],
+                  "count": 1,
+                  "damageMax": 9,
+                  "damageMin": 6,
+                  "defense": 12,
+                  "description": "",
+                  "experience": 20,
+                  "experiencePerUnit": 20,
+                  "experienceRank": 0,
+                  "fightValue": 445,
+                  "growth": 4,
+                  "health": 35,
+                  "icon": "",
+                  "id": 6,
+                  "key": "core:swordsman",
+                  "name": "Swordsman",
+                  "nativeFlags": {
+                    "attacksAllAdjacent": false,
+                    "blocksRetaliation": false,
+                    "chargeImmune": false,
+                    "flying": false,
+                    "living": true,
+                    "mindImmune": false,
+                    "noMorale": false,
+                    "nonLiving": false,
+                    "undead": false
+                  },
+                  "shooter": false,
+                  "shots": 0,
+                  "speed": 5
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ],
+          "audioMuted": false,
+          "autosaveAllowed": true,
+          "backpackCount": 1,
+          "campaignPending": false,
+          "cheatReady": true,
+          "cheatsAllowed": true,
+          "currentPlayer": 0,
+          "day": 1,
+          "equipment": [
+            {
+              "description": "{Catapult}\n\nUse this war machine to target your enemy's fortifications in combat.",
+              "icon": 3,
+              "name": "Catapult",
+              "slot": 16
+            },
+            {
+              "description": "{Spell Book}\n\nLeft-click on the spell book to view your spells.",
+              "icon": 0,
+              "name": "Spell Book",
+              "slot": 17
+            }
+          ],
+          "heroHasSpellbook": true,
+          "heroId": 1307,
+          "heroMana": 10,
+          "heroManaLimit": 10,
+          "heroMoving": false,
+          "heroName": "Nailag Ciad",
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1307,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1000000,
+              "movementLimit": 1630,
+              "name": "Nailag Ciad"
+            }
+          ],
+          "mapOverview": {
+            "height": 72,
+            "level": 0,
+            "rect": {
+              "h": 144,
+              "w": 144,
+              "x": 630,
+              "y": 26
+            },
+            "view": {
+              "h": 546,
+              "w": 594,
+              "x": 7,
+              "y": 7
+            },
+            "viewport": {
+              "h": 19,
+              "w": 20,
+              "x": 0,
+              "y": 56
+            },
+            "width": 72
+          },
+          "mapSettings": {
+            "enemyMoveTime": 150,
+            "moveTime": 150
+          },
+          "mode": "map",
+          "movement": 1000000,
+          "musicVolume": 88,
+          "onlineGame": false,
+          "players": [
+            {
+              "color": 0,
+              "human": true,
+              "name": "Goonk"
+            },
+            {
+              "color": 2,
+              "human": false,
+              "name": "Computer"
+            },
+            {
+              "color": 3,
+              "human": false,
+              "name": "Computer"
+            },
+            {
+              "color": 5,
+              "human": false,
+              "name": "Computer"
+            }
+          ],
+          "rect": {
+            "h": 600,
+            "w": 800,
+            "x": 0,
+            "y": 0
+          },
+          "resourceTypes": [
+            {
+              "icon": "",
+              "id": 0,
+              "key": "wood",
+              "name": "Wood",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 1,
+              "key": "mercury",
+              "name": "Mercury",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 2,
+              "key": "ore",
+              "name": "Ore",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 3,
+              "key": "sulfur",
+              "name": "Sulfur",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 4,
+              "key": "crystal",
+              "name": "Crystal",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 5,
+              "key": "gems",
+              "name": "Gems",
+              "scope": "core"
+            },
+            {
+              "icon": "",
+              "id": 6,
+              "key": "gold",
+              "name": "Gold",
+              "scope": "core"
+            },
+            {
+              "icon": "mithril/small.png",
+              "id": 7,
+              "key": "mithril",
+              "name": "Mithril",
+              "scope": "wake-of-gods.mithril"
+            }
+          ],
+          "resources": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "sessionState": 6,
+          "soundVolume": 88,
+          "towns": [
+            {
+              "id": 4446,
+              "index": 0,
+              "name": "Village Hall"
+            }
+          ],
+          "turn": true,
+          "windowToken": 34065920,
+          "worldView": false
+        }
+      }
+    ],
+    "dialogs": [
+      {
+        "cancel": false,
+        "lines": [
+          " Seems like it's your friend Ekir that has guard duty now. Maybe he wants to join your adventure?\n \"No, Nailag, I cannot go. I have guard duty now. What if the Goblins from the forests came? There has been rumors of Hre-Chul moving in the forests, you know.\"\n \"Has anyone except me left?\"\n \"Yea, Aeln left for the western forest yesterday. Odd that she hasn't came back yet. Jiels and Almas are somewhere to the east of here. But you... you can't go out... the Hre-Chul a-and...\"\n Chicken, you think and leave him."
+        ],
+        "queryId": 14,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      {
+        "cancel": true,
+        "lines": [
+          "The Peasants, awed by the power of your forces, begin to scatter. Do you wish to pursue and engage them?"
+        ],
+        "queryId": 15,
+        "title": "Game message",
+        "visitedObject": "Peasants"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "You jump across the small river that provides Z'koba with water. It will later empty itself in the Nroh, where the ferries land to pick up passengers. You have heard that one of the two ferries recently broke, and that they now charge wood to use in building a new one instead of gold."
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "You see Aeln sitting in a tree! Why doesn't she fly down. She waves at you. You moves closer to see what she wants."
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          " Aeln looks angry, but flies down to you.\n \"Why did you come here? There are four of the Goblin Hre-Chul somewhere here. I'll follow you back home to make sure nothing happens.\""
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Sprites"
+      },
+      {
+        "cancel": true,
+        "lines": [
+          "{Followers}\n\nA group of Sprite with a desire for greater glory wish to join you. Do you accept? "
+        ],
+        "queryId": 29,
+        "title": "Game message",
+        "visitedObject": "Sprites"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "As the two of you walk home, you hear a wolf howl nearby. You begin to run, but suddenly find that the Goblins have outsmarted you and stand in your path. You ready your sword, and Aeln, well she looks ready to fight.\n When you draw your sword, you suddenly feel faster and stronger than you were before. Confused, you look to Aeln, but she only smiles at you, and the next moment, the Hre-Chul are on you."
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          "Nailag Ciad can gain no more experience in this scenario."
+        ],
+        "queryId": -1,
+        "title": "Game message",
+        "visitedObject": "Event"
+      },
+      {
+        "cancel": false,
+        "lines": [
+          " As you come to her house, Aeln begins to speak.\n \"Now, hadn't I'd seen what I see in you, I would have made sure you could never leave this village again. But you have the signs of a true mage, even if they are weak. You will never be one of the greatest, but there are many of us who do not rely only of their ability.\"\n Your head spins. A Mage? You? Does it mean you can throw fire and call down lightning?  Aeln begins speaking again.\n \"I see that you're confused. You have every right to be. I'll make this short- the Magi are a hidden society of magic users- not the simple kind of magic every worker knows to improve their wares, but a magic that can affect your enemies, your friends, the nature, almost anything. Once we used to live in lands so far-off you've never met someone who has heard of them- not even the Travelers- except me, where we used to act openly- but we were driven from them with force of arms, so now we live in secret all over the world. Actually, there is a small local in the mountains east of the dwarven village. The ability in me is not the same as in you, except on a very basic level, since we are not of the same race, so I can only aid you so far. Come into my house, and I'll teach you.\""
+        ],
+        "queryId": 46,
+        "title": "Game message",
+        "visitedObject": "Thatched Hut"
+      },
+      {
+        "cancel": false,
+        "choices": [
+          {
+            "description": "{Basic Wisdom}\n\nBasic Wisdom allows your hero to learn third level spells.",
+            "label": "Basic\nWisdom",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 254,
+              "y": 323
+            }
+          },
+          {
+            "description": "{Pendant of Total Recall}\n\nWearing this item renders your units immune to the Forgetfulness spell.",
+            "label": "Pendant of Total Recall",
+            "rect": {
+              "h": 44,
+              "w": 44,
+              "x": 378,
+              "y": 323
+            }
+          },
+          {
+            "description": "{Spell Power}\n\nSpell power determines the duration or strength of a spell.",
+            "label": "+1 Spell Power",
+            "rect": {
+              "h": 93,
+              "w": 82,
+              "x": 464,
+              "y": 323
+            }
+          }
+        ],
+        "lines": [
+          "After a few hours, you come out, your head spinning so fast you can't remember your own name, a head-shaped pendant and instructions to search for the local in the mountains east of the dwarven village written on a note that your hand clutches so hard it pains in one hand and a \"spellbook\" in the other. You never heard that mages needed to record their spells in books to be able to cast them, but if Aeln say it is so, it probably is."
+        ],
+        "queryId": 47,
+        "title": "Game message"
+      }
+    ],
+    "errors": []
+  }
+}

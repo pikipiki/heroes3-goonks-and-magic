@@ -5,6 +5,7 @@
 #include "../lib/era/EraAtmaStateNative.h"
 #include "../lib/era/EraInterferenceState.h"
 #include "../lib/era/EraCampaignDeployment.h"
+#include "../lib/era/EraCampaignSlotCurseRule.h"
 #include "../lib/era/EraCampaignAdmission.h"
 #include "../lib/mapObjects/MiscObjects.h"
 #include "../lib/mapObjects/CGPandoraBox.h"
@@ -1446,6 +1447,17 @@ void publishMobileState(){
    h["specialty"]["name"].String()=hero->getHeroType()->getSpecialtyNameTranslated();
    h["specialty"]["description"].String()=hero->getHeroType()->getSpecialtyDescriptionTranslated();
    h["caveEffects"].String()=CGMysteriousCave::describeHeroEffects(hero);
+   auto & campaignEffects=h["campaignEffects"].Vector();
+   const auto & campaignGame=static_cast<const IGameInfoCallback &>(*p->cb).gameState();
+   const auto & campaignState=campaignGame.getMap().sourceCampaignState;
+   for(const auto & row:campaignState["slotCurses"].Vector())
+   {
+    if(row["hero"].Integer()!=hero->getHeroTypeID().getNum()||row["kind"].isNull())continue;
+    const auto kind=row["kind"].Integer();if(kind!=4&&kind!=65)continue;
+    const int remaining=era_campaign_slot_curse::subtract(era_campaign_slot_curse::add(int(row["start"].Integer()),int(row["length"].Integer())),int(campaignGame.day));if(remaining<0)continue;
+    JsonNode effect;effect["kind"].Integer()=kind;effect["delta"].Integer()=kind==4?era_campaign_slot_curse::subtract(0,int(row["value"].Integer())):int(row["value"].Integer());effect["remainingDays"].Integer()=remaining;effect["permanent"].Bool()=row["length"].Integer()==9999;campaignEffects.push_back(std::move(effect));
+   }
+
    if(CGMysteriousCave::isBuilder(hero)){h["specialty"]["name"].String()="Bâtisseur";h["specialty"]["description"].String()="Démolit et reconstruit les villes pendant la durée du don de la Grotte.";}
    auto & skills=h["skills"].Vector();
    for(const auto & [id, level]:hero->secSkills)

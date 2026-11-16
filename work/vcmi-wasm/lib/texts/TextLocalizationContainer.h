@@ -47,6 +47,7 @@ protected:
 	std::unordered_map<std::string, StringState> stringsLocalizations;
 
 	std::vector<const TextLocalizationContainer *> subContainers;
+	bool overridesParent = false;
 
 	/// add selected string to internal storage as high-priority strings
 	void registerStringOverride(const std::string & modContext, const TextIdentifier & UID, const std::string & localized, const std::string & language);
@@ -70,12 +71,16 @@ public:
 	template<typename  ... Args>
 	std::string translate(std::string arg1, Args ... args) const
 	{
+		// A map overlay can be replaced by a network packet while the UI reads
+		// a name. Keep the lock until the returned reference has been copied.
+		std::lock_guard globalLock(globalTextMutex);
 		TextIdentifier id(arg1, args ...);
 		return translateString(id);
 	}
 
 	/// converts identifier into user-readable string
 	const std::string & translateString(const TextIdentifier & identifier) const;
+	std::string translateWithoutMapOverrides(const TextIdentifier & identifier) const;
 
 	/// Debug method, returns all currently stored texts
 	/// Format: [mod ID][string ID] -> human-readable text
@@ -88,6 +93,8 @@ public:
 	void removeSubContainer(const TextLocalizationContainer & container);
 
 	void jsonSerialize(JsonNode & dest) const;
+	/// Atomically replace a transient map overlay without changing base texts.
+	void replaceStrings(const TextLocalizationContainer & other);
 
 	template <typename Handler>
 	void serialize(Handler & h)
@@ -100,7 +107,7 @@ public:
 class DLL_LINKAGE TextContainerRegistrable : public TextLocalizationContainer
 {
 public:
-	TextContainerRegistrable();
+	explicit TextContainerRegistrable(bool overridesParent = false);
 	~TextContainerRegistrable();
 
 	TextContainerRegistrable(const TextContainerRegistrable & other);

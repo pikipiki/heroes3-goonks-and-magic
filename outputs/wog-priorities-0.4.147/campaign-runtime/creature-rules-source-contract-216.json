@@ -1,0 +1,29 @@
+{
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "facts": [
+    {
+      "addresses": "72fb56..72fbc9",
+      "behavior": "UN:G1 takes original creature0..196 and field0..2: singular, plural or description."
+    },
+    {
+      "addresses": "72fbc9..72fc45,72fc0c..72fd11",
+      "behavior": "Binding stores a z-string index,1..1000; zero restores the original name. The binding references live string storage."
+    },
+    {
+      "addresses": "752a73..752a86",
+      "behavior": "MA:U applies a four-byte operand to the original upgrade table."
+    },
+    {
+      "addresses": "752a42..752a69",
+      "behavior": "MA:X applies a four-byte operand to creature flags then invalidates the original creature cache."
+    }
+  ],
+  "admittedCases": [
+    "UN:G1 creature text fields, with query/write/relative binding operands",
+    "MA:U62/-2 disables Vampire upgrades",
+    "MA:X62/d-2 removes innate Vampire flight"
+  ],
+  "limits": "Other upgrade-table writes and arbitrary creature flag arithmetic remain unadmitted. Flight granted by other bonuses is preserved. Shared creature definitions are not changed.",
+  "sourceUse": "Unchanged zc3-0 Vampire names, upgrade-disable and flight-disable initializers.",
+  "saveContract": "Map-local JSON and existing bonus serialization; native save version906 remains unchanged."
+}

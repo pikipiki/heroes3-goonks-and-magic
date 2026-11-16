@@ -200,6 +200,8 @@ public:
 	void levelUp();
 
 	void setMovementPoints(int points);
+	/// Pinned ERM daily curses write the full movement dword, including wrap.
+	void setSourceCampaignMovementWord(std::uint32_t points) { movement = points; }
 	int movementPointsRemaining() const;
 	int movementPointsLimit() const;
 	int movementPointsLimit(bool onLand) const;

@@ -355,6 +355,10 @@ struct SourceCampaignProcessor::Impl final:Host
  void persist(JsonNode change=JsonNode(),const CRewardableObject * event=nullptr,const Rewardable::Configuration * reward=nullptr,JsonNode world=JsonNode())
  {
   state["contract"].String()="source-campaign-state-v1";
+  if(!state["creatureNameBindings"].isNull())
+  {
+   JsonNode names;names.Struct();for(const auto & [id,fields]:std::as_const(state)["creatureNameBindings"].Struct())for(const auto & [field,index]:fields.Struct())if(index.Integer()!=0)names[id][field].String()=lookup(vm.z,int(index.Integer()));state["creatureNames"]=std::move(names);
+  }
   state["vm"]=era_campaign_json::writeState(vm);
   state["running"].Bool()=!vm.continuations.empty()||!state["turnQueue"].Vector().empty();
   state["hero"].Integer()=heroId.getNum();state["object"].Integer()=objectId.getNum();state["player"].Integer()=player.getNum();state["pending"]=pending;
@@ -596,7 +600,7 @@ struct SourceCampaignProcessor::Impl final:Host
     heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;updateContext();
     if(kind=="prepare")
     {
-     const auto who=player;queue.erase(queue.begin());persist();gh.newTurnProcessor->preparePlayerTurnStarted(who);
+     const auto who=player;queue.erase(queue.begin());persist();gh.newTurnProcessor->preparePlayerTurnStarted(who);applyDailyCurses(who);
     }
     else if(kind=="timers")
     {
@@ -852,8 +856,11 @@ struct SourceCampaignProcessor::Impl final:Host
   if(executor.dispatchAny("OB",{{int(source->ID)},{int(source->ID),source->subID},{position.x,position.y,position.z}})){run();return true;}
   heroId=ObjectInstanceID::NONE;return false;
  }
+ int curseKind(const JsonNode & row)const
+ {return row["kind"].isNull()?2:era_campaign_json::integer(row["kind"]);}
  void restoreSlotCurse(const JsonNode & row)
  {
+  if(curseKind(row)!=2)return;
   const int type=era_campaign_json::integer(row["hero"]),encoded=era_campaign_json::integer(row["value"]);
   const int source=era_campaign_slot_curse::slot(encoded),slot=era_campaign_slot_curse::nativeSlot(source);
   auto & count=state["artifactSlotLocks"][std::to_string(type)][std::to_string(slot)];
@@ -877,6 +884,26 @@ struct SourceCampaignProcessor::Impl final:Host
    else ++it;
   }
   if(changed)persist();
+ }
+ void applyDailyCurses(PlayerColor owner)
+ {
+  if(state["slotCurses"].isNull())return;
+  // 358f751e50 visits the common1000-row table in insertion order, after
+  // native daily reset and before RunTimer. Expiry has already been applied.
+  for(const auto & row:std::as_const(state)["slotCurses"].Vector())
+  {
+   const auto * target=hero(era_campaign_json::integer(row["hero"]));if(!target||target->getOwner()!=owner)continue;
+   const int kind=curseKind(row),power=era_campaign_json::integer(row["value"]);
+   if(kind==4)
+   {
+    const auto gold=gh.gameInfo().getPlayerState(owner)->resources[GameResID::GOLD];require(gold>=INT32_MIN&&gold<=INT32_MAX,"curse gold outside source word");
+    auto change=mutation("playerResource",ObjectInstanceID::NONE);change["player"].Integer()=owner.getNum();change["resource"].Integer()=GameResID::GOLD;change["amount"].Integer()=std::max(0,era_campaign_slot_curse::subtract(int(gold),power));persist(change);
+   }
+   else if(kind==65)
+   {
+    auto change=mutation("heroMovementWord",target->id);change["amount"].Integer()=era_campaign_slot_curse::add(target->movementPointsRemaining(),power);persist(change);
+   }
+  }
  }
  // WoG 3.58f 0x7059e0 runs before ERM2Object: the same dwelling
  // changes its recruit type with the absolute day and restores guard slot 0.
@@ -928,6 +955,15 @@ struct SourceCampaignProcessor::Impl final:Host
    require(heroId==h->id&&objectId==obj->id,"another object visited while a script is suspended");return true;
   }
   heroId=h->id;objectId=obj->id;player=h->getOwner();updateContext();
+  // Preserve source coordinates/type before the native effect can remove the
+  // visited object. The native visit query also survives script dialogs.
+  if(std::any_of(program.blocks.begin(),program.blocks.end(),[](const Trigger & block){return block.post&&block.receiver=="OB";}))
+  {
+   const auto source=identity(obj);const auto pos=obj->visitablePos();
+   auto & post=state["postVisits"][std::to_string(h->id.getNum())];
+   post["object"].Integer()=obj->id.getNum();post["type"].Integer()=int(source.ID);post["subtype"].Integer()=source.subID;
+   post["x"].Integer()=pos.x;post["y"].Integer()=pos.y;post["z"].Integer()=pos.z;persist();
+  }
   correctMessengerDwelling(obj);
   const auto pos=obj->visitablePos();vm.v[998]=pos.x;vm.v[999]=pos.y;vm.v[1000]=pos.z;
   if(obj->ID!=Obj::EVENT)
@@ -959,6 +995,19 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  comparison.reset();
  if(c.receiver=="MA")
  {
+  if(op.code=="U"||op.code=="X")
+  {
+   require(c.selectors.empty(),"source creature rule takes no selector");arity(op,2);require(args[0].access==Access::Read,"source creature rule requires a fixed identity");const auto selected=creature(number(args[0]));const auto key=std::to_string(selected.getNum());
+   if(op.code=="U")
+   {
+    require(!query(op)&&args[1].access==Access::Read&&number(args[1])==-2,"only verified source upgrade disable is admitted");state["creatureUpgrades"][key].Integer()=-2;persist();
+   }
+   else
+   {
+    require(args[1].access==Access::Relative&&number(args[1])==-2&&selected.toCreature()->hasBonusOfType(BonusType::FLYING)&&state["creatureFlightDisabled"][key].isNull(),"only verified source flying-flag subtraction is admitted");state["creatureFlightDisabled"][key].Bool()=true;auto change=mutation("creatureFlightDisabled",ObjectInstanceID::NONE);change["creature"].Integer()=selected.getNum();persist(change);
+   }
+   return Step::Continue;
+  }
   if(op.code=="C")
   {
    require(c.selectors.empty(),"source creature cost takes no selector");arity(op,3);
@@ -1250,6 +1299,11 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    // enabled by this host. Campaign battle potions are a separate mechanism.
    value(0,args[1]);return Step::Continue;
   }
+  if(op.code=="G")
+  {
+   arity(op,4);for(int i=0;i<3;++i)require(args[i].access==Access::Read,"source text identity requires values");require(number(args[0])==1,"only verified creature text bindings are admitted");const auto selected=creature(number(args[1]));const int field=number(args[2]);require(field>=0&&field<=2,"source creature text field outside0..2");
+   auto & binding=state["creatureNameBindings"][std::to_string(selected.getNum())][std::to_string(field)];const int index=value(binding.isNull()?0:era_campaign_json::integer(binding),args[3]);if(!query(op)){require(index>=0&&index<=1000,"source creature text outside local z table");binding.Integer()=index;persist();}return Step::Continue;
+  }
   if(op.code=="N")
   {
    require(args.size()==3||args.size()==4,"invalid source name arity");
@@ -1268,7 +1322,9 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    }
    else if(kind==3)
    {
-    arity(op,4);require(number(args[3])>=0,"negative source creature name plurality");const auto * type=creature(source).toCreature();name=number(args[3])?type->getNamePluralTranslated():type->getNameSingularTranslated();
+    arity(op,4);require(number(args[3])>=0,"negative source creature name plurality");const auto * type=creature(source).toCreature();const int field=number(args[3])?1:0;
+    const auto & binding=std::as_const(state)["creatureNameBindings"][std::to_string(type->getId().getNum())][std::to_string(field)];
+    name=!binding.isNull()&&binding.Integer()!=0?lookup(vm.z,int(binding.Integer())):LIBRARY->generaltexth->translateWithoutMapOverrides(TextIdentifier(field?type->getNamePluralTextID():type->getNameSingularTextID()));
    }
    else if(kind==4)
    {
@@ -1504,18 +1560,18 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   {
    arity(op,4);require(args[0].access==Access::Read&&args[3].access==Access::Read,"curse identity and mode must be values");
    const int kind=number(args[0]),mode=number(args[3]),type=h->getHeroTypeID().getNum();
-   require(kind==2&&mode>=0&&mode<=3,"unvalidated original curse family or mode");
+   require((kind==2||kind==4||kind==65||mode==3)&&mode>=0&&mode<=3,"unvalidated original curse family or mode");
    auto & rows=state["slotCurses"].Vector();require(rows.size()<=1000,"source curse table overflow");
-   auto found=std::find_if(rows.begin(),rows.end(),[&](const JsonNode & row){return era_campaign_json::integer(row["hero"])==type;});
+   auto found=std::find_if(rows.begin(),rows.end(),[&](const JsonNode & row){return era_campaign_json::integer(row["hero"])==type&&curseKind(row)==kind;});
    if(query(op))
    {
-    const int power=found==rows.end()?0:era_campaign_json::integer((*found)["value"]);
+    const int power=found==rows.end()?(std::any_of(rows.begin(),rows.end(),[&](const JsonNode & row){return era_campaign_json::integer(row["hero"])==type;})?1:0):era_campaign_json::integer((*found)["value"]);
     const int length=found==rows.end()?0:era_campaign_slot_curse::subtract(era_campaign_slot_curse::add(era_campaign_json::integer((*found)["start"]),era_campaign_json::integer((*found)["length"])),int(gh.gameState().day));
     value(power,args[1]);value(length,args[2]);return Step::Continue;
    }
    require(args[1].access==Access::Read&&args[2].access==Access::Read,"curse values require set/get access");
    const int power=number(args[1]),length=number(args[2]),day=gh.gameState().day;
-   if(mode==3){if(found!=rows.end()){const auto row=*found;rows.erase(found);restoreSlotCurse(row);}persist();return Step::Continue;}
+   if(mode==3){for(auto it=rows.begin();it!=rows.end();)if(era_campaign_json::integer((*it)["hero"])==type){const auto row=*it;it=rows.erase(it);restoreSlotCurse(row);}else ++it;persist();return Step::Continue;}
    if(found!=rows.end())
    {
     // In the pinned 3.58f branch flag0 deletes its row without _DelCurse.
@@ -1526,6 +1582,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    }
    if(mode==0)return Step::Continue;
    require(rows.size()<1000,"source curse table full");
+   if(kind!=2){JsonNode row;row["hero"].Integer()=type;row["kind"].Integer()=kind;row["start"].Integer()=day;row["length"].Integer()=length;row["value"].Integer()=power;rows.push_back(std::move(row));persist();return Step::Continue;}
    const int source=power==-1?random(8,false):power,slot=era_campaign_slot_curse::nativeSlot(source);
    int old=-1;bool restore=false;const auto * place=h->getSlot(ArtifactPosition(slot));
    if(source!=8&&place&&!place->locked&&place->getArt())
@@ -2068,6 +2125,21 @@ bool SourceCampaignProcessor::reply(QueryID query,int selection,const std::strin
 bool SourceCampaignProcessor::deployTroops(ObjectInstanceID hero,SlotID slot,CreatureID creature,int count,const int3 & position,bool takeBack,PlayerColor player)
 {return impl->deployTroops(hero,slot,creature,count,position,takeBack,player);}
 bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero){return impl->visit(object,hero);}
+void SourceCampaignProcessor::visitEnded(ObjectInstanceID object,ObjectInstanceID hero)
+{
+ impl->bind();if(!impl->active||!impl->vm.initialized)return;
+ const auto key=std::to_string(hero.getNum());const auto saved=std::as_const(impl->state)["postVisits"][key];
+ if(saved.isNull()||saved["object"].Integer()!=object.getNum())return;
+ impl->state["postVisits"].Struct().erase(key);impl->persist();
+ const auto * visiting=impl->gh.gameState().getHero(hero);if(!visiting||!visiting->getOwner().isValidPlayer())return;
+ require(impl->vm.continuations.empty(),"post visit while another script is suspended");
+ impl->heroId=hero;impl->objectId=ObjectInstanceID::NONE;impl->player=visiting->getOwner();impl->updateContext();
+ const int x=saved["x"].Integer(),y=saved["y"].Integer(),z=saved["z"].Integer();
+ impl->vm.v[998]=x;impl->vm.v[999]=y;impl->vm.v[1000]=z;
+ Executor executor(impl->program,impl->vm,impl->context,*impl);
+ if(executor.dispatchAny("OB",{{int(saved["type"].Integer())},{int(saved["type"].Integer()),int(saved["subtype"].Integer())},{x,y,z}},true))impl->run();
+ else{impl->heroId=ObjectInstanceID::NONE;impl->persist();}
+}
 bool SourceCampaignProcessor::visitPosition(const int3 & position,const CGHeroInstance * hero){return impl->visitPosition(position,hero);}
 bool SourceCampaignProcessor::beginTurn(PlayerColor player)
 {

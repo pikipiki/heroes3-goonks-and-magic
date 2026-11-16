@@ -29,7 +29,11 @@ bool IBonusBearer::hasBonus(const CSelector &selector, const std::string &cachin
 
 TConstBonusListPtr IBonusBearer::getBonuses(const CSelector &selector, const std::string &cachingStr) const
 {
-	return getAllBonuses(selector, cachingStr);
+	const auto bonuses=getAllBonuses(selector,cachingStr);
+	if(std::none_of(bonuses->begin(),bonuses->end(),[](const auto & b){return b->type==BonusType::FLYING&&b->source==BonusSource::CREATURE_ABILITY;}))return bonuses;
+	const auto markers=getAllBonuses(Selector::type()(BonusType::NONE),"eraCampaignFlightRules");
+	if(std::none_of(markers->begin(),markers->end(),[](const auto & b){return b->stacking=="eraCampaign:flightDisabled:v1"&&b->source==BonusSource::OTHER&&b->hidden&&b->val==1;}))return bonuses;
+	auto filtered=std::make_shared<BonusList>();for(const auto & b:*bonuses)if(b->type!=BonusType::FLYING||b->source!=BonusSource::CREATURE_ABILITY)filtered->push_back(b);return filtered;
 }
 
 TConstBonusListPtr IBonusBearer::getBonusesFrom(BonusSource source) const

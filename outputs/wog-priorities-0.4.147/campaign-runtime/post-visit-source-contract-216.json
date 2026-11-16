@@ -1,0 +1,17 @@
+{
+  "sourceExecutableSha256": "ccb44ccf40806bde24fd119c7b4cc8caeaaac2b2f2c8839276ce6c446a882450",
+  "facts": [
+    {
+      "addresses": "74934a..74936d",
+      "behavior": "Original post-instruction entry preserves the current dispatch pointer, calls ProcessERM with30370, then restores it."
+    },
+    {
+      "addresses": "749386..749395",
+      "behavior": "Native PostInstrCall clears original visit state before entering its post dispatcher."
+    }
+  ],
+  "sourceUse": "Unchanged zc3-0 !$OB11/67/0 removes the Peasant object using UN:O11/67/0/1 after the conversation.",
+  "nativeBinding": "MapObjectVisitQuery::onRemoval completes the native visit, then dispatches matching source post-OB blocks using retained source type, subtype and coordinates. Context persists through source-dialog save/reload.",
+  "controls": "Actual original Peasant dialogue and removal opens the route to Aeln; an independent native Hill Fort close invokes exactly one coordinate post trigger.",
+  "limits": "This receipt covers OB post triggers, not every original post-event family."
+}

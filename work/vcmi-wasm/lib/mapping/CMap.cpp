@@ -1117,6 +1117,24 @@ bool CMap::compareObjectBlitOrder(const CGObjectInstance * a, const CGObjectInst
 	return a->id < b->id;
 }
 
+void CMap::restoreSourceCampaignCreatureNames()
+{
+ TextLocalizationContainer names;
+ const auto & state=std::as_const(sourceCampaignState);
+ if(state["contract"].String()=="source-campaign-state-v1")
+  for(const auto & [key,fields]:state["creatureNames"].Struct())
+  {
+   const auto * type=CreatureID(std::stoi(key)).toCreature();if(!type)throw std::runtime_error("Invalid source creature name target");
+   for(const auto & [field,value]:fields.Struct())
+   {
+    const auto id=field=="0"?type->getNameSingularTextID():field=="1"?type->getNamePluralTextID():field=="2"?type->getDescriptionTextID():std::string();
+    if(id.empty()||!value.isString())throw std::runtime_error("Invalid source creature name field");
+    names.registerString("map",TextIdentifier(id),value.String());
+   }
+  }
+ sourceCampaignCreatureNames.replaceStrings(names);
+}
+
 void CMap::deserializeHeroPool(const std::vector<std::shared_ptr<CGHeroInstance> > & poolFromSave)
 {
 	heroesPool.resize(LIBRARY->heroh->size());

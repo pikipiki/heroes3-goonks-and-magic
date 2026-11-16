@@ -1,0 +1,1544 @@
+{
+  "version": "0.4.216",
+  "engineSha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+  "cases": {
+    "delivered": {
+      "passed": true,
+      "deliveredAdmission": true,
+      "cspBypassed": true,
+      "scope": "Exact original zc1 archive and script program privately admitted: actual name/profile form, native story images decoded, complete initial narrative, original day-one hero and army ready; seven-size stable forms and pending original intro save/reload. No original quest, combat or victory validation.",
+      "engine": {
+        "memoryVersion": 1,
+        "runtimeVersion": "a3c3c7aac1d11911",
+        "wasm": "vcmiclient.7cad9c405f8c864d.wasm",
+        "sha256": "7cad9c405f8c864d66e9247f3c3b56355cd067087b874d7792ab58f2bcf353f2",
+        "mobile": {
+          "width": 800,
+          "height": 600
+        },
+        "assetCacheBytes": 16777216
+      },
+      "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+      "sourceProgramId": "zc1-1",
+      "loadedVersion": null,
+      "pendingSaveSha256": "d9b0fafa0190f776996a37c15a2d1b6e93d0d629a43e4a3433e592f8aa201a0d",
+      "readySaveSha256": "5fe361879cd493595b315ed7a577e00ce8cf8b7cf1dcf2d02ae83666e32c6991",
+      "dialogs": [
+        {
+          "cancel": false,
+          "choices": [],
+          "lines": [
+            "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+          ],
+          "queryId": 3,
+          "scriptDialog": {
+            "canCancel": false,
+            "choiceLabel": "Choose your portrait, hero:",
+            "choices": [
+              {
+                "hint": "First",
+                "label": "First",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 420
+                },
+                "value": 1
+              },
+              {
+                "hint": "Second",
+                "label": "Second",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 306,
+                  "y": 420
+                },
+                "value": 2
+              },
+              {
+                "hint": "Third",
+                "label": "Third",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 502,
+                  "y": 420
+                },
+                "value": 3
+              },
+              {
+                "hint": "Fourth",
+                "label": "Fourth",
+                "rect": {
+                  "h": 32,
+                  "w": 190,
+                  "x": 110,
+                  "y": 468
+                },
+                "value": 4
+              }
+            ],
+            "contract": "source-campaign-dialog-v1",
+            "draft": {
+              "text": ""
+            },
+            "inputLabel": "What's your name:",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_901.bmp",
+                "hint": "First",
+                "mediaKey": "cmp.res/11_901.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 131,
+                  "y": 318
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_902.bmp",
+                "hint": "Second",
+                "mediaKey": "cmp.res/11_902.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 271,
+                  "y": 318
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_903.bmp",
+                "hint": "Third",
+                "mediaKey": "cmp.res/11_903.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 411,
+                  "y": 318
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_904.bmp",
+                "hint": "Fourth",
+                "mediaKey": "cmp.res/11_904.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 551,
+                  "y": 318
+                }
+              }
+            ],
+            "queryId": 3,
+            "resultVariable": 100,
+            "selection": 1,
+            "text": "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "choices": [
+            {
+              "description": "",
+              "label": "Peasants",
+              "rect": {
+                "h": 64,
+                "w": 58,
+                "x": 371,
+                "y": 313
+              }
+            }
+          ],
+          "lines": [
+            "We are real friends, Native hero, \nand we will stick together\ntill the bitter end... \nRight?"
+          ],
+          "queryId": 4,
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            "\nA warm summer night... \nthe smell of fresh grass and sweet rain is pungeant in the air... \nSoft sounds reverberate through the groves,\nmelting and changing into another,\nfilling the deep of darkness with mystery...\nA light breaze rustles the branches of the maple-trees. \nTwo charmed stars soar through the sky\nand seem to land on the soft silky grass as fresh dew. \n"
+          ],
+          "queryId": 5,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_015.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_015.bmp",
+                "rect": {
+                  "h": 100,
+                  "w": 100,
+                  "x": 110,
+                  "y": 300
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_014.bmp",
+                "hint": "",
+                "mediaKey": "cmp.res/11_014.bmp",
+                "rect": {
+                  "h": 56,
+                  "w": 100,
+                  "x": 250,
+                  "y": 322
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 5,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": "\nA warm summer night... \nthe smell of fresh grass and sweet rain is pungeant in the air... \nSoft sounds reverberate through the groves,\nmelting and changing into another,\nfilling the deep of darkness with mystery...\nA light breaze rustles the branches of the maple-trees. \nTwo charmed stars soar through the sky\nand seem to land on the soft silky grass as fresh dew. \n"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nThe silence deepens,\nthen the cry of two new borns salute the midnight air.  \nAnd the old witch foretells...\nOne will follow the long and winding road.\nThe other will suffer the fate of a warrior. \n"
+          ],
+          "queryId": 6,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 6,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nThe silence deepens,\nthen the cry of two new borns salute the midnight air.  \nAnd the old witch foretells...\nOne will follow the long and winding road.\nThe other will suffer the fate of a warrior. \n"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nYears went by. You were siblings as infants.\nBut as time passed your soul stayed light\nand reached for to stars, the blazing summer lighting, the distant sky. \nDan is your friend. You have spent almost all your life together.\nStand-up fights, hunting... but something draws you to the unknown. \nYou dream of a knight on a white horse,\nin shining armour reflecting rays of the sun.  \nOr could it be reality? \n"
+          ],
+          "queryId": 7,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 7,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nYears went by. You were siblings as infants.\nBut as time passed your soul stayed light\nand reached for to stars, the blazing summer lighting, the distant sky. \nDan is your friend. You have spent almost all your life together.\nStand-up fights, hunting... but something draws you to the unknown. \nYou dream of a knight on a white horse,\nin shining armour reflecting rays of the sun.  \nOr could it be reality? \n"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            " \nWhat was his name... Gelu??? \nYou can't remember... \nDid this happen to you when you were just a child,\nmemories that will stay with you for all your life? \nSo that is it...  \nNow the time comes when you can no longer consider yourself a youth,  \nYou can not wait anymore... \n"
+          ],
+          "queryId": 8,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 8,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": " \nWhat was his name... Gelu??? \nYou can't remember... \nDid this happen to you when you were just a child,\nmemories that will stay with you for all your life? \nSo that is it...  \nNow the time comes when you can no longer consider yourself a youth,  \nYou can not wait anymore... \n"
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": true,
+          "choices": [],
+          "lines": [
+            "You move out on your quest for glory.  \nYour army yet numbers only one man, your friend, Dan. \nTogether you will conquer the world."
+          ],
+          "queryId": 9,
+          "scriptDialog": {
+            "canCancel": true,
+            "choiceLabel": "",
+            "choices": [],
+            "contract": "source-campaign-dialog-v1",
+            "draft": null,
+            "inputLabel": "",
+            "kind": "extended",
+            "pictures": [
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_904.bmp",
+                "hint": "This is you, hero",
+                "mediaKey": "cmp.res/11_904.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 131,
+                  "y": 318
+                }
+              },
+              {
+                "file": "..\\Data\\Zvs\\Cmp.res\\11_012.bmp",
+                "hint": "This is your friend Dan",
+                "mediaKey": "cmp.res/11_012.bmp",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 271,
+                  "y": 318
+                }
+              },
+              {
+                "file": "",
+                "hint": ""
+              },
+              {
+                "file": "",
+                "hint": ""
+              }
+            ],
+            "queryId": 9,
+            "resultVariable": 1,
+            "selection": 0,
+            "text": "You move out on your quest for glory.  \nYour army yet numbers only one man, your friend, Dan. \nTogether you will conquer the world."
+          },
+          "title": "Game message"
+        },
+        {
+          "cancel": false,
+          "lines": [
+            "  Time to go!"
+          ],
+          "queryId": -1,
+          "title": "Game message"
+        }
+      ],
+      "images": [
+        {
+          "text": "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map).",
+          "media": [
+            "cmp.res/11_901.bmp",
+            "cmp.res/11_902.bmp",
+            "cmp.res/11_903.bmp",
+            "cmp.res/11_904.bmp"
+          ],
+          "decoded": [
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/0663e85af053c392bce31cdc82daeb18c4f437e3ab56c0084806ba972aee9695.bmp",
+              "w": 58,
+              "h": 64
+            },
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/0a5a5f16188aff1c9bc3a4f6770631c5c67854659db10606e77071a8d41c5b68.bmp",
+              "w": 58,
+              "h": 64
+            },
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/acbac6c1b00cb3ebc38b54ac5b3a6409a87cf36326b881a8964441f1fd388c8b.bmp",
+              "w": 58,
+              "h": 64
+            },
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/1c91f9c703bc9fa45b892fc426c598bd1eb9919e1a15ed696cd02c7ccc4c38a1.bmp",
+              "w": 58,
+              "h": 64
+            }
+          ]
+        },
+        {
+          "text": "\nA warm summer night... \nthe smell of fresh grass and sweet rain is pungeant in the air... \nSoft sounds reverberate through the groves,\nmelting and changing into another,\nfilling the deep of darkness with mystery...\nA light breaze rustles the branches of the maple-trees. \nTwo charmed stars soar through the sky\nand seem to land on the soft silky grass as fresh dew. \n",
+          "media": [
+            "cmp.res/11_015.bmp",
+            "cmp.res/11_014.bmp"
+          ],
+          "decoded": [
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/62da2716cc9051b990846fb98231aae6979c1e017cecebaac207f12adff0ad2a.bmp",
+              "w": 100,
+              "h": 100
+            },
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/16fb04395d34c4487889017b59741ea216204eecfd9e01adc596d40792096fe3.bmp",
+              "w": 100,
+              "h": 56
+            }
+          ]
+        },
+        {
+          "text": " \nThe silence deepens,\nthen the cry of two new borns salute the midnight air.  \nAnd the old witch foretells...\nOne will follow the long and winding road.\nThe other will suffer the fate of a warrior. \n",
+          "media": [],
+          "decoded": []
+        },
+        {
+          "text": " \nYears went by. You were siblings as infants.\nBut as time passed your soul stayed light\nand reached for to stars, the blazing summer lighting, the distant sky. \nDan is your friend. You have spent almost all your life together.\nStand-up fights, hunting... but something draws you to the unknown. \nYou dream of a knight on a white horse,\nin shining armour reflecting rays of the sun.  \nOr could it be reality? \n",
+          "media": [],
+          "decoded": []
+        },
+        {
+          "text": " \nWhat was his name... Gelu??? \nYou can't remember... \nDid this happen to you when you were just a child,\nmemories that will stay with you for all your life? \nSo that is it...  \nNow the time comes when you can no longer consider yourself a youth,  \nYou can not wait anymore... \n",
+          "media": [],
+          "decoded": []
+        },
+        {
+          "text": "You move out on your quest for glory.  \nYour army yet numbers only one man, your friend, Dan. \nTogether you will conquer the world.",
+          "media": [
+            "cmp.res/11_904.bmp",
+            "cmp.res/11_012.bmp"
+          ],
+          "decoded": [
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/1c91f9c703bc9fa45b892fc426c598bd1eb9919e1a15ed696cd02c7ccc4c38a1.bmp",
+              "w": 58,
+              "h": 64
+            },
+            {
+              "src": "http://127.0.0.1:8934/web/campaign-media/0b735974595df0453bcfa2c82727bb2f09e291a1b8dd7370740fb4aa86e73a12.bmp",
+              "w": 58,
+              "h": 64
+            }
+          ]
+        }
+      ],
+      "layouts": [
+        {
+          "label": "original-name",
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 264,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 264,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 284,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 407,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 407,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 354,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 258,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 258,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 732,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 296.953125,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-name",
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 784,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 320,
+          "height": 568,
+          "before": {
+            "scrollTop": 41,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 41,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 502,
+                "w": 138,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 164,
+                "y": 502,
+                "w": 138,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 568,
+          "height": 320,
+          "before": {
+            "scrollTop": 184,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 184,
+            "buttons": [
+              {
+                "x": 311,
+                "y": 203,
+                "w": 244,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 311,
+                "y": 259,
+                "w": 244,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 390,
+          "height": 844,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 778,
+                "w": 173,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 199,
+                "y": 778,
+                "w": 173,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 844,
+          "height": 390,
+          "before": {
+            "scrollTop": 31,
+            "overflow": true,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 31,
+            "buttons": [
+              {
+                "x": 577.25,
+                "y": 264,
+                "w": 244.75,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 577.25,
+                "y": 320,
+                "w": 244.75,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 768,
+          "height": 1024,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 958,
+                "w": 362,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 388,
+                "y": 958,
+                "w": 362,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 1024,
+          "height": 768,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 705.046875,
+                "y": 698,
+                "w": 144.46875,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 857.515625,
+                "y": 698,
+                "w": 144.484375,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        },
+        {
+          "label": "original-story",
+          "width": 820,
+          "height": 1180,
+          "before": {
+            "scrollTop": 0,
+            "overflow": false,
+            "ancestors": [
+              {
+                "tag": "DIV",
+                "cls": "dialog-copy",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "dialog-presentation",
+                "touch": "pan-y"
+              },
+              {
+                "tag": "SECTION",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "DIV",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "BODY",
+                "cls": "",
+                "touch": "auto"
+              },
+              {
+                "tag": "HTML",
+                "cls": "goonk-mobile",
+                "touch": "auto"
+              }
+            ]
+          },
+          "after": {
+            "stableCopy": true,
+            "stableForm": true,
+            "scrollTop": 0,
+            "buttons": [
+              {
+                "x": 18,
+                "y": 1114,
+                "w": 388,
+                "h": 48,
+                "confirm": true,
+                "cancel": false
+              },
+              {
+                "x": 414,
+                "y": 1114,
+                "w": 388,
+                "h": 48,
+                "confirm": false,
+                "cancel": true
+              }
+            ]
+          }
+        }
+      ],
+      "after": {
+        "anyHeroCanMove": true,
+        "armies": [
+          {
+            "id": 144,
+            "name": "Native hero",
+            "needsLastStack": true,
+            "slots": [
+              {
+                "aiValue": 15,
+                "attack": 1,
+                "cost": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  10,
+                  0
+                ],
+                "count": 1,
+                "damageMax": 1,
+                "damageMin": 1,
+                "defense": 1,
+                "description": "",
+                "experience": 0,
+                "experiencePerUnit": 0,
+                "experienceRank": 0,
+                "fightValue": 15,
+                "growth": 25,
+                "health": 1,
+                "icon": "",
+                "id": 139,
+                "key": "core:peasant",
+                "name": "Peasant",
+                "nativeFlags": {
+                  "attacksAllAdjacent": false,
+                  "blocksRetaliation": false,
+                  "chargeImmune": false,
+                  "flying": false,
+                  "living": true,
+                  "mindImmune": false,
+                  "noMorale": false,
+                  "nonLiving": false,
+                  "undead": false
+                },
+                "shooter": false,
+                "shots": 0,
+                "speed": 3
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          }
+        ],
+        "audioMuted": false,
+        "autosaveAllowed": true,
+        "backpackCount": 0,
+        "campaignPending": false,
+        "cheatReady": true,
+        "cheatsAllowed": true,
+        "currentPlayer": 6,
+        "day": 1,
+        "heroHasSpellbook": false,
+        "heroId": 144,
+        "heroMana": 10,
+        "heroManaLimit": 10,
+        "heroMoving": false,
+        "heroName": "Native hero",
+        "heroes": [
+          {
+            "hasSpellbook": false,
+            "id": 144,
+            "index": 0,
+            "mana": 10,
+            "manaLimit": 10,
+            "movement": 1500,
+            "movementLimit": 1500,
+            "name": "Native hero"
+          }
+        ],
+        "mapOverview": {
+          "height": 36,
+          "level": 0,
+          "rect": {
+            "h": 144,
+            "w": 144,
+            "x": 630,
+            "y": 26
+          },
+          "view": {
+            "h": 546,
+            "w": 594,
+            "x": 7,
+            "y": 7
+          },
+          "viewport": {
+            "h": 19,
+            "w": 20,
+            "x": 8,
+            "y": 19
+          },
+          "width": 36
+        },
+        "mapSettings": {
+          "enemyMoveTime": 150,
+          "moveTime": 150
+        },
+        "mode": "map",
+        "movement": 1500,
+        "musicVolume": 88,
+        "onlineGame": false,
+        "players": [
+          {
+            "color": 0,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 1,
+            "human": false,
+            "name": "Computer"
+          },
+          {
+            "color": 6,
+            "human": true,
+            "name": "Goonk"
+          }
+        ],
+        "rect": {
+          "h": 600,
+          "w": 800,
+          "x": 0,
+          "y": 0
+        },
+        "resourceTypes": [
+          {
+            "icon": "",
+            "id": 0,
+            "key": "wood",
+            "name": "Wood",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 1,
+            "key": "mercury",
+            "name": "Mercury",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 2,
+            "key": "ore",
+            "name": "Ore",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 3,
+            "key": "sulfur",
+            "name": "Sulfur",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 4,
+            "key": "crystal",
+            "name": "Crystal",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 5,
+            "key": "gems",
+            "name": "Gems",
+            "scope": "core"
+          },
+          {
+            "icon": "",
+            "id": 6,
+            "key": "gold",
+            "name": "Gold",
+            "scope": "core"
+          },
+          {
+            "icon": "mithril/small.png",
+            "id": 7,
+            "key": "mithril",
+            "name": "Mithril",
+            "scope": "wake-of-gods.mithril"
+          }
+        ],
+        "resources": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sessionState": 6,
+        "soundVolume": 88,
+        "turn": true,
+        "windowToken": 35706720,
+        "worldView": false
+      },
+      "errors": []
+    }
+  }
+}

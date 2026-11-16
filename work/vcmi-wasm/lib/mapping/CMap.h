@@ -265,6 +265,9 @@ public:
     // The executable program remains in the hash-bound mod registry.
     JsonNode sourceCampaignState;
     JsonNode sourceCampaignWorld;
+    // Transient overlay belongs to the full active map, never catalogue headers.
+    TextContainerRegistrable sourceCampaignCreatureNames{true};
+    void restoreSourceCampaignCreatureNames();
 	int3 grailPos;
 	int grailRadius;
 
@@ -317,6 +320,7 @@ public:
             h & sourceCampaignWorld;
         else if(!h.saving)
             sourceCampaignWorld = JsonNode();
+        if(!h.saving)restoreSourceCampaignCreatureNames();
 		h & grailPos;
 		h & artInstances;
 

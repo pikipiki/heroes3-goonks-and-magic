@@ -39,11 +39,18 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const specialty=hero.specialty?.name?`<section class="hero-specialty">
    ${heroIcon(hero.specialty.icon)}<div><h3>Specialty</h3><strong>${esc(hero.specialty.name)}</strong><p>${description(hero.specialty.description)}</p>${hero.specialty.sourceProgression?`<p class="hero-source-specialty">${getLanguage()==='fr'?'Bonus TUM en combat uniquement':'TUM bonus during combat only'} · ${hero.specialty.sourceProgression.warMachines?(getLanguage()==='fr'?'Baliste, tente et chariot':"Ballista, tent and cart"):esc(hero.specialty.sourceProgression.family)} : +${hero.specialty.sourceProgression.attackDefense} ${hero.specialty.sourceProgression.warMachines?(getLanguage()==='fr'?'DEF (ATK pour la baliste)':'DEF (ATK for ballista)'):'ATK/DEF'} · +${hero.specialty.sourceProgression.damage} ${hero.specialty.sourceProgression.warMachines?(getLanguage()==='fr'?'dégâts de baliste':'ballista damage'):(getLanguage()==='fr'?'dégâts':'damage')} · +${hero.specialty.sourceProgression.healthPercent}% ${getLanguage()==='fr'?'PV':'HP'}</p>`:''}</div>
   </section>`:'';
+  const fr=getLanguage()==='fr';
+  const effects=Array.isArray(hero.campaignEffects)?hero.campaignEffects.filter(e=>[4,65].includes(e.kind)&&Number.isInteger(e.delta)&&Number.isInteger(e.remainingDays)):[];
+  const campaign=effects.length?`<section class="hero-specialty"><div><h3>${fr?'Effets de campagne':'Campaign effects'}</h3><ul class="hero-campaign-effects">${effects.map(e=>{
+   const amount=`${e.delta>0?'+':e.delta<0?'−':''}${Math.abs(e.delta)}`,label=e.kind===4?(fr?'Or':'Gold'):(fr?'Déplacement':'Movement');
+   const duration=e.permanent?'Permanent':e.remainingDays===0?(fr?'Dernier jour':'Last day'):`${e.remainingDays} ${fr?(e.remainingDays===1?'jour restant':'jours restants'):(e.remainingDays===1?'day remaining':'days remaining')}`;
+   return `<li>${label} : ${amount} ${fr?'par jour':'per day'} · ${duration}</li>`;
+  }).join('')}</ul></div></section>`:'';
   const combatStats=[['Morale',hero.morale],['Luck',hero.luck]].filter(([,stat])=>stat);
   const combat=combatStats.length?`<dl class="hero-combat-stats">${combatStats.map(([name,stat])=>`<div>
    <dt>${name}</dt><dd>${heroIcon(stat.icon)}${stat.value}</dd>
   </div>`).join('')}</dl>`:'';
-  return `${specialty}${hero.caveEffects?`<section class="hero-specialty"><div><h3>Grotte mystérieuse</h3><p>${description(hero.caveEffects)}</p></div></section>`:''}${combat}<section class="hero-secondary">
+  return `${specialty}${campaign}${hero.caveEffects?`<section class="hero-specialty"><div><h3>Grotte mystérieuse</h3><p>${description(hero.caveEffects)}</p></div></section>`:''}${combat}<section class="hero-secondary">
    <h3>Secondary skills</h3>${hero.skills?.length?`<ul>${hero.skills.map(skill=>`<li>
     ${heroIcon(skill.icon)}<div><h4>${esc(skill.name)} <span>${esc(skill.mastery)}</span></h4><p>${description(skill.description)}</p></div>
    </li>`).join('')}</ul>`:'<p>No secondary skills learned.</p>'}

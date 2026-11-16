@@ -135,6 +135,9 @@ void CGameInfoCallback::fillUpgradeInfo(const CArmedInstance *obj, SlotID stackP
 	const auto & stack = obj->getStack(stackPos);
 	const CCreature *base = stack.getCreature();
 	UpgradeInfo ret(base->getId());
+ const auto & disabled=gameState().getMap().sourceCampaignState["creatureUpgrades"][std::to_string(base->getId().getNum())];
+ if(!disabled.isNull()&&disabled.Integer()==-2){out=ret;return;}
+
 
 	if (stack.getArmy()->ID == Obj::HERO)
 	{
