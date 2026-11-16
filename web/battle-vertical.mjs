@@ -90,9 +90,10 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  for(const unit of guidance.shotTargets)marker(unit,'shot','#b2f5ff');for(const unit of guidance.meleeTargets)marker(unit,'melee','#ff6969');for(const unit of guidance.beneficialTargets)marker(unit,'heal','#b5f07a');for(const unit of guidance.spellTargets)marker(unit,unit.enemy?'spell':'heal',unit.enemy?'#ffc0ff':'#b9ff9a');
  for(const unit of guidance.invalidSpellTargets)marker(unit,'invalid','#c5c5c5');
  paintSiegeTargets(ctx,state,project);
- paintStarcraftUnits(ctx,state,{project,scale,dx:0,dy:0,w:width/scale,h:height/scale},atlas,ids,bounds);
+ paintStarcraftUnits(ctx,state,{nativeBodies:true,project,scale,dx:0,dy:0,w:width/scale,h:height/scale},atlas,ids,bounds);
  // Counters are the final overlay: sprites and spell effects cannot cover them.
  for(const {b,p} of records){const unit=units.get(b.stackId);if(!unit)continue;
+  if(unit.key?.startsWith('heroes-starcraft:')&&unit.count<=0)continue;
   const label=String(unit.count??unit.amount??1),bw=Math.max(20,label.length*7+8),by=Math.max(2,Math.min(height-16,p.y+9));
   const bx=Math.max(1,Math.min(width-bw-1,p.x-bw/2));
   ctx.fillStyle=unit.enemy?'#671b26':'#3b2675';ctx.fillRect(bx,by,bw,13);ctx.strokeStyle='#ebd993';ctx.lineWidth=.8;ctx.strokeRect(bx,by,bw,13);ctx.font='bold 11px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff4cd';ctx.fillText(label,bx+bw/2,by+6.5);

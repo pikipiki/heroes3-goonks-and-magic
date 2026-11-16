@@ -1,0 +1,5 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {eligibleSpellTarget,spellTargetHint} from '../public/spell-targets.js';
+const unit=(stackId,owner,hp=100)=>({id:stackId+1,stackId,owner,hp});
+test('beneficial spells show and accept only eligible living allies',()=>{assert(eligibleSpellTarget(unit(0,0),'ally',[0,2]));assert(!eligibleSpellTarget(unit(1,0),'ally',[0,2]));assert(!eligibleSpellTarget(unit(2,1),'ally',[0,2]));assert(!eligibleSpellTarget(unit(0,0,0),'ally',[0]));assert(!eligibleSpellTarget(unit(0,0),'ally',[]));assert(!eligibleSpellTarget({...unit(0,0),auxiliary:true},'ally',[0]));assert.match(spellTargetHint('ally'),/alliée.*vert/);});
+test('resurrection accepts native valid dead or partially wounded cohorts',()=>{assert(eligibleSpellTarget(unit(0,0,0),'ally',[0],true));assert(eligibleSpellTarget(unit(0,0,10),'ally',[0],true));assert(!eligibleSpellTarget(unit(1,0,0),'ally',[0],true));assert(!eligibleSpellTarget(unit(0,1,0),'ally',[0],true));assert.match(spellTargetHint('ally',true),/tombée.*doré/);});

@@ -1,3 +1,4 @@
+import {eligibleSpellTarget} from './spell-targets.js';
 import {opaqueBounds,smoothSprite2x,spritePlacement,starcraftPlacement,COMBAT_BODY_HEIGHT,type SpriteBounds} from './sprite-scale.js';
 import {RenderClock,RenderDensity,SimulationTimeline,interpolatedPosition,attackCycle,heroAnimation,type AttackCycle} from './animation.js';
 import type {BattlePlan} from './battle.js';
@@ -43,6 +44,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const sprites=new Map<number,SpritePair>(),positions=new Map<number,{x:number;y:number}>();
  const makeSprite=():HTMLCanvasElement=>{const image=win.document.createElement('canvas');image.width=image.height=320;return image;};
  const heroCanvases=new Map<number,HTMLCanvasElement>();let previousArt:HTMLCanvasElement|undefined;
+ let restoredCasualties=false;
  let request=0,closed=false,selected:number|undefined,attackMode=false,units:NativeUnit[]=[],nativeFrame=-1,view:ReturnType<typeof battleView>|undefined;
  type SpellEffect={id:number;caster:number;targets:number[];x:number;y:number;at:number};
  const shots:{stack:number;from:{x:number;y:number};to:{x:number;y:number};at:number}[]=[];
@@ -57,6 +59,14 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
  const upright=():void=>{if(portrait)context.transform(0,1,mirrorBackground?1:-1,0,0,0);};
  const bodyPoint=(unit:NativeUnit):{x:number;y:number}=>{const bounds=starBounds.get(unit.id),height=unit.heroes?COMBAT_BODY_HEIGHT:bounds?bounds.height*starcraftPlacement(bounds).scale:48,centre=height/2;return {x:unit.x-camera.x+(portrait?(mirrorBackground?-centre:centre):0),y:unit.y-camera.y-(portrait?0:centre)};};
  let camera={x:0,y:0},marker:{x:number;y:number;target?:number;attack:boolean;at:number}|undefined;
+ const refreshSprite=(unit:NativeUnit):void=>{
+      try{const raw=new Uint8Array(api.sprite(unit.id)),pixels=new Uint32Array(raw.buffer,raw.byteOffset,raw.byteLength/4);let hash=2166136261;for(const pixel of pixels)hash=Math.imul(hash^pixel,16777619)>>>0;
+       let image=spriteCache.get(hash);if(image){for(let i=0;i<pixels.length;i++)if(image.raw[i]!==pixels[i]){image=undefined;break;}}
+       if(!image){const scaled=smoothSprite2x(raw,160,160,scaledPixels),surface=makeSprite();const smooth=surface.getContext('2d')!;smooth.putImageData(new ImageData(scaled,320,320),0,0);smooth.filter='blur(1px)';smooth.globalCompositeOperation='copy';smooth.drawImage(surface,0,0);smooth.filter='none';smooth.globalCompositeOperation='source-over';image={raw:pixels.slice(),canvas:surface,bounds:opaqueBounds(scaled,320,320)};if(spriteCache.size>=64)spriteCache.delete(spriteCache.keys().next().value!);}else spriteCache.delete(hash);spriteCache.set(hash,image);
+       let pair=sprites.get(unit.id);if(!pair){pair={before:image.canvas,after:image.canvas,blend:makeSprite()};sprites.set(unit.id,pair);}else{pair.before=pair.after;pair.after=image.canvas;}
+       if(!starBounds.has(unit.id))starBounds.set(unit.id,image.bounds);
+      }catch{/* Keep the last complete native sprite if an extraction fails. */}
+ };
  const draw=(now:number):void=>{
   if(closed)return;request=win.requestAnimationFrame(draw);if(!clock.due(now))return;const vertical=win.innerWidth<win.innerHeight,nextDensity=resolution.sample(now,canvas.clientWidth,vertical?500:800,win.devicePixelRatio||1);
   if(portrait!==vertical||density!==nextDensity||!canvas.dataset.orientation||canvas.width!==Math.round((vertical?500:800)*nextDensity)){portrait=vertical;density=nextDensity;canvas.width=Math.round((portrait?500:800)*density);canvas.height=Math.round((portrait?800:500)*density);canvas.dataset.orientation=portrait?'portrait':'landscape';}
@@ -70,6 +80,9 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
     nativeFrame=snapshot.frame;timeline.receive(nativeFrame,now,api.tickDuration?.()||42);
     units=snapshot.units.filter(unit=>unit.auxiliary||(unit.stackId!==undefined&&unit.stackId>=0));camera=api.camera();
     if(!view&&units.length){view=battleView(units,camera);const mean=(owner:number)=>{const rows=units.filter(u=>u.owner===owner);return rows.reduce((n,u)=>n+u.x,0)/Math.max(1,rows.length);};mirrorBackground=mean(0)>mean(1);}
+    // A classic return has no native actors for eliminated cohorts. Keep only
+    // their canonical grave markers; negative IDs are never sent to OpenBW.
+    if(!restoredCasualties){restoredCasualties=true;for(const row of plan.stacks)if(row.count===0&&row.x!==undefined&&row.y!==undefined){const id=-row.id-1;corpses.set(id,{id,stackId:row.id,heroes:row.heroes,type:row.unit,owner:row.side,completed:true,hp:0,x:camera.x+row.x,y:camera.y+row.y});deathTimes.set(id,now-2000);}}
     const alive=new Set(units.map(unit=>unit.id));
     for(const old of oldUnits.values())if(!old.auxiliary&&!alive.has(old.id)&&!revivedBodies.has(old.id)){corpses.set(old.id,{...old,hp:0});if(!deathTimes.has(old.id))deathTimes.set(old.id,now);if(old.heroes&&!deaths.has(old.id))api.playCreatureSound?.(old.stackId!,'death');deaths.delete(old.id);}
 
@@ -79,15 +92,9 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
      const old=oldUnits.get(unit.id);if(unit.heroes&&(unit.cooldown||0)>(old?.cooldown||0)){api.playCreatureAttack?.(unit.stackId!);if(plan.stacks.find(s=>s.id===unit.stackId)?.shooter){const target=units.find(u=>u.id===unit.target);if(target)shots.push({stack:unit.stackId!,from:bodyPoint(unit),to:bodyPoint(target),at:now});}}
      const cycle=attackCycle(old,unit,nativeFrame,cycles.get(unit.id));if(cycle)cycles.set(unit.id,cycle);
      if(old&&((unit.hp256??unit.hp*256)<(old.hp256??old.hp*256)||(unit.shields256??(unit.shields??0)*256)<(old.shields256??(old.shields??0)*256))){hits.set(unit.id,now+320);damageText.set(unit.id,{amount:(Math.max(0,(old.hp256??old.hp*256)-(unit.hp256??unit.hp*256))+Math.max(0,(old.shields256??(old.shields??0)*256)-(unit.shields256??(unit.shields??0)*256)))/256,at:now});if(unit.hp<=0&&!deathTimes.has(unit.id))deathTimes.set(unit.id,now);if(unit.heroes){api.playCreatureSound?.(unit.stackId!,unit.hp>0?'hit':'death');if(unit.hp<=0)deaths.add(unit.id);}}
-     if(!unit.heroes){
-      try{const raw=new Uint8Array(api.sprite(unit.id)),pixels=new Uint32Array(raw.buffer,raw.byteOffset,raw.byteLength/4);let hash=2166136261;for(const pixel of pixels)hash=Math.imul(hash^pixel,16777619)>>>0;
-       let image=spriteCache.get(hash);if(image){for(let i=0;i<pixels.length;i++)if(image.raw[i]!==pixels[i]){image=undefined;break;}}
-       if(!image){const scaled=smoothSprite2x(raw,160,160,scaledPixels),surface=makeSprite();const smooth=surface.getContext('2d')!;smooth.putImageData(new ImageData(scaled,320,320),0,0);smooth.filter='blur(1px)';smooth.globalCompositeOperation='copy';smooth.drawImage(surface,0,0);smooth.filter='none';smooth.globalCompositeOperation='source-over';image={raw:pixels.slice(),canvas:surface,bounds:opaqueBounds(scaled,320,320)};if(spriteCache.size>=64)spriteCache.delete(spriteCache.keys().next().value!);}else spriteCache.delete(hash);spriteCache.set(hash,image);
-       let pair=sprites.get(unit.id);if(!pair){pair={before:image.canvas,after:image.canvas,blend:makeSprite()};sprites.set(unit.id,pair);}else{pair.before=pair.after;pair.after=image.canvas;}
-       if(!starBounds.has(unit.id))starBounds.set(unit.id,image.bounds);
-      }catch{/* Keep the last complete native sprite if an extraction fails. */}
-     }
+     if(!unit.heroes)refreshSprite(unit);
     }
+    for(const unit of corpses.values())if(!unit.heroes&&now-(deathTimes.get(unit.id)??now)<1200)refreshSprite(unit);
    }
   }
   const {amount,frame:visualFrame}=timeline.sample(now);
@@ -128,17 +135,20 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
      heroContext.globalCompositeOperation='lighter';heroContext.globalAlpha=animation.mix;heroContext.drawImage(atlas,animation.next*cell,(row.row+animation.pose)*cell,cell,cell,0,0,cell,cell);heroContext.globalCompositeOperation='source-over';blendedHeroes.set(blendKey,heroBlend);}
      let bounds=heroBounds.get(unit.stackId!);if(!bounds){bounds=opaqueBounds(atlas.getContext('2d')!.getImageData(0,row.row*cell,cell,cell).data,cell,cell);heroBounds.set(unit.stackId!,bounds);}const place=spritePlacement(bounds);bodyHeight=bounds.height*place.scale;bodyHits.set(unit.id,{image:heroBlend,x:place.x,y:5+place.y,scale:place.scale,flip,height:bodyHeight});context.drawImage(heroBlend,place.x,place.y,cell*place.scale,cell*place.scale);context.restore();
     }
-   }else if(!unit.heroes){
+   }else if(!unit.heroes&&(unit.hp>0||now-(deathTimes.get(unit.id)??now)<1200)){
     const pair=sprites.get(unit.id);if(!pair)continue;
-    context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
+    context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';if(unit.hp<=0){context.globalAlpha=Math.max(0,1-(now-(deathTimes.get(unit.id)??now))/1200);context.filter='grayscale(1)';}
     const marineBlend=pair.blend,marineContext=marineBlend.getContext('2d')!;marineContext.clearRect(0,0,320,320);marineContext.globalAlpha=1-amount;marineContext.drawImage(pair.before,0,0);
     marineContext.globalCompositeOperation='lighter';marineContext.globalAlpha=amount;marineContext.drawImage(pair.after,0,0);marineContext.globalCompositeOperation='source-over';
     const hitUntil=hits.get(unit.id)||0,recoil=hitUntil>now?Math.sin((1-(hitUntil-now)/320)*Math.PI)*7:0;const bounds=starBounds.get(unit.id)||{x:0,y:0,width:320,height:320},place=starcraftPlacement(bounds);bodyHeight=bounds.height*place.scale;bodyHits.set(unit.id,{image:marineBlend,x:place.x+recoil,y:5+place.y,scale:place.scale,flip:false,height:bodyHeight});context.drawImage(marineBlend,x+place.x+recoil,y+5+place.y,320*place.scale,320*place.scale);
    }
+   context.globalAlpha=1;context.filter='none';
    if(unit.auxiliary)continue;
+   if(canvas.dataset.spellMode==='target'&&eligibleSpellTarget(unit,canvas.dataset.spellTarget||'',canvas.dataset.spellTargets?JSON.parse(canvas.dataset.spellTargets):undefined,canvas.dataset.revive==='true')){context.strokeStyle=canvas.dataset.revive==='true'?'#ffe39a':unit.owner===0?'#99f788':'#ff8a77';context.lineWidth=3;context.beginPath();context.ellipse(0,5,29,11,0,0,Math.PI*2);context.stroke();context.fillStyle=context.strokeStyle;context.font='bold 13px sans-serif';context.textAlign='center';context.fillText(unit.hp<=0?'✓ Réanimer':'✓ Cible',0,26);}
    const hitUntil=hits.get(unit.id)||0;if(hitUntil>now){const age=1-(hitUntil-now)/320;context.strokeStyle='#fff0be';context.globalAlpha=1-age;context.lineWidth=2;for(let i=0;i<7;i++){const angle=i*Math.PI*2/7,r=8+age*27;context.beginPath();context.moveTo(x+Math.cos(angle)*r,y-bodyHeight/2+Math.sin(angle)*r);context.lineTo(x+Math.cos(angle)*(r+7),y-bodyHeight/2+Math.sin(angle)*(r+7));context.stroke();}context.globalAlpha=1;}
    const damage=damageText.get(unit.id);if(damage&&now-damage.at<850){const age=(now-damage.at)/850;context.globalAlpha=1-age;context.font='bold 20px sans-serif';context.textAlign='center';context.fillStyle='#ffe5bf';context.fillText('−'+Number(damage.amount.toFixed(1)).toLocaleString('fr-FR'),x,y-bodyHeight-8-age*30);context.globalAlpha=1;}
-   if(unit.hp<=0){const canRaise=canvas.dataset.revive==='true'&&JSON.parse(canvas.dataset.spellTargets||'[]').includes(unit.stackId);context.globalAlpha=.95;context.fillStyle=canRaise?'#ffe39a':'#201713';context.strokeStyle=canRaise?'#ffe39a':'#ffb19d';context.lineWidth=3;context.beginPath();context.ellipse(0,4,25,12,0,0,Math.PI*2);context.fill();context.stroke();context.font='bold 15px sans-serif';context.textAlign='center';context.fillStyle=canRaise?'#211a10':'#ffe6db';context.fillText(canRaise?'Réanimer':'✝',0,9);continue;}
+   if(unit.hp<=0){const canRaise=canvas.dataset.revive==='true'&&JSON.parse(canvas.dataset.spellTargets||'[]').includes(unit.stackId);context.globalAlpha=.95;context.fillStyle=canRaise?'#ffe39a':'#201713';context.strokeStyle=canRaise?'#ffe39a':'#ffb19d';context.lineWidth=3;context.beginPath();context.ellipse(0,4,33,12,0,0,Math.PI*2);context.fill();context.stroke();context.font='bold 15px sans-serif';context.textAlign='center';context.fillStyle=canRaise?'#211a10':'#ffe6db';context.fillText(canRaise?'Réanimer':'✝ Mort',0,9);continue;}
+   if(shields.has(unit.stackId!)){context.font='bold 16px sans-serif';context.textAlign='center';context.fillText('🔥',27,-bodyHeight+7);}
    const width=34,barY=y-bodyHeight-5,hp=Math.max(0,Math.min(1,(unit.hp256??unit.hp*256)/((unit.maxHp||unit.hp)*256)));
    if(unit.maxShields){context.fillStyle='#121009';context.fillRect(x-width/2-1,barY-8,width+2,6);context.fillStyle='#70c9ff';context.fillRect(x-width/2,barY-7,width*Math.max(0,(unit.shields??0)/unit.maxShields),4);}
    context.fillStyle='#121009';context.fillRect(x-width/2-1,barY-1,width+2,8);context.fillStyle=unit.owner===0?'#88e460':'#ff7665';context.fillRect(x-width/2,barY,width*hp,6);
@@ -173,7 +183,7 @@ export function sharedField(win:Window,canvas:HTMLCanvasElement,api:NativeBridge
   const sx=(event.clientX-box.left)*(portrait?500:800)/box.width,sy=(event.clientY-box.top)*(portrait?800:500)/box.height;const x=((portrait?(mirrorBackground?sy:800-sy):sx)-transform.x)/transform.zoom,y=((portrait?sx:sy)-transform.y)/transform.zoom;
   const targetKind=canvas.dataset.spellTarget;const pickUnits=canvas.dataset.spellMode&&['ally','teleport','sacrifice'].includes(targetKind||'')?units.filter(u=>u.owner===0):canvas.dataset.spellMode&&targetKind==='enemy'?units.filter(u=>u.owner===1):units;const nearby=battlePick(pickUnits,positions,{x,y},camera,canvas.dataset.spellMode?targetKind==='enemy':attackMode,portrait,mirrorBackground,hitBody);
   if(canvas.dataset.spellMode){
-   if(canvas.dataset.spellMode==='target'){const eligible=JSON.parse(canvas.dataset.spellTargets||'[]') as number[];const fallen=[...units.filter(u=>u.hp<=0),...corpses.values()].filter(u=>!revivedBodies.has(u.id)&&(!canvas.dataset.revive||canvas.dataset.revive!=='true'||eligible.includes(u.stackId!)));const deadPick=fallen.find(u=>Math.hypot(x-(u.x-camera.x),y-(u.y-camera.y))<35||Math.hypot(x-bodyPoint(u).x,y-bodyPoint(u).y)<40);const target=canvas.dataset.revive==='true'?(deadPick||nearby):(nearby||deadPick);const at=target&&targetKind!=='ground'?(positions.get(target.id)||target):undefined;canvas.dispatchEvent(new CustomEvent('crossover-spell-target',{detail:{stack:target?.stackId,owner:target?.owner,hp:target?.hp,x:at?at.x-camera.x:x,y:at?at.y-camera.y:y}}));}return;
+   if(canvas.dataset.spellMode==='target'){const eligible=JSON.parse(canvas.dataset.spellTargets||'[]') as number[];const fallen=[...units.filter(u=>u.hp<=0),...corpses.values()].filter(u=>!revivedBodies.has(u.id)&&(!canvas.dataset.revive||canvas.dataset.revive!=='true'||eligible.includes(u.stackId!)));const deadPick=fallen.find(u=>Math.hypot(x-(u.x-camera.x),y-(u.y-camera.y))<35||Math.hypot(x-bodyPoint(u).x,y-bodyPoint(u).y)<40);const target=canvas.dataset.revive==='true'?(deadPick||nearby):(nearby||deadPick);if(targetKind!=='ground'&&(!target||!eligibleSpellTarget(target,targetKind||'',canvas.dataset.spellTargets?JSON.parse(canvas.dataset.spellTargets):undefined,canvas.dataset.revive==='true'))){canvas.dispatchEvent(new Event('crossover-invalid-spell-target'));return;}const at=target&&targetKind!=='ground'?(positions.get(target.id)||target):undefined;canvas.dispatchEvent(new CustomEvent('crossover-spell-target',{detail:{stack:target?.stackId,owner:target?.owner,hp:target?.hp,x:at?at.x-camera.x:x,y:at?at.y-camera.y:y}}));}return;
   }
   if(nearby?.owner===0){select(nearby.stackId!);return;}
   if(selected===undefined){notifySelection();return;}

@@ -1,3 +1,4 @@
+import { spellTargetHint } from './spell-targets.js';
 import { waitForBattleArt } from './media.js';
 import { LOADOUT_KEY, parseLoadout, defaultLoadout, resolveSpell, spellRef, assignSlot } from './loadout.js';
 import { magicController } from './magic.js';
@@ -317,20 +318,31 @@ export function installAdventure(target, base, onExit, trial = false) {
             friendlyTargets.hidden = !spell || !['ally', 'creature', 'teleport', 'sacrifice'].includes(spell.target);
             if (!spell)
                 return;
-            canvas.dataset.revive = spell.targets ? 'true' : '';
-            canvas.dataset.spellTargets = JSON.stringify(spell.targets || []);
+            const revive = [38, 39].includes(spell.id) || (spell.id === 40 && teleportTarget === undefined), targetKind = spell.id === 29 ? 'ally' : spell.target, targetIds = spell.id === 40 && teleportTarget !== undefined ? undefined : spell.targets;
+            canvas.dataset.spellTarget = targetKind;
+            friendlyTargets.hidden = !['ally', 'creature', 'teleport', 'sacrifice'].includes(targetKind);
+            canvas.dataset.revive = revive ? 'true' : '';
+            if (targetIds)
+                canvas.dataset.spellTargets = JSON.stringify(targetIds);
+            else
+                delete canvas.dataset.spellTargets;
+            picker.querySelector('h3').textContent = spell.name;
+            picker.querySelector('p').textContent = spellTargetHint(targetKind, revive);
+            selection.textContent = 'Pause · ' + spell.name + ' : ' + spellTargetHint(targetKind, revive);
+            win.queueMicrotask(() => { if (panel === activePanel)
+                activePanel.querySelector('aside').scrollTop = 0; });
             if (friendlyTargets.hidden)
                 return;
             const census = api().census().units;
-            for (const row of activePlan.stacks.filter(s => s.side === 0)) {
+            for (const row of activePlan.stacks.filter(s => (effectiveOwners.get(s.id) ?? s.side) === 0)) {
                 const living = census.filter(u => u.stackId === row.id && u.hp > 0), dead = living.length === 0;
-                const eligible = !spell.targets || spell.targets.includes(row.id);
+                const eligible = (!targetIds || targetIds.includes(row.id)) && (revive ? dead || !!targetIds : !dead);
                 const button = doc.createElement('button');
                 button.type = 'button';
                 button.dataset.reviveTarget = String(row.id);
                 button.dataset.dead = String(dead);
                 button.disabled = !eligible;
-                button.textContent = (dead ? '✝ Mort · ' : '') + row.name + (dead && eligible && spell.targets ? ' · Réanimer' : '');
+                button.textContent = (eligible ? '✓ ' : '⛔ ') + (dead ? '✝ Mort · ' : '') + row.name + (dead && eligible && revive ? ' · Réanimer' : '');
                 button.title = eligible ? 'Choisir cette troupe' : spell.reason || 'Cette troupe ne peut pas recevoir ce sort (puissance, nature ou immunité).';
                 button.onclick = () => { const point = magic.position(row.id) || { x: row.x ?? 400, y: row.y ?? 250 }; canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { stack: row.id, owner: 0, hp: living.reduce((sum, u) => sum + u.hp, 0), x: point.x, y: point.y } })); };
                 friendlyTargets.append(button);
@@ -497,6 +509,7 @@ export function installAdventure(target, base, onExit, trial = false) {
             ctx.clearRect(0, 0, 48, 48);
             ctx.drawImage(icons.canvas, icon.x, icon.y, 48, 48, 0, 0, 48, 48);
         } }); };
+        canvas.addEventListener('crossover-invalid-spell-target', () => { selection.textContent = 'Pause · cette troupe ne peut pas recevoir ce sort. ' + spellTargetHint(armedSpell?.target || 'creature', canvas.dataset.revive === 'true'); });
         canvas.addEventListener('crossover-spell-target', event => {
             if (!choosingSpell || !armedSpell)
                 return;
@@ -508,6 +521,7 @@ export function installAdventure(target, base, onExit, trial = false) {
                         return;
                     }
                     teleportTarget = stack;
+                    showFriendlyTargets();
                     selection.textContent = 'Pause · choisis la troupe vivante à sacrifier.';
                     return;
                 }

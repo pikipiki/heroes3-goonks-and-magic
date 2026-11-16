@@ -1,3 +1,4 @@
+import { eligibleSpellTarget } from './spell-targets.js';
 import { opaqueBounds, smoothSprite2x, spritePlacement, starcraftPlacement, COMBAT_BODY_HEIGHT } from './sprite-scale.js';
 import { RenderClock, RenderDensity, SimulationTimeline, interpolatedPosition, attackCycle, heroAnimation } from './animation.js';
 // Frame the opening armies once, so the camera stays steady during combat.
@@ -42,6 +43,7 @@ export function sharedField(win, canvas, api, plan) {
     const makeSprite = () => { const image = win.document.createElement('canvas'); image.width = image.height = 320; return image; };
     const heroCanvases = new Map();
     let previousArt;
+    let restoredCasualties = false;
     let request = 0, closed = false, selected, attackMode = false, units = [], nativeFrame = -1, view;
     const shots = [];
     const revivedBodies = new Set();
@@ -65,6 +67,50 @@ export function sharedField(win, canvas, api, plan) {
         context.transform(0, 1, mirrorBackground ? 1 : -1, 0, 0, 0); };
     const bodyPoint = (unit) => { const bounds = starBounds.get(unit.id), height = unit.heroes ? COMBAT_BODY_HEIGHT : bounds ? bounds.height * starcraftPlacement(bounds).scale : 48, centre = height / 2; return { x: unit.x - camera.x + (portrait ? (mirrorBackground ? -centre : centre) : 0), y: unit.y - camera.y - (portrait ? 0 : centre) }; };
     let camera = { x: 0, y: 0 }, marker;
+    const refreshSprite = (unit) => {
+        try {
+            const raw = new Uint8Array(api.sprite(unit.id)), pixels = new Uint32Array(raw.buffer, raw.byteOffset, raw.byteLength / 4);
+            let hash = 2166136261;
+            for (const pixel of pixels)
+                hash = Math.imul(hash ^ pixel, 16777619) >>> 0;
+            let image = spriteCache.get(hash);
+            if (image) {
+                for (let i = 0; i < pixels.length; i++)
+                    if (image.raw[i] !== pixels[i]) {
+                        image = undefined;
+                        break;
+                    }
+            }
+            if (!image) {
+                const scaled = smoothSprite2x(raw, 160, 160, scaledPixels), surface = makeSprite();
+                const smooth = surface.getContext('2d');
+                smooth.putImageData(new ImageData(scaled, 320, 320), 0, 0);
+                smooth.filter = 'blur(1px)';
+                smooth.globalCompositeOperation = 'copy';
+                smooth.drawImage(surface, 0, 0);
+                smooth.filter = 'none';
+                smooth.globalCompositeOperation = 'source-over';
+                image = { raw: pixels.slice(), canvas: surface, bounds: opaqueBounds(scaled, 320, 320) };
+                if (spriteCache.size >= 64)
+                    spriteCache.delete(spriteCache.keys().next().value);
+            }
+            else
+                spriteCache.delete(hash);
+            spriteCache.set(hash, image);
+            let pair = sprites.get(unit.id);
+            if (!pair) {
+                pair = { before: image.canvas, after: image.canvas, blend: makeSprite() };
+                sprites.set(unit.id, pair);
+            }
+            else {
+                pair.before = pair.after;
+                pair.after = image.canvas;
+            }
+            if (!starBounds.has(unit.id))
+                starBounds.set(unit.id, image.bounds);
+        }
+        catch { /* Keep the last complete native sprite if an extraction fails. */ }
+    };
     const draw = (now) => {
         if (closed)
             return;
@@ -96,6 +142,17 @@ export function sharedField(win, canvas, api, plan) {
                     view = battleView(units, camera);
                     const mean = (owner) => { const rows = units.filter(u => u.owner === owner); return rows.reduce((n, u) => n + u.x, 0) / Math.max(1, rows.length); };
                     mirrorBackground = mean(0) > mean(1);
+                }
+                // A classic return has no native actors for eliminated cohorts. Keep only
+                // their canonical grave markers; negative IDs are never sent to OpenBW.
+                if (!restoredCasualties) {
+                    restoredCasualties = true;
+                    for (const row of plan.stacks)
+                        if (row.count === 0 && row.x !== undefined && row.y !== undefined) {
+                            const id = -row.id - 1;
+                            corpses.set(id, { id, stackId: row.id, heroes: row.heroes, type: row.unit, owner: row.side, completed: true, hp: 0, x: camera.x + row.x, y: camera.y + row.y });
+                            deathTimes.set(id, now - 2000);
+                        }
                 }
                 const alive = new Set(units.map(unit => unit.id));
                 for (const old of oldUnits.values())
@@ -143,51 +200,12 @@ export function sharedField(win, canvas, api, plan) {
                                 deaths.add(unit.id);
                         }
                     }
-                    if (!unit.heroes) {
-                        try {
-                            const raw = new Uint8Array(api.sprite(unit.id)), pixels = new Uint32Array(raw.buffer, raw.byteOffset, raw.byteLength / 4);
-                            let hash = 2166136261;
-                            for (const pixel of pixels)
-                                hash = Math.imul(hash ^ pixel, 16777619) >>> 0;
-                            let image = spriteCache.get(hash);
-                            if (image) {
-                                for (let i = 0; i < pixels.length; i++)
-                                    if (image.raw[i] !== pixels[i]) {
-                                        image = undefined;
-                                        break;
-                                    }
-                            }
-                            if (!image) {
-                                const scaled = smoothSprite2x(raw, 160, 160, scaledPixels), surface = makeSprite();
-                                const smooth = surface.getContext('2d');
-                                smooth.putImageData(new ImageData(scaled, 320, 320), 0, 0);
-                                smooth.filter = 'blur(1px)';
-                                smooth.globalCompositeOperation = 'copy';
-                                smooth.drawImage(surface, 0, 0);
-                                smooth.filter = 'none';
-                                smooth.globalCompositeOperation = 'source-over';
-                                image = { raw: pixels.slice(), canvas: surface, bounds: opaqueBounds(scaled, 320, 320) };
-                                if (spriteCache.size >= 64)
-                                    spriteCache.delete(spriteCache.keys().next().value);
-                            }
-                            else
-                                spriteCache.delete(hash);
-                            spriteCache.set(hash, image);
-                            let pair = sprites.get(unit.id);
-                            if (!pair) {
-                                pair = { before: image.canvas, after: image.canvas, blend: makeSprite() };
-                                sprites.set(unit.id, pair);
-                            }
-                            else {
-                                pair.before = pair.after;
-                                pair.after = image.canvas;
-                            }
-                            if (!starBounds.has(unit.id))
-                                starBounds.set(unit.id, image.bounds);
-                        }
-                        catch { /* Keep the last complete native sprite if an extraction fails. */ }
-                    }
+                    if (!unit.heroes)
+                        refreshSprite(unit);
                 }
+                for (const unit of corpses.values())
+                    if (!unit.heroes && now - (deathTimes.get(unit.id) ?? now) < 1200)
+                        refreshSprite(unit);
             }
         }
         const { amount, frame: visualFrame } = timeline.sample(now);
@@ -330,12 +348,16 @@ export function sharedField(win, canvas, api, plan) {
                         context.restore();
                     }
                 }
-                else if (!unit.heroes) {
+                else if (!unit.heroes && (unit.hp > 0 || now - (deathTimes.get(unit.id) ?? now) < 1200)) {
                     const pair = sprites.get(unit.id);
                     if (!pair)
                         continue;
                     context.imageSmoothingEnabled = true;
                     context.imageSmoothingQuality = 'high';
+                    if (unit.hp <= 0) {
+                        context.globalAlpha = Math.max(0, 1 - (now - (deathTimes.get(unit.id) ?? now)) / 1200);
+                        context.filter = 'grayscale(1)';
+                    }
                     const marineBlend = pair.blend, marineContext = marineBlend.getContext('2d');
                     marineContext.clearRect(0, 0, 320, 320);
                     marineContext.globalAlpha = 1 - amount;
@@ -350,8 +372,21 @@ export function sharedField(win, canvas, api, plan) {
                     bodyHits.set(unit.id, { image: marineBlend, x: place.x + recoil, y: 5 + place.y, scale: place.scale, flip: false, height: bodyHeight });
                     context.drawImage(marineBlend, x + place.x + recoil, y + 5 + place.y, 320 * place.scale, 320 * place.scale);
                 }
+                context.globalAlpha = 1;
+                context.filter = 'none';
                 if (unit.auxiliary)
                     continue;
+                if (canvas.dataset.spellMode === 'target' && eligibleSpellTarget(unit, canvas.dataset.spellTarget || '', canvas.dataset.spellTargets ? JSON.parse(canvas.dataset.spellTargets) : undefined, canvas.dataset.revive === 'true')) {
+                    context.strokeStyle = canvas.dataset.revive === 'true' ? '#ffe39a' : unit.owner === 0 ? '#99f788' : '#ff8a77';
+                    context.lineWidth = 3;
+                    context.beginPath();
+                    context.ellipse(0, 5, 29, 11, 0, 0, Math.PI * 2);
+                    context.stroke();
+                    context.fillStyle = context.strokeStyle;
+                    context.font = 'bold 13px sans-serif';
+                    context.textAlign = 'center';
+                    context.fillText(unit.hp <= 0 ? '✓ Réanimer' : '✓ Cible', 0, 26);
+                }
                 const hitUntil = hits.get(unit.id) || 0;
                 if (hitUntil > now) {
                     const age = 1 - (hitUntil - now) / 320;
@@ -384,14 +419,19 @@ export function sharedField(win, canvas, api, plan) {
                     context.strokeStyle = canRaise ? '#ffe39a' : '#ffb19d';
                     context.lineWidth = 3;
                     context.beginPath();
-                    context.ellipse(0, 4, 25, 12, 0, 0, Math.PI * 2);
+                    context.ellipse(0, 4, 33, 12, 0, 0, Math.PI * 2);
                     context.fill();
                     context.stroke();
                     context.font = 'bold 15px sans-serif';
                     context.textAlign = 'center';
                     context.fillStyle = canRaise ? '#211a10' : '#ffe6db';
-                    context.fillText(canRaise ? 'Réanimer' : '✝', 0, 9);
+                    context.fillText(canRaise ? 'Réanimer' : '✝ Mort', 0, 9);
                     continue;
+                }
+                if (shields.has(unit.stackId)) {
+                    context.font = 'bold 16px sans-serif';
+                    context.textAlign = 'center';
+                    context.fillText('🔥', 27, -bodyHeight + 7);
                 }
                 const width = 34, barY = y - bodyHeight - 5, hp = Math.max(0, Math.min(1, (unit.hp256 ?? unit.hp * 256) / ((unit.maxHp || unit.hp) * 256)));
                 if (unit.maxShields) {
@@ -486,6 +526,10 @@ export function sharedField(win, canvas, api, plan) {
                 const fallen = [...units.filter(u => u.hp <= 0), ...corpses.values()].filter(u => !revivedBodies.has(u.id) && (!canvas.dataset.revive || canvas.dataset.revive !== 'true' || eligible.includes(u.stackId)));
                 const deadPick = fallen.find(u => Math.hypot(x - (u.x - camera.x), y - (u.y - camera.y)) < 35 || Math.hypot(x - bodyPoint(u).x, y - bodyPoint(u).y) < 40);
                 const target = canvas.dataset.revive === 'true' ? (deadPick || nearby) : (nearby || deadPick);
+                if (targetKind !== 'ground' && (!target || !eligibleSpellTarget(target, targetKind || '', canvas.dataset.spellTargets ? JSON.parse(canvas.dataset.spellTargets) : undefined, canvas.dataset.revive === 'true'))) {
+                    canvas.dispatchEvent(new Event('crossover-invalid-spell-target'));
+                    return;
+                }
                 const at = target && targetKind !== 'ground' ? (positions.get(target.id) || target) : undefined;
                 canvas.dispatchEvent(new CustomEvent('crossover-spell-target', { detail: { stack: target?.stackId, owner: target?.owner, hp: target?.hp, x: at ? at.x - camera.x : x, y: at ? at.y - camera.y : y } }));
             }

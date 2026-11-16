@@ -119,7 +119,7 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu] .mobile-menu #gam
 #crossover-loadout-slots{display:grid;gap:6px;margin:10px 0}
 #crossover-arena #crossover-loadout-slots button{min-height:48px;text-align:left;border-radius:3px;background:#183124;border-color:#658367}
 #crossover-arena.choosing-spell .command-console{display:none}
-#crossover-arena.using-shortcut .command-console,#crossover-arena.using-shortcut .battle-actions{display:grid}
+#crossover-arena.using-shortcut .command-console{display:none}
 #crossover-arena.using-shortcut #crossover-spell-picker{padding:8px}
 #crossover-arena .battle-heading{gap:4px;padding:7px 10px}
 #crossover-arena .battle-heading h2{font-size:14px}
@@ -163,3 +163,5 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=menu] .mobile-menu #gam
 
 #crossover-preparing{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:12001;width:min(320px,calc(100vw - 32px));box-sizing:border-box;padding:16px;color:#f6e8c7;background:#241d15f5;border:1px solid #b49a60;border-radius:12px;font:14px/1.4 system-ui;box-shadow:0 4px 24px #0008}#crossover-preparing p{margin:0 0 10px}#crossover-preparing progress{width:100%;accent-color:#e4be6a}#crossover-preparing button{display:block;margin-top:10px;min-height:44px;padding:8px 20px;border:1px solid #b49a60;border-radius:8px;background:#40341f;color:#f6e8c7}
 #crossover-arena[hidden]{display:none!important}
+
+#crossover-friendly-targets button:not(:disabled){border:2px solid #97e986;background:#263b27;color:#e2ffdc}#crossover-spell-picker h3{color:#ffe098}#crossover-spell-picker p{font-weight:650;color:#daefd0}

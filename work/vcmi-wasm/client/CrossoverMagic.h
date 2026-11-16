@@ -66,7 +66,8 @@ JsonNode crossoverSpellDescriptor(const CSpell * spell,const spells::Caster * ca
  item["target"].String()=passive?"enemy":target.massive||target.type==spells::AimType::NO_TARGET?"none":target.type==spells::AimType::CREATURE?spell->isPositive()?"ally":spell->isNegative()?"enemy":"creature":"ground";
  if(spell->id==SpellID::TELEPORT)item["target"].String()="teleport";if(spell->id==SpellID::SACRIFICE)item["target"].String()="sacrifice";
  spells::detail::ProblemImpl problem;item["enabled"].Bool()=spell->canBeCast(problem,&battle,stack<0?spells::Mode::HERO:passive?spells::Mode::PASSIVE:spells::Mode::CREATURE_ACTIVE,caster);std::vector<std::string> reasons;problem.getAll(reasons);if(!reasons.empty())item["reason"].String()=reasons.front();
- if(spell->id==SpellID::RESURRECTION||spell->id==SpellID::ANIMATE_DEAD){
+ // Publish native eligibility for every single-creature spell, including immunities.
+ if(!passive&&!target.massive&&target.type==spells::AimType::CREATURE&&spell->id!=SpellID::TELEPORT&&spell->id!=SpellID::SACRIFICE){
   spells::BattleCast cast(&battle,caster,stack<0?spells::Mode::HERO:spells::Mode::CREATURE_ACTIVE,spell);const auto mechanics=spell->battleMechanics(&cast);item["targets"].Vector();
   for(const auto * unit:battle.battleGetAllStacks()){spells::detail::ProblemImpl targetProblem;if(mechanics->canBeCastAt({battle::Destination(unit)},targetProblem))item["targets"].Vector().emplace_back(double(unit->unitId()));}
  }
