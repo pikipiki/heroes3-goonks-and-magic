@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "scope": "Actual unchanged zc4 scenario1 Grail structure victory and next scenario3 unlocked. Transfer starts but stops on unported MW:M; no complete scenario3 or campaign admission. Offline native QA army/travel declared; no quest flag or original script rewriting.",
+  "engineSha256": "7da850ddca692af2ce40036098b8c24811e2fee344b40206b7f24abbab3f5c45",
+  "victory": {
+    "audioMuted": false,
+    "campaignScenario": {
+      "bonus": 0,
+      "bonuses": [
+        {
+          "description": "Start with 5000 Gold",
+          "id": 0,
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 475,
+            "y": 455
+          }
+        },
+        {
+          "description": "Start with 4 Wood and Ore",
+          "id": 1,
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 543,
+            "y": 455
+          }
+        },
+        {
+          "description": "Start with 2 Sulfur, Mercury, Crystal, and Gems",
+          "id": 2,
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 611,
+            "y": 455
+          }
+        }
+      ],
+      "canStart": true,
+      "chooseDifficulty": true,
+      "description": "Xsi had the order to spy the humans for the Necromancer. But she wasn\u00b4t lucky. The humans realised her plans, hunted and prisonded her in a small valley. Now it`s on you to bring Xsi back home to the Necromancer. All maps are planed to play \"expert\". If you want choose your difficulty!",
+      "difficulty": 1,
+      "mapRect": {
+        "h": 600,
+        "w": 456,
+        "x": 0,
+        "y": 0
+      },
+      "name": "Evil Way Home",
+      "scenarioDescription": "You have to capture Castle \"Iced Ilse\". Heroes experience is not limited. Xsi, Isra, Tamika and Aislinn would go to the next Map and take there Spells, Experience, Primary and secondary Skills with them. Do the Obelisk Quest!",
+      "scenarioName": "Evil way home 3",
+      "scenarios": [
+        {
+          "available": false,
+          "completed": true,
+          "id": 0,
+          "name": "Evil Way Home"
+        },
+        {
+          "available": false,
+          "completed": true,
+          "id": 1,
+          "name": "Through Elves Land"
+        },
+        {
+          "available": false,
+          "completed": false,
+          "id": 2,
+          "name": "map.zc4:2.header.name"
+        },
+        {
+          "available": true,
+          "completed": false,
+          "id": 3,
+          "name": "Evil way home 3"
+        }
+      ],
+      "selected": 3
+    },
+    "mapSettings": {
+      "enemyMoveTime": 150,
+      "moveTime": 150
+    },
+    "mode": "campaign-scenario",
+    "musicVolume": 88,
+    "rect": {
+      "h": 600,
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "sessionState": 4,
+    "soundVolume": 88,
+    "windowToken": 143959692
+  },
+  "dialogs": [
+    {
+      "cancel": true,
+      "lines": [
+        "Do you wish this to be the permanent home of the Grail?"
+      ],
+      "queryId": -1,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "choices": [
+        {
+          "description": "",
+          "label": "Red",
+          "rect": {
+            "h": 64,
+            "w": 58,
+            "x": 371,
+            "y": 281
+          }
+        }
+      ],
+      "lines": [
+        "Congratulations! You have constructed a permanent home for the Grail, and can claim victory!"
+      ],
+      "queryId": -1,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "Be careful heroes. In this Country you can`t live without a Nightmare!"
+      ],
+      "queryId": 3,
+      "title": "Game message"
+    },
+    {
+      "cancel": false,
+      "lines": [
+        "Every following Obelisk will ask you a Questions. If you answer all these right. The first letter of each answer will be one of the searched letters for the Spell to open the cave: \n \n{The Cave will offer all your heroes very} \n{helpfull specialities for the next map} \n \nYour answers and possible additional help would be added to the Papyrus!"
+      ],
+      "queryId": 4,
+      "title": "Game message"
+    }
+  ]
+}
