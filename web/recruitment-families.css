@@ -148,3 +148,7 @@
 @container goonk-viewport (orientation:landscape){
  #mobile-app .hall-detail{overflow-y:auto;overflow-x:hidden;touch-action:pan-y;scrollbar-gutter:stable}
 }
+
+/* Two full portrait rows may be smaller than the former 132px minimum. */
+#mobile-app .hall-families[data-visible-rows="2"]{grid-auto-rows:var(--hall-row-height,132px)}
+#mobile-app .hall-families[data-visible-rows="2"] .hall-form{grid-template-rows:minmax(0,1fr) minmax(14px,auto) 18px}

@@ -16,7 +16,7 @@ import {createOnlineLogin} from './online-login.mjs';
 import {createOnlineLobby} from './online-lobby.mjs';
 import {createMarketplace} from './marketplace.mjs';
 import{createLobbyChoices}from'./lobby-choices.mjs';
-import{createHeroTransition,opensMobileWindow}from'./hero-transition.mjs';
+import{createHeroTransition,opensMobileWindow,creaturePreviewsReady}from'./hero-transition.mjs';
 import{hasHDCreaturePortrait}from'./goonk-hd-portraits.mjs';
 import {createBattleAutocombat} from './battle-autocombat.mjs';
 import {createCampaignSetup} from './campaign-setup.mjs';
@@ -64,6 +64,8 @@ import {isMobileLayout} from './mobile-render.mjs';
 isMobileLayout();
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const homeMenu = '<h1>Le royaume des Goonks</h1><p>Une aventure au bout des doigts.<br>Explore, construis et mène tes peluches au combat.</p><button class="primary" data-action="20">Nouvelle aventure</button><button data-action="23">Charger une partie</button><button data-action="47">Mode campagne</button>';
+// Decode the magic-book shortcut while the game starts, before the town opens.
+if(typeof Image!=='undefined'){const icon=new Image();icon.src=new URL('./h3-theme/commander/magic.svg',import.meta.url).href;icon.decode?.().catch(()=>{});}
 function mount(){
  installAutosave();
  if(!window.goonkMobileActive)return;document.documentElement.classList.add('goonk-mobile');
@@ -216,7 +218,7 @@ function mount(){
   else if(m==='dialog'&&state.dialogKind==='commander-level-up'){
    items=[btn(fr?'✓ Valider la compétence':'✓ Confirm skill','accept',true),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   }
-  else if(m==='town')items=[['Recruitment hall','town-fort','town-fort'],[fr?'Armées':'Armies','army','town-split'],[fr?'Construire':'Build','build','town-hall'],[fr?'Recruter des héros':'Recruit heroes','recruit-heroes','town-tavern'],['Mage guild','town-guild','town-hall'],['Marketplace','town-market','resource-gold']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.${icon==='town-tavern'?'svg':'png'}" alt=""><span>${label}</span></button>`);
+  else if(m==='town')items=[['Recruitment hall','town-fort','town-fort'],[fr?'Armées':'Armies','army','town-split'],[fr?'Construire':'Build','build','town-hall'],[fr?'Recruter des héros':'Recruit heroes','recruit-heroes','town-tavern'],[fr?'Guilde des mages':'Mage guild','town-guild','commander/magic'],['Marketplace','town-market','resource-gold']].map(([label,ui,icon])=>`<button data-ui="${ui}" class="town-action"><img src="./web/h3-theme/${icon}.${['town-tavern','commander/magic'].includes(icon)?'svg':'png'}" alt=""><span>${label}</span></button>`);
   else if(m==='battle'&&cap.tactics)items=[btn(fr?'✓ Placer':'✓ Place','target',true,!selectedPoint||!cap.move),btn(fr?'⚔ Combattre':'⚔ Fight','end-tactics',false,!cap.endTactics),btn(fr?'Troupes':'Army','tactic-units',false,!cap.endTactics),btn(fr?'Suivante':'Next','next-tactics',false,!cap.endTactics)];
   else if(m==='battle'){
    const action=contextualBattleAction(state,selectedPoint);
@@ -344,7 +346,7 @@ function mount(){
  }
  const townBuildings=createTownBuildingMenu({body,getState:()=>state,asset,backButton:sheet.querySelector('[data-ui="sheet-back"]'),canOpen:route=>state.mode===(route?'fort':'town')&&!sheetKind,
   openSheet,closeSheet,command,notify});
- const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)&&(!['creature','recruit','fort'].includes(next.mode)||(next.previewUnits||[]).every(u=>!u.previewAtlas||window.goonkCreaturePreviewRects?.has(u.previewKey??u.id)))});
+ const heroTransition=createHeroTransition(update,{ready:next=>portraitTown.prepare(next,townPortraitEnabled)&&creaturePreviewsReady(next,window.goonkCreaturePreviewRects)});
  window.addEventListener('goonk-state',event=>{
   const next=event.detail;
   if(next.mode==='town')townBuildings.warm(next);else if(next.mode!=='fort')townBuildings.cancel(['menu','lobby','load'].includes(next.mode));

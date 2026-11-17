@@ -1,4 +1,4 @@
-import test from'node:test';import assert from'node:assert/strict';import{createHeroTransition,opensMobileWindow}from'../web/hero-transition.mjs';
+import test from'node:test';import assert from'node:assert/strict';import{createHeroTransition,opensMobileWindow,creaturePreviewsReady}from'../web/hero-transition.mjs';
 test('Equipment opens after a complete presentation frame, using the latest snapshot',()=>{const shown=[],t=createHeroTransition(s=>shown.push(s));t.receive({mode:'hero',heroId:1},'map');assert.equal(shown.length,0);assert(t.frame());t.receive({mode:'hero',heroId:2},'map');assert(!t.frame());assert.deepEqual(shown,[{mode:'hero',heroId:2}]);assert(!t.pending);});
 test('Leaving or cancelling during entry cannot reopen a stale hero window',()=>{const shown=[],t=createHeroTransition(s=>shown.push(s));t.receive({mode:'hero'},'map');t.frame();t.receive({mode:'menu'},'map');assert(!t.frame());assert.deepEqual(shown,[{mode:'menu'}]);});
 test('Updates within the current view and the main menu apply immediately',()=>{const shown=[],t=createHeroTransition(s=>shown.push(s));t.receive({mode:'hero',mana:2},'hero');t.receive({mode:'menu'},'map');assert.deepEqual(shown,[{mode:'hero',mana:2},{mode:'menu'}]);});
@@ -30,4 +30,21 @@ test('A slow town decode cannot stall the frame transition indefinitely',()=>{
  assert(!t.frame());
  assert.equal(shown.length,1);
  assert.equal(shown[0].townName,'Castle');
+});
+
+// Several built dwellings and a selected variant reproduce the Huawei freeze.
+test('Hall updates never wait for untransmitted dwelling previews or duplicate creature IDs',()=>{
+ const state={mode:'fort',fortSelectedId:7,previewUnits:[{id:7,previewKey:10,previewAtlas:true},{id:8,previewKey:20,previewAtlas:true},{id:7,previewKey:30,previewAtlas:true}]};
+ assert(!creaturePreviewsReady(state,new Map([[10,{}]])));
+ const atlas=new Map([[30,{}]]);assert(creaturePreviewsReady(state,atlas));
+ const shown=[],transition=createHeroTransition(s=>shown.push(s),{ready:s=>creaturePreviewsReady(s,atlas)});
+ for(let version=0;version<10;version++){transition.receive({...state,version},'fort');assert(!transition.frame());assert(!transition.pending);}
+ assert.equal(shown.length,10);
+ assert(creaturePreviewsReady({...state,fortSelectedId:undefined},undefined),'Initial gallery can open before choosing a preview');
+});
+test('Recruitment and creature details still wait for all their actual preview images',()=>{
+ const state={mode:'recruit',previewUnits:[{id:7,previewAtlas:true},{id:8,previewAtlas:true}]};
+ assert(!creaturePreviewsReady(state,new Map([[7,{}]])));
+ assert(creaturePreviewsReady(state,new Map([[7,{}],[8,{}]])));
+ assert(creaturePreviewsReady({mode:'map'},undefined));
 });

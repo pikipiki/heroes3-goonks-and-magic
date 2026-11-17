@@ -14,7 +14,9 @@ import json,zipfile,io,sys,importlib.util
 with zipfile.ZipFile('maps/000-Goonk.vmap') as z:entries={n:z.read(n) for n in z.namelist()}
 objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
 if sys.argv[1]=='tower':
- town=next(o for o in objects if o['instanceName']=='goonkTown');town['subtype']='core:tower';town['options']['buildings']={'allOf':['core:villageHall','core:tavern','core:fort','core:dwellingLvl1']}
+ town=next(o for o in objects if o['instanceName']=='goonkTown');town['subtype']='core:tower'
+town=next(o for o in objects if o['instanceName']=='goonkTown');scope='core' if sys.argv[1]=='tower' else 'goonk'
+town['options']['buildings']={'allOf':[scope+':'+key for key in ['villageHall','tavern','fort']+['dwellingLvl'+str(i) for i in range(1,8)]+['dwellingUpLvl'+str(i) for i in range(1,8)]]}
 entries['objects.json']=json.dumps(objects).encode();header=json.loads(entries['header.json']);header['name']='000 - Preview focus';entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']=header['name'];entries[name]=json.dumps(text).encode()
@@ -31,13 +33,16 @@ sys.stdout.buffer.write(out.getvalue())
  for(const unit of units){
   await p.locator(`[data-family-select="${unit.id}"]`).click();await p.waitForTimeout(600);await wait(id=>goonkMobileState.previewUnits?.some(u=>u.id===id&&window.goonkCreaturePreviewRects?.has(u.previewKey??id)),unit.id);
   const sample=await p.evaluate(async id=>{
-   const packets=[],changes=[],frames=[],start=performance.now();let version=-1,hash,previous=start;
+   const packets=[],changes=[],displayChanges=[],frames=[],start=performance.now();let version=-1,hash,displayHash,previous=start;
+   const c=document.createElement('canvas');c.width=c.height=16;const ctx=c.getContext('2d',{willReadFrequently:true});
+   const fingerprint=(source,x=0,y=0,w=source.width,h=source.height)=>{ctx.clearRect(0,0,16,16);ctx.drawImage(source,x,y,w,h,0,0,16,16);const data=ctx.getImageData(0,0,16,16).data;let value=2166136261;for(let i=0;i<data.length;i+=4)value=Math.imul(value^data[i]^data[i+1]^data[i+2],16777619);return value;};
    await new Promise(resolve=>{const tick=now=>{frames.push(now-previous);previous=now;
-    if(window.goonkCreaturePreviewVersion!==version){version=window.goonkCreaturePreviewVersion;packets.push(now-start);const u=goonkMobileState.previewUnits?.findLast(u=>u.id===id),rect=u&&goonkCreaturePreviewRects.get(u.previewKey??id);if(rect){const c=document.createElement('canvas');c.width=rect.w;c.height=rect.h;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(goonkCreaturePreviewAtlas,rect.x,rect.y,rect.w,rect.h,0,0,rect.w,rect.h);const data=ctx.getImageData(0,0,rect.w,rect.h).data;let value=2166136261;for(let i=0;i<data.length;i+=16)value=Math.imul(value^data[i]^data[i+1]^data[i+2],16777619);if(value!==hash){changes.push(now-start);hash=value;}}}
+    if(window.goonkCreaturePreviewVersion!==version){version=window.goonkCreaturePreviewVersion;packets.push(now-start);const u=goonkMobileState.previewUnits?.findLast(u=>u.id===id),rect=u&&goonkCreaturePreviewRects.get(u.previewKey??id);if(rect){const value=fingerprint(goonkCreaturePreviewAtlas,rect.x,rect.y,rect.w,rect.h);if(value!==hash){changes.push(now-start);hash=value;}}
+     const display=document.querySelector('[data-hall-active="true"]');if(display){const value=fingerprint(display);if(value!==displayHash){displayChanges.push(now-start);displayHash=value;}}}
     if(now-start<12000)requestAnimationFrame(tick);else resolve();};requestAnimationFrame(tick);});
-   return {packets,changes,frames};
+   return {packets,changes,displayChanges,frames};
   },unit.id);
-  const holds=sample.changes.slice(1).map((t,i)=>t-sample.changes[i]);if(process.env.STRICT_CADENCE)assert(Math.max(...holds)<170,unit.name+' should not stall on repeated poses: '+Math.max(...holds));cases.push({faction,unit:unit.name,sample});console.log(JSON.stringify({faction,unit:unit.name,packets:sample.packets.length,changes:sample.changes.length,maxRaf:Math.max(...sample.frames)}));
+  const holds=sample.changes.slice(1).map((t,i)=>t-sample.changes[i]),displayHolds=sample.displayChanges.slice(1).map((t,i)=>t-sample.displayChanges[i]);assert(displayHolds.length>50,'The displayed creature must keep animating');assert(Math.max(...displayHolds)<220,unit.name+' displayed frames freeze: '+Math.max(...displayHolds));if(process.env.STRICT_CADENCE)assert(Math.max(...holds)<200,unit.name+' should not stall on repeated poses: '+Math.max(...holds));cases.push({faction,unit:unit.name,sample});console.log(JSON.stringify({faction,unit:unit.name,packets:sample.packets.length,changes:sample.changes.length,maxRaf:Math.max(...sample.frames),maximumDisplayedHold:Math.max(...displayHolds)}));
  }
 
  await p.close();

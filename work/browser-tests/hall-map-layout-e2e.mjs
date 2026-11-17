@@ -17,18 +17,21 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
   const list=p.locator('.hall-families');await list.evaluate(e=>e.scrollTop=0);
   const rows=await list.evaluate(e=>{const s=getComputedStyle(e),first=e.children[0].getBoundingClientRect(),next=e.children[1].getBoundingClientRect();return{height:e.clientHeight-parseFloat(s.paddingTop)-parseFloat(s.paddingBottom),first:first.height,nextTop:next.top,top:first.top,gap:parseFloat(s.rowGap)||0,minimum:Math.max(132,...[...e.children].flatMap(r=>[...r.querySelectorAll('.hall-art')].map(a=>Math.ceil(r.getBoundingClientRect().height-a.getBoundingClientRect().height+64)))),secondBottom:next.bottom,viewportBottom:e.getBoundingClientRect().bottom};});
   if(size.width<size.height){
-   const count=rows.height>=rows.minimum*2+rows.gap?2:1;
+   const count=2;
    assert(Math.abs(rows.first-(rows.height-rows.gap*(count-1))/count)<2,JSON.stringify({size,rows,count}));
-   if(count===2)assert(rows.secondBottom<=rows.viewportBottom-7,'Two complete families fit in tall portrait');
-   else assert(rows.nextTop>=rows.viewportBottom-8,'Short portrait retains one complete family');
+   assert(rows.secondBottom<=rows.viewportBottom-7,'Two complete families fit in every portrait viewport');
    if(size.width===430&&size.height===873)assert.equal(count,2,'iPhone Pro Max uses two rows');
   }
   const back=p.locator('[data-presentation-close]');assert.equal(await back.count(),1);await back.waitFor({state:'visible'});const rect=await back.boundingBox();assert(rect.y>=0&&rect.x>=0&&rect.y+rect.height<=size.height&&rect.x+rect.width<=size.width,'Back is reachable '+JSON.stringify({size,rect}));
   if(size.width>size.height){const detail=p.locator('.hall-detail'),metrics=await detail.evaluate(e=>({overflow:getComputedStyle(e).overflowY,height:e.clientHeight,scroll:e.scrollHeight}));assert.equal(metrics.overflow,'auto');if(size.width===716&&size.height===335)assert(metrics.scroll<=metrics.height+1,'Measured landscape sidebar has no unnecessary scroll');const statFit=await detail.locator('.hall-feature').evaluate(e=>({height:e.clientHeight,scroll:e.scrollHeight,bottom:e.getBoundingClientRect().bottom,stats:e.querySelector('.creature-stats').getBoundingClientRect().bottom}));assert(statFit.stats<=statFit.bottom+1&&statFit.scroll<=statFit.height+1,'Attack and defense values fit without an inner scrollbar '+JSON.stringify({size,statFit}));if(size.height<=280)assert(metrics.scroll>metrics.height,'Short landscape sidebar scrolls');const buy=detail.locator('[data-hall-buy]');await buy.scrollIntoViewIfNeeded();assert(await buy.isVisible());}
   await p.screenshot({path:'/tmp/goonk-hall-'+kind+'-'+size.width+'x'+size.height+'.png'});
   await back.tap();assert((await p.evaluate(()=>calls)).some(c=>c[0]===43),'Back calls the native return action');
-  await send({...base,mode:'map',heroName:'Hero',turn:true});await p.waitForTimeout(150);
+  await send({...base,mode:'map',heroName:'Maille Maille Keeper',movement:1630,heroMana:10,heroManaLimit:10,heroHasSpellbook:false,turn:true});await p.waitForTimeout(150);
+  if(size.width>size.height){const hero=await p.locator('.hero-movement-item.is-active').boundingBox(),move=await p.locator('[data-ui=move]').boundingBox(),book=await p.locator('.hero-no-spellbook').boundingBox();assert(hero.height<=44.1&&hero.y+hero.height<move.y,'Compact hero card never overlaps Move');assert(book.y>=hero.y&&book.y+book.height<=hero.y+hero.height+1,'No spellbook badge stays inside hero borders');const borders=await p.locator('.hero-movement-item.is-active').evaluate(e=>({top:parseFloat(getComputedStyle(e).borderTopWidth),bottom:parseFloat(getComputedStyle(e).borderBottomWidth)}));assert(borders.top>=1&&borders.bottom>=1,'Hero keeps visible top and bottom borders');}
   const date=await p.locator('.mobile-calendar>span:first-child').boundingBox(),cue=await p.locator('.calendar-recruit-cue').boundingBox();assert(date.y>=cue.y+cue.height-1,'Game date lies below recruits '+JSON.stringify({size,date,cue}));
+  const label=await p.locator('[data-recruit-label]').boundingBox(),days=await p.locator('[data-recruit-days]').boundingBox();
+  if(size.width<size.height){assert(days.y>=label.y+label.height-1,'Portrait recruits and countdown use two lines');assert(cue.x+cue.width<=size.width+1,'Countdown stays entirely inside portrait viewport');assert(days.x+days.width<=cue.x+cue.width-2,'Final countdown glyph is not cropped');}else assert(Math.abs(days.y-label.y)<3,'Landscape countdown stays on one line');
+
  }
  // Every selection retains the same compact footer and roster geometry.
  await p.setViewportSize({width:360,height:716});await send(base);await p.waitForTimeout(180);
@@ -74,8 +77,8 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
   await p.setViewportSize({width:360,height});await p.waitForTimeout(150);
   assert(Math.abs(await anchor()-before)<.02,'Browser bar resizing keeps the same tier in view');
   const metrics=await rosterList.evaluate(e=>({row:e.firstElementChild.getBoundingClientRect().height,space:e.clientHeight-16,gap:parseFloat(getComputedStyle(e).rowGap)}));
-  const visible=height===716?2:1;
-  assert(Math.abs(metrics.row-(metrics.space-metrics.gap*(visible-1))/visible)<2,'Bar visibility changes the row count without a new game snapshot');
+  const visible=2;
+  assert(Math.abs(metrics.row-(metrics.space-metrics.gap*(visible-1))/visible)<2,'Both portrait rows keep fitting when URL bars change without a game snapshot');
  }
  // Reserve iPhone status/home-indicator space as well as reducing the viewport for URL bars.
  await p.setViewportSize({width:430,height:932});await send(base);
@@ -84,5 +87,6 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  const safeRows=await p.locator('.hall-families').evaluate(e=>({height:e.children[0].getBoundingClientRect().height,secondBottom:e.children[1].getBoundingClientRect().bottom,bottom:e.getBoundingClientRect().bottom}));
  assert(safeRows.height>=220&&safeRows.secondBottom<=safeRows.bottom-7,'Pro Max fits two rows with safe areas reserved');
  await p.screenshot({path:'/tmp/goonk-hall-'+kind+'-pro-max-safe.png'});
- assert.deepEqual(errors,[]);console.log('PASS',kind,'adaptive one/two portrait families per screen; safe areas; short landscape sidebar scroll; visible Back; map date below recruits');
+ await send({...base,mode:'town'});await p.waitForTimeout(150);await p.waitForFunction(()=>{const img=document.querySelector('[data-ui=town-guild] img');return img?.complete&&img.naturalWidth>0&&img.src.includes('/commander/magic.svg');});
+ assert.deepEqual(errors,[]);console.log('PASS',kind,'two complete portrait families per screen; safe areas; short landscape sidebar scroll; visible Back; map date below recruits');
  }finally{await b.close();}}

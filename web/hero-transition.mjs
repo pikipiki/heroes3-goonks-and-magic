@@ -3,6 +3,19 @@
 // new snapshot and its canvas are ready. A rejected/no-op command cannot stall it.
 const adapted=new Set(['map','battle','hero','spellbook','fort','recruit','creature','town','campaign-scenario','market','hero-exchange','dialog']);
 export function opensMobileWindow(action,value=0){return [0,5,8,30,33,39,41,42,43,49,54,55,63,72,74,85,86,93].includes(action)||action===14&&value===0||action===62&&value===17;}
+// The recruitment hall publishes only the selected preview. Its other native
+// dwelling pictures are listed in the snapshot but are never sent in the atlas.
+export function creaturePreviewsReady(state,rects){
+ if(!['creature','recruit','fort'].includes(state.mode))return true;
+ let units=state.previewUnits||[];
+ if(state.mode==='fort'){
+  if(!Number.isInteger(state.fortSelectedId))return true;
+  const selected=units.findLast(u=>u.id===state.fortSelectedId);
+  if(!selected)return false;
+  units=[selected];
+ }
+ return units.every(u=>!u.previewAtlas||rects?.has(u.previewKey??u.id));
+}
 export function createHeroTransition(apply,{now=()=>performance.now(),timeout=2000,ready=()=>true}={}){let pending=null,frames=0,waiting=null,pendingUntil=0;return{
  begin(currentMode){if(!waiting)waiting={mode:currentMode,until:now()+timeout};},
  receive(next,currentMode){

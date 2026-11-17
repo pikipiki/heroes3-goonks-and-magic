@@ -1,0 +1,87 @@
+{
+  "release": "0.4.243",
+  "sourceBase": "2132f20024a9ac1941abeba01246115eeb02d5eb",
+  "engineUnchangedFrom": "0.4.242",
+  "engineSha256": "99ed035e60f933f80bbefaf8d6c9afb30838690ba12fb850891ab7e54714f423",
+  "huaweiValidation": {
+    "device": "Huawei P30 Pro",
+    "withoutReloading": true,
+    "hallCreature": "Fairy",
+    "maximumDisplayedHoldBeforeMs": 476.73,
+    "maximumDisplayedHoldAfterMs": 164.49,
+    "holdsOver200msAfter": 0,
+    "userConfirmedSmooth": true,
+    "armyUpgradeButtonsInEighthSlot": true,
+    "landscapeUpgradeSpansTwoSlots": true,
+    "landscapeBackFullWidth": true,
+    "landscapeHeroCardHeight": 44,
+    "heroMoveOverlapResolved": true,
+    "landscapeHeroTopAndBottomBordersVisible": true
+  },
+  "recruitmentHall": {
+    "portraitRows": 2,
+    "allFactions": true,
+    "selectedPreviewOnlyRequired": true
+  },
+  "calendar": {
+    "twoLineRecruitsOnlyInMobilePortrait": true,
+    "portraitLines": [
+      "Recruits",
+      "7d"
+    ]
+  },
+  "mageGuild": {
+    "icon": "web/h3-theme/commander/magic.svg",
+    "preloadedAndDecoded": true
+  },
+  "automatedChecks": {
+    "unitTests": {
+      "total": 845,
+      "passed": 793,
+      "skipped": 52,
+      "failed": 0
+    },
+    "browsers": [
+      "chromium",
+      "webkit"
+    ],
+    "displayedFrameCadence": {
+      "chromium": [
+        {
+          "creature": "Gremlin",
+          "maximumDisplayedHoldMs": 150.0
+        },
+        {
+          "creature": "Naga Empress",
+          "maximumDisplayedHoldMs": 149.99
+        },
+        {
+          "creature": "Paingpaing",
+          "maximumDisplayedHoldMs": 150.0
+        },
+        {
+          "creature": "DioupDioup",
+          "maximumDisplayedHoldMs": 150.0
+        }
+      ],
+      "webkit": [
+        {
+          "creature": "Gremlin",
+          "maximumDisplayedHoldMs": 150.0
+        },
+        {
+          "creature": "Naga Empress",
+          "maximumDisplayedHoldMs": 166.0
+        },
+        {
+          "creature": "Paingpaing",
+          "maximumDisplayedHoldMs": 134.0
+        },
+        {
+          "creature": "DioupDioup",
+          "maximumDisplayedHoldMs": 134.0
+        }
+      ]
+    }
+  }
+}

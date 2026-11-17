@@ -26,15 +26,12 @@ export function createRecruitmentHall({panel,command,prices,stats,openBuildings}
   const style=getComputedStyle(list),gap=parseFloat(style.rowGap)||0;
   const space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
   const viewport=panel.closest('#mobile-app')?.getBoundingClientRect();
-  // Reserve measured labels, prices and borders plus a readable 64px portrait.
-  // Browser chrome and safe areas already reduce the list's available height.
-  let minimum=132;
-  for(const family of list.children){
-   const familyHeight=family.getBoundingClientRect().height;
-   for(const art of family.querySelectorAll('.hall-art'))minimum=Math.max(minimum,Math.ceil(familyHeight-art.getBoundingClientRect().height+64));
-  }
-  const rows=viewport?.height>viewport?.width&&space>=minimum*2+gap?2:1;
-  const height=Math.max(132,Math.floor((space-gap*(rows-1))/rows))+'px';
+  if(space<=gap)return;
+  // Portrait always shows two complete families, whatever the faction or
+  // browser toolbar height. The portrait scales within the remaining space.
+  const rows=viewport?.height>viewport?.width?2:1;
+  list.dataset.visibleRows=String(rows);
+  const height=Math.max(rows===2?0:132,Math.floor((space-gap*(rows-1))/rows))+'px';
   if(list.style.getPropertyValue('--hall-row-height')!==height){
    const scroll=readScroll(list);list.style.setProperty('--hall-row-height',height);
    const step=rowStep(list);if(scroll?.step&&step)list.scrollTop=scroll.top*step/scroll.step;
