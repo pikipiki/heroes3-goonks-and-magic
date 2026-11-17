@@ -1,0 +1,3965 @@
+{
+  "schema": 1,
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6"
+  },
+  "packs": [
+    {
+      "id": "henchmen",
+      "directory": "Enhanced Henchmen",
+      "sha256": "23f7742cac3540f5b42f363ebbbfb5c80252b2e005c83869f3667d77c26b0209",
+      "files": [
+        {
+          "file": "Data/s/1000 wog - henchmen consts.erm",
+          "sha256": "a20092e6d17fd6b9829707102ece6cf30574426deca8acceba002ed61171b4d8",
+          "bytes": 106,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 0,
+            "commands": 1,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/29 wog - henchmen.erm",
+          "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+          "bytes": 34032,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 49,
+            "postTriggers": 0,
+            "commands": 744,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Lang/henchman mod text.json",
+          "sha256": "f7c9caa784cd60b37e0c41e46acec5bfc4dec23049cfd12657d177c72a16403f",
+          "bytes": 957,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/henchman mod.json",
+          "sha256": "66801d8e48acaf9ae5330b5353d0cf95c00445fd64ee87f54f36add9b9a7ffe1",
+          "bytes": 3619,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/henchman mod text.json",
+          "sha256": "7cafa8e3cbfdd1777ad090a077c04551c1cec7c9cf76f3bbc4cfe9f71bbbfce9",
+          "bytes": 1186,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description chn.txt",
+          "sha256": "3546f707f3da3118c947136caad8b6a850d111134b67984598478dd6a2359ea0",
+          "bytes": 629,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description rus.txt",
+          "sha256": "ab7bc37a38758e5b2f0c3f434dbe633e2f228e0a70fb27db4110805f2cc3b1ed",
+          "bytes": 1140,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description.txt",
+          "sha256": "2eb9f38c89782c1d8bf014d1203e10478b14bbec2af305357f239ff857c914f9",
+          "bytes": 600,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "henchmen.ico",
+          "sha256": "90cc2e8041c4507744fd0b029643456178e2ba98396b94dbf7c67354ed4f95fb",
+          "bytes": 62723,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mod.json",
+          "sha256": "15ff0f66c170df9a497d0e3f5e788134a4bf7e063495d1033b761388458ea0fb",
+          "bytes": 697,
+          "inactiveDirectory": false
+        }
+      ],
+      "status": "source-locked-not-native-admitted"
+    },
+    {
+      "id": "erm-framework",
+      "directory": "Era Erm Framework",
+      "sha256": "ead9ffaac1043cba7ba1992105bdce2e12a59da2c17e9e4cf47465425fa73171",
+      "files": [
+        {
+          "file": "Data/s/lib/9999 era - consts.erm",
+          "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b",
+          "bytes": 77129,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 0,
+            "commands": 1675,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/lib/9999 era - key codes.erm",
+          "sha256": "b1ca326f69b2972ef1e3be1bfdf48cd830e7a9714f21b1d3bea2905106b541ef",
+          "bytes": 6418,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 0,
+            "commands": 171,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/lib/9999 era - stdlib.erm",
+          "sha256": "9cecab0bf658ad807b27cb9f783c220183dde8f580adb61e72044d6692de530f",
+          "bytes": 114009,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 169,
+            "postTriggers": 0,
+            "commands": 2337,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/lib_end/-9999 era - stdlib.erm",
+          "sha256": "bc86f8f4390703a8ca8d8a387e376167db7d06aaeffb9bd565890f7fe0f28a95",
+          "bytes": 3356,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 54,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "description.txt",
+          "sha256": "6b34b1a3f4c6635d87a822717b179c78d0b73f630fa2fb251c968de3ef9a811b",
+          "bytes": 19,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description_chn.txt",
+          "sha256": "9a09414fa27b345f4167ee90ac3b1e016a5f013de7848c248aff7fcf4a11b22b",
+          "bytes": 128,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description_rus.txt",
+          "sha256": "6b34b1a3f4c6635d87a822717b179c78d0b73f630fa2fb251c968de3ef9a811b",
+          "bytes": 19,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "icon.ico",
+          "sha256": "8190ad0e5cebc89b744b36f9483a0e2f523551e6c69917a8526cfb70d7410a87",
+          "bytes": 4286,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mod.json",
+          "sha256": "f08fceef2450d1c5be14cf3bb2218fb82c159f74616adacd2be3a1507655cffa",
+          "bytes": 656,
+          "inactiveDirectory": false
+        }
+      ],
+      "status": "source-locked-not-native-admitted"
+    },
+    {
+      "id": "wog-scripts",
+      "directory": "WoG Scripts",
+      "sha256": "d2fdaf4a7c671bab33163f3cd6c75be40553b0b5956284625dd97cf7ce0f200a",
+      "files": [
+        {
+          "file": "Data/s/1 wog - cheat menu.erm",
+          "sha256": "f90ec02e92b5ad63154562e891558345233f45395e952b9f9e126edccf8c969b",
+          "bytes": 79173,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 49,
+            "postTriggers": 0,
+            "commands": 1425,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/1 wog - cheat menu.ert",
+          "sha256": "520d1f16976a7a6da03399fa01e72b24bda58ac9f9c60651fe8de7cd58e0efa9",
+          "bytes": 13883,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/10 wog - new battlefields.erm",
+          "sha256": "99ccefd7d4e61b55a7ce4f3bff53bd33ea0318e20010c85936d5c236ac159800",
+          "bytes": 4463,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 81,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/11 wog - neutral town.erm",
+          "sha256": "dee35ac705f72f9dabd74b4063b6a2145f27e3778918af347395435ccf48d817",
+          "bytes": 20122,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 392,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/11 wog - neutral town.ert",
+          "sha256": "b20d99d2a83029603f971b114e048dc57bc2d3b09977f19d0696c323fb12ddee",
+          "bytes": 1125,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/12 wog - commander witch huts.erm",
+          "sha256": "ab051eccf40d758b3ef11d3390f84ce02626219fa50f94516ff74d054b9bc840",
+          "bytes": 13550,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 209,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/13 wog - monolith costs.erm",
+          "sha256": "c4625309040f1b9fe57dc1c7e7f72e5b6174efc6a808cc3707844f13abf2a323",
+          "bytes": 1672,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 17,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/131 wog - towns start without forts.erm",
+          "sha256": "6d0761637e3105a5fe2d89213574ec547266579f65db54dd0b945945eb6e9013",
+          "bytes": 1515,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 27,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/132 wog - treasure chests more gold.erm",
+          "sha256": "fb9336e7b8ce36251dc27a3238121b6410f58f58b73aa1d53392139f4bb4ecbb",
+          "bytes": 1101,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 14,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/133 wog - dwellings have upgraded creatures.erm",
+          "sha256": "e081bb76342f4a7d55e0d2124635ef1a45e1847c942d18d657fc34dc5c8ebe7b",
+          "bytes": 2200,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 34,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/14 wog - tobyn's scripts.erm",
+          "sha256": "bf6cefb25dcddf49ef8a108797d4598650b74466c6eec179113f9202b24047c3",
+          "bytes": 55566,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 34,
+            "postTriggers": 1,
+            "commands": 750,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/14 wog - tobyn's scripts.ert",
+          "sha256": "a6a80e023996f16edd0e61d33fae0b582e22e3369f1cfce1f43de9912c2927c5",
+          "bytes": 4786,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/145 wog - no cartographers.erm",
+          "sha256": "a0ad12e9f33ed38e8ab61b9437fe6b271879d9972961e2233538aed1238ce5b9",
+          "bytes": 1263,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 17,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/169 wog - towns may be renamed.erm",
+          "sha256": "3be4ff8d8d95d8b6fcfd2e5e2b275f9cd6236dde18832f13b8e0dd607a6db121",
+          "bytes": 2715,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 40,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/17 wog - protection from the elements.erm",
+          "sha256": "2d34df15c931ad7d0c791caf6f1a246497f000d7e34ddc619374e73bfa99ec57",
+          "bytes": 3126,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 34,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/174 wog - universal creature upgrades.erm",
+          "sha256": "530fe082027a4c7f71fb7ed3847f97717ccff49410a7f3fe49aaa754d3d97645",
+          "bytes": 1069,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 12,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/18 wog - forgotten shrine.erm",
+          "sha256": "d6d43962a0988b77559ceafa0bd08220e3c4f8b348e943f049de1ee1e40d1e43",
+          "bytes": 7239,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 12,
+            "postTriggers": 0,
+            "commands": 157,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/18 wog - forgotten shrine.ert",
+          "sha256": "c424adf3b6e1704c1816993da18e1f3b20293f6ad006da976d75dfb10d02a57a",
+          "bytes": 1328,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/186 wog - choose commander class.erm",
+          "sha256": "789cba261de48fc7ea6c8ac65abe6bd78744aa8a1fd8c757e589f5830a92925f",
+          "bytes": 1720,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 24,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/187 wog - heroes may be renamed.erm",
+          "sha256": "6dc79a4c0bfa3cb66903e176d3f31873928f2881f803002a25101d78bdc58978",
+          "bytes": 1462,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 19,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/19 wog - piercing shot.erm",
+          "sha256": "74ecf9a8afb3135734cc01c10bcc86ae0f50b3eed676d0ad1f6c8d66a122e2d6",
+          "bytes": 11001,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 169,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/192 wog - transfer owner.erm",
+          "sha256": "6abaeef4154b4ba612ca5c38a8a37bce1b19227bdd1bf1b889ffffd224e3d3bd",
+          "bytes": 11010,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 6,
+            "postTriggers": 0,
+            "commands": 151,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/2 wog - commander sanctuary.erm",
+          "sha256": "bc606497d26f7e5dccfe0e5fd307f96e9521994172c94f97180d83c8b16ceae3",
+          "bytes": 1285,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 1,
+            "commands": 18,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/2 wog - commander sanctuary.ert",
+          "sha256": "7cad0d1b0db0859d5e15aa5a4e64ca01644d462e5974f179d6f7cf4cbb3e91cc",
+          "bytes": 965,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/20 wog - espionage.erm",
+          "sha256": "1be0685e820732abd060bf8c60b730e749e1e9304fa09216162ba44517b24a5e",
+          "bytes": 29491,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 27,
+            "postTriggers": 0,
+            "commands": 561,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/20 wog - espionage.ert",
+          "sha256": "e2eb0ee20785eae57a4bc7587a35e6c2307bc15f02ad62838d68d3d96a2f0207",
+          "bytes": 7064,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/21 wog - neutral units.erm",
+          "sha256": "ed5574692c5d88b52f6bd5eb1ef822531f2ca46c044d1e13f58b08bfa38eef1f",
+          "bytes": 36804,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 41,
+            "postTriggers": 19,
+            "commands": 581,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/21 wog - neutral units.ert",
+          "sha256": "9b9da684faba8fcaa507394b0a73a0941a35272f8b613aca8f9be7db3a148c51",
+          "bytes": 489,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/22 wog - metamorphs.erm",
+          "sha256": "20fb8b50f018589e68b30bf6e1d08a3bad07383831df7fbd7ca3c09905f1f4d4",
+          "bytes": 12862,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 11,
+            "postTriggers": 0,
+            "commands": 184,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/23 wog - enhanced war machines 2.erm",
+          "sha256": "1ad47e05db4fe3245b788bde558ccb4b70cd037166ecb4ca0c7a116c3975b8f2",
+          "bytes": 14673,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 240,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/23 wog - enhanced war machines 2.ert",
+          "sha256": "5afcdfe288b07f9dcf7df785d304ace919e141638b6f7a000ca61b2784462da5",
+          "bytes": 644,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/24 wog - enhanced war machines 1.erm",
+          "sha256": "5aa9b7134850333faed4bb3603e39585cd116bc4ca53c6583c8b225099ee24d7",
+          "bytes": 33789,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 41,
+            "postTriggers": 1,
+            "commands": 705,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/24 wog - enhanced war machines 1.ert",
+          "sha256": "22b523a080001fcb014e876b4ff765b207db7e30057abbe194cd3fb165a159b0",
+          "bytes": 3193,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/240 wog - warlord banner quick options.erm",
+          "sha256": "7c488aa2f49cd4728aa221b2c66a985220a5cfd55e6bedebe7b74af39f0f8896",
+          "bytes": 5207,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 101,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/244 wog - hero list reordering.erm",
+          "sha256": "9fd7a30387769f783f5fa090183891ac3485a298eed5b3cd4e20e77a72a9a9e8",
+          "bytes": 2168,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 51,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/245 wog - creatures level 7th only gain half experience.erm",
+          "sha256": "aafce884bafe1deee708da8e6385fe020b462f9ef430cacc3b3c43933c810fc4",
+          "bytes": 909,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 11,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/25 wog - dungeon of the dragonmaster.erm",
+          "sha256": "d1ef949f415e8887ea97ad7634164d617edaad811a0710b53a32a35a5582bd8c",
+          "bytes": 3320,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 1,
+            "commands": 45,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/250 wog - life without towns.erm",
+          "sha256": "809274db1fa786cff0eadf608cb4575c0e22e4d468b6b7d723702727ff3b7165",
+          "bytes": 538,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 10,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/251 wog - no free neutral joining.erm",
+          "sha256": "0e86c06be242445efeba1d853cd38da3e7deceb018e0d9cf08e147e2a2e3f6cd",
+          "bytes": 2119,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 6,
+            "postTriggers": 1,
+            "commands": 33,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/26 wog - mirror of the home-way.erm",
+          "sha256": "82b39fb32f7c0c0803cc35fd59a11ffafd3763318987b0426d8acbe2f650374a",
+          "bytes": 2869,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 44,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/27 wog - enhanced commanders.erm",
+          "sha256": "dedc4b725eef5011e16dad20b5937862a7056304989ce00d90e27328336f9baf",
+          "bytes": 20131,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 26,
+            "postTriggers": 0,
+            "commands": 325,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/28 wog - enhanced monsters.erm",
+          "sha256": "0aaf518fe9fab69522372a3384714173db39967f3d8be0bd4b3ae3f38f6d1090",
+          "bytes": 49063,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 22,
+            "postTriggers": 0,
+            "commands": 786,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/28 wog - enhanced monsters.ert",
+          "sha256": "e052fd290652af6133ecd51b36ec30737758b3cd18179ff4ab84bad7b3c0847d",
+          "bytes": 9961,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/29 wog - henchmen.erm",
+          "sha256": "f2922e6132ba9d72aed445490e2c35d84ed085e5fd66b03392ec05c895ca919d",
+          "bytes": 19152,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 33,
+            "postTriggers": 0,
+            "commands": 443,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/29 wog - henchmen.ert",
+          "sha256": "5493def458141fe2509d8f20b95a3d8a99fecf79b7e1d80d5332b97c13324fbe",
+          "bytes": 1567,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/3 wog - secondary skill text.erm",
+          "sha256": "d148365f63ce30cc6196ad78518ad84804e815e857573cf55bc83b4cae2ece9f",
+          "bytes": 33322,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 501,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/3 wog - secondary skill text.ert",
+          "sha256": "324ad8d1bd618ff58914e730830bf813e3a119dc3653f53b2d2df800589243a2",
+          "bytes": 46071,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/30 wog - enhanced secondary skills.erm",
+          "sha256": "782e7196e4b8389ede049e7d5a8ff683e535dba97be694b69c8c0d1a93df88a6",
+          "bytes": 44316,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 37,
+            "postTriggers": 0,
+            "commands": 689,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/30 wog - enhanced secondary skills.ert",
+          "sha256": "132eb3fb343f29ee01e4c923210a7c0c4f3fbe4e0c4c8f6ad3176c8b56fcc6b5",
+          "bytes": 4028,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/31 wog - creature relationships.erm",
+          "sha256": "ea6a2e127bbdf9416566dcc51f13a23ebedc31b867e6af0dbbc279da2b0cbf57",
+          "bytes": 11302,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 153,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/31 wog - creature relationships.ert",
+          "sha256": "f5aff807efd24727225a6a8e8a9f49265cf28a45b1216ad2bd1e216fd69f6afe",
+          "bytes": 954,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/32 wog - berserker flies.erm",
+          "sha256": "9f75191158134394abd27b504e2e1e41eafda92c07620f81babd83b53a1e71a3",
+          "bytes": 3039,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 48,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/33 wog - castle upgrading.erm",
+          "sha256": "7524dcf8f9f32201a675a1b700aab682837549baee1183f3f424bb12ce16b935",
+          "bytes": 28799,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 15,
+            "postTriggers": 0,
+            "commands": 382,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/34 wog - emerald tower.erm",
+          "sha256": "cee4372634b66bf7091427760b282169fdf452d9484b3944d4f9c1350617c984",
+          "bytes": 34424,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 650,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/34 wog - emerald tower.ert",
+          "sha256": "63c31170e82b63d66ce7d18a149f7f2b7bdb990dba0be7763211739b9bb6d980",
+          "bytes": 8250,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/35 wog - obelisk runes.erm",
+          "sha256": "39feb62ee98e21359610d969527b3b4a71e883801db171ae9ac48dad3748eab8",
+          "bytes": 4417,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 1,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/36 wog - garrisons.erm",
+          "sha256": "6c2a8ec807b493a2dac2f108b8f3debfde260ca772c9d1443675cb0f62a06832",
+          "bytes": 27765,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 25,
+            "postTriggers": 1,
+            "commands": 524,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/37 wog - battle extender.erm",
+          "sha256": "cfc968ad6dbd78a850da58872b54eeb290818131ab3da3b603b38154acf0dc79",
+          "bytes": 1636,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 33,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/38 wog - first money.erm",
+          "sha256": "27c4089cf86e3e6b0c5afa6fc440b82f6f05ca57f5f23e5adcb231e2c758d16e",
+          "bytes": 750,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 13,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/39 wog - hero specialization boost.erm",
+          "sha256": "6119ac69eca80498b0090523ceecb4cddcdd610f660e00c09d881df40bb8504f",
+          "bytes": 18561,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 21,
+            "postTriggers": 0,
+            "commands": 337,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/4 wog - summon elementals.erm",
+          "sha256": "00474a5d930bfb35ef110cee52a89072842e6a0fdd02bc738cc8ee109acdfaea",
+          "bytes": 7109,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 141,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/40 wog - karmic battles.erm",
+          "sha256": "7f11453f40cdc95047f344c955195929725ba617ccb420788a29818806722e7b",
+          "bytes": 10448,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 169,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/41 wog - rebalanced factions.erm",
+          "sha256": "1b6df25c8004f8d5f1a3b48673e1b2dabaf241cd64fc095474065b2ee125383a",
+          "bytes": 31098,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 12,
+            "postTriggers": 1,
+            "commands": 604,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/41 wog - rebalanced factions.ert",
+          "sha256": "c7835df89d1bbb1cc00fd7073ecdfa4adf956d8f9b9ad485bde5aacfd91c463d",
+          "bytes": 17040,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/42 wog - mithril enhancements.erm",
+          "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+          "bytes": 32568,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 31,
+            "postTriggers": 1,
+            "commands": 580,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/42 wog - mithril enhancements.ert",
+          "sha256": "013f51b594d5e82f820a0dcb81da05e5ff110aa43d46360b306b44b36a6a8e21",
+          "bytes": 11702,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/43 wog - mysticism skill enhancement.erm",
+          "sha256": "a4889a0be6ee51451851457c080ce99ffc21283b9bfc8e67f0f25e3220c2ead3",
+          "bytes": 10701,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 195,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/44 wog - cards of prophecy.erm",
+          "sha256": "3db3037dc938a7e7aaadb1b5a58ebb51941313fc88fd9ff4050fbb4a1817a9c8",
+          "bytes": 13830,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 10,
+            "postTriggers": 0,
+            "commands": 203,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/44 wog - cards of prophecy.ert",
+          "sha256": "c5c1c948f81db0fb836cd57c24b869578deaa97efdd534690d67f3a00fb0c335",
+          "bytes": 2122,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/45 wog - living scrolls.erm",
+          "sha256": "9b9612a8edeee55d59601ad3d55918850a7c9640ad03b3f6948a55af58d4d8b5",
+          "bytes": 15745,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 20,
+            "postTriggers": 1,
+            "commands": 334,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/46 wog - summoning stones.erm",
+          "sha256": "b6ffcb125018148a926fd3196a7f7cc50ae43f122fdb8f9840f7d6d58fa7ec64",
+          "bytes": 15808,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 15,
+            "postTriggers": 0,
+            "commands": 221,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/46 wog - summoning stones.ert",
+          "sha256": "6ad3c9ea15ce65c00c38ed2f9c860522739e08f8b2055a048a80eaae8f219c51",
+          "bytes": 2762,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/47 wog - treasure chest 2.erm",
+          "sha256": "1cad22aead1b7e0008a3594c01e7e22241daef8b1990786eaf8eb9e4d5d881eb",
+          "bytes": 13257,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 200,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/47 wog - treasure chest 2.ert",
+          "sha256": "353c4d31645da71f56aed27b1b7da82a83a8a01b462677abb166626f3fbf0169",
+          "bytes": 2100,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/48 wog - adventure cave.erm",
+          "sha256": "519d4f10d911cf164dd70127dc4d5b9101f79965bb93e7e9917f67e002a06928",
+          "bytes": 77047,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 107,
+            "postTriggers": 0,
+            "commands": 1443,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/48 wog - adventure cave.ert",
+          "sha256": "07a37a8d50c52303c125b17aef10c64f5e8374a539cbcab52164d5bf7cf32e23",
+          "bytes": 46407,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/49 wog - chest.erm",
+          "sha256": "062b29dc0e285e9432841f53be17cfa57d675edc37b707560ef381a3bea84545",
+          "bytes": 8654,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 13,
+            "postTriggers": 0,
+            "commands": 150,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/49 wog - chest.ert",
+          "sha256": "4e680b8853615d9a84f2d91ca56e831e58d9541b328f3d26334b9b1938b6b843",
+          "bytes": 1302,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/5 wog - enhanced war machines 3.erm",
+          "sha256": "4875e5ecc21b5267414c73f3950ef39f33992545fb8ef5516cebc2b39741ca7e",
+          "bytes": 54614,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 58,
+            "postTriggers": 3,
+            "commands": 940,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/50 wog - school of wizardry.erm",
+          "sha256": "96d5d2626f50c9e71edff2ae120a63441e179909dc87ccd83c69e3d322c509ac",
+          "bytes": 15989,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 13,
+            "postTriggers": 0,
+            "commands": 404,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/50 wog - school of wizardry.ert",
+          "sha256": "a049d0dff9dd16f9908ed0d329dd992489c6c356dd42f5a9a0d4556c5298c5c8",
+          "bytes": 9134,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/51 wog - spell book.erm",
+          "sha256": "76b782007542be399132af2c972863b1cf4ef4d54a6ae3af905c148073d67506",
+          "bytes": 3940,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 98,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/51 wog - spell book.ert",
+          "sha256": "e162f159ed38157e4622fc81a92463cc027efd0087643791dad5188265976a3c",
+          "bytes": 1585,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/52 wog - artificer.erm",
+          "sha256": "c25800ae5cbc62a8b4d1690cbd3f733bab1ea420bcd3af615a0dfd42a3576ff0",
+          "bytes": 74801,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 21,
+            "postTriggers": 0,
+            "commands": 1157,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/52 wog - artificer.ert",
+          "sha256": "5c965ca95b40a106e60ab46f691f24cf1c3ee9029f3d2a99233a4f97bd4b0ebe",
+          "bytes": 7249,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/53 wog - map options.erm",
+          "sha256": "36c2a79420f99f7dc4d4c99ecdcc566b3afcb9c53c233d737d6ebe5015bbbff8",
+          "bytes": 64814,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 46,
+            "postTriggers": 2,
+            "commands": 984,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/53 wog - map options.ert",
+          "sha256": "191e852da9a3f4065917c92a4aee1d645480608ba3c6f53957b75e0c64641759",
+          "bytes": 2217,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/54 wog - enhanced dwelling hint text.erm",
+          "sha256": "ca1f012eb423274cab11bc91194bce63ebb3af8c77ad177ed25edc2d5b2fdf8e",
+          "bytes": 3813,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 69,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/55 wog - sorcery skill enhancement.erm",
+          "sha256": "c7a6bcc53ddbdec219ad147b0d53b898454acaa05bb6e74aad02b726fec34f80",
+          "bytes": 31844,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 30,
+            "postTriggers": 0,
+            "commands": 517,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/55 wog - sorcery skill enhancement.ert",
+          "sha256": "0837e1d6221e6518b2e640368eaae02c8e4335c1d954435e89bf9b997303d248",
+          "bytes": 7874,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/57 wog - freelancers guild.erm",
+          "sha256": "aea0bbb1f68a98679005f79ea90c5a979eacd564b68a21fbf7c1facb55acba28",
+          "bytes": 22679,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 15,
+            "postTriggers": 0,
+            "commands": 388,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/57 wog - freelancers guild.ert",
+          "sha256": "7ae23e1b1e49cab28cb0d23b83b402907cd9ee8eb335dbf5adc7e13fa01570ba",
+          "bytes": 5879,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/58 wog - week of monsters.erm",
+          "sha256": "0ea6ae0550c61c6e79fc7a6d836a588fbdf3192e450eb4b7b1b98ca517413cad",
+          "bytes": 25886,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 25,
+            "postTriggers": 0,
+            "commands": 400,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/59 wog - masters of life.erm",
+          "sha256": "403c903beda35690ec140ad7c51a11046d41e72a4c373277d22a43e22118cfbb",
+          "bytes": 2391,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 24,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/6 wog - random hero.erm",
+          "sha256": "07861e4086028e224049c748372e16340525680e9ddbc6ed4a8c3683368912bf",
+          "bytes": 3982,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 66,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/60 wog - alms house.erm",
+          "sha256": "83b87619433b198754276cfca6a286b615791d3a078e6fe3d80e81860ba6f916",
+          "bytes": 3547,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 68,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/60 wog - alms house.ert",
+          "sha256": "073911435b96088f4dd2562b69f9a95b3240a97bd7fae0a6536ecc6f8f60146c",
+          "bytes": 1819,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/61 wog - potion fountains.erm",
+          "sha256": "aa3bb15e4095876cd6dd43d97f9ba6060d7097d642024a1fa4da02d637e72ffe",
+          "bytes": 10316,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 15,
+            "postTriggers": 0,
+            "commands": 185,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/61 wog - potion fountains.ert",
+          "sha256": "6fa0a60419c9e0f4de7300a281438d8b7fcbd5e5a96039c1755b88e5fafdb91a",
+          "bytes": 3537,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/62 wog - battle academy.erm",
+          "sha256": "678e0b6935797e513c77fdd11583dc4f19aaa33de17add1dc33b2117bd980222",
+          "bytes": 10903,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 13,
+            "postTriggers": 0,
+            "commands": 223,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/62 wog - battle academy.ert",
+          "sha256": "9bd7c253c9a74c22d88dfe427c6637963beec49904c14a45c543d887ca0fc781",
+          "bytes": 5395,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/63 wog - mysterious creature dwelling.erm",
+          "sha256": "b33f8b5bcd300ebb51378663c7f05bdd9e0aa1396622c8705fed269699194d41",
+          "bytes": 6954,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 6,
+            "postTriggers": 0,
+            "commands": 126,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/63 wog - mysterious creature dwelling.ert",
+          "sha256": "5ef78139fd4d8cf0ac4a40bbf332101f6339869d065c235106d9a2629f181200",
+          "bytes": 659,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/64 wog - altar of transformation.erm",
+          "sha256": "be9f0f6c2627f42f5c879852cfbd19672c4249b1afc07a53e6e4e7bf0577ccc3",
+          "bytes": 15226,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 6,
+            "postTriggers": 0,
+            "commands": 185,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/64 wog - altar of transformation.ert",
+          "sha256": "dc5493863d95dc8d61d528e645683a06fa81731b3ff14fbfea105b7cc1dac325",
+          "bytes": 3367,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/65 wog - tavern gambling game.erm",
+          "sha256": "6ce49bd8935b56589167225347a19ac128065bc609c776388ee664f77b24e83e",
+          "bytes": 16509,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 166,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/65 wog - tavern gambling game.ert",
+          "sha256": "07b36c8e66342b62f914d0aa7520b7379f3cef879e2a511f0be640039761bfb4",
+          "bytes": 4111,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/66 wog - living skull.erm",
+          "sha256": "65c2ff1268b789889c3a717867a21918451b0c5ece4a67ef61eac86507c2a635",
+          "bytes": 22731,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 293,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/66 wog - living skull.ert",
+          "sha256": "e5af1d990b65b868b0a64ef80bbd931ae360f6d97f31430367e06cc3de2e851b",
+          "bytes": 6313,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/67 wog - palace of dreams.erm",
+          "sha256": "14d6673f3518801d62719677c0cab392e94beedbe2385044a7454df1aef30b86",
+          "bytes": 12198,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 145,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/67 wog - palace of dreams.ert",
+          "sha256": "bf41861ecc651a18ee14b69f6de3be181b1c03bcaccd1eb2acd2906177aa6fc5",
+          "bytes": 2311,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/68 wog - magic mushrooms.erm",
+          "sha256": "c00ea6150056bc31ced57b5f0e9ddbaf341970a52b4cc404f1b18f7b45377ad9",
+          "bytes": 4575,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 97,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/68 wog - magic mushrooms.ert",
+          "sha256": "9165f47f4721efd81988408096dc01d556055e1c2a92b2a4a2aa5ccfd705cab1",
+          "bytes": 2908,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/69 wog - market of time.erm",
+          "sha256": "6363fcf20ff1ad52803adac89449b09c2c31a1404a4870b61234ce9779e3c156",
+          "bytes": 8022,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 126,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/7 wog - enhanced artifacts.erm",
+          "sha256": "ce82e1219adbf9848aa8067626cd5d74db6650deed176d0baecf342b20395db4",
+          "bytes": 22356,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 29,
+            "postTriggers": 0,
+            "commands": 379,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/70 wog - junk merchant.erm",
+          "sha256": "c06396972e9c2056425fb564bc0cf888f456ad302da1d89b233cd177a1cadcff",
+          "bytes": 7373,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 162,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/70 wog - junk merchant.ert",
+          "sha256": "21dd0f75f98f6e10face8e0c6ca75eeb4fa0ee8a8ddfcb6a2b45d4bb45dad231",
+          "bytes": 11578,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/71 wog - fishing well.erm",
+          "sha256": "2d86f374ad45107f8b1fff195c3661d266e0b93f7484773b758de88896a3fc84",
+          "bytes": 26996,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 14,
+            "postTriggers": 1,
+            "commands": 367,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/71 wog - fishing well.ert",
+          "sha256": "00774bfa8115cbdde77755e4ae32e4ee1bc4d0b5ba2bd0725fd4568394707fc0",
+          "bytes": 9248,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/72 wog - hourglass of asmodeus.erm",
+          "sha256": "7fd13af4ab926d8ad44c85f3990777ab813d9933b5e7026cd10ec68011ef39cc",
+          "bytes": 12409,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 137,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/72 wog - hourglass of asmodeus.ert",
+          "sha256": "e6db83c183c339bfb07465884787069de610c8c643e784cdbb61c25454d5f031",
+          "bytes": 2067,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/73 wog - bank.erm",
+          "sha256": "80bb961e89991b73f17b705240166b5af32babb977d5e7fc40413763e22d2f27",
+          "bytes": 10365,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 220,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/74 wog - arcane tower.erm",
+          "sha256": "6153ca91de1dfec574c0eec935b295bfff00ac6653e515b206827ed49026a0ff",
+          "bytes": 5363,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 96,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/74 wog - arcane tower.ert",
+          "sha256": "a7666441372d6ad9593a0afc9085a14b12b91b676cf625e6046bf17f992da95f",
+          "bytes": 1493,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/742 wog - creatures without wog abilities.erm",
+          "sha256": "f0e1be815eddc8450e86e49806667a9ba29e8c62231dc670000a16f8cff60d45",
+          "bytes": 1035,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 11,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/75 wog - secondary skills boost.erm",
+          "sha256": "1f5f3beb18f5a15dd22ddb48456df331444bb036942c93aecbaa39be1d95e1e2",
+          "bytes": 21536,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 361,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/75 wog - secondary skills boost.ert",
+          "sha256": "77b2f800a626fbf55205dbbfd306d5de69881485d15d76158bf4a0c2edfbaf6e",
+          "bytes": 2771,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/76 wog - artifact boost.erm",
+          "sha256": "a4e7694e39e74ad0dc3207c4c758619e0209a4098a1398aa46049a8ff643b112",
+          "bytes": 28051,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 24,
+            "postTriggers": 0,
+            "commands": 544,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/76 wog - artifact boost.ert",
+          "sha256": "2e2198fea6ee4e49ec1b057af3cbc52153887fcc37e8c3684aad9086167f8a87",
+          "bytes": 5754,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/77 wog - map rules.erm",
+          "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+          "bytes": 36250,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 65,
+            "postTriggers": 1,
+            "commands": 695,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/78 wog - wogify.erm",
+          "sha256": "a86e8e993c2ae07414094969f4d74bd5a1f7e6b67997f88debebcf01f5db3d57",
+          "bytes": 83098,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 38,
+            "postTriggers": 1,
+            "commands": 1277,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/8 wog - death chamber.erm",
+          "sha256": "95b849af276a00b6a1b02597d5d7c1e0aeb8bbc69feef86f45aec048bc73fb36",
+          "bytes": 14227,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 197,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/9 wog - custom alliances.erm",
+          "sha256": "c2506c84e84a9720885c363c21b771435e8d78eb486a90819fe458377e185596",
+          "bytes": 6802,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 13,
+            "postTriggers": 0,
+            "commands": 134,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/9 wog - custom alliances.ert",
+          "sha256": "118647f9311dc818a5e81518ff97aa30dfdf317ea95626e5a0694fbd3b487c2e",
+          "bytes": 1275,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/9000 wog - consts.erm",
+          "sha256": "046a31bbe21878c17e2273f94c0008afd65ba48d3d7fca7d83b7c800fe6b8933",
+          "bytes": 5709,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 0,
+            "commands": 109,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/9000 wog - stdlib.erm",
+          "sha256": "e5d38d2fd1ce92a73e34a61890e2dda1483a8e800913f22017cbeaec7ec2ac4c",
+          "bytes": 66789,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 119,
+            "postTriggers": 1,
+            "commands": 1253,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/pic/anchor.jpg",
+          "sha256": "bf7fe8affe11dd051173356c7402d1f23dec5539d0523bd160abe3d75528e79d",
+          "bytes": 3160,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/bobbing.jpg",
+          "sha256": "23ce7960ae601d167cb54994d2e6287ef3483b0e4a8e0db21377b3fc7ad988c3",
+          "bytes": 3316,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/boot.jpg",
+          "sha256": "f4ab7412a82e1e360aa2256bcf723b409619b52ce0ad6afc2af14151d1ba0d5c",
+          "bytes": 7445,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/chest.jpg",
+          "sha256": "0876818cb4d5de9051e56f9367fca997aad4277d1bf2c0ae5317e7c46ab097e6",
+          "bytes": 7344,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/dunking.jpg",
+          "sha256": "31923da76b540ee2d4990c1cc0f994067920ffccb2043954194c8e415e80b311",
+          "bytes": 3293,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/echoes.jpg",
+          "sha256": "3c730e4b683af967d39b2af91efd6787dbb1dc947f8131490792767a98dcec32",
+          "bytes": 6489,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/eel.jpg",
+          "sha256": "e06c02aa9ac1d3f4a6da5f88f5cac955ed15c0d997ed4d8b492bed1f47638307",
+          "bytes": 7545,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/f_shrine.jpg",
+          "sha256": "dc40c2ecdb07991692665f2a9031874f917c57f4fe9990c7f850998060b83e37",
+          "bytes": 8146,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/fish.jpg",
+          "sha256": "ae8a1d094f5f91b3b805adb9a10231741fe1a8f06ec0504b535fc48d9e613b8d",
+          "bytes": 4381,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/fishing.jpg",
+          "sha256": "8bae71250172386e8d3e3f602c8ead81ffce47c120d5ed74f4914e07d14314c0",
+          "bytes": 3141,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/gnome.jpg",
+          "sha256": "8f53fac4ce033ee847be6968fba40c6d639ab7e74ba58ab2f1074731ed54164d",
+          "bytes": 5577,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/hole.jpg",
+          "sha256": "d1b1edd9c05c9cd73a26dc0e61661d783558599381e2440cf5f21aefe05b9aa6",
+          "bytes": 5381,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/hotday.jpg",
+          "sha256": "1438b301bff77f663f37110aafead97ccbd99d89c4163537422b4bd24b370449",
+          "bytes": 5304,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/lambchop.jpg",
+          "sha256": "0272b5c300c75b2595abe4b56164a17a5a7e44df2fb3db271b4420b1c931eccf",
+          "bytes": 2859,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/mermaid.jpg",
+          "sha256": "5713fe5e8a67feb4bed9da9453b30a8cbd12619839aa7a8f06901c7e4fe827b5",
+          "bytes": 6826,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/mossy.jpg",
+          "sha256": "933c8e31441deb58ebf16a8c43514734efe0fc0410db4c1b379dc955a8e76003",
+          "bytes": 7531,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/mud.jpg",
+          "sha256": "fdf66034a4f193c6bb2ce6779f1fb10b468c64cae5dba4a1f3afcf3cae206a0d",
+          "bytes": 3016,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/sandwich.jpg",
+          "sha256": "46e95fd0ddccb417a5f1c49e144777c33dba0701de7c9ac23fa444e9bfb2a219",
+          "bytes": 3358,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/script14.jpg",
+          "sha256": "2b4e7bc4318220d3659b4bac6db3b5aa8ccb8410368e63f9b74e348b8ce744de",
+          "bytes": 8439,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/storm.jpg",
+          "sha256": "5b4543105aa37f1365841bb3463787e6a11170657a8bfd3664b8702735588a1a",
+          "bytes": 2602,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/sword.jpg",
+          "sha256": "0e0359ff05a97b5ce86d7cfeac3e92b6899c3d93e31e462738311925e9e8ced2",
+          "bytes": 2026,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/tales1.jpg",
+          "sha256": "0d1364419212541624162c60fe23bccf5e4c7d3e094d20703b1cf44e2ecc9bea",
+          "bytes": 4472,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/tales2.jpg",
+          "sha256": "0441ae36becd787ef4e5075e0be87d4593d9df97dfa2b2b398d99de59c3da59d",
+          "bytes": 4774,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/tales3.jpg",
+          "sha256": "b78dddaa800ff2a206239681bd5d69d56ad193d043b7686a271ed19181465719",
+          "bytes": 4357,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/trout.jpg",
+          "sha256": "6a43c42420ee17b95cc09820c0a1aef4acb0cd822923447d208f29cdb9b1cbd3",
+          "bytes": 2210,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/pic/worms.jpg",
+          "sha256": "07499a0dcb7f2ca73cdbbbc3343af0e9a9147b7ba80bc2f3ec1563431e134845",
+          "bytes": 7554,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/wog scripts.pac",
+          "sha256": "4f12da929114b8483cdfa624a2cffca407e81fbdb9c21a36b2d623d0173e1881",
+          "bytes": 12335,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/wog scripts.zip",
+          "sha256": "a89214fc6c5c851a215b139064a6935b908953be8db12df0c3461d6b249505d3",
+          "bytes": 12635661,
+          "inactiveDirectory": false,
+          "archiveRequiresInventory": true
+        },
+        {
+          "file": "Lang/wog scripts.json",
+          "sha256": "d403bb000067117ff68a5f638e9bbe3fa15bf5d9961a05c956edd63a10baf2d6",
+          "bytes": 177825,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/wog_scripts_rmg.json",
+          "sha256": "4616cc152f69355689cd9c3da0fb62c592155bc7815d9538e0b3015a40e54076",
+          "bytes": 2524,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description.txt",
+          "sha256": "a1ba58f8ebf24f668cf189ed0b767d2f01f76d0cf42aa979cec615242d568fa5",
+          "bytes": 579,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description_chn.txt",
+          "sha256": "552ce1b9a7de8b20a30c04e73e2c402fcfae97ccde540bc8e346b37e78e1b98e",
+          "bytes": 603,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description_rus.txt",
+          "sha256": "923a9bae3bfcd56ee94e6ce0b0c1c3af5ceeb501167d5b5bde81c49d175e6e3e",
+          "bytes": 650,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mod.json",
+          "sha256": "d5d1e869a1453fcc7ae43be02f465004bd4a60c691f9ad5965d5821b981d7336",
+          "bytes": 1119,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "wog.ico",
+          "sha256": "944e21ed2dcb441976c6f5f1eda4ef9c1f79cb6193adb13efe79c6465b74c638",
+          "bytes": 2238,
+          "inactiveDirectory": false
+        }
+      ],
+      "status": "source-locked-not-native-admitted"
+    },
+    {
+      "id": "era-scripts",
+      "directory": "ERA Scripts",
+      "sha256": "4652260d6a31ec665c43e051159e1bb06ca343433a4ef75013d3104a94cb13ad",
+      "files": [
+        {
+          "file": "Data/Buttons/_mini_readme.txt",
+          "sha256": "ad19c9cf548d56dbc9433b933acdb30c9309a4539750179c54cb2dca1c6609a9",
+          "bytes": 313,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/assasins.btn",
+          "sha256": "5b5b5098960d17fe5629b38fa7bc542e039b2bf0b23c5953ecd0869268f5ccde",
+          "bytes": 93,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/assasins_mini.btn.off",
+          "sha256": "2a1478c609490aeeaa1765651b3b7970c533ff6942e173c0b3dba82b502b25d4",
+          "bytes": 68,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/bank.btn",
+          "sha256": "f1cf873cee483ccc38741a04fd44edee997e1afcf0e28c06067d7f73dd0c2a39",
+          "bytes": 65,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/peons.btn",
+          "sha256": "2cfcc5f6abf2e31dce181bbfc66d7aab87f31071708a0fd60f1c03f3b56dee0d",
+          "bytes": 63,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/stars.btn",
+          "sha256": "cc4ecbdc0dbf6a0de68d4b3f5852c02919dbcc3802be51fbd29f066e5837efa1",
+          "bytes": 63,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/stars_mini.btn.off",
+          "sha256": "12578b06d70033ebcdf352f1d3f7791200faf6a58664865576d0dc35d19ebefa",
+          "bytes": 60,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/ERA Scripts.pac",
+          "sha256": "53fe3290fd4dce42c68d1f5d532109185508dd1306b02c1d149afde5045d43a0",
+          "bytes": 808343,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/ERA Scripts.snd",
+          "sha256": "82f4ca173bd798a9a98574d0f44e5f5b65a5f69ee776fc819320ac5ec4a5102d",
+          "bytes": 4884,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/ERA Scripts.zip",
+          "sha256": "aa003fe4438ca88600096e4b3049cc5532844d14817d88180504ac055de273ef",
+          "bytes": 1150945,
+          "inactiveDirectory": false,
+          "archiveRequiresInventory": true
+        },
+        {
+          "file": "Data/s/1000 es - stdlib.erm",
+          "sha256": "bbe30701102d872ec9eaca5a51c73597d563abf7251706adabd806d68aae1488",
+          "bytes": 35706,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 58,
+            "postTriggers": 1,
+            "commands": 691,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/interface - artefact helper.erm",
+          "sha256": "7a10c3740c3dc4b580e8ddb5bfba07b322438bf0994a00b6a3e179e573ccecba",
+          "bytes": 1512,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 14,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/interface - disable necromancy.erm",
+          "sha256": "3fa5897298d1358920366b989aa956086b95260ceda7933c63892cc3099db49b",
+          "bytes": 2830,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 59,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/interface - tavern hero preview.erm",
+          "sha256": "e8d22af3cd4b940158f63210b9d88b3099f1feec993a2587b42ef052805f736f",
+          "bytes": 728,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 11,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 281 - buckler of Beelzebub.erm",
+          "sha256": "137e808aebeaf05b913a83eb3c7b50b89f4abdd165fb517ec86b0ef602788e13",
+          "bytes": 3233,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 6,
+            "postTriggers": 0,
+            "commands": 42,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 282 - improved Armor of the Damned.erm",
+          "sha256": "7a6c460afac0d1f34e429a0016ecf2cd3d1103b7e23bbbd75a150eed728c5bf9",
+          "bytes": 2014,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 29,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 350 - lizard warrior ranged retaliation.erm",
+          "sha256": "71ba2e025fdf855b3aa098acd13d8ccc2e26c819852e6d7d47c1655a942e6ffd",
+          "bytes": 3047,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 48,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 351 - new cover of darkness.erm",
+          "sha256": "ad1cd7e50c0d9702f585c8007d1085470714fbd3b7cec3eb68d8321e80d6427a",
+          "bytes": 8952,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 11,
+            "postTriggers": 0,
+            "commands": 188,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 724 - bank.erm",
+          "sha256": "6cec04cc722160af25d2d5d85529b284794bd07f1624b95b186674e80621eef8",
+          "bytes": 53003,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 11,
+            "postTriggers": 0,
+            "commands": 695,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 725 - bounty hunting.erm",
+          "sha256": "b7575d94471edc7f49dd823ea213e08ff5cc70d0306370b2b1880d02dd359726",
+          "bytes": 40325,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 478,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 726 - ReMagic.erm",
+          "sha256": "7718b3c45f3fdaa0645ffb7a350fb73027cf0901763f4e552c0568f22dba34fd",
+          "bytes": 24609,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 21,
+            "postTriggers": 0,
+            "commands": 274,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 727 - backpack artifacts.erm",
+          "sha256": "44abf1e3f1ee6e0d1c56d8990f88193422023673a5845edb8b97ca24c2895e80",
+          "bytes": 7714,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 146,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 728 - heroes without armies.erm",
+          "sha256": "18d55d36360e1d31c1ec904942af2e14431d8a527d1a156c8f5b81ab6819f900",
+          "bytes": 3858,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 38,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 730 - single-slot composite artifacts.erm",
+          "sha256": "a887ef9ba5671bd617bd32d441d5bd1e4bf46c6014e75a590e5557bf1eeb31fe",
+          "bytes": 3117,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 51,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 731 - trained AI.erm",
+          "sha256": "342d03c04d5a840f2bf40629b6b2c7c517e7699dd4b957e9378f90b0869415ed",
+          "bytes": 5487,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 97,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 732 - hero limit.erm",
+          "sha256": "070b994e2d9fa983c764db0b25e1cdfae4287babb5762aadf7db3e3a8e05a975",
+          "bytes": 1540,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 14,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 732 - hero limit.ini",
+          "sha256": "dfb219ffec116dac6306a0ade45089c0c58d7f38c87dfb6d9c0fd6b8d32ff66f",
+          "bytes": 121,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 733 - third class.erm",
+          "sha256": "7c8302b58d6ed36c6dffafebd4ed2f52694d78f492871b555bd30b2224f8e203",
+          "bytes": 34883,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 20,
+            "postTriggers": 0,
+            "commands": 442,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 733 - third class.ini",
+          "sha256": "ddec195972d5a062d9d83ad99c767b92acdac6437a4b66925213cc7ca5749980",
+          "bytes": 3963,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 734 - team AI.erm",
+          "sha256": "070764f7be9cbde5c6b2249d91e826bbd0c0aa681091c64a5b595c7be305a490",
+          "bytes": 3174,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 23,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 735 - advanced artifact market.erm",
+          "sha256": "4a96bc49e28d176f9d1da2929b38080ef9c16212fb88318e82954ca0db9757a8",
+          "bytes": 2703,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 35,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 736 - battle experience.erm",
+          "sha256": "86aab73a01c0ac60a8040a0b662d9f901f1582e0a7b9cabbc00cc9191fd35cc3",
+          "bytes": 17332,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 217,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 737 - machines capture.erm",
+          "sha256": "70f78868d6a54faf98d520b2b867ce499852b29de8bf10d16faa39e62ba194c6",
+          "bytes": 2634,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 39,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 739 - pathfinding.erm",
+          "sha256": "a50c3fd6c4ef8eb6bd74ad5f81706a56aeb1c6d719f8b5ec69644651237a5518",
+          "bytes": 5536,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 87,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 740 - enhanced creature specialists.erm",
+          "sha256": "9b22c5614c9efd7b958cadba76845d4d694303b3cc10c6c1c745ecd01c1c554b",
+          "bytes": 2422,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 25,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 741 - zealots interceptors.erm",
+          "sha256": "7deafc83b4c95ff0f8d52a801790535091400ddf78ef9924fe86a1e78ab18287",
+          "bytes": 5617,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 77,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 743 - health artefacts.erm",
+          "sha256": "3567be77b36b601b036f67081b70b3adea8a0fd6abf77f412815f9cab6ec8ba7",
+          "bytes": 2294,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 46,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 744 - field repairs.erm",
+          "sha256": "76ff46cf6b814f66103eec4ecbabfc529fda0a0ae99a5c39784efe02bc6db454",
+          "bytes": 11591,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 157,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 745 - hi-level monsters.erm",
+          "sha256": "14acea7ba776354be28189305cb1bd1fe19e2e5290c31d1c31463c95f3a08dd1",
+          "bytes": 5361,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 77,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 747 - self-education.erm",
+          "sha256": "f2f5b548a2c40ea0a7647a9b6a3785865ece4bdcb1e2d494be9c167573b1264d",
+          "bytes": 5846,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 77,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 748 - refusal of dwellings.erm",
+          "sha256": "7c50499d6560200d7e1e7b01deaca5e331b66d86de8605ab5ff7f497d116e13c",
+          "bytes": 3175,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 50,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 749 - mana shrines.erm",
+          "sha256": "d5e3d6206b912e8e6d624de2f4383d9454d9da37b82144a3544f79e40cb8c84e",
+          "bytes": 3278,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 3,
+            "commands": 28,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 750 - demonic rage.erm",
+          "sha256": "5a20499c720044a8bbaaa831c747430f6546986359e008c8d2c3ee9f1123500b",
+          "bytes": 2334,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 32,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 751 - necromancy.erm",
+          "sha256": "01f976193bd7174daedae2c7e48d5365f8e0b94053a4daf3728dbb0782c12a4f",
+          "bytes": 2328,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 22,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 752 - halflings.erm",
+          "sha256": "439142c2189a25f65e691695395a9026f75aa8c9d5dd69fa7913b7bb0ab61274",
+          "bytes": 4786,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 54,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 753 - stunning boars.erm",
+          "sha256": "1a0398c5428d8bc8ade2603e257cd3f638e675f9846c75d2d1845a68ba85a1f3",
+          "bytes": 3842,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 44,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 755 - limited mines.erm",
+          "sha256": "7f05ff9adaa04283ac5d102999b4696c0a0c941aea8570259abd4c714eabd3b3",
+          "bytes": 4356,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 49,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 756 - siege mastery.erm",
+          "sha256": "adc5ca2d563dda87652b2ea8b631a67c50419f382c3374e8ace41a5ef31c9940",
+          "bytes": 1597,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 19,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 757 - dragon towns.erm",
+          "sha256": "de40d0989a665d0f88fb4f4252985e2d83b7044e18b0852fe7350457d41dc5a9",
+          "bytes": 15544,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 10,
+            "postTriggers": 1,
+            "commands": 217,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 758 - cutthroats.erm",
+          "sha256": "24a2f8fe3df4ff482ee22b10bb02ab228c36741118111d853b1ec490f9061cc8",
+          "bytes": 3173,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 6,
+            "postTriggers": 0,
+            "commands": 52,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 759 - Devils sacrificing.erm",
+          "sha256": "784c91ba6b1f0a5152bfffb482919604e59a0b967a1a38747b45cac619535945",
+          "bytes": 11469,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 10,
+            "postTriggers": 0,
+            "commands": 124,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 760 - achievements.erm",
+          "sha256": "3848bb9f9904390c575c3b79e310c411c61f1fab39a3a0ac3a9047bd059bb668",
+          "bytes": 69194,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 54,
+            "postTriggers": 18,
+            "commands": 906,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 761 - battle dwarves reinforcement.erm",
+          "sha256": "481228b66a543d95a96272366140cc9da39fb0685869eafee9ea34c661e62aae",
+          "bytes": 2701,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 42,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 762 - zombie-flesheaters.erm",
+          "sha256": "bddf819019c8cf370521dc3ef44e038145da6bc0de0975ba654148c4189d9f4b",
+          "bytes": 3841,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 73,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 763 - hidden enemies.erm",
+          "sha256": "0414aa3f83c5ca32f888c0ab0263573f042d9c3ab8150fe1dbde6698c77f6920",
+          "bytes": 14455,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 174,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 764 - balanced starting army.erm",
+          "sha256": "0f0e2889d5c3f71696a2b926d241ab9a05ebdafd6c98fe79e193bb5b025fd966",
+          "bytes": 8043,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 92,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 765 - town treasuries.erm",
+          "sha256": "cb1977c4aabca0d5dd1f536a5bb70d6c7ff742aed26cce0cca6162a90d81e1c1",
+          "bytes": 9668,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 101,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 765 - town treasuries.ini",
+          "sha256": "b7d74ae117516b20558fee92bfc5fd64ab995d65eafbadeb51a9059ef93ff8e3",
+          "bytes": 355,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 766 - leadership.erm",
+          "sha256": "7bbbee95afcff076a3eaa04c873e75538b92a0fe2aefb3ad5af8786e5b99403a",
+          "bytes": 3573,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 37,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 766 - leadership.ini",
+          "sha256": "3a1ae1adde2fe93cba9000c7c61b8ba26937865ec293961b80ade590065bd255",
+          "bytes": 193,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 767 - misfortune.erm",
+          "sha256": "fcc472783fcd9dfe056623e48697657a052ab804e89f80114ab79359cd0d5ffb",
+          "bytes": 3170,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 37,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 768 - monsters drop resources.erm",
+          "sha256": "040f33a02b53dcadc246bc94c601b32c0f8aceeb5a68e4d56e922ca28257eb7f",
+          "bytes": 13964,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 1,
+            "commands": 174,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 769 - monsters drop artefacts.erm",
+          "sha256": "c67df00065710921c000e457a5fe9797430bce75b5854df5bb89c91dc3ef84b5",
+          "bytes": 4761,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 1,
+            "commands": 71,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 770 - tyrant.erm",
+          "sha256": "d3008a21b48f8ad8b89fa73e354b41ee1173cc57e68345bfc3a60255ba198886",
+          "bytes": 9269,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 113,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 771 - randomizer.erm",
+          "sha256": "889325e25f6972564dcdc26e91eda868c5fe5102b6853c67c266738b840011b7",
+          "bytes": 22450,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 10,
+            "postTriggers": 0,
+            "commands": 232,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 771 - randomizer.ini",
+          "sha256": "18c0feeb8b2ac3838b136e2b2e88dc6db8fb36225c5debbb4bb3fe7b2bc7d594",
+          "bytes": 2932,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 772 - external upgrades.erm",
+          "sha256": "b4b2c7ab617f8e4f5d1d32fe00cd036dfd4887ca518bbcc1ae3b7cba933eb26c",
+          "bytes": 5819,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 122,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 773 - land navigation.erm",
+          "sha256": "946b58bb91d9b1f3a4d83cad0af22b96a54a20eac3e792441064b814bcbdf71b",
+          "bytes": 6624,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 111,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 774 - experience exchange.erm",
+          "sha256": "54ba37e28551b6fdb5bc6bba202e73f5df2d9489f5fed86aaa5834404a0ec893",
+          "bytes": 5606,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 74,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 775 - improvements of neutrals.erm",
+          "sha256": "66ff864641c2d978af878277ded30c32368beb07a25463b9573dbeac864bb199",
+          "bytes": 8295,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 8,
+            "postTriggers": 0,
+            "commands": 84,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 776 - elemental suppression.erm",
+          "sha256": "69cfb808ad51b9bcf1112b0ec38e30f20f5d733f9859e395b28e78b6025d1ab7",
+          "bytes": 6487,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 10,
+            "postTriggers": 0,
+            "commands": 113,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 777 - strong resistance.erm",
+          "sha256": "dbeef8d31d75b3adf6591a7c5e518554d86d281d0a7759b2acf5c8a0b5da3945",
+          "bytes": 5199,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 79,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 778 - neutral neighborhood.erm",
+          "sha256": "253be2f78e5c9fc8624416391f5632d03483c6a809e087ae6d0aca3d7f087a3b",
+          "bytes": 2525,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 32,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 779 - advanced stones.erm",
+          "sha256": "978b1faea6d732bfea6b34fe35eaf4711c5ab2f8fdfb573e48cbba7d3d386a5a",
+          "bytes": 1202,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 17,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 780 - size-limited cities.erm",
+          "sha256": "241a6756b565af7c5ad90a2615a1b95ec242276c792f3d6113159dcc5ecfa0e5",
+          "bytes": 13939,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 167,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 781 - Conflux balancing.erm",
+          "sha256": "6e506a04569bfbed247ed7e8f54500fb1b4b54653b0c7fe4fb6371a0f588ced9",
+          "bytes": 1876,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 19,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 782 - medicine.erm",
+          "sha256": "2a3defab018ac7fbe33bafd45a4c59f8dd3cbf5cff352fa66311029caafaf01c",
+          "bytes": 2368,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 41,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 783 - scientists replace obelisks.erm",
+          "sha256": "f9ae1b2bf506eb6be18e066e65d78ec742377dae8595e96bbbf7adb97c67a233",
+          "bytes": 11030,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 138,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 785 - peons.erm",
+          "sha256": "4a4b95b2056bb86c6dc2ae69a61a5e244fce059978a934aad1c8f7813b2e22f6",
+          "bytes": 7369,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 106,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 786 - diplomatic bargaining.erm",
+          "sha256": "37528aaa64ea23bceca949063f13f9cadfd1210703b9aecff88af046eff428a6",
+          "bytes": 10440,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 12,
+            "postTriggers": 4,
+            "commands": 153,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 787 - new mana regeneration system.erm",
+          "sha256": "6981a7a511047c9c2e59cb8cdb90de5942be39a705e81d5d5edbb1ed980c4774",
+          "bytes": 9947,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 15,
+            "postTriggers": 0,
+            "commands": 203,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 788 - hardcore heroes.erm",
+          "sha256": "b9dc25185faf56806af634dae4495665b5d03fc3d02373b942ff44ae1af9b6ee",
+          "bytes": 24131,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 410,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 789 - critical sorcery.erm",
+          "sha256": "ae1d6255b1cbc8089e41cc25bf9c39beaa392d3b2a4a6092b5e2f32ff4380387",
+          "bytes": 4200,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 53,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 790 - mana arrow.erm",
+          "sha256": "490fb47d03376cde548ec5bfa784086d6304e2a9b2bec509eaeb661552ced97b",
+          "bytes": 3931,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 61,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 792 - not a place for people.erm",
+          "sha256": "aa9587c543fe29ef3d76e3096931571c1dbe34dcc3a06cd362d2f3fd4c06a31e",
+          "bytes": 2940,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 48,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 793 - ekonomy.erm",
+          "sha256": "852161ea53dc08a4fc5f1139a12be729f3ba639e431782bbf6dcacd286b6e971",
+          "bytes": 7419,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 0,
+            "commands": 111,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 794 - open map.erm",
+          "sha256": "94a2b839b9aa9537cf6fa80fba1db181efb5bac02874dac96491eca83587cdc2",
+          "bytes": 1845,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 30,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 795 - night scouting.erm",
+          "sha256": "566c23b2b6db9c1c79b8210dd7daf25bfedc2d0c98ab7b52f44fe682f06f5937",
+          "bytes": 71932,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 35,
+            "postTriggers": 0,
+            "commands": 927,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 796 - use of the scrolls and banners.erm",
+          "sha256": "c7f39442e9dda9d06b9ed4103bd7723f9b901f2d19c3c13ca35a5d569756d391",
+          "bytes": 15116,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 11,
+            "postTriggers": 0,
+            "commands": 189,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 820 - additional upgrades.erm",
+          "sha256": "7cb39938147d669dcae8b56022462b455951fd9a1359ab793c7612b905eb4c92",
+          "bytes": 2009,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 17,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 821 - non-neutrals.erm",
+          "sha256": "68b4538b8d1529165eb1b2b2decd009f24e225b0c2045654ebd78402b239f8ab",
+          "bytes": 1771,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 17,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 822 - block snipers and wraiths.erm",
+          "sha256": "665c1641fe926c7f7ff46b384d4a36446d67f82db0fe8f5f4ea0cda06a8aec23",
+          "bytes": 3557,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 66,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 824 - 28 secondary skills.erm",
+          "sha256": "45e97e87592294808c4231ce181d62802072b813a45802d7276f9acb7c296694",
+          "bytes": 2222,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 29,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 824 - 28 secondary skills.ini",
+          "sha256": "c5c1b1334588078c28bf969f25f97feb86de265ee57b089b2d862664fcdfdee4",
+          "bytes": 100,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 878 - experience for letting go.erm",
+          "sha256": "15d392c2658325aafcef2ef5572c9ee6d426c19d6142092a7ad054befd992059",
+          "bytes": 4390,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 1,
+            "commands": 60,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 878 - experience for letting go.ini",
+          "sha256": "7f618e844e361627a767ae70094158f25a351d739543da441ca9f916eb324f57",
+          "bytes": 374,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/option 879 - capture mills and gardens.erm",
+          "sha256": "e27f263fbda4081ed61eab8c5bec5f58ae974bea334b166512dade3dc87aa9b3",
+          "bytes": 12972,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 16,
+            "postTriggers": 0,
+            "commands": 250,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 880 - study spell scrolls.erm",
+          "sha256": "99c21cdeb7b22f52023809ba60ea59c4c971ae1b77076b9b941c46270caaa969",
+          "bytes": 2833,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1,
+            "postTriggers": 0,
+            "commands": 44,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 881 - custom primary skills.erm",
+          "sha256": "6fdb5f388ee165b285c98b32f89c93fb388a22aee3cd23acb5acf14f591ecc24",
+          "bytes": 5196,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 64,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 882 - skeletons with artifacts.erm",
+          "sha256": "79e35810e2d7f67f0ca62b5403754bea3a8f0fc5b7fbb802482e02aaad1dbe08",
+          "bytes": 11656,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 11,
+            "postTriggers": 0,
+            "commands": 142,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 994 - military duty.erm",
+          "sha256": "7aabed473853ea429e873b564cb40cc90f7c6d4ae2e249e862bb0e6157bfc6ff",
+          "bytes": 3928,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 47,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/option 995 - ranged death stare.erm",
+          "sha256": "42c5d27199376c8df7474761a80cc8bd93150d8ba10db5cdb2a4a92038783ea9",
+          "bytes": 6385,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 165,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 996 - gnolls-marauders strike first.erm",
+          "sha256": "68e5e5aa449a82620a219586624a8284be5fbb03f0d6548be318e84e29af2e90",
+          "bytes": 4592,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 58,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/option 997 - grand manouvre.erm",
+          "sha256": "05ba46c61c701cc0367a73acd5eae03f5fccc3bb74a812ca84750bb96a711a65",
+          "bytes": 4471,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 72,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/script60.ers",
+          "sha256": "24b3fed072a39f0f7b25f32d7a569ebab983cf9c88ab2a3b62dc37ff0f6fc5f0",
+          "bytes": 2006,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script61.ers",
+          "sha256": "91ae0949ef5a69ce3ec2a0240127a17a5bec2eb9f763e734899a187f2ff8a23e",
+          "bytes": 183,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script62.ers",
+          "sha256": "e251e8806803a6b1783ca6d245f50983fba30a90da78d2aaf2068b5998bcd32c",
+          "bytes": 1473,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script63.ers",
+          "sha256": "ce061122541c11a323d631352a30d687a207726e5148e2ee23e076cd524273fc",
+          "bytes": 754,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script70.ers",
+          "sha256": "4b07b5a080ed314745e4b14802c30bcd64db95eaeb80676a42b8690b30060569",
+          "bytes": 1542,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script71.ers",
+          "sha256": "92f58b5edf353ba3ef2604b0257391fff7de46e1158fbc42c02a19efeee7c7a6",
+          "bytes": 583,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script72.ers",
+          "sha256": "926f730bacb52439b6a7cd8d9f2f8aed501ebfcf85feabdda239c0f28b7ba20b",
+          "bytes": 1660,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/script73.ers",
+          "sha256": "bd0a0237f3082510baa368c7bf508f55278d110ea7ebf299a9939eeb6754af72",
+          "bytes": 199,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/era scripts.json",
+          "sha256": "09902e28103015042caae63acaabfd72af6be158834087480718b4f8779c9145",
+          "bytes": 90737,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/interface - disable necromancy.json",
+          "sha256": "1504510b2bf2811b3688e2b204a3569f630b4c6e73747aa60a368f665dfb1b66",
+          "bytes": 214,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/option 724 - bank.json",
+          "sha256": "0336a8c1c9cab7dc0e74caa6462eb8a6e24e577198e2b9f46e549bd93a4a3323",
+          "bytes": 5363,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/option 725 - bounty hunting.json",
+          "sha256": "7f8fe6316ae6197c5c851fd12d4e3223d2ac18c57eab272bb63a0e9c99b97d0f",
+          "bytes": 1237,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/option 760 - achievements.json",
+          "sha256": "b04432ff167e45c23a7b94085fdf298f3ede6031e982b9303e426cf9474ba396",
+          "bytes": 7830,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/option 882 - skeletons with artifacts.json",
+          "sha256": "c994dce3bc8944a37b0308d9fa1ac6e5a09899d03251aad49943d11e30ed11e9",
+          "bytes": 728,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/era scripts rus.json",
+          "sha256": "5885b78e7ed26b99a89ab4b158e59e614315ed9637fd25bddd7d7377ca5158c1",
+          "bytes": 147603,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/interface - disable necromancy.json",
+          "sha256": "ebb5fd68be68ef62ea4b0b3c4d742cb67fdff77d16d69d942f65703409250188",
+          "bytes": 302,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/option 724 - bank.json",
+          "sha256": "552f0aadad3e47c50a2f06029d6430b9572401005de0eceaf587917befcece7a",
+          "bytes": 8118,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/option 725 - bounty hunting.json",
+          "sha256": "61fbea659c45b5a079891647da6c1dc17db28a7eae455070fee5bc9c096d8446",
+          "bytes": 1663,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/option 760 - achievements.json",
+          "sha256": "9025b6a13ec5239407cf7617cd6919acaa32f23e36244989e5c19cb408e4178a",
+          "bytes": 12162,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/ru/option 882 - skeletons with artifacts.json",
+          "sha256": "40791391b07ab8da56ef567eeee6543f204a439c8be02a430f5faccf648cd81e",
+          "bytes": 1062,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/ESE_1.jpg",
+          "sha256": "63090f2e05df10941d7bc12705c5b1b726ddab2404d8025a2e789dbf78974637",
+          "bytes": 699524,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/ESE_2.jpg",
+          "sha256": "51aefd222b8412e16fec7c5322af2729c5f58990d05762b1e73c4077cdedae23",
+          "bytes": 698373,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description.txt",
+          "sha256": "10f2989aaa1912e7449712fc24b8694238eb6822ac31150c9360a81fdafe894c",
+          "bytes": 617,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description_chn.txt",
+          "sha256": "d410ba2ee40b51cee24fe15779535dd779c06308c93c9fb8c069948fba9ca6c4",
+          "bytes": 605,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "description_rus.txt",
+          "sha256": "c13d9864302e81c3866adfdc8a5573e9ed976f2467f3659537598ad8d78ac38e",
+          "bytes": 848,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "icon.ico",
+          "sha256": "345e2f346e358ca16b610d58fe4490f9e4a0aa7c666ec908cfbbb3b0c1b0b9d6",
+          "bytes": 5966,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "known bugs.txt",
+          "sha256": "5fc7db0b2b3427a430e125fae90c9e8989f39d09ff366d0aa499478740b8d3e8",
+          "bytes": 514,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mod.json",
+          "sha256": "23c7ec776bd8602584006ce95f29a379e39d8b41cab7c234b3d20bdeb5057092",
+          "bytes": 1099,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mp3/option 724 - bank.mp3",
+          "sha256": "b01717adcbf4b62c5b97028d27f590c6fac801733a4e6bf3f45a54cc829007b4",
+          "bytes": 708483,
+          "inactiveDirectory": false
+        }
+      ],
+      "status": "source-locked-not-native-admitted"
+    },
+    {
+      "id": "advanced-classes",
+      "directory": "Advanced Classes Mod",
+      "sha256": "d172fb275ea8a73ef6a2562f6d393b39a2cff823f3bd42a6b5501d5b8f07e786",
+      "files": [
+        {
+          "file": "Data/acm_com.zip",
+          "sha256": "93368ebdcbd317a57cf49650593578e76e0fc0d5c320ae1229fe73ad70356657",
+          "bytes": 211875,
+          "inactiveDirectory": false,
+          "archiveRequiresInventory": true
+        },
+        {
+          "file": "Data/acm_mod.zip",
+          "sha256": "b766e3ebd0d8a45797ea9ddc247e668a665bbfa8c6790065ae6385ec8909dad2",
+          "bytes": 13162164,
+          "inactiveDirectory": false,
+          "archiveRequiresInventory": true
+        },
+        {
+          "file": "Data/acm_wm_mod.zip",
+          "sha256": "4184acada742e13d979262aecd4abd37ea060978f89525610772aa1c89b61dce",
+          "bytes": 1536869,
+          "inactiveDirectory": false,
+          "archiveRequiresInventory": true
+        },
+        {
+          "file": "Data/advanced classes mod.pac",
+          "sha256": "1fa8a4692eb6831dea24ce71f259802a1905d426cd4707131a4a9787082e46a5",
+          "bytes": 1361641,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/mm7sounds.snd",
+          "sha256": "e2b5351eb5f8493db16554e981039d8f928f8750fc92d3e72e5d80b361252209",
+          "bytes": 1551986,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/80 wog - disable options.erm",
+          "sha256": "d212d3fbaadc6d5c69331f53e5ab5291cebf65b049c55aca871849ca1b62137a",
+          "bytes": 6844,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 69,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/advanced classes skills.erm",
+          "sha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+          "bytes": 1662790,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 1131,
+            "postTriggers": 17,
+            "commands": 31542,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/advanced classes skills.ert",
+          "sha256": "689781979d4e53ba2b8f4a5dee08838b80e3f2effb734f6ff8cb9cf8e54c573f",
+          "bytes": 94360,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/disabled/Ballista ignores Blind.erm",
+          "sha256": "972f8eadf043cbfcda3db8d524112cc5a92dadc9a4bd65b1731c04ff11400d5b",
+          "bytes": 2143,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 5,
+            "postTriggers": 0,
+            "commands": 39,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/disabled/necromancy limit raising skeletons.erm",
+          "sha256": "eb9c4c58a7f51c1e8d879f2cd6f8589ad11e981d792640cc525506fb97b14c95",
+          "bytes": 3217,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 50,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/santas balance.erm",
+          "sha256": "190a7b68618eca18e0e4fb6135450222c3a1ecad2f6ca302a0b69e0cb2fd4c55",
+          "bytes": 2095,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 35,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/switching actions.erm",
+          "sha256": "4975e3103737faf3f72e62aa9c3dfea3266137a078a0e71bd06ab4f0abdf5c54",
+          "bytes": 1911,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 4,
+            "postTriggers": 0,
+            "commands": 56,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/warmachines.pac",
+          "sha256": "e88a46820515d8ecbbd43f6260c115e6b69a77edfbe7cec126479cdce6aa52bd",
+          "bytes": 411163,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/Combat_BallisticsIncreasesShootingRange.dll",
+          "sha256": "f980c930e4b3db043a61484311e1d71dc0cd221e22823d90bff74ab6a0837656",
+          "bytes": 87552,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/Combat_LeadershipDecreasesFactionsNum.dll",
+          "sha256": "75383ccc0a060ea67b59d3c6e469bd06b252a59d848ff08368cd28b3328b9476",
+          "bytes": 87552,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/NewSpells.dll",
+          "sha256": "6c5c85fd0afc7a2a7b52cb87661b4ce786cb6d08254fa3ea7b79c33db863f5ce",
+          "bytes": 8704,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/heroesStartingParameters.era",
+          "sha256": "e7a3831b50def173bcfebfb1ff0f9ad3d4672bf3b2b2ec5c8433eab37d27da7f",
+          "bytes": 106496,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/remove theoretical battle ai vs ai.dll",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "Help and Readme Files/Advanced Classes Mod Documentation.pdf",
+          "sha256": "cfed7bc9e101fafe30c286bed261a3d77922faa2267ca4d1d3c496b346913821",
+          "bytes": 861206,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Artifacts - Categories, NewSets.txt",
+          "sha256": "6b95666cdad3e46d8c0b1713dd32323acba8a64508ed1d75c1463e2920829b95",
+          "bytes": 7568,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Commander - Classes, NewPassives and Spells.txt",
+          "sha256": "cc85bd5c3a87cc2ffb2d56f929df6843b92db30ad6fef6da9bdd91566e4c819b",
+          "bytes": 8389,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Heroes - Classes, Starting-Skills, Specialities.txt",
+          "sha256": "ac167cbe8393f20061ef0c370f4bfe467fc48343da539ec795f328e2496445a0",
+          "bytes": 15855,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Magic - Spells, NewEffects, Scaling.txt",
+          "sha256": "437be2d86418e8fd89c7049bd6d6705e26c18591b1d9ba48884f26afce28e144",
+          "bytes": 21504,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Secondary Skills - List of all changes .txt",
+          "sha256": "d9db507d6870a1bb631b7cc04acdb220cd57a16907c45286ecda8ea8f7f3d8b4",
+          "bytes": 6895,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Spell Trainer Readme.txt",
+          "sha256": "834c0b95ef8ca9638661db9d44046bfb35bf631336e3a74109127dd46970488d",
+          "bytes": 6804,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Spell Trainer Reamde.txt",
+          "sha256": "934ca7c700b30c5698313f269d5b202c88b6c7e16a80fd4cc94eae44cd737540",
+          "bytes": 6651,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/Warmachines - Upgrades, changes compared to WoG.txt",
+          "sha256": "e33c2f059bb1555848832be852a9c64336bcb48de571c0beb16bb745e5fdba39",
+          "bytes": 1975,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/hero class simulator v4.xlsm",
+          "sha256": "33c22aa97c6c53d8acc2df551e2fd93cc66d84711dc2aa5a748bb2f1a9af8fa0",
+          "bytes": 20549,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/sptraits/sptraits as used in orginal h3.txt",
+          "sha256": "0809ed7b2d7fc1357d96e4cd87bb5f9db6ad813b42d69dab29ab35fa3e1c11b9",
+          "bytes": 46623,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Help and Readme Files/sptraits/sptraits currently used by ACM.txt",
+          "sha256": "0c8d39cc43bc991ffca4c4cac335a0bdcfebdf777bf6e1e92399381ec188dbeb",
+          "bytes": 68627,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/advanced_classes.json",
+          "sha256": "0a498aac5638d0a347600baeef3c3b87e692dd70f1d9654ff7a4594529bd101d",
+          "bytes": 128692,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/heroesStartingParameters.json",
+          "sha256": "c95c76e9c4e2188fd87a39b9ac2fe4592eae0e3aeffb70676a56516e6f13be3b",
+          "bytes": 25056,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/war_machines_upgrades.json",
+          "sha256": "a7fba073d7e5c1a8114227db387ab67a500e41817994a9034b39e4983944e547",
+          "bytes": 53376,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/ACM_options_splash.PNG",
+          "sha256": "b143ef1d20003dd04d5e7f299587076b755ed3a78f0be3a7d0d7a81f08169708",
+          "bytes": 284031,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/ac mod small.png",
+          "sha256": "066354614e27ce6e7e9dd1dbefce3e7759bb8c43d0eda0dda8e9a26659400691",
+          "bytes": 441840,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/acm 01.png",
+          "sha256": "68d41c115d045e9de2aee614bbadbd7fd21d21019c33c6d92df8693d5e95ae02",
+          "bytes": 429984,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/acm 03.png",
+          "sha256": "35ecf0acd06709ae8010879b52928e208d08846428f68ea0ea8ea1d929436aee",
+          "bytes": 422996,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/acm 04.png",
+          "sha256": "1c31bddbd85330b16c2d03e758fecb69fdff918cf9d69cbaa9f32c8add80479e",
+          "bytes": 588824,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/acm 05.png",
+          "sha256": "2002355937f2e9e28fc96a156c6925d61c510372d64f5e705b1f0892b97313b3",
+          "bytes": 355271,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "changelog.txt",
+          "sha256": "e42240dee0afaacbe15ac46267155435117cae24a4e1b7f2533b5778753ca410",
+          "bytes": 65743,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "iv.ico",
+          "sha256": "6da700a124f47c1d7bf826018225c4cd19dc35ec700b29f4fd2590815875b195",
+          "bytes": 81215,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mod.json",
+          "sha256": "be44647b470d7686bdf98342369c28242d793b127d8a48989f49c28240edcc8b",
+          "bytes": 1101,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "readme.txt",
+          "sha256": "89aca5b8bf7a4175a6c970324dca8947b86555e4872e3dbdca2d71cba99a2318",
+          "bytes": 18602,
+          "inactiveDirectory": false
+        }
+      ],
+      "status": "source-locked-not-native-admitted"
+    }
+  ],
+  "reborn": {
+    "status": "official-download-unavailable",
+    "version": "1.7.3",
+    "homepage": "https://www.h3wog.com/thread-78163-1-1.html",
+    "note": "Author page checked 2026-11-17. Official Baidu download is blocked by browser site policy; no package hash or source identity is asserted."
+  },
+  "profiles": [
+    {
+      "id": "wog",
+      "packs": [
+        "wog-scripts",
+        "erm-framework",
+        "henchmen"
+      ],
+      "enabled": false,
+      "blockers": [
+        {
+          "pack": "wog-scripts",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "erm-framework",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "henchmen",
+          "reason": "native-system-not-validated"
+        }
+      ]
+    },
+    {
+      "id": "era-scripts",
+      "packs": [
+        "wog-scripts",
+        "erm-framework",
+        "henchmen",
+        "era-scripts"
+      ],
+      "enabled": false,
+      "blockers": [
+        {
+          "pack": "wog-scripts",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "erm-framework",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "henchmen",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "era-scripts",
+          "reason": "native-system-not-validated"
+        }
+      ]
+    },
+    {
+      "id": "advanced-classes",
+      "packs": [
+        "wog-scripts",
+        "erm-framework",
+        "henchmen",
+        "era-scripts",
+        "advanced-classes"
+      ],
+      "enabled": false,
+      "blockers": [
+        {
+          "pack": "wog-scripts",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "erm-framework",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "henchmen",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "era-scripts",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "advanced-classes",
+          "reason": "native-system-not-validated"
+        }
+      ]
+    },
+    {
+      "id": "reborn",
+      "packs": [
+        "wog-scripts",
+        "erm-framework",
+        "henchmen",
+        "era-scripts",
+        "reborn"
+      ],
+      "enabled": false,
+      "blockers": [
+        {
+          "pack": "wog-scripts",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "erm-framework",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "henchmen",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "era-scripts",
+          "reason": "native-system-not-validated"
+        },
+        {
+          "pack": "reborn",
+          "reason": "missing-source"
+        }
+      ]
+    }
+  ]
+}

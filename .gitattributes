@@ -1,4 +1,6 @@
 game-data/chunks/*.bin -text -diff
 # Preserve the original quoted TSV fixture byte-for-byte (CRLF and significant tabs).
 tests/fixtures/tum/SPTRAITS.original.txt -text -diff
+# Preserve source snapshots, including upstream CRLF and whitespace, for hashes.
+tests/fixtures/era-gameplay/* -text -whitespace
 graphify-out/graph.json merge=graphify

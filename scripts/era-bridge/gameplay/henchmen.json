@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "pack": "Enhanced Henchmen",
+  "version": "1.2",
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/Enhanced Henchmen/Data/s/29 wog - henchmen.erm",
+    "settings": "Mods/Enhanced Henchmen/Lang/henchman mod.json",
+    "license": "MIT (upstream repository)"
+  },
+  "sources": [
+    {
+      "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+      "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d"
+    },
+    {
+      "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.jsonc",
+      "sha256": "66801d8e48acaf9ae5330b5353d0cf95c00445fd64ee87f54f36add9b9a7ffe1"
+    }
+  ],
+  "defaults": {
+    "battleExpStatic": "6",
+    "battleExpRandom": "4",
+    "battleHeroExpCoef": "5",
+    "battleExpPerHeroLv": "0",
+    "battleExpMin": "0",
+    "battleExpMax": "1000",
+    "bonusHeroLvUp": "10",
+    "bonusDaily": "1",
+    "stackExpEnabled": "TRUE",
+    "bannerEnabled": "TRUE",
+    "bannerFree": "FALSE",
+    "bonusSpellDmgPerPwr": "10",
+    "moreSpellEveryXKnl": "30",
+    "battleExpLossPct": "0",
+    "battleExpAIPct": "100",
+    "returnToArmy": "TRUE",
+    "altExpPerLv": "TRUE",
+    "campaignTransfer": "TRUE",
+    "moreSantaGuards": "TRUE",
+    "reviveAnywhere": "FALSE"
+  },
+  "blocks": [
+    {
+      "symbol": "hench_LoadGlobalConfig",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 27,
+        "endLine": 60,
+        "trigger": "!?FU(hench_LoadGlobalConfig);",
+        "triggerSha256": "3875d1de45371c6bdff6c875c92790a5126b42a10373e9cc6a26c3f69f47a570",
+        "codeSha256": "c849e5488d2c4d1fac38ab535f43af276e7c70de97ab7a224e076b7c25930694",
+        "blockSha256": "6eab0afa98f861b89ee9e75cc5d461578d5414f309768fb489927ac99a921967"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Settings field defaults and clamps; no JSON/runtime-global host adapter."
+    },
+    {
+      "symbol": "hench_GetHenchLevelRate",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 504,
+        "endLine": 526,
+        "trigger": "!?FU(hench_GetHenchLevelRate);",
+        "triggerSha256": "92dc2094eb70e9b6d8ce33865963e9f0c7533cbd48cc774b14e8e1f9d214ce05",
+        "codeSha256": "669ee7194d8963e91fc08aec8f36dcb53b25a3dcdee3a26633c2484707ae5401",
+        "blockSha256": "23fdfba92421aa2e09e7d34287c89f7b61c7a0abb37c9cc246726ee7363c25d8"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Classic integer branch and fallbacks only. Alternative Pow/float branch is unadmitted."
+    },
+    {
+      "symbol": "hench_GetHenchLevelDetails",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 487,
+        "endLine": 503,
+        "trigger": "!?FU(hench_GetHenchLevelDetails);",
+        "triggerSha256": "8c8172328f22260520235d120f0fe2f7b81d87d865b41f6762a202abf04394e3",
+        "codeSha256": "5fabe9f1aaae80482ce5a8e1c14b2606ce8dc0e1102a323c8da59496f9f40070",
+        "blockSha256": "2b9888e06aceb597a87fc9a22d11e3e43142f1e290fe80a875ab7a9ce1dbaf94"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Integer level, calendar/hero bonuses and next-level arithmetic; no hero lookup adapter."
+    },
+    {
+      "symbol": "hench_GetHenchAdditionalStats",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 380,
+        "endLine": 403,
+        "trigger": "!?FU(hench_GetHenchAdditionalStats);",
+        "triggerSha256": "e1c83583fa90be5419bc4759265a0ef15e39091cc37d9f90b6c9e0f52c027d4f",
+        "codeSha256": "c847f3d831ba42f485894d855b984e04a9fee14bbb69b7552a5ffd7f905dbaa3",
+        "blockSha256": "2a7045d6987625e766353723312d0a168cbc7a748aad46ec58e9193adcf3294f"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Additional-stat arithmetic; no battlefield bonus ownership/lifecycle adapter."
+    },
+    {
+      "symbol": "hench_ResurrectHench",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 585,
+        "endLine": 609,
+        "trigger": "!?FU(hench_ResurrectHench);",
+        "triggerSha256": "d646454b33847dae88a2e7d2106d8d5f955d88a3e71a71d8d90803f99a80289b",
+        "codeSha256": "9826f6bbe3479c1f80d4529169bf4848756231150d3ea5dc55c3f01adff39a23",
+        "blockSha256": "0f3f94894738d9645090e5dce41c65703a7ff1790c2195d9e9da2b5afc8c1097"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Gold-cost arithmetic only; no transaction, ownership check or resurrection dialogue."
+    },
+    {
+      "symbol": "hench_ChooseHench",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 404,
+        "endLine": 469,
+        "trigger": "!?FU(hench_ChooseHench);",
+        "triggerSha256": "e3cad30b128799540c14c1cd3736789dc92e34499b42826b589cf7e5448cd6cc",
+        "codeSha256": "6583ef1e1c62891e7187ef4031e974e6da6c12da13e6950650b86624f407d23b",
+        "blockSha256": "da94c7daf9e8f5521c9d606e1759a3f0ad3f6bda299b7147c3915b0f4a58565e"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Replacement experience loss only; no army/artifact transaction or selection dialogue."
+    },
+    {
+      "symbol": "hench_GiveExpAfterBattle",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 746,
+        "endLine": 781,
+        "trigger": "!?FU(hench_GiveExpAfterBattle);",
+        "triggerSha256": "493b321d1f1d20eaf60e8b18f1f5d71a3eae9347e2145768d90890013b1e05a8",
+        "codeSha256": "b2b60161b787e8d7af9b8a3afc6aae22410980d335464f175669b3d6e336b3bb",
+        "blockSha256": "3503fb5651c8c5f0ae07d1d543c52dcff9fa944dc748719926c76de6e4a692d6"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Integer reward arithmetic with caller-supplied random/sqrt/global inputs; no result hook."
+    },
+    {
+      "symbol": "hench_CheckIfHenchIsEligible",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 796,
+        "endLine": 842,
+        "trigger": "!?FU(hench_CheckIfHenchIsEligible);",
+        "triggerSha256": "a1587b411bd61d35db4983715805f7491262508bfeaa37eb6c87f1b18e9fa584",
+        "codeSha256": "fade5d627ce781c637feb59ecffb0a94d69cc3d7ec67d8972b068aba35d95823",
+        "blockSha256": "82a9988000b75d62a47c39d70812b253bc34ef2f1956ed90a5f32fa0261f8c8b"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Army eligibility with explicitly resolved emissary and empty-army settings."
+    },
+    {
+      "symbol": "hench_ChooseAiHench",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 637,
+        "endLine": 701,
+        "trigger": "!?FU(hench_ChooseAiHench);",
+        "triggerSha256": "34f96c379027b2c2f4b2601e95e80b0de5751fc93266ae520f656a08e015b1c8",
+        "codeSha256": "b65bf1371b12bba92cbb541f73e2b663c8a87bc4b9a32770a9c75606d7468cfa",
+        "blockSha256": "26560946a7e71d64a875cd895add714208f505e7c875413ea63c600ebe2369f9"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Stable shots/fight-value candidate priority only; no AI army or banner mutation."
+    },
+    {
+      "symbol": "hench_StackExpGain",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 941,
+        "endLine": 958,
+        "trigger": "!?FU(hench_StackExpGain);",
+        "triggerSha256": "997d38488db30cc326a08249a9ae0539a54ee60db77ccbcf032707619d57f73e",
+        "codeSha256": "0b2cdf4e6784982d575cdcb33b9c0aef0f238b0cf0831a9d827035229431ad37",
+        "blockSha256": "4bb7a4825a8894921a13eb92a3e4ce5e8569e0f6283ae291dce1aaeb9c4eee48"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "XP gain/cap/banner arithmetic only; no XP table lookup or saved state mutation."
+    },
+    {
+      "symbol": "hench_StackExpBF",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 918,
+        "endLine": 940,
+        "trigger": "!?FU(hench_StackExpBF);",
+        "triggerSha256": "fecdb9740a705fa1b51cba4e510b2154fa50c3f7090508828a631b0fb261381e",
+        "codeSha256": "123dfeb56345c573688d6ce91d460ae21915ca2e83964b4874b15c58af23f983",
+        "blockSha256": "2afc8bce97b5a100151ad214c16dfbd85f205a1f7d5d89ebce999825726a740d"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "XP difficulty scaling/cap only; no banner or battlefield stack adapter."
+    },
+    {
+      "symbol": "hench_GetHenchPosition",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 281,
+        "endLine": 308,
+        "trigger": "!?FU(hench_GetHenchPosition);",
+        "triggerSha256": "5c058f82185e8ebd4cbae8fb218a9b4bc8914c077a662552b17602d610923b57",
+        "codeSha256": "41b0147298235912f3998b0bcc620186284aa81c8302eb05c7618f16b26bb080",
+        "blockSha256": "5b3df5cf82e61715b850062da1317a648c70d6c5d028667a9a122b68a13ead55"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Source proposed hex only; native collision/layout resolution is not admitted."
+    },
+    {
+      "symbol": "hench_ManageExtraSpells",
+      "source": {
+        "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+        "line": 1073,
+        "endLine": 1084,
+        "trigger": "!?FU(hench_ManageExtraSpells);",
+        "triggerSha256": "ff29e84cbd9d6cc11f111e62e3def6949b3f5f6831e70bd715a551454f8f7e25",
+        "codeSha256": "ac3da7cfcc1f60b6d4a4ac9163f576d328a8095e1fb53f312f36403bc15ca557",
+        "blockSha256": "92c52ffeece316f69dfde6b97f9463f7c10f4ba0aa7a997974ee5f2874835bc4"
+      },
+      "status": "arithmetic-unit-tested",
+      "scope": "Knowledge/casts arithmetic only; no combat bonus adapter."
+    }
+  ],
+  "nativeRules": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
+  "nativeRulesSha256": "b1a5273d2863c209f5246497648a6b94e5d604ef96b8bca0ce5d7f7296018a98",
+  "enabled": false,
+  "status": "partial-rule-library",
+  "unresolved": [
+    "Alternative level rate: ERA Pow and floating-point conversion must be bound to source runtime semantics.",
+    "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
+    "Battle-result random/sqrt inputs and reward eligibility require native source-bound adapters.",
+    "Hero-owned state, save/load, campaign transfer and network replication are not implemented.",
+    "Army selection/replacement, resurrection payment and banner equipment need atomic native transactions.",
+    "Battlefield stack creation, lifetime/death, stats, spells and Santa guards are not connected.",
+    "Mobile UI, AI and full-game native scenarios are not validated."
+  ]
+}

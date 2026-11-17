@@ -31,3 +31,7 @@ outputs/heroes-goonk-netlify-pages.zip
 
 # Private campaign checkpoints and replay data; never publish saves
 /work/campaign-validation217/
+
+# Pinned upstream checkouts used by the ERA gameplay port, never site assets.
+/work/era-gameplay-reference/
+/work/era-archer-reference/
