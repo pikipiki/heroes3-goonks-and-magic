@@ -11,6 +11,7 @@
 #include "BattleProcessor.h"
 #include "../era/SourceCampaignProcessor.h"
 #include "../era/EraHenchmanRuntime.h"
+#include "../../lib/era/EraMithrilModel.h"
 
 #include "BattleActionProcessor.h"
 #include "BattleFlowProcessor.h"
@@ -177,6 +178,18 @@ BattleID BattleProcessor::setupBattle(int3 tile, BattleSideArray<const CArmedIns
 	{
 		const TerrainType* terrainData = LIBRARY->terrainTypeHandler->getById(terrain);
 		battlefieldType = BattleField(*RandomGeneratorUtil::nextItem(terrainData->battleFields, gameHandler->getRandomGenerator()));
+		// A town's native background must not discard its purchased WoG siege
+		// terrain. The saved choice also makes subsequent purchases replace the
+		// previous effect instead of selecting the oldest overlapping patch.
+		const auto & cb=gameHandler->gameInfo();
+		const auto & selected=era_compat::mithril::entry(cb,town->id)["townTerrain"];
+		if(era_compat::mithril::enabled(cb)&&selected.isNumber())
+		{
+			constexpr const char * fields[]={"holy_ground","clover_field","evil_fog","fiery_fields","lucid_pools","magic_clouds","rocklands","magic_plains","cursed_ground"};
+			const auto choice=selected.Integer();
+			if(choice>=0&&choice<9)
+				if(const auto id=LIBRARY->identifiers()->getIdentifier("core",std::string("battlefield.")+fields[choice]))battlefieldType=BattleField(*id);
+		}
 	}
 	else if (heroes[BattleSide::ATTACKER] && heroes[BattleSide::ATTACKER]->inBoat() && heroes[BattleSide::DEFENDER] && heroes[BattleSide::DEFENDER]->inBoat())
 		battlefieldType = BattleField(*LIBRARY->identifiers()->getIdentifier("core", "battlefield.ship_to_ship"));

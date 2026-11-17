@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "native-core-only",
   "completeRules": false,
-  "engineSha256": "743750a0c01ce9507a24b8594e08b4780f58004865eb31214dd9a43b566203c3",
+  "engineSha256": "4eb991d6131cac4ce8d3aa3ce6bebe82bb3f1c313a037c0c3bffbb8993b9b605",
   "scenarios": [
     "selected-from-army-and-mobile-layout",
     "companion-battle-inspection-keeps-its-native-command",
@@ -25,7 +25,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "45d89f83c4be71bd8e08b57d2e76b50d59b4030eda90cc486c61d594625b70dd"
+      "sha256": "3c974e37c70ddcc30dbfd55c3a924963dac2d55fd807f87ea64bdbae850db44c"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -53,7 +53,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "f0474bec16a06f06a82b869481c474b8f6e9c62eea8ffad5d67df35a87737216"
+      "sha256": "44439c14a6d737d82fa752ed8c76bb89ec749d4e2c0bdd9866f4db93c40cb3f9"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -257,7 +257,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/battles/BattleProcessor.cpp",
-      "sha256": "33621b48c79484095bc09a42706cc8f2272637cb45028d48f9eb4a11885da672"
+      "sha256": "fd7987b487b3389db689c3caf260e9657311f1ec9354a939b6cd06293866be80"
     },
     {
       "file": "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp",
@@ -294,6 +294,10 @@
     {
       "file": "work/browser-tests/army-management-native-e2e.mjs",
       "sha256": "76bf2acfc0bb0b4bbc9c147211e6f8492b8e6a15527bc5d54bf5d54e9c66bbce"
+    },
+    {
+      "file": "work/vcmi-wasm/config/battlefields.json",
+      "sha256": "79436f8d727d3a4511124696c62ebe1c1949efedfae100db998795eea05ec930"
     }
   ]
 }

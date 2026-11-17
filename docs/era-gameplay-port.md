@@ -162,6 +162,16 @@ et de l'inspection en combat. Les scénarios natifs ouvrent la fiche du compagno
 pendant le combat et vérifient le renvoi avec confirmation, le rejet des
 demandes périmées, les transferts et le dépôt de troupes avec sauvegarde/reprise.
 
+Onze scénarios de siège complètent les 21 parcours de sites. Le moteur applique
+le terrain acheté lors de l'initialisation du combat, au lieu de l'écraser par
+le terrain natal de la ville. Les neuf choix sont vérifiés : moral selon
+l'alignement, chance des troupes neutres, maîtrise experte des quatre écoles
+de magie ou de toutes les écoles, et restrictions de la Terre maudite.
+Un nouvel achat remplace l'effet précédent. Le scénario de reprise conserve
+les Plaines magiques après sauvegarde, puis vérifie leurs sorts de masse dans
+le siège suivant. Ces preuves figurent dans
+`outputs/era-gameplay/mithril-native-sieges.json`.
+
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.
 - Progression de troupe de l'IA et interface classique.

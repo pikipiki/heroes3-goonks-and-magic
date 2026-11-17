@@ -24,7 +24,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null}={}){
+function fixture({reroll=null,siege=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -57,6 +57,16 @@ site('mithrilUniversity','university','object',8,12)
 site('mithrilShipyard','shipyard','object',13,13,'red')
 site('mithrilPortal','monolithOneWayEntrance','monolith1',8,10)
 site('mithrilPortalExit','monolithOneWayExit','monolith1',16,16)
+if opts['siege']:
+ import copy
+ objects=objects[:3]
+ hero=next(o for o in objects if o['instanceName']=='goonkHero')
+ hero['y']=9
+ hero['options'].update({'army':[{'type':'core:pikeman','amount':40},{'type':'core:troglodyte','amount':40},{'type':'core:nomad','amount':40}], 'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'secondarySkills':{'core:leadership':'basic','core:luck':'basic'},'spellBook':['core:bless','core:bloodlust','core:haste','core:slow','core:stoneSkin','core:fireball']})
+ enemy=copy.deepcopy(hero)
+ enemy.update({'instanceName':'mithrilSiegeAttacker','y':10})
+ enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:stoneGolem','amount':500}], 'secondarySkills':{},'artifacts':{},'spellBook':[]})
+ objects.append(enemy)
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
 for y,row in enumerate(terrain):
@@ -71,7 +81,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll})]);
+`,JSON.stringify({reroll,siege})]);
 }
 
 async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,...options}={}){
@@ -170,6 +180,32 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('siege')){
+  const choice=Number(process.env.SIEGE_CHOICE||0);await boot({siege:true});
+  if(process.env.SIEGE_PREVIOUS!==undefined){const prior=(await panel()).offers.find(row=>row.kind===8&&row.choice===Number(process.env.SIEGE_PREVIOUS));assert(prior);await buy(prior);}
+  const town=(await panel()).offers.find(row=>row.kind===8&&row.choice===choice);assert(town);await buy(town);await page.locator('[data-mithril-close]').tap();
+  if(process.env.SIEGE_SAVE){const save=[...await readCompletedNativeSave(page,command,{tag:818})];await page.close();await boot({save});}
+  await command(3);
+  for(let i=0;i<600;++i){const s=await state();if(s.mode==='battle'){await command(15);if(s.canAct)break;}else if(s.mode==='dialog')await command(1);await page.waitForTimeout(100);}
+  await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct);
+  const units=(await state()).battleUnits;fs.writeFileSync(path.join(output,'siege-units.json'),JSON.stringify(units,null,2));
+  const own=key=>units.find(row=>!row.enemy&&row.key==='core:'+key);
+  if(choice===0){assert.equal(own('pikeman').morale,own('nomad').morale+1);assert.equal(own('troglodyte').morale,own('nomad').morale-1);}
+  else if(choice===1){assert.equal(own('nomad').luck,own('pikeman').luck+2);if(process.env.SIEGE_PREVIOUS!==undefined){assert.equal(own('pikeman').morale,own('nomad').morale);assert.equal(own('troglodyte').morale,own('nomad').morale);}}
+  else if(choice===2){assert.equal(own('pikeman').morale,own('nomad').morale-1);assert.equal(own('troglodyte').morale,own('nomad').morale+1);}
+  else{
+   await command(14,0);await wait(()=>goonkMobileState.mode==='spellbook');const book=(await state()).spellbook;
+   fs.writeFileSync(path.join(output,'siege-spells.json'),JSON.stringify(book,null,2));
+   const spell=id=>book.spells.find(row=>row.id===id);
+   if(choice===3)assert.equal(spell(43).target,'none'); // Bloodlust: Fire expert mass cast
+   if(choice===4)assert.equal(spell(41).target,'none'); // Bless: Water expert mass cast
+   if(choice===5)assert.equal(spell(53).target,'none'); // Haste: Air expert mass cast
+   if(choice===6)assert.equal(spell(54).target,'none'); // Slow: Earth expert mass cast
+   if(choice===7)for(const id of [43,41,53,54])assert.equal(spell(id).target,'none');
+   if(choice===8){assert(!spell(24)?.enabled);assert(spell(43).enabled);assert(units.every(row=>row.morale===0&&row.luck===0));}
+  }
+  report.scenarios.push('town-siege-terrain-choice-'+choice+(process.env.SIEGE_PREVIOUS===undefined?'':'-replaces-'+process.env.SIEGE_PREVIOUS)+(process.env.SIEGE_SAVE?'-after-native-save-reload':''));await page.close();
+ }
  if(!process.env.CASES||process.env.CASES==='sites'){
  await boot({henchmen:true});let data=await panel();
  assert.equal(data.amount,100);

@@ -22,11 +22,12 @@
     "town"
   ],
   "validation": "outputs/era-gameplay/mithril-native-sites.json",
+  "siegeValidation": "outputs/era-gameplay/mithril-native-sieges.json",
   "remaining": [
     "Classic interface and the complete WoG per-game option catalogue.",
     "Interactions with weekly mine resource changes and the no-magical-terrain map rule.",
     "Advanced University: two-skill selection, insufficient gold and free AI advancement native scenarios.",
-    "All siege terrain effects and legacy-save native scenarios.",
+    "Legacy-save native scenarios.",
     "Source random-stream parity for shrine/hut rerolls.",
     "Complete AI purchase/compensation scenarios."
   ]
