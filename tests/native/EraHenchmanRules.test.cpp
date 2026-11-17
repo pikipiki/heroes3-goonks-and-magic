@@ -29,6 +29,21 @@ int main()
     assert(classicLevelRate(12,12)==52);
     assert(classicLevelRate(13,999)==3);
     assert(classicLevelRate(500,1)==40);
+    assert(alternativeLevelRate(12,12)==140);
+    assert(alternativeLevelRate(12,100)==40);
+    assert(alternativeLevelRate(13,999)==10);
+    assert(alternativeLevelRate(500,1)==120);
+    assert(alternativeLevelRate(1000,1)==180);
+    assert(levelRate(500,1,settings)==120);
+    settings.alternativeLevelRate=false;
+    assert(levelRate(500,1,settings)==40);
+    settings.alternativeLevelRate=true;
+    assert(heroExperienceRoot(0)==0&&heroExperienceRoot(9999)==99&&heroExperienceRoot(10000)==100);
+    assert(heroExperienceRoot(INT_MAX)==46340);
+    // Prove Single input rounding, rather than replacing it with integer sqrt:
+    assert(heroExperienceRoot(16777215)==4095);
+    assert(heroExperienceRoot(16777216)==4096);
+    assert(heroExperienceRoot(16785408)==4097); //not the mathematical integer square root4096
     const auto start=progress(0,1,1,100,settings);
     assert(start.experience==0&&start.level==1&&start.nextLevel==100);
     const auto later=progress(80,3,5,100,settings);

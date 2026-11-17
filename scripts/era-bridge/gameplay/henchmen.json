@@ -68,7 +68,7 @@
         "blockSha256": "23fdfba92421aa2e09e7d34287c89f7b61c7a0abb37c9cc246726ee7363c25d8"
       },
       "status": "arithmetic-unit-tested",
-      "scope": "Classic integer branch and fallbacks only. Alternative Pow/float branch is unadmitted."
+      "scope": "Classic and alternative branches with source-declared Single input/output and truncation; source model, not binary differential validation."
     },
     {
       "symbol": "hench_GetHenchLevelDetails",
@@ -138,7 +138,7 @@
         "blockSha256": "3503fb5651c8c5f0ae07d1d543c52dcff9fa944dc748719926c76de6e4a692d6"
       },
       "status": "arithmetic-unit-tested",
-      "scope": "Integer reward arithmetic with caller-supplied random/sqrt/global inputs; no result hook."
+      "scope": "Integer reward arithmetic and source-declared Single square root; caller-supplied random/global inputs; no result hook."
     },
     {
       "symbol": "hench_CheckIfHenchIsEligible",
@@ -226,11 +226,15 @@
     }
   ],
   "nativeRules": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
-  "nativeRulesSha256": "b1a5273d2863c209f5246497648a6b94e5d604ef96b8bca0ce5d7f7296018a98",
+  "mathSource": {
+    "file": "scripts/era-bridge/gameplay/math-source.json",
+    "sha256": "c7e07376e68745b41b4814833a8df77d0b3709d60356bf25172a0522d06b9c71"
+  },
+  "nativeRulesSha256": "a71cab056ca12d4862e89596d402eff87838df447469270634d542b7b2068ace",
   "enabled": false,
   "status": "partial-rule-library",
   "unresolved": [
-    "Alternative level rate: ERA Pow and floating-point conversion must be bound to source runtime semantics.",
+    "Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.",
     "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
     "Battle-result random/sqrt inputs and reward eligibility require native source-bound adapters.",
     "Hero-owned state, save/load, campaign transfer and network replication are not implemented.",

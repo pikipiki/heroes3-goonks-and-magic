@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <cmath>
 #include <limits>
 #include <stdexcept>
 #include <vector>
@@ -58,12 +59,35 @@ struct Progress
     std::int32_t level=1,experience=0,bonusExperience=0,nextLevel=0;
 };
 
-// The alternative rate's ERA Pow/float conversion has not been admitted.
-// Callers must supply a rate obtained from an independently validated adapter.
 inline std::int32_t classicLevelRate(std::int32_t fightValue,std::int32_t aiValue)
 {
     const auto value=fightValue<13?(aiValue>=13?aiValue:650):fightValue;
     return std::max(3,divide(mul(value,8),100));
+}
+
+// ERA Extern.pas declares Erm_Pow/Erm_Sqrt with Single inputs/results;
+// VR:S truncates a float when assigning it to an integer. Each assignment
+// below preserves that float32 boundary, including the rounded3/5 exponent.
+inline std::int32_t alternativeLevelRate(std::int32_t fightValue,std::int32_t aiValue)
+{
+    static_assert(sizeof(float)==4&&std::numeric_limits<float>::digits==24,
+        "ERA henchmen require IEEE float32");
+    const auto value=fightValue<13?(aiValue>=13?aiValue:650):fightValue;
+    const float base=static_cast<float>(value);
+    const float exponent=3.0f/5.0f;
+    const float scaled=static_cast<float>(std::pow(static_cast<double>(base),static_cast<double>(exponent)));
+    const auto integral=static_cast<std::int32_t>(scaled);
+    return std::max(3,mul(divide(mul(integral,3),10),10));
+}
+inline std::int32_t levelRate(std::int32_t fightValue,std::int32_t aiValue,const Settings & settings)
+{return settings.alternativeLevelRate?alternativeLevelRate(fightValue,aiValue):classicLevelRate(fightValue,aiValue);}
+
+inline std::int32_t heroExperienceRoot(std::int32_t gain)
+{
+    if(gain<0)throw std::invalid_argument("Henchmen: negative square-root input");
+    const float input=static_cast<float>(gain);
+    const float result=std::sqrt(input);
+    return static_cast<std::int32_t>(result);
 }
 
 inline Progress progress(std::int32_t storedExperience,std::int32_t heroLevel,

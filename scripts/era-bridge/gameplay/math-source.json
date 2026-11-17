@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/ethernidee/era",
+  "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+  "sourceContracts": [
+    {
+      "file": "Extern.pas",
+      "symbol": "Erm_Sqrt",
+      "line": 572,
+      "endLine": 575,
+      "fileSha256": "e25df000639f32ae3938f73275ce6832eb9eb1e9c3e50459e4794f803cd9adf6",
+      "blockSha256": "64585c396ba90ea6e2880fe3bbdd4c75ff0b6d2b97368644d2b6f495d25f8d07"
+    },
+    {
+      "file": "Extern.pas",
+      "symbol": "Erm_Pow",
+      "line": 577,
+      "endLine": 580,
+      "fileSha256": "e25df000639f32ae3938f73275ce6832eb9eb1e9c3e50459e4794f803cd9adf6",
+      "blockSha256": "6e7f113370c484429ca196a9d6c0452271a10e6c71f439f143a290c9b0e7f888"
+    },
+    {
+      "file": "Erm.pas",
+      "symbol": "VR_S",
+      "line": 7677,
+      "endLine": 7765,
+      "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+      "blockSha256": "cf96a2412c2532c978fc49cf2b14d9ba3985bdae158d83281dcaa31820d96b60"
+    }
+  ],
+  "semantics": {
+    "floatingArguments": "Single (binary32)",
+    "floatingResult": "Single (binary32)",
+    "integerAssignment": "VR:S truncates float toward zero unless a rounding direction is explicitly provided"
+  },
+  "evidenceKind": "primary-source",
+  "binaryDifferentialValidated": false,
+  "note": "Source-based model. No claim that the source commit is identical to a supplied DLL. The attempted Hopper analysis timed out before producing binary evidence."
+}

@@ -12,12 +12,12 @@ export const nativeRules='work/vcmi-wasm/lib/era/EraHenchmanRules.h';
 
 const scopes={
  hench_LoadGlobalConfig:'Settings field defaults and clamps; no JSON/runtime-global host adapter.',
- hench_GetHenchLevelRate:'Classic integer branch and fallbacks only. Alternative Pow/float branch is unadmitted.',
+ hench_GetHenchLevelRate:'Classic and alternative branches with source-declared Single input/output and truncation; source model, not binary differential validation.',
  hench_GetHenchLevelDetails:'Integer level, calendar/hero bonuses and next-level arithmetic; no hero lookup adapter.',
  hench_GetHenchAdditionalStats:'Additional-stat arithmetic; no battlefield bonus ownership/lifecycle adapter.',
  hench_ResurrectHench:'Gold-cost arithmetic only; no transaction, ownership check or resurrection dialogue.',
  hench_ChooseHench:'Replacement experience loss only; no army/artifact transaction or selection dialogue.',
- hench_GiveExpAfterBattle:'Integer reward arithmetic with caller-supplied random/sqrt/global inputs; no result hook.',
+ hench_GiveExpAfterBattle:'Integer reward arithmetic and source-declared Single square root; caller-supplied random/global inputs; no result hook.',
  hench_CheckIfHenchIsEligible:'Army eligibility with explicitly resolved emissary and empty-army settings.',
  hench_ChooseAiHench:'Stable shots/fight-value candidate priority only; no AI army or banner mutation.',
  hench_StackExpGain:'XP gain/cap/banner arithmetic only; no XP table lookup or saved state mutation.',
@@ -45,10 +45,12 @@ export function buildHenchmenContract(projectRoot=root){
    settings:'Mods/Enhanced Henchmen/Lang/henchman mod.json',license:'MIT (upstream repository)'},
   sources:[{file:sourceScript,sha256:sha256(script)},{file:sourceSettings,sha256:sha256(settingsBytes)}],
   defaults:settings,blocks,nativeRules,
+  mathSource:{file:'scripts/era-bridge/gameplay/math-source.json',
+   sha256:sha256(fs.readFileSync(path.join(projectRoot,'scripts/era-bridge/gameplay/math-source.json')))},
   nativeRulesSha256:sha256(fs.readFileSync(path.join(projectRoot,nativeRules))),
   enabled:false,status:'partial-rule-library',
   unresolved:[
-   'Alternative level rate: ERA Pow and floating-point conversion must be bound to source runtime semantics.',
+   'Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.',
    'Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.',
    'Battle-result random/sqrt inputs and reward eligibility require native source-bound adapters.',
    'Hero-owned state, save/load, campaign transfer and network replication are not implemented.',

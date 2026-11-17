@@ -46,6 +46,14 @@ par la politique de sécurité du navigateur. L'archive n'a pas été récupér�
 aucune identité binaire ou source de ce pack n'est donc attestée. Une archive
 officielle disponible localement est nécessaire pour poursuivre ce profil.
 
+Le dossier fourni ensuite comme référence est **HDHeroes 3 Reborn 0.9.3.4**,
+par Suft/Berserker : c'est un autre pack, consacré notamment aux graphismes,
+aux sons et à l'IA. Le dépôt
+[VMaiko1634/Third-Upgrade-Mod-Full](https://github.com/VMaiko1634/Third-Upgrade-Mod-Full)
+contient **Third Upgrade Mod 3.5.0**, déjà utilisé par Goonk ; la vérification des
+références distantes n'a trouvé qu'une branche `main`, sans branche ni tag
+Reborn. Aucun de ces deux paquets n'est substitué au profil TUM Reborn.
+
 ## Premier jalon Henchmen
 
 `work/vcmi-wasm/lib/era/EraHenchmanRules.h` porte les opérations entières
@@ -53,7 +61,7 @@ utilisées par les règles suivantes :
 
 - normalisation des réglages, bonus quotidiens et liés au niveau du héros ;
 - progression et statistiques supplémentaires ;
-- branche classique du coût d'expérience par niveau ;
+- branches classique et alternative du coût d'expérience par niveau ;
 - coût de résurrection et perte d'expérience lors d'un remplacement ;
 - calcul entier de récompense avec entrées aléatoires/flottantes explicites ;
 - expérience de troupe, plafonds, bannière d'expérience et difficulté de l'IA ;
@@ -65,12 +73,19 @@ indéfini en C++. Les treize blocs source liés, leurs lignes et leurs empreinte
 figurent dans `scripts/era-bridge/gameplay/henchmen.json`. Le script original et
 les réglages originaux sont conservés en fixtures, avec la licence amont.
 
+Le modèle flottant est lié aux sources du noyau ERA
+[Extern.pas](https://github.com/ethernidee/era/blob/8c2fd47b22b1e67c980f42583a525d36fc318364/Extern.pas#L572)
+et [Erm.pas](https://github.com/ethernidee/era/blob/8c2fd47b22b1e67c980f42583a525d36fc318364/Erm.pas#L7677).
+Les fonctions mathématiques prennent et rendent des `Single` ; l'affectation
+dans une variable entière tronque le résultat. Le port conserve ces frontières
+en float32, y compris l'exposant 3/5. Les identités de ces sources sont dans
+`scripts/era-bridge/gameplay/math-source.json`.
+
 Deux points empêchent encore de présenter ces calculs comme un système complet :
 
-1. Le profil officiel utilise par défaut la branche alternative du coût par
-   niveau. L'appel ERA `Pow`, sa précision flottante et sa conversion en entier
-   restent à rapprocher. Seule la branche entière classique est actuellement
-   portée.
+1. Le modèle mathématique est rapproché des sources primaires, sans comparaison
+   différentielle avec le binaire livré. L'analyse native tentée a expiré avant
+   de produire des preuves ; elle n'est pas comptée comme une validation.
 2. Le script de récompense lit `i^battleExpAIPct^`, tandis que son réglage définit
    `i^hench_battleExpAIPct^`. Aucune définition du premier nom n'a été trouvée dans
    les cinq packs récupérés. Le port ne remplace pas silencieusement l'un par
