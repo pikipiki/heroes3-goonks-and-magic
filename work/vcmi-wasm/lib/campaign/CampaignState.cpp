@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../era/EraCampaignAdmission.h"
+#include "../era/EraHenchmanModel.h"
 #include "CampaignState.h"
 #include "../era/EraCampaignCarryover.h"
 #include "../era/EraCampaignJson.h"
@@ -336,6 +337,12 @@ JsonNode CampaignState::crossoverSerialize(CGHeroInstance * hero) const
 	JsonNode node;
 	JsonSerializer handler(nullptr, node);
 	hero->serializeJsonOptions(handler);
+	if(hero->cb&&era_compat::henchmen::enabled(*hero->cb))
+	{
+		const auto rules=era_compat::henchmen::settings(*hero->cb);
+		if(!rules.campaignTransfer)node.Struct().erase("henchman");
+		else if(!rules.freeBanner)node["henchman"]["banner"].Integer()=-1;
+	}
 	node.setModScope(ModScope::scopeGame());
 	logGlobal->info(node.toString());
 	return node;

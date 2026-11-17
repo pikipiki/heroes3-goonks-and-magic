@@ -71,7 +71,7 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({reroll})]);
 }
 
-async function boot({save,enabled=true,funds=100,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -80,7 +80,7 @@ async function boot({save,enabled=true,funds=100,...options}={}){
  for(const group of Object.values(difficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=funds;
  const markets=options.reroll==='university'?structuredClone(testMarkets):null;
  if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
- await page.addInitScript(({enabled,difficulty,markets})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -89,13 +89,14 @@ async function boot({save,enabled=true,funds=100,...options}={}){
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.mithrilEnhancements=enabled;
+    manifest.settings.modules.henchmen=henchmen;
     value.FS.writeFile('/config/difficulty.json',JSON.stringify(difficulty));
     if(markets)value.FS.writeFile('/config/objects/markets.json',JSON.stringify(markets));
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,difficulty,markets});
+ },{enabled,henchmen,difficulty,markets});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -144,7 +145,7 @@ async function nextDay(){
 }
 try{
  if(!process.env.CASES||process.env.CASES==='sites'){
- await boot();let data=await panel();
+ await boot({henchmen:true});let data=await panel();
  assert.equal(data.amount,100);
  fs.writeFileSync(path.join(output,'offers-initial.json'),JSON.stringify(data,null,2));
  const gold=data.offers.find(row=>row.kind===0&&row.cost===7);assert(gold);
@@ -160,6 +161,12 @@ try{
  await command(113,5,0,(await state()).mithril.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,amount);
  report.scenarios.push('owned-mine-double-income-payment-and-stale-request');
+ await page.locator('[data-mithril-close]').tap();await page.locator('[data-ui=heroes]').tap();
+ await wait(()=>goonkMobileState.heroWindow?.henchman);await page.locator('[data-hero-tab=henchman]').tap();
+ await page.locator('[data-henchman-slot="0"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
+ await command(63);await wait(()=>goonkMobileState.mode==='map');await panel();
+ assert.equal((await state()).mithril.amount,amount);
+ report.scenarios.push('companion-and-mithril-transactions-coexist');
  data=(await state()).mithril;
  const dwelling=data.offers.find(row=>row.kind===1&&row.cost===1);assert(dwelling,JSON.stringify(data));
  assert(/halberd/i.test(dwelling.upgrade));await buy(dwelling);
@@ -190,7 +197,11 @@ try{
  report.scenarios.push('phone-and-ipad-scrollable-layout');
  await page.locator('[data-mithril-close]').tap();
  const saved=await readCompletedNativeSave(page,command,{tag:917});
- await page.close();await boot({save:[...saved]});data=await panel();
+ await page.close();await boot({save:[...saved],henchmen:true});
+ await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);
+ assert.equal((await state()).heroWindow.henchman.unit.key,'core:archangel');assert((await state()).heroWindow.henchman.alive);
+ await command(63);await wait(()=>goonkMobileState.mode==='map');data=await panel();
+ report.scenarios.push('companion-and-mithril-restored-from-same-save');
  assert(data.offers.some(row=>row.id===gold.id&&row.active&&row.days===7&&row.dailyIncome===2000));
  report.scenarios.push('native-save-reload');
  for(let day=2;day<=8;++day){await nextDay();data=await panel();assert.equal((await state()).day,day);const mine=data.offers.find(row=>row.id===gold.id);assert(mine);assert.equal(mine.active,day<8);assert.equal(mine.dailyIncome,day<8?2000:1000);}

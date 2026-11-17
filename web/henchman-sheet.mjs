@@ -13,10 +13,11 @@ export function renderHenchmanSheet(hero,{portrait=()=>'',canAct=false,pending=f
    <dl class="creature-stats"><div><dt>ATK</dt><dd>${unit.attack}</dd></div><div><dt>DEF</dt><dd>${unit.defense}</dd></div><div><dt>DMG</dt><dd>${unit.damageMin}–${unit.damageMax}</dd></div><div><dt>HP</dt><dd>${unit.health}</dd></div><div><dt>SPD</dt><dd>${unit.speed}</dd></div></dl>
    <div class="henchman-actions">${state.alive?'':`<button data-henchman-action="2" ${disabled||!state.canResurrect?'disabled':''}>${fr?'Ressusciter':'Resurrect'} · ${state.resurrectionCost} ${fr?'or':'gold'}</button>`}
    <button data-henchman-action="1" ${disabled?'disabled':''}>${fr?'Renvoyer':'Dismiss'}</button></div>
-   ${state.alive?'':`<p>${fr?'La résurrection se fait dans une ville qui t’appartient.':'Resurrection requires visiting one of your towns.'}</p>`}`:`<p>${fr?'Aucun compagnon choisi.':'No companion selected.'}</p>`}
+   ${state.alive?'':`<p>${state.reviveAnywhere?(fr?'Tu peux ressusciter ton compagnon ici.':'You can resurrect your henchman here.'):(fr?'La résurrection se fait dans une ville qui t’appartient.':'Resurrection requires visiting one of your towns.')}</p>`}`:`<p>${fr?'Aucun compagnon choisi.':'No companion selected.'}</p>`}
   </div></section>
   <section class="hero-secondary"><h3>${fr?'Choisir un compagnon':'Choose a henchman'}</h3>
-  <p>${fr?'Une créature quitte son groupe pour devenir ton compagnon. Lors d’un remplacement, ton ancien compagnon vivant retourne dans ton armée.':'One creature leaves its stack to become your companion. Replacing a living henchman returns it to your army.'}</p>
+  <p>${fr?'Une créature quitte son groupe pour devenir ton compagnon.':'One creature leaves its stack to become your companion.'} ${state.returnToArmy===false?(fr?'Lors d’un remplacement, le précédent compagnon quitte le héros.':'When replaced, the previous henchman leaves the hero.'):(fr?'Lors d’un remplacement, ton ancien compagnon vivant retourne dans ton armée.':'Replacing a living henchman returns it to your army.')}</p>
+  ${state.replacementLossPercent>0?`<p>${fr?'Un remplacement fait perdre':'Replacement loses'} ${state.replacementLossPercent} % ${fr?'de l’expérience de combat du compagnon.':'of the henchman’s battle experience.'}</p>`:''}
   <div class="henchman-candidates">${(state.candidates||[]).map(candidate=>`<button data-henchman-action="0" data-henchman-slot="${candidate.slot}" data-henchman-creature="${candidate.id}" ${disabled||!candidate.available?'disabled':''}>${portrait(candidate)}<span>${esc(candidate.name)}</span></button>`).join('')}</div></section>
  </div>`;
 }

@@ -54,7 +54,7 @@
         "blockSha256": "6eab0afa98f861b89ee9e75cc5d461578d5414f309768fb489927ac99a921967"
       },
       "status": "arithmetic-unit-tested",
-      "scope": "Settings field defaults and clamps; no JSON/runtime-global host adapter."
+      "scope": "Arithmetic defaults and clamps; the per-game JSON/runtime adapter is covered separately by native scenarios."
     },
     {
       "symbol": "hench_GetHenchLevelRate",
@@ -231,10 +231,15 @@
     "sha256": "c7e07376e68745b41b4814833a8df77d0b3709d60356bf25172a0522d06b9c71"
   },
   "nativeRulesSha256": "a71cab056ca12d4862e89596d402eff87838df447469270634d542b7b2068ace",
+  "nativeConfiguration": {
+    "file": "mod/tum-era/content/config/henchmen-settings.json",
+    "sha256": "edf22e1e29e26f00f5dab9f2dd2d82ba4028d1fb397ac1f75fd03da002a4cf31"
+  },
   "enabled": false,
   "status": "partial-rule-library",
   "unresolved": [
     "Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.",
+    "Per-game JSON settings support numbers, booleans and TRUE/FALSE strings; arbitrary ERM constant names require the shared symbol resolver.",
     "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
     "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",
     "Native save/load, mobile core and previous Henchmen-engine saves pass; campaign transfer and older pre-Henchmen saves remain to validate.",

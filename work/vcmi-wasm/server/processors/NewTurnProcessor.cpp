@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../../lib/era/EraMithrilModel.h"
+#include "../era/EraHenchmanRuntime.h"
 #include "../era/SourceCampaignProcessor.h"
 #include "NewTurnProcessor.h"
 
@@ -796,6 +797,7 @@ NewTurn NewTurnProcessor::generateNewTurnPack()
 	n.day = gameHandler->gameState().day + 1;
 
 	bool firstTurn = !gameHandler->gameInfo().getDate(Date::DAY);
+	era_compat::henchmen::initializeSettings(*gameHandler,firstTurn);
 	bool newWeek = gameHandler->gameInfo().getDate(Date::DAY_OF_WEEK) == 7; //day numbers are confusing, as day was not yet switched
 	bool newMonth = gameHandler->gameInfo().getDate(Date::DAY_OF_MONTH) == 28;
 

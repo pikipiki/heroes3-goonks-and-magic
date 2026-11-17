@@ -1,5 +1,8 @@
 #pragma once
 #include "EraHenchmanRules.h"
+#include "EraHenchmanConfiguration.h"
+#include "../gameState/CGameState.h"
+#include "../mapping/CMap.h"
 #include "../IGameSettings.h"
 #include "../callback/IGameInfoCallback.h"
 #include "../mapObjects/CGHeroInstance.h"
@@ -10,6 +13,8 @@ namespace era_compat::henchmen
 {
 inline bool enabled(const IGameInfoCallback & cb)
 {return cb.getSettings().getBoolean(EGameSettings::MODULE_HENCHMEN);}
+inline HenchmanSettings settings(const IGameInfoCallback & cb)
+{return settingsFromJson(cb.gameState().getMap().eraGameplayState["henchmen"]["settings"]);}
 inline bool emissary(const Creature & creature)
 {
     const auto key=creature.getJsonKey();
@@ -33,7 +38,7 @@ inline std::vector<era_bridge::henchmen::Candidate> candidates(const CGHeroInsta
 inline era_bridge::henchmen::Progress progress(const CGHeroInstance & hero,int day)
 {
     const auto * creature=hero.henchman.stack->getType();
-    const era_bridge::henchmen::Settings settings;
+    const auto settings=henchmen::settings(*hero.cb);
     return era_bridge::henchmen::progress(hero.henchman.experience,hero.level,std::max(1,day),
         era_bridge::henchmen::levelRate(creature->getFightValue(),creature->getAIValue(),settings),settings);
 }
@@ -65,15 +70,16 @@ inline bool canSelect(const CGHeroInstance & hero,int slot)
     if(!index.validSlot()||!hero.hasStackAtSlot(index))return false;
     const auto & chosen=hero.getStack(index);
     if(chosen.getCount()<1||emissary(*chosen.getType()))return false;
-    if(!era_bridge::henchmen::eligible(candidates(hero),false,hero.henchman.stack&&hero.henchman.alive))return false;
+    const auto rules=settings(*hero.cb);
+    if(!era_bridge::henchmen::eligible(candidates(hero),false,rules.returnToArmy&&hero.henchman.stack&&hero.henchman.alive))return false;
     if(chosen.getCount()==1&&!equipmentReturn(hero,chosen))return false;
-    return !(hero.henchman.stack&&hero.henchman.alive&&chosen.getCount()>1
+    return !(rules.returnToArmy&&hero.henchman.stack&&hero.henchman.alive&&chosen.getCount()>1
         &&!hero.getSlotFor(hero.henchman.stack->getId()).validSlot());
 }
 inline era_bridge::henchmen::Stats stats(const CGHeroInstance & hero,int day)
 {
     const auto * creature=hero.henchman.stack->getType();
-    const auto rate=era_bridge::henchmen::levelRate(creature->getFightValue(),creature->getAIValue(),{});
+    const auto rate=era_bridge::henchmen::levelRate(creature->getFightValue(),creature->getAIValue(),settings(*hero.cb));
     return era_bridge::henchmen::additionalStats({creature->getAttack(false),creature->getDefense(false),
         creature->getMinDamage(false),creature->getMaxDamage(false),static_cast<int32_t>(creature->getMaxHealth()),
         creature->getInitiative()},progress(hero,day).experience,rate);

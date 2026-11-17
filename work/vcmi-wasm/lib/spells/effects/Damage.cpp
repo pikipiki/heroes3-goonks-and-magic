@@ -121,7 +121,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
                 if(const auto * hero=m->battle()->battleGetFightingHero(m->casterSide))
                     if(era_compat::henchmen::enabled(*hero->cb))
                         bsa.damageAmount+=era_bridge::henchmen::spellDamageBonus(
-                            hero->getPrimSkillLevel(PrimarySkill::SPELL_POWER),{});
+                            hero->getPrimSkillLevel(PrimarySkill::SPELL_POWER),era_compat::henchmen::settings(*hero->cb));
             bool sourceDamageBlocked=false;
             const auto rodDamage=eraLightningRodSupplement(m,unit);
             if(rodDamage>0)

@@ -9,9 +9,10 @@ export const sourceScript='tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm
 export const sourceSettings='tests/fixtures/era-gameplay/enhanced-henchmen-1.2.jsonc';
 export const contractPath='scripts/era-bridge/gameplay/henchmen.json';
 export const nativeRules='work/vcmi-wasm/lib/era/EraHenchmanRules.h';
+export const nativeConfiguration='mod/tum-era/content/config/henchmen-settings.json';
 
 const scopes={
- hench_LoadGlobalConfig:'Settings field defaults and clamps; no JSON/runtime-global host adapter.',
+ hench_LoadGlobalConfig:'Arithmetic defaults and clamps; the per-game JSON/runtime adapter is covered separately by native scenarios.',
  hench_GetHenchLevelRate:'Classic and alternative branches with source-declared Single input/output and truncation; source model, not binary differential validation.',
  hench_GetHenchLevelDetails:'Integer level, calendar/hero bonuses and next-level arithmetic; no hero lookup adapter.',
  hench_GetHenchAdditionalStats:'Additional-stat arithmetic; no battlefield bonus ownership/lifecycle adapter.',
@@ -48,9 +49,11 @@ export function buildHenchmenContract(projectRoot=root){
   mathSource:{file:'scripts/era-bridge/gameplay/math-source.json',
    sha256:sha256(fs.readFileSync(path.join(projectRoot,'scripts/era-bridge/gameplay/math-source.json')))},
   nativeRulesSha256:sha256(fs.readFileSync(path.join(projectRoot,nativeRules))),
+  nativeConfiguration:{file:nativeConfiguration,sha256:sha256(fs.readFileSync(path.join(projectRoot,nativeConfiguration)))},
   enabled:false,status:'partial-rule-library',
   unresolved:[
    'Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.',
+   'Per-game JSON settings support numbers, booleans and TRUE/FALSE strings; arbitrary ERM constant names require the shared symbol resolver.',
    'Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.',
    'Native core adapters exist; complete source fidelity and configurable profiles are not admitted.',
    'Native save/load, mobile core and previous Henchmen-engine saves pass; campaign transfer and older pre-Henchmen saves remain to validate.',

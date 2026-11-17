@@ -23,6 +23,9 @@ test('native Henchmen settings map exactly to the supplied profile defaults',()=
   battleExpLossPct:'replacementLossPercent',battleExpAIPct:'aiPercent',returnToArmy:'returnToArmy',
   altExpPerLv:'alternativeLevelRate',campaignTransfer:'campaignTransfer',moreSantaGuards:'moreSantaGuards',reviveAnywhere:'reviveAnywhere'};
  assert.deepEqual(Object.keys(mapping).sort(),Object.keys(contract.defaults).sort());
+ const configuration=JSON.parse(fs.readFileSync(contract.nativeConfiguration.file,'utf8')).henchmen.settings;
+ assert.deepEqual(configuration,Object.fromEntries(Object.entries(contract.defaults).map(([key,value])=>
+  [key,value==='TRUE'?true:value==='FALSE'?false:Number(value)])));
  for(const [sourceName,nativeName]of Object.entries(mapping)){
   const value=contract.defaults[sourceName].replace('TRUE','true').replace('FALSE','false');
   assert.match(source,new RegExp('\\b'+nativeName+'='+value+'\\b'),sourceName);

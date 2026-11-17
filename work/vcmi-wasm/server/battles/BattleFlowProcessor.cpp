@@ -263,7 +263,8 @@ void BattleFlowProcessor::trySummonGuardians(const CBattleInfoCallback & battle,
 			info.id = battle.battleNextUnitId();
 			info.count =  std::max(1, stack->getCount() * summonInfo->val / 100);
 			if(stack->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER
-				&&era_compat::henchmen::enabled(gameHandler->gameInfo()))
+				&&era_compat::henchmen::enabled(gameHandler->gameInfo())
+				&&era_compat::henchmen::settings(gameHandler->gameInfo()).moreSantaGuards)
 				if(const auto * hero=battle.battleGetFightingHero(stack->unitSide()))
 					info.count=era_bridge::henchmen::mul(info.count,
 						era_compat::henchmen::progress(*hero,gameHandler->gameState().day).level);

@@ -114,6 +114,16 @@ et son expérience après reprise avec le nouveau moteur. Les empreintes des
 deux moteurs figurent dans `outputs/era-gameplay/henchmen-native-core.json`.
 Les sauvegardes antérieures à l'introduction des Henchmen restent à tester.
 
+Les réglages sont lus au démarrage du scénario, normalisés suivant le script
+source et conservés dans la sauvegarde. Les scénarios natifs vérifient leur
+conservation malgré une modification ultérieure du fichier de réglages, la
+désactivation des gardes améliorés et de l'expérience de troupe, la perte de
+50 % d'expérience lors d'un remplacement sans retour dans l'armée, ainsi que
+la résurrection hors ville et le refus serveur lorsque cette option est
+désactivée. Les parcours de magie et de transfert de campagne avec ces réglages
+nécessitent encore leurs validations dédiées ; les réglages de bannières ne
+constituent pas encore une implémentation de leur équipement.
+
 Le port comprend également les bonus magiques, les sorts supplémentaires,
 le retour de l'équipement de la dernière créature et la sérialisation JSON
 pour les transferts de campagne. Ces parcours supplémentaires nécessitent
@@ -139,7 +149,7 @@ travail ne constitue pas le port complet de la priorité 4.
 
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.
-- Progression de troupe de l'IA, réglages complets et interface classique.
+- Progression de troupe de l'IA et interface classique.
 - Vérifications natives dédiées des sorts, inventaires et variantes de placement.
 - Port des règles et remplacements natifs requis par les autres packs.
 - Validation des profils complets avant toute activation publique.

@@ -1579,6 +1579,10 @@ void publishMobileState(){
    if(era_compat::henchmen::enabled(*p->cb))
    {
     auto & companion=h["henchman"];
+    const auto rules=era_compat::henchmen::settings(*p->cb);
+    companion["reviveAnywhere"].Bool()=rules.reviveAnywhere;
+    companion["returnToArmy"].Bool()=rules.returnToArmy;
+    companion["replacementLossPercent"].Integer()=rules.replacementLossPercent;
     companion["revision"].Integer()=hero->henchman.revision;
     for(const auto & [slot,stack]:hero->Slots())
     {
@@ -1604,7 +1608,7 @@ void publishMobileState(){
      const auto cost=era_bridge::henchmen::resurrectionCost(hero->henchman.stack->getType()->getRecruitCost(GameResID::GOLD),growth.level);
      companion["resurrectionCost"].Integer()=cost;
      const auto * town=hero->getVisitedTown();
-     companion["canResurrect"].Bool()=!hero->henchman.alive&&town&&town->getOwner()==hero->getOwner()
+     companion["canResurrect"].Bool()=!hero->henchman.alive&&(rules.reviveAnywhere||(town&&town->getOwner()==hero->getOwner()))
       &&cost>=0&&p->cb->getResource(hero->getOwner(),GameResID::GOLD)>=cost;
     }
    }

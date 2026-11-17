@@ -1,0 +1,26 @@
+{
+  "henchmen": {
+    "settings": {
+      "battleExpStatic": 6,
+      "battleExpRandom": 4,
+      "battleHeroExpCoef": 5,
+      "battleExpPerHeroLv": 0,
+      "battleExpMin": 0,
+      "battleExpMax": 1000,
+      "bonusHeroLvUp": 10,
+      "bonusDaily": 1,
+      "stackExpEnabled": true,
+      "bannerEnabled": true,
+      "bannerFree": false,
+      "bonusSpellDmgPerPwr": 10,
+      "moreSpellEveryXKnl": 30,
+      "battleExpLossPct": 0,
+      "battleExpAIPct": 100,
+      "returnToArmy": true,
+      "altExpPerLv": true,
+      "campaignTransfer": true,
+      "moreSantaGuards": true,
+      "reviveAnywhere": false
+    }
+  }
+}

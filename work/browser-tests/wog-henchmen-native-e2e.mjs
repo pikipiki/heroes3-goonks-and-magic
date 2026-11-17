@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -30,7 +30,7 @@ for o in objects:
   o['options'].update({'type':'core:christian','experience':0,'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'army':[{'type':'core:peasant','amount':100},{'type':'core:archangel','amount':5}],'artifacts':{'spellbook':'core:spellBook'}})
   if opts['inTown']: o['y']=9
   if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':0,'alive':False,'declined':False,'banner':-1}
-  if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':0,'alive':True,'declined':False,'banner':-1}
+  if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':-1}
 if opts['enemyHero']:
  import copy
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -48,16 +48,16 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience})]);
 }
 
-async function boot({save,enabled=true,originURL=origin,...options}={}){
+async function boot({save,enabled=true,originURL=origin,settings,...options}={}){
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
- await page.addInitScript(enabled=>{
+ await page.addInitScript(({enabled,settings})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -67,10 +67,14 @@ async function boot({save,enabled=true,originURL=origin,...options}={}){
     const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
     value.FS.writeFile(file,JSON.stringify(manifest));
+    if(settings){
+     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
+     value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/henchmen-settings.json',JSON.stringify({henchmen:{settings}}));
+    }
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },enabled);
+ },{enabled,settings});
  await page.goto(originURL+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -119,6 +123,7 @@ async function resolve(){
 }
 
 try{
+ if(!process.env.CASES||process.env.CASES==='core'){
  await boot();
  let hero=await sheet();assert(hero.henchman&&!hero.henchman.unit);
  await page.locator('[data-hero-tab=henchman]').tap();
@@ -194,6 +199,39 @@ try{
  }
  await boot({enabled:false});hero=await sheet();assert(!hero.henchman);assert.equal(await page.locator('[data-hero-tab=henchman]').count(),0);
  report.scenarios.push('disabled-profile-baseline');
+ await page.close();
+ }
+ if(!process.env.CASES||process.env.CASES==='settings'){
+ await boot({santa:true,stackExperience:1000000,settings:{moreSantaGuards:false,altExpPerLv:false,battleExpLossPct:50,returnToArmy:false,stackExpEnabled:false}});
+ let hero=await sheet();const savedLevel=hero.henchman.level;
+ assert(savedLevel>1);assert.equal(hero.henchman.rank,0);assert.equal(hero.henchman.returnToArmy,false);
+ await page.locator('[data-hero-tab=henchman]').tap();assert.match(await page.locator('.henchman-sheet').innerText(),/50\s*%/);
+ await command(63);await wait(()=>goonkMobileState.mode==='map');
+ const save=[...await readCompletedNativeSave(page,command,{tag:814})];await page.close();
+ await boot({save,settings:{moreSantaGuards:true,altExpPerLv:true,battleExpLossPct:0,returnToArmy:true,stackExpEnabled:true}});
+ hero=await sheet();assert.equal(hero.henchman.level,savedLevel);assert.equal(hero.henchman.returnToArmy,false);
+ report.scenarios.push('companion-settings-frozen-in-native-save');
+ await command(63);await wait(()=>goonkMobileState.mode==='map');await startBattle();
+ await wait(()=>goonkMobileState.battleUnits?.some(unit=>unit.key==='core:gremlin'));
+ assert((await state()).battleUnits.filter(unit=>unit.key==='core:gremlin').every(unit=>unit.count===1));
+ report.scenarios.push('santa-guard-enhancement-can-be-disabled');
+ await resolve();hero=await sheet();const experience=hero.henchman.experience;
+ assert.equal(hero.henchman.rank,0);await page.locator('[data-hero-tab=henchman]').tap();
+ await page.locator('[data-henchman-slot="1"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
+ hero=(await state()).heroWindow;
+ assert.equal(hero.henchman.experience,experience-Math.trunc(experience*50/100));
+ assert(!hero.henchman.candidates.some(unit=>unit.key==='wake-of-gods.creatures:santaGremlin'));
+ report.scenarios.push('replacement-loss-and-no-return-options');await page.close();
+ await boot({dead:true,settings:{reviveAnywhere:true}});hero=await sheet();assert(hero.henchman.canResurrect);
+ const gold=(await state()).resources[6],cost=hero.henchman.resurrectionCost;
+ await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-action="2"]').tap();
+ await wait(()=>goonkMobileState.heroWindow?.henchman?.alive);assert.equal((await state()).resources[6],gold-cost);
+ report.scenarios.push('revive-anywhere-option-pays-outside-town');await page.close();
+ await boot({dead:true,settings:{reviveAnywhere:false}});hero=await sheet();assert(!hero.henchman.canResurrect);
+ const before=(await state()).resources[6];await command(112,hero.id,2,-1,-1,hero.henchman.revision);await page.waitForTimeout(300);
+ assert(!(await state()).heroWindow.henchman.alive);assert.equal((await state()).resources[6],before);
+ report.scenarios.push('town-only-resurrection-rejects-forged-request');await page.close();
+ }
  assert.deepEqual(report.errors,[]);
  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,...report},null,2));
 }catch(error){

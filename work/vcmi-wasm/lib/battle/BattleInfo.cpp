@@ -421,7 +421,7 @@ std::unique_ptr<BattleInfo> BattleInfo::setupBattle(IGameInfoCallback *cb, const
 		add(BonusType::STACK_HEALTH,extra.health);add(BonusType::STACKS_SPEED,extra.speed);
 		const auto casts=hero->henchman.stack->valOfBonuses(BonusType::CASTS);
 		add(BonusType::CASTS,era_bridge::henchmen::extraSpellCasts(
-			hero->getPrimSkillLevel(PrimarySkill::KNOWLEDGE),casts,{}));
+			hero->getPrimSkillLevel(PrimarySkill::KNOWLEDGE),casts,era_compat::henchmen::settings(*cb)));
 	}
 
 	if (currentBattle->townID.hasValue())

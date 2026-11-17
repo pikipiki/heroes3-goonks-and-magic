@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "native-core-only",
   "completeRules": false,
-  "engineSha256": "3557397ab7f5908f6c27ff3006f12174655b721252ccdfc2f332a14804104cd0",
+  "engineSha256": "d1c8505abf2455beead9703b1bc11b9eff5a8b347fb3c7721564f503a41d0a75",
   "scenarios": [
     "selected-from-army-and-mobile-layout",
     "independent-battle-actor-and-earned-experience",
@@ -12,18 +12,55 @@
     "ai-selects-shooter-as-independent-companion",
     "santa-companion-guardian-count-multiplied-by-companion-level",
     "previous-engine-save-restores-companion",
-    "disabled-profile-baseline"
+    "disabled-profile-baseline",
+    "companion-settings-frozen-in-native-save",
+    "santa-guard-enhancement-can-be-disabled",
+    "replacement-loss-and-no-return-options",
+    "revive-anywhere-option-pays-outside-town",
+    "town-only-resurrection-rejects-forged-request"
   ],
   "errors": [],
   "legacyEngineSha256": "42cf1eea746bbff162ec5d203320bcdafd3a7959d95ab2b708036e7dfa7cea80",
   "sourceBindings": [
+    {
+      "file": "docs/era-gameplay-port.md",
+      "sha256": "e7daccb2491a18e565dfa70b58d9b3829f75fe9963d5cd7efa98bcfc43de4e6b"
+    },
+    {
+      "file": "mod/tum-era/content/config/henchmen-settings.json",
+      "sha256": "edf22e1e29e26f00f5dab9f2dd2d82ba4028d1fb397ac1f75fd03da002a4cf31"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/henchmen.json",
+      "sha256": "568df087d6e3ab6a04829d83d19c37680e12ef75298a480e6b317eb7a3008c83"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/henchmen.mjs",
+      "sha256": "9a6c9457234b4093181e3f0556d042680790fe8c124e7765b273d13c422f4564"
+    },
+    {
+      "file": "tests/era-henchmen-contract.test.mjs",
+      "sha256": "a5253fc11f20f6da5a1930e3205ee7296106d992c50bbe34203adaa137d17844"
+    },
+    {
+      "file": "web/henchman-sheet.mjs",
+      "sha256": "bf364f1d523348a121a93fc8513768b5a84719ee91e1345695f8806badb003ef"
+    },
+    {
+      "file": "work/browser-tests/wog-henchmen-native-e2e.mjs",
+      "sha256": "f0b116fe7115712b936b2c964df5e8543b9342866838c302437b871d2ed2d175"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
+      "sha256": "2fd266a5e4adfbec32df3e91b4d560fa24b6a888de83d211671a82da99b2bf2f"
+    },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
       "sha256": "a2f7c52d624fded3bf5c77747c513e9ff383ea719bf0b1302581a4c6766295da"
     },
     {
       "file": "work/vcmi-wasm/client/MobileBridge.cpp",
-      "sha256": "edbf0ddeed1860bc6b7ee8e44394e612109d78619803045ed17508ef66a9f50a"
+      "sha256": "ba9ac1b0ba0ff73ff236ea70ad1c7e5135328a4ed3cde7c1e459ecda24d3de29"
     },
     {
       "file": "work/vcmi-wasm/client/NetPacksClient.cpp",
@@ -63,7 +100,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/battle/BattleInfo.cpp",
-      "sha256": "4e8dd04a00f46b279e73f7bb60df390e90b27c0f2cb76c3495e940d1a373cfab"
+      "sha256": "987cec54a931bf7e0b5ad458aae481171dd654db30ff7d786dfb31f0961cb7ce"
     },
     {
       "file": "work/vcmi-wasm/lib/callback/CCallback.cpp",
@@ -72,6 +109,10 @@
     {
       "file": "work/vcmi-wasm/lib/callback/CCallback.h",
       "sha256": "c954c956999090928ad33d89951722833cc0e2f6eb99998d0ba3febbd3a59f12"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/campaign/CampaignState.cpp",
+      "sha256": "84b3fd34a55ad5eb337728c646bfefc1d1ddd665c2acfb04f466d7c814efcfb3"
     },
     {
       "file": "work/vcmi-wasm/lib/constants/EntityIdentifiers.cpp",
@@ -90,8 +131,12 @@
       "sha256": "a66aae5fb1f4703ae568abe878a33ba46cd4fe461b0dc27764e62ce6547386a2"
     },
     {
+      "file": "work/vcmi-wasm/lib/era/EraHenchmanConfiguration.h",
+      "sha256": "ea65c9b552bd7345da84625f989d9ff2ea8bc6c3106d20294ab5dd692bf27d3c"
+    },
+    {
       "file": "work/vcmi-wasm/lib/era/EraHenchmanModel.h",
-      "sha256": "b3e865ea31f80c424270f6f9dcedfb7f568d9d51e09847276a9d9ff7c000ac09"
+      "sha256": "59e01598204258a588759db46e699a4e438b1800ad13d45da9f917aba3160334"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraHenchmanState.h",
@@ -111,7 +156,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
-      "sha256": "d1a02594561c026dbf5cdb17ba242ba3c721780a59c1e78c346476381cfeb0c2"
+      "sha256": "d01201f07af2f7b4f6b7185627c74e5d117aeadf24b70f42ea67e492e8b86a79"
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
@@ -187,7 +232,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/spells/effects/Damage.cpp",
-      "sha256": "83b8361cca37e7bdcb291312cb41d6a36c8582e7a2343464c1e73f1e443848e8"
+      "sha256": "925d2d57307319ddaedc2b6620f4c5dd76d22b9c95464fd50ece01f1d5a9b6f2"
     },
     {
       "file": "work/vcmi-wasm/lib/spells/effects/Heal.cpp",
@@ -207,7 +252,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp",
-      "sha256": "5f3835cfc2896d4998f7319a42ec882235daec01a352292a6cb274485fcd7a5f"
+      "sha256": "12a9c6e7083fa6a2862fcc38556194dddfa2cc46c5f76e4ae57ac47d20989181"
     },
     {
       "file": "work/vcmi-wasm/server/battles/BattleProcessor.cpp",
@@ -219,7 +264,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraHenchmanRuntime.h",
-      "sha256": "a5302cf01a9d74fa33b408cc9b4368471ce28f93064a5a2cb979476e429eeeb9"
+      "sha256": "6fb7dc2e76eade3c9741e28f795fb9ea4a1f9156ce9302daff828dacaa3314c7"
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
@@ -231,7 +276,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
-      "sha256": "bef034a05d7ab6c707f7df68a26bebc93a8d04ba260ba97b406b664264a482df"
+      "sha256": "fde405bd97c7b44a790b2dfca1053a4fb3e2f6e61fd3f8e07b1a1c8560fb99fa"
     },
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",
