@@ -1,5 +1,6 @@
 #pragma once
 #include "../CGameHandler.h"
+#include "EraMithrilRandomSeed.h"
 #include "../../lib/era/EraMithrilModel.h"
 #include "../../lib/era/EraMithrilReroll.h"
 #include "../../lib/era/EraMithrilRandomRules.h"
@@ -39,7 +40,7 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     {
         const auto * reward=dynamic_cast<const CRewardableObject *>(object);
         if(!reward||proposed.alternatives.empty())return false;
-        if(next["seed"].isNull())next["seed"].Integer()=gh.getRandomGenerator().nextInt(11,55);
+        if(next["seed"].isNull())next["seed"].Integer()=independentSeed();
         const auto position=object->visitablePos();
         const auto seed=era_bridge::mithril::coordinateSeed(static_cast<uint32_t>(next["seed"].Integer()),position.x,position.y,position.z)
             +static_cast<uint32_t>(target["rerolls"].Integer());

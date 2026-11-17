@@ -4,6 +4,14 @@
 #include <cassert>
 int main(int argc,char ** argv)
 {
+    if(argc==5)
+    {
+        std::array<uint32_t,4> words;
+        for(int i=0;i<4;++i)words[i]=static_cast<uint32_t>(std::stoull(argv[i+1]));
+        era_bridge::mithril::ShrineRandom random(words);std::cout<<'[';
+        for(int i=0;i<32;++i){if(i)std::cout<<',';std::cout<<random.range(11,55);}
+        std::cout<<']';return 0;
+    }
     if(argc!=2)return 1;
     const auto seed=static_cast<uint32_t>(std::stoll(argv[1]));
     era_bridge::mithril::ShrineRandom random(seed);

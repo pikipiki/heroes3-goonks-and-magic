@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "mithril-sites",
   "completeRules": false,
-  "engineSha256": "29713789a7a193154174bba13d89baa9cd2a801126d5fad3ad97b9e2fa3bd976",
+  "engineSha256": "cc77f0f3019f2c6112f2e41f3b1b90993517fca167ee35d908926cade2a69d18",
   "scenarios": [
     "owned-mine-double-income-payment-and-stale-request",
     "companion-and-mithril-transactions-coexist",
@@ -30,7 +30,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "ebd9d9c9e41bcdd1e8f5fb033c97a347f1c8ee7b189786c4c9dd407bbce6a14a"
+      "sha256": "d61de828ea744985a4a44af1769f6a1468a0f0f1871a6eb8b9fa6729da74127e"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -62,7 +62,7 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "a9c53ef85b8a916a02b5f10aa350eac7175543dfe0e9262b598ba5d1dd1f78bc"
+      "sha256": "441a822339202f5bee2040ca9282c94f1e8b9b5165a1272379aa7644328ab6d8"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -74,11 +74,11 @@
     },
     {
       "file": "tests/era-mithril-random.test.mjs",
-      "sha256": "ac9a10c6a504ef9b5eb5a80dc2a30e8833e8e38ce170a31fc6a98e25b000feee"
+      "sha256": "9bf12ba052de04df36a7ad9cfb228d95d8fcc5b299a1cf33a89cdd342ca5e422"
     },
     {
       "file": "tests/fixtures/era-gameplay/mithril-random-reference.json",
-      "sha256": "81de5c42fa095135f24fe74eb7a45aef500bea91ee140fad7ed07b45faf50419"
+      "sha256": "087b2e6763047af340a99d32aed83cb6179ccc63a76de60ebe86d0fa2234da3b"
     },
     {
       "file": "tests/mithril-enhancements.test.mjs",
@@ -86,7 +86,7 @@
     },
     {
       "file": "tests/native/EraMithrilRandomReference.cpp",
-      "sha256": "447ac51044b59da91d3745509c945a42f8a93a08ee1a6e295e5516588d183f9c"
+      "sha256": "e2a795cc34281c303faee14ebeb5de2164217c8eb6003bb79d1ca2460a95bc97"
     },
     {
       "file": "tests/native/EraMithrilRules.test.cpp",
@@ -122,7 +122,11 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "98ef377021fda5d9d4ec98f88d98f6641f9f63c41c2e963a214c4cfa38077626"
+      "sha256": "1acdac7e49b8d62ccb2420d757e75e629fe3071bd0687362402092af969c648e"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-random-isolation-native-cases.mjs",
+      "sha256": "eb206133648bf59b62ec3876887b10aabd9956f45505941e1245e6b5b61690eb"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -210,7 +214,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilRandomRules.h",
-      "sha256": "23c3e9d89c365dc183a49cde2252892b065b9884e759f79badca374e28d9a16c"
+      "sha256": "1dede94bae576927941b6d56d257ea9bad9d0a6d11e20ff384ef4d48f090434e"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilReroll.h",
@@ -317,8 +321,12 @@
       "sha256": "2e84ce2850406ba1bb079d00d70ed93ce752846b9559b607a36ede6325161818"
     },
     {
+      "file": "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h",
+      "sha256": "d290a9c1115dcf448faece612cc7a181550e0e10bbc4f8376dc33867192f3fb9"
+    },
+    {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
-      "sha256": "deac565899388437577c74b83f3f797962c13fcca15610d0181e8320d9caa5ab"
+      "sha256": "1f5c30f60cc7b76dba1134ee0bf3160a7b50d13b8e419da0ab7419d224d51a14"
     },
     {
       "file": "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp",
@@ -326,7 +334,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
-      "sha256": "80ca7b00fd83534fb4627119bfa341e4e680e8676274d5c1d89d6c7bff1a1209"
+      "sha256": "5ff9b6be6a5f431cc2ec130218cf210656151b67fe61ed502692699b4614280a"
     },
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",

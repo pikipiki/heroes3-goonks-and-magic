@@ -241,9 +241,19 @@ pour les 45 graines possibles. Six scénarios natifs vérifient les séquences,
 l'exclusion des offres courantes et interdites, et leur continuation après
 sauvegarde/reprise. La référence et ses sources figées sont dans
 `tests/fixtures/era-gameplay/mithril-random-reference.json`.
-La comparaison porte sur ces calculs ; l'isolation du flux aléatoire global
-et l'initialisation du générateur unique nécessitent encore leur rapprochement
-avec l'exécutable ERA livré.
+Le générateur indépendant est désormais initialisé comme FastRand.Rng :
+quatre mots fournis par une source aléatoire système, puis le tirage 11–55.
+Neuf états de démarrage, dont les limites de rejet, sont comparés à l'unité
+Pascal originale compilée. La graine est créée au début d'une partie neuve ;
+une ancienne sauvegarde sans graine l'obtient au premier changement de sort
+ou de compétence. Elle n'utilise plus le générateur général de la partie.
+Deux reprises de la même sauvegarde, avec et sans changement de sort, donnent
+les mêmes ressources pour quatorze mines aux jours 8 et 15. Le test réussit
+pour une partie neuve et pour une sauvegarde créée par l'ancien moteur, qui
+échoue sur ce même test en décalant les tirages. Les preuves figurent dans
+`outputs/era-gameplay/mithril-native-random-isolation.json`. La comparaison
+directe du démarrage avec l'exécutable ERA livré reste distincte des
+comparaisons Pascal et de ces parcours natifs.
 
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.

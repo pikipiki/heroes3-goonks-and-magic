@@ -30,9 +30,10 @@
     "Classic interface and the complete WoG per-game option catalogue.",
     "Advanced University: free AI advancement native scenarios and exact source dialogue staging.",
     "Legacy-save native scenarios.",
-    "Global random-stream isolation and initial unique RNG seeding parity with the shipped ERA executable.",
+    "Direct startup-seeding comparison with the shipped ERA executable beyond original Pascal and native old/new-save random-stream checks.",
     "Complete AI purchase/compensation scenarios."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
-  "universityValidation": "outputs/era-gameplay/mithril-native-university.json"
+  "universityValidation": "outputs/era-gameplay/mithril-native-university.json",
+  "randomIsolationValidation": "outputs/era-gameplay/mithril-native-random-isolation.json"
 }

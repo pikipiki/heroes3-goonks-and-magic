@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -55,6 +55,8 @@ if opts['capitolFixture']:
   second['options']['owner']='blue'
   second['options']['buildings']['allOf'].append('core:capitol')
  objects.append(second)
+if opts['rngIsolation']:
+ for x in range(3,15):site('rngControlMine'+str(x),'mine','orePit',x,18,'red')
 site('mithrilGold','mine','goldMine',12,11,'red')
 site('mithrilOre','mine','orePit',13,11,'red')
 site('mithrilEnemy','mine','goldMine',14,11,'blue')
@@ -132,7 +134,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation})]);
 }
 
 async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,...options}={}){
@@ -249,6 +251,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='rng-isolation'){
+  const {runRandomIsolation}=await import('./wog-mithril-random-isolation-native-cases.mjs');
+  await runRandomIsolation({boot,walk,panel,buy,nextDay,state,command,readCompletedNativeSave,page:()=>page,report,output});
+ }
  if(process.env.CASES==='creature-rules'){
   const {runCreatureRules}=await import('./wog-map-creature-native-cases.mjs');
   await runCreatureRules({boot,state,command,wait,readCompletedNativeSave,page:()=>page,report,output});

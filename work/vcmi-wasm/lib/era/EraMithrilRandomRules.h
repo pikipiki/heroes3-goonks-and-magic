@@ -18,6 +18,7 @@ class ShrineRandom
 public:
     explicit ShrineRandom(uint32_t seed)
     {for(auto & word:state)word=splitMix32(seed);}
+    explicit ShrineRandom(const std::array<uint32_t,4> & words):state(words){}
     uint32_t next()
     {
         const uint32_t result=rotate(state[1]*5U,7)*9U;
