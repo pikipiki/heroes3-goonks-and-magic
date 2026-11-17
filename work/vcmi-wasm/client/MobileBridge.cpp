@@ -1295,6 +1295,16 @@ void publishMobileState(){
   presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
   if(auto info=ENGINE->windows().topWindow<CInfoWindow>()){
    if(p&&p->cb&&mobileCampaignPrompt(*p))n["dialogKind"].String()="source-campaign";
+   else if(info->text&&info->text->label)
+   {
+    const auto & text=info->text->label->getText();
+    if(text==LIBRARY->generaltexth->translate("tum-era.henchmen.offerBeforeBattle"))
+     n["dialogKind"].String()="henchman-offer";
+    else if(text==LIBRARY->generaltexth->translate("tum-era.henchmen.chooseBeforeBattle"))
+     n["dialogKind"].String()="henchman-choice";
+    if(n["dialogKind"].String()=="henchman-offer"||n["dialogKind"].String()=="henchman-choice")
+     presentation["queryId"].Integer()=info->ID.getNum();
+   }
    if(p&&p->cb&&mobileVisitedID!=ObjectInstanceID::NONE)
     if(const auto object=dynamic_cast<const CRewardableObject*>(p->cb->getObj(mobileVisitedID)))
      if(info->text&&info->text->label&&info->text->label->getText()==object->configuration.onSelect.toString())

@@ -53,7 +53,7 @@ class BattleProcessor : boost::noncopyable
 
 	void setBattleResult(const CBattleInfoCallback & battle, EBattleResult resultType, BattleSide victoriusSide);
 
-void startBattlePrepared(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile, const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town);
+void startBattlePrepared(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile, const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town, bool henchmanAsked=false);
 public:
 	explicit BattleProcessor(CGameHandler * gameHandler);
 	~BattleProcessor();

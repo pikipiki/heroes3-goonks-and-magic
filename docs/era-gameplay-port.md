@@ -200,6 +200,17 @@ anciens transferts sauvegardés restent à vérifier.
 Voir
 `scripts/era-bridge/gameplay/henchmen-campaign-native-validation.json`.
 
+Le héros humain attaquant reçoit maintenant la proposition de choisir un
+compagnon avant le combat. Les sept emplacements de l'armée restent accessibles
+au toucher et à la souris, sans clavier. Refuser conserve ce choix après
+sauvegarde ; annuler seulement le choix de créature permet une nouvelle
+proposition au combat suivant. Les parcours natifs vérifient aussi le retrait
+d'une seule créature, l'absence de proposition pour la dernière créature de
+l'armée et le témoin désactivé. Les contrôles précédents du noyau passent sur
+la même compilation. Voir
+`scripts/era-bridge/gameplay/henchmen-prompt-native-validation.json`.
+La résurrection proposée automatiquement à l'entrée d'une ville reste à porter.
+
 ## Raccordements et validations restant nécessaires
 
 La règle ERA Scripts 779 des pierres de connaissance possède un raccordement

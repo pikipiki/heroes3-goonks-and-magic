@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -36,6 +36,8 @@ for o in objects:
   if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':-1}
   if opts['henchmanType']: o['options']['henchman']={'type':opts['henchmanType'],'experience':0,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':opts['henchmanBanner']}
   if opts['blockFixture']: o['options']['artifacts']={'misc1':'core:shacklesOfWar'}
+  if opts['fullArmy']: o['options']['army'] += [{'type':'core:'+name,'amount':4} for name in ['archer','griffin','monk','pikeman','swordsman']]
+  if opts['soloArmy']: o['options']['army']=[{'type':'core:peasant','amount':1}]
 if opts['reserveHero']:
  import copy
  reserve=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -53,6 +55,9 @@ if opts['enemyHero']:
  objects.append(enemy)
 else:
  objects.append({'type':'core:monster','subtype':opts['enemyType'],'instanceName':'henchmenTrainingGuard','x':10,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':opts['enemyCount'],'character':'savage','neverFlees':True}})
+ if opts['twoGuards']:
+  import copy
+  guard=copy.deepcopy(objects[-1]);guard.update({'instanceName':'henchmenSecondGuard','x':12});objects.append(guard)
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
@@ -62,13 +67,14 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards})]);
 }
 
 async function boot({save,enabled=true,originURL=origin,settings,difficulty,...options}={}){
  const classic=process.env.CASES==='classic';
+ const desktop=process.env.CASES==='prompt-desktop';
  // The packaged site's policy whitelists production domains, not localhost.
- page=await browser.newPage({viewport:classic?{width:1024,height:768}:{width:844,height:390},hasTouch:true,bypassCSP:true});
+ page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop,bypassCSP:true});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -130,6 +136,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
   await wait(()=>goonkMobileState.selectedMap==='000 - Henchmen native validation');
   if(difficulty!==undefined){await command(25,difficulty);await wait(value=>goonkMobileState.difficulty===value,difficulty);}
   if(classic)await command(22);
+  else if(desktop)await page.locator('[data-ui=begin]').click();
   else await page.locator('[data-ui=begin]').tap();
  }
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
@@ -141,11 +148,18 @@ async function sheet(){
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
 }
-async function startBattle(dx=1){
+async function approachEnemy(dx=1){
+ await page.mouse.move(400,300);await page.waitForTimeout(100);
  await command(6);await page.waitForTimeout(150);
  const target=await page.evaluate(dx=>{const view=goonkMobileState.mapOverview.view;return{x:view.x+view.w/2+32*dx,y:view.y+view.h/2};},dx);
  await page.evaluate(point=>Module._vcmiMobilePointer(point.x,point.y,1),target);
- await wait(()=>goonkMobileState.hasPath);await command(2);await wait(()=>goonkMobileState.mode==='battle');
+ await wait(()=>goonkMobileState.hasPath);await command(2);
+}
+async function startBattle(dx=1){
+ await approachEnemy(dx);
+ await wait(()=>goonkMobileState.mode==='battle'||goonkMobileState.dialogKind==='henchman-offer');
+ if((await state()).dialogKind==='henchman-offer')await page.locator('[data-dialog-cancel]').tap();
+ await wait(()=>goonkMobileState.mode==='battle');
  await command(15);await wait(()=>goonkMobileState.battleUnits?.some(unit=>unit.armySlot===-6));
 }
 async function resolve(){
@@ -171,6 +185,11 @@ async function resolve(){
 }
 
 try{
+ if(['prompt','prompt-desktop'].includes(process.env.CASES)){
+  const {runHenchmanPrompts}=await import('./wog-henchmen-prompt-cases.mjs');
+  await runHenchmanPrompts({boot,approachEnemy,state,command,wait,resolve,page:()=>page,report,output,
+   desktop:process.env.CASES==='prompt-desktop',save:()=>readCompletedNativeSave(page,command,{tag:935})});
+ }
  if(process.env.CASES==='battlefield-ai-experience'){
   for(const [difficulty,stored,expected]of [[0,1000,1000],[2,1000,3000],[4,1000,5000],[4,40000,56000]]){
    const replay=difficulty===4&&stored===1000;

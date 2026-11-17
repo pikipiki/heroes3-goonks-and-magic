@@ -11,6 +11,7 @@
 #include "BattleProcessor.h"
 #include "../era/SourceCampaignProcessor.h"
 #include "../era/EraHenchmanRuntime.h"
+#include "../era/EraHenchmanPrompts.h"
 #include "../../lib/era/EraMithrilModel.h"
 
 #include "BattleActionProcessor.h"
@@ -108,10 +109,13 @@ void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInsta
 }
 
 void BattleProcessor::startBattlePrepared(const CArmedInstance *army1, const CArmedInstance *army2, int3 tile,
-								const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town)
+								const CGHeroInstance *hero1, const CGHeroInstance *hero2, const BattleLayout & layout, const CGTownInstance *town, bool henchmanAsked)
 {
 	hero1=gameHandler->sourceCampaigns->battleHero(0,hero1);
 	hero2=gameHandler->sourceCampaigns->battleHero(1,hero2);
+    if(!henchmanAsked&&era_compat::henchmen::offerBeforeBattle(*gameHandler,hero1,
+        [this,army1,army2,tile,hero1,hero2,layout,town]
+        {startBattlePrepared(army1,army2,tile,hero1,hero2,layout,town,true);}))return;
 	assert(gameHandler->gameState().getBattle(army1->getOwner()) == nullptr);
 	assert(gameHandler->gameState().getBattle(army2->getOwner()) == nullptr);
 

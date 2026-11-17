@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Attacking human hero companion offer, native seven-stack choice, persistent refusal and nonpersistent chooser cancellation; touch and desktop mouse controls",
+  "engineSha256": "5407ec7a0b4e18ce84927443b9a26117d15dcea7676f31dccd7fe22c5aac578b",
+  "parentEngineSha256": "6041d1975d1bf69d0d334290d0b2b1af1e0288535ad975618255722459e9006c",
+  "source": {
+    "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+    "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+    "lines": "226-227,610-634"
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "4d57d85ca0f9b48e793a969326a52dee7de947439d330c5009c1a864f67aa79e",
+    "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "aab42bb560a9f179807d9ea9bc6adde7721f168b993d164c1498fca98733c036",
+    "work/vcmi-wasm/server/battles/BattleProcessor.h": "5a6c7608997cee6907fa0348d458748b4dab9aa62cb34e9c829bbb4721bc4beb",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "3ababa8e08e1ebbe9bc8d7a41dd5a69b5a41dc041018ea5005ce85b6d52201a2",
+    "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "d199283bbc3c8ab14d2a95993b2c75ea71252f3f7bf657956d3e8a1d0f2e18ec",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "e4e2d6a9ca4d9faab524233c42e976a9c10b487837a1e813b1f58707e131f8ae",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "77b0f561de3c7325c9d8ce65acde9d86ae4e3ff0564672a5c5a3f767129cbeb0",
+    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "initialTargets": 11,
+    "finalTargets": 270,
+    "buildLogSha256": "a31968457687ee22a0e372d91d361462243fc5007b6738a4c1e4c3289911239e",
+    "sourceBindingsSha256": "8789bc23f3d4da39ab73dfdf5bf7370cd8257585c3d0b71bd1e5f01448d0f8dc",
+    "existingParentBindingsChanged": [
+      "client/MobileBridge.cpp",
+      "server/battles/BattleProcessor.cpp"
+    ],
+    "addedBindings": [
+      "server/era/EraHenchmanPrompts.h",
+      "server/battles/BattleProcessor.h",
+      "client/ArmyUpgradePath.h",
+      "lib/callback/CGameInfoCallback.cpp",
+      "lib/callback/CGameInfoCallback.h"
+    ],
+    "sourceCopyTimesForcedFresh": true
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "5407ec7a0b4e18ce84927443b9a26117d15dcea7676f31dccd7fe22c5aac578b",
+      "scenarios": [
+        "touch-before-battle-question-and-seven-stack-choice-without-keyboard",
+        "declining-companion-question-survives-save-reload-and-does-not-repeat",
+        "cancelling-creature-choice-continues-battle-and-asks-at-next-encounter",
+        "last-army-creature-does-not-trigger-companion-question",
+        "disabled-module-does-not-trigger-companion-question"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "5407ec7a0b4e18ce84927443b9a26117d15dcea7676f31dccd7fe22c5aac578b",
+      "scenarios": [
+        "desktop-mouse-before-battle-question-and-seven-stack-choice-without-keyboard"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "5407ec7a0b4e18ce84927443b9a26117d15dcea7676f31dccd7fe22c5aac578b",
+      "scenarios": [
+        "selected-from-army-and-mobile-layout",
+        "companion-battle-inspection-keeps-its-native-command",
+        "independent-battle-actor-and-earned-experience",
+        "replacement-preserves-companion-experience",
+        "native-save-reload",
+        "dead-companion-resurrected-in-owned-town",
+        "ai-selects-shooter-as-independent-companion",
+        "santa-companion-guardian-count-multiplied-by-companion-level",
+        "disabled-profile-baseline"
+      ],
+      "errors": []
+    }
+  ],
+  "remaining": [
+    "Source town-visit automatic resurrection and AI free resurrection",
+    "Classic right-click companion smart dialog",
+    "Campaign restart and reserved unplaced hero lifecycle",
+    "Full source namespace integration and profile admission"
+  ]
+}
