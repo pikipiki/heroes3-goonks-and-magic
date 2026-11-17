@@ -479,43 +479,72 @@ void CShowableAnim::setDuration(int durationMs)
 	frameTimeTotal = durationMs/(last - first);
 }
 
-CCreatureAnim::CCreatureAnim(int x, int y, const AnimationPath & name, ui8 flags, ECreatureAnimType type):
-	CShowableAnim(x, y, name, flags | CREATURE_MODE, 100, size_t(type)) // H3 uses 100 ms per frame, irregardless of battle speed settings
+namespace
 {
-	xOffset = 0;
-	yOffset = 0;
- // Pixel analysis runs offline; battle playback does not inspect pixels.
+const JsonNode & mobilePreviewFocusData(const std::shared_ptr<CAnimation> & animation,const AnimationPath * name=nullptr)
+{
  static const JsonNode focus(JsonPath::builtin("config/mobile-creature-focus.json"));
- const auto & entry=focus[name.getName()];
- if(entry.isVector() && entry.Vector().size()==4)
+ static const JsonNode empty;
+ static std::map<std::weak_ptr<CAnimation>,const JsonNode *,std::owner_less<std::weak_ptr<CAnimation>>> entries;
+ const std::weak_ptr<CAnimation> key(animation);
+ if(name)
  {
-  const auto & v=entry.Vector();
-  const Rect bounds(v[0].Integer(),v[1].Integer(),v[2].Integer(),v[3].Integer());
-  if(bounds.x>=0 && bounds.y>=0 && bounds.w>0 && bounds.h>0)mobilePreviewBounds=bounds;
+  if(entries.size()>128)
+   for(auto it=entries.begin();it!=entries.end();)if(it->first.expired())it=entries.erase(it);else ++it;
+  const auto & entry=focus[name->getName()];entries[key]=&entry;return entry;
+ }
+ const auto it=entries.find(key);return it==entries.end()?empty:*it->second;
+}
+}
+
+CCreatureAnim::CCreatureAnim(int x, int y, const AnimationPath & name, ui8 flags, ECreatureAnimType type):
+ CShowableAnim(x,y,name,flags|CREATURE_MODE,100,size_t(type))
+{
+ xOffset=0;yOffset=0;
+ const auto & reference=mobilePreviewFocusData(anim,&name)["reference"];
+ if(reference.isVector()&&reference.Vector().size()==4)
+ {
+  const auto & v=reference.Vector();const Rect bounds(v[0].Integer(),v[1].Integer(),v[2].Integer(),v[3].Integer());
+  if(bounds.w>0&&bounds.h>0)mobilePreviewBounds=bounds;
  }
 }
 
-void CCreatureAnim::showMobilePreview(Canvas & to, const Rect & target)
+void CCreatureAnim::showMobilePreview(Canvas & to,const Rect & target)
 {
- const auto image=anim->getImage(frame,group,false);
- if(!image)return;
- // Unknown add-on animations keep their native canvas, also with a fixed camera.
+ const auto image=anim->getImage(frame,group,false);if(!image)return;
  if(!mobilePreviewBounds)mobilePreviewBounds=Rect(Point(),image->dimensions());
- const Rect bounds=*mobilePreviewBounds;
- const auto sourceSize=image->dimensions();
- const Point dimensions(std::max(sourceSize.x,bounds.x+bounds.w),std::max(sourceSize.y,bounds.y+bounds.h));
- if(!mobilePreviewCanvas || mobilePreviewCanvas->getRenderArea().w<dimensions.x || mobilePreviewCanvas->getRenderArea().h<dimensions.y)
+ const Rect reference=*mobilePreviewBounds;
+ Point center(reference.x+reference.w/2,reference.y+reference.h/2);
+ const auto & focus=mobilePreviewFocusData(anim);
+ const auto & centers=focus["centers"][std::to_string(group)];
+ const auto & origin=focus["origin"];
+ if(centers.isVector()&&frame<centers.Vector().size()&&origin.isVector()&&origin.Vector().size()==2)
  {
-  mobilePreviewCanvas=std::make_shared<Canvas>(dimensions,CanvasScalingPolicy::IGNORE);
-  mobilePreviewCanvas->applyTransparency(true);
+  const auto & point=centers.Vector()[frame];
+  if(point.isVector()&&point.Vector().size()==2)
+  {
+   center.x+=point.Vector()[0].Integer()-origin.Vector()[0].Integer();
+   center.y+=point.Vector()[1].Integer()-origin.Vector()[1].Integer();
+  }
+ }
+ // The zoom comes only from the resting body. Movement, weapons and projectiles
+ // can move the camera, but can never make the creature shrink.
+ const double scale=std::min(std::max(1.0,target.w*.95)/reference.w,std::max(1.0,target.h*.8)/reference.h);
+ const auto dimensions=image->dimensions();
+ if(!mobilePreviewCanvas||mobilePreviewCanvas->getRenderArea().w<dimensions.x||mobilePreviewCanvas->getRenderArea().h<dimensions.y)
+ {
+  mobilePreviewCanvas=std::make_shared<Canvas>(dimensions,CanvasScalingPolicy::IGNORE);mobilePreviewCanvas->applyTransparency(true);
  }
  mobilePreviewCanvas->drawColor(mobilePreviewCanvas->getRenderArea(),Colors::TRANSPARENCY);
- image->setAlpha(alpha);image->setOverlayColor(Colors::TRANSPARENCY);
- mobilePreviewCanvas->draw(image,Point());
- const Canvas focused(*mobilePreviewCanvas,bounds);
- const double scale=std::min(std::max(1.0,target.w*0.8)/bounds.w,std::max(1.0,target.h*0.8)/bounds.h);
- const Point size(std::max(1,int(bounds.w*scale)),std::max(1,int(bounds.h*scale)));
- to.drawScaled(focused,target.topLeft()+Point((target.w-size.x)/2,(target.h-size.y)/2),size);
+ image->setAlpha(alpha);image->setOverlayColor(Colors::TRANSPARENCY);mobilePreviewCanvas->draw(image,Point());
+ const double left=center.x-target.w/(2*scale),top=center.y-target.h/(2*scale);
+ const int x=std::max(0,int(std::ceil(left))),y=std::max(0,int(std::ceil(top)));
+ const int right=std::min(dimensions.x,int(std::floor(left+target.w/scale))),bottom=std::min(dimensions.y,int(std::floor(top+target.h/scale)));
+ if(right<=x||bottom<=y)return;
+ const Rect crop(x,y,right-x,bottom-y);const Canvas focused(*mobilePreviewCanvas,crop);
+ const Point offset(int(std::round((x-left)*scale)),int(std::round((y-top)*scale)));
+ const Point size(std::min(target.w-offset.x,std::max(1,int(std::round(crop.w*scale)))),std::min(target.h-offset.y,std::max(1,int(std::round(crop.h*scale)))));
+ if(size.x>0&&size.y>0)to.drawScaled(focused,target.topLeft()+offset,size);
 }
 
 void CCreatureAnim::loopPreview(bool warMachine)

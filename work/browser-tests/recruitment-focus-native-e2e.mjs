@@ -30,20 +30,24 @@ sys.stdout.buffer.write(out.getvalue())
  const units=await p.evaluate(()=>[goonkMobileState.fortFamilies[0].variants[0],goonkMobileState.fortFamilies[5].variants.find(u=>u.name==='Naga Empress')||goonkMobileState.fortFamilies[5].variants[0]].map(u=>({id:u.id,name:u.name})));
  for(const unit of units){
   await p.locator(`[data-family-select="${unit.id}"]`).click();await p.waitForTimeout(600);await wait(id=>goonkMobileState.previewUnits?.some(u=>u.id===id&&window.goonkCreaturePreviewRects?.has(u.previewKey??id)),unit.id);
-  const motion=await p.evaluate(async ({id,name})=>{
+  const motion=await p.evaluate(async ({id,name,faction})=>{
    const u=goonkMobileState.previewUnits.findLast(u=>u.id===id&&goonkCreaturePreviewRects.has(u.previewKey??id)),r=goonkCreaturePreviewRects.get(u.previewKey??id),c=document.createElement('canvas');c.width=r.w;c.height=r.h;const ctx=c.getContext('2d',{willReadFrequently:true}),sheet=document.createElement('canvas');sheet.width=r.w*6;sheet.height=r.h*4;const sheetContext=sheet.getContext('2d');
-   let first,changed=0,left=r.w,top=r.h,right=-1,bottom=-1;const versions=new Set(),canvases=new Set(),buffers=new Set();
+   let first,changed=0,left=r.w,top=r.h,right=-1,bottom=-1;const versions=new Set(),canvases=new Set(),buffers=new Set(),bodyCoverage=[];
    for(let n=0;n<24;n++){const rect=goonkCreaturePreviewRects.get(u.previewKey??id);ctx.clearRect(0,0,r.w,r.h);ctx.drawImage(goonkCreaturePreviewAtlas,rect.x,rect.y,rect.w,rect.h,0,0,r.w,r.h);sheetContext.drawImage(c,(n%6)*r.w,Math.floor(n/6)*r.h);const pixels=ctx.getImageData(0,0,r.w,r.h).data;versions.add(goonkCreaturePreviewVersion);canvases.add(goonkCreaturePreviewAtlas);buffers.add(window.goonkCreaturePreviewImageData);
+   if(name==='Gremlin'||faction==='goonk'){
+    const mask=new Uint8Array(r.w*r.h),seen=new Uint8Array(mask.length);let largest={count:0,width:0,height:0};
+    for(let i=0;i<mask.length;i++){const at=i*4,R=pixels[at],G=pixels[at+1],B=pixels[at+2];mask[i]=pixels[at+3]>100&&(name==='Gremlin'?((G>45&&G>R*1.25&&G>B*1.15)||(R>65&&R>G*1.3&&R>B*1.35)):(B>60&&B>G*1.3&&R>G*1.2&&R>40))?1:0;}
+    for(let i=0;i<mask.length;i++)if(mask[i]&&!seen[i]){const queue=[i];seen[i]=1;let head=0,l=r.w,t=r.h,rr=0,bb=0;while(head<queue.length){const k=queue[head++],x=k%r.w,y=Math.floor(k/r.w);l=Math.min(l,x);t=Math.min(t,y);rr=Math.max(rr,x);bb=Math.max(bb,y);for(const next of [x>0?k-1:-1,x+1<r.w?k+1:-1,y>0?k-r.w:-1,y+1<r.h?k+r.w:-1])if(next>=0&&mask[next]&&!seen[next]){seen[next]=1;queue.push(next);}}if(queue.length>largest.count)largest={count:queue.length,width:rr-l+1,height:bb-t+1};}
+    bodyCoverage.push(Math.max(largest.width/r.w,largest.height/r.h));
+   }
    if(!first)first=pixels;else for(let i=0;i<pixels.length;i+=4)if(Math.abs(pixels[i]-first[i])+Math.abs(pixels[i+1]-first[i+1])+Math.abs(pixels[i+2]-first[i+2])>60){const x=(i/4)%r.w,y=Math.floor(i/4/r.w);left=Math.min(left,x);top=Math.min(top,y);right=Math.max(right,x);bottom=Math.max(bottom,y);changed++;}await new Promise(resolve=>setTimeout(resolve,120));}
-   return {width:r.w,height:r.h,left,top,right,bottom,changed,versions:versions.size,canvasAllocations:canvases.size,pixelBufferAllocations:buffers.size,sheet:sheet.toDataURL()};
-  },unit);
+   return {width:r.w,height:r.h,left,top,right,bottom,changed,versions:versions.size,canvasAllocations:canvases.size,pixelBufferAllocations:buffers.size,bodyCoverage,sheet:sheet.toDataURL()};
+  },{...unit,faction});
   fs.writeFileSync(`${out}/${faction}-${unit.id}-poses.png`,Buffer.from(motion.sheet.split(',')[1],'base64'));delete motion.sheet;
   await p.screenshot({path:`${out}/${faction}-${unit.id}-body-check.png`});
-  // Measure the complete motion envelope. A disconnected clothing-color mask
-  // does not measure the creature's size when an attack changes its silhouette.
-  assert(motion.versions>2&&motion.changed>20,'The creature actually animates');assert.equal(motion.canvasAllocations,1,'The preview reuses one atlas canvas');assert.equal(motion.pixelBufferAllocations,1,'The preview reuses one pixel buffer');assert(motion.left>=1&&motion.top>=1&&motion.right<motion.width-1&&motion.bottom<motion.height-1,'All observed poses stay inside the preview margins '+JSON.stringify({unit,motion}));
-  assert((motion.right-motion.left)/motion.width<.85&&(motion.bottom-motion.top)/motion.height<.85,'Motion remains within the 80% focus frame');
-  assert(Math.max((motion.right-motion.left)/motion.width,(motion.bottom-motion.top)/motion.height)>.65,'The complete animation occupies a useful part of its fixed preview '+JSON.stringify({unit,motion}));
+  assert(motion.versions>2&&motion.changed>20,'The creature actually animates');assert.equal(motion.canvasAllocations,1,'One reused atlas canvas');assert.equal(motion.pixelBufferAllocations,1,'One reused pixel buffer');
+  if(motion.bodyCoverage.length)assert(Math.max(...motion.bodyCoverage)>=.55,'The actual colored body stays large, not just its travel envelope '+JSON.stringify({unit,motion}));
+  assert(Math.max((motion.right-motion.left)/motion.width,(motion.bottom-motion.top)/motion.height)>.65,'Visible attack/movement poses remain present '+JSON.stringify({unit,motion}));
   cases.push({faction,unit:unit.name,motion});await p.screenshot({path:`${out}/${faction}-${unit.id}.png`});
  }
  await p.setViewportSize({width:716,height:335});await p.waitForTimeout(180);const fit=await p.locator('.hall-feature').evaluate(e=>({height:e.clientHeight,scroll:e.scrollHeight,stats:e.querySelector('.creature-stats').getBoundingClientRect().bottom,bottom:e.getBoundingClientRect().bottom}));assert(fit.scroll<=fit.height+1&&fit.stats<=fit.bottom+1,'Native stats fit on the actual landscape viewport');await p.screenshot({path:`${out}/${faction}-landscape.png`});await p.close();

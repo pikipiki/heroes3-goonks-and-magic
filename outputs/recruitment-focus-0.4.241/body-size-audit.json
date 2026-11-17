@@ -1,0 +1,1893 @@
+{
+  "creatures": 372,
+  "animationPaths": 370,
+  "frames": 21745,
+  "restBodiesMeasured": 372,
+  "minimumRestFill": 0.769231,
+  "previousBodiesBelow40Percent": 114,
+  "currentBodiesBelow75Percent": 0,
+  "factions": {
+    "core:castle": 32,
+    "core:conflux": 27,
+    "core:dungeon": 27,
+    "core:fortress": 29,
+    "core:inferno": 29,
+    "core:necropolis": 34,
+    "core:neutral": 91,
+    "core:rampart": 30,
+    "core:stronghold": 25,
+    "core:tower": 26,
+    "goonk:goonk": 22
+  },
+  "drawMicrosP95": 1000,
+  "drawMicrosMax": 3000,
+  "goonkAttacksVerified": 22,
+  "nagaEmpressAttackVerified": true,
+  "auxiliaryBrowserStartupRetry": {
+    "part": 0,
+    "completedMeasurementsPreserved": 70,
+    "remainingMeasurementsPassed": 54
+  },
+  "bodies": [
+    {
+      "key": "core:airElemental",
+      "name": "Air Elemental",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:ammoCart",
+      "name": "Ammo Cart",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:ancientBehemoth",
+      "name": "Ancient Behemoth",
+      "restFill": 0.89
+    },
+    {
+      "key": "core:angel",
+      "name": "Angel",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:archDevil",
+      "name": "Arch Devil",
+      "restFill": 0.8
+    },
+    {
+      "key": "core:archMage",
+      "name": "Arch Mage",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:archangel",
+      "name": "Archangel",
+      "restFill": 0.807692
+    },
+    {
+      "key": "core:archer",
+      "name": "Archer",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:arrowTower",
+      "name": "Arrow Tower",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:azureDragon",
+      "name": "Azure Dragon",
+      "restFill": 0.8
+    },
+    {
+      "key": "core:ballista",
+      "name": "Ballista",
+      "restFill": 0.96
+    },
+    {
+      "key": "core:basilisk",
+      "name": "Basilisk",
+      "restFill": 0.93
+    },
+    {
+      "key": "core:battleDwarf",
+      "name": "Battle Dwarf",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:behemoth",
+      "name": "Behemoth",
+      "restFill": 0.89
+    },
+    {
+      "key": "core:beholder",
+      "name": "Beholder",
+      "restFill": 0.8
+    },
+    {
+      "key": "core:blackDragon",
+      "name": "Black Dragon",
+      "restFill": 0.838462
+    },
+    {
+      "key": "core:blackKnight",
+      "name": "Black Knight",
+      "restFill": 0.87
+    },
+    {
+      "key": "core:boar",
+      "name": "Boar",
+      "restFill": 0.87
+    },
+    {
+      "key": "core:boneDragon",
+      "name": "Bone Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:catapult",
+      "name": "Catapult",
+      "restFill": 0.93
+    },
+    {
+      "key": "core:cavalier",
+      "name": "Cavalier",
+      "restFill": 0.96
+    },
+    {
+      "key": "core:centaur",
+      "name": "Centaur",
+      "restFill": 0.89
+    },
+    {
+      "key": "core:centaurCaptain",
+      "name": "Centaur Captain",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:cerberus",
+      "name": "Cerberus",
+      "restFill": 0.94
+    },
+    {
+      "key": "core:champion",
+      "name": "Champion",
+      "restFill": 0.96
+    },
+    {
+      "key": "core:chaosHydra",
+      "name": "Chaos Hydra",
+      "restFill": 0.82
+    },
+    {
+      "key": "core:crusader",
+      "name": "Crusader",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:crystalDragon",
+      "name": "Ruby Crystal Dragon",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:cyclop",
+      "name": "Cyclops",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:cyclopKing",
+      "name": "Cyclops King",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:demon",
+      "name": "Demon",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:dendroidGuard",
+      "name": "Dendroid Guard",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:dendroidSoldier",
+      "name": "Dendroid Soldier",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:devil",
+      "name": "Devil",
+      "restFill": 0.807692
+    },
+    {
+      "key": "core:diamondGolem",
+      "name": "Diamond Golem",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:dreadKnight",
+      "name": "Dread Knight",
+      "restFill": 0.88
+    },
+    {
+      "key": "core:dwarf",
+      "name": "Dwarf",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:earthElemental",
+      "name": "Earth Elemental",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:efreet",
+      "name": "Efreeti",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:efreetSultan",
+      "name": "Efreet Sultan",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:enchanter",
+      "name": "Enchanter",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:energyElemental",
+      "name": "Energy Elemental",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:evilEye",
+      "name": "Evil Eye",
+      "restFill": 0.807692
+    },
+    {
+      "key": "core:fairieDragon",
+      "name": "Faerie Dragon",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:familiar",
+      "name": "Familiar",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:fireDragonFly",
+      "name": "Dragon Fly",
+      "restFill": 0.884615
+    },
+    {
+      "key": "core:fireElemental",
+      "name": "Fire Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:firebird",
+      "name": "Firebird",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:firstAidTent",
+      "name": "First Aid Tent",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:genie",
+      "name": "Genie",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:ghostDragon",
+      "name": "Ghost Dragon",
+      "restFill": 0.84
+    },
+    {
+      "key": "core:giant",
+      "name": "Giant",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:gnoll",
+      "name": "Gnoll",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:gnollMarauder",
+      "name": "Gnoll Marauder",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:goblin",
+      "name": "Goblin",
+      "restFill": 0.769231
+    },
+    {
+      "key": "core:goblinWolfRider",
+      "name": "Wolf Rider",
+      "restFill": 0.95
+    },
+    {
+      "key": "core:gog",
+      "name": "Gog",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:goldDragon",
+      "name": "Gold Dragon",
+      "restFill": 0.823077
+    },
+    {
+      "key": "core:goldGolem",
+      "name": "Gold Golem",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:gorgon",
+      "name": "Gorgon",
+      "restFill": 0.96
+    },
+    {
+      "key": "core:grandElf",
+      "name": "Grand Elf",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:greaterBasilisk",
+      "name": "Greater Basilisk",
+      "restFill": 0.93
+    },
+    {
+      "key": "core:greenDragon",
+      "name": "Green Dragon",
+      "restFill": 0.807692
+    },
+    {
+      "key": "core:gremlin",
+      "name": "Gremlin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:griffin",
+      "name": "Griffin",
+      "restFill": 0.86
+    },
+    {
+      "key": "core:halberdier",
+      "name": "Halberdier",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:halfling",
+      "name": "Halfling",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:harpy",
+      "name": "Harpy",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:harpyHag",
+      "name": "Harpy Hag",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:hellHound",
+      "name": "Hell Hound",
+      "restFill": 0.94
+    },
+    {
+      "key": "core:hobgoblin",
+      "name": "Hobgoblin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:hobgoblinWolfRider",
+      "name": "Wolf Raider",
+      "restFill": 0.95
+    },
+    {
+      "key": "core:hornedDemon",
+      "name": "Horned Demon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:hydra",
+      "name": "Hydra",
+      "restFill": 0.85
+    },
+    {
+      "key": "core:iceElemental",
+      "name": "Ice Elemental",
+      "restFill": 0.91
+    },
+    {
+      "key": "core:imp",
+      "name": "Imp",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:infernalTroglodyte",
+      "name": "Infernal Troglodyte",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:ironGolem",
+      "name": "Stone Golem",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:lich",
+      "name": "Lich",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:lizardWarrior",
+      "name": "Lizard Warrior",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:lizardman",
+      "name": "Lizardman",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:mage",
+      "name": "Mage",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:magicElemental",
+      "name": "Magic Elemental",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:magmaElemental",
+      "name": "Magma Elemental",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:magog",
+      "name": "Magog",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:manticore",
+      "name": "Manticore",
+      "restFill": 0.97
+    },
+    {
+      "key": "core:marksman",
+      "name": "Marksman",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:masterGenie",
+      "name": "Master Genie",
+      "restFill": 0.815385
+    },
+    {
+      "key": "core:masterGremlin",
+      "name": "Master Gremlin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:medusa",
+      "name": "Medusa",
+      "restFill": 0.82
+    },
+    {
+      "key": "core:medusaQueen",
+      "name": "Medusa Queen",
+      "restFill": 0.93
+    },
+    {
+      "key": "core:mightyGorgon",
+      "name": "Mighty Gorgon",
+      "restFill": 0.96
+    },
+    {
+      "key": "core:minotaur",
+      "name": "Minotaur",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:minotaurKing",
+      "name": "Minotaur King",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:monk",
+      "name": "Monk",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:mummy",
+      "name": "Mummy",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:naga",
+      "name": "Naga",
+      "restFill": 0.88
+    },
+    {
+      "key": "core:nagaQueen",
+      "name": "Naga Queen",
+      "restFill": 0.9
+    },
+    {
+      "key": "core:nomad",
+      "name": "Nomad",
+      "restFill": 0.87
+    },
+    {
+      "key": "core:obsidianGargoyle",
+      "name": "Obsidian Gargoyle",
+      "restFill": 0.830769
+    },
+    {
+      "key": "core:ogre",
+      "name": "Ogre",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:ogreMage",
+      "name": "Ogre Mage",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:orc",
+      "name": "Orc",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:orcChieftain",
+      "name": "Orc Chieftain",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:peasant",
+      "name": "Peasant",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:pegasus",
+      "name": "Pegasus",
+      "restFill": 0.95
+    },
+    {
+      "key": "core:phoenix",
+      "name": "Phoenix",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:pikeman",
+      "name": "Pikeman",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:pitFiend",
+      "name": "Pit Fiend",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:pitLord",
+      "name": "Pit Lord",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:pixie",
+      "name": "Pixie",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:powerLich",
+      "name": "Power Lich",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:psychicElemental",
+      "name": "Psychic Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:redDragon",
+      "name": "Red Dragon",
+      "restFill": 0.87
+    },
+    {
+      "key": "core:roc",
+      "name": "Roc",
+      "restFill": 0.92
+    },
+    {
+      "key": "core:rogue",
+      "name": "Rogue",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:royalGriffin",
+      "name": "Royal Griffin",
+      "restFill": 0.88
+    },
+    {
+      "key": "core:rustDragon",
+      "name": "Rust Dragon",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:scorpicore",
+      "name": "Scorpicore",
+      "restFill": 0.95
+    },
+    {
+      "key": "core:serpentFly",
+      "name": "Serpent Fly",
+      "restFill": 0.876923
+    },
+    {
+      "key": "core:sharpshooter",
+      "name": "Sharpshooter",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:silverPegasus",
+      "name": "Silver Pegasus",
+      "restFill": 0.95
+    },
+    {
+      "key": "core:skeleton",
+      "name": "Skeleton",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:skeletonWarrior",
+      "name": "Skeleton Warrior",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:sprite",
+      "name": "Sprite",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:stoneGargoyle",
+      "name": "Stone Gargoyle",
+      "restFill": 0.846154
+    },
+    {
+      "key": "core:stoneGolem",
+      "name": "Iron Golem",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:stormElemental",
+      "name": "Storm Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:swordsman",
+      "name": "Swordsman",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:thunderbird",
+      "name": "Thunderbird",
+      "restFill": 0.92
+    },
+    {
+      "key": "core:titan",
+      "name": "Titan",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:troglodyte",
+      "name": "Troglodyte",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:troll",
+      "name": "Troll",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:unicorn",
+      "name": "Unicorn",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:vampire",
+      "name": "Vampire",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:vampireLord",
+      "name": "Vampire Lord",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:walkingDead",
+      "name": "Walking Dead",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:warUnicorn",
+      "name": "War Unicorn",
+      "restFill": 0.792308
+    },
+    {
+      "key": "core:waterElemental",
+      "name": "Water Elemental",
+      "restFill": 0.92
+    },
+    {
+      "key": "core:wight",
+      "name": "Wight",
+      "restFill": 0.8
+    },
+    {
+      "key": "core:woodElf",
+      "name": "Wood Elf",
+      "restFill": 0.784615
+    },
+    {
+      "key": "core:wraith",
+      "name": "Wraith",
+      "restFill": 0.823077
+    },
+    {
+      "key": "core:wyvern",
+      "name": "Wyvern",
+      "restFill": 0.93
+    },
+    {
+      "key": "core:wyvernMonarch",
+      "name": "Wyvern Monarch",
+      "restFill": 0.86
+    },
+    {
+      "key": "core:zealot",
+      "name": "Zealot",
+      "restFill": 0.776923
+    },
+    {
+      "key": "core:zombieLord",
+      "name": "Zombie",
+      "restFill": 0.807692
+    },
+    {
+      "key": "goonk:bobope",
+      "name": "DioupDioup",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:bobopeExalted",
+      "name": "DioupDioup, Crystal Rock Emperor",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:bobopeRoyal",
+      "name": "DioupDioup, Rock King",
+      "restFill": 0.94
+    },
+    {
+      "key": "goonk:bubu",
+      "name": "Bubu",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:bubuExalted",
+      "name": "Bubu, Supreme Fartomancer",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:bubuRoyal",
+      "name": "Bubu, Grand Fartomancer",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:glouglou",
+      "name": "Bobope",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:glouglouExalted",
+      "name": "Bobope, Grand Alchemist",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:glouglouRoyal",
+      "name": "Bobope, Acid Alchemist",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:maillemaille",
+      "name": "Big Maille Maille",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:maillemailleExalted",
+      "name": "Big Maille Maille, Phoenix Archmage",
+      "restFill": 0.9
+    },
+    {
+      "key": "goonk:maillemailleRoyal",
+      "name": "Big Maille Maille, Blaze Archmage",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:maillemailleSolar",
+      "name": "Big Maille Maille, Living Sun",
+      "restFill": 0.82
+    },
+    {
+      "key": "goonk:paingpaing",
+      "name": "Paingpaing",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:paingpaingExalted",
+      "name": "Paingpaing, Nose Emperor",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:paingpaingRoyal",
+      "name": "Paingpaing, Royal Ram",
+      "restFill": 0.94
+    },
+    {
+      "key": "goonk:picpique",
+      "name": "Picpique",
+      "restFill": 0.94
+    },
+    {
+      "key": "goonk:picpiqueExalted",
+      "name": "Picpique, Crystal Lancer",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:picpiqueRoyal",
+      "name": "Picpique, Lance Paladin",
+      "restFill": 0.94
+    },
+    {
+      "key": "goonk:zinzeclair",
+      "name": "Sonic",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:zinzeclairExalted",
+      "name": "Sonic, Storm Sovereign",
+      "restFill": 0.93
+    },
+    {
+      "key": "goonk:zinzeclairRoyal",
+      "name": "Sonic, Explosive Storm",
+      "restFill": 0.93
+    },
+    {
+      "key": "third-upgrades.new-creatures:blackGuard",
+      "name": "Black Guard",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades.new-creatures:dreadGuard",
+      "name": "Dread Guard",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades.wog-comp:centaurArcher",
+      "name": "Centaur Archer",
+      "restFill": 0.91
+    },
+    {
+      "key": "third-upgrades:tumAcidWyvern",
+      "name": "Acid Wyvern",
+      "restFill": 0.86
+    },
+    {
+      "key": "third-upgrades:tumArcaneGenie",
+      "name": "Arcane Genie",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumAstralCerberus",
+      "name": "Astral Cerberus",
+      "restFill": 0.93
+    },
+    {
+      "key": "third-upgrades:tumBerserkerDwarf",
+      "name": "Dwarf Chieftain",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumBlackMinotaur",
+      "name": "Black Minotaur",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumCatopleba",
+      "name": "Catopleba",
+      "restFill": 0.93
+    },
+    {
+      "key": "third-upgrades:tumCeasarGriffin",
+      "name": "Cesar Griffin",
+      "restFill": 0.88
+    },
+    {
+      "key": "third-upgrades:tumCentaurGeneral",
+      "name": "Centaur General",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumChaoticDragonFly",
+      "name": "Chaotic Dragon Fly",
+      "restFill": 0.830769
+    },
+    {
+      "key": "third-upgrades:tumChimera",
+      "name": "Chimera",
+      "restFill": 0.93
+    },
+    {
+      "key": "third-upgrades:tumCrossbowman",
+      "name": "Crossbowman",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumCyclopsEmperor",
+      "name": "Cyclops Emperor",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumDeathKnight",
+      "name": "Death Knight",
+      "restFill": 0.9
+    },
+    {
+      "key": "third-upgrades:tumEfreetRajah",
+      "name": "Efreet Rajah",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumElderDendroid",
+      "name": "Elder Dendroid",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumElderOgre",
+      "name": "Elder Ogre",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumEliteLizard",
+      "name": "Elite Lizard",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumFairy",
+      "name": "Fairy",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumGhoul",
+      "name": "Ghoul",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumGnollShaman",
+      "name": "Gnoll Shaman",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumGoldenPegasus",
+      "name": "Golden Pegasus",
+      "restFill": 0.95
+    },
+    {
+      "key": "third-upgrades:tumGrandmasterGremlin",
+      "name": "Grandmaster Gremlin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumHarpySanguinary",
+      "name": "Harpy Sanguinary",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumHighPriest",
+      "name": "High Priest",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumHobgoblinOverlord",
+      "name": "Hobgoblin Overlord",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumHolyChampion",
+      "name": "Holy Champion",
+      "restFill": 0.89
+    },
+    {
+      "key": "third-upgrades:tumHurricaneElemental",
+      "name": "Hurricane Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumInquisitor",
+      "name": "Inquisitor",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumLavaBasilisk",
+      "name": "Lava Basilisk",
+      "restFill": 0.93
+    },
+    {
+      "key": "third-upgrades:tumLegendaryUnicorn",
+      "name": "Legendary Unicorn",
+      "restFill": 0.792308
+    },
+    {
+      "key": "third-upgrades:tumLichKing",
+      "name": "Lich King",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumLifeElemental",
+      "name": "Cryogenic Elemental",
+      "restFill": 0.89
+    },
+    {
+      "key": "third-upgrades:tumLightningbird",
+      "name": "Lightningbird",
+      "restFill": 0.94
+    },
+    {
+      "key": "third-upgrades:tumMarbleGargoyle",
+      "name": "Marble Gargoyle",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumMedusaEmpress",
+      "name": "Medusa Empress",
+      "restFill": 0.93
+    },
+    {
+      "key": "third-upgrades:tumMineralElemental",
+      "name": "Lava Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumMonstrousEye",
+      "name": "Monstrous Eye",
+      "restFill": 0.807692
+    },
+    {
+      "key": "third-upgrades:tumNagaEmpress",
+      "name": "Naga Empress",
+      "restFill": 0.94
+    },
+    {
+      "key": "third-upgrades:tumNosferatu",
+      "name": "Nosferatu",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumOrcLeader",
+      "name": "Orc Leader",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumPhosphorescentTroglodyte",
+      "name": "Phosphorescent Troglodyte",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumPitMaster",
+      "name": "Pit Master",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumPlasmaElemental",
+      "name": "Plasma Elemental",
+      "restFill": 0.792308
+    },
+    {
+      "key": "third-upgrades:tumRoyalHalberdier",
+      "name": "Royal Halberdier",
+      "restFill": 0.792308
+    },
+    {
+      "key": "third-upgrades:tumSharpHornedDemon",
+      "name": "Sharp-Horned Demon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "third-upgrades:tumSharpshooterElf",
+      "name": "Noble Elf",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumSkeletonKnight",
+      "name": "Skeleton Knight",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumSpecter",
+      "name": "Specter",
+      "restFill": 0.792308
+    },
+    {
+      "key": "third-upgrades:tumSteelGolem",
+      "name": "Mithril Golem",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumSupremeArchMage",
+      "name": "Supreme Arch Mage",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumVermin",
+      "name": "Vermin",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumVoidElemental",
+      "name": "Void Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "third-upgrades:tumWingedMagog",
+      "name": "Winged Magog",
+      "restFill": 0.776923
+    },
+    {
+      "key": "third-upgrades:tumWolfRiderKiller",
+      "name": "Wolf Captain",
+      "restFill": 0.91
+    },
+    {
+      "key": "tum-era:ancestralBehemoth",
+      "name": "Ancestral Behemoth",
+      "restFill": 0.89
+    },
+    {
+      "key": "tum-era:antichrist",
+      "name": "Antichrist",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:chasmDragon",
+      "name": "Chasm Dragon",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:cherub",
+      "name": "Cherub",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:divinePhoenix",
+      "name": "Divine Phoenix",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature200",
+      "name": "Dragon Slayer",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature239",
+      "name": "Centagnoll",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature253",
+      "name": "Tiamat",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature258",
+      "name": "Primal Faerie Dragon",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature262",
+      "name": "Satyr",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature263",
+      "name": "Fangarm",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature264",
+      "name": "Leprechaun",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature265",
+      "name": "Topaz Dragon",
+      "restFill": 0.94
+    },
+    {
+      "key": "tum-era:eraCreature266",
+      "name": "Amethyst Dragon",
+      "restFill": 0.94
+    },
+    {
+      "key": "tum-era:eraCreature267",
+      "name": "Emerald Dragon",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature268",
+      "name": "Sapphire Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature269",
+      "name": "Light Templar",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature270",
+      "name": "Dryad",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature271",
+      "name": "Drake Golem",
+      "restFill": 0.9
+    },
+    {
+      "key": "tum-era:eraCreature272",
+      "name": "Succubus",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature273",
+      "name": "Werewolf",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature274",
+      "name": "Illithid",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature275",
+      "name": "Coatl",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature276",
+      "name": "Troll Hag",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature277",
+      "name": "Triton",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature278",
+      "name": "Light Paladin",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature279",
+      "name": "Oak Dryad",
+      "restFill": 0.807692
+    },
+    {
+      "key": "tum-era:eraCreature280",
+      "name": "Dragon Golem",
+      "restFill": 0.9
+    },
+    {
+      "key": "tum-era:eraCreature281",
+      "name": "Lilim",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature282",
+      "name": "Alhoon",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature283",
+      "name": "Quetzalcoatl",
+      "restFill": 0.86
+    },
+    {
+      "key": "tum-era:eraCreature284",
+      "name": "Troll Witch",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature285",
+      "name": "Abyssal Triton",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature286",
+      "name": "Demilich",
+      "restFill": 0.838462
+    },
+    {
+      "key": "tum-era:eraCreature287",
+      "name": "Dread Skipper",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature288",
+      "name": "Mermaid",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature289",
+      "name": "Fire Paladin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature290",
+      "name": "Ice Knight",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature292",
+      "name": "Thunder Warrior",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature294",
+      "name": "Vermilion Bird",
+      "restFill": 0.88
+    },
+    {
+      "key": "tum-era:eraCreature295",
+      "name": "Skeleton Archer",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature296",
+      "name": "Red Skeleton",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature297",
+      "name": "Mana Skeleton",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature298",
+      "name": "Gold Skeleton",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature299",
+      "name": "Sharpshooter Skeleton",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature301",
+      "name": "Squire",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature302",
+      "name": "Man at Arms",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature303",
+      "name": "Peon",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature304",
+      "name": "Tortofroid",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature305",
+      "name": "Vile Tortofroid",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature306",
+      "name": "Dark Elemental",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature307",
+      "name": "Gigas",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature308",
+      "name": "Hill Gigas",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature309",
+      "name": "Forest Dragon",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature310",
+      "name": "Swamp Dragon",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature311",
+      "name": "Moss Thrall",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature312",
+      "name": "Ravenous Coctatrice",
+      "restFill": 0.8
+    },
+    {
+      "key": "tum-era:eraCreature313",
+      "name": "Centamonth Hunter",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature314",
+      "name": "Centamonth Thrower",
+      "restFill": 0.81
+    },
+    {
+      "key": "tum-era:eraCreature315",
+      "name": "Stump Rider",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature316",
+      "name": "Baba Yaga",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature317",
+      "name": "Will-o-wisp",
+      "restFill": 0.92
+    },
+    {
+      "key": "tum-era:eraCreature318",
+      "name": "Archer Rider",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature319",
+      "name": "Asura",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature322",
+      "name": "Mirage Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature323",
+      "name": "Mirror Dragon",
+      "restFill": 0.823077
+    },
+    {
+      "key": "tum-era:eraCreature324",
+      "name": "Mithril Golem",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature325",
+      "name": "Shadow Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature326",
+      "name": "Lizard Soldier",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature327",
+      "name": "Slithzerikai",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature328",
+      "name": "Sacred Elf",
+      "restFill": 0.83
+    },
+    {
+      "key": "tum-era:eraCreature330",
+      "name": "Crimson Dragon",
+      "restFill": 0.83
+    },
+    {
+      "key": "tum-era:eraCreature331",
+      "name": "Dark Templar",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature332",
+      "name": "Dark Paladin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature333",
+      "name": "Fallen Angel",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature334",
+      "name": "Angel of Death",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature335",
+      "name": "Winged Drake",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature336",
+      "name": "Lesser Dragon",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature337",
+      "name": "Ahriman",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature338",
+      "name": "Archfiend",
+      "restFill": 0.92
+    },
+    {
+      "key": "tum-era:eraCreature339",
+      "name": "Sulfide Dragon",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature340",
+      "name": "Swordmaster",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature341",
+      "name": "Green Dragonling",
+      "restFill": 0.892308
+    },
+    {
+      "key": "tum-era:eraCreature342",
+      "name": "Red Dragonling",
+      "restFill": 0.892308
+    },
+    {
+      "key": "tum-era:eraCreature343",
+      "name": "Faerie Dragonling",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature344",
+      "name": "Rust Dragonling",
+      "restFill": 0.892308
+    },
+    {
+      "key": "tum-era:eraCreature345",
+      "name": "Azure Dragonling",
+      "restFill": 0.892308
+    },
+    {
+      "key": "tum-era:eraCreature346",
+      "name": "Fire Dragon",
+      "restFill": 0.94
+    },
+    {
+      "key": "tum-era:eraCreature347",
+      "name": "Ice Dragon",
+      "restFill": 0.94
+    },
+    {
+      "key": "tum-era:eraCreature349",
+      "name": "Forest Spirit",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature350",
+      "name": "Spring Spirit",
+      "restFill": 0.769231
+    },
+    {
+      "key": "tum-era:eraCreature351",
+      "name": "Lady Spider",
+      "restFill": 0.8
+    },
+    {
+      "key": "tum-era:eraCreature352",
+      "name": "Priestess Spider",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature353",
+      "name": "Sea Serpent",
+      "restFill": 0.87
+    },
+    {
+      "key": "tum-era:eraCreature354",
+      "name": "Leviathan",
+      "restFill": 0.83
+    },
+    {
+      "key": "tum-era:eraCreature355",
+      "name": "Planeswalker",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature356",
+      "name": "Elementalist",
+      "restFill": 0.93
+    },
+    {
+      "key": "tum-era:eraCreature357",
+      "name": "Skeleton Angel",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:eraCreature358",
+      "name": "Veteran",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature359",
+      "name": "Skeleton Ranger",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature360",
+      "name": "Pharaoh Mummy",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:eraCreature361",
+      "name": "General Skeleton",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:eraCreature362",
+      "name": "Holy Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "tum-era:gemDragon",
+      "name": "Brilliant Diamond Dragon",
+      "restFill": 0.776923
+    },
+    {
+      "key": "tum-era:guardianOfZeus",
+      "name": "Master of Thunder",
+      "restFill": 0.784615
+    },
+    {
+      "key": "tum-era:necrossDragon",
+      "name": "Necross Dragon",
+      "restFill": 0.81
+    },
+    {
+      "key": "tum-era:nightmareHydra",
+      "name": "Nightmare Hydra",
+      "restFill": 0.79
+    },
+    {
+      "key": "tum-era:redBonesDragon",
+      "name": "Red Bones Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "wake-of-gods.artifacts:redDragonClone",
+      "name": "Red Dragon",
+      "restFill": 0.87
+    },
+    {
+      "key": "wake-of-gods.commanders:astralSpirit1",
+      "name": "Astral Spirit",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.commanders:brute1",
+      "name": "Brute",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.commanders:hierophant1",
+      "name": "Hierophant",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.commanders:ogreLeader1",
+      "name": "Ogre Leader",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.commanders:paladin1",
+      "name": "Paladin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.commanders:shaman1",
+      "name": "Shaman",
+      "restFill": 0.792308
+    },
+    {
+      "key": "wake-of-gods.commanders:soulEater1",
+      "name": "Soul Eater",
+      "restFill": 0.792308
+    },
+    {
+      "key": "wake-of-gods.commanders:succubus1",
+      "name": "Succubus",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.commanders:templeGuardian1",
+      "name": "Temple Guardian",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.creatures:arcticSharpshooter",
+      "name": "Arctic Sharpshooter",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.creatures:dracolich",
+      "name": "Dracolich",
+      "restFill": 0.81
+    },
+    {
+      "key": "wake-of-gods.creatures:ghost",
+      "name": "Wraith Ghost",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.creatures:gorynych",
+      "name": "Gorynych",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.creatures:hellSteed",
+      "name": "Hell Steed",
+      "restFill": 0.85
+    },
+    {
+      "key": "wake-of-gods.creatures:lavaSharpshooter",
+      "name": "Lava Sharpshooter",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.creatures:nightmare",
+      "name": "Nightmare",
+      "restFill": 0.88
+    },
+    {
+      "key": "wake-of-gods.creatures:santaGremlin",
+      "name": "Santa Gremlin",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.creatures:sylvanCentaur",
+      "name": "Sylwan Centaur",
+      "restFill": 0.87
+    },
+    {
+      "key": "wake-of-gods.creatures:warZealot",
+      "name": "War Zealot",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.creatures:werewolf",
+      "name": "Lunar Werewolf",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.creatures:wogSorceress",
+      "name": "Arcane Sorceress",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.level8units:bloodDragon",
+      "name": "Blood Dragon",
+      "restFill": 0.792308
+    },
+    {
+      "key": "wake-of-gods.level8units:darknessDragon",
+      "name": "Darkness Dragon",
+      "restFill": 0.83
+    },
+    {
+      "key": "wake-of-gods.level8units:diamondDragon",
+      "name": "Diamond Dragon",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.level8units:ghostBehemoth",
+      "name": "Ghost Behemot",
+      "restFill": 0.89
+    },
+    {
+      "key": "wake-of-gods.level8units:hellBaron",
+      "name": "Hell Baron",
+      "restFill": 0.8
+    },
+    {
+      "key": "wake-of-gods.level8units:hellHydra",
+      "name": "Hell Hydra",
+      "restFill": 0.79
+    },
+    {
+      "key": "wake-of-gods.level8units:lordOfThunder",
+      "name": "Lord of Thunder",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.level8units:sacredPhoenix",
+      "name": "Sacred Phoenix",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.level8units:supremeArchangel",
+      "name": "Supreme Archangel",
+      "restFill": 0.784615
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:airMessenger",
+      "name": "Air Messenger",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:earthMessenger",
+      "name": "Earth Messenger",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:emissaryOfLore",
+      "name": "Emissary of Lore",
+      "restFill": 0.91
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:emissaryOfMana",
+      "name": "Emissary of Mana",
+      "restFill": 0.807692
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:emissaryOfPeace",
+      "name": "Emissary of Peace",
+      "restFill": 0.792308
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:emissaryOfWar",
+      "name": "Emissary of War",
+      "restFill": 0.792308
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:fireMessenger",
+      "name": "Fire Messenger",
+      "restFill": 0.776923
+    },
+    {
+      "key": "wake-of-gods.messengersandemissaries:waterMessenger",
+      "name": "Water Messenger",
+      "restFill": 0.776923
+    }
+  ]
+}

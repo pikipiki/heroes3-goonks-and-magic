@@ -1,0 +1,95 @@
+{
+  "version": "0.4.241",
+  "sourceBase": "b095c666aa2cadaaff8623142adf8d74d14e1a29",
+  "engineSha256": "e32739fab1ec470278e23859d3cf845a6f9e7b56aabdf82e03cb35d376cee5d1",
+  "nativeBuild": "ninja -j32 html5",
+  "tests": {
+    "passed": 786,
+    "skipped": 50,
+    "failed": 0
+  },
+  "nativeBrowsers": {
+    "chromium": {
+      "passed": true,
+      "cases": [
+        {
+          "unit": "Gremlin",
+          "maximumColoredBodyExtent": 0.7923076923076923,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Naga Empress",
+          "maximumColoredBodyExtent": null,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Paingpaing",
+          "maximumColoredBodyExtent": 0.97,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "DioupDioup",
+          "maximumColoredBodyExtent": 0.94,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        }
+      ]
+    },
+    "webkit": {
+      "passed": true,
+      "cases": [
+        {
+          "unit": "Gremlin",
+          "maximumColoredBodyExtent": 0.7923076923076923,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Naga Empress",
+          "maximumColoredBodyExtent": null,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Paingpaing",
+          "maximumColoredBodyExtent": 0.97,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "DioupDioup",
+          "maximumColoredBodyExtent": 0.94,
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        }
+      ]
+    }
+  },
+  "bodyReference": {
+    "animatedCreatures": 372,
+    "animationPaths": 370,
+    "sourceFrames": 21745,
+    "minimumRenderedRestFill": 0.769231,
+    "previousRestBodiesBelow40Percent": 114,
+    "currentRestBodiesBelow75Percent": 0,
+    "tableBytes": 176732,
+    "tableSha256": "509487545cdd34bff82bf546aab346cbdcf624b063c318666ec6de33ae981d66",
+    "offlineReproductionMatches": true,
+    "fixedZoom": true,
+    "positionFollowsWeightedBodyCenter": true
+  },
+  "attacksVerified": {
+    "Naga Empress": true,
+    "goonkVariants": 22
+  },
+  "auditExportAbsentFromRelease": true,
+  "archiveLayout": "html5/",
+  "publicGameData": {
+    "files": 10464,
+    "transportBytes": 702294395
+  },
+  "privacy": "Generated local fixtures only; no private saves, device identifiers or credentials."
+}
