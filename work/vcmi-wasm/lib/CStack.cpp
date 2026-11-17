@@ -13,6 +13,7 @@
 #include "era/EraStatusHealthRuntime.h"
 #include "era/EraHydraQueen259Runtime.h"
 #include "CStack.h"
+#include "era/EraHenchmanScalarRuntime.h"
 #include "era/EraHorn266Policy.h"
 #include "era/EraBridgePolicies.h"
 #include "CCreatureHandler.h"
@@ -114,6 +115,7 @@ void CStack::localInit(BattleInfo * battleInfo)
                 }
     era_compat::HydraQueen259::get().initialize(*this,battle->battleGetFightingHero(side));
     era_compat::initializePrimordialDefending(*this);
+    era_compat::henchmen::applySourceScalarExperience(*this);
 	CUnitState::localInit(this); //it causes execution of the CStack::isOnNativeTerrain where nativeTerrain will be considered
 	position = initialPosition;
 }

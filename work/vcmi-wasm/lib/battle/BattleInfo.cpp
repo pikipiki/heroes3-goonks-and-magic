@@ -419,6 +419,10 @@ std::unique_ptr<BattleInfo> BattleInfo::setupBattle(IGameInfoCallback *cb, const
 		add(BonusType::CREATURE_DAMAGE,extra.minimumDamage,BonusSubtypeID(BonusCustomSubtype::creatureDamageMin));
 		add(BonusType::CREATURE_DAMAGE,extra.maximumDamage,BonusSubtypeID(BonusCustomSubtype::creatureDamageMax));
 		add(BonusType::STACK_HEALTH,extra.health);add(BonusType::STACKS_SPEED,extra.speed);
+		if(era_compat::henchmen::settings(*cb).banner
+			&&cb->getSettings().getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE)
+			&&era_compat::henchmen::bannerStyle(*hero)==8)
+			add(BonusType::ADDITIONAL_RETALIATION,2);
 		const auto casts=hero->henchman.stack->valOfBonuses(BonusType::CASTS);
 		add(BonusType::CASTS,era_bridge::henchmen::extraSpellCasts(
 			hero->getPrimSkillLevel(PrimarySkill::KNOWLEDGE),casts,era_compat::henchmen::settings(*cb)));

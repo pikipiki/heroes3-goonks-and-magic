@@ -18,3 +18,16 @@ test('Henchman requests disable mutations while pending and cannot expose resurr
  assert(!renderHenchmanSheet(living,{canAct:true}).includes('data-henchman-action="2"'));
  assert.equal(renderHenchmanSheet({}), '');
 });
+test('Banner ownership and all nine styles use native availability and existing revisioned actions',()=>{
+ const equipped=structuredClone(hero);
+ Object.assign(equipped.henchman,{bannerEnabled:true,bannerStyle:7,canReturnBanner:true});
+ const markup=renderHenchmanSheet(equipped,{canAct:true});
+ assert.equal((markup.match(/data-henchman-action="4"/g)||[]).length,9);
+ assert.match(markup,/data-henchman-slot="7" aria-pressed="true" disabled/);
+ assert.match(markup,/data-henchman-action="5"\s+>/);
+ assert.match(renderHenchmanSheet(equipped,{canAct:true,pending:true}),/data-henchman-action="5" disabled/);
+ Object.assign(equipped.henchman,{bannerStyle:-1,canEquipBanner:false});
+ assert.match(renderHenchmanSheet(equipped,{canAct:true}),/data-henchman-action="3" disabled/);
+ equipped.henchman.canEquipBanner=true;
+ assert.match(renderHenchmanSheet(equipped,{canAct:true}),/data-henchman-action="3"\s+>/);
+});

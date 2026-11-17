@@ -1,5 +1,6 @@
 #pragma once
 #include "EraHenchmanRules.h"
+#include "EraHenchmanBannerRules.h"
 #include "EraHenchmanConfiguration.h"
 #include "../gameState/CGameState.h"
 #include "../mapping/CMap.h"
@@ -15,6 +16,26 @@ inline bool enabled(const IGameInfoCallback & cb)
 {return cb.getSettings().getBoolean(EGameSettings::MODULE_HENCHMEN);}
 inline HenchmanSettings settings(const IGameInfoCallback & cb)
 {return settingsFromJson(cb.gameState().getMap().eraGameplayState["henchmen"]["settings"]);}
+inline int bannerStyle(const CGHeroInstance & hero)
+{
+    return hero.henchman.revision==0&&hero.henchman.banner<0
+        ?static_cast<int>(era_bridge::henchmen::initialBanner(settings(*hero.cb)))
+        :hero.henchman.banner;
+}
+inline ArtifactID bannerArtifact()
+{return ArtifactID(ArtifactID::decode("wake-of-gods.stackartifacts:warlordsBannerHealth"));}
+inline ArtifactPosition availableBanner(const CGHeroInstance & hero)
+{
+    const auto id=bannerArtifact();
+    if(!id.hasValue())return ArtifactPosition::PRE_FIRST;
+    for(size_t i=0;i<hero.artifactsInBackpack.size();++i)
+    {
+        const auto position=ArtifactPosition::BACKPACK_START+static_cast<int>(i);
+        const auto * artifact=hero.getArt(position);
+        if(artifact&&artifact->getTypeId()==id&&!hero.getSourceSlotLocks().count(position))return position;
+    }
+    return ArtifactPosition::PRE_FIRST;
+}
 inline bool emissary(const Creature & creature)
 {
     const auto key=creature.getJsonKey();

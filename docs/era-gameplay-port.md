@@ -133,13 +133,20 @@ désactivation des gardes améliorés et de l'expérience de troupe, la perte de
 50 % d'expérience lors d'un remplacement sans retour dans l'armée, ainsi que
 la résurrection hors ville et le refus serveur lorsque cette option est
 désactivée. Les parcours de magie et de transfert de campagne avec ces réglages
-nécessitent encore leurs validations dédiées ; les réglages de bannières ne
-constituent pas encore une implémentation de leur équipement.
+nécessitent encore leurs validations dédiées.
 
 Le port comprend également les bonus magiques, les sorts supplémentaires,
 le retour de l'équipement de la dernière créature et la sérialisation JSON
 pour les transferts de campagne. Ces parcours supplémentaires nécessitent
 encore leurs scénarios natifs dédiés.
+
+Les bannières disposent d'un premier port vérifié : acquisition depuis le sac,
+neuf styles, conservation lors du remplacement du compagnon, restitution
+unique et destruction lors de son renvoi explicite. La bannière gratuite
+n'est accordée qu'une fois. Sept combats vérifient les statistiques source
+au rang 10 et la conservation des bonus du héros ; les autres effets de
+bannière et les transitions de campagne restent à clôturer. Le détail figure
+dans `scripts/era-bridge/gameplay/henchmen-banner-native-validation.json`.
 
 ## Raccordements et validations restant nécessaires
 

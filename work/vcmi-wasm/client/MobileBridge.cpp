@@ -1589,6 +1589,15 @@ void publishMobileState(){
     companion["returnToArmy"].Bool()=rules.returnToArmy;
     companion["replacementLossPercent"].Integer()=rules.replacementLossPercent;
     companion["revision"].Integer()=hero->henchman.revision;
+    companion["bannerEnabled"].Bool()=rules.banner;
+    companion["bannerStyle"].Integer()=era_compat::henchmen::bannerStyle(*hero);
+    companion["canEquipBanner"].Bool()=rules.banner&&hero->henchman.stack
+     &&era_compat::henchmen::bannerStyle(*hero)<0
+     &&(hero->henchman.alive||!rules.reviveAnywhere)
+     &&era_compat::henchmen::availableBanner(*hero)!=ArtifactPosition::PRE_FIRST;
+    companion["canReturnBanner"].Bool()=rules.banner&&hero->henchman.stack
+     &&era_compat::henchmen::bannerStyle(*hero)>=0
+     &&ArtifactUtils::getArtBackpackPosition(hero,era_compat::henchmen::bannerArtifact())!=ArtifactPosition::PRE_FIRST;
     for(const auto & [slot,stack]:hero->Slots())
     {
      if(!slot.validSlot())continue;

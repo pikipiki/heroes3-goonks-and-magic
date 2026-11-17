@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Henchmen banner acquisition, nine-style selection, source scalar EA replay, partial-block adapter, retaliation and XP arithmetic; partial native closure",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "893036300611fb8447973c1d0ff0b4850cdc99a46689575953b9022da42eb4de",
+    "work/vcmi-wasm/lib/era/EraHenchmanBannerRules.h": "78fbe2db039864ef93cf756fccb94c72c0661f8e8cbb41064b4de94062d9408f",
+    "work/vcmi-wasm/lib/era/EraHenchmanBattleBanner.h": "f918fe06ed81e53cb689c1c7b996807ac0d9461b94fa7e593db2e779efa456e6",
+    "work/vcmi-wasm/lib/era/EraHenchmanBannerSourceRows.h": "19239d75ad9b0fab41741c9f08cddc903730a7861dc6c86a06c218dc4013dc98",
+    "work/vcmi-wasm/lib/era/EraHenchmanScalarRuntime.h": "20172611e25cc92949fa30451a3898b1a56ffac7eb6ffa67b7a6752843afe395",
+    "work/vcmi-wasm/lib/era/EraDeflectionRuntime.h": "0f519f9b99ebfbb2ca124bd8a6ee85ad15ba54362afcc456426999416bcf1367",
+    "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h": "b4be8a4700d18687df80fffa17c1b112fd02191c7ead2b2f314894ff61ed1daf",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "5d3de4ea45c5ce941a29899f0cd01caddfb8d9204b8d3ed8b8485384964d67a0",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "b889dfe027f9e35ec7b5e01ea4517c63b40592810ae3902530244bcdfa1fd573",
+    "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "92b49157a8f561b81dbe260deb2cbaed492e29b08172629e01611c1203819a04",
+    "work/vcmi-wasm/lib/CStack.cpp": "0d588aa9cc811e9506603befdddaad9d96af760ac3abf8272d4f62c5bdd591b1",
+    "web/henchman-sheet.mjs": "247dfbf31cb37603d5db1b077e22be709dab2800df1409f6d2b9bdf767370214",
+    "tests/henchman-sheet.test.mjs": "099a51dcab49b33375f1dea09d24f990e0506a7a62fc73333a466d11bd7e4f0a",
+    "scripts/era-bridge/gameplay/import-henchmen-banner-table.mjs": "7a2c1fe82efa636c595553ed4defe070befbbac2105fdae6b3acb8178e6de16c",
+    "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "78ac9e237896933f4913f5be41bd7ffcd239ea9069a9049ff1c9ef604cc235ba",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "1e1d9d852943b3eb87488e54b06b0b32f72bffbdedfa70efabc6b7e7685ec361"
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bc1d14218fd3b169e61b971830f26008dde65043681fc1a00df6513651c9473e",
+      "scenarios": [
+        "source-scalar-rank10-banner--1",
+        "source-scalar-rank10-banner-0",
+        "source-scalar-rank10-banner-1",
+        "source-scalar-rank10-banner-2",
+        "source-scalar-rank10-banner-3",
+        "source-scalar-rank10-banner-4",
+        "source-scalar-rank10-banner-8"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bc1d14218fd3b169e61b971830f26008dde65043681fc1a00df6513651c9473e",
+      "scenarios": [
+        "banner-inventory-all-nine-styles-replacement-return-dismissal-loss-and-forged-actions",
+        "free-banner-is-granted-once-and-return-does-not-regenerate-it"
+      ],
+      "errors": []
+    }
+  ],
+  "standaloneChecks": [
+    "clang++ -std=c++17 -Wall -Wextra -Werror -ffp-contract=off EraHenchmanBannerRulesStandalone.cpp: PASS",
+    "All nine pure style rules plus raw EA table and XP cap/gain checks: PASS",
+    "2048 comparisons to independently attested sourceExperienceHealth: PASS",
+    "node --test tests/henchman-sheet.test.mjs: 3 PASS",
+    "ninja -j32 html5: PASS in shared Linux Emscripten container"
+  ],
+  "remaining": [
+    "Classic native hero flag UI and direct artifact drag",
+    "Native defence-reduction/partial-block/XP-gain banner battle fixtures, including intrinsic defence-policy overlaps",
+    "Battlefield AI experience difficulty scaling and source variable namespace attestation",
+    "Campaign transition, restart, banner/free-state export semantics",
+    "Remaining death/resurrection/spell/configuration edge scenarios"
+  ],
+  "bindingsNote": "Engine source SHA values are the actual files captured for candidate r2, not potentially newer shared-workspace files. Non-engine source SHA values bind the validation harness/importer/UI tests."
+}

@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -28,9 +28,11 @@ objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in 
 for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'army':[{'type':'core:peasant','amount':100},{'type':'core:archangel','amount':5}],'artifacts':{'spellbook':'core:spellBook'}})
+  if opts['bannerInventory']: o['options']['artifacts']['backpack']=['wake-of-gods.stackartifacts:warlordsBannerHealth']
   if opts['inTown']: o['y']=9
   if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':0,'alive':False,'declined':False,'banner':-1}
   if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':-1}
+  if opts['henchmanType']: o['options']['henchman']={'type':opts['henchmanType'],'experience':0,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':opts['henchmanBanner']}
 if opts['enemyHero']:
  import copy
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -48,7 +50,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner})]);
 }
 
 async function boot({save,enabled=true,originURL=origin,settings,...options}={}){
@@ -123,6 +125,85 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='banner-scalars'){
+  for(const [style,expected]of [
+   [-1,{maximumHealth:77,attack:4,defense:4,damageMin:4,damageMax:5,speed:4,remainingRetaliations:1}],
+   [0,{maximumHealth:104,attack:4,defense:4,damageMin:4,damageMax:5,speed:4}],
+   [1,{maximumHealth:77,attack:9,defense:4,damageMin:4,damageMax:5,speed:4}],
+   [2,{maximumHealth:77,attack:4,defense:9,damageMin:4,damageMax:5,speed:4}],
+   [3,{maximumHealth:77,attack:4,defense:4,damageMin:7,damageMax:8,speed:4}],
+   [4,{maximumHealth:77,attack:4,defense:4,damageMin:4,damageMax:5,speed:6}],
+   [8,{maximumHealth:77,attack:4,defense:4,damageMin:4,damageMax:5,speed:4,remainingRetaliations:3}]
+  ]){
+   await boot({henchmanType:'core:peasant',henchmanBanner:style,stackExperience:17500});
+   const hero=await sheet();assert.equal(hero.henchman.bannerStyle,style);
+   await command(63);await wait(()=>goonkMobileState.mode==='map');await startBattle();
+   const actor=(await state()).battleUnits.find(unit=>unit.armySlot===-6);
+   const army=(await state()).battleUnits.find(unit=>!unit.enemy&&unit.armySlot===0);
+   // The lobby can award a random starting artifact. Observe its ordinary
+   // peasant effects independently, then apply the source rank10 row values
+   // to the post-hench baseline; this also verifies hero bonuses are retained.
+   expected.maximumHealth=Math.trunc((army.maximumHealth+50)*(style===0?2:1.5)+(style===0?2.5:0.5));
+   for(const stat of ['attack','defense','damageMin','damageMax'])expected[stat]+=army[stat]-1;
+   expected.speed+=army.speed-3;
+   for(const [stat,value]of Object.entries(expected))assert.equal(actor[stat],value,`banner${style} ${stat}`);
+   assert.equal(actor.currentHealth,actor.maximumHealth,'Source scalar transform precedes initial health allocation');
+   report.scenarios.push(`source-scalar-rank10-banner-${style}`);await page.close();
+  }
+ }
+ if(process.env.CASES==='banners'){
+  await boot({bannerInventory:true});let hero=await sheet();
+  await page.locator('[data-hero-tab=henchman]').tap();
+  await page.locator('[data-henchman-action="0"][data-henchman-slot="0"]').tap();
+  await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:peasant');
+  hero=(await state()).heroWindow;
+  const inventory=()=>state().then(s=>s.heroWindow.backpack.filter(slot=>slot.name).length);
+  const initialInventory=await inventory();assert(initialInventory>=1);
+  assert.equal(hero.henchman.bannerStyle,-1);assert(hero.henchman.canEquipBanner);
+  await page.locator('[data-henchman-action="3"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.bannerStyle===0);
+  assert.equal(await inventory(),initialInventory-1);
+  for(let style=1;style<=8;style++){
+   await page.locator(`[data-henchman-action="4"][data-henchman-slot="${style}"]`).tap();
+   await wait(style=>goonkMobileState.heroWindow.henchman.bannerStyle===style,style);
+  }
+  hero=(await state()).heroWindow;
+  await command(112,hero.id,4,9,-1,hero.henchman.revision);await page.waitForTimeout(250);
+  assert.equal((await state()).heroWindow.henchman.bannerStyle,8);
+  assert.equal((await state()).heroWindow.henchman.revision,hero.henchman.revision);
+  await page.locator('[data-henchman-action="0"][data-henchman-slot="1"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.unit?.key==='core:archangel');
+  assert.equal((await state()).heroWindow.henchman.bannerStyle,8);
+  await page.locator('[data-henchman-action="5"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.bannerStyle===-1);
+  assert.equal(await inventory(),initialInventory);
+  hero=(await state()).heroWindow;
+  await command(112,hero.id,5,-1,-1,hero.henchman.revision);await page.waitForTimeout(250);
+  assert.equal(await inventory(),initialInventory);
+  await page.locator('[data-henchman-action="3"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.bannerStyle===0);
+  await page.locator('[data-henchman-action="1"]').tap();
+  await wait(()=>!goonkMobileState.heroWindow.henchman.unit);
+  assert.equal((await state()).heroWindow.henchman.bannerStyle,-1);assert.equal(await inventory(),initialInventory-1);
+  report.scenarios.push('banner-inventory-all-nine-styles-replacement-return-dismissal-loss-and-forged-actions');
+  await page.close();
+  await boot({settings:{bannerFree:true}});hero=await sheet();
+  const freeInitialInventory=await inventory();
+  await page.locator('[data-hero-tab=henchman]').tap();
+  await page.locator('[data-henchman-action="0"][data-henchman-slot="0"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.unit);
+  assert.equal((await state()).heroWindow.henchman.bannerStyle,0);
+  await page.locator('[data-henchman-action="5"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.bannerStyle===-1);
+  await page.locator('[data-henchman-action="1"]').tap();
+  await wait(()=>!goonkMobileState.heroWindow.henchman.unit);
+  await page.locator('[data-henchman-action="0"][data-henchman-slot="0"]').tap();
+  await wait(()=>goonkMobileState.heroWindow.henchman.unit);
+  assert.equal((await state()).heroWindow.henchman.bannerStyle,-1);
+  assert.equal(await inventory(),freeInitialInventory+1);
+  report.scenarios.push('free-banner-is-granted-once-and-return-does-not-regenerate-it');
+  await page.close();
+ }
  if(!process.env.CASES||process.env.CASES==='core'){
  await boot();
  let hero=await sheet();assert(hero.henchman&&!hero.henchman.unit);
