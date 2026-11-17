@@ -38,7 +38,7 @@ export function isLandscapeOrientation(win=typeof window!=='undefined'?window:nu
 export function anchorMobileViewport(root,win=window){
  const editingViewport=w=>/^(INPUT|TEXTAREA)$/.test(w.document?.activeElement?.tagName||'');
  const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth,lastDynamicWidth,rotationPending=true;
- const wakeTimers=new Set();
+ const wakeTimers=new Set(),physicalViewports=new Map();
  const probe=win.document?.createElement?.('div');if(probe){probe.setAttribute('aria-hidden','true');Object.assign(probe.style,{position:'fixed',width:'100dvw',height:'100dvh',visibility:'hidden',pointerEvents:'none',inset:'0'});win.document.body.append(probe);}
  function clearWakeTimers(){for(const t of wakeTimers)clearTimeout(t);wakeTimers.clear();}
  function update(){
@@ -86,6 +86,22 @@ export function anchorMobileViewport(root,win=window){
    if((viewport.width>viewport.height)!==(layoutWidth>layoutHeight)){finalWidth=viewport.width;finalHeight=viewport.height;}
    else if(!cssViewport){finalWidth=layoutWidth;finalHeight=Math.min(layoutHeight,viewport.height*scale);}
    isLandscape=finalWidth>finalHeight;
+  }
+  // Android Chrome can wake with all viewport APIs retaining a portrait height,
+  // even though their width and physical screen orientation are landscape.
+  // Keep the last measured usable area for that screen, including browser bars.
+  const physicalMobile=/Android/.test(win.navigator?.userAgent||'');
+  const sw=win.screen?.width,sh=win.screen?.height;
+  if(physicalMobile&&!zoomed&&sw>0&&sh>0){
+   const key=sw+':'+sh;
+   if(finalWidth<=sw+2&&finalHeight<=sh+2){
+    if(!editingViewport(win))physicalViewports.set(key,{width:finalWidth,height:finalHeight});
+   }else{
+    const previous=physicalViewports.get(key);
+    if(previous){finalWidth=previous.width;finalHeight=previous.height;}
+    else{finalWidth=Math.min(finalWidth,sw);finalHeight=Math.min(finalHeight,sh);}
+    isLandscape=finalWidth>finalHeight;
+   }
   }
   if(dynamic?.width>0)lastDynamicWidth=dynamic.width;
   lastLayoutWidth=layoutWidth;rotationPending=false;

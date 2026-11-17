@@ -205,3 +205,20 @@ test('CSS viewport follows both rotations even when physical orientation and pin
  const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);assert.equal(root.style.width,'844px');assert.equal(root.dataset.orientation,'landscape');
  size={width:390,height:844};win.orientation=90;viewport.scale=2;win.dispatchEvent(new Event('resize'));assert.equal(root.style.width,'390px');assert.equal(root.style.height,'844px');assert.equal(root.dataset.orientation,'portrait');anchor.dispose();
 });
+
+test('Android wake ignores impossible landscape heights and keeps the measured browser inset',()=>{
+ const win=new EventTarget(),doc=new EventTarget(),viewport=new EventTarget();
+ let height=279;
+ Object.assign(doc,{hidden:false,createElement:()=>({setAttribute(){},style:{},getBoundingClientRect:()=>({width:716,height}),remove(){}}),body:{append(){}}});
+ Object.assign(viewport,{width:716,height:279,scale:1});
+ Object.assign(win,{document:doc,navigator:{userAgent:'Android Chrome Mobile'},screen:{width:780,height:360,orientation:{type:'landscape-primary'}},innerWidth:716,innerHeight:279,visualViewport:viewport,requestAnimationFrame:f=>f()});
+ const root={style:{},dataset:{}},anchor=anchorMobileViewport(root,win);
+ assert.equal(root.style.height,'279px');
+ // Every browser metric now agrees on an impossible stale portrait height.
+ height=659.67;viewport.height=height;win.innerHeight=height;
+ doc.dispatchEvent(new Event('visibilitychange'));
+ assert.equal(root.style.height,'279px');assert.equal(root.dataset.orientation,'landscape');
+ height=335;viewport.height=height;win.innerHeight=height;win.dispatchEvent(new Event('resize'));
+ assert.equal(root.style.height,'335px','A real browser-toolbar change is accepted');
+ anchor.dispose();
+});

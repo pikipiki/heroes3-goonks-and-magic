@@ -1,0 +1,93 @@
+{
+  "release": "0.4.244",
+  "changes": [
+    "Hide hall countdown and date only in landscape",
+    "Full-width pair of recruitment hall header actions",
+    "Shared stable font size for all five creature stat values",
+    "Keep last usable Android viewport when Chrome reports dimensions exceeding the physical screen",
+    "Landscape titles and town metadata in the right command pane"
+  ],
+  "deviceObservations": {
+    "landscapeViewport": [
+      716,
+      279
+    ],
+    "incorrectChromeViewport": [
+      716,
+      659.67
+    ],
+    "physicalScreen": [
+      780,
+      360
+    ],
+    "hallActionsBottom": 271,
+    "statFontBeforePx": [
+      13,
+      13,
+      9.14,
+      8.35,
+      13
+    ],
+    "statFontAfterPx": [
+      13,
+      13,
+      13,
+      13,
+      13
+    ]
+  },
+  "validation": {
+    "hallLayout": [
+      "Chromium",
+      "WebKit"
+    ],
+    "landscapeControls": {
+      "engines": [
+        "Chromium",
+        "WebKit"
+      ],
+      "screens": 13,
+      "viewports": [
+        [
+          716,
+          279
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          568,
+          320
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          1180,
+          820
+        ]
+      ]
+    },
+    "settings": [
+      "Chromium 360",
+      "Chromium 430",
+      "WebKit 360",
+      "WebKit 430"
+    ],
+    "unitTests": {
+      "total": 846,
+      "passed": 794,
+      "skipped": 52,
+      "failed": 0
+    },
+    "armyUpgradeConfirmation": [
+      "Chromium",
+      "WebKit"
+    ]
+  },
+  "limitations": [
+    "The local viewport restoration was observed; a fresh device lock/unlock cycle has not yet been confirmed by the owner."
+  ]
+}

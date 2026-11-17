@@ -152,3 +152,7 @@
 /* Two full portrait rows may be smaller than the former 132px minimum. */
 #mobile-app .hall-families[data-visible-rows="2"]{grid-auto-rows:var(--hall-row-height,132px)}
 #mobile-app .hall-families[data-visible-rows="2"] .hall-form{grid-template-rows:minmax(0,1fr) minmax(14px,auto) 18px}
+
+/* Stat text uses its full column; repeated layout must not shrink its own width. */
+#mobile-app .hall-feature .creature-stats>div{min-width:0;grid-template-columns:minmax(0,1fr)}
+#mobile-app .hall-feature .creature-stats dd{justify-self:stretch;min-width:0}

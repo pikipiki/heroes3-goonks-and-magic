@@ -27,15 +27,18 @@ for(const kind of ['chromium','webkit']){
   await page.route('**/rail?mobile=1',r=>r.fulfill({contentType:'text/html',body:`<!doctype html><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><link rel=stylesheet href=/web/h3-theme.css><link rel=stylesheet href=/web/mobile-upgrade.css><link rel=stylesheet href=/web/marketplace.css><canvas id=canvas width=800 height=600></canvas><script>Module={_vcmiMobileEnable(){},_vcmiMobileCommand(){}};</script><script type=module src=/web/mobile.mjs></script>`}));
   await (await import('./silent-audio.mjs')).silenceTestAudio(page);await page.goto('http://localhost/rail?mobile=1');await page.waitForSelector('#mobile-app');
   await page.evaluate(()=>{const button=document.createElement('button');button.id='game-menu-toggle';button.textContent='☰';document.querySelector('.mobile-brand').replaceWith(button);});
-  for(const [width,height] of [[844,390],[568,320],[1024,768],[1180,820]]){
+  for(const [width,height] of [[716,279],[844,390],[568,320],[1024,768],[1180,820]]){
    await page.setViewportSize({width,height});
    for(const [name,state,selector] of cases){
     await page.evaluate(state=>dispatchEvent(new CustomEvent('goonk-state',{detail:state})),{...base,...state});await page.waitForTimeout(100);
     // Clamp resolves through grid geometry rather than parsing the CSS expression.
-    const left=await page.locator('#mobile-app').evaluate(e=>e.clientWidth-parseFloat(getComputedStyle(e).gridTemplateColumns.split(' ').at(-1)));
+    const left=await page.locator('#mobile-app').evaluate(e=>parseFloat(getComputedStyle(e).gridTemplateColumns.split(' ')[0]));
+    const headings=await page.locator('.mobile-menu>h1,header>h1,header>h2').evaluateAll(nodes=>nodes.filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>({text:e.textContent,x:e.getBoundingClientRect().x})));
+    assert(headings.every(e=>e.x>=width/2),name+' title stays in the right pane '+JSON.stringify(headings));
+    if(name==='town')assert(await page.locator('.calendar-location').isVisible(),'Town name shares the right calendar rail');
     let count=0;
     for(const b of await page.locator(selector).all())if(await b.isVisible()){
-     count++;const r=await b.boundingBox();const onRight=!(name==='map'&&await b.evaluate(e=>!!e.closest('.scene-tools')))&&name!=='creature';assert((!onRight||r.x>=left-1)&&r.y>=-1&&r.x+r.width<=width+1&&r.y+r.height<=height+1,name+' right controls '+JSON.stringify({width,height,left,r}));assert(r.width>=43&&r.height>=43,name+' touch target '+JSON.stringify(r));
+     count++;const r=await b.boundingBox();const onRight=!(name==='map'&&await b.evaluate(e=>!!e.closest('.scene-tools')))&&name!=='creature'&&!(name==='tavern'&&await b.evaluate(e=>!!e.closest('.tavern-actions')));assert((!onRight||r.x>=left-1)&&r.y>=-1&&r.x+r.width<=width+1&&r.y+r.height<=height+1,name+' right controls '+JSON.stringify({width,height,left,r}));assert(r.width>=43&&r.height>=43,name+' touch target '+JSON.stringify(r));
     }
     assert(count>0,name+' exercised visible controls');
     if(['map','town','battle'].includes(name)){

@@ -19,7 +19,18 @@ export function createRecruitmentHall({panel,command,prices,stats,openBuildings}
  };
  const fitLabels=()=>{
   fitText(panel.querySelector('.hall-feature-title h3'),16);
-  for(const value of panel.querySelectorAll('.hall-feature .creature-stats dd'))fitText(value,13);
+  const values=[...panel.querySelectorAll('.hall-feature .creature-stats dd')];
+  // Measure the available stat column, never the already fitted text box.
+  // One shared size keeps damage ranges and HP consistent with ATK and DEF.
+  let size=13;
+  for(const value of values){
+   const width=value.parentElement.clientWidth;
+   if(!measure||width<2)return;
+   const style=getComputedStyle(value);measure.font=style.fontStyle+' '+style.fontWeight+' 13px '+style.fontFamily;
+   size=Math.min(size,13*(width-1)/Math.max(1,measure.measureText(value.textContent).width));
+  }
+  const fontSize=Math.max(1,size).toFixed(2)+'px';
+  for(const value of values)if(value.style.fontSize!==fontSize)value.style.fontSize=fontSize;
  };
  const resizeRows=()=>{
   const list=panel.querySelector('.hall-families');if(!list)return;fitLabels();

@@ -12,7 +12,7 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  const base={mode:'fort',dialogTitle:'Town creatures',day:1,turn:true,resources:[50,50,50,50,50,50,118300,50],armies:[],fortRows:[],previewUnits:[],fortFamilies:roster.map((ids,level)=>({level,count:12,variants:ids.map((key,rank)=>{const u=creatures.find(x=>x.graphics.animation==='goonk/'+['pink','lancer','archer','fart','vomit','blue','fire'][level]+(rank===0?'':rank===1?'-evo':'-exalted'));return{id:level*3+rank,level,rank,count:12,built:rank<2,requiredBuilding:'{Final sanctuary}',name:u.name.singular,cost:[0,0,0,0,0,0,rank===2?300:90,0],attack:u.attack,defense:u.defense,health:u.hitPoints,speed:u.speed,damageMin:u.damage.min,damageMax:u.damage.max};})}))};window.familyState=base;window.send=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(familyState)}));send();},{creatures,roster});
 
  const send=s=>p.evaluate(s=>dispatchEvent(new CustomEvent('goonk-state',{detail:s})),s),base=await p.evaluate(()=>structuredClone(familyState));
- for(const size of [{width:430,height:873},{width:430,height:760},{width:360,height:640},{width:360,height:650},{width:360,height:716},{width:360,height:650},{width:360,height:716},{width:360,height:780},{width:393,height:851},{width:320,height:568},{width:768,height:1024},{width:640,height:280},{width:716,height:335},{width:851,height:393},{width:1024,height:768}]){
+ for(const size of [{width:430,height:873},{width:430,height:760},{width:360,height:640},{width:360,height:650},{width:360,height:716},{width:360,height:650},{width:360,height:716},{width:360,height:780},{width:393,height:851},{width:320,height:568},{width:768,height:1024},{width:640,height:280},{width:716,height:279},{width:716,height:335},{width:851,height:393},{width:1024,height:768}]){
   await p.setViewportSize(size);await send(base);await p.waitForTimeout(250);
   const list=p.locator('.hall-families');await list.evaluate(e=>e.scrollTop=0);
   const rows=await list.evaluate(e=>{const s=getComputedStyle(e),first=e.children[0].getBoundingClientRect(),next=e.children[1].getBoundingClientRect();return{height:e.clientHeight-parseFloat(s.paddingTop)-parseFloat(s.paddingBottom),first:first.height,nextTop:next.top,top:first.top,gap:parseFloat(s.rowGap)||0,minimum:Math.max(132,...[...e.children].flatMap(r=>[...r.querySelectorAll('.hall-art')].map(a=>Math.ceil(r.getBoundingClientRect().height-a.getBoundingClientRect().height+64)))),secondBottom:next.bottom,viewportBottom:e.getBoundingClientRect().bottom};});
@@ -23,7 +23,10 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
    if(size.width===430&&size.height===873)assert.equal(count,2,'iPhone Pro Max uses two rows');
   }
   const back=p.locator('[data-presentation-close]');assert.equal(await back.count(),1);await back.waitFor({state:'visible'});const rect=await back.boundingBox();assert(rect.y>=0&&rect.x>=0&&rect.y+rect.height<=size.height&&rect.x+rect.width<=size.width,'Back is reachable '+JSON.stringify({size,rect}));
-  if(size.width>size.height){const detail=p.locator('.hall-detail'),metrics=await detail.evaluate(e=>({overflow:getComputedStyle(e).overflowY,height:e.clientHeight,scroll:e.scrollHeight}));assert.equal(metrics.overflow,'auto');if(size.width===716&&size.height===335)assert(metrics.scroll<=metrics.height+1,'Measured landscape sidebar has no unnecessary scroll');const statFit=await detail.locator('.hall-feature').evaluate(e=>({height:e.clientHeight,scroll:e.scrollHeight,bottom:e.getBoundingClientRect().bottom,stats:e.querySelector('.creature-stats').getBoundingClientRect().bottom}));assert(statFit.stats<=statFit.bottom+1&&statFit.scroll<=statFit.height+1,'Attack and defense values fit without an inner scrollbar '+JSON.stringify({size,statFit}));if(size.height<=280)assert(metrics.scroll>metrics.height,'Short landscape sidebar scrolls');const buy=detail.locator('[data-hall-buy]');await buy.scrollIntoViewIfNeeded();assert(await buy.isVisible());}
+  if(size.width>size.height){const detail=p.locator('.hall-detail'),metrics=await detail.evaluate(e=>({overflow:getComputedStyle(e).overflowY,height:e.clientHeight,scroll:e.scrollHeight}));assert.equal(metrics.overflow,'auto');if(size.width===716&&size.height===335)assert(metrics.scroll<=metrics.height+1,'Measured landscape sidebar has no unnecessary scroll');const statFit=await detail.locator('.hall-feature').evaluate(e=>({height:e.clientHeight,scroll:e.scrollHeight,bottom:e.getBoundingClientRect().bottom,stats:e.querySelector('.creature-stats').getBoundingClientRect().bottom}));assert(statFit.stats<=statFit.bottom+1&&statFit.scroll<=statFit.height+1,'Attack and defense values fit without an inner scrollbar '+JSON.stringify({size,statFit}));if(size.height<=335)assert(metrics.scroll<=metrics.height+1,'Short landscape keeps all recruitment actions visible');assert(await p.locator('.mobile-calendar').isHidden(),'Hall countdown and date are hidden only in landscape');const buy=detail.locator('[data-hall-buy]');await buy.scrollIntoViewIfNeeded();assert(await buy.isVisible());}
+  const statValues=await p.locator('.hall-feature .creature-stats dd').evaluateAll(nodes=>nodes.map(e=>({size:getComputedStyle(e).fontSize,width:e.clientWidth,scroll:e.scrollWidth})));
+  assert.equal(new Set(statValues.map(e=>e.size)).size,1,'All five stat values share one font size');
+  assert(statValues.every(e=>e.scroll<=e.width+1),'Stat values fit their full columns');
   await p.screenshot({path:'/tmp/goonk-hall-'+kind+'-'+size.width+'x'+size.height+'.png'});
   await back.tap();assert((await p.evaluate(()=>calls)).some(c=>c[0]===43),'Back calls the native return action');
   await send({...base,mode:'map',heroName:'Maille Maille Keeper',movement:1630,heroMana:10,heroManaLimit:10,heroHasSpellbook:false,turn:true});await p.waitForTimeout(150);
@@ -32,6 +35,14 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
   const label=await p.locator('[data-recruit-label]').boundingBox(),days=await p.locator('[data-recruit-days]').boundingBox();
   if(size.width<size.height){assert(days.y>=label.y+label.height-1,'Portrait recruits and countdown use two lines');assert(cue.x+cue.width<=size.width+1,'Countdown stays entirely inside portrait viewport');assert(days.x+days.width<=cue.x+cue.width-2,'Final countdown glyph is not cropped');}else assert(Math.abs(days.y-label.y)<3,'Landscape countdown stays on one line');
 
+ }
+ // A damage range and three-digit HP must not progressively shrink on resize.
+ const highStats={...base,fortFamilies:base.fortFamilies.map(f=>({...f,variants:f.variants.map(u=>({...u,attack:32,defense:30,damageMin:52,damageMax:73,health:460}))}))};
+ for(const size of [{width:716,height:279},{width:360,height:716},{width:716,height:335}]){
+  await p.setViewportSize(size);await send(highStats);await p.waitForTimeout(200);
+  for(let i=0;i<4;i++){await send({...highStats,day:i+1});await p.waitForTimeout(50);}
+  const sizes=await p.locator('.hall-feature .creature-stats dd').evaluateAll(nodes=>nodes.map(e=>parseFloat(getComputedStyle(e).fontSize)));
+  assert(sizes.every(n=>n===13),'Normal combat stats stay at 13px across updates '+JSON.stringify({size,sizes}));
  }
  // Every selection retains the same compact footer and roster geometry.
  await p.setViewportSize({width:360,height:716});await send(base);await p.waitForTimeout(180);
@@ -88,5 +99,5 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  assert(safeRows.height>=220&&safeRows.secondBottom<=safeRows.bottom-7,'Pro Max fits two rows with safe areas reserved');
  await p.screenshot({path:'/tmp/goonk-hall-'+kind+'-pro-max-safe.png'});
  await send({...base,mode:'town'});await p.waitForTimeout(150);await p.waitForFunction(()=>{const img=document.querySelector('[data-ui=town-guild] img');return img?.complete&&img.naturalWidth>0&&img.src.includes('/commander/magic.svg');});
- assert.deepEqual(errors,[]);console.log('PASS',kind,'two complete portrait families per screen; safe areas; short landscape sidebar scroll; visible Back; map date below recruits');
+ assert.deepEqual(errors,[]);console.log('PASS',kind,'two complete portrait families per screen; safe areas; short landscape without sidebar scroll; visible Back; map date below recruits');
  }finally{await b.close();}}
