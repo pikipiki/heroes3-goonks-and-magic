@@ -182,9 +182,9 @@ try{
  assert(current.active&&current.days===7&&current.dailyIncome===2000);
  // A stale request must not charge twice or extend the same improvement.
  const amount=(await state()).mithril.amount;
- await command(113,ore.id,0,data.revision);await page.waitForTimeout(300);
+ await command(1200,ore.id,0,data.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,amount);
- await command(113,5,0,(await state()).mithril.revision);await page.waitForTimeout(300);
+ await command(1200,5,0,(await state()).mithril.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,amount);
  report.scenarios.push('owned-mine-double-income-payment-and-stale-request');
  await page.locator('[data-mithril-close]').tap();await page.locator('[data-ui=heroes]').tap();
@@ -238,7 +238,7 @@ try{
  await page.close();await boot({enabled:false});assert.equal(await page.locator('button[data-mithril-open]').isVisible(),false);
  report.scenarios.push('disabled-module-baseline');
  await page.close();await boot({funds:0});data=await panel();assert.equal(data.amount,0);
- assert(data.offers.every(row=>!row.available));await command(113,0,7,data.revision);await page.waitForTimeout(300);
+ assert(data.offers.every(row=>!row.available));await command(1200,0,7,data.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,0);assert.equal((await state()).mithril.revision,data.revision);
  report.scenarios.push('insufficient-mithril-rejected-by-server');await page.close();
  }

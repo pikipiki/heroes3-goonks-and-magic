@@ -2,9 +2,10 @@
   "passed": true,
   "scope": "native-core-only",
   "completeRules": false,
-  "engineSha256": "e2b14f6e3c2a330a70d10a48544babe9226c78f69c67e5cf86e39b502d4ffffb",
+  "engineSha256": "743750a0c01ce9507a24b8594e08b4780f58004865eb31214dd9a43b566203c3",
   "scenarios": [
     "selected-from-army-and-mobile-layout",
+    "companion-battle-inspection-keeps-its-native-command",
     "independent-battle-actor-and-earned-experience",
     "replacement-preserves-companion-experience",
     "native-save-reload",
@@ -24,7 +25,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "393451a2537d1dc73c5e90bc107cf2343468f1da268d0b09807ebee7a9bc6d50"
+      "sha256": "45d89f83c4be71bd8e08b57d2e76b50d59b4030eda90cc486c61d594625b70dd"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -48,11 +49,11 @@
     },
     {
       "file": "work/browser-tests/wog-henchmen-native-e2e.mjs",
-      "sha256": "f0b116fe7115712b936b2c964df5e8543b9342866838c302437b871d2ed2d175"
+      "sha256": "9654d71b4e731266a3450065f60a1885ed05eb693fdf7bac69b1c624de0bed5b"
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "d0a7f78b54cbee84ef1de043ab85cc588d82a1fa1fe7dec21d1bfdeee1732177"
+      "sha256": "f0474bec16a06f06a82b869481c474b8f6e9c62eea8ffad5d67df35a87737216"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -60,7 +61,7 @@
     },
     {
       "file": "work/vcmi-wasm/client/MobileBridge.cpp",
-      "sha256": "ce4278c42465f81f6d039fc892b04bafcfe888e7f4d3b150b701613b7cb18fe0"
+      "sha256": "179baef6cab444789470a43e36aca4ce606d4d2a1b52149d63baab8f9614e9c4"
     },
     {
       "file": "work/vcmi-wasm/client/NetPacksClient.cpp",
@@ -289,6 +290,10 @@
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilReroll.h",
       "sha256": "95a908d9e0bd6f7d4c17bd03a782f8446b382273575a32d959f6c3ab833dddf2"
+    },
+    {
+      "file": "work/browser-tests/army-management-native-e2e.mjs",
+      "sha256": "76bf2acfc0bb0b4bbc9c147211e6f8492b8e6a15527bc5d54bf5d54e9c66bbce"
     }
   ]
 }

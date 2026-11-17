@@ -157,6 +157,10 @@ les autres récompenses et variables de l'objet. Le scénario de régression
 ajoute une récompense en or tirée au hasard au sanctuaire : sa valeur reste
 identique après le changement de sort et une nouvelle visite. Le moteur
 précédent échoue sur ce même scénario parce qu'il régénère tout l'objet.
+Les commandes du mithril disposent d'une plage distincte de celles de l'armée
+et de l'inspection en combat. Les scénarios natifs ouvrent la fiche du compagnon
+pendant le combat et vérifient le renvoi avec confirmation, le rejet des
+demandes périmées, les transferts et le dépôt de troupes avec sauvegarde/reprise.
 
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.

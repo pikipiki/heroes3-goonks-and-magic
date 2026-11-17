@@ -1961,8 +1961,10 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   }
   return;
  }
- if(action==114){mobileMithrilPanel=a!=0;lastPublished=0;return;}
- if(action==113)
+ // ERA extensions use their own range; 113/114 belong to army dismissal
+ // and battle inspection, including when the mithril module is disabled.
+ if(action==1201){mobileMithrilPanel=a!=0;lastPublished=0;return;}
+ if(action==1200)
  {
   const auto player=GAME->interface();
   if(player&&player->makingTurn&&ENGINE->windows().topWindow<AdventureMapInterface>()

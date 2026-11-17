@@ -20,14 +20,14 @@ export function createMithrilEnhancements({root,command}){
  panel.innerHTML='<header><h2 id="mithril-title">Mithril</h2><button data-mithril-close aria-label="Fermer">✕</button></header><div class="mithril-content"></div>';
  root.append(panel);
  let open=false,state={},signature='',pending=null,pendingKind=null;
- const close=()=>{open=false;pending=null;pendingKind=null;panel.hidden=true;root.dataset.mithrilOpen='false';command(114,0);};
- button.addEventListener('click',()=>{open=true;signature='';root.dataset.mithrilOpen='true';command(114,1);});
+ const close=()=>{open=false;pending=null;pendingKind=null;panel.hidden=true;root.dataset.mithrilOpen='false';command(1201,0);};
+ button.addEventListener('click',()=>{open=true;signature='';root.dataset.mithrilOpen='true';command(1201,1);});
  panel.addEventListener('click',event=>{
   if(event.target.closest('[data-mithril-close]')){close();return;}
   const buy=event.target.closest('[data-mithril-buy]');if(!buy||buy.disabled||pending!==null)return;
   pending=state.mithril?.revision??0;
   pendingKind=state.mithril?.offers?.find(row=>row.id===Number(buy.dataset.mithrilBuy)&&(row.choice??0)===Number(buy.dataset.mithrilChoice))?.kind??null;
-  command(113,Number(buy.dataset.mithrilBuy),Number(buy.dataset.mithrilChoice),pending);
+  command(1200,Number(buy.dataset.mithrilBuy),Number(buy.dataset.mithrilChoice),pending);
   signature='';render();
  });
  function render(){

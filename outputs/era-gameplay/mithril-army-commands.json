@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "engine": {
+    "sha256": "743750a0c01ce9507a24b8594e08b4780f58004865eb31214dd9a43b566203c3"
+  },
+  "checks": [
+    "Bulk transfer merges matching types without swapping armies or losing creatures",
+    "Reverse transfer retains one creature with the hero",
+    "Dismissal confirmation and stale-count protection work in the native engine",
+    "Leave on map works through the UI in an ordinary game",
+    "A fresh runtime reload preserves the deployed group in the existing save format"
+  ],
+  "errors": []
+}

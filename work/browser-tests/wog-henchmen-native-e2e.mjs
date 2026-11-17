@@ -148,6 +148,10 @@ try{
  await startBattle();
  const actor=(await state()).battleUnits.find(unit=>unit.armySlot===-6);
  assert.equal(actor.count,1);assert(actor.maximumHealth>=51);
+ await wait(()=>goonkMobileState.canAct);
+ await command(114,actor.stackId);await wait(()=>goonkMobileState.mode==='creature');
+ await command(0);await wait(()=>goonkMobileState.mode==='battle');
+ report.scenarios.push('companion-battle-inspection-keeps-its-native-command');
  await resolve();hero=await sheet();
  assert(hero.henchman.alive&&hero.henchman.experience>=6);
  report.scenarios.push('independent-battle-actor-and-earned-experience');
