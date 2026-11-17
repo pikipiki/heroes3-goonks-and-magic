@@ -16,10 +16,12 @@ namespace era_compat::henchmen
 class ClassicHenchmanFlag final : public CIntObject
 {
     std::function<void()> action;
+    std::function<void()> contextAction;
 public:
-    ClassicHenchmanFlag(const Rect & area,std::function<void()> callback)
-        :CIntObject(LCLICK),action(std::move(callback)){pos=area;}
+    ClassicHenchmanFlag(const Rect & area,std::function<void()> callback,std::function<void()> context)
+        :CIntObject(LCLICK|SHOW_POPUP),action(std::move(callback)),contextAction(std::move(context)){pos=area;}
     void clickPressed(const Point &) override{if(action)action();}
+    void showPopupWindow(const Point &) override{if(contextAction)contextAction();}
 };
 
 inline std::string classicText(const char * french,const char * english)

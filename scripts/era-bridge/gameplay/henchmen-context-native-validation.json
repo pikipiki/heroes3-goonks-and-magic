@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Classic hero flag right-click opens the explicit companion action menu without Ctrl; held artifact guard and existing touch equipment regression",
+  "engineSha256": "6a82a671abd9e8a519334ca773cf015b6128d339ac152eebd2c088723cddb931",
+  "parentEngineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
+  "uiAdaptation": "Uses the same explicit action menu as left-click; does not reproduce the original automatic right-click prompt sequence. All mutations use existing canonical server actions.",
+  "sourceBindings": {
+    "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "39ed6a5e372308e195f10830a8d87883a1395bb34b7f648304d0ea866053b9c6",
+    "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8837134b5973ce390e18bc2b4ecc7cd3372de59160efb8e2e75193bc643164f7"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 5,
+    "buildLogSha256": "7a2f80643a137062dd1f0cc9dec9974c90ab0ab02ac6fad855792f4a56af8cc9",
+    "sourceBindingsSha256": "bebfd069ff88e04b6c53395ed5cffc7c491830ec8b57cbf29f4d76d0a03ca796",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "6a82a671abd9e8a519334ca773cf015b6128d339ac152eebd2c088723cddb931",
+      "scenarios": [
+        "classic-hero-flag-native-choice-held-drop-and-banner-style-menus",
+        "desktop-right-click-opens-native-companion-menu-and-changes-banner-without-Ctrl",
+        "right-click-with-a-held-artifact-does-not-equip-or-consume-it"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "6a82a671abd9e8a519334ca773cf015b6128d339ac152eebd2c088723cddb931",
+      "scenarios": [
+        "held-banner-transfer-consumes-native-transition-artifact-and-permits-dead-companion"
+      ],
+      "errors": []
+    }
+  ]
+}

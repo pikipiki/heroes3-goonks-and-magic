@@ -97,8 +97,8 @@ sys.stdout.buffer.write(out.getvalue())
 }
 
 async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,...options}={}){
- const classic=process.env.CASES==='classic';
- const desktop=['prompt-desktop','town-resurrection-desktop'].includes(process.env.CASES);
+ const classic=['classic','classic-context'].includes(process.env.CASES);
+ const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES);
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop,bypassCSP:true});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
@@ -181,7 +181,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
 }
 
 async function sheet(){
- if(process.env.CASES==='classic')await command(55);
+ if(['classic','classic-context'].includes(process.env.CASES))await command(55);
  else await page.locator('[data-ui=heroes]')[process.env.CASES==='town-resurrection-desktop'?'click':'tap']();
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
@@ -321,11 +321,14 @@ try{
    report.scenarios.push(`native-banner-defense-${style}-damage-${damage}`);await page.close();
   }
  }
- if(process.env.CASES==='classic'){
+ if(['classic','classic-context'].includes(process.env.CASES)){
   await boot({bannerInventory:true});await sheet();
-  const flag=async()=>{
+  const flag=async(right=false)=>{
    const previous=await state(),r=previous.rect;
-   await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),{x:r.x+635,y:r.y+40});
+   if(right){
+    const point=await page.evaluate(({x,y})=>{const box=Module.canvas.getBoundingClientRect();return{x:box.x+x*box.width/Module.canvas.width,y:box.y+y*box.height/Module.canvas.height};},{x:r.x+635,y:r.y+40});
+    await page.mouse.click(point.x,point.y,{button:'right'});
+   }else await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),{x:r.x+635,y:r.y+40});
    await wait(token=>goonkMobileState.windowToken!==token,previous.windowToken);
   };
   const row=async index=>{
@@ -344,6 +347,19 @@ try{
   await row(1);await wait(token=>goonkMobileState.windowToken!==token,currentToken);
   await row(8);await wait(()=>goonkMobileState.heroWindow?.henchman?.bannerStyle===8);
   report.scenarios.push('classic-hero-flag-native-choice-held-drop-and-banner-style-menus');
+  if(process.env.CASES==='classic-context'){
+   await flag(true);await row(1);await row(5);
+   await wait(()=>goonkMobileState.heroWindow?.henchman?.bannerStyle===5);
+   report.scenarios.push('desktop-right-click-opens-native-companion-menu-and-changes-banner-without-Ctrl');
+   await flag(true);await row(2);await wait(()=>goonkMobileState.heroWindow?.henchman?.bannerStyle===-1);
+   await command(62,19);await wait(()=>goonkMobileState.heroWindow?.picked);
+   const before=await state(),r=before.rect;
+   const point=await page.evaluate(({x,y})=>{const box=Module.canvas.getBoundingClientRect();return{x:box.x+x*box.width/Module.canvas.width,y:box.y+y*box.height/Module.canvas.height};},{x:r.x+635,y:r.y+40});
+   await page.mouse.click(point.x,point.y,{button:'right'});await page.waitForTimeout(200);
+   const after=await state();assert.equal(after.windowToken,before.windowToken);assert(after.heroWindow.picked);
+   assert.equal(after.heroWindow.henchman.bannerStyle,-1);await command(64);
+   report.scenarios.push('right-click-with-a-held-artifact-does-not-equip-or-consume-it');
+  }
   await page.close();
  }
  if(process.env.CASES==='held-banner'){

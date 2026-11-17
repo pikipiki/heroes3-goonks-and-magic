@@ -92,7 +92,11 @@ CHeroWindow::CHeroWindow(const CGHeroInstance * hero)
 				if(era_compat::henchmen::classicAction(curHero->id,revision,HenchmanAction::EQUIP_HELD_BANNER))
 					era_compat::henchmen::classicBannerStyles(*curHero,revision+1);
 			}
-		});
+		},[this]{
+            // The same explicit menu keeps revival, banner choice and help
+            // available without requiring Ctrl or a held artifact drop.
+            if(curHero&&!getPickedArtifact())era_compat::henchmen::openClassicHenchman(*curHero);
+        });
 	name = std::make_shared<CLabel>(190, 38, EFonts::FONT_BIG, ETextAlignment::CENTER, Colors::YELLOW);
 	title = std::make_shared<CLabel>(190, 65, EFonts::FONT_MEDIUM, ETextAlignment::CENTER, Colors::WHITE);
 

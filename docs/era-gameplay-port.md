@@ -230,6 +230,14 @@ sur cette compilation. Voir
 `scripts/era-bridge/gameplay/henchmen-town-script-native-validation.json`.
 La fidélité des visites initiales d'un scénario reste à rapprocher de la source ERA.
 
+Dans l'interface classique, le clic droit sur le drapeau ouvre aussi le menu
+du compagnon sans Ctrl. Il réutilise les choix explicites de sélection,
+résurrection, bannière et informations, plutôt que la succession automatique
+de fenêtres du script original. Le clic droit réel et le changement de bonus
+passent ; tenir un artefact n'ouvre pas ce menu et ne l'équipe pas. Le dépôt
+tactile d'une bannière conserve son fonctionnement. Voir
+`scripts/era-bridge/gameplay/henchmen-context-native-validation.json`.
+
 ## Raccordements et validations restant nécessaires
 
 La règle ERA Scripts 779 des pierres de connaissance possède un raccordement
