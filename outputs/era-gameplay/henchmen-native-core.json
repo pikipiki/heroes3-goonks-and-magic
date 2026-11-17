@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "native-core-only",
   "completeRules": false,
-  "engineSha256": "d5b597e5acaa1c73b28ba78ae9dabafee596e1a3b24272146a017a3ecdd76869",
+  "engineSha256": "3557397ab7f5908f6c27ff3006f12174655b721252ccdfc2f332a14804104cd0",
   "scenarios": [
     "selected-from-army-and-mobile-layout",
     "independent-battle-actor-and-earned-experience",
@@ -10,9 +10,12 @@
     "native-save-reload",
     "dead-companion-resurrected-in-owned-town",
     "ai-selects-shooter-as-independent-companion",
+    "santa-companion-guardian-count-multiplied-by-companion-level",
+    "previous-engine-save-restores-companion",
     "disabled-profile-baseline"
   ],
   "errors": [],
+  "legacyEngineSha256": "42cf1eea746bbff162ec5d203320bcdafd3a7959d95ab2b708036e7dfa7cea80",
   "sourceBindings": [
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -201,6 +204,10 @@
     {
       "file": "work/vcmi-wasm/server/ServerNetPackVisitors.h",
       "sha256": "ecf6857f3dbc7303cca1f825d72f3e4e870b0f28fa03eaf5c24c790e5212df03"
+    },
+    {
+      "file": "work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp",
+      "sha256": "5f3835cfc2896d4998f7319a42ec882235daec01a352292a6cb274485fcd7a5f"
     },
     {
       "file": "work/vcmi-wasm/server/battles/BattleProcessor.cpp",

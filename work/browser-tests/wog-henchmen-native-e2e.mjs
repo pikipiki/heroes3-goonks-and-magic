@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -30,6 +30,7 @@ for o in objects:
   o['options'].update({'type':'core:christian','experience':0,'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'army':[{'type':'core:peasant','amount':100},{'type':'core:archangel','amount':5}],'artifacts':{'spellbook':'core:spellBook'}})
   if opts['inTown']: o['y']=9
   if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':0,'alive':False,'declined':False,'banner':-1}
+  if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':0,'alive':True,'declined':False,'banner':-1}
 if opts['enemyHero']:
  import copy
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -47,10 +48,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa})]);
 }
 
-async function boot({save,enabled=true,...options}={}){
+async function boot({save,enabled=true,originURL=origin,...options}={}){
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true});
  await silenceTestAudio(page);
@@ -70,7 +71,7 @@ async function boot({save,enabled=true,...options}={}){
    }});
   }});
  },enabled);
- await page.goto(origin+'/game.html?mobile=1');
+ await page.goto(originURL+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
  if(startup)throw Error(JSON.stringify(startup));
@@ -171,6 +172,26 @@ try{
  const aiCompanion=(await state()).battleUnits.find(unit=>unit.armySlot===-6&&unit.enemy);
  assert(aiCompanion&&aiCompanion.key==='core:archer'&&aiCompanion.count===1);
  report.scenarios.push('ai-selects-shooter-as-independent-companion');await page.close();
+ await boot({santa:true});hero=await sheet();
+ const santaLevel=hero.henchman.level;assert(santaLevel>1);
+ await command(63);await wait(()=>goonkMobileState.mode==='map');await startBattle();
+ await wait(()=>goonkMobileState.battleUnits?.some(unit=>unit.key==='core:gremlin'));
+ const guardians=(await state()).battleUnits.filter(unit=>unit.key==='core:gremlin');
+ assert(guardians.length>0&&guardians.every(unit=>unit.count===santaLevel),JSON.stringify({santaLevel,guardians}));
+ report.scenarios.push('santa-companion-guardian-count-multiplied-by-companion-level');await page.close();
+ if(process.env.HENCHMAN_LEGACY_ORIGIN){
+  report.legacyEngineSha256=sha(path.join(process.env.HENCHMAN_LEGACY_ENGINE_DIR||'work/downloads/henchmen-native-engine','vcmiclient.wasm'));
+  assert.notEqual(report.legacyEngineSha256,report.engineSha256);
+  await boot({originURL:process.env.HENCHMAN_LEGACY_ORIGIN});await sheet();
+  await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-slot="1"]').tap();
+  await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
+  const oldCompanion=(await state()).heroWindow.henchman;
+  await command(63);await wait(()=>goonkMobileState.mode==='map');
+  const oldSave=[...await readCompletedNativeSave(page,command,{tag:813})];
+  await page.close();await boot({save:oldSave});hero=await sheet();
+  assert.equal(hero.henchman.unit.key,oldCompanion.unit.key);assert.equal(hero.henchman.experience,oldCompanion.experience);assert(hero.henchman.alive);
+  report.scenarios.push('previous-engine-save-restores-companion');await page.close();
+ }
  await boot({enabled:false});hero=await sheet();assert(!hero.henchman);assert.equal(await page.locator('[data-hero-tab=henchman]').count(),0);
  report.scenarios.push('disabled-profile-baseline');
  assert.deepEqual(report.errors,[]);

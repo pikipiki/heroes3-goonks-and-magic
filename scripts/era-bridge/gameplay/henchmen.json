@@ -237,9 +237,9 @@
     "Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.",
     "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
     "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",
-    "Native save/load and mobile core scenarios pass; campaign transfer and legacy-save scenarios remain to validate.",
+    "Native save/load, mobile core and previous Henchmen-engine saves pass; campaign transfer and older pre-Henchmen saves remain to validate.",
     "Army selection/replacement and resurrection are connected; banner equipment is not ported.",
-    "Battlefield actor, stats and spells are connected; Santa guards and full death/action interactions remain incomplete.",
+    "Battlefield actor, stats, spells and level-scaled guardians are connected; full death/action interactions remain incomplete.",
     "Full AI progression, classic UI, inventory/spell edge cases and whole-pack native scenarios are not validated."
   ]
 }

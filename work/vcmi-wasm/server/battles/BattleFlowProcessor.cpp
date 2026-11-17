@@ -16,6 +16,7 @@
 #include "../era/EraInterferenceRuntime.h"
 #include "../era/EraOblivionRuntime.h"
 #include "../../lib/era/EraCrystalExperience.h"
+#include "../../lib/era/EraHenchmanModel.h"
 #include "../../lib/era/EraStatusHealthBonuses.h"
 #include "BattleFlowProcessor.h"
 #include "../era/EraPrimordialStateRuntime.h"
@@ -261,6 +262,11 @@ void BattleFlowProcessor::trySummonGuardians(const CBattleInfoCallback & battle,
 			battle::UnitInfo info;
 			info.id = battle.battleNextUnitId();
 			info.count =  std::max(1, stack->getCount() * summonInfo->val / 100);
+			if(stack->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER
+				&&era_compat::henchmen::enabled(gameHandler->gameInfo()))
+				if(const auto * hero=battle.battleGetFightingHero(stack->unitSide()))
+					info.count=era_bridge::henchmen::mul(info.count,
+						era_compat::henchmen::progress(*hero,gameHandler->gameState().day).level);
 			info.type = creatureData;
 			info.side = stack->unitSide();
 			info.position = hex;

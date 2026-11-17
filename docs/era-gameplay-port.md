@@ -107,6 +107,13 @@ exact. Il vérifie aussi l'absence du système lorsque le réglage est désactiv
 La fiche est contrôlée à 390×844, 844×390, 568×320 et 1024×768, avec défilement,
 une seule fermeture et des commandes d'au moins 44 pixels.
 
+Les gardes invoqués par un compagnon Santa Gremlin sont multipliés par son
+niveau, conformément à `hench_ManageSantaGuards`. Un scénario distinct crée une
+sauvegarde avec l'ancien moteur Henchmen (`42cf1eea…`), puis vérifie le compagnon
+et son expérience après reprise avec le nouveau moteur. Les empreintes des
+deux moteurs figurent dans `outputs/era-gameplay/henchmen-native-core.json`.
+Les sauvegardes antérieures à l'introduction des Henchmen restent à tester.
+
 Le port comprend également les bonus magiques, les sorts supplémentaires,
 le retour de l'équipement de la dernière créature et la sérialisation JSON
 pour les transferts de campagne. Ces parcours supplémentaires nécessitent
@@ -131,7 +138,7 @@ de Sagesse de base à avancée et le débit de 3000 pièces d'or. Ce
 travail ne constitue pas le port complet de la priorité 4.
 
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
-- Choix/équipement des bannières, gardes des Santa Gremlins et interactions.
+- Choix/équipement des bannières et interactions avec les autres capacités.
 - Progression de troupe de l'IA, réglages complets et interface classique.
 - Vérifications natives dédiées des sorts, inventaires et variantes de placement.
 - Port des règles et remplacements natifs requis par les autres packs.
