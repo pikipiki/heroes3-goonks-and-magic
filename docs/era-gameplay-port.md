@@ -147,6 +147,12 @@ amélioration après la visite normale : le scénario dédié vérifie le passag
 de Sagesse de base à avancée et le débit de 3000 pièces d'or. Ce
 travail ne constitue pas le port complet de la priorité 4.
 
+Les 20 scénarios mithril vérifient aussi les récompenses effectives de la roue
+à eau pendant les deux premières semaines, la conservation des quatre stocks
+du Conflux après amélioration et la visite de caméra des sorties de monolithe,
+suivie du retour à l'entrée. Le panneau se ferme pour laisser voir ce parcours
+et présente les quatre créatures améliorées du Conflux.
+
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.
 - Progression de troupe de l'IA et interface classique.

@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "native-core-only",
   "completeRules": false,
-  "engineSha256": "d1c8505abf2455beead9703b1bc11b9eff5a8b347fb3c7721564f503a41d0a75",
+  "engineSha256": "c6ed00b68e113eec580769884096f4fcb3479df03911b304b8e2685769fb2281",
   "scenarios": [
     "selected-from-army-and-mobile-layout",
     "independent-battle-actor-and-earned-experience",
@@ -24,7 +24,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "e7daccb2491a18e565dfa70b58d9b3829f75fe9963d5cd7efa98bcfc43de4e6b"
+      "sha256": "1ce4bd213cee1d7e7f074ab6af2a780d3082ca94a45c15ecd61c773f54db7b0c"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -52,7 +52,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "2fd266a5e4adfbec32df3e91b4d560fa24b6a888de83d211671a82da99b2bf2f"
+      "sha256": "93581c90ab1dbabf01f6c2637403ec9b454d58563e3f73f9bacab7fec416ecfd"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -60,7 +60,7 @@
     },
     {
       "file": "work/vcmi-wasm/client/MobileBridge.cpp",
-      "sha256": "ba9ac1b0ba0ff73ff236ea70ad1c7e5135328a4ed3cde7c1e459ecda24d3de29"
+      "sha256": "ce4278c42465f81f6d039fc892b04bafcfe888e7f4d3b150b701613b7cb18fe0"
     },
     {
       "file": "work/vcmi-wasm/client/NetPacksClient.cpp",
@@ -268,7 +268,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
-      "sha256": "111c764f126f2c9f932b56a7c223e3c4831dac60379844ebca824706a9bc4908"
+      "sha256": "a83ba242e99ae649a847a6427c0f5f547da306cfefbc4700fa310fd8b2b73f44"
     },
     {
       "file": "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp",

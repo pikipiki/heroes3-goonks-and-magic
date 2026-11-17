@@ -1448,6 +1448,7 @@ void publishMobileState(){
       row["resource"].String()=LIBRARY->resourceTypeHandler->getById(mine->producedResource)->getNameTranslated();
      }
      if(!offer.upgrades.empty()&&offer.upgrades.front().hasValue())row["upgrade"].String()=offer.upgrades.front().toCreature()->getNamePluralTranslated();
+     for(const auto upgraded:offer.upgrades)if(upgraded.hasValue())row["upgrades"].Vector().emplace_back(upgraded.toCreature()->getNamePluralTranslated());
      if(offer.kind==era_compat::mithril::SHRINE&&offer.current>=0)
       row["current"].String()=SpellID(offer.current).toSpell()->getNameTranslated();
      if(offer.kind==era_compat::mithril::HUT&&offer.current>=0)

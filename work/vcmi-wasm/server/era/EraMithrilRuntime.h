@@ -25,6 +25,7 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     auto next=state(cb);
     next["revision"].Integer()=request.revision+1;
     auto & target=next["objects"][std::to_string(object->id.getNum())];
+    std::vector<int3> preview;
     if(proposed.kind==MINE)target["mineUntil"].Integer()=cb.getDate(Date::DAY)+7;
     else if(proposed.kind==MILL)target["mill"].Bool()=true;
     else if(proposed.kind==UNIVERSITY)target["university"].Bool()=true;
@@ -62,7 +63,10 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
         FowTilesType reveal;
         for(const auto & exit:cb.gameState().getMap().objects)
             if(exit&&exit->ID==exitType&&exit->subID==object->subID&&exit->id!=object->id)
+            {
                 cb.getTilesInRange(reveal,exit->visitablePos(),2,ETileVisibility::HIDDEN,request.player);
+                preview.push_back(exit->visitablePos());
+            }
         gh.changeFogOfWar(reveal,request.player,ETileVisibility::REVEALED);
     }
     else if(proposed.kind==SHIPYARD)
@@ -94,6 +98,12 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     else return false;
     gh.giveResource(request.player,currency,-proposed.cost);
     EraGameplayChange change;change.system="mithril";change.state=std::move(next);gh.sendAndApply(change);
+    if(!preview.empty())
+    {
+        for(const auto & position:preview)
+        {CenterView view;view.player=request.player;view.pos=position;view.focusTime=1500;gh.sendAndApply(view);}
+        CenterView restore;restore.player=request.player;restore.pos=object->visitablePos();restore.focusTime=10;gh.sendAndApply(restore);
+    }
     return true;
 }
 }

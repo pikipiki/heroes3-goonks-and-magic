@@ -48,6 +48,8 @@ elif opts['reroll']=='hut':
  site('mithrilHut','witchHut','witchHut',10,11)
  objects[-1]['options']['rewardable']={'variables':{'preset':{'secondarySkill@gainedSkill':'core:offense'}}}
 elif opts['reroll']=='university': site('mithrilAdvancedUniversity','university','object',9,11)
+elif opts['reroll']=='payout': site('mithrilPayout','waterWheel','waterWheel',9,11)
+elif opts['reroll']=='conflux': site('mithrilConflux','creatureGeneratorSpecial','elementalConflux',9,11,'red')
 else: site('mithrilMill','windmill','windmill',10,11)
 site('mithrilWheel','waterWheel','waterWheel',8,11)
 site('mithrilUniversity','university','object',8,12)
@@ -129,6 +131,10 @@ async function panel(){
 async function buy(offer){
  const before=await panel();
  await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`).tap();
+ if(offer.kind===6){
+  await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
+  await page.locator('.mithril-panel').waitFor({state:'hidden'});return;
+ }
  await wait(revision=>goonkMobileState.mithril?.revision>revision,before.revision);
  assert.equal((await state()).mithril.amount,before.amount-offer.cost);
 }
@@ -142,6 +148,22 @@ async function nextDay(){
   await page.waitForTimeout(100);
  }
  throw Error('Next day did not start');
+}
+async function walk(dx,dy=0){
+ await command(6);await page.waitForTimeout(150);
+ const point=await page.evaluate(({dx,dy})=>{const v=goonkMobileState.mapOverview.view;return{x:v.x+v.w/2+32*dx,y:v.y+v.h/2+32*dy};},{dx,dy});
+ await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),point);await wait(()=>goonkMobileState.hasPath);await command(2);
+ for(let i=0;i<400;++i){const s=await state();if(s.mode==='recruit')return s;if(s.mode==='dialog'){await command(1);await wait(token=>goonkMobileState.windowToken!==token||goonkMobileState.mode!=='dialog',s.windowToken);}else if(i>3&&s.mode==='map'&&!s.hasPath&&!s.heroMoving)return s;await page.waitForTimeout(100);}
+ throw Error('Site visit did not finish');
+}
+async function recruitmentStock(){
+ await wait(()=>goonkMobileState.mode==='recruit'&&goonkMobileState.previewUnits?.length);
+ const choices=[...new Map((await state()).previewUnits.map(row=>[row.key,row])).values()],stock={};
+ for(const unit of choices){
+  const p=unit.preview;await page.evaluate(p=>Module._vcmiMobilePointer(p.x+p.w/2,p.y+p.h/2,1),p);
+  await wait(key=>goonkMobileState.recruitUnit?.key===key,unit.key);stock[unit.key]=(await state()).recruitUnit.count;
+ }
+ return stock;
 }
 try{
  if(!process.env.CASES||process.env.CASES==='sites'){
@@ -185,9 +207,12 @@ try{
  report.scenarios.push('town-magical-terrain-payment');
  const portal=(await state()).mithril.offers.find(row=>row.kind===6);assert(portal);
  const exitPixel=()=>page.evaluate(()=>{const canvas=window.goonkMinimapAtlas;return [...canvas.getContext('2d').getImageData(Math.floor(16.5*canvas.width/36),Math.floor(16.5*canvas.height/36),1,1).data].slice(0,3);});
- assert.deepEqual(await exitPixel(),[0,0,0]);await buy(portal);
+ assert.deepEqual(await exitPixel(),[0,0,0]);const originalViewport=(await state()).mapOverview.viewport;await buy(portal);
+ await wait(view=>goonkMobileState.mapOverview?.viewport?.x>view.x+4,originalViewport);
  await wait(()=>{const canvas=window.goonkMinimapAtlas;return [...canvas.getContext('2d').getImageData(Math.floor(16.5*canvas.width/36),Math.floor(16.5*canvas.height/36),1,1).data].slice(0,3).some(v=>v>0);});
  report.scenarios.push('monolith-exit-fog-revealed');
+ await wait(point=>{const view=goonkMobileState.mapOverview?.viewport;return view&&Math.abs(view.x+view.w/2-point.x)<=2&&Math.abs(view.y+view.h/2-point.y)<=2;},portal);
+ report.scenarios.push('monolith-camera-shows-exit-and-returns-to-selected-entrance');await panel();
  for(const viewport of [{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:1024,height:768}]){
   await page.setViewportSize(viewport);
   const layout=await page.locator('.mithril-panel').evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,closes:node.querySelectorAll('[data-mithril-close]').length,scroll:getComputedStyle(node.querySelector('.mithril-content')).overflowY,small:[...node.querySelectorAll('button')].some(button=>button.getBoundingClientRect().height<44)}));
@@ -212,6 +237,27 @@ try{
  assert(data.offers.every(row=>!row.available));await command(113,0,7,data.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,0);assert.equal((await state()).mithril.revision,data.revision);
  report.scenarios.push('insufficient-mithril-rejected-by-server');await page.close();
+ }
+ if(!process.env.CASES||process.env.CASES==='payout'){
+  const rewards=[];
+  for(const enhanced of [false,true]){
+   await boot({reroll:'payout'});const data=await panel(),wheel=data.offers.find(row=>row.id===7&&row.kind===2);assert(wheel);
+   if(enhanced)await buy(wheel);await page.locator('[data-mithril-close]').tap();
+   let gold=(await state()).resources[6];await walk(1);const first=(await state()).resources[6]-gold;assert(first>0);
+   for(let day=2;day<=8;++day){await panel();await nextDay();}
+   await walk(-1);gold=(await state()).resources[6];await walk(1);const second=(await state()).resources[6]-gold;assert(second>0);
+   rewards.push({first,second});await page.close();
+  }
+  assert.equal(rewards[1].first,2*rewards[0].first);assert.equal(rewards[1].second,2*rewards[0].second);
+  report.scenarios.push('waterwheel-actual-reward-doubled-on-first-and-second-week');
+ }
+ if(!process.env.CASES||process.env.CASES==='conflux'){
+  await boot({reroll:'conflux'});assert.equal((await walk(1)).mode,'recruit');
+  const before=await recruitmentStock();assert.equal(Object.keys(before).length,4);await command(33);await wait(()=>goonkMobileState.mode==='map');
+  const conflux=(await panel()).offers.find(row=>row.id===7&&row.kind===1);assert(conflux);assert.equal(conflux.cost,4);assert.equal(conflux.upgrades.length,4);await buy(conflux);await page.locator('[data-mithril-close]').tap();
+  await walk(-1);assert.equal((await walk(1)).mode,'recruit');const after=await recruitmentStock();
+  for(const [base,upgrade] of [['airElemental','stormElemental'],['waterElemental','iceElemental'],['fireElemental','energyElemental'],['earthElemental','magmaElemental']])assert.equal(after['core:'+upgrade],before['core:'+base],JSON.stringify({base,upgrade,before,after}));
+  report.scenarios.push('conflux-upgrades-all-four-native-recruitment-stocks');await page.close();
  }
  for(const kind of ['shrine','hut','university']){
   if(process.env.CASES&&process.env.CASES!==kind&&process.env.CASES!=='rerolls')continue;
