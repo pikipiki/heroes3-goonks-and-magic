@@ -37,6 +37,10 @@ private:
 
 	bool doubleWideCached = false;
 
+    // Derived battlefield EA state. Rebuilt from the saved hero and difficulty
+    // on load; never replaces the companion's persistent experience.
+    std::unique_ptr<CStackInstance> henchmanBattleBase;
+
 public:
 	void postDeserialize(const CArmedInstance * army);
 

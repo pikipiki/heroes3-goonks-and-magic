@@ -163,6 +163,16 @@ de l'installation ne remplacent plus le choix sauvegardé. Un scénario vérifie
 aussi la reprise d'une sauvegarde produite par le moteur précédent, avec le
 compagnon conservé malgré un réglage d'installation désactivé.
 
+L'expérience de troupe du compagnon de l'IA est multipliée selon la difficulté
+uniquement pour le combat, puis plafonnée suivant la table source. Une base de
+combat distincte préserve l'expérience enregistrée sur le héros et fournit le
+rang temporaire aux bonus et aux effets de créature. Les scénarios vérifient
+1000 → 1000/3000/5000 selon la difficulté et 40000 → 56000 au plafond.
+Après retraite, sauvegarde, rechargement et second combat, le multiplicateur
+ne s'accumule pas. Le témoin sur l'ancien moteur détecte l'absence de cet effet.
+Les réglages et les sept variantes de statistiques du joueur passent aussi sur
+ce moteur. Voir `scripts/era-bridge/gameplay/henchmen-ai-native-validation.json`.
+
 ## Raccordements et validations restant nécessaires
 
 La règle ERA Scripts 779 des pierres de connaissance possède un raccordement

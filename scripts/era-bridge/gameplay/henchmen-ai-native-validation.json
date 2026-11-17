@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Source hench_StackExpBF difficulty scaling with a temporary battlefield base; partial Henchmen closure",
+  "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+  "parentEngineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/CStack.h": "f4efd27b547a97e808e69023f90592d425030dcc8946357aaa5ceba0e5ef2a6d",
+    "work/vcmi-wasm/lib/CStack.cpp": "6c274f0aca1f67f147af2c9da064a8cbc322abf2d69715c3b01044302c2c1b72",
+    "work/vcmi-wasm/lib/era/EraHenchmanBattleExperience.h": "d74603ff85509c1d7091c4f7f6af56c162f2248e9629b9e003c947aae4954896",
+    "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "1c70a08c26e3121a2da97175c97a78a4f6dbf6ace53322e4673dd907f0e56fc6",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+    "work/vcmi-wasm/lib/era/EraHenchmanBannerSourceRows.h": "19239d75ad9b0fab41741c9f08cddc903730a7861dc6c86a06c218dc4013dc98",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d6d9cf163a6b3733c26d96dbca932985d057859dcb4cbe878a11f1adfd2ae71c"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 68,
+    "buildLogSha256": "5b85f4ca49d1b88f814836a406ce33f077b9cadcdd42460069d0bdc73e1fef37",
+    "sourceBindingsSha256": "914e18ed5dd22d1580260c138964400897b286ab26bf2ce57178c2172cd9b71b",
+    "existingParentBindingsChanged": [
+      "lib/CStack.cpp"
+    ],
+    "addedBindings": [
+      "lib/CStack.h",
+      "lib/era/EraHenchmanBattleExperience.h"
+    ],
+    "sourceCopyTimesForcedFresh": true
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+      "scenarios": [
+        "battlefield-ai-experience-difficulty-0-stored-1000-temporary-1000",
+        "battlefield-ai-experience-difficulty-2-stored-1000-temporary-3000",
+        "battlefield-ai-experience-difficulty-4-stored-1000-temporary-5000",
+        "ai-battlefield-experience-does-not-persist-or-compound-after-retreat-save-reload-and-second-battle",
+        "battlefield-ai-experience-difficulty-4-stored-40000-temporary-56000"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+      "scenarios": [
+        "source-scalar-rank10-banner--1",
+        "source-scalar-rank10-banner-0",
+        "source-scalar-rank10-banner-1",
+        "source-scalar-rank10-banner-2",
+        "source-scalar-rank10-banner-3",
+        "source-scalar-rank10-banner-4",
+        "source-scalar-rank10-banner-8"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+      "scenarios": [
+        "companion-settings-frozen-in-native-save",
+        "santa-guard-enhancement-can-be-disabled",
+        "replacement-loss-and-no-return-options",
+        "revive-anywhere-option-pays-outside-town",
+        "town-only-resurrection-rejects-forged-request"
+      ],
+      "errors": []
+    }
+  ],
+  "negativeControl": {
+    "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+    "expectedFailure": "Old engine reports1000 instead of3000 at difficulty2",
+    "logSha256": "039f5c9712dd11eabacbdcd555a9ef37509eaed7eef5f5a68e2817135a4d0783"
+  },
+  "remaining": [
+    "AI battle reward named-variable integration and namespace attestation",
+    "Campaign transition/restart/export semantics",
+    "Intrinsic defence overlap and remaining spell/death/configuration scenarios"
+  ]
+}

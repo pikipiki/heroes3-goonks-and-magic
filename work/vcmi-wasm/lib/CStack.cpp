@@ -14,6 +14,7 @@
 #include "era/EraHydraQueen259Runtime.h"
 #include "CStack.h"
 #include "era/EraHenchmanScalarRuntime.h"
+#include "era/EraHenchmanBattleExperience.h"
 #include "era/EraHorn266Policy.h"
 #include "era/EraBridgePolicies.h"
 #include "CCreatureHandler.h"
@@ -73,6 +74,12 @@ void CStack::localInit(BattleInfo * battleInfo)
 {
 	battle = battleInfo;
 	assert(typeID.hasValue());
+
+    if(slot==SlotID::HENCHMAN_SLOT_PLACEHOLDER&&base&&!henchmanBattleBase)
+    {
+        henchmanBattleBase=era_compat::henchmen::battleExperienceBase(*base);
+        if(henchmanBattleBase)base=henchmanBattleBase.get();
+    }
 
 	exportBonuses();
 	if(base) //stack originating from "real" stack in garrison -> attach to it

@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -36,6 +36,12 @@ for o in objects:
   if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':-1}
   if opts['henchmanType']: o['options']['henchman']={'type':opts['henchmanType'],'experience':0,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':opts['henchmanBanner']}
   if opts['blockFixture']: o['options']['artifacts']={'misc1':'core:shacklesOfWar'}
+if opts['reserveHero']:
+ import copy
+ reserve=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
+ reserve.update({'instanceName':'henchmenReserveHero','x':6})
+ reserve['options']['type']='core:edric'
+ objects.append(reserve)
 if opts['enemyHero']:
  import copy
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -56,10 +62,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero})]);
 }
 
-async function boot({save,enabled=true,originURL=origin,settings,...options}={}){
+async function boot({save,enabled=true,originURL=origin,settings,difficulty,...options}={}){
  const classic=process.env.CASES==='classic';
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:classic?{width:1024,height:768}:{width:844,height:390},hasTouch:true,bypassCSP:true});
@@ -114,6 +120,7 @@ async function boot({save,enabled=true,originURL=origin,settings,...options}={})
   if(classic)await command(21);
   else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Henchmen native validation');
+  if(difficulty!==undefined){await command(25,difficulty);await wait(value=>goonkMobileState.difficulty===value,difficulty);}
   if(classic)await command(22);
   else await page.locator('[data-ui=begin]').tap();
  }
@@ -126,9 +133,9 @@ async function sheet(){
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
 }
-async function startBattle(){
+async function startBattle(dx=1){
  await command(6);await page.waitForTimeout(150);
- const target=await page.evaluate(()=>{const view=goonkMobileState.mapOverview.view;return{x:view.x+view.w/2+32,y:view.y+view.h/2};});
+ const target=await page.evaluate(dx=>{const view=goonkMobileState.mapOverview.view;return{x:view.x+view.w/2+32*dx,y:view.y+view.h/2};},dx);
  await page.evaluate(point=>Module._vcmiMobilePointer(point.x,point.y,1),target);
  await wait(()=>goonkMobileState.hasPath);await command(2);await wait(()=>goonkMobileState.mode==='battle');
  await command(15);await wait(()=>goonkMobileState.battleUnits?.some(unit=>unit.armySlot===-6));
@@ -156,6 +163,37 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='battlefield-ai-experience'){
+  for(const [difficulty,stored,expected]of [[0,1000,1000],[2,1000,3000],[4,1000,5000],[4,40000,56000]]){
+   const replay=difficulty===4&&stored===1000;
+   await boot({henchmanType:'core:archer',stackExperience:stored,enemyHero:true,difficulty,reserveHero:replay});
+   const before=await sheet();assert.equal(before.henchman.stackExperience,stored);
+   await command(63);await wait(()=>goonkMobileState.mode==='map');await startBattle();
+   const current=await state(),human=current.battleUnits.find(unit=>unit.armySlot===-6&&!unit.enemy),ai=current.battleUnits.find(unit=>unit.armySlot===-6&&unit.enemy);
+   assert.equal(human?.key,'core:archer');assert.equal(ai?.key,'core:archer');
+   assert.equal(human.experiencePerUnit,stored);assert.equal(ai.experiencePerUnit,expected);
+   assert.equal(current.players.find(player=>player.color===1).human,false);
+   fs.writeFileSync(path.join(output,`battlefield-ai-${difficulty}-${stored}.json`),JSON.stringify({difficulty,stored,expected,human,ai},null,2));
+   report.scenarios.push(`battlefield-ai-experience-difficulty-${difficulty}-stored-${stored}-temporary-${expected}`);
+   if(replay){
+    await wait(()=>goonkMobileState.canRetreat);await command(38);
+    for(let tick=0;tick<200;++tick){
+     const s=await state();if(s.mode==='dialog')await command(1);
+     if(s.mode==='map'&&s.turn&&s.autosaveAllowed)break;
+     await page.waitForTimeout(100);
+    }
+    await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn&&goonkMobileState.autosaveAllowed);
+    await command(4,0);await wait(()=>goonkMobileState.heroName==='Edric');
+    const save=await readCompletedNativeSave(page,command,{tag:934});await page.close();
+    await boot({save:[...save]});await command(4,0);await wait(()=>goonkMobileState.heroName==='Edric');
+    await startBattle(4);
+    const again=(await state()).battleUnits.find(unit=>unit.armySlot===-6&&unit.enemy);
+    assert.equal(again?.experiencePerUnit,expected,'Battlefield multiplier must not compound in the saved companion');
+    report.scenarios.push('ai-battlefield-experience-does-not-persist-or-compound-after-retreat-save-reload-and-second-battle');
+   }
+   await page.close();
+  }
+ }
  if(process.env.CASES==='banner-block'){
   const {runBannerBlock}=await import('./wog-henchmen-banner-block-cases.mjs');
   await runBannerBlock({boot,startBattle,state,command,wait,page:()=>page,report,output});
