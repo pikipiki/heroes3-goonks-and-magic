@@ -2,17 +2,33 @@
   "passed": true,
   "scope": "mithril-native-university",
   "completeRules": false,
-  "engineSha256": "1dc840aede1d98778a1046a2786b7d26707536ccc6e463a9fa682f4ef578821a",
+  "engineSha256": "38922efde67dbcecf361da740aaa6506faa276681b360428738a43a3cc06eab2",
   "scenarios": [
     "advanced-university-two-skills-choice-0",
+    "advanced-university-price-choice-and-lesson-use-native-query-stages",
+    "advanced-university-revisit-advances-second-basic-skill-for-second-payment",
+    "advanced-university-insufficient-gold-preserves-skills-and-funds",
     "advanced-university-two-skills-choice-1",
-    "advanced-university-insufficient-gold-preserves-skills-and-funds"
+    "advanced-university-price-declined-without-skill-or-gold-change",
+    "advanced-university-post-visit-skill-and-3000-gold"
   ],
+  "sourceGrantOrder": {
+    "single": [
+      "single-skill-granted-after-lesson-acknowledgement"
+    ],
+    "two": [
+      "chosen-skill-granted-before-lesson-acknowledgement"
+    ]
+  },
+  "regressionGuard": {
+    "baselineEngineSha256": "29713789a7a193154174bba13d89baa9cd2a801126d5fad3ad97b9e2fa3bd976",
+    "expectedBaselineFailure": "The first post-visit dialog combines skill selection with the price instead of the source query stages"
+  },
   "errors": [],
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "e90dbc42a0651e8434b470489511f5893a66680baf5e957641eeac3bf86950ec"
+      "sha256": "6269c5bbc485a222c8b284714c910d4358cf42c6fdd40b22b4fba3eb47e41b3c"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -20,15 +36,15 @@
     },
     {
       "file": "mod/tum-era/content/config/wog-map-rules.json",
-      "sha256": "8d77e65b9942b4de4ec5059ad5861e58e71d8bbb0b622bfb3b2e8d0fcc42812f"
+      "sha256": "edc0a84c38def211b9bcb1cbf26614272980e1a475253292c8819d5f97347821"
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-english.json",
-      "sha256": "85a98a5cffceb32aaccadfa2b81de7338b474cf3124b7942d7cadbcc15f75c16"
+      "sha256": "1c2a6b8254b1d9c0c886644ac4d4838a7abde1312e9ca5465c3c39119ddaa6a6"
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-french.json",
-      "sha256": "f0533ea81efbfd475b0c760c3ee961c00aeb74752d58e98ba9b38d7fb2b3265d"
+      "sha256": "1eca4dabcd1651fd18541498f4b27a5edf441432f32de9c82c453fe4d2424b4a"
     },
     {
       "file": "scripts/era-bridge/gameplay/henchmen.json",
@@ -40,11 +56,11 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/map-rules.json",
-      "sha256": "01ecc14348a00ab4297b79c75ec04154ddd8b2c41bea41d0845edbc41527b25e"
+      "sha256": "d16562986d77fbf983df3cdef6190be4d9b3940ae6a0a82e4899dc356f418137"
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "a9c53ef85b8a916a02b5f10aa350eac7175543dfe0e9262b598ba5d1dd1f78bc"
+      "sha256": "0348bd9a68e87e123b8643cbcfbe1604e99d241d2b74cc5464c72515d891a17b"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -56,11 +72,11 @@
     },
     {
       "file": "tests/era-mithril-random.test.mjs",
-      "sha256": "ac9a10c6a504ef9b5eb5a80dc2a30e8833e8e38ce170a31fc6a98e25b000feee"
+      "sha256": "9bf12ba052de04df36a7ad9cfb228d95d8fcc5b299a1cf33a89cdd342ca5e422"
     },
     {
       "file": "tests/fixtures/era-gameplay/mithril-random-reference.json",
-      "sha256": "81de5c42fa095135f24fe74eb7a45aef500bea91ee140fad7ed07b45faf50419"
+      "sha256": "087b2e6763047af340a99d32aed83cb6179ccc63a76de60ebe86d0fa2234da3b"
     },
     {
       "file": "tests/mithril-enhancements.test.mjs",
@@ -68,7 +84,7 @@
     },
     {
       "file": "tests/native/EraMithrilRandomReference.cpp",
-      "sha256": "447ac51044b59da91d3745509c945a42f8a93a08ee1a6e295e5516588d183f9c"
+      "sha256": "e2a795cc34281c303faee14ebeb5de2164217c8eb6003bb79d1ca2460a95bc97"
     },
     {
       "file": "tests/native/EraMithrilRules.test.cpp",
@@ -99,8 +115,20 @@
       "sha256": "9654d71b4e731266a3450065f60a1885ed05eb693fdf7bac69b1c624de0bed5b"
     },
     {
+      "file": "work/browser-tests/wog-map-creature-native-cases.mjs",
+      "sha256": "744fcd84ff34569290e71a8f3db34225472b8c7d012e1eaa62f0174e99a0692e"
+    },
+    {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "db79daa656fe05cd65f95bed4e31cb4df3267de9c4e4fae6cc6f8e98765c70e4"
+      "sha256": "97fea53ff43064b56f53aafdad13443581bf6493a7754ab5210930a0799b7a1c"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-random-isolation-native-cases.mjs",
+      "sha256": "eb206133648bf59b62ec3876887b10aabd9956f45505941e1245e6b5b61690eb"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-university-native-cases.mjs",
+      "sha256": "e33ce1c8dc48cbd7d3263f5ba293f7bb636a33e9adc01c2287929a499b1f6d27"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -175,8 +203,12 @@
       "sha256": "59e01598204258a588759db46e699a4e438b1800ad13d45da9f917aba3160334"
     },
     {
+      "file": "work/vcmi-wasm/lib/era/EraMapCreatureRules.h",
+      "sha256": "ad36fc00ed8164502f1c2200a5f2260a8510c2970579b4cb16f454c5b66823d9"
+    },
+    {
       "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
-      "sha256": "ac8ba850c055bc1217fff89711632ef9a98c08de6d68614423a118dcbb9fd0b0"
+      "sha256": "3f050b2d7273627713c2186f72eba52b38a9a84c4c352f2b156ce7f0852c9484"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilModel.h",
@@ -184,7 +216,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilRandomRules.h",
-      "sha256": "23c3e9d89c365dc183a49cde2252892b065b9884e759f79badca374e28d9a16c"
+      "sha256": "1dede94bae576927941b6d56d257ea9bad9d0a6d11e20ff384ef4d48f090434e"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilReroll.h",
@@ -195,12 +227,16 @@
       "sha256": "4f4fe102a244d45e6fd39065d20e49d2d63d3df714f6da6638fc632dae18ed8c"
     },
     {
+      "file": "work/vcmi-wasm/lib/era/EraSourceCreatureLevels.h",
+      "sha256": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e"
+    },
+    {
       "file": "work/vcmi-wasm/lib/gameState/ArmyBulkTransfer.h",
       "sha256": "76b2aa6d5f8a96028c71e1c862f233bb5dcd6d3ec058e3244130bf1b9fbd337a"
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
-      "sha256": "1f753604fea1ab692764deaab269e41e3bc0989b70553ca398ce3eca93c13fab"
+      "sha256": "8721aa256082a77e0d193c03b7e731e4b6e4a0f1a6dfbcd9a67c6b9556a701f0"
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
@@ -212,7 +248,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp",
-      "sha256": "8f70f3f3974752e677e757f766d0c413f3a9c02abe32a96a6206f034194b47d0"
+      "sha256": "4abc027d278d71c3a9f97d2aa15c72722fb2bf7244f2f4fda05d239985411322"
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.h",
@@ -284,11 +320,15 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
-      "sha256": "b3c8032a3d0ebd19cb9fb1d1b5603db66387851b505260950f0951dc234e4489"
+      "sha256": "2e84ce2850406ba1bb079d00d70ed93ce752846b9559b607a36ede6325161818"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h",
+      "sha256": "d290a9c1115dcf448faece612cc7a181550e0e10bbc4f8376dc33867192f3fb9"
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
-      "sha256": "deac565899388437577c74b83f3f797962c13fcca15610d0181e8320d9caa5ab"
+      "sha256": "1f5c30f60cc7b76dba1134ee0bf3160a7b50d13b8e419da0ab7419d224d51a14"
     },
     {
       "file": "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp",
@@ -296,7 +336,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
-      "sha256": "f1ae89e2b073f7e37b6d5311d59d22bdef02d0f953950673edb4341199716b18"
+      "sha256": "5ff9b6be6a5f431cc2ec130218cf210656151b67fe61ed502692699b4614280a"
     },
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",

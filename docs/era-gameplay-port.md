@@ -144,14 +144,17 @@ figée et conserve les écarts restant à résoudre. Le réglage
 les autres options WoG, l'interface classique et plusieurs parcours natifs
 nécessitent encore leur validation. L'université avancée propose bien son
 amélioration après la visite normale : le scénario dédié vérifie le passage
-de Sagesse de base à avancée et le débit de 3000 pièces d'or. Trois
-scénarios supplémentaires vérifient chacun des deux choix de compétence et
-le refus à 2999 pièces d'or, avec le message prévu par la règle source et
-sans perte d'or ni de compétence. L'avancement gratuit de l'IA et
-l'enchaînement exact des dialogues source restent à vérifier et porter. Ce
+de Sagesse de base à avancée et le débit de 3000 pièces d'or. Cinq
+parcours dédiés vérifient les deux choix de compétence, le cours unique,
+le refus à 2999 pièces d'or, le refus du prix et une seconde visite avec un
+second paiement. Les messages suivent les étapes source : accord sur le
+prix, choix éventuel, puis apprentissage et paiement. Les journaux natifs
+confirment aussi que la compétence choisie est attribuée avant l'accusé de
+réception, tandis que le cours unique l'est après, comme dans FU8189.
+L'avancement gratuit de l'IA reste à valider par des scénarios dédiés. Ce
 travail ne constitue pas le port complet de la priorité 4.
 
-Les 21 scénarios mithril vérifient aussi les récompenses effectives de la roue
+Les parcours mithril vérifient aussi les récompenses effectives de la roue
 à eau pendant les deux premières semaines, la conservation des quatre stocks
 du Conflux après amélioration et la visite de caméra des sorties de monolithe,
 suivie du retour à l'entrée. Le panneau se ferme pour laisser voir ce parcours
@@ -166,7 +169,7 @@ et de l'inspection en combat. Les scénarios natifs ouvrent la fiche du compagno
 pendant le combat et vérifient le renvoi avec confirmation, le rejet des
 demandes périmées, les transferts et le dépôt de troupes avec sauvegarde/reprise.
 
-Onze scénarios de siège complètent les 21 parcours de sites. Le moteur applique
+Onze scénarios de siège complètent les parcours de sites. Le moteur applique
 le terrain acheté lors de l'initialisation du combat, au lieu de l'écraser par
 le terrain natal de la ville. Les neuf choix sont vérifiés : moral selon
 l'alignement, chance des troupes neutres, maîtrise experte des quatre écoles

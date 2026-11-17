@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "mithril-sites",
   "completeRules": false,
-  "engineSha256": "cc77f0f3019f2c6112f2e41f3b1b90993517fca167ee35d908926cade2a69d18",
+  "engineSha256": "38922efde67dbcecf361da740aaa6506faa276681b360428738a43a3cc06eab2",
   "scenarios": [
     "owned-mine-double-income-payment-and-stale-request",
     "companion-and-mithril-transactions-coexist",
@@ -24,13 +24,14 @@
     "shrine-reroll-preserves-already-randomized-extra-rewards",
     "shrine-visited-object-rerolled-with-payment",
     "hut-visited-object-rerolled-with-payment",
-    "advanced-university-post-visit-skill-and-3000-gold"
+    "advanced-university-post-visit-skill-and-3000-gold",
+    "advanced-university-price-choice-and-lesson-use-native-query-stages"
   ],
   "errors": [],
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "d61de828ea744985a4a44af1769f6a1468a0f0f1871a6eb8b9fa6729da74127e"
+      "sha256": "6269c5bbc485a222c8b284714c910d4358cf42c6fdd40b22b4fba3eb47e41b3c"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -42,11 +43,11 @@
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-english.json",
-      "sha256": "85a98a5cffceb32aaccadfa2b81de7338b474cf3124b7942d7cadbcc15f75c16"
+      "sha256": "1c2a6b8254b1d9c0c886644ac4d4838a7abde1312e9ca5465c3c39119ddaa6a6"
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-french.json",
-      "sha256": "f0533ea81efbfd475b0c760c3ee961c00aeb74752d58e98ba9b38d7fb2b3265d"
+      "sha256": "1eca4dabcd1651fd18541498f4b27a5edf441432f32de9c82c453fe4d2424b4a"
     },
     {
       "file": "scripts/era-bridge/gameplay/henchmen.json",
@@ -62,7 +63,7 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "441a822339202f5bee2040ca9282c94f1e8b9b5165a1272379aa7644328ab6d8"
+      "sha256": "0348bd9a68e87e123b8643cbcfbe1604e99d241d2b74cc5464c72515d891a17b"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -122,11 +123,15 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "1acdac7e49b8d62ccb2420d757e75e629fe3071bd0687362402092af969c648e"
+      "sha256": "97fea53ff43064b56f53aafdad13443581bf6493a7754ab5210930a0799b7a1c"
     },
     {
       "file": "work/browser-tests/wog-mithril-random-isolation-native-cases.mjs",
       "sha256": "eb206133648bf59b62ec3876887b10aabd9956f45505941e1245e6b5b61690eb"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-university-native-cases.mjs",
+      "sha256": "e33ce1c8dc48cbd7d3263f5ba293f7bb636a33e9adc01c2287929a499b1f6d27"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -246,7 +251,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp",
-      "sha256": "8f70f3f3974752e677e757f766d0c413f3a9c02abe32a96a6206f034194b47d0"
+      "sha256": "4abc027d278d71c3a9f97d2aa15c72722fb2bf7244f2f4fda05d239985411322"
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.h",

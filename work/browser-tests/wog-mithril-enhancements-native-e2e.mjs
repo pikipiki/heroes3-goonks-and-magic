@@ -151,10 +151,11 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
  if(options.reroll==='rng')shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.variables.spell.gainedSpell={anyOf:['bless']};
  const huts=options.reroll==='hut-rng'?structuredClone(testHuts):null;
  if(huts)huts.witchHut.types.witchHut.variables.secondarySkill.gainedSkill={anyOf:['offence']};
+ const translations=Object.fromEntries(['english','french'].map(language=>[language,readJsonc('mod/tum-era/content/translation/tum-era-ui-'+language+'.json')]));
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -179,11 +180,13 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
      manifest.settings.combat??={};manifest.settings.combat.layouts??={};const attacker=creatureRules.ai?[19,155,87,121,53,36,70]:[19,53,87,121,155,36,70],defender=[20,21,88,122,156,37,71];
      manifest.settings.combat.layouts.default={tacticsAllowed:false,obstaclesAllowed:false,attackerCommander:137,defenderCommander:149,attackerUnits:attacker,defenderUnits:defender,attackerUnitsLoose:Array.from({length:7},()=>attacker),attackerUnitsTight:Array.from({length:7},()=>attacker),defenderUnitsLoose:Array.from({length:7},()=>defender),defenderUnitsTight:Array.from({length:7},()=>defender)};
     }
+    const translationsDirectory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/translation';value.FS.mkdirTree(translationsDirectory);
+    for(const [language,strings] of Object.entries(translations))value.FS.writeFile(translationsDirectory+'/tum-era-ui-'+language+'.json',JSON.stringify(strings));
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -486,7 +489,12 @@ try{
  }
  for(const kind of ['shrine','hut','university']){
   if(process.env.CASES&&process.env.CASES!==kind&&process.env.CASES!=='rerolls')continue;
-  await boot({reroll:kind,universityTwo:!!process.env.UNIVERSITY_TWO,goldFunds:process.env.UNIVERSITY_POOR?2299:null});
+  for(let attempt=0;;++attempt){
+   await boot({reroll:kind,universityTwo:!!process.env.UNIVERSITY_TWO,goldFunds:process.env.UNIVERSITY_POOR?2999:null});
+   if(!process.env.UNIVERSITY_POOR||(await state()).resources[6]===2999)break;
+   // Select a boundary fixture without the random starting gold gift.
+   assert(attempt<10,'Unable to prepare the exact 2999-gold fixture');await page.close();
+  }
   if(kind==='university'){
    const university=(await panel()).offers.find(row=>row.id===7&&row.kind===3);assert(university);await buy(university);
    await page.locator('[data-mithril-close]').tap();
@@ -495,27 +503,9 @@ try{
   const point=await page.evaluate(offset=>{const view=goonkMobileState.mapOverview.view;return{x:view.x+view.w/2+offset,y:view.y+view.h/2};},kind==='university'?32:64);
   await page.evaluate(point=>Module._vcmiMobilePointer(point.x,point.y,1),point);await wait(()=>goonkMobileState.hasPath);await command(2);
   if(kind==='university'){
-   await wait(()=>goonkMobileState.mode==='dialog');
-   const before=(await state()).resources[6];await command(1);
-   await wait(()=>goonkMobileState.mode==='dialog'&&JSON.stringify(goonkMobileState.dialogPresentation||{}).includes('3000'));
-   if(process.env.UNIVERSITY_POOR){
-    assert(before<3000);await command(1);await wait(()=>goonkMobileState.mode==='map');
-    assert.equal((await state()).resources[6],before);
-    await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow);
-    assert((await state()).heroWindow.skills.filter(row=>/wisdom|air magic/i.test(row.name)).every(row=>/basic/i.test(row.mastery)));
-    report.scenarios.push('advanced-university-insufficient-gold-preserves-skills-and-funds');await page.close();continue;
-   }
-   if(process.env.UNIVERSITY_TWO){
-    const form=(await state()).dialogPresentation;fs.writeFileSync(path.join(output,'selection.json'),JSON.stringify(form,null,2));
-    const index=Number(process.env.UNIVERSITY_CHOICE||0);await command(98,index,form.queryId);await command(99,index,form.queryId);
-   }else await command(1);
-   await wait(before=>goonkMobileState.mode==='map'&&goonkMobileState.resources[6]===before-3000,before);
-   await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow);
-   const skills=(await state()).heroWindow.skills;
-   const chosen=process.env.UNIVERSITY_TWO&&Number(process.env.UNIVERSITY_CHOICE||0)===1?/air magic/i:/wisdom/i;
-   assert(skills.some(row=>chosen.test(row.name)&&/advanced/i.test(row.mastery)),JSON.stringify(skills));
-   if(process.env.UNIVERSITY_TWO)assert(skills.some(row=>(chosen.test('Wisdom')?/air magic/i:/wisdom/i).test(row.name)&&/basic/i.test(row.mastery)),JSON.stringify(skills));
-   report.scenarios.push(process.env.UNIVERSITY_TWO?'advanced-university-two-skills-choice-'+(process.env.UNIVERSITY_CHOICE||0):'advanced-university-post-visit-skill-and-3000-gold');await page.close();continue;
+   await wait(()=>goonkMobileState.mode==='dialog');const before=(await state()).resources[6];await command(1);
+   const {verifyUniversityLesson}=await import('./wog-mithril-university-native-cases.mjs');
+   await verifyUniversityLesson({state,command,wait,walk,page:()=>page,report,output,before});await page.close();continue;
   }
   for(let i=0;i<300;++i){const s=await state();if(s.mode==='dialog')await command(1);else if(s.mode==='map'&&!s.hasPath&&!s.heroMoving)break;await page.waitForTimeout(100);}
   const data=await panel();const offering=data.offers.find(row=>row.kind===(kind==='shrine'?4:5));assert(offering,JSON.stringify(data));

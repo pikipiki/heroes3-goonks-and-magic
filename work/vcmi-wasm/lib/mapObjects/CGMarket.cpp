@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "../era/EraMithrilModel.h"
+#include "../networkPacks/EraGameplayPacks.h"
 #include "CGMarket.h"
 
 #include "CGHeroInstance.h"
@@ -147,44 +148,83 @@ void CGUniversity::onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInst
 	gameEvents.showObjectWindow(this, EOpenWindowMode::UNIVERSITY_WINDOW, h, true);
 }
 
-void CGUniversity::onUniversityWindowClosed(IGameEventCallback & gameEvents,const CGHeroInstance * h) const
+namespace
 {
-	if(era_compat::mithril::universityActive(*cb,id))
-	{
-		const auto eligible=era_compat::mithril::universitySkills(*this,*h);
-		if(!cb->getPlayerState(h->getOwner())->isHuman())
-		{
-			for(const auto & skill:eligible)gameEvents.changeSecSkill(h,skill,2,ChangeValueMode::ABSOLUTE);
-		}
-		else if(!eligible.empty()&&cb->getResource(h->getOwner(),GameResID::GOLD)<3000)
-		{
-			InfoWindow dialog;dialog.player=h->getOwner();
-			dialog.text.appendTextID("tum-era.mithril.university.insufficientGold");
-			dialog.components.emplace_back(ComponentType::RESOURCE,GameResID(GameResID::GOLD),3000);
-			gameEvents.showInfoDialog(&dialog);
-		}
-		else if(!eligible.empty())
-		{
-			BlockingDialog dialog(true,eligible.size()>1);dialog.player=h->getOwner();
-			dialog.text.appendTextID("tum-era.mithril.university.advance");
-			for(const auto & skill:eligible)dialog.components.emplace_back(ComponentType::SEC_SKILL,skill,2);
-			gameEvents.showBlockingDialog(this,&dialog);return;
-		}
-	}
+void storeUniversityQuery(IGameEventCallback & events,const IGameInfoCallback & cb,const CGHeroInstance & hero,const JsonNode & query)
+{
+    EraGameplayChange change;change.system="mithril";change.state=era_compat::mithril::state(cb);
+    change.state["revision"].Integer()=era_compat::mithril::revision(cb)+1;
+    change.state["universityQueries"][std::to_string(hero.id.getNum())]=query;
+    events.sendAndApply(change);
+}
+void showUniversityQuery(IGameEventCallback & events,const CGUniversity & university,const CGHeroInstance & hero,const JsonNode & query)
+{
+    const int stage=static_cast<int>(query["stage"].Integer());
+    BlockingDialog dialog(stage==1,stage==2);dialog.player=hero.getOwner();
+    const char * text=stage==1?"advance":stage==2?"choose":stage==3?"learned":"insufficientGold";
+    dialog.text.appendTextID(std::string("tum-era.mithril.university.")+text);
+    if(stage==1||stage==4)dialog.components.emplace_back(ComponentType::RESOURCE,GameResID(GameResID::GOLD),3000);
+    else if(stage==2)
+        for(const auto & value:query["choices"].Vector())dialog.components.emplace_back(ComponentType::SEC_SKILL,SecondarySkill(static_cast<int32_t>(value.Integer())),2);
+    else dialog.components.emplace_back(ComponentType::SEC_SKILL,SecondarySkill(static_cast<int32_t>(query["chosen"].Integer())),2);
+    events.showBlockingDialog(&university,&dialog);
+}
 }
 
-void CGUniversity::blockingDialogAnswered(IGameEventCallback & gameEvents,const CGHeroInstance * hero,int32_t answer) const
+void CGUniversity::onUniversityWindowClosed(IGameEventCallback & events,const CGHeroInstance * hero) const
 {
-	if(era_compat::mithril::universityActive(*cb,id)&&answer>0)
-	{
-		const auto eligible=era_compat::mithril::universitySkills(*this,*hero);
-		const auto selected=eligible.size()==1?0:answer-1;
-		if(selected>=0&&static_cast<size_t>(selected)<eligible.size()&&cb->getResource(hero->getOwner(),GameResID::GOLD)>=3000)
-		{
-			gameEvents.giveResource(hero->getOwner(),GameResID::GOLD,-3000);
-			gameEvents.changeSecSkill(hero,eligible[selected],2,ChangeValueMode::ABSOLUTE);
-		}
-	}
+    if(!era_compat::mithril::universityActive(*cb,id))return;
+    const auto eligible=era_compat::mithril::universitySkills(*this,*hero);
+    if(!cb->getPlayerState(hero->getOwner())->isHuman())
+    {
+        for(const auto & skill:eligible)events.changeSecSkill(hero,skill,2,ChangeValueMode::ABSOLUTE);
+        return;
+    }
+    if(eligible.empty())return;
+    JsonNode query;query["object"].Integer()=id.getNum();
+    query["stage"].Integer()=cb->getResource(hero->getOwner(),GameResID::GOLD)>=3000?1:4;
+    for(const auto & skill:eligible)query["choices"].Vector().emplace_back(static_cast<double>(skill.getNum()));
+    storeUniversityQuery(events,*cb,*hero,query);showUniversityQuery(events,*this,*hero,query);
+}
+
+void CGUniversity::blockingDialogAnswered(IGameEventCallback & events,const CGHeroInstance * hero,int32_t answer) const
+{
+    if(!era_compat::mithril::universityActive(*cb,id))return;
+    auto query=era_compat::mithril::state(*cb)["universityQueries"][std::to_string(hero->id.getNum())];
+    if(!query["object"].isNumber()||query["object"].Integer()!=id.getNum())return;
+    const int stage=static_cast<int>(query["stage"].Integer());
+    const auto clear=[&](){storeUniversityQuery(events,*cb,*hero,JsonNode());};
+    if(stage==4||answer<=0){clear();return;}
+    if(stage==1)
+    {
+        if(answer!=1||query["choices"].Vector().empty()){clear();return;}
+        query["stage"].Integer()=query["choices"].Vector().size()>1?2:3;
+        if(query["stage"].Integer()==3)query["chosen"]=query["choices"].Vector().front();
+        storeUniversityQuery(events,*cb,*hero,query);showUniversityQuery(events,*this,*hero,query);return;
+    }
+    if(stage==2)
+    {
+        if(static_cast<size_t>(answer)>query["choices"].Vector().size()){clear();return;}
+        query["chosen"]=query["choices"].Vector().at(answer-1);query["stage"].Integer()=3;
+        const SecondarySkill selected(static_cast<int32_t>(query["chosen"].Integer()));
+        if(!selected.hasValue()||hero->getSecSkillLevel(selected)!=1){clear();return;}
+        // FU8189 grants a chosen lesson before its acknowledgement. With a
+        // single eligible skill, the grant follows that acknowledgement.
+        query["skillGranted"].Bool()=true;storeUniversityQuery(events,*cb,*hero,query);
+        events.changeSecSkill(hero,selected,2,ChangeValueMode::ABSOLUTE);
+        showUniversityQuery(events,*this,*hero,query);return;
+    }
+    if(stage!=3||answer!=1){clear();return;}
+    const SecondarySkill skill(static_cast<int32_t>(query["chosen"].Integer()));
+    const bool granted=query["skillGranted"].Bool();
+    const bool valid=skill.hasValue()&&(granted?hero->getSecSkillLevel(skill)>=2:hero->getSecSkillLevel(skill)==1)
+        &&std::any_of(query["choices"].Vector().begin(),query["choices"].Vector().end(),[&](const JsonNode & value){return value.Integer()==skill.getNum();});
+    clear();
+    if(valid)
+    {
+        if(!granted)events.changeSecSkill(hero,skill,2,ChangeValueMode::ABSOLUTE);
+        events.giveResource(hero->getOwner(),GameResID::GOLD,-3000);
+    }
 }
 
 bool CGUniversity::wasVisited (PlayerColor player) const
