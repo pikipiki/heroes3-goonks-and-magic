@@ -3835,13 +3835,4686 @@
         }
       ],
       "status": "source-locked-not-native-admitted"
+    },
+    {
+      "id": "reborn",
+      "directory": "Third Upgrade Mod Reborn",
+      "sha256": "a4d4b1e8584c867bc5d7eb5ce78d7f6c4b58e21e407eb80038cb413a12a37cfa",
+      "files": [
+        {
+          "file": "AmeEditGuide.pdf",
+          "sha256": "14e9ceb30f29513278d8a2f4f15e6b418aa3e75fd39fcc070a8610a57bce79c9",
+          "bytes": 516264,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/AmeCre.pac",
+          "sha256": "f3f5a970db68ead2587caf088a3db22015aa8bdaaafaa5e7ead9b2bdb7443659",
+          "bytes": 52167101,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/AmeCre.snd",
+          "sha256": "9e7cb92554cea8eb7409ba11ebaf8cf0d078745e44d53c273d922fae6bf74e8d",
+          "bytes": 68171295,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/AmeEfect.pac",
+          "sha256": "8a14d9f0dce9fe46a5d124b85b5f51874dc3da6761b2c6e859975c50e5490686",
+          "bytes": 574530,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Buttons/Eighth Monsters.btn",
+          "sha256": "0945ae1ad05cf0900f7887591e1b57cd2a57693504a2bd9d09d5afe03f2999d4",
+          "bytes": 61,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/0.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/1.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/10.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/100.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/101.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/102.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/103.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/104.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/105.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/106.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/107.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/108.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/109.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/11.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/110.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/111.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/112.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/113.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/114.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/115.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/116.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/117.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/118.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/119.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/12.cfg",
+          "sha256": "99267fdaf9febb995319f1270dc75bee2ddcd377c140309303f64c8c1a021832",
+          "bytes": 13,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/120.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/121.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/123.cfg",
+          "sha256": "f43cbbf904f10b8a30e59c80dcbe4e19144f0e6d6b2fb6a8833a5e72a6de676a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/125.cfg",
+          "sha256": "f43cbbf904f10b8a30e59c80dcbe4e19144f0e6d6b2fb6a8833a5e72a6de676a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/127.cfg",
+          "sha256": "f43cbbf904f10b8a30e59c80dcbe4e19144f0e6d6b2fb6a8833a5e72a6de676a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/129.cfg",
+          "sha256": "f43cbbf904f10b8a30e59c80dcbe4e19144f0e6d6b2fb6a8833a5e72a6de676a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/13.cfg",
+          "sha256": "99267fdaf9febb995319f1270dc75bee2ddcd377c140309303f64c8c1a021832",
+          "bytes": 13,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/130.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/131.cfg",
+          "sha256": "ccbc712a8504746ec5960ae731587362624a273e7b20aecdb2e96104c4c34aef",
+          "bytes": 84,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/132.cfg",
+          "sha256": "b3c6e3535eee16364434ae43144dd343eb3a9dd70c0073f0d59a0ce43d8aeffd",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/133.cfg",
+          "sha256": "d1d5497d9e290f87a491f4898bf933e7607f1163b39687978dd967b21e999eba",
+          "bytes": 140,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/134.cfg",
+          "sha256": "c2b2e7029aa7c19f530da8af0809bc8ca6ef4cd94b663b12cbdeb89cd200133a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/135.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/136.cfg",
+          "sha256": "f65427ec56c687ffa1f1bbe384a32b251ebb0668e9eead9ff703c8388ec5c030",
+          "bytes": 74,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/137.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/138.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/139.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/14.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/140.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/141.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/142.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/143.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/144.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/15.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/150.cfg",
+          "sha256": "99267fdaf9febb995319f1270dc75bee2ddcd377c140309303f64c8c1a021832",
+          "bytes": 13,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/151.cfg",
+          "sha256": "ac5cedd2e7350538e69eb26c2cd12530f7cb4d01ec67676fe283f99e1b96757b",
+          "bytes": 148,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/152.cfg",
+          "sha256": "ebe82b288dec4976be5fb3ca6135b8206dfd88621d24821817e391e1d9ec299a",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/153.cfg",
+          "sha256": "3809dfdde98cd82bfe61c243b50fa83b21bd0e7c4f609ee27606500054bda289",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/154.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/155.cfg",
+          "sha256": "c303524c98219d61da824e15b1f6045bfcf9844e741ff8398473557b7a118aad",
+          "bytes": 129,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/156.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/157.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/158.cfg",
+          "sha256": "cab7e43f7fa91832c131501aa361b52b82dba5be91b297b305d50d023daf41c2",
+          "bytes": 28,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/159.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/16.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/164.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/165.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/166.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/167.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/168.cfg",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/169.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/17.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/170.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/171.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/172.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/173.cfg",
+          "sha256": "d983ed1542e3f1bf11c7dadb04c37e89c3fa9c57a1c951ee8c3d522487229114",
+          "bytes": 63,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/18.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/19.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/192.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/193.cfg",
+          "sha256": "e67d8514540fd1a0398b667b5705fb1526109f3b07a4f2aede1a742684a03a8c",
+          "bytes": 74,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/194.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/195.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/196.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/197.cfg",
+          "sha256": "1e8ad4846cd05b7de57906b00ee91f199ab616d40b5f3b0f68acc5e7423807cd",
+          "bytes": 123,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/198.cfg",
+          "sha256": "8ff6019e3fd801484e9ca2096a765db93663482287d026a92065bd0062480e52",
+          "bytes": 89,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/199.cfg",
+          "sha256": "112d11ebe8a019ed352abc90b9a40d9ee2df77cd23e1c70942fb560d68aa175d",
+          "bytes": 105,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/2.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/20.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/200.cfg",
+          "sha256": "bcbdbc6e0f5a12338b95032cb9c163ec584e62140ed527f8e503e4d92f44ad5a",
+          "bytes": 128,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/201.cfg",
+          "sha256": "156d332e7d0916557ee18a78ccde324bcf4eaf375b088c94341957a3cc9355e4",
+          "bytes": 103,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/202.cfg",
+          "sha256": "7357ff25ee90849dd78f0e8957081f1454c3e94c7b049afec0c73ca8551866a3",
+          "bytes": 144,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/203.cfg",
+          "sha256": "2f797cae6404a41439823501b347d902ed484b0bf82a19132c6e7f539701d400",
+          "bytes": 107,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/204.cfg",
+          "sha256": "036a4b320bf6a653deaa817cc5c4f44c3be9a85bfe1e03ad14547295bf49db27",
+          "bytes": 104,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/205.cfg",
+          "sha256": "03d81c62818d0cac765f094834e03bfb5b78719b9125e34123c5ba449962f3be",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/206.cfg",
+          "sha256": "993180380c40486b6ea62b9a300ebdd8c1e462664f0df4f8badf7236dff7a40e",
+          "bytes": 115,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/207.cfg",
+          "sha256": "321eafd29b6121e14edf9df393e8e79f985af30810af59c634913423430fbe82",
+          "bytes": 193,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/208.cfg",
+          "sha256": "b140b9b2a2a29fbe4abc68e3dbb1a0af4396f0805819f4f309ffa3918b78ee62",
+          "bytes": 85,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/209.cfg",
+          "sha256": "0d5a15e77ce71790b9a7bac567c72bff4e54e197baecf1e84aad00a55db623be",
+          "bytes": 90,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/21.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/210.cfg",
+          "sha256": "9a224ae498f6d0732f36218b903c94145a3802a17db7b651ba2889682f361318",
+          "bytes": 158,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/211.cfg",
+          "sha256": "e3006bc4ccefb91d46102ad84254a0ee153718b8e3021f978aaa8e42fe330407",
+          "bytes": 122,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/212.cfg",
+          "sha256": "5f1783c982cf4a0f1079b947cea6cc5622dc999a184a6b8fd5020878b97e4159",
+          "bytes": 220,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/213.cfg",
+          "sha256": "c4b08c38eb63a00faa0c5122898062296dff37cb66b466fae86e2f75b63ea3b8",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/214.cfg",
+          "sha256": "d669ae7ab4178284133f69a80aaf57bce1d284bb6c1b8f6ec55506e757dc44c5",
+          "bytes": 106,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/215.cfg",
+          "sha256": "b1b042533638a9219ec2228544ee48eed2575a6dfbc3884290e74f165145dfa8",
+          "bytes": 120,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/216.cfg",
+          "sha256": "b3faa631c9867ed363c18b78807027841fe3402394cf01871ab4523aca61b45a",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/217.cfg",
+          "sha256": "879e35908203fa94ff535018371fcfa46dda6fe8c1a2e75cbf1d9dcc3ef95032",
+          "bytes": 75,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/218.cfg",
+          "sha256": "ef1b49ce6370019a1ec316fbd5bc2d20deb6289a137bf2fcabc286bcda39b358",
+          "bytes": 199,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/219.cfg",
+          "sha256": "9d8ffdd720ec1e5743db715456bab7916973275aebfe80fb613530a224aa734a",
+          "bytes": 210,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/22.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/220.cfg",
+          "sha256": "3c0953b395378bfb314d3d568593c1982838eb1f0e70f33ff383b406a144be05",
+          "bytes": 90,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/221.cfg",
+          "sha256": "701d63c74562ae193dc1158b91432234d36b25f9abe1c6bd50c4d000088b53aa",
+          "bytes": 123,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/222.cfg",
+          "sha256": "34f7c17229ca33fb87a9e9392c6bc3104dde8a7d40a224f7b10ba38ae6f8d9b6",
+          "bytes": 166,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/223.cfg",
+          "sha256": "0bcbf75dc8336178133324711ce18bdcbb9c7153052bdd2769146f5baeceebab",
+          "bytes": 120,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/224.cfg",
+          "sha256": "6384b9e966945706e559a387a45a27a2627cb69dd64c6f1347493b8282d76a97",
+          "bytes": 145,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/225.cfg",
+          "sha256": "f195a3fcf80c3e97fd6dd9b78150166352d786451040633d4d43517d399eadcb",
+          "bytes": 108,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/226.cfg",
+          "sha256": "4dfc5576ca97cb68df4d34eaf1e7e7bf814c3862608c7d254bdfb923a39e5e3c",
+          "bytes": 99,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/227.cfg",
+          "sha256": "d54001b3cbb105de38207160576611dff175b112b73978f7cb3005ad6a6c4539",
+          "bytes": 108,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/228.cfg",
+          "sha256": "0ac094145f462be956b8ed197982d1aa1f005dcda2b8afd18da38f29243a88d2",
+          "bytes": 104,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/229.cfg",
+          "sha256": "69aaeeeae316375c344a29a82ef9e397995eb0a0b34acbde73c616b6846ae5ef",
+          "bytes": 127,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/23.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/230.cfg",
+          "sha256": "b32679bd0dd3f9e7853cc31a3c750902f3159345b94fa10b95a798a7ba791a47",
+          "bytes": 120,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/231.cfg",
+          "sha256": "daac26db89e2a256f8f724982bc0a67adb97337b907945ec1972cee19b73f53e",
+          "bytes": 211,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/232.cfg",
+          "sha256": "8d284fded5a2422ac5eddb7e1931fcec041a0d23edf6e48535dfdd47a5027224",
+          "bytes": 132,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/233.cfg",
+          "sha256": "c15161cb4a5ec8a478e5cb690ae01616bc9693e395584fd24541cde389a5fd68",
+          "bytes": 153,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/234.cfg",
+          "sha256": "ea4564c354bd5d1e1c997d395cb81c11fdf41301d111ee195302ee8164a50112",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/235.cfg",
+          "sha256": "d0c97fb5f14acd4f1b22c9b03b86d0107a35def970da46c8cd7d9ca3a44d22a2",
+          "bytes": 135,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/236.cfg",
+          "sha256": "c80477cd04158f263444c5f6ccc8fab1043d131b1e0c1494101084f6e8a5de21",
+          "bytes": 103,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/237.cfg",
+          "sha256": "83311296cc3c69a858016b7d92bfb99cc12fa1308e92532e834f9e948bd02e11",
+          "bytes": 108,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/238.cfg",
+          "sha256": "baaef85a26b240c152316117ab57aaa6922ee276594ebaf9575ed9bd4b53a3f5",
+          "bytes": 132,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/239.cfg",
+          "sha256": "463426a13da9069d681f64275bc0f095d587d808b898648e703dc4dcf089e1dc",
+          "bytes": 78,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/24.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/240.cfg",
+          "sha256": "7934faad5df8bed610e7010045cf84a0b3c30a7e16bb23a18f56988a5c6eca44",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/241.cfg",
+          "sha256": "ce3fe2e99fe8949905f4a251f609c7c8d36b9c97c9beb7c99064e53dd04c2707",
+          "bytes": 141,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/242.cfg",
+          "sha256": "841b4ee628fc3b1ed35f84949c7be1ad36d57615e8d7ca02706605a49f9b4982",
+          "bytes": 124,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/243.cfg",
+          "sha256": "6f6f3aeabe324e3807338e18610bd8e9bb999bc134fab9a21cb984b87cfb1c2e",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/244.cfg",
+          "sha256": "3c6bae9ac68be32970ef07a80a9b3b2ae51ea0f5c798b4b10f038f20409b331e",
+          "bytes": 103,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/245.cfg",
+          "sha256": "9348c84049426c65596182e4327eed7f47bd9722bc1010ebcc5978891d06b354",
+          "bytes": 201,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/246.cfg",
+          "sha256": "dd15a10fad4d5c1e4b4eac33dea7aa50e1bcf19c32a0258240a4554222176af4",
+          "bytes": 89,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/247.cfg",
+          "sha256": "9a5705523e7e2e0ca5b094f5566b5f341e92ce372e724e6cfe52570fea55b259",
+          "bytes": 160,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/248.cfg",
+          "sha256": "94a11415befa78bb7db094540bd64a9f3e678f1307b5ed7d5b9e34be9e1e7329",
+          "bytes": 160,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/249.cfg",
+          "sha256": "6885187e03ee251c06ec71db6910fb5c20aeedaf037a31113e336a888779fbcc",
+          "bytes": 139,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/25.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/250.cfg",
+          "sha256": "bb1ac0ce79dd500e37ac783e967d11463871152d74326a64b606a2b73cef8ff9",
+          "bytes": 160,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/251.cfg",
+          "sha256": "7ee4cecd9b01a55b4889124b6915cf332f379b4f0e33a0e1e41ef7f4abd5c0d5",
+          "bytes": 111,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/252.cfg",
+          "sha256": "270e3fc216c0f42455bc4e6ce6cd0280fcd573c8dea0c1ec2baa6989fc2f230c",
+          "bytes": 210,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/253.cfg",
+          "sha256": "33e833361b056b8ed3ad1c86a6f89fbb96cd7f11ff58d34e7021deee3eac17c4",
+          "bytes": 61,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/254.cfg",
+          "sha256": "63616d03c3e9899530c7a68e9961e5fee843ee68e4b08acdaaebf0f40a64e2ca",
+          "bytes": 137,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/255.cfg",
+          "sha256": "d2324c22d0abcb143b5e67152160da8e0ca38f786e8dd554f1aa992c8380ddb9",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/256.cfg",
+          "sha256": "c0761cd48fb87866aed0892a94f105f275ee08e8941a6d6a6b1a78223c0f7f1d",
+          "bytes": 106,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/257.cfg",
+          "sha256": "5aee76f1c1f51689e7c02ceef78a33371e0a79249312cafef1c2a02c049ee924",
+          "bytes": 123,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/258.cfg",
+          "sha256": "130fd39bb886da99a0ee2981f939378b91d0d5a6d7420d11bca67906656d4cb5",
+          "bytes": 149,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/259.cfg",
+          "sha256": "2f8983d65dc2881b6e8cfea4efa63d327639763f5fe952a12f9592e1255b91da",
+          "bytes": 155,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/26.cfg",
+          "sha256": "b3c6e3535eee16364434ae43144dd343eb3a9dd70c0073f0d59a0ce43d8aeffd",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/260.cfg",
+          "sha256": "f1d7be74f4776e2bbca29377d027f447d8eb30e9a2b29c66bf2976a48941d91f",
+          "bytes": 87,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/261.cfg",
+          "sha256": "9bb0021b537aaa34e2630190b89fb0b087d031507f62b4d0189d95771bec01f6",
+          "bytes": 153,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/262.cfg",
+          "sha256": "9efefb0eae56d5ccd1ebe74c08f808024eafe1e5ffb7d945b231b2582dacd9a4",
+          "bytes": 127,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/263.cfg",
+          "sha256": "02d8b610e9f9327ac1cdd9a10c6795a236567af0d4bcd7893d125d01a7a48d3e",
+          "bytes": 99,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/264.cfg",
+          "sha256": "dcba58ecc7e5e016266bff967f6f2acff90e4c6e9bb50a1a63bb765d22fa4a7a",
+          "bytes": 127,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/265.cfg",
+          "sha256": "8b4f408bb508ecfca9025fbce10ad5465c9d2611fdb0f0d6370ef7ab4b59a084",
+          "bytes": 101,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/266.cfg",
+          "sha256": "95b38d573ac95204329a4d3f2cf984cdd238c311cf03919024a2d137aa3d1a3b",
+          "bytes": 122,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/267.cfg",
+          "sha256": "201bdfc401c7ac7fa61e87a44ec55b8687119852fa21515fb3c0384d7c4577ec",
+          "bytes": 156,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/268.cfg",
+          "sha256": "dcd4ac5e354744b3e8135579360e11d4089895f28675b00ca0f9b6b086cba7ce",
+          "bytes": 152,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/269.cfg",
+          "sha256": "d5228a79688309c59a986ae48ecc7b02bf49766228b2f91c5306a6db683f5cbb",
+          "bytes": 67,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/27.cfg",
+          "sha256": "cca0eb8997d98ed28c1b3cc36300a2bc5f189203d4872742158670a477c0df1a",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/270.cfg",
+          "sha256": "bebc0357d9b6d4e023bc66820b1426b0f0c4150c7b2ebd9ce0555f8b9f354db7",
+          "bytes": 151,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/271.cfg",
+          "sha256": "31d6d7c02432b68efdec25d4047358ef9f56c25e5285d15d009b79322c722e2e",
+          "bytes": 109,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/272.cfg",
+          "sha256": "657fb39ba14699e22a6a83b6b029734dc4fad96f01c804afeb0f978fc670b478",
+          "bytes": 104,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/273.cfg",
+          "sha256": "7f815656b0ae54de4529207d74acf92241ac1afb24e87231122e0f58a10dd026",
+          "bytes": 144,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/274.cfg",
+          "sha256": "e89ef6020f9f135ff9f981b25e26b96b84660c5462fac19540ea02328366005e",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/275.cfg",
+          "sha256": "07af4705ed9085509bb134e027d2890307ae23630ba2f703bd9b1259e27d03dd",
+          "bytes": 100,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/276.cfg",
+          "sha256": "d6994ee14f49eb9e416c59d5e1272dfb5ec7e452d54b9bba19e1bd41404b891d",
+          "bytes": 104,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/277.cfg",
+          "sha256": "dc04b0ad6a8709b108e882581f211a5819df6bf4d7910de440228db850d07767",
+          "bytes": 64,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/278.cfg",
+          "sha256": "1cb2b511f4eb54b3bf6c07335128fe04e43b4902edb4bd9efca327dd4554c27b",
+          "bytes": 51,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/279.cfg",
+          "sha256": "1b790ef52a9eca023c0523595849bf009f522d914764c5fcdf0818709cc08f2f",
+          "bytes": 135,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/28.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/280.cfg",
+          "sha256": "929dfe8bed10484dcaf9171ceb5ebe9b06fd31dc9136d4116d443b3cbfaaf022",
+          "bytes": 95,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/281.cfg",
+          "sha256": "baca482b41200383630c4c0b80cc211c982a3eee61fc4f39bf8a5a34f6541b7f",
+          "bytes": 88,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/282.cfg",
+          "sha256": "dc16ab3a3a6f2efaa898de691f45ff9eff1b5b7704c16cd0f8f85efa88e1421f",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/283.cfg",
+          "sha256": "f641e95e52ffbf0d4e61ed37088903ecbdd9463f684aea6a2d8cffef96738ae9",
+          "bytes": 84,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/284.cfg",
+          "sha256": "3c943203688533a1ef9c0d748cb4e773e634361288cb2b0f8589fc1891305a60",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/285.cfg",
+          "sha256": "fc7ba0f03a4d9493b8d9476ef7b5333a5794228e2d6138c2f58b537618591a53",
+          "bytes": 48,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/286.cfg",
+          "sha256": "b2364aeac49d53d01d48bf6ae8721d2781c8eeed950327532c765befca1aa7a2",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/287.cfg",
+          "sha256": "82063889e5b80fb88b764925f9e578860157ed14716ac9a2f355f158fbd0bd06",
+          "bytes": 82,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/288.cfg",
+          "sha256": "823acc24f502b9f7fa455220200eac5bd5a022222c659a20377760c493963b9f",
+          "bytes": 127,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/289.cfg",
+          "sha256": "6ac65348c6e058a50666a131ebb5295014770a79e0165414f4e9041b0708aad9",
+          "bytes": 35,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/29.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/290.cfg",
+          "sha256": "181685eb1095367e62214861189ff6bcbea9e8414af048462c260fc9cf67dc30",
+          "bytes": 56,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/291.cfg",
+          "sha256": "3d0f2dc08b4e6b1bfcad8df5da9817cdac7f5ffa71f230c80e96aa5611357e5c",
+          "bytes": 87,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/292.cfg",
+          "sha256": "14ffce6df2f90cd46f9c5818fcb0c7b27c4c73bd9db8c35c505d24b4d5936863",
+          "bytes": 43,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/293.cfg",
+          "sha256": "1da51560fb91bd288177a7048583e9309865f0abdd36700cb27a5a06a3a8dd35",
+          "bytes": 84,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/294.cfg",
+          "sha256": "5ea0091186307f0dcf71697860d0c6af6ff05840b100f06f7290186950503f11",
+          "bytes": 22,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/295.cfg",
+          "sha256": "cac2de8d5a34ae70809ae89f73d10ed2cb54fb40c57910a5fbd3006194b7fd1d",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/296.cfg",
+          "sha256": "2e3186ddc4eefab58d99758de7a706334c9819fde30cfd72fd9f792f81784b1e",
+          "bytes": 99,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/297.cfg",
+          "sha256": "72dd7df52ecf9b5dbcb47aa843771b84691e137698ffa75c9d03dee64d248af7",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/298.cfg",
+          "sha256": "ed9ce125bc5f4fc9dedc114a12e94e4993a66b081018592e56b40b1217c3a2e0",
+          "bytes": 82,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/299.cfg",
+          "sha256": "312356ba606146f77eec62abc7e81e77e61f811640bb2d4afe9986126a3a8352",
+          "bytes": 116,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/3.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/30.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/300.cfg",
+          "sha256": "4f8c481df7c63e1ef2ff57daffea74e41712d83afb10c9fa0a0cbdb46930225e",
+          "bytes": 78,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/301.cfg",
+          "sha256": "c594796c96de2d5a412bdfd0e0082d3e3c24fd3faf77d730e67d6f91c26cc562",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/302.cfg",
+          "sha256": "cef76caa4d83ee6ea31953d55c8fe85b01353013ae0aed063bc719c47718f6a3",
+          "bytes": 89,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/303.cfg",
+          "sha256": "a184b0432e8af5d9fa8f15b3e3767f142600a2fc8562c51ce7f0542be4acc6aa",
+          "bytes": 108,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/304.cfg",
+          "sha256": "ad89c34d67f1dd046b65f2f3b73378da7b8a300afe7107ba3c4c66fd5cf58824",
+          "bytes": 106,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/305.cfg",
+          "sha256": "f5f9339adc14bb81076f21822fe0acda90a603ca63bad60ba8895fad96995f16",
+          "bytes": 90,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/306.cfg",
+          "sha256": "748dcee933072e454eb33f1d3879943ca90cced723a0a62b19298540f872cafd",
+          "bytes": 88,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/307.cfg",
+          "sha256": "a1454ba3aa4941da0f57896ec04d9f6e20c71a1040446d56dd4b8c8cb7c1e073",
+          "bytes": 124,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/308.cfg",
+          "sha256": "71cabcc6d4dbbf642dabc8d5cb4a944fc379fbc611e3dca4f8053c5b191ff2cc",
+          "bytes": 78,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/309.cfg",
+          "sha256": "bcf966b07636398fc7d35bc909eaba7e345d3a62bbd8d217b57cfd7f48b06438",
+          "bytes": 127,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/31.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/310.cfg",
+          "sha256": "89487f22791adf211686828c075e7035f024590b557e342d524113872b0d3853",
+          "bytes": 95,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/311.cfg",
+          "sha256": "8b661eb095ced9f3bb6e10f18045625c05b5628515d6ec597781dfb32447bd41",
+          "bytes": 78,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/312.cfg",
+          "sha256": "fecfcb1793f304cbce7032550df9ba0e2b2db693532b96262a562ce9cfc545ab",
+          "bytes": 144,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/313.cfg",
+          "sha256": "4a817b51f05a5009a16c89c5160a59ed1b5028bbdf53383a1740ca06b4c99ce8",
+          "bytes": 117,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/314.cfg",
+          "sha256": "308dd16e62f3e3173be69aaad9bfd76ba8d56712d5bbb15e723e5d78a0b84f52",
+          "bytes": 101,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/315.cfg",
+          "sha256": "0c10522c446640549435d90cf1b89139f84fda656a3ce243e4b4d38288b284bd",
+          "bytes": 76,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/316.cfg",
+          "sha256": "7b6c5bd7120dbfc458bf75c76d7e2b8ac998018023eec0ef4ee612c23f6e7359",
+          "bytes": 123,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/317.cfg",
+          "sha256": "0b737199e34b1ed802b211180d8d740e3a10b7431c3212d163994297e42ce804",
+          "bytes": 113,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/318.cfg",
+          "sha256": "d700d3384d802490b1b73dc99cbf341ddb6a8e24ace241d50a3c6ad283209cd4",
+          "bytes": 100,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/319.cfg",
+          "sha256": "50f6cef51f8c4857e6640d04e16a1d3379f39e28db176a0e9df80dcba4f72814",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/32.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/320.cfg",
+          "sha256": "5171ae419d54964f6c7a3c7e6ad97885f18fd778c6771dc9f9beb3a99b29971f",
+          "bytes": 88,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/321.cfg",
+          "sha256": "27c0ceea969c08e3c999c669cc7c2c7da19e85b3b78adc57fc7908d1c87a7cc9",
+          "bytes": 135,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/322.cfg",
+          "sha256": "1f412d5cbfc780a6a022ef5df8077edaa3e4be975ae5a338dbc7b97d48e62779",
+          "bytes": 87,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/323.cfg",
+          "sha256": "f13981f49fc81153d35b087938c25baa67163ec98db945017828c35aa06cd0b3",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/324.cfg",
+          "sha256": "9d5eebe0020de9d3a5374229504db1a64b5ccae920f83b3e39a736ded76e7957",
+          "bytes": 114,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/325.cfg",
+          "sha256": "9dabec99860460926457c813fddeb1a15fa9e1cf2a9fd9ba18b4e8e88910fe90",
+          "bytes": 129,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/326.cfg",
+          "sha256": "b109c684fcb487b3298d42bcd3393daea3d462b501d1b04c178c3dd759a48afa",
+          "bytes": 79,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/327.cfg",
+          "sha256": "c078e910d221707c2b4a05c72f6e51f5699ed0c5b88b1b0dca35167c7ab45119",
+          "bytes": 94,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/328.cfg",
+          "sha256": "509bcac4242f31bab0ed079847d803a0379e49fdaea4e807fb98492f0a9a7ac9",
+          "bytes": 94,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/329.cfg",
+          "sha256": "9c1e1b6daf9113eb26a0002d99227934ab67e775b75639455c2020fcb5b59e75",
+          "bytes": 106,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/33.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/330.cfg",
+          "sha256": "a79ce61ced58b4b37d4099dd780c06b453ed8e4a7c80db33e5d2bf956bba5ad9",
+          "bytes": 124,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/331.cfg",
+          "sha256": "7358ccab8a4bd8236c721a19a24b85460c61ce280d4afd9d399b4c4e0ae404b9",
+          "bytes": 35,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/332.cfg",
+          "sha256": "af2293cd48593d9d4d2bfa3528a6fa0e385308c0883b5907a77c4ddd5faae660",
+          "bytes": 68,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/333.cfg",
+          "sha256": "0fba964390e5ae624cdb8c1b7d1d2a1cd4251433ef245e70e1760511348b0430",
+          "bytes": 96,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/334.cfg",
+          "sha256": "76e76fce8f41c49b7f15088db68189fecc555a77473af5a8da0e87b3d4dac3c4",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/335.cfg",
+          "sha256": "26a8b5613b10ecceed08e4a33fe52900a6ea2c250a6046d2d4f935772d1c56b6",
+          "bytes": 96,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/336.cfg",
+          "sha256": "cc5a005d7f005016d482bf24484f17cbc3b9a3481e0bf0541dce9d30a2b58eab",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/337.cfg",
+          "sha256": "cfa998ec0c7ecded5c63157fc576cb0f02a7afe2a62cb0910254a683858c5139",
+          "bytes": 94,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/338.cfg",
+          "sha256": "e0b95cde17003bc50ada1d915a7b49a3317d82e998bed53517ba038a0ade3ce7",
+          "bytes": 78,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/339.cfg",
+          "sha256": "d4e4b504422824dc39bdff676c7369794c964d3561b6b3317b5643bb2957cd4c",
+          "bytes": 231,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/34.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/340.cfg",
+          "sha256": "6a57bef93b4418358e96f10298c2a4cb513db769ae6402dab77b0876bce37fc2",
+          "bytes": 89,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/341.cfg",
+          "sha256": "a8aee1c1fc8c84154d471d5c85db1cb525a01b85d105bf1ad71ba4f9e4ff703b",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/342.cfg",
+          "sha256": "a8aee1c1fc8c84154d471d5c85db1cb525a01b85d105bf1ad71ba4f9e4ff703b",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/343.cfg",
+          "sha256": "ffedd25a57c4348b6839f6b137e0889927844dfdc3f4f7b333b23d82a75ce9d6",
+          "bytes": 134,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/344.cfg",
+          "sha256": "015ce309dc7a9e73d28761fdaab533099f5915f76ef16d040821d56a375fd495",
+          "bytes": 118,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/345.cfg",
+          "sha256": "1a30f6728618a1996ab11f822201c78a10468db5562e7c673283039ac62ca663",
+          "bytes": 102,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/346.cfg",
+          "sha256": "1cced92de9a24c99c8405e12549a08fb2248b3c1ecc95a50132bb432ef0fcf4b",
+          "bytes": 108,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/347.cfg",
+          "sha256": "e3782ccc484c828f28e6914781fe9759909f977e03fe288dfd399ca73d8f2519",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/35.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/36.cfg",
+          "sha256": "09319cd311d6e094e3e26485344f876acd7fea19400c7047984204b3b8936524",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/37.cfg",
+          "sha256": "09319cd311d6e094e3e26485344f876acd7fea19400c7047984204b3b8936524",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/38.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/39.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/4.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/40.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/41.cfg",
+          "sha256": "ebe82b288dec4976be5fb3ca6135b8206dfd88621d24821817e391e1d9ec299a",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/42.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/43.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/44.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/45.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/46.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/47.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/48.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/49.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/5.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/52.cfg",
+          "sha256": "405ec4d64afee7806d88e46e1e7eb1755d9995f08f755fe7688ff57d0c652752",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/53.cfg",
+          "sha256": "405ec4d64afee7806d88e46e1e7eb1755d9995f08f755fe7688ff57d0c652752",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/54.cfg",
+          "sha256": "3809dfdde98cd82bfe61c243b50fa83b21bd0e7c4f609ee27606500054bda289",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/55.cfg",
+          "sha256": "3809dfdde98cd82bfe61c243b50fa83b21bd0e7c4f609ee27606500054bda289",
+          "bytes": 72,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/56.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/57.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/58.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/59.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/6.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/60.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/61.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/62.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/63.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/64.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/65.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/66.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/67.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/68.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/69.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/7.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/70.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/71.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/72.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/73.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/74.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/75.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/76.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/77.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/78.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/79.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/8.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/80.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/81.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/82.cfg",
+          "sha256": "b3c6e3535eee16364434ae43144dd343eb3a9dd70c0073f0d59a0ce43d8aeffd",
+          "bytes": 80,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/83.cfg",
+          "sha256": "1b3212149a8060935a71f2cfba669eecd1479ca858cde182eb364cbb984de038",
+          "bytes": 93,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/84.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/85.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/86.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/87.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/88.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/89.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/9.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/90.cfg",
+          "sha256": "f43cbbf904f10b8a30e59c80dcbe4e19144f0e6d6b2fb6a8833a5e72a6de676a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/91.cfg",
+          "sha256": "f43cbbf904f10b8a30e59c80dcbe4e19144f0e6d6b2fb6a8833a5e72a6de676a",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/94.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/95.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/96.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/97.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/98.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Creatures/99.cfg",
+          "sha256": "acc9c401aac093a718bb656ccd91f504522320c5256ca5798ea2e3531033d513",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Eighth Monsters.pac",
+          "sha256": "8df0f28bd35eadda90b93a2fe29a2cfd95baeb49292e6e23ca6e76df3dc7b480",
+          "bytes": 1912,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/EmeraldArtifacts.pac",
+          "sha256": "07f018390c4bc95102540ee766ea7832fb3e250b10cab37e8880017a7e3f81ef",
+          "bytes": 858023,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/FREDOBJ.pac",
+          "sha256": "d77eeeee511438007d454633772bebec767c08c9f49f45c5ad071ebdb5e4f50a",
+          "bytes": 41714619,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/MapEdPatch/newobj.txt",
+          "sha256": "d155e5b6f65976111dff316739b76ea0191d799d213469eb1fe672690dd17e20",
+          "bytes": 1951,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/MapEdPatch/options.ini",
+          "sha256": "a32a7cf2654eccd7e1ec5d4df0bd12bf585d880c5d5aad25fbe82bad6470ce6c",
+          "bytes": 367,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/Objects/FREDOBJ.txt.off",
+          "sha256": "b3811225170ea8e0897c346e655b7b7ead7b8c85c1664a85080af41d9f78f539",
+          "bytes": 673139,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/TUM_text.pac",
+          "sha256": "41af7a0a0ed9854bbdd38b58bb4d9f5c12493f8b047b417dfd63e21e61253dcb",
+          "bytes": 142026,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/WF_OB_txt.pac",
+          "sha256": "54965747b0d19e7dbbdecbff274dec48f3e667bf575a928baea96fd151502996",
+          "bytes": 92,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/_TUM_Chn.pac",
+          "sha256": "32bbdf76e916af8ed9e4ee3cfddeee26382d119b2b238a80b49d655bfd54ada0",
+          "bytes": 71738,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/_TUM_Reborn.pac",
+          "sha256": "350143135ceeb856025a38703922bcfc54e66d52812e354859fd79885202b17d",
+          "bytes": 8487944,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/_TUM_Sound.snd",
+          "sha256": "3ecf00245e45c2c749b9e14589b15e047773bc6cff16b8310c773cafcadeec7d",
+          "bytes": 5381643,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/amethyst.cfg",
+          "sha256": "aaec85a3357c2e7db0935a590eb8af25e9a85ab284836417f16a0fbf5ebc82a5",
+          "bytes": 86,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/157.cfg",
+          "sha256": "9d326864ca89ce3e2772cebd3fbc64875f1050369256564cced32729d34cf801",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/171.cfg",
+          "sha256": "4bed80e92cdf4a7211ee22f95721f4f0ad3ae06bafb8909caa7e9799a220f19e",
+          "bytes": 22,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/172.cfg",
+          "sha256": "98aba6a49171dda567a8c61f883782e798832375e7424595a43a500bee7ef1b8",
+          "bytes": 22,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/173.cfg",
+          "sha256": "0ce13676e7360e9920a6b46b37243e96c3c0a3014add0427fd81f12cabdf2e26",
+          "bytes": 21,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/174.cfg",
+          "sha256": "bcd1993a917c24c4325941bef519ae651ef39a32b89766e1908df6368c1889c6",
+          "bytes": 23,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/175.cfg",
+          "sha256": "e4e2a2c09b0797c1d601fd4de968a109aa0f92007e01ad45f7dbb6171b6da5b1",
+          "bytes": 8,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/176.cfg",
+          "sha256": "1e7ba14c946af628057f17eca0d0c7e2c2eca404992101ca8816d537c5d6e9a1",
+          "bytes": 9,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/177.cfg",
+          "sha256": "bb577d2f3a11cc90cef730cf636f26396f6481bb94eb7ca8717480c881b6f75e",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/178.cfg",
+          "sha256": "d133fbeed87b2e932b178481cadbf097dac8c42fe834cf2fcdd6ce7b2bf88b1e",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/182.cfg",
+          "sha256": "b81241f4d2339c5ed4b21d0c9aba64caf16093aadc2898ac4d464172da2aa600",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/192.cfg",
+          "sha256": "0f2880fd1a64d400377d241a9c10b54437ca107763fda708ebb9480c636a3f57",
+          "bytes": 15,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/193.cfg",
+          "sha256": "da8b085ae8d2a644dd3cf3998fcbef93d2e0845833d8fbb221a0298114076359",
+          "bytes": 16,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/194.cfg",
+          "sha256": "81472bd5e88ce4a46205e5cf875cae6c8a802407a307b5fc89f524c6bb2e4502",
+          "bytes": 16,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/195.cfg",
+          "sha256": "ad59980c3634939668524780e0471e2dbb2ce23d89064db31a7c0de47c1b694b",
+          "bytes": 16,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/196.cfg",
+          "sha256": "3058025132382031fc4802b69aa26a149c0a878f780cb21f3ea98b085b763ef5",
+          "bytes": 21,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/197.cfg",
+          "sha256": "2703966559a06d167c8a90906cd0bd476f919fbf3b41d6086b0fb250b07c1156",
+          "bytes": 16,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/198.cfg",
+          "sha256": "301bdb761b499c264e200d8da9ae6acd4d05f97aa6aa4c29dc6302af2335f321",
+          "bytes": 16,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/199.cfg",
+          "sha256": "10640059cb52a3f1b1e61fcccd29c73e70613449054a01c808c8cd537d1b9f9d",
+          "bytes": 23,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/200.cfg",
+          "sha256": "1184bd63636183d1e7aa5cb54c8a50246de91df6fca34e385659482a28fe028a",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/202.cfg",
+          "sha256": "1a56c5e547eed1cce5a77aa82c69f7642b7263935d5bf8a8b1b511dfb61449c5",
+          "bytes": 10,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/203.cfg",
+          "sha256": "063573ab963706e7751d42c9e32d7212088ea07933da8d0e4f5a70dc9415c89c",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/208.cfg",
+          "sha256": "27f6659467d980c26cc1c0587c7c470ab64e6aed00e30dc279cd62972b3ea6e6",
+          "bytes": 12,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/209.cfg",
+          "sha256": "0b8cb278564c51730e696e68c617bb4277a4467a367d6ff7ddd74a340aa4238b",
+          "bytes": 12,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/210.cfg",
+          "sha256": "1184bd63636183d1e7aa5cb54c8a50246de91df6fca34e385659482a28fe028a",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/211.cfg",
+          "sha256": "876719455a5f12b92869155c3c3325793380650ad976372612cb4022cdd4c14b",
+          "bytes": 8,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/213.cfg",
+          "sha256": "13497ea7fd74748a67f9467c15cbb4963afa9d4ca5141166d198dfe9eeba6bb7",
+          "bytes": 23,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/214.cfg",
+          "sha256": "2094106f7efff196db84309f11d198de1236b85af0529387b54db0ea3d660c32",
+          "bytes": 12,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/215.cfg",
+          "sha256": "dca2d5a85c6c3d9b99585be650c8162dff7536336e0e36875f5c0f6155976a43",
+          "bytes": 12,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/216.cfg",
+          "sha256": "0fa306711ec1d48133518cd09319b4562693c087e5dd34bcd8b0be06e4b0bf82",
+          "bytes": 23,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/217.cfg",
+          "sha256": "9171addfe6a1223814417ed6abef3407a6058996a9a3a43515ca93a7aa456dd2",
+          "bytes": 22,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/218.cfg",
+          "sha256": "1a56c5e547eed1cce5a77aa82c69f7642b7263935d5bf8a8b1b511dfb61449c5",
+          "bytes": 10,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/219.cfg",
+          "sha256": "5b30c9c0b5d6df54857b68b9eaeccb25805baaa515902df0b0e1e8e5bd28511a",
+          "bytes": 89,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/220.cfg",
+          "sha256": "b865d7ee9283a6588310ef23d67365c4e485f18dd2001674d12c83055c122133",
+          "bytes": 78,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/221.cfg",
+          "sha256": "1184bd63636183d1e7aa5cb54c8a50246de91df6fca34e385659482a28fe028a",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/222.cfg",
+          "sha256": "9a80607a49fd1a25cec223a1c568a8d0c7df512fd8f7aea7ecbc87348ad21e22",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/225.cfg",
+          "sha256": "bacf9c53377b7350413e88ea966f6c8869b86b539820dcb29d0f8b751cf13e6e",
+          "bytes": 13,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/226.cfg",
+          "sha256": "03c5c01f0214f7868cae2605a9bb867c37a11eef17026e2f0a7bc3ad317863d9",
+          "bytes": 15,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/231.cfg",
+          "sha256": "11c8b0cae5e956819440a4507a9c87c70160f848c48dd1014947e19f4bbacc16",
+          "bytes": 60,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/232.cfg",
+          "sha256": "b8b38dba7e6adb88c08e8e4b4cb00983f27a5b87c833e035a0c948ba2db41452",
+          "bytes": 10,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/233.cfg",
+          "sha256": "dca2aeaf2f98a5eb3e6ae97d490b8d6e51afbca1f3ab46bdbf593273efd653e4",
+          "bytes": 29,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/234.cfg",
+          "sha256": "9c3ffd653a07e0a9fdfcea4d71bcc7132731581281b0e776c58b4134692b5bbe",
+          "bytes": 23,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/235.cfg",
+          "sha256": "ad48a8ac415c8292a593774fb8b3578ece9af11d5ab7a92a50b0fe395f763b0e",
+          "bytes": 48,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/236.cfg",
+          "sha256": "ad48a8ac415c8292a593774fb8b3578ece9af11d5ab7a92a50b0fe395f763b0e",
+          "bytes": 48,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/237.cfg",
+          "sha256": "ad48a8ac415c8292a593774fb8b3578ece9af11d5ab7a92a50b0fe395f763b0e",
+          "bytes": 48,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/238.cfg",
+          "sha256": "a9a27247f773e5d17afd0ee3430752e42d40759b6e0febd953ac30219fd0d2d5",
+          "bytes": 59,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/241.cfg",
+          "sha256": "9d326864ca89ce3e2772cebd3fbc64875f1050369256564cced32729d34cf801",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/243.cfg",
+          "sha256": "9ad1816bbcc706a0f43859393b0f234a7d7a6092c62c688982531a3da6d07858",
+          "bytes": 8,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/244.cfg",
+          "sha256": "78df245f0df6e985078856898de060d28f065278415f19a87d651003fec153ab",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/246.cfg",
+          "sha256": "ba53ab315c93bc06df69249c13e8db1e34096cecdca6fcb274ebb2b6788a38c8",
+          "bytes": 8,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/247.cfg",
+          "sha256": "3bdb46e04c6dc1d98c86956d7fec08958698a7ff17f4067914c560c0e421a923",
+          "bytes": 25,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/248.cfg",
+          "sha256": "074b2edb7f72307a2074a4f5e5240f68540e59044c0158af1e325b45e907ed6d",
+          "bytes": 24,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/251.cfg",
+          "sha256": "f0a72741187ecdbd455b344b816c73bc0a90f52d0ed670eb7485cb3bb3a4a836",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/254.cfg",
+          "sha256": "1184bd63636183d1e7aa5cb54c8a50246de91df6fca34e385659482a28fe028a",
+          "bytes": 11,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/255.cfg",
+          "sha256": "346a0c7c53f4e4192306218873995874ea0354eb50a959beedb6d24dfc87cd4d",
+          "bytes": 24,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/257.cfg",
+          "sha256": "dac565f93888530cae5a19f5f8a4f91deb747281d817e80731d618360aeaf597",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/258.cfg",
+          "sha256": "d0472f9a65cf570e50b858be25927409d89b4864296974c69a67dfe296c5e2ae",
+          "bytes": 62,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/272.cfg",
+          "sha256": "0b3b4ddc9f72df77d6712ca32930ae5cfc4b8653045804745118aeea3ac2ca7d",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/275.cfg",
+          "sha256": "874ddfea7cf1d306d7c9e492a17479d73f2517db70c0071ea77de360e42badcd",
+          "bytes": 26,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/276.cfg",
+          "sha256": "874ddfea7cf1d306d7c9e492a17479d73f2517db70c0071ea77de360e42badcd",
+          "bytes": 26,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/277.cfg",
+          "sha256": "874ddfea7cf1d306d7c9e492a17479d73f2517db70c0071ea77de360e42badcd",
+          "bytes": 26,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/278.cfg",
+          "sha256": "e25afeb4564eeaf4bd803f1227cd67c07b71c74c3d0f6a229ed01ea808090ea2",
+          "bytes": 26,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/artifacts/284.cfg",
+          "sha256": "aadc3ff4286578b806eeafc5545317e9970f049b5f3096f545627fc9097f74a5",
+          "bytes": 48,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/emerald.cfg",
+          "sha256": "7ac2192dd80e1ee9e9242db8ea6706092371def246950fd2de176c9126eb993e",
+          "bytes": 68,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/necromancy.cfg",
+          "sha256": "376887090625b0eee7ee09301d659ae00bfa607d2697bec2ea0b3089de278dc6",
+          "bytes": 23,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/buildtwn.wav",
+          "sha256": "6e822a0422abb7b5294ab7ac4b73ffa121b3604d33ef58c8c64470d9075e753c",
+          "bytes": 26808,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/castle.bmp",
+          "sha256": "97d700c0dbbafbad59ad44280c6b128720254e8385a8ad1e3ef6f32660835b17",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/castle.gif",
+          "sha256": "af1f84ca6389d3d84e1851d754fa9fa5770b586984164b503115ab638f29c9e7",
+          "bytes": 263260,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/conflux.bmp",
+          "sha256": "675058d92bcc47d8a1de20ed64f50ac9eba7d08cddc75ebe4d29bb5af52b7302",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/conflux.gif",
+          "sha256": "c9bf1527dc8458d637fe0dc8df029a54f4c757d0860bee98fa7e02e20bc504bb",
+          "bytes": 149785,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/dungeon.gif",
+          "sha256": "031db23ec68d3824dbe0823fe1241c0eafecfc263e79b61d8fedda818d15922b",
+          "bytes": 227505,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/dungeon2.bmp",
+          "sha256": "554870dd3b4a455973da2049baebdadb216cbfc1bc040f335834b024d74b2c4c",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/dungeon2.gif",
+          "sha256": "9477ec1c8ec2c680f229ffbf67a9717a845efeb127439f6e6b392d68e333063f",
+          "bytes": 220683,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/fortress.bmp",
+          "sha256": "8fd83b0ed263dbfa908e786e388e22d6995123ec4f40c46747c86c6954f102d4",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/fortress.gif",
+          "sha256": "bc08220a6ba16807e8ae27a954f2334268c4267ddfcbd0cf7b55688c2c80fdbd",
+          "bytes": 341390,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/inferno.bmp",
+          "sha256": "34df58d0f1755ebc37dd493a4b98dd73a1882bb7c63f0d252e47b424a3cf5478",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/inferno.gif",
+          "sha256": "e3d3945ab27a3b7cbcba93ffd83460caf5d9c77e6ed35b496291a876bd637188",
+          "bytes": 238808,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/necropol.bmp",
+          "sha256": "95eb7d0fe86db3cde46960e21a184157d8e6ade023636294c38b2c862119a631",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/necropol.gif",
+          "sha256": "017b43829aedd0f18766ff502b645052a44d95ffe4befebc1afb0983845cce4d",
+          "bytes": 264019,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/rampart.bmp",
+          "sha256": "80cbd37a0424e49165636c117847daa4d91b518ff271731573477e398c962e01",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/rampart.gif",
+          "sha256": "dce12fa1b7120c02122fb78905328798f6dd46cd792f4178622fb9407b775e81",
+          "bytes": 225761,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/strongho.bmp",
+          "sha256": "f6c2800fb2efc875fe301b07000875f613947671dc6ab624c6fa64b2eb782c5b",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/strongho.gif",
+          "sha256": "918c5ce1abd201f3f086a1d0ad0aaf8533c2e949223af18651ef2882784331dd",
+          "bytes": 264189,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/tower.bmp",
+          "sha256": "66eb208c5f758e6a9dcf7b8ebee526cad08500ca5094f4254f4c03d25218072a",
+          "bytes": 31080,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/p/tower.gif",
+          "sha256": "aab241644e3135c91d2f170a42b6c32ff1b2f47234a9747ac6843046bae69e70",
+          "bytes": 294812,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/-1000 Eighth Monsters.erm",
+          "sha256": "ae616c78279282a38880db3bd47b1d90e769df10ec00fb2c0d281e741d5e519b",
+          "bytes": 50895,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 69,
+            "postTriggers": 0,
+            "commands": 973,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/-1000 Eighth Monsters.ert",
+          "sha256": "70b97aabd6bb0eb760cd4f055f35095b11e4dbaa77271396fd260c39846bc462",
+          "bytes": 326,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/-1000 Fourth Upgrade Mod.erm",
+          "sha256": "032516eb132adce3fd43124c1c90d4504f202f3c7be3f114b7a1a4f871bcc8ef",
+          "bytes": 4774,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 81,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/-1000 fast ai.erm",
+          "sha256": "858aca9113a13e6823135f943570101d243514ac869445b25f8fa0e289e11953",
+          "bytes": 32048,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 35,
+            "postTriggers": 1,
+            "commands": 536,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/-1000 tum - Archer.erm",
+          "sha256": "a2ab52b26fe834f1263fce8a56c4a4f4dcda261c5b83e4f7790f61dc8f5691fc",
+          "bytes": 59506,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 90,
+            "postTriggers": 0,
+            "commands": 957,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/000_Churchyard.erm",
+          "sha256": "6087ea59b8569458dd6b2112305f20434a668a120c8ad089c4df856738da149e",
+          "bytes": 58295,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1154,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/001_Ivory Tower.erm",
+          "sha256": "1c586c4666a0d579cf09795a48be0f723c904c5357b824088cf703d9be34894d",
+          "bytes": 57088,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/002_Experimental Shop.erm",
+          "sha256": "67abe8dd62c19d6005326238078d0de946035c9da5cb67d51fef404c5c27a570",
+          "bytes": 57030,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/003_Wolf Raider Picket.erm",
+          "sha256": "427a95a342d5c6ad2130ca4cc15c1c12cfca32a38479bdb0607b8d1a49f6cbaf",
+          "bytes": 57030,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/004_Ruins.erm",
+          "sha256": "8ba9a8973c150e72c28b1670447da6ccc30f8c13bb0058c6d4e7f33ca57f923b",
+          "bytes": 56636,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1140,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/005_Red Tower.erm",
+          "sha256": "80992ddcc89776478661cfaa8515867f6875bac7a5ec6098bc031e57d7db6b77",
+          "bytes": 57038,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/006_Spit.erm",
+          "sha256": "27e5d166958fe118730ec536363e5a0ea965c848def93ea9cc012241a14e14ac",
+          "bytes": 56646,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1140,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/007_Beholders' Sanctuary.erm",
+          "sha256": "b3540a5ea6252ec7caecfb8822e3b831598615366ad5935ad1f76844f214613b",
+          "bytes": 58636,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1172,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/008_Magical Utopia.erm",
+          "sha256": "d3455683455e85ea4a05c016b4e37639056192d576514aea3056ad9f0d0d593b",
+          "bytes": 58968,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1177,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/009_Rotten Dragons Valley.erm",
+          "sha256": "4cf2708ca1beabb89fab669cc703189b42e7d45c8bb96b9f75302c2785268f09",
+          "bytes": 58991,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1177,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/010_Mansion.erm",
+          "sha256": "0055dcb0da71c5e538d7f3ed102f2e8f6c28e424cb36a495a6a1c96a10b804e5",
+          "bytes": 58224,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1154,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/011_Bone Pillar.erm",
+          "sha256": "f57274edd492359714fef8da257293b40829a5b0c6b698dfc9900ff820b4351e",
+          "bytes": 57029,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/012_City of the Dead.erm",
+          "sha256": "5020b9fde6f91975eba850efe5c0c44a34caf12a243e9dd7ada20267284f67d2",
+          "bytes": 58246,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1155,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/013_Sacred Temple.erm",
+          "sha256": "61aef42d22a1797fa0dcc8dc9df3b5ee807e64adab2d1227924d749129ff3035",
+          "bytes": 58225,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1155,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/014_Seminarium.erm",
+          "sha256": "7cbf8132f38f3e00bbf431f53557a3c81bfac2485561d17c4e62a7ebd059619a",
+          "bytes": 57017,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/015_Phantom Ship.erm",
+          "sha256": "bcede7d018931e31c82157b32d67450fa79edb4ed9335bf17704f269d997152e",
+          "bytes": 57025,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/016_Sorceress Castle.erm",
+          "sha256": "0b2f788b45c840e83cba069c6fc9141494d25270ce44b341ed55790304f4d4b8",
+          "bytes": 58483,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1159,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/017_Outpost of Souls.erm",
+          "sha256": "f4ead0dcfcde20e783bddb95455296810f0ccd21e76edcc1cd375c6a1510b701",
+          "bytes": 57055,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/018_Outpost of Souls 2.erm",
+          "sha256": "6b488fd5432bba2b7cfc9a6c3843ef298bc8d467533d7a93799e5df67eff0864",
+          "bytes": 57055,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/019_Outpost of Souls 3.erm",
+          "sha256": "8b96eed62da12de9e7a375953b778b77eef6670528374fbd90382eb31242cc96",
+          "bytes": 57055,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/020_Outpost of Souls 4.erm",
+          "sha256": "a482a129a64991aee931cc05ca795d2ef3d68fb79f817b74e1c7627022d41de1",
+          "bytes": 57055,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/021_Dreadnought Tower.erm",
+          "sha256": "7b252ffcfea367a68be448e43753f430048465b6ea86338cfe16c8049572f664",
+          "bytes": 57022,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/022_Heaven's Door.erm",
+          "sha256": "25f76fb5ad35333ef40bee89254610cdbdda8f03773e0f020843642e797a23c3",
+          "bytes": 57075,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/023_Forbidden Cliffs.erm",
+          "sha256": "940c735d37a1c4e4242478af11bf0036ab55ee8d1a1b96f5c8520eabfd8fa2aa",
+          "bytes": 57050,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/024_Olympus Forgotten.erm",
+          "sha256": "80e07a8fa5ed80cd0b7a8ce8daa14b60ced294dfb1e2c2345bd7d3ba53bd91ed",
+          "bytes": 57093,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/025_Sins Generator.erm",
+          "sha256": "3f5ef091bf8d6d2eb84195ecd97c4eec31e3ab628ff40cf5ae5e56959966d536",
+          "bytes": 57052,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/026_Dragon Mausoleum.erm",
+          "sha256": "285e6068afbb344b05ffb368a986d53c21f542a3f18656e04ea6e6c36e6ac149",
+          "bytes": 57099,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/027_Dragon City.erm",
+          "sha256": "99019d08f4f7e3fc37e51f8f4d274cb5e455315d6211185f019f0a305b3ca3c4",
+          "bytes": 57042,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/028_Behemoth Ancient Crag.erm",
+          "sha256": "394dcb4c7996f811798cd851a029ec1bc616cf2d4556228207164271c11fb09a",
+          "bytes": 57063,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/029_Volcanic Well.erm",
+          "sha256": "5eebe50f44334f8d31f4da78e7b278da252d61d327f449e3afae2695018cf243",
+          "bytes": 57054,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/030_Supreme Pyre.erm",
+          "sha256": "7bade5cbbe5f24cce469a6fc199d57c189ff6ff6dbc83af3ec83c4b4a2a7e1a3",
+          "bytes": 57084,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/031_Elemental Stockpile.erm",
+          "sha256": "58e5de106f74d7ce74fa89079ad482d4592f1d1759d88405a15e938a76ff05c9",
+          "bytes": 57028,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/032_Gargoyle Stonevault.erm",
+          "sha256": "de98ccfe3f2916b5eebb44fe28858536061e967113a21f5e49d5e6f5e8d415d7",
+          "bytes": 57035,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/033_Ultimate Dragon Utopia.erm",
+          "sha256": "a20e9cb8bac349afc1a16d89705f0f52392c8075580135115444c4debd611eb3",
+          "bytes": 58978,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1177,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/034_Halls of Temptation.erm",
+          "sha256": "39deea52e0d54badfb6410439156efea06f77b8b7007fb5171c9151916032a91",
+          "bytes": 57033,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1158,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/035_Royal Treasury.erm",
+          "sha256": "e4e693e2b66c0f88e6192644c9a85184616fd97ae7e73882c1819bc8e32d4c58",
+          "bytes": 57030,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 18,
+            "postTriggers": 0,
+            "commands": 1159,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/036_Guardhouse.erm",
+          "sha256": "053f6b755816e583638fc4c7d96630f10f2debcdaa44ff0c9c214d460394dff7",
+          "bytes": 60882,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/037_Centaur Stables.erm",
+          "sha256": "d5ee5c2b8d0d0be09cb68cdd7aee55197db4a130bd7f3140933143a79d1923c2",
+          "bytes": 60891,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/038_Workshop.erm",
+          "sha256": "fa88a6997fd02e244c02385913142fcb097babea684146e4615ffba35a819899",
+          "bytes": 60890,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/039_Imp Crucible.erm",
+          "sha256": "a3823e112179bd5254c069111d267fc8a3aac5e377dc6cc78d7ba7092db0be56",
+          "bytes": 60898,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/040_Cursed Temple.erm",
+          "sha256": "30f86b8d5e850b4d85c94c5b4247d251305ec9b1595b2cc1e9b42ff37f4bbdc2",
+          "bytes": 60890,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/041_Warren.erm",
+          "sha256": "b5179b58ff8483fbb6645dafa8b56a2051c183222e1ee8d3be12dea02c547f7a",
+          "bytes": 60890,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/042_Goblin Barracks.erm",
+          "sha256": "673c96270ad9d07afe4349c4eb1fcd19617ad98b07120d09b1bda1590c8e9489",
+          "bytes": 60899,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/043_Gnoll Hut.erm",
+          "sha256": "652e7720d4d525d9a9037165f9af2360a318a26828becf9442612829c959266b",
+          "bytes": 60888,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/044_Magic Lantern.erm",
+          "sha256": "79bde2e949432c3eeb15763609b430163c6d92f7ed12b4a06be1f648fb1f6016",
+          "bytes": 60905,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/045_Archers' Tower.erm",
+          "sha256": "9857aa6f47d571f0705eb212ca8cedcf82669ff9200e26e8e1f149e706f62c34",
+          "bytes": 60887,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/046_Dwarf Cottage.erm",
+          "sha256": "971ebb1b012588520bbb0a4edba5ee3ba383382ae878b707a5ee1e6fa706d532",
+          "bytes": 60891,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/047_Parapet.erm",
+          "sha256": "11ed2b714342926c7f49de8d314ed10f385eb4b3b2919a6d185d0dd71db321a0",
+          "bytes": 60886,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/048_Hall of Sins.erm",
+          "sha256": "6e589b99f5450394d23ac0eb0b53809f0032da40e68ac15798c7f65dc67d9414",
+          "bytes": 60892,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/049_Graveyard.erm",
+          "sha256": "9f905dd2124886c114410b16e6da880d7017945c46507f6a2817e4d37fc9cd64",
+          "bytes": 60883,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/050_Harpy Loft.erm",
+          "sha256": "928ccbe2c9313f2c885ae36e3ae41af059c62eea083d92dc4e743b020d6fd9d1",
+          "bytes": 60888,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/051_Wolf Pen.erm",
+          "sha256": "65113c3d10f98731d4e58650ac7ed3703809f4ad0b18f6c0130c05f015641e55",
+          "bytes": 60887,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/052_Lizard Den.erm",
+          "sha256": "7624e50fdb229d47a4f3fc6335657e9836b6c1c16f989e2e6b8ad81b08268275",
+          "bytes": 60895,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/053_Altar of Air.erm",
+          "sha256": "c2895dc38171ba0ceded5ed3c386039c13c664559f58ef521efd6b3fac70fe07",
+          "bytes": 60900,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/098_Fire Dragon Castle.erm",
+          "sha256": "523376dcc9cba7ba8e1d884e2bf93a8e8d87ac5112fb1683dce18730afa3dc13",
+          "bytes": 59586,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/099_Ice Dragon Castle.erm",
+          "sha256": "48aa9a2173f886c50d8965fd7e63c7a320ce4f7d25f7ea8eef542e6686af4e16",
+          "bytes": 59580,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/100 - extended dwellings.erm",
+          "sha256": "a8e024f2808e0e15fb7f6fef47875c81a37e07a9b5de73d8c9095f1127e29e23",
+          "bytes": 14680,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 13,
+            "postTriggers": 0,
+            "commands": 265,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/100 tum - reborn.erm",
+          "sha256": "63382ba182698dbe343e4571683898244aa8be0cb450b70b6e6bec67ac265384",
+          "bytes": 456305,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 523,
+            "postTriggers": 4,
+            "commands": 8259,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/1000 tum - consts.erm",
+          "sha256": "31503a32665703ae2e179763be8ba82dafacfdeb006d08a9d91216673d709e82",
+          "bytes": 12990,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 0,
+            "commands": 283,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/1000 tum - stdlib.erm",
+          "sha256": "e6249168b28b7dd66d44b6bf79ca2d676e30ed3d80c2c1d66c0896c21363922f",
+          "bytes": 108346,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 124,
+            "postTriggers": 1,
+            "commands": 1763,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/102_Wineyard (replacer).erm",
+          "sha256": "bdbd8910579454a7abaf30d6b58ca3ca3443fbdda892730ccc9fb093a6595d2b",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/103_Alehouse (replacer).erm",
+          "sha256": "046869e3f979a02a7f3042f806b071ff88c29d05ffef0c922931e6602474731b",
+          "bytes": 5317,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/104_Ziggurat [Fangarm] (replacer).erm",
+          "sha256": "4ea83030c94b6b54eea9b7f3af50b70bc170028d499527baf7837b4bc6ce5728",
+          "bytes": 5317,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/112_Cursed Temple of Archers (replacer).erm",
+          "sha256": "cc705df56dcd9ac67f79bf49fa739a0f48443f98939c9b34378b92bdbe51c62b",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/113_Bloody Temple (replacer).erm",
+          "sha256": "2f9e803b0cf27d9851778abd6c852b9fd253fc50fd2839c5894b150233681e87",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/114_Temple of Souls (replacer).erm",
+          "sha256": "a0ae059b043ee0d887e34a2ad46c63ba04d89c51477c4600ddd16006524f816e",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/117_Dragon Sanctuary (replacer).erm",
+          "sha256": "e5b17b1a6fc06bfb729bab852a7435baf78324adf9d65b19623985888f8475d3",
+          "bytes": 5315,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/118_Laboratory (replacer).erm",
+          "sha256": "6199596d825fdf19fb8efe0936492fa135f2b2a52d2dd42e88ecdade6120eed7",
+          "bytes": 5314,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/119_Palace of Martial Spirit (replacer).erm",
+          "sha256": "91595040d86b59e3e384dd3c9d914bbc4b7cc08cfddd5e6e903388d2259e7bd6",
+          "bytes": 5290,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/120_Citadel of Pacification (replacer).erm",
+          "sha256": "898bcc52130b9fab5940ff2670618d29f8efaa6dd43b2c3c8f1c49ea3e0230cc",
+          "bytes": 5290,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/121_Monastery of Magicians (replacer).erm",
+          "sha256": "1543dc8268efb792bbc4145ddd0904ae84895d6a913767241c190dba4d88f8ac",
+          "bytes": 5290,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/122_Library of Legends (replacer).erm",
+          "sha256": "f6b13e9e008d6fc1dbb3ab50e23ca43015f695e78ff1009fd10c9321459320fb",
+          "bytes": 5290,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/130_Black Tower (replacer).erm",
+          "sha256": "41ad76d5fac47c384376c70804e877a39171e5baca6506998b70a9d97cf39f01",
+          "bytes": 5274,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/132_Cathedral (replacer).erm",
+          "sha256": "2fe4b7b613d2063a610329acfd72fc11a1c07a214213998ce30aa1484d8ba223",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/133_Treehouse (replacer).erm",
+          "sha256": "9173f9de3bc36b98d9f71573586cf8e866dce6cbfb73c64e2b6fd6ad4e86bc06",
+          "bytes": 5336,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/134_Dragon Factory (replacer).erm",
+          "sha256": "46f6b3d15ec75dd82b98c0f73e76f7a335cf6de0349d463a444391c7370ecdf7",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/135_Lust Chambers (replacer).erm",
+          "sha256": "f217735af939c2f3a51a305efaadfdf685c6ffd67ca293759d72a78ed5ec2528",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/136_Wolf Cave (replacer).erm",
+          "sha256": "ddceb52bada5b41e94350baf06ddc49d668b6f36028e3769b034daa81645e272",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/137_Primeval Maw (replacer).erm",
+          "sha256": "70b6cf4f68062f5482e41675572eccc80963126212a5a28b6e6ea7bb8e1a5dbe",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/138_Ziggurat (replacer).erm",
+          "sha256": "18d5553b007e44e9ca3b11f3178ef1784dd3d1958f4a2621a5a1735d2cfc357e",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/140_Swamp Hut (replacer).erm",
+          "sha256": "c25001d3e1bd50f8d84959a4205b1ddbe646f4e11da735b1ac969cc42fa1fafd",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/141_Drowned Hall (replacer).erm",
+          "sha256": "67e7f8adf437f31a138696444fd9d1017d800ee84136ebc3cc494efaf312d5bf",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/142_Ancient Crypt (replacer).erm",
+          "sha256": "ffd8b053bcb4c3df5c39330ba17fc829a57a6b14603441f76510a0443d764b3a",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/143_Frigate of the fallen (replacer).erm",
+          "sha256": "1f5593d30d686f69c2b1247e49e78ec585c42d3b12892a457c5d77419173a4c5",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/144_Defunct Treetop Tower (replacer).erm",
+          "sha256": "fce08f2f400258a7655444689a56204e7d79a400c0c711d017c21bb4719b92b5",
+          "bytes": 5319,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/145_Training Tower (replacer).erm",
+          "sha256": "e64d6927a4ea5349632b0fb108bb66e21183b1356145e2ee17b4cf49fc46dffc",
+          "bytes": 5319,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/146_Peon Hut (replacer).erm",
+          "sha256": "5d6b36aab1bc0a1b1637dd1a3c6f4bb02bdebb85e777a48c349f48fafcbc9d7d",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/148_Altar of Darkness (replacer).erm",
+          "sha256": "8eefb237f4467f0cd6e06da905eda766a366e503a122b6c1611f3ed98e9bfbed",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/149_Dark Portal (replacer).erm",
+          "sha256": "4f48beef5cb267d3da0fdbb20c77b16c266a0954ee683c82ce6a0da429626cde",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/151_Quaggy Relic (replacer).erm",
+          "sha256": "eb7859809078f485a244a405854c099ce8c2d10fa9bc831e8b07da4f12498214",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/152_Squalid Nide (replacer).erm",
+          "sha256": "0ebc18574733edb172d9c8b5a02b619820158107e4377914a170372addfae1e3",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/153_Rusty Habitation (replacer).erm",
+          "sha256": "c86b38ee71322119e700812feb6ff08d9afa34f1ff48a96a4aa49d7816dc0fd4",
+          "bytes": 5317,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/154_Turquoise Passage (replacer).erm",
+          "sha256": "3f0b3abba9d2d3e85fc855303646e764a7c33df3ff410691f60ae622e25b8ae6",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/155_Baba Yaga's Hut (replacer).erm",
+          "sha256": "c80dac0ff7dbaaf638cae49c951e01391d853146e14e25748ea220996bb49f68",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/156_Sparky Meadow (replacer).erm",
+          "sha256": "d0501282ee9b9282f1a05106d8afe9ff20a2dfda692a0a36d1a31346d6634459",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/157_Mysterious portal (replacer).erm",
+          "sha256": "7cfc2d7a472dd9941f5b895f1a446ce8023547ed689382d80662a756d465d123",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/158_Lizard Soldier Den (replacer).erm",
+          "sha256": "d753a33d7c2511d207cd3f1a594be3114c8a529cf423cb4738ad4bab88bd2ac4",
+          "bytes": 5319,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/159_Slith Pool (replacer).erm",
+          "sha256": "b00f69b453e918311896cf3c8071fceb05d37d7c965d4168e3d187f0c53de5ba",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/160_Illusory Dragon Shrine (replacer).erm",
+          "sha256": "d60aff92f04f816f6e5bb032dfc9a9df7b07b1c6a0bf1a7cd967c28d49c5b2f9",
+          "bytes": 5317,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/161_Primitive stable (replacer).erm",
+          "sha256": "4de46478817303e81e062524df09c6b5aa6940d764ee03a3b631fbf0a29d868e",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/162_Ruins in Lava (replacer).erm",
+          "sha256": "56b9a9a465e4b16ee65092712a5bb8e4bcc30c82709a86654a06dc1535c7deed",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/167_Shadow Vault(replacer).erm",
+          "sha256": "91f269de244a9813662e5a6890e8ddb5a30aeaad04e3788ecda040b21ca1834a",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/168_Imperial Barracks(replacer).erm",
+          "sha256": "7816e9ec2a402afb291607c9b92f5e6279c4253569fac3fb56a71741f46efa0d",
+          "bytes": 5318,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/90 wog - pandora.erm",
+          "sha256": "1131b389051f8eaddb2c6682a3c46bfe3441ce1deb69b28a8f140466530e1058",
+          "bytes": 39926,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 16,
+            "postTriggers": 0,
+            "commands": 765,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/TUM_Warehouses.erm",
+          "sha256": "6e6d8d7cb2042d6fe3c9027cfad0ce4b6db42e103ef866915bca4b3923a22289",
+          "bytes": 6139,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 10,
+            "postTriggers": 0,
+            "commands": 112,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/Third Upgrade Mod.erm",
+          "sha256": "f385702dcc74ce51c96e1a42a266b4a37c12398528357bdf3d15ed627f3facea",
+          "bytes": 119328,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 117,
+            "postTriggers": 1,
+            "commands": 2099,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/Third Upgrade Mod.ers",
+          "sha256": "0096a7d0e3e15b299c2d21693ea19bef8212b657c46a119da5625a65066764c0",
+          "bytes": 1519,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/Third Upgrade Mod.ert",
+          "sha256": "f224d943d053bdf2a3bd2ff3e5f0fd6e36087690118e6b2ee4de8e622d7711ef",
+          "bytes": 7776,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Data/s/additional music themes.erm",
+          "sha256": "64547cac2c3f8cb867222ffee8d90e24df989a6eada6ceeee930ed3fb728d137",
+          "bytes": 1270,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 35,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/colosseum of the magi.erm",
+          "sha256": "0bf3993d64437c57870d73eaf63469cb86c47a89cf35ffb99cfa7e7dde3805d4",
+          "bytes": 6182,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 9,
+            "postTriggers": 1,
+            "commands": 137,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/disabled/054_Griffin Tower.erm",
+          "sha256": "033344484cb7e1fb406a5a3f15da433f108b2db0fd9636d08d04719f55b94225",
+          "bytes": 60885,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/055_Homestead.erm",
+          "sha256": "14cba89bdf24fd6e8a13911082d54488b1ab1183a030144d38440e9fc50f2d61",
+          "bytes": 60885,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/056_Golem Factory.erm",
+          "sha256": "8679641a1bbc65c967070cda288378f865a8bade403e922aae39cf004f9aa4e9",
+          "bytes": 60894,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/057_Kennels.erm",
+          "sha256": "9658bd93c72bf63bcba7d10373437e0df5f919edc05846717032d325719c62f8",
+          "bytes": 60886,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/058_Tomb of Souls.erm",
+          "sha256": "9eb8941ba5a688ef518725d03b37a70050aed245a7f25a0d3a87e72eeb3d65e8",
+          "bytes": 60882,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/059_Pillar of Eyes.erm",
+          "sha256": "9d09b85d343e226e7ff8adba5f7408db5b6ccd6edc07fd125ddae60843e57cf5",
+          "bytes": 60889,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/060_Orc Tower.erm",
+          "sha256": "9c71e1720ce934230a36316b73313ce33ab2a8b12a0f07bdd90bfb78d342e2d5",
+          "bytes": 60888,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/061_Serpent Fly Hive.erm",
+          "sha256": "e7c519d64c5829e98641d1ff2cb77e914d428545c01a922b8c858cb26a4cfc45",
+          "bytes": 60892,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/062_Altar of Water.erm",
+          "sha256": "0fda1dca914a9997f363983143181dd04a794e6a0a3c3464f296e76f1d9a4d5a",
+          "bytes": 60898,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/097_Crystal Cavern.erm",
+          "sha256": "35246566e7ac89ebe83e02d38e32026130d2a2f9003df47487bd2ec34414a250",
+          "bytes": 60897,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 19,
+            "postTriggers": 0,
+            "commands": 1187,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/101_Giant Golden Pavilion (replacer).erm",
+          "sha256": "2fa2c756269659f7e3fbe3e945f6ac2842d1da67728af4113c25bab01653cf52",
+          "bytes": 5317,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/109_Order of Fire (replacer).erm",
+          "sha256": "01c0c7c459137bc82b624f8542f9012f33397f1862e617acded5ede63e56ec5a",
+          "bytes": 5317,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/110_Order of Ice (replacer).erm",
+          "sha256": "22aea316098f86d00f684ae9e903fdd82288e87c5da2e54032ca7625d00bfbc0",
+          "bytes": 5321,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/111_Dragon Slayer Tower (replacer).erm",
+          "sha256": "ef5e239998709c8a85c0ae1447999cdc6a69d49b3908822dad9a4c546f5e9560",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/115_Canyon of Death (replacer).erm",
+          "sha256": "343b3f804b4e53485dbff0a20db0abe8d70a7819627b00da92dbe3dd072208d4",
+          "bytes": 5317,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/116_Order of Thunder (replacer).erm",
+          "sha256": "d583e71d19e6c8ac2561e46e558bdd6d75390f84c5d9d630fead710355f76347",
+          "bytes": 5317,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/131_Mysterious Cave (replacer).erm",
+          "sha256": "ba441fd4380ce4c4f00e571a6d39c9b5ca68cf1fd3d9507178e69951beee2137",
+          "bytes": 5250,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/139_Coral Reef (replacer).erm",
+          "sha256": "7e13a4fe5cfb2802afa865870554b4198d7343c4704c07e55856c351d8dea849",
+          "bytes": 5293,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/150_ Black Alder (replacer).erm",
+          "sha256": "b927b64484c9528acf186f18391ea2774f24878a3966a92a9af40c77b7637eae",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/163_Evil Cathedral (replacer).erm",
+          "sha256": "a42c219275832f3adf99800f1d430bf29f770dcab98b31290932e0001a0aca3e",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/164_Dark Shrine(replacer).erm",
+          "sha256": "9ce012b8a5b7d482f68964b97d3e5f5a6d8f1327cb0b109829e3d6b69eb62014",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/165_Black Pond(replacer).erm",
+          "sha256": "44530ce2b31bb7091aa81fe3457dffe4bb22bf5754868623b22daf4c9cd6333d",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/166_Gates of Tartarus(replacer).erm",
+          "sha256": "857f185153a0ea215d50cf6ac0c6097aab5cae957fc7deeb032562bffe21939b",
+          "bytes": 5319,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/169_Green Dragon Nest(replacer).erm",
+          "sha256": "07a1ef9598d0055f218c4bb5d498eba8185e4bdf9a86f56097f8882a2d944019",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/170_Red Dragon Nest(replacer).erm",
+          "sha256": "9995ea8fe3b8b7289e0689d50dbfd0056869628f0d9e3111d8f13593533406c6",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/171_Faerie Dragon Nest(replacer).erm",
+          "sha256": "e485f85c01364489d678c3e8e7c569a4d1fdeff9df13299d571e9cb1810d80f4",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/172_Rust Dragon Nest(replacer).erm",
+          "sha256": "e8d01e73c6d287af3a138627dd951a3249cdd98637f340e6aa5d7c37d7186265",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/173_Azure Dragon Nest(replacer).erm",
+          "sha256": "3fba3b416ee56102667b96fe4a11652dfdba3144e58f9e5b075fe478dbe4f7ae",
+          "bytes": 5318,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 67,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/disabled/Mysterious Cave.erm",
+          "sha256": "a03800d110519edbfdc3ae4555ff8d796f3f8e758db71b73a5b21c1896c5754f",
+          "bytes": 32555,
+          "inactiveDirectory": true,
+          "erm": {
+            "triggers": 34,
+            "postTriggers": 1,
+            "commands": 984,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/options_library.erm",
+          "sha256": "f93e3bb2324912622b5484c140da85ccf47b57b4bc19aeb24df6267414bb036f",
+          "bytes": 2749,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 3,
+            "postTriggers": 0,
+            "commands": 42,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/show neutral monster detials.erm",
+          "sha256": "f2d994ff6fb2e70c9d2a79030bc9c5e681f950e61d59ed83f584afb5a3322b9d",
+          "bytes": 977,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 2,
+            "postTriggers": 0,
+            "commands": 20,
+            "diagnostics": [],
+            "windowsDependencies": [
+              "native-call-or-memory-copy",
+              "windows-memory"
+            ]
+          }
+        },
+        {
+          "file": "Data/s/skeleton transformer.erm",
+          "sha256": "6b1092b345b4786a322ca82a6e8022f0fbe042a1a856921a279e397d56dc3850",
+          "bytes": 3809,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 7,
+            "postTriggers": 0,
+            "commands": 62,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/s/umt - main.erm",
+          "sha256": "a0f4fb37c1952b9a1638c580ff265d51aa955c364fb6a776da330ee08cd8966f",
+          "bytes": 221,
+          "inactiveDirectory": false,
+          "erm": {
+            "triggers": 0,
+            "postTriggers": 0,
+            "commands": 0,
+            "diagnostics": [],
+            "windowsDependencies": []
+          }
+        },
+        {
+          "file": "Data/tum_png.zip",
+          "sha256": "55402495b8da7427157049b1628d87706eb660124bbbf4869cdc8df3bdbb27a5",
+          "bytes": 5656987,
+          "inactiveDirectory": false,
+          "archiveRequiresInventory": true
+        },
+        {
+          "file": "EraPlugins/AfterWoG/accumulate_8lv_creatures.bin",
+          "sha256": "3a3f255b4bfd66f041fbb563c947cbdd4f544cea4f8e7b70b04fdd2e95cdb4a7",
+          "bytes": 14,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/AfterWoG/accumulate_santagremlins_creatures.bin",
+          "sha256": "e5fe49d09d0035b649d6846b5a6cbcc501f18fa89dec5e582136f33a0d45bf82",
+          "bytes": 18,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/AfterWoG/dwellings_dll_fix_next_txt_reading.bin",
+          "sha256": "4744ec6f90ac7ffaab88d3f9f8b541bca5fad08f159978b83828f74736f5bdea",
+          "bytes": 13,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/AfterWoG/fix emerald campaign ctd.bin",
+          "sha256": "5105dea9e242753ff8400339052868c6b2148877289d96e8aec7db6214f87f19",
+          "bytes": 13,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/AmeEdit.exe",
+          "sha256": "9a9bfe15076ef84127194c78b6dd27bbec1ae7bf8f1bb16595848528c40fa361",
+          "bytes": 284160,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/BeforeWoG/amethyst_fix2_mop.bin",
+          "sha256": "b1a6da439321f09625a1ed9b9b6bd48fe39df6df780f55a3622b584e8e48bc86",
+          "bytes": 606,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/BeforeWoG/crexpfix.bin",
+          "sha256": "b1a6da439321f09625a1ed9b9b6bd48fe39df6df780f55a3622b584e8e48bc86",
+          "bytes": 606,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "EraPlugins/Dwellings.dll",
+          "sha256": "2ee3ff4913be93ddcab4d261adbe76ae54e7407fe28ba077383727c7b6f96acf",
+          "bytes": 5632,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/amethyst2_4.dll",
+          "sha256": "b6004c3c28dfaf27cf06ca19035a5df5a2d1c7e91dd17c3b203c6189fa642392",
+          "bytes": 228352,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/emerald3_3.era",
+          "sha256": "f897f2958ab2dc5fd212f9e0581abdfd69924401c6a5d5392aaec9d8b7f7e72d",
+          "bytes": 153088,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/new_advmap_objects.era",
+          "sha256": "ba9f20507cff95b140680d386541c4947d1ff45bf0933d6c7214eb7656f5c469",
+          "bytes": 12288,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "EraPlugins/remove theoretical battle ai vs ai.dll",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "inactiveDirectory": false,
+          "requiresNativeReplacement": true
+        },
+        {
+          "file": "Lang/Cn/Eighth Monsters.json",
+          "sha256": "c9a1ed4d7f340ee04fb50738ddfdb039a095704f7b59e6d8154e45e9df532e3f",
+          "bytes": 1499,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Cn/Pandora.json",
+          "sha256": "1037d11d468c2db9b96df40d4f0516f204943addef803e99e048715390988a9f",
+          "bytes": 5014,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Cn/Third Upgrade.json",
+          "sha256": "77db3b83c68deb7faad7f7827f49c289ee0924ab1491c45e7f0066bdd755dfb1",
+          "bytes": 4085,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Cn/colosseum of the magi.json",
+          "sha256": "247caf98709d44ff6788069a69552ec28544c994f67627305d9a3de59a493743",
+          "bytes": 544,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Cn/tum reborn text.json",
+          "sha256": "58527b2f39258a54a13ee1777ad3bb15f74a87b001025c17957a704c12ff6835",
+          "bytes": 20139,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Eighth Monsters.json",
+          "sha256": "54688b64caade156d6632f5c77cc97ab7bc65f792a1a70671bb5203c99ed4fb3",
+          "bytes": 960,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Pandora en.json",
+          "sha256": "104f5ae3950b242b306f019af3421be48872204a0563e03392e80bbcd9d16b51",
+          "bytes": 5364,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/Third Upgrade.json",
+          "sha256": "3893a29b15ddfae340ceb66eba77789e4a6b84a3c621e9fb79050e5d16d4adcd",
+          "bytes": 4487,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/colosseum of the magi.json",
+          "sha256": "a643e5cbb82aba666c094f1b467d4bca7ed78d9f8483d125c43df0335579bc8b",
+          "bytes": 623,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Lang/tum reborn.json",
+          "sha256": "bf50ec838047c247853a49b36bb09396e4684af1a264526fea066dc6881945bf",
+          "bytes": 4391,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Mp3/AITHEME3.mp3",
+          "sha256": "4cfeb298a5ac4f3dd558120202b5f9f93618dcf215de644d23911cd0b07335a7",
+          "bytes": 2475362,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Mp3/AITHEME4.mp3",
+          "sha256": "ce40be37cce5a97b4bfb4bba853047032acd8de516d7b5f13246d62677453651",
+          "bytes": 1922611,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Mp3/COMBAT05.mp3",
+          "sha256": "a0377c0a433ad6e2883db0be1e2e10977546921654f4bb43911a111546c00329",
+          "bytes": 5762611,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Mp3/COMBAT06.mp3",
+          "sha256": "cbf23ebd5487c7508b7a95d0bf1a546464356f796b4632a2508cae245a770245",
+          "bytes": 5602742,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "README.md",
+          "sha256": "8a9faabeedad94b4bea2ccc81acc8f13d08a5afbea69a6beab625ae2a04c1189",
+          "bytes": 8161,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/Artifacts.jpg",
+          "sha256": "50bd7a6c7631418c1cdd93bfa2582a2a2353d8ac5eb9129da127dbe7c8a7ed40",
+          "bytes": 938799,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/Creature Banks.jpg",
+          "sha256": "f1a85c688c710064f1abd7131a9c5e08b2198e22a9388c009e62028326ca1fc7",
+          "bytes": 1010304,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "Screens/Dwellings.jpg",
+          "sha256": "c7d8ba95a8b391881c6ca8dd07ef0e6653d75d7c2e112d2f8a40c9e59d5261fe",
+          "bytes": 982278,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "TUM Manual.pdf",
+          "sha256": "6145d2d5fb93ad60971d1eed13e0e83a4c71e15994c04f008f4b548fa7c7a220",
+          "bytes": 4986197,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "UpdateTUMList.cmd",
+          "sha256": "83fc249b7540ce5a3d0f3606590e1bc9425ba231d3c58e0db90313a8474c2c04",
+          "bytes": 159,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "mods.json",
+          "sha256": "f5d5e368fb97f440f44b3fb6ec9b2f0cd002f44b512f17c6f86b139e0b455a86",
+          "bytes": 627,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "readme.txt",
+          "sha256": "3ac39bf739a8a6802b0747e924e2f3eefa1ba5907827e954f850f9b0e1ec09ce",
+          "bytes": 8223,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "readme_cn.txt",
+          "sha256": "e93a6349b4a7077f38a5726d9a42518381c946e0135931d6fb4754c115d45727",
+          "bytes": 6895,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "tum settings.cmd",
+          "sha256": "980108c7f10cacb158515faf8648db4e219122a25063167c596ee0cdfd4b7592",
+          "bytes": 589,
+          "inactiveDirectory": false
+        },
+        {
+          "file": "tumr.ico",
+          "sha256": "26be181fbf7b75b46f8777cde92313b6ae0acb17608c75eaa940775414ce8efe",
+          "bytes": 410598,
+          "inactiveDirectory": false
+        }
+      ],
+      "status": "source-locked-not-native-admitted",
+      "upstream": {
+        "repository": "https://github.com/Archer30/Third-Upgrade-Mod-Reborn",
+        "commit": "a6ba42b24482a188775e4e4867ffe700dc59c85c",
+        "versionLabel": "1.7.3+ (upstream commit message)",
+        "modMetadataVersion": "1.x"
+      }
     }
   ],
   "reborn": {
-    "status": "official-download-unavailable",
-    "version": "1.7.3",
+    "status": "official-source-locked",
+    "versionLabel": "1.7.3+ (upstream commit message)",
     "homepage": "https://www.h3wog.com/thread-78163-1-1.html",
-    "note": "Author page checked 2026-11-17. Official Baidu download is blocked by browser site policy; no package hash or source identity is asserted."
+    "repository": "https://github.com/Archer30/Third-Upgrade-Mod-Reborn",
+    "commit": "a6ba42b24482a188775e4e4867ffe700dc59c85c",
+    "note": "Official author repository found 2026-11-17. Source commit is pinned independently of the Baidu distribution; native gameplay parity is not asserted."
   },
   "profiles": [
     {
@@ -3957,7 +8630,7 @@
         },
         {
           "pack": "reborn",
-          "reason": "missing-source"
+          "reason": "native-system-not-validated"
         }
       ]
     }

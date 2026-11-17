@@ -22,9 +22,11 @@ natif. Aucun profil ne possède actuellement ces preuves complètes.
 Distribution officielle :
 [ERA-Projects/era-project-eng](https://github.com/ERA-Projects/era-project-eng/tree/233993be3eea4646b5c9f351e74f0bb51101adf6),
 commit `233993be3eea4646b5c9f351e74f0bb51101adf6`.
-Les empreintes des 366 fichiers des cinq packs sont conservées dans
+Les empreintes des 966 fichiers des six packs sont conservées dans
 `scripts/era-bridge/gameplay/reference-lock.json`. La copie intégrale sous
-`work/era-gameplay-reference/` reste locale et exclue de Git et de Graphify.
+`work/era-gameplay-reference/` et celle de Reborn sous
+`work/downloads/tum-reborn-reference/` restent locales et exclues de Git et de
+Graphify.
 
 | Pack | Fichiers | Sources ERM |
 |---|---:|---:|
@@ -33,18 +35,22 @@ Les empreintes des 366 fichiers des cinq packs sont conservées dans
 | WoG Scripts | 171 | 92 |
 | ERA Scripts | 133 | 87 |
 | Advanced Classes Mod | 43 | 6 |
+| Third Upgrade Mod Reborn | 600 | 145 |
 
 Les fichiers ERS, configurations, archives et plugins sont recensés séparément
 des programmes ERM. Les répertoires `disabled` restent identifiés comme tels ;
 leur présence ne constitue pas une demande d'activation. Les empreintes de DLL
 ne prouvent pas que leurs comportements ont été reproduits.
 
-La [page officielle de TUM Reborn](https://www.h3wog.com/thread-78163-1-1.html),
-consultée le 17 novembre 2026, annonce **1.7.3, datée du 9 mai 2025**.
-Le lien de l'auteur mène à Baidu. L'ouverture du téléchargement a été refusée
-par la politique de sécurité du navigateur. L'archive n'a pas été récupérée ;
-aucune identité binaire ou source de ce pack n'est donc attestée. Une archive
-officielle disponible localement est nécessaire pour poursuivre ce profil.
+Reborn est récupéré depuis le
+[dépôt officiel d'Archer30](https://github.com/Archer30/Third-Upgrade-Mod-Reborn/tree/a6ba42b24482a188775e4e4867ffe700dc59c85c),
+au commit `a6ba42b24482a188775e4e4867ffe700dc59c85c` du 18 septembre 2025,
+intitulé **Updated to 1.7.3+**. La métadonnée `mods.json` indique seulement `1.x` ;
+le verrou distingue cette valeur de l'étiquette du commit. C'est le dernier
+état du dépôt de l'auteur trouvé le 17 novembre 2026. Il est figé séparément de
+la distribution 1.7.3 annoncée sur la page de l'auteur et accessible via Baidu.
+L'accès Baidu a été bloqué, mais le dépôt officiel a permis de récupérer les
+sources sans recourir à ce téléchargement. Ce blocage de source est levé.
 
 Le dossier fourni ensuite comme référence est **HDHeroes 3 Reborn 0.9.3.4**,
 par Suft/Berserker : c'est un autre pack, consacré notamment aux graphismes,
