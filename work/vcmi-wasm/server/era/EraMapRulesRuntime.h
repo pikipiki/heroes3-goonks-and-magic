@@ -42,14 +42,14 @@ inline void changeWeeklyMines(CGameHandler & gh)
         EraGameplayChange packet;packet.system="mithril";packet.state=std::move(enhancements);gh.sendAndApply(packet);
     }
 }
-inline void placeDailyPlains(CGameHandler & gh)
+inline void placeDailyPlains(CGameHandler & gh,PlayerColor player)
 {
     const auto & cb=gh.gameInfo();
     if(!dailyPlains(cb)||cb.getDate(Date::DAY)<=1)return;
     for(const auto id:cb.gameState().getMap().getHeroesOnMap())
     {
         const auto * hero=cb.getHero(id);
-        if(!hero||!hero->getOwner().isValidPlayer()||hero->visitablePos().z!=0)continue;
+        if(!hero||hero->getOwner()!=player||hero->visitablePos().z!=0)continue;
         const auto position=hero->visitablePos()+int3(2,1,0);
         if(!cb.isInTheMap(position))continue;
         const auto * tile=cb.getTile(position);
@@ -62,5 +62,5 @@ inline void placeDailyPlains(CGameHandler & gh)
     }
 }
 inline void onNewDay(CGameHandler & gh)
-{changeWeeklyMines(gh);placeDailyPlains(gh);}
+{changeWeeklyMines(gh);}
 }

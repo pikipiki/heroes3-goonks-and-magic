@@ -185,13 +185,16 @@ réglage conservé malgré un changement de configuration, la protection acheté
 le dimanche, la consommation de cette protection le lundi, la production
 standard après tirage et la reprise des mines modifiées.
 
-La règle 114 crée des Plaines magiques dès le deuxième jour à deux cases à
+La règle 114 crée des Plaines magiques au début du tour de leur propriétaire,
+dès le deuxième jour, à deux cases à
 droite et une case plus bas de chaque héros en surface. Elle écarte l'eau,
 les cases bloquées et les entrées d'objets, et interdit les achats de terrains
 de ville au mithril. Huit variantes natives vérifient ces exclusions, le
 premier jour, le souterrain, l'effet des quatre écoles expertes en combat,
 la reprise du réglage et du terrain, et son fonctionnement sans le module
-mithril. Les preuves figurent dans
+mithril. Deux variantes supplémentaires vérifient l'absence du terrain
+adverse avant son tour et sa présence après. Le moteur précédent échoue
+sur le premier de ces deux cas en donnant les sorts de masse trop tôt. Les preuves figurent dans
 `outputs/era-gameplay/map-rules-native-daily-plains.json`.
 
 La règle WoG 124 autorise plusieurs Capitoles pour un même joueur, en

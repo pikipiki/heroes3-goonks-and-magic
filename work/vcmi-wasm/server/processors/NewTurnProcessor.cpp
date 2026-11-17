@@ -173,6 +173,7 @@ void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 
 void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
 {
+	era_compat::map_rules::placeDailyPlains(*gameHandler,which);
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
     applyEraWayfarerDay(*gameHandler,*playerState);
 

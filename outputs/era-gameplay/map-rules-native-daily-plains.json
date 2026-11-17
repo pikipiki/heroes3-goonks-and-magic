@@ -4,7 +4,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "559a6e4a6ad844a8bcd6e75d815380046705e350175aa442fe88960b0193ce49"
+      "sha256": "4039ebfa940c674f39f009b9cbf09e52c394cf2e7bd9642ca0c532542e4005fa"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -12,15 +12,15 @@
     },
     {
       "file": "mod/tum-era/content/config/wog-map-rules.json",
-      "sha256": "8d77e65b9942b4de4ec5059ad5861e58e71d8bbb0b622bfb3b2e8d0fcc42812f"
+      "sha256": "b84db70107350b67d3c75052428e56b5ab3e38cff66f542ffcbed94ba6aee969"
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-english.json",
-      "sha256": "a78c137daa7b156815a3dc1d15267251335d24a100d3f53ff831e5e72b17b043"
+      "sha256": "85a98a5cffceb32aaccadfa2b81de7338b474cf3124b7942d7cadbcc15f75c16"
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-french.json",
-      "sha256": "5bf99c0a1282c0febea184eb1846c45ef27a760a76bd093b3901c7106cdac9d5"
+      "sha256": "f0533ea81efbfd475b0c760c3ee961c00aeb74752d58e98ba9b38d7fb2b3265d"
     },
     {
       "file": "scripts/era-bridge/gameplay/henchmen.json",
@@ -32,11 +32,11 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/map-rules.json",
-      "sha256": "01ecc14348a00ab4297b79c75ec04154ddd8b2c41bea41d0845edbc41527b25e"
+      "sha256": "fe605fcf0101d08c1a9e5610347930129ddd648dae2d633b43d8b6587bbbffaa"
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "de39d697e0401b1641a42e51b8e8715c44f1bb93481998eb89eae720cb25a7b2"
+      "sha256": "a9c53ef85b8a916a02b5f10aa350eac7175543dfe0e9262b598ba5d1dd1f78bc"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -92,7 +92,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "4c051dc3a2dbe56327fa444365a98b60f1046f9e03e11b6071f3310766504811"
+      "sha256": "71d412da60afd3c555025f3f7f0b7f02376e8c286e984dd5646e2d1a468da79d"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -168,7 +168,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
-      "sha256": "ac8ba850c055bc1217fff89711632ef9a98c08de6d68614423a118dcbb9fd0b0"
+      "sha256": "ec2174f3b63391258579213e59e6c078654971d2b0fa323fa1c9359ccf889f8f"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilModel.h",
@@ -204,7 +204,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp",
-      "sha256": "82b10babc73f79296648fd6748d2df4ed2e0d57b6874abc5e414baf04123b133"
+      "sha256": "8f70f3f3974752e677e757f766d0c413f3a9c02abe32a96a6206f034194b47d0"
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.h",
@@ -276,7 +276,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
-      "sha256": "b3c8032a3d0ebd19cb9fb1d1b5603db66387851b505260950f0951dc234e4489"
+      "sha256": "57c607f9e7b8b4df70c234886eaae09099180dc9bd1d495d4b6fa3d94dedba48"
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
@@ -288,7 +288,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
-      "sha256": "f1ae89e2b073f7e37b6d5311d59d22bdef02d0f953950673edb4341199716b18"
+      "sha256": "80ca7b00fd83534fb4627119bfa341e4e680e8676274d5c1d89d6c7bff1a1209"
     },
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",
@@ -300,7 +300,7 @@
     }
   ],
   "passed": true,
-  "engineSha256": "6b3d8b00d5ee0e33aff54eae367594fd7ac38d325d37850d54af673d9e3833bc",
+  "engineSha256": "dd071ef8d36e0bc3eefe848b3f8b4a9ac78c070d20bf6e7c3a3e130e5e98288b",
   "scenarios": [
     "daily-magic-plains-grant-four-expert-schools-in-field-battle",
     "daily-magic-plains-block-town-mithril-purchases",
@@ -310,47 +310,49 @@
     "daily-magic-plains-skip-entrance",
     "daily-magic-plains-setting-and-patches-survive-native-save-reload",
     "daily-magic-plains-work-without-mithril-module",
-    "daily-magic-plains-skip-underground"
+    "daily-magic-plains-skip-underground",
+    "daily-magic-plains-wait-for-enemy-owner-turn",
+    "daily-magic-plains-appear-after-enemy-owner-turn"
   ],
   "errors": [],
   "cases": [
     {
-      "case": "daily-plains",
+      "case": "owner-regression-normal",
       "scenarios": [
         "daily-magic-plains-grant-four-expert-schools-in-field-battle",
         "daily-magic-plains-block-town-mithril-purchases"
       ]
     },
     {
-      "case": "daily-plains-day1",
+      "case": "owner-regression-day1",
       "scenarios": [
         "daily-magic-plains-do-not-appear-on-first-day",
         "daily-magic-plains-block-town-mithril-purchases"
       ]
     },
     {
-      "case": "daily-plains-rock",
+      "case": "owner-regression-rock",
       "scenarios": [
         "daily-magic-plains-skip-rock",
         "daily-magic-plains-block-town-mithril-purchases"
       ]
     },
     {
-      "case": "daily-plains-water",
+      "case": "owner-regression-water",
       "scenarios": [
         "daily-magic-plains-skip-water",
         "daily-magic-plains-block-town-mithril-purchases"
       ]
     },
     {
-      "case": "daily-plains-entrance",
+      "case": "owner-regression-entrance",
       "scenarios": [
         "daily-magic-plains-skip-entrance",
         "daily-magic-plains-block-town-mithril-purchases"
       ]
     },
     {
-      "case": "daily-plains-saved",
+      "case": "owner-regression-saved",
       "scenarios": [
         "daily-magic-plains-grant-four-expert-schools-in-field-battle",
         "daily-magic-plains-block-town-mithril-purchases",
@@ -358,18 +360,40 @@
       ]
     },
     {
-      "case": "daily-plains-standalone",
+      "case": "owner-regression-standalone",
       "scenarios": [
         "daily-magic-plains-grant-four-expert-schools-in-field-battle",
         "daily-magic-plains-work-without-mithril-module"
       ]
     },
     {
-      "case": "daily-plains-underground",
+      "case": "owner-regression-underground",
       "scenarios": [
         "daily-magic-plains-skip-underground",
         "daily-magic-plains-block-town-mithril-purchases"
       ]
+    },
+    {
+      "case": "plains-owner-before",
+      "scenarios": [
+        "daily-magic-plains-wait-for-enemy-owner-turn",
+        "daily-magic-plains-block-town-mithril-purchases"
+      ]
+    },
+    {
+      "case": "plains-owner-after",
+      "scenarios": [
+        "daily-magic-plains-appear-after-enemy-owner-turn",
+        "daily-magic-plains-block-town-mithril-purchases"
+      ]
     }
-  ]
+  ],
+  "regressionGuard": {
+    "baselineEngineSha256": "1ef11e559ff5207f2da7c65064a8880a41d7f58c26b53c10f4788d8271f1db65",
+    "expectedBaselineFailure": "Expert mass cast for spell 41: true !== false before the enemy owner turn",
+    "correctedCases": [
+      "daily-magic-plains-wait-for-enemy-owner-turn",
+      "daily-magic-plains-appear-after-enemy-owner-turn"
+    ]
+  }
 }

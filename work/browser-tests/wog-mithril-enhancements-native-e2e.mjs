@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -84,6 +84,12 @@ if opts['siege']:
  enemy.update({'instanceName':'mithrilSiegeAttacker','y':10})
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:stoneGolem','amount':500}], 'secondarySkills':{},'artifacts':{},'spellBook':[]})
  objects.append(enemy)
+if opts['bluePlainsOwner']:
+ import copy
+ blue=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
+ blue.update({'instanceName':'bluePlainsHero','x':10,'y':10})
+ blue['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:peasant','amount':1}],'patrolRadius':0,'artifacts':{},'spellBook':[]})
+ objects.append(blue)
 if opts['plainsFight'] and opts['plainsBlock']=='underground':
  for o in objects:
   if o['instanceName'] in ['goonkHero','plainsTrainingGuard']:o['l']=1
@@ -108,7 +114,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner})]);
 }
 
 async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,goldFunds=null,...options}={}){
@@ -232,17 +238,19 @@ try{
   await page.close();
  }
  if(process.env.CASES?.startsWith('daily-plains')){
-  const firstDay=process.env.CASES==='daily-plains-day1',block=process.env.PLAINS_BLOCK||'',enabled=process.env.CASES!=='daily-plains-standalone';
-  await boot({enabled,dailyPlains:true,plainsFight:true,plainsBlock:block});let data;
+  const ownerCase=process.env.CASES==='daily-plains-owner',ownerAfter=!!process.env.PLAINS_OWNER_AFTER;
+  const firstDay=process.env.CASES==='daily-plains-day1',block=ownerCase?'water':process.env.PLAINS_BLOCK||'',enabled=process.env.CASES!=='daily-plains-standalone';
+  await boot({enabled,dailyPlains:true,plainsFight:true,plainsBlock:block,bluePlainsOwner:ownerCase});let data;
   if(enabled){data=await panel();assert(!data.offers.some(row=>row.kind===8));const amount=data.amount;await command(1200,0,7,data.revision);await page.waitForTimeout(200);assert.equal((await state()).mithril.amount,amount);}
   if(!firstDay){await nextDay();if(enabled)await panel();assert.equal((await state()).day,2);}
+  if(ownerCase&&ownerAfter){await nextDay();assert.equal((await state()).day,3);}
   if(await page.locator('.mithril-panel').isVisible())await page.locator('[data-mithril-close]').tap();
   if(process.env.PLAINS_SAVE){const save=[...await readCompletedNativeSave(page,command,{tag:822})];await page.close();await boot({save,dailyPlains:false});data=await panel();assert(!data.offers.some(row=>row.kind===8));await page.locator('[data-mithril-close]').tap();}
   await command(6);await page.waitForTimeout(150);const point=await page.evaluate(()=>{const v=goonkMobileState.mapOverview.view;return{x:v.x+v.w/2+32,y:v.y+v.h/2};});
   await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),point);await wait(()=>goonkMobileState.hasPath);await command(2);await wait(()=>goonkMobileState.mode==='battle');await command(15);await wait(()=>goonkMobileState.canAct);
   await command(14,0);await wait(()=>goonkMobileState.mode==='spellbook');const book=(await state()).spellbook;
-  for(const id of [41,43,53,54]){const spell=book.spells.find(row=>row.id===id);assert(spell);assert.equal(spell.target==='none',!firstDay&&!block,'Expert mass cast for spell '+id);}
-  report.scenarios.push(firstDay?'daily-magic-plains-do-not-appear-on-first-day':block?'daily-magic-plains-skip-'+block:'daily-magic-plains-grant-four-expert-schools-in-field-battle');
+  for(const id of [41,43,53,54]){const spell=book.spells.find(row=>row.id===id);assert(spell);assert.equal(spell.target==='none',ownerCase?ownerAfter:!firstDay&&!block,'Expert mass cast for spell '+id);}
+  report.scenarios.push(ownerCase?(ownerAfter?'daily-magic-plains-appear-after-enemy-owner-turn':'daily-magic-plains-wait-for-enemy-owner-turn'):firstDay?'daily-magic-plains-do-not-appear-on-first-day':block?'daily-magic-plains-skip-'+block:'daily-magic-plains-grant-four-expert-schools-in-field-battle');
   if(enabled)report.scenarios.push('daily-magic-plains-block-town-mithril-purchases');
   else report.scenarios.push('daily-magic-plains-work-without-mithril-module');
   if(process.env.PLAINS_SAVE)report.scenarios.push('daily-magic-plains-setting-and-patches-survive-native-save-reload');await page.close();
