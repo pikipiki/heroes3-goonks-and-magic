@@ -15,6 +15,7 @@
 #include "CGMysteriousCave.h"
 #include "../era/EraEighthTownSaveCompatibility.h"
 #include "../era/EraWogOptions.h"
+#include "../era/EraMapRulesModel.h"
 
 #include "TownBuildingInstance.h"
 
@@ -674,6 +675,7 @@ void CGTownInstance::mergeGarrisonOnSiege(IGameEventCallback & gameEvents) const
 
 void CGTownInstance::removeCapitols(IGameEventCallback & gameEvents, const PlayerColor & owner) const
 {
+	if(era_compat::map_rules::multipleCapitols(*cb))return;
 	if (hasCapitol()) // search if there's an older capitol
 	{
 		const PlayerState* state = cb->getPlayerState(owner); //get all towns owned by player

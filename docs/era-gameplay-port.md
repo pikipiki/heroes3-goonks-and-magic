@@ -202,7 +202,10 @@ conservant les coûts et prérequis propres à chaque ville. Son réglage est
 figé par partie. Trois parcours natifs vérifient la construction et le débit
 de 10000 pièces d'or dans une seconde ville Château, la limite habituelle
 quand le réglage est désactivé, et sa conservation après sauvegarde malgré
-un changement de configuration globale. Cette règle ne porte pas les
+un changement de configuration globale. Deux parcours supplémentaires
+vérifient la conservation d'un Capitole capturé avec la règle active et
+sa suppression habituelle quand elle est désactivée. Le moteur précédent
+échoue sur le premier cas en détruisant le bâtiment capturé. Cette règle ne porte pas les
 anciennes neuvième et dixième compétences : son remplacement par les
 Capitoles multiples est celui de la révision ERA de décembre 2022.
 

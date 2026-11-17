@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -50,6 +50,10 @@ if opts['capitolFixture']:
  second.update({'instanceName':'secondCapitolTown','x':15,'y':15})
  second['options'].update({'name':'Second Capitol','owner':'red','army':[]})
  second['options']['buildings']={'allOf':['core:'+b for b in ['villageHall','townHall','cityHall','tavern','fort','citadel','castle','mageGuild1','blacksmith','marketplace']]}
+ if opts['capitolCapture']:
+  second.update({'x':13,'y':12})
+  second['options']['owner']='blue'
+  second['options']['buildings']['allOf'].append('core:capitol')
  objects.append(second)
 site('mithrilGold','mine','goldMine',12,11,'red')
 site('mithrilOre','mine','orePit',13,11,'red')
@@ -93,6 +97,7 @@ if opts['bluePlainsOwner']:
 if opts['plainsFight'] and opts['plainsBlock']=='underground':
  for o in objects:
   if o['instanceName'] in ['goonkHero','plainsTrainingGuard']:o['l']=1
+if opts['capitolCapture']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown','secondCapitolTown']]
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
 for y,row in enumerate(terrain):
@@ -114,7 +119,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture})]);
 }
 
 async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,goldFunds=null,...options}={}){
@@ -222,12 +227,19 @@ async function recruitmentStock(){
  return stock;
 }
 try{
- if(process.env.CASES==='multiple-capitols'){
-  const enabled=!process.env.CAPITOL_DISABLED;
-  await boot({enabled:false,capitolFixture:true,multipleCapitols:enabled,goldFunds:20000});
+ if(process.env.CASES==='multiple-capitols'||process.env.CASES==='multiple-capitols-capture'){
+  const enabled=!process.env.CAPITOL_DISABLED,capturing=process.env.CASES==='multiple-capitols-capture';
+  await boot({enabled:false,capitolFixture:true,capitolCapture:capturing,multipleCapitols:enabled,goldFunds:20000});
   if(process.env.CAPITOL_SAVE){const save=[...await readCompletedNativeSave(page,command,{tag:826})];await page.close();await boot({save,enabled:false,multipleCapitols:false});}
+  if(capturing){
+   await command(6);await page.waitForTimeout(150);const point=await page.evaluate(()=>{const v=goonkMobileState.mapOverview.view;return{x:v.x+v.w/2+96,y:v.y+v.h/2+32};});
+   await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),point);await wait(()=>goonkMobileState.hasPath);await command(2);
+   for(let i=0;i<300;++i){const data=await state();if(data.towns?.some(row=>row.name.endsWith('Second Capitol')))break;if(data.mode==='dialog')await command(1);await page.waitForTimeout(100);}
+  }
   const town=(await state()).towns.find(row=>row.name.endsWith('Second Capitol'));assert(town,JSON.stringify((await state()).towns));
-  await command(5,town.index);await wait(()=>goonkMobileState.mode==='town');
+  if((await state()).mode!=='town')await command(5,town.index);await wait(()=>goonkMobileState.mode==='town');
+  if(capturing){const cap=(await state()).buildings.find(row=>row.key.endsWith(':capitol'));assert.equal(cap?.built,enabled,JSON.stringify(cap));report.scenarios.push(enabled?'map-rule-124-preserves-captured-capitol':'map-rule-124-disabled-removes-second-captured-capitol');await page.close();}
+  else{
   const building=(await state()).buildings.find(row=>row.key.endsWith(':capitol'));assert(building&&!building.built,JSON.stringify(building));
   fs.writeFileSync(path.join(output,'capitol-before.json'),JSON.stringify({town,building},null,2));
   const before=(await state()).resources[6];await command(8,building.id);
@@ -235,7 +247,7 @@ try{
   else{await page.waitForTimeout(500);assert(!(await state()).buildings.find(row=>row.key.endsWith(':capitol')).built);assert.equal((await state()).resources[6],before);}
   report.scenarios.push(enabled?'map-rule-124-allows-second-capitol-with-normal-cost':'map-rule-124-disabled-preserves-single-capitol-limit');
   if(process.env.CAPITOL_SAVE)report.scenarios.push('map-rule-124-survives-save-and-global-config-change');
-  await page.close();
+  await page.close();}
  }
  if(process.env.CASES?.startsWith('daily-plains')){
   const ownerCase=process.env.CASES==='daily-plains-owner',ownerAfter=!!process.env.PLAINS_OWNER_AFTER;
