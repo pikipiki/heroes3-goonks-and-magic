@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "scope": "map-rules-native-capitols",
+  "completeRules": false,
+  "engineSha256": "1ef11e559ff5207f2da7c65064a8880a41d7f58c26b53c10f4788d8271f1db65",
+  "scenarios": [
+    "map-rule-124-allows-second-capitol-with-normal-cost",
+    "map-rule-124-disabled-preserves-single-capitol-limit",
+    "map-rule-124-survives-save-and-global-config-change"
+  ],
+  "errors": [],
+  "sourceBindings": [
+    {
+      "file": "scripts/era-bridge/gameplay/map-rules.json",
+      "sha256": "fe605fcf0101d08c1a9e5610347930129ddd648dae2d633b43d8b6587bbbffaa"
+    },
+    {
+      "file": "docs/era-gameplay-port.md",
+      "sha256": "5a885bae5e3e00485d60d762f2bc17cffaf473ef5afdd4dec1d68f586fa7f995"
+    },
+    {
+      "file": "mod/tum-era/content/config/wog-map-rules.json",
+      "sha256": "b84db70107350b67d3c75052428e56b5ab3e38cff66f542ffcbed94ba6aee969"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
+      "sha256": "ec2174f3b63391258579213e59e6c078654971d2b0fa323fa1c9359ccf889f8f"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
+      "sha256": "c84e2d7333e74e8fd1c783ed09a9980e37b3f808969b672150d04bacc91af99e"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/callback/CGameInfoCallback.cpp",
+      "sha256": "be8b5073d377a6056242ce0d3c81f3a2634815df74ffb95f5f067c95aee518e7"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
+      "sha256": "05b25af3360f62dfd859ad179c99c7ce4bf943f3f4044f20acd8852f3f805704"
+    }
+  ]
+}

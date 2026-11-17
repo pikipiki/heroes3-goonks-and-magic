@@ -18,6 +18,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     EraGameplayChange packet;packet.system="mapRules";
     packet.state["rules"]["114"].Bool()=configured["114"].Bool();
     packet.state["rules"]["122"].Bool()=configured["122"].Bool();
+    packet.state["rules"]["124"].Bool()=configured["124"].Bool();
     gh.sendAndApply(packet);
 }
 inline void changeWeeklyMines(CGameHandler & gh)

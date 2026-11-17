@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "CGameInfoCallback.h"
+#include "../era/EraMapRulesModel.h"
 
 #include "../entities/building/CBuilding.h"
 #include "../gameState/CGameState.h"
@@ -576,7 +577,7 @@ EBuildingState CGameInfoCallback::canBuildStructure( const CGTownInstance *t, Bu
 		{
 			for(const CGTownInstance *town : ps->getTowns())
 			{
-				if(town->hasBuilt(BuildingID::CAPITOL))
+				if(town->hasBuilt(BuildingID::CAPITOL)&&!era_compat::map_rules::multipleCapitols(*this))
 				{
 					return EBuildingState::HAVE_CAPITAL; //no more than one capitol
 				}

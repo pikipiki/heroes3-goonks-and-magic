@@ -194,6 +194,15 @@ la reprise du réglage et du terrain, et son fonctionnement sans le module
 mithril. Les preuves figurent dans
 `outputs/era-gameplay/map-rules-native-daily-plains.json`.
 
+La règle WoG 124 autorise plusieurs Capitoles pour un même joueur, en
+conservant les coûts et prérequis propres à chaque ville. Son réglage est
+figé par partie. Trois parcours natifs vérifient la construction et le débit
+de 10000 pièces d'or dans une seconde ville Château, la limite habituelle
+quand le réglage est désactivé, et sa conservation après sauvegarde malgré
+un changement de configuration globale. Cette règle ne porte pas les
+anciennes neuvième et dixième compétences : son remplacement par les
+Capitoles multiples est celui de la révision ERA de décembre 2022.
+
 Les sanctuaires suivent le mélange des 70 sorts de la bibliothèque ERA avant
 de prendre le premier sort admissible ; les huttes utilisent le tirage sûr
 SplitMix32. Le moteur conserve une graine dans la plage source 11–55 et un
