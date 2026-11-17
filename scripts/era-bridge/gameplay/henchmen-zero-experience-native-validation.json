@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Winning human companion reward at authored hero level cap: source conditional campaignTransfer zero-gain early exit, native save/reload and regression scenarios",
+  "engineSha256": "b7b87f38d3ce0c69b022b89a696e09906fdba5e7df76834fc16ffe75425e9b72",
+  "parentEngineSha256": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+  "source": {
+    "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+    "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+    "lines": "746-778"
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "af90aac06a2a5c699c5f9e9538af9173cd2f9d92d19c19966379df2708658710",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "748ec4ca46ccb37baa0c42b7131c72edb7d9b09bbad3d04c07d74bbed6335e7f",
+    "scripts/era-bridge/gameplay/henchmen.mjs": "429a243f6ee0c991b3cef7ef75bf077bacb8c47827782277b77fa797ea995d10",
+    "scripts/era-bridge/gameplay/henchmen.json": "d628637c9ae1dfe60efbcde41a6597693d37124918166521f9ded01a06c66978",
+    "docs/era-gameplay-port.md": "1239691ef6552a0576d35c08bc5860756eabf268c5ad1be6f6d3108070808041"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 9,
+    "buildLogSha256": "9a94fad80aa35815afc55bfaf7121c6dd5e85e6fe4b110a6d85831060931f2e3",
+    "sourceBindingsSha256": "a856ba49faf38f19f0429627bd33bd9bb764ef08c163a596d6540a97f5671dec",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "reports": {
+    "zeroGain": {
+      "sha256": "7cd964af0a665042b39aa938b697b93334628fb5f6ba424d55b57d823d32574f",
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "b7b87f38d3ce0c69b022b89a696e09906fdba5e7df76834fc16ffe75425e9b72",
+      "scenarios": [
+        {
+          "heroAtLevelCap": true,
+          "campaignTransfer": false,
+          "heroExperience": 0,
+          "companionReward": 100,
+          "nativeSaveReload": true
+        },
+        {
+          "heroAtLevelCap": true,
+          "campaignTransfer": true,
+          "heroExperience": 0,
+          "companionReward": 0,
+          "nativeSaveReload": true
+        }
+      ],
+      "errors": []
+    },
+    "core": {
+      "sha256": "9b007dfaa14e3e8c23a9075b975de66baf857d7cac4406967967d242f7e4aae8",
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "b7b87f38d3ce0c69b022b89a696e09906fdba5e7df76834fc16ffe75425e9b72",
+      "scenarios": [
+        "selected-from-army-and-mobile-layout",
+        "companion-battle-inspection-keeps-its-native-command",
+        "independent-battle-actor-and-earned-experience",
+        "replacement-preserves-companion-experience",
+        "native-save-reload",
+        "dead-companion-resurrected-in-owned-town",
+        "ai-selects-shooter-as-independent-companion",
+        "santa-companion-guardian-count-multiplied-by-companion-level",
+        "disabled-profile-baseline"
+      ],
+      "errors": []
+    },
+    "aiSharedReward": {
+      "sha256": "f2327b0ff7d24423d7f0015b7d878d288422ab5eec29ec6367228ec3f6ecfbd1",
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "b7b87f38d3ce0c69b022b89a696e09906fdba5e7df76834fc16ffe75425e9b72",
+      "scenarios": [
+        "AI-victory-shared-integer-150-reward-150-ignores-prefixed-and-string-cells",
+        "transferred-winning-hero-and-shared-variable-reward-survive-native-save-reload",
+        "script-owner-loss-return-and-repeated-same-owner-assignment-update-the-live-hero-list-without-empty-dialogs-or-duplicates"
+      ],
+      "errors": []
+    }
+  },
+  "historicalControl": {
+    "engineSha256": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+    "expectedFailure": "0 instead of 100 when campaignTransfer=false and capped hero gains zero experience",
+    "logSha256": "4ee72b3f006d9c41bf5d294f765cf114f57cc310b377ee10da65ae195ff19c89",
+    "counterfactualEngine": false
+  },
+  "unitReportSha256": "d4e9667c2f4ca60b6ea5107af089dc2fb1ca62272439712c8a9d591adc6aba21",
+  "remaining": [
+    "Battle-start hero experience capture",
+    "Source loser/retreat/negative and overflow experience lifecycle",
+    "Remaining inventory, spell, campaign restart and full pack admission"
+  ]
+}

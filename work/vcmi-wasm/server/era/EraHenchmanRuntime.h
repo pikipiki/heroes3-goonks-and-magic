@@ -198,7 +198,10 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,Ba
         if(!update.alive)update.stackExperience=0;
         const auto gained=std::max<int64_t>(0,int64_t(hero->exp)-previousExperience[static_cast<int>(side)]);
         const bool ai=!gh.gameInfo().getPlayerState(hero->getOwner())->isHuman();
-        if(!draw&&side==winner&&(update.alive||ai)&&gained>0)
+        // The source's zero-gain early exit is conditional on campaign
+        // transfer. A capped winning hero still grants the static reward
+        // when that option is disabled.
+        if(!draw&&side==winner&&(update.alive||ai)&&(!rules.campaignTransfer||gained>0))
         {
             const auto root=era_bridge::henchmen::heroExperienceRoot(static_cast<int32_t>(std::min<int64_t>(gained,INT32_MAX)));
             // The source reads the unprefixed shared ERA cell. Its similarly

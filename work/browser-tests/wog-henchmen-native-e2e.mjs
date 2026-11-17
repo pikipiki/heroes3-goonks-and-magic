@@ -29,7 +29,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
+function fixture({heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -85,7 +85,7 @@ else:
   import copy
   guard=copy.deepcopy(objects[-1]);guard.update({'instanceName':'henchmenSecondGuard','x':12});objects.append(guard)
 entries['objects.json']=json.dumps(objects).encode()
-header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation'
+header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';header['heroLevelLimit']=opts['heroLevelLimit']
 if opts['scriptTown'] or opts['scriptAI']:
  header['players']['red']['allowedFactions']={'anyOf':['core:castle']};header['players']['red']['mainTown']['x']=10
  header['events']=[{'name':'private companion town continuation','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native companion town continuation'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}]
@@ -104,7 +104,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
+`,JSON.stringify({heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
 }
 
 async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
@@ -234,6 +234,18 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='zero-hero-experience'){
+  for(const campaignTransfer of [false,true]){
+   await boot({heroLevelLimit:1,henchmanType:'core:archangel',settings:{campaignTransfer,battleExpStatic:100,battleExpRandom:0,battleHeroExpCoef:0,battleExpPerHeroLv:0,battleExpMin:0,battleExpMax:1000,bonusDaily:0,bonusHeroLvUp:0,stackExpEnabled:false}});
+   const before=await sheet();assert.equal(before.experience,0);assert(before.henchman.alive);
+   await command(63);await wait(()=>goonkMobileState.mode==='map');await startBattle();await resolve();
+   const after=await sheet();assert(after.henchman.alive);assert.equal(after.experience,0,'Authored map level cap prevents hero XP');
+   assert.equal(after.henchman.experience-before.henchman.experience,campaignTransfer?0:100,'Source skips zero-gain rewards only when campaignTransfer is enabled');
+   await command(63);await wait(()=>goonkMobileState.mode==='map');const bytes=[...await readCompletedNativeSave(page,command,{tag:937})];
+   await page.close();await boot({save:bytes});const restored=await sheet();assert.equal(restored.henchman.experience,after.henchman.experience);
+   report.scenarios.push({heroAtLevelCap:true,campaignTransfer,heroExperience:0,companionReward:campaignTransfer?0:100,nativeSaveReload:true});await page.close();
+  }
+ }
  if(process.env.CASES==='ai-shared-reward'){
   const {runAISharedReward}=await import('./wog-henchmen-ai-reward-cases.mjs');
   await runAISharedReward({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,

@@ -251,6 +251,15 @@ n'ajoutent plus une fenêtre vide. Les téléportations originales restent
 fonctionnelles. L'ancien moteur conserve 100 XP au lieu de 250 dans le témoin.
 Voir `scripts/era-bridge/gameplay/henchmen-shared-reward-native-validation.json`.
 
+Un héros bloqué à la limite de niveau de sa carte garde désormais la
+récompense fixe du compagnon lorsque `campaignTransfer` est désactivé. Avec
+ce réglage activé, le gain nul du héros supprime bien la récompense, comme
+l'indique le test source de la ligne 764. Les deux parcours utilisent un
+combat réel avec une limite de niveau 1, puis une sauvegarde et un rechargement.
+Le moteur précédent échoue au témoin sans transfert (0 au lieu de 100).
+Cette correction ne valide pas encore la capture d'expérience au début du
+combat, les pertes et tous les déclencheurs source intermédiaires.
+
 ## Raccordements et validations restant nécessaires
 
 La règle ERA Scripts 779 des pierres de connaissance possède un raccordement
