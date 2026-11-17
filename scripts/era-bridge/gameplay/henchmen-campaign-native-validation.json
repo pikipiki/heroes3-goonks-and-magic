@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Source campaign crossover JSON transformation; native two-scenario campaign flow remains unvalidated",
+  "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+  "parentEngineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/campaign/CampaignState.cpp": "c8a02ddfd3895d40cc68db6b4ab4a2a656b7e663091b5118b09e081ae2377f18",
+    "work/vcmi-wasm/lib/era/EraHenchmanCampaign.h": "345f10da6cf772ecbf09a425176ed18028bf8d00fdbe04b3b410e04fd799748e",
+    "tests/native/EraHenchmanCampaign.test.cpp": "1a36d0a3bca2e377d30a6adb61097b926b1f7fac821bf7ae38c3b2250bfb59e6",
+    "tests/era-henchmen-campaign.test.mjs": "8dd9f88c496eb7982abc531070e70cc3132217469e7750cdbdc7a9a0766d226e"
+  },
+  "upstream": {
+    "eraProjectCommit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "henchmenScript": {
+      "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+      "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+      "lines": "60-84,114-128,130-147"
+    },
+    "kernelCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "kernelFiles": [
+      {
+        "file": "AdvErm.pas",
+        "sha256": "cfd4a30049ab3fd93310b9f7ec9087469efbc134211c9cdaf4e310948417e13c",
+        "lines": "2431-2437"
+      },
+      {
+        "file": "Erm.pas",
+        "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+        "lines": "6176-6188"
+      }
+    ]
+  },
+  "sourceFindings": [
+    "OnTransferHero carries w117 companion progression and w118/w119 creature/alive fields; it does not carry hench_stackExp named cells",
+    "New-map ERM initialization resets associative memory, making missing stack experience zero",
+    "Banner style has a separate INI carryover only when campaign transfer and free banners are both enabled"
+  ],
+  "checks": {
+    "linuxCppWithAddressAndUndefinedSanitizers": "PASS",
+    "cases": [
+      "No-transfer removes companion without changing hero experience",
+      "Transfer retains companion identity, own experience, alive and declined state",
+      "Map-local stack experience resets on crossover",
+      "Four banner styles with both free-banner settings",
+      "Repeated export transformation is idempotent",
+      "Donor JSON remains unchanged"
+    ],
+    "wasmBuild": {
+      "command": "ninja -j32 html5",
+      "exitCode": 0,
+      "targets": 5,
+      "buildLogSha256": "2c1a2ff66303aca62eb7c9e0c5303d8907e6b96b6d0b9164a18017fd760381e7",
+      "sourceBindingsSha256": "307f7a5acd2ca18851aff2ccee1a61b95b249239ff7616e9325831a4ea353108"
+    }
+  },
+  "remaining": [
+    "End-to-end two-scenario campaign transition and restart",
+    "Native free-banner INI-equivalent outcomes across scenario settings",
+    "Older campaign crossover compatibility"
+  ]
+}
