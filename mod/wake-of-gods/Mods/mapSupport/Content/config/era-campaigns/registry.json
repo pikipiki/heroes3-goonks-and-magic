@@ -73,39 +73,39 @@
     },
     {
       "id": "zc4-0",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc4-0",
       "programSha256": "14ecebd8c965de6024aa2c3ba02f6e3d28d471c261838d3e7dd01f24213b19f3",
       "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
       "scenarioMember": "wog_camp1a.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc4-1",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc4-1",
       "programSha256": "18335cccff08966211e5732a8a693ca44df72539c01f3dbdd6ce86cdf69ed360",
       "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
       "scenarioMember": "wog_camp2a.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc4-2",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc4-2",
       "programSha256": "a8a9dfef1ccd7bbc3587d1a2bdad12e4c9a15e182d77d3948fd2199a36940fa9",
       "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
       "scenarioMember": "wog_camp4a.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     },
     {
       "id": "zc4-3",
-      "enabled": false,
+      "enabled": true,
       "resource": "config/era-campaigns/zc4-3",
       "programSha256": "0af533997bff0571d40528dd17b644b18c0af8614d89a8c3c74d80f058606f73",
       "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
       "scenarioMember": "wog_camp3atemp.vmap",
-      "reason": "Original quests, combat, victory and campaign transfer require native validation."
+      "reason": "Original scenarios, native victories and campaign transfers validated."
     }
   ]
 }

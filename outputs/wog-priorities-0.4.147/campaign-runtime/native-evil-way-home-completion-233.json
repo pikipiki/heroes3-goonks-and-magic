@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+  "originalScriptsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "heroes": [
+    "Aislinn",
+    "Isra",
+    "Tamika",
+    "Xsi"
+  ],
+  "nativeHeroGuards": [
+    {
+      "hero": "Tamika",
+      "guard": [
+        9,
+        7,
+        1
+      ],
+      "nativeAcceptance": true,
+      "dialogsSha256": "adea1646d062ec3a40f8de29ec6a2129c9fdb7602fe0cb89d917885a9aa0479a",
+      "afterGuardSaveSha256": "91e9a262321e3d81a699146fe0c93e695b11054b38eb7bc532eab3e91d7e4cdf"
+    },
+    {
+      "hero": "Aislinn",
+      "guard": [
+        8,
+        7,
+        1
+      ],
+      "nativeAcceptance": true,
+      "dialogsSha256": "558db3520ef8d9f44b3271ada8cfba6cab251330d32d0eabf83f35024e626b7f",
+      "afterGuardSaveSha256": "bb1c2469da0fe4dc562fd4ddb68ea634a7b348044ba3385a97e01fc0fd10c487"
+    },
+    {
+      "hero": "Isra",
+      "guard": [
+        8,
+        6,
+        1
+      ],
+      "nativeAcceptance": true,
+      "dialogsSha256": "50022bdd03be7cacf31b72fe7c2bde6b26d34b1049d07dec115226f2ae2cea4a",
+      "afterGuardSaveSha256": "e4317f101ae5b443a001de05c0db012119f7e9187f165a1f1a375a47fe801bab"
+    },
+    {
+      "hero": "Xsi",
+      "guard": [
+        8,
+        5,
+        1
+      ],
+      "nativeAcceptance": true,
+      "dialogsSha256": "289edf606c3198f16d0480e22c59a207d73cbfc4eebdb937c9897f91b650217d",
+      "afterGuardSaveSha256": "2a54c67fac52de550ba9f1559e5e79385c64385fa9319aa6709f0c611758d81b"
+    }
+  ],
+  "nativeBlackKeyVisited": true,
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 4,
+    "days": 10,
+    "name": "Evil Way Home",
+    "playerName": "Goonk",
+    "queryId": 83079172,
+    "score": 1204,
+    "unranked": true,
+    "won": true
+  },
+  "nativeResultSha256": "fd3783ace5317f1719334b570b87667f36bd6aef82f2e56c7a21d32f7bf929cd",
+  "nativeCompletionSha256": "ab82559ac9a14b3bd4df3478590883aceffa444a9da5ec04e285356d35f95a36",
+  "finalVisits": [
+    [
+      30,
+      8
+    ],
+    [
+      21,
+      21
+    ],
+    [
+      24,
+      26
+    ],
+    [
+      25,
+      26
+    ],
+    [
+      24,
+      28
+    ],
+    [
+      14,
+      27
+    ],
+    [
+      30,
+      20
+    ]
+  ],
+  "endingLayouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "stableInput": true,
+      "actionsVisible": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "stableInput": true,
+      "actionsVisible": true
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Original quests, earned quest artifacts and all four heroes; no hero, quest artifact, quest-flag or script injection.",
+    "Declared offline QA armies, resources, levels, native reveal/unlimited travel and the normal instant movement setting accelerate progression. This validates completion and transfer, not campaign difficulty or economy.",
+    "Companion heroes learn Summon Boat from a native guild; boats are moved through native travel to clear the narrow northern landing."
+  ]
+}

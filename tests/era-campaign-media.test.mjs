@@ -16,7 +16,7 @@ test('site artwork publishing preserves bytes and names assets by their digest',
 });
 test('campaign dependency repair metadata is regenerated from verified original H3C files',()=>{
  const {config,inventory}=buildNativeMetadata();assert.deepEqual(JSON.parse(fs.readFileSync(metadataFile)),config);assert.deepEqual(JSON.parse(fs.readFileSync('outputs/wog-priorities-0.4.147/campaign-runtime/original-metadata.json')),inventory);
- assert.deepEqual(config.rules.map(r=>r.id),['zc1']);assert.equal(inventory.originalCampaignsEnabled,true);assert.deepEqual(inventory.enabledOriginalCampaigns,['zc1','zc2','zc3']);assert.equal(inventory.allOriginalCampaignsEnabled,false);
+ assert.deepEqual(config.rules.map(r=>r.id),['zc1']);assert.equal(inventory.originalCampaignsEnabled,true);assert.deepEqual(inventory.enabledOriginalCampaigns,['zc1','zc2','zc3','zc4']);assert.equal(inventory.allOriginalCampaignsEnabled,true);
 });
 test('native media path lookup resolves only virtual assets and rejects traversal',()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-media-paths-'));

@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+  "originalScriptsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "rescue": {
+    "scenario": 1,
+    "prison": [
+      41,
+      20,
+      1
+    ],
+    "nativeBlackDragonPrice": 1,
+    "beforeDragons": 3,
+    "afterPriceDragons": 2,
+    "nativeHero": "Tamika",
+    "proofSha256": "3c75eb8d159a9547751fe41ae7d3f25ef908be12ee5499ae2c9b085553aaa80b"
+  },
+  "secondTransfer": {
+    "from": 1,
+    "to": 3,
+    "heroes": [
+      "Xsi",
+      "Tamika",
+      "Isra"
+    ],
+    "tamikaExperiencePreserved": true,
+    "tamikaLevelPreserved": true,
+    "tamikaPrimarySkillsPreserved": true,
+    "tamikaSecondarySkillsPreserved": true,
+    "proofSha256": "174b5554db3b75940b3499979b6079dda134f89471f157515a783f5b75ac52a6"
+  },
+  "thirdTransfer": {
+    "from": 3,
+    "to": 2,
+    "heroes": [
+      "Aislinn",
+      "Isra",
+      "Tamika",
+      "Xsi"
+    ],
+    "allFourExpertSkills": 28,
+    "realElixirAssemblyAndMedalQuest": true,
+    "nativeThirdVictory": true,
+    "endingLayouts": {
+      "passed": true,
+      "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+      "hero": "Xsi",
+      "skills": [
+        {
+          "description": "{Expert Wisdom}\n\nExpert Wisdom allows your hero to learn fifth level spells.",
+          "icon": 9,
+          "mastery": "Expert",
+          "name": "Wisdom"
+        },
+        {
+          "description": "{Expert Necromancy}\n\nRaises up to 30% of defeated living creatures as Skeleton Knights, limited by their health. With the Cloak of the Undead King: Lich Kings.",
+          "icon": 10,
+          "mastery": "Expert",
+          "name": "Necromancy"
+        },
+        {
+          "description": "{Expert Learning}\n\nExpert Learning increases a hero's earned experience by 15%.",
+          "icon": 11,
+          "mastery": "Expert",
+          "name": "Learning"
+        },
+        {
+          "description": "{Expert Logistics}\n\nExpert Logistics increases your hero's movement points over land by 30%.",
+          "icon": 12,
+          "mastery": "Expert",
+          "name": "Logistics"
+        },
+        {
+          "description": "{Expert Offense}\n\nExpert Offense increases all hand-to-hand damage inflicted by the hero's troops by 30%.",
+          "icon": 13,
+          "mastery": "Expert",
+          "name": "Offense"
+        },
+        {
+          "description": "{Expert Fire Magic}\n\nExpert Fire Magic allows your hero to cast Fire spells at reduced cost and maximum effectiveness.",
+          "icon": 14,
+          "mastery": "Expert",
+          "name": "Fire Magic"
+        },
+        {
+          "description": "{Expert Armorer}\n\nExpert Armorer reduces all damage inflicted against the hero's troops by 15%.",
+          "icon": 15,
+          "mastery": "Expert",
+          "name": "Armorer"
+        },
+        {
+          "description": "{Expert Artillery}\n\nExpert Artillery gives control of the ballista to the hero, allowing two shots which inflict double damage.",
+          "icon": 16,
+          "mastery": "Expert",
+          "name": "Artillery"
+        },
+        {
+          "description": "{Expert Pathfinding}\n\nExpert Pathfinding reduces the movement penalty for rough terrain by 75%.",
+          "icon": 17,
+          "mastery": "Expert",
+          "name": "Pathfinding"
+        },
+        {
+          "description": "{Expert Archery}\n\nExpert Archery increases the damage done by range attacking creatures by 50%.",
+          "icon": 18,
+          "mastery": "Expert",
+          "name": "Archery"
+        },
+        {
+          "description": "{Expert Scouting}\n\nExpert Scouting allows your hero to see 3 squares further into the shroud.",
+          "icon": 19,
+          "mastery": "Expert",
+          "name": "Scouting"
+        },
+        {
+          "description": "{Expert Diplomacy}\n\nExpert Diplomacy allows you to negotiate with monsters who are weaker than your group, and reduces the cost of surrendering by 60%.",
+          "icon": 20,
+          "mastery": "Expert",
+          "name": "Diplomacy"
+        },
+        {
+          "description": "{Expert Navigation}\n\nExpert Navigation increases your hero's movement points at sea by 150%.",
+          "icon": 21,
+          "mastery": "Expert",
+          "name": "Navigation"
+        },
+        {
+          "description": "{Expert Leadership}\n\nExpert Leadership increases your hero's troops' morale by 3.",
+          "icon": 22,
+          "mastery": "Expert",
+          "name": "Leadership"
+        },
+        {
+          "description": "{Expert Mysticism}\n\nExpert Mysticism allows your hero to regenerate 4 spell points per day.",
+          "icon": 23,
+          "mastery": "Expert",
+          "name": "Mysticism"
+        },
+        {
+          "description": "{Expert Luck}\n\nExpert Luck increases your hero's luck by 3.",
+          "icon": 24,
+          "mastery": "Expert",
+          "name": "Luck"
+        },
+        {
+          "description": "{Expert Ballistics}\n\nExpert Ballistics gives control of the catapult to the hero, allowing two aimed shots at maximum damage.",
+          "icon": 25,
+          "mastery": "Expert",
+          "name": "Ballistics"
+        },
+        {
+          "description": "{Expert Eagle Eye}\n\nExpert Eagle Eye gives your hero a 60% chance to learn any spell up to 4th level used in combat.",
+          "icon": 26,
+          "mastery": "Expert",
+          "name": "Eagle Eye"
+        },
+        {
+          "description": "{Expert Estates}\n\nWith Estates, a hero contributes 500 gold per day to your cause.",
+          "icon": 27,
+          "mastery": "Expert",
+          "name": "Estates"
+        },
+        {
+          "description": "{Expert Air Magic}\n\nExpert Air Magic allows your hero to cast Air spells at reduced cost and maximum effectiveness.",
+          "icon": 28,
+          "mastery": "Expert",
+          "name": "Air Magic"
+        },
+        {
+          "description": "{Expert Water Magic}\n\nExpert Water Magic allows your hero to cast Water spells at reduced cost and maximum effectiveness.",
+          "icon": 29,
+          "mastery": "Expert",
+          "name": "Water Magic"
+        },
+        {
+          "description": "{Expert Earth Magic}\n\nExpert Earth Magic allows your hero to cast Earth spells at reduced cost and maximum effectiveness.",
+          "icon": 30,
+          "mastery": "Expert",
+          "name": "Earth Magic"
+        },
+        {
+          "description": "{Expert Scholar}\n\nExpert Scholar allows heroes to teach each other any spell up to 4th level, effectively trading spells between spell books.",
+          "icon": 31,
+          "mastery": "Expert",
+          "name": "Scholar"
+        },
+        {
+          "description": "{Expert Tactics}\n\nExpert Tactics allows you to rearrange your troops just before combat, within seven hex rows of the commanding hero.",
+          "icon": 32,
+          "mastery": "Expert",
+          "name": "Tactics"
+        },
+        {
+          "description": "{Expert Intelligence}\n\nExpert Intelligence doubles a hero's normal maximum spell points.",
+          "icon": 33,
+          "mastery": "Expert",
+          "name": "Intelligence"
+        },
+        {
+          "description": "{Expert Sorcery}\n\nExpert Sorcery causes a hero's spells to inflict an additional 15% damage in combat.",
+          "icon": 34,
+          "mastery": "Expert",
+          "name": "Sorcery"
+        },
+        {
+          "description": "{Expert Resistance}\n\nExpert Resistance endows a hero's troops with 20% magic resistance.",
+          "icon": 35,
+          "mastery": "Expert",
+          "name": "Resistance"
+        },
+        {
+          "description": "{Expert First Aid}\n\nExpert First Aid gives control of the first aid tent to the hero, healing 100 points of damage to the first unit of the selected stack.",
+          "icon": 36,
+          "mastery": "Expert",
+          "name": "First Aid"
+        }
+      ],
+      "layouts": [
+        {
+          "width": 320,
+          "height": 568,
+          "top": 3804,
+          "touch": true,
+          "close": {
+            "x": 266,
+            "y": 66,
+            "w": 44,
+            "h": 48
+          },
+          "scrollable": true,
+          "stable": true
+        },
+        {
+          "width": 568,
+          "height": 320,
+          "top": 3756,
+          "touch": true,
+          "close": {
+            "x": 520,
+            "y": 2,
+            "w": 44,
+            "h": 44
+          },
+          "scrollable": true,
+          "stable": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "top": 3219,
+          "touch": true,
+          "close": {
+            "x": 336,
+            "y": 66,
+            "w": 44,
+            "h": 48
+          },
+          "scrollable": true,
+          "stable": true
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "top": 1853,
+          "touch": true,
+          "close": {
+            "x": 796,
+            "y": 2,
+            "w": 44,
+            "h": 44
+          },
+          "scrollable": true,
+          "stable": true
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "top": 1113,
+          "touch": true,
+          "close": {
+            "x": 714,
+            "y": 66,
+            "w": 44,
+            "h": 48
+          },
+          "scrollable": true,
+          "stable": true
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "top": 1227,
+          "touch": true,
+          "close": {
+            "x": 974,
+            "y": 2,
+            "w": 44,
+            "h": 48
+          },
+          "scrollable": true,
+          "stable": true
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "top": 921,
+          "touch": true,
+          "close": {
+            "x": 766,
+            "y": 66,
+            "w": 44,
+            "h": 48
+          },
+          "scrollable": true,
+          "stable": true
+        }
+      ],
+      "scope": "All28 Expert skills granted by unchanged final zc4 initializer; native storage and mobile visibility/scroll stability. No level-up cap change."
+    },
+    "proofSha256": "8f919433a7b3b265968e16033d0083fa5e4edc5d554e06092122a3b2323ada33"
+  },
+  "limitations": [
+    "Declared native offline QA army input: five Black Dragons in free slots, three surviving to the prison quest; the native guard consumes one. No hero, quest artifact, script or quest-flag injection.",
+    "Native QA armies/resources/levels and instant/native unlimited movement accelerate progression; this is not economy or difficulty validation.",
+    "Final fourth-scenario victory is separate and remains required for activation."
+  ]
+}

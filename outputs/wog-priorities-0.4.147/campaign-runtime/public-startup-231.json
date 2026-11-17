@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "origin": "https://pikipiki.github.io/heroes3-goonks-and-magic/",
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "actualFetchedWasmSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "cspBypassed": false,
+  "crossOriginIsolated": true,
+  "maps": [
+    {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 1,
+      "humanSeats": 1,
+      "index": 0,
+      "name": "Goonks — Trésors de WoG",
+      "path": "MAPS/003-Goonks-WoG",
+      "players": 2,
+      "width": 144
+    },
+    {
+      "castleChoice": true,
+      "height": 144,
+      "humanCastleChoices": 2,
+      "humanSeats": 2,
+      "index": 1,
+      "name": "Goonks — Trésors de WoG en ligne",
+      "path": "MAPS/004-Goonks-WoG-Online",
+      "players": 2,
+      "width": 144
+    },
+    {
+      "castleChoice": false,
+      "height": 108,
+      "humanCastleChoices": 0,
+      "humanSeats": 4,
+      "index": 2,
+      "name": "Âòîðæåíèå íà Ýíäîãàð v1.0",
+      "path": "MAPS/Invasion of Endogar",
+      "players": 4,
+      "width": 108
+    }
+  ],
+  "catalogue": [
+    {
+      "index": 0,
+      "name": "Specter of Power"
+    },
+    {
+      "index": 1,
+      "name": "Rise of the Necromancer"
+    },
+    {
+      "index": 2,
+      "name": "Playing with Fire"
+    },
+    {
+      "index": 3,
+      "name": "Unholy Alliance"
+    },
+    {
+      "index": 4,
+      "name": "Seeds of Discontent"
+    },
+    {
+      "index": 5,
+      "name": "Dragon's Blood"
+    },
+    {
+      "index": 6,
+      "name": "Spoils of War"
+    },
+    {
+      "index": 7,
+      "name": "A Life of A-d-v-e-n-t-u-r-e"
+    },
+    {
+      "index": 8,
+      "name": "New Beginning"
+    },
+    {
+      "index": 9,
+      "name": "Armageddon's Blade"
+    },
+    {
+      "index": 10,
+      "name": "Foolhardy Waywardness"
+    },
+    {
+      "index": 11,
+      "name": "Dungeons and Devils"
+    },
+    {
+      "index": 12,
+      "name": "Spoils of War"
+    },
+    {
+      "index": 13,
+      "name": "Song for the Father"
+    },
+    {
+      "index": 14,
+      "name": "Birth of a Barbarian"
+    },
+    {
+      "index": 15,
+      "name": "Festival of life"
+    },
+    {
+      "index": 16,
+      "name": "The Samaritan"
+    },
+    {
+      "index": 17,
+      "name": "Hack and Slash"
+    },
+    {
+      "index": 18,
+      "name": "Long Live the King"
+    },
+    {
+      "index": 19,
+      "name": "Liberation"
+    },
+    {
+      "index": 20,
+      "name": "Dragon Slayer"
+    },
+    {
+      "index": 21,
+      "name": "Elixir of Life"
+    },
+    {
+      "index": 22,
+      "name": "In the Wake of Gods"
+    },
+    {
+      "index": 23,
+      "name": "Long Live the Queen"
+    }
+  ],
+  "errors": []
+}

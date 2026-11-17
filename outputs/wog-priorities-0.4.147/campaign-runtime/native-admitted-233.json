@@ -1,0 +1,963 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "productionOnly": true,
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "chromium": {
+    "passed": true,
+    "productionOnly": true,
+    "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+    "reports": [
+      {
+        "id": "zc1",
+        "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+        "sourceArchiveSha256": "b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d",
+        "productionOnly": true,
+        "layouts": [
+          {
+            "width": 320,
+            "height": 568,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 844,
+            "height": 390,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 768,
+            "height": 1024,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 1024,
+            "height": 768,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 820,
+            "height": 1180,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          }
+        ],
+        "started": {
+          "heroName": "Native QA",
+          "day": 1,
+          "heroes": [
+            {
+              "hasSpellbook": false,
+              "id": 144,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1500,
+              "movementLimit": 1500,
+              "name": "Native QA"
+            }
+          ]
+        },
+        "saveSha256": "097650fd90a2b7cedcdd0a90017b0a19b5b0f3deea2dc9140264ca7ef28ec97b",
+        "dialogs": [
+          {
+            "cancel": false,
+            "choices": [],
+            "lines": [
+              "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+            ],
+            "queryId": 3,
+            "scriptDialog": {
+              "canCancel": false,
+              "choiceLabel": "Choose your portrait, hero:",
+              "choices": [
+                {
+                  "hint": "First",
+                  "label": "First",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 110,
+                    "y": 420
+                  },
+                  "value": 1
+                },
+                {
+                  "hint": "Second",
+                  "label": "Second",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 306,
+                    "y": 420
+                  },
+                  "value": 2
+                },
+                {
+                  "hint": "Third",
+                  "label": "Third",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 502,
+                    "y": 420
+                  },
+                  "value": 3
+                },
+                {
+                  "hint": "Fourth",
+                  "label": "Fourth",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 110,
+                    "y": 468
+                  },
+                  "value": 4
+                }
+              ],
+              "contract": "source-campaign-dialog-v1",
+              "draft": {
+                "text": ""
+              },
+              "inputLabel": "What's your name:",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_901.bmp",
+                  "hint": "First",
+                  "mediaKey": "cmp.res/11_901.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 131,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_902.bmp",
+                  "hint": "Second",
+                  "mediaKey": "cmp.res/11_902.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 271,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_903.bmp",
+                  "hint": "Third",
+                  "mediaKey": "cmp.res/11_903.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 411,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_904.bmp",
+                  "hint": "Fourth",
+                  "mediaKey": "cmp.res/11_904.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 551,
+                    "y": 318
+                  }
+                }
+              ],
+              "queryId": 3,
+              "resultVariable": 100,
+              "selection": 1,
+              "text": "Time to play a real game. Are you ready, Hero? \n(it is strongly recommended to try the tutorial map)."
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "choices": [
+              {
+                "description": "",
+                "label": "Peasants",
+                "rect": {
+                  "h": 64,
+                  "w": 58,
+                  "x": 371,
+                  "y": 313
+                }
+              }
+            ],
+            "lines": [
+              "We are real friends, Native QA, \nand we will stick together\ntill the bitter end... \nRight?"
+            ],
+            "queryId": 4,
+            "title": "Game message"
+          },
+          {
+            "cancel": true,
+            "choices": [],
+            "lines": [
+              "\nA warm summer night... \nthe smell of fresh grass and sweet rain is pungeant in the air... \nSoft sounds reverberate through the groves,\nmelting and changing into another,\nfilling the deep of darkness with mystery...\nA light breaze rustles the branches of the maple-trees. \nTwo charmed stars soar through the sky\nand seem to land on the soft silky grass as fresh dew. \n"
+            ],
+            "queryId": 5,
+            "scriptDialog": {
+              "canCancel": true,
+              "choiceLabel": "",
+              "choices": [],
+              "contract": "source-campaign-dialog-v1",
+              "draft": null,
+              "inputLabel": "",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_015.bmp",
+                  "hint": "",
+                  "mediaKey": "cmp.res/11_015.bmp",
+                  "rect": {
+                    "h": 100,
+                    "w": 100,
+                    "x": 110,
+                    "y": 300
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_014.bmp",
+                  "hint": "",
+                  "mediaKey": "cmp.res/11_014.bmp",
+                  "rect": {
+                    "h": 56,
+                    "w": 100,
+                    "x": 250,
+                    "y": 322
+                  }
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                }
+              ],
+              "queryId": 5,
+              "resultVariable": 1,
+              "selection": 0,
+              "text": "\nA warm summer night... \nthe smell of fresh grass and sweet rain is pungeant in the air... \nSoft sounds reverberate through the groves,\nmelting and changing into another,\nfilling the deep of darkness with mystery...\nA light breaze rustles the branches of the maple-trees. \nTwo charmed stars soar through the sky\nand seem to land on the soft silky grass as fresh dew. \n"
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": true,
+            "choices": [],
+            "lines": [
+              " \nThe silence deepens,\nthen the cry of two new borns salute the midnight air.  \nAnd the old witch foretells...\nOne will follow the long and winding road.\nThe other will suffer the fate of a warrior. \n"
+            ],
+            "queryId": 6,
+            "scriptDialog": {
+              "canCancel": true,
+              "choiceLabel": "",
+              "choices": [],
+              "contract": "source-campaign-dialog-v1",
+              "draft": null,
+              "inputLabel": "",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                }
+              ],
+              "queryId": 6,
+              "resultVariable": 1,
+              "selection": 0,
+              "text": " \nThe silence deepens,\nthen the cry of two new borns salute the midnight air.  \nAnd the old witch foretells...\nOne will follow the long and winding road.\nThe other will suffer the fate of a warrior. \n"
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": true,
+            "choices": [],
+            "lines": [
+              " \nYears went by. You were siblings as infants.\nBut as time passed your soul stayed light\nand reached for to stars, the blazing summer lighting, the distant sky. \nDan is your friend. You have spent almost all your life together.\nStand-up fights, hunting... but something draws you to the unknown. \nYou dream of a knight on a white horse,\nin shining armour reflecting rays of the sun.  \nOr could it be reality? \n"
+            ],
+            "queryId": 7,
+            "scriptDialog": {
+              "canCancel": true,
+              "choiceLabel": "",
+              "choices": [],
+              "contract": "source-campaign-dialog-v1",
+              "draft": null,
+              "inputLabel": "",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                }
+              ],
+              "queryId": 7,
+              "resultVariable": 1,
+              "selection": 0,
+              "text": " \nYears went by. You were siblings as infants.\nBut as time passed your soul stayed light\nand reached for to stars, the blazing summer lighting, the distant sky. \nDan is your friend. You have spent almost all your life together.\nStand-up fights, hunting... but something draws you to the unknown. \nYou dream of a knight on a white horse,\nin shining armour reflecting rays of the sun.  \nOr could it be reality? \n"
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": true,
+            "choices": [],
+            "lines": [
+              " \nWhat was his name... Gelu??? \nYou can't remember... \nDid this happen to you when you were just a child,\nmemories that will stay with you for all your life? \nSo that is it...  \nNow the time comes when you can no longer consider yourself a youth,  \nYou can not wait anymore... \n"
+            ],
+            "queryId": 8,
+            "scriptDialog": {
+              "canCancel": true,
+              "choiceLabel": "",
+              "choices": [],
+              "contract": "source-campaign-dialog-v1",
+              "draft": null,
+              "inputLabel": "",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                }
+              ],
+              "queryId": 8,
+              "resultVariable": 1,
+              "selection": 0,
+              "text": " \nWhat was his name... Gelu??? \nYou can't remember... \nDid this happen to you when you were just a child,\nmemories that will stay with you for all your life? \nSo that is it...  \nNow the time comes when you can no longer consider yourself a youth,  \nYou can not wait anymore... \n"
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": true,
+            "choices": [],
+            "lines": [
+              "You move out on your quest for glory.  \nYour army yet numbers only one man, your friend, Dan. \nTogether you will conquer the world."
+            ],
+            "queryId": 9,
+            "scriptDialog": {
+              "canCancel": true,
+              "choiceLabel": "",
+              "choices": [],
+              "contract": "source-campaign-dialog-v1",
+              "draft": null,
+              "inputLabel": "",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_901.bmp",
+                  "hint": "This is you, hero",
+                  "mediaKey": "cmp.res/11_901.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 131,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\11_012.bmp",
+                  "hint": "This is your friend Dan",
+                  "mediaKey": "cmp.res/11_012.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 271,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                },
+                {
+                  "file": "",
+                  "hint": ""
+                }
+              ],
+              "queryId": 9,
+              "resultVariable": 1,
+              "selection": 0,
+              "text": "You move out on your quest for glory.  \nYour army yet numbers only one man, your friend, Dan. \nTogether you will conquer the world."
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "  Time to go!"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ],
+        "nativeReload": true
+      },
+      {
+        "id": "zc2",
+        "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+        "sourceArchiveSha256": "5404bb0faf8bea89ec708263a2e3cc37b41e4f0ddc20af6e474f0a911b76f16f",
+        "productionOnly": true,
+        "layouts": [
+          {
+            "width": 320,
+            "height": 568,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 844,
+            "height": 390,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 768,
+            "height": 1024,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 1024,
+            "height": 768,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 820,
+            "height": 1180,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          }
+        ],
+        "started": {
+          "heroName": "Native QA",
+          "day": 1,
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 446,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 2013,
+              "movementLimit": 2013,
+              "name": "Native QA"
+            }
+          ]
+        },
+        "saveSha256": "39891e52a875b0ba6057c9f4c1108e73feee781dc9724e78998695f1abefdb77",
+        "dialogs": [
+          {
+            "cancel": false,
+            "choices": [],
+            "lines": [
+              "Time to play"
+            ],
+            "queryId": 3,
+            "scriptDialog": {
+              "canCancel": false,
+              "choiceLabel": "Choose your spell",
+              "choices": [
+                {
+                  "hint": "Your hero will start with the Bloodlust spell",
+                  "label": "Bloodlust",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 110,
+                    "y": 420
+                  },
+                  "value": 1
+                },
+                {
+                  "hint": "Your hero will start with the Bless spell",
+                  "label": "Bless",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 306,
+                    "y": 420
+                  },
+                  "value": 2
+                },
+                {
+                  "hint": "Your hero will start with the Magic Arrow spell",
+                  "label": "Magic Arrow",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 502,
+                    "y": 420
+                  },
+                  "value": 3
+                },
+                {
+                  "hint": "Your hero will start with the Slow spell",
+                  "label": "Slow",
+                  "rect": {
+                    "h": 32,
+                    "w": 190,
+                    "x": 110,
+                    "y": 468
+                  },
+                  "value": 4
+                }
+              ],
+              "contract": "source-campaign-dialog-v1",
+              "draft": {
+                "text": ""
+              },
+              "inputLabel": "Name yourself",
+              "kind": "extended",
+              "pictures": [
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\21_001.BMP",
+                  "hint": "Bloodlust",
+                  "mediaKey": "cmp.res/21_001.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 131,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\21_002.BMP",
+                  "hint": "Bless",
+                  "mediaKey": "cmp.res/21_002.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 271,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\21_003.BMP",
+                  "hint": "Magic Arrow",
+                  "mediaKey": "cmp.res/21_003.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 411,
+                    "y": 318
+                  }
+                },
+                {
+                  "file": "..\\Data\\Zvs\\Cmp.res\\21_004.BMP",
+                  "hint": "Slow",
+                  "mediaKey": "cmp.res/21_004.bmp",
+                  "rect": {
+                    "h": 64,
+                    "w": 58,
+                    "x": 551,
+                    "y": 318
+                  }
+                }
+              ],
+              "queryId": 3,
+              "resultVariable": 100,
+              "selection": 1,
+              "text": "Time to play"
+            },
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "{The Samaritan V1.1}\n\nBy Bruno\n\nEnglish adaptation and Fishing Well\nby Fnord\n\nBeta Tester\nHmm 3.5 Team"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "This map is dedicated to:\nAnne, my wife and Benoît, my son.\n\nSpecial thanks to:\nSlava, Best Regards.\nCox, the belgium guy living in Lyon (France) aka Worm.\nAlexey, the multi-task man.\nTimothy,  Stay Enchanted.\nMathias, my favorite designer.\nAlexander Karpeko, Mr tools.\nAlexander  Trifonov, Mr Barbarian.\nJack, Dima, Dimitry, Psychomonkee, Simon, Theo, Narcis where my English and Russian stop me knowing them better."
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ],
+        "nativeReload": true
+      },
+      {
+        "id": "zc3",
+        "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+        "sourceArchiveSha256": "a0fe330f918ebe77b24c2016f8bfb1870f00e742f0ca51643a0e787b77937397",
+        "productionOnly": true,
+        "layouts": [
+          {
+            "width": 320,
+            "height": 568,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 844,
+            "height": 390,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 768,
+            "height": 1024,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 1024,
+            "height": 768,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 820,
+            "height": 1180,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          }
+        ],
+        "started": {
+          "heroName": "Nailag Ciad",
+          "day": 1,
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 1307,
+              "index": 0,
+              "mana": 10,
+              "manaLimit": 10,
+              "movement": 1805,
+              "movementLimit": 1630,
+              "name": "Nailag Ciad"
+            }
+          ]
+        },
+        "saveSha256": "8b084d439c85afa0d4d387e873b670e25c823d49728aafa0f3a839e230984b7f",
+        "dialogs": [
+          {
+            "cancel": false,
+            "lines": [
+              "{Emokon, part 1 -} \n{The quest for Adventure v1.1}\n\n{Playtesters:}\n{Fnord}\n{Simon Mooncalf}\n"
+            ],
+            "queryId": -1,
+            "title": "Game message",
+            "visitedObject": "Village Hall, Rampart"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "{Special Thanks}\n\n{Fnord}\n{For going through all text and {editing it}\n\n{All in the WoG team}\n{for making this map possible}"
+            ],
+            "queryId": -1,
+            "title": "Game message",
+            "visitedObject": "Village Hall, Rampart"
+          },
+          {
+            "cancel": false,
+            "lines": [
+              "You are Nailag Ciad, an orphan living in a small farming village, son of nobody and all. A week ago, you turned 17 and became a free man. Had you been like most of the boys, you would soon had settled with a small farm, but while all of you always have dreamed of adventure, you are the only one who has been dead serious about it. The elders soon realized that there would be no way of stopping you, so they told all the villagers to aid you. You even overheard them talking about the sword and armor Gonenis, the blacksmith, was making for you. A sword and armor! You could slay dragons, rescue damsels in distress and receive half the kingdom! But, what should you do first? After some thinking, you come up with the idea that you might find something useful in the cellar at the back of the Village hall. You know that nobody would mind, since they believe that it is haunted. You are not afraid of such stories! Now it's time for your {A-d-v-e-n-t-u-r-e}."
+            ],
+            "queryId": -1,
+            "title": "Game message",
+            "visitedObject": "Village Hall, Rampart"
+          }
+        ],
+        "nativeReload": true
+      },
+      {
+        "id": "zc4",
+        "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+        "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+        "productionOnly": true,
+        "layouts": [
+          {
+            "width": 320,
+            "height": 568,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 844,
+            "height": 390,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 768,
+            "height": 1024,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 1024,
+            "height": 768,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 820,
+            "height": 1180,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          }
+        ],
+        "started": {
+          "heroName": "Xsi",
+          "day": 1,
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 116,
+              "index": 0,
+              "mana": 20,
+              "manaLimit": 20,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Xsi"
+            }
+          ]
+        },
+        "saveSha256": "36e9d901bd2559ef700e835d2a73e516ef5cdc8beb2e0d0e1a96e31a9994d386",
+        "dialogs": [
+          {
+            "cancel": false,
+            "lines": [
+              "{Evil Way Home} Campaign by {Darksir Ditje}. Thx for all help to the whole {WoG Team}\n\nThe {Waiting Deads} will give you some advices during the campaign, when you visit them. If you are a WoG-Verteran and like some puzzeling, you won`t need them.\n\n{Have fun} and feel free to mail me any comments. {dieter@byteware.de}"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ],
+        "nativeReload": true
+      }
+    ],
+    "errors": []
+  },
+  "webkit": {
+    "passed": true,
+    "productionOnly": true,
+    "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+    "reports": [
+      {
+        "id": "zc4",
+        "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+        "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+        "productionOnly": true,
+        "layouts": [
+          {
+            "width": 320,
+            "height": 568,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 568,
+            "height": 320,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 844,
+            "height": 390,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 768,
+            "height": 1024,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 1024,
+            "height": 768,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          },
+          {
+            "width": 820,
+            "height": 1180,
+            "singleExit": true,
+            "stableControls": true,
+            "scrollAllowed": true
+          }
+        ],
+        "started": {
+          "heroName": "Xsi",
+          "day": 1,
+          "heroes": [
+            {
+              "hasSpellbook": true,
+              "id": 116,
+              "index": 0,
+              "mana": 20,
+              "manaLimit": 20,
+              "movement": 1560,
+              "movementLimit": 1560,
+              "name": "Xsi"
+            }
+          ]
+        },
+        "saveSha256": "1e89bee13396d35e26ac3bd5e670fe1fa5d545e4f79cc46bc6b027f8ce89a0e5",
+        "dialogs": [
+          {
+            "cancel": false,
+            "lines": [
+              "{Evil Way Home} Campaign by {Darksir Ditje}. Thx for all help to the whole {WoG Team}\n\nThe {Waiting Deads} will give you some advices during the campaign, when you visit them. If you are a WoG-Verteran and like some puzzeling, you won`t need them.\n\n{Have fun} and feel free to mail me any comments. {dieter@byteware.de}"
+            ],
+            "queryId": -1,
+            "title": "Game message"
+          }
+        ],
+        "nativeReload": true
+      }
+    ],
+    "errors": []
+  },
+  "localTests": {
+    "total": 813,
+    "passed": 779,
+    "skipped": 34,
+    "failed": 0
+  },
+  "notes": [
+    "All eleven original campaign programs enabled; standalone Cave remains disabled.",
+    "No private map, registry or Mods override in these delivered-catalogue tests. All four archives match source SHA256.",
+    "Seven screen sizes per catalogue case, stable controls, scrolling and one exit; original campaign start and native save/reload."
+  ]
+}

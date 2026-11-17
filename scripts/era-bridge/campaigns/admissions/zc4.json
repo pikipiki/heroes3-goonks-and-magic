@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "zc4",
+  "sourceArchiveSha256": "1cd61109d49381a61019cb8770b943fd23e1d5b25774ab19ee5739fc558128e8",
+  "engineSha256": "4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020",
+  "originalScriptsUnchanged": true,
+  "questFlagsUnmodified": true,
+  "nativeCompletion": {
+    "campaign": true,
+    "completedScenarios": 4,
+    "days": 10,
+    "name": "Evil Way Home",
+    "playerName": "Goonk",
+    "queryId": 83079172,
+    "score": 1204,
+    "unranked": true,
+    "won": true
+  },
+  "scenarios": [
+    {
+      "id": "zc4-0",
+      "programSha256": "14ecebd8c965de6024aa2c3ba02f6e3d28d471c261838d3e7dd01f24213b19f3",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc4-1",
+      "programSha256": "18335cccff08966211e5732a8a693ca44df72539c01f3dbdd6ce86cdf69ed360",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc4-2",
+      "programSha256": "a8a9dfef1ccd7bbc3587d1a2bdad12e4c9a15e182d77d3948fd2199a36940fa9",
+      "nativeVictory": true
+    },
+    {
+      "id": "zc4-3",
+      "programSha256": "0af533997bff0571d40528dd17b644b18c0af8614d89a8c3c74d80f058606f73",
+      "nativeVictory": true
+    }
+  ],
+  "transfers": [
+    {
+      "from": "zc4-0",
+      "to": "zc4-1",
+      "native": true
+    },
+    {
+      "from": "zc4-1",
+      "to": "zc4-3",
+      "native": true
+    },
+    {
+      "from": "zc4-3",
+      "to": "zc4-2",
+      "native": true
+    }
+  ],
+  "evidence": [
+    "native-evil-way-home-first-victory-220.json",
+    "native-four-hero-transfers-233.json",
+    "native-evil-way-home-completion-233.json"
+  ],
+  "limitation": "Unchanged original quests and native victories with all four required heroes and all three native transfers. Declared offline QA armies, resources, levels and accelerated native travel; not difficulty or economy validation."
+}

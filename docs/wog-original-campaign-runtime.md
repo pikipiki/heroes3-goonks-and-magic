@@ -1,6 +1,6 @@
 # Port natif des campagnes originales : état réel
 
-Les campagnes « In the Wake of Gods » (zc1), « The Samaritan » (zc2) et « A Life of A-d-v-e-n-t-u-r-e » (zc3) sont activées après leurs victoires natives et les transferts requis. Evil Way Home (zc4) et Cave of Gerfrex restent désactivés. Les sections suivantes conservent l’historique ; la section 0.4.231 décrit l’admission la plus récente.
+Les quatre campagnes « In the Wake of Gods » (zc1), « The Samaritan » (zc2), « A Life of A-d-v-e-n-t-u-r-e » (zc3) et « Evil Way Home » (zc4) sont activées après leurs onze victoires de scénario et sept transferts natifs. Cave of Gerfrex, carte indépendante, reste désactivée. Les sections suivantes conservent l’historique ; la section 0.4.233 décrit la dernière admission.
 
 ## Ce qui est implémenté
 
@@ -688,3 +688,15 @@ La sortie d’un tourbillon à plusieurs cases est praticable sans déclencher u
 La validation d’Evil Way Home a atteint les villes du nord du dernier scénario, payé10 momies recrutées dans les tombeaux et remis le Collier de navigation original. Le parcours de test avait omis Tamika dans le deuxième scénario ; la branche de son sauvetage et de ses transferts est reprise avant de valider la porte noire et les deux dernières villes. Cette campagne reste désactivée.
 
 Le moteur `4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020` conserve le correctif WebKit/dlmalloc de0.4.230. Compilation WebAssembly, site,760 tests réussis/34 ignorés et les cartes003/004 passent. Les preuves utilisent des armées et ressources QA déclarées et le déplacement natif accéléré, sans modification des scripts, objets de quête ou drapeaux. Elles ne valident pas la difficulté ni toutes les branches facultatives. Les quatre archives de campagne restent liées à leurs empreintes ; le catalogue ne publie que les admissions terminées.
+
+## Quatre campagnes activées en 0.4.233
+
+Evil Way Home rejoint les trois campagnes déjà admises. La progression native suit les scénarios 0 → 1 → 3 → 2. Le nouveau parcours sauve réellement Tamika dans sa prison après le paiement d’un dragon noir, puis conserve ses caractéristiques au transfert. La quête de l’Elixir, le sauvetage d’Aislinn et la remise de la Médaille des hommes d’État conduisent à la dernière carte avec les quatre héros requis : Xsi, Tamika, Isra et Aislinn. Les 28 compétences Expert accordées par son initialisation originale sont présentes pour chacun.
+
+Les quatre gardes successifs reconnaissent réellement leur héros. Xsi obtient la clé noire, traverse la porte maritime, bat Edric et capture les deux derniers châteaux. L’écran natif reconnaît « Evil Way Home », victoire de campagne, quatre scénarios terminés, dix jours cumulés et score 1204 non classé. Le parcours utilise les archives et scripts inchangés, sans injection de héros, d’objets de quête ni de drapeaux. Les compagnons apprennent Invocation de bateau dans une vraie guilde ; les bateaux sont déplacés normalement pour libérer le débarquement étroit.
+
+Les [transferts avec les quatre héros](../outputs/wog-priorities-0.4.147/campaign-runtime/native-four-hero-transfers-233.json), la [victoire finale](../outputs/wog-priorities-0.4.147/campaign-runtime/native-evil-way-home-completion-233.json) et le [reçu d’admission](../scripts/era-bridge/campaigns/admissions/zc4.json) lient ces résultats aux empreintes des quatre programmes et de l’archive originale. Le catalogue publie désormais les quatre archives admises, copiées sans réécriture, et active leurs onze programmes. Cave reste exclue de cette admission.
+
+Les armées, ressources, niveaux et déplacements accélérés de contrôle sont déclarés : ces parcours valident les quêtes, les victoires et les transferts, pas l’équilibrage ni la difficulté. La saisie et les actions de fin de campagne restent stables sur sept formats de téléphone et tablette, en portrait et paysage. Aucun diagnostic temporaire ni aucune sauvegarde n’est publié.
+
+La livraison 0.4.233 passe 813 tests (779 réussis, 34 ignorés, aucun échec). Les [contrôles du catalogue livré](../outputs/wog-priorities-0.4.147/campaign-runtime/native-admitted-233.json) démarrent et rechargent les quatre campagnes dans Chromium, ainsi que zc4 dans WebKit, avec onze programmes actifs et les archives originales vérifiées. Les [non-régressions Goonk](../outputs/wog-priorities-0.4.147/campaign-runtime/native-production-233.json) contrôlent les cartes 003 et 004, leurs sauvegardes, rôles et tours natifs, puis un vrai début de combat. Le moteur WebAssembly déjà compilé en 0.4.231 est réutilisé sans changement ; son empreinte est `4eaf88131cb6ec1a49f76d45f697129fc7ac3c675bc8629a6c625fa4a4eba020`.

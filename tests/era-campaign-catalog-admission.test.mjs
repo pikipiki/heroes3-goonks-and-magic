@@ -4,7 +4,7 @@ test('active campaign catalogue includes only completely admitted unchanged arch
  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-admitted-'));
  try{
   const registry=JSON.parse(fs.readFileSync('mod/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns/registry.json'));
-  const admitted=['zc1','zc2','zc3'];
+  const admitted=['zc1','zc2','zc3','zc4'];
   assert.deepEqual(buildAdmittedCampaignCatalog(temp,registry),admitted);
   const set=JSON.parse(fs.readFileSync(temp+'/config/campaignSets.json'));assert.deepEqual(set.wog.items.map(i=>i.file),admitted.map(id=>'Maps/'+id));
   for(const id of admitted)assert.deepEqual(fs.readFileSync(temp+'/maps/'+id+'.vcmp'),fs.readFileSync('mod/wake-of-gods/Mods/maps/content/maps/'+id+'.vcmp'));

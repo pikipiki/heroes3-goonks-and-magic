@@ -10,7 +10,7 @@ test('native original campaign registry is reproducible, bound to all original s
   const registry=buildNativeCampaignRegistry(temp);
   assert.deepEqual(fs.readdirSync(temp).sort(),fs.readdirSync(folder).filter(file=>!['media.json','metadata.json','movies.json'].includes(file)).sort());
   for(const file of fs.readdirSync(temp))assert.deepEqual(fs.readFileSync(path.join(temp,file)),fs.readFileSync(path.join(folder,file)),file);
-  assert.equal(registry.programs.length,12);assert.deepEqual(registry.programs.filter(entry=>entry.enabled).map(entry=>entry.id),['zc1-0','zc1-1','zc1-2','zc2-0','zc2-1','zc2-2','zc3-0']);assert(registry.programs.filter(entry=>!entry.id.startsWith('zc1-')&&!entry.id.startsWith('zc2-')&&!entry.id.startsWith('zc3-')).every(entry=>!entry.enabled));
+  assert.equal(registry.programs.length,12);assert.deepEqual(registry.programs.filter(entry=>entry.enabled).map(entry=>entry.id),['zc1-0','zc1-1','zc1-2','zc2-0','zc2-1','zc2-2','zc3-0','zc4-0','zc4-1','zc4-2','zc4-3']);assert.equal(registry.programs.find(entry=>entry.id==='cave-gerfrex').enabled,false);
   const bundle=JSON.parse(fs.readFileSync(path.join(temp,'cave-gerfrex.json'))),expected=compileCaveFile();
   assert.equal(bundle.sha256,expected.sha256);assert.equal(registry.programs[0].programSha256,expected.sha256);
   const scripts=extractCaveScripts(fs.readFileSync('mod/wake-of-gods/Mods/maps/content/maps/Cave of Gerfrex.h3m'));
