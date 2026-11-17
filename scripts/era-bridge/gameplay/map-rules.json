@@ -10,13 +10,15 @@
   "enabled": false,
   "completeRules": false,
   "implementedCodes": [
+    114,
     122
   ],
   "configuration": "mod/tum-era/content/config/wog-map-rules.json",
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "The other 20 map rules, source selection modes and the per-game menu.",
+    "The other 19 map rules, source selection modes and the per-game menu.",
     "Complete source random-stream comparison with the shipped ERA executable."
-  ]
+  ],
+  "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json"
 }

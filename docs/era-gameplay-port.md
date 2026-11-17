@@ -181,8 +181,14 @@ réglage conservé malgré un changement de configuration, la protection acheté
 le dimanche, la consommation de cette protection le lundi, la production
 standard après tirage et la reprise des mines modifiées.
 
-La règle 114 est distincte : elle crée des Plaines magiques chaque jour près
-des héros. Son interaction avec l'amélioration des villes reste à porter.
+La règle 114 crée des Plaines magiques dès le deuxième jour à deux cases à
+droite et une case plus bas de chaque héros en surface. Elle écarte l'eau,
+les cases bloquées et les entrées d'objets, et interdit les achats de terrains
+de ville au mithril. Huit variantes natives vérifient ces exclusions, le
+premier jour, le souterrain, l'effet des quatre écoles expertes en combat,
+la reprise du réglage et du terrain, et son fonctionnement sans le module
+mithril. Les preuves figurent dans
+`outputs/era-gameplay/map-rules-native-daily-plains.json`.
 
 Les sanctuaires suivent le mélange des 70 sorts de la bibliothèque ERA avant
 de prendre le premier sort admissible ; les huttes utilisent le tirage sûr

@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock=''}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -37,6 +37,7 @@ for o in objects:
   o['options'].update({'type':'core:christian','experience':0,'army':[{'type':'core:archangel','amount':10}],'artifacts':{'spellbook':'core:spellBook'}})
   if opts['reroll']=='university': o['options']['secondarySkills']={'core:wisdom':'basic'}
   if opts['reroll']=='hut-rng': o['options']['secondarySkills']={'core:armorer':'basic'}
+  if opts['plainsFight']:o['options'].update({'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'secondarySkills':{'core:leadership':'basic'},'spellBook':['core:bless','core:bloodlust','core:haste','core:slow']})
 def site(name,kind,subtype,x,y,owner=None):
  o={'type':'core:'+kind,'subtype':'core:'+subtype,'instanceName':name,'x':x,'y':y,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}}
  if owner:o['options']['owner']=owner
@@ -61,6 +62,9 @@ site('mithrilShipyard','shipyard','object',13,13,'red')
 site('mithrilPortal','monolithOneWayEntrance','monolith1',8,10)
 site('mithrilPortalExit','monolithOneWayExit','monolith1',16,16)
 if opts['changingMine']:site('mithrilChanging','mine','crystalCavern',15,11,'red')
+if opts['plainsFight']:
+ objects.append({'type':'core:monster','subtype':'core:peasant','instanceName':'plainsTrainingGuard','x':9,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':1,'character':'savage','neverFlees':True}})
+ if opts['plainsBlock']=='entrance':site('plainsBlockingEntrance','waterWheel','waterWheel',10,12)
 if opts['siege']:
  import copy
  objects=objects[:3]
@@ -71,15 +75,22 @@ if opts['siege']:
  enemy.update({'instanceName':'mithrilSiegeAttacker','y':10})
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:stoneGolem','amount':500}], 'secondarySkills':{},'artifacts':{},'spellBook':[]})
  objects.append(enemy)
+if opts['plainsFight'] and opts['plainsBlock']=='underground':
+ for o in objects:
+  if o['instanceName'] in ['goonkHero','plainsTrainingGuard']:o['l']=1
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
 for y,row in enumerate(terrain):
  for x in range(len(row)):
   if 20<=x<=22 or 20<=y<=22: row[x]='rc0_'
+if opts['plainsBlock']=='rock':terrain[12][10]='rc0_'
+if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
+if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
 entries['surface_terrain.json']=json.dumps(terrain).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
 if opts['reroll']=='rng':header['allowedSpells']={'anyOf':['core:bless','core:haste','core:slow']}
 if opts['reroll']=='hut-rng':header['allowedAbilities']={'noneOf':['core:eagleEye']}
+if opts['plainsBlock']=='underground':header['mapLevels']['underground']={'width':36,'height':36,'index':1,'layer':'core:underground'}
 entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Mithril native validation';entries[name]=json.dumps(text).encode()
@@ -88,10 +99,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -107,7 +118,7 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
  if(huts)huts.witchHut.types.witchHut.variables.secondarySkill.gainedSkill={anyOf:['offence']};
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -123,12 +134,12 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
     if(huts)value.FS.writeFile('/config/objects/witchHut.json',JSON.stringify(huts));
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
-    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{122:weeklyMines}}));
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,122:weeklyMines}}));
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -169,7 +180,7 @@ async function buy(offer){
  assert.equal((await state()).mithril.amount,before.amount-offer.cost);
 }
 async function nextDay(){
- await page.locator('[data-mithril-close]').tap();
+ if(await page.locator('.mithril-panel').isVisible())await page.locator('[data-mithril-close]').tap();
  const old=(await state()).day;await command(3);
  for(let i=0;i<600;++i){
   const current=await state();
@@ -196,6 +207,22 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('daily-plains')){
+  const firstDay=process.env.CASES==='daily-plains-day1',block=process.env.PLAINS_BLOCK||'',enabled=process.env.CASES!=='daily-plains-standalone';
+  await boot({enabled,dailyPlains:true,plainsFight:true,plainsBlock:block});let data;
+  if(enabled){data=await panel();assert(!data.offers.some(row=>row.kind===8));const amount=data.amount;await command(1200,0,7,data.revision);await page.waitForTimeout(200);assert.equal((await state()).mithril.amount,amount);}
+  if(!firstDay){await nextDay();if(enabled)await panel();assert.equal((await state()).day,2);}
+  if(await page.locator('.mithril-panel').isVisible())await page.locator('[data-mithril-close]').tap();
+  if(process.env.PLAINS_SAVE){const save=[...await readCompletedNativeSave(page,command,{tag:822})];await page.close();await boot({save,dailyPlains:false});data=await panel();assert(!data.offers.some(row=>row.kind===8));await page.locator('[data-mithril-close]').tap();}
+  await command(6);await page.waitForTimeout(150);const point=await page.evaluate(()=>{const v=goonkMobileState.mapOverview.view;return{x:v.x+v.w/2+32,y:v.y+v.h/2};});
+  await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),point);await wait(()=>goonkMobileState.hasPath);await command(2);await wait(()=>goonkMobileState.mode==='battle');await command(15);await wait(()=>goonkMobileState.canAct);
+  await command(14,0);await wait(()=>goonkMobileState.mode==='spellbook');const book=(await state()).spellbook;
+  for(const id of [41,43,53,54]){const spell=book.spells.find(row=>row.id===id);assert(spell);assert.equal(spell.target==='none',!firstDay&&!block,'Expert mass cast for spell '+id);}
+  report.scenarios.push(firstDay?'daily-magic-plains-do-not-appear-on-first-day':block?'daily-magic-plains-skip-'+block:'daily-magic-plains-grant-four-expert-schools-in-field-battle');
+  if(enabled)report.scenarios.push('daily-magic-plains-block-town-mithril-purchases');
+  else report.scenarios.push('daily-magic-plains-work-without-mithril-module');
+  if(process.env.PLAINS_SAVE)report.scenarios.push('daily-magic-plains-setting-and-patches-survive-native-save-reload');await page.close();
+ }
  if(process.env.CASES==='shrine-rng'||process.env.CASES==='hut-rng'){
   const hut=process.env.CASES==='hut-rng',label=hut?'hut':'shrine';
   const skillNames=['Pathfinding','Archery','Logistics','Scouting','Diplomacy','Navigation','Leadership','Wisdom','Mysticism','Luck','Ballistics','Eagle Eye','Necromancy','Estates','Fire Magic','Air Magic','Water Magic','Earth Magic','Scholar','Tactics','Artillery','Learning','Offense','Armorer','Intelligence','Sorcery','Resistance','First Aid'];
@@ -242,7 +269,7 @@ try{
   await command(3);
   for(let i=0;i<600;++i){const s=await state();if(s.mode==='battle'){await command(15);if(s.canAct)break;}else if(s.mode==='dialog')await command(1);await page.waitForTimeout(100);}
   await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct);
-  const units=(await state()).battleUnits;fs.writeFileSync(path.join(output,'siege-units.json'),JSON.stringify(units,null,2));
+  const units=(await state()).battleUnits;assert(units.some(row=>row.enemy&&row.key==='core:catapult'),'The terrain effects must be tested in an actual siege');fs.writeFileSync(path.join(output,'siege-units.json'),JSON.stringify(units,null,2));
   const own=key=>units.find(row=>!row.enemy&&row.key==='core:'+key);
   if(choice===0){assert.equal(own('pikeman').morale,own('nomad').morale+1);assert.equal(own('troglodyte').morale,own('nomad').morale-1);}
   else if(choice===1){assert.equal(own('nomad').luck,own('pikeman').luck+2);if(process.env.SIEGE_PREVIOUS!==undefined){assert.equal(own('pikeman').morale,own('nomad').morale);assert.equal(own('troglodyte').morale,own('nomad').morale);}}

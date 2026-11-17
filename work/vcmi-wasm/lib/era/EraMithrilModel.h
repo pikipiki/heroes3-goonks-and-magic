@@ -85,7 +85,7 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
     const bool team=relation==PlayerRelations::SAME_PLAYER||relation==PlayerRelations::ALLIES;
     if(object.ID==Obj::TOWN)
     {
-        if(object.getOwner()!=player||choice<0||choice>8)return result;
+        if(map_rules::dailyPlains(cb)||object.getOwner()!=player||choice<0||choice>8)return result;
         result.kind=TOWN;result.cost=choice<7?1:3;return result;
     }
     if(const auto * mine=dynamic_cast<const CGMine *>(&object))

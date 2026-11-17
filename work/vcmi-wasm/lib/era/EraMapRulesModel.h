@@ -9,4 +9,6 @@ inline const JsonNode & state(const IGameInfoCallback & cb)
 {return cb.gameState().getMap().eraGameplayState["mapRules"];}
 inline bool weeklyMines(const IGameInfoCallback & cb)
 {return state(cb)["rules"]["122"].Bool();}
+inline bool dailyPlains(const IGameInfoCallback & cb)
+{return state(cb)["rules"]["114"].Bool();}
 }

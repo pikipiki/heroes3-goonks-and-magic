@@ -28,10 +28,10 @@
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
     "Classic interface and the complete WoG per-game option catalogue.",
-    "Interaction with map rule 114 (heroes create daily Magic Plains), which disallows town terrain enhancement.",
     "Advanced University: two-skill selection, insufficient gold and free AI advancement native scenarios.",
     "Legacy-save native scenarios.",
     "Global random-stream isolation and initial unique RNG seeding parity with the shipped ERA executable.",
     "Complete AI purchase/compensation scenarios."
-  ]
+  ],
+  "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json"
 }
