@@ -1,0 +1,317 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Arriving-map campaign settings, per-scenario free-banner initialization, native crossover and ordinary-save compatibility",
+  "engineSha256": "6041d1975d1bf69d0d334290d0b2b1af1e0288535ad975618255722459e9006c",
+  "parentEngineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+  "upstream": {
+    "eraProjectCommit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "henchmenScript": {
+      "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+      "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+      "lines": "60-84,114-128,130-147"
+    },
+    "kernelCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "kernelFiles": [
+      {
+        "file": "AdvErm.pas",
+        "sha256": "cfd4a30049ab3fd93310b9f7ec9087469efbc134211c9cdaf4e310948417e13c",
+        "lines": "2431-2437"
+      },
+      {
+        "file": "Erm.pas",
+        "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+        "lines": "6176-6188"
+      }
+    ]
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraHenchmanState.h": "8dc69025b63a44cb960d0c060c11adf38df2b32e76fd3ed2a6e19b39da6258ce",
+    "work/vcmi-wasm/lib/era/EraHenchmanCampaign.h": "96976e8b0dc933a3c36834ed5309b62506f390952c3d7d713fc380e91bd1fc18",
+    "work/vcmi-wasm/lib/campaign/CampaignState.cpp": "5183373c89539e74f72565cb0773586c0e36dc7aed5b01e387fca4941c5b6f2e",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "db285e230a40dbd2bc552acc2956f8c371cbef96b6479429a279c9d6e906e708",
+    "tests/native/EraHenchmanCampaign.test.cpp": "29b1235b0e8f0aea739d4fcb8ec380322b5dcbe6ecfc94cca629d041fb32ed1a",
+    "tests/era-henchmen-campaign.test.mjs": "8dd9f88c496eb7982abc531070e70cc3132217469e7750cdbdc7a9a0766d226e",
+    "work/browser-tests/wog-henchmen-campaign-native-e2e.mjs": "8459d3a41024f43246ad6b58c6cb035cdfb3be1416dba87dd3d140d3bf9744a4",
+    "work/browser-tests/henchmen-campaign-fixture.py": "26397d69d0fa07d29205ae8f8797f139d126ba4c3ad94be3f42cd7a262268821"
+  },
+  "sourceFindings": [
+    "OnTransferHero reads the arriving map configuration, so departing-map transfer=false must not erase raw hero companion fields",
+    "Only the departing map campaignTransfer+bannerFree flags and positive style write the source banner INI",
+    "New-map initialization resets companion progression when transfer is disabled and initializes that map free-banner choice, including heroes without a companion",
+    "The importedFromCampaign marker is construction metadata and is deliberately absent from the existing binary save layout"
+  ],
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "initialTargets": 323,
+    "finalTargets": 8,
+    "initialLogSha256": "95dcd03b24f01dd93697be55cd806eac78112b0d7d8743bc1ddbcb4ec849978f",
+    "finalLogSha256": "1eb35533314df7bdad92a176a166c72df946324ea79aeae7bb581baff060fa5b",
+    "sourceBindingsSha256": "34b4cbcf8f726d9e768b5e3b8f325099d404c0abf9ae783a012b50d7aa70741e",
+    "sourceCopyTimesForcedFresh": true
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": false,
+        "freeBanner": true,
+        "nextTransfer": true,
+        "nextFreeBanner": true,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-false-to-true-free-banner-true-to-true-alive-true-returned-banner-false"
+      ],
+      "archiveSha256": "bfcf2bbc5e41b8415db6ff60df4ea6c3e257313559d048361b1a89a1c505f1fb",
+      "before": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 90,
+        "stackExperience": 0,
+        "bannerStyle": 0
+      },
+      "after": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 90,
+        "stackExperience": 0,
+        "bannerStyle": 0
+      },
+      "reselectedCompanion": null
+    },
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "nextTransfer": true,
+        "nextFreeBanner": false,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-to-true-free-banner-true-to-false-alive-true-returned-banner-false"
+      ],
+      "archiveSha256": "6034b875dc56aec2ce3463b3e833e3a80215dc82c7f99bab77fb8773c09ca6b3",
+      "before": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": -1
+      },
+      "reselectedCompanion": null
+    },
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "nextTransfer": false,
+        "nextFreeBanner": true,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-to-false-free-banner-true-to-true-alive-true-returned-banner-false"
+      ],
+      "archiveSha256": "bfcf2bbc5e41b8415db6ff60df4ea6c3e257313559d048361b1a89a1c505f1fb",
+      "before": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "unit": null,
+        "alive": null,
+        "experience": null,
+        "stackExperience": null,
+        "bannerStyle": 0
+      },
+      "reselectedCompanion": {
+        "key": "core:peasant",
+        "bannerStyle": 0
+      }
+    },
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": true,
+        "freeBanner": false,
+        "nextTransfer": true,
+        "nextFreeBanner": true,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-to-true-free-banner-false-to-true-alive-true-returned-banner-false"
+      ],
+      "archiveSha256": "6dd0ade23dc8d95072bef71c57a08cc2df3408680012c74d86ba191ffef02c97",
+      "before": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 0
+      },
+      "reselectedCompanion": null
+    },
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "nextTransfer": true,
+        "nextFreeBanner": true,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-to-true-free-banner-true-to-true-alive-true-returned-banner-false"
+      ],
+      "archiveSha256": "717ed93da3118babff8076d5801a6af828f30a182c6a1f22d9ca5bd841050f9f",
+      "before": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 8
+      },
+      "reselectedCompanion": null
+    },
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "nextTransfer": true,
+        "nextFreeBanner": true,
+        "alive": true,
+        "returnedBanner": true
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-to-true-free-banner-true-to-true-alive-true-returned-banner-true"
+      ],
+      "archiveSha256": "b73b42ff85a66e1f9b40df7418c097bba8c48a921bccc3b8ccf0453990596230",
+      "before": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": -1
+      },
+      "after": {
+        "unit": "core:peasant",
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 0
+      },
+      "reselectedCompanion": null
+    },
+    {
+      "passed": true,
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "nextTransfer": true,
+        "nextFreeBanner": true,
+        "alive": false,
+        "returnedBanner": false
+      },
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-to-true-free-banner-true-to-true-alive-false-returned-banner-false"
+      ],
+      "archiveSha256": "add087d8cbeb6dc49e434e2b88763bf989c98c2a867aea2855f4d1e1e6ec5101",
+      "before": {
+        "unit": "core:peasant",
+        "alive": false,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "unit": "core:peasant",
+        "alive": false,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 8
+      },
+      "reselectedCompanion": null
+    }
+  ],
+  "regressions": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "6041d1975d1bf69d0d334290d0b2b1af1e0288535ad975618255722459e9006c",
+      "scenarios": [
+        "companion-enabled-choice-and-unit-survive-disabled-installation-default",
+        "companion-disabled-choice-survives-enabled-installation-default",
+        "legacy-companion-save-retains-unit-with-disabled-installation-default"
+      ],
+      "errors": [],
+      "legacyProducerEngineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008"
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "6041d1975d1bf69d0d334290d0b2b1af1e0288535ad975618255722459e9006c",
+      "scenarios": [
+        "companion-settings-frozen-in-native-save",
+        "santa-guard-enhancement-can-be-disabled",
+        "replacement-loss-and-no-return-options",
+        "revive-anywhere-option-pays-outside-town",
+        "town-only-resurrection-rejects-forged-request"
+      ],
+      "errors": []
+    }
+  ],
+  "nativeModelTest": "Linux C++17 with AddressSanitizer/UBSan: PASS;16 combinations of old transfer/free-banner flags and styles, preserving donor JSON",
+  "negativeControls": [
+    {
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "expectedFailure": "Missing companion when transfer is enabled on the arriving map",
+      "logSha256": "0663af5e4041c7a7e3c406f58e1f0b54af51e89ad583bef5aea7d2775fccfb79"
+    },
+    {
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "expectedFailure": "Banner style8 incorrectly survives arriving-map free-banner=false",
+      "logSha256": "bd476bceab04ade41b83369c7372961eec2cb58825321e165f81ed6b12dc7316"
+    }
+  ],
+  "remaining": [
+    "End-to-end scenario restart and source INI lifecycle",
+    "Reserved/inactive heroes across intermediate scenarios with changing settings",
+    "Older saved campaign crossover pools"
+  ]
+}

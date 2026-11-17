@@ -59,7 +59,7 @@
   },
   "remaining": [
     "End-to-end campaign restart",
-    "Free-banner and transfer configuration changes between scenarios",
+    "Reserved/inactive heroes across intermediate scenarios",
     "Older campaign crossover compatibility"
   ],
   "nativeReports": [
@@ -203,5 +203,6 @@
     "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
     "expectedFailure": "Old engine incorrectly retains7501 stack experience after crossover",
     "logSha256": "8341e99019a07841879895d399de9331030f496239c36ba9f43b582a15d216e6"
-  }
+  },
+  "settingsChangeValidation": "scripts/era-bridge/gameplay/henchmen-campaign-settings-native-validation.json"
 }

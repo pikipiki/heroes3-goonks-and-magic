@@ -35,16 +35,23 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     gh.sendAndApply(packet);
     if(!initializeRules)return;
     const bool resetCampaign=firstTurn&&gh.gameInfo().getStartInfo()->campState&&!rules.campaignTransfer;
-    if(!rules.stackExperience||resetCampaign)
-        for(const auto id:gh.gameState().getMap().getHeroesOnMap())
-            if(const auto * hero=gh.gameInfo().getHero(id))
-                if(hero->henchman.stack)
+    for(const auto id:gh.gameState().getMap().getHeroesOnMap())
+        if(const auto * hero=gh.gameInfo().getHero(id))
+            if(hero->henchman.stack||resetCampaign)
+            {
+                const bool imported=firstTurn&&hero->henchman.importedFromCampaign;
+                if(!rules.stackExperience||resetCampaign||imported)
                 {
                     auto update=snapshot(*hero);update.stackExperience=0;
                     if(resetCampaign)
-                    {update.creature=CreatureID();update.experience=0;update.alive=false;update.declined=false;update.banner=-1;}
+                    {
+                        update.creature=CreatureID();update.experience=0;update.alive=false;update.declined=false;
+                        update.banner=static_cast<int>(era_bridge::henchmen::initialBanner(rules));
+                    }
+                    else if(imported&&!rules.freeBanner)update.banner=-1;
                     gh.sendAndApply(update);
                 }
+            }
 }
 inline HenchmanChange snapshot(const CGHeroInstance & hero)
 {

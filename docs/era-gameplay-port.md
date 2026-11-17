@@ -186,7 +186,17 @@ WebAssembly passe. Cinq parcours natifs entre deux scénarios vérifient aussi l
 victoire, les deux réglages de transfert et de bannière gratuite, le compagnon
 mort et la bannière rendue au sac avant la victoire. Le témoin sur l'ancien
 moteur conserve à tort 7501 points d'expérience de troupe au lieu de zéro.
-Le redémarrage et les changements de réglages entre scénarios restent à vérifier.
+Les réglages du scénario d'arrivée décident maintenant du transfert et de la
+bannière. Quatre changements de réglages passent en jeu, ainsi que les variantes
+de référence, de compagnon mort et de bannière rendue. Sans transfert, choisir
+un nouveau compagnon reçoit correctement la bannière gratuite du nouveau
+scénario. Les sauvegardes produites par l'ancien moteur restent chargeables,
+et les contrôles de résurrection passent. Le marqueur d'importation est dérivé
+à la construction du scénario et ne change pas le format des sauvegardes.
+Les preuves figurent également dans
+`scripts/era-bridge/gameplay/henchmen-campaign-settings-native-validation.json`.
+Le redémarrage, les héros réservés absents d'un scénario intermédiaire et les
+anciens transferts sauvegardés restent à vérifier.
 Voir
 `scripts/era-bridge/gameplay/henchmen-campaign-native-validation.json`.
 

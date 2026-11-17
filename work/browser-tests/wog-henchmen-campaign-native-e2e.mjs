@@ -23,8 +23,10 @@ async function hero(){
 }
 try{
  const transfer=process.env.TRANSFER!=='0',freeBanner=process.env.FREE_BANNER!=='0',alive=process.env.ALIVE!=='0';
+ const nextTransfer=process.env.NEXT_TRANSFER===undefined?transfer:process.env.NEXT_TRANSFER!=='0';
+ const nextFreeBanner=process.env.NEXT_FREE_BANNER===undefined?freeBanner:process.env.NEXT_FREE_BANNER!=='0';
  const archive=execFileSync('python3',['work/browser-tests/henchmen-campaign-fixture.py',JSON.stringify({alive})]);
- report.parameters={transfer,freeBanner,alive,returnedBanner:process.env.RETURN_BANNER==='1'};
+ report.parameters={transfer,freeBanner,nextTransfer,nextFreeBanner,alive,returnedBanner:process.env.RETURN_BANNER==='1'};
  report.harnessSha256=sha(new URL(import.meta.url));
  report.fixtureSourceSha256=sha('work/browser-tests/henchmen-campaign-fixture.py');
  report.archiveSha256=createHash('sha256').update(archive).digest('hex');
@@ -64,6 +66,11 @@ try{
   await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-action="5"]').tap();
   await wait(()=>goonkMobileState.heroWindow?.henchman?.bannerStyle===-1);before=(await state()).heroWindow;
  }
+ // The current map already froze its rules. Only the next scenario may use
+ // this changed installation configuration, matching ERA's map-start load.
+ await page.evaluate(({nextTransfer,nextFreeBanner})=>{
+  Module.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/henchmen-settings.json',JSON.stringify({henchmen:{settings:{campaignTransfer:nextTransfer,bannerFree:nextFreeBanner,battleExpStatic:0,battleExpRandom:0,battleHeroExpCoef:0,battleExpPerHeroLv:0,battleExpMin:0,battleExpMax:0}}}));
+ },{nextTransfer,nextFreeBanner});
  await command(63);await wait(()=>goonkMobileState.mode==='map');
  await page.mouse.move(400,300);await page.waitForTimeout(200);
  await command(6);await page.waitForTimeout(200);
@@ -95,13 +102,22 @@ try{
  }
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn&&goonkMobileState.towns?.length===2);
  const after=await hero();
- if(transfer){
+ if(nextTransfer){
   assert.equal(after.henchman.unit?.key,before.henchman.unit?.key);
   assert.equal(after.henchman.experience,before.henchman.experience);
-  assert.equal(after.henchman.alive,alive);assert.equal(after.henchman.stackExperience,0);
-  assert.equal(after.henchman.bannerStyle,freeBanner?(process.env.RETURN_BANNER==='1'?0:8):-1);
- }else assert(!after.henchman.unit);
- report.scenarios.push(`native-two-scenario-crossover-transfer-${transfer}-free-banner-${freeBanner}-alive-${alive}-returned-banner-${report.parameters.returnedBanner}`);
+  assert.equal(after.henchman.alive,before.henchman.alive);assert.equal(after.henchman.stackExperience,0);
+  const carriedStyle=transfer&&freeBanner&&before.henchman.bannerStyle>0?before.henchman.bannerStyle:0;
+  assert.equal(after.henchman.bannerStyle,nextFreeBanner?carriedStyle:-1);
+ }else{
+  assert(!after.henchman.unit);
+  await page.locator('[data-hero-tab=henchman]').tap();
+  await page.locator('[data-henchman-action="0"][data-henchman-slot="0"]').tap();
+  await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);
+  const selected=(await state()).heroWindow.henchman;
+  assert.equal(selected.bannerStyle,nextFreeBanner?0:-1,'A fresh scenario must initialize its free banner even when transfer is disabled');
+  report.reselectedCompanion={key:selected.unit.key,bannerStyle:selected.bannerStyle};
+ }
+ report.scenarios.push(`native-two-scenario-crossover-transfer-${transfer}-to-${nextTransfer}-free-banner-${freeBanner}-to-${nextFreeBanner}-alive-${alive}-returned-banner-${report.parameters.returnedBanner}`);
  assert.deepEqual(report.errors,[]);fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,...report,before,after},null,2));
 }catch(error){
  if(page){await page.screenshot({path:path.join(output,'failure.png')}).catch(()=>{});fs.writeFileSync(path.join(output,'failure-state.json'),JSON.stringify(await state().catch(()=>null),null,2));}

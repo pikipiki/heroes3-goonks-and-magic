@@ -357,6 +357,7 @@ std::shared_ptr<CGHeroInstance> CampaignState::crossoverDeserialize(const JsonNo
 	if (map)
 	{
 		hero->serializeJsonArtifacts(handler, "artifacts", map);
+		hero->henchman.importedFromCampaign=true;
 	}
 	return hero;
 }
