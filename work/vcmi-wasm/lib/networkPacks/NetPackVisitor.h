@@ -16,6 +16,7 @@
 #include "SaveLocalState.h"
 #include "SetRewardableConfiguration.h"
 #include "SourceCampaignChange.h"
+#include "HenchmanPacks.h"
 #include "SourceCampaignReply.h"
 #include "SourceCampaignDeployTroops.h"
 #include "SetStackEffect.h"
@@ -42,6 +43,8 @@ public:
 	virtual void visitEntitiesChanged(EntitiesChanged & pack) {}
 	virtual void visitSetRewardableConfiguration(SetRewardableConfiguration & pack) {}
     virtual void visitSourceCampaignChange(SourceCampaignChange & pack) {}
+    virtual void visitHenchmanChange(HenchmanChange & pack) {}
+    virtual void visitHenchmanAction(HenchmanAction & pack) {}
 	virtual void visitSetResources(SetResources & pack) {}
 	virtual void visitSetPrimarySkill(SetPrimarySkill & pack) {}
 	virtual void visitSetHeroExperience(SetHeroExperience & pack) {}

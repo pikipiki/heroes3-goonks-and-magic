@@ -88,6 +88,8 @@
 #include "../lib/CCreatureHandler.h"
 #include "../lib/CBonusTypeHandler.h"
 #include "../lib/mapObjects/army/CCommanderInstance.h"
+#include "../lib/era/EraHenchmanModel.h"
+#include "../lib/networkPacks/HenchmanPacks.h"
 #include "../lib/mapObjects/CRewardableObject.h"
 #include "../lib/mapObjectConstructors/AObjectTypeHandler.h"
 #include "../lib/IGameSettings.h"
@@ -1507,6 +1509,38 @@ void publishMobileState(){
    }
    if(hero->getCommander())
     addHeroIcon(icons, h["commanderIcon"], "heroWindow/commanderButtonIcon");
+   if(era_compat::henchmen::enabled(*p->cb))
+   {
+    auto & companion=h["henchman"];
+    companion["revision"].Integer()=hero->henchman.revision;
+    for(const auto & [slot,stack]:hero->Slots())
+    {
+     if(!slot.validSlot())continue;
+     auto candidate=creature(stack->getCreatureID().toCreature(),1);
+     candidate["slot"].Integer()=slot.getNum();
+     candidate["available"].Bool()=era_compat::henchmen::canSelect(*hero,slot.getNum());
+     companion["candidates"].Vector().push_back(std::move(candidate));
+    }
+    if(hero->henchman.stack)
+    {
+     companion["unit"]=creature(hero->henchman.stack->getCreatureID().toCreature(),1);
+     companion["alive"].Bool()=hero->henchman.alive;
+     const auto growth=era_compat::henchmen::progress(*hero,p->cb->getDate(Date::DAY));
+     companion["level"].Integer()=growth.level;companion["experience"].Integer()=growth.experience;
+     companion["nextLevel"].Integer()=growth.nextLevel;
+     companion["rank"].Integer()=hero->henchman.stack->getExpRank();
+     const auto extra=era_compat::henchmen::stats(*hero,p->cb->getDate(Date::DAY));
+     auto & unit=companion["unit"];
+     unit["attack"].Integer()+=extra.attack;unit["defense"].Integer()+=extra.defence;
+     unit["damageMin"].Integer()+=extra.minimumDamage;unit["damageMax"].Integer()+=extra.maximumDamage;
+     unit["health"].Integer()+=extra.health;unit["speed"].Integer()+=extra.speed;
+     const auto cost=era_bridge::henchmen::resurrectionCost(hero->henchman.stack->getType()->getRecruitCost(GameResID::GOLD),growth.level);
+     companion["resurrectionCost"].Integer()=cost;
+     const auto * town=hero->getVisitedTown();
+     companion["canResurrect"].Bool()=!hero->henchman.alive&&town&&town->getOwner()==hero->getOwner()
+      &&cost>=0&&p->cb->getResource(hero->getOwner(),GameResID::GOLD)>=cost;
+    }
+   }
    publishHeroIcons(icons);
    const auto picked=heroWindow->getPickedArtifact();if(picked){h["picked"]["name"].String()=picked->getType()->getNameTranslated();h["picked"]["icon"].Integer()=picked->getType()->getIconIndex();artifactIconIds.insert(picked->getType()->getIconIndex());}
    auto addSlot=[&](int index,bool backpack){const auto position=ArtifactPosition(index);const auto art=era_compat::eye278LockOwner(*hero,position)?nullptr:hero->getArt(position,false);JsonNode item;item["slot"].Integer()=index;bool locked=false;for(const auto & set:heroWindow->artSets)if(set)if(auto place=set->getArtPlace(position)){locked=place->isLocked();break;}if(picked&&era_compat::canMoveIntoEye278(*hero,position,*picked))locked=false;locked=locked||hero->getSourceSlotLocks().count(position);item["locked"].Bool()=locked;item["movable"].Bool()=art&&!locked&&index!=int(ArtifactPosition::SPELLBOOK)&&index!=int(ArtifactPosition::MACH4);item["allowed"].Bool()=picked&&!locked&&picked->canBePutAt(hero,position,true);if(art){const auto type=art->getType();item["name"].String()=type->getNameTranslated();item["description"].String()=type->getDescriptionTranslated();item["icon"].Integer()=type->getIconIndex();artifactIconIds.insert(type->getIconIndex());if(!picked&&!locked&&hero->getOwner()==p->playerID&&p->makingTurn){const auto combination=mobileArtifactCombination(*hero,position);item["canAssemble"].Bool()=combination.first;item["canDisassemble"].Bool()=combination.second;}}h[backpack?"backpack":"slots"].Vector().push_back(item);};
@@ -1854,6 +1888,16 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    lastPublished=0;
   }
   return;
+ }
+ if(action==112)
+ {
+  const auto player=GAME->interface();
+  const auto window=ENGINE->windows().topWindow<CHeroWindow>();
+  if(player&&player->makingTurn&&window&&window->curHero&&window->curHero->id.getNum()==a
+   &&window->curHero->henchman.revision==static_cast<uint32_t>(e)&&!window->getPickedArtifact()
+   &&(b!=HenchmanAction::SELECT||(c>=0&&c<7&&window->curHero->hasStackAtSlot(SlotID(c))
+    &&window->curHero->getStack(SlotID(c)).getId().getNum()==d)))player->cb->henchmanAction(window->curHero,b,c);
+  lastPublished=0;return;
  }
  if(action==40){if(auto tavern=ENGINE->windows().topWindow<CTavernWindow>())tavern->close();lastPublished=0;return;}
  if(action==86)

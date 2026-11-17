@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {makeManifest,describeFile} from '../../scripts/assets.mjs';
 import {renderPage} from '../../scripts/page.mjs';
 const project=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-const root=path.join(project,'work/vcmi-wasm/emscripten/html5');
+const root=path.resolve(process.env.GOONK_ENGINE_DIR||path.join(project,'work/vcmi-wasm/emscripten/html5'));
 const data=path.join(project,'work/game-data/homm3eng/home/web_user/.local/share/vcmi');
 // Serve the current mod sources, including when this preview predates a web release.
 for (const name of fs.readdirSync(path.join(project,'mod')).filter(name=>fs.statSync(path.join(project,'mod',name)).isDirectory())) {
@@ -14,14 +14,19 @@ for (const name of fs.readdirSync(path.join(project,'mod')).filter(name=>fs.stat
  if(fs.existsSync(source))fs.cpSync(source,path.join(data,'Mods',name),{recursive:true});
 }
 
+let engineBuildCache;
 function getEngineBuild(){
+ const signature=['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js'].map(name=>{
+  try{const stat=fs.statSync(path.join(root,name));return `${name}:${stat.size}:${stat.mtimeMs}`;}catch{return name;}
+ }).join('|');
+ if(engineBuildCache?.signature===signature)return engineBuildCache.build;
  const runtimeNames={};
  for(const name of ['vcmiclient.data.js','vcmiclient.wasm','vcmiclient.data','vcmiclient.js']){
   const filePath=path.join(root,name);
   if(fs.existsSync(filePath)){
    const bytes=fs.readFileSync(filePath);
    const hash=crypto.createHash('sha256').update(bytes).digest('hex').slice(0,16);
-   runtimeNames[name]=name.replace(/(\.[^.]+)$/,'.'+hash+'$1');
+   runtimeNames[name]=name.replace(/^vcmiclient\./,'vcmiclient.'+hash+'.');
   }
  }
  const wasmPath=path.join(root,'vcmiclient.wasm');
@@ -36,7 +41,7 @@ function getEngineBuild(){
   mobile:{width:800,height:600},
   assetCacheBytes:16*1024*1024
  };
- return {runtimeNames,engine};
+ const build={runtimeNames,engine};engineBuildCache={signature,build};return build;
 }
 
 const mime={'.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.wasm':'application/wasm','.png':'image/png','.json':'application/json','.css':'text/css','.svg':'image/svg+xml'};
@@ -44,7 +49,7 @@ http.createServer((req,res)=>{
  res.setHeader('Cross-Origin-Opener-Policy','same-origin');res.setHeader('Cross-Origin-Embedder-Policy','require-corp');
  res.setHeader('Cache-Control','no-cache');const url=new URL(req.url,'http://localhost');
  const {runtimeNames,engine}=getEngineBuild();
- if(url.pathname==='/'){
+ if(url.pathname==='/'||url.pathname==='/game.html'){
   let html=renderPage(root);
   html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]||name);
   res.setHeader('Content-Type','text/html; charset=utf-8');

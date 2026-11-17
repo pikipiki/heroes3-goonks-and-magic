@@ -105,6 +105,7 @@ const std::vector<GameSettings::SettingOption> GameSettings::settingProperties =
 		{EGameSettings::MARKETS_BLACK_MARKET_RESTOCK_PERIOD,              "markets",   "blackMarketRestockPeriod"             },
 		{EGameSettings::MARKETS_UNIVERSITY_GOLD_COST,                     "markets",   "universityGoldCost"                   },
 		{EGameSettings::MODULE_COMMANDERS,                                "modules",   "commanders"                           },
+		{EGameSettings::MODULE_HENCHMEN,                                  "modules",   "henchmen"                             },
 		{EGameSettings::MODULE_STACK_ARTIFACT,                            "modules",   "stackArtifact"                        },
 		{EGameSettings::MODULE_STACK_EXPERIENCE,                          "modules",   "stackExperience"                      },
 		{EGameSettings::PATHFINDER_IGNORE_GUARDS,                         "pathfinder", "ignoreGuards"                        },

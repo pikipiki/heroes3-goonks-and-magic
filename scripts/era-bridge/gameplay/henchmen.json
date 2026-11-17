@@ -236,10 +236,10 @@
   "unresolved": [
     "Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.",
     "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
-    "Battle-result random/sqrt inputs and reward eligibility require native source-bound adapters.",
-    "Hero-owned state, save/load, campaign transfer and network replication are not implemented.",
-    "Army selection/replacement, resurrection payment and banner equipment need atomic native transactions.",
-    "Battlefield stack creation, lifetime/death, stats, spells and Santa guards are not connected.",
-    "Mobile UI, AI and full-game native scenarios are not validated."
+    "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",
+    "Native save/load and mobile core scenarios pass; campaign transfer and legacy-save scenarios remain to validate.",
+    "Army selection/replacement and resurrection are connected; banner equipment is not ported.",
+    "Battlefield actor, stats and spells are connected; Santa guards and full death/action interactions remain incomplete.",
+    "Full AI progression, classic UI, inventory/spell edge cases and whole-pack native scenarios are not validated."
   ]
 }

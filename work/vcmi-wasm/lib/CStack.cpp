@@ -427,6 +427,13 @@ void CStack::postDeserialize(const CArmedInstance * army)
 		assert(hero);
 		base = hero->getCommander();
 	}
+	else if(slot == SlotID::HENCHMAN_SLOT_PLACEHOLDER)
+	{
+		const auto * hero = dynamic_cast<const CGHeroInstance *>(army);
+		if(!hero||!hero->henchman.stack)
+			throw std::runtime_error("Henchman doesn't have a base stack!");
+		base = hero->henchman.stack.get();
+	}
 	else if(slot == SlotID::SUMMONED_SLOT_PLACEHOLDER || slot == SlotID::ARROW_TOWERS_SLOT || slot == SlotID::WAR_MACHINES_SLOT)
 	{
 		//no external slot possible, so no base stack

@@ -68,9 +68,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_CAMPAIGN_CARRYOVER, // campaign-scoped original ERM persistent variables
 	GOONK_CAMPAIGN_TERRAIN, // original scripted tile masks and suspended object masks
 	GOONK_CAMPAIGN_WORLD, // replicated campaign world rules independent of VM continuations
+	GOONK_HENCHMEN, // independent hero-owned companions, experience and revival state
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_CAMPAIGN_WORLD,
+	CURRENT = GOONK_HENCHMEN,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

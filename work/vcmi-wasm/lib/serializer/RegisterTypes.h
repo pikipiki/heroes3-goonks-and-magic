@@ -43,6 +43,7 @@
 #include "../networkPacks/SaveLocalState.h"
 #include "../networkPacks/SetRewardableConfiguration.h"
 #include "../networkPacks/SourceCampaignChange.h"
+#include "../networkPacks/HenchmanPacks.h"
 #include "../networkPacks/SourceCampaignReply.h"
 #include "../networkPacks/SourceCampaignDeployTroops.h"
 #include "../networkPacks/SetStackEffect.h"
@@ -317,6 +318,8 @@ void registerTypes(Serializer &s)
     s.template registerType<SourceCampaignChange>(270);
     s.template registerType<SourceCampaignReply>(271);
     s.template registerType<SourceCampaignDeployTroops>(272);
+    s.template registerType<HenchmanChange>(273);
+    s.template registerType<HenchmanAction>(274);
 }
 
 VCMI_LIB_NAMESPACE_END

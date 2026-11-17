@@ -137,6 +137,7 @@ public:
 	using StaticIdentifier<SlotID>::StaticIdentifier;
 
 	DLL_LINKAGE static const SlotID COMMANDER_SLOT_PLACEHOLDER;
+	DLL_LINKAGE static const SlotID HENCHMAN_SLOT_PLACEHOLDER;
 	DLL_LINKAGE static const SlotID SUMMONED_SLOT_PLACEHOLDER; ///<for all summoned creatures, only during battle
 	DLL_LINKAGE static const SlotID WAR_MACHINES_SLOT; ///<for all war machines during battle
 	DLL_LINKAGE static const SlotID ARROW_TOWERS_SLOT; ///<for all arrow towers during battle

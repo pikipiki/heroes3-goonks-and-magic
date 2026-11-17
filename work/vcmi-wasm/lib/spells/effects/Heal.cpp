@@ -66,6 +66,8 @@ void Heal::apply(int64_t value, ServerCallback * server, const Mechanics * m, co
 
 bool Heal::isValidTarget(const Mechanics * m, const battle::Unit * unit) const
 {
+	// A slain Henchman is revived in town, never from its battlefield corpse.
+	if(unit->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER&&unit->isDead())return false;
 	const bool onlyAlive = healLevel == EHealLevel::HEAL;
 	const bool validInGenaral = unit->isValidTarget(!onlyAlive);
 

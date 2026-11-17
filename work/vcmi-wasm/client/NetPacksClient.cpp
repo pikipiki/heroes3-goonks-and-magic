@@ -179,6 +179,12 @@ void ApplyClientNetPackVisitor::visitSetHeroExperience(SetHeroExperience & pack)
 	callInterfaceIfPresent(cl, h->tempOwner, &IGameEventsReceiver::heroExperienceChanged, h, pack.val);
 }
 
+static void dispatchGarrisonChange(CClient & cl,ObjectInstanceID army1,ObjectInstanceID army2);
+void ApplyClientNetPackVisitor::visitHenchmanChange(HenchmanChange & pack)
+{
+ dispatchGarrisonChange(cl,pack.hero,ObjectInstanceID());
+}
+
 void ApplyClientNetPackVisitor::visitSetPrimarySkill(SetPrimarySkill & pack)
 {
 	const CGHeroInstance * h = cl.gameInfo().getHero(pack.id);

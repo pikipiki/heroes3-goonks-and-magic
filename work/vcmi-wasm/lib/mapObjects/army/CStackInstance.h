@@ -128,6 +128,9 @@ public:
 	void giveTotalStackExperience(TExpType exp);
     // Original HE:C0 slot/d/d/0/0, independent from paid-upgrade retention.
     void resetExperience();
+    // Replicated exact per-unit state; not a battle reward and therefore not
+    // subject to the per-battle XP gain cap.
+    void restoreExperience(int64_t value);
 
 	bool valid(bool allowUnrandomized) const;
 	ArtPlacementMap putArtifact(const ArtifactPosition & pos, const CArtifactInstance * art) override; //from CArtifactSet

@@ -14,6 +14,7 @@
 #include "../era/EraDragonFly241State.h"
 #include "../era/EraStatusHealth.h"
 #include "../era/EraBattleSlots.h"
+#include "../era/EraHenchmanModel.h"
 #include <tuple>
 #include "../era/EraStatusHealthBonuses.h"
 #include "../era/EraBridgePolicies.h"
@@ -393,6 +394,34 @@ std::unique_ptr<BattleInfo> BattleInfo::setupBattle(IGameInfoCallback *cb, const
 		{
 			currentBattle->generateNewStack(currentBattle->nextUnitId(), *heroes[i]->getCommander(), i, SlotID::COMMANDER_SLOT_PLACEHOLDER, layout.commanders.at(i));
 		}
+	}
+
+	// Henchmen have their own battlefield identity and never occupy an army slot.
+	if(era_compat::henchmen::enabled(*cb))
+	for(BattleSide side : {BattleSide::ATTACKER,BattleSide::DEFENDER})
+	{
+		const auto * hero=heroes[side];
+		if(!hero||!hero->henchman.stack||!hero->henchman.alive)continue;
+		const bool bank=layout.units.at(BattleSide::ATTACKER).at(0).getX()>2;
+		const auto proposed=era_bridge::henchmen::proposedPosition(side==BattleSide::ATTACKER,
+			bank,town!=nullptr,hero->henchman.stack->getType()->isDoubleWide());
+		currentBattle->generateNewStack(currentBattle->nextUnitId(),*hero->henchman.stack,side,
+			SlotID::HENCHMAN_SLOT_PLACEHOLDER,BattleHex(proposed));
+		auto * actor=currentBattle->stacks.back().get();
+		const auto extra=era_compat::henchmen::stats(*hero,cb->getDate(Date::DAY));
+		const auto add=[&](BonusType type,int value,BonusSubtypeID subtype=BonusSubtypeID())
+		{
+			if(value)actor->addNewBonus(std::make_shared<Bonus>(BonusDuration::ONE_BATTLE,type,
+				BonusSource::CREATURE_ABILITY,value,BonusSourceID(),subtype));
+		};
+		add(BonusType::PRIMARY_SKILL,extra.attack,BonusSubtypeID(PrimarySkill::ATTACK));
+		add(BonusType::PRIMARY_SKILL,extra.defence,BonusSubtypeID(PrimarySkill::DEFENSE));
+		add(BonusType::CREATURE_DAMAGE,extra.minimumDamage,BonusSubtypeID(BonusCustomSubtype::creatureDamageMin));
+		add(BonusType::CREATURE_DAMAGE,extra.maximumDamage,BonusSubtypeID(BonusCustomSubtype::creatureDamageMax));
+		add(BonusType::STACK_HEALTH,extra.health);add(BonusType::STACKS_SPEED,extra.speed);
+		const auto casts=hero->henchman.stack->valOfBonuses(BonusType::CASTS);
+		add(BonusType::CASTS,era_bridge::henchmen::extraSpellCasts(
+			hero->getPrimSkillLevel(PrimarySkill::KNOWLEDGE),casts,{}));
 	}
 
 	if (currentBattle->townID.hasValue())

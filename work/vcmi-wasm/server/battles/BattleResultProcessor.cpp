@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../era/SourceCampaignProcessor.h"
+#include "../era/EraHenchmanRuntime.h"
 #include "../era/EraConfluxTomeRuntime.h"
 #include "../../lib/bonuses/BonusParameters.h"
 #include "BattleResultProcessor.h"
@@ -151,6 +152,10 @@ CasualtiesAfterBattle::CasualtiesAfterBattle(const CBattleInfoCallback & battle,
 				else
 					logGlobal->error("Stack with invalid instance in commander slot. Stack: %s", st->nodeName());
 			}
+		}
+		else if(st->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER)
+		{
+			// The companion's persistent living state is applied separately.
 		}
 		else if(st->base && !army->slotEmpty(st->unitSlot()))
 		{
@@ -373,7 +378,7 @@ void BattleResultProcessor::endBattleConfirmPrepared(const CBattleInfoCallback &
 
 	const auto attackerHero = battle.battleGetFightingHero(BattleSide::ATTACKER);
 	const auto defenderHero = battle.battleGetFightingHero(BattleSide::DEFENDER);
-
+    const std::array<int64_t,2> henchmanHeroExperience{{attackerHero?int64_t(attackerHero->exp):0,defenderHero?int64_t(defenderHero->exp):0}};
 
 	//give exp
 	if(!finishingBattle->isDraw() && battleResult->exp[finishingBattle->winnerSide])
@@ -387,6 +392,9 @@ void BattleResultProcessor::endBattleConfirmPrepared(const CBattleInfoCallback &
 
 	if(!finishingBattle->isDraw() && finishingBattle->winnerSide==BattleSide::ATTACKER && attackerHero && !defenderHero)
 		CGMysteriousCave::grantNeutralLoot(*gameHandler,attackerHero);
+
+    era_compat::henchmen::finishBattle(*gameHandler,battle,finishingBattle->winnerSide,
+        finishingBattle->isDraw(),henchmanHeroExperience);
 
 	// Add statistics
 	if(!finishingBattle->isDraw())

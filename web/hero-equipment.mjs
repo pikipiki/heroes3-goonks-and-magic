@@ -1,6 +1,7 @@
 import {getLanguage} from './i18n.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
+import {renderHenchmanSheet} from './henchman-sheet.mjs';
 
 // Decode the paper-doll silhouette while the game initializes, before opening equipment.
 if(typeof Image!=='undefined'){const silhouette=new Image();silhouette.src=new URL('./h3-theme/hero-silhouette.svg',import.meta.url).href;silhouette.decode?.().catch(()=>{});}
@@ -22,6 +23,7 @@ export function paintArtifactIcons(panel){
  }
 }
 export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{}}){
+ let henchmanPending=null;
  const troopEquipment=createTroopEquipment({root,command});
  const troopDeployment=createTroopDeployment({root,command});
  const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);panel.addEventListener('dragstart',e=>e.preventDefault());let state={},tab='worn',selected=null,signature='',classic=false,selectedArmySlot=null,splitActive=false,splitAmount=1;const scrollPositions={worn:0,backpack:0,skills:0,army:0};
@@ -113,7 +115,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   panel.dataset.inventory=tab;
   const hero=state.heroWindow||{},picked=hero.picked,items=slots(),item=items.find(a=>a.slot===selected);
   const fr=getLanguage()==='fr';
-  const backpack=tab==='backpack',skills=tab==='skills',isArmy=tab==='army';
+  const backpack=tab==='backpack',skills=tab==='skills',isArmy=tab==='army',isHenchman=tab==='henchman';
   const bagCount=hero.backpack?.filter(a=>a.name).length||0;
   const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
   const armySlots=heroArmy?.slots||[];
@@ -124,7 +126,8 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   }
   const extraSlots=[9,10,11,12,18,13,14,15,16,17];
   const extra=extraSlots.flatMap(slot=>items.filter(a=>a.slot===slot)).map(slotMarkup).join('');
-  const contents=isArmy?renderArmy(hero,heroArmy):skills?renderSkills(hero):backpack?`<p class="hero-bag-help">The backpack stores artefacts you are carrying but have not equipped. To equip one, move it from the backpack to a compatible slot.</p>${items.map(slotMarkup).join('')}`:
+  if(henchmanPending&&(henchmanPending.hero!==hero.id||henchmanPending.revision!==hero.henchman?.revision))henchmanPending=null;
+  const contents=isHenchman?renderHenchmanSheet(hero,{portrait,canAct:state.turn&&hero.owned!==false&&!picked,pending:!!henchmanPending}):isArmy?renderArmy(hero,heroArmy):skills?renderSkills(hero):backpack?`<p class="hero-bag-help">The backpack stores artefacts you are carrying but have not equipped. To equip one, move it from the backpack to a compatible slot.</p>${items.map(slotMarkup).join('')}`:
    `<div class="hero-body-layout">
     <div class="hero-body-stage" aria-label="Equipment on the hero’s body">
      <img class="hero-body-figure" src="./web/h3-theme/hero-silhouette.svg" alt="">${items.filter(a=>a.slot>=0&&a.slot<=8).map(slotMarkup).join('')}
@@ -147,11 +150,12 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    ${hero.canRebalanceSourceArtifacts?`<button type="button" data-hero-source-rebalance ${picked||!state.turn||hero.owned===false?'disabled':''} title="${fr?'Actualiser les bonus des objets qui équilibrent les caractéristiques':'Refresh equipped artifacts that balance primary stats'}">${fr?'Rééquilibrer':'Rebalance'}</button>`:''}
    <button data-hero-tab="backpack" aria-pressed="${backpack}">${fr?'Sac':'Backpack'} · ${bagCount}</button>
    <button data-hero-tab="skills" aria-pressed="${skills}" ${picked?'disabled':''}>${fr?'Compétences':'Skills'}</button>
+   ${hero.henchman?`<button data-hero-tab="henchman" aria-pressed="${isHenchman}" ${picked?'disabled':''}>${fr?'Compagnon':'Henchman'}</button>`:''}
    ${hero.owned===false?'':'<button data-hero-classic>Classic</button>'}
    ${Number.isInteger(hero.commanderIcon)?`<button data-hero-commander aria-label="Open commander" title="Commander" ${picked?'disabled':''}>${heroIcon(hero.commanderIcon)}</button>`:''}
   </nav>
   <section class="hero-equipment-grid" aria-label="${isArmy?'Army':skills?'Skills':backpack?'Backpack artefacts':'Worn artefacts'}">${contents}</section>
-  <section class="hero-artifact-detail" aria-live="polite" ${skills?'hidden':''}>
+  <section class="hero-artifact-detail" aria-live="polite" ${skills||isHenchman?'hidden':''}>
    ${isArmy?`
     <h3>${selectedUnit?esc(selectedUnit.name+' × '+selectedUnit.count):(fr?'Gestion des troupes':'Manage army')}</h3>
     <p class="hero-artifact-description">${selectedUnit?(selectedUnit.count>1?(fr?'Touche un emplacement libre pour déplacer, ou coche « Scinder » pour séparer les troupes.':'Tap another slot to move, or check « Split » to split the army.'):(fr?'Touche un autre emplacement pour déplacer ou fusionner.':'Tap another slot to move or merge.')):(fr?'Touche une troupe pour la réorganiser, la scinder ou voir sa fiche.':'Tap a unit stack to manage, split or view details.')}</p>
@@ -184,6 +188,11 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  }
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
+  if(button.hasAttribute('data-henchman-action')){
+   const hero=state.heroWindow;if(!hero?.henchman||henchmanPending||!state.turn||hero.owned===false)return;
+   henchmanPending={hero:hero.id,revision:hero.henchman.revision};
+   command(112,hero.id,Number(button.dataset.henchmanAction),Number(button.dataset.henchmanSlot??-1),Number(button.dataset.henchmanCreature??-1),hero.henchman.revision);render();return;
+  }
   if(button.hasAttribute('data-hero-combine')){if(Number.isInteger(selected)&&!state.heroWindow?.picked){button.disabled=true;command(111,state.heroWindow.id,selected,Number(button.dataset.heroCombine));}return;}
   if(button.hasAttribute('data-hero-source-rebalance')){command(102,state.heroWindow.id);notify(getLanguage()==='fr'?'Actualisation des bonus demandée.':'Artifact refresh requested.');return;}
   if(button.hasAttribute('data-hero-leave-troops')){troopDeployment.show(selectedArmySlot);return;}

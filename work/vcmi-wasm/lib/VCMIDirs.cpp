@@ -576,6 +576,11 @@ bfs::path VCMIDirsXDG::userConfigPath() const
 
 std::vector<bfs::path> VCMIDirsXDG::dataPaths() const
 {
+#ifdef __EMSCRIPTEN__
+	// The html5 target preloads config/ and Mods/ at the virtual FS root.
+	// A browser build has no native vcmiclient executable to detect development mode.
+	return {bfs::path("/")};
+#endif
 	// $XDG_DATA_DIRS, default: /usr/local/share/:/usr/share/
 
 	// construct list in reverse.

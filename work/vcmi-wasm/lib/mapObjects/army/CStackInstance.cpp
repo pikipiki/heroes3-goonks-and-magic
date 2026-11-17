@@ -89,6 +89,11 @@ void CStackInstance::resetExperience()
     totalExperience = 0;
 }
 
+void CStackInstance::restoreExperience(int64_t value)
+{
+    totalExperience=std::clamp<int64_t>(value,0,getMaxExperiencePerUnit()*getCount());
+}
+
 void CStackInstance::giveAverageStackExperience(TExpType desiredAmountPerUnit)
 {
 	if(!canGainExperience())

@@ -1659,6 +1659,29 @@ void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack
     era_compat::applySourceCampaignChange(gs,pack);
 }
 
+void GameStatePackVisitor::visitHenchmanChange(HenchmanChange & pack)
+{
+    auto * hero=dynamic_cast<CGHeroInstance *>(gs.getObjInstance(pack.hero));
+    if(!hero)throw std::runtime_error("Henchmen: missing hero in replicated state");
+    auto & state=hero->henchman;
+    if(pack.creature.hasValue())
+    {
+        if(!state.stack||state.stack->getId()!=pack.creature)
+            state.stack=std::make_unique<CStackInstance>(&gs,pack.creature,1);
+        state.stack->setArmy(hero);
+        state.stack->restoreExperience(pack.stackExperience);
+    }
+    else state.stack.reset();
+    state.experience=pack.experience;state.alive=pack.alive;state.declined=pack.declined;
+    state.banner=pack.banner;state.revision=pack.revision;
+    if(pack.returnedExperience>=0&&pack.returnedSlot.validSlot())
+    {
+        auto * returned=hero->getStackPtr(pack.returnedSlot);
+        if(!returned)throw std::runtime_error("Henchmen: missing returned army unit");
+        returned->restoreExperience(pack.returnedExperience);
+    }
+}
+
 void GameStatePackVisitor::visitSetRewardableConfiguration(SetRewardableConfiguration & pack)
 {
 	auto * objectPtr = gs.getObjInstance(pack.objectID);

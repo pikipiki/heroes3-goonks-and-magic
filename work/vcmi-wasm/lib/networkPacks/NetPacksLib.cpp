@@ -14,6 +14,7 @@
 #include "SaveLocalState.h"
 #include "SetRewardableConfiguration.h"
 #include "SourceCampaignChange.h"
+#include "HenchmanPacks.h"
 #include "SourceCampaignReply.h"
 #include "SourceCampaignDeployTroops.h"
 #include "PacksForLobby.h"
@@ -123,6 +124,9 @@ void SourceCampaignChange::visitTyped(ICPackVisitor & visitor)
 {
     visitor.visitSourceCampaignChange(*this);
 }
+
+void HenchmanChange::visitTyped(ICPackVisitor & visitor){visitor.visitHenchmanChange(*this);}
+void HenchmanAction::visitTyped(ICPackVisitor & visitor){visitor.visitHenchmanAction(*this);}
 
 void SetRewardableConfiguration::visitTyped(ICPackVisitor & visitor)
 {

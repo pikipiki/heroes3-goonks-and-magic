@@ -7,10 +7,10 @@ profils séparés pour Advanced Classes et Reborn.
 ## État réel
 
 **Le portage complet n'est pas terminé. Aucun nouveau système n'est activé.**
-Le premier jalon est une bibliothèque native de règles arithmétiques Enhanced
-Henchmen 1.2 et des références sources figées. Cette bibliothèque n'est pas
-raccordée aux héros ou aux combats ; ses tests ne constituent pas une partie
-native avec Henchmen.
+Le noyau Henchmen est maintenant raccordé aux héros, au réseau, aux combats et
+aux sauvegardes. Le réglage moteur `modules.henchmen` reste désactivé par défaut.
+La compilation candidate est testée localement ; son binaire n'est pas encore
+intégré à la version publique.
 
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle
@@ -97,14 +97,27 @@ Deux points empêchent encore de présenter ces calculs comme un système comple
    les cinq packs récupérés. Le port ne remplace pas silencieusement l'un par
    l'autre ; le multiplicateur runtime reste une entrée explicite.
 
-## Raccordements restant nécessaires
+## Noyau Henchmen vérifié en jeu
 
-- État propre à chaque héros, sérialisation, réseau et transferts de campagne.
-- Choix et remplacement du compagnon, retrait/retour de créature et inventaires.
-- Résurrection avec paiement et vérification du propriétaire.
-- Création de l'acteur en combat, placement, bonus, sorts, mort et fin du combat.
-- Bannière, gardes des Santa Gremlins et interactions avec les autres règles.
-- Interface tactile et comportement IA sur les parcours réels.
+Le scénario `work/browser-tests/wog-henchmen-native-e2e.mjs` vérifie le choix
+dans l'armée, l'acteur indépendant (emplacement interne −6), le gain
+d'expérience, le remplacement avec retour du compagnon vivant dans l'armée,
+la sauvegarde/reprise et la résurrection dans une ville possédée avec paiement
+exact. Il vérifie aussi l'absence du système lorsque le réglage est désactivé.
+La fiche est contrôlée à 390×844, 844×390, 568×320 et 1024×768, avec défilement,
+une seule fermeture et des commandes d'au moins 44 pixels.
+
+Le port comprend également les bonus magiques, les sorts supplémentaires,
+le retour de l'équipement de la dernière créature et la sérialisation JSON
+pour les transferts de campagne. Ces parcours supplémentaires nécessitent
+encore leurs scénarios natifs dédiés.
+
+## Raccordements et validations restant nécessaires
+
+- Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
+- Choix/équipement des bannières, gardes des Santa Gremlins et interactions.
+- Progression de troupe de l'IA, réglages complets et interface classique.
+- Vérifications natives dédiées des sorts, inventaires et variantes de placement.
 - Port des règles et remplacements natifs requis par les autres packs.
 - Validation des profils complets avant toute activation publique.
 
@@ -118,5 +131,12 @@ node --test tests/era-henchman-rules-native.test.mjs tests/era-henchmen-contract
 
 Le premier contrôle ne dépend pas du checkout amont. Le second exige la copie
 locale au commit figé et vérifie les fichiers réels. Les tests natifs compilent
-la bibliothèque sous UBSan ; ils ne déclarent aucune validation des combats,
-des sauvegardes ou de l'interface Henchmen.
+la bibliothèque sous UBSan. La validation en jeu est distincte :
+
+```sh
+PORT=8797 GOONK_ENGINE_DIR=work/downloads/henchmen-native-engine node work/browser-tests/server.mjs
+node work/browser-tests/wog-henchmen-native-e2e.mjs
+```
+
+Ce scénario utilise une carte synthétique et des sauvegardes éphémères en
+mémoire. Il ne modifie aucune sauvegarde personnelle ni donnée publiée.

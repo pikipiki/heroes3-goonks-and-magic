@@ -15,6 +15,7 @@
 
 #include "army/CArmedInstance.h"
 #include "army/CCommanderInstance.h"
+#include "../era/EraHenchmanState.h"
 
 #include "../bonuses/BonusCache.h"
 #include "../entities/hero/EHeroGender.h"
@@ -77,6 +78,7 @@ class DLL_LINKAGE CGHeroInstance : public CArmedInstance, public IBoatGenerator,
 	IGameInfoCallback * getCallback() const final { return cb; }
 
 public:
+	HenchmanState henchman;
 	//////////////////////////////////////////////////////////////////////////
 	//format:   123
 	//          8 4
@@ -384,6 +386,10 @@ public:
 		}
 
 		h & commander;
+		if(h.hasFeature(Handler::Version::GOONK_HENCHMEN))
+			h & henchman;
+		else if(!h.saving)
+			henchman=HenchmanState();
 		h & visitedObjects;
 
 		if(!h.saving && h.loadingGamestate)

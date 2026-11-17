@@ -10,6 +10,7 @@
 #include "StdInc.h"
 #include "BattleProcessor.h"
 #include "../era/SourceCampaignProcessor.h"
+#include "../era/EraHenchmanRuntime.h"
 
 #include "BattleActionProcessor.h"
 #include "BattleFlowProcessor.h"
@@ -162,6 +163,7 @@ void BattleProcessor::startBattle(const CArmedInstance *army1, const CArmedInsta
 
 BattleID BattleProcessor::setupBattle(int3 tile, BattleSideArray<const CArmedInstance *> armies, BattleSideArray<const CGHeroInstance *> heroes, const BattleLayout & layout, const CGTownInstance *town)
 {
+    for(const auto * hero:heroes)era_compat::henchmen::prepareAI(*gameHandler,hero);
 	const auto & t = *gameHandler->gameInfo().getTile(tile);
 	TerrainId terrain = t.getTerrainID();
 	if (town)

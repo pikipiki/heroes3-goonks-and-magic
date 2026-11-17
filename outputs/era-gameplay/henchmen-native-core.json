@@ -1,0 +1,167 @@
+{
+  "passed": true,
+  "scope": "native-core-only",
+  "completeRules": false,
+  "engineSha256": "42cf1eea746bbff162ec5d203320bcdafd3a7959d95ab2b708036e7dfa7cea80",
+  "scenarios": [
+    "selected-from-army-and-mobile-layout",
+    "independent-battle-actor-and-earned-experience",
+    "replacement-preserves-companion-experience",
+    "native-save-reload",
+    "dead-companion-resurrected-in-owned-town",
+    "ai-selects-shooter-as-independent-companion",
+    "disabled-profile-baseline"
+  ],
+  "errors": [],
+  "sourceBindings": [
+    {
+      "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
+      "sha256": "80c5e0b982ed63ff023d8e1b20907bc98dfcd627affc734825848424ebc7621d"
+    },
+    {
+      "file": "work/vcmi-wasm/client/MobileBridge.cpp",
+      "sha256": "53d8a4d2c3244d8559e5a8818e4a4a809eebae432ec8be27bcee1cc1f61b7d0e"
+    },
+    {
+      "file": "work/vcmi-wasm/client/NetPacksClient.cpp",
+      "sha256": "72f7a8e840810243e8de9976cc9f0c8bfe7b1949127ef2ddb45e2e203f3a5d0f"
+    },
+    {
+      "file": "work/vcmi-wasm/config/gameConfig.json",
+      "sha256": "838b9fb641551043fd9aee076fb3b7ed2adf4efd9608b1a81ce0cc18b9f751b8"
+    },
+    {
+      "file": "work/vcmi-wasm/config/schemas/gameSettings.json",
+      "sha256": "ccf579795b7db12df994241e63e84acc2f6f3e9d85c934f5b34de7d433abcd2d"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/CStack.cpp",
+      "sha256": "b7dcf633a758fac792862271bb9bd6b21b06ced06a5f8a3058eeb98e6be2be40"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/GameSettings.cpp",
+      "sha256": "2cc5de3d0fe01784d16eaf4bc60e658d44833aeab3edd924ffedfc29cf42c38c"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/IGameSettings.h",
+      "sha256": "049087598c9e8102cba1918865738ea5a53f6c40e96ba38f0144950800611b73"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/VCMIDirs.cpp",
+      "sha256": "876d2a15f96375ed22497fde368f022f4eabb939ccf5eedc31650d4c0fa3c80a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/battle/BattleInfo.cpp",
+      "sha256": "4e8dd04a00f46b279e73f7bb60df390e90b27c0f2cb76c3495e940d1a373cfab"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/callback/CCallback.cpp",
+      "sha256": "331c6bbdc65fca78e53d2710217d06392a7b4d96051b4da17fc35dd21417432d"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/callback/CCallback.h",
+      "sha256": "f28599fe104ecde92ddff793379b472725aedf6f9f09748abfd9dc6cd7e3e873"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/constants/EntityIdentifiers.cpp",
+      "sha256": "9d33e642f7e68dceac34c5d56dad418078082bcf5c4566f3e680a4170b0e1d8d"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/constants/EntityIdentifiers.h",
+      "sha256": "9d686b5ca883dc02b47cce317ff8006038362c03ded7a0f0c7e620bff81bed2a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraHenchmanModel.h",
+      "sha256": "b3e865ea31f80c424270f6f9dcedfb7f568d9d51e09847276a9d9ff7c000ac09"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraHenchmanState.h",
+      "sha256": "0de4a0274e3c35b79c2daeabd5dc219db2ca9ebb6e1bda3baa4b6efea12b8370"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
+      "sha256": "fe113da89491e0df42e48149109b2409146e5fffe9067d37e7f4910a06b304df"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
+      "sha256": "2d8c0efa1467f3409de5585d0d3cb40f98ab877b999895ab201b71469c8f2761"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/CGHeroInstance.cpp",
+      "sha256": "b03f172c88fa6fc69a25bbb9809bc5211595afcb1d0a54b06b63d24d33870287"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/CGHeroInstance.h",
+      "sha256": "c7db7fb5ab36b6e9012011f635509b659c15d25cd38efcff6961a782fa07dad7"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.cpp",
+      "sha256": "799d3e05644b40fd444a1d8f50df25641690e205782ca283afcacabbba7717ae"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.h",
+      "sha256": "fdb9a873e606f48c3e2299a2534c0f245251c3046413a194ee32e8cdb0440f2d"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h",
+      "sha256": "7b724d39a961c7559b51e506a3b714054de3e10eede6cb6534961779a1e9b37f"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/NetPackVisitor.h",
+      "sha256": "289062d057b48c4ae98eade4856732ca2e657677de55a53bc09dea321972d301"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/NetPacksLib.cpp",
+      "sha256": "9ff46d0362d41ada9610004600d58d596a0e93e4cabbf65e5ce7a5d206d5926a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/serializer/ESerializationVersion.h",
+      "sha256": "cbae79914bc333782d97b6a36630d3939f9e0b5831ca3323595d1fbbd6178326"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/serializer/RegisterTypes.h",
+      "sha256": "fa680ea8e09e268ab56a9929ce6d1cb01995f943eeb65070a1620995645bbce9"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/spells/ISpellMechanics.h",
+      "sha256": "ccf118f14feca4e510786ec7f012af432ef16da9df37e1bed58393e0e364a967"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/spells/effects/Damage.cpp",
+      "sha256": "83b8361cca37e7bdcb291312cb41d6a36c8582e7a2343464c1e73f1e443848e8"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/spells/effects/Heal.cpp",
+      "sha256": "0497b2dc3ecb849d110fc47c2b37f80face4ac35469d014e24112ca69821ae15"
+    },
+    {
+      "file": "work/vcmi-wasm/server/NetPacksServer.cpp",
+      "sha256": "88aaf0a0554289e2dd9a712d8332456aaf8a946039a7d53805ed5ce7c49ddf79"
+    },
+    {
+      "file": "work/vcmi-wasm/server/ServerNetPackVisitors.h",
+      "sha256": "8c91ec79a5d0f0a3b883c28669997d66d32a2233847f44b00fa0d05ed37db6e1"
+    },
+    {
+      "file": "work/vcmi-wasm/server/battles/BattleProcessor.cpp",
+      "sha256": "33621b48c79484095bc09a42706cc8f2272637cb45028d48f9eb4a11885da672"
+    },
+    {
+      "file": "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp",
+      "sha256": "98c7e40a5e5387bf5bc037c6aedb5d4cd4d91350e526d0cd98df317f056b6313"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraHenchmanRuntime.h",
+      "sha256": "a5302cf01a9d74fa33b408cc9b4368471ce28f93064a5a2cb979476e429eeeb9"
+    }
+  ],
+  "missing": [
+    "banner equipment and selection",
+    "Santa Gremlin guards",
+    "full AI XP fidelity",
+    "classic UI",
+    "complete settings profiles",
+    "campaign and legacy-save dedicated scenarios",
+    "inventory/spell/death edge-case native scenarios"
+  ]
+}

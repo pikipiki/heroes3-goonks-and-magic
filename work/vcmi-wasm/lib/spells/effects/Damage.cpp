@@ -15,6 +15,7 @@
 #include "../../era/EraConfluxCaster.h"
 #include "../../era/EraSourceXpAdmission.h"
 #include "../../era/EraXpTimed184State.h"
+#include "../../era/EraHenchmanModel.h"
 
 #include "Damage.h"
 #include "Registry.h"
@@ -111,6 +112,16 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 		{
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
+            // Enhanced Henchmen OnMagicCorrectedResistance applies only to an
+            // explicit monster cast, after target resistance and chain scaling.
+            const auto * activeCast=dynamic_cast<const BaseMechanics *>(m);
+            const auto * companion=dynamic_cast<const CStack *>(m->caster);
+            if(activeCast&&activeCast->isActiveCreatureCast()&&companion
+                &&companion->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER)
+                if(const auto * hero=m->battle()->battleGetFightingHero(m->casterSide))
+                    if(era_compat::henchmen::enabled(*hero->cb))
+                        bsa.damageAmount+=era_bridge::henchmen::spellDamageBonus(
+                            hero->getPrimSkillLevel(PrimarySkill::SPELL_POWER),{});
             bool sourceDamageBlocked=false;
             const auto rodDamage=eraLightningRodSupplement(m,unit);
             if(rodDamage>0)

@@ -17,6 +17,7 @@
 #include "../mapping/CMap.h"
 #include "../networkPacks/PacksForServer.h"
 #include "../networkPacks/SourceCampaignReply.h"
+#include "../networkPacks/HenchmanPacks.h"
 #include "../networkPacks/SourceCampaignDeployTroops.h"
 #include "../networkPacks/SaveLocalState.h"
 #include "../era/EraConfluxPolicies.h"
@@ -62,6 +63,17 @@ int CCallback::sourceCampaignReply(QueryID queryID,int selection,const std::stri
  ASSERT_IF_CALLED_WITH_PLAYER
  if(queryID.getNum()<0||text.size()>2048||text.find('\0')!=std::string::npos)return -1;
  SourceCampaignReply pack;pack.qid=queryID;pack.reply=selection;pack.player=*getPlayerID();pack.text=text;pack.submit=submit;
+ return sendRequest(pack);
+}
+
+int CCallback::henchmanAction(const CGHeroInstance * hero,int operation,int slot)
+{
+ ASSERT_IF_CALLED_WITH_PLAYER
+ if(!hero||hero->getOwner()!=*getPlayerID())return -1;
+ HenchmanAction pack;pack.player=*getPlayerID();pack.hero=hero->id;pack.operation=operation;
+ pack.slot=slot;pack.revision=hero->henchman.revision;
+ if(operation==HenchmanAction::SELECT&&slot>=0&&slot<7&&hero->hasStackAtSlot(SlotID(slot)))
+  pack.expectedCreature=hero->getStack(SlotID(slot)).getId();
  return sendRequest(pack);
 }
 

@@ -318,6 +318,7 @@ public:
 	PlayerColor getCasterColor() const override;
 
 	bool isHeroCast() const override { return mode == Mode::HERO; }
+	bool isActiveCreatureCast() const { return mode == Mode::CREATURE_ACTIVE; }
 	bool isEraArtifactMassHypnotize() const override { return eraArtifactMassHypnotize; }
 	bool isSmart() const override;
 	bool isMassive() const override;

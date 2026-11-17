@@ -162,7 +162,8 @@
 			"properties" : {
 				"stackExperience" : { "type" : "boolean" },
 				"stackArtifact" : { "type" : "boolean" },
-				"commanders" : { "type" : "boolean" }
+				"commanders" : { "type" : "boolean" },
+				"henchmen" : { "type" : "boolean" }
 			}
 		},
 		"pathfinder": {

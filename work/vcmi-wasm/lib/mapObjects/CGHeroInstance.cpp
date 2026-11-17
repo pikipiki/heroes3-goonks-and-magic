@@ -1468,6 +1468,8 @@ void CGHeroInstance::levelUp()
 
 void CGHeroInstance::attachCommanderToArmy()
 {
+	if(henchman.stack)
+		henchman.stack->setArmy(this);
 	if (commander)
 		commander->setArmy(this);
 }
@@ -1714,6 +1716,35 @@ void CGHeroInstance::serializeJsonOptions(JsonSerializeFormat & handler)
 	}
 
 	CArmedInstance::serializeJsonOptions(handler);
+
+	// Campaign crossover uses JSON instead of the binary hero serializer.
+	{
+		auto companion=handler.enterStruct("henchman");
+		std::string type;
+		int64_t stackExperience=0;
+		if(handler.saving&&henchman.stack)
+		{
+			type=henchman.stack->getType()->getJsonKey();
+			stackExperience=henchman.stack->getAverageExperience();
+		}
+		handler.serializeString("type",type);
+		handler.serializeInt("experience",henchman.experience,0);
+		handler.serializeInt("stackExperience",stackExperience,0);
+		handler.serializeBool("alive",henchman.alive,false);
+		handler.serializeBool("declined",henchman.declined,false);
+		handler.serializeInt("banner",henchman.banner,-1);
+		if(!handler.saving)
+		{
+			henchman.stack.reset();
+			if(!type.empty())
+			{
+				const CreatureID creature(CreatureID::decode(type));
+				henchman.stack=std::make_unique<CStackInstance>(cb,creature,1);
+				henchman.stack->setArmy(this);
+				henchman.stack->restoreExperience(stackExperience);
+			}
+		}
+	}
 
 	{
 		ui32 rawPatrolRadius = NO_PATROLLING;

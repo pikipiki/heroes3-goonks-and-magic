@@ -76,6 +76,7 @@ const HeroTypeID HeroTypeID::CAMP_RANDOM(-1);
 const ObjectInstanceID ObjectInstanceID::NONE(-1);
 
 const SlotID SlotID::COMMANDER_SLOT_PLACEHOLDER(-2);
+const SlotID SlotID::HENCHMAN_SLOT_PLACEHOLDER(-6);
 const SlotID SlotID::SUMMONED_SLOT_PLACEHOLDER(-3);
 const SlotID SlotID::WAR_MACHINES_SLOT(-4);
 const SlotID SlotID::ARROW_TOWERS_SLOT(-5);
