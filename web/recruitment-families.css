@@ -73,7 +73,7 @@
 #mobile-app .hall-actions{align-self:end;height:48px}
 #mobile-app .hall-form canvas{height:64px}
 
-/* Each evolution family fills the roster viewport; scroll to the next tier. */
+/* Row height follows the usable roster viewport: one family, or two in tall portrait. */
 #mobile-app .hall-families{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max(var(--hall-row-height,220px),210px);align-content:start;box-sizing:border-box}
 #mobile-app .hall-family{min-height:0;display:grid;grid-template-rows:20px minmax(0,1fr)}
 #mobile-app .hall-forms{min-height:0;align-items:stretch}
