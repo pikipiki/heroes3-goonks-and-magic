@@ -93,6 +93,7 @@
 
 #include "../lib/spells/CSpellHandler.h"
 #include "era/SourceCampaignProcessor.h"
+#include "era/EraHenchmanPrompts.h"
 
 #include <vstd/RNG.h>
 #include <vstd/CLoggerBase.h>
@@ -3628,7 +3629,7 @@ bool CGameHandler::isAllowedExchange(ObjectInstanceID id1, ObjectInstanceID id2)
 	return false;
 }
 
-void CGameHandler::objectVisited(const CGObjectInstance * obj, const CGHeroInstance * h)
+void CGameHandler::objectVisited(const CGObjectInstance * obj, const CGHeroInstance * h, bool actualEntry)
 {
 	using events::ObjectVisitStarted;
 
@@ -3672,7 +3673,16 @@ void CGameHandler::objectVisited(const CGObjectInstance * obj, const CGHeroInsta
 		// A hero defending inside a town is a town visit. Use the same object
 		// as the native visit query so coordinate-based OB scripts run as well.
 		if(!sourceCampaigns->visit(visitedObject,h))
-			obj->onHeroVisit(*this, h);
+        {
+            const auto objectID=obj->id;const auto heroID=h->id;
+            auto nativeVisit=[this,objectID,heroID]
+            {
+                const auto * object=gameState().getObjInstance(objectID);
+                const auto * hero=gameState().getHero(heroID);
+                if(object&&hero)object->onHeroVisit(*this,hero);
+            };
+            if(!actualEntry||!era_compat::henchmen::offerTownResurrection(*this,visitedObject,h,nativeVisit))nativeVisit();
+        }
 	};
 
 	ObjectVisitStarted::defaultExecute(serverEventBus.get(), startVisit, h->tempOwner, h->id, obj->id);

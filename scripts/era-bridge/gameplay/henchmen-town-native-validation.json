@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Native entry into an owned town: human paid resurrection and refusal; AI revival packet trace without payment; entry-only prompt lifecycle and native regressions",
+  "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+  "parentEngineSha256": "5407ec7a0b4e18ce84927443b9a26117d15dcea7676f31dccd7fe22c5aac578b",
+  "source": {
+    "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+    "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+    "lines": "204-223,584-607"
+  },
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "3c77c74fee8beaaf6ce4a18206f03a4bab441b368faeb7c788eb3af431c4f43a",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "99e0a428e36390833ba5b4716fd62c41d92ba5b92f5bbb37e9ee40f752d950fc",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "bf7e696cfaa8738d0d5e2c18d08605582e8cd1be371398f33e73f4af67de2be2",
+    "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "87252f0fb355632bef6901bcbe02b4b35c3d2232c222f35c8465f907fd4bc08d",
+    "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "5968fdd394b0cfcc068a0569a47c97e9e642d56794af3b7cbe5025737ebc8aa0",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "8834ae5dd6d6c7f792d45ec3a422c4b5ee0857ebcc39d8d80ae04693827961bf",
+    "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
+    "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "299d3d4cdcceeaa3660466731a9ebba7a218cb43a6e6ec839387a41c9784e35c"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "entryBoundaryBuildTargets": 25,
+    "finalBuildTargets": 6,
+    "buildLogSha256": "2eb9a11768431a6e7b05b9c7d2dce41dcf3e250cd8789b1a420fdfff0513754e",
+    "sourceBindingsSha256": "3de8eff11397e925ca938ebf4b12b43e030c2f5ea045f8e8aecf93c153e2c316",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+      "scenarios": [
+        "touch-town-resurrection-paid-preserves-companion-state",
+        "paid-town-resurrection-survives-native-save-reload",
+        "touch-town-resurrection-declined-preserves-companion-state",
+        "touch-town-resurrection-poor-preserves-companion-state",
+        "disabled-module-does-not-offer-town-resurrection",
+        "living-companion-does-not-offer-town-resurrection"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+      "scenarios": [
+        "desktop-mouse-town-resurrection-paid-preserves-companion-state",
+        "paid-town-resurrection-survives-native-save-reload"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+      "scenarios": [
+        "AI-owned-town-visit-applies-companion-revival-packet-without-resource-payment-before-ordinary-combat-selection"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+      "scenarios": [
+        "enemy-town-starts-siege-without-resurrecting-or-charging-for-the-dead-companion"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+      "scenarios": [
+        "selected-from-army-and-mobile-layout",
+        "companion-battle-inspection-keeps-its-native-command",
+        "independent-battle-actor-and-earned-experience",
+        "replacement-preserves-companion-experience",
+        "native-save-reload",
+        "dead-companion-resurrected-in-owned-town",
+        "ai-selects-shooter-as-independent-companion",
+        "santa-companion-guardian-count-multiplied-by-companion-level",
+        "disabled-profile-baseline"
+      ],
+      "errors": []
+    }
+  ],
+  "aiProof": {
+    "kind": "authoritative-server-packet-trace",
+    "traceSha256": "dba81f644eb641f796d57979427efbc3019e5ba3ecc7ed72a4c6488a1a608c72",
+    "observed": "HenchmanChange between the AI owned-town visit and HeroVisitCastle; no SetResources in that interval; later ordinary AI combat selection remains active",
+    "limitation": "Does not directly inspect the AI companion alive field outside combat"
+  },
+  "negativeControl": {
+    "engineSha256": "5407ec7a0b4e18ce84927443b9a26117d15dcea7676f31dccd7fe22c5aac578b",
+    "expectedFailure": "AI owned-town visit lacks HenchmanChange before HeroVisitCastle",
+    "logSha256": "1add61f782cc9a27a78cd1e529816d423871de62c7faa0114016dffcb79fa8cc"
+  },
+  "remaining": [
+    "Native visit resumed after a source campaign script can bypass this entry wrapper",
+    "Compare source initial scenario town-visit lifecycle before claiming full parity",
+    "Classic right-click smart companion dialog",
+    "Campaign restart and reserved hero lifecycle",
+    "Shared ERA global namespace integration and complete profile admission"
+  ]
+}

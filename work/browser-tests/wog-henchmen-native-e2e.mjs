@@ -19,12 +19,15 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
 with zipfile.ZipFile('maps/000-Goonk.vmap') as archive: entries={n:archive.read(n) for n in archive.namelist()}
 objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
+if opts['aiTown']:
+ town=next(o for o in objects if o['instanceName']=='enemyTown')
+ town['options']['buildings']={'allOf':['core:villageHall','core:fort','core:mageGuild1'],'noneOf':['core:tavern']}
 for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'army':[{'type':'core:peasant','amount':100},{'type':'core:archangel','amount':5}],'artifacts':{'spellbook':'core:spellBook'}})
@@ -32,7 +35,9 @@ for o in objects:
   if opts['bless']:o['options'].update({'spellBook':['preset','core:bless'],'secondarySkills':{}})
   if opts['bannerInventory']: o['options']['artifacts']['backpack']=['wake-of-gods.stackartifacts:warlordsBannerHealth']
   if opts['inTown']: o['y']=9
-  if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':0,'alive':False,'declined':False,'banner':-1}
+  if opts['aiTown']: o.update({'x':29,'y':32})
+  if opts['foreignTown']: o.update({'x':28,'y':32})
+  if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':opts['stackExperience'],'alive':False,'declined':False,'banner':opts['henchmanBanner']}
   if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':-1}
   if opts['henchmanType']: o['options']['henchman']={'type':opts['henchmanType'],'experience':0,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':opts['henchmanBanner']}
   if opts['blockFixture']: o['options']['artifacts']={'misc1':'core:shacklesOfWar'}
@@ -49,6 +54,9 @@ if opts['enemyHero']:
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
  enemy.update({'instanceName':'enemyHenchmanHero','x':10})
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:peasant','amount':5},{'type':'core:archer','amount':1}]})
+ if opts['aiTown']:
+  enemy.update({'x':29,'y':30})
+  enemy['options'].update({'patrolRadius':2,'spellBook':[],'henchman':{'type':'core:peasant','experience':100,'stackExperience':2500,'alive':False,'declined':False,'banner':8}})
  if opts['blockFixture']:
   enemy['options'].pop('henchman',None)
   enemy['options'].update({'army':[{'type':'core:goblin','amount':1}],'primarySkills':{'attack':0,'defence':0,'spellpower':0,'knowledge':0},'secondarySkills':{},'artifacts':{}})
@@ -59,7 +67,8 @@ else:
   import copy
   guard=copy.deepcopy(objects[-1]);guard.update({'instanceName':'henchmenSecondGuard','x':12});objects.append(guard)
 entries['objects.json']=json.dumps(objects).encode()
-header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';entries['header.json']=json.dumps(header).encode()
+header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation'
+entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Henchmen native validation';entries[name]=json.dumps(text).encode()
 spec=importlib.util.spec_from_file_location('normalize','scripts/normalize-map-instances.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod);entries=mod.normalize(entries)
@@ -67,19 +76,19 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown})]);
 }
 
-async function boot({save,enabled=true,originURL=origin,settings,difficulty,...options}={}){
+async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,...options}={}){
  const classic=process.env.CASES==='classic';
- const desktop=process.env.CASES==='prompt-desktop';
+ const desktop=['prompt-desktop','town-resurrection-desktop'].includes(process.env.CASES);
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop,bypassCSP:true});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
- await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock})=>{
+ await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -88,6 +97,10 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
+    if(poor){
+     const name='config/henchmen-resurrection-private.json';manifest.creatures=[...(manifest.creatures||[]),name];
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({'core:peasant':{cost:{gold:10000000}}}));
+    }
     if(blockFixture){
      const name='config/henchmen-block-private.json';manifest.creatures=[...(manifest.creatures||[]),name];
      const abilities={privateNoMorale:{type:'NO_MORALE'},privateNoLuck:{type:'LUCK',val:0,valueType:'INDEPENDENT_MIN'}};
@@ -113,7 +126,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock});
+ },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -144,7 +157,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
 
 async function sheet(){
  if(process.env.CASES==='classic')await command(55);
- else await page.locator('[data-ui=heroes]').tap();
+ else await page.locator('[data-ui=heroes]')[process.env.CASES==='town-resurrection-desktop'?'click':'tap']();
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
 }
@@ -185,6 +198,11 @@ async function resolve(){
 }
 
 try{
+ if(['town-resurrection','town-resurrection-desktop','town-resurrection-ai','town-resurrection-foreign'].includes(process.env.CASES)){
+  const {runTownResurrection}=await import('./wog-henchmen-town-resurrection-cases.mjs');
+  await runTownResurrection({boot,sheet,state,command,wait,approachEnemy,page:()=>page,report,output,
+   desktop:process.env.CASES==='town-resurrection-desktop',save:()=>readCompletedNativeSave(page,command,{tag:936})});
+ }
  if(['prompt','prompt-desktop'].includes(process.env.CASES)){
   const {runHenchmanPrompts}=await import('./wog-henchmen-prompt-cases.mjs');
   await runHenchmanPrompts({boot,approachEnemy,state,command,wait,resolve,page:()=>page,report,output,

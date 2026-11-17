@@ -1302,7 +1302,10 @@ void publishMobileState(){
      n["dialogKind"].String()="henchman-offer";
     else if(text==LIBRARY->generaltexth->translate("tum-era.henchmen.chooseBeforeBattle"))
      n["dialogKind"].String()="henchman-choice";
-    if(n["dialogKind"].String()=="henchman-offer"||n["dialogKind"].String()=="henchman-choice")
+    else if(text==LIBRARY->generaltexth->translate("tum-era.henchmen.resurrection.offer"))
+     n["dialogKind"].String()="henchman-resurrection";
+    if(n["dialogKind"].String()=="henchman-offer"||n["dialogKind"].String()=="henchman-choice"
+        ||n["dialogKind"].String()=="henchman-resurrection")
      presentation["queryId"].Integer()=info->ID.getNum();
    }
    if(p&&p->cb&&mobileVisitedID!=ObjectInstanceID::NONE)

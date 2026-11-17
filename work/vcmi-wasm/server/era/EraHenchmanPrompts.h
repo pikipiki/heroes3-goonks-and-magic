@@ -7,6 +7,61 @@
 
 namespace era_compat::henchmen
 {
+// The source OB(TOWN) handler runs before the ordinary town visit. AI revival
+// is free; human acceptance pays the same level-based cost as the hero dialog.
+inline bool offerTownResurrection(CGameHandler & gh,const CGObjectInstance * object,
+    const CGHeroInstance * hero,std::function<void()> resume)
+{
+    const auto * town=dynamic_cast<const CGTownInstance *>(object);
+    if(!town||!hero||!enabled(gh.gameInfo())||hero->battle
+        ||town->getOwner()!=hero->getOwner()||!hero->henchman.stack||hero->henchman.alive)return false;
+    const auto * player=gh.gameInfo().getPlayerState(hero->getOwner(),false);
+    if(!player)return false;
+    if(!player->isHuman())
+    {
+        auto update=snapshot(*hero);update.alive=true;gh.sendAndApply(update);
+        return false;
+    }
+    const auto id=hero->id;const auto townID=town->id;const auto owner=hero->getOwner();
+    const auto revision=hero->henchman.revision;
+    const auto cost=era_bridge::henchmen::resurrectionCost(
+        hero->henchman.stack->getType()->getRecruitCost(GameResID::GOLD),progress(*hero,gh.gameState().day).level);
+    if(cost<0)return false;
+    auto query=std::make_shared<CGenericQuery>(&gh,owner,
+        [&gh,id,townID,owner,revision,cost,resume=std::move(resume)](std::optional<int32_t> reply)
+        {
+            const auto * current=gh.gameInfo().getHero(id);
+            const auto * town=gh.gameInfo().getTown(townID);
+            if(reply.value_or(0)==1&&current&&town&&town->getOwner()==owner
+                &&current->getOwner()==owner&&!current->battle&&current->henchman.stack
+                &&!current->henchman.alive&&current->henchman.revision==revision)
+            {
+                if(gh.gameInfo().getPlayerState(owner)->resources[GameResID::GOLD]>=cost)
+                {
+                    auto update=snapshot(*current);update.alive=true;
+                    gh.giveResource(owner,GameResID::GOLD,-cost);gh.sendAndApply(update);
+                }
+                else
+                {
+                    auto explanation=std::make_shared<CGenericQuery>(&gh,owner,
+                        [resume](std::optional<int32_t>){resume();});
+                    gh.queries->addQuery(explanation);
+                    BlockingDialog message(false,false);message.player=owner;message.queryID=explanation->queryID;
+                    message.text.appendTextID("tum-era.henchmen.resurrection.insufficientGold");
+                    gh.sendAndApply(message);
+                    return;
+                }
+            }
+            resume();
+        });
+    gh.queries->addQuery(query);
+    BlockingDialog packet(true,false);packet.player=owner;packet.queryID=query->queryID;
+    packet.text.appendTextID("tum-era.henchmen.resurrection.offer");
+    packet.components.emplace_back(ComponentType::CREATURE,hero->henchman.stack->getId(),1);
+    packet.components.emplace_back(ComponentType::RESOURCE,GameResID(GameResID::GOLD),cost);
+    gh.sendAndApply(packet);return true;
+}
+
 inline void chooseBeforeBattle(CGameHandler & gh,const CGHeroInstance & hero,std::function<void()> resume)
 {
     std::vector<std::pair<int,CreatureID>> slots;

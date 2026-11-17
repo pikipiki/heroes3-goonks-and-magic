@@ -258,10 +258,10 @@ void NewTurnProcessor::finishPlayerTurnStarted(PlayerColor which)
 	{
 		//garrison hero first - consistent with original H3 Mana Vortex and Battle Scholar Academy levelup windows order
 		if (t->getGarrisonHero() != nullptr)
-			gameHandler->objectVisited(t, t->getGarrisonHero());
+			gameHandler->objectVisited(t, t->getGarrisonHero(),false);
 
 		if (t->getVisitingHero() != nullptr)
-			gameHandler->objectVisited(t, t->getVisitingHero());
+			gameHandler->objectVisited(t, t->getVisitingHero(),false);
 	}
     CGMysteriousCave::onPlayerTurnStart(*gameHandler,gameHandler->gameInfo(),which);
 }

@@ -256,7 +256,7 @@ public:
 	void addStatistics(StatisticDataSet &stat) const;
 
 	bool complain(const std::string &problem); //sends message to all clients, prints on the logs and return true
-	void objectVisited( const CGObjectInstance * obj, const CGHeroInstance * h );
+	void objectVisited( const CGObjectInstance * obj, const CGHeroInstance * h, bool actualEntry = true );
 	void objectVisitEnded(const ObjectInstanceID & heroObjectID, PlayerColor player);
 	bool dig(const CGHeroInstance *h);
 	void moveArmy(const CArmedInstance *src, const CArmedInstance *dst, bool allowMerging);

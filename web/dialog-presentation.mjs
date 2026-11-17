@@ -16,7 +16,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
-  if(['source-campaign','high-score','henchman-offer','henchman-choice'].includes(state?.dialogKind)&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
+  if(['source-campaign','high-score','henchman-offer','henchman-choice','henchman-resurrection'].includes(state?.dialogKind)&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
   if(state?.dialogPresentation?.scriptDialog&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){
    const model=state.dialogPresentation.scriptDialog;
    const selection=button.hasAttribute('data-dialog-cancel')?(model.kind==='extended'?-1:0):campaignDraft.selection;
@@ -31,7 +31,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   else if(button.dataset.dialogChoice!==undefined){const choice=state.dialogPresentation.choices[Number(button.dataset.dialogChoice)];const r=choice.rect;pointer({x:Math.round(r.x+r.w/2),y:Math.round(r.y+r.h/2)},1);}
  });
  function update(next,settled=false){
-  if(['henchman-offer','henchman-choice'].includes(state?.dialogKind)&&replyingTo!==null&&
+  if(['henchman-offer','henchman-choice','henchman-resurrection'].includes(state?.dialogKind)&&replyingTo!==null&&
    (next.mode==='map'||(next.mode==='dialog'&&next.dialogPresentation?.queryId===replyingTo))){holdCampaign();return;}
   if(campaignExit&&(next.mode!=='map'||next.campaignPending)){clearTimeout(campaignExit);campaignExit=null;}
   // The final native reward window follows the last script-state packet. Wait
@@ -54,7 +54,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   const previous=panel.querySelector('[data-dialog-choice]:focus')?.dataset.dialogChoice;
   panel.replaceChildren();panel.dataset.kind=next.dialogKind||'message';panel.dataset.tree=String(treeOpen&&!!data.commanderTree);panel.dataset.selectable=String((data.choices||[]).some(c=>c.selectable||c.inspectable));panel.dataset.choices=String((data.choices||[]).length);panel.dataset.detailed=String((data.choices||[]).some(c=>c.selectable&&c.label?.length>35));
   const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map(line=>String(line).match(/^\{([^{}]+)\}\s*\n/)).find(Boolean)?.[1]:null;
-  title.textContent=['henchman-offer','henchman-choice'].includes(next.dialogKind)?(getLanguage()==='fr'?'Compagnon':'Henchman'):heading||data.title;header.append(title);
+  title.textContent=['henchman-offer','henchman-choice','henchman-resurrection'].includes(next.dialogKind)?(getLanguage()==='fr'?'Compagnon':'Henchman'):heading||data.title;header.append(title);
   if(data.commanderTree){const toggle=document.createElement('button');toggle.type='button';toggle.dataset.commanderTree='';toggle.textContent=getLanguage()==='fr'?(treeOpen?'Compétences et équipement':'Arbre de spécialisation'):(treeOpen?'Skills and equipment':'Specialization tree');toggle.setAttribute('aria-pressed',String(treeOpen));header.append(toggle);}
   const content=document.createElement('div');content.className='dialog-copy';
   if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image.setAttribute('aria-label',data.visitedObject);content.append(image);}
@@ -89,6 +89,9 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   if(next.dialogKind==='henchman-offer'){
    confirm.textContent=getLanguage()==='fr'?'Choisir un compagnon':'Choose a henchman';
    const cancel=panel.querySelector('[data-dialog-cancel]');if(cancel)cancel.textContent=getLanguage()==='fr'?'Combattre sans compagnon':'Fight without a henchman';
+  }else if(next.dialogKind==='henchman-resurrection'){
+   confirm.textContent=getLanguage()==='fr'?'Ressusciter le compagnon':'Resurrect henchman';
+   const cancel=panel.querySelector('[data-dialog-cancel]');if(cancel)cancel.textContent=getLanguage()==='fr'?'Entrer sans ressusciter':'Enter without resurrecting';
   }else if(next.dialogKind==='henchman-choice'){
    confirm.textContent=getLanguage()==='fr'?'Choisir cette créature':'Choose this creature';
    const cancel=panel.querySelector('[data-dialog-cancel]');if(cancel)cancel.textContent=getLanguage()==='fr'?'Passer ce choix':'Skip this choice';

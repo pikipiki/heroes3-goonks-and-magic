@@ -209,7 +209,19 @@ d'une seule créature, l'absence de proposition pour la dernière créature de
 l'armée et le témoin désactivé. Les contrôles précédents du noyau passent sur
 la même compilation. Voir
 `scripts/era-bridge/gameplay/henchmen-prompt-native-validation.json`.
-La résurrection proposée automatiquement à l'entrée d'une ville reste à porter.
+L'entrée réelle dans une ville possédée propose maintenant de ressusciter le
+compagnon. Le paiement, le refus, le manque d'or et la sauvegarde passent au
+toucher et à la souris. La visite interne de début de tour conserve les
+récompenses des bâtiments sans ouvrir cette question avant l'affichage du tour.
+Une ville ennemie déclenche le siège sans résurrection ni paiement. Pour l'IA,
+la trace native vérifie la mise à jour pendant sa visite sans débit de
+ressources, avant le choix automatique d'un nouveau compagnon de combat ;
+elle ne constitue pas une lecture directe de son compagnon hors combat.
+L'ancien moteur échoue sur l'absence de cette mise à jour. Les neuf contrôles
+du noyau passent sur le même moteur. Voir
+`scripts/era-bridge/gameplay/henchmen-town-native-validation.json`.
+Les visites reprises après un script de campagne et la fidélité des visites
+initiales d'un scénario restent à rapprocher de la source ERA.
 
 ## Raccordements et validations restant nécessaires
 
