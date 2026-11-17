@@ -7,6 +7,7 @@ const rules = [
   ['Two buildings per day', 'Deux constructions par jour', 'Each town can construct up to two buildings a day.', 'Chaque ville peut construire jusqu’à deux bâtiments par jour.'],
   ['Fourth creature upgrades', 'Quatrièmes évolutions', 'Enable the fourth level-seven variant in the nine original towns.', 'Activer la quatrième variante de niveau sept dans les neuf villes d’origine.'],
   ['Eighth creature families', 'Huitièmes familles de créatures', 'Enable the additional creature tier in the nine original towns.', 'Activer le rang de créatures supplémentaire dans les neuf villes d’origine.'],
+  ['Mithril enhancements', 'Améliorations au mithril', 'Spend mithril to enhance sites and towns.', 'Dépenser du mithril pour améliorer les sites et les villes.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {
@@ -51,7 +52,7 @@ export function createWogOptions({menu, command, onChange}) {
       else if (pending && state.wogOptions?.[pending.index] === pending.value) finish();
     },
     update(state, busy = false) {
-      const visible = state.mode === 'lobby' && state.wogOptionsEditable && state.wogOptions?.length === rules.length;
+      const visible = state.mode === 'lobby' && state.wogOptionsEditable && state.wogOptions?.length >= 6;
       if (!visible) { if (form?.isConnected && !form.hidden) form.hidden = true; return; }
       if (!form?.isConnected) mount();
       if (form.hidden) form.hidden = false;
@@ -69,7 +70,9 @@ export function createWogOptions({menu, command, onChange}) {
         });
       }
       fields.forEach((field, index) => {
-        const disabled = busy || !!pending || !state.lobbyReady;
+        const supported = index < state.wogOptions.length;
+        if (field.hidden === supported) field.hidden = !supported;
+        const disabled = !supported || busy || !!pending || !state.lobbyReady;
         if (field.disabled !== disabled) field.disabled = disabled;
         for (const input of field.querySelectorAll('input')) {
           const checked = Number(input.value) === (pending?.index === index ? pending.value : state.wogOptions[index]);

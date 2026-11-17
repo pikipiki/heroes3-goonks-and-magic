@@ -12,7 +12,8 @@ export async function runOptions169({boot, sheet, combat, resolve, state, cmd, w
     const options = {replacementTargets: true, townFaction: 'castle', wogChoices: choices, battle: true, enemy: 'core:peasant', enemyAmount: 20, spells: ['core:magicArrow'],
       buildings: [...eighthTownPrerequisites().castle, 'core:dwellingLvl7', 'core:dwellingUpLvl7', 'third-upgrades:dwellingUp2Lvl7', 'tum-era:dwellingUp3Lvl7', 'tum-era:dwellingLvl8', 'tum-era:dwellingUpLvl8']};
     await boot(options);
-    assert.deepEqual(report.lastLobby.wogOptions, choices);
+    assert.deepEqual(report.lastLobby.wogOptions.slice(0,6), choices);
+    assert(report.lastLobby.wogOptions.slice(6).every(choice=>choice===-1), 'Additional options keep their inherited defaults');
     let hero = await sheet();
     assert.equal(Number.isInteger(hero.heroWindow.commanderIcon), enabled, 'Commander is created only when this game enables it');
     await page().locator('[data-hero-close]').tap(); await wait(() => goonkMobileState.mode === 'map');

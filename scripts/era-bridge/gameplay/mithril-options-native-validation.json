@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Native per-game mithril option, versioned seven-choice saves, actual six-choice old saves and touch/mouse UI; complete source packs remain unadmitted",
+  "engineSha256": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+  "parentEngineSha256": "cc8d5983a0708e47721684c72768e59f38252ddbd0121653433973086fc02bf5",
+  "sourceOption": 36,
+  "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "9ed804f67f53d7ad20510c7c440a268dd3ae4e2d628c27e93f3320d9e15e56d7",
+    "scripts/era-bridge/gameplay/mithril.json": "11fbba8fcce01bb2d86cc4b933d60a37e8ab28fa1cc72a7f40a75f15a1da6e75",
+    "tests/era-wog-options-native.test.mjs": "1ae28580b56670d1c7de6671efdde54cf3e7911eb7e147b1550a8965abdef2bc",
+    "tests/native/EraWogOptions.test.cpp": "dcc59ff67f9eed497dcf267ac43ac7d6c892cab2e5dd3116e1f04e0be296a4eb",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "6c510937a5e7cb7a76ae197bf8b192ba9dcef9bce6e811a2f72ee623b42e67c3",
+    "web/wog-options.mjs": "67d4e6b0a689e30dd95d62f73a450e34dc5fdd5da66a136e1f459b230ad8e4a7",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "942342aac4bb9b4e2331aad1bb0c35bd77b8b0f502172604135c1ff6c32af9c7",
+    "work/browser-tests/wog-mithril-options-cases.mjs": "092181e1cc10aa1cc6d78f962a104b9527a22626d545cc84fcc80ee1639f0cee",
+    "work/browser-tests/wog-options-layout-e2e.mjs": "23e004a700c866149b8a7466cf34c3ab545730a0889f2f034d7f84e01565380e",
+    "work/browser-tests/wog-options169-cases.mjs": "b7e32ae7df6a2dbe26e4701b1685ef81ca15bdf72ed6260d48a4745c310e2d7e",
+    "work/browser-tests/wog-options169-native-e2e.mjs": "8a0214e45833f713a75fbbb089436916f0e64886925d7138911c445760f6f210",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "5be8c95dd2f5952c397726a5d9b47c674ceaaeaef302b47330b402b2b1d74a65",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "2bcf1542ab8a847cf42c833b9a5b801faff5fe1572e7580ea45d6875aac33fc5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "89a9022a5ddba68480324007e5cc3be89a935b3370c6e13e923dea476803fb9f"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 108,
+    "logSha256": "e443072c31064ba0a9d7f15d3c481efbcfaf9cab8189fe9511ceb01e60051a7c",
+    "sourceBindingsSha256": "4799834408af6875d09e8536b31cb0805d7a1e349f12af7699ba27e8dc61ecf3",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "reports": {
+    "touch": {
+      "sha256": "025c2c488aef078622a907703af8fbf947a6d807dda5543c2c7d222fce6d617e",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+      "scenarios": [
+        {
+          "globalModule": false,
+          "choice": -1,
+          "active": false,
+          "purchase": false,
+          "saveReload": true,
+          "input": "touch"
+        },
+        {
+          "globalModule": true,
+          "choice": -1,
+          "active": true,
+          "purchase": true,
+          "saveReload": true,
+          "input": "touch"
+        },
+        {
+          "globalModule": false,
+          "choice": 1,
+          "active": true,
+          "purchase": true,
+          "saveReload": true,
+          "input": "touch"
+        },
+        {
+          "globalModule": true,
+          "choice": 0,
+          "active": false,
+          "purchase": false,
+          "saveReload": true,
+          "input": "touch"
+        },
+        {
+          "globalModule": false,
+          "choice": 0,
+          "active": false,
+          "purchase": false,
+          "saveReload": true,
+          "input": "touch"
+        },
+        {
+          "globalModule": true,
+          "choice": 1,
+          "active": true,
+          "purchase": true,
+          "saveReload": true,
+          "input": "touch"
+        }
+      ],
+      "errors": []
+    },
+    "mouse": {
+      "sha256": "48007dc9f6100cceb7b7994a10305a77c63c3f6d656ce5d3d866ac8b46f54a7b",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+      "scenarios": [
+        {
+          "globalModule": false,
+          "choice": 1,
+          "active": true,
+          "purchase": true,
+          "saveReload": true,
+          "input": "mouse"
+        },
+        {
+          "globalModule": true,
+          "choice": 0,
+          "active": false,
+          "purchase": false,
+          "saveReload": true,
+          "input": "mouse"
+        }
+      ],
+      "errors": []
+    },
+    "oldProducer": {
+      "sha256": "e4e64e67825321dd87118bfbf8b709f9ce57ab5aaa5a46c321e62824295f96e2",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "cc8d5983a0708e47721684c72768e59f38252ddbd0121653433973086fc02bf5",
+      "scenarios": [
+        "original-six-options-save-false",
+        "original-six-options-save-true"
+      ],
+      "errors": []
+    },
+    "oldConsumer": {
+      "sha256": "94f9ffebac63bee7b5a81a9f9146a806adb4f8c1ce7021b1ba9a34bfe8623378",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+      "scenarios": [
+        "original-six-options-load-frozen-false",
+        "original-six-options-load-frozen-true"
+      ],
+      "errors": []
+    },
+    "existingSixOptions": {
+      "passed": true,
+      "sha256": "f18e397bfd9dec54230ae818d6e18399a3234b758d087ebe63c1ffa9aa8ca670",
+      "allOff": true,
+      "allOn": true,
+      "checks": [
+        "commander creation",
+        "troop battle XP",
+        "map replacements",
+        "two town constructions",
+        "fourth upgrades",
+        "eighth families",
+        "recruitment identities and stocks",
+        "native save/reload"
+      ],
+      "appendedChoice": -1
+    }
+  },
+  "legacySaves": {
+    "old-six-options-off.vsgm1": "73e4ae03b233922f52f44cf13a0bc1d21fb6352fb7ee268a66459ede4e25f9c6",
+    "old-six-options-on.vsgm1": "8debe47964c42bd0770e41469d8432ec9a347d7ec370ae0def3c53aac251ceaf"
+  },
+  "layout": {
+    "passed": true,
+    "reportSha256": "02b79c14789687abeb242fcbd08b91bc800c8516f01a6d63cc6f8c81f0d5063d",
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ]
+    ],
+    "legacySixControls": true,
+    "seventhRuleReachable": true,
+    "realTouchScroll": true,
+    "minimumTouchTarget": 44,
+    "stableDomFocusScroll": true
+  },
+  "unitChecks": {
+    "passed": 13,
+    "failed": 0,
+    "reportSha256": "788641ab3f9bbe9f163218a7c0de92bdbd6b90a0717071b61b0f8c63c8a52e81",
+    "includes": [
+      "production serializer old and new byte boundaries with following sentinel",
+      "pre-WoG defaults",
+      "corrupt choice rejection",
+      "seven choices with inheritance",
+      "all nine town roster combinations",
+      "mithril rules and PRNG",
+      "profile and henchmen contracts"
+    ]
+  },
+  "remaining": [
+    "Full WoG option catalogue and profile activation",
+    "General source pack UN:P writes and their original initialization lifecycle",
+    "Publish clean release engine after complete systems are validated; private candidate is not the public runtime"
+  ]
+}

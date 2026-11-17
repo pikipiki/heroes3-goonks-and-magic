@@ -32,7 +32,10 @@ try {
     sendState();
   });
   await page.locator('.wog-options summary').tap();
-  assert.equal(await page.locator('.wog-options fieldset').count(), 6);
+  assert.equal(await page.locator('.wog-options fieldset:visible').count(), 6, 'Published six-option engines retain their controls');
+  assert(await page.locator('input[data-wog-option="6"]').first().isDisabled());
+  await page.evaluate(() => { testState.wogOptions.push(-1); sendState(); });
+  assert.equal(await page.locator('.wog-options fieldset:visible').count(), 7);
   const touch = await page.context().newCDPSession(page);
   for (const [width, height] of [[320,568], [568,320], [390,844], [844,390], [768,1024], [1024,768]]) {
     await page.setViewportSize({width, height});
@@ -54,7 +57,7 @@ try {
     await page.waitForTimeout(150);
     const touchScroll = await scroller.evaluate(node => ({top: node.scrollTop, range: node.scrollHeight - node.clientHeight}));
     assert(touchScroll.range <= 0 || touchScroll.top > 20, 'Real touch swipe scrolls the rules: ' + JSON.stringify({width, height, scrollBox, touchScroll}));
-    const target = page.locator('input[data-wog-option="5"][value="0"]').locator('..');
+    const target = page.locator('input[data-wog-option="6"][value="0"]').locator('..');
     await target.scrollIntoViewIfNeeded();
     const box = await target.boundingBox();
     assert(box.width >= 44 && box.height >= 44, 'Touch targets remain at least44px');
@@ -86,5 +89,5 @@ try {
   assert(await page.locator('.wog-options').isHidden(), 'Saved games cannot be reconfigured');
   assert.deepEqual(errors, []);
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({passed: true, ...report, errors}, null, 2));
-  console.log('PASS options UI: six viewports, stable DOM/focus/scroll and native acknowledgement');
+  console.log('PASS options UI: legacy six-option fallback, seventh rule, six viewports, stable DOM/focus/scroll and native acknowledgement');
 } finally { await browser.close(); }

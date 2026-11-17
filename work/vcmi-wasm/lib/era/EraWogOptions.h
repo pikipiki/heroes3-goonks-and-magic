@@ -10,9 +10,10 @@ namespace era_bridge
 enum class WogOption : std::size_t
 {
     Commanders=0, StackExperience=1, Replacements=2, BuildTwice=3,
-    FourthUpgrades=4, EighthCreatures=5
+    FourthUpgrades=4, EighthCreatures=5, MithrilEnhancements=6
 };
-inline constexpr std::size_t wogOptionCount=6;
+inline constexpr std::size_t wogLegacyOptionCount=6;
+inline constexpr std::size_t wogOptionCount=7;
 inline constexpr bool validWogChoice(int value){return value>=-1&&value<=1;}
 inline constexpr bool resolveWogChoice(int value,bool inherited)
 {return value<0?inherited:value==1;}

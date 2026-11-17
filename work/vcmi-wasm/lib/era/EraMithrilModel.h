@@ -1,5 +1,7 @@
 #pragma once
 #include "EraMithrilRules.h"
+#include "EraWogOptions.h"
+#include "../StartInfo.h"
 #include "EraMapRulesModel.h"
 #include "../IGameSettings.h"
 #include "../callback/IGameInfoCallback.h"
@@ -34,7 +36,8 @@ inline bool enabled(const IGameInfoCallback & cb)
         ||(saved["objects"].isStruct()&&!saved["objects"].Struct().empty())
         ||(saved["universityQueries"].isStruct()&&!saved["universityQueries"].Struct().empty());
     return era_bridge::mithril::frozenEnabled(cb.getDate(Date::DAY)==0,
-        cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS),
+        era_bridge::wogOptionEnabled(cb,era_bridge::WogOption::MithrilEnhancements,
+            cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS)),
         saved["enabled"].isBool()?(saved["enabled"].Bool()?1:0):-1,evidence);
 }
 inline const JsonNode & state(const IGameInfoCallback & cb)

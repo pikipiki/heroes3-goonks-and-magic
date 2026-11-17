@@ -21,3 +21,12 @@ test('option roster identities match the shipped source identities and faction r
  for(const id of[202,207,212,219,224,231,238,245,252,269,278,349,350,271,280,337,338,331,332,351,352,275,283,353,354,355,356])
   assert(source.includes('"'+mapping[id]+'"'),'Owned option identity '+id);
 });
+
+ test('extended WoG options preserve old byte boundaries, defaults and reject corrupt choices',()=>{
+ const directory=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-wog-options-serialization-'));
+ try{
+  const binary=path.join(directory,'test');
+  execFileSync(process.env.CXX||'c++',['-std=c++17','-Wall','-Wextra','-Werror','-pedantic','-fsanitize=undefined','tests/native/EraWogOptionsSerialization.test.cpp','-o',binary]);
+  execFileSync(binary);
+ }finally{fs.rmSync(directory,{recursive:true,force:true});}
+});

@@ -41,7 +41,7 @@ async function boot(options){
  p.on('pageerror',e=>errors.push(e.message));
  p.on('console',m=>{if(consoleCount++<4000)fs.appendFileSync(path.join(out,'console.log'),(m.type()+': '+m.text()).slice(0,1500)+'\n');});
  await p.addInitScript(()=>sessionStorage.setItem('heroes-goonk.storage-failed','true'));
- const metadata=await(await p.request.get(origin+'/engine-build.json')).json();
+ const metadata=(await(await p.request.get(origin+'/asset-manifest.json')).json()).engine;
  if(process.env.EXPECTED_ENGINE_SHA)assert.equal(metadata.sha256,process.env.EXPECTED_ENGINE_SHA,'Clean native engine provenance');report.engineMetadata=metadata;
  await p.goto(origin+'/game.html?mobile=1');
  await Promise.race([wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,240000),p.waitForEvent('console',{predicate:m=>m.text().includes('FATAL ERROR ENCOUNTERED'),timeout:240000}).then(()=>{throw Error('Native boot fatal: inspect bounded console.log');})]);

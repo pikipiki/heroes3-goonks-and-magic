@@ -4,7 +4,7 @@
 #include <vector>
 #include <utility>
 using namespace era_bridge;
-struct Options{std::array<int8_t,6>wogOptions{{-1,-1,-1,-1,-1,-1}};};
+struct Options{std::array<int8_t,wogOptionCount>wogOptions{{-1,-1,-1,-1,-1,-1,-1}};};
 struct Start{Options extraOptionsInfo;};
 struct Callback{Start start;const Start * getStartInfo()const{return &start;}};
 int main()

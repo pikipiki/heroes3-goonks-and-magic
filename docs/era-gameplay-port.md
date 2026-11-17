@@ -279,6 +279,20 @@ Ctrl-clic sur son dessin, y compris lorsqu'un héros le recouvre. Une confirmati
 précède le paiement ; les villes proposent les neuf terrains de siège.
 Les parcours vérifiés figurent dans `outputs/era-gameplay/mithril-native-classic.json`.
 
+Le moteur candidat propose aussi « Améliorations au mithril » dans les options
+WoG de création de partie : Carte, Oui ou Non. Ce septième choix correspond à
+l'activation native de l'option source 36 ; il ne change pas les réglages de
+l'installation. Les six combinaisons avec le réglage du module sont vérifiées
+au toucher, dont des achats effectifs et leur rechargement avec le réglage
+global inversé. Deux parcours supplémentaires utilisent uniquement la souris.
+Le nouveau format lit les six octets des anciennes sauvegardes sans décaler
+les champs suivants et initialise le nouveau choix à Carte. Deux sauvegardes
+réellement produites par le moteur précédent conservent leur activation.
+L'interface continue d'afficher les six anciens réglages lorsque le moteur
+publié ne connaît pas encore le septième. Ces preuves ne constituent ni
+l'activation du profil WoG complet ni le port des écritures UN:P des packs
+externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
+
 L'activation du mithril est désormais enregistrée avec chaque nouvelle partie.
 Changer les réglages de l'installation ne modifie plus ce choix à la reprise.
 Les anciennes sauvegardes contenant des améliorations ou une graine mithril

@@ -145,9 +145,9 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  const classic=process.env.CASES==='classic';
- const desktop=process.env.CASES==='desktop';
+ const desktop=['desktop','options-desktop'].includes(process.env.CASES);
  page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
@@ -219,6 +219,14 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
   if(classic)await command(21);
   else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Mithril native validation');
+  if(wogChoice!==null){
+   assert.equal((await state()).wogOptions.length,7,'Extended option advertised by native engine');
+   const form=page.locator('.wog-options');await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="6"][value="${wogChoice}"]`).locator('..');
+   await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
+   assert.equal(await form.locator('input[data-wog-option="6"]:checked').inputValue(),String(wogChoice));
+  }
   if(classic)await command(22);
   else if(desktop)await page.locator('[data-ui=begin]').click();
   else await page.locator('[data-ui=begin]').tap();
@@ -227,14 +235,14 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
 }
 
 async function panel(){
- if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[process.env.CASES==='desktop'?'click':'tap']();
+ if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[['desktop','options-desktop'].includes(process.env.CASES)?'click':'tap']();
  await wait(()=>goonkMobileState.mithril);
  return (await state()).mithril;
 }
 async function buy(offer){
  const before=await panel();
  if(offer.kind===8)await page.locator(`[data-mithril-terrain="${offer.id}"]`).selectOption(String(offer.choice??0));
- await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[process.env.CASES==='desktop'?'click':'tap']();
+ await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[['desktop','options-desktop'].includes(process.env.CASES)?'click':'tap']();
  if(offer.kind===6){
   await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
   await page.locator('.mithril-panel').waitFor({state:'hidden'});return;
@@ -270,6 +278,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(['options','options-desktop','options-legacy-producer','options-legacy-consumer'].includes(process.env.CASES)){
+  const {runMithrilOptions}=await import('./wog-mithril-options-cases.mjs');
+  await runMithrilOptions({boot,panel,buy,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
+ }
  if(process.env.CASES==='desktop'){
   await boot();let data=await panel();const before=data.amount;
   await buy(data.offers.find(row=>row.kind===0&&row.cost===7));

@@ -71,8 +71,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_HENCHMEN, // independent hero-owned companions, experience and revival state
 	GOONK_ERA_GAMEPLAY, // replicated state for standalone ERA gameplay systems
 
+	GOONK_WOG_OPTIONS_EXTENDED, // append per-game mithril choice without changing old six-byte saves
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_ERA_GAMEPLAY,
+	CURRENT = GOONK_WOG_OPTIONS_EXTENDED,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

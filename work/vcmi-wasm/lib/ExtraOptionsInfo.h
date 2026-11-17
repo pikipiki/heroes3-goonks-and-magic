@@ -22,7 +22,7 @@ struct DLL_LINKAGE ExtraOptionsInfo
 	bool cheatsAllowed = true;
 	bool unlimitedReplay = false;
 	// Each choice inherits the authored map unless explicitly set to0 or1.
-	std::array<int8_t, era_bridge::wogOptionCount> wogOptions{{-1, -1, -1, -1, -1, -1}};
+	std::array<int8_t, era_bridge::wogOptionCount> wogOptions{{-1, -1, -1, -1, -1, -1, -1}};
 
 	bool operator == (const ExtraOptionsInfo & other) const;
 
@@ -33,7 +33,21 @@ struct DLL_LINKAGE ExtraOptionsInfo
 		h & unlimitedReplay;
 		if(h.hasFeature(Handler::Version::GOONK_WOG_OPTIONS))
 		{
-			h & wogOptions;
+			if(h.hasFeature(Handler::Version::GOONK_WOG_OPTIONS_EXTENDED))
+				h & wogOptions;
+			else
+			{
+				// Original saves and lobby packets contain exactly six bytes.
+				std::array<int8_t, era_bridge::wogLegacyOptionCount> legacy;
+				if(h.saving)
+					std::copy_n(wogOptions.begin(), legacy.size(), legacy.begin());
+				h & legacy;
+				if(!h.saving)
+				{
+					wogOptions.fill(-1);
+					std::copy(legacy.begin(), legacy.end(), wogOptions.begin());
+				}
+			}
 			for(const auto choice : wogOptions)
 				if(choice < -1 || choice > 1)
 					throw std::runtime_error("Invalid WoG game option");
