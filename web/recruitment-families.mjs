@@ -15,7 +15,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
   const space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
   const viewport=panel.closest('#mobile-app')?.getBoundingClientRect();
   // Use the space left after browser bars, safe areas, heading and recruitment controls.
-  const rows=viewport?.height>viewport?.width&&space>=440+gap?2:1;
+  const rows=viewport?.height>viewport?.width&&space>=400+gap?2:1;
   const height=Math.max(132,Math.floor((space-gap*(rows-1))/rows))+'px';
   if(list.style.getPropertyValue('--hall-row-height')!==height){
    const scroll=readScroll(list);list.style.setProperty('--hall-row-height',height);

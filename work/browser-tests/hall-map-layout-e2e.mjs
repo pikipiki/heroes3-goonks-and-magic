@@ -12,16 +12,17 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
  const base={mode:'fort',dialogTitle:'Town creatures',day:1,turn:true,resources:[50,50,50,50,50,50,118300,50],armies:[],fortRows:[],previewUnits:[],fortFamilies:roster.map((ids,level)=>({level,count:12,variants:ids.map((key,rank)=>{const u=creatures.find(x=>x.graphics.animation==='goonk/'+['pink','lancer','archer','fart','vomit','blue','fire'][level]+(rank===0?'':rank===1?'-evo':'-exalted'));return{id:level*3+rank,level,rank,count:12,built:rank<2,requiredBuilding:'{Final sanctuary}',name:u.name.singular,cost:[0,0,0,0,0,0,rank===2?300:90,0],attack:u.attack,defense:u.defense,health:u.hitPoints,speed:u.speed,damageMin:u.damage.min,damageMax:u.damage.max};})}))};window.familyState=base;window.send=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(familyState)}));send();},{creatures,roster});
 
  const send=s=>p.evaluate(s=>dispatchEvent(new CustomEvent('goonk-state',{detail:s})),s),base=await p.evaluate(()=>structuredClone(familyState));
- for(const size of [{width:430,height:873},{width:430,height:760},{width:360,height:640},{width:360,height:720},{width:393,height:851},{width:320,height:568},{width:768,height:1024},{width:640,height:280},{width:851,height:393},{width:1024,height:768}]){
+ for(const size of [{width:430,height:873},{width:430,height:760},{width:360,height:640},{width:360,height:720},{width:360,height:780},{width:360,height:720},{width:360,height:780},{width:393,height:851},{width:320,height:568},{width:768,height:1024},{width:640,height:280},{width:851,height:393},{width:1024,height:768}]){
   await p.setViewportSize(size);await send(base);await p.waitForTimeout(250);
   const list=p.locator('.hall-families');await list.evaluate(e=>e.scrollTop=0);
   const rows=await list.evaluate(e=>{const s=getComputedStyle(e),first=e.children[0].getBoundingClientRect(),next=e.children[1].getBoundingClientRect();return{height:e.clientHeight-parseFloat(s.paddingTop)-parseFloat(s.paddingBottom),first:first.height,nextTop:next.top,top:first.top,gap:parseFloat(s.rowGap)||0,secondBottom:next.bottom,viewportBottom:e.getBoundingClientRect().bottom};});
   if(size.width<size.height){
-   const count=rows.height>=440+rows.gap?2:1;
+   const count=rows.height>=400+rows.gap?2:1;
    assert(Math.abs(rows.first-(rows.height-rows.gap*(count-1))/count)<2,JSON.stringify({size,rows,count}));
    if(count===2)assert(rows.secondBottom<=rows.viewportBottom-7,'Two complete families fit in tall portrait');
    else assert(rows.nextTop>=rows.viewportBottom-8,'Short portrait retains one complete family');
    if(size.width===430&&size.height===873)assert.equal(count,2,'iPhone Pro Max uses two rows');
+   if(size.width===360&&size.height===780)assert.equal(count,2,'Small portrait without browser bars uses two rows');
    if(size.width===360&&size.height<=720)assert.equal(count,1,'Huawei with browser bars uses one row');
   }
   const back=p.locator('[data-presentation-close]');assert.equal(await back.count(),1);await back.waitFor({state:'visible'});const rect=await back.boundingBox();assert(rect.y>=0&&rect.x>=0&&rect.y+rect.height<=size.height&&rect.x+rect.width<=size.width,'Back is reachable '+JSON.stringify({size,rect}));
@@ -30,6 +31,19 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
   await back.tap();assert((await p.evaluate(()=>calls)).some(c=>c[0]===43),'Back calls the native return action');
   await send({...base,mode:'map',heroName:'Hero',turn:true});await p.waitForTimeout(150);
   const date=await p.locator('.mobile-calendar>span:first-child').boundingBox(),cue=await p.locator('.calendar-recruit-cue').boundingBox();assert(date.y>=cue.y+cue.height-1,'Game date lies below recruits '+JSON.stringify({size,date,cue}));
+ }
+ // Chrome can hide/show its bars without a game snapshot or an orientation change.
+ await p.setViewportSize({width:360,height:780});await send(base);await p.waitForTimeout(150);
+ const rosterList=p.locator('.hall-families');
+ const anchor=()=>rosterList.evaluate(e=>e.scrollTop/(e.firstElementChild.getBoundingClientRect().height+parseFloat(getComputedStyle(e).rowGap)));
+ await rosterList.evaluate(e=>e.scrollTop=2*(e.firstElementChild.getBoundingClientRect().height+parseFloat(getComputedStyle(e).rowGap)));
+ const before=await anchor();
+ for(const height of [720,780]){
+  await p.setViewportSize({width:360,height});await p.waitForTimeout(150);
+  assert(Math.abs(await anchor()-before)<.02,'Browser bar resizing keeps the same tier in view');
+  const metrics=await rosterList.evaluate(e=>({row:e.firstElementChild.getBoundingClientRect().height,space:e.clientHeight-16,gap:parseFloat(getComputedStyle(e).rowGap)}));
+  const visible=height===780?2:1;
+  assert(Math.abs(metrics.row-(metrics.space-metrics.gap*(visible-1))/visible)<2,'Bar visibility changes the row count without a new game snapshot');
  }
  // Reserve iPhone status/home-indicator space as well as reducing the viewport for URL bars.
  await p.setViewportSize({width:430,height:932});await send(base);
