@@ -15,6 +15,7 @@ VCMI_LIB_NAMESPACE_BEGIN
 
 struct SThievesGuildInfo;
 class Player;
+class CStackInstance;
 
 class DLL_LINKAGE CGameInfoCallback : public MapInfoCallback
 {
@@ -53,6 +54,7 @@ public:
 	//armed object
 
 	void fillUpgradeInfo(const CArmedInstance *obj, SlotID stackPos, UpgradeInfo &out) const;
+	void fillUpgradeInfo(const CArmedInstance *obj, const CStackInstance &stack, UpgradeInfo &out) const;
 
 	//hero
 

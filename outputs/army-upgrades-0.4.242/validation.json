@@ -1,0 +1,145 @@
+{
+  "version": "0.4.242",
+  "sourceBase": "7d2c66737919edba763fd144e4581a65719d7bdd",
+  "engineSha256": "99ed035e60f933f80bbefaf8d6c9afb30838690ba12fb850891ab7e54714f423",
+  "nativeBuild": "ninja -j32 html5",
+  "tests": {
+    "total": 842,
+    "passed": 791,
+    "skipped": 51,
+    "failed": 0
+  },
+  "armyUpgrades": {
+    "maximumAvailableEvolution": true,
+    "confirmationRequired": true,
+    "cumulativeCostAndCountPreservation": true,
+    "staleQuoteSpendsNothing": true,
+    "splitFormationsRetained": true,
+    "nativeBrowsers": [
+      "chromium",
+      "webkit"
+    ],
+    "nativeCases": [
+      {
+        "army": "garrison",
+        "steps": 3,
+        "gold": 572
+      },
+      {
+        "army": "hero",
+        "steps": 2,
+        "gold": 164
+      }
+    ]
+  },
+  "hallLayout": {
+    "nameAndCostOnOneLine": true,
+    "adaptivePortraitRows": true,
+    "browsers": [
+      "chromium",
+      "webkit"
+    ]
+  },
+  "previewBodyChecks": {
+    "chromium": [
+      {
+        "unit": "Gremlin",
+        "maximumColoredBodyExtent": 0.7923076923076923,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      },
+      {
+        "unit": "Naga Empress",
+        "maximumColoredBodyExtent": null,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      },
+      {
+        "unit": "Paingpaing",
+        "maximumColoredBodyExtent": 0.94,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      },
+      {
+        "unit": "DioupDioup",
+        "maximumColoredBodyExtent": 0.94,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      }
+    ],
+    "webkit": [
+      {
+        "unit": "Gremlin",
+        "maximumColoredBodyExtent": 0.7923076923076923,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      },
+      {
+        "unit": "Naga Empress",
+        "maximumColoredBodyExtent": null,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      },
+      {
+        "unit": "Paingpaing",
+        "maximumColoredBodyExtent": 0.97,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      },
+      {
+        "unit": "DioupDioup",
+        "maximumColoredBodyExtent": 0.94,
+        "canvasAllocations": 1,
+        "pixelBufferAllocations": 1
+      }
+    ]
+  },
+  "previewCadence": {
+    "chromium": [
+      {
+        "unit": "Gremlin",
+        "maximumVisiblePoseHoldMs": 150,
+        "atlasPackets": 313
+      },
+      {
+        "unit": "Naga Empress",
+        "maximumVisiblePoseHoldMs": 133,
+        "atlasPackets": 312
+      },
+      {
+        "unit": "Paingpaing",
+        "maximumVisiblePoseHoldMs": 133,
+        "atlasPackets": 315
+      },
+      {
+        "unit": "DioupDioup",
+        "maximumVisiblePoseHoldMs": 133,
+        "atlasPackets": 338
+      }
+    ],
+    "webkit": [
+      {
+        "unit": "Gremlin",
+        "maximumVisiblePoseHoldMs": 136,
+        "atlasPackets": 307
+      },
+      {
+        "unit": "Naga Empress",
+        "maximumVisiblePoseHoldMs": 150,
+        "atlasPackets": 321
+      },
+      {
+        "unit": "Paingpaing",
+        "maximumVisiblePoseHoldMs": 151,
+        "atlasPackets": 314
+      },
+      {
+        "unit": "DioupDioup",
+        "maximumVisiblePoseHoldMs": 165,
+        "atlasPackets": 316
+      }
+    ],
+    "previousMaximumVisiblePoseHoldMs": 233
+  },
+  "temporaryNativeDiagnosticsPublished": false
+}

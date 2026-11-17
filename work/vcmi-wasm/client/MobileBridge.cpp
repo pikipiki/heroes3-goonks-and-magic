@@ -100,6 +100,7 @@
 #include "../lib/entities/ResourceTypeHandler.h"
 #include "../lib/CStack.h"
 #include "../lib/gameState/UpgradeInfo.h"
+#include "ArmyUpgradePath.h"
 #include "../lib/gameState/SThievesGuildInfo.h"
 #include "../lib/spells/CSpellHandler.h"
 #include "../lib/battle/CPlayerBattleCallback.h"
@@ -509,6 +510,62 @@ JsonNode troopEquipmentSnapshot(const CGHeroInstance & hero, bool canAct)
   result["troops"].Vector().push_back(std::move(entry));
  }
  return result;
+}
+struct MobileArmyUpgradeStep {SlotID slot;CreatureID source,target;int count;ResourceSet cost;};
+struct MobileArmyUpgradePlan {std::weak_ptr<CCallback> owner;ObjectInstanceID army;std::vector<MobileArmyUpgradeStep> steps;ResourceSet cost;JsonNode view;int hash=0;};
+std::optional<MobileArmyUpgradePlan> mobileArmyUpgradeRun;
+size_t mobileArmyUpgradeNext=0;bool mobileArmyUpgradeWaiting=false;uint32_t mobileArmyUpgradeSent=0;
+JsonNode mobileArmyUpgradeQuote,mobileArmyUpgradeOperation;
+MobileArmyUpgradePlan mobilePlanArmyUpgrades(CPlayerInterface * player,const CArmedInstance * object)
+{
+ MobileArmyUpgradePlan plan;plan.owner=player->cb;plan.army=object->id;plan.view["armyId"].Integer()=object->id.getNum();plan.view["units"].Vector();
+ for(int slot=0;slot<7;++slot)if(object->hasStackAtSlot(SlotID(slot)))
+ {
+  const auto & actual=object->getStack(SlotID(slot));
+  CStackInstance proposed(player->cb.get(),BonusNodeType::STACK_INSTANCE,true);proposed.setArmy(const_cast<CArmedInstance *>(object));proposed.setCount(actual.getCount());
+  const auto path=mobile_army_upgrade::maximumPath(actual.getCreature()->getId().getNum(),[&](int id){
+   UpgradeInfo info{CreatureID(id)};
+   if(id==actual.getCreature()->getId().getNum())player->cb->fillUpgradeInfo(object,SlotID(slot),info);
+   else{proposed.setType(CreatureID(id));player->cb->fillUpgradeInfo(object,proposed,info);}
+   std::vector<mobile_army_upgrade::Edge> result;
+   for(const auto target:info.getAvailableUpgrades()){std::vector<int64_t> cost;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())cost.push_back(info.getUpgradeCostsFor(target)[resource]);result.push_back({target.getNum(),cost});}
+   return result;
+  },[](int id){return int64_t(CreatureID(id).toCreature()->getFightValue());});
+  if(path.empty())continue;
+  auto unit=creature(CreatureID(path.back().upgrade.target).toCreature(),actual.getCount());unit["slot"].Integer()=slot;unit["fromName"].String()=actual.getCreature()->getNameSingularTranslated();unit["fromId"].Integer()=actual.getCreature()->getId().getNum();
+  for(const auto & step:path){ResourceSet cost;size_t at=0;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){
+   const int64_t value=step.upgrade.cost[at++]*actual.getCount();
+   if(value<0||value>std::numeric_limits<TResource>::max()-int64_t(plan.cost[resource])){plan.steps.clear();plan.view["units"].Vector().clear();plan.view["error"].String()="costTooLarge";return plan;}
+   cost[resource]=value;
+  }plan.cost+=cost;plan.steps.push_back({SlotID(slot),CreatureID(step.source),CreatureID(step.upgrade.target),actual.getCount(),cost});}
+  plan.view["units"].Vector().push_back(std::move(unit));
+ }
+ for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())plan.view["cost"].Vector().push_back(JsonNode(int64_t(plan.cost[resource])));
+ JsonNode signature=plan.view;
+ for(const auto & step:plan.steps){JsonNode item;for(const int value:{step.slot.getNum(),step.source.getNum(),step.target.getNum(),step.count})item.Vector().push_back(JsonNode(value));for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())item.Vector().push_back(JsonNode(int64_t(step.cost[resource])));signature["steps"].Vector().push_back(item);}
+ uint32_t hash=2166136261u;for(const unsigned char c:signature.toCompactString())hash=(hash^c)*16777619u;plan.hash=int(hash&0x7fffffffu);plan.view["hash"].Integer()=plan.hash;return plan;
+}
+void mobileAdvanceArmyUpgrades(CPlayerInterface * player)
+{
+ if(!mobileArmyUpgradeRun)return;
+ const auto & plan=*mobileArmyUpgradeRun;
+ const auto object=dynamic_cast<const CArmedInstance *>(player->cb->getObj(plan.army));
+ const auto finish=[&](const std::string & status){mobileArmyUpgradeOperation["status"].String()=status;mobileArmyUpgradeRun.reset();mobileArmyUpgradeWaiting=false;};
+ if(plan.owner.lock()!=player->cb||!object||object->getOwner()!=player->playerID||!player->makingTurn||CPlayerInterface::battleInt){finish("failed");return;}
+ if(mobileArmyUpgradeNext>=plan.steps.size()){finish("done");return;}
+ const auto & step=plan.steps[mobileArmyUpgradeNext];
+ if(!object->hasStackAtSlot(step.slot)||object->getStackCount(step.slot)!=step.count){finish("failed");return;}
+ const auto current=object->getCreature(step.slot)->getId();
+ if(mobileArmyUpgradeWaiting){
+  if(current==step.target){++mobileArmyUpgradeNext;mobileArmyUpgradeOperation["completedSteps"].Integer()=mobileArmyUpgradeNext;mobileArmyUpgradeWaiting=false;if(mobileArmyUpgradeNext==plan.steps.size())finish("done");return;}
+  if(current!=step.source||SDL_GetTicks()-mobileArmyUpgradeSent>10000)finish("failed");return;
+ }
+ if(current!=step.source){finish("failed");return;}
+ UpgradeInfo available(current);player->cb->fillUpgradeInfo(object,step.slot,available);
+ ResourceSet remaining;for(size_t i=mobileArmyUpgradeNext;i<plan.steps.size();++i)remaining+=plan.steps[i].cost;
+ const auto & ids=available.getAvailableUpgrades();
+ if(std::find(ids.begin(),ids.end(),step.target)==ids.end()||available.getUpgradeCostsFor(step.target)*step.count!=step.cost||!player->cb->getResourceAmount().canAfford(remaining)){finish("failed");return;}
+ player->cb->upgradeCreature(object,step.slot,step.target);mobileArmyUpgradeWaiting=true;mobileArmyUpgradeSent=SDL_GetTicks();
 }
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c){item["canDismiss"].Bool()=(!a->needsLastStack()||a->stacksCount()>1)&&era_bridge::sourceCreatureIdForLevel(c->getJsonKey()).value_or(-1)!=340;mobileStackExperience(item,&a->getStack(SlotID(i)));item["nativeFlags"]["flying"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::FLYING);}n["slots"].Vector().push_back(item);}return n;}
 // Resolve army exchange from the persisted town/hero relationship, not from
@@ -923,6 +980,8 @@ void publishMobileState(){
  if(audioMuted){if(ENGINE->sound().getVolume()!=0)ENGINE->sound().setVolume(0);if(ENGINE->music().getVolume()!=0)ENGINE->music().setVolume(0);}
  portraitIds.clear();artifactIconIds.clear();JsonNode n;n["mapSettings"]["moveTime"].Integer()=settings["adventure"]["heroMoveTime"].Integer();n["mapSettings"]["enemyMoveTime"].Integer()=settings["adventure"]["enemyMoveTime"].Integer();n["audioMuted"].Bool()=audioMuted;n["soundVolume"].Integer()=ENGINE->sound().getVolume();n["musicVolume"].Integer()=ENGINE->music().getVolume();n["mode"].String()="menu";auto top=ENGINE->windows().topWindow<CIntObject>();if(top){n["rect"]=rect(top->pos);n["windowToken"].Integer()=reinterpret_cast<uintptr_t>(top.get());}
  auto p=GAME->interface();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battleWindow=ENGINE->windows().topWindow<BattleWindow>();auto recruitWindow=ENGINE->windows().topWindow<CRecruitmentWindow>();auto fortWindow=ENGINE->windows().topWindow<CFortScreen>();auto creatureWindow=ENGINE->windows().topWindow<CStackWindow>();auto spellWindow=ENGINE->windows().topWindow<CSpellWindow>();auto heroWindow=ENGINE->windows().topWindow<CHeroWindow>();
+ if(p&&p->cb)mobileAdvanceArmyUpgrades(p);else{mobileArmyUpgradeRun.reset();mobileArmyUpgradeQuote=JsonNode();mobileArmyUpgradeOperation=JsonNode();}
+ n["armyUpgradeQuote"]=mobileArmyUpgradeQuote;n["armyUpgradeOperation"]=mobileArmyUpgradeOperation;
  if(!heroWindow)mobileArtifactCombinationPending=false;
  const auto exchangeWindow=mobileEnabled?ENGINE->windows().topWindow<CExchangeWindow>():nullptr;
  const auto garrisonWindow=mobileEnabled?ENGINE->windows().topWindow<CGarrisonWindow>():nullptr;
@@ -2230,6 +2289,19 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==23){if(GAME&&!GAME->interface()){mobileLocalSaveSelection.reset();CMainMenu::openLobby(ESelectionScreen::loadGame,true,{"Goonk"},ELoadMode::SINGLE,false);}return;}
  auto p=GAME?GAME->interface():nullptr;if(!p||!p->cb||!p->localState)return;
  const auto hero=p->localState->getCurrentHero();auto townWindow=ENGINE->windows().topWindow<CCastleInterface>();auto battle= CPlayerInterface::battleInt;
+ // Quote first, then validate the exact same full evolution path before spending.
+ if(action==121||action==122){
+  if(!p->makingTurn||battle||mobileArmyUpgradeRun)return;
+  if(!townWindow&&!ENGINE->windows().topWindow<AdventureMapInterface>()&&!ENGINE->windows().topWindow<CHeroWindow>())return;
+  const auto object=dynamic_cast<const CArmedInstance *>(p->cb->getObj(ObjectInstanceID(a)));
+  if(!object||object->getOwner()!=p->playerID)return;
+  auto plan=mobilePlanArmyUpgrades(p,object);mobileArmyUpgradeQuote=plan.view;mobileArmyUpgradeQuote["status"].String()="ready";
+  if(action==121){mobileArmyUpgradeOperation=JsonNode();lastPublished=0;return;}
+  if(plan.hash!=b){mobileArmyUpgradeQuote["status"].String()="changed";lastPublished=0;return;}
+  if(plan.steps.empty()||!p->cb->getResourceAmount().canAfford(plan.cost)){mobileArmyUpgradeQuote["status"].String()="unavailable";lastPublished=0;return;}
+  mobileArmyUpgradeOperation=JsonNode();mobileArmyUpgradeOperation["armyId"].Integer()=a;mobileArmyUpgradeOperation["hash"].Integer()=b;mobileArmyUpgradeOperation["status"].String()="running";mobileArmyUpgradeOperation["completedSteps"].Integer()=0;mobileArmyUpgradeOperation["totalSteps"].Integer()=plan.steps.size();
+  mobileArmyUpgradeNext=0;mobileArmyUpgradeWaiting=false;mobileArmyUpgradeRun=std::move(plan);lastPublished=0;return;
+ }
  // Match the adventure UI's animation lock. Hiding the map during a fade or
  // movement can strand the client thread waiting for that animation to finish.
  if((action==5||action==55||action==3||action==7)&&ENGINE->windows().topWindow<AdventureMapInterface>()&&

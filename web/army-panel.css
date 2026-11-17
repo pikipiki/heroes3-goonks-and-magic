@@ -66,3 +66,19 @@
 @container goonk-viewport (orientation:landscape){
  #mobile-app[data-sheet=army] .army-dock{overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
 }
+
+#mobile-app .army-upgrade-all{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:44px;padding:5px;font:700 14px/18px Georgia,serif}
+#mobile-app .army-upgrade-all img{width:26px;height:30px;object-fit:contain}
+#mobile-app[data-sheet=army] .army-grid .army-upgrade-all{min-height:44px!important;overflow:hidden;flex-direction:column;align-self:stretch;white-space:normal}
+#mobile-app .hero-army-panel>.army-upgrade-all{width:100%}
+#mobile-app .army-upgrade-unit{display:flex;align-items:center;gap:12px;padding:8px;border-bottom:1px solid var(--line)}
+#mobile-app .army-upgrade-unit :is(img,canvas){width:64px;height:75px;object-fit:contain;flex:0 0 64px}
+#mobile-app .army-upgrade-unit strong{display:block;margin-top:4px}
+#mobile-app .army-upgrade-cost{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0}
+#mobile-app .army-upgrade-cost img{width:24px;height:24px;object-fit:contain}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .progression-page.army-upgrades-page{grid-template-rows:minmax(0,1fr)}
+ #mobile-app .progression-page.army-upgrades-page>header{grid-column:2;grid-row:1;align-self:start;z-index:1}
+ #mobile-app .progression-page.army-upgrades-page>.progression-scroll{grid-column:1;grid-row:1}
+ #mobile-app .progression-page.army-upgrades-page>footer{padding-top:60px}
+}

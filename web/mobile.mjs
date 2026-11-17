@@ -21,6 +21,7 @@ import{hasHDCreaturePortrait}from'./goonk-hd-portraits.mjs';
 import {createBattleAutocombat} from './battle-autocombat.mjs';
 import {createCampaignSetup} from './campaign-setup.mjs';
 import {createTroopActions} from './troop-actions.mjs';
+import {createArmyUpgrades} from './army-upgrades.mjs';
 import {createHeroEquipment} from './hero-equipment.mjs';
 import {createMithrilEnhancements} from './mithril-enhancements.mjs';
 import {createHeroExchange} from './hero-exchange.mjs';
@@ -168,7 +169,8 @@ function mount(){
  const mageGuild=createMageGuild({root,command,pointer,asset,resetView:()=>{zoom=1;focus=null;resetGestures();}});
  const campaignSetup=createCampaignSetup({root,command});
  const troopActions=createTroopActions({root,command,portrait:u=>portrait(u),onLeave:slot=>heroEquipment.showDeployment(slot)});
- const heroEquipment=createHeroEquipment({root,command,pointer,onViewChange:()=>controls(),portrait:u=>portrait(u),notify,onManage:(army,slot)=>troopActions.show(army,slot)});
+ const armyUpgrades=createArmyUpgrades({root,command,portrait:u=>portrait(u)});
+ const heroEquipment=createHeroEquipment({root,command,pointer,onUpgradeAll:id=>armyUpgrades.show(id),onViewChange:()=>controls(),portrait:u=>portrait(u),notify,onManage:(army,slot)=>troopActions.show(army,slot)});
  const mithrilEnhancements=createMithrilEnhancements({root,command});
  const tavern=createMobileTavern({root,command,pointer});
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
@@ -314,7 +316,7 @@ function mount(){
   tavern.update(state);townServices.update(state);caveBuilder.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
   if(sheetKind==='battle-inspection'&&state.mode==='battle')showBattleInspection(true);
-  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);troopActions.update(state);mithrilEnhancements.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
+  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);troopActions.update(state);armyUpgrades.update(state);mithrilEnhancements.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
   if(detailReturn==='army'&&['map','town'].includes(state.mode)){detailReturn='';showList('army');}
   const choices=root.querySelector('.recruit-choices');choices.hidden=true;
 
@@ -399,7 +401,7 @@ function mount(){
 
   if(kind==='equipment'){if(state.mode==='map'&&state.heroName){closeSheet();command(55);}else notify('Select a hero on the map first.');return;}
   if(kind==='army'){if(!refresh)openSheet(kind,'Organiser les armées');armySelection=null;armySignature=JSON.stringify(state.armies||[]);
-   renderArmyPanel({body,onManage:(army,slot)=>troopActions.show(army,slot),onBack:closeSheet,armies:state.armies||[],portrait,showVisitorPlaceholder:state.mode==='town'||Number.isInteger(state.armyTownId),readOnly:!state.turn,onTransferAll:(from,to)=>{command(58,from,to);armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie les emplacements disponibles.');}},8000);},onInfo:(army,slot)=>{if(!heroTransition.pending)command(41,army,slot);}, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
+   renderArmyPanel({body,onUpgradeAll:id=>armyUpgrades.show(id),onManage:(army,slot)=>troopActions.show(army,slot),onBack:closeSheet,armies:state.armies||[],portrait,showVisitorPlaceholder:state.mode==='town'||Number.isInteger(state.armyTownId),readOnly:!state.turn,onTransferAll:(from,to)=>{command(58,from,to);armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie les emplacements disponibles.');}},8000);},onInfo:(army,slot)=>{if(!heroTransition.pending)command(41,army,slot);}, onMessage:notify,onMove:({fromArmy,fromSlot,toArmy,toSlot,amount})=>{
     command(amount?11:10,fromArmy,fromSlot,toArmy,toSlot,amount);armyFocus={army:String(toArmy),slot:String(toSlot)};armyPending=true;sheet.setAttribute('aria-busy','true');clearTimeout(armyTimer);
     armyTimer=setTimeout(()=>{if(sheetKind==='army'&&armyPending){refreshArmy();notify('Aucun changement confirmé. Vérifie la destination et réessaie.');}},8000);
    }});

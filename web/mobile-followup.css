@@ -300,13 +300,13 @@ html.goonk-mobile #mobile-app :is(.mobile-mage-guild [data-guild-spell],.recruit
 #mobile-app .battle-panel .battle-spell-effects{font-size:11px;line-height:1.35;margin:4px 0;max-height:2.7em;overflow:auto;overscroll-behavior:contain;flex-shrink:0}
 
 /* Fixed footer geometry: names fit in full, prices remain visible, stats never shift. */
-html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail{--hall-feature-height:84px;align-content:normal!important;grid-template-rows:minmax(0,1fr) var(--hall-feature-height) 3px 44px 3px 44px!important;row-gap:0!important}
+html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail{--hall-feature-height:62px;align-content:normal!important;grid-template-rows:minmax(0,1fr) var(--hall-feature-height) 3px 44px 3px 44px!important;row-gap:0!important}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail .hall-feature{grid-row:2!important;overflow:hidden!important;box-sizing:border-box;padding-top:5px}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail .hall-quantity{grid-column:1/-1!important;grid-row:4!important;visibility:visible!important}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail .hall-actions{grid-row:6!important}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-detail :is(.hall-stock,.hall-total,.hall-unlock-preview){display:none!important}
-html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature>div{display:grid;grid-template-rows:20px 35px 20px;row-gap:2px;height:100%;min-height:0}
-html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature-title{display:block;min-width:0}
+html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature>div{display:grid;grid-template-rows:20px 35px;row-gap:2px;height:100%;min-height:0}
+html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature-title{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;min-width:0}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature-title h3{display:block;white-space:nowrap;overflow:hidden;text-overflow:clip;-webkit-line-clamp:unset;line-height:20px;font-size:16px;height:20px;margin:0}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature .creature-stats{margin:0!important;min-height:0;align-self:stretch}
 html.goonk-mobile #mobile-app[data-creature-view=fort] .hall-feature .creature-stats>div{display:grid;grid-template-rows:14px 18px;align-content:end;gap:0;min-height:0}

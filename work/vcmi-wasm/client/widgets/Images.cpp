@@ -511,6 +511,7 @@ CCreatureAnim::CCreatureAnim(int x, int y, const AnimationPath & name, ui8 flags
 
 void CCreatureAnim::showMobilePreview(Canvas & to,const Rect & target)
 {
+ mobilePreviewActive=true;
  const auto image=anim->getImage(frame,group,false);if(!image)return;
  if(!mobilePreviewBounds)mobilePreviewBounds=Rect(Point(),image->dimensions());
  const Rect reference=*mobilePreviewBounds;
@@ -545,6 +546,28 @@ void CCreatureAnim::showMobilePreview(Canvas & to,const Rect & target)
  const Point offset(int(std::round((x-left)*scale)),int(std::round((y-top)*scale)));
  const Point size(std::min(target.w-offset.x,std::max(1,int(std::round(crop.w*scale)))),std::min(target.h-offset.y,std::max(1,int(std::round(crop.h*scale)))));
  if(size.x>0&&size.y>0)to.drawScaled(focused,target.topLeft()+offset,size);
+}
+
+void CCreatureAnim::tick(uint32_t msPassed)
+{
+ if(!mobilePreviewActive){CShowableAnim::tick(msPassed);return;}
+ // Inspection uses wall-clock time. A sequence change must not discard the
+ // remainder or accumulate a delay every time an attack starts.
+ const auto duration=std::max<uint32_t>(1,frameTimeTotal);
+ frameTimePassed=std::min<uint32_t>(frameTimePassed+msPassed,duration*32);
+ const auto poseHash=[&](){const auto & hashes=mobilePreviewFocusData(anim)["poseHashes"][std::to_string(group)];return hashes.isVector()&&frame<hashes.Vector().size()?hashes.Vector()[frame].Integer():int64_t(-1);};
+ for(unsigned catchup=0;frameTimePassed>=duration&&catchup<32;++catchup)
+ {
+  const auto remaining=frameTimePassed-duration;const auto previous=poseHash();
+  // Repeated impact/rest frames belong to combat timing. In the inspector
+  // show each distinct pose once, without rescanning pixels or changing combat.
+  for(unsigned duplicate=0;duplicate<128;++duplicate)
+  {
+   if(++frame>=last)reset();
+   if(previous<0||poseHash()!=previous)break;
+  }
+  frameTimePassed=remaining;
+ }
 }
 
 void CCreatureAnim::loopPreview(bool warMachine)

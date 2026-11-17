@@ -57,7 +57,7 @@ for(const kind of ['chromium','webkit']){const b=await(kind==='webkit'?webkit.la
   assert.equal(name.text,longName);assert(name.scroll<=name.width+1,'The complete name fits its line '+JSON.stringify({size,name}));assert(name.font<16,'Long names use a smaller font');assert.notEqual(name.clamp,'1','No ellipsis clamp remains');
   const statsBefore=await p.locator('.hall-feature .creature-stats').boundingBox();
   await p.locator('[data-family-select="2"]').click();await p.waitForTimeout(100);assert.deepEqual(await p.locator('.hall-feature .creature-stats').boundingBox(),statsBefore,'A long locked name does not move stats');
-  const cost=await p.locator('.hall-unit-price').boundingBox();assert(cost.y>=statsBefore.y+statsBefore.height-1,'Unit cost stays visible below the stats');
+  const cost=await p.locator('.hall-unit-price').boundingBox(),title=await p.locator('.hall-feature-title h3').boundingBox();assert(Math.abs(cost.y-title.y)<2,'Cost shares the creature name row');assert(title.x+title.width<=cost.x-3,'Full name never overlaps the cost');assert(cost.y+cost.height<=statsBefore.y+1,'No extra price row below the stats');
  }
  await send(base);
  // Reproduce the real compact Tower labels measured on the connected device.

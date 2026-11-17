@@ -22,7 +22,7 @@ export function paintArtifactIcons(panel){
   canvas._artifactKey=key;
  }
 }
-export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{},onManage=()=>{}}){
+export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{},onManage=()=>{},onUpgradeAll=()=>{}}){
  let henchmanPending=null;
  const troopEquipment=createTroopEquipment({root,command});
  const troopDeployment=createTroopDeployment({root,command});
@@ -105,6 +105,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
      </button>`;
     }).join('')}
    </div>
+   <button class="army-upgrade-all" data-hero-upgrade-all ${!state.turn||hero.owned===false||!items.some(Boolean)?'disabled':''}><img src="./web/h3-theme/troops.svg" alt="" aria-hidden="true"><span>${fr?'Tout améliorer':'Upgrade all'}</span></button>
   </div>`;
  }
  function render(){
@@ -195,6 +196,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   }
   if(button.hasAttribute('data-hero-combine')){if(Number.isInteger(selected)&&!state.heroWindow?.picked){button.disabled=true;command(111,state.heroWindow.id,selected,Number(button.dataset.heroCombine));}return;}
   if(button.hasAttribute('data-hero-source-rebalance')){command(102,state.heroWindow.id);notify(getLanguage()==='fr'?'Actualisation des bonus demandée.':'Artifact refresh requested.');return;}
+  if(button.hasAttribute('data-hero-upgrade-all')){const army=(state.armies||[]).find(a=>a.id===state.heroWindow?.id)||state.armies?.[0];if(army)onUpgradeAll(army.id);return;}
   if(button.hasAttribute('data-hero-manage-troops')){const hero=state.heroWindow||{};const army=(state.armies||[]).find(a=>a.id===hero.id)||state.armies?.[0];if(army&&selectedArmySlot!==null)onManage(army.id,selectedArmySlot);return;}
   if(button.hasAttribute('data-hero-troop-equipment')){troopEquipment.show(selectedArmySlot);return;}
   if(button.hasAttribute('data-hero-commander')){command(85);return;}

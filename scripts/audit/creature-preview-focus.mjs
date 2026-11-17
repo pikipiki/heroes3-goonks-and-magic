@@ -4,7 +4,7 @@ import {pathToFileURL} from 'node:url';
 
 // One body-size reference per animation; only its measured center follows the pose.
 export function previewFocus(records){
- const grouped=new Map();
+ const grouped=new Map(),hashes=new Map();
  for(const unit of records){
   if(unit.error||!unit.nativeCrops?.length)throw Error('Missing measured poses for '+unit.key);
   const key=unit.animation.toUpperCase(),poses=grouped.get(key)||new Map();
@@ -12,7 +12,7 @@ export function previewFocus(records){
    if(pose.length!==8||!pose.every(Number.isInteger)||pose[4]<=0||pose[5]<=0)throw Error('Invalid crop for '+unit.key);
    if([0,2,12,15,18,20,21].includes(pose[0]))poses.set(pose[0]+':'+pose[1],pose);
   }
-  grouped.set(key,poses);
+  grouped.set(key,poses);if(unit.frameHashes)hashes.set(key,unit.frameHashes);
  }
  const focus={};
  for(const [key,map]of [...grouped].sort(([a],[b])=>a.localeCompare(b))){
@@ -22,7 +22,7 @@ export function previewFocus(records){
   const first=basis[0],w=first[4],h=first[5];
   const reference=first.slice(2,6),centers={};
   for(const [g,f,,,,,cx,cy]of poses){const group=centers[g]||(centers[g]=[]);while(group.length<=f)group.push(null);group[f]=[cx,cy];}
-  focus[key]={reference,origin:first.slice(6,8),centers};
+  focus[key]={reference,origin:first.slice(6,8),centers,...(hashes.has(key)?{poseHashes:hashes.get(key)}:{})};
  }
  return focus;
 }

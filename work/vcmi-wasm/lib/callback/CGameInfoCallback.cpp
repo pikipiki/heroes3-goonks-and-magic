@@ -133,16 +133,22 @@ void CGameInfoCallback::fillUpgradeInfo(const CArmedInstance *obj, SlotID stackP
 	ERROR_RET_IF(!canGetFullInfo(obj), "Cannot get info about not owned object!");
 	ERROR_RET_IF(!obj->hasStackAtSlot(stackPos), "There is no such stack!");
 
-	const auto & stack = obj->getStack(stackPos);
+ fillUpgradeInfo(obj,obj->getStack(stackPos),out);
+}
+
+void CGameInfoCallback::fillUpgradeInfo(const CArmedInstance *obj,const CStackInstance &stack,UpgradeInfo &out) const
+{
+ ERROR_RET_IF(!canGetFullInfo(obj),"Cannot get info about not owned object!");
+
 	const CCreature *base = stack.getCreature();
 	UpgradeInfo ret(base->getId());
  const auto & disabled=gameState().getMap().sourceCampaignState["creatureUpgrades"][std::to_string(base->getId().getNum())];
  if(!disabled.isNull()&&disabled.Integer()==-2){out=ret;return;}
 
 
-	if (stack.getArmy()->ID == Obj::HERO)
+	if (obj->ID == Obj::HERO)
 	{
-		auto hero = dynamic_cast<const CGHeroInstance *>(stack.getArmy());
+		auto hero = dynamic_cast<const CGHeroInstance *>(obj);
 		hero->fillUpgradeInfo(ret, stack);
 
 		if (hero->getVisitedTown())
@@ -158,9 +164,9 @@ void CGameInfoCallback::fillUpgradeInfo(const CArmedInstance *obj, SlotID stackP
 		}
 	}
 
-	if (stack.getArmy()->ID == Obj::TOWN)
+	if (obj->ID == Obj::TOWN)
 	{
-		auto town = dynamic_cast<const CGTownInstance *>(stack.getArmy());
+		auto town = dynamic_cast<const CGTownInstance *>(obj);
 		town->fillUpgradeInfo(ret, stack);
 	}
 

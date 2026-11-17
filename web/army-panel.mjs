@@ -3,7 +3,7 @@ import {bindPress} from './mobile-press.mjs';
 import {getLanguage} from './i18n.mjs';
 
 // The roster never changes geometry when a troop is selected or split.
-export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onManage,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{}}){
+export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onManage,onUpgradeAll,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{}}){
  const fr=getLanguage()==='fr';
  const panel=document.createElement('div');panel.className='army-panel';panel.dataset.armyCount=String(showVisitorPlaceholder?Math.max(2,armies.length):armies.length);
  const rosters=document.createElement('div');rosters.className='army-rosters';
@@ -47,6 +47,7 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
     onMove({fromArmy:selection.army,fromSlot:selection.slot,toArmy:army.id,toSlot:slot,amount:separated});
    });
   }
+  if(!readOnly&&onUpgradeAll){const upgrade=document.createElement('button');upgrade.type='button';upgrade.className='army-upgrade-all';upgrade.innerHTML='<img src="./web/h3-theme/troops.svg" alt="" aria-hidden="true"><span>'+(fr?'Tout améliorer':'Upgrade all')+'</span>';upgrade.disabled=!army.slots?.some(Boolean);bindPress(upgrade,()=>{if(!pending)onUpgradeAll(army.id);});if(showVisitorPlaceholder&&army===armies[0])grid.append(upgrade);else section.append(upgrade);}
  }
  if(showVisitorPlaceholder&&armies.length<2){const absent=document.createElement('section');absent.className='army-roster army-absent';const title=document.createElement('h3');title.textContent=fr?'Héros en visite':'Visiting hero';const note=document.createElement('p');note.textContent=fr?'Aucun héros en visite. Fais entrer ton héros dans ce château pour échanger les troupes.':'No visiting hero. Move your hero into this town to exchange troops.';absent.append(title,note);rosters.append(absent);}
  return panel;
