@@ -1,6 +1,7 @@
 #pragma once
 #include "../CGameHandler.h"
 #include "../../lib/era/EraMithrilModel.h"
+#include "../../lib/era/EraMithrilReroll.h"
 #include "../../lib/networkPacks/EraGameplayPacks.h"
 #include "../../lib/networkPacks/PacksForClient.h"
 #include "../../lib/CPlayerState.h"
@@ -32,28 +33,14 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     else if(proposed.kind==SHRINE||proposed.kind==HUT)
     {
         const auto * reward=dynamic_cast<const CRewardableObject *>(object);
-        const auto constructor=std::dynamic_pointer_cast<const CRewardableConstructor>(object->getObjectHandler());
-        if(!reward||!constructor||proposed.alternatives.empty())return false;
+        if(!reward||proposed.alternatives.empty())return false;
         if(next["seed"].isNull())next["seed"].Integer()=gh.getRandomGenerator().nextInt(1,INT32_MAX);
         const auto position=object->visitablePos();
         const auto seed=era_bridge::mithril::coordinateSeed(static_cast<uint32_t>(next["seed"].Integer()),position.x,position.y,position.z)
             +static_cast<uint32_t>(target["rerolls"].Integer());
         const auto index=era_bridge::mithril::safeRand(seed,0,static_cast<int>(proposed.alternatives.size())-1);
         const int chosen=proposed.alternatives[index];
-        auto configured=reward->configuration;
-        JsonNode identifier;
-        if(proposed.kind==SHRINE)
-        {
-            identifier.String()=SpellID(chosen).toSpell()->getJsonKey();
-            identifier.setModScope("game");configured.presetVariable("spell","gainedSpell",identifier);
-        }
-        else
-        {
-            identifier.String()=LIBRARY->skillh->getById(SecondarySkill(chosen))->getJsonKey();
-            identifier.setModScope("game");configured.presetVariable("secondarySkill","gainedSkill",identifier);
-        }
-        GameRandomizer local(cb);local.setSeed(static_cast<int32_t>(seed));
-        const auto updated=constructor->generateConfiguration(object->cb,local,object->ID,configured.variables.preset);
+        const auto updated=rerollOffering(reward->configuration,proposed.kind==SHRINE,proposed.current,chosen);
         gh.setRewardableObjectConfiguration(object->id,updated);
         target["rerolls"].Integer()+=1;
     }

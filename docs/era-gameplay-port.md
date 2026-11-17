@@ -147,11 +147,16 @@ amélioration après la visite normale : le scénario dédié vérifie le passag
 de Sagesse de base à avancée et le débit de 3000 pièces d'or. Ce
 travail ne constitue pas le port complet de la priorité 4.
 
-Les 20 scénarios mithril vérifient aussi les récompenses effectives de la roue
+Les 21 scénarios mithril vérifient aussi les récompenses effectives de la roue
 à eau pendant les deux premières semaines, la conservation des quatre stocks
 du Conflux après amélioration et la visite de caméra des sorties de monolithe,
 suivie du retour à l'entrée. Le panneau se ferme pour laisser voir ce parcours
 et présente les quatre créatures améliorées du Conflux.
+Changer le sort d'un sanctuaire ou la compétence d'une hutte conserve désormais
+les autres récompenses et variables de l'objet. Le scénario de régression
+ajoute une récompense en or tirée au hasard au sanctuaire : sa valeur reste
+identique après le changement de sort et une nouvelle visite. Le moteur
+précédent échoue sur ce même scénario parce qu'il régénère tout l'objet.
 
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.

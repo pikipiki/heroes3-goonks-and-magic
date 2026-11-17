@@ -17,6 +17,7 @@ const sha=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex')
 const report={scope:'mithril-sites',completeRules:false,engineSha256:sha(path.join(engineDirectory,'vcmiclient.wasm')),scenarios:[],errors:[]};
 const testDifficulty=readJsonc('work/vcmi-wasm/config/difficulty.json');
 const testMarkets=readJsonc('work/vcmi-wasm/config/objects/markets.json');
+const testShrines=readJsonc('work/vcmi-wasm/config/objects/shrine.json');
 for(const group of Object.values(testDifficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=100;
 let page;
 const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
@@ -73,7 +74,7 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({reroll})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -82,7 +83,9 @@ async function boot({save,enabled=true,henchmen=false,funds=100,...options}={}){
  for(const group of Object.values(difficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=funds;
  const markets=options.reroll==='university'?structuredClone(testMarkets):null;
  if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
- await page.addInitScript(({enabled,henchmen,difficulty,markets})=>{
+ const shrines=preserveRewards?structuredClone(testShrines):null;
+ if(shrines)shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.rewards[0].resources={gold:{min:1001,max:9999}};
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -94,11 +97,12 @@ async function boot({save,enabled=true,henchmen=false,funds=100,...options}={}){
     manifest.settings.modules.henchmen=henchmen;
     value.FS.writeFile('/config/difficulty.json',JSON.stringify(difficulty));
     if(markets)value.FS.writeFile('/config/objects/markets.json',JSON.stringify(markets));
+    if(shrines)value.FS.writeFile('/config/objects/shrine.json',JSON.stringify(shrines));
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets});
+ },{enabled,henchmen,difficulty,markets,shrines});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -258,6 +262,14 @@ try{
   await walk(-1);assert.equal((await walk(1)).mode,'recruit');const after=await recruitmentStock();
   for(const [base,upgrade] of [['airElemental','stormElemental'],['waterElemental','iceElemental'],['fireElemental','energyElemental'],['earthElemental','magmaElemental']])assert.equal(after['core:'+upgrade],before['core:'+base],JSON.stringify({base,upgrade,before,after}));
   report.scenarios.push('conflux-upgrades-all-four-native-recruitment-stocks');await page.close();
+ }
+ if(!process.env.CASES||process.env.CASES==='preservation'){
+  await boot({reroll:'shrine',preserveRewards:true});let gold=(await state()).resources[6];
+  await walk(2);const first=(await state()).resources[6]-gold;assert(first>=1001&&first<=9999);
+  const shrine=(await panel()).offers.find(row=>row.kind===4);assert(shrine);await buy(shrine);await page.locator('[data-mithril-close]').tap();
+  await walk(-1);gold=(await state()).resources[6];await walk(1);const second=(await state()).resources[6]-gold;
+  assert.equal(second,first,'Changing the offered spell must preserve the already rolled gold reward');
+  report.scenarios.push('shrine-reroll-preserves-already-randomized-extra-rewards');await page.close();
  }
  for(const kind of ['shrine','hut','university']){
   if(process.env.CASES&&process.env.CASES!==kind&&process.env.CASES!=='rerolls')continue;

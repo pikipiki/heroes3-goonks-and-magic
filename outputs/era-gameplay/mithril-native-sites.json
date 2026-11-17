@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "mithril-sites",
   "completeRules": false,
-  "engineSha256": "c6ed00b68e113eec580769884096f4fcb3479df03911b304b8e2685769fb2281",
+  "engineSha256": "e2b14f6e3c2a330a70d10a48544babe9226c78f69c67e5cf86e39b502d4ffffb",
   "scenarios": [
     "owned-mine-double-income-payment-and-stale-request",
     "companion-and-mithril-transactions-coexist",
@@ -21,6 +21,7 @@
     "insufficient-mithril-rejected-by-server",
     "waterwheel-actual-reward-doubled-on-first-and-second-week",
     "conflux-upgrades-all-four-native-recruitment-stocks",
+    "shrine-reroll-preserves-already-randomized-extra-rewards",
     "shrine-visited-object-rerolled-with-payment",
     "hut-visited-object-rerolled-with-payment",
     "advanced-university-post-visit-skill-and-3000-gold"
@@ -29,7 +30,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "1ce4bd213cee1d7e7f074ab6af2a780d3082ca94a45c15ecd61c773f54db7b0c"
+      "sha256": "393451a2537d1dc73c5e90bc107cf2343468f1da268d0b09807ebee7a9bc6d50"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -53,7 +54,7 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "f6b96a3f4562d5379d86ec33928a0ff14048618eb51a87ad83ae85ac0cb60fad"
+      "sha256": "5bf14d2a22504386df92b1b317221119a7a5ccb9e75dcbcbc1983ff6741f9ded"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -93,7 +94,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "93581c90ab1dbabf01f6c2637403ec9b454d58563e3f73f9bacab7fec416ecfd"
+      "sha256": "d0a7f78b54cbee84ef1de043ab85cc588d82a1fa1fe7dec21d1bfdeee1732177"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -253,7 +254,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
-      "sha256": "a83ba242e99ae649a847a6427c0f5f547da306cfefbc4700fa310fd8b2b73f44"
+      "sha256": "c5744008e4edf915503ba096a08af1d20b650c20886f0a1d4e48b2af44d53ccf"
     },
     {
       "file": "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp",
@@ -270,6 +271,10 @@
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.h",
       "sha256": "685c982f4db737542f69f0ddf818c7e4f38f92acb2ff868978793e6ad5951664"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMithrilReroll.h",
+      "sha256": "95a908d9e0bd6f7d4c17bd03a782f8446b382273575a32d959f6c3ab833dddf2"
     }
   ]
 }
