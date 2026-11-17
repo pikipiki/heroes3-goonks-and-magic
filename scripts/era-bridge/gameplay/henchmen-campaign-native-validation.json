@@ -2,14 +2,16 @@
   "schema": 1,
   "activation": false,
   "completeRules": false,
-  "scope": "Source campaign crossover JSON transformation; native two-scenario campaign flow remains unvalidated",
+  "scope": "Native two-scenario victory and crossover: progression, stack-XP reset, death state, transfer setting and free-banner carryover",
   "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
   "parentEngineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
   "sourceBindings": {
     "work/vcmi-wasm/lib/campaign/CampaignState.cpp": "c8a02ddfd3895d40cc68db6b4ab4a2a656b7e663091b5118b09e081ae2377f18",
     "work/vcmi-wasm/lib/era/EraHenchmanCampaign.h": "345f10da6cf772ecbf09a425176ed18028bf8d00fdbe04b3b410e04fd799748e",
     "tests/native/EraHenchmanCampaign.test.cpp": "1a36d0a3bca2e377d30a6adb61097b926b1f7fac821bf7ae38c3b2250bfb59e6",
-    "tests/era-henchmen-campaign.test.mjs": "8dd9f88c496eb7982abc531070e70cc3132217469e7750cdbdc7a9a0766d226e"
+    "tests/era-henchmen-campaign.test.mjs": "8dd9f88c496eb7982abc531070e70cc3132217469e7750cdbdc7a9a0766d226e",
+    "work/browser-tests/wog-henchmen-campaign-native-e2e.mjs": "1a7ce4fa6f14a89349faae1c48b34668f627cba6f2a56ba89b83106bb152049e",
+    "work/browser-tests/henchmen-campaign-fixture.py": "26397d69d0fa07d29205ae8f8797f139d126ba4c3ad94be3f42cd7a262268821"
   },
   "upstream": {
     "eraProjectCommit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
@@ -56,8 +58,150 @@
     }
   },
   "remaining": [
-    "End-to-end two-scenario campaign transition and restart",
-    "Native free-banner INI-equivalent outcomes across scenario settings",
+    "End-to-end campaign restart",
+    "Free-banner and transfer configuration changes between scenarios",
     "Older campaign crossover compatibility"
-  ]
+  ],
+  "nativeReports": [
+    {
+      "passed": true,
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "archiveSha256": "3572a7b73923927b4437feb671ea229db324651fcc9ce8a41b6cee022114849b",
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-free-banner-true-alive-true-returned-banner-false"
+      ],
+      "before": {
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 8
+      },
+      "errors": []
+    },
+    {
+      "passed": true,
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "parameters": {
+        "transfer": true,
+        "freeBanner": false,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "archiveSha256": "20bfd4f0520396dab8c884cb1293cd0bed86847b6ab20953de8adfe5d61479a6",
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-free-banner-false-alive-true-returned-banner-false"
+      ],
+      "before": {
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": -1
+      },
+      "errors": []
+    },
+    {
+      "passed": true,
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "parameters": {
+        "transfer": false,
+        "freeBanner": true,
+        "alive": true,
+        "returnedBanner": false
+      },
+      "archiveSha256": "725ceef836801a654728d778564d6004a023ec8918b319064808eef0979b10df",
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-false-free-banner-true-alive-true-returned-banner-false"
+      ],
+      "before": {
+        "alive": true,
+        "experience": 90,
+        "stackExperience": 0,
+        "bannerStyle": -1
+      },
+      "after": {
+        "alive": null,
+        "experience": null,
+        "stackExperience": null,
+        "bannerStyle": 0
+      },
+      "errors": []
+    },
+    {
+      "passed": true,
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "alive": false,
+        "returnedBanner": false
+      },
+      "archiveSha256": "607144be408313a1bbdc5ef5e9252fe6cf5225f772c52560a353c50dd07045b4",
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-free-banner-true-alive-false-returned-banner-false"
+      ],
+      "before": {
+        "alive": false,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": 8
+      },
+      "after": {
+        "alive": false,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 8
+      },
+      "errors": []
+    },
+    {
+      "passed": true,
+      "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
+      "parameters": {
+        "transfer": true,
+        "freeBanner": true,
+        "alive": true,
+        "returnedBanner": true
+      },
+      "archiveSha256": "975b465dac57e21548fe31e6d4842337feae9dbe5db8d7263015654985322484",
+      "scenarios": [
+        "native-two-scenario-crossover-transfer-true-free-banner-true-alive-true-returned-banner-true"
+      ],
+      "before": {
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 7500,
+        "bannerStyle": -1
+      },
+      "after": {
+        "alive": true,
+        "experience": 880,
+        "stackExperience": 0,
+        "bannerStyle": 0
+      },
+      "errors": []
+    }
+  ],
+  "negativeControl": {
+    "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+    "expectedFailure": "Old engine incorrectly retains7501 stack experience after crossover",
+    "logSha256": "8341e99019a07841879895d399de9331030f496239c36ba9f43b582a15d216e6"
+  }
 }

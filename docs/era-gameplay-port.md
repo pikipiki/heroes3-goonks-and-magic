@@ -182,8 +182,12 @@ zéro, suivant les cellules nommées réinitialisées par ERA. Il conserve la
 progression propre du compagnon, son type et son état de vie. Les essais C++
 avec contrôles mémoire vérifient aussi les deux réglages de bannière, l'absence
 de transfert et la conservation des données du héros donneur. La compilation
-WebAssembly passe ; le parcours complet entre deux scénarios et le redémarrage
-de campagne restent à vérifier en jeu. Voir
+WebAssembly passe. Cinq parcours natifs entre deux scénarios vérifient aussi la
+victoire, les deux réglages de transfert et de bannière gratuite, le compagnon
+mort et la bannière rendue au sac avant la victoire. Le témoin sur l'ancien
+moteur conserve à tort 7501 points d'expérience de troupe au lieu de zéro.
+Le redémarrage et les changements de réglages entre scénarios restent à vérifier.
+Voir
 `scripts/era-bridge/gameplay/henchmen-campaign-native-validation.json`.
 
 ## Raccordements et validations restant nécessaires
