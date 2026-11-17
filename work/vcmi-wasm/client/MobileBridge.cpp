@@ -236,6 +236,16 @@ bool mobileGarrisonExchange(const CPlayerInterface & player,const CGarrisonWindo
  const auto * upper=window->getMobileArmy(0);
  return dynamic_cast<const CGGarrison *>(upper)||upper->getOwner()==player.playerID;
 }
+bool mobileJoiningExchange(const CPlayerInterface & player,const CGarrisonWindow * window)
+{
+ if(!window||!window->getMobileArmy(0))return false;
+ const auto * upper=window->getMobileArmy(0);
+ const auto * hero=dynamic_cast<const CGHeroInstance *>(window->getMobileArmy(1));
+ // Native creature/reward overflow armies are unflaggable. Keep actual
+ // garrisons and hero exchanges on their existing ownership paths.
+ return hero&&hero->getOwner()==player.playerID&&upper->getOwner()==PlayerColor::UNFLAGGABLE
+  &&!dynamic_cast<const CGGarrison *>(upper)&&!dynamic_cast<const CGHeroInstance *>(upper);
+}
 bool mobileCampaignRewardExchange(const CPlayerInterface & player,const CGarrisonWindow * window)
 {
  if(!window)return false;
@@ -912,7 +922,7 @@ void publishMobileState(){
  if(!heroWindow)mobileArtifactCombinationPending=false;
  const auto exchangeWindow=mobileEnabled?ENGINE->windows().topWindow<CExchangeWindow>():nullptr;
  const auto garrisonWindow=mobileEnabled?ENGINE->windows().topWindow<CGarrisonWindow>():nullptr;
- const bool sourceArmyWindow=p&&(mobileCampaignExchange(*p,garrisonWindow.get())||mobileGarrisonExchange(*p,garrisonWindow.get())||mobileCampaignRewardExchange(*p,garrisonWindow.get()));
+ const bool sourceArmyWindow=p&&(mobileCampaignExchange(*p,garrisonWindow.get())||mobileGarrisonExchange(*p,garrisonWindow.get())||mobileCampaignRewardExchange(*p,garrisonWindow.get())||mobileJoiningExchange(*p,garrisonWindow.get()));
  const bool openTownHall=mobileEnabled&&townWindow&&mobileTownHall==townWindow->town->id.getNum();
  if(openTownHall)n["openTownHall"].Bool()=true;
  else if(townWindow||!p)mobileTownHall.reset();
@@ -1174,6 +1184,12 @@ void publishMobileState(){
     upgrade["affordable"].Bool()=p->makingTurn&&p->cb->getResourceAmount().canAfford(total);n["creatureUpgrades"].Vector().push_back(upgrade);
    }
   }
+  if(const auto stack=creatureWindow->getMobileBattleStack())
+  {
+   const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["shooter"].Bool()=shooter;item["inCombat"].Bool()=true;item["stackId"].Integer()=stack->unitId();item["count"].Integer()=stack->getCount();
+   item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);
+   item["currentHealth"].Integer()=stack->getFirstHPleft();item["remainingShots"].Integer()=stack->shots.available();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();mobileSpellEffects(item,*stack);
+  }
   n["creatureUnit"]=item;
  }
  if(top && n["mode"].String()=="dialog" && (ENGINE->windows().topWindow<CInfoWindow>() || ENGINE->windows().topWindow<CLevelWindow>() || n["dialogKind"].String()=="commander-level-up" || n["dialogKind"].String()=="commander"))
@@ -1426,7 +1442,7 @@ void publishMobileState(){
    n["heroExchange"]=mobileExchange(*exchangeWindow,*p);
   else if(sourceArmyWindow)
   {
-   auto & exchange=n["heroExchange"];exchange["classicOnly"].Bool()=false;exchange["troopsOnly"].Bool()=true;const bool nativeGarrison=mobileGarrisonExchange(*p,garrisonWindow.get());exchange["garrison"].Bool()=nativeGarrison;
+   auto & exchange=n["heroExchange"];exchange["classicOnly"].Bool()=false;exchange["troopsOnly"].Bool()=true;const bool nativeGarrison=mobileGarrisonExchange(*p,garrisonWindow.get());exchange["garrison"].Bool()=nativeGarrison;exchange["joining"].Bool()=mobileJoiningExchange(*p,garrisonWindow.get());
    for(int side=0;side<2;++side)
    {
     const auto * current=garrisonWindow->getMobileArmy(side);JsonNode entry;
@@ -2225,7 +2241,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  }
  if(action==92 || action==93 || action==94)
  {
-  if(const auto window=ENGINE->windows().topWindow<CGarrisonWindow>();mobileCampaignExchange(*p,window.get())||mobileGarrisonExchange(*p,window.get())||mobileCampaignRewardExchange(*p,window.get()))
+  if(const auto window=ENGINE->windows().topWindow<CGarrisonWindow>();mobileCampaignExchange(*p,window.get())||mobileGarrisonExchange(*p,window.get())||mobileCampaignRewardExchange(*p,window.get())||mobileJoiningExchange(*p,window.get()))
   {
    if(action==93){shortcut(EShortcut::GLOBAL_ACCEPT);lastPublished=0;return;}
    if(action!=94||!p->makingTurn||a<0||a>3||b<0||b>=7||c<0||c>=7)return;
@@ -2383,6 +2399,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   const bool canPlace=battle->tacticsMode&&ownsTactics&&battle->getBattle()->battleTacticDist()>0&&!battle->openingPlaying()&&!battle->hasAnimations();
   if(action==44&&canToggleMobileAutocombat(*battle,tactics,canPlace)&&battle->curInt->isAutoFightOn!=(a!=0))
    shortcut(EShortcut::BATTLE_AUTOCOMBAT);
+  if(action==114)
+  {
+   if(a<0||!(combatReady||canPlace))return;
+   const auto * inspected=battle->getBattle()->battleGetStackByID(a);
+   if(!inspected||inspected->getCount()<=0||!inspected->getPosition().isValid())return;
+   ENGINE->windows().createAndPushWindow<CStackWindow>(inspected,false);lastPublished=0;return;
+  }
   if((action==12||action==13)&&combatReady)
   {
    const auto active=battle->stacksController->getActiveStack();

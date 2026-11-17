@@ -187,3 +187,13 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
 @container goonk-viewport (orientation:landscape){
  #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]) span{font-size:clamp(9px,1.2vw,12px);overflow-wrap:normal;word-break:normal;line-height:1.2}
 }
+/* Read-only battle inspection shares the normal creature sheet. */
+#mobile-app .battle-unit-inspect{position:relative;flex:0 0 60px;width:60px;height:60px;min-height:44px;padding:0!important;border:2px ridge #b99a56;border-radius:0;background:#24170d}
+#mobile-app .battle-unit-inspect canvas{display:block;width:100%!important;height:100%!important;object-fit:contain}
+#mobile-app .battle-unit-inspect>span{position:absolute;right:0;bottom:0;background:#24170d;color:#ffe6af;font-size:18px;line-height:20px}
+#mobile-app .battle-inspection-help{font-size:14px;line-height:1.45}
+#mobile-app .battle-inspection-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px}
+#mobile-app .battle-inspection-roster button{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 8px;align-items:center;text-align:left;min-height:76px;padding:8px}
+#mobile-app .battle-inspection-roster button>:is(img,canvas,span:first-child){grid-row:span 3;width:48px;height:56px;object-fit:contain}
+#mobile-app .battle-inspection-roster :is(strong,span,small){min-width:0;overflow-wrap:anywhere}
+#mobile-app .battle-inspection-roster small{color:#ffe6af;text-decoration:underline}

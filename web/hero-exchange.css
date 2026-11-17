@@ -132,3 +132,9 @@
  .exchange-actions {display:grid;grid-template-columns:1fr 1fr}
  .exchange-quantity {grid-column:1/-1;grid-template-columns:1fr auto;align-items:center}
 }
+#mobile-app .hero-exchange-page[data-joining=true]{grid-template-rows:auto auto minmax(0,1fr) auto}
+#mobile-app .exchange-joining-help{margin:0;padding:4px 8px;font-size:13px;line-height:1.35;color:#ffe6af}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help{grid-column:2;grid-row:2;overflow-y:auto;min-height:0}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail{grid-column:2;grid-row:3;overflow-y:auto;min-height:0}
+}

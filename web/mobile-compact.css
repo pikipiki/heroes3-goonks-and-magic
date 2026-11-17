@@ -249,3 +249,15 @@ html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-h
  html.goonk-mobile #game-menu[data-page=settings]>.game-menu-return button{width:100%;min-width:0}
  html.goonk-mobile #game-menu[data-page=settings]>.game-menu-status{grid-column:2;grid-row:4;padding:4px!important;font-size:12px}
 }
+/* Joining creatures uses the guard roster, with an explicit discard warning. */
+#mobile-app .hero-exchange-page[data-troops-only=true][data-joining=true]{grid-template-rows:auto auto minmax(0,1fr) auto}
+#mobile-app .hero-exchange-page[data-joining=true]>.exchange-toolbar{grid-row:1}
+#mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help{grid-row:2}
+#mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories{grid-row:3}
+#mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail{grid-row:4}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hero-exchange-page[data-troops-only=true][data-joining=true]{grid-template-rows:auto auto minmax(0,1fr)}
+ #mobile-app .hero-exchange-page[data-troops-only=true][data-joining=true]>.exchange-inventories{grid-area:1/1/4/2}
+ #mobile-app .hero-exchange-page[data-troops-only=true][data-joining=true]>.exchange-joining-help{grid-area:2/2;max-height:100px;overflow:auto;touch-action:pan-y}
+ #mobile-app .hero-exchange-page[data-troops-only=true][data-joining=true]>.exchange-detail{grid-area:3/2;min-height:0;overflow:auto}
+}

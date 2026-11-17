@@ -12,7 +12,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
  panel.setAttribute('aria-label',fr?'Échange entre héros':'Hero exchange');
  panel.hidden=true;
  root.querySelector('.mobile-play').append(panel);
- let garrison=false,heroes=[],classic=false,turn=false,classicOnly=false,troopsOnly=false,signature='',tab='equipment';
+ let joining=false,confirmFinish=false;let garrison=false,heroes=[],classic=false,turn=false,classicOnly=false,troopsOnly=false,signature='',tab='equipment';
  let source=null,destination=null,quantity=1,pending=null,message='';
  let held=false,closing=false;
  const slots=side=>tab==='troops'?heroes[side]?.roster:heroes[side]?.slots;
@@ -41,7 +41,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
  }
  function render(){
   const troops=tab==='troops',item=itemAt(source),target=itemAt(destination);
-  panel.dataset.armyView=String(troops);
+  panel.dataset.armyView=String(troops);panel.dataset.joining=String(joining);
   const targetHero=heroes[destination?.side];
   const countLimit=target?maximum(item,destination.side,target):0;
   const swap=target?.name&&(troops?troopSwap(item,target):true);
@@ -86,24 +86,25 @@ export function createHeroExchange({root,command,refresh,portrait}){
    (troops?(troopsOnly?(fr?'Les créatures vont rejoindre cette armée.':'The creatures will join this army.'):(fr?'Les créatures vont rejoindre l’autre héros.':'The creatures will join the other hero.')):(fr?'L’objet va rejoindre l’autre héros.':'The item will join the other hero.'));
   const disabled=!target||!available||!!pending||quantity<1||quantity>countLimit;
   panel.innerHTML=`<header class="exchange-toolbar">
-   <h2>${troopsOnly?(garrison?(fr?'Laisser des gardes':'Leave guards'):(fr?'Répartir les troupes':'Arrange army')):(fr?'Échange entre héros':'Hero exchange')}</h2>
-   <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending?'disabled':''}>${fr?'Classique':'Classic'}</button>
-   <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close exchange')}" ${pending?'disabled':''}>${troopsOnly?(fr?'Terminer':'Done'):'×'}</button>
+   <h2>${joining?(fr?'Faire de la place':'Make room'):troopsOnly?(garrison?(fr?'Laisser des gardes':'Leave guards'):(fr?'Répartir les troupes':'Arrange army')):(fr?'Échange entre héros':'Hero exchange')}</h2>
+   <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending||confirmFinish?'disabled':''}>${fr?'Classique':'Classic'}</button>
+   <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close exchange')}" ${confirmFinish?'hidden':''} ${pending?'disabled':''}>${troopsOnly?(fr?'Terminer':'Done'):'×'}</button>
   </header>
   <nav class="exchange-tabs" ${troopsOnly?'hidden':''} aria-label="${fr?'Type d’échange':'Exchange type'}">
    <button type="button" data-exchange-tab="equipment" data-exchange-focus="equipment" aria-pressed="${!troops}" ${pending?'disabled':''}>${fr?'Équipement':'Equipment'}</button>
    <button type="button" data-exchange-tab="troops" data-exchange-focus="troops" aria-pressed="${troops}" ${pending?'disabled':''}>${fr?'Troupes':'Army'}</button>
   </nav>
+  ${joining?`<p class="exchange-joining-help">${fr?'Déplace, fusionne ou échange les troupes. Seules les créatures placées dans l’armée du héros le rejoindront.':'Move, merge or swap units. Only creatures placed in the hero’s army will join them.'}</p>`:''}
   <div class="exchange-inventories">${heroes.map(sideMarkup).join('')}</div>
   <footer class="exchange-detail">
    <div class="exchange-summary" aria-live="polite" aria-atomic="true">
     ${item?`<h3>${escape(item.name)}${troops?` × ${item.count}`:''}</h3>`:''}
     ${target?`<p class="exchange-route"><span>${escape(heroes[source.side].name)}</span> <span aria-hidden="true">${swap?'⇄':'→'}</span>
       <span>${escape(targetHero.name)}</span>${target.name||!troops?' · '+escape(target.name||slotName(target,fr)):''}</p>`:''}
-    <p>${message||instruction}</p>
+    <p>${confirmFinish?escape((fr?'Terminer sans ces troupes : ':'Finish without these units: ')+heroes[0].roster.filter(u=>u.name&&u.count>0).map(u=>u.name+' × '+u.count).join(', ')):message||instruction}</p>
     ${!target&&item?.description?`<p class="exchange-description">${escape(plainGameText(item.description))}</p>`:''}
    </div>
-   ${item?`<div class="exchange-actions">
+   ${confirmFinish?`<div class="exchange-actions"><button data-exchange-cancel-finish>${fr?'Retour':'Back'}</button><button class="primary" data-exchange-commit-finish>${fr?'Confirmer et terminer':'Confirm and finish'}</button></div>`:item?`<div class="exchange-actions">
     ${troops&&target&&!swap?`<label class="exchange-quantity"><span>${fr?'Quantité':'Quantity'}</span><input type="number" inputmode="numeric" min="1" max="${countLimit}"
      value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}></label>`:''}
     <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${fr?'Annuler':'Cancel'}</button>
@@ -127,7 +128,11 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const button=event.target.closest('button');
   if(!button||button.disabled||closing)return;
   if(button.hasAttribute('data-exchange-classic')){setView(true);return;}
-  if(button.hasAttribute('data-exchange-close')){closing=true;for(const control of panel.querySelectorAll('button,input'))control.disabled=true;command(93);return;}
+  if(button.hasAttribute('data-exchange-cancel-finish')){confirmFinish=false;render();return;}
+  if(button.hasAttribute('data-exchange-close')||button.hasAttribute('data-exchange-commit-finish')){
+   if(joining&&!confirmFinish&&heroes[0].roster.some(u=>u.name&&u.count>0)){confirmFinish=true;render();panel.querySelector('[data-exchange-cancel-finish]')?.focus();return;}
+   closing=true;for(const control of panel.querySelectorAll('button,input'))control.disabled=true;command(93);return;
+  }
   if(button.hasAttribute('data-exchange-confirm')){
    const item=itemAt(source),target=itemAt(destination);
    if(!item||!target||quantity<1||quantity>maximum(item,destination.side,target))return;
@@ -165,7 +170,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   update(state){
    if(state.mode!=='hero-exchange'||state.heroExchange?.heroes?.length!==2){
     if(pending)clearTimeout(pending.timer);
-    heroes=[];clearSelection();pending=null;message='';signature='';classic=false;classicOnly=false;troopsOnly=false;held=false;closing=false;tab='equipment';
+    joining=false;confirmFinish=false;heroes=[];clearSelection();pending=null;message='';signature='';classic=false;classicOnly=false;troopsOnly=false;held=false;closing=false;tab='equipment';
     panel.hidden=true;
     delete root.dataset.exchangeView;
     return;
@@ -174,10 +179,10 @@ export function createHeroExchange({root,command,refresh,portrait}){
    if(signature===next){if(held){held=false;render();}return;}
    held=false;
    signature=next;
-   troopsOnly=state.heroExchange.troopsOnly===true;if(troopsOnly)tab='troops';
+   joining=state.heroExchange.joining===true;confirmFinish=false;troopsOnly=state.heroExchange.troopsOnly===true;if(troopsOnly)tab='troops';
    panel.dataset.troopsOnly=String(troopsOnly);panel.dataset.armyView=String(tab==='troops');garrison=state.heroExchange.garrison===true;
    panel.setAttribute('aria-label',troopsOnly?(fr?'Répartir les troupes':'Arrange army'):(fr?'Échange entre héros':'Hero exchange'));
-   heroes=state.heroExchange.heroes.map((hero,side)=>({...hero,name:troopsOnly&&side===0&&!state.heroExchange.garrison?(fr?'Créatures proposées':'Available creatures'):hero.name,roster:hero.army.slots.map((unit,slot)=>({...unit,slot}))}));
+   heroes=state.heroExchange.heroes.map((hero,side)=>({...hero,name:troopsOnly&&side===0&&!state.heroExchange.garrison?(joining?(fr?'Créatures à accueillir':'Joining creatures'):(fr?'Créatures proposées':'Available creatures')):hero.name,roster:hero.army.slots.map((unit,slot)=>({...unit,slot}))}));
    turn=state.turn;
    classicOnly=state.heroExchange.classicOnly;
    if(pending){

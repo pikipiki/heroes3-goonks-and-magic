@@ -210,6 +210,7 @@ public:
 	bool isMobileSelectedSkill(const CCommanderSkillIcon * icon) const;
 	const CCreature * getMobileCreature() const;
 	const CStackInstance * getMobileStack() const;
+	const CStack * getMobileBattleStack() const;
 	unsigned getMobileCount() const;
 	std::vector<std::string> getMobileAbilities() const;
 	// for battles

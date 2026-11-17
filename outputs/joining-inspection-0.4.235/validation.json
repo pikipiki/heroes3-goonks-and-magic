@@ -1,0 +1,63 @@
+{
+  "version": "0.4.235",
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "deaa8e442ba60a26",
+    "wasm": "vcmiclient.5bd60b4cfb4a15b3.wasm",
+    "sha256": "5bd60b4cfb4a15b3ce5fedf4d414236ca36f3982bf52c7876a07dfcc9ff1e42a",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "webAssemblyBuild": "ninja -j32 html5 passed",
+  "unitTests": {
+    "passed": 773,
+    "skipped": 48,
+    "failed": 0
+  },
+  "catalog": {
+    "nativeFiles": 10462,
+    "transportBytes": 702299038,
+    "byteVerification": true
+  },
+  "mobileSizes": [
+    [
+      390,
+      844
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      568,
+      320
+    ]
+  ],
+  "minimumRosterTargetPixels": 44,
+  "browsers": [
+    {
+      "browser": "chromium",
+      "language": "en",
+      "passed": true,
+      "checks": [
+        "Full-army joining uses the mobile guard roster, supports swaps and confirms discarded upper troops",
+        "Enemy and ally details use actual combat stats; inspection preserves units, turn and view without an attack or spell"
+      ],
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "language": "fr",
+      "passed": true,
+      "checks": [
+        "Full-army joining uses the mobile guard roster, supports swaps and confirms discarded upper troops",
+        "Enemy and ally details use actual combat stats; inspection preserves units, turn and view without an attack or spell"
+      ],
+      "errors": []
+    }
+  ],
+  "privateFixturesPublished": false
+}

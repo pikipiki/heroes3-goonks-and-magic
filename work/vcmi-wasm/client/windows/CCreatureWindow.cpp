@@ -119,6 +119,7 @@ const CStackInstance * CStackWindow::getMobileStack() const
 	// pointing at the synthetic stack destroyed with the original window.
 	return fakeNode || isCommanderLevelUp() ? nullptr : info->stackNode;
 }
+const CStack * CStackWindow::getMobileBattleStack() const { return info->stack; }
 unsigned CStackWindow::getMobileCount() const { return info->creatureCount; }
 
 CCommanderSkillIcon::CCommanderSkillIcon(std::shared_ptr<CIntObject> object_, bool isMasterAbility_, std::function<void()> callback)
