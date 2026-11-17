@@ -147,7 +147,8 @@ sys.stdout.buffer.write(out.getvalue())
 
 async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  const classic=process.env.CASES==='classic';
- page=await browser.newPage({viewport:classic?{width:1024,height:768}:{width:844,height:390},hasTouch:true});
+ const desktop=process.env.CASES==='desktop';
+ page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -219,20 +220,21 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
   else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Mithril native validation');
   if(classic)await command(22);
+  else if(desktop)await page.locator('[data-ui=begin]').click();
   else await page.locator('[data-ui=begin]').tap();
  }
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
 }
 
 async function panel(){
- if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]').tap();
+ if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[process.env.CASES==='desktop'?'click':'tap']();
  await wait(()=>goonkMobileState.mithril);
  return (await state()).mithril;
 }
 async function buy(offer){
  const before=await panel();
  if(offer.kind===8)await page.locator(`[data-mithril-terrain="${offer.id}"]`).selectOption(String(offer.choice??0));
- await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`).tap();
+ await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[process.env.CASES==='desktop'?'click':'tap']();
  if(offer.kind===6){
   await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
   await page.locator('.mithril-panel').waitFor({state:'hidden'});return;
@@ -268,6 +270,22 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='desktop'){
+  await boot();let data=await panel();const before=data.amount;
+  await buy(data.offers.find(row=>row.kind===0&&row.cost===7));
+  data=await panel();await buy(data.offers.find(row=>row.kind===8&&row.choice===8));
+  assert.equal((await state()).mithril.amount,before-10);
+  assert.equal(await page.locator('[data-mithril-terrain]').inputValue(),'8');
+  for(const viewport of [{width:1440,height:900},{width:1280,height:720}]){
+   await page.setViewportSize(viewport);
+   const layout=await page.locator('.mithril-panel').evaluate(node=>{const content=node.querySelector('.mithril-content'),header=node.querySelector('header');return{width:node.clientWidth,scrollWidth:node.scrollWidth,right:header.getBoundingClientRect().left>=content.getBoundingClientRect().right-1,closes:node.querySelectorAll('[data-mithril-close]').length};});
+   assert(layout.right&&layout.closes===1&&layout.scrollWidth<=layout.width+1,JSON.stringify(layout));
+  }
+  await page.screenshot({path:path.join(output,'mithril-desktop.png')});
+  await page.locator('[data-mithril-close]').click();assert(await page.locator('.mithril-panel').isHidden());
+  report.scenarios.push('desktop-mouse-purchases-terrain-picker-and-close-without-touch-or-keyboard');
+  report.scenarios.push('desktop-1280-and-1440-layout-retains-right-command-column');await page.close();
+ }
  if(process.env.CASES==='classic'){
   const {runMithrilClassic}=await import('./wog-mithril-classic-native-cases.mjs');
   await runMithrilClassic({boot,state,command,wait,page:()=>page,report,output});

@@ -403,7 +403,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "393a1f62850caf4e0283b4e23be2762ab83dbd9a311f9959bc69b6a856a67207"
+      "sha256": "ffa2c0cae84f6e2b88b84595ac4a0a1ff3767799a2d617170c0dfea4743b5a19"
     },
     {
       "file": "docs/era-gameplay-port.md",
@@ -442,6 +442,25 @@
     "terrainChoices": 9,
     "selectedChoiceRetained": true,
     "minimumControlHeightPixels": 44,
+    "landscapeCommandsOnRight": true
+  },
+  "desktopReport": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "cda5851d3b36540b153cba957e440221877c154ece084fdf90ad756144c5cf4c",
+    "scenarios": [
+      "desktop-mouse-purchases-terrain-picker-and-close-without-touch-or-keyboard",
+      "desktop-1280-and-1440-layout-retains-right-command-column"
+    ],
+    "errors": []
+  },
+  "responsiveUX": {
+    "desktopViewports": [
+      "1280x720",
+      "1440x900"
+    ],
+    "desktopInput": "Mouse with hasTouch=false; no keyboard",
     "landscapeCommandsOnRight": true
   }
 }

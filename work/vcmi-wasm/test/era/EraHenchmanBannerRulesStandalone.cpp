@@ -7,6 +7,12 @@ using namespace era_bridge::henchmen;
 
 int main()
 {
+    assert(frozenEnabled(true,true,-1,false));
+    assert(!frozenEnabled(true,false,-1,true));
+    assert(frozenEnabled(false,false,1,false));
+    assert(!frozenEnabled(false,true,0,true));
+    assert(frozenEnabled(false,false,-1,true));
+    assert(!frozenEnabled(false,true,-1,false));
     // These expected values follow the source ApplyMod statements, including
     // its surprising '=' and negative '%' results, rather than VCMI's native
     // banner definitions (which use different constant percentages).
@@ -53,6 +59,10 @@ int main()
     settings.banner=false;
     assert(initialBanner(settings)==BannerStyle::NONE);
     assert(validBannerStyle(-1)&&validBannerStyle(8)&&!validBannerStyle(9));
+    for(int id:{-1,122,124,126,128,145,146,147,148,149,160,163,174,191})
+        assert(!sourceAiCreatureValid(id));
+    for(int id:{0,121,123,125,127,129,144,150,159,164,173,192,362})
+        assert(sourceAiCreatureValid(id));
     const auto * peasants=sourceExperienceTable(0);
     assert(peasants&&peasants->rank10==17500&&peasants->aboveRank10==12250);
     assert(peasants->battleCapPercent==50&&peasants->multiplier==1000);

@@ -1590,7 +1590,10 @@ void publishMobileState(){
     companion["replacementLossPercent"].Integer()=rules.replacementLossPercent;
     companion["revision"].Integer()=hero->henchman.revision;
     companion["bannerEnabled"].Bool()=rules.banner;
+    companion["stackExperienceEnabled"].Bool()=rules.stackExperience;
     companion["bannerStyle"].Integer()=era_compat::henchmen::bannerStyle(*hero);
+    companion["canEquipHeldBanner"].Bool()=rules.banner&&hero->henchman.stack
+     &&era_compat::henchmen::bannerStyle(*hero)<0&&era_compat::henchmen::hasHeldBanner(*hero);
     companion["canEquipBanner"].Bool()=rules.banner&&hero->henchman.stack
      &&era_compat::henchmen::bannerStyle(*hero)<0
      &&(hero->henchman.alive||!rules.reviveAnywhere)
@@ -1614,6 +1617,7 @@ void publishMobileState(){
      companion["level"].Integer()=growth.level;companion["experience"].Integer()=growth.experience;
      companion["nextLevel"].Integer()=growth.nextLevel;
      companion["rank"].Integer()=hero->henchman.stack->getExpRank();
+     companion["stackExperience"].Integer()=hero->henchman.stack->getAverageExperience();
      const auto extra=era_compat::henchmen::stats(*hero,p->cb->getDate(Date::DAY));
      auto & unit=companion["unit"];
      unit["attack"].Integer()+=extra.attack;unit["defense"].Integer()+=extra.defence;
@@ -1989,7 +1993,9 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   const auto player=GAME->interface();
   const auto window=ENGINE->windows().topWindow<CHeroWindow>();
   if(player&&player->makingTurn&&window&&window->curHero&&window->curHero->id.getNum()==a
-   &&window->curHero->henchman.revision==static_cast<uint32_t>(e)&&!window->getPickedArtifact()
+   &&window->curHero->henchman.revision==static_cast<uint32_t>(e)
+   &&(!window->getPickedArtifact()||(b==HenchmanAction::EQUIP_HELD_BANNER
+    &&window->getHeroPickedArtifact()==window->curHero&&era_compat::henchmen::hasHeldBanner(*window->curHero)))
    &&(b!=HenchmanAction::SELECT||(c>=0&&c<7&&window->curHero->hasStackAtSlot(SlotID(c))
     &&window->curHero->getStack(SlotID(c)).getId().getNum()==d)))player->cb->henchmanAction(window->curHero,b,c);
   lastPublished=0;return;

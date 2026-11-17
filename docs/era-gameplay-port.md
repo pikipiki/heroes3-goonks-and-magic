@@ -148,6 +148,20 @@ au rang 10 et la conservation des bonus du héros ; les autres effets de
 bannière et les transitions de campagne restent à clôturer. Le détail figure
 dans `scripts/era-bridge/gameplay/henchmen-banner-native-validation.json`.
 
+Le compagnon possède aussi un menu classique accessible au pointeur depuis le
+drapeau du héros. Le transfert d'une bannière tenue est proposé par un bouton
+sur mobile et par le drapeau en vue classique, y compris pour un compagnon mort,
+suivant cette exception du script source. Les autres mutations sont bloquées
+pendant qu'un objet est tenu. Le panneau défile réellement au doigt sur téléphone
+et iPad ; aucun clavier n'est nécessaire. Les combats vérifient également la
+réduction de défense et le gain d'expérience de la bannière. Le blocage partiel
+nécessite encore sa validation en combat.
+
+L'activation du compagnon est enregistrée dans la partie : les nouveaux réglages
+de l'installation ne remplacent plus le choix sauvegardé. Un scénario vérifie
+aussi la reprise d'une sauvegarde produite par le moteur précédent, avec le
+compagnon conservé malgré un réglage d'installation désactivé.
+
 ## Raccordements et validations restant nécessaires
 
 Le port natif du mithril couvre désormais les neuf familles de sites du script
@@ -158,7 +172,9 @@ est conservé dans la sauvegarde. Le panneau mobile présente les coûts et les
 effets actifs, avec une colonne de commandes à droite en paysage.
 Chaque ville utilise une seule fiche et un sélecteur tactile pour ses neuf
 terrains, avec le coût du choix affiché. Les achats et le défilement sont
-vérifiés sans clavier sur les formats téléphone et iPad.
+vérifiés sans clavier sur les formats téléphone et iPad. Le même panneau permet
+les achats, le choix du terrain et la fermeture à la souris sur ordinateur,
+avec des vérifications en 1280 × 720 et 1440 × 900 sans émulation tactile.
 
 L'interface classique permet aussi un clic droit sur l'entrée du site ou un
 Ctrl-clic sur son dessin, y compris lorsqu'un héros le recouvre. Une confirmation

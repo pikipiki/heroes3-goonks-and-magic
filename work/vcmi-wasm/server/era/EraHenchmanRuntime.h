@@ -21,13 +21,19 @@ namespace era_compat::henchmen
 inline HenchmanChange snapshot(const CGHeroInstance & hero);
 inline void initializeSettings(CGameHandler & gh,bool firstTurn)
 {
-    if(!enabled(gh.gameInfo())||gh.gameState().getMap().eraGameplayState["henchmen"]["settings"].isStruct())return;
+    const auto & saved=gh.gameState().getMap().eraGameplayState["henchmen"];
+    const bool active=enabled(gh.gameInfo());
+    const bool initializeRules=active&&!saved["settings"].isStruct();
+    if(saved["enabled"].isBool()&&!initializeRules)return;
     HenchmanSettings rules;
     const auto path=JsonPath::builtin("config/henchmen-settings");
-    if(firstTurn&&CResourceHandler::get()->existsResource(path))
+    if(initializeRules&&firstTurn&&CResourceHandler::get()->existsResource(path))
         rules=settingsFromJson(JsonNode(path)["henchmen"]["settings"]);
-    EraGameplayChange packet;packet.system="henchmen";
-    packet.state["settings"]=settingsToJson(rules);gh.sendAndApply(packet);
+    EraGameplayChange packet;packet.system="henchmen";packet.state=saved;
+    packet.state["enabled"].Bool()=active;
+    if(initializeRules)packet.state["settings"]=settingsToJson(rules);
+    gh.sendAndApply(packet);
+    if(!initializeRules)return;
     const bool resetCampaign=firstTurn&&gh.gameInfo().getStartInfo()->campState&&!rules.campaignTransfer;
     if(!rules.stackExperience||resetCampaign)
         for(const auto id:gh.gameState().getMap().getHeroesOnMap())
@@ -88,6 +94,13 @@ inline bool action(CGameHandler & gh,const HenchmanAction & request)
         if(!rules.banner||!hero->henchman.stack||update.banner<0
             ||request.slot<0||request.slot>8)return false;
         update.banner=request.slot;
+    }
+    else if(request.operation==HenchmanAction::EQUIP_HELD_BANNER)
+    {
+        // The source's direct flag drop deliberately permits a dead henchman,
+        // unlike the smart-dialog acquisition's reviveAnywhere guard.
+        if(!rules.banner||!hero->henchman.stack||update.banner>=0||!hasHeldBanner(*hero))return false;
+        gh.removeArtifact(ArtifactLocation(hero->id,ArtifactPosition::TRANSITION_POS));update.banner=0;
     }
     else if(request.operation==HenchmanAction::RETURN_BANNER)
     {
@@ -190,7 +203,7 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,Ba
                 if(table)
                     update.stackExperience=era_bridge::henchmen::stackExperienceGain(
                         era_bridge::henchmen::word(update.stackExperience),era_bridge::henchmen::word(gained),
-                        rules.banner&&update.banner==5,*table);
+                        update.banner==5,*table);
                 else
                 {
                     const auto added=std::min<int64_t>(gained*stack.getExperienceMultiplier(),stack.getMaxExperienceGainPerBattle());

@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -28,6 +28,8 @@ objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in 
 for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'army':[{'type':'core:peasant','amount':100},{'type':'core:archangel','amount':5}],'artifacts':{'spellbook':'core:spellBook'}})
+  o['options']['army'][1]['amount']=opts['archangels']
+  if opts['bless']:o['options'].update({'spellBook':['preset','core:bless'],'secondarySkills':{}})
   if opts['bannerInventory']: o['options']['artifacts']['backpack']=['wake-of-gods.stackartifacts:warlordsBannerHealth']
   if opts['inTown']: o['y']=9
   if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':0,'alive':False,'declined':False,'banner':-1}
@@ -40,7 +42,7 @@ if opts['enemyHero']:
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:peasant','amount':5},{'type':'core:archer','amount':1}]})
  objects.append(enemy)
 else:
- objects.append({'type':'core:monster','subtype':'core:peasant','instanceName':'henchmenTrainingGuard','x':10,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':1,'character':'savage','neverFlees':True}})
+ objects.append({'type':'core:monster','subtype':opts['enemyType'],'instanceName':'henchmenTrainingGuard','x':10,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':opts['enemyCount'],'character':'savage','neverFlees':True}})
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
@@ -50,12 +52,14 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless})]);
 }
 
 async function boot({save,enabled=true,originURL=origin,settings,...options}={}){
+ const classic=process.env.CASES==='classic';
  // The packaged site's policy whitelists production domains, not localhost.
- page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true});
+ page=await browser.newPage({viewport:classic?{width:1024,height:768}:{width:844,height:390},hasTouch:true,bypassCSP:true});
+ if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
@@ -77,8 +81,8 @@ async function boot({save,enabled=true,originURL=origin,settings,...options}={})
    }});
   }});
  },{enabled,settings});
- await page.goto(originURL+'/game.html?mobile=1');
- await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
+ await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
+ await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
  if(startup)throw Error(JSON.stringify(startup));
  if(save){
@@ -94,15 +98,18 @@ async function boot({save,enabled=true,originURL=origin,settings,...options}={})
   await command(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);
   await wait(()=>goonkMobileState.maps?.some(row=>row.name==='000 - Henchmen native validation'));
   const map=(await state()).maps.find(row=>row.name==='000 - Henchmen native validation');
-  await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
+  if(classic)await command(21);
+  else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Henchmen native validation');
-  await page.locator('[data-ui=begin]').tap();
+  if(classic)await command(22);
+  else await page.locator('[data-ui=begin]').tap();
  }
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
 }
 
 async function sheet(){
- await page.locator('[data-ui=heroes]').tap();
+ if(process.env.CASES==='classic')await command(55);
+ else await page.locator('[data-ui=heroes]').tap();
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
 }
@@ -116,15 +123,136 @@ async function startBattle(){
 async function resolve(){
  for(let tick=0;tick<400;tick++){
   const current=await state();
-  if(current.mode==='map'&&!current.hasPath)return;
+  if(current.mode==='map'&&!current.hasPath){
+   // Hero/commander level-up windows may be queued just after the map frame.
+   await page.waitForTimeout(350);
+   if((await state()).mode==='map')return;
+   continue;
+  }
   if(current.mode==='battle'&&current.canAutoCombat&&!current.autoCombat)await command(44,1);
-  else if(current.mode==='dialog')await command(1);
+  else if(current.mode==='dialog'){
+   if(current.dialogKind==='commander-level-up'){
+    const choice=current.dialogPresentation?.choices?.find(choice=>choice.selectable&&Number.isInteger(choice.skillId));
+    if(choice)await command(96,choice.skillId);
+   }
+   await command(1);
+  }
   await page.waitForTimeout(100);
  }
  throw Error('Henchman battle did not finish');
 }
 
 try{
+ if(process.env.CASES==='module-save'){
+  for(const enabled of [true,false]){
+   await boot({enabled});let hero=await sheet();assert.equal(!!hero.henchman,enabled);
+   if(enabled){await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-slot="0"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);}
+   await command(63);await wait(()=>goonkMobileState.mode==='map');
+   const save=await readCompletedNativeSave(page,command,{tag:enabled?931:932});await page.close();
+   await boot({save:[...save],enabled:!enabled});hero=await sheet();assert.equal(!!hero.henchman,enabled);
+   if(enabled)assert.equal(hero.henchman.unit?.key,'core:peasant');
+   report.scenarios.push(enabled?'companion-enabled-choice-and-unit-survive-disabled-installation-default':'companion-disabled-choice-survives-enabled-installation-default');await page.close();
+  }
+  if(process.env.HENCH_LEGACY_ORIGIN){
+   await boot({enabled:true,originURL:process.env.HENCH_LEGACY_ORIGIN});await sheet();
+   await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-slot="0"]').tap();
+   await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:peasant');
+   await command(63);await wait(()=>goonkMobileState.mode==='map');
+   const save=await readCompletedNativeSave(page,command,{tag:933});await page.close();
+   await boot({save:[...save],enabled:false});const hero=await sheet();assert.equal(hero.henchman?.unit?.key,'core:peasant');
+   report.legacyProducerEngineSha256=sha(path.join(process.env.HENCH_LEGACY_ENGINE_DIR,'vcmiclient.wasm'));
+   report.scenarios.push('legacy-companion-save-retains-unit-with-disabled-installation-default');await page.close();
+  }
+ }
+ if(process.env.CASES==='banner-defense'){
+  for(const style of [-1,6]){
+   await boot({henchmanType:'core:archangel',henchmanBanner:style,enemyType:'core:stoneGolem',enemyCount:1000,archangels:1,bless:true});
+   await startBattle();
+   for(let step=0;step<20;++step){
+    await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct);
+    const current=await state(),active=current.battleUnits.find(unit=>unit.stackId===current.activeStack);
+    if(active?.armySlot===-6)break;
+    await command(13);await page.waitForTimeout(150);
+   }
+   await command(14);await wait(()=>goonkMobileState.mode==='spellbook');await command(51,0);
+   assert((await state()).spellbook.spells.some(spell=>spell.id===41&&spell.enabled));
+   await command(49,41);await wait(()=>goonkMobileState.mode==='battle');
+   let current=await state();const hench=current.battleUnits.find(unit=>unit.armySlot===-6);
+   await command(14,3,hench.occupied[0]);
+   await wait(()=>goonkMobileState.battleUnits?.some(unit=>unit.armySlot===-6&&unit.spellEffects?.some(effect=>effect.id===41)));
+   await page.waitForTimeout(200);await wait(()=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct&&!goonkMobileState.spellTargeting);
+   current=await state();const actor=current.battleUnits.find(unit=>unit.armySlot===-6),target=current.battleUnits.find(unit=>unit.enemy);
+   assert.equal(current.activeStack,actor.stackId);
+   const health=unit=>(unit.count-1)*unit.maximumHealth+unit.currentHealth;
+   const before=health(target),defence=style===6?Math.trunc(target.defense*0.75):target.defense;
+   const factor=1+Math.min(4,Math.max(0,actor.attack-defence)*0.05);
+   const expected=Math.trunc(actor.damageMax*factor);
+   const lucky=Math.trunc(actor.damageMax*(factor+1));
+   assert.equal(current.battleCells.find(cell=>cell.hex===target.occupied[0]).actionLabel,'Attack');
+   await command(14,4,target.occupied[0]);
+   await wait(({id,before})=>{const unit=goonkMobileState.battleUnits?.find(unit=>unit.stackId===id);return unit&&(unit.count-1)*unit.maximumHealth+unit.currentHealth<before;},{id:target.stackId,before});
+   const after=(await state()).battleUnits.find(unit=>unit.stackId===target.stackId),damage=before-health(after);
+   assert(damage===expected||(actor.luck>0&&damage===lucky),JSON.stringify({style,damage,expected,lucky,actor,target}));
+   report.scenarios.push(`native-banner-defense-${style}-damage-${damage}`);await page.close();
+  }
+ }
+ if(process.env.CASES==='classic'){
+  await boot({bannerInventory:true});await sheet();
+  const flag=async()=>{
+   const previous=await state(),r=previous.rect;
+   await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),{x:r.x+635,y:r.y+40});
+   await wait(token=>goonkMobileState.windowToken!==token,previous.windowToken);
+  };
+  const row=async index=>{
+   const r=(await state()).rect;
+   await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),{x:r.x+140,y:r.y+163+25*index});
+   await command(1);
+  };
+  await flag();const menuToken=(await state()).windowToken;
+  await command(1);await wait(token=>goonkMobileState.windowToken!==token,menuToken);
+  await command(1);await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:peasant');
+  await command(62,19);await wait(()=>goonkMobileState.heroWindow?.picked);
+  await flag();await row(4);
+  await wait(()=>goonkMobileState.heroWindow?.henchman?.bannerStyle===4&&!goonkMobileState.heroWindow.picked);
+  await flag();await page.screenshot({path:path.join(output,'classic-henchman-menu.png')});
+  const currentToken=(await state()).windowToken;
+  await row(1);await wait(token=>goonkMobileState.windowToken!==token,currentToken);
+  await row(8);await wait(()=>goonkMobileState.heroWindow?.henchman?.bannerStyle===8);
+  report.scenarios.push('classic-hero-flag-native-choice-held-drop-and-banner-style-menus');
+  await page.close();
+ }
+ if(process.env.CASES==='held-banner'){
+  await boot({dead:true,bannerInventory:true,settings:{reviveAnywhere:true}});
+  let hero=await sheet();assert(!hero.henchman.alive);assert(!hero.henchman.canEquipBanner);
+  await command(62,19);await wait(()=>goonkMobileState.heroWindow?.picked);
+  hero=(await state()).heroWindow;assert(hero.henchman.canEquipHeldBanner);
+  await page.locator('[data-hero-tab=henchman]').tap();
+  assert(await page.locator('[data-henchman-action="3"]').isDisabled());
+  await page.locator('[data-henchman-action="6"]').tap();
+  await wait(()=>!goonkMobileState.heroWindow.picked&&goonkMobileState.heroWindow.henchman.bannerStyle===0);
+  hero=(await state()).heroWindow;assert(!hero.henchman.alive);
+  assert(!hero.backpack.some(slot=>slot.name));
+  const revision=hero.henchman.revision;
+  await command(112,hero.id,6,-1,-1,revision);await page.waitForTimeout(250);
+  assert.equal((await state()).heroWindow.henchman.revision,revision);
+  report.scenarios.push('held-banner-transfer-consumes-native-transition-artifact-and-permits-dead-companion');
+  await page.close();
+ }
+ if(process.env.CASES==='banner-experience'){
+  for(const [style,count,archangels]of [[-1,100,5],[5,100,5],[-1,30000,5000],[5,30000,5000]]){
+   await boot({henchmanType:'core:peasant',henchmanBanner:style,enemyCount:count,archangels});
+   const before=await sheet();assert.equal(before.henchman.stackExperience,0);
+   await command(63);await wait(()=>goonkMobileState.mode==='map');await startBattle();await resolve();
+   const after=await sheet();assert(after.henchman.alive);
+   const gained=after.experience-before.experience;
+   assert(gained>0);
+   const cap=style===5?13125:8750;
+   const requested=style===5?Math.trunc(gained*3/2):gained;
+   assert.equal(after.henchman.stackExperience,Math.min(cap,requested));
+   if(count===30000)assert(gained>cap,'The large-stack case must exercise the source battle cap');
+   report.scenarios.push(`banner-experience-${style}-count-${count}`);await page.close();
+  }
+ }
  if(process.env.CASES==='banner-scalars'){
   for(const [style,expected]of [
    [-1,{maximumHealth:77,attack:4,defense:4,damageMin:4,damageMax:5,speed:4,remainingRetaliations:1}],
@@ -163,6 +291,21 @@ try{
   await page.locator('[data-henchman-action="3"]').tap();
   await wait(()=>goonkMobileState.heroWindow.henchman.bannerStyle===0);
   assert.equal(await inventory(),initialInventory-1);
+  const touch=await page.context().newCDPSession(page);
+  for(const viewport of [{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:1024,height:768}]){
+   await page.setViewportSize(viewport);const grid=page.locator('.hero-equipment-grid');await grid.evaluate(node=>{node.scrollTop=0;});
+   const overflow=await grid.evaluate(node=>node.scrollHeight>node.clientHeight+20);
+   if(overflow){
+    const box=await grid.boundingBox();assert(box&&box.height>80);
+    const x=box.x+Math.min(box.width/2,100),start=box.y+box.height-25,end=box.y+25;
+    await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y:start}]});
+    for(let step=1;step<=6;++step){await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:start+(end-start)*step/6}]});await page.waitForTimeout(40);}
+    await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    await wait(()=>document.querySelector('.hero-equipment-grid').scrollTop>20);
+   }
+  }
+  await touch.detach();await page.setViewportSize({width:844,height:390});
+  report.scenarios.push('companion-banner-panel-real-touch-scroll-phone-and-ipad-without-keyboard');
   for(let style=1;style<=8;style++){
    await page.locator(`[data-henchman-action="4"][data-henchman-slot="${style}"]`).tap();
    await wait(style=>goonkMobileState.heroWindow.henchman.bannerStyle===style,style);

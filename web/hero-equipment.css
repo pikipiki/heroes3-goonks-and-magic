@@ -2,6 +2,7 @@
 .hero-equipment-page[hidden]{display:none}
 #mobile-app[data-mode=hero]{grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr)}
 #mobile-app[data-mode=hero] .mobile-play{grid-column:1;grid-row:2}
+#mobile-app[data-mode=hero][data-hero-view=mobile] .mobile-play{touch-action:auto}
 #mobile-app[data-mode=hero] #mobile-scene,#mobile-app[data-mode=hero] .scene-tools,#mobile-app[data-mode=hero] .scene-hint,#mobile-app[data-mode=hero] .mobile-nav,#mobile-app[data-mode=hero] .mobile-resources,#mobile-app[data-mode=hero] .mobile-calendar{display:none!important}
 .hero-card-head{display:flex;align-items:center;gap:10px;padding:6px 10px;border-bottom:1px solid #9a7e46;min-width:0}
 .hero-card-head .hero-face{width:52px;height:60px;flex:0 0 52px;border:2px ridge #d7b66e}

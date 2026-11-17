@@ -31,3 +31,12 @@ test('Banner ownership and all nine styles use native availability and existing 
  equipped.henchman.canEquipBanner=true;
  assert.match(renderHenchmanSheet(equipped,{canAct:true}),/data-henchman-action="3"\s+>/);
 });
+test('Held banner allows only its direct transfer while other companion mutations stay disabled',()=>{
+ const held=structuredClone(hero);held.picked={name:'Banner'};
+ Object.assign(held.henchman,{bannerEnabled:true,bannerStyle:-1,canEquipHeldBanner:true,canEquipBanner:true});
+ const markup=renderHenchmanSheet(held,{canAct:true});
+ assert.match(markup,/data-henchman-action="6"\s+>/);
+ assert.match(markup,/data-henchman-action="3" disabled/);
+ assert.match(markup,/data-henchman-action="1" disabled/);
+ assert.match(renderHenchmanSheet(held,{canAct:true,pending:true}),/data-henchman-action="6" disabled/);
+});

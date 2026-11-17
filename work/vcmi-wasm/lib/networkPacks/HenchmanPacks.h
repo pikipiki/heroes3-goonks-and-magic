@@ -19,7 +19,7 @@ struct DLL_LINKAGE HenchmanChange : public CPackForClient
 struct DLL_LINKAGE HenchmanAction : public CPackForServer
 {
     enum Operation : int32_t { SELECT=0, DISMISS=1, RESURRECT=2,
-        EQUIP_BANNER=3, SET_BANNER_STYLE=4, RETURN_BANNER=5 };
+        EQUIP_BANNER=3, SET_BANNER_STYLE=4, RETURN_BANNER=5, EQUIP_HELD_BANNER=6 };
     ObjectInstanceID hero;
     int32_t operation=SELECT,slot=-1;
     CreatureID expectedCreature;

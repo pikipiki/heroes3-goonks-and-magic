@@ -53,6 +53,7 @@ class CHeroWindow : public CStatusbarWindow, public IGarrisonHolder, public CWin
 	std::shared_ptr<CLabel> title;
 
 	std::shared_ptr<CAnimImage> banner;
+	std::shared_ptr<CIntObject> henchmanFlag;
 
 	std::vector<std::shared_ptr<CHeroSwitcher>> heroList;
 	std::shared_ptr<CPicture> listSelection;

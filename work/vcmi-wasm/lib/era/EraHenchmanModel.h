@@ -1,6 +1,7 @@
 #pragma once
 #include "EraHenchmanRules.h"
 #include "EraHenchmanBannerRules.h"
+#include "EraSourceCreatureLevels.h"
 #include "EraHenchmanConfiguration.h"
 #include "../gameState/CGameState.h"
 #include "../mapping/CMap.h"
@@ -13,7 +14,17 @@
 namespace era_compat::henchmen
 {
 inline bool enabled(const IGameInfoCallback & cb)
-{return cb.getSettings().getBoolean(EGameSettings::MODULE_HENCHMEN);}
+{
+    const auto & saved=cb.gameState().getMap().eraGameplayState["henchmen"];
+    if(saved["enabled"].isBool())return saved["enabled"].Bool();
+    bool evidence=saved["settings"].isStruct();
+    if(!evidence&&cb.getDate(Date::DAY)>0)
+        for(const auto id:cb.gameState().getMap().getHeroesOnMap())
+            if(const auto * hero=cb.getHero(id);hero&&hero->henchman.stack){evidence=true;break;}
+    return era_bridge::henchmen::frozenEnabled(cb.getDate(Date::DAY)==0,
+        cb.getSettings().getBoolean(EGameSettings::MODULE_HENCHMEN),
+        -1,evidence);
+}
 inline HenchmanSettings settings(const IGameInfoCallback & cb)
 {return settingsFromJson(cb.gameState().getMap().eraGameplayState["henchmen"]["settings"]);}
 inline int bannerStyle(const CGHeroInstance & hero)
@@ -24,6 +35,13 @@ inline int bannerStyle(const CGHeroInstance & hero)
 }
 inline ArtifactID bannerArtifact()
 {return ArtifactID(ArtifactID::decode("wake-of-gods.stackartifacts:warlordsBannerHealth"));}
+inline bool hasHeldBanner(const CGHeroInstance & hero)
+{
+    const auto id=bannerArtifact();
+    const auto * held=hero.getArt(ArtifactPosition::TRANSITION_POS);
+    return id.hasValue()&&held&&held->getTypeId()==id
+        &&!hero.getSourceSlotLocks().count(ArtifactPosition::TRANSITION_POS);
+}
 inline ArtifactPosition availableBanner(const CGHeroInstance & hero)
 {
     const auto id=bannerArtifact();
@@ -51,8 +69,10 @@ inline std::vector<era_bridge::henchmen::Candidate> candidates(const CGHeroInsta
     {
         if(!slot.validSlot())continue;
         const auto * creature=stack->getType();
+        const auto sourceId=era_bridge::sourceCreatureIdForLevel(creature->getJsonKey());
         result[slot.getNum()]={stack->getId().getNum(),static_cast<int32_t>(stack->getCount()),
-            creature->getBaseShots(),creature->getFightValue(),emissary(*creature),!emissary(*creature)};
+            creature->getBaseShots(),creature->getFightValue(),emissary(*creature),
+            sourceId?era_bridge::henchmen::sourceAiCreatureValid(*sourceId):!emissary(*creature)};
     }
     return result;
 }

@@ -13,6 +13,11 @@
 
 namespace era_bridge::henchmen
 {
+inline bool frozenEnabled(bool firstTurn,bool configured,int savedChoice,bool legacyEvidence)
+{
+    if(savedChoice>=0)return savedChoice!=0;
+    return firstTurn?configured:legacyEvidence;
+}
 // ERM VR operations store a Win32 integer after EACH operator.
 inline std::int32_t word(std::int64_t value)
 {
@@ -172,6 +177,13 @@ struct Candidate
     std::int32_t creature=-1,count=0,shots=0,fightValue=0;
     bool emissary=false,valid=true;
 };
+// WOG_CheckIfMonsterIsValid (stdlib9000:1710), used by the AI chooser.
+// The human dialog intentionally uses only its separate emissary exclusion.
+inline bool sourceAiCreatureValid(std::int32_t id)
+{
+    return id>=0&&id!=122&&id!=124&&id!=126&&id!=128
+        &&!(id>=145&&id<=149)&&!(id>=160&&id<=163)&&!(id>=174&&id<=191);
+}
 inline bool eligible(const std::vector<Candidate> & army,bool allowEmptyArmy,bool returnAliveHenchman)
 {
     std::int32_t total=0;bool emissary=false;

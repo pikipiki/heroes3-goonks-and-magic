@@ -2,31 +2,85 @@
   "schema": 1,
   "activation": false,
   "completeRules": false,
-  "scope": "Henchmen banner acquisition, nine-style selection, source scalar EA replay, partial-block adapter, retaliation and XP arithmetic; partial native closure",
+  "scope": "Henchmen banner acquisition, held-artifact transfer, nine styles, scalar EA replay, defence reduction, XP gains, classic pointer UI, touch scrolling and saved activation; partial native closure",
   "sourceBindings": {
-    "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "893036300611fb8447973c1d0ff0b4850cdc99a46689575953b9022da42eb4de",
+    "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "1c70a08c26e3121a2da97175c97a78a4f6dbf6ace53322e4673dd907f0e56fc6",
     "work/vcmi-wasm/lib/era/EraHenchmanBannerRules.h": "78fbe2db039864ef93cf756fccb94c72c0661f8e8cbb41064b4de94062d9408f",
     "work/vcmi-wasm/lib/era/EraHenchmanBattleBanner.h": "f918fe06ed81e53cb689c1c7b996807ac0d9461b94fa7e593db2e779efa456e6",
     "work/vcmi-wasm/lib/era/EraHenchmanBannerSourceRows.h": "19239d75ad9b0fab41741c9f08cddc903730a7861dc6c86a06c218dc4013dc98",
     "work/vcmi-wasm/lib/era/EraHenchmanScalarRuntime.h": "20172611e25cc92949fa30451a3898b1a56ffac7eb6ffa67b7a6752843afe395",
     "work/vcmi-wasm/lib/era/EraDeflectionRuntime.h": "0f519f9b99ebfbb2ca124bd8a6ee85ad15ba54362afcc456426999416bcf1367",
-    "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h": "b4be8a4700d18687df80fffa17c1b112fd02191c7ead2b2f314894ff61ed1daf",
-    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "5d3de4ea45c5ce941a29899f0cd01caddfb8d9204b8d3ed8b8485384964d67a0",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "b889dfe027f9e35ec7b5e01ea4517c63b40592810ae3902530244bcdfa1fd573",
-    "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "92b49157a8f561b81dbe260deb2cbaed492e29b08172629e01611c1203819a04",
+    "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h": "51e1e7a400689590dfb476d1fe42a7dd5568e91c1f1e2faf88b8f869eeeec808",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "45a2ae87a70e81d12182902c5dad4eadc7446d9f21df2ec93a3d1891bee13e59",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "fdcf73c9a79387a6703bf0e52ab65c24c550a9e6c3ff1622e173177d7b91ffba",
+    "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "604c3430e23e05b7cb7f5986319fddd4d7192e4a4818e5470e3390c94e05bf1d",
     "work/vcmi-wasm/lib/CStack.cpp": "0d588aa9cc811e9506603befdddaad9d96af760ac3abf8272d4f62c5bdd591b1",
-    "web/henchman-sheet.mjs": "247dfbf31cb37603d5db1b077e22be709dab2800df1409f6d2b9bdf767370214",
-    "tests/henchman-sheet.test.mjs": "099a51dcab49b33375f1dea09d24f990e0506a7a62fc73333a466d11bd7e4f0a",
+    "web/henchman-sheet.mjs": "e2baadf65fe89f054c54da9f6e94caa2388d7b0f87c0c7db972bf3e4d3843735",
+    "tests/henchman-sheet.test.mjs": "d9e9cfae49d4e6bca83e00874e0238f7579ae5ee3dbec3ee7f0f783b7410b255",
     "scripts/era-bridge/gameplay/import-henchmen-banner-table.mjs": "7a2c1fe82efa636c595553ed4defe070befbbac2105fdae6b3acb8178e6de16c",
-    "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "78ac9e237896933f4913f5be41bd7ffcd239ea9069a9049ff1c9ef604cc235ba",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "1e1d9d852943b3eb87488e54b06b0b32f72bffbdedfa70efabc6b7e7685ec361"
+    "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "7dfee22cde596e84c5f44ca4e3790ca3d2125f1decd31e21fd323c435cf38746",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "bcb535a1e0b18cc7094d045e4122463e2fcd93087ff9dd04f317878fc2700ebb",
+    "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "1ca13f214cdc79c48ae7c7ec0b113d6ad9b973f9d9a7e0aa01306c6e3ccec55f",
+    "work/vcmi-wasm/client/windows/CHeroWindow.h": "bec062c6cdc86c569f20a424e082ade8a0cf5715704cac5c59e5925a386aa2fc",
+    "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "810e09175ac886d0d9c3ae72685793439e3eb2f2b462477f9c24b58c9de45f9f",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+    "web/hero-equipment.mjs": "369f07750ce0e1c7d8bdbbc6b1043d39673153d648844f1c8d3ae0b6ea9c8233",
+    "web/hero-equipment.css": "05b6e4b3dac50b84618ac814466b65b15d62e42ac99b862a6d9778ea03c015a7"
   },
   "nativeReports": [
     {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "bc1d14218fd3b169e61b971830f26008dde65043681fc1a00df6513651c9473e",
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+      "scenarios": [
+        "companion-enabled-choice-and-unit-survive-disabled-installation-default",
+        "companion-disabled-choice-survives-enabled-installation-default",
+        "legacy-companion-save-retains-unit-with-disabled-installation-default"
+      ],
+      "errors": [],
+      "legacyProducerEngineSha256": "cda5851d3b36540b153cba957e440221877c154ece084fdf90ad756144c5cf4c"
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+      "scenarios": [
+        "held-banner-transfer-consumes-native-transition-artifact-and-permits-dead-companion"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+      "scenarios": [
+        "companion-banner-panel-real-touch-scroll-phone-and-ipad-without-keyboard",
+        "banner-inventory-all-nine-styles-replacement-return-dismissal-loss-and-forged-actions",
+        "free-banner-is-granted-once-and-return-does-not-regenerate-it"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+      "scenarios": [
+        "banner-experience--1-count-100",
+        "banner-experience-5-count-100",
+        "banner-experience--1-count-30000",
+        "banner-experience-5-count-30000"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
       "scenarios": [
         "source-scalar-rank10-banner--1",
         "source-scalar-rank10-banner-0",
@@ -42,27 +96,57 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "bc1d14218fd3b169e61b971830f26008dde65043681fc1a00df6513651c9473e",
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
       "scenarios": [
-        "banner-inventory-all-nine-styles-replacement-return-dismissal-loss-and-forged-actions",
-        "free-banner-is-granted-once-and-return-does-not-regenerate-it"
+        "native-banner-defense--1-damage-106",
+        "native-banner-defense-6-damage-114"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+      "scenarios": [
+        "classic-hero-flag-native-choice-held-drop-and-banner-style-menus"
       ],
       "errors": []
     }
   ],
   "standaloneChecks": [
-    "clang++ -std=c++17 -Wall -Wextra -Werror -ffp-contract=off EraHenchmanBannerRulesStandalone.cpp: PASS",
+    "clang++ strict C++17 with UBSan: PASS",
     "All nine pure style rules plus raw EA table and XP cap/gain checks: PASS",
     "2048 comparisons to independently attested sourceExperienceHealth: PASS",
-    "node --test tests/henchman-sheet.test.mjs: 3 PASS",
-    "ninja -j32 html5: PASS in shared Linux Emscripten container"
+    "AI source creature exclusions and frozen activation table: PASS",
+    "node --test tests/henchman-sheet.test.mjs: 4 PASS",
+    "ninja -j32 html5: PASS in Linux Emscripten container"
   ],
   "remaining": [
-    "Classic native hero flag UI and direct artifact drag",
-    "Native defence-reduction/partial-block/XP-gain banner battle fixtures, including intrinsic defence-policy overlaps",
+    "Native partial-block battle fixture, including intrinsic defence-policy overlaps",
     "Battlefield AI experience difficulty scaling and source variable namespace attestation",
     "Campaign transition, restart, banner/free-state export semantics",
     "Remaining death/resurrection/spell/configuration edge scenarios"
   ],
-  "bindingsNote": "Engine source SHA values are the actual files captured for candidate r2, not potentially newer shared-workspace files. Non-engine source SHA values bind the validation harness/importer/UI tests."
+  "bindingsNote": "Engine SHA values are the actual frozen candidate files, not newer shared-workspace files. Non-engine SHA values bind the current tested UI and harness. This evidence does not admit the complete module.",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 20,
+    "sourceBindingsSha256": "41a74afe6b654b1f227eb5111712e1c661795c94a756d3e1cbc409bdc1cdc20d",
+    "buildLogSha256": "b5dc64ffefb7d33efde850be93a003bd276fb6a84f2951df67f020fcc6485690",
+    "note": "Frozen candidate built after explicitly touching copied sources; all eight engine files changed in this batch match candidate bindings. The shared build also contains dormant, unadmitted ERA/War Machines work."
+  },
+  "responsiveUX": {
+    "touchViewports": [
+      "390x844",
+      "844x390",
+      "568x320",
+      "1024x768"
+    ],
+    "desktopClassicViewport": "1024x768",
+    "keyboardRequired": false,
+    "touchScroll": "Real CDP touch-start/move/end gestures; ancestor permits native panel scrolling",
+    "heldArtifactTransfer": "Explicit touch action and classic flag drop both consume the native held artifact"
+  }
 }

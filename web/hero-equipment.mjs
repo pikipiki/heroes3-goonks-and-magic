@@ -127,7 +127,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const extraSlots=[9,10,11,12,18,13,14,15,16,17];
   const extra=extraSlots.flatMap(slot=>items.filter(a=>a.slot===slot)).map(slotMarkup).join('');
   if(henchmanPending&&(henchmanPending.hero!==hero.id||henchmanPending.revision!==hero.henchman?.revision))henchmanPending=null;
-  const contents=isHenchman?renderHenchmanSheet(hero,{portrait,canAct:state.turn&&hero.owned!==false&&!picked,pending:!!henchmanPending}):isArmy?renderArmy(hero,heroArmy):skills?renderSkills(hero):backpack?`<p class="hero-bag-help">The backpack stores artefacts you are carrying but have not equipped. To equip one, move it from the backpack to a compatible slot.</p>${items.map(slotMarkup).join('')}`:
+  const contents=isHenchman?renderHenchmanSheet(hero,{portrait,canAct:state.turn&&hero.owned!==false,pending:!!henchmanPending}):isArmy?renderArmy(hero,heroArmy):skills?renderSkills(hero):backpack?`<p class="hero-bag-help">The backpack stores artefacts you are carrying but have not equipped. To equip one, move it from the backpack to a compatible slot.</p>${items.map(slotMarkup).join('')}`:
    `<div class="hero-body-layout">
     <div class="hero-body-stage" aria-label="Equipment on the hero’s body">
      <img class="hero-body-figure" src="./web/h3-theme/hero-silhouette.svg" alt="">${items.filter(a=>a.slot>=0&&a.slot<=8).map(slotMarkup).join('')}
@@ -150,7 +150,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    ${hero.canRebalanceSourceArtifacts?`<button type="button" data-hero-source-rebalance ${picked||!state.turn||hero.owned===false?'disabled':''} title="${fr?'Actualiser les bonus des objets qui équilibrent les caractéristiques':'Refresh equipped artifacts that balance primary stats'}">${fr?'Rééquilibrer':'Rebalance'}</button>`:''}
    <button data-hero-tab="backpack" aria-pressed="${backpack}">${fr?'Sac':'Backpack'} · ${bagCount}</button>
    <button data-hero-tab="skills" aria-pressed="${skills}" ${picked?'disabled':''}>${fr?'Compétences':'Skills'}</button>
-   ${hero.henchman?`<button data-hero-tab="henchman" aria-pressed="${isHenchman}" ${picked?'disabled':''}>${fr?'Compagnon':'Henchman'}</button>`:''}
+   ${hero.henchman?`<button data-hero-tab="henchman" aria-pressed="${isHenchman}" ${picked&&!hero.henchman.canEquipHeldBanner?'disabled':''}>${fr?'Compagnon':'Henchman'}</button>`:''}
    ${hero.owned===false?'':'<button data-hero-classic>Classic</button>'}
    ${Number.isInteger(hero.commanderIcon)?`<button data-hero-commander aria-label="Open commander" title="Commander" ${picked?'disabled':''}>${heroIcon(hero.commanderIcon)}</button>`:''}
   </nav>

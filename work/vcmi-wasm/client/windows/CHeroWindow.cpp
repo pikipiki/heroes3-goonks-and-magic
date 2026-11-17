@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "CHeroWindow.h"
+#include "EraHenchmanWindow.h"
 
 #include "CCreatureWindow.h"
 #include "CHeroBackpackWindow.h"
@@ -78,6 +79,20 @@ CHeroWindow::CHeroWindow(const CGHeroInstance * hero)
 	curHero = hero;
 
 	banner = std::make_shared<CAnimImage>(AnimationPath::builtin("CREST58"), GAME->interface()->playerID.getNum(), 0, 606, 8);
+	if(era_compat::henchmen::enabled(*GAME->interface()->cb))
+		henchmanFlag=std::make_shared<era_compat::henchmen::ClassicHenchmanFlag>(banner->pos,[this]{
+			if(!curHero)return;
+			if(!getPickedArtifact())era_compat::henchmen::openClassicHenchman(*curHero);
+			else if(getHeroPickedArtifact()==curHero&&curHero->henchman.stack
+				&&era_compat::henchmen::settings(*curHero->cb).banner
+				&&era_compat::henchmen::bannerStyle(*curHero)<0
+				&&era_compat::henchmen::hasHeldBanner(*curHero))
+			{
+				const auto revision=curHero->henchman.revision;
+				if(era_compat::henchmen::classicAction(curHero->id,revision,HenchmanAction::EQUIP_HELD_BANNER))
+					era_compat::henchmen::classicBannerStyles(*curHero,revision+1);
+			}
+		});
 	name = std::make_shared<CLabel>(190, 38, EFonts::FONT_BIG, ETextAlignment::CENTER, Colors::YELLOW);
 	title = std::make_shared<CLabel>(190, 65, EFonts::FONT_MEDIUM, ETextAlignment::CENTER, Colors::WHITE);
 
