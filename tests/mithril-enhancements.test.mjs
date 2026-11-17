@@ -18,3 +18,15 @@ test('Active mines display remaining duration without another purchase',()=>{
  const html=renderMithrilOffers({amount:5,offers:[{id:1,kind:0,active:true,days:7}]},{canAct:true});
  assert(html.includes('7'));assert(!html.includes('data-mithril-buy'));
 });
+test('A town uses one touch-friendly terrain picker with nine server-priced choices',()=>{
+ const offers=Array.from({length:9},(_,choice)=>({id:7,name:'Town',x:1,y:2,kind:8,choice,cost:choice<7?1:3,available:choice<7}));
+ const html=renderMithrilOffers({amount:2,offers},{canAct:true,selectedTerrains:{7:8}});
+ assert.equal((html.match(/<article>/g)||[]).length,1);
+ assert.equal((html.match(/<option /g)||[]).length,9);
+ assert.match(html,/data-mithril-terrain="7"/);
+ assert.match(html,/<option value="8" selected/);
+ assert.match(html,/data-mithril-buy="7" data-mithril-choice="8" disabled/);
+ const first=renderMithrilOffers({amount:2,offers},{canAct:true});
+ assert.match(first,/data-mithril-buy="7" data-mithril-choice="0" >[^<]*1 Mithril/);
+ assert.match(renderMithrilOffers({offers},{canAct:true,pending:true}),/<select[^>]*disabled/);
+});

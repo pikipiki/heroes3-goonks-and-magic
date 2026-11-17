@@ -370,14 +370,6 @@
       "sha256": "f7a79bf229e6beec34c04c304d4a9c5d358f5cfbce80347ff2c52591de880393"
     },
     {
-      "file": "docs/era-gameplay-port.md",
-      "sha256": "741637ef24368ccd4094066e88f68da560cbc410e1bd6b08183e6f1ebcf90777"
-    },
-    {
-      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "6cc7b7191227cd2967c6b1322e2b6cf16fbe6f62f7c156719db9f97baa5b53ae"
-    },
-    {
       "file": "work/browser-tests/wog-mithril-classic-native-cases.mjs",
       "sha256": "48b00d7cb002513a3b2886ad65521465c39f5c8bff5d7ebc9fe26e318f0288a8"
     },
@@ -396,6 +388,26 @@
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-french.json",
       "sha256": "c871af48c331f8e04a79157f07bf1ab622f876c0a294a40381013d394e0d71a5"
+    },
+    {
+      "file": "web/mithril-enhancements.mjs",
+      "sha256": "0d2521dc41e3cae4d47a4cb2c8c8bb72cd0e71877b5494b868ffff7b37eda087"
+    },
+    {
+      "file": "web/mobile.css",
+      "sha256": "e5b9c512ca36b8b4fc2ecf4820d5b72b4575df4b9e332eed57aab1fcc019a8d9"
+    },
+    {
+      "file": "tests/mithril-enhancements.test.mjs",
+      "sha256": "237fe1440c4bb45562487832c27b570290b171f954904cfca61eabbf92cd183e"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
+      "sha256": "393a1f62850caf4e0283b4e23be2762ab83dbd9a311f9959bc69b6a856a67207"
+    },
+    {
+      "file": "docs/era-gameplay-port.md",
+      "sha256": "50527eece2c9ccb81f9d0994baf3570e2564bbb7eae8af99eae76b2b74dc01e8"
     }
   ],
   "scope": "mithril-native-mobile-touch",
@@ -409,6 +421,7 @@
     "town-magical-terrain-payment",
     "monolith-exit-fog-revealed",
     "monolith-camera-shows-exit-and-returns-to-selected-entrance",
+    "mobile-town-one-card-nine-terrain-picker-retains-chosen-option",
     "phone-and-ipad-scrollable-layout",
     "phone-and-ipad-real-touch-vertical-scroll-without-keyboard",
     "companion-and-mithril-restored-from-same-save",
@@ -423,5 +436,12 @@
     "568x320",
     "1024x768"
   ],
-  "input": "Touch buttons and real CDP touch-start/move/end vertical swipes; no keyboard required"
+  "input": "Touch buttons and real CDP touch-start/move/end vertical swipes; no keyboard required",
+  "mobileUX": {
+    "townCardsPerSite": 1,
+    "terrainChoices": 9,
+    "selectedChoiceRetained": true,
+    "minimumControlHeightPixels": 44,
+    "landscapeCommandsOnRight": true
+  }
 }

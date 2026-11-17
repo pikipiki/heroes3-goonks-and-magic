@@ -156,6 +156,9 @@ monolithes, chantiers navals et villes. Les achats passent par le serveur avec
 contrôle du propriétaire, de la proximité, du solde et de la révision. L'état
 est conservé dans la sauvegarde. Le panneau mobile présente les coûts et les
 effets actifs, avec une colonne de commandes à droite en paysage.
+Chaque ville utilise une seule fiche et un sélecteur tactile pour ses neuf
+terrains, avec le coût du choix affiché. Les achats et le défilement sont
+vérifiés sans clavier sur les formats téléphone et iPad.
 
 L'interface classique permet aussi un clic droit sur l'entrée du site ou un
 Ctrl-clic sur son dessin, y compris lorsqu'un héros le recouvre. Une confirmation

@@ -231,6 +231,7 @@ async function panel(){
 }
 async function buy(offer){
  const before=await panel();
+ if(offer.kind===8)await page.locator(`[data-mithril-terrain="${offer.id}"]`).selectOption(String(offer.choice??0));
  await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`).tap();
  if(offer.kind===6){
   await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
@@ -462,10 +463,14 @@ try{
  report.scenarios.push('monolith-exit-fog-revealed');
  await wait(point=>{const view=goonkMobileState.mapOverview?.viewport;return view&&Math.abs(view.x+view.w/2-point.x)<=2&&Math.abs(view.y+view.h/2-point.y)<=2;},portal);
  report.scenarios.push('monolith-camera-shows-exit-and-returns-to-selected-entrance');await panel();
+ assert.equal(await page.locator('[data-mithril-terrain]').count(),1);
+ assert.equal(await page.locator('[data-mithril-terrain] option').count(),9);
+ assert.equal(await page.locator('[data-mithril-terrain]').inputValue(),'7');
+ report.scenarios.push('mobile-town-one-card-nine-terrain-picker-retains-chosen-option');
  const touch=await page.context().newCDPSession(page);
  for(const viewport of [{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:1024,height:768}]){
   await page.setViewportSize(viewport);
-  const layout=await page.locator('.mithril-panel').evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,closes:node.querySelectorAll('[data-mithril-close]').length,scroll:getComputedStyle(node.querySelector('.mithril-content')).overflowY,small:[...node.querySelectorAll('button')].some(button=>button.getBoundingClientRect().height<44)}));
+  const layout=await page.locator('.mithril-panel').evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,closes:node.querySelectorAll('[data-mithril-close]').length,scroll:getComputedStyle(node.querySelector('.mithril-content')).overflowY,small:[...node.querySelectorAll('button,select')].some(button=>button.getBoundingClientRect().height<44)}));
   assert(layout.closes===1&&!layout.small&&layout.scrollWidth<=layout.width+1&&['auto','scroll'].includes(layout.scroll),JSON.stringify(layout));
   const content=page.locator('.mithril-content');await content.evaluate(node=>{node.scrollTop=0;});
   const box=await content.boundingBox();assert(box&&box.height>100);
@@ -476,7 +481,9 @@ try{
   await wait(()=>document.querySelector('.mithril-content').scrollTop>20);
  }
  await touch.detach();
+ await page.locator('.mithril-content').evaluate(node=>{node.scrollTop=0;});
  await page.screenshot({path:path.join(output,'mithril-sites.png')});
+ await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(output,'mithril-phone.png')});
  report.scenarios.push('phone-and-ipad-scrollable-layout');
  report.scenarios.push('phone-and-ipad-real-touch-vertical-scroll-without-keyboard');
  await page.locator('[data-mithril-close]').tap();
