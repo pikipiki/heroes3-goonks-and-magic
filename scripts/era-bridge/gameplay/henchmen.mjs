@@ -57,9 +57,9 @@ export function buildHenchmenContract(projectRoot=root){
    'Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.',
    'Native core adapters exist; complete source fidelity and configurable profiles are not admitted.',
    'Native save/load, mobile core and previous Henchmen-engine saves pass; campaign transfer and older pre-Henchmen saves remain to validate.',
-   'Army selection/replacement and resurrection are connected; banner equipment is not ported.',
+   'Army selection/replacement, resurrection and banner equipment are connected; the banner native validation report records the remaining battle and campaign cases.',
    'Battlefield actor, stats, spells and level-scaled guardians are connected; full death/action interactions remain incomplete.',
-   'Full AI progression, classic UI, inventory/spell edge cases and whole-pack native scenarios are not validated.'
+   'Classic pointer menus and mobile touch controls pass dedicated scenarios; full AI progression, inventory/spell edge cases and whole-pack native scenarios remain unvalidated.'
   ]
  };
 }

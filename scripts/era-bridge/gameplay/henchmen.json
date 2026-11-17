@@ -230,7 +230,7 @@
     "file": "scripts/era-bridge/gameplay/math-source.json",
     "sha256": "c7e07376e68745b41b4814833a8df77d0b3709d60356bf25172a0522d06b9c71"
   },
-  "nativeRulesSha256": "a71cab056ca12d4862e89596d402eff87838df447469270634d542b7b2068ace",
+  "nativeRulesSha256": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
   "nativeConfiguration": {
     "file": "mod/tum-era/content/config/henchmen-settings.json",
     "sha256": "edf22e1e29e26f00f5dab9f2dd2d82ba4028d1fb397ac1f75fd03da002a4cf31"
@@ -243,8 +243,8 @@
     "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
     "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",
     "Native save/load, mobile core and previous Henchmen-engine saves pass; campaign transfer and older pre-Henchmen saves remain to validate.",
-    "Army selection/replacement and resurrection are connected; banner equipment is not ported.",
+    "Army selection/replacement, resurrection and banner equipment are connected; the banner native validation report records the remaining battle and campaign cases.",
     "Battlefield actor, stats, spells and level-scaled guardians are connected; full death/action interactions remain incomplete.",
-    "Full AI progression, classic UI, inventory/spell edge cases and whole-pack native scenarios are not validated."
+    "Classic pointer menus and mobile touch controls pass dedicated scenarios; full AI progression, inventory/spell edge cases and whole-pack native scenarios remain unvalidated."
   ]
 }
