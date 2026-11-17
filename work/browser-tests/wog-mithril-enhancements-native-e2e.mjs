@@ -19,6 +19,7 @@ const testDifficulty=readJsonc('work/vcmi-wasm/config/difficulty.json');
 const testMarkets=readJsonc('work/vcmi-wasm/config/objects/markets.json');
 const testShrines=readJsonc('work/vcmi-wasm/config/objects/shrine.json');
 const testModdables=readJsonc('work/vcmi-wasm/config/objects/moddables.json');
+const testHuts=readJsonc('work/vcmi-wasm/config/objects/witchHut.json');
 for(const group of Object.values(testDifficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=100;
 let page;
 const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
@@ -35,6 +36,7 @@ for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'army':[{'type':'core:archangel','amount':10}],'artifacts':{'spellbook':'core:spellBook'}})
   if opts['reroll']=='university': o['options']['secondarySkills']={'core:wisdom':'basic'}
+  if opts['reroll']=='hut-rng': o['options']['secondarySkills']={'core:armorer':'basic'}
 def site(name,kind,subtype,x,y,owner=None):
  o={'type':'core:'+kind,'subtype':'core:'+subtype,'instanceName':name,'x':x,'y':y,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}}
  if owner:o['options']['owner']=owner
@@ -43,12 +45,12 @@ site('mithrilGold','mine','goldMine',12,11,'red')
 site('mithrilOre','mine','orePit',13,11,'red')
 site('mithrilEnemy','mine','goldMine',14,11,'blue')
 site('mithrilDwelling','creatureGeneratorCommon','guardhouse',12,12,'red')
-if opts['reroll']=='shrine':
+if opts['reroll'] in ['shrine','rng']:
  site('mithrilShrine','shrineOfMagicLevel1','shrineOfMagicLevel1',10,11)
  objects[-1]['options']['rewardable']={'variables':{'preset':{'spell@gainedSpell':'core:bless'}}}
-elif opts['reroll']=='hut':
+elif opts['reroll'] in ['hut','hut-rng']:
  site('mithrilHut','witchHut','witchHut',10,11)
- objects[-1]['options']['rewardable']={'variables':{'preset':{'secondarySkill@gainedSkill':'core:offense'}}}
+ objects[-1]['options']['rewardable']={'variables':{'preset':{'secondarySkill@gainedSkill':'core:offence'}}}
 elif opts['reroll']=='university': site('mithrilAdvancedUniversity','university','object',9,11)
 elif opts['reroll']=='payout': site('mithrilPayout','waterWheel','waterWheel',9,11)
 elif opts['reroll']=='conflux': site('mithrilConflux','creatureGeneratorSpecial','elementalConflux',9,11,'red')
@@ -75,7 +77,10 @@ for y,row in enumerate(terrain):
  for x in range(len(row)):
   if 20<=x<=22 or 20<=y<=22: row[x]='rc0_'
 entries['surface_terrain.json']=json.dumps(terrain).encode()
-header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation';entries['header.json']=json.dumps(header).encode()
+header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
+if opts['reroll']=='rng':header['allowedSpells']={'anyOf':['core:bless','core:haste','core:slow']}
+if opts['reroll']=='hut-rng':header['allowedAbilities']={'noneOf':['core:eagleEye']}
+entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Mithril native validation';entries[name]=json.dumps(text).encode()
 spec=importlib.util.spec_from_file_location('normalize','scripts/normalize-map-instances.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod);entries=mod.normalize(entries)
@@ -95,11 +100,14 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
  for(const group of Object.values(difficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=funds;
  const markets=options.reroll==='university'?structuredClone(testMarkets):null;
  if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
- const shrines=preserveRewards?structuredClone(testShrines):null;
- if(shrines)shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.rewards[0].resources={gold:{min:1001,max:9999}};
+ const shrines=preserveRewards||options.reroll==='rng'?structuredClone(testShrines):null;
+ if(preserveRewards)shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.rewards[0].resources={gold:{min:1001,max:9999}};
+ if(options.reroll==='rng')shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.variables.spell.gainedSpell={anyOf:['bless']};
+ const huts=options.reroll==='hut-rng'?structuredClone(testHuts):null;
+ if(huts)huts.witchHut.types.witchHut.variables.secondarySkill.gainedSkill={anyOf:['offence']};
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,moddables,weeklyMines})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -112,6 +120,7 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
     value.FS.writeFile('/config/difficulty.json',JSON.stringify(difficulty));
     if(markets)value.FS.writeFile('/config/objects/markets.json',JSON.stringify(markets));
     if(shrines)value.FS.writeFile('/config/objects/shrine.json',JSON.stringify(shrines));
+    if(huts)value.FS.writeFile('/config/objects/witchHut.json',JSON.stringify(huts));
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
     value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{122:weeklyMines}}));
@@ -119,7 +128,7 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,moddables,weeklyMines});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -187,6 +196,22 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='shrine-rng'||process.env.CASES==='hut-rng'){
+  const hut=process.env.CASES==='hut-rng',label=hut?'hut':'shrine';
+  const skillNames=['Pathfinding','Archery','Logistics','Scouting','Diplomacy','Navigation','Leadership','Wisdom','Mysticism','Luck','Ballistics','Eagle Eye','Necromancy','Estates','Fire Magic','Air Magic','Water Magic','Earth Magic','Scholar','Tactics','Artillery','Learning','Offense','Armorer','Intelligence','Sorcery','Resistance','First Aid'];
+  const reference=JSON.parse(fs.readFileSync('tests/fixtures/era-gameplay/mithril-random-reference.json','utf8'))[hut?'hutSequence':'shrineSequence'];
+  await boot({reroll:hut?'hut-rng':'rng'});await walk(2);const observed=[];let previous=reference.initial;
+  for(let roll=0;roll<reference.draws;++roll){
+   const shrine=(await panel()).offers.find(row=>row.kind===(hut?5:4));assert(shrine);if(roll===0)assert.equal(shrine.current,hut?'Offense':'Bless');await buy(shrine);
+   const name=(await state()).mithril.offers.find(row=>row.id===shrine.id).current;
+   const chosen=hut?skillNames.indexOf(name):{Bless:41,Haste:53,Slow:54}[name];assert(chosen!==undefined&&chosen>=0,name);assert.notEqual(chosen,previous);assert(reference.eligible.includes(chosen));observed.push(chosen);previous=chosen;
+   if(roll===15){await page.locator('[data-mithril-close]').tap();const save=[...await readCompletedNativeSave(page,command,{tag:821})];fs.writeFileSync(path.join(output,'sequence-save.vsgm1'),Buffer.from(save));await page.close();await boot({save});}
+  }
+  assert(reference.vectors.some(row=>JSON.stringify(row[hut?'skills':'spells'])===JSON.stringify(observed)),JSON.stringify(observed));
+  report.scenarios.push(label+'-32-rerolls-match-compiled-pascal-and-coordinate-seed');
+  report.scenarios.push(label+'-rerolls-exclude-current-and-map-banned-offerings');
+  report.scenarios.push(label+'-source-random-sequence-continues-after-native-save-reload');await page.close();
+ }
  if(process.env.CASES==='weekly-mines'){
   await boot({weeklyMines:true,changingMine:true});let data=await panel();
   const gold=data.offers.find(row=>row.id===3),ore=data.offers.find(row=>row.id===4);assert(gold&&ore);

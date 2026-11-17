@@ -184,6 +184,19 @@ standard après tirage et la reprise des mines modifiées.
 La règle 114 est distincte : elle crée des Plaines magiques chaque jour près
 des héros. Son interaction avec l'amélioration des villes reste à porter.
 
+Les sanctuaires suivent le mélange des 70 sorts de la bibliothèque ERA avant
+de prendre le premier sort admissible ; les huttes utilisent le tirage sûr
+SplitMix32. Le moteur conserve une graine dans la plage source 11–55 et un
+compteur par objet. Les calculs sont comparés au Pascal original compilé :
+56 graines, bornes signées et cas de rejet, plus des séquences de 32 tirages
+pour les 45 graines possibles. Six scénarios natifs vérifient les séquences,
+l'exclusion des offres courantes et interdites, et leur continuation après
+sauvegarde/reprise. La référence et ses sources figées sont dans
+`tests/fixtures/era-gameplay/mithril-random-reference.json`.
+La comparaison porte sur ces calculs ; l'isolation du flux aléatoire global
+et l'initialisation du générateur unique nécessitent encore leur rapprochement
+avec l'exécutable ERA livré.
+
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.
 - Progression de troupe de l'IA et interface classique.

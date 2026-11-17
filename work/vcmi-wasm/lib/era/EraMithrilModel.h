@@ -160,7 +160,7 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
         if(!current)return result;
         result.current=*current;
         for(const auto & spell:LIBRARY->spellh->objects)
-            if(spell&&!spell->isSpecial()&&!spell->isCreatureAbility()&&spell->getLevel()==result.level
+            if(spell&&spell->getId().getNum()<70&&!spell->isSpecial()&&!spell->isCreatureAbility()&&spell->getLevel()==result.level
                 &&spell->getId().getNum()!=*current&&cb.isAllowed(spell->getId()))result.alternatives.push_back(spell->getId().getNum());
         if(!result.alternatives.empty()){result.kind=SHRINE;result.cost=result.level;}
     }

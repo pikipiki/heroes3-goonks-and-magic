@@ -58,6 +58,11 @@ inline uint32_t splitMix32(uint32_t & seed)
 inline int safeRand(uint32_t seed,int minimum,int maximum)
 {
     if(minimum>=maximum)return minimum;
+    if(minimum==INT32_MIN&&maximum==INT32_MAX)
+    {
+        const auto value=splitMix32(seed);
+        return value<=INT32_MAX?static_cast<int32_t>(value):static_cast<int32_t>(int64_t(value)-0x100000000LL);
+    }
     const uint32_t range=static_cast<uint32_t>(int64_t(maximum)-minimum+1);
     const uint32_t limit=UINT32_MAX/range*range-1;
     uint32_t value=0;

@@ -2,6 +2,7 @@
 #include "../CGameHandler.h"
 #include "../../lib/era/EraMithrilModel.h"
 #include "../../lib/era/EraMithrilReroll.h"
+#include "../../lib/era/EraMithrilRandomRules.h"
 #include "../../lib/networkPacks/EraGameplayPacks.h"
 #include "../../lib/networkPacks/PacksForClient.h"
 #include "../../lib/CPlayerState.h"
@@ -38,12 +39,13 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     {
         const auto * reward=dynamic_cast<const CRewardableObject *>(object);
         if(!reward||proposed.alternatives.empty())return false;
-        if(next["seed"].isNull())next["seed"].Integer()=gh.getRandomGenerator().nextInt(1,INT32_MAX);
+        if(next["seed"].isNull())next["seed"].Integer()=gh.getRandomGenerator().nextInt(11,55);
         const auto position=object->visitablePos();
         const auto seed=era_bridge::mithril::coordinateSeed(static_cast<uint32_t>(next["seed"].Integer()),position.x,position.y,position.z)
             +static_cast<uint32_t>(target["rerolls"].Integer());
-        const auto index=era_bridge::mithril::safeRand(seed,0,static_cast<int>(proposed.alternatives.size())-1);
-        const int chosen=proposed.alternatives[index];
+        const int chosen=proposed.kind==SHRINE?era_bridge::mithril::shrineSpell(seed,proposed.alternatives)
+            :proposed.alternatives[era_bridge::mithril::safeRand(seed,0,static_cast<int>(proposed.alternatives.size())-1)];
+        if(chosen<0)return false;
         const auto updated=rerollOffering(reward->configuration,proposed.kind==SHRINE,proposed.current,chosen);
         gh.setRewardableObjectConfiguration(object->id,updated);
         target["rerolls"].Integer()+=1;

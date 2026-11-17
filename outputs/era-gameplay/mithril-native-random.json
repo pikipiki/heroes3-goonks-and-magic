@@ -1,0 +1,320 @@
+{
+  "passed": true,
+  "scope": "mithril-native-random",
+  "completeRules": false,
+  "engineSha256": "b0586b192ff532b006c490896d350e389e99b9a52de18be7bac7bd744b0059a8",
+  "scenarios": [
+    "shrine-32-rerolls-match-compiled-pascal-and-coordinate-seed",
+    "shrine-rerolls-exclude-current-and-map-banned-offerings",
+    "shrine-source-random-sequence-continues-after-native-save-reload",
+    "hut-32-rerolls-match-compiled-pascal-and-coordinate-seed",
+    "hut-rerolls-exclude-current-and-map-banned-offerings",
+    "hut-source-random-sequence-continues-after-native-save-reload"
+  ],
+  "errors": [],
+  "pascalReference": {
+    "file": "tests/fixtures/era-gameplay/mithril-random-reference.json",
+    "sha256": "81de5c42fa095135f24fe74eb7a45aef500bea91ee140fad7ed07b45faf50419",
+    "seeds": 56,
+    "drawsPerNativeSequence": 32,
+    "comparison": "Original FastRand unit and original Extern.pas SplitMix32 functions compiled with Free Pascal; platform services outside seeded calculations stubbed."
+  },
+  "sourceBindings": [
+    {
+      "file": "docs/era-gameplay-port.md",
+      "sha256": "be270a778a854929aa489ca7e5ee25a3114b9f9f220105c555d3d71a969e7874"
+    },
+    {
+      "file": "mod/tum-era/content/config/henchmen-settings.json",
+      "sha256": "edf22e1e29e26f00f5dab9f2dd2d82ba4028d1fb397ac1f75fd03da002a4cf31"
+    },
+    {
+      "file": "mod/tum-era/content/translation/tum-era-ui-english.json",
+      "sha256": "a78c137daa7b156815a3dc1d15267251335d24a100d3f53ff831e5e72b17b043"
+    },
+    {
+      "file": "mod/tum-era/content/translation/tum-era-ui-french.json",
+      "sha256": "5bf99c0a1282c0febea184eb1846c45ef27a760a76bd093b3901c7106cdac9d5"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/henchmen.json",
+      "sha256": "568df087d6e3ab6a04829d83d19c37680e12ef75298a480e6b317eb7a3008c83"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/henchmen.mjs",
+      "sha256": "9a6c9457234b4093181e3f0556d042680790fe8c124e7765b273d13c422f4564"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/mithril.json",
+      "sha256": "83c06a9c1312181693f3ddfc8ef2c2b70642795b90b07706d2cd8e4dcfe2d803"
+    },
+    {
+      "file": "tests/era-henchmen-contract.test.mjs",
+      "sha256": "a5253fc11f20f6da5a1930e3205ee7296106d992c50bbe34203adaa137d17844"
+    },
+    {
+      "file": "tests/era-mithril-native.test.mjs",
+      "sha256": "169ed704314591b49b7f4a8376ea3d7d91f3cff22a3672aeeceadcad578a2750"
+    },
+    {
+      "file": "tests/mithril-enhancements.test.mjs",
+      "sha256": "f0e86e5ff9524277d54f2dec5ac7253026b0e23e0d9af3b5b59adece05d7d8c2"
+    },
+    {
+      "file": "tests/native/EraMithrilRules.test.cpp",
+      "sha256": "85ec12151e318d8ea85578cbc1a34fc4bbe0e1d93f4dea091be8141742a440d9"
+    },
+    {
+      "file": "web/henchman-sheet.mjs",
+      "sha256": "bf364f1d523348a121a93fc8513768b5a84719ee91e1345695f8806badb003ef"
+    },
+    {
+      "file": "web/mithril-enhancements.mjs",
+      "sha256": "d1238a526df2b54314f7659b3aecb00e5e8bb93870cbae23a926b2f4e151c64d"
+    },
+    {
+      "file": "web/mobile.css",
+      "sha256": "313abb0536679127eb7d6253733394b70210d3d807b78dbe48344b6c1af926de"
+    },
+    {
+      "file": "web/mobile.mjs",
+      "sha256": "1c236469087a058c4e77899cfabccaf2ce50465c6d2fe3f2508a20cd266e6e2c"
+    },
+    {
+      "file": "work/browser-tests/wog-henchmen-native-e2e.mjs",
+      "sha256": "9654d71b4e731266a3450065f60a1885ed05eb693fdf7bac69b1c624de0bed5b"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
+      "sha256": "cd0126eb8d07ecdfd3aad7faed4c52d83742b33dffe1b2befd95d1feabce3509"
+    },
+    {
+      "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
+      "sha256": "a2f7c52d624fded3bf5c77747c513e9ff383ea719bf0b1302581a4c6766295da"
+    },
+    {
+      "file": "work/vcmi-wasm/client/MobileBridge.cpp",
+      "sha256": "564a683902d3170a58948bb1f2766774e8da2695e187d79e1acdb68727cc94e8"
+    },
+    {
+      "file": "work/vcmi-wasm/client/NetPacksClient.cpp",
+      "sha256": "8a54bd135fd91c7691b80c62f0d33bde62eb64210dcdd41e6f540a17043ce098"
+    },
+    {
+      "file": "work/vcmi-wasm/client/windows/CCreatureWindow.cpp",
+      "sha256": "e3045e7d385dcc6f9861961bb7411e53b94105a5a6a046afeda3dbd90c54e4b7"
+    },
+    {
+      "file": "work/vcmi-wasm/client/windows/CCreatureWindow.h",
+      "sha256": "12e601c68a961211e0e35af9dceae9d58eaa5797e3919ed40707b67a42b024db"
+    },
+    {
+      "file": "work/vcmi-wasm/config/gameConfig.json",
+      "sha256": "d22b34954f2bcb2d551d5cfcd3ae2af604fa3183c049623e96e3d76f16da06a8"
+    },
+    {
+      "file": "work/vcmi-wasm/config/schemas/gameSettings.json",
+      "sha256": "cc0562138a59ed0ae5011ee7210b80c5f54f9250967abb7a79b477e483cbd2e2"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/GameSettings.cpp",
+      "sha256": "a4afa1f27d861c4db124b9936ef122f6f5e1b36aae1a15bef50c5e07f4839e7b"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/IGameSettings.h",
+      "sha256": "69a15d693c78691f1adb22d57028ce6c0c8a1bcf7198fde33b4bf20b8296222a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/battle/BattleInfo.cpp",
+      "sha256": "987cec54a931bf7e0b5ad458aae481171dd654db30ff7d786dfb31f0961cb7ce"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/callback/CCallback.cpp",
+      "sha256": "1f93936a61e72f6208832681de21b2bc62803af6ee0a549f5663f711593415b9"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/callback/CCallback.h",
+      "sha256": "c954c956999090928ad33d89951722833cc0e2f6eb99998d0ba3febbd3a59f12"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/campaign/CampaignState.cpp",
+      "sha256": "84b3fd34a55ad5eb337728c646bfefc1d1ddd665c2acfb04f466d7c814efcfb3"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraCampaignChanges.h",
+      "sha256": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraCampaignDeployment.h",
+      "sha256": "a66aae5fb1f4703ae568abe878a33ba46cd4fe461b0dc27764e62ce6547386a2"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraHenchmanConfiguration.h",
+      "sha256": "ea65c9b552bd7345da84625f989d9ff2ea8bc6c3106d20294ab5dd692bf27d3c"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraHenchmanModel.h",
+      "sha256": "59e01598204258a588759db46e699a4e438b1800ad13d45da9f917aba3160334"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMithrilModel.h",
+      "sha256": "5168f8328cc91e7f3202317015d0e0e6c9842a1cf8ad9334ee9adc495e633f9a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMithrilRules.h",
+      "sha256": "4f4fe102a244d45e6fd39065d20e49d2d63d3df714f6da6638fc632dae18ed8c"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/ArmyBulkTransfer.h",
+      "sha256": "76b2aa6d5f8a96028c71e1c862f233bb5dcd6d3ec058e3244130bf1b9fbd337a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
+      "sha256": "1f753604fea1ab692764deaab269e41e3bc0989b70553ca398ce3eca93c13fab"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
+      "sha256": "9d872c1f1a20220f075bda0585fd4e7ff703ce2ccdfce2e70f5507858648a839"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/CGCreature.cpp",
+      "sha256": "f16437c66846f2e0ac9a050eedceae9e30c32608148c0fb2d9eff4d018844c7a"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp",
+      "sha256": "82b10babc73f79296648fd6748d2df4ed2e0d57b6874abc5e414baf04123b133"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.h",
+      "sha256": "db2077118b639a975fc34a79c6ce67b43a0724034a39c592eebfaf7a2fe67a46"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/CRewardableObject.cpp",
+      "sha256": "f2039aa996a9280dc1cd46975f5b08523de53e648d5e61acc7e8bb5a1c1cfdd1"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapObjects/MiscObjects.cpp",
+      "sha256": "71d4e6a914834098d1973039e496a72dae64b90dbfceab23a0f8a11f1df28ea1"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/mapping/CMap.h",
+      "sha256": "594a48341d229d700ee948c660919a2e80e65d9c7643f796257c029f001d09bf"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/EraGameplayPacks.h",
+      "sha256": "9ceb47f9b74e08dacf9ba2ed381d7c97f7bddb059f2d430f568f2ac8fe542bc7"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/NetPackVisitor.h",
+      "sha256": "18a921dd558c7d5db2de701bbb7aa336eb2b3a7b221f1bd2cf25c8112ef0b123"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/NetPacksLib.cpp",
+      "sha256": "adf3effc69f4ca7ad8cec928907a57c10814d5e2b42d562ab673228d507fed52"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/serializer/ESerializationVersion.h",
+      "sha256": "bacd890b5cd4ad2b0b893441381f7f929ec5230a71f71d8da62b28dbd087e65e"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/serializer/RegisterTypes.h",
+      "sha256": "f9f35236590adf74dda4fc360d9c2fb3322f02b9a749d5d8882a16db248333fd"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/spells/effects/Damage.cpp",
+      "sha256": "925d2d57307319ddaedc2b6620f4c5dd76d22b9c95464fd50ece01f1d5a9b6f2"
+    },
+    {
+      "file": "work/vcmi-wasm/server/CGameHandler.cpp",
+      "sha256": "c1039ffbb6a6f77367849e146312e9f688204fcc1f248851a4a047b0bf815605"
+    },
+    {
+      "file": "work/vcmi-wasm/server/NetPacksServer.cpp",
+      "sha256": "959bf47963d2c4c811a78fdc56481c1da2301aed0793bdd00d24f65ab21b512c"
+    },
+    {
+      "file": "work/vcmi-wasm/server/ServerNetPackVisitors.h",
+      "sha256": "ecf6857f3dbc7303cca1f825d72f3e4e870b0f28fa03eaf5c24c790e5212df03"
+    },
+    {
+      "file": "work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp",
+      "sha256": "12a9c6e7083fa6a2862fcc38556194dddfa2cc46c5f76e4ae57ac47d20989181"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraHenchmanRuntime.h",
+      "sha256": "6fb7dc2e76eade3c9741e28f795fb9ea4a1f9156ce9302daff828dacaa3314c7"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
+      "sha256": "deac565899388437577c74b83f3f797962c13fcca15610d0181e8320d9caa5ab"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp",
+      "sha256": "4b590a7f3a853273891948a0f07701c32a395b939499538fe481e92fedd27af1"
+    },
+    {
+      "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
+      "sha256": "f1ae89e2b073f7e37b6d5311d59d22bdef02d0f953950673edb4341199716b18"
+    },
+    {
+      "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",
+      "sha256": "9137b8dfbd28aa7813027a21216a87d13e30da5400aad33feb3ac5ba9f87586b"
+    },
+    {
+      "file": "work/vcmi-wasm/server/queries/MapQueries.h",
+      "sha256": "685c982f4db737542f69f0ddf818c7e4f38f92acb2ff868978793e6ad5951664"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMithrilReroll.h",
+      "sha256": "95a908d9e0bd6f7d4c17bd03a782f8446b382273575a32d959f6c3ab833dddf2"
+    },
+    {
+      "file": "work/browser-tests/army-management-native-e2e.mjs",
+      "sha256": "76bf2acfc0bb0b4bbc9c147211e6f8492b8e6a15527bc5d54bf5d54e9c66bbce"
+    },
+    {
+      "file": "work/vcmi-wasm/server/battles/BattleProcessor.cpp",
+      "sha256": "fd7987b487b3389db689c3caf260e9657311f1ec9354a939b6cd06293866be80"
+    },
+    {
+      "file": "work/vcmi-wasm/config/battlefields.json",
+      "sha256": "79436f8d727d3a4511124696c62ebe1c1949efedfae100db998795eea05ec930"
+    },
+    {
+      "file": "mod/tum-era/content/config/wog-map-rules.json",
+      "sha256": "b558f469f41ad875452ae80e32e139a921ece1d4a184c4bc9ae24cdfb8b723ff"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/map-rules.json",
+      "sha256": "918c7ff68123b5d7a4bb5a8fcab798bd86822238d4e8bbbb5cae6e555d3bdedd"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
+      "sha256": "0d3b9490d4ab8a854e11eb95d9b6598429f4746dda95311c13632d2c56587e76"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
+      "sha256": "072b94d566566deff7bd87f38dda626ba8cd347adb89c3690dcf4922486be4be"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/ObjProperty.h",
+      "sha256": "503babdf68710387f4c1a9461254ea12429209dceaa8737f6ff09f67588e9f48"
+    },
+    {
+      "file": "tests/era-mithril-random.test.mjs",
+      "sha256": "ac9a10c6a504ef9b5eb5a80dc2a30e8833e8e38ce170a31fc6a98e25b000feee"
+    },
+    {
+      "file": "tests/native/EraMithrilRandomReference.cpp",
+      "sha256": "447ac51044b59da91d3745509c945a42f8a93a08ee1a6e295e5516588d183f9c"
+    },
+    {
+      "file": "tests/fixtures/era-gameplay/mithril-random-reference.json",
+      "sha256": "81de5c42fa095135f24fe74eb7a45aef500bea91ee140fad7ed07b45faf50419"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMithrilRandomRules.h",
+      "sha256": "23c3e9d89c365dc183a49cde2252892b065b9884e759f79badca374e28d9a16c"
+    }
+  ]
+}
