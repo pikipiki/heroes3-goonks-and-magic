@@ -1,3 +1,4 @@
+import {spellOneClick} from './battle-preferences.mjs';
 import {getLanguage} from './i18n.mjs';
 import {spellSchoolIds,spellSchoolIndex} from './spell-schools.mjs';
 import {spellIconURL,warmSpellIcons} from './spell-icons.mjs';
@@ -20,7 +21,7 @@ export function createMobileSpellbook({root,command}){
  function choose(spell){if(pending||book.readOnly)return;pending={...spell,hero:hero(),mana:book.mana,school:book.school,page:book.page,combatSpells:book.combatSpells};reusing=null;command(49,spell.id);}
  panel.addEventListener('error',event=>{const img=event.target;if(!img.matches?.('.spell-icon'))return;const spell=book.spells?.find(s=>s.id===Number(img.dataset.icon));const original=document.querySelector('#canvas');if(spell&&original&&Number.isFinite(spell.x)&&Number.isFinite(spell.y)){const canvas=document.createElement('canvas');canvas.width=65;canvas.height=64;canvas.setAttribute('aria-hidden','true');canvas.getContext('2d').drawImage(original,spell.x,spell.y,65,64,0,0,65,64);img.replaceWith(canvas);}else img.hidden=true;},true);
  panel.addEventListener('click',event=>{const b=event.target.closest('button');if(!b||b.disabled)return;
-  if(b.dataset.spell!==undefined){const spell=book.spells?.find(s=>s.id===Number(b.dataset.spell));if(spell){selected=spell.id;if(book.inCombat===true&&!book.readOnly&&spell.enabled){choose(spell);return;}signature='';render();panel.querySelector('[data-spell="'+selected+'"]')?.focus({preventScroll:true});}return;}
+  if(b.dataset.spell!==undefined){const spell=book.spells?.find(s=>s.id===Number(b.dataset.spell));if(spell){selected=spell.id;if(book.inCombat===true&&spellOneClick()&&!book.readOnly&&spell.enabled){choose(spell);return;}signature='';render();panel.querySelector('[data-spell="'+selected+'"]')?.focus({preventScroll:true});}return;}
   if(b.dataset.castSpell!==undefined){const spell=book.spells?.find(s=>s.id===selected);if(spell?.enabled)choose(spell);return;}
   if(b.dataset.reuse!==undefined){const previous=used.get(hero());if(book.readOnly||!previous||book.mana<previous.cost)return;reusing={...previous};navigation=null;signature='';advanceReuse();return;}
   reusing=null;if(b.dataset.spellContext!==undefined){selected=null;command(70,Number(b.dataset.spellContext));return;}if(b.dataset.school!==undefined||b.dataset.page!==undefined){selected=null;panel.querySelector('.spell-list').scrollTop=0;}if(b.dataset.school!==undefined)command(51,Number(b.dataset.school));if(b.dataset.page!==undefined)command(50,Number(b.dataset.page));if(b.dataset.closeBook!==undefined){pending=null;command(0);}
