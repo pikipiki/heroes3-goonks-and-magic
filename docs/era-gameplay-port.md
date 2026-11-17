@@ -154,8 +154,9 @@ sur mobile et par le drapeau en vue classique, y compris pour un compagnon mort,
 suivant cette exception du script source. Les autres mutations sont bloquées
 pendant qu'un objet est tenu. Le panneau défile réellement au doigt sur téléphone
 et iPad ; aucun clavier n'est nécessaire. Les combats vérifient également la
-réduction de défense et le gain d'expérience de la bannière. Le blocage partiel
-nécessite encore sa validation en combat.
+réduction de défense et le gain d'expérience de la bannière. Un combat témoin
+vérifie le blocage partiel : 195 dégâts reçus sans effet, 97 lorsque la bannière
+se déclenche. Les combinaisons avec les défenses intrinsèques restent à vérifier.
 
 L'activation du compagnon est enregistrée dans la partie : les nouveaux réglages
 de l'installation ne remplacent plus le choix sauvegardé. Un scénario vérifie
@@ -163,6 +164,15 @@ aussi la reprise d'une sauvegarde produite par le moteur précédent, avec le
 compagnon conservé malgré un réglage d'installation désactivé.
 
 ## Raccordements et validations restant nécessaires
+
+La règle ERA Scripts 779 des pierres de connaissance possède un raccordement
+natif séparé. Les 120 résultats de calcul sont comparés au code original de
+`h3era.exe`. Les visites en jeu vérifient le gain affiché et attribué au joueur
+et à l'IA (2185), au spécialiste (2327), ainsi que le témoin désactivé (1150).
+Le choix est conservé après sauvegarde malgré un changement de configuration.
+Cela ne valide pas encore le pack ERA Scripts complet, ni les visites à distance
+du script Sorcery I. La preuve détaillée est conservée dans
+`scripts/era-bridge/gameplay/era-scripts779-native-validation.json`.
 
 Le port natif du mithril couvre désormais les neuf familles de sites du script
 42 : mines, logements, moulins/roues, universités, sanctuaires, huttes,

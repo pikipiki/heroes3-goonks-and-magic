@@ -1,0 +1,740 @@
+{
+  "schema": 1,
+  "artifact": {
+    "file": "work/era-gameplay-reference/h3era.exe",
+    "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "learningPower": "0x4e4ab0",
+    "stoneHook": "0x4a600a"
+  },
+  "execution": "Original PE32 machine code under Unicorn2.1.4; no learning formula reimplementation",
+  "boundary": "Controlled hero/specialty records; x87 control0x037f; added fstp-single thunk observes native floating return as SN:E does. No full Windows/game startup.",
+  "learningTable": [
+    0.0,
+    0.05000000074505806,
+    0.10000000149011612,
+    0.15000000596046448
+  ],
+  "baseStoneExperience": 1000.0,
+  "vectors": [
+    {
+      "level": 0,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 0,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 0,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 0,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 0,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 0,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 0,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 0,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 1,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 1,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 1,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 1,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1065793618
+    },
+    {
+      "level": 1,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 1,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1066234020
+    },
+    {
+      "level": 1,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 1,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1066674422
+    },
+    {
+      "level": 2,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 2,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 2,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 2,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1065814589
+    },
+    {
+      "level": 2,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 2,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1066275963
+    },
+    {
+      "level": 2,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 2,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1066737336
+    },
+    {
+      "level": 7,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 7,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 7,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 7,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1065919447
+    },
+    {
+      "level": 7,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 7,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1066485678
+    },
+    {
+      "level": 7,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 7,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1067051909
+    },
+    {
+      "level": 10,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 10,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 10,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 10,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1065982362
+    },
+    {
+      "level": 10,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 10,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 10,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 10,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1067240653
+    },
+    {
+      "level": 20,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 20,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 20,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 20,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 20,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 20,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1067030938
+    },
+    {
+      "level": 20,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 20,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1067869798
+    },
+    {
+      "level": 30,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 30,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 30,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 30,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1066401792
+    },
+    {
+      "level": 30,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 30,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1067450368
+    },
+    {
+      "level": 30,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 30,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1068498944
+    },
+    {
+      "level": 50,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 50,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 50,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 50,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1066821222
+    },
+    {
+      "level": 50,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 50,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1068289229
+    },
+    {
+      "level": 50,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 50,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1069757236
+    },
+    {
+      "level": 70,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 70,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 70,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 70,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1067240653
+    },
+    {
+      "level": 70,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 70,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1069128090
+    },
+    {
+      "level": 70,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 70,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1071015526
+    },
+    {
+      "level": 74,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 74,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 74,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 74,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1067324539
+    },
+    {
+      "level": 74,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 74,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1069295862
+    },
+    {
+      "level": 74,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 74,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1071267185
+    },
+    {
+      "level": 100,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 100,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 100,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 100,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1067869798
+    },
+    {
+      "level": 100,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 100,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1070386381
+    },
+    {
+      "level": 100,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 100,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1072902964
+    },
+    {
+      "level": 255,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 255,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 255,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 255,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1071120384
+    },
+    {
+      "level": 255,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 255,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1075314688
+    },
+    {
+      "level": 255,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 255,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1078198272
+    },
+    {
+      "level": 1000,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 1000,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 1000,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 1000,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1080242996
+    },
+    {
+      "level": 1000,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 1000,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1086534452
+    },
+    {
+      "level": 1000,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 1000,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1091200615
+    },
+    {
+      "level": 32767,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 32767,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": 32767,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": 32767,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1118170972
+    },
+    {
+      "level": 32767,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": 32767,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1126494044
+    },
+    {
+      "level": 32767,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": 32767,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1131865867
+    },
+    {
+      "level": -1,
+      "learning": 0,
+      "specialist": false,
+      "powerBits": 1065353216
+    },
+    {
+      "level": -1,
+      "learning": 0,
+      "specialist": true,
+      "powerBits": 1065353216
+    },
+    {
+      "level": -1,
+      "learning": 1,
+      "specialist": false,
+      "powerBits": 1065772646
+    },
+    {
+      "level": -1,
+      "learning": 1,
+      "specialist": true,
+      "powerBits": 1065751675
+    },
+    {
+      "level": -1,
+      "learning": 2,
+      "specialist": false,
+      "powerBits": 1066192077
+    },
+    {
+      "level": -1,
+      "learning": 2,
+      "specialist": true,
+      "powerBits": 1066150134
+    },
+    {
+      "level": -1,
+      "learning": 3,
+      "specialist": false,
+      "powerBits": 1066611507
+    },
+    {
+      "level": -1,
+      "learning": 3,
+      "specialist": true,
+      "powerBits": 1066548593
+    }
+  ]
+}

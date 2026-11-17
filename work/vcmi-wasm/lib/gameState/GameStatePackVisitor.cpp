@@ -18,6 +18,7 @@
 #include "../era/EraCampaignAdmission.h"
 #include "GameStatePackVisitor.h"
 #include "../era/EraMapCreatureRules.h"
+#include "../era/EraScriptRulesModel.h"
 
 #include "CGameState.h"
 #include "TavernHeroesPool.h"
@@ -1662,9 +1663,10 @@ void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack
 
 void GameStatePackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
 {
-    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules")||!pack.state.isStruct())
+    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules"&&pack.system!="eraScripts")||!pack.state.isStruct())
         throw std::runtime_error("Invalid ERA gameplay state packet");
     if(pack.system=="mapRules")era_compat::map_rules::applyCreatureRules(gs,pack.state);
+    if(pack.system=="eraScripts")era_compat::script_rules::validate(pack.state);
     gs.getMap().eraGameplayState[pack.system]=pack.state;
 }
 

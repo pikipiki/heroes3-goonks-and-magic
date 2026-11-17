@@ -11,6 +11,7 @@
 #include "StdInc.h"
 #include "Interface.h"
 #include "../era/EraCampaignExperienceWord.h"
+#include "../era/EraLearningStoneModel.h"
 #include "../mapping/CMap.h"
 
 #include "../TerrainHandler.h"
@@ -145,7 +146,11 @@ void Rewardable::Interface::grantRewardBeforeLevelup(IGameEventCallback & gameEv
 		expToGive += LIBRARY->heroh->reqExp(hero->level+info.reward.heroLevel) - LIBRARY->heroh->reqExp(hero->level);
 
 	if (info.reward.heroExperience > 0)
-		expToGive += hero->calculateXp(info.reward.heroExperience);
+ {
+  const auto * sourceObject=dynamic_cast<const CGObjectInstance *>(getObject());
+  expToGive += era_compat::learning_stone::applies(sourceObject,hero)
+   ?era_compat::learning_stone::heroExperience(*hero):hero->calculateXp(info.reward.heroExperience);
+ }
 
 	if(expToGive)
 		gameEvents.giveExperience(hero, expToGive);
@@ -298,6 +303,7 @@ void Rewardable::Interface::grantRewardWithMessage(IGameEventCallback & gameEven
 		iw.player = contextHero->tempOwner;
 		iw.text = vi.message;
 		vi.reward.loadComponents(iw.components, contextHero, getManaCap());
+  era_compat::learning_stone::replaceComponents(iw.components,dynamic_cast<const CGObjectInstance *>(getObject()),contextHero);
 		iw.type = configuration.infoWindowType;
 		if(!iw.components.empty() || !iw.text.toString().empty())
 			gameEvents.showInfoDialog(&iw);
@@ -334,6 +340,7 @@ std::vector<Component> Rewardable::Interface::loadComponents(const CGHeroInstanc
 		configuration.info.at(rewardIndices.front()).reward.loadComponents(result, contextHero, getManaCap());
 	}
 
+ era_compat::learning_stone::replaceComponents(result,dynamic_cast<const CGObjectInstance *>(getObject()),contextHero);
 	return result;
 }
 

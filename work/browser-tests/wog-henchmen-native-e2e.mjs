@@ -19,7 +19,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -35,11 +35,15 @@ for o in objects:
   if opts['dead']: o['options']['henchman']={'type':'core:peasant','experience':100,'stackExperience':0,'alive':False,'declined':False,'banner':-1}
   if opts['santa']: o['options']['henchman']={'type':'wake-of-gods.creatures:santaGremlin','experience':1000,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':-1}
   if opts['henchmanType']: o['options']['henchman']={'type':opts['henchmanType'],'experience':0,'stackExperience':opts['stackExperience'],'alive':True,'declined':False,'banner':opts['henchmanBanner']}
+  if opts['blockFixture']: o['options']['artifacts']={'misc1':'core:shacklesOfWar'}
 if opts['enemyHero']:
  import copy
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
  enemy.update({'instanceName':'enemyHenchmanHero','x':10})
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:peasant','amount':5},{'type':'core:archer','amount':1}]})
+ if opts['blockFixture']:
+  enemy['options'].pop('henchman',None)
+  enemy['options'].update({'army':[{'type':'core:goblin','amount':1}],'primarySkills':{'attack':0,'defence':0,'spellpower':0,'knowledge':0},'secondarySkills':{},'artifacts':{}})
  objects.append(enemy)
 else:
  objects.append({'type':'core:monster','subtype':opts['enemyType'],'instanceName':'henchmenTrainingGuard','x':10,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':opts['enemyCount'],'character':'savage','neverFlees':True}})
@@ -52,7 +56,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture})]);
 }
 
 async function boot({save,enabled=true,originURL=origin,settings,...options}={}){
@@ -63,7 +67,7 @@ async function boot({save,enabled=true,originURL=origin,settings,...options}={})
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
- await page.addInitScript(({enabled,settings})=>{
+ await page.addInitScript(({enabled,settings,blockFixture})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -72,6 +76,15 @@ async function boot({save,enabled=true,originURL=origin,settings,...options}={})
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
+    if(blockFixture){
+     const name='config/henchmen-block-private.json';manifest.creatures=[...(manifest.creatures||[]),name];
+     const abilities={privateNoMorale:{type:'NO_MORALE'},privateNoLuck:{type:'LUCK',val:0,valueType:'INDEPENDENT_MIN'}};
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({
+      'core:peasant':{hitPoints:1000000,speed:20,abilities},
+      'core:goblin':{hitPoints:1000000,speed:1,attack:0,defense:0,damage:{min:200,max:200},abilities}
+     }));
+     manifest.settings.modules.commanders=false;
+    }
     value.FS.writeFile(file,JSON.stringify(manifest));
     if(settings){
      const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
@@ -80,7 +93,7 @@ async function boot({save,enabled=true,originURL=origin,settings,...options}={})
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings});
+ },{enabled,settings,blockFixture:!!options.blockFixture});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -143,6 +156,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='banner-block'){
+  const {runBannerBlock}=await import('./wog-henchmen-banner-block-cases.mjs');
+  await runBannerBlock({boot,startBattle,state,command,wait,page:()=>page,report,output});
+ }
  if(process.env.CASES==='module-save'){
   for(const enabled of [true,false]){
    await boot({enabled});let hero=await sheet();assert.equal(!!hero.henchman,enabled);

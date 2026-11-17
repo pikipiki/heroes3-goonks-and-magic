@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "ERA Scripts option779 ordinary Learning Stone visits and frozen per-game choice; partial pack closure",
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/ERA Scripts/Data/s/option 779 - advanced stones.erm",
+    "scriptSha256": "978b1faea6d732bfea6b34fe35eaf4711c5ab2f8fdfb573e48cbba7d3d386a5a"
+  },
+  "engineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraLearningStoneRule.h": "93cd298dbe3f2bd1b913a9258a5ba768ee7d3feaa822943971b807816ecff7c6",
+    "work/vcmi-wasm/lib/era/EraLearningStoneModel.h": "b9ff104fba574ba893eb87e85b19d747803c02ca411cc4ebf16989980ea9f124",
+    "work/vcmi-wasm/lib/era/EraScriptRulesModel.h": "cc0f328507e20b4c93c704403c6e3c7b29b0b8355b3a42f73f25ba69df2909a8",
+    "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "4becc4fe9f23efbc7d5a9af89ae08a6c3b2326cf7530f79ebd61ca252a51d3e1",
+    "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "af9f5866b677f66909cd03197b530d64dcde2d2551f9e7291c81f6199264f90a",
+    "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
+    "tests/native/EraScriptRules.test.cpp": "96fa2b497b65fc1e34bafd72322aa632e24bdec926adb616b06c3853171aa985",
+    "tests/fixtures/era-gameplay/era-native-learning-reference.json": "35176eddf2845a64eebc605289fbbf40e13a57b81ce537c406315c16cf62eb9a",
+    "scripts/era-bridge/gameplay/verify-era-native-learning.py": "d288344e6483e1200b6058b92e3a658035d8247d4983a8b087ed124239ff2e67",
+    "work/browser-tests/era-learning-stone-native-e2e.mjs": "93cbb167cc14e85b0f91cd2cefd7ebff5b7beb25b7396f0f4f5925e405172760"
+  },
+  "nativeABI": {
+    "artifact": {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+      "learningPower": "0x4e4ab0",
+      "stoneHook": "0x4a600a"
+    },
+    "vectors": 120,
+    "execution": "Original PE32 machine code under Unicorn2.1.4; no learning formula reimplementation",
+    "boundary": "Controlled hero/specialty records; x87 control0x037f; added fstp-single thunk observes native floating return as SN:E does. No full Windows/game startup.",
+    "recheckedAgainstFixture": true
+  },
+  "nativeReports": [
+    {
+      "scenario": "enabledVisit",
+      "beforeExperience": 15000,
+      "afterExperience": 17185,
+      "gained": 2185,
+      "passed": true
+    },
+    {
+      "scenario": "savedChoiceSurvivesConfigDisabled",
+      "beforeExperience": 17185,
+      "afterExperience": 19370,
+      "gained": 2185,
+      "passed": true
+    },
+    {
+      "scenario": "disabledControl",
+      "beforeExperience": 15000,
+      "afterExperience": 16150,
+      "gained": 1150,
+      "passed": true
+    },
+    {
+      "scenario": "learningSpecialistIgnoresUnrelatedExperienceBoost",
+      "beforeExperience": 15000,
+      "afterExperience": 17327,
+      "gained": 2327,
+      "passed": true
+    },
+    {
+      "scenario": "serverAiVisit",
+      "beforeExperience": 15000,
+      "afterExperience": 17185,
+      "gained": 2185,
+      "passed": true
+    }
+  ],
+  "standaloneChecks": [
+    "120 original PE32 ABI outputs match the C++ rule: PASS",
+    "Frozen rules Linux C++17 with AddressSanitizer and UBSan: PASS",
+    "ninja -j32 html5: PASS in frozen engine candidate"
+  ],
+  "remaining": [
+    "Complete ERA Scripts catalogue and profile selection/admission",
+    "Source Sorcery I remote-visit adapter invoking WOG_23_HeroGetLearningStoneExperience",
+    "Interactions with other scripts changing the source global stone base experience",
+    "Older engine save without eraScripts state loaded through native browser fixture"
+  ],
+  "errors": []
+}
