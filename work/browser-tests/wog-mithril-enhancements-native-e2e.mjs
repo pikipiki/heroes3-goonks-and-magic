@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -90,6 +90,12 @@ if opts['siege']:
  enemy.update({'instanceName':'mithrilSiegeAttacker','y':10})
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:stoneGolem','amount':500}], 'secondarySkills':{},'artifacts':{},'spellBook':[]})
  objects.append(enemy)
+if opts['universityAi']:
+ import copy
+ blue=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
+ blue.update({'instanceName':'mithrilAiUniversityHero','x':9,'y':13})
+ blue['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:peasant','amount':1}], 'primarySkills':{'attack':0,'defence':0,'spellpower':0,'knowledge':10},'secondarySkills':{'core:wisdom':'basic','core:airMagic':'basic','core:earthMagic':'basic','core:fireMagic':'expert'},'artifacts':{'spellbook':'core:spellBook'},'spellBook':[]})
+ objects.append(blue)
 if opts['bluePlainsOwner']:
  import copy
  blue=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -123,6 +129,7 @@ if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
 if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
 entries['surface_terrain.json']=json.dumps(terrain).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
+if opts['universityAi']:header['allowedArtifacts']={'anyOf':['core:speculum']}
 if opts['reroll']=='rng':header['allowedSpells']={'anyOf':['core:bless','core:haste','core:slow']}
 if opts['reroll']=='hut-rng':header['allowedAbilities']={'noneOf':['core:eagleEye']}
 if opts['plainsBlock']=='underground':header['mapLevels']['underground']={'width':36,'height':36,'index':1,'layer':'core:underground'}
@@ -134,16 +141,17 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
  const difficulty=structuredClone(testDifficulty);
  for(const group of Object.values(difficulty))for(const rule of Object.values(group))if(rule.resources){rule.resources.mithril=funds;if(goldFunds!==null)rule.resources.gold=goldFunds;}
+ if(aiFunds!==null)for(const rule of Object.values(difficulty.ai))if(rule.resources)rule.resources.mithril=aiFunds;
  const markets=options.reroll==='university'?structuredClone(testMarkets):null;
  if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
  const shrines=preserveRewards||options.reroll==='rng'?structuredClone(testShrines):null;
@@ -254,6 +262,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='university-ai'){
+  const {runMithrilAi}=await import('./wog-mithril-ai-native-cases.mjs');
+  await runMithrilAi({boot,walk,panel,buy,state,command,wait,page:()=>page,report,output});
+ }
  if(process.env.CASES==='rng-isolation'){
   const {runRandomIsolation}=await import('./wog-mithril-random-isolation-native-cases.mjs');
   await runRandomIsolation({boot,walk,panel,buy,nextDay,state,command,readCompletedNativeSave,page:()=>page,report,output});

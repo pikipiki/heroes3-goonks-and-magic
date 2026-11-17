@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "artifact": {
+    "file": "work/era-gameplay-reference/era.dll",
+    "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+    "format": "PE32 Intel 80386",
+    "preferredImageBase": "0x400000"
+  },
+  "status": "verified bounded native methods and statically traced initialization/ERM call chain",
+  "runtime": {
+    "engine": "Unicorn 2.1.4 Linux x86_64",
+    "pefile": "2024.8.26",
+    "seedVectors": 56,
+    "rawDrawsPerSeed": 16,
+    "inclusiveRangeCasesPerSeed": 8,
+    "shuffleItemsPerSeed": 70,
+    "secureStartupVectors": 9,
+    "range11To55DrawsPerState": 32,
+    "entropyRequestBytes": 128,
+    "secureWordsConsumedForSeed": 4,
+    "substitution": "Only RtlGenRandom boundary 0x42c398 returns controlled 32-word buffers. Native SecureRng queue, SeedFromRng, SplitMix, Xoshiro and inclusive range machine code execute."
+  },
+  "static": {
+    "init": "0x4a8918 constructs Xoshiro via 0x4516b8, wraps in ThreadSafeRng via 0x4518e4, stores global at0x4b81ec, constructs SecureRng and stores0x4b81f0, then invokes global.SeedFromRng(secure) through virtual slot+4 at0x4a8960.",
+    "vrT": "VR_Random dispatch subtracts0x52 then2, identifying R and T at0x49994d. T explicit-bound branch0x499a34 loads indirect global pointer0x4b055c, whose value is0x4b81ec, then invokes virtual RandomRange slot+0x18 at0x499a3d. Single-bound T repeats at0x499a6e and0x499a79.",
+    "vrR": "R branch calls Heroes.RandomRange bridge0x4318d0, which calls absolute Heroes engine address0x50c7c0; reseeding calls Heroes.SRand bridge0x4318e0 which calls0x50c7b0. These paths do not use FastRand global0x4b81ec.",
+    "inference": "The DLL native init and T/R dispatch corroborate the source claim that VR:T draws from an independently secure-seeded generator rather than Heroes main game RNG."
+  },
+  "boundaries": [
+    "Not an execution of the complete Windows DLL initialization or a complete ERA game.",
+    "OS entropy values are controlled inputs, not captured Windows entropy.",
+    "Native ThreadSafeRng synchronization and the full ERM parser/receiver path are statically traced, not executed here.",
+    "Preferred-image virtual addresses; a Windows loader may relocate the DLL.",
+    "Unicorn 2.1.4 ARM macOS wheel traps during memory mapping on this host; validated in existing Linux x86_64 container instead."
+  ],
+  "reproduction": {
+    "tool": "scripts/era-bridge/gameplay/verify-era-native-random.py",
+    "dependencies": [
+      "pefile==2024.8.26",
+      "unicorn==2.1.4"
+    ],
+    "command": "python3 scripts/era-bridge/gameplay/verify-era-native-random.py --require-native",
+    "optional": "Without --require-native, missing optional dependencies or missing local reference DLL produce JSON skipped and exit0. An artifact hash mismatch or behavioral failure always fails."
+  },
+  "witnesses": [
+    {
+      "description": "FastRand initialization",
+      "start": "0x4a8918",
+      "endExclusive": "0x4a8964",
+      "sha256": "7beeeb47d61370757183c4c61bafbba96ec62996332a391202d4ea2eefce4923",
+      "bytes": "832df4814b0001734233c9b201a174114500e8898dfaff8bc8b201a1f0114500e8a78ffaffa3ec814b00b201a1c8124500e8b2baf5ffa3f0814b008b15f0814b00a1ec814b008b08ff5104c3"
+    },
+    {
+      "description": "VR_Random R/T dispatch",
+      "start": "0x49994d",
+      "endExclusive": "0x499962",
+      "sha256": "c01e31857363a934074e68324de84893d086413997ebe72580a46f74a8a09dc3",
+      "bytes": "0fb645ff2c52740d2c020f84c0000000e93c010000"
+    },
+    {
+      "description": "VR:T explicit bounds",
+      "start": "0x499a1d",
+      "endExclusive": "0x499a40",
+      "sha256": "96abed5b5e4e104aa28a35eead22cd734ba6b068f7822007a01779fa7a232f65",
+      "bytes": "83fa037c308b45088b88b40200008b45088b90b0020000a15c054b008b008b30ff5618"
+    },
+    {
+      "description": "VR:T single bound",
+      "start": "0x499a65",
+      "endExclusive": "0x499a7c",
+      "sha256": "c27d5b0572f6795afca5c2d84d5617929a8f7feeb8b274eeef5ff31ca46fdbfe",
+      "bytes": "8b45088b88ac020000a15c054b008b0033d28b30ff5618"
+    },
+    {
+      "description": "Heroes.RandomRange bridge",
+      "start": "0x4318d0",
+      "endExclusive": "0x4318de",
+      "sha256": "74f2ff78038da233cc166b1ed33758c1ce372e15c1a6487836c58949816467ad",
+      "bytes": "53bbc0c750008bc833c0ffd35bc3"
+    },
+    {
+      "description": "Heroes.SRand bridge",
+      "start": "0x4318e0",
+      "endExclusive": "0x4318f0",
+      "sha256": "58bd0331bd92bd2856281d19226324ef461fc4f8dca42f74ffaa3cf57034107b",
+      "bytes": "53bbb0c750008bc833d233c0ffd35bc3"
+    },
+    {
+      "description": "Xoshiro SeedFromRng",
+      "start": "0x451754",
+      "endExclusive": "0x451774",
+      "sha256": "242292487aa50575dfe6e9821cabaf2a890e070aa066946fcc0748edc38ef389",
+      "bytes": "5356578bfa8bf033db8bc78b10ff520889449e044383fb0475ef5f5e5bc38bc0"
+    },
+    {
+      "description": "Xoshiro Random",
+      "start": "0x451774",
+      "endExclusive": "0x4517bc",
+      "sha256": "a7e2349d6299390e0ac24fcf9f50858d84230e61667a4a693bd2cfe29023fb12",
+      "bytes": "538b48088d14898bdac1e307c1ea190bda8d1cdb8bd1c1e2098b480431480c8b48083148108b480c3148088b481031480431500c8b50108bcac1e10bc1ea150bca8948108bc35bc3"
+    },
+    {
+      "description": "SecureRng Random",
+      "start": "0x451c04",
+      "endExclusive": "0x451c6d",
+      "sha256": "67f5cc054540d335d8753bb688dba8a6c6cbce5e7b50e48bb2063df673563a85",
+      "bytes": "538bd883bb8800000000753a68800000008d430450e87aa7fdff84c07516b9781c4500b201a168124500e8f1d9fbffe8cc2ffbffc78388000000ffffffff33c08983840000008b83840000008b448304ff838400000083bb840000001f7e0833d28993880000005bc3"
+    },
+    {
+      "description": "Inclusive RandomRange",
+      "start": "0x451cdc",
+      "endExclusive": "0x451d7e",
+      "sha256": "661caf52a9afe8c94523e3db8bbf491523e0cc0fb54e70a93dd4ab8548c2c520",
+      "bytes": "5356575583c4f4890c248bea8bf885ff7514b9d0010000ba881d4500b8cc1d4500e84235fbff3b2c247c048bddeb698bc78b10ff52088bd881fd000000807f09813c24ffffff7f7d4fbe020000008b04242bc5408944240483c8ff33d2f77424048bc2403b442404750233c083caff2bd089542408eb0a8bc78b10ff52088bd8463b5c2408760583fe647eeb8bc333d2f774240403ea8bdd8bc383c40c5d5f5e5bc3"
+    }
+  ]
+}

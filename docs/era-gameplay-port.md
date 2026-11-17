@@ -254,9 +254,20 @@ Deux reprises de la même sauvegarde, avec et sans changement de sort, donnent
 les mêmes ressources pour quatorze mines aux jours 8 et 15. Le test réussit
 pour une partie neuve et pour une sauvegarde créée par l'ancien moteur, qui
 échoue sur ce même test en décalant les tirages. Les preuves figurent dans
-`outputs/era-gameplay/mithril-native-random-isolation.json`. La comparaison
-directe du démarrage avec l'exécutable ERA livré reste distincte des
-comparaisons Pascal et de ces parcours natifs.
+`outputs/era-gameplay/mithril-native-random-isolation.json`. Les méthodes machine du DLL ERA livré sont également exécutées sous Unicorn :
+56 graines et neuf états de démarrage concordent. Seule la frontière de
+l’entropie système est remplacée par des entrées contrôlées ; le démarrage
+Windows complet et la synchronisation restent hors de cette exécution bornée.
+La chaîne d’initialisation et le branchement VR:T/VR:R sont attestés séparément
+dans `tests/fixtures/era-gameplay/era-native-random-attestation.json`.
+
+Quatre parcours natifs vérifient les branches IA : deux compétences de base
+deviennent avancées gratuitement, la troisième reste de base et une compétence
+experte reste intacte. Sans amélioration, rien ne progresse. Trois unités de
+mithril conservées apportent exactement 300 pièces d’or supplémentaires par
+jour ; le module désactivé ne change pas les revenus. Le script source prévoit
+cette compensation, sans achat automatique des sites par l’IA. Les résultats
+figurent dans `outputs/era-gameplay/mithril-native-ai.json`.
 
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.
