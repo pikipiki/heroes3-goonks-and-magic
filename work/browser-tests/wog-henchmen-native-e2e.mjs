@@ -234,6 +234,11 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='battle-start-experience'){
+  const {runBattleStartExperience}=await import('./wog-henchmen-battle-experience-cases.mjs');
+  await runBattleStartExperience({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:939})});
+ }
  if(process.env.CASES==='zero-hero-experience'){
   for(const campaignTransfer of [false,true]){
    await boot({heroLevelLimit:1,henchmanType:'core:archangel',settings:{campaignTransfer,battleExpStatic:100,battleExpRandom:0,battleHeroExpCoef:0,battleExpPerHeroLv:0,battleExpMin:0,battleExpMax:1000,bonusDaily:0,bonusHeroLvUp:0,stackExpEnabled:false}});

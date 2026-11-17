@@ -26,12 +26,12 @@ struct Bytes
 };
 int main()
 {
-    for(auto version:{ESerializationVersion::GOONK_WOG_OPTIONS,ESerializationVersion::GOONK_ERA_GAMEPLAY,ESerializationVersion::CURRENT})
+    for(auto version:{ESerializationVersion::GOONK_WOG_OPTIONS,ESerializationVersion::GOONK_ERA_GAMEPLAY,ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED,ESerializationVersion::CURRENT})
     {
         ExtraOptionsInfo original;original.cheatsAllowed=false;original.unlimitedReplay=true;
         original.wogOptions={{-1,0,1,1,0,-1,1}};
         Bytes writer{true,version,{},0};original.serialize(writer);
-        const bool extended=version==ESerializationVersion::CURRENT;
+        const bool extended=version>=ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED;
         assert(writer.bytes.size()==(extended?9u:8u));writer.bytes.push_back(73);
         Bytes reader{false,version,writer.bytes,0};ExtraOptionsInfo restored;restored.wogOptions.fill(0);restored.serialize(reader);
         assert(!restored.cheatsAllowed&&restored.unlimitedReplay);
@@ -42,10 +42,10 @@ int main()
     Bytes old{false,ESerializationVersion::BONUS_TRIGGER,{1,0,73},0};ExtraOptionsInfo restored;restored.wogOptions.fill(1);restored.serialize(old);
     for(auto choice:restored.wogOptions)assert(choice==-1);
     int8_t sentinel=0;old&sentinel;assert(sentinel==73);
-    for(auto version:{ESerializationVersion::GOONK_ERA_GAMEPLAY,ESerializationVersion::CURRENT})
+    for(auto version:{ESerializationVersion::GOONK_ERA_GAMEPLAY,ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED,ESerializationVersion::CURRENT})
         for(int invalid:{-128,-2,2,127})
         {
-            const auto count=version==ESerializationVersion::CURRENT?7u:6u;
+            const auto count=version>=ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED?7u:6u;
             for(std::size_t i=0;i<count;++i)
             {
                 std::vector<int8_t> bytes(2+count,0);bytes[2+i]=static_cast<int8_t>(invalid);

@@ -378,7 +378,12 @@ void BattleResultProcessor::endBattleConfirmPrepared(const CBattleInfoCallback &
 
 	const auto attackerHero = battle.battleGetFightingHero(BattleSide::ATTACKER);
 	const auto defenderHero = battle.battleGetFightingHero(BattleSide::DEFENDER);
-    const std::array<int64_t,2> henchmanHeroExperience{{attackerHero?int64_t(attackerHero->exp):0,defenderHero?int64_t(defenderHero->exp):0}};
+    // Old battle saves have no placement snapshot: retain their previous
+    // end-of-battle baseline rather than inventing historical experience.
+    const auto * liveBattle=gameHandler->gameState().getBattle(battle.getBattle()->getBattleID());
+    const std::array<int64_t,2> henchmanHeroExperience=liveBattle->henchmanExperienceCaptured
+        ?liveBattle->henchmanHeroExperience
+        :std::array<int64_t,2>{{attackerHero?int64_t(attackerHero->exp):0,defenderHero?int64_t(defenderHero->exp):0}};
 
 	//give exp
 	if(!finishingBattle->isDraw() && battleResult->exp[finishingBattle->winnerSide])

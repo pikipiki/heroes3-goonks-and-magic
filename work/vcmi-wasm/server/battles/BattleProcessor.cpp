@@ -204,6 +204,15 @@ BattleID BattleProcessor::setupBattle(int3 tile, BattleSideArray<const CArmedIns
 	BattleStart bs;
 	bs.info = BattleInfo::setupBattle(&gameHandler->gameInfo(), tile, terrain, battlefieldType, armies, heroes, layout, town);
 	bs.battleID = gameHandler->gameState().nextBattleID;
+    if(era_compat::henchmen::enabled(gameHandler->gameInfo()))
+    {
+        bs.info->henchmanExperienceCaptured=true;
+        for(const auto side:{BattleSide::ATTACKER,BattleSide::DEFENDER})
+            if(const auto * hero=heroes[side])
+                if(std::any_of(bs.info->stacks.begin(),bs.info->stacks.end(),[&](const auto & stack)
+                    {return stack->unitSide()==side&&stack->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER;}))
+                    bs.info->henchmanHeroExperience[static_cast<int>(side)]=static_cast<int64_t>(hero->exp);
+    }
 
 	engageIntoBattle(bs.info->getSide(BattleSide::ATTACKER).color);
 	engageIntoBattle(bs.info->getSide(BattleSide::DEFENDER).color);

@@ -59,7 +59,7 @@ export function buildHenchmenContract(projectRoot=root){
    'Native save/load, legacy choice migration and campaign crossover/settings scenarios pass; campaign restart, reserved/unplaced heroes and older campaign pools remain to validate.',
    'Army selection/replacement, resurrection and banner equipment are connected; the banner native validation report records the remaining battle and campaign cases.',
    'Battlefield actor, stats, spells and level-scaled guardians are connected; full death/action interactions remain incomplete.',
-   'Classic left/right pointer menus, mobile touch controls and shared-VM AI rewards pass dedicated scenarios; Zero hero XP at an authored level cap preserves the fixed reward only with campaign transfer off, including native save/load; battle-start hero XP capture, remaining inventory/spell cases and whole-pack native scenarios remain unvalidated.'
+   'Classic left/right pointer menus, mobile touch controls and shared-VM AI rewards pass dedicated scenarios; Zero hero XP at an authored level cap preserves the fixed reward only with campaign transfer off, including native save/load; Placement-time hero XP capture passes unchanged, pre-battle BA0 and in-combat BR0 changes with native save/load; loser/retreat/negative-XP lifecycle, remaining inventory/spell cases and whole-pack native scenarios remain unvalidated.'
   ]
  };
 }

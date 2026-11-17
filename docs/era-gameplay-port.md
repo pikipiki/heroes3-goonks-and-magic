@@ -257,8 +257,13 @@ ce réglage activé, le gain nul du héros supprime bien la récompense, comme
 l'indique le test source de la ligne 764. Les deux parcours utilisent un
 combat réel avec une limite de niveau 1, puis une sauvegarde et un rechargement.
 Le moteur précédent échoue au témoin sans transfert (0 au lieu de 100).
-Cette correction ne valide pas encore la capture d'expérience au début du
-combat, les pertes et tous les déclencheurs source intermédiaires.
+La capture d'expérience au placement du compagnon est également conservée
+dans l'état sérialisé du combat. Un témoin sans script et une modification
+BA0 avant combat accordent chacun 1 point au compagnon ; une modification
+BR0 de 400 points pendant le combat en accorde 20. Les scénarios passent
+avec rechargement, y compris depuis la version précédente du moteur. Les
+anciens états de combat dépourvus de capture gardent le calcul précédent.
+Les pertes, retraites et changements d'expérience négatifs restent à valider.
 
 ## Raccordements et validations restant nécessaires
 

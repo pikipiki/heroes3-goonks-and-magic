@@ -73,8 +73,10 @@ enum class ESerializationVersion : int32_t
 
 	GOONK_WOG_OPTIONS_EXTENDED, // append per-game mithril choice without changing old six-byte saves
 
+	GOONK_HENCHMAN_BATTLE_EXPERIENCE, // capture source hero XP at companion placement
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_WOG_OPTIONS_EXTENDED,
+	CURRENT = GOONK_HENCHMAN_BATTLE_EXPERIENCE,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

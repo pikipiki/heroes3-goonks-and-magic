@@ -41,6 +41,10 @@ public:
 	ObjectInstanceID townID; //used during town siege, nullptr if this is not a siege (note that fortless town IS also a siege)
 	int3 tile; //for background and bonuses
 	bool replayAllowed;
+	// Source Henchmen record hero experience when their battlefield actor is
+	// placed, before scripts can change experience during combat.
+	bool henchmanExperienceCaptured = false;
+	std::array<int64_t, 2> henchmanHeroExperience{{0, 0}};
 	std::vector<std::unique_ptr<CStack>> stacks;
 	std::vector<std::shared_ptr<CObstacleInstance> > obstacles;
 	SiegeInfo si;
@@ -68,6 +72,16 @@ public:
 		h & tacticDistance;
 		h & static_cast<CBonusSystemNode&>(*this);
 		h & replayAllowed;
+		if(h.hasFeature(Handler::Version::GOONK_HENCHMAN_BATTLE_EXPERIENCE))
+		{
+			h & henchmanExperienceCaptured;
+			h & henchmanHeroExperience;
+		}
+		else if(!h.saving)
+		{
+			henchmanExperienceCaptured = false;
+			henchmanHeroExperience.fill(0);
+		}
 
 		if(!h.saving)
 			postDeserialize();
