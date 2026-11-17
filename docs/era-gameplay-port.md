@@ -307,6 +307,20 @@ publié ne connaît pas encore le septième. Ces preuves ne constituent ni
 l'activation du profil WoG complet ni le port des écritures UN:P des packs
 externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
 
+Le catalogue candidat contient treize réglages par partie : les six premiers,
+le mithril et six règles de carte (114, 115, 121, 122, 124 et 128). Les règles
+114/115/121/122/124/128 peuvent hériter de leur configuration, être activées ou
+être désactivées sans changer les autres parties. Les tests inversent
+volontairement leur configuration globale : combats avec dégâts effectifs,
+déplacements et renouvellement quotidien, production hebdomadaire avec
+protection au mithril, achat du second Capitole et effet des plaines magiques.
+Le chargement conserve leurs choix et les six ou sept réglages des anciennes
+sauvegardes. Le format courant préfixe le catalogue par sa longueur pour
+permettre les ajouts suivants sans réinterpréter les octets historiques.
+Les quinze autres règles de carte et les six modes source de sélection de
+l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
+complets et ne revendique pas le port de leurs commandes UN:P.
+
 L'activation du mithril est désormais enregistrée avec chaque nouvelle partie.
 Changer les réglages de l'installation ne modifie plus ce choix à la reprise.
 Les anciennes sauvegardes contenant des améliorations ou une graine mithril

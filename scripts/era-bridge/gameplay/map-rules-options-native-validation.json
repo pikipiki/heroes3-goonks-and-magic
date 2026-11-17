@@ -1,0 +1,397 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Six independently selectable native map rules appended to the thirteen-choice WoG catalogue, fixed historical six/seven layouts and a length-prefixed current layout",
+  "source": {
+    "script": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "codes": [
+      114,
+      115,
+      121,
+      122,
+      124,
+      128
+    ],
+    "mode101Ported": false
+  },
+  "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+  "parentEngineSha256": "8a045a77916f46ff11bb8b6ef1c5864ac3de69a6f6d9ed96d3731799cbdb40b6",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "319ae8d44565287b7f14db52bf898ccb3d05025b69400ddf2ec1ffd498dbc9e1",
+    "scripts/era-bridge/gameplay/map-rules.json": "20ebab2f443a119143dd52f162c3372678b58d893f6535be2ddfcb7fb22b118a",
+    "tests/native/EraWogOptions.test.cpp": "8196052417a569c094bcf2cd1527e010de05b2f3ff82142e129d65d8ea57fa1e",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "e597dd8cebebfddb7c79e7f7f7395cc7767dae84a6abc84b0c0d88469df3c726",
+    "web/wog-options.mjs": "38264bd51391cc4905355f572f2878823fdb8e3c3129b0ba27e776e462f40c2f",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "596e5b822b61e3b3574631bc2f3e9e9929e327203059974b450aa51649c8fcd7",
+    "work/browser-tests/wog-mithril-options-cases.mjs": "3d70065c75cb062fbae4256bcbeceb649e9c41e88f0debc1d5bb615d66823c66",
+    "work/browser-tests/wog-options-layout-e2e.mjs": "3262c9001a3c70bef09fd04673fd348df04a863e36f8045d14edc5d8c5bd183a",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8424f86fa313cce239dda8de0abd7b631c8b246ff3a7ff6c37ce030b88587f79",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "6f3a5f7cf1238104370f1bb12fa823fc871cd6ea3403bbb076bfb5623f99bc96",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a5ae62593c65838d6171b41c6eb2f242f52e5b43483b67d51539d2343a0d366a",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f60085abbce3eeaeb11706fdc7a249d93d01b12f44b255e4e803ef868306cc7c"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 108,
+    "logSha256": "82f42b248888725ceb58844f607a18f9e54b4e48574c9f77f5259ce427e9fa3d",
+    "sourceBindingsSha256": "1d454b12d282c312c91397ab6fcda4ecd829c5cf510be5ffa52320b677bf0439",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "reports": {
+    "creatures-on": {
+      "sha256": "24a2f8694b32956346adccbd43e4fa59d8805faa2f8fd06ba6a4511bebe08df9",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-creature-rules-goblin-double1-breath1-saved",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    "creatures-off": {
+      "sha256": "6fffe0893b96b7cb167a67404bb0ee9fd1aec7b7c1c0b87c5d387d71e720fd2c",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-creature-rules-goblin-double0-breath0-saved",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "creatures-ai": {
+      "sha256": "39476fa2ebdbd93583f67fece4593b58018c06335a4b35b071501fab86e0c1c5",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-creature-rules-ai-attacks-twice"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    "movement-on": {
+      "sha256": "0064dcdf3d063ece4d98b4af6fe805739bf7609a04d63bb0d28e6a9ba50ee9c6",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-rule-121-budget-and-setting-survive-save-and-global-config-change",
+        "map-rule-121-doubles-daily-budget-with-normal-walking-cost"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "movement-off": {
+      "sha256": "da52ac28de661ba6788e66442310c5d920577ecbb5d7df7c58fc3bf58035299e",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-rule-121-budget-and-setting-survive-save-and-global-config-change",
+        "map-rule-121-disabled-preserves-normal-movement"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "capitols-on": {
+      "sha256": "6b34b3e08b9a56803c96f387b9a14e1472d83c0481908f74c4fab6db3cfa2b72",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-rule-124-allows-second-capitol-with-normal-cost",
+        "map-rule-124-survives-save-and-global-config-change"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    "capitols-off": {
+      "sha256": "ff71996c711c649f101f3df4ec89b239e499deb290848e86e29ac53f1388c3ad",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "map-rule-124-disabled-preserves-single-capitol-limit",
+        "map-rule-124-survives-save-and-global-config-change"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "weekly": {
+      "sha256": "f0f89d561661d5ad022d96b763af7fd1e0b3722957ca43ac280e4e8d2f6b6e11",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "weekly-mine-rule-and-protection-frozen-in-native-save",
+        "mithril-protects-mines-until-next-monday-without-doubling-income",
+        "weekly-mine-reroll-replicates-resource-and-resets-standard-production",
+        "changed-mine-resource-and-production-survive-native-save-reload"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    "plains": {
+      "sha256": "b1684f62972f9744ac80ae02672549b5ed81288326dd3259a9778d605d6b9918",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "daily-magic-plains-grant-four-expert-schools-in-field-battle",
+        "daily-magic-plains-block-town-mithril-purchases",
+        "daily-magic-plains-setting-and-patches-survive-native-save-reload"
+      ],
+      "errors": [],
+      "mapRuleChoices": [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "legacy-six": {
+      "sha256": "8fa39c3fbcf5161299b5f668c9c1a61420d9f64faaa47f8a3b1cc41a6dbf0c1e",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "original-six-options-load-frozen-false",
+        "original-six-options-load-frozen-true"
+      ],
+      "errors": []
+    },
+    "legacy-seven-r2": {
+      "sha256": "a8168928bae48a420149439e1a20ff9f6033aee292c284aed0aabc09f2f60fa4",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        "original-seven-options-load-frozen-false",
+        "original-seven-options-load-frozen-true"
+      ],
+      "errors": []
+    },
+    "mithril-mouse": {
+      "sha256": "7dcf0620c6130d3d46d02ae3890c2470d8da8627ebeb6a21a342b3c107ec1d54",
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
+      "scenarios": [
+        {
+          "globalModule": false,
+          "choice": 1,
+          "active": true,
+          "purchase": true,
+          "saveReload": true,
+          "input": "mouse"
+        },
+        {
+          "globalModule": true,
+          "choice": 0,
+          "active": false,
+          "purchase": false,
+          "saveReload": true,
+          "input": "mouse"
+        }
+      ],
+      "errors": []
+    },
+    "originalSix": {
+      "passed": true,
+      "sha256": "cc0d6e3f38dc1fe447d089dadf143d3c3fd87639eed6fda0dfa21732dfcf7faa",
+      "allOff": true,
+      "allOn": true,
+      "checks": [
+        "commanders",
+        "troop XP",
+        "map replacements",
+        "two buildings",
+        "fourth upgrades",
+        "eighth families",
+        "native save and recruitment stocks"
+      ],
+      "appendedChoices": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    }
+  },
+  "layout": {
+    "passed": true,
+    "reportSha256": "4c7319f2576df330fe8caadadc2991b8e1761dbd6389f85a6db2541fd7009db6",
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ]
+    ],
+    "sixAndSevenChoiceEnginesRemainUsable": true,
+    "allThirteenRulesReachable": true,
+    "lastRuleActualTouchAndAcknowledgement": true,
+    "realTouchScroll": true,
+    "minimumTouchTarget": 44,
+    "stableDomFocusScroll": true
+  },
+  "nativeOverrides": {
+    "configuredValuesInvertedFromAllSixRequestedChoices": true,
+    "explicitOnAndOff": true,
+    "oldSavedRuleRecordsPreserved": true,
+    "gameChoicesFrozenAfterCreation": true
+  },
+  "legacySaveSources": {
+    "sixOptionEngine": "cc8d5983a0708e47721684c72768e59f38252ddbd0121653433973086fc02bf5",
+    "sevenOptionEngine": "3198c351852817ae4c92dba20f391d334a87f53e02344b04e4bfd2d7399c020e",
+    "files": {
+      "/private/tmp/goonk-mithril-six-option-producer/old-six-options-off.vsgm1": "73e4ae03b233922f52f44cf13a0bc1d21fb6352fb7ee268a66459ede4e25f9c6",
+      "/private/tmp/goonk-mithril-six-option-producer/old-six-options-on.vsgm1": "8debe47964c42bd0770e41469d8432ec9a347d7ec370ae0def3c53aac251ceaf",
+      "/private/tmp/goonk-mithril-pergame-touch/extended-false--1.vsgm1": "442a07bf05e5d8e1e6361668be5e02dd84b425fdcd8378685178415b072fbefb",
+      "/private/tmp/goonk-mithril-pergame-touch/extended-false-1.vsgm1": "c18ee8276628e315ed56a2b382fbdd6cc65c1a45f44b5d0a1386f5299dc2baac"
+    }
+  },
+  "unitChecks": {
+    "passed": 10,
+    "failed": 0,
+    "logSha256": "63299748c631f78393044f4c6470f636f18a9061b42ee0bf214917e316206ba2",
+    "serializer": [
+      "old6 and old7 exact boundaries with following sentinel",
+      "all13 current choices",
+      "shorter vector inherits absent entries",
+      "unknown larger vector rejected",
+      "corrupt choices rejected for all layouts"
+    ]
+  },
+  "inventory": {
+    "regeneratedFromTrackedSourcesWithUnverifiedChangesExcluded": true,
+    "testsPassed": 7,
+    "testsSkipped": 1,
+    "testsFailed": 0,
+    "testLogSha256": "6ed3a055a0982fc4726114ae43a258300c21d532273e1c7c623d8ed856e6e533"
+  },
+  "remaining": [
+    "Other15 map rules and six source selection modes for101",
+    "Full source UN:P integration and complete pack activation",
+    "Private engine contains dormant unadmitted work and is not the published runtime"
+  ]
+}

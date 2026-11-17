@@ -1,5 +1,7 @@
 #pragma once
 #include "../CGameHandler.h"
+#include "../../lib/era/EraWogOptions.h"
+#include "../../lib/StartInfo.h"
 #include "../../lib/era/EraMapRulesModel.h"
 #include "../../lib/era/EraMithrilModel.h"
 #include "../../lib/filesystem/Filesystem.h"
@@ -16,12 +18,18 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     JsonNode configured;
     if(firstTurn&&CResourceHandler::get()->existsResource(path))configured=JsonNode(path)["mapRules"];
     EraGameplayChange packet;packet.system="mapRules";
-    packet.state["rules"]["114"].Bool()=configured["114"].Bool();
-    packet.state["rules"]["115"].Bool()=configured["115"].Bool();
-    packet.state["rules"]["128"].Bool()=configured["128"].Bool();
-    packet.state["rules"]["121"].Bool()=configured["121"].Bool();
-    packet.state["rules"]["122"].Bool()=configured["122"].Bool();
-    packet.state["rules"]["124"].Bool()=configured["124"].Bool();
+    const auto choice=[&](const char * code,era_bridge::WogOption option)
+    {
+        // Legacy saves without a frozen rule record retain the old baseline.
+        packet.state["rules"][code].Bool()=firstTurn&&era_bridge::wogOptionEnabled(
+            gh.gameInfo(),option,configured[code].Bool());
+    };
+    choice("114",era_bridge::WogOption::DailyMagicPlains);
+    choice("115",era_bridge::WogOption::AllDoubleAttack);
+    choice("121",era_bridge::WogOption::DoubleMovement);
+    choice("122",era_bridge::WogOption::WeeklyMineResources);
+    choice("124",era_bridge::WogOption::MultipleCapitols);
+    choice("128",era_bridge::WogOption::AllBreath);
     gh.sendAndApply(packet);
 }
 inline void changeWeeklyMines(CGameHandler & gh)

@@ -8,6 +8,12 @@ const rules = [
   ['Fourth creature upgrades', 'Quatrièmes évolutions', 'Enable the fourth level-seven variant in the nine original towns.', 'Activer la quatrième variante de niveau sept dans les neuf villes d’origine.'],
   ['Eighth creature families', 'Huitièmes familles de créatures', 'Enable the additional creature tier in the nine original towns.', 'Activer le rang de créatures supplémentaire dans les neuf villes d’origine.'],
   ['Mithril enhancements', 'Améliorations au mithril', 'Spend mithril to enhance sites and towns.', 'Dépenser du mithril pour améliorer les sites et les villes.'],
+  ['Daily magic plains', 'Plaines magiques quotidiennes', 'Heroes create magic plains each day on eligible tiles.', 'Les héros créent des plaines magiques chaque jour sur les cases compatibles.'],
+  ['All creatures attack twice', 'Deux attaques pour toutes les créatures', 'Eligible creatures gain a second attack.', 'Les créatures compatibles gagnent une seconde attaque.'],
+  ['Double hero movement', 'Déplacement des héros doublé', 'Double hero movement on land and at sea.', 'Doubler les déplacements des héros sur terre et en mer.'],
+  ['Mines change resources weekly', 'Production des mines modifiée chaque semaine', 'Mines change their resource at the start of each new week.', 'Les mines changent de ressource au début de chaque nouvelle semaine.'],
+  ['Multiple Capitols', 'Plusieurs Capitoles', 'Allow a Capitol in every town.', 'Permettre un Capitole dans chaque ville.'],
+  ['Breath attacks for all creatures', 'Souffle pour toutes les créatures', 'Eligible creatures strike through two adjacent hexes.', 'Les créatures compatibles frappent à travers deux cases adjacentes.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

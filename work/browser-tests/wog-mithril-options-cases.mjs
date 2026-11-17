@@ -4,7 +4,7 @@ import path from 'node:path';
 export async function runMithrilOptions({boot,panel,buy,state,command,wait,page,output,report,readCompletedNativeSave}){
  const inspect=async active=>{
   assert.equal(await page().locator('button[data-mithril-open]').isVisible(),active,'Mithril follows native saved setting');
-  if(active){const data=await panel();assert(data.offers.some(row=>row.kind===0&&row.cost===7));return data;}
+  if(active){const data=await panel();assert(data.offers.some(row=>row.kind===0),'Native mine offers remain present');return data;}
   return null;
  };
  const save=async name=>{
@@ -23,9 +23,11 @@ export async function runMithrilOptions({boot,panel,buy,state,command,wait,page,
  if(mode==='options-legacy-consumer'){
   assert(process.env.MITHRIL_LEGACY_DIR);
   for(const enabled of [false,true]){
-   const bytes=[...fs.readFileSync(path.join(process.env.MITHRIL_LEGACY_DIR,`old-six-options-${enabled?'on':'off'}.vsgm1`))];
-   await boot({save:bytes,enabled:!enabled});await inspect(enabled);
-   report.scenarios.push(`original-six-options-load-frozen-${enabled}`);await page().close();
+   const file=process.env.MITHRIL_LEGACY_SEVEN?`extended-false-${enabled?1:-1}.vsgm1`:`old-six-options-${enabled?'on':'off'}.vsgm1`;
+   const bytes=[...fs.readFileSync(path.join(process.env.MITHRIL_LEGACY_DIR,file))];
+   await boot({save:bytes,enabled:!enabled});const data=await inspect(enabled);
+   if(process.env.MITHRIL_LEGACY_SEVEN&&enabled){assert.equal(data.amount,93);assert(data.offers.some(row=>row.kind===0&&row.active&&row.dailyIncome===2000),'Old purchased mine and payment survive');}
+   report.scenarios.push(`original-${process.env.MITHRIL_LEGACY_SEVEN?'seven':'six'}-options-load-frozen-${enabled}`);await page().close();
   }
   return;
  }

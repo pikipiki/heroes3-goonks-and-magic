@@ -75,8 +75,10 @@ enum class ESerializationVersion : int32_t
 
 	GOONK_HENCHMAN_BATTLE_EXPERIENCE, // capture source hero XP at companion placement
 
+	GOONK_WOG_OPTION_CATALOGUE, // length-prefixed native WoG choices, including map rules
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_HENCHMAN_BATTLE_EXPERIENCE,
+	CURRENT = GOONK_WOG_OPTION_CATALOGUE,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

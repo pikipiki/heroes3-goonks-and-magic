@@ -1,5 +1,5 @@
-// Exercise the production serializer with exact byte boundaries, including a
-// following sentinel: appending an option must not consume the next old field.
+// Exercise the production serializer with byte boundaries and a following
+// sentinel; historical layouts must not consume the next old field.
 #define VCMI_LIB_NAMESPACE_BEGIN
 #define VCMI_LIB_NAMESPACE_END
 #define DLL_LINKAGE
@@ -21,37 +21,70 @@ struct Bytes
         else {assert(cursor<bytes.size());value=static_cast<T>(bytes[cursor++]);}
         return *this;
     }
+    Bytes & operator&(uint32_t & value)
+    {
+        if(!saving)value=0;
+        for(unsigned shift=0;shift<32;shift+=8)
+        {
+            int8_t byte=static_cast<int8_t>(value>>shift);*this&byte;
+            if(!saving)value|=static_cast<uint32_t>(static_cast<uint8_t>(byte))<<shift;
+        }
+        return *this;
+    }
     template<class T,std::size_t N>Bytes & operator&(std::array<T,N> & values)
     {for(auto & value:values)*this&value;return *this;}
+    Bytes & operator&(std::vector<int8_t> & values)
+    {
+        auto count=static_cast<uint32_t>(values.size());*this&count;
+        if(!saving){assert(count<=100);values.resize(count);}
+        for(auto & value:values)*this&value;
+        return *this;
+    }
 };
 int main()
 {
-    for(auto version:{ESerializationVersion::GOONK_WOG_OPTIONS,ESerializationVersion::GOONK_ERA_GAMEPLAY,ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED,ESerializationVersion::CURRENT})
+    using V=ESerializationVersion;
+    const auto countFor=[](V version){return version>=V::GOONK_WOG_OPTION_CATALOGUE?era_bridge::wogOptionCount:
+        version>=V::GOONK_WOG_OPTIONS_EXTENDED?era_bridge::wogMithrilOptionCount:era_bridge::wogLegacyOptionCount;};
+    for(auto version:{V::GOONK_WOG_OPTIONS,V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_HENCHMAN_BATTLE_EXPERIENCE,V::CURRENT})
     {
         ExtraOptionsInfo original;original.cheatsAllowed=false;original.unlimitedReplay=true;
-        original.wogOptions={{-1,0,1,1,0,-1,1}};
+        for(std::size_t i=0;i<original.wogOptions.size();++i)original.wogOptions[i]=static_cast<int8_t>(i%3)-1;
         Bytes writer{true,version,{},0};original.serialize(writer);
-        const bool extended=version>=ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED;
-        assert(writer.bytes.size()==(extended?9u:8u));writer.bytes.push_back(73);
+        const auto count=countFor(version);const bool catalogue=version>=V::GOONK_WOG_OPTION_CATALOGUE;
+        assert(writer.bytes.size()==2+count+(catalogue?4u:0u));writer.bytes.push_back(73);
         Bytes reader{false,version,writer.bytes,0};ExtraOptionsInfo restored;restored.wogOptions.fill(0);restored.serialize(reader);
         assert(!restored.cheatsAllowed&&restored.unlimitedReplay);
-        for(std::size_t i=0;i<6;++i)assert(restored.wogOptions[i]==original.wogOptions[i]);
-        assert(restored.wogOptions[6]==(extended?1:-1));
+        for(std::size_t i=0;i<restored.wogOptions.size();++i)assert(restored.wogOptions[i]==(i<count?original.wogOptions[i]:-1));
         int8_t sentinel=0;reader&sentinel;assert(sentinel==73&&reader.cursor==writer.bytes.size());
     }
-    Bytes old{false,ESerializationVersion::BONUS_TRIGGER,{1,0,73},0};ExtraOptionsInfo restored;restored.wogOptions.fill(1);restored.serialize(old);
+    Bytes old{false,V::BONUS_TRIGGER,{1,0,73},0};ExtraOptionsInfo restored;restored.wogOptions.fill(1);restored.serialize(old);
     for(auto choice:restored.wogOptions)assert(choice==-1);
     int8_t sentinel=0;old&sentinel;assert(sentinel==73);
-    for(auto version:{ESerializationVersion::GOONK_ERA_GAMEPLAY,ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED,ESerializationVersion::CURRENT})
+    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::CURRENT})
         for(int invalid:{-128,-2,2,127})
         {
-            const auto count=version>=ESerializationVersion::GOONK_WOG_OPTIONS_EXTENDED?7u:6u;
+            const auto count=countFor(version);const auto prefix=version>=V::GOONK_WOG_OPTION_CATALOGUE?4u:0u;
             for(std::size_t i=0;i<count;++i)
             {
-                std::vector<int8_t> bytes(2+count,0);bytes[2+i]=static_cast<int8_t>(invalid);
+                std::vector<int8_t> bytes(2+prefix+count,0);
+                if(prefix)bytes[2]=static_cast<int8_t>(count);
+                bytes[2+prefix+i]=static_cast<int8_t>(invalid);
                 Bytes input{false,version,bytes,0};bool threw=false;
                 try{ExtraOptionsInfo value;value.serialize(input);}catch(const std::runtime_error &){threw=true;}
                 assert(threw);
             }
         }
+    // A shorter stored catalogue inherits appended choices. An unknown larger
+    // catalogue is rejected instead of silently dropping gameplay rules.
+    for(unsigned count:{0u,3u,static_cast<unsigned>(era_bridge::wogOptionCount+1)})
+    {
+        std::vector<int8_t> bytes(6+count,0);bytes[2]=static_cast<int8_t>(count);bytes.push_back(73);
+        Bytes input{false,V::CURRENT,bytes,0};ExtraOptionsInfo value;bool threw=false;
+        try{value.serialize(input);}catch(const std::runtime_error &){threw=true;}
+        assert(threw==(count>era_bridge::wogOptionCount));
+        if(threw)continue;
+        for(std::size_t i=0;i<value.wogOptions.size();++i)assert(value.wogOptions[i]==(i<count?0:-1));
+        sentinel=0;input&sentinel;assert(sentinel==73);
+    }
 }

@@ -21,12 +21,13 @@
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "The other 15 map rules, source selection modes and the per-game menu.",
+    "The other 15 map rules and the six original selection modes of option101; the six implemented rules now have independent native per-game choices.",
     "Complete source random-stream comparison with the shipped ERA executable.",
     "Prototype-only recruitment previews for map-wide creature abilities."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
   "multipleCapitolsValidation": "outputs/era-gameplay/map-rules-native-capitols.json",
   "doubleMovementValidation": "outputs/era-gameplay/map-rules-native-movement.json",
-  "creatureRulesValidation": "outputs/era-gameplay/map-rules-native-creatures.json"
+  "creatureRulesValidation": "outputs/era-gameplay/map-rules-native-creatures.json",
+  "perGameOptionValidation": "scripts/era-bridge/gameplay/map-rules-options-native-validation.json"
 }

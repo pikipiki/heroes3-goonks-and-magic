@@ -35,7 +35,9 @@ try {
   assert.equal(await page.locator('.wog-options fieldset:visible').count(), 6, 'Published six-option engines retain their controls');
   assert(await page.locator('input[data-wog-option="6"]').first().isDisabled());
   await page.evaluate(() => { testState.wogOptions.push(-1); sendState(); });
-  assert.equal(await page.locator('.wog-options fieldset:visible').count(), 7);
+  assert.equal(await page.locator('.wog-options fieldset:visible').count(), 7, 'Seven-choice engines retain their controls');
+  await page.evaluate(() => { testState.wogOptions.push(...Array(6).fill(-1)); sendState(); });
+  assert.equal(await page.locator('.wog-options fieldset:visible').count(), 13);
   const touch = await page.context().newCDPSession(page);
   for (const [width, height] of [[320,568], [568,320], [390,844], [844,390], [768,1024], [1024,768]]) {
     await page.setViewportSize({width, height});
@@ -57,7 +59,7 @@ try {
     await page.waitForTimeout(150);
     const touchScroll = await scroller.evaluate(node => ({top: node.scrollTop, range: node.scrollHeight - node.clientHeight}));
     assert(touchScroll.range <= 0 || touchScroll.top > 20, 'Real touch swipe scrolls the rules: ' + JSON.stringify({width, height, scrollBox, touchScroll}));
-    const target = page.locator('input[data-wog-option="6"][value="0"]').locator('..');
+    const target = page.locator('input[data-wog-option="12"][value="0"]').locator('..');
     await target.scrollIntoViewIfNeeded();
     const box = await target.boundingBox();
     assert(box.width >= 44 && box.height >= 44, 'Touch targets remain at least44px');
@@ -76,12 +78,12 @@ try {
     await page.screenshot({path: path.join(out, `wog-options-${width}x${height}.png`)});
     report.cases.push({width, height, target: box, stable, touchScroll});
   }
-  const choice = page.locator('input[data-wog-option="3"][value="1"]');
+  const choice = page.locator('input[data-wog-option="12"][value="1"]');
   await choice.locator('..').tap();
-  assert.deepEqual((await page.evaluate(() => calls.at(-1))).slice(0, 3), [109, 3, 1]);
+  assert.deepEqual((await page.evaluate(() => calls.at(-1))).slice(0, 3), [109, 12, 1]);
   assert(await page.locator('.lobby-footer [data-ui=begin]').isDisabled(), 'Start waits for the native acknowledgement');
   assert(await choice.isDisabled());
-  await page.evaluate(() => { testState.wogOptions[3] = 1; sendState(); });
+  await page.evaluate(() => { testState.wogOptions[12] = 1; sendState(); });
   assert(await choice.isChecked());
   assert(await choice.isEnabled());
   assert(await page.locator('.lobby-footer [data-ui=begin]').isEnabled());
@@ -89,5 +91,5 @@ try {
   assert(await page.locator('.wog-options').isHidden(), 'Saved games cannot be reconfigured');
   assert.deepEqual(errors, []);
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({passed: true, ...report, errors}, null, 2));
-  console.log('PASS options UI: legacy six-option fallback, seventh rule, six viewports, stable DOM/focus/scroll and native acknowledgement');
+  console.log('PASS options UI: legacy six-option fallback, thirteen rules, six viewports, stable DOM/focus/scroll and native acknowledgement');
 } finally { await browser.close(); }

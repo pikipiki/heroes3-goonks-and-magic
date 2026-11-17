@@ -13,6 +13,7 @@
 #include <array>
 #include <cstdint>
 #include <stdexcept>
+#include <vector>
 #include "era/EraWogOptions.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
@@ -22,7 +23,7 @@ struct DLL_LINKAGE ExtraOptionsInfo
 	bool cheatsAllowed = true;
 	bool unlimitedReplay = false;
 	// Each choice inherits the authored map unless explicitly set to0 or1.
-	std::array<int8_t, era_bridge::wogOptionCount> wogOptions{{-1, -1, -1, -1, -1, -1, -1}};
+	std::array<int8_t, era_bridge::wogOptionCount> wogOptions = era_bridge::defaultWogChoices();
 
 	bool operator == (const ExtraOptionsInfo & other) const;
 
@@ -33,20 +34,40 @@ struct DLL_LINKAGE ExtraOptionsInfo
 		h & unlimitedReplay;
 		if(h.hasFeature(Handler::Version::GOONK_WOG_OPTIONS))
 		{
-			if(h.hasFeature(Handler::Version::GOONK_WOG_OPTIONS_EXTENDED))
-				h & wogOptions;
-			else
+			// Fixed layouts remain exact for historical save and packet versions.
+			const auto fixed=[&](auto & values)
 			{
-				// Original saves and lobby packets contain exactly six bytes.
-				std::array<int8_t, era_bridge::wogLegacyOptionCount> legacy;
-				if(h.saving)
-					std::copy_n(wogOptions.begin(), legacy.size(), legacy.begin());
-				h & legacy;
+				if(h.saving)std::copy_n(wogOptions.begin(),values.size(),values.begin());
+				h & values;
 				if(!h.saving)
 				{
 					wogOptions.fill(-1);
-					std::copy(legacy.begin(), legacy.end(), wogOptions.begin());
+					std::copy(values.begin(),values.end(),wogOptions.begin());
 				}
+			};
+			if(h.hasFeature(Handler::Version::GOONK_WOG_OPTION_CATALOGUE))
+			{
+				// Length-prefixed choices let the catalogue grow without changing
+				// the byte boundaries of every earlier choice count.
+				std::vector<int8_t> choices;
+				if(h.saving)choices.assign(wogOptions.begin(),wogOptions.end());
+				h & choices;
+				if(choices.size()>wogOptions.size())throw std::runtime_error("Unknown WoG game option");
+				if(!h.saving)
+				{
+					wogOptions.fill(-1);
+					std::copy(choices.begin(),choices.end(),wogOptions.begin());
+				}
+			}
+			else if(h.hasFeature(Handler::Version::GOONK_WOG_OPTIONS_EXTENDED))
+			{
+				std::array<int8_t,era_bridge::wogMithrilOptionCount> values;
+				fixed(values);
+			}
+			else
+			{
+				std::array<int8_t,era_bridge::wogLegacyOptionCount> values;
+				fixed(values);
 			}
 			for(const auto choice : wogOptions)
 				if(choice < -1 || choice > 1)

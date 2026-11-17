@@ -146,6 +146,12 @@ sys.stdout.buffer.write(out.getvalue())
 }
 
 async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+ let mapChoices=null;
+ if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
+  mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
+  dailyPlains=!dailyPlains;allDoubleAttack=!allDoubleAttack;doubleMovement=!doubleMovement;
+  weeklyMines=!weeklyMines;multipleCapitols=!multipleCapitols;allBreath=!allBreath;
+ }
  const classic=process.env.CASES==='classic';
  const desktop=['desktop','options-desktop'].includes(process.env.CASES);
  page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop});
@@ -219,8 +225,16 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
   if(classic)await command(21);
   else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Mithril native validation');
+  if(mapChoices){
+   assert.equal((await state()).wogOptions.length,13,'Native map rule catalogue advertised');
+   for(let index=0;index<mapChoices.length;++index){
+    await command(109,index+7,mapChoices[index]);
+    await wait(({index,value})=>goonkMobileState.wogOptions[index+7]===value,{index,value:mapChoices[index]});
+   }
+   report.mapRuleChoices??=[];report.mapRuleChoices.push(mapChoices);
+  }
   if(wogChoice!==null){
-   assert.equal((await state()).wogOptions.length,7,'Extended option advertised by native engine');
+   assert((await state()).wogOptions.length>=7,'Extended option advertised by native engine');
    const form=page.locator('.wog-options');await form.locator('summary')[desktop?'click':'tap']();
    const choice=form.locator(`input[data-wog-option="6"][value="${wogChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
