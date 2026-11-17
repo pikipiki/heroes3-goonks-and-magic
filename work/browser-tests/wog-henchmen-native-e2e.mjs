@@ -73,7 +73,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
- await page.addInitScript(({enabled,settings,blockFixture})=>{
+ await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -85,10 +85,18 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
     if(blockFixture){
      const name='config/henchmen-block-private.json';manifest.creatures=[...(manifest.creatures||[]),name];
      const abilities={privateNoMorale:{type:'NO_MORALE'},privateNoLuck:{type:'LUCK',val:0,valueType:'INDEPENDENT_MIN'}};
-     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({
+     const patches={
       'core:peasant':{hitPoints:1000000,speed:20,abilities},
       'core:goblin':{hitPoints:1000000,speed:1,attack:0,defense:0,damage:{min:200,max:200},abilities}
-     }));
+     };
+     if(blockActor&&blockActor!=='core:peasant')patches[blockActor]={hitPoints:1000000,speed:20,attack:0,defense:0,damage:{min:1,max:1},abilities};
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify(patches));
+     if(forcedBlock){
+      const file='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/era-bridge-runtime.json';
+      const policies=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
+      policies.creatures[blockActor].physicalDeflection={modifier:29,values:Array(11).fill(100)};
+      value.FS.writeFile(file,JSON.stringify(policies));
+     }
      manifest.settings.modules.commanders=false;
     }
     value.FS.writeFile(file,JSON.stringify(manifest));
@@ -99,7 +107,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,...o
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture});
+ },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -194,9 +202,9 @@ try{
    await page.close();
   }
  }
- if(process.env.CASES==='banner-block'){
+ if(['banner-block','banner-overlap','banner-overlap-forced'].includes(process.env.CASES)){
   const {runBannerBlock}=await import('./wog-henchmen-banner-block-cases.mjs');
-  await runBannerBlock({boot,startBattle,state,command,wait,page:()=>page,report,output});
+  await runBannerBlock({boot,startBattle,state,command,wait,page:()=>page,report,output,overlap:process.env.CASES!=='banner-block',forced:process.env.CASES==='banner-overlap-forced'});
  }
  if(process.env.CASES==='module-save'){
   for(const enabled of [true,false]){

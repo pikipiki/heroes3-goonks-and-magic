@@ -19,14 +19,14 @@
     "tests/henchman-sheet.test.mjs": "d9e9cfae49d4e6bca83e00874e0238f7579ae5ee3dbec3ee7f0f783b7410b255",
     "scripts/era-bridge/gameplay/import-henchmen-banner-table.mjs": "7a2c1fe82efa636c595553ed4defe070befbbac2105fdae6b3acb8178e6de16c",
     "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "7dfee22cde596e84c5f44ca4e3790ca3d2125f1decd31e21fd323c435cf38746",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0d2fc7f6dde398c172e2096677b4824e3d5b2f8249dc2c2728d6ddc6d81a9578",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c5864b9732777c94cde96bb60ad3866a90755e858246e52d87350490b4a83e0f",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "1ca13f214cdc79c48ae7c7ec0b113d6ad9b973f9d9a7e0aa01306c6e3ccec55f",
     "work/vcmi-wasm/client/windows/CHeroWindow.h": "bec062c6cdc86c569f20a424e082ade8a0cf5715704cac5c59e5925a386aa2fc",
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "810e09175ac886d0d9c3ae72685793439e3eb2f2b462477f9c24b58c9de45f9f",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
     "web/hero-equipment.mjs": "369f07750ce0e1c7d8bdbbc6b1043d39673153d648844f1c8d3ae0b6ea9c8233",
     "web/hero-equipment.css": "05b6e4b3dac50b84618ac814466b65b15d62e42ac99b862a6d9778ea03c015a7",
-    "work/browser-tests/wog-henchmen-banner-block-cases.mjs": "ae6823b3542086521581c3e5c24a553586b2d801c32775c2a52f6d82beb604b2"
+    "work/browser-tests/wog-henchmen-banner-block-cases.mjs": "ed96969abeb5b6c9bd643bbeb650c59102f228116f04aaba7db5bb3cf1ee5afd"
   },
   "nativeReports": [
     {
@@ -124,6 +124,39 @@
         "native-banner-partial-block-7-retaliation-damage-195-195-195-195-195-195-97"
       ],
       "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+      "scenarios": [
+        "native-banner-partial-block--1-retaliation-damage-195-195-195-195",
+        "native-banner-partial-block-7-retaliation-damage-195-195-97"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+      "scenarios": [
+        "native-banner-intrinsic-defence-overlap--1-retaliation-damage-64-160",
+        "native-banner-intrinsic-defence-overlap-7-retaliation-damage-160-160-80-64"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+      "scenarios": [
+        "native-banner-controlled-simultaneous-defence-overlap--1-retaliation-damage-112",
+        "native-banner-controlled-simultaneous-defence-overlap-7-retaliation-damage-112-112-112-80"
+      ],
+      "errors": []
     }
   ],
   "standaloneChecks": [
@@ -135,7 +168,6 @@
     "ninja -j32 html5: PASS in Linux Emscripten container"
   ],
   "remaining": [
-    "Native intrinsic defence-policy overlap scenarios; plain-companion partial block now passes an actual retaliation fixture",
     "Battlefield AI experience difficulty scaling and source variable namespace attestation",
     "Campaign transition, restart, banner/free-state export semantics",
     "Remaining death/resurrection/spell/configuration edge scenarios"
@@ -160,5 +192,28 @@
     "keyboardRequired": false,
     "touchScroll": "Real CDP touch-start/move/end gestures; ancestor permits native panel scrolling",
     "heldArtifactTransfer": "Explicit touch action and classic flag drop both consume the native held artifact"
+  },
+  "overlapValidation": {
+    "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
+    "buildReference": "scripts/era-bridge/gameplay/henchmen-ai-native-validation.json",
+    "originalCreature": "tum-era:eraCreature273",
+    "rank": 10,
+    "originalIntrinsicStrengthPercent": 60,
+    "originalIntrinsicChancePercent": 25,
+    "originalObservedIncomingDamage": [
+      160,
+      80,
+      64
+    ],
+    "controlledFixture": {
+      "intrinsicStrengthPercent": 30,
+      "intrinsicChancePercent": 100,
+      "purpose": "Force simultaneous source-row and banner success; prove maximum strength rather than sequential multiplication",
+      "observedIncomingDamage": [
+        112,
+        80
+      ],
+      "changesDistributedRules": false
+    }
   }
 }

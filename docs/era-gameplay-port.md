@@ -156,7 +156,11 @@ pendant qu'un objet est tenu. Le panneau défile réellement au doigt sur télé
 et iPad ; aucun clavier n'est nécessaire. Les combats vérifient également la
 réduction de défense et le gain d'expérience de la bannière. Un combat témoin
 vérifie le blocage partiel : 195 dégâts reçus sans effet, 97 lorsque la bannière
-se déclenche. Les combinaisons avec les défenses intrinsèques restent à vérifier.
+se déclenche. Les interactions avec la défense intrinsèque de la créature source
+273 au rang 10 donnent 160, 80 ou 64 dégâts selon les protections déclenchées.
+Un témoin privé rend la protection intrinsèque systématique et vérifie que deux
+déclenchements retiennent la protection la plus forte, sans multiplier leurs
+réductions. Ce témoin ne modifie aucune règle distribuée.
 
 L'activation du compagnon est enregistrée dans la partie : les nouveaux réglages
 de l'installation ne remplacent plus le choix sauvegardé. Un scénario vérifie
