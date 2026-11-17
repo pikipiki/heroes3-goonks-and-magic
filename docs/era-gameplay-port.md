@@ -157,6 +157,19 @@ contrôle du propriétaire, de la proximité, du solde et de la révision. L'ét
 est conservé dans la sauvegarde. Le panneau mobile présente les coûts et les
 effets actifs, avec une colonne de commandes à droite en paysage.
 
+L'interface classique permet aussi un clic droit sur l'entrée du site ou un
+Ctrl-clic sur son dessin, y compris lorsqu'un héros le recouvre. Une confirmation
+précède le paiement ; les villes proposent les neuf terrains de siège.
+Les parcours vérifiés figurent dans `outputs/era-gameplay/mithril-native-classic.json`.
+
+L'activation du mithril est désormais enregistrée avec chaque nouvelle partie.
+Changer les réglages de l'installation ne modifie plus ce choix à la reprise.
+Les anciennes sauvegardes contenant des améliorations ou une graine mithril
+conservent leur activation, leurs paiements et les durées restantes. Sans
+choix enregistré ni trace d'utilisation, une ancienne partie reste désactivée.
+Ces migrations concernent les sauvegardes natives Goonk, et non les fichiers
+binaires ERA. Les résultats sont dans `outputs/era-gameplay/mithril-native-legacy.json`.
+
 `scripts/era-bridge/gameplay/mithril.json` lie ce travail à la référence amont
 figée et conserve les écarts restant à résoudre. Le réglage
 `modules.mithrilEnhancements` est désactivé par défaut. Les interactions avec

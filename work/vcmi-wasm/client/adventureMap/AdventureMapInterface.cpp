@@ -25,6 +25,7 @@
 #include "../mapView/mapHandler.h"
 #include "../mapView/MapView.h"
 #include "../windows/InfoWindows.h"
+#include "../windows/EraMithrilWindow.h"
 #include "../widgets/RadialMenu.h"
 #include "../gui/CursorHandler.h"
 #include "../GameEngine.h"
@@ -545,6 +546,15 @@ void AdventureMapInterface::onTileLeftClicked(const int3 &targetPosition)
 
 	if(!GAME->interface()->cb->isVisible(targetPosition))
 		return;
+	if(!isMobilePresentationActive() && ENGINE->isKeyboardCtrlDown())
+	{
+		if(topBlocking && era_compat::mithril::openClassicUpgrade(*topBlocking,targetPosition,false))
+			return;
+		if(!topBlocking || dynamic_cast<const CGHeroInstance *>(topBlocking))
+			for(const auto * object:GAME->interface()->cb->getVisitableObjs(targetPosition))
+				if(object!=topBlocking && era_compat::mithril::openClassicUpgrade(*object,targetPosition,false))
+					return;
+	}
 
 #ifdef VCMI_EMSCRIPTEN
  // A map tap only prepares a route. Town windows are opened explicitly from Villes.
@@ -859,6 +869,12 @@ void AdventureMapInterface::onTileRightClicked(const int3 &mapPos)
 #endif
 
 	const CGObjectInstance * obj = getActiveObject(mapPos);
+	const auto visitable=GAME->interface()->cb->getVisitableObjs(mapPos);
+	const auto * enhancementObject=obj?obj:visitable.empty()?nullptr:visitable.back();
+	if(enhancementObject && !isMobilePresentationActive()
+		&& !(enhancementObject->ID==Obj::MONOLITH_TWO_WAY && ENGINE->isKeyboardCtrlDown())
+		&& era_compat::mithril::openClassicUpgrade(*enhancementObject,mapPos))
+		return;
 	// Plot cells can have a source description even when the visible scenery
 	// is deliberately neither blocked nor a native visitable object.
 	if(!dynamic_cast<const CGHeroInstance *>(obj))

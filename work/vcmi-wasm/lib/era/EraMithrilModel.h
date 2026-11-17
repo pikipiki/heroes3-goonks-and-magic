@@ -28,7 +28,15 @@ struct Offer
     bool available() const{return kind!=NONE&&cost>0;}
 };
 inline bool enabled(const IGameInfoCallback & cb)
-{return cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS);}
+{
+    const auto & saved=cb.gameState().getMap().eraGameplayState["mithril"];
+    const bool evidence=saved["seed"].isNumber()
+        ||(saved["objects"].isStruct()&&!saved["objects"].Struct().empty())
+        ||(saved["universityQueries"].isStruct()&&!saved["universityQueries"].Struct().empty());
+    return era_bridge::mithril::frozenEnabled(cb.getDate(Date::DAY)==0,
+        cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS),
+        saved["enabled"].isBool()?(saved["enabled"].Bool()?1:0):-1,evidence);
+}
 inline const JsonNode & state(const IGameInfoCallback & cb)
 {return cb.gameState().getMap().eraGameplayState["mithril"];}
 inline uint32_t revision(const IGameInfoCallback & cb)

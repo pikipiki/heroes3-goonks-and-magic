@@ -6,6 +6,11 @@
 
 namespace era_bridge::mithril
 {
+inline bool frozenEnabled(bool firstTurn,bool configured,int savedChoice,bool legacyEvidence)
+{
+    if(savedChoice>=0)return savedChoice!=0;
+    return firstTurn?configured:legacyEvidence;
+}
 inline int mineCost(int sourceResource,bool weeklyResourceChange=false)
 {
     if(sourceResource<0)return 0;

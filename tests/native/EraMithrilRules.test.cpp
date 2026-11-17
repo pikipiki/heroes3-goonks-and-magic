@@ -3,6 +3,12 @@
 int main()
 {
     using namespace era_bridge::mithril;
+    assert(frozenEnabled(true,true,-1,false));
+    assert(!frozenEnabled(true,false,-1,false));
+    assert(frozenEnabled(false,false,1,false));
+    assert(!frozenEnabled(false,true,0,true));
+    assert(frozenEnabled(false,false,-1,true));
+    assert(!frozenEnabled(false,true,-1,false));
     for(int resource=0;resource<6;++resource)assert(mineCost(resource)==4);
     assert(mineCost(6)==7&&mineCost(7)==7&&mineCost(-1)==0);
     assert(mineCost(0,true)==1&&mineCost(1,true)==3&&mineCost(6,true)==5);

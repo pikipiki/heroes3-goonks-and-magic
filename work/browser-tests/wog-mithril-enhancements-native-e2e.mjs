@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -35,6 +35,7 @@ objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in 
 for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'army':[{'type':'core:archangel','amount':10}],'artifacts':{'spellbook':'core:spellBook'}})
+  if opts['heroOnMine']:o.update({'x':13,'y':11})
   if opts['reroll']=='university': o['options']['secondarySkills']={'core:wisdom':'basic',**({'core:airMagic':'basic'} if opts['universityTwo'] else {})}
   if opts['reroll']=='hut-rng': o['options']['secondarySkills']={'core:armorer':'basic'}
   if opts['plainsFight']:o['options'].update({'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'secondarySkills':{'core:leadership':'basic'},'spellBook':['core:bless','core:bloodlust','core:haste','core:slow']})
@@ -141,11 +142,13 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
 async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
- page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
+ const classic=process.env.CASES==='classic';
+ page=await browser.newPage({viewport:classic?{width:1024,height:768}:{width:844,height:390},hasTouch:true});
+ if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
@@ -195,8 +198,8 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
    }});
   }});
  },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations});
- await page.goto(origin+'/game.html?mobile=1');
- await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
+ await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
+ await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
  if(startup)throw Error(JSON.stringify(startup));
  if(save){
@@ -212,9 +215,11 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
   await command(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);
   await wait(()=>goonkMobileState.maps?.some(row=>row.name==='000 - Mithril native validation'));
   const map=(await state()).maps.find(row=>row.name==='000 - Mithril native validation');
-  await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
+  if(classic)await command(21);
+  else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Mithril native validation');
-  await page.locator('[data-ui=begin]').tap();
+  if(classic)await command(22);
+  else await page.locator('[data-ui=begin]').tap();
  }
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
 }
@@ -262,6 +267,18 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='classic'){
+  const {runMithrilClassic}=await import('./wog-mithril-classic-native-cases.mjs');
+  await runMithrilClassic({boot,state,command,wait,page:()=>page,report,output});
+ }
+ if(process.env.CASES==='legacy-sites'){
+  const {runLegacySites}=await import('./wog-mithril-legacy-native-cases.mjs');
+  await runLegacySites({boot,panel,nextDay,state,command,wait,page:()=>page,report});
+ }
+ if(process.env.CASES==='module-save'){
+  const {runFrozenModule}=await import('./wog-mithril-legacy-native-cases.mjs');
+  await runFrozenModule({boot,state,command,readCompletedNativeSave,page:()=>page,report});
+ }
  if(process.env.CASES==='university-ai'){
   const {runMithrilAi}=await import('./wog-mithril-ai-native-cases.mjs');
   await runMithrilAi({boot,walk,panel,buy,state,command,wait,page:()=>page,report,output});
@@ -445,15 +462,26 @@ try{
  report.scenarios.push('monolith-exit-fog-revealed');
  await wait(point=>{const view=goonkMobileState.mapOverview?.viewport;return view&&Math.abs(view.x+view.w/2-point.x)<=2&&Math.abs(view.y+view.h/2-point.y)<=2;},portal);
  report.scenarios.push('monolith-camera-shows-exit-and-returns-to-selected-entrance');await panel();
+ const touch=await page.context().newCDPSession(page);
  for(const viewport of [{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:1024,height:768}]){
   await page.setViewportSize(viewport);
   const layout=await page.locator('.mithril-panel').evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,closes:node.querySelectorAll('[data-mithril-close]').length,scroll:getComputedStyle(node.querySelector('.mithril-content')).overflowY,small:[...node.querySelectorAll('button')].some(button=>button.getBoundingClientRect().height<44)}));
   assert(layout.closes===1&&!layout.small&&layout.scrollWidth<=layout.width+1&&['auto','scroll'].includes(layout.scroll),JSON.stringify(layout));
+  const content=page.locator('.mithril-content');await content.evaluate(node=>{node.scrollTop=0;});
+  const box=await content.boundingBox();assert(box&&box.height>100);
+  const x=box.x+Math.min(box.width/2,100),start=box.y+box.height-35,end=box.y+35;
+  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y:start}]});
+  for(let step=1;step<=6;++step){await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:start+(end-start)*step/6}]});await page.waitForTimeout(40);}
+  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await wait(()=>document.querySelector('.mithril-content').scrollTop>20);
  }
+ await touch.detach();
  await page.screenshot({path:path.join(output,'mithril-sites.png')});
  report.scenarios.push('phone-and-ipad-scrollable-layout');
+ report.scenarios.push('phone-and-ipad-real-touch-vertical-scroll-without-keyboard');
  await page.locator('[data-mithril-close]').tap();
  const saved=await readCompletedNativeSave(page,command,{tag:917});
+ if(process.env.MITHRIL_EXPORT_SAVE)fs.writeFileSync(process.env.MITHRIL_EXPORT_SAVE,Buffer.from(saved));
  await page.close();await boot({save:[...saved],henchmen:true});
  await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);
  assert.equal((await state()).heroWindow.henchman.unit.key,'core:archangel');assert((await state()).heroWindow.henchman.alive);

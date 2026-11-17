@@ -27,12 +27,14 @@
   "randomValidation": "outputs/era-gameplay/mithril-native-random.json",
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
-    "Classic interface and the complete WoG per-game option catalogue.",
-    "Legacy-save native scenarios."
+    "Complete WoG per-game option catalogue and full gameplay-profile activation."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
   "universityValidation": "outputs/era-gameplay/mithril-native-university.json",
   "randomIsolationValidation": "outputs/era-gameplay/mithril-native-random-isolation.json",
   "aiValidation": "outputs/era-gameplay/mithril-native-ai.json",
-  "nativeRandomAttestation": "tests/fixtures/era-gameplay/era-native-random-attestation.json"
+  "nativeRandomAttestation": "tests/fixtures/era-gameplay/era-native-random-attestation.json",
+  "classicValidation": "outputs/era-gameplay/mithril-native-classic.json",
+  "legacySaveValidation": "outputs/era-gameplay/mithril-native-legacy.json",
+  "touchValidation": "outputs/era-gameplay/mithril-native-touch.json"
 }
