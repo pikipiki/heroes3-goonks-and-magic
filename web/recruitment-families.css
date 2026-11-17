@@ -62,7 +62,7 @@
  #mobile-app .hall-actions button{font-size:15px;min-height:44px}
 }
 
-#mobile-app .hall-detail[data-locked=true] :is(.hall-quantity,.hall-total){visibility:hidden}
+
 @container goonk-viewport (orientation:landscape) and (max-height:380px){#mobile-app .hall-feature{min-height:70px}#mobile-app .hall-feature>canvas{height:68px}#mobile-app .hall-feature h3{line-height:1.2}#mobile-app .hall-feature .creature-stats dt{font-size:11px}}
 
 /* The selected tile is the only animated creature; no duplicate preview. */
@@ -138,29 +138,12 @@
  }
 }
 
-/* Use the quantity and total slots for the unlock preview, preserving both action positions. */
-#mobile-app .hall-detail :is(.hall-feature,.hall-stock,.hall-quantity,.hall-total,.hall-actions){grid-column:1/-1}
+/* Keep one compact footer geometry for recruitable and locked forms. */
+#mobile-app .hall-detail :is(.hall-feature,.hall-quantity,.hall-actions){grid-column:1/-1}
 #mobile-app .hall-feature{grid-row:1}
-#mobile-app .hall-stock{grid-row:2}
-#mobile-app .hall-quantity{grid-row:3}
-#mobile-app .hall-total{grid-row:4}
-#mobile-app .hall-actions{grid-row:5}
-#mobile-app .hall-unlock-preview{
- grid-column:1/-1;grid-row:3/5;min-width:0;min-height:0;overflow:auto;
- display:flex;align-items:center;gap:8px;padding:4px 8px;
- border-inline-start:2px solid #aa8c47;background:rgba(224,185,112,.06);
-}
-#mobile-app .hall-unlock-preview img{width:48px;height:48px;max-height:100%;object-fit:contain;flex:none}
-#mobile-app .hall-unlock-preview div{display:grid;min-width:0;gap:2px;overflow-wrap:anywhere}
-#mobile-app .hall-unlock-preview span{font-size:11px;color:#e3ca96}
-#mobile-app .hall-unlock-preview strong{font-size:14px;color:#ffe49a;line-height:1.15}
-@container goonk-viewport (orientation:landscape) and (max-height:360px){
- #mobile-app .hall-detail .hall-stock{grid-column:1}
- #mobile-app .hall-detail .hall-total{grid-column:2;grid-row:2}
- #mobile-app .hall-actions{grid-row:4}
- #mobile-app .hall-unlock-preview{grid-row:3;padding-block:2px}
- #mobile-app .hall-unlock-preview img{width:35px;height:35px}
-}
+#mobile-app .hall-quantity{grid-row:2}
+#mobile-app .hall-actions{grid-row:3}
+#mobile-app .hall-detail :is(.hall-stock,.hall-total){display:none}
 
 @container goonk-viewport (orientation:landscape){
  #mobile-app .hall-detail{overflow-y:auto;overflow-x:hidden;touch-action:pan-y;scrollbar-gutter:stable}

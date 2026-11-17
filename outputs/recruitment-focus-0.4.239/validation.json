@@ -1,0 +1,72 @@
+{
+  "version": "0.4.239",
+  "sourceBase": "927a90d95736468b08e8d4a60bd2394dd80ec8a8",
+  "engineSha256": "b79066448f04160366b8be516d507787baa96ffd02242ea0ead142557542429b",
+  "nativeBuild": "ninja -j32 html5",
+  "tests": {
+    "passed": 778,
+    "skipped": 48,
+    "failed": 0
+  },
+  "layout": {
+    "browsers": [
+      "chromium",
+      "webkit"
+    ],
+    "fullNamesWithoutEllipses": true,
+    "stableLockedAndAvailableGeometry": true,
+    "adaptivePortraitRows": true,
+    "measuredHuaweiLandscapeCssViewport": [
+      716,
+      335
+    ],
+    "noInnerStatScrolling": true,
+    "selectionScrollPreserved": true
+  },
+  "native": {
+    "chromium": {
+      "passed": true,
+      "cases": [
+        "Gremlin",
+        "Naga",
+        "Paingpaing",
+        "DioupDioup"
+      ]
+    },
+    "webkit": {
+      "passed": true,
+      "cases": [
+        "Gremlin",
+        "Naga",
+        "Paingpaing",
+        "DioupDioup"
+      ]
+    }
+  },
+  "catalog": {
+    "animatedCreatures": 372,
+    "previewFrames": 21745,
+    "factions": {
+      "core:castle": 32,
+      "core:conflux": 27,
+      "core:dungeon": 27,
+      "core:fortress": 29,
+      "core:inferno": 29,
+      "core:necropolis": 34,
+      "core:neutral": 91,
+      "core:rampart": 30,
+      "core:stronghold": 25,
+      "core:tower": 26,
+      "goonk:goonk": 22
+    },
+    "marginFailures": 0,
+    "errors": []
+  },
+  "unusedWithoutAnimation": 4,
+  "auditExportAbsentFromRelease": true,
+  "publicDataCheck": {
+    "files": 10464,
+    "transportBytes": 702291020
+  },
+  "privacy": "Generated local fixtures only; no saves, device identifiers or phone diagnostic adjustments in publication."
+}

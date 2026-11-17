@@ -2,13 +2,14 @@ import {fetchEnginePackage} from '../web/engine-startup.mjs';
 import {inlineBootScreen} from './boot-screen.mjs';
 import {versionModuleImports,versionScriptTags,createRuntimeVersion} from './version-runtime.mjs';
 import {execFileSync} from 'node:child_process';
-import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import os from 'node:os';
 import {scriptPolicy,applyScriptPolicy,authorizeExternalScripts} from './script-policy.mjs';
 import {packSmallAssets,deduplicateAssetURLs} from './asset-packs.mjs';
 import {visitBaseGame} from './base-game.mjs';
 import {makeManifest} from './assets.mjs';import {renderPage} from './page.mjs';
 import {publishCampaignMedia} from './publish-campaign-media.mjs';
-const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=path.resolve('dist');
+const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=process.env.GOONK_AUDIT_OUTPUT?path.resolve(process.env.GOONK_AUDIT_OUTPUT):path.resolve('dist');
+if(process.env.GOONK_AUDIT_OUTPUT&&(!dist.startsWith(path.resolve(os.tmpdir())+path.sep)||!path.basename(dist).startsWith('goonk-')))throw Error('Audit output must be a goonk- directory inside the system temporary directory.');
 if(!fs.existsSync(root))throw Error('Extraire le moteur précompilé dans work/vcmi-wasm/emscripten/ avant de construire le site.');
 fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true});fs.cpSync('web',path.join(dist,'web'),{recursive:true});
 publishCampaignMedia(dist);
@@ -60,7 +61,7 @@ const storageScripts=authorizeExternalScripts(storagePage,loadScript);storagePag
 const policy=scriptPolicy([html,index,storagePage],[...gameScripts.hashes,...indexScripts.hashes,...storageScripts.hashes],scriptSources);html=applyScriptPolicy(html,policy);index=applyScriptPolicy(index,policy);
 fs.writeFileSync(path.join(dist,'storage.html'),applyScriptPolicy(storagePage,policy));fs.writeFileSync(path.join(dist,'game.html'),html);fs.writeFileSync(path.join(dist,'asset-manifest.json'),JSON.stringify(manifest));
 fs.writeFileSync(path.join(dist,'_headers'),'/*\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Embedder-Policy: require-corp\n  Content-Security-Policy: '+policy+'\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/asset-manifest.json\n  Cache-Control: no-cache\n');
-console.log('Site statique créé dans dist — données Heroes III et mods hébergés.');
+console.log('Site statique créé dans '+dist+' — données Heroes III et mods hébergés.');
 
 fs.writeFileSync(path.join(dist,'index.html'),index);
 fs.copyFileSync('web/hosting-bootstrap.mjs',path.join(dist,'hosting-bootstrap.mjs'));

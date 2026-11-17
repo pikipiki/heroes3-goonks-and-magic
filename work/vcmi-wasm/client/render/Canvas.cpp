@@ -151,7 +151,8 @@ void Canvas::drawTransparent(const Canvas & image, const Point & pos, double tra
 void Canvas::drawScaled(const Canvas & image, const Point & pos, const Point & targetSize)
 {
 	SDL_Rect targetRect = CSDL_Ext::toSDL(Rect(transformPos(pos), transformSize(targetSize)));
-	SDL_BlitScaled(image.surface, nullptr, surface, &targetRect);
+	SDL_Rect sourceRect = CSDL_Ext::toSDL(image.renderArea);
+	SDL_BlitScaled(image.surface, &sourceRect, surface, &targetRect);
 }
 
 void Canvas::drawPoint(const Point & dest, const ColorRGBA & color)

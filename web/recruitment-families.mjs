@@ -1,21 +1,39 @@
 import{plainGameText}from'./game-text.mjs';
 import{bindPress}from'./mobile-press.mjs';
-import{nextBuildingPrerequisite}from'./town-building-menu.mjs';
 import{getLanguage}from'./i18n.mjs';
 export function recruitmentFamilies(state){return state.fortFamilies?.length?state.fortFamilies:(state.fortRows||[]).map(row=>({level:row.level,count:row.count,variants:(state.recruits||[]).filter(u=>u.level===row.level).map((u,rank)=>({...u,rank,built:true})).concat([])})).map(f=>({...f,variants:f.variants.length?f.variants:[state.fortRows.find(u=>u.level===f.level)]}));}
 export function recruitMaximum(unit,resources=[]){if(!unit?.built)return 0;let count=Math.max(0,Math.floor(unit.count||0));for(const[i,cost]of(unit.cost||[]).entries())if(cost>0)count=Math.min(count,Math.floor((resources[i]||0)/cost));return count;}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const stableText=(node,value)=>{if(node.textContent!==value)node.textContent=value;};
 const rankName=n=>['I','II','III','IV','V','VI'][n]||String(n+1);
-export function createRecruitmentHall({panel,command,prices,stats,buildingArt,openBuildings}){
+export function createRecruitmentHall({panel,command,prices,stats,openBuildings}){
  const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
+ const nameCanvas=document.createElement('canvas');nameCanvas.width=nameCanvas.height=1;
+ const measure=nameCanvas.getContext('2d');
+ const fitText=(element,base)=>{
+  if(!element||!measure||element.clientWidth<2)return;
+  const style=getComputedStyle(element);measure.font=style.fontStyle+' '+style.fontWeight+' '+base+'px '+style.fontFamily;
+  const width=measure.measureText(element.textContent).width;
+  const size=Math.max(1,Math.min(base,base*(element.clientWidth-1)/Math.max(1,width))).toFixed(2)+'px';
+  if(element.style.fontSize!==size)element.style.fontSize=size;
+ };
+ const fitLabels=()=>{
+  fitText(panel.querySelector('.hall-feature-title h3'),16);
+  for(const value of panel.querySelectorAll('.hall-feature .creature-stats dd'))fitText(value,13);
+ };
  const resizeRows=()=>{
-  const list=panel.querySelector('.hall-families');if(!list)return;
+  const list=panel.querySelector('.hall-families');if(!list)return;fitLabels();
   const style=getComputedStyle(list),gap=parseFloat(style.rowGap)||0;
   const space=list.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
   const viewport=panel.closest('#mobile-app')?.getBoundingClientRect();
-  // Use the space left after browser bars, safe areas, heading and recruitment controls.
-  const rows=viewport?.height>viewport?.width&&space>=400+gap?2:1;
+  // Reserve measured labels, prices and borders plus a readable 64px portrait.
+  // Browser chrome and safe areas already reduce the list's available height.
+  let minimum=132;
+  for(const family of list.children){
+   const familyHeight=family.getBoundingClientRect().height;
+   for(const art of family.querySelectorAll('.hall-art'))minimum=Math.max(minimum,Math.ceil(familyHeight-art.getBoundingClientRect().height+64));
+  }
+  const rows=viewport?.height>viewport?.width&&space>=minimum*2+gap?2:1;
   const height=Math.max(132,Math.floor((space-gap*(rows-1))/rows))+'px';
   if(list.style.getPropertyValue('--hall-row-height')!==height){
    const scroll=readScroll(list);list.style.setProperty('--hall-row-height',height);
@@ -52,7 +70,7 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
   const slots=state.armies?.[0]?.slots,hasRoom=!slots?.length||slots.some(slot=>!slot||slot.id===u.id);
   const detail=panel.querySelector('.hall-detail'),maximum=recruitMaximum(u,state.resources);amount=Math.min(maximum,Math.max(1,amount));
   if(detail.dataset.unit!==String(u.id)){
-   detail.dataset.unit=u.id;detail.innerHTML=`<div class="hall-feature"><div><div class="hall-feature-title"><h3>${esc(u.name)}</h3><span class="hall-unit-price"></span></div>${stats(u).replace(/<dt>(Attack|Defense|Damage|Health|Speed)<\/dt>/g,(_,name)=>'<dt aria-label="'+name+'">'+({Attack:'ATK',Defense:'DEF',Damage:'DMG',Health:'HP',Speed:'SPD'}[name])+'</dt>')}</div></div><p class="hall-stock" aria-live="polite"></p><div class="hall-quantity"><button data-hall-less aria-label="Decrease quantity">−</button><label class="hall-number"><input type="number" min="0" inputmode="numeric" aria-label="Recruit quantity"></label><button data-hall-more aria-label="Increase quantity">+</button><button data-hall-max>Max</button></div><div class="hall-total"></div><section class="hall-unlock-preview" hidden></section><div class="hall-actions"><button class="primary" data-hall-buy>Recruit</button><button class="primary" data-hall-build hidden>${fr?'Comment débloquer':'How to unlock'}<span aria-hidden="true"> ›</span></button><button data-type-info="${u.id}">Details</button></div>`;
+   detail.dataset.unit=u.id;detail.innerHTML=`<div class="hall-feature"><div><div class="hall-feature-title"><h3 title="${esc(u.name)}">${esc(u.name)}</h3></div>${stats(u).replace(/<dt>(Attack|Defense|Damage|Health|Speed)<\/dt>/g,(_,name)=>'<dt aria-label="'+name+'">'+({Attack:'ATK',Defense:'DEF',Damage:'DMG',Health:'HP',Speed:'SPD'}[name])+'</dt>')}<span class="hall-unit-price"></span></div></div><p class="hall-stock" aria-live="polite"></p><div class="hall-quantity"><button data-hall-less aria-label="Decrease quantity">−</button><label class="hall-number"><input type="number" min="0" inputmode="numeric" aria-label="Recruit quantity"></label><button data-hall-more aria-label="Increase quantity">+</button><button data-hall-max>Max</button></div><div class="hall-total"></div><div class="hall-actions"><button class="primary" data-hall-buy>Recruit</button><button class="primary" data-hall-build hidden>${fr?'Comment débloquer':'How to unlock'}<span aria-hidden="true"> ›</span></button><button data-type-info="${u.id}">Details</button></div>`;
    const press=(sel,fn)=>bindPress(detail.querySelector(sel),fn);
    press('[data-hall-less]',()=>{amount=Math.max(0,amount-1);renderSelection();});press('[data-hall-more]',()=>{amount=Math.min(recruitMaximum(unit(),state.resources),amount+1);renderSelection();});press('[data-hall-max]',()=>{amount=recruitMaximum(unit(),state.resources);renderSelection();});
    detail.querySelector('input').addEventListener('input',event=>{amount=Math.max(0,Math.min(recruitMaximum(unit(),state.resources),Math.floor(Number(event.target.value)||0)));renderSelection();});
@@ -60,28 +78,16 @@ export function createRecruitmentHall({panel,command,prices,stats,buildingArt,op
    press('[data-hall-buy]',()=>{const latest=unit();if(pending||!latest||!state.turn||amount<1)return;clearTimeout(previewTimer);command(60,latest.level,latest.id);pending={id:latest.id,count:latest.count,armies:JSON.stringify(state.armies),started:Date.now()};renderSelection();command(61,latest.level,latest.id,amount);});
   }
   const building=unlockBuilding(u),canViewBuildings=!u.built&&building&&openBuildings;
-  const price=detail.querySelector('.hall-unit-price'),priceMarkup=u.built?'':prices(u,1,state.resourceTypes);
-  if(price._sourceMarkup!==priceMarkup){price._sourceMarkup=priceMarkup;price.innerHTML=priceMarkup;}
+  const price=detail.querySelector('.hall-unit-price'),totalMode=u.built&&amount>0,priceMarkup='<span>'+(totalMode?'Total':(fr?'Coût':'Cost'))+'</span>'+prices(u,totalMode?amount:1,state.resourceTypes);
+  if(price._sourceMarkup!==priceMarkup){price._sourceMarkup=priceMarkup;price.innerHTML=priceMarkup;}price.setAttribute('aria-label',totalMode?(fr?'Coût total':'Total cost'):(fr?'Coût unitaire':'Unit cost'));
   detail.querySelector('[data-hall-build]').hidden=!canViewBuildings;
   detail.querySelector('[data-hall-buy]').hidden=!!canViewBuildings;
-  const preview=detail.querySelector('.hall-unlock-preview');
-  const prerequisite=canViewBuildings?nextBuildingPrerequisite(state,building):null;
-  const next=canViewBuildings?(prerequisite||building):null;
-  preview.hidden=!next;
-  if(next){
-   const artwork=buildingArt?.(state,next);
-   const previewMarkup=`${artwork?`<img src="${esc(artwork)}" alt="">`:''}
-    <div><span>${fr?(prerequisite?'Premier bâtiment nécessaire':'Bâtiment nécessaire'):(prerequisite?'First required building':'Required building')}</span>
-    <strong>${esc(plainGameText(next.name))}</strong></div>`;
-   if(preview._sourceMarkup!==previewMarkup){preview._sourceMarkup=previewMarkup;preview.innerHTML=previewMarkup;}
-  }
-  stableText(detail.querySelector('.hall-stock'),u.built
-   ? (hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero')
-   : building?.state===2?(fr?'Ce scénario interdit ce logement dans cette ville.':'This scenario forbids this dwelling in this town.'):next?(fr?'🔒 Recrutement verrouillé':'🔒 Recruitment locked'):`Requires: ${plainGameText(u.requiredBuilding)||'Dwelling for this form'}`);
+  const stock=detail.querySelector('.hall-stock');stock.hidden=true;
+  stableText(stock,u.built?(hasRoom?`${u.count} available · Shared stock`:'Garrison full · Move troops to your hero'):'');
   detail.dataset.locked=String(!u.built);const input=detail.querySelector('input');input.max=maximum;if(document.activeElement!==input)input.value=amount;
   const total=detail.querySelector('.hall-total'),totalMarkup='<span>'+(amount?'Total':'Cost per creature')+'</span>'+(prices(u,amount||1,state.resourceTypes)||'<span>Free</span>');if(total._sourceMarkup!==totalMarkup){total._sourceMarkup=totalMarkup;total.innerHTML=totalMarkup;}
-  const buy=detail.querySelector('[data-hall-buy]');stableText(buy,pending?'Recruiting…':!state.turn?(fr?'Disponible à ton tour':'Available on your turn'):!u.built?'Dwelling required':!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`);buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
-  for(const sel of ['[data-hall-less]','[data-hall-more]','[data-hall-max]','input'])detail.querySelector(sel).disabled=!!pending||!maximum;
+  const buy=detail.querySelector('[data-hall-buy]');stableText(buy,pending?'Recruiting…':!state.turn?(fr?'Disponible à ton tour':'Available on your turn'):!u.built?'Dwelling required':!hasRoom?(fr?'Garnison pleine':'Garrison full'):!u.count?'Sold out':!maximum?'Not enough resources':`Recruit ${amount}`);buy.disabled=!!pending||!state.turn||!maximum||!amount||!hasRoom;buy.toggleAttribute('aria-busy',!!pending);
+  for(const sel of ['[data-hall-less]','[data-hall-more]','[data-hall-max]','input'])detail.querySelector(sel).disabled=!!pending||!maximum;fitLabels();
  };
  return{update(next){state=next;families=recruitmentFamilies(state);if(pending){const u=families.flatMap(f=>f.variants).find(u=>u.id===pending.id);if(u?.count!==pending.count||JSON.stringify(state.armies)!==pending.armies||Date.now()-pending.started>5000)pending=null;}
   const key=JSON.stringify(families.map(f=>[f.level,f.label,f.variants.map(u=>[u.id,u.built,u.name]) ]));

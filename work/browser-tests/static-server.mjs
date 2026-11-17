@@ -4,7 +4,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-const root=fileURLToPath(new URL('../../dist/',import.meta.url));
+const root=process.env.GOONK_TEST_SITE_ROOT?path.resolve(process.env.GOONK_TEST_SITE_ROOT):fileURLToPath(new URL('../../dist/',import.meta.url));
 const base='/' + (process.env.BASE_PATH||'').split('/').filter(Boolean).join('/') + '/';
 const prefix=base==='//'?'/':base;
 const port=Number(process.env.PORT||8767);
