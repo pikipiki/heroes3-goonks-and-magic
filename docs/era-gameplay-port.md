@@ -144,7 +144,11 @@ figée et conserve les écarts restant à résoudre. Le réglage
 les autres options WoG, l'interface classique et plusieurs parcours natifs
 nécessitent encore leur validation. L'université avancée propose bien son
 amélioration après la visite normale : le scénario dédié vérifie le passage
-de Sagesse de base à avancée et le débit de 3000 pièces d'or. Ce
+de Sagesse de base à avancée et le débit de 3000 pièces d'or. Trois
+scénarios supplémentaires vérifient chacun des deux choix de compétence et
+le refus à 2999 pièces d'or, avec le message prévu par la règle source et
+sans perte d'or ni de compétence. L'avancement gratuit de l'IA et
+l'enchaînement exact des dialogues source restent à vérifier et porter. Ce
 travail ne constitue pas le port complet de la priorité 4.
 
 Les 21 scénarios mithril vérifient aussi les récompenses effectives de la roue

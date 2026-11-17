@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock=''}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -35,7 +35,7 @@ objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in 
 for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'army':[{'type':'core:archangel','amount':10}],'artifacts':{'spellbook':'core:spellBook'}})
-  if opts['reroll']=='university': o['options']['secondarySkills']={'core:wisdom':'basic'}
+  if opts['reroll']=='university': o['options']['secondarySkills']={'core:wisdom':'basic',**({'core:airMagic':'basic'} if opts['universityTwo'] else {})}
   if opts['reroll']=='hut-rng': o['options']['secondarySkills']={'core:armorer':'basic'}
   if opts['plainsFight']:o['options'].update({'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'secondarySkills':{'core:leadership':'basic'},'spellBook':['core:bless','core:bloodlust','core:haste','core:slow']})
 def site(name,kind,subtype,x,y,owner=None):
@@ -99,16 +99,16 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,goldFunds=null,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
  const difficulty=structuredClone(testDifficulty);
- for(const group of Object.values(difficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=funds;
+ for(const group of Object.values(difficulty))for(const rule of Object.values(group))if(rule.resources){rule.resources.mithril=funds;if(goldFunds!==null)rule.resources.gold=goldFunds;}
  const markets=options.reroll==='university'?structuredClone(testMarkets):null;
  if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
  const shrines=preserveRewards||options.reroll==='rng'?structuredClone(testShrines):null;
@@ -390,7 +390,7 @@ try{
  }
  for(const kind of ['shrine','hut','university']){
   if(process.env.CASES&&process.env.CASES!==kind&&process.env.CASES!=='rerolls')continue;
-  await boot({reroll:kind});
+  await boot({reroll:kind,universityTwo:!!process.env.UNIVERSITY_TWO,goldFunds:process.env.UNIVERSITY_POOR?2299:null});
   if(kind==='university'){
    const university=(await panel()).offers.find(row=>row.id===7&&row.kind===3);assert(university);await buy(university);
    await page.locator('[data-mithril-close]').tap();
@@ -401,11 +401,25 @@ try{
   if(kind==='university'){
    await wait(()=>goonkMobileState.mode==='dialog');
    const before=(await state()).resources[6];await command(1);
-   await wait(()=>goonkMobileState.mode==='dialog'&&JSON.stringify(goonkMobileState.dialogPresentation||{}).includes('3000'));await command(1);
+   await wait(()=>goonkMobileState.mode==='dialog'&&JSON.stringify(goonkMobileState.dialogPresentation||{}).includes('3000'));
+   if(process.env.UNIVERSITY_POOR){
+    assert(before<3000);await command(1);await wait(()=>goonkMobileState.mode==='map');
+    assert.equal((await state()).resources[6],before);
+    await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow);
+    assert((await state()).heroWindow.skills.filter(row=>/wisdom|air magic/i.test(row.name)).every(row=>/basic/i.test(row.mastery)));
+    report.scenarios.push('advanced-university-insufficient-gold-preserves-skills-and-funds');await page.close();continue;
+   }
+   if(process.env.UNIVERSITY_TWO){
+    const form=(await state()).dialogPresentation;fs.writeFileSync(path.join(output,'selection.json'),JSON.stringify(form,null,2));
+    const index=Number(process.env.UNIVERSITY_CHOICE||0);await command(98,index,form.queryId);await command(99,index,form.queryId);
+   }else await command(1);
    await wait(before=>goonkMobileState.mode==='map'&&goonkMobileState.resources[6]===before-3000,before);
    await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow);
-   const skills=(await state()).heroWindow.skills;assert(skills.some(row=>/wisdom/i.test(row.name)&&/advanced/i.test(row.mastery)),JSON.stringify(skills));
-   report.scenarios.push('advanced-university-post-visit-skill-and-3000-gold');await page.close();continue;
+   const skills=(await state()).heroWindow.skills;
+   const chosen=process.env.UNIVERSITY_TWO&&Number(process.env.UNIVERSITY_CHOICE||0)===1?/air magic/i:/wisdom/i;
+   assert(skills.some(row=>chosen.test(row.name)&&/advanced/i.test(row.mastery)),JSON.stringify(skills));
+   if(process.env.UNIVERSITY_TWO)assert(skills.some(row=>(chosen.test('Wisdom')?/air magic/i:/wisdom/i).test(row.name)&&/basic/i.test(row.mastery)),JSON.stringify(skills));
+   report.scenarios.push(process.env.UNIVERSITY_TWO?'advanced-university-two-skills-choice-'+(process.env.UNIVERSITY_CHOICE||0):'advanced-university-post-visit-skill-and-3000-gold');await page.close();continue;
   }
   for(let i=0;i<300;++i){const s=await state();if(s.mode==='dialog')await command(1);else if(s.mode==='map'&&!s.hasPath&&!s.heroMoving)break;await page.waitForTimeout(100);}
   const data=await panel();const offering=data.offers.find(row=>row.kind===(kind==='shrine'?4:5));assert(offering,JSON.stringify(data));

@@ -156,7 +156,14 @@ void CGUniversity::onUniversityWindowClosed(IGameEventCallback & gameEvents,cons
 		{
 			for(const auto & skill:eligible)gameEvents.changeSecSkill(h,skill,2,ChangeValueMode::ABSOLUTE);
 		}
-		else if(!eligible.empty()&&cb->getResource(h->getOwner(),GameResID::GOLD)>=3000)
+		else if(!eligible.empty()&&cb->getResource(h->getOwner(),GameResID::GOLD)<3000)
+		{
+			InfoWindow dialog;dialog.player=h->getOwner();
+			dialog.text.appendTextID("tum-era.mithril.university.insufficientGold");
+			dialog.components.emplace_back(ComponentType::RESOURCE,GameResID(GameResID::GOLD),3000);
+			gameEvents.showInfoDialog(&dialog);
+		}
+		else if(!eligible.empty())
 		{
 			BlockingDialog dialog(true,eligible.size()>1);dialog.player=h->getOwner();
 			dialog.text.appendTextID("tum-era.mithril.university.advance");

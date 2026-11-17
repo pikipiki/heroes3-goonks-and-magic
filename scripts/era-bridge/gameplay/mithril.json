@@ -28,10 +28,11 @@
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
     "Classic interface and the complete WoG per-game option catalogue.",
-    "Advanced University: two-skill selection, insufficient gold and free AI advancement native scenarios.",
+    "Advanced University: free AI advancement native scenarios and exact source dialogue staging.",
     "Legacy-save native scenarios.",
     "Global random-stream isolation and initial unique RNG seeding parity with the shipped ERA executable.",
     "Complete AI purchase/compensation scenarios."
   ],
-  "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json"
+  "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
+  "universityValidation": "outputs/era-gameplay/mithril-native-university.json"
 }

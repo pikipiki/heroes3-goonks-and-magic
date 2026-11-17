@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "mithril-sites",
   "completeRules": false,
-  "engineSha256": "6b3d8b00d5ee0e33aff54eae367594fd7ac38d325d37850d54af673d9e3833bc",
+  "engineSha256": "1dc840aede1d98778a1046a2786b7d26707536ccc6e463a9fa682f4ef578821a",
   "scenarios": [
     "owned-mine-double-income-payment-and-stale-request",
     "companion-and-mithril-transactions-coexist",
@@ -30,7 +30,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "559a6e4a6ad844a8bcd6e75d815380046705e350175aa442fe88960b0193ce49"
+      "sha256": "e90dbc42a0651e8434b470489511f5893a66680baf5e957641eeac3bf86950ec"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -42,11 +42,11 @@
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-english.json",
-      "sha256": "a78c137daa7b156815a3dc1d15267251335d24a100d3f53ff831e5e72b17b043"
+      "sha256": "85a98a5cffceb32aaccadfa2b81de7338b474cf3124b7942d7cadbcc15f75c16"
     },
     {
       "file": "mod/tum-era/content/translation/tum-era-ui-french.json",
-      "sha256": "5bf99c0a1282c0febea184eb1846c45ef27a760a76bd093b3901c7106cdac9d5"
+      "sha256": "f0533ea81efbfd475b0c760c3ee961c00aeb74752d58e98ba9b38d7fb2b3265d"
     },
     {
       "file": "scripts/era-bridge/gameplay/henchmen.json",
@@ -62,7 +62,7 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "de39d697e0401b1641a42e51b8e8715c44f1bb93481998eb89eae720cb25a7b2"
+      "sha256": "a9c53ef85b8a916a02b5f10aa350eac7175543dfe0e9262b598ba5d1dd1f78bc"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -118,7 +118,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "4c051dc3a2dbe56327fa444365a98b60f1046f9e03e11b6071f3310766504811"
+      "sha256": "db79daa656fe05cd65f95bed4e31cb4df3267de9c4e4fae6cc6f8e98765c70e4"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -230,7 +230,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp",
-      "sha256": "82b10babc73f79296648fd6748d2df4ed2e0d57b6874abc5e414baf04123b133"
+      "sha256": "8f70f3f3974752e677e757f766d0c413f3a9c02abe32a96a6206f034194b47d0"
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.h",
