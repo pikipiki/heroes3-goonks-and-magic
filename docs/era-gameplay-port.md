@@ -197,6 +197,16 @@ adverse avant son tour et sa présence après. Le moteur précédent échoue
 sur le premier de ces deux cas en donnant les sorts de masse trop tôt. Les preuves figurent dans
 `outputs/era-gameplay/map-rules-native-daily-plains.json`.
 
+La règle WoG 121 double les budgets de déplacement sur terre et en bateau
+dans le calcul commun aux trajets, à l'affichage et au renouvellement
+quotidien. Cinq parcours natifs vérifient les valeurs 4000 et 3000, la
+consommation normale de 100 points par case, le renouvellement le lendemain,
+la sauvegarde d'un budget entamé et la conservation du réglage malgré un
+changement de configuration. Les cas désactivés conservent 2000 et 1500
+points. Un héros recruté à la taverne reçoit immédiatement son budget doublé
+complet. Ces preuves figurent dans
+`outputs/era-gameplay/map-rules-native-movement.json`.
+
 La règle WoG 124 autorise plusieurs Capitoles pour un même joueur, en
 conservant les coûts et prérequis propres à chaque ville. Son réglage est
 figé par partie. Trois parcours natifs vérifient la construction et le débit

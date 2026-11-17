@@ -10,6 +10,7 @@
 #include "StdInc.h"
 #include "../era/EraDwellingArtifactMimic.h"
 #include "TurnInfo.h"
+#include "../era/EraMapRulesModel.h"
 
 #include "../IGameSettings.h"
 #include "../CPlayerState.h"
@@ -177,6 +178,12 @@ TurnInfo::TurnInfo(TurnInfoCache * sharedCache, const CGHeroInstance * target, i
 			baseMovementPointsLand = vectorLand.back().Integer();
 
 		movePointsLimitLand = bonuses->valOfBonuses(daySelector, baseMovementPointsLand);
+	}
+
+	if(era_compat::map_rules::doubleMovement(*target->cb))
+	{
+		movePointsLimitLand *= 2;
+		movePointsLimitWater *= 2;
 	}
 
 	{

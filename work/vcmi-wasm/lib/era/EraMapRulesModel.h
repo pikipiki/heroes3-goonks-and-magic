@@ -11,6 +11,8 @@ inline bool weeklyMines(const IGameInfoCallback & cb)
 {return state(cb)["rules"]["122"].Bool();}
 inline bool dailyPlains(const IGameInfoCallback & cb)
 {return state(cb)["rules"]["114"].Bool();}
+inline bool doubleMovement(const IGameInfoCallback & cb)
+{return state(cb)["rules"]["121"].Bool();}
 inline bool multipleCapitols(const IGameInfoCallback & cb)
 {return state(cb)["rules"]["124"].Bool();}
 }

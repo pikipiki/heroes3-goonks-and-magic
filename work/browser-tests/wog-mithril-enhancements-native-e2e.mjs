@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -97,12 +97,16 @@ if opts['bluePlainsOwner']:
 if opts['plainsFight'] and opts['plainsBlock']=='underground':
  for o in objects:
   if o['instanceName'] in ['goonkHero','plainsTrainingGuard']:o['l']=1
+if opts['movementWater']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
 if opts['capitolCapture']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown','secondCapitolTown']]
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
 for y,row in enumerate(terrain):
  for x in range(len(row)):
   if 20<=x<=22 or 20<=y<=22: row[x]='rc0_'
+if opts['movementWater']:
+ for y in range(10,18):
+  for x in range(5,18):terrain[y][x]='wt0_'
 if opts['plainsBlock']=='rock':terrain[12][10]='rc0_'
 if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
 if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
@@ -119,10 +123,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,goldFunds=null,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,goldFunds=null,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -138,7 +142,7 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
  if(huts)huts.witchHut.types.witchHut.variables.secondarySkill.gainedSkill={anyOf:['offence']};
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -154,12 +158,12 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
     if(huts)value.FS.writeFile('/config/objects/witchHut.json',JSON.stringify(huts));
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
-    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,122:weeklyMines,124:multipleCapitols}}));
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,121:doubleMovement,122:weeklyMines,124:multipleCapitols}}));
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -227,6 +231,26 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='double-movement'){
+  const enabled=!process.env.MOVEMENT_DISABLED,water=!!process.env.MOVEMENT_WATER;
+  await boot({enabled:false,doubleMovement:enabled,movementWater:water});
+  let hero=(await state()).heroes[0];const limit=(water?1500:2000)*(enabled?2:1);assert.equal(hero.movementLimit,limit);assert.equal(hero.movement,limit);
+  await walk(1);hero=(await state()).heroes[0];assert.equal(hero.movement,limit-100);assert.equal(hero.movementLimit,limit);
+  await nextDay();hero=(await state()).heroes[0];assert.equal(hero.movement,limit);assert.equal(hero.movementLimit,limit);
+  if(process.env.MOVEMENT_SAVE){
+   await walk(-1);const save=[...await readCompletedNativeSave(page,command,{tag:828})];await page.close();await boot({save,enabled:false,doubleMovement:false});
+   hero=(await state()).heroes[0];assert.equal(hero.movement,limit-100);assert.equal(hero.movementLimit,limit);await nextDay();assert.equal((await state()).heroes[0].movement,limit);
+   report.scenarios.push('map-rule-121-budget-and-setting-survive-save-and-global-config-change');
+  }
+  if(process.env.MOVEMENT_RECRUIT){
+   const previous=(await state()).heroes.map(hero=>hero.id);await command(5,0);await wait(()=>goonkMobileState.mode==='town');const tavern=(await state()).buildings.find(building=>building.key.endsWith(':tavern'));assert(tavern?.built);await command(39,tavern.id);await wait(()=>goonkMobileState.tavernHeroes&&goonkMobileState.tavern?.canRecruit);
+   const candidate=(await state()).tavernHeroes['0'];assert(candidate);await command(86,0,candidate.id);
+   await wait(count=>goonkMobileState.heroes?.length>count,previous.length);const recruit=(await state()).heroes.find(hero=>!previous.includes(hero.id));assert(recruit);
+   assert.equal(recruit.movement,recruit.movementLimit,JSON.stringify(recruit));assert(recruit.movementLimit>=3000,JSON.stringify(recruit));
+   report.scenarios.push('map-rule-121-newly-hired-hero-starts-with-full-doubled-budget');
+  }
+  report.scenarios.push(enabled?(water?'map-rule-121-doubles-daily-sailing-budget-with-normal-sailing-cost':'map-rule-121-doubles-daily-budget-with-normal-walking-cost'):(water?'map-rule-121-disabled-preserves-normal-sailing':'map-rule-121-disabled-preserves-normal-movement'));await page.close();
+ }
  if(process.env.CASES==='multiple-capitols'||process.env.CASES==='multiple-capitols-capture'){
   const enabled=!process.env.CAPITOL_DISABLED,capturing=process.env.CASES==='multiple-capitols-capture';
   await boot({enabled:false,capitolFixture:true,capitolCapture:capturing,multipleCapitols:enabled,goldFunds:20000});

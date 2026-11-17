@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "scope": "map-rules-native-movement",
+  "completeRules": false,
+  "engineSha256": "3e43208e1fe4292dfaf72429592e62a7d461804217207dbd7d671d19a856d154",
+  "scenarios": [
+    "map-rule-121-budget-and-setting-survive-save-and-global-config-change",
+    "map-rule-121-doubles-daily-budget-with-normal-walking-cost",
+    "map-rule-121-doubles-daily-sailing-budget-with-normal-sailing-cost",
+    "map-rule-121-disabled-preserves-normal-movement",
+    "map-rule-121-disabled-preserves-normal-sailing",
+    "map-rule-121-newly-hired-hero-starts-with-full-doubled-budget"
+  ],
+  "cases": [
+    {
+      "case": "movement-land",
+      "scenarios": [
+        "map-rule-121-budget-and-setting-survive-save-and-global-config-change",
+        "map-rule-121-doubles-daily-budget-with-normal-walking-cost"
+      ]
+    },
+    {
+      "case": "movement-water",
+      "scenarios": [
+        "map-rule-121-budget-and-setting-survive-save-and-global-config-change",
+        "map-rule-121-doubles-daily-sailing-budget-with-normal-sailing-cost"
+      ]
+    },
+    {
+      "case": "movement-disabled-land",
+      "scenarios": [
+        "map-rule-121-disabled-preserves-normal-movement"
+      ]
+    },
+    {
+      "case": "movement-disabled-water",
+      "scenarios": [
+        "map-rule-121-disabled-preserves-normal-sailing"
+      ]
+    },
+    {
+      "case": "movement-recruit2",
+      "scenarios": [
+        "map-rule-121-newly-hired-hero-starts-with-full-doubled-budget",
+        "map-rule-121-doubles-daily-budget-with-normal-walking-cost"
+      ]
+    }
+  ],
+  "errors": [],
+  "sourceBindings": [
+    {
+      "file": "scripts/era-bridge/gameplay/map-rules.json",
+      "sha256": "d569b52cc08813c58c8f22baf59bf557a45b53a3049e433614579bf8c9881c30"
+    },
+    {
+      "file": "docs/era-gameplay-port.md",
+      "sha256": "687d27c8c6429c8c0734107269c402b4cbcb89e234a2c97c5f73df3d35e793e9"
+    },
+    {
+      "file": "mod/tum-era/content/config/wog-map-rules.json",
+      "sha256": "62903a41824162c0e60f2697f6453898ee2a7e43ca591325c706c89b13d67f70"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
+      "sha256": "3f050b2d7273627713c2186f72eba52b38a9a84c4c352f2b156ce7f0852c9484"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
+      "sha256": "54d1345e3413e48ce6eb24c9960bc21b57af0473a5541d29171be5ad4970ccc3"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/pathfinder/TurnInfo.cpp",
+      "sha256": "b0fe28e36d4e2b52fdbc481753514d21f6926ecd2efe3c2413fdbce2433e0fc0"
+    },
+    {
+      "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
+      "sha256": "80ca7b00fd83534fb4627119bfa341e4e680e8676274d5c1d89d6c7bff1a1209"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/TavernHeroesPool.cpp",
+      "sha256": "77e5acb7250fbe1e27e7efa38dbcde2abe1fc672e19030692d3667de46136205"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
+      "sha256": "57fa7ce22ba3f6d2abbf3dd22dd2fecfd1b428858e0053e71e01e3bf925f719f"
+    }
+  ]
+}

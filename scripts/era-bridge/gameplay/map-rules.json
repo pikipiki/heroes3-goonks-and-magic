@@ -11,6 +11,7 @@
   "completeRules": false,
   "implementedCodes": [
     114,
+    121,
     122,
     124
   ],
@@ -18,9 +19,10 @@
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "The other 18 map rules, source selection modes and the per-game menu.",
+    "The other 17 map rules, source selection modes and the per-game menu.",
     "Complete source random-stream comparison with the shipped ERA executable."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
-  "multipleCapitolsValidation": "outputs/era-gameplay/map-rules-native-capitols.json"
+  "multipleCapitolsValidation": "outputs/era-gameplay/map-rules-native-capitols.json",
+  "doubleMovementValidation": "outputs/era-gameplay/map-rules-native-movement.json"
 }
