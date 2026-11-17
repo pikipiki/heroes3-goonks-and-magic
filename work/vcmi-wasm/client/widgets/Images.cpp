@@ -19,6 +19,7 @@
 #include "../render/Canvas.h"
 #include "../render/ColorFilter.h"
 #include "../render/Colors.h"
+#include "../../lib/json/JsonNode.h"
 #include "../eventsSDL/InputHandler.h"
 
 #include "../battle/BattleInterface.h"
@@ -483,117 +484,58 @@ CCreatureAnim::CCreatureAnim(int x, int y, const AnimationPath & name, ui8 flags
 {
 	xOffset = 0;
 	yOffset = 0;
+ // Pixel analysis runs offline; battle playback does not inspect pixels.
+ static const JsonNode focus(JsonPath::builtin("config/mobile-creature-focus.json"));
+ const auto & entry=focus[name.getName()];
+ if(entry.isVector() && entry.Vector().size()==4)
+ {
+  const auto & v=entry.Vector();
+  const Rect bounds(v[0].Integer(),v[1].Integer(),v[2].Integer(),v[3].Integer());
+  if(bounds.x>=0 && bounds.y>=0 && bounds.w>0 && bounds.h>0)mobilePreviewBounds=bounds;
+ }
 }
 
 void CCreatureAnim::showMobilePreview(Canvas & to, const Rect & target)
 {
-	const auto image = anim->getImage(frame, group, false);
-	if(!image)return;
-	Point dimensions=image->dimensions();
-	for(size_t i=0;i<anim->size(group);++i)
-		if(const auto pose=anim->getImage(i,group,false))
-		{
-			const auto size=pose->dimensions();
-			dimensions.x=std::max(dimensions.x,size.x);dimensions.y=std::max(dimensions.y,size.y);
-		}
-	if(mobilePreviewCanvas)
-	{
-		const auto old=mobilePreviewCanvas->getRenderArea().dimensions();
-		dimensions.x=std::max(dimensions.x,old.x);dimensions.y=std::max(dimensions.y,old.y);
-	}
-	if(!mobilePreviewCanvas || mobilePreviewCanvas->getRenderArea().dimensions()!=dimensions)
-	{
-		mobilePreviewCanvas=std::make_shared<Canvas>(dimensions,CanvasScalingPolicy::IGNORE);
-		mobilePreviewCanvas->applyTransparency(true);
-	}
-	// DEF frame rectangles can contain large transparent margins. Inspect sprite
-	// pixels only; cached frame crops are independent of scenery and walking offsets.
-	struct PreviewCrop { std::weak_ptr<CAnimation> animation; size_t group; std::vector<Rect> frames; std::vector<bool> refined; };
-	static std::deque<PreviewCrop> crops;
-	const auto found = std::find_if(crops.begin(), crops.end(), [&](const auto & item){return item.group == group && item.animation.lock() == anim;});
-	PreviewCrop * crop=nullptr;
-	if(found != crops.end())crop=&*found;
-	else
-	{
-		std::vector<Rect> frames(anim->size(group));
-		for(size_t i = 0; i < anim->size(group); ++i)
-			if(const auto pose = anim->getImage(i, group, false))
-			{
-				const auto content=pose->contentRect();
-				const int x0=std::max(0,content.x),y0=std::max(0,content.y);
-				const int x1=std::min(dimensions.x,content.x+content.w),y1=std::min(dimensions.y,content.y+content.h);
-				if(x1<=x0 || y1<=y0)continue;
-				// Legacy palette blits flatten opacity. Two mattes recover coverage:
-				// opaque black creature pixels survive, translucent ground shadows do not.
-				mobilePreviewCanvas->drawColor(Rect(Point(0,0),dimensions),Colors::BLACK);
-				pose->setAlpha(255);pose->setOverlayColor(Colors::TRANSPARENCY);
-				mobilePreviewCanvas->draw(pose,Point(0,0));
-				std::vector<ColorRGBA> black;
-				black.reserve((x1-x0)*(y1-y0));
-				for(int y=y0;y<y1;++y)for(int x=x0;x<x1;++x)black.push_back(mobilePreviewCanvas->getPixel(Point(x,y)));
-				mobilePreviewCanvas->drawColor(Rect(Point(0,0),dimensions),Colors::WHITE);
-				mobilePreviewCanvas->draw(pose,Point(0,0));
-				pose->setAlpha(alpha);
-				int left=dimensions.x,top=dimensions.y,right=-1,bottom=-1;
-				for(int pass=0;pass<2 && right<left;++pass)
-				{
-					size_t at=0;
-					for(int y=y0;y<y1;++y)
-						for(int x=x0;x<x1;++x,++at)
-						{
-							const auto light=mobilePreviewCanvas->getPixel(Point(x,y));
-							const auto & dark=black[at];
-							const int coverage=255-std::clamp(std::max({int(light.r)-int(dark.r),int(light.g)-int(dark.g),int(light.b)-int(dark.b)}),0,255);
-							const bool body=coverage>=192 || (coverage>=32 && int(dark.r)+int(dark.g)+int(dark.b)>24);
-							if(pass==0 ? body : coverage>=32)
-							{left=std::min(left,x);top=std::min(top,y);right=std::max(right,x);bottom=std::max(bottom,y);}
-						}
-				}
-				if(right >= left && bottom >= top)
-				{
-					const int x=std::max(0,left-1),y=std::max(0,top-1);
-					const Rect visible(x,y,std::min(dimensions.x,right+2)-x,std::min(dimensions.y,bottom+2)-y);
-					frames[i]=visible;
-				}
-			}
-		crops.erase(std::remove_if(crops.begin(), crops.end(), [](const auto & item){return item.animation.expired();}), crops.end());
-		if(crops.size() >= 128)crops.pop_front();
-		crops.push_back({anim,group,std::move(frames),std::vector<bool>(anim->size(group),false)});
-		crop=&crops.back();
-	}
-	if(!crop || frame>=crop->frames.size())return;
-	const Rect visible=crop->frames[frame];
-	if(visible.w<=0 || visible.h<=0)return;
-	// Center and fit the visible body, not the empty positions it walks through.
-	Rect bounds=visible;
-	mobilePreviewCanvas->drawColor(Rect(Point(0,0),dimensions), Colors::TRANSPARENCY);
-	image->setAlpha(alpha);
-	image->setOverlayColor(Colors::TRANSPARENCY);
-	mobilePreviewCanvas->draw(image,Point(0,0));
-	if(!crop->refined[frame])
-	{
-		// Validate against the actual transparent render, not metadata or a matte.
-		int left=bounds.x+bounds.w,top=bounds.y+bounds.h,right=-1,bottom=-1;
-		for(int y=bounds.y;y<bounds.y+bounds.h;++y)
-			for(int x=bounds.x;x<bounds.x+bounds.w;++x)
-				if(mobilePreviewCanvas->getPixel(Point(x,y)).a>=32)
-				{left=std::min(left,x);top=std::min(top,y);right=std::max(right,x);bottom=std::max(bottom,y);}
-		if(right>=left && bottom>=top)
-		{
-			const int x=std::max(bounds.x,left-1),y=std::max(bounds.y,top-1);
-			bounds=Rect(x,y,std::min(bounds.x+bounds.w,right+2)-x,std::min(bounds.y+bounds.h,bottom+2)-y);
-			crop->frames[frame]=bounds;crop->refined[frame]=true;
-		}
-	}
-	mobilePreviewBounds=bounds;
-	const Canvas focused(*mobilePreviewCanvas,bounds);
-	const double scale = std::min(std::max(1.0,target.w*0.8)/double(bounds.w),std::max(1.0,target.h*0.8)/double(bounds.h));
-	const Point size(std::max(1,int(bounds.w*scale)),std::max(1,int(bounds.h*scale)));
-	to.drawScaled(focused,target.topLeft()+Point((target.w-size.x)/2,(target.h-size.y)/2),size);
+ const auto image=anim->getImage(frame,group,false);
+ if(!image)return;
+ // Unknown add-on animations keep their native canvas, also with a fixed camera.
+ if(!mobilePreviewBounds)mobilePreviewBounds=Rect(Point(),image->dimensions());
+ const Rect bounds=*mobilePreviewBounds;
+ const auto sourceSize=image->dimensions();
+ const Point dimensions(std::max(sourceSize.x,bounds.x+bounds.w),std::max(sourceSize.y,bounds.y+bounds.h));
+ if(!mobilePreviewCanvas || mobilePreviewCanvas->getRenderArea().w<dimensions.x || mobilePreviewCanvas->getRenderArea().h<dimensions.y)
+ {
+  mobilePreviewCanvas=std::make_shared<Canvas>(dimensions,CanvasScalingPolicy::IGNORE);
+  mobilePreviewCanvas->applyTransparency(true);
+ }
+ mobilePreviewCanvas->drawColor(mobilePreviewCanvas->getRenderArea(),Colors::TRANSPARENCY);
+ image->setAlpha(alpha);image->setOverlayColor(Colors::TRANSPARENCY);
+ mobilePreviewCanvas->draw(image,Point());
+ const Canvas focused(*mobilePreviewCanvas,bounds);
+ const double scale=std::min(std::max(1.0,target.w*0.8)/bounds.w,std::max(1.0,target.h*0.8)/bounds.h);
+ const Point size(std::max(1,int(bounds.w*scale)),std::max(1,int(bounds.h*scale)));
+ to.drawScaled(focused,target.topLeft()+Point((target.w-size.x)/2,(target.h-size.y)/2),size);
 }
 
 void CCreatureAnim::loopPreview(bool warMachine)
 {
+ if(mobilePreviewBounds)
+ {
+  // Mobile inspection deliberately demonstrates the attack, rather than
+  // repeatedly selecting walking/idle poses at random.
+  static const ECreatureAnimType sequence[]={ECreatureAnimType::HOLDING,ECreatureAnimType::MOVING,ECreatureAnimType::ATTACK_FRONT,ECreatureAnimType::SHOOT_FRONT,ECreatureAnimType::SPECIAL_FRONT};
+  size_t at=0;
+  const auto current=ECreatureAnimType(group);
+  for(size_t i=0;i<std::size(sequence);++i)if(sequence[i]==current)at=i+1;
+  if(current==ECreatureAnimType::MOVE_START || current==ECreatureAnimType::MOVE_END)at=2;
+  for(size_t i=0;i<std::size(sequence);++i)
+  {
+   const auto type=sequence[(at+i) % std::size(sequence)];
+   if(anim->size(size_t(type))){addLast(type);return;}
+  }
+ }
+
 	std::vector<ECreatureAnimType> available;
 
 	static const ECreatureAnimType creaPreviewList[] = {

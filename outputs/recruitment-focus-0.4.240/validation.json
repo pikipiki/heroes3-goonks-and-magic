@@ -1,0 +1,89 @@
+{
+  "version": "0.4.240",
+  "sourceBase": "c19791d7553de0f421a62453f2855b64f6b6bc95",
+  "engineSha256": "6788aaa273b31c165758923cd7a22e01363ad854d2414207520c4d6edcef508f",
+  "nativeBuild": "ninja -j32 html5",
+  "tests": {
+    "passed": 782,
+    "skipped": 48,
+    "failed": 0
+  },
+  "nativeBrowsers": {
+    "chromium": {
+      "passed": true,
+      "cases": [
+        {
+          "unit": "Gremlin",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Naga Empress",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Paingpaing",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "DioupDioup",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        }
+      ]
+    },
+    "webkit": {
+      "passed": true,
+      "cases": [
+        {
+          "unit": "Gremlin",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Naga Empress",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "Paingpaing",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        },
+        {
+          "unit": "DioupDioup",
+          "canvasAllocations": 1,
+          "pixelBufferAllocations": 1
+        }
+      ]
+    }
+  },
+  "calibration": {
+    "creatures": 372,
+    "animationPaths": 370,
+    "framesMeasured": 21745,
+    "playedFramesInsideFixedCameras": 13307,
+    "violations": 0,
+    "reproducible": true,
+    "tableBytes": 20780,
+    "tableSha256": "d9d1c83216a542ffe9dc6cd21d140006b35cfed87355837135cb69c9ccf93115"
+  },
+  "attacksVerified": {
+    "Naga Empress": true,
+    "goonkVariants": 22
+  },
+  "offscreenDrawTiming": {
+    "p95Microseconds": 1000,
+    "maxMicroseconds": 2000,
+    "environment": "Isolated Chromium native fixture; coarse timer; draw calls only, not physical-phone frame rates"
+  },
+  "auditExportAbsentFromRelease": true,
+  "archiveLayout": "html5/",
+  "publicGameData": {
+    "files": 10464,
+    "transportBytes": 702291520
+  },
+  "privacy": "Generated local fixtures only; no saves, credentials or device identifiers."
+}

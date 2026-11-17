@@ -857,7 +857,7 @@ void publishMobileMinimap(CMinimap & mini)
 void publishMobilePreviewAtlas()
 {
  static uint32_t last=0;
- if(!mobileEnabled||!ENGINE||!GAME||previewAtlasPending.load()||SDL_GetTicks()-last<(mobileVerticalBattle?50:83))return;
+ if(!mobileEnabled||!ENGINE||!GAME||previewAtlasPending.load()||SDL_GetTicks()-last<(mobileVerticalBattle?50:33))return;
  std::vector<CCreaturePic *> pictures;
  if(const auto fort=ENGINE->windows().topWindow<CFortScreen>()){
   if(const auto picture=fort->getMobilePreviewPicture())pictures.push_back(picture);
@@ -887,8 +887,10 @@ void publishMobilePreviewAtlas()
   memcpy(packet,geometry.data(),prefix);memcpy(packet+prefix,rgba->pixels,bytes);previewAtlasPending.store(true);
   MAIN_THREAD_ASYNC_EM_ASM({const ptr=$0;const w=$1;const h=$2;const n=$3;try{
    const entries=Array.from({length:n},(_,i)=>{const at=ptr/4+i*3;return [HEAPU32[at],{x:0,y:i*256,w:HEAP32[at+1],h:HEAP32[at+2]}];});
-   const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
-   canvas.getContext('2d',{willReadFrequently:true,colorSpace:'srgb'}).putImageData(new ImageData(new Uint8ClampedArray(HEAPU8.slice(ptr+n*12,ptr+n*12+w*h*4)),w,h),0,0);
+   let canvas=window.goonkCreaturePreviewAtlas;
+   if(!canvas||canvas.width!==w||canvas.height!==h){canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;window.goonkCreaturePreviewImageData=new ImageData(w,h);}
+   const pixels=window.goonkCreaturePreviewImageData;pixels.data.set(HEAPU8.subarray(ptr+n*12,ptr+n*12+w*h*4));
+   canvas.getContext('2d',{willReadFrequently:true,colorSpace:'srgb'}).putImageData(pixels,0,0);
    window.goonkCreaturePreviewAtlas=canvas;window.goonkCreaturePreviewRects=new Map(entries);window.goonkCreaturePreviewVersion=(window.goonkCreaturePreviewVersion||0)+1;
   }finally{_free(ptr);Module._vcmiMobilePreviewAtlasAck();}},packet,width,height,pictures.size());
  }
