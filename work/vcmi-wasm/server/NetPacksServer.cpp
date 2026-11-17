@@ -13,6 +13,7 @@
 #include "CGameHandler.h"
 #include "era/SourceCampaignProcessor.h"
 #include "era/EraHenchmanRuntime.h"
+#include "era/EraMithrilRuntime.h"
 #include "IGameServer.h"
 #include "battles/BattleProcessor.h"
 #include "processors/HeroPoolProcessor.h"
@@ -60,6 +61,13 @@ void ApplyGhNetPackVisitor::visitDismissHero(DismissHero & pack)
 	gh.throwIfWrongOwner(connection, &pack, pack.hid);
 	gh.throwIfPlayerNotActive(connection, &pack);
 	result = gh.removeObject(gh.gameInfo().getObj(pack.hid), pack.player);
+}
+
+void ApplyGhNetPackVisitor::visitMithrilAction(MithrilAction & pack)
+{
+    gh.throwIfWrongPlayer(connection,&pack);
+    gh.throwIfPlayerNotActive(connection,&pack);
+    result=era_compat::mithril::action(gh,pack);
 }
 
 void ApplyGhNetPackVisitor::visitHenchmanAction(HenchmanAction & pack)

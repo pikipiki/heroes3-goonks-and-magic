@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraMithrilModel.h"
 #include "../era/SourceCampaignProcessor.h"
 #include "NewTurnProcessor.h"
 
@@ -356,6 +357,12 @@ ResourceSet NewTurnProcessor::generatePlayerIncome(PlayerColor playerID, bool ne
 
 	for (const auto * obj :	state.getOwnedObjects())
 		incomeHandicapped += obj->asOwnable()->dailyIncome();
+	if(!state.isHuman()&&era_compat::mithril::enabled(gameHandler->gameInfo()))
+	{
+		const auto currency=era_compat::mithril::resource();
+		if(currency!=GameResID::NONE)
+			incomeHandicapped[GameResID::GOLD]+=(state.resources[currency]+incomeHandicapped[currency])*100;
+	}
 
 	if (!state.isHuman())
 	{

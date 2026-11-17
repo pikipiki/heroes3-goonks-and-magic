@@ -65,6 +65,8 @@ public:
 
 	std::vector<TradeItemBuy> availableItemsIds(EMarketMode mode) const override;
 	void onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstance * h) const override; //open window
+	void onUniversityWindowClosed(IGameEventCallback & gameEvents,const CGHeroInstance * hero) const;
+	void blockingDialogAnswered(IGameEventCallback & gameEvents,const CGHeroInstance * hero,int32_t answer) const override;
 	std::vector<Component> getPopupComponents(PlayerColor player) const override;
 	bool wasVisited (PlayerColor player) const override;
 

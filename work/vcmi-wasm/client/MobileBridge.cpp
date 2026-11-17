@@ -89,6 +89,7 @@
 #include "../lib/CBonusTypeHandler.h"
 #include "../lib/mapObjects/army/CCommanderInstance.h"
 #include "../lib/era/EraHenchmanModel.h"
+#include "../lib/era/EraMithrilModel.h"
 #include "../lib/networkPacks/HenchmanPacks.h"
 #include "../lib/mapObjects/CRewardableObject.h"
 #include "../lib/mapObjectConstructors/AObjectTypeHandler.h"
@@ -121,6 +122,7 @@
 
 extern "C" void vcmiMobileCommand(int,int,int,int,int,int);
 namespace {
+bool mobileMithrilPanel=false;
 JsonNode mobileHeroSpellPower(const CBattleInfoCallback & battle,const CGHeroInstance * caster)
 {
  JsonNode value;if(!caster)return value;
@@ -1407,6 +1409,54 @@ void publishMobileState(){
    n["resourceTypes"].Vector().push_back(type);n["resources"].Vector().push_back(JsonNode(double(p->cb->getResourceAmount(resourceId))));
   }
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
+  if(era_compat::mithril::enabled(*p->cb))
+  {
+   n["mithrilEnabled"].Bool()=true;
+   if(mobileMithrilPanel&&n["mode"].String()=="map")
+   {
+    auto & panel=n["mithril"];panel["revision"].Integer()=era_compat::mithril::revision(*p->cb);
+    const auto currency=era_compat::mithril::resource();
+    const auto amount=currency==GameResID::NONE?0:p->cb->getResourceAmount(currency);
+    panel["amount"].Integer()=amount;
+    for(const auto & object:static_cast<const IGameInfoCallback &>(*p->cb).gameState().getMap().objects)
+    {
+     if(!object||!p->cb->getObj(object->id,false))continue;
+     if(object->ID!=Obj::MINE&&object->ID!=Obj::CREATURE_GENERATOR1&&object->ID!=Obj::CREATURE_GENERATOR4
+      &&object->ID!=Obj::WINDMILL&&object->ID!=Obj::WATER_WHEEL&&object->ID!=Obj::UNIVERSITY
+      &&object->ID!=Obj::WITCH_HUT&&object->ID!=Obj::SHRINE_OF_MAGIC_INCANTATION
+      &&object->ID!=Obj::SHRINE_OF_MAGIC_GESTURE&&object->ID!=Obj::SHRINE_OF_MAGIC_THOUGHT
+      &&object->ID!=Obj::MONOLITH_ONE_WAY_ENTRANCE&&object->ID!=Obj::MONOLITH_TWO_WAY
+      &&object->ID!=Obj::SHIPYARD&&object->ID!=Obj::TOWN)continue;
+     const int choices=object->ID==Obj::TOWN?9:1;
+     for(int choice=0;choice<choices;++choice)
+     {
+     const auto offer=era_compat::mithril::offer(*p->cb,*object,p->playerID,choice);
+     const bool activeMine=era_compat::mithril::mineActive(*p->cb,object->id);
+     const bool activeMill=era_compat::mithril::millActive(*p->cb,object->id);
+     const bool activeUniversity=era_compat::mithril::universityActive(*p->cb,object->id);
+     if(!offer.available()&&!activeMine&&!activeMill&&!activeUniversity)continue;
+     JsonNode row;row["id"].Integer()=object->id.getNum();row["name"].String()=object->getObjectName();
+     row["kind"].Integer()=activeMine?era_compat::mithril::MINE:activeMill?era_compat::mithril::MILL:activeUniversity?era_compat::mithril::UNIVERSITY:offer.kind;
+     row["choice"].Integer()=choice;
+     row["cost"].Integer()=offer.cost;row["available"].Bool()=p->makingTurn&&offer.available()&&amount>=offer.cost;
+     row["active"].Bool()=activeMine||activeMill||activeUniversity;
+     row["days"].Integer()=activeMine?era_bridge::mithril::daysRemaining(p->cb->getDate(Date::DAY),era_compat::mithril::entry(*p->cb,object->id)["mineUntil"].Integer()):0;
+     row["x"].Integer()=object->visitablePos().x;row["y"].Integer()=object->visitablePos().y;
+     if(const auto * mine=dynamic_cast<const CGMine *>(object.get()))
+     {
+      row["dailyIncome"].Integer()=mine->dailyIncome()[mine->producedResource];
+      row["resource"].String()=LIBRARY->resourceTypeHandler->getById(mine->producedResource)->getNameTranslated();
+     }
+     if(!offer.upgrades.empty()&&offer.upgrades.front().hasValue())row["upgrade"].String()=offer.upgrades.front().toCreature()->getNamePluralTranslated();
+     if(offer.kind==era_compat::mithril::SHRINE&&offer.current>=0)
+      row["current"].String()=SpellID(offer.current).toSpell()->getNameTranslated();
+     if(offer.kind==era_compat::mithril::HUT&&offer.current>=0)
+      row["current"].String()=LIBRARY->skillh->getById(SecondarySkill(offer.current))->getNameTranslated();
+     panel["offers"].Vector().push_back(std::move(row));
+     }
+    }
+   }
+  }
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
   if(hero&&hero->getOwner()==p->playerID&&!hero->isGarrisoned()&&!hero->inBoat()&&(heroWindow||n["mode"].String()=="map"))
@@ -1905,6 +1955,14 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
    lastPublished=0;
   }
   return;
+ }
+ if(action==114){mobileMithrilPanel=a!=0;lastPublished=0;return;}
+ if(action==113)
+ {
+  const auto player=GAME->interface();
+  if(player&&player->makingTurn&&ENGINE->windows().topWindow<AdventureMapInterface>()
+   &&era_compat::mithril::enabled(*player->cb))player->cb->mithrilAction(ObjectInstanceID(a),b,static_cast<uint32_t>(c));
+  lastPublished=0;return;
  }
  if(action==112)
  {

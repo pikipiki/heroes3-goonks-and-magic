@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../networkPacks/EraGameplayPacks.h"
 #include "../mapObjects/CGMysteriousCave.h"
 #include "CCallback.h"
 
@@ -63,6 +64,13 @@ int CCallback::sourceCampaignReply(QueryID queryID,int selection,const std::stri
  ASSERT_IF_CALLED_WITH_PLAYER
  if(queryID.getNum()<0||text.size()>2048||text.find('\0')!=std::string::npos)return -1;
  SourceCampaignReply pack;pack.qid=queryID;pack.reply=selection;pack.player=*getPlayerID();pack.text=text;pack.submit=submit;
+ return sendRequest(pack);
+}
+
+int CCallback::mithrilAction(ObjectInstanceID object,int choice,uint32_t revision)
+{
+ ASSERT_IF_CALLED_WITH_PLAYER
+ MithrilAction pack;pack.player=*getPlayerID();pack.object=object;pack.choice=choice;pack.revision=revision;
  return sendRequest(pack);
 }
 

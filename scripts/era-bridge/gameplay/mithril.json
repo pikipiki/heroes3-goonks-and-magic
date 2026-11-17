@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "system": "Mithril Enhancements",
+  "version": "1.4 (2023 revision)",
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+  },
+  "enabled": false,
+  "completeRules": false,
+  "implementedSiteKinds": [
+    "mine",
+    "dwelling",
+    "windmill/waterwheel",
+    "university",
+    "shrine",
+    "witch-hut",
+    "monolith",
+    "shipyard",
+    "town"
+  ],
+  "validation": "outputs/era-gameplay/mithril-native-sites.json",
+  "remaining": [
+    "Classic interface and the complete WoG per-game option catalogue.",
+    "Interactions with weekly mine resource changes and the no-magical-terrain map rule.",
+    "Advanced University: two-skill selection, insufficient gold and free AI advancement native scenarios.",
+    "Weekly mill payout, Conflux dwellings, all siege terrain effects and legacy-save native scenarios.",
+    "Source random-stream parity for shrine/hut rerolls and custom reward preservation.",
+    "Monolith camera cycling and complete AI purchase/compensation scenarios."
+  ]
+}

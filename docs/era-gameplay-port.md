@@ -114,6 +114,22 @@ encore leurs scénarios natifs dédiés.
 
 ## Raccordements et validations restant nécessaires
 
+Le port natif du mithril couvre désormais les neuf familles de sites du script
+42 : mines, logements, moulins/roues, universités, sanctuaires, huttes,
+monolithes, chantiers navals et villes. Les achats passent par le serveur avec
+contrôle du propriétaire, de la proximité, du solde et de la révision. L'état
+est conservé dans la sauvegarde. Le panneau mobile présente les coûts et les
+effets actifs, avec une colonne de commandes à droite en paysage.
+
+`scripts/era-bridge/gameplay/mithril.json` lie ce travail à la référence amont
+figée et conserve les écarts restant à résoudre. Le réglage
+`modules.mithrilEnhancements` est désactivé par défaut. Les interactions avec
+les autres options WoG, l'interface classique et plusieurs parcours natifs
+nécessitent encore leur validation. L'université avancée propose bien son
+amélioration après la visite normale : le scénario dédié vérifie le passage
+de Sagesse de base à avancée et le débit de 3000 pièces d'or. Ce
+travail ne constitue pas le port complet de la priorité 4.
+
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières, gardes des Santa Gremlins et interactions.
 - Progression de troupe de l'IA, réglages complets et interface classique.

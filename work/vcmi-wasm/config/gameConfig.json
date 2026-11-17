@@ -756,7 +756,8 @@
 			"stackArtifact": false,
 			// if enabled, all heroes gain commander creature in battle (WoG feature)
 			"commanders": false,
-			"henchmen": false
+			"henchmen": false,
+			"mithrilEnhancements": false
 		},
 		
 		"pathfinder" :

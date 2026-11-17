@@ -10,6 +10,7 @@
 
 #include "StdInc.h"
 #include "../era/EraDwellingArtifactMimic.h"
+#include "../era/EraMithrilModel.h"
 #include "MiscObjects.h"
 
 #include "../bonuses/Propagators.h"
@@ -160,6 +161,7 @@ ResourceSet CGMine::dailyIncome() const
 		result[k] += valOfBonuses(BonusType::GENERATE_RESOURCE, BonusSubtypeID(k));
 
 	result[producedResource] += defaultResProduction();
+	if(era_compat::mithril::mineActive(*cb,id))result[producedResource]*=2;
 
 	const auto & playerSettings = cb->getPlayerSettings(getOwner());
 	result.applyHandicap(playerSettings->handicap.percentIncome);

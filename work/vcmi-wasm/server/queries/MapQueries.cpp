@@ -15,6 +15,7 @@
 #include "../TurnTimerHandler.h"
 #include "../../lib/callback/IGameInfoCallback.h"
 #include "../../lib/mapObjects/CGHeroInstance.h"
+#include "../../lib/mapObjects/CGMarket.h"
 #include "../../lib/mapObjects/MiscObjects.h"
 #include "../../lib/networkPacks/PacksForServer.h"
 
@@ -157,6 +158,13 @@ OpenWindowQuery::OpenWindowQuery(CGameHandler * owner, const CGHeroInstance * he
 void OpenWindowQuery::onExposure(QueryPtr topQuery)
 {
 	//do nothing - wait for reply
+}
+
+void OpenWindowQuery::notifyObjectAboutRemoval(const CGObjectInstance * visitedObject,const CGHeroInstance * visitingHero) const
+{
+	if(mode==EOpenWindowMode::UNIVERSITY_WINDOW)
+		if(const auto * university=dynamic_cast<const CGUniversity *>(visitedObject))
+			university->onUniversityWindowClosed(*gh,visitingHero);
 }
 
 bool OpenWindowQuery::blocksPack(const CPackForServer * pack) const

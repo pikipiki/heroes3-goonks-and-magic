@@ -180,6 +180,11 @@ void ApplyClientNetPackVisitor::visitSetHeroExperience(SetHeroExperience & pack)
 }
 
 static void dispatchGarrisonChange(CClient & cl,ObjectInstanceID army1,ObjectInstanceID army2);
+void ApplyClientNetPackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
+{
+ // The bridge publishes the replicated state on its next normal frame.
+}
+
 void ApplyClientNetPackVisitor::visitHenchmanChange(HenchmanChange & pack)
 {
  dispatchGarrisonChange(cl,pack.hero,ObjectInstanceID());

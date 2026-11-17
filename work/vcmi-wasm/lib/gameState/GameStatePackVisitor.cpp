@@ -1659,6 +1659,13 @@ void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack
     era_compat::applySourceCampaignChange(gs,pack);
 }
 
+void GameStatePackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
+{
+    if(pack.system!="mithril"||!pack.state.isStruct())
+        throw std::runtime_error("Invalid ERA gameplay state packet");
+    gs.getMap().eraGameplayState[pack.system]=pack.state;
+}
+
 void GameStatePackVisitor::visitHenchmanChange(HenchmanChange & pack)
 {
     auto * hero=dynamic_cast<CGHeroInstance *>(gs.getObjInstance(pack.hero));

@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraMithrilModel.h"
 #include "CGMarket.h"
 
 #include "CGHeroInstance.h"
@@ -143,8 +144,40 @@ void CGUniversity::onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInst
 	cow.mode = ChangeObjectVisitors::VISITOR_ADD_PLAYER;
 	cow.hero = h->id;
 	gameEvents.sendAndApply(cow);
-
 	gameEvents.showObjectWindow(this, EOpenWindowMode::UNIVERSITY_WINDOW, h, true);
+}
+
+void CGUniversity::onUniversityWindowClosed(IGameEventCallback & gameEvents,const CGHeroInstance * h) const
+{
+	if(era_compat::mithril::universityActive(*cb,id))
+	{
+		const auto eligible=era_compat::mithril::universitySkills(*this,*h);
+		if(!cb->getPlayerState(h->getOwner())->isHuman())
+		{
+			for(const auto & skill:eligible)gameEvents.changeSecSkill(h,skill,2,ChangeValueMode::ABSOLUTE);
+		}
+		else if(!eligible.empty()&&cb->getResource(h->getOwner(),GameResID::GOLD)>=3000)
+		{
+			BlockingDialog dialog(true,eligible.size()>1);dialog.player=h->getOwner();
+			dialog.text.appendTextID("tum-era.mithril.university.advance");
+			for(const auto & skill:eligible)dialog.components.emplace_back(ComponentType::SEC_SKILL,skill,2);
+			gameEvents.showBlockingDialog(this,&dialog);return;
+		}
+	}
+}
+
+void CGUniversity::blockingDialogAnswered(IGameEventCallback & gameEvents,const CGHeroInstance * hero,int32_t answer) const
+{
+	if(era_compat::mithril::universityActive(*cb,id)&&answer>0)
+	{
+		const auto eligible=era_compat::mithril::universitySkills(*this,*hero);
+		const auto selected=eligible.size()==1?0:answer-1;
+		if(selected>=0&&static_cast<size_t>(selected)<eligible.size()&&cb->getResource(hero->getOwner(),GameResID::GOLD)>=3000)
+		{
+			gameEvents.giveResource(hero->getOwner(),GameResID::GOLD,-3000);
+			gameEvents.changeSecSkill(hero,eligible[selected],2,ChangeValueMode::ABSOLUTE);
+		}
+	}
 }
 
 bool CGUniversity::wasVisited (PlayerColor player) const

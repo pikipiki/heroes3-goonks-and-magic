@@ -44,6 +44,7 @@
 #include "../networkPacks/SetRewardableConfiguration.h"
 #include "../networkPacks/SourceCampaignChange.h"
 #include "../networkPacks/HenchmanPacks.h"
+#include "../networkPacks/EraGameplayPacks.h"
 #include "../networkPacks/SourceCampaignReply.h"
 #include "../networkPacks/SourceCampaignDeployTroops.h"
 #include "../networkPacks/SetStackEffect.h"
@@ -320,6 +321,8 @@ void registerTypes(Serializer &s)
     s.template registerType<SourceCampaignDeployTroops>(272);
     s.template registerType<HenchmanChange>(273);
     s.template registerType<HenchmanAction>(274);
+    s.template registerType<EraGameplayChange>(275);
+    s.template registerType<MithrilAction>(276);
 }
 
 VCMI_LIB_NAMESPACE_END

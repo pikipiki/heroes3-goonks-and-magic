@@ -163,7 +163,8 @@
 				"stackExperience" : { "type" : "boolean" },
 				"stackArtifact" : { "type" : "boolean" },
 				"commanders" : { "type" : "boolean" },
-				"henchmen" : { "type" : "boolean" }
+				"henchmen" : { "type" : "boolean" },
+				"mithrilEnhancements" : { "type" : "boolean" }
 			}
 		},
 		"pathfinder": {

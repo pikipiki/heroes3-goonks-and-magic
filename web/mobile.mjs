@@ -22,6 +22,7 @@ import {createBattleAutocombat} from './battle-autocombat.mjs';
 import {createCampaignSetup} from './campaign-setup.mjs';
 import {createTroopActions} from './troop-actions.mjs';
 import {createHeroEquipment} from './hero-equipment.mjs';
+import {createMithrilEnhancements} from './mithril-enhancements.mjs';
 import {createHeroExchange} from './hero-exchange.mjs';
 import {canCancelSpell,createSpellTargetingRecovery,spellTargetCell} from './spell-targeting.mjs';
 import {heroMovementSummary,watchHeroMovement} from './hero-movement.mjs';
@@ -168,6 +169,7 @@ function mount(){
  const campaignSetup=createCampaignSetup({root,command});
  const troopActions=createTroopActions({root,command,portrait:u=>portrait(u),onLeave:slot=>heroEquipment.showDeployment(slot)});
  const heroEquipment=createHeroEquipment({root,command,pointer,onViewChange:()=>controls(),portrait:u=>portrait(u),notify,onManage:(army,slot)=>troopActions.show(army,slot)});
+ const mithrilEnhancements=createMithrilEnhancements({root,command});
  const tavern=createMobileTavern({root,command,pointer});
  const nativeFort=createNativeFort({root,getState:()=>state,pointer});
  const portraitTown=createTownPortrait({root,scene,asset,command,getState:()=>state,openBuildings:(id,name,unitId)=>townBuildings.open({id,name,unitId})});
@@ -312,7 +314,7 @@ function mount(){
   tavern.update(state);townServices.update(state);caveBuilder.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
   if(sheetKind==='battle-inspection'&&state.mode==='battle')showBattleInspection(true);
-  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);troopActions.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
+  creatureView.update(state);spellbook.update(state);mageGuild.update(state);heroEquipment.update(state);troopActions.update(state);mithrilEnhancements.update(state);heroExchange.update(state);campaignSetup.update(state);marketplace.update(state);onlineLogin.update(state);onlineLobby.update(state);
   if(detailReturn==='army'&&['map','town'].includes(state.mode)){detailReturn='';showList('army');}
   const choices=root.querySelector('.recruit-choices');choices.hidden=true;
 

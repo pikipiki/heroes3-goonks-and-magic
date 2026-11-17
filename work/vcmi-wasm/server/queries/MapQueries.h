@@ -77,6 +77,7 @@ class OpenWindowQuery : public CDialogQuery
 public:
 	OpenWindowQuery(CGameHandler * owner, const CGHeroInstance *hero, EOpenWindowMode mode);
 
+	void notifyObjectAboutRemoval(const CGObjectInstance * visitedObject,const CGHeroInstance * visitingHero) const override;
 	bool blocksPack(const CPackForServer *pack) const override;
 	void onExposure(QueryPtr topQuery) override;
 };

@@ -102,6 +102,7 @@ public:
 	void visitSetRewardableConfiguration(SetRewardableConfiguration & pack) override;
     void visitSourceCampaignChange(SourceCampaignChange & pack) override;
     void visitHenchmanChange(HenchmanChange & pack) override;
+    void visitEraGameplayChange(EraGameplayChange & pack) override;
 	void visitBattleSetStackProperty(BattleSetStackProperty & pack) override;
 	void visitBattleNextRound(BattleNextRound & pack) override;
 	void visitBattleCancelled(BattleCancelled & pack) override;

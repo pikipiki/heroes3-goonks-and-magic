@@ -5,6 +5,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {chromium} from 'playwright-core';
 import {silenceTestAudio} from './silent-audio.mjs';
+import {readCompletedNativeSave} from './native-save-completed.mjs';
 
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8797';
 const output=process.env.REVIEW_OUTPUT||'/private/tmp/goonk-henchmen-native';
@@ -152,10 +153,7 @@ try{
  assert.equal(hero.id,heroId);
  report.scenarios.push('replacement-preserves-companion-experience');
  await command(63);await wait(()=>goonkMobileState.mode==='map');
- const before=await page.evaluate(()=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime();}catch{return 0;}});
- await command(34,812);
- await wait(previous=>{try{return Module.FS.stat('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1').mtime.getTime()>previous;}catch{return false;}},before);
- const save=await page.evaluate(()=>[...Module.FS.readFile('/home/web_user/.local/share/vcmi/Saves/Goonk-auto.vsgm1')]);
+ const save=[...await readCompletedNativeSave(page,command,{tag:812})];
  await page.close();await boot({save});hero=await sheet();
  assert.equal(hero.henchman.unit.key,'core:archangel');assert.equal(hero.henchman.experience,previousExperience);assert(hero.henchman.alive);
  report.scenarios.push('native-save-reload');await page.close();

@@ -17,6 +17,7 @@
 #include "SetRewardableConfiguration.h"
 #include "SourceCampaignChange.h"
 #include "HenchmanPacks.h"
+#include "EraGameplayPacks.h"
 #include "SourceCampaignReply.h"
 #include "SourceCampaignDeployTroops.h"
 #include "SetStackEffect.h"
@@ -45,6 +46,8 @@ public:
     virtual void visitSourceCampaignChange(SourceCampaignChange & pack) {}
     virtual void visitHenchmanChange(HenchmanChange & pack) {}
     virtual void visitHenchmanAction(HenchmanAction & pack) {}
+    virtual void visitEraGameplayChange(EraGameplayChange & pack) {}
+    virtual void visitMithrilAction(MithrilAction & pack) {}
 	virtual void visitSetResources(SetResources & pack) {}
 	virtual void visitSetPrimarySkill(SetPrimarySkill & pack) {}
 	virtual void visitSetHeroExperience(SetHeroExperience & pack) {}

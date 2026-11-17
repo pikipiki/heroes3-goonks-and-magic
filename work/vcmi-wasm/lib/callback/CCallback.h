@@ -46,6 +46,7 @@ public:
 	int selectionMade(int selection, QueryID queryID) override;
  int sourceCampaignDeployTroops(const CGHeroInstance * hero,SlotID slot,int count,const int3 & position,bool takeBack);
  int henchmanAction(const CGHeroInstance * hero,int operation,int slot);
+ int mithrilAction(ObjectInstanceID object,int choice,uint32_t revision);
  int sourceCampaignReply(QueryID queryID,int selection,const std::string & text,bool submit=true);
 	int sendQueryReply(std::optional<int32_t> reply, QueryID queryID) override;
 	int swapCreatures(const CArmedInstance *s1, const CArmedInstance *s2, SlotID p1, SlotID p2) override;

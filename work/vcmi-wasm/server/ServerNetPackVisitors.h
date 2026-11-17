@@ -36,6 +36,7 @@ public:
 	void visitEndTurn(EndTurn & pack) override;
 	void visitDismissHero(DismissHero & pack) override;
 	void visitHenchmanAction(HenchmanAction & pack) override;
+	void visitMithrilAction(MithrilAction & pack) override;
 	void visitMoveHero(MoveHero & pack) override;
 	void visitCastleTeleportHero(CastleTeleportHero & pack) override;
 	void visitArrangeStacks(ArrangeStacks & pack) override;
