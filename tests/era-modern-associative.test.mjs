@@ -19,6 +19,9 @@ test('modern associative operands retain exact names and separate typed spaces',
  assert.equal(program.blocks[0].commands[0].operations[0].args[0].kind,'named');
  assert.equal(program.blocks[0].commands[2].operations[0].args[1].name,'copy');
  assert.deepEqual(program.blocks[0].commands[3].operations[0].args,[]);
+ assert.throws(()=>compileErm('!#SN:E0;'),/Unbound receiver SN/);
+ assert.throws(()=>compileErm('!#SN:W^supported^/1 E0;'),/Unbound receiver SN/);
+ assert.throws(()=>compileErm('!#SN:T^unbound^/?z1;'),/Unbound receiver SN/);
 });
 test('SN service modifiers are represented without becoming numeric aliases',()=>{
  for(const [raw,modifier] of [['d','+'],['d*4','*'],['d-4','-'],['d|3','|'],['d<<100','<<'],['d>>-1','>>'],['d&^ suffix^','&'],['di^count^','+']]){

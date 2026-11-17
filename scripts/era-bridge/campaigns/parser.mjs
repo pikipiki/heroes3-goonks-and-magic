@@ -63,6 +63,7 @@ export function parseOperations(body,receiver){
  const result=[];let i=0;
  while(i<body.length){while(/\s/.test(body[i]??'')&&i<body.length)i++;if(i===body.length)break;
   const code=body[i++];if(!/[A-Z+*:%&|\-]/.test(code))fail('Unsupported operation '+code+' in '+receiver);
+  if(receiver==='SN'&&code!=='W')fail('Unbound receiver SN operation '+code);
   const start=i;let quote='',argumentStart=true;
   while(i<body.length){const c=body[i];if(quote){if(c===quote)quote='';i++;argumentStart=false;continue;}if(c==='^'||c==='@'||c==='$'){quote=c;i++;continue;}
    if(/[A-Z]/.test(c))break;
