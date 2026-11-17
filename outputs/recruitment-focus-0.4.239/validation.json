@@ -4,7 +4,7 @@
   "engineSha256": "b79066448f04160366b8be516d507787baa96ffd02242ea0ead142557542429b",
   "nativeBuild": "ninja -j32 html5",
   "tests": {
-    "passed": 778,
+    "passed": 779,
     "skipped": 48,
     "failed": 0
   },
@@ -68,5 +68,9 @@
     "files": 10464,
     "transportBytes": 702291020
   },
-  "privacy": "Generated local fixtures only; no saves, device identifiers or phone diagnostic adjustments in publication."
+  "privacy": "Generated local fixtures only; no saves, device identifiers or phone diagnostic adjustments in publication.",
+  "archive": {
+    "layout": "html5/",
+    "cleanExtractionMatchesTestedEngine": true
+  }
 }
