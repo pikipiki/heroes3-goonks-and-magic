@@ -197,6 +197,19 @@ adverse avant son tour et sa présence après. Le moteur précédent échoue
 sur le premier de ces deux cas en donnant les sorts de masse trop tôt. Les preuves figurent dans
 `outputs/era-gameplay/map-rules-native-daily-plains.json`.
 
+Les règles WoG 115 et 128 ajoutent respectivement une frappe supplémentaire
+et le souffle sur la case derrière la cible. Elles excluent les machines
+145–149, les commandants 174–191 et les créatures techniques 122/124/126/128
+comme le script source. Les capacités sont appliquées au niveau de la partie,
+répliquées et sauvegardées, sans modifier la bibliothèque commune des créatures.
+Douze variantes natives vérifient les dégâts directs et collatéraux, une seule
+riposte, les règles séparées, les effets déjà présents du Loup pillard et du
+Dragon vert, les fiches du Gobelin et de la Baliste, la créature Paladin,
+la sauvegarde et les frappes de l'IA neutre. Le Loup pillard ne gagne pas de
+troisième frappe. Les aperçus reposant uniquement sur le prototype de
+recrutement restent à adapter. Les preuves figurent dans
+`outputs/era-gameplay/map-rules-native-creatures.json`.
+
 La règle WoG 121 double les budgets de déplacement sur terre et en bateau
 dans le calcul commun aux trajets, à l'affichage et au renouvellement
 quotidien. Cinq parcours natifs vérifient les valeurs 4000 et 3000, la

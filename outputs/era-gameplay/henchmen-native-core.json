@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "native-core-only",
   "completeRules": false,
-  "engineSha256": "6b3d8b00d5ee0e33aff54eae367594fd7ac38d325d37850d54af673d9e3833bc",
+  "engineSha256": "29713789a7a193154174bba13d89baa9cd2a801126d5fad3ad97b9e2fa3bd976",
   "scenarios": [
     "selected-from-army-and-mobile-layout",
     "companion-battle-inspection-keeps-its-native-command",
@@ -25,7 +25,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "559a6e4a6ad844a8bcd6e75d815380046705e350175aa442fe88960b0193ce49"
+      "sha256": "ebd9d9c9e41bcdd1e8f5fb033c97a347f1c8ee7b189786c4c9dd407bbce6a14a"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -33,7 +33,7 @@
     },
     {
       "file": "mod/tum-era/content/config/wog-map-rules.json",
-      "sha256": "8d77e65b9942b4de4ec5059ad5861e58e71d8bbb0b622bfb3b2e8d0fcc42812f"
+      "sha256": "edc0a84c38def211b9bcb1cbf26614272980e1a475253292c8819d5f97347821"
     },
     {
       "file": "scripts/era-bridge/gameplay/henchmen.json",
@@ -45,7 +45,7 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/map-rules.json",
-      "sha256": "01ecc14348a00ab4297b79c75ec04154ddd8b2c41bea41d0845edbc41527b25e"
+      "sha256": "d16562986d77fbf983df3cdef6190be4d9b3940ae6a0a82e4899dc356f418137"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -76,8 +76,12 @@
       "sha256": "9654d71b4e731266a3450065f60a1885ed05eb693fdf7bac69b1c624de0bed5b"
     },
     {
+      "file": "work/browser-tests/wog-map-creature-native-cases.mjs",
+      "sha256": "744fcd84ff34569290e71a8f3db34225472b8c7d012e1eaa62f0174e99a0692e"
+    },
+    {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "4c051dc3a2dbe56327fa444365a98b60f1046f9e03e11b6071f3310766504811"
+      "sha256": "98ef377021fda5d9d4ec98f88d98f6641f9f63c41c2e963a214c4cfa38077626"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -172,8 +176,12 @@
       "sha256": "0de4a0274e3c35b79c2daeabd5dc219db2ca9ebb6e1bda3baa4b6efea12b8370"
     },
     {
+      "file": "work/vcmi-wasm/lib/era/EraMapCreatureRules.h",
+      "sha256": "ad36fc00ed8164502f1c2200a5f2260a8510c2970579b4cb16f454c5b66823d9"
+    },
+    {
       "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
-      "sha256": "ac8ba850c055bc1217fff89711632ef9a98c08de6d68614423a118dcbb9fd0b0"
+      "sha256": "3f050b2d7273627713c2186f72eba52b38a9a84c4c352f2b156ce7f0852c9484"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilModel.h",
@@ -192,12 +200,16 @@
       "sha256": "4f4fe102a244d45e6fd39065d20e49d2d63d3df714f6da6638fc632dae18ed8c"
     },
     {
+      "file": "work/vcmi-wasm/lib/era/EraSourceCreatureLevels.h",
+      "sha256": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e"
+    },
+    {
       "file": "work/vcmi-wasm/lib/gameState/ArmyBulkTransfer.h",
       "sha256": "76b2aa6d5f8a96028c71e1c862f233bb5dcd6d3ec058e3244130bf1b9fbd337a"
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
-      "sha256": "1f753604fea1ab692764deaab269e41e3bc0989b70553ca398ce3eca93c13fab"
+      "sha256": "8721aa256082a77e0d193c03b7e731e4b6e4a0f1a6dfbcd9a67c6b9556a701f0"
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
@@ -217,7 +229,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp",
-      "sha256": "82b10babc73f79296648fd6748d2df4ed2e0d57b6874abc5e414baf04123b133"
+      "sha256": "8f70f3f3974752e677e757f766d0c413f3a9c02abe32a96a6206f034194b47d0"
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/CGMarket.h",
@@ -313,7 +325,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
-      "sha256": "b3c8032a3d0ebd19cb9fb1d1b5603db66387851b505260950f0951dc234e4489"
+      "sha256": "2e84ce2850406ba1bb079d00d70ed93ce752846b9559b607a36ede6325161818"
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
@@ -325,7 +337,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
-      "sha256": "f1ae89e2b073f7e37b6d5311d59d22bdef02d0f953950673edb4341199716b18"
+      "sha256": "80ca7b00fd83534fb4627119bfa341e4e680e8676274d5c1d89d6c7bff1a1209"
     },
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",

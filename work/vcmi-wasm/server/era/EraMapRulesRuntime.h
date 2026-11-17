@@ -17,6 +17,8 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     if(firstTurn&&CResourceHandler::get()->existsResource(path))configured=JsonNode(path)["mapRules"];
     EraGameplayChange packet;packet.system="mapRules";
     packet.state["rules"]["114"].Bool()=configured["114"].Bool();
+    packet.state["rules"]["115"].Bool()=configured["115"].Bool();
+    packet.state["rules"]["128"].Bool()=configured["128"].Bool();
     packet.state["rules"]["121"].Bool()=configured["121"].Bool();
     packet.state["rules"]["122"].Bool()=configured["122"].Bool();
     packet.state["rules"]["124"].Bool()=configured["124"].Bool();

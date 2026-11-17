@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -97,6 +97,15 @@ if opts['bluePlainsOwner']:
 if opts['plainsFight'] and opts['plainsBlock']=='underground':
  for o in objects:
   if o['instanceName'] in ['goonkHero','plainsTrainingGuard']:o['l']=1
+if opts['creatureRuleFixture']:
+ import copy
+ objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
+ hero=next(o for o in objects if o['instanceName']=='goonkHero')
+ hero['options'].update({'army':[{'type':opts['ruleActor'],'amount':1},{'type':'core:ogre','amount':1}],'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'secondarySkills':{'core:artillery':'basic'},'artifacts':{'spellbook':'core:spellBook','mach1':'core:ballista'}})
+ enemy=copy.deepcopy(hero);enemy.update({'instanceName':'creatureRuleEnemy','x':10})
+ enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:gnoll','amount':1},{'type':'core:peasant','amount':1}],'artifacts':{}})
+ if opts['ruleAiFight']:enemy={'type':'core:monster','subtype':'core:gnoll','instanceName':'creatureRuleEnemy','x':9,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':1,'character':'savage','neverFlees':True}}
+ objects.append(enemy)
 if opts['movementWater']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
 if opts['capitolCapture']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown','secondCapitolTown']]
 entries['objects.json']=json.dumps(objects).encode()
@@ -123,10 +132,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater})]);
+`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,goldFunds=null,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -140,9 +149,10 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
  if(options.reroll==='rng')shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.variables.spell.gainedSpell={anyOf:['bless']};
  const huts=options.reroll==='hut-rng'?structuredClone(testHuts):null;
  if(huts)huts.witchHut.types.witchHut.variables.secondarySkill.gainedSkill={anyOf:['offence']};
+ const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -158,12 +168,20 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
     if(huts)value.FS.writeFile('/config/objects/witchHut.json',JSON.stringify(huts));
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
-    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,121:doubleMovement,122:weeklyMines,124:multipleCapitols}}));
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols}}));
+    if(creatureRules){
+     manifest.settings.modules.commanders=false;
+     const patch={};for(const key of [creatureRules.actor,'core:gnoll','core:peasant','core:ogre'])patch[key]={hitPoints:1000000,attack:0,defense:0,speed:key===creatureRules.actor?20:key==='core:ogre'?4:1,damage:{min:key===creatureRules.actor?10:1,max:key===creatureRules.actor?10:1},abilities:{mapRuleTestNoMorale:{type:'NO_MORALE'}}};
+     if(creatureRules.ai)patch[creatureRules.actor].abilities.mapRuleTestNoCounter={type:'ADDITIONAL_RETALIATION',val:-1};
+     manifest.creatures??=[];manifest.creatures.push('config/wog-creature-rule-test.json');value.FS.writeFile(directory+'/wog-creature-rule-test.json',JSON.stringify(patch));
+     manifest.settings.combat??={};manifest.settings.combat.layouts??={};const attacker=creatureRules.ai?[19,155,87,121,53,36,70]:[19,53,87,121,155,36,70],defender=[20,21,88,122,156,37,71];
+     manifest.settings.combat.layouts.default={tacticsAllowed:false,obstaclesAllowed:false,attackerCommander:137,defenderCommander:149,attackerUnits:attacker,defenderUnits:defender,attackerUnitsLoose:Array.from({length:7},()=>attacker),attackerUnitsTight:Array.from({length:7},()=>attacker),defenderUnitsLoose:Array.from({length:7},()=>defender),defenderUnitsTight:Array.from({length:7},()=>defender)};
+    }
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -231,6 +249,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='creature-rules'){
+  const {runCreatureRules}=await import('./wog-map-creature-native-cases.mjs');
+  await runCreatureRules({boot,state,command,wait,readCompletedNativeSave,page:()=>page,report,output});
+ }
  if(process.env.CASES==='double-movement'){
   const enabled=!process.env.MOVEMENT_DISABLED,water=!!process.env.MOVEMENT_WATER;
   await boot({enabled:false,doubleMovement:enabled,movementWater:water});

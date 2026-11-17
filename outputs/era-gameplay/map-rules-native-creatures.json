@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "scope": "map-rules-native-creatures",
+  "completeRules": false,
+  "engineSha256": "29713789a7a193154174bba13d89baa9cd2a801126d5fad3ad97b9e2fa3bd976",
+  "scenarios": [
+    "map-creature-rules-goblin-double1-breath1",
+    "map-creature-rules-exclude-war-machines-in-native-ability-sheet",
+    "map-creature-rules-goblin-double0-breath0",
+    "map-creature-rules-goblin-double1-breath1-saved",
+    "map-creature-rules-goblin-double1-breath0",
+    "map-creature-rules-goblin-double0-breath1",
+    "map-creature-rules-greenDragon-double0-breath0",
+    "map-creature-rules-greenDragon-double1-breath1",
+    "map-creature-rules-paladin1-double1-breath1",
+    "map-creature-rules-hobgoblinWolfRider-double0-breath0",
+    "map-creature-rules-hobgoblinWolfRider-double1-breath1",
+    "map-creature-rules-ai-attacks-twice",
+    "map-creature-rules-ai-attacks-once"
+  ],
+  "cases": [
+    {
+      "case": "creature-final-both",
+      "scenarios": [
+        "map-creature-rules-goblin-double1-breath1",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-disabled",
+      "scenarios": [
+        "map-creature-rules-goblin-double0-breath0",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-saved",
+      "scenarios": [
+        "map-creature-rules-goblin-double1-breath1-saved",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-double",
+      "scenarios": [
+        "map-creature-rules-goblin-double1-breath0",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-breath",
+      "scenarios": [
+        "map-creature-rules-goblin-double0-breath1",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-dragon-disabled",
+      "scenarios": [
+        "map-creature-rules-greenDragon-double0-breath0",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-dragon-both",
+      "scenarios": [
+        "map-creature-rules-greenDragon-double1-breath1",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-final-commander-both",
+      "scenarios": [
+        "map-creature-rules-paladin1-double1-breath1",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-ui-wolf-fixed-disabled",
+      "scenarios": [
+        "map-creature-rules-hobgoblinWolfRider-double0-breath0",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-ui-wolf-fixed-both",
+      "scenarios": [
+        "map-creature-rules-hobgoblinWolfRider-double1-breath1",
+        "map-creature-rules-exclude-war-machines-in-native-ability-sheet"
+      ]
+    },
+    {
+      "case": "creature-ai-neutral-both",
+      "scenarios": [
+        "map-creature-rules-ai-attacks-twice"
+      ]
+    },
+    {
+      "case": "creature-ai-neutral-disabled",
+      "scenarios": [
+        "map-creature-rules-ai-attacks-once"
+      ]
+    }
+  ],
+  "sourceExclusions": [
+    122,
+    124,
+    126,
+    128,
+    145,
+    146,
+    147,
+    148,
+    149,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191
+  ],
+  "errors": [],
+  "sourceBindings": [
+    {
+      "file": "docs/era-gameplay-port.md",
+      "sha256": "ebd9d9c9e41bcdd1e8f5fb033c97a347f1c8ee7b189786c4c9dd407bbce6a14a"
+    },
+    {
+      "file": "mod/tum-era/content/config/wog-map-rules.json",
+      "sha256": "edc0a84c38def211b9bcb1cbf26614272980e1a475253292c8819d5f97347821"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/map-rules.json",
+      "sha256": "d16562986d77fbf983df3cdef6190be4d9b3940ae6a0a82e4899dc356f418137"
+    },
+    {
+      "file": "work/browser-tests/wog-map-creature-native-cases.mjs",
+      "sha256": "744fcd84ff34569290e71a8f3db34225472b8c7d012e1eaa62f0174e99a0692e"
+    },
+    {
+      "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
+      "sha256": "98ef377021fda5d9d4ec98f88d98f6641f9f63c41c2e963a214c4cfa38077626"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMapCreatureRules.h",
+      "sha256": "ad36fc00ed8164502f1c2200a5f2260a8510c2970579b4cb16f454c5b66823d9"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraSourceCreatureLevels.h",
+      "sha256": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
+      "sha256": "8721aa256082a77e0d193c03b7e731e4b6e4a0f1a6dfbcd9a67c6b9556a701f0"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
+      "sha256": "2e84ce2850406ba1bb079d00d70ed93ce752846b9559b607a36ede6325161818"
+    }
+  ]
+}

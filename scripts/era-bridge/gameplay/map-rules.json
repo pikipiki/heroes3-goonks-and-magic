@@ -11,18 +11,22 @@
   "completeRules": false,
   "implementedCodes": [
     114,
+    115,
     121,
     122,
-    124
+    124,
+    128
   ],
   "configuration": "mod/tum-era/content/config/wog-map-rules.json",
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "The other 17 map rules, source selection modes and the per-game menu.",
-    "Complete source random-stream comparison with the shipped ERA executable."
+    "The other 15 map rules, source selection modes and the per-game menu.",
+    "Complete source random-stream comparison with the shipped ERA executable.",
+    "Prototype-only recruitment previews for map-wide creature abilities."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
   "multipleCapitolsValidation": "outputs/era-gameplay/map-rules-native-capitols.json",
-  "doubleMovementValidation": "outputs/era-gameplay/map-rules-native-movement.json"
+  "doubleMovementValidation": "outputs/era-gameplay/map-rules-native-movement.json",
+  "creatureRulesValidation": "outputs/era-gameplay/map-rules-native-creatures.json"
 }
