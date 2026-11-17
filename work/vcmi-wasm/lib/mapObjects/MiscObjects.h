@@ -165,6 +165,7 @@ public:
 	std::shared_ptr<MineInstanceConstructor> getResourceHandler() const;
 private:
 	using CArmedInstance::CArmedInstance;
+	void setPropertyDer(ObjProperty what, ObjPropertyID identifier) override;
 
 	void onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstance * h) const override;
 	void battleFinished(IGameEventCallback & gameEvents, const CGHeroInstance *hero, const BattleResult &result) const override;

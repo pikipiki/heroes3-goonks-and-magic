@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "mithril-native-town-sieges",
   "completeRules": false,
-  "engineSha256": "4eb991d6131cac4ce8d3aa3ce6bebe82bb3f1c313a037c0c3bffbb8993b9b605",
+  "engineSha256": "75e5eba7636b070a36f169ea80dc2302e1ed9896b5f345ce46d33bb7a28225a2",
   "scenarios": [
     "town-siege-terrain-choice-0",
     "town-siege-terrain-choice-1",
@@ -20,7 +20,7 @@
   "sourceBindings": [
     {
       "file": "docs/era-gameplay-port.md",
-      "sha256": "3c974e37c70ddcc30dbfd55c3a924963dac2d55fd807f87ea64bdbae850db44c"
+      "sha256": "c926221303d855fcf8997cad8d240c587ef6ed036487503a8491a30a7b1bd64f"
     },
     {
       "file": "mod/tum-era/content/config/henchmen-settings.json",
@@ -44,7 +44,7 @@
     },
     {
       "file": "scripts/era-bridge/gameplay/mithril.json",
-      "sha256": "7941bdc58644417469d02305d5bcf8851a0651b1005990484fa506f5b9ffb32e"
+      "sha256": "405b62a70ddb7e3c6e68f32d7dc179c76ccb4fdd3b9804dd61f0868591e798aa"
     },
     {
       "file": "tests/era-henchmen-contract.test.mjs",
@@ -56,7 +56,7 @@
     },
     {
       "file": "tests/mithril-enhancements.test.mjs",
-      "sha256": "f290ffebd9a9fe3ada91cd551b55a891e024ead900774fcc895ef5ee88ff17f2"
+      "sha256": "f0e86e5ff9524277d54f2dec5ac7253026b0e23e0d9af3b5b59adece05d7d8c2"
     },
     {
       "file": "tests/native/EraMithrilRules.test.cpp",
@@ -68,7 +68,7 @@
     },
     {
       "file": "web/mithril-enhancements.mjs",
-      "sha256": "ddee317788a450e9c2691aea1fe61147ded1aae6cb6082619f0c4751d0ba3510"
+      "sha256": "d1238a526df2b54314f7659b3aecb00e5e8bb93870cbae23a926b2f4e151c64d"
     },
     {
       "file": "web/mobile.css",
@@ -84,7 +84,7 @@
     },
     {
       "file": "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs",
-      "sha256": "44439c14a6d737d82fa752ed8c76bb89ec749d4e2c0bdd9866f4db93c40cb3f9"
+      "sha256": "82265263f75aefead20847ff329b1a99eebd0ab871f113f25dbea28360f890f5"
     },
     {
       "file": "work/vcmi-wasm/client/ClientNetPackVisitors.h",
@@ -92,7 +92,7 @@
     },
     {
       "file": "work/vcmi-wasm/client/MobileBridge.cpp",
-      "sha256": "179baef6cab444789470a43e36aca4ce606d4d2a1b52149d63baab8f9614e9c4"
+      "sha256": "564a683902d3170a58948bb1f2766774e8da2695e187d79e1acdb68727cc94e8"
     },
     {
       "file": "work/vcmi-wasm/client/NetPacksClient.cpp",
@@ -156,7 +156,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilModel.h",
-      "sha256": "70739514591f5c3d1167f1c958ee30d3f3647e270f1141ecb734e11507c23635"
+      "sha256": "7c98e5192457ed413fc8bb38b362312947843a20518a34f72fdcdd9d679783aa"
     },
     {
       "file": "work/vcmi-wasm/lib/era/EraMithrilRules.h",
@@ -168,7 +168,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp",
-      "sha256": "d01201f07af2f7b4f6b7185627c74e5d117aeadf24b70f42ea67e492e8b86a79"
+      "sha256": "1f753604fea1ab692764deaab269e41e3bc0989b70553ca398ce3eca93c13fab"
     },
     {
       "file": "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h",
@@ -192,7 +192,7 @@
     },
     {
       "file": "work/vcmi-wasm/lib/mapObjects/MiscObjects.cpp",
-      "sha256": "92b32a194721d747bb3c97c00359917421ae5340edf1d23587d31d0c14bcfcb4"
+      "sha256": "71d4e6a914834098d1973039e496a72dae64b90dbfceab23a0f8a11f1df28ea1"
     },
     {
       "file": "work/vcmi-wasm/lib/mapping/CMap.h",
@@ -244,7 +244,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/era/EraMithrilRuntime.h",
-      "sha256": "c5744008e4edf915503ba096a08af1d20b650c20886f0a1d4e48b2af44d53ccf"
+      "sha256": "8b59cfe69fa48959f7696ce3c1361ba8a2d8f3fd3e7aa40fee2b70c3b34072bf"
     },
     {
       "file": "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp",
@@ -252,7 +252,7 @@
     },
     {
       "file": "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp",
-      "sha256": "fde405bd97c7b44a790b2dfca1053a4fb3e2f6e61fd3f8e07b1a1c8560fb99fa"
+      "sha256": "f1ae89e2b073f7e37b6d5311d59d22bdef02d0f953950673edb4341199716b18"
     },
     {
       "file": "work/vcmi-wasm/server/queries/MapQueries.cpp",
@@ -277,6 +277,26 @@
     {
       "file": "work/vcmi-wasm/config/battlefields.json",
       "sha256": "79436f8d727d3a4511124696c62ebe1c1949efedfae100db998795eea05ec930"
+    },
+    {
+      "file": "mod/tum-era/content/config/wog-map-rules.json",
+      "sha256": "b558f469f41ad875452ae80e32e139a921ece1d4a184c4bc9ae24cdfb8b723ff"
+    },
+    {
+      "file": "scripts/era-bridge/gameplay/map-rules.json",
+      "sha256": "918c7ff68123b5d7a4bb5a8fcab798bd86822238d4e8bbbb5cae6e555d3bdedd"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraMapRulesModel.h",
+      "sha256": "0d3b9490d4ab8a854e11eb95d9b6598429f4746dda95311c13632d2c56587e76"
+    },
+    {
+      "file": "work/vcmi-wasm/server/era/EraMapRulesRuntime.h",
+      "sha256": "072b94d566566deff7bd87f38dda626ba8cd347adb89c3690dcf4922486be4be"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/networkPacks/ObjProperty.h",
+      "sha256": "503babdf68710387f4c1a9461254ea12429209dceaa8737f6ff09f67588e9f48"
     }
   ]
 }

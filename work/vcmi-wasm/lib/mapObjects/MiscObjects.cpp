@@ -108,6 +108,18 @@ void CGMine::onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstance *
 	flagMine(gameEvents, h->tempOwner);
 }
 
+void CGMine::setPropertyDer(ObjProperty what, ObjPropertyID identifier)
+{
+    if(what==ObjProperty::ERA_MINE_RESOURCE)
+    {
+        const auto resource=identifier.getNum();
+        if(resource<0||resource>6)throw std::runtime_error("Invalid WoG mine resource");
+        producedResource=GameResID(resource);
+        producedQuantity=resource==6?1000:(resource==0||resource==2?2:1);
+    }
+    else CArmedInstance::setPropertyDer(what,identifier);
+}
+
 void CGMine::initObj(IGameRandomizer & gameRandomizer)
 {
 	if(isAbandoned())
@@ -160,7 +172,7 @@ ResourceSet CGMine::dailyIncome() const
 	for (GameResID k : LIBRARY->resourceTypeHandler->getAllObjects())
 		result[k] += valOfBonuses(BonusType::GENERATE_RESOURCE, BonusSubtypeID(k));
 
-	result[producedResource] += defaultResProduction();
+	result[producedResource] += producedQuantity;
 	if(era_compat::mithril::mineActive(*cb,id))result[producedResource]*=2;
 
 	const auto & playerSettings = cb->getPlayerSettings(getOwner());

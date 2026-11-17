@@ -18,13 +18,14 @@ const report={scope:'mithril-sites',completeRules:false,engineSha256:sha(path.jo
 const testDifficulty=readJsonc('work/vcmi-wasm/config/difficulty.json');
 const testMarkets=readJsonc('work/vcmi-wasm/config/objects/markets.json');
 const testShrines=readJsonc('work/vcmi-wasm/config/objects/shrine.json');
+const testModdables=readJsonc('work/vcmi-wasm/config/objects/moddables.json');
 for(const group of Object.values(testDifficulty))for(const rule of Object.values(group))if(rule.resources)rule.resources.mithril=100;
 let page;
 const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false}={}){
+function fixture({reroll=null,siege=false,changingMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -57,6 +58,7 @@ site('mithrilUniversity','university','object',8,12)
 site('mithrilShipyard','shipyard','object',13,13,'red')
 site('mithrilPortal','monolithOneWayEntrance','monolith1',8,10)
 site('mithrilPortalExit','monolithOneWayExit','monolith1',16,16)
+if opts['changingMine']:site('mithrilChanging','mine','crystalCavern',15,11,'red')
 if opts['siege']:
  import copy
  objects=objects[:3]
@@ -81,10 +83,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege})]);
+`,JSON.stringify({reroll,siege,changingMine})]);
 }
 
-async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,...options}={}){
+async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,...options}={}){
  page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -95,7 +97,9 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
  if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
  const shrines=preserveRewards?structuredClone(testShrines):null;
  if(shrines)shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.rewards[0].resources={gold:{min:1001,max:9999}};
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines})=>{
+ const moddables=options.changingMine?structuredClone(testModdables):null;
+ if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,moddables,weeklyMines})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -108,11 +112,14 @@ async function boot({save,enabled=true,henchmen=false,funds=100,preserveRewards=
     value.FS.writeFile('/config/difficulty.json',JSON.stringify(difficulty));
     if(markets)value.FS.writeFile('/config/objects/markets.json',JSON.stringify(markets));
     if(shrines)value.FS.writeFile('/config/objects/shrine.json',JSON.stringify(shrines));
+    if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
+    const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{122:weeklyMines}}));
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines});
+ },{enabled,henchmen,difficulty,markets,shrines,moddables,weeklyMines});
  await page.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done'),null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -180,6 +187,28 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES==='weekly-mines'){
+  await boot({weeklyMines:true,changingMine:true});let data=await panel();
+  const gold=data.offers.find(row=>row.id===3),ore=data.offers.find(row=>row.id===4);assert(gold&&ore);
+  assert.equal(gold.cost,5);assert.equal(ore.cost,1);assert(gold.protection&&ore.protection);assert.equal(gold.dailyIncome,1000);
+  assert.equal(data.offers.find(row=>row.x===15&&row.y===11).dailyIncome,123);await buy(ore);
+  assert.equal((await state()).mithril.offers.find(row=>row.id===ore.id).dailyIncome,2);
+  await nextDay();await panel();assert.equal((await state()).mithril.offers.find(row=>row.id===ore.id).days,6);
+  await page.locator('[data-mithril-close]').tap();let save=[...await readCompletedNativeSave(page,command,{tag:819})];await page.close();
+  await boot({save,weeklyMines:false,changingMine:true});data=await panel();assert(data.offers.find(row=>row.id===ore.id).active);assert(data.offers.find(row=>row.id===gold.id).protection);
+  report.scenarios.push('weekly-mine-rule-and-protection-frozen-in-native-save');
+  for(let day=3;day<=7;++day){await nextDay();await panel();assert.equal((await state()).day,day);}
+  await buy((await state()).mithril.offers.find(row=>row.id===gold.id));
+  assert.equal((await state()).mithril.offers.find(row=>row.id===gold.id).days,1);
+  await nextDay();data=await panel();assert.equal((await state()).day,8);
+  for(const previous of [gold,ore]){const mine=data.offers.find(row=>row.id===previous.id);assert(mine&&!mine.active);assert.equal(mine.resource,previous.resource);assert.equal(mine.dailyIncome,previous.dailyIncome);}
+  report.scenarios.push('mithril-protects-mines-until-next-monday-without-doubling-income');
+  const changed=data.offers.find(row=>row.x===15&&row.y===11);assert(changed);assert([1,3,5].includes(changed.cost));assert.equal(changed.dailyIncome,changed.cost===5?1000:changed.cost===1?2:1);
+  report.scenarios.push('weekly-mine-reroll-replicates-resource-and-resets-standard-production');
+  await page.locator('[data-mithril-close]').tap();save=[...await readCompletedNativeSave(page,command,{tag:820})];await page.close();
+  await boot({save,weeklyMines:false,changingMine:true});data=await panel();const restored=data.offers.find(row=>row.id===changed.id);assert.equal(restored.resource,changed.resource);assert.equal(restored.dailyIncome,changed.dailyIncome);
+  report.scenarios.push('changed-mine-resource-and-production-survive-native-save-reload');await page.close();
+ }
  if(process.env.CASES?.startsWith('siege')){
   const choice=Number(process.env.SIEGE_CHOICE||0);await boot({siege:true});
   if(process.env.SIEGE_PREVIOUS!==undefined){const prior=(await panel()).offers.find(row=>row.kind===8&&row.choice===Number(process.env.SIEGE_PREVIOUS));assert(prior);await buy(prior);}

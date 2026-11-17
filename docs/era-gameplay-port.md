@@ -172,6 +172,18 @@ les Plaines magiques après sauvegarde, puis vérifie leurs sorts de masse dans
 le siège suivant. Ces preuves figurent dans
 `outputs/era-gameplay/mithril-native-sieges.json`.
 
+La règle WoG 122 change la ressource produite par les mines chaque lundi à
+partir du jour 8. Elle possède un réglage conservé dans la sauvegarde ; sa
+valeur livrée est désactivée. Lorsqu'elle est active, le mithril protège la mine
+jusqu'au prochain changement hebdomadaire, avec les coûts source 1/3/1/3/3/3/5.
+Cette protection n'augmente pas la production. Quatre scénarios vérifient le
+réglage conservé malgré un changement de configuration, la protection achetée
+le dimanche, la consommation de cette protection le lundi, la production
+standard après tirage et la reprise des mines modifiées.
+
+La règle 114 est distincte : elle crée des Plaines magiques chaque jour près
+des héros. Son interaction avec l'amélioration des villes reste à porter.
+
 - Parcours de mort en combat, transferts de campagne et anciennes sauvegardes.
 - Choix/équipement des bannières et interactions avec les autres capacités.
 - Progression de troupe de l'IA et interface classique.

@@ -27,7 +27,11 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     next["revision"].Integer()=request.revision+1;
     auto & target=next["objects"][std::to_string(object->id.getNum())];
     std::vector<int3> preview;
-    if(proposed.kind==MINE)target["mineUntil"].Integer()=cb.getDate(Date::DAY)+7;
+    if(proposed.kind==MINE)
+    {
+        if(map_rules::weeklyMines(cb))target["mineProtected"].Bool()=true;
+        else target["mineUntil"].Integer()=cb.getDate(Date::DAY)+7;
+    }
     else if(proposed.kind==MILL)target["mill"].Bool()=true;
     else if(proposed.kind==UNIVERSITY)target["university"].Bool()=true;
     else if(proposed.kind==SHRINE||proposed.kind==HUT)

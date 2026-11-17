@@ -1,0 +1,41 @@
+#pragma once
+#include "../CGameHandler.h"
+#include "../../lib/era/EraMapRulesModel.h"
+#include "../../lib/era/EraMithrilModel.h"
+#include "../../lib/filesystem/Filesystem.h"
+#include "../../lib/networkPacks/EraGameplayPacks.h"
+
+namespace era_compat::map_rules
+{
+inline void initializeSettings(CGameHandler & gh,bool firstTurn)
+{
+    if(state(gh.gameInfo()).isStruct())return;
+    const auto path=JsonPath::builtin("config/wog-map-rules");
+    JsonNode configured;
+    if(firstTurn&&CResourceHandler::get()->existsResource(path))configured=JsonNode(path)["mapRules"];
+    EraGameplayChange packet;packet.system="mapRules";
+    packet.state["rules"]["122"].Bool()=configured["122"].Bool();
+    gh.sendAndApply(packet);
+}
+inline void onNewDay(CGameHandler & gh)
+{
+    const auto & cb=gh.gameInfo();const int day=cb.getDate(Date::DAY);
+    if(!weeklyMines(cb)||day<=1||(day-1)%7)return;
+    auto enhancements=mithril::state(cb);bool protectionUsed=false;
+    for(const auto * mine:cb.gameState().getMap().getObjects<CGMine>())
+    {
+        if(mine->ID!=Obj::MINE)continue;
+        auto & saved=enhancements["objects"][std::to_string(mine->id.getNum())];
+        if(mithril::enabled(cb)&&saved["mineProtected"].Bool())
+        {
+            saved["mineProtected"].Bool()=false;protectionUsed=true;continue;
+        }
+        gh.setObjPropertyID(mine->id,ObjProperty::ERA_MINE_RESOURCE,NumericID(gh.getRandomGenerator().nextInt(0,6)));
+    }
+    if(protectionUsed)
+    {
+        enhancements["revision"].Integer()+=1;
+        EraGameplayChange packet;packet.system="mithril";packet.state=std::move(enhancements);gh.sendAndApply(packet);
+    }
+}
+}

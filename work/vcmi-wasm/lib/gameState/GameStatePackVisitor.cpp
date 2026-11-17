@@ -1661,7 +1661,7 @@ void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack
 
 void GameStatePackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
 {
-    if((pack.system!="mithril"&&pack.system!="henchmen")||!pack.state.isStruct())
+    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules")||!pack.state.isStruct())
         throw std::runtime_error("Invalid ERA gameplay state packet");
     gs.getMap().eraGameplayState[pack.system]=pack.state;
 }

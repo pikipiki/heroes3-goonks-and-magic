@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "system": "WoG map rules",
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+  },
+  "enabled": false,
+  "completeRules": false,
+  "implementedCodes": [
+    122
+  ],
+  "configuration": "mod/tum-era/content/config/wog-map-rules.json",
+  "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
+  "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
+  "remaining": [
+    "The other 20 map rules, source selection modes and the per-game menu.",
+    "Complete source random-stream comparison with the shipped ERA executable."
+  ]
+}

@@ -1432,15 +1432,17 @@ void publishMobileState(){
      {
      const auto offer=era_compat::mithril::offer(*p->cb,*object,p->playerID,choice);
      const bool activeMine=era_compat::mithril::mineActive(*p->cb,object->id);
+     const bool protectedMine=era_compat::mithril::mineProtected(*p->cb,object->id);
      const bool activeMill=era_compat::mithril::millActive(*p->cb,object->id);
      const bool activeUniversity=era_compat::mithril::universityActive(*p->cb,object->id);
-     if(!offer.available()&&!activeMine&&!activeMill&&!activeUniversity)continue;
+     if(!offer.available()&&!activeMine&&!protectedMine&&!activeMill&&!activeUniversity)continue;
      JsonNode row;row["id"].Integer()=object->id.getNum();row["name"].String()=object->getObjectName();
-     row["kind"].Integer()=activeMine?era_compat::mithril::MINE:activeMill?era_compat::mithril::MILL:activeUniversity?era_compat::mithril::UNIVERSITY:offer.kind;
+     row["kind"].Integer()=activeMine||protectedMine?era_compat::mithril::MINE:activeMill?era_compat::mithril::MILL:activeUniversity?era_compat::mithril::UNIVERSITY:offer.kind;
      row["choice"].Integer()=choice;
      row["cost"].Integer()=offer.cost;row["available"].Bool()=p->makingTurn&&offer.available()&&amount>=offer.cost;
-     row["active"].Bool()=activeMine||activeMill||activeUniversity;
-     row["days"].Integer()=activeMine?era_bridge::mithril::daysRemaining(p->cb->getDate(Date::DAY),era_compat::mithril::entry(*p->cb,object->id)["mineUntil"].Integer()):0;
+     row["active"].Bool()=activeMine||protectedMine||activeMill||activeUniversity;
+     row["protection"].Bool()=object->ID==Obj::MINE&&era_compat::map_rules::weeklyMines(*p->cb);
+     row["days"].Integer()=protectedMine?7-(p->cb->getDate(Date::DAY)-1)%7:activeMine?era_bridge::mithril::daysRemaining(p->cb->getDate(Date::DAY),era_compat::mithril::entry(*p->cb,object->id)["mineUntil"].Integer()):0;
      row["x"].Integer()=object->visitablePos().x;row["y"].Integer()=object->visitablePos().y;
      if(const auto * mine=dynamic_cast<const CGMine *>(object.get()))
      {

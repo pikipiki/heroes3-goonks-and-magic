@@ -7,7 +7,7 @@ export function renderMithrilOffers(data,{pending=false,canAct=false}={}){
  const terrains=fr?['Terres saintes','Trèfles','Brouillard maléfique','Champs de feu','Lacs lucides','Nuages magiques','Rocailles','Plaines magiques','Terre maudite']:['Holy Ground','Clover Field','Evil Fog','Fiery Fields','Lucid Pools','Magic Clouds','Rocklands','Magic Plains','Cursed Ground'];
  return `<p>${data.amount??0} Mithril</p><div class="mithril-offers">${(data.offers||[]).map(offer=>`<article>
  <h3>${esc(offer.name)} <small>(${offer.x}, ${offer.y})</small></h3>
- <p>${esc(labels[offer.kind]||offer.description||'')}${offer.kind===8?` · ${terrains[offer.choice??0]}`:''}${upgradeText(offer)?` · ${esc(upgradeText(offer))}`:''}</p>
+ <p>${esc(offer.kind===0&&offer.protection?(fr?'Protéger contre le prochain changement hebdomadaire de ressource':'Protect against the next weekly resource change'):labels[offer.kind]||offer.description||'')}${offer.kind===8?` · ${terrains[offer.choice??0]}`:''}${upgradeText(offer)?` · ${esc(upgradeText(offer))}`:''}</p>
  ${offer.current?`<p>${fr?'Actuellement':'Current'} : ${esc(offer.current)}</p>`:''}
  ${offer.dailyIncome!==undefined?`<p>${offer.dailyIncome} ${esc(offer.resource)} / ${fr?'jour':'day'}</p>`:''}
  ${offer.active?`<p>${offer.days?`${offer.days} ${fr?'jours restants':'days remaining'}`:(fr?'Amélioré':'Enhanced')}</p>`:`<button data-mithril-buy="${offer.id}" data-mithril-choice="${offer.choice??0}" ${pending||!canAct||!offer.available?'disabled':''}>${fr?'Améliorer':'Enhance'} · ${offer.cost} Mithril</button>`}

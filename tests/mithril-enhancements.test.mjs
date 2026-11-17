@@ -10,6 +10,9 @@ test('Mithril site list escapes names and keeps server eligibility authoritative
  const conflux=renderMithrilOffers({offers:[{id:7,kind:1,upgrade:'old name',upgrades:['Storm Elementals','Ice Elementals','Energy Elementals','<Magma>'],cost:4,available:true}]},{canAct:true});
  for(const name of ['Storm Elementals','Ice Elementals','Energy Elementals','&lt;Magma&gt;'])assert(conflux.includes(name));
  assert(!conflux.includes('old name'));assert(!conflux.includes('<Magma>'));
+ const protectedMine=renderMithrilOffers({offers:[{id:3,kind:0,protection:true,cost:5,available:true}]},{canAct:true});
+ assert.match(protectedMine,/prochain changement hebdomadaire|next weekly resource change/);
+ assert.doesNotMatch(protectedMine,/Production doublée|Double production/);
 });
 test('Active mines display remaining duration without another purchase',()=>{
  const html=renderMithrilOffers({amount:5,offers:[{id:1,kind:0,active:true,days:7}]},{canAct:true});

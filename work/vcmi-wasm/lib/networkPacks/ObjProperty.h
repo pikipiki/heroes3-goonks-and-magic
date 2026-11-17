@@ -51,7 +51,8 @@ enum class ObjProperty : int8_t
 
 	// Appended: preserve all existing wire identifiers.
 	ERA_CAVE_TOWN_FACTION,
-	ERA_CAVE_TOWN_DAMAGE
+	ERA_CAVE_TOWN_DAMAGE,
+	ERA_MINE_RESOURCE
 };
 
 class NumericID : public StaticIdentifier<NumericID>

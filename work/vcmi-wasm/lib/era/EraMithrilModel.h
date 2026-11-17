@@ -1,5 +1,6 @@
 #pragma once
 #include "EraMithrilRules.h"
+#include "EraMapRulesModel.h"
 #include "../IGameSettings.h"
 #include "../callback/IGameInfoCallback.h"
 #include "../gameState/CGameState.h"
@@ -41,7 +42,9 @@ inline GameResID resource()
     return GameResID::NONE;
 }
 inline bool mineActive(const IGameInfoCallback & cb,ObjectInstanceID object)
-{return enabled(cb)&&era_bridge::mithril::mineActive(cb.getDate(Date::DAY),entry(cb,object)["mineUntil"].Integer());}
+{return enabled(cb)&&!map_rules::weeklyMines(cb)&&era_bridge::mithril::mineActive(cb.getDate(Date::DAY),entry(cb,object)["mineUntil"].Integer());}
+inline bool mineProtected(const IGameInfoCallback & cb,ObjectInstanceID object)
+{return enabled(cb)&&map_rules::weeklyMines(cb)&&entry(cb,object)["mineProtected"].Bool();}
 inline bool millActive(const IGameInfoCallback & cb,ObjectInstanceID object)
 {return enabled(cb)&&entry(cb,object)["mill"].Bool();}
 inline bool universityActive(const IGameInfoCallback & cb,ObjectInstanceID object)
@@ -87,8 +90,8 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
     }
     if(const auto * mine=dynamic_cast<const CGMine *>(&object))
     {
-        if(!object.getOwner().isValidPlayer()||!team||mineActive(cb,object.id))return result;
-        result.kind=MINE;result.cost=era_bridge::mithril::mineCost(mine->producedResource.getNum());return result;
+        if(!object.getOwner().isValidPlayer()||!team||mineActive(cb,object.id)||mineProtected(cb,object.id))return result;
+        result.kind=MINE;result.cost=era_bridge::mithril::mineCost(mine->producedResource.getNum(),map_rules::weeklyMines(cb));return result;
     }
     if(const auto * dwelling=dynamic_cast<const CGDwelling *>(&object))
     {
