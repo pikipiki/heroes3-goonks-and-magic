@@ -100,7 +100,10 @@ void NewTurnProcessor::applyTimeEvent(const CMapEvent & event,PlayerColor color)
 		if(objectInstance != nullptr)
 			gameHandler->removeObject(objectInstance, PlayerColor::NEUTRAL);
 	}
-	gameHandler->sendAndApply(iw); //show dialog
+	// A suppressed source GE marker has already executed its script. Keep
+	// real messages and resource rewards, without adding an empty window.
+    if(!iw.text.toString().empty()||!iw.components.empty()||event.message.toString().empty())
+        gameHandler->sendAndApply(iw); //show dialog
 }
 
 void NewTurnProcessor::handleTownEvents(const CGTownInstance * town)

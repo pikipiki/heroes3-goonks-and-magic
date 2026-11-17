@@ -29,13 +29,13 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false}={}){
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
 with zipfile.ZipFile('maps/000-Goonk.vmap') as archive: entries={n:archive.read(n) for n in archive.namelist()}
 objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
-if opts['scriptTown']:
+if opts['scriptTown'] or opts['scriptAI']:
  import copy
  town=next(o for o in objects if o['instanceName']=='goonkTown');castle=next(o for o in objects if o['instanceName']=='enemyTown')
  town.update({'subtype':'core:castle','x':10,'template':copy.deepcopy(castle['template']),'options':{'owner':'red','name':'Goonkbourg','hasFort':True,'army':[],'buildings':{'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']}}})
@@ -57,6 +57,7 @@ for o in objects:
   if opts['blockFixture']: o['options']['artifacts']={'misc1':'core:shacklesOfWar'}
   if opts['fullArmy']: o['options']['army'] += [{'type':'core:'+name,'amount':4} for name in ['archer','griffin','monk','pikeman','swordsman']]
   if opts['soloArmy']: o['options']['army']=[{'type':'core:peasant','amount':1}]
+  if opts['scriptAI']: o['options'].update({'army':[{'type':'core:peasant','amount':1}],'artifacts':{'misc1':'core:shacklesOfWar'}})
 if opts['reserveHero']:
  import copy
  reserve=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
@@ -68,6 +69,9 @@ if opts['enemyHero']:
  enemy=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'))
  enemy.update({'instanceName':'enemyHenchmanHero','x':10})
  enemy['options'].update({'type':'core:orrin','owner':'blue','army':[{'type':'core:peasant','amount':5},{'type':'core:archer','amount':1}]})
+ if opts['scriptAI']:
+  enemy['options'].update({'patrolRadius':0,'army':[{'type':'core:archangel','amount':5},{'type':'core:archer','amount':10}],
+   'henchman':{'type':'core:archer','experience':100,'stackExperience':0,'alive':True,'declined':False,'banner':-1}})
  if opts['aiTown']:
   enemy.update({'x':29,'y':30})
   enemy['options'].update({'patrolRadius':2,'spellBook':[],'henchman':{'type':'core:peasant','experience':100,'stackExperience':2500,'alive':False,'declined':False,'banner':8}})
@@ -82,9 +86,16 @@ else:
   guard=copy.deepcopy(objects[-1]);guard.update({'instanceName':'henchmenSecondGuard','x':12});objects.append(guard)
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation'
-if opts['scriptTown']:
+if opts['scriptTown'] or opts['scriptAI']:
  header['players']['red']['allowedFactions']={'anyOf':['core:castle']};header['players']['red']['mainTown']['x']=10
  header['events']=[{'name':'private companion town continuation','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native companion town continuation'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}]
+ if opts['scriptAI']:
+  header['events'][0]['message']['exactStrings']=['ZVSE private native companion AI reward']
+  header['events'].append({'name':'transfer winning AI hero for inspection','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],
+   'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+  for day in [3,4]:
+   header['events'].append({'name':'owner list transition '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],
+    'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Henchmen native validation';entries[name]=json.dumps(text).encode()
@@ -93,10 +104,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
 }
 
-async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,...options}={}){
+async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES);
  // The packaged site's policy whitelists production domains, not localhost.
@@ -151,7 +162,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,scriptProgram:options.scriptTown?townVisitProgram():null});
+ },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -223,6 +234,11 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='ai-shared-reward'){
+  const {runAISharedReward}=await import('./wog-henchmen-ai-reward-cases.mjs');
+  await runAISharedReward({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:938})});
+ }
  if(['town-resurrection','town-resurrection-desktop','town-resurrection-ai','town-resurrection-foreign','town-resurrection-scripted'].includes(process.env.CASES)){
   const {runTownResurrection}=await import('./wog-henchmen-town-resurrection-cases.mjs');
   await runTownResurrection({boot,sheet,state,command,wait,approachEnemy,page:()=>page,report,output,

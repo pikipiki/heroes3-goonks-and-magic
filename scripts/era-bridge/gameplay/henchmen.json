@@ -240,11 +240,11 @@
   "unresolved": [
     "Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.",
     "Per-game JSON settings support numbers, booleans and TRUE/FALSE strings; arbitrary ERM constant names require the shared symbol resolver.",
-    "Reward: source uses i^battleExpAIPct^ while configuration defines i^hench_battleExpAIPct^; no substitution is admitted.",
+    "AI rewards read the active source VM integer i^battleExpAIPct^; missing, signed, overflow and saved values pass native scenarios. The distinct prefixed configuration and paired string are not substituted; complete profile namespace integration remains unadmitted.",
     "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",
-    "Native save/load, mobile core and previous Henchmen-engine saves pass; campaign transfer and older pre-Henchmen saves remain to validate.",
+    "Native save/load, legacy choice migration and campaign crossover/settings scenarios pass; campaign restart, reserved/unplaced heroes and older campaign pools remain to validate.",
     "Army selection/replacement, resurrection and banner equipment are connected; the banner native validation report records the remaining battle and campaign cases.",
     "Battlefield actor, stats, spells and level-scaled guardians are connected; full death/action interactions remain incomplete.",
-    "Classic pointer menus and mobile touch controls pass dedicated scenarios; full AI progression, inventory/spell edge cases and whole-pack native scenarios remain unvalidated."
+    "Classic left/right pointer menus, mobile touch controls and shared-VM AI rewards pass dedicated scenarios; battle-start hero XP capture, zero-XP transfer-off outcomes, remaining inventory/spell cases and whole-pack native scenarios remain unvalidated."
   ]
 }

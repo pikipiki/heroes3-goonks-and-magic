@@ -1,5 +1,6 @@
 #pragma once
 #include "../CGameHandler.h"
+#include "SourceCampaignProcessor.h"
 #include "../../lib/era/EraHenchmanModel.h"
 #include "../../lib/networkPacks/HenchmanPacks.h"
 #include "../../lib/networkPacks/StackLocation.h"
@@ -200,7 +201,10 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,Ba
         if(!draw&&side==winner&&(update.alive||ai)&&gained>0)
         {
             const auto root=era_bridge::henchmen::heroExperienceRoot(static_cast<int32_t>(std::min<int64_t>(gained,INT32_MAX)));
-            const int reward=era_bridge::henchmen::battleExperience(gh.getRandomGenerator().nextInt(rules.battleRandom),root,hero->level,ai,0,rules);
+            // The source reads the unprefixed shared ERA cell. Its similarly
+            // named configuration value is a different cell, not a fallback.
+            const auto aiPercent=ai?gh.sourceCampaigns->namedInteger("battleExpAIPct"):0;
+            const int reward=era_bridge::henchmen::battleExperience(gh.getRandomGenerator().nextInt(rules.battleRandom),root,hero->level,ai,aiPercent,rules);
             update.experience=era_bridge::henchmen::add(update.experience,reward);
             const auto & stack=*hero->henchman.stack;
             if(update.alive&&rules.stackExperience)

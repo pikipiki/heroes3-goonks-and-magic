@@ -106,8 +106,10 @@ Deux points empêchent encore de présenter ces calculs comme un système comple
    de produire des preuves ; elle n'est pas comptée comme une validation.
 2. Le script de récompense lit `i^battleExpAIPct^`, tandis que son réglage définit
    `i^hench_battleExpAIPct^`. Aucune définition du premier nom n'a été trouvée dans
-   les cinq packs récupérés. Le port ne remplace pas silencieusement l'un par
-   l'autre ; le multiplicateur runtime reste une entrée explicite.
+   les cinq packs récupérés. Le moteur consulte maintenant la cellule entière
+   du VM source actif ; une cellule absente vaut zéro, sans substitution par le
+   réglage préfixé ni par la chaîne associée. L'intégration des profils complets
+   au même espace de variables reste à terminer.
 
 ## Noyau Henchmen vérifié en jeu
 
@@ -237,6 +239,17 @@ de fenêtres du script original. Le clic droit réel et le changement de bonus
 passent ; tenir un artefact n'ouvre pas ce menu et ne l'équipe pas. Le dépôt
 tactile d'une bannière conserve son fonctionnement. Voir
 `scripts/era-bridge/gameplay/henchmen-context-native-validation.json`.
+
+Les victoires de l'IA vérifient maintenant la variable partagée de récompense :
+150 donne 150 XP avec une base contrôlée de 100 ; absence, valeur négative et
+débordement signé donnent zéro. Les noms sont insensibles à la casse ASCII,
+et les cellules entière et chaîne restent distinctes. La sauvegarde avant et
+après combat conserve le résultat. Un script peut aussi transférer, retirer et
+restituer le héros : sa liste est actualisée sans doublon, sa vue est révélée
+au nouveau propriétaire et les événements exécutables sans texte ni ressource
+n'ajoutent plus une fenêtre vide. Les téléportations originales restent
+fonctionnelles. L'ancien moteur conserve 100 XP au lieu de 250 dans le témoin.
+Voir `scripts/era-bridge/gameplay/henchmen-shared-reward-native-validation.json`.
 
 ## Raccordements et validations restant nécessaires
 

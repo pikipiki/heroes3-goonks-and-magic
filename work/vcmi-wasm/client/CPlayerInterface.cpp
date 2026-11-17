@@ -1396,6 +1396,13 @@ void CPlayerInterface::beforeObjectPropertyChanged(const SetObjectProperty * sop
 				adventureInt->onTownChanged(town);
 			}
 		}
+        else if(obj->ID==Obj::HERO&&obj->getOwner()==playerID
+            &&sop->identifier.as<PlayerColor>()!=playerID)
+        {
+            const auto * hero=static_cast<const CGHeroInstance *>(obj);
+            if(vstd::contains(localState->getWanderingHeroes(),hero))localState->removeWanderingHero(hero);
+            adventureInt->onHeroChanged(hero);
+        }
 	}
 }
 
@@ -1417,6 +1424,12 @@ void CPlayerInterface::objectPropertyChanged(const SetObjectProperty * sop)
 				adventureInt->onTownChanged(town);
 			}
 		}
+        else if(obj->ID==Obj::HERO&&obj->getOwner()==playerID)
+        {
+            const auto * hero=static_cast<const CGHeroInstance *>(obj);
+            if(!hero->isGarrisoned()&&!vstd::contains(localState->getWanderingHeroes(),hero))localState->addWanderingHero(hero);
+            adventureInt->onHeroChanged(hero);
+        }
 
 		//redraw minimap if owner changed
 		std::set<int3> pos = obj->getBlockedPos();

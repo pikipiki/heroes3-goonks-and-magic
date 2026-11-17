@@ -2005,7 +2005,15 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
  {
   require(c.selectors.size()==1,"Cave hero selector");const int selected=number(c.selectors[0]);const auto * h=op.code=="O"?hero(selected):ensureHero(selected);
   if(op.code=="O")
-  {arity(op,1);const int owner=value(h&&h->getOwner().isValidPlayer()?h->getOwner().getNum():-1,args[0]);if(!query(op)&&h)gh.setOwner(h,PlayerColor(owner));return Step::Continue;}
+  {
+   arity(op,1);const int owner=value(h&&h->getOwner().isValidPlayer()?h->getOwner().getNum():-1,args[0]);
+   if(!query(op)&&h)
+   {
+    const PlayerColor player(owner);gh.setOwner(h,player);
+    if(player.isValidPlayer())gh.changeFogOfWar(h->getSightCenter(),h->getSightRadius(),player,ETileVisibility::REVEALED);
+   }
+   return Step::Continue;
+  }
   require(h!=nullptr,"source hero missing for HE"+std::to_string(number(c.selectors[0]))+":"+op.code);
   if(op.code=="Y")
   {
@@ -2582,6 +2590,12 @@ bool SourceCampaignProcessor::demolitionFight(ObjectInstanceID hero,ObjectInstan
 void SourceCampaignProcessor::demolitionBattleEnding(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnding(attacker,defender,won);}
 void SourceCampaignProcessor::demolitionBattleEnded(ObjectInstanceID attacker,ObjectInstanceID defender,bool won){impl->demolitionBattleEnded(attacker,defender,won);}
 bool SourceCampaignProcessor::preservesAuthoredObjects(){impl->bind();return impl->active;}
+int32_t SourceCampaignProcessor::namedInteger(const std::string & name)
+{
+ impl->bind();if(!impl->active)return 0;
+ const auto found=impl->vm.associative.find(era_campaign::associativeName(name));
+ return found==impl->vm.associative.end()?0:found->second.integer;
+}
 bool SourceCampaignProcessor::onReady(PlayerColor player){return impl->onReady(player);}
 bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
 {

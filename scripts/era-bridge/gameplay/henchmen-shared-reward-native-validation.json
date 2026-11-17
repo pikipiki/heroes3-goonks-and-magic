@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "AI companion victory rewards read the shared source VM integer cell; live hero ownership transfer and suppressed empty executable-event messages; native save and source script regressions",
+  "engineSha256": "cc8d5983a0708e47721684c72768e59f38252ddbd0121653433973086fc02bf5",
+  "parentEngineSha256": "6a82a671abd9e8a519334ca773cf015b6128d339ac152eebd2c088723cddb931",
+  "source": {
+    "file": "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm",
+    "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+    "lines": "729-778",
+    "variable": "battleExpAIPct",
+    "distinctConfigurationVariable": "hench_battleExpAIPct"
+  },
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "c8fa742e2e0df5db662b454f58f3ef3005cb5f21c8f6e357c25b31afef51ca82",
+    "scripts/era-bridge/gameplay/henchmen.json": "9203baf6211b04302317586e66e267aa0a362b9d555624a88539192115cd2842",
+    "scripts/era-bridge/gameplay/henchmen.mjs": "a43ef27db0f0ec64f62510870cd0914904ff6a6f032b1a1dd780a05e9c2c37ed",
+    "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "488a0d387ab8e2557312c3efef3ef6c77ed2827512a09a7a2296c329f0a62662",
+    "work/vcmi-wasm/client/CPlayerInterface.cpp": "1af7e27414aec46052a1babf112a4b6d6cd74fc7f51ad867e83477718bd4e27b",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "07e45028612aebab6ba15e79312b44f41c19458730f93d19a4b06faa9022ab71",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "b95945c7de99d3ae8476e61f671e0e6a677ec7931fce510660943843ef5e1618",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "ad7a9b309c84b8aab088a30a7279045143f255489b3c24766497521b410b0aa1",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "f131a8e0a634aedc014a4ad38027274cf430d27c2c63fd7953412727b872d5ce"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "initialTargets": 14,
+    "finalTargets": 8,
+    "buildLogSha256": "c3c4ecc921f749570e3c412a0215ac8e3f59f1cacd8c769057ea801051270143",
+    "sourceBindingsSha256": "958eb7621506c05c84b046fa09b38720ff91aa2886645099e7816b39bee14436",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "nativeReport": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "cc8d5983a0708e47721684c72768e59f38252ddbd0121653433973086fc02bf5",
+    "scenarios": [
+      "AI-victory-shared-integer-missing-reward-0-ignores-prefixed-and-string-cells",
+      "AI-victory-shared-integer-150-reward-150-ignores-prefixed-and-string-cells",
+      "transferred-winning-hero-and-shared-variable-reward-survive-native-save-reload",
+      "script-owner-loss-return-and-repeated-same-owner-assignment-update-the-live-hero-list-without-empty-dialogs-or-duplicates",
+      "AI-victory-shared-integer--50-reward-0-ignores-prefixed-and-string-cells",
+      "AI-victory-shared-integer-2147483647-reward-0-ignores-prefixed-and-string-cells"
+    ],
+    "errors": []
+  },
+  "privatePrograms": {
+    "program-150.json": {
+      "fileSha256": "05faff2276d6cc42ef03fa40719efe88476088b78c1e49b18e8a5564a08eb93b",
+      "declaredProgramSha256": "2a1689480bcbd295029610e52f846f9bf109c5ce891d6b912a1890a6853cff0d"
+    },
+    "program-2147483647.json": {
+      "fileSha256": "551e42f24ee21f1d8386173e460824e055cfc62f58f5c7978ef2e40d93471903",
+      "declaredProgramSha256": "ec041b9851652ec65ea28182f46a952f92a4f71805df5c9d0658ea0ac2351555"
+    },
+    "program--50.json": {
+      "fileSha256": "ecbdd14cf343f10ff5b3d43edafba065763152ce85f60b8ff82aacf627f34347",
+      "declaredProgramSha256": "e9bd7f45aed0ce82f1f5f8b83c8239f4b3d94d567496c7c1dcb00db7e0655a4e"
+    },
+    "program-missing.json": {
+      "fileSha256": "afc59b0bf04928a06c83e8dc9533d501fd5455f4a39c10ab7f1fa0725790dee3",
+      "declaredProgramSha256": "ee9fd2b7c291017583ac27b212002d6726ce4215d74151a4f42fd789c6dc09ff"
+    }
+  },
+  "sourceRegression": {
+    "passed": true,
+    "scope": "Unchanged original FU16/FU19, macro bindings and GE1 army command on a private four-hero fixture; native flag1 relocation, source-ID downgrade and negative-type retention; not a campaign victory.",
+    "engine": {
+      "sha256": "cc8d5983a0708e47721684c72768e59f38252ddbd0121653433973086fc02bf5"
+    },
+    "originalBlocksSha256": "bf7e129fe99b86462e9d848cefb5d67b2f62b852ce01a2101c40db8671adf758",
+    "originalArmyResetSha256": "3dd62b05c854f4d11c564dbcb16668285b7cc2388a48eb03bedb1b5b5030946f",
+    "positions": [
+      [
+        14,
+        14,
+        0
+      ],
+      [
+        22,
+        22,
+        0
+      ],
+      [
+        71,
+        0,
+        0
+      ],
+      [
+        71,
+        71,
+        0
+      ]
+    ],
+    "armyChecks": {
+      "presentNightmareRetained": true,
+      "sourceEvenIdRetained": true,
+      "marksmanDowngradedToArcher": true,
+      "originalGE1ResetsOtherSlots": true
+    },
+    "saveSha256": "98f49a0fc7ac3cb97284448b74b050189cd993b441a9d19c9c9e61805b4fd99a",
+    "errors": []
+  },
+  "negativeControl": {
+    "engineSha256": "6a82a671abd9e8a519334ca773cf015b6128d339ac152eebd2c088723cddb931",
+    "expectedFailure": "Stored companion experience remains 100 instead of 250 after a 150-percent AI victory",
+    "logSha256": "82b6adf0dd15af472f83e55cd2797d40f35365353e873c542675da7972cf44eb",
+    "viewerWorkaround": "Historical ownership UI requires acknowledging its empty event window and reloading the native save; reward fields remain unchanged"
+  },
+  "remaining": [
+    "Battle-start hero experience snapshot and zero-XP campaignTransfer=false outcomes",
+    "Complete profile loading into the shared source VM namespace",
+    "Campaign restart and reserved/unplaced hero lifecycle",
+    "Remaining spell, inventory and battle death/action interactions",
+    "Original floating-point binary differential attestation"
+  ]
+}
