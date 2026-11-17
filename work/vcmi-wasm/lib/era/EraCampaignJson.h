@@ -21,12 +21,14 @@ inline era_campaign::Operand readOperand(const JsonNode&node,int depth=0)
 {
  using namespace era_campaign;if(depth>=32||!node.isStruct())throw std::runtime_error("Invalid campaign operand");Operand value;
  const auto kind=string(node["kind"]),access=string(node["access"]);
- if(kind=="default")value.kind=Kind::Default;else if(kind=="number")value.kind=Kind::Number;else if(kind=="string")value.kind=Kind::String;else if(kind=="macro")value.kind=Kind::Macro;else if(kind=="day")value.kind=Kind::Day;else if(kind=="variable")value.kind=Kind::Variable;else if(kind=="fast")value.kind=Kind::Fast;else throw std::runtime_error("Unknown campaign operand kind");
+ if(kind=="default")value.kind=Kind::Default;else if(kind=="number")value.kind=Kind::Number;else if(kind=="string")value.kind=Kind::String;else if(kind=="macro")value.kind=Kind::Macro;else if(kind=="day")value.kind=Kind::Day;else if(kind=="variable")value.kind=Kind::Variable;else if(kind=="fast")value.kind=Kind::Fast;else if(kind=="named")value.kind=Kind::Named;else throw std::runtime_error("Unknown campaign operand kind");
  if(access=="read")value.access=Access::Read;else if(access=="write")value.access=Access::Write;else if(access=="compare")value.access=Access::Compare;else if(access=="relative")value.access=Access::Relative;else throw std::runtime_error("Unknown campaign operand access");
  if(!node["comparison"].isNull())value.comparison=string(node["comparison"]);
+ if(!node["modifier"].isNull())value.modifier=string(node["modifier"]);
  if(value.kind==Kind::Number)value.number=integer(node["number"]);
  if(value.kind==Kind::String)value.text=string(node["text"]);
- if(value.kind==Kind::Macro||value.kind==Kind::Fast)value.name=string(node["name"]);
+ if(value.kind==Kind::Macro||value.kind==Kind::Fast||value.kind==Kind::Named)value.name=string(node["name"]);
+ if(value.kind==Kind::Named){const auto space=string(node["space"]);if(space!="i"&&space!="s")throw std::runtime_error("Invalid associative variable space");value.space=space[0];}
  if(value.kind==Kind::Day)value.offset=integer(node["offset"]);
  if(value.kind==Kind::Variable){const auto space=string(node["space"]);if(space.size()!=1)throw std::runtime_error("Invalid campaign variable space");value.space=space[0];value.index=std::make_shared<Operand>(readOperand(node["index"],depth+1));}
  if(!node["negate"].isNull())value.negate=boolean(node["negate"]);
@@ -36,13 +38,15 @@ inline JsonNode writeOperand(const era_campaign::Operand&value)
 {
  using namespace era_campaign;JsonNode node;
  const char *kind="default",*access="read";
- switch(value.kind){case Kind::Default:break;case Kind::Number:kind="number";break;case Kind::String:kind="string";break;case Kind::Macro:kind="macro";break;case Kind::Day:kind="day";break;case Kind::Variable:kind="variable";break;case Kind::Fast:kind="fast";break;}
+ switch(value.kind){case Kind::Default:break;case Kind::Number:kind="number";break;case Kind::String:kind="string";break;case Kind::Macro:kind="macro";break;case Kind::Day:kind="day";break;case Kind::Variable:kind="variable";break;case Kind::Fast:kind="fast";break;case Kind::Named:kind="named";break;}
  switch(value.access){case Access::Read:break;case Access::Write:access="write";break;case Access::Compare:access="compare";break;case Access::Relative:access="relative";break;}
  node["kind"].String()=kind;node["access"].String()=access;
  if(!value.comparison.empty())node["comparison"].String()=value.comparison;
+ if(!value.modifier.empty())node["modifier"].String()=value.modifier;
  if(value.kind==Kind::Number)node["number"].Integer()=value.number;
  if(value.kind==Kind::String)node["text"].String()=value.text;
- if(value.kind==Kind::Macro||value.kind==Kind::Fast)node["name"].String()=value.name;
+ if(value.kind==Kind::Macro||value.kind==Kind::Fast||value.kind==Kind::Named)node["name"].String()=value.name;
+ if(value.kind==Kind::Named)node["space"].String()=std::string(1,value.space);
  if(value.kind==Kind::Day)node["offset"].Integer()=value.offset;
  if(value.kind==Kind::Variable){if(!value.index)throw std::runtime_error("Missing campaign index");node["space"].String()=std::string(1,value.space);node["index"]=writeOperand(*value.index);}
  if(value.negate)node["negate"].Bool()=true;
@@ -85,6 +89,7 @@ inline JsonNode writeState(const era_campaign::State&state)
  node["w"]=writeMap<std::map<std::int32_t,std::int32_t>>(state.w,[](const auto&values){return writeMap<std::int32_t>(values,writeInteger);});
  node["fast"].Vector();for(const auto&entry:state.fast){JsonNode item;item["name"].String()=std::string(1,entry.first);item["value"].Integer()=entry.second;node["fast"].Vector().push_back(item);}
  node["macros"].Vector();for(const auto&entry:state.macros){JsonNode item;item["name"].String()=entry.first;item["operand"]=writeOperand(entry.second);node["macros"].Vector().push_back(item);}
+ node["associative"].Vector();for(const auto & entry:state.associative){JsonNode item;item["name"].String()=entry.first;item["integer"].Integer()=entry.second.integer;item["text"].String()=entry.second.text;node["associative"].Vector().push_back(item);}
  node["frames"].Vector();for(const auto&frame:state.frames){JsonNode item;item["x"]=writeMap<std::int32_t>(frame.x,writeInteger);item["y"]=writeMap<std::int32_t>(frame.y,writeInteger);node["frames"].Vector().push_back(item);}
  node["continuations"].Vector();for(const auto&continuation:state.continuations){JsonNode item;item["programSha256"].String()=continuation.programSha256;item["block"].Integer()=static_cast<std::int64_t>(continuation.block);item["command"].Integer()=static_cast<std::int64_t>(continuation.command);item["operation"].Integer()=static_cast<std::int64_t>(continuation.operation);item["commandConditionAccepted"].Bool()=continuation.commandConditionAccepted;item["pendingFlag"].Integer()=continuation.pendingFlag;item["blocks"].Vector();for(const auto block:continuation.blocks)item["blocks"].Vector().push_back(writeInteger(static_cast<std::int32_t>(block)));item["blockCursor"].Integer()=static_cast<std::int64_t>(continuation.blockCursor);item["visibleBlocks"].Integer()=continuation.visibleBlocks==static_cast<std::size_t>(-1)?-1:static_cast<std::int64_t>(continuation.visibleBlocks);item["initializer"].Bool()=continuation.initializer;item["loop"].Bool()=continuation.loop;item["localFrame"].Bool()=continuation.localFrame;item["returnTargets"].Vector();for(const auto&target:continuation.returnTargets)item["returnTargets"].Vector().push_back(writeOperand(target));item["loopEnd"].Integer()=continuation.loopEnd;item["loopStep"].Integer()=continuation.loopStep;item["initialX"]=writeMap<std::int32_t>(continuation.initialX,writeInteger);node["continuations"].Vector().push_back(item);}
  return node;
@@ -97,6 +102,18 @@ inline era_campaign::State readState(const JsonNode&node)
  if(!node["previousDisabledBlocks"].isNull())state.previousDisabledBlocks=readMap<bool>(node["previousDisabledBlocks"],boolean);
  for(const auto&item:array(node["fast"])){object(item);const auto name=string(item["name"]);if(name.size()!=1||!state.fast.emplace(name[0],integer(item["value"])).second)throw std::runtime_error("Invalid campaign fast variable");}
  for(const auto&item:array(node["macros"]))if(!state.macros.emplace(string(object(item)["name"]),readOperand(object(item)["operand"])).second)throw std::runtime_error("Duplicate campaign macro");
+ if(!node["associative"].isNull())
+ {
+  std::map<std::string,bool,era_campaign::AssociativeCompare> names;
+  for(const auto & item:array(node["associative"]))
+  {
+   object(item);const auto name=era_campaign::associativeName(string(item["name"]));
+   if(!names.emplace(name,true).second)throw std::runtime_error("Duplicate associative campaign variable");
+   era_campaign::AssociativeValue value;value.integer=integer(item["integer"]);value.text=string(item["text"]);
+   // Original AdvErm.LoadAssocMem discards zero/empty cells after loading.
+   if(value.integer!=0||!value.text.empty())state.associative.emplace(name,std::move(value));
+  }
+ }
  state.frames.clear();for(const auto&item:array(node["frames"])){object(item);era_campaign::Frame frame;frame.x=readMap<std::int32_t>(item["x"],integer);frame.y=readMap<std::int32_t>(item["y"],integer);state.frames.push_back(std::move(frame));}if(state.frames.empty())throw std::runtime_error("Missing campaign execution frame");
  for(const auto&item:array(node["continuations"])){object(item);era_campaign::Continuation continuation;continuation.programSha256=string(item["programSha256"]);const auto block=integer(item["block"]),command=integer(item["command"]),operation=integer(item["operation"]);if(block<0||command<0||operation<0)throw std::runtime_error("Negative campaign program counter");continuation.block=static_cast<std::size_t>(block);continuation.command=static_cast<std::size_t>(command);continuation.operation=static_cast<std::size_t>(operation);continuation.commandConditionAccepted=boolean(item["commandConditionAccepted"]);continuation.pendingFlag=integer(item["pendingFlag"]);for(const auto&index:array(item["blocks"])){const auto value=integer(index);if(value<0)throw std::runtime_error("Invalid campaign block index");continuation.blocks.push_back(static_cast<std::size_t>(value));}const auto cursor=integer(item["blockCursor"]),visible=integer(item["visibleBlocks"]);if(cursor<0||visible< -1)throw std::runtime_error("Invalid campaign continuation cursor");continuation.blockCursor=static_cast<std::size_t>(cursor);continuation.visibleBlocks=visible<0?static_cast<std::size_t>(-1):static_cast<std::size_t>(visible);continuation.initializer=boolean(item["initializer"]);continuation.loop=boolean(item["loop"]);continuation.localFrame=boolean(item["localFrame"]);for(const auto&target:array(item["returnTargets"]))continuation.returnTargets.push_back(readOperand(target));continuation.loopEnd=integer(item["loopEnd"]);continuation.loopStep=integer(item["loopStep"]);continuation.initialX=readMap<std::int32_t>(item["initialX"],integer);state.continuations.push_back(std::move(continuation));}
  return state;

@@ -17,6 +17,18 @@ définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contr�
 d'admission distingue les sources disponibles des preuves de fonctionnement
 natif. Aucun profil ne possède actuellement ces preuves complètes.
 
+Les variables nommées ERA et le service `SN:W` disposent désormais d'un
+adaptateur exécutable : une même entrée conserve indépendamment un entier et
+une chaîne. Les noms ASCII sont insensibles à la casse, avec conservation de
+leur première orthographe, comme le dictionnaire source. Les opérations de
+lecture, modification, suppression et effacement partagent ce dictionnaire.
+La sauvegarde/reprise conserve les deux champs sans rejouer les instructions ;
+les anciennes sauvegardes sans dictionnaire restent lisibles. Les seuils
+de classes du script Advanced Classes sont compilés sans réécriture.
+Les noms dynamiques non ASCII restent refusés tant que leur page de codes
+n'est pas reproduite. Cette étape ne suffit pas à rendre un profil complet
+jouable ; la référence est `tests/fixtures/era-gameplay/era-associative-reference.json`.
+
 ## Références récupérées
 
 Distribution officielle :

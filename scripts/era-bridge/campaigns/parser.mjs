@@ -2,7 +2,7 @@
 import crypto from 'node:crypto';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const fail=(message,source)=>{throw new Error(`${source??'ERM'}: ${message}`);};
-export const campaignReceivers=new Set('IF VR UN HE OW OB HO TR TM FU LE MO CD CH DW CA DO GR MC MA WG HT BA BF BU BM BG QW PO MW MT BH CE'.split(' '));
+export const campaignReceivers=new Set('IF VR UN HE OW OB HO TR TM FU LE MO CD CH DW CA DO GR MC MA WG HT BA BF BU BM BG QW PO MW MT BH CE SN'.split(' '));
 export function splitOutside(text,separator='/'){
  const result=[];let start=0,quote='';
  for(let i=0;i<text.length;i++){const c=text[i];if(quote){if(c===quote)quote='';continue;}if(c==='^'||c==='@'||c==='$'){quote=c;continue;}if(c===separator){result.push(text.slice(start,i));start=i+1;}}
@@ -19,24 +19,42 @@ export function parseOperand(raw){
  if(/^@[^@]+@$/.test(text)||/^\$[^$]+\$$/.test(text))return {...base,kind:'macro',name:text.slice(1,-1)};
  if(/^[+-]?\d+$/.test(text)){const n=Number(text);if(!Number.isSafeInteger(n)||n< -2147483648||n>4294967295)fail('Integer outside source32 domain '+text);return {...base,kind:'number',number:n>2147483647?n-4294967296:n};}
  if(/^c[+-]?\d+$/.test(text))return {...base,kind:'day',offset:Number(text.slice(1))};
- const variable=/^(-?)([vxywze])(.+)$/.exec(text);if(variable){const index=parseOperand(variable[3]);if(!['number','variable','macro','fast'].includes(index.kind)||index.access!=='read')fail('Invalid variable index '+text);return {...base,kind:'variable',space:variable[2],index,negate:!!variable[1]};}
+ const named=/^(-?)([is])\^([\s\S]*)\^$/.exec(text);if(named){if(named[1]&&named[2]==='s')fail('Cannot negate a named string');return {...base,kind:'named',space:named[2],name:named[3],negate:!!named[1]};}
+ const variable=/^(-?)([vxywze])(.+)$/.exec(text);if(variable){const index=parseOperand(variable[3]);if(!['number','variable','macro','fast','named'].includes(index.kind)||index.access!=='read')fail('Invalid variable index '+text);return {...base,kind:'variable',space:variable[2],index,negate:!!variable[1]};}
  if(/^-?[a-z]$/.test(text))return {...base,kind:'fast',name:text.replace('-',''),negate:text.startsWith('-')};
  fail('Unsupported operand '+JSON.stringify(token));
+}
+function firstOutside(text,match){
+ let quote='';
+ for(let i=0;i<text.length;i++){
+  const c=text[i];if(quote){if(c===quote)quote='';continue;}
+  if(c==='^'||c==='@'||c==='$'){quote=c;continue;}
+  const found=match(text.slice(i));if(found)return {index:i,match:found};
+ }
+ return null;
 }
 export function parseConditions(raw, junction='all'){
  if(!raw)return [];
  const parsed=splitOutside(raw).map(group=>({any:splitOutside(group,'|').map(value=>{
-  const m=/^(.+?)(>=|<=|=>|=<|<>|><|=|>|<)(.+)$/.exec(value.trim());
-  if(m)return{left:parseOperand(m[1]),comparison:m[2].replace('=>','>=').replace('=<','<=').replace('><','<>'),right:parseOperand(m[3])};
+  const token=value.trim(),found=firstOutside(token,text=>/^(>=|<=|=>|=<|<>|><|=|>|<)/.exec(text));
+  if(found){const op=found.match[0];return{left:parseOperand(token.slice(0,found.index)),comparison:op.replace('=>','>=').replace('=<','<=').replace('><','<>'),right:parseOperand(token.slice(found.index+op.length))};}
   const flag=parseOperand(value);if(flag.kind!=='number')fail('Flag condition must be numeric '+value);return{flag:Math.abs(flag.number),expected:flag.number>=0};
  })}));
  return junction==='any'?[{any:parsed.flatMap(group=>group.any)}]:parsed;
 }
-function parseArguments(raw){
+export function parseServiceOperand(raw){
+ const token=raw.trim();if(token==='d')return {raw:token,access:'relative',kind:'number',number:0,modifier:'+'};
+ const match=/^d(<<|>>|[+*:%&|~\-])?([\s\S]+)$/.exec(token);
+ if(!match)return parseOperand(token);
+ const value=parseOperand(match[2]);if(value.access!=='read')fail('Invalid service modifier operand '+token);
+ return {...value,raw:token,access:'relative',modifier:match[1]??'+'};
+}
+function parseArguments(raw,receiver){
+ if(receiver==='SN')return splitOutside(raw).map(parseServiceOperand);
  const parts=[];
  for(const segment of splitOutside(raw)){
   const at=segment.indexOf('^');
-  if(at>0){const prefix=segment.slice(0,at).trim().replace(/:$/,'');if(prefix)parts.push(parseOperand(prefix));parts.push(parseOperand(segment.slice(at)));}
+  if(at>0&&!/^(?:\?|d|>=|<=|<>|=|>|<)?-?[is]$/.test(segment.slice(0,at).trim())){const prefix=segment.slice(0,at).trim().replace(/:$/,'');if(prefix)parts.push(parseOperand(prefix));parts.push(parseOperand(segment.slice(at)));}
   else parts.push(parseOperand(segment));
  }
  return parts;
@@ -53,7 +71,7 @@ export function parseOperations(body,receiver){
    if(c==='/')argumentStart=true;else if(!/\s/.test(c))argumentStart=false;i++;
   }
   if(quote)fail('Unterminated operation literal');
-  const rawArgs=body.slice(start,i);result.push({code,args:['FU','DO'].includes(receiver)&&!rawArgs.trim()?[]:parseArguments(rawArgs)});
+  const rawArgs=body.slice(start,i);result.push({code,args:['FU','DO','SN'].includes(receiver)&&!rawArgs.trim()?[]:parseArguments(rawArgs,receiver)});
  }
  return result;
 }
@@ -71,7 +89,7 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8'}={}){
  const tokens=tokenizeErm(bytes,{source,encoding}),blocks=[],initializers=[];let current=null;
  for(const token of tokens){try{
   const m=/^!([!?#$])([A-Za-z]{2})([^:;]*)(?::([\s\S]*))?;$/.exec(token.statement);if(!m)fail('Invalid statement '+token.statement);
-  const kind=m[1],receiver=m[2].toUpperCase(),at=m[3].search(/[&|]/),selectorText=at<0?m[3]:m[3].slice(0,at),conditionText=at<0?'':m[3].slice(at+1),selectors=splitOutside(selectorText).filter(s=>s.trim()).map(parseOperand),conditions=parseConditions(conditionText,m[3][at]==='|'?'any':'all');
+  const kind=m[1],receiver=m[2].toUpperCase(),at=firstOutside(m[3],text=>/^[&|]/.exec(text))?.index??-1,selectorText=at<0?m[3]:m[3].slice(0,at),conditionText=at<0?'':m[3].slice(at+1),selectors=splitOutside(selectorText).filter(s=>s.trim()).map(parseOperand),conditions=parseConditions(conditionText,m[3][at]==='|'?'any':'all');
   const record={receiver,selectors,conditions,source:{line:token.line,offset:token.offset,endOffset:token.endOffset,sha256:token.sha256}};
   if(kind==='?'||kind==='$'){current={...record,kind:kind==='?'?'trigger':'post-trigger',commands:[]};blocks.push(current);continue;}
   if(!campaignReceivers.has(receiver))fail('Unbound receiver '+receiver);

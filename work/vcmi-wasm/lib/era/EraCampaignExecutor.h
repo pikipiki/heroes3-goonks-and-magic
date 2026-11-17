@@ -1,6 +1,7 @@
 /* Resumable interpreter for the pinned original campaign programs. GPL-2.0-or-later. */
 #pragma once
 #include "EraCampaignProgram.h"
+#include "EraCampaignAssociative.h"
 #include <algorithm>
 #include <cctype>
 #include <limits>
@@ -100,7 +101,7 @@ class Executor
  {
   if(command.selectors.size()!=1)throw std::runtime_error("Campaign VR needs one variable");
   auto destination=resolveMacro(command.selectors[0],state);
-  const bool text=destination.kind==Kind::Variable&&destination.space=='z';
+  const bool text=textOperand(destination,state);
   if(op.code=="C")
   {
    if(!destination.index||text||op.args.size()>16)throw std::runtime_error("Invalid campaign VR:C");
@@ -238,6 +239,7 @@ public:
     continue;
    }
    if(command.receiver=="VR"){variable(command,op);continue;}
+   if(command.receiver=="SN"&&op.code=="W"){associative(command,op,state,context);continue;}
    if(command.receiver=="MC")
    {
     if(op.code!="S"||command.selectors.size()!=1)throw std::runtime_error("Unimplemented campaign macro operation");

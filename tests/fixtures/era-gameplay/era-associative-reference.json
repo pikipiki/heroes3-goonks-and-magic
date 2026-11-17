@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "scope": "Executable named-variable/SN:W adapter prerequisite; does not admit full AC/ERA/Reborn profiles",
+  "sources": [
+    {
+      "repository": "https://github.com/ethernidee/b2",
+      "commit": "b26cfca487ab2e5a535ba880fbd372605c9bfb70",
+      "file": "AssocArrays.pas",
+      "normalizedSha256": "38597f9f1092e16b64cd67fef5794d2a4a4f853f1051b450fa96bb128020cb83",
+      "locations": {
+        "NewStrictAssocArr": 2762,
+        "TStrHashTable.SetValue": 1880
+      },
+      "rule": "NewStrictAssocArr calls NewAssocArr with SysUtils.AnsiLowerCase. Existing equal key updates only Value, retaining original key spelling."
+    },
+    {
+      "repository": "https://github.com/ethernidee/era",
+      "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+      "file": "Erm.pas",
+      "normalizedSha256": "9603ccabfe6e22cfa6c010be0ab2452b38b1b38c5bba4a5e69232c4f7c0b84f2",
+      "locations": {
+        "readNamedInteger": 4310,
+        "readNamedString": 4418,
+        "writeNamedInteger": 4569,
+        "writeNamedString": 4637
+      },
+      "rule": "Named integer and string variables share AdvErm.AssocMem[name], with distinct IntValue and StrValue fields. Missing reads return zero or empty without creating a cell. Names containing percent markers interpolate."
+    },
+    {
+      "repository": "https://github.com/ethernidee/era",
+      "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+      "file": "AdvErm.pas",
+      "normalizedSha256": "9e0a1c9400b35ddf2c3922b018590c7cd1080c0eb677f2381127fbc250fd4f62",
+      "locations": {
+        "TAssocVar": 160,
+        "ApplyIntParam": 1144,
+        "SN_W": 1952,
+        "SaveAssocMem": 2506,
+        "LoadAssocMem": 2603,
+        "AssocMemConstruction": 3768
+      },
+      "rule": "SN:W shares named i/s memory. Arity0 clears,1deletes whole pair,2queries/mutates typed field. Save writes name/int/string; reload discards zero-and-empty pairs. d| applies bitwise AND in actual source despite MODIFIER_OR name."
+    }
+  ],
+  "keyPolicy": {
+    "implemented": "ASCII case-insensitive identity, original first spelling preserved; no numeric v/z aliasing",
+    "nonAscii": "Explicit runtime rejection until original Windows ANSI codepage is attested; no host-locale tolower substitution",
+    "staticCorpus": [
+      {
+        "root": "work/era-gameplay-reference/Mods/Advanced Classes Mod",
+        "ermFiles": 6,
+        "staticNamedOccurrences": 4808,
+        "nonAsciiNameFiles": []
+      },
+      {
+        "root": "work/era-gameplay-reference/Mods/ERA Scripts",
+        "ermFiles": 87,
+        "staticNamedOccurrences": 1322,
+        "nonAsciiNameFiles": []
+      },
+      {
+        "root": "work/downloads/tum-reborn-reference",
+        "ermFiles": 145,
+        "staticNamedOccurrences": 27370,
+        "nonAsciiNameFiles": []
+      }
+    ],
+    "dynamicNames": "Dynamic interpolation may produce non-ASCII keys; these also fail explicitly."
+  },
+  "implemented": [
+    "i^name^ and s^name^ operands, including indexed numeric indirection",
+    "Dynamic names using existing source interpolation plus %I(name) and %S(name)",
+    "SN:W read/write/delete/clear, numeric modifiers + - * : % | ~ << >>, string concatenation d&",
+    "Saved associative fields, missing-field old-save compatibility, case-equivalent duplicate rejection, native zero/empty reload behavior",
+    "Native executor control flow and suspend/save/resume retain named state without replay"
+  ],
+  "remaining": [
+    "Modern VA/DC/local symbolic variables and named event/function aliases are not yet implemented by this adapter.",
+    "Native SN:E/code patch hooks remain unbound and fail; this adapter never no-ops them.",
+    "Numeric evaluation of a named string as an ERA temporary address/index is not implemented and fails explicitly.",
+    "Full AC/ERA/Reborn gameplay, AI and UI closure remains pending."
+  ],
+  "tests": [
+    "tests/era-modern-associative.test.mjs",
+    "tests/native/EraCampaignAssociative.test.cpp",
+    "tests/native/EraCampaignAssociativeCodec.test.cpp"
+  ]
+}

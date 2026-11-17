@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "passed": true,
+  "scope": "Named variables and SN:W prerequisite, not complete profile admission",
+  "completeRules": false,
+  "engineSha256": "bc1d14218fd3b169e61b971830f26008dde65043681fc1a00df6513651c9473e",
+  "webAssembly": "ninja -j32 html5 passed with four exact production headers bound below",
+  "hostRegression": {
+    "tests": 40,
+    "passed": 38,
+    "skipped": 2,
+    "failed": 0
+  },
+  "linuxCodec": "Production JsonNode and campaign state codec under AddressSanitizer and UBSan: case folding, independent fields, legacy state, empty-pair load removal, suspend/save/resume without replay; exit0",
+  "sourceBindings": [
+    {
+      "file": "scripts/era-bridge/campaigns/parser.mjs",
+      "sha256": "ee18c334f10bf2d351a85e5a1026e4a89d99d2011894c43bc98caf8424a609dc"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraCampaignProgram.h",
+      "sha256": "576f0be72ac6631998b5d8ef77ed60a4c81e49e953a5c5f05a20b5e4dc5ca681"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraCampaignJson.h",
+      "sha256": "427363931681530779eb77d59a0ac01e2ff074338e9df022e284e8e1d57f656b"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraCampaignExecutor.h",
+      "sha256": "26589c028b91b11969358c5de390fb2b05fc3654b765f3baf64d0436cb3a3581"
+    },
+    {
+      "file": "work/vcmi-wasm/lib/era/EraCampaignAssociative.h",
+      "sha256": "f4affe088bed3f5a505b78a92589f1160e513f0bf52b1f6483f957429b717c9c"
+    },
+    {
+      "file": "tests/era-modern-associative.test.mjs",
+      "sha256": "68fc982dcd9f5187b226cd4c46dff9c2a5551df63ac4b8fb610655dd93312c75"
+    },
+    {
+      "file": "tests/native/EraCampaignAssociative.test.cpp",
+      "sha256": "1f1d0732ff233600a07aa6a64898fa7cd94412ef8c63a5c69aeeb4b64fccfc81"
+    },
+    {
+      "file": "tests/native/EraCampaignAssociativeCodec.test.cpp",
+      "sha256": "33e45b56fb742e905a3b68355de39a4d96326a02288e670b262f5ff9e2b0b558"
+    },
+    {
+      "file": "tests/fixtures/era-gameplay/era-associative-reference.json",
+      "sha256": "0dbf229a60744bbd603224c61815c9bfa24bdffa08c897e3f0fb7cb695bfa0c6"
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 #include <vector>
 namespace era_campaign
 {
-enum class Kind { Default, Number, String, Macro, Day, Variable, Fast };
+enum class Kind { Default, Number, String, Macro, Day, Variable, Fast, Named };
 enum class Access { Read, Write, Compare, Relative };
 struct Operand
 {
@@ -19,7 +19,7 @@ struct Operand
  std::int32_t number=0;
  std::int32_t offset=0;
  char space=0;
- std::string name,text,comparison;
+ std::string name,text,comparison,modifier;
  std::shared_ptr<Operand> index;
  bool negate=false;
 };
@@ -81,6 +81,29 @@ struct Continuation
  std::map<std::int32_t,std::int32_t> initialX;
  std::vector<Operand> returnTargets;
 };
+inline std::string associativeName(std::string value)
+{
+ // Original B2 NewStrictAssocArr uses Windows AnsiLowerCase. All static i/s
+ // and SN:W names in the pinned AC/ERA/Reborn corpus are ASCII. Other bytes
+ // require an attested ANSI codepage; never substitute the host locale.
+ for(unsigned char byte:value)if(byte>=128)throw std::runtime_error("ERA associative name requires an unvalidated ANSI codepage");
+ return value;
+}
+struct AssociativeCompare
+{
+ bool operator()(const std::string & left,const std::string & right)const
+ {
+  const auto lower=[](unsigned char c){return c>='A'&&c<='Z'?static_cast<unsigned char>(c-'A'+'a'):c;};
+  const auto count=left.size()<right.size()?left.size():right.size();
+  for(std::size_t i=0;i<count;++i){const auto a=lower(left[i]),b=lower(right[i]);if(a!=b)return a<b;}
+  return left.size()<right.size();
+ }
+};
+struct AssociativeValue
+{
+ std::int32_t integer=0;
+ std::string text;
+};
 struct State
 {
  std::string programSha256;
@@ -91,6 +114,7 @@ struct State
  std::map<std::int32_t,std::map<std::int32_t,std::int32_t>> w;
  std::map<char,std::int32_t> fast;
  std::map<std::string,Operand> macros;
+ std::map<std::string,AssociativeValue,AssociativeCompare> associative;
  std::map<std::int32_t,bool> disabledBlocks,previousDisabledBlocks;
  std::vector<Frame> frames{Frame{}};
  std::vector<Continuation> continuations;
@@ -121,7 +145,7 @@ inline std::int32_t remainder(std::int32_t a,std::int32_t b)
  if(a==INT32_MIN&&b==-1)return 0;
  return a%b;
 }
-template<class K,class V> V lookup(const std::map<K,V>&values,const K&key)
+template<class K,class V,class Compare> V lookup(const std::map<K,V,Compare>&values,const K&key)
 {const auto found=values.find(key);return found==values.end()?V{}:found->second;}
 inline bool compare(std::int32_t left,const std::string&op,std::int32_t right)
 {
@@ -141,6 +165,7 @@ inline const Operand & resolveMacro(const Operand&operand,const State&state,int 
  if(found==state.macros.end())throw std::runtime_error("Unbound source campaign macro: "+operand.name);
  return resolveMacro(found->second,state,depth+1);
 }
+inline std::string formatText(const std::string & text,const State & state,const Context & context);
 inline std::int32_t readNumber(const Operand&input,const State&state,const Context&context,int depth=0)
 {
  if(depth>=32)throw std::runtime_error("Source campaign variable indirection limit");
@@ -152,6 +177,9 @@ inline std::int32_t readNumber(const Operand&input,const State&state,const Conte
  case Kind::Number:value=operand.number;break;
  case Kind::Day:value=add(context.day,operand.offset);break;
  case Kind::Fast:value=lookup(state.fast,operand.name.empty()?char{}:operand.name[0]);break;
+ case Kind::Named:
+  if(operand.space!='i')throw std::runtime_error("Named string cannot be evaluated as a numeric address");
+  value=lookup(state.associative,associativeName(formatText(operand.name,state,context))).integer;break;
  case Kind::Variable:
  {
   if(!operand.index)throw std::runtime_error("Missing source campaign variable index");
@@ -186,7 +214,7 @@ inline std::string readText(const Operand&input,const State&state,const Context&
 inline bool textOperand(const Operand & input,const State & state)
 {
  const auto & operand=resolveMacro(input,state);
- return operand.kind==Kind::String||(operand.kind==Kind::Variable&&operand.space=='z');
+ return operand.kind==Kind::String||(operand.kind==Kind::Variable&&operand.space=='z')||(operand.kind==Kind::Named&&operand.space=='s');
 }
 inline std::string comparisonText(std::string value)
 {
@@ -230,6 +258,7 @@ inline void writeNumber(const Operand&input,State&state,const Context&context,st
 {
  const auto&operand=resolveMacro(input,state);
  if(operand.negate)throw std::runtime_error("Cannot assign a negated campaign variable");
+ if(operand.kind==Kind::Named){if(operand.space!='i')throw std::runtime_error("Non-numeric named destination");state.associative[associativeName(formatText(operand.name,state,context))].integer=value;return;}
  if(operand.kind==Kind::Fast){if(operand.name.size()!=1)throw std::runtime_error("Invalid fast campaign variable");state.fast[operand.name[0]]=value;return;}
  if(operand.kind!=Kind::Variable||!operand.index)throw std::runtime_error("Campaign destination is not a variable");
  const auto index=readNumber(*operand.index,state,context);
@@ -246,12 +275,14 @@ inline std::string readText(const Operand&input,const State&state,const Context&
 {
  const auto&operand=resolveMacro(input,state);
  if(operand.kind==Kind::String)return formatText(operand.text,state,context);
+ if(operand.kind==Kind::Named&&operand.space=='s')return lookup(state.associative,associativeName(formatText(operand.name,state,context))).text;
  if(operand.kind==Kind::Variable&&operand.space=='z'&&operand.index)return lookup(state.z,readNumber(*operand.index,state,context));
  throw std::runtime_error("Non-text campaign operand");
 }
 inline void writeText(const Operand&input,State&state,const Context&context,std::string value)
 {
  const auto&operand=resolveMacro(input,state);
+ if(operand.kind==Kind::Named&&operand.space=='s'){state.associative[associativeName(formatText(operand.name,state,context))].text=std::move(value);return;}
  if(operand.kind!=Kind::Variable||operand.space!='z'||!operand.index)throw std::runtime_error("Non-text campaign destination");
  state.z[readNumber(*operand.index,state,context)]=std::move(value);
 }
@@ -271,6 +302,11 @@ inline std::string formatText(const std::string & text,const State & state,const
   if(text[pos]!='%'||pos+1==text.size()){result+=text[pos++];continue;}
   const auto start=pos++;const char code=text[pos++];
   if(code=='%'){result+='%';continue;}
+  if((code=='I'||code=='S'||code=='i'||code=='s')&&pos<text.size()&&text[pos]=='(')
+  {
+   const auto end=text.find(')',pos+1);if(end==std::string::npos)throw std::runtime_error("Unterminated named campaign interpolation");
+   Operand named;named.kind=Kind::Named;named.space=(code=='I'||code=='i')?'i':'s';named.name=text.substr(pos+1,end-pos-1);append(named);pos=end+1;continue;
+  }
   if(code=='$')
   {
    const auto end=text.find('$',pos);if(end==std::string::npos){result+=text.substr(start);break;}
