@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "scope": "Shared native town visit after a suspended source pre-visit script, paid companion resurrection before the post-visit script, and old native save compatibility",
+  "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
+  "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "604045a96813c48dae3b0e9c38085a431edf183e76e5026311ec5028bc3ecffb",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "5353d122933a0ecbb51674e3f42aa3cbc3944ddabd27fd84ed56c3368b4a4ba0",
+    "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "364ba88042db2c32468e402b50ab00e33c2157601e7135b7812f5a2e453b8d67",
+    "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f8480b35b5875e4b32fd7a078222200f586ae8a246c5d19c60107aa215ca635c",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "c7400644acef48fefcdc3328e1cac0af835c21dbf44f1027fb19a4e8b128d67f"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 25,
+    "buildLogSha256": "4773b275aacac24cab36c33bcf8daf1d1d5ae4a916a853ea89122ef83b99128c",
+    "sourceBindingsSha256": "3c091f276bf51008ee1b266aefa729479030baaf9ef01468cd73c9bdff194e58",
+    "sourceCopyTimesForcedFresh": true,
+    "candidateIncludesUnadmittedWarMachineWork": true,
+    "warMachinesAdmitted": false
+  },
+  "nativeReports": [
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
+      "scenarios": [
+        "source-town-pre-script-save-reload-companion-question-native-entry-and-post-script-run-in-order"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
+      "scenarios": [
+        "older-native-save-without-town-entry-metadata-resumes-companion-question-and-post-script"
+      ],
+      "errors": []
+    },
+    {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
+      "scenarios": [
+        "desktop-mouse-town-resurrection-paid-preserves-companion-state",
+        "paid-town-resurrection-survives-native-save-reload"
+      ],
+      "errors": []
+    }
+  ],
+  "legacyProducer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+    "scenarios": [
+      "native-save-produced-at-source-town-pre-visit-dialog"
+    ],
+    "errors": [],
+    "saveSha256": "6df64fb978cecae0aab5ee2e29e09384c11b0a20bf54f870b18e0a60ae8fcaf5",
+    "saveFormatChanged": false
+  },
+  "sourceRegression": {
+    "passed": true,
+    "scope": "Unchanged original FU16/FU19, macro bindings and GE1 army command on a private four-hero fixture; native flag1 relocation, source-ID downgrade and negative-type retention; not a campaign victory.",
+    "engine": {
+      "sha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c"
+    },
+    "originalBlocksSha256": "bf7e129fe99b86462e9d848cefb5d67b2f62b852ce01a2101c40db8671adf758",
+    "originalArmyResetSha256": "3dd62b05c854f4d11c564dbcb16668285b7cc2388a48eb03bedb1b5b5030946f",
+    "positions": [
+      [
+        14,
+        14,
+        0
+      ],
+      [
+        22,
+        22,
+        0
+      ],
+      [
+        71,
+        0,
+        0
+      ],
+      [
+        71,
+        71,
+        0
+      ]
+    ],
+    "armyChecks": {
+      "presentNightmareRetained": true,
+      "sourceEvenIdRetained": true,
+      "marksmanDowngradedToArcher": true,
+      "originalGE1ResetsOtherSlots": true
+    },
+    "saveSha256": "328746f2d04473b3d91783310e7790a57565a46c434b1ca511fc9c5291c311b6",
+    "errors": []
+  },
+  "negativeControl": {
+    "engineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
+    "expectedFailure": "Pre-visit source script resumes directly into the native town and post-visit script, skipping the companion question",
+    "logSha256": "90e538ff92468f1ac05a53eed689ffdc2f82a10899020d68b15c83ac2aea67a1"
+  },
+  "remaining": [
+    "Compare original initial-scenario and restart lifecycle",
+    "Classic right-click smart companion flow",
+    "Reserved/unplaced campaign hero progression lifecycle",
+    "Shared named ERA reward namespace and complete profile admission"
+  ]
+}

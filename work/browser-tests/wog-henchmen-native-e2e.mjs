@@ -19,12 +19,26 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false}={}){
+function townVisitProgram(){
+ const number=value=>({kind:'number',access:'read',number:value});
+ const message=text=>({receiver:'IF',selectors:[],conditions:[],operations:[{code:'M',args:[{kind:'string',access:'read',text}]}]});
+ const program={originalMessages:['ZVSE private native companion town continuation'],initializers:[],blocks:[
+  {kind:'trigger',receiver:'OB',selectors:[number(98)],conditions:[],commands:[message('BEFORE COMPANION TOWN VISIT')]},
+  {kind:'post-trigger',receiver:'OB',selectors:[number(98)],conditions:[],commands:[message('AFTER COMPANION TOWN VISIT')]}
+ ]};
+ program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
+}
+
+function fixture({dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
 with zipfile.ZipFile('maps/000-Goonk.vmap') as archive: entries={n:archive.read(n) for n in archive.namelist()}
 objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
+if opts['scriptTown']:
+ import copy
+ town=next(o for o in objects if o['instanceName']=='goonkTown');castle=next(o for o in objects if o['instanceName']=='enemyTown')
+ town.update({'subtype':'core:castle','x':10,'template':copy.deepcopy(castle['template']),'options':{'owner':'red','name':'Goonkbourg','hasFort':True,'army':[],'buildings':{'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']}}})
 if opts['aiTown']:
  town=next(o for o in objects if o['instanceName']=='enemyTown')
  town['options']['buildings']={'allOf':['core:villageHall','core:fort','core:mageGuild1'],'noneOf':['core:tavern']}
@@ -68,6 +82,9 @@ else:
   guard=copy.deepcopy(objects[-1]);guard.update({'instanceName':'henchmenSecondGuard','x':12});objects.append(guard)
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation'
+if opts['scriptTown']:
+ header['players']['red']['allowedFactions']={'anyOf':['core:castle']};header['players']['red']['mainTown']['x']=10
+ header['events']=[{'name':'private companion town continuation','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native companion town continuation'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}]
 entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Henchmen native validation';entries[name]=json.dumps(text).encode()
@@ -76,10 +93,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown})]);
+`,JSON.stringify({dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown})]);
 }
 
-async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,...options}={}){
+async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,...options}={}){
  const classic=process.env.CASES==='classic';
  const desktop=['prompt-desktop','town-resurrection-desktop'].includes(process.env.CASES);
  // The packaged site's policy whitelists production domains, not localhost.
@@ -88,7 +105,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
- await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor})=>{
+ await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -97,6 +114,14 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
+    if(scriptProgram){
+     const directory='/home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns/';
+     const registry=JSON.parse(value.FS.readFile(directory+'registry.json',{encoding:'utf8'}));
+     const entry=registry.programs.find(item=>item.id==='cave-gerfrex');if(!entry)throw Error('Missing private source fixture slot');
+     const program=JSON.parse(value.FS.readFile(directory+'cave-gerfrex.json',{encoding:'utf8'}));
+     Object.assign(program,scriptProgram);entry.enabled=true;entry.programSha256=scriptProgram.sha256;
+     value.FS.writeFile(directory+'cave-gerfrex.json',JSON.stringify(program));value.FS.writeFile(directory+'registry.json',JSON.stringify(registry));
+    }
     if(poor){
      const name='config/henchmen-resurrection-private.json';manifest.creatures=[...(manifest.creatures||[]),name];
      value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({'core:peasant':{cost:{gold:10000000}}}));
@@ -126,7 +151,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor});
+ },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,scriptProgram:options.scriptTown?townVisitProgram():null});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -152,7 +177,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
   else if(desktop)await page.locator('[data-ui=begin]').click();
   else await page.locator('[data-ui=begin]').tap();
  }
- await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
+ await wait(kind=>goonkMobileState.mode==='map'&&goonkMobileState.turn||kind&&goonkMobileState.mode==='dialog'&&goonkMobileState.dialogKind===kind,expectedDialog);
 }
 
 async function sheet(){
@@ -198,7 +223,7 @@ async function resolve(){
 }
 
 try{
- if(['town-resurrection','town-resurrection-desktop','town-resurrection-ai','town-resurrection-foreign'].includes(process.env.CASES)){
+ if(['town-resurrection','town-resurrection-desktop','town-resurrection-ai','town-resurrection-foreign','town-resurrection-scripted'].includes(process.env.CASES)){
   const {runTownResurrection}=await import('./wog-henchmen-town-resurrection-cases.mjs');
   await runTownResurrection({boot,sheet,state,command,wait,approachEnemy,page:()=>page,report,output,
    desktop:process.env.CASES==='town-resurrection-desktop',save:()=>readCompletedNativeSave(page,command,{tag:936})});

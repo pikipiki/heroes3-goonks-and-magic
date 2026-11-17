@@ -4,6 +4,36 @@ import path from 'node:path';
 
 export async function runTownResurrection({boot,sheet,state,command,wait,approachEnemy,page,report,output,desktop,save}){
  const press=selector=>page().locator(selector)[desktop?'click':'tap']();
+ if(process.env.CASES==='town-resurrection-scripted'){
+  if(process.env.HENCH_SCRIPT_LOAD_SAVE){
+   await boot({scriptTown:true,save:[...fs.readFileSync(process.env.HENCH_SCRIPT_LOAD_SAVE)],expectedDialog:'source-campaign'});
+  }else{
+   await boot({scriptTown:true,dead:true,henchmanBanner:8,stackExperience:2500});
+   await page().mouse.move(400,300);await command(6);await page().waitForTimeout(150);
+   await page().evaluate(()=>{const view=goonkMobileState.mapOverview.view;Module._vcmiMobilePointer(view.x+view.w/2,view.y+view.h/2-64,1);});
+   await wait(()=>goonkMobileState.hasPath);await command(2);
+   await wait(()=>goonkMobileState.dialogKind==='source-campaign');
+   assert.match(await page().locator('.dialog-copy').innerText(),/BEFORE COMPANION/);
+   const bytes=await save();fs.writeFileSync(path.join(output,'before-town-script.vsgm1'),bytes);await page().close();
+   if(process.env.HENCH_SCRIPT_EXPORT_ONLY){report.scenarios.push('native-save-produced-at-source-town-pre-visit-dialog');return;}
+   await boot({scriptTown:true,save:[...bytes],expectedDialog:'source-campaign'});
+  }
+  const gold=(await state()).resources[6];
+  assert.match(await page().locator('.dialog-copy').innerText(),/BEFORE COMPANION/);
+  await press('[data-dialog-confirm]');
+  await wait(()=>goonkMobileState.dialogKind==='henchman-resurrection'||goonkMobileState.mode==='town'||
+   goonkMobileState.dialogKind==='source-campaign'&&goonkMobileState.dialogPresentation?.lines?.some(line=>line.includes('AFTER COMPANION')));
+  assert.equal((await state()).dialogKind,'henchman-resurrection');
+  await press('[data-dialog-confirm]');
+  await wait(()=>goonkMobileState.dialogKind==='source-campaign'&&goonkMobileState.dialogPresentation?.lines?.some(line=>line.includes('AFTER COMPANION')));
+  await press('[data-dialog-confirm]');await wait(()=>goonkMobileState.mode==='town');
+  await command(0);await wait(()=>goonkMobileState.mode==='map');const hero=await sheet();
+  assert(hero.henchman.alive);assert.equal(hero.henchman.experience,100);assert.equal(hero.henchman.stackExperience,2500);
+  assert.equal(hero.henchman.bannerStyle,8);assert.equal((await state()).resources[6],gold-hero.henchman.resurrectionCost);
+  report.scenarios.push(process.env.HENCH_SCRIPT_LOAD_SAVE?'older-native-save-without-town-entry-metadata-resumes-companion-question-and-post-script':
+   'source-town-pre-script-save-reload-companion-question-native-entry-and-post-script-run-in-order');
+  await page().close();return;
+ }
  if(process.env.CASES==='town-resurrection-foreign'){
   await boot({foreignTown:true,dead:true});const gold=(await state()).resources[6];
   await page().mouse.move(400,300);await command(6);await page().waitForTimeout(150);

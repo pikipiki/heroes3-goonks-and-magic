@@ -891,6 +891,9 @@ struct SourceCampaignProcessor::Impl final:Host
     heroId=scope.hero;objectId=scope.object;player=scope.player;shown=scope.shown;state["battleHook"].Bool()=false;updateContext();persist();scope.resume();return;
    }
    const auto completedObject=objectId,completedHero=heroId;
+   const auto entryKey=std::to_string(completedHero.getNum());
+   const auto entry=std::as_const(state)["nativeTownEntries"][entryKey];
+   if(entry.isStruct())state["nativeTownEntries"].Struct().erase(entryKey);
    heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;pending=JsonNode();persist();
    completeTurnEvent();
    if(completedObject!=ObjectInstanceID::NONE)
@@ -899,7 +902,14 @@ struct SourceCampaignProcessor::Impl final:Host
     const auto * h=gh.gameState().getHero(completedHero);
     // The event still grants its reward after a scripted teleport. The
     // mountain passage, for example, grants morale before moving the hero.
-    if(obj&&h&&allowsObject(obj,h)&&!consumeScriptChest(obj,h)&&!consumeEmptyMonster(obj,h)&&!consumeLeftTroop(obj,h))obj->onHeroVisit(gh,h);
+    if(obj&&h&&allowsObject(obj,h)&&!consumeScriptChest(obj,h)&&!consumeEmptyMonster(obj,h)&&!consumeLeftTroop(obj,h))
+    {
+     // Saved source dialogs retain whether this was an entry or the native
+     // daily building refresh. Older saves can infer an already visited town.
+     const bool actualEntry=entry.isStruct()&&entry["object"].Integer()==completedObject.getNum()
+      &&entry["actual"].isBool()?entry["actual"].Bool():h->getVisitedTown()!=obj;
+     gh.nativeObjectVisit(obj,h,actualEntry);
+    }
    }
    pumpTurns();
   }
@@ -1167,7 +1177,7 @@ struct SourceCampaignProcessor::Impl final:Host
   state["objectIdentities"][std::to_string(id.getNum())].Vector()={JsonNode(int(target.ID)),JsonNode(target.subID)};
   state["tileIdentities"].Struct().erase(era_campaign_hints::positionKey(position));persist();
  }
- bool visit(const CGObjectInstance * obj,const CGHeroInstance * h)
+ bool visit(const CGObjectInstance * obj,const CGHeroInstance * h,bool actualEntry)
  {
   bind();if(!active)return false;
   // Town/hero placement can visit an object before the source initializer is
@@ -1181,6 +1191,12 @@ struct SourceCampaignProcessor::Impl final:Host
    require(heroId==h->id&&objectId==obj->id,"another object visited while a script is suspended");return true;
   }
   heroId=h->id;objectId=obj->id;player=h->getOwner();updateContext();
+  auto rememberTownEntry=[&]
+  {
+   if(obj->ID!=Obj::TOWN)return;
+   auto & entry=state["nativeTownEntries"][std::to_string(h->id.getNum())];
+   entry["object"].Integer()=obj->id.getNum();entry["actual"].Bool()=actualEntry;
+  };
   // Preserve source coordinates/type before the native effect can remove the
   // visited object. The native visit query also survives script dialogs.
   if(std::any_of(program.blocks.begin(),program.blocks.end(),[](const Trigger & block){return block.post&&block.receiver=="OB";}))
@@ -1200,12 +1216,12 @@ struct SourceCampaignProcessor::Impl final:Host
    {
     // HE identifies the encountered hero; HE-1 and source variables still
     // refer to the visiting hero saved above, including after a dialog reload.
-    if(executor.dispatchAny("HE",{{target->getHeroTypeID().getNum()}})){run();return true;}
+    if(executor.dispatchAny("HE",{{target->getHeroTypeID().getNum()}})){rememberTownEntry();run();return true;}
    }
    else
    {
     const auto source=identity(obj);
-    if(executor.dispatchAny("OB",{{int(source.ID)},{int(source.ID),source.subID},{pos.x,pos.y,pos.z}})){run();return true;}
+    if(executor.dispatchAny("OB",{{int(source.ID)},{int(source.ID),source.subID},{pos.x,pos.y,pos.z}})){rememberTownEntry();run();return true;}
    }
    const bool handled=!allowsObject(obj,h)||consumeScriptChest(obj,h)||consumeEmptyMonster(obj,h)||consumeLeftTroop(obj,h);heroId=ObjectInstanceID::NONE;objectId=ObjectInstanceID::NONE;return handled;
   }
@@ -2594,7 +2610,7 @@ bool SourceCampaignProcessor::reply(QueryID query,int selection,const std::strin
 }
 bool SourceCampaignProcessor::deployTroops(ObjectInstanceID hero,SlotID slot,CreatureID creature,int count,const int3 & position,bool takeBack,PlayerColor player)
 {return impl->deployTroops(hero,slot,creature,count,position,takeBack,player);}
-bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero){return impl->visit(object,hero);}
+bool SourceCampaignProcessor::visit(const CGObjectInstance * object,const CGHeroInstance * hero,bool actualEntry){return impl->visit(object,hero,actualEntry);}
 void SourceCampaignProcessor::visitEnded(ObjectInstanceID object,ObjectInstanceID hero)
 {
  impl->bind();if(!impl->active||!impl->vm.initialized)return;

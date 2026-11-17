@@ -35,7 +35,7 @@ public:
  bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool deployTroops(ObjectInstanceID hero,SlotID slot,CreatureID creature,int count,const int3 & position,bool takeBack,PlayerColor player);
- bool visit(const CGObjectInstance * object,const CGHeroInstance * hero);
+ bool visit(const CGObjectInstance * object,const CGHeroInstance * hero,bool actualEntry = true);
  void visitEnded(ObjectInstanceID object,ObjectInstanceID hero);
  bool visitPosition(const int3 & position,const CGHeroInstance * hero);
  bool beginTurn(PlayerColor player);

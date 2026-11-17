@@ -220,8 +220,15 @@ elle ne constitue pas une lecture directe de son compagnon hors combat.
 L'ancien moteur échoue sur l'absence de cette mise à jour. Les neuf contrôles
 du noyau passent sur le même moteur. Voir
 `scripts/era-bridge/gameplay/henchmen-town-native-validation.json`.
-Les visites reprises après un script de campagne et la fidélité des visites
-initiales d'un scénario restent à rapprocher de la source ERA.
+Les visites reprises après un script de campagne utilisent maintenant le même
+traitement natif. Un parcours vérifie le script de début de visite, une
+sauvegarde au milieu de son dialogue, la résurrection payée, l'entrée en ville
+et le script de fin de visite, dans cet ordre. Une sauvegarde produite par le
+moteur précédent sans cette métadonnée reprend aussi correctement. Les visites
+sans script à la souris et les téléportations originales de campagne passent
+sur cette compilation. Voir
+`scripts/era-bridge/gameplay/henchmen-town-script-native-validation.json`.
+La fidélité des visites initiales d'un scénario reste à rapprocher de la source ERA.
 
 ## Raccordements et validations restant nécessaires
 
