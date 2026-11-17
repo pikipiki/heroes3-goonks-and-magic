@@ -1,0 +1,93 @@
+{
+  "version": "0.4.234",
+  "engine": {
+    "memoryVersion": 1,
+    "runtimeVersion": "456b0d4fb71d6978",
+    "wasm": "vcmiclient.dd8e79e317da349b.wasm",
+    "sha256": "dd8e79e317da349b76cc221cb11be43d5f7c243be3f0ca7b2da77b8362b6c86f",
+    "mobile": {
+      "width": 800,
+      "height": 600
+    },
+    "assetCacheBytes": 16777216
+  },
+  "unitTests": {
+    "passed": 771,
+    "skipped": 48,
+    "failed": 0
+  },
+  "sanitizedNativeFormationCases": 2048,
+  "layoutBrowserLanguageCases": 16,
+  "nativeChromium": {
+    "passed": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "456b0d4fb71d6978",
+      "wasm": "vcmiclient.dd8e79e317da349b.wasm",
+      "sha256": "dd8e79e317da349b76cc221cb11be43d5f7c243be3f0ca7b2da77b8362b6c86f",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "checks": [
+      "Bulk transfer merges matching types without swapping armies or losing creatures",
+      "Reverse transfer retains one creature with the hero",
+      "Dismissal confirmation and stale-count protection work in the native engine",
+      "Leave on map works through the UI in an ordinary game",
+      "A fresh runtime reload preserves the deployed group in the existing save format"
+    ],
+    "errors": []
+  },
+  "nativeWebKit": {
+    "passed": true,
+    "engine": {
+      "memoryVersion": 1,
+      "runtimeVersion": "456b0d4fb71d6978",
+      "wasm": "vcmiclient.dd8e79e317da349b.wasm",
+      "sha256": "dd8e79e317da349b76cc221cb11be43d5f7c243be3f0ca7b2da77b8362b6c86f",
+      "mobile": {
+        "width": 800,
+        "height": 600
+      },
+      "assetCacheBytes": 16777216
+    },
+    "checks": [
+      "Bulk transfer merges matching types without swapping armies or losing creatures",
+      "Reverse transfer retains one creature with the hero",
+      "Dismissal confirmation and stale-count protection work in the native engine",
+      "Leave on map works through the UI in an ordinary game",
+      "A fresh runtime reload preserves the deployed group in the existing save format"
+    ],
+    "errors": []
+  },
+  "sourceCampaignDeployment": {
+    "passed": true,
+    "freeRetrieval": true,
+    "refusalWithoutCombat": true,
+    "defaultDeparture": true,
+    "lastCreatureProtected": true,
+    "saveFormat": 907,
+    "loadedPreviousSaveFormat": 906
+  },
+  "webAssemblyBuild": "ninja -j32 html5 passed",
+  "catalog": {
+    "nativeFiles": 10462,
+    "transportBytes": 702299038,
+    "verifiedByteForByte": true
+  },
+  "privateSavesOrDiagnosticsPublished": false,
+  "henchmenRegression": {
+    "passed": true,
+    "scenarios": [
+      "selected-from-army-and-mobile-layout",
+      "independent-battle-actor-and-earned-experience",
+      "replacement-preserves-companion-experience",
+      "native-save-reload",
+      "dead-companion-resurrected-in-owned-town",
+      "ai-selects-shooter-as-independent-companion",
+      "disabled-profile-baseline"
+    ]
+  }
+}

@@ -498,7 +498,7 @@ JsonNode troopEquipmentSnapshot(const CGHeroInstance & hero, bool canAct)
  }
  return result;
 }
-JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c){mobileStackExperience(item,&a->getStack(SlotID(i)));item["nativeFlags"]["flying"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::FLYING);}n["slots"].Vector().push_back(item);}return n;}
+JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c){item["canDismiss"].Bool()=(!a->needsLastStack()||a->stacksCount()>1)&&era_bridge::sourceCreatureIdForLevel(c->getJsonKey()).value_or(-1)!=340;mobileStackExperience(item,&a->getStack(SlotID(i)));item["nativeFlags"]["flying"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::FLYING);}n["slots"].Vector().push_back(item);}return n;}
 // Resolve army exchange from the persisted town/hero relationship, not from
 // whether the castle window has been opened since loading the saved game.
 const CGTownInstance * mobileResidentTown(const CGHeroInstance * hero){
@@ -1393,17 +1393,18 @@ void publishMobileState(){
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
   const auto hero=heroWindow?heroWindow->curHero:p->localState->getCurrentHero();
   if(hero){n["heroName"].String()=hero->getNameTranslated();n["heroMana"].Integer()=hero->mana;n["heroManaLimit"].Integer()=hero->manaLimit();n["heroHasSpellbook"].Bool()=hero->hasSpellbook();n["movement"].Integer()=hero->movementPointsRemaining();n["heroId"].Integer()=hero->id.getNum();n["armies"].Vector().push_back(army(hero,hero->getNameTranslated()));if(p->localState->hasPath(hero)){n["hasPath"].Bool()=true;n["pathTurns"].Integer()=p->localState->getPath(hero).lastNode().turns;}}
-  if(heroWindow&&hero&&hero->getOwner()==p->playerID&&!hero->isGarrisoned()&&!hero->inBoat())
+  if(hero&&hero->getOwner()==p->playerID&&!hero->isGarrisoned()&&!hero->inBoat()&&(heroWindow||n["mode"].String()=="map"))
   {
    const auto & saved=static_cast<const IGameInfoCallback &>(*p->cb).gameState().getSourceCampaignState();
-   if(era_campaign_deployment::admitted(saved))
+   if(saved.isNull()||era_campaign_deployment::admitted(saved))
    {
-    auto & deploy=n["troopDeployment"];deploy["heroId"].Integer()=hero->id.getNum();deploy["revision"].Integer()=saved["lastTroopDeployment"]["revision"].Integer();
+    const auto & deployment=era_campaign_deployment::admitted(saved)?saved:static_cast<const IGameInfoCallback &>(*p->cb).gameState().getMap().sourceCampaignWorld["troopDeployment"];
+    auto & deploy=n["troopDeployment"];deploy["heroId"].Integer()=hero->id.getNum();deploy["revision"].Integer()=deployment["lastTroopDeployment"]["revision"].Integer();
     const auto origin=hero->visitablePos();deploy["origin"].Vector()={JsonNode(origin.x),JsonNode(origin.y),JsonNode(origin.z)};std::int64_t army=0;for(const auto & entry:hero->stacks)army+=entry.second->getCount();
     for(int slot=0;slot<7;++slot)if(hero->hasStackAtSlot(SlotID(slot)))
     {
      const auto & stack=hero->getStack(SlotID(slot));const auto source=era_bridge::sourceCreatureIdForLevel(stack.getCreature()->getJsonKey());auto unit=creature(stack.getCreature(),stack.getCount());unit["slot"].Integer()=slot;
-     unit["maximum"].Integer()=era_campaign_deployment_rule::maximum(stack.getCount(),army,source.value_or(-1),stack.getCreature()->warMachine!=ArtifactID::NONE);deploy["troops"].Vector().push_back(unit);
+     unit["maximum"].Integer()=era_campaign_deployment_rule::maximum(stack.getCount(),army,source.value_or(stack.getId().getNum()),stack.getCreature()->warMachine!=ArtifactID::NONE);deploy["troops"].Vector().push_back(unit);
     }
     for(std::size_t index=0;index<era_campaign_deployment_rule::directions.size();++index)
     {
@@ -2154,11 +2155,25 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   }
   lastPublished=0;return;
  }
+ if(action==113)
+ {
+  if(!p->makingTurn||battle||b<0||b>=7)return;
+  const auto owner=dynamic_cast<const CArmedInstance *>(p->cb->getObj(ObjectInstanceID(a)));
+  // Only visible army contexts are actionable, including a hero sheet. Check
+  // identity/count again so a stale confirmation cannot dismiss a replacement.
+  const auto sheet=ENGINE->windows().topWindow<CHeroWindow>();
+  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<AdventureMapInterface>()?mobileResidentTown(hero):nullptr;
+  const bool visible=owner&&((sheet&&sheet->curHero==owner)||(town&&(town->getUpperArmy()==owner||town->getVisitingHero()==owner))||(!town&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero==owner));
+  if(!visible||owner->getOwner()!=p->playerID||!owner->hasStackAtSlot(SlotID(b))||(owner->needsLastStack()&&owner->stacksCount()<2))return;
+  const auto & stack=owner->getStack(SlotID(b));
+  if(stack.getId().getNum()!=c||stack.getCount()!=d||era_bridge::sourceCreatureIdForLevel(stack.getCreature()->getJsonKey()).value_or(-1)==340)return;
+  p->cb->dismissCreature(owner,SlotID(b));lastPublished=0;return;
+ }
  if(action==110)
  {
   const auto window=ENGINE->windows().topWindow<CHeroWindow>();const auto owner=window?window->curHero:nullptr;
   if(!owner||owner->id.getNum()!=a||owner->getOwner()!=p->playerID||!p->makingTurn||battle||window->getPickedArtifact()||b<0||b>=7||d<0||d>=8||(e!=0&&e!=1)||!owner->hasStackAtSlot(SlotID(b)))return;
-  const auto & saved=static_cast<const IGameInfoCallback &>(*p->cb).gameState().getSourceCampaignState();if(!era_campaign_deployment::admitted(saved))return;const auto offset=era_campaign_deployment_rule::directions[d];
+  const auto offset=era_campaign_deployment_rule::directions[d];
   p->cb->sourceCampaignDeployTroops(owner,SlotID(b),c,owner->visitablePos()+int3(offset[0],offset[1],0),e!=0);lastPublished=0;return;
  }
  if(action==103)
@@ -2355,19 +2370,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   const CArmedInstance * from=upper->id.getNum()==a?upper:visitor;
   const CArmedInstance * to=upper->id.getNum()==b?upper:visitor;
   if(from&&to&&from!=to&&from->id.getNum()==a&&to->id.getNum()==b&&from->getOwner()==p->playerID&&to->getOwner()==p->playerID&&!from->Slots().empty()){
-   // Replace the destination formation without losing its existing creatures.
-   // Exchange occupied pairs first, return displaced units, then move into blanks.
-   int sourceStacks=from->stacksCount();
-   for(int step=0;step<3;++step)for(int slot=0;slot<7;++slot){
-    const int phase=step==0?0:from->needsLastStack()?step:3-step;
-    const SlotID id(slot);const bool src=from->hasStackAtSlot(id),dst=to->hasStackAtSlot(id);
-    if(phase==0&&src&&dst)p->cb->swapCreatures(from,to,id,id);
-    if(phase==1&&!src&&dst){p->cb->swapCreatures(to,from,id,id);++sourceStacks;}
-    if(phase==2&&src&&!dst){
-     if(from->needsLastStack()&&sourceStacks==1){const auto count=from->getStackCount(id);if(count>1)p->cb->splitStack(from,to,id,id,count-1);}
-     else{p->cb->swapCreatures(from,to,id,id);--sourceStacks;}
-    }
-   }
+   p->cb->bulkMoveArmy(from->id,to->id,from->Slots().begin()->first);
   }
   lastPublished=0;return;
  }

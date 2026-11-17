@@ -63,3 +63,6 @@
 }
 
 .army-split-toggle:has(input:disabled){opacity:.45;cursor:default}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app[data-sheet=army] .army-dock{overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+}

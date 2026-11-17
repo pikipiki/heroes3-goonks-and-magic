@@ -3,7 +3,7 @@ import {bindPress} from './mobile-press.mjs';
 import {getLanguage} from './i18n.mjs';
 
 // The roster never changes geometry when a troop is selected or split.
-export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{}}){
+export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onManage,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{}}){
  const fr=getLanguage()==='fr';
  const panel=document.createElement('div');panel.className='army-panel';panel.dataset.armyCount=String(showVisitorPlaceholder?Math.max(2,armies.length):armies.length);
  const rosters=document.createElement('div');rosters.className='army-rosters';
@@ -14,21 +14,23 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
  const split=document.createElement('input');split.id='army-split';split.type='checkbox';split.disabled=true;splitLabel.append(split,fr?'Scinder':'Split');
  const amount=document.createElement('input');amount.type='number';amount.min='1';amount.step='1';amount.value='1';amount.disabled=true;amount.setAttribute('aria-label',fr?'Nombre de créatures à séparer':'Number of creatures to split');
  const info=document.createElement('button');info.type='button';info.textContent=fr?'Fiche':'Details';info.disabled=true;info.hidden=!onInfo;
- if(!readOnly)tools.append(splitLabel,amount);tools.append(info);if(onBack){const back=document.createElement('button');back.type='button';back.className='army-back back-button';back.textContent=fr?'Retour':'Back';bindPress(back,onBack);tools.append(back);}dock.append(status,tools);panel.append(rosters,dock);body.replaceChildren(panel);
+ const manage=document.createElement('button');manage.type='button';manage.textContent=fr?'Gérer':'Manage';manage.disabled=true;manage.hidden=readOnly||!onManage;
+ if(!readOnly)tools.append(splitLabel,amount,manage);tools.append(info);if(onBack){const back=document.createElement('button');back.type='button';back.className='army-back back-button';back.textContent=fr?'Retour':'Back';bindPress(back,onBack);tools.append(back);}dock.append(status,tools);panel.append(rosters,dock);body.replaceChildren(panel);
  let selection=null,pending=false;const buttons=[];
  const select=record=>{
-  selection=record;split.disabled=!record||record.unit.count<2;if(split.disabled)split.checked=false;amount.disabled=!split.checked||!record||record.unit.count<2;amount.max=String(record?record.unit.count-1:1);amount.value=String(record?Math.max(1,Math.floor(record.unit.count/2)):1);info.disabled=!record||!onInfo;
+  selection=record;split.disabled=!record||record.unit.count<2;if(split.disabled)split.checked=false;amount.disabled=!split.checked||!record||record.unit.count<2;amount.max=String(record?record.unit.count-1:1);amount.value=String(record?Math.max(1,Math.floor(record.unit.count/2)):1);info.disabled=!record||!onInfo;manage.disabled=!record;
   status.textContent=readOnly?(record?`${record.unit.name} × ${record.unit.count}`:(fr?'Disponible à ton tour':'Available on your turn')):record?`${record.unit.name} × ${record.unit.count} · `+(fr?'Choisis la destination.':'Choose the destination.'):(fr?'Choisis une troupe, puis sa destination.':'Choose a unit, then choose its destination.');
   for(const item of buttons){const active=!!record&&item.army===record.army&&item.slot===record.slot;item.button.classList.toggle('selected',active);item.button.setAttribute('aria-pressed',String(active));}
  };
  split.addEventListener('change',()=>{amount.disabled=!split.checked||!selection||selection.unit.count<2;});
+ bindPress(manage,()=>{if(selection&&!pending)onManage?.(selection.army,selection.slot);});
  bindPress(info,()=>{if(selection&&!pending)onInfo?.(selection.army,selection.slot);});
  for(const army of armies){
   const section=document.createElement('section');section.className='army-roster';section.setAttribute('aria-label',army.name);
   const heading=document.createElement('h3');heading.textContent=army.name;
   const grid=document.createElement('div');grid.className='army-grid';section.append(heading,grid);rosters.append(section);
   const destination=army;const source=armies.find(other=>other.id!==army.id);
-  if(!readOnly&&onTransferAll&&showVisitorPlaceholder){const transfer=document.createElement('button');transfer.type='button';transfer.className='army-transfer-all';transfer.textContent=source?(fr?'Tout vers ':'All to ')+destination.name:(fr?'Transférer vers le héros':'Transfer to hero');transfer.disabled=!source||bulkTransferSummary(source,destination).count===0;transfer.setAttribute('aria-label',source?(fr?'Tout transférer : ':'Transfer all: ')+source.name+' → '+destination.name:(fr?'Aucun héros en visite':'No visiting hero'));bindPress(transfer,()=>{if(pending||!source)return;pending=true;transfer.setAttribute('aria-busy','true');for(const item of panel.querySelectorAll('button,input'))item.disabled=true;status.textContent=fr?'Transfert en cours…':'Transferring…';onTransferAll(source.id,destination.id);});section.append(transfer);}
+  if(!readOnly&&onTransferAll&&showVisitorPlaceholder){const transfer=document.createElement('button');transfer.type='button';transfer.className='army-transfer-all';transfer.textContent=source?(fr?'Tout vers ':'All to ')+destination.name:(fr?'Transférer vers le héros':'Transfer to hero');transfer.disabled=!source||bulkTransferSummary(source,destination).count===0;transfer.title=fr?'Fusionne les créatures identiques. Les troupes sans place restent dans leur armée ; le héros garde au moins une créature.':'Merge matching creatures. Units that do not fit stay in their army; the hero keeps at least one creature.';transfer.setAttribute('aria-label',source?(fr?'Tout transférer : ':'Transfer all: ')+source.name+' → '+destination.name:(fr?'Aucun héros en visite':'No visiting hero'));bindPress(transfer,()=>{if(pending||!source)return;pending=true;transfer.setAttribute('aria-busy','true');for(const item of panel.querySelectorAll('button,input'))item.disabled=true;status.textContent=fr?'Transfert et fusion en cours…':'Transferring and merging…';onTransferAll(source.id,destination.id);});section.append(transfer);}
   for(let slot=0;slot<7;slot++){
    const unit=army.slots?.[slot]||null,button=document.createElement('button');button.type='button';button.className='army-troop';button.dataset.army=String(army.id);button.dataset.slot=String(slot);button.toggleAttribute('data-empty',!unit);button.setAttribute('aria-pressed','false');button.setAttribute('aria-label',`${army.name}, ${fr?'emplacement':'slot'} ${slot+1} : ${unit?unit.name+', '+unit.count+(fr?' créatures':' creatures'):(fr?'libre':'empty')}`);
    const art=document.createElement('span');art.className='army-slot-art';art.innerHTML=unit?portrait(unit):'<span class="army-empty" aria-hidden="true">＋</span>';
@@ -41,7 +43,7 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
     if(selection.army===army.id&&selection.slot===slot){if(onInfo)onInfo(army.id,slot);else select(null);return;}
     const separated=split.checked?Number(amount.value):0;
     if(split.checked&&(unit||!Number.isInteger(separated)||separated<1||separated>=selection.unit.count)){onMessage(unit?(fr?'Choisis un emplacement libre pour scinder.':'Choose an empty slot to split.'):(fr?'Choisis une quantité entre 1 et '+(selection.unit.count-1)+'.':'Choose an amount between 1 and '+(selection.unit.count-1)+'.'));return;}
-    pending=true;for(const item of buttons)item.button.disabled=true;split.disabled=true;amount.disabled=true;info.disabled=true;status.textContent=fr?'Déplacement en cours…':'Moving…';
+    pending=true;for(const item of buttons)item.button.disabled=true;split.disabled=true;amount.disabled=true;info.disabled=true;manage.disabled=true;status.textContent=fr?'Déplacement en cours…':'Moving…';
     onMove({fromArmy:selection.army,fromSlot:selection.slot,toArmy:army.id,toSlot:slot,amount:separated});
    });
   }

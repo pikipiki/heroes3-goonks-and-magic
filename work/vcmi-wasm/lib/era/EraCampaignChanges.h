@@ -42,7 +42,8 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
  if(!packet.worldState.isNull())
  {
   const auto & vm=packet.state.isNull()?gs.getMap().sourceCampaignState:packet.state;
-  if(!vm.isStruct()||vm["contract"].String()!="source-campaign-state-v1"||!packet.worldState.isStruct()||packet.worldState["contract"].String()!="source-campaign-world-v1"||!packet.worldState["programId"].isString()||!packet.worldState["programSha256"].isString()||packet.worldState["programId"]!=vm["programId"]||packet.worldState["programSha256"]!=vm["vm"]["programSha256"])
+  const bool standalone=packet.state.isNull()&&vm.isNull()&&packet.worldState.isStruct()&&packet.worldState["contract"].String()=="troop-deployment-world-v1"&&packet.worldState["troopDeployment"].isStruct()&&packet.worldState.Struct().size()==2;
+  if(!standalone&&(!vm.isStruct()||vm["contract"].String()!="source-campaign-state-v1"||!packet.worldState.isStruct()||packet.worldState["contract"].String()!="source-campaign-world-v1"||!packet.worldState["programId"].isString()||!packet.worldState["programSha256"].isString()||packet.worldState["programId"]!=vm["programId"]||packet.worldState["programSha256"]!=vm["vm"]["programSha256"]))
    throw std::runtime_error("Invalid original campaign world state packet");
  }
  if(!packet.state.isNull())

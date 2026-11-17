@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../lib/gameState/ArmyBulkTransfer.h"
 #include "../lib/era/EraCampaignExperienceWord.h"
 #include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraBankActors.h"
@@ -1899,6 +1900,7 @@ bool CGameHandler::bulkMergeStacks(SlotID slotSrc, ObjectInstanceID srcOwner)
 
 bool CGameHandler::bulkMoveArmy(ObjectInstanceID srcArmy, ObjectInstanceID destArmy, SlotID srcSlot)
 {
+	if(srcArmy==destArmy)return false;
 	if(!srcSlot.validSlot() && complain(complainInvalidSlot))
 		return false;
 
@@ -1911,57 +1913,14 @@ bool CGameHandler::bulkMoveArmy(ObjectInstanceID srcArmy, ObjectInstanceID destA
 	if(!vstd::contains(armySrc->stacks, srcSlot) && complain(complainNoCreatures))
 		return false;
 
-	auto freeSlots = armyDest->getFreeSlots();
-	bool allTroopsMoved = true;
-
+	army_bulk_transfer::Army source{}, destination{};
+	for(const auto & entry:armySrc->Slots())source[entry.first.getNum()]={entry.second->getCreature()->getId().getNum(),entry.second->getCount()};
+	for(const auto & entry:armyDest->Slots())destination[entry.first.getNum()]={entry.second->getCreature()->getId().getNum(),entry.second->getCount()};
 	BulkRebalanceStacks bulkRS;
-
-	for (const auto & slot : armySrc->Slots())
+	for(const auto & move:army_bulk_transfer::plan(source,destination,armySrc->needsLastStack(),srcSlot.getNum()))
 	{
-		auto targetSlot = armyDest->getSlotFor(slot.second->getCreature());
-
-		if (armyDest->slotEmpty(targetSlot))
-		{
-			if (freeSlots.empty())
-			{
-				allTroopsMoved = false;
-				continue; // no more free slots, but we might still have units that are present in both armies
-			}
-
-			targetSlot = freeSlots.front();
-			freeSlots.erase(freeSlots.begin());
-		}
-
-		RebalanceStacks rs;
-		rs.srcArmy = armySrc->id;
-		rs.dstArmy = armyDest->id;
-		rs.srcSlot = slot.first;
-		rs.dstSlot = targetSlot;
-		rs.count = slot.second->getCount();
-
-		bulkRS.moves.push_back(rs);
-	}
-
-	// all troops were moved, but we can't leave source hero without troops - undo movement of 1 unit from srcSlot
-	if (allTroopsMoved && armySrc->needsLastStack())
-	{
-		if (armySrc->getStack(srcSlot).getCount() == 1)
-		{
-			// slot only had 1 unit - remove this move completely
-			vstd::erase_if(bulkRS.moves, [srcSlot](const RebalanceStacks & move)
-			{
-				return move.srcSlot == srcSlot;
-			});
-		}
-		else
-		{
-			// slot has multiple units - move all but one
-			for (auto & move : bulkRS.moves)
-			{
-				if (move.srcSlot == srcSlot)
-					move.count -= 1;
-			}
-		}
+		RebalanceStacks rs;rs.srcArmy=move.withinDestination?armyDest->id:armySrc->id;rs.dstArmy=armyDest->id;
+		rs.srcSlot=SlotID(move.from);rs.dstSlot=SlotID(move.to);rs.count=move.count;bulkRS.moves.push_back(rs);
 	}
 
 	sendAndApply(bulkRS);

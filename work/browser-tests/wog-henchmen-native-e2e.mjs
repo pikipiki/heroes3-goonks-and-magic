@@ -50,7 +50,8 @@ sys.stdout.buffer.write(out.getvalue())
 }
 
 async function boot({save,enabled=true,...options}={}){
- page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true});
+ // The packaged site's policy whitelists production domains, not localhost.
+ page=await browser.newPage({viewport:{width:844,height:390},hasTouch:true,bypassCSP:true});
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});

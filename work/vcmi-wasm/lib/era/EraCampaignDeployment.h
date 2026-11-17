@@ -26,5 +26,13 @@ inline std::optional<bool> ownerStyle(const JsonNode & state,int object,int owne
  const auto & pos=record["position"].Vector();if(pos.size()!=3||!pos[0].isNumber()||!pos[1].isNumber()||!pos[2].isNumber()||pos[0].Integer()!=position.x||pos[1].Integer()!=position.y||pos[2].Integer()!=position.z)return std::nullopt;
  return record["takeBack"].Bool();
 }
+// Ordinary maps use a separate saved world section. Never fabricate an ERM
+// program or change the admission identity of a campaign to enable deployment.
+inline std::optional<bool> ownerStyle(const JsonNode & state,const JsonNode & world,int object,int owner,const int3 & position)
+{
+ const auto scripted=ownerStyle(state,object,owner,position);
+ return scripted?scripted:ownerStyle(world["troopDeployment"],object,owner,position);
+}
+
 }
 VCMI_LIB_NAMESPACE_END

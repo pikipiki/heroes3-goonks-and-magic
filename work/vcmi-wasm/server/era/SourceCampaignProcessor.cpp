@@ -356,16 +356,19 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  bool deployTroops(ObjectInstanceID requestedHero,SlotID slot,CreatureID requestedCreature,int count,const int3 & target,bool takeBack,PlayerColor who)
  {
-  bind();if(!active||!vm.initialized||executing||!pending.isNull()||!vm.continuations.empty()||!state["turnQueue"].Vector().empty()||gh.queries->topQuery(who))return false;
+  bind();if(gh.queries->topQuery(who))return false;
+  if(active&&(!vm.initialized||executing||!pending.isNull()||!vm.continuations.empty()||!state["turnQueue"].Vector().empty()))return false;
+  if(!active&&!gh.gameState().getMap().sourceCampaignState.isNull())return false;
+  JsonNode deployment=active?state:gh.gameState().getMap().sourceCampaignWorld["troopDeployment"];
   const auto * h=gh.gameState().getHero(requestedHero);if(!h||h->getOwner()!=who||h->isGarrisoned()||h->inBoat()||!slot.validSlot()||slot.getNum()>6||!h->hasStackAtSlot(slot)||!gh.gameInfo().getPlayerState(who)->isHuman())return false;
   const auto & stack=h->getStack(slot);if(stack.getId()!=requestedCreature)return false;
   const auto origin=h->visitablePos();if(!era_campaign_deployment_rule::adjacent(origin.x,origin.y,origin.z,target.x,target.y,target.z)||!era_campaign_deployment::emptyLand(gh.gameState().getMap(),target,state))return false;
   std::int64_t army=0;for(const auto & entry:h->stacks)army+=entry.second->getCount();
-  int source;try{source=sourceCreature(requestedCreature);}catch(const std::runtime_error &){return false;}const bool machine=stack.getCreature()->warMachine!=ArtifactID::NONE;
+  int source;try{source=sourceCreature(requestedCreature);}catch(const std::runtime_error &){if(active)return false;source=requestedCreature.getNum();}const bool machine=stack.getCreature()->warMachine!=ArtifactID::NONE;
   if(count<1||count>era_campaign_deployment_rule::maximum(stack.getCount(),army,source,machine))return false;
-  auto & left=state["leftTroops"].Struct();for(auto it=left.begin();it!=left.end();){int id=-1;try{id=std::stoi(it->first);}catch(const std::exception &){}const auto & objects=gh.gameState().getMap().objects;if(id<0||id>=int(objects.size())||!objects[id])it=left.erase(it);else ++it;}
+  auto & left=deployment["leftTroops"].Struct();for(auto it=left.begin();it!=left.end();){int id=-1;try{id=std::stoi(it->first);}catch(const std::exception &){}const auto & objects=gh.gameState().getMap().objects;if(id<0||id>=int(objects.size())||!objects[id])it=left.erase(it);else ++it;}
   if(left.size()>=10000)return false;
-  const MapObjectSubID subtype(requestedCreature.getNum());const auto handler=LIBRARY->objtypeh->getHandlerFor(Obj::MONSTER,subtype);
+  const MapObjectSubID subtype(requestedCreature.getNum());if(!LIBRARY->objtypeh->knownSubObjects(Obj::MONSTER).count(subtype))return false;const auto handler=LIBRARY->objtypeh->getHandlerFor(Obj::MONSTER,subtype);
   auto templates=LIBRARY->objtypeh->getOriginalTemplates(Obj::MONSTER,subtype);const bool original=!templates.empty();if(!original)templates=handler->getTemplates();if(templates.empty())return false;
   auto created=std::dynamic_pointer_cast<CGCreature>(handler->create(&gh.gameInfo(),nullptr));if(!created)return false;
   handler->configureObject(created.get(),*gh.randomizer);gh.gs->getMap().generateUniqueInstanceName(created.get());created->appearance=original?templates.back():templates.front();created->setAnchorPos(target+created->getVisitableOffset());
@@ -373,9 +376,11 @@ struct SourceCampaignProcessor::Impl final:Host
   gh.newObject(created,who);gh.eraseStack({created->id,SlotID(0)});
   if(!gh.moveStack({h->id,slot},{created->id,SlotID(0)},count)){gh.removeObject(created.get(),who);return false;}
   gh.setObjPropertyValue(created->id,ObjProperty::MONSTER_POWER,count*1000);
-  auto & record=state["leftTroops"][std::to_string(created->id.getNum())];record["owner"].Integer()=who.getNum();record["takeBack"].Bool()=takeBack;record["position"].Vector()={JsonNode(target.x),JsonNode(target.y),JsonNode(target.z)};
-  state["objectIdentities"][std::to_string(created->id.getNum())].Vector()={JsonNode(54),JsonNode(source)};
-  auto & result=state["lastTroopDeployment"];result["revision"].Integer()=result["revision"].Integer()+1;result["hero"].Integer()=h->id.getNum();result["object"].Integer()=created->id.getNum();player=who;persist();return true;
+  auto & record=deployment["leftTroops"][std::to_string(created->id.getNum())];record["owner"].Integer()=who.getNum();record["takeBack"].Bool()=takeBack;record["position"].Vector()={JsonNode(target.x),JsonNode(target.y),JsonNode(target.z)};
+  if(active)deployment["objectIdentities"][std::to_string(created->id.getNum())].Vector()={JsonNode(54),JsonNode(source)};
+  auto & result=deployment["lastTroopDeployment"];result["revision"].Integer()=result["revision"].Integer()+1;result["hero"].Integer()=h->id.getNum();result["object"].Integer()=created->id.getNum();if(active){state=std::move(deployment);player=who;persist();}
+  else{SourceCampaignChange packet;packet.state=gh.gameState().getMap().sourceCampaignState;packet.worldState=gh.gameState().getMap().sourceCampaignWorld;packet.worldState["contract"].String()="troop-deployment-world-v1";packet.worldState["troopDeployment"]=std::move(deployment);gh.sendAndApply(packet);}
+  return true;
  }
  bool consumeEmptyMonster(const CGObjectInstance * obj,const CGHeroInstance * h)
  {

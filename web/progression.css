@@ -54,3 +54,21 @@
  #mobile-app .troop-deployment-page>footer{grid-column:2;grid-row:2;min-height:0}
  #mobile-app .troop-deployment-page h2{font-size:20px}
 }
+#mobile-app[data-troop-actions]>.mobile-top,#mobile-app[data-troop-actions]>.mobile-nav{visibility:hidden!important;pointer-events:none!important}
+#mobile-app .troop-actions-page{z-index:40}
+#mobile-app .troop-action-unit{display:flex;align-items:center;gap:12px;padding:12px;border:2px ridge #b99a56;background:#21160dcc}
+#mobile-app .troop-action-unit>:is(img,canvas,span){width:64px;height:72px;object-fit:contain;flex-shrink:0}
+#mobile-app .troop-action-unit h3{margin:0 0 6px}
+#mobile-app .troop-action-unit p{margin:0}
+#mobile-app .troop-action-choices{display:grid;gap:12px;margin:16px 0}
+#mobile-app .troop-action-choices button{display:grid;grid-template-columns:48px minmax(0,1fr);text-align:left;gap:6px 12px;padding:12px}
+#mobile-app .troop-action-choices img{grid-row:span 2;width:48px;height:48px}
+#mobile-app .troop-action-choices span{font-size:14px;line-height:1.4;white-space:normal}
+#mobile-app .troop-actions-page .progression-scroll>p{font-size:14px;line-height:1.5}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .troop-actions-page>header{grid-column:2;grid-row:1}
+ #mobile-app .troop-actions-page>.progression-scroll{grid-column:1;grid-row:1/-1}
+ #mobile-app .troop-actions-page>footer{grid-column:2;grid-row:2}
+}
+#mobile-app .troop-actions-page button{border:2px ridge #b99a56;border-radius:0;background:linear-gradient(#5a3b20,#2b1c10);color:#ffe6af;font-family:Georgia,serif}
+#mobile-app .troop-actions-page button.primary{background:linear-gradient(#8c3020,#48170e);color:#fff0ba;border-color:#efd08a}

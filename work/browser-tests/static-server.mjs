@@ -22,5 +22,13 @@ http.createServer((req,res)=>{
   }
   if(!fs.existsSync(target)||!fs.statSync(target).isFile()){res.writeHead(404).end();return;}
   res.setHeader('Content-Type',types[path.extname(target)]||'application/octet-stream');
+  res.setHeader('Accept-Ranges','bytes');
+  if(req.headers.range){
+    const size=fs.statSync(target).size,match=/^bytes=(\d+)-(\d*)$/.exec(req.headers.range);
+    const start=match?Number(match[1]):-1,end=match&&match[2]?Math.min(Number(match[2]),size-1):size-1;
+    if(!Number.isSafeInteger(start)||!Number.isSafeInteger(end)||start<0||start>=size||end<start){res.writeHead(416,{'Content-Range':'bytes */'+size}).end();return;}
+    res.writeHead(206,{'Content-Range':`bytes ${start}-${end}/${size}`,'Content-Length':end-start+1});
+    fs.createReadStream(target,{start,end}).pipe(res);return;
+  }
   fs.createReadStream(target).pipe(res);
 }).listen(port,'127.0.0.1',()=>console.log('Public build: http://127.0.0.1:'+port+prefix));

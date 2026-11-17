@@ -1,8 +1,14 @@
-// A bulk transfer replaces the destination formation. Its old stacks return
-// to the source; a hero retains one creature if the destination was empty.
+// Bulk transfers preserve the destination, merge matching creature types and
+// leave one creature with a source hero when everything else fits.
 export function bulkTransferSummary(from,to){
  if(!from||!to||from.id===to.id)return{count:0,blocked:false,keepsOne:false};
- const units=(from.slots||[]).filter(Boolean),total=units.reduce((n,u)=>n+u.count,0);
- const keepsOne=!!from.needsLastStack&&!(to.slots||[]).some(Boolean)&&total>0;
- return{count:Math.max(0,total-(keepsOne?1:0)),blocked:false,keepsOne};
+ const groups=new Map();
+ for(const unit of to.slots||[])if(unit?.count>0)groups.set(unit.id,(groups.get(unit.id)||0)+unit.count);
+ let count=0,blocked=false;
+ for(const unit of from.slots||[])if(unit?.count>0){
+  if(!groups.has(unit.id)&&groups.size>=7){blocked=true;continue;}
+  groups.set(unit.id,(groups.get(unit.id)||0)+unit.count);count+=unit.count;
+ }
+ const keepsOne=!!from.needsLastStack&&!blocked&&count>0;
+ return{count:Math.max(0,count-(keepsOne?1:0)),blocked,keepsOne};
 }
