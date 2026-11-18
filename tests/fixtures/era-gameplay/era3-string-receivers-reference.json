@@ -1,0 +1,25 @@
+{
+  "repository": "https://github.com/ethernidee/era",
+  "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+  "file": "Erm.pas",
+  "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+  "fragments": [
+    {
+      "startLine": 1347,
+      "endLine": 1394,
+      "text": "procedure SetZVar (Str: pchar; const Value: string); overload;\nbegin\n  Utils.SetPcharValue(Str, Value, sizeof(z[1]));\nend;\n\nprocedure SetZVar (Str, Value: pchar); overload;\nbegin\n  Utils.SetPcharValue(Str, Value, sizeof(z[1]));\nend;\n\nfunction IsMutableZVarIndex (Ind: integer): boolean;\nbegin\n  result := ((Ind >= Low(z^)) and (Ind <= High(z^))) or (-Ind in [Low(nz^)..High(nz^)]);\nend;\n\nfunction GetZVarAddr (Ind: integer): pchar;\nbegin\n  if Ind > High(z^) then begin\n    result := ZvsGetErtStr(Ind);\n  end else if Ind >= Low(z^) then begin\n    result := @z[Ind];\n  end else if -Ind in [Low(nz^)..High(nz^)] then begin\n    result := @nz[-Ind];\n  end else begin\n    ShowErmError('Invalid z-var index: ' + SysUtils.IntToStr(Ind));\n    result := 'STRING NOT FOUND';\n  end;\nend;\n\nfunction GetInterpolatedZVarAddr (Ind: integer): pchar;\nbegin\n  if Ind > High(z^) then begin\n    result := ZvsGetErtStr(Ind);\n\n    if (Ind < FIRST_LOCAL_ERT_INDEX) or (Ind > LAST_LOCAL_ERT_INDEX) then begin\n      result := InterpolateErmStr(result);\n    end;\n  end else if Ind >= Low(z^) then begin\n    result := @z[Ind];\n  end else if -Ind in [Low(nz^)..High(nz^)] then begin\n    result := @nz[-Ind];\n  end else begin\n    ShowErmError('Invalid z-var index: ' + SysUtils.IntToStr(Ind));\n    result := 'STRING NOT FOUND';\n  end;\nend;\n\nfunction GetInterpolatedZeroableZVarAddr (Ind: integer): pchar;\n",
+      "sha256": "d34f072fe20e0a9d8bf99d983cd3b5e46ab3fe55d90c71bc60b942532638d419"
+    },
+    {
+      "startLine": 6920,
+      "endLine": 6930,
+      "text": "  // OK result\n  Context.RetAddr := Ptr($74943B);\n  SubCmd          := pointer(Context.EBP - $300);\n  result          := false;\n\n  ZvsShowMessage(GetInterpolatedZVarAddr(SubCmd.Nums[0]), ord(Heroes.MES_MES));\nend;\n\nfunction Hook_IF_L (Context: ApiJack.PHookContext): longbool; stdcall;\nvar\n  SubCmd: PErmSubCmd;\n",
+      "sha256": "17f0f07cbdb273fe0052e956b44de2577fff4a69bc5b6cc2ed217163f4186a27"
+    }
+  ],
+  "scope": "Negative z indices refer to the ten trigger-local nz cells; IF:M resolves numeric string indices through GetInterpolatedZVarAddr. Native name, portrait and event adapters now use the same VM cell resolver.",
+  "limits": [
+    "ASCII local strings, at most 511 bytes, no embedded NUL.",
+    "Native name and numeric dialog/checklist paths receive direct game validation; full portrait/event and external profile scenarios remain unadmitted."
+  ]
+}

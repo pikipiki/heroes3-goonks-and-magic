@@ -12,9 +12,9 @@ class Dialogs
  const Context & context;
  int number(const Operand & operand)const{return readNumber(operand,vm,context);}
  std::string cell(const Operand & operand)const
- {if(operand.kind==Kind::Default)return {};return formatText(lookup(vm.z,number(operand)),vm,context);}
+ {if(operand.kind==Kind::Default)return {};return formatText(readStringCell(vm,number(operand)),vm,context);}
  std::string text(const Operand & operand)const
- {return textOperand(operand,vm)?readText(operand,vm,context):lookup(vm.z,number(operand));}
+ {return textOperand(operand,vm)?readText(operand,vm,context):readStringCell(vm,number(operand));}
  static void require(bool condition,const char * message)
  {if(!condition)throw std::runtime_error(message);}
  JsonNode & definition(int id)

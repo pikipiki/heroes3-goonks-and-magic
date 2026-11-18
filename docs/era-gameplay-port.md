@@ -93,6 +93,17 @@ source avant admission. Les arguments `FU:P` textuels, les locales `e`, les
 chaînes ERT et les profils complets restent à porter. La preuve bornée est
 `scripts/era-bridge/gameplay/era3-string-locals-native-validation.json`.
 
+Les adaptateurs natifs utilisent aussi cette portée lorsque `UN:N` écrit un
+nom dans une cellule locale, et lorsque les dialogues reçoivent un indice de
+chaîne numérique. Les menus à choix lisent donc les textes du bon appel,
+y compris après une sauvegarde imbriquée. Le contrôle sur le moteur précédent
+reproduit les noms locaux vides et le remplacement d’un libellé par un appel
+imbriqué ; le moteur corrigé conserve les trois noms attendus. Les lecteurs de
+sauvegarde antérieurs à 921 refusent ce nouveau format. Les indices numériques
+des portraits et messages d’événement passent par le même résolveur ; leurs
+scénarios ERA3 complets restent à vérifier. Preuve bornée :
+`scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json`.
+
 La libération explicite `VA(-nom)` des variables et tableaux `x`/`y` suit
 également l’allocateur ERA : récupération de la fin de plage ou ajout du bloc
 à la liste libre, puis première plage assez grande en partant de la plus récente.

@@ -6,12 +6,12 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "c7400644acef48fefcdc3328e1cac0af835c21dbf44f1027fb19a4e8b128d67f"
   },
   "nativeBuild": {
@@ -236,5 +236,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+      "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

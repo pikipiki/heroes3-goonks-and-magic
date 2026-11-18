@@ -11,11 +11,11 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651",
+    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "99e0a428e36390833ba5b4716fd62c41d92ba5b92f5bbb37e9ee40f752d950fc",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf7e696cfaa8738d0d5e2c18d08605582e8cd1be371398f33e73f4af67de2be2",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
     "work/vcmi-wasm/client/MobileBridge.cpp": "5968fdd394b0cfcc068a0569a47c97e9e642d56794af3b7cbe5025737ebc8aa0",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
@@ -236,5 +236,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+      "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

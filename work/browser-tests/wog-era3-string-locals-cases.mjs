@@ -57,10 +57,13 @@ export async function runStringLocals({boot,state,wait,page,report,output,save})
  const ack=async()=>{const old=(await state()).dialogPresentation.lines.join(' ');await page().locator('[data-dialog-confirm]')[process.env.GROWTH_DESKTOP==='1'?'click':'tap']();await wait(old=>goonkMobileState.mode!=='dialog'||goonkMobileState.dialogPresentation?.lines?.join(' ')!==old,old);};
  const seen=[];
  const check=async text=>{await read(text);seen.push(text);await ack();};
- await boot({...options,expectedDialog:'source-campaign'});
- await check('STR ENTRY []');
- await check('STR PARENT alpha/beta+/gamma size -1 addr -3/-1/-2');
- await check('STR CHILD ENTRY []');
+ if(process.env.STRING_LOCALS_LEGACY_SAVE)await boot({...options,save:[...fs.readFileSync(process.env.STRING_LOCALS_LEGACY_SAVE)],expectedDialog:'source-campaign'});
+ else{
+  await boot({...options,expectedDialog:'source-campaign'});
+  await check('STR ENTRY []');
+  await check('STR PARENT alpha/beta+/gamma size -1 addr -3/-1/-2');
+  await check('STR CHILD ENTRY []');
+ }
  await read('STR CHILD child');
  const pending=await save();fs.writeFileSync(path.join(output,'string-locals-pending.vsgm1'),pending);
  await page().close();await boot({...options,save:[...pending],expectedDialog:'source-campaign'});

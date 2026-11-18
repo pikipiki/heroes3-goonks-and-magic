@@ -13,8 +13,8 @@
     "scripts/era-bridge/campaigns/parser.mjs": "0b83c20325e58f085be8017a13fadcaf3c01f2e150e54c3e76b12bb02783a913",
     "work/browser-tests/wog-era3-local-arrays-cases.mjs": "7da679f5a0d0d23e4da647d9cb3b6fc9f24859b88563a4d724e2178f2b43eb59",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b36ad88f8b6a155a82ec51c8c4194eef407cf6f2e635e0d3539b94b574d2e02b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "266dfa660958267f306e640f01b556ccda19d1e2634a0734d2e3ba5a39fee4cb",
     "tests/fixtures/era-gameplay/era3-local-arrays-reference.json": "9593410cd806ebd6887952394b3d5fb092921cc373b799b6ce8ff0465d1e567f"
@@ -264,5 +264,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

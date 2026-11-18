@@ -45,7 +45,7 @@
     "work/vcmi-wasm/lib/era/EraMapExtraDwellingRules.h": "2b5106610c9c0d85fa8652c506abffc1d7a37a6ca9a3d126cb0625fe03ba653e",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
     "work/vcmi-wasm/lib/mapObjects/CGDwelling.cpp": "e2b6c02df3d4e518d90977d506c77ffba23195404885cdcb042c56b4a0e8c676",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
@@ -54,11 +54,11 @@
     "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
     "work/browser-tests/wog-map-extra-dwellings-cases.mjs": "0cbd422a9184ebf3963f2b4150c549a5de0b13f3dfbc7e11a71529ff3d5b63b1",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
     "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
     "tests/native/EraMapExtraDwellingRules.test.cpp": "108d462f593ca399ecf4d15bd984881716b08122786d67b2a67ef14a371d909d",
     "tests/era-map-extra-dwellings.test.mjs": "32283b22e5a17ae21edc2be7a473cea2dd274234fbb017bafd135df5e4a93ae8",
     "tests/fixtures/era-gameplay/map-extra-dwellings-reference.json": "d809c94a65121bfc163a0763043889e3868acab618d9eb9e4adf38a3d36e3465",
@@ -1291,5 +1291,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

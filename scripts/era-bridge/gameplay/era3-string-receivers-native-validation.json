@@ -1,0 +1,543 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Route admitted native negative-z cell accesses through ERA3 local frames: UN:N output, numeric dialog text and choices; portrait and event numeric accesses use the same resolver. Native cases directly cover names and dialog/checklist paths.",
+  "sourceBaseCommit": "e9d8f0ff0707bef20ec657b4bd81730debc46ba0",
+  "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
+    "work/vcmi-wasm/lib/era/EraCampaignDialogs.h": "1e856fb7305d109731cd36501cfbabf45ae8b116f916b2d88d4e635cc08b8857",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
+    "tests/native/EraCampaignStringLocals.test.cpp": "0feaf3c3dca36a7704c94622b15bce1e1f73031d040e0b20b11e93801a8c97f7",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+    "work/browser-tests/wog-era3-string-receivers-cases.mjs": "fc2300a47960b50ccb26fb80421edc50b779dc6f8a1ba4e79e925053d4c8fc09",
+    "work/browser-tests/wog-era3-string-locals-cases.mjs": "6cd07e4ca87373c7974b3cf88230de23369922a5d54d0ef31558846b6cd48110",
+    "tests/era-campaign-string-receivers.test.mjs": "68121184ac8a32faeee5dfdc47fb4f31b182af22177393d302160961dd3c25a2",
+    "tests/fixtures/era-gameplay/era3-string-receivers-reference.json": "663318d957dcf7df0a6589d53a2d1b569341aab473c20203ff6f499b754444b4",
+    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 49,
+    "logSha256": "acef1c86e86440dd45dc7489e1e1886967cf8023de15e146f190420c6429fa44",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "newScopeLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regressions": [
+      {
+        "test": "EraCampaignExecutor",
+        "exitCode": 0
+      },
+      {
+        "test": "Era3QuickVars",
+        "exitCode": 0
+      },
+      {
+        "test": "Era3QuickVarsCodec",
+        "exitCode": 0
+      },
+      {
+        "test": "EraCampaignRuntime",
+        "exitCode": 0
+      },
+      {
+        "test": "EraCampaignAssociativeCodec",
+        "exitCode": 0
+      },
+      {
+        "test": "EraWogOptionsSerialization",
+        "exitCode": 0
+      }
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3004,
+    "mismatches": [],
+    "expectedManifestSha256": "59a3e5902cf5a635300b4f5dd36a72e4763384e7329b0a72b7dfebeeae4aae7b"
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ethernidee/era",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "file": "Erm.pas",
+    "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "fragments": [
+      {
+        "startLine": 1347,
+        "endLine": 1394,
+        "text": "procedure SetZVar (Str: pchar; const Value: string); overload;\nbegin\n  Utils.SetPcharValue(Str, Value, sizeof(z[1]));\nend;\n\nprocedure SetZVar (Str, Value: pchar); overload;\nbegin\n  Utils.SetPcharValue(Str, Value, sizeof(z[1]));\nend;\n\nfunction IsMutableZVarIndex (Ind: integer): boolean;\nbegin\n  result := ((Ind >= Low(z^)) and (Ind <= High(z^))) or (-Ind in [Low(nz^)..High(nz^)]);\nend;\n\nfunction GetZVarAddr (Ind: integer): pchar;\nbegin\n  if Ind > High(z^) then begin\n    result := ZvsGetErtStr(Ind);\n  end else if Ind >= Low(z^) then begin\n    result := @z[Ind];\n  end else if -Ind in [Low(nz^)..High(nz^)] then begin\n    result := @nz[-Ind];\n  end else begin\n    ShowErmError('Invalid z-var index: ' + SysUtils.IntToStr(Ind));\n    result := 'STRING NOT FOUND';\n  end;\nend;\n\nfunction GetInterpolatedZVarAddr (Ind: integer): pchar;\nbegin\n  if Ind > High(z^) then begin\n    result := ZvsGetErtStr(Ind);\n\n    if (Ind < FIRST_LOCAL_ERT_INDEX) or (Ind > LAST_LOCAL_ERT_INDEX) then begin\n      result := InterpolateErmStr(result);\n    end;\n  end else if Ind >= Low(z^) then begin\n    result := @z[Ind];\n  end else if -Ind in [Low(nz^)..High(nz^)] then begin\n    result := @nz[-Ind];\n  end else begin\n    ShowErmError('Invalid z-var index: ' + SysUtils.IntToStr(Ind));\n    result := 'STRING NOT FOUND';\n  end;\nend;\n\nfunction GetInterpolatedZeroableZVarAddr (Ind: integer): pchar;\n",
+        "sha256": "d34f072fe20e0a9d8bf99d983cd3b5e46ab3fe55d90c71bc60b942532638d419"
+      },
+      {
+        "startLine": 6920,
+        "endLine": 6930,
+        "text": "  // OK result\n  Context.RetAddr := Ptr($74943B);\n  SubCmd          := pointer(Context.EBP - $300);\n  result          := false;\n\n  ZvsShowMessage(GetInterpolatedZVarAddr(SubCmd.Nums[0]), ord(Heroes.MES_MES));\nend;\n\nfunction Hook_IF_L (Context: ApiJack.PHookContext): longbool; stdcall;\nvar\n  SubCmd: PErmSubCmd;\n",
+        "sha256": "17f0f07cbdb273fe0052e956b44de2577fff4a69bc5b6cc2ed217163f4186a27"
+      }
+    ],
+    "scope": "Negative z indices refer to the ten trigger-local nz cells; IF:M resolves numeric string indices through GetInterpolatedZVarAddr. Native name, portrait and event adapters now use the same VM cell resolver.",
+    "limits": [
+      "ASCII local strings, at most 511 bytes, no embedded NUL.",
+      "Native name and numeric dialog/checklist paths receive direct game validation; full portrait/event and external profile scenarios remain unadmitted."
+    ]
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "scenarios": [
+        {
+          "kind": "era3-string-receivers",
+          "oldControl": false,
+          "seen": [
+            "STRCELLS NAMES Pathfinding/Archery/Logistics",
+            "Pathfinding",
+            "Scouting",
+            "STRCELLS RETURN Pathfinding/Archery/Logistics",
+            "STRCELLS CHOICE 2",
+            "STRCELLS ROOT initializer"
+          ],
+          "choices": [
+            {
+              "value": "1",
+              "label": "Archery"
+            },
+            {
+              "value": "2",
+              "label": "Logistics"
+            }
+          ],
+          "nativeNameOutputScoped": true,
+          "numericDialogText": true,
+          "numericChecklistCells": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "nativeSaveVersion": 921,
+          "programSha256": "c22da059494282643b195ccfff773029001c99094e14b3963fbae7deb262aded",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "3b79fcb0895841abec881a55cf9fda03d4c0bf646fbc150d241b9cafbef4adc7"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "scenarios": [
+        {
+          "kind": "era3-string-receivers",
+          "oldControl": false,
+          "seen": [
+            "STRCELLS NAMES Pathfinding/Archery/Logistics",
+            "Pathfinding",
+            "Scouting",
+            "STRCELLS RETURN Pathfinding/Archery/Logistics",
+            "STRCELLS CHOICE 2",
+            "STRCELLS ROOT initializer"
+          ],
+          "choices": [
+            {
+              "value": "1",
+              "label": "Archery"
+            },
+            {
+              "value": "2",
+              "label": "Logistics"
+            }
+          ],
+          "nativeNameOutputScoped": true,
+          "numericDialogText": true,
+          "numericChecklistCells": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "nativeSaveVersion": 921,
+          "programSha256": "c22da059494282643b195ccfff773029001c99094e14b3963fbae7deb262aded",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "4f2ac46095545fc5896efe37e52f445232c5a49af4d63fbec2327afa6ed711c2"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "scenarios": [
+        {
+          "kind": "era3-string-receivers",
+          "oldControl": false,
+          "seen": [
+            "STRCELLS NAMES Pathfinding/Archery/Logistics",
+            "Pathfinding",
+            "Scouting",
+            "STRCELLS RETURN Pathfinding/Archery/Logistics",
+            "STRCELLS CHOICE 2",
+            "STRCELLS ROOT initializer"
+          ],
+          "choices": [
+            {
+              "value": "1",
+              "label": "Archery"
+            },
+            {
+              "value": "2",
+              "label": "Logistics"
+            }
+          ],
+          "nativeNameOutputScoped": true,
+          "numericDialogText": true,
+          "numericChecklistCells": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "nativeSaveVersion": 921,
+          "programSha256": "c22da059494282643b195ccfff773029001c99094e14b3963fbae7deb262aded",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9a59d4c41d7d947aeda7ce9178d274a4fa76e26f4f8f51aeb35fa165055d4c78"
+    }
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "errors": [],
+      "rawReportSha256": "14f75ecdc5e0599042e32422e7a41cf0747d5c54f0c685310eade5a7655eedf5",
+      "scenarioCount": 7,
+      "scenarios": [
+        {
+          "kind": "points",
+          "scope": "Original point calculation; commander and set dependencies remain controlled stubs",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "class",
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "skill-level-routing",
+          "scope": "Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-numeric-calls",
+          "scope": "ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-constant-local-arrays",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-dynamic-local-arrays",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-quick-scope",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "errors": [],
+      "rawReportSha256": "9cf25c083c64da39faaf6b5e177806772462fe5047932531469536b8f195ab21",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-function-metadata",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ]
+    },
+    "mithril": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "errors": [],
+      "rawReportSha256": "465075544b7f3d4969a915318ed1e2b5d68b949849d117ed8cb413c47c0c6d48",
+      "scenarioCount": 2,
+      "scenarios": [
+        {
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        {
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        }
+      ]
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "errors": [],
+      "rawReportSha256": "21f99c125c87ad6028d774be10a45bfefd4d72e4bcd9fd9ac387dcd8b35dbbe1",
+      "scenarioCount": 17,
+      "scenarios": [
+        "owned-mine-double-income-payment-and-stale-request",
+        "companion-and-mithril-transactions-coexist",
+        "native-dwelling-upgrade-preserves-stock",
+        "nearby-weekly-site-payment",
+        "advanced-university-payment",
+        "owned-shipyard-creates-lighthouse",
+        "town-magical-terrain-payment",
+        "monolith-exit-fog-revealed",
+        "monolith-camera-shows-exit-and-returns-to-selected-entrance",
+        "mobile-town-one-card-nine-terrain-picker-retains-chosen-option",
+        "phone-and-ipad-scrollable-layout",
+        "phone-and-ipad-real-touch-vertical-scroll-without-keyboard",
+        "companion-and-mithril-restored-from-same-save",
+        "native-save-reload",
+        "mine-expires-after-seven-income-periods",
+        "disabled-module-baseline",
+        "insufficient-mithril-rejected-by-server"
+      ]
+    },
+    "string-locals": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "errors": [],
+      "rawReportSha256": "f2e30832babcef2475610496a2963c6c66d287ea192386dec8c3bd16965a0289",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-string-locals",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "legacy-locals": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+      "errors": [],
+      "rawReportSha256": "acaa236353e6195b4120962cd14918773dfb4355acbed9c5cd1c316e3e7447eb",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-string-locals",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    }
+  },
+  "oldPublishedControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e",
+    "scenarios": [
+      {
+        "kind": "era3-string-receivers",
+        "oldControl": true,
+        "seen": [
+          "STRCELLS NAMES //",
+          "Pathfinding",
+          "Scouting",
+          "STRCELLS RETURN //",
+          "STRCELLS CHOICE 2",
+          "STRCELLS ROOT initializer"
+        ],
+        "choices": [
+          {
+            "value": "1",
+            "label": "Archery"
+          },
+          {
+            "value": "2",
+            "label": "Scouting"
+          }
+        ],
+        "nativeNameOutputScoped": false,
+        "numericDialogText": true,
+        "numericChecklistCells": true,
+        "nestedNativeSaveReload": true,
+        "completedNativeSaveReload": true,
+        "nativeSaveVersion": 920,
+        "programSha256": "c22da059494282643b195ccfff773029001c99094e14b3963fbae7deb262aded",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "b9939da6c12435b1bf5b47abd0ae500b81515125977f66bab6f10c8abda9a5b9"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 921,
+        "readerVersion": 920,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "5b8613d0e36faa3944cf3f6d758de75845ee61ad7dfe82c999e252ad620ef000"
+  },
+  "serialization": {
+    "previousSaveVersion": 920,
+    "newSaveVersion": 921,
+    "choiceCount": 19,
+    "legacyScopeInputVersion": 920,
+    "legacyScopeOutputVersion": 921,
+    "legacyScopeInputSha256": "73bd331992ba82844af672b6d9c0ecf8082bf5cf5381f1f1fc61f0bb70994b78",
+    "legacyScopeOutputSha256": "0c063f524fb7f92c3067b86b78313de1ec5176abe5ebb2033e19fb67f3bd3d05"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.272-engine.tar.gz",
+    "sha256": "c6ddbcdb37892dc37816cd11becf134b97c4a4a7ba6e7cd78fdba460bc934a08",
+    "runtimeByteIdenticalToTestedCandidate": true,
+    "runtimeFiles": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ]
+  },
+  "compilerUnchanged": true,
+  "remaining": [
+    "Full ERA3 portrait/event receiver scenarios and complete external gameplay profiles.",
+    "ANSI codepage conversion, overlong/local NUL strings and string FU:P/ERT/e semantics.",
+    "Previously faulty native name writes in development saves are not reconstructed; the verified legacy case contains a valid scoped bank."
+  ],
+  "publicationVerification": {
+    "nodeTests": {
+      "total": 920,
+      "passed": 865,
+      "failed": 0,
+      "skipped": 55,
+      "logSha256": "5bf80457dec31b0e506314a62b3ae290437f07fc8e9a2c2aead611a2273282da"
+    },
+    "freshTumCompatibility": {
+      "testsPassed": 8,
+      "logSha256": "758442c989509564f0fa9f49b92b04b4e24af70c1741f6dda4713f0e72c633b5"
+    },
+    "site": {
+      "verified": true,
+      "nativeFiles": 10464,
+      "transportBytes": 702295411,
+      "cleanManifestUsed": true,
+      "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
+    }
+  }
+}

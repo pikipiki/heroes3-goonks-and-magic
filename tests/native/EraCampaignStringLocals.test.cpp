@@ -1,6 +1,7 @@
 #include "Global.h"
 #include "era/EraCampaignJson.h"
 #include "era/EraCampaignExecutor.h"
+#include "era/EraCampaignDialogs.h"
 #include <cassert>
 using namespace era_campaign;
 Operand number(int n){Operand o;o.kind=Kind::Number;o.number=n;return o;}
@@ -57,4 +58,16 @@ int main()
  assert(VCMI_LIB_WRAP_NAMESPACE(era_campaign_json)::readProgram(ast).era3StringLocals);
  ast["functionMetadata"].String()="era3-integers";assert(VCMI_LIB_WRAP_NAMESPACE(era_campaign_json)::readProgram(ast).era3FunctionMetadata);
  ast["schemaVersion"].Integer()=5;ast["contract"].String()="source-campaign-erm-ast-v5";rejects([&]{VCMI_LIB_WRAP_NAMESPACE(era_campaign_json)::readProgram(ast);});
+ // Native receivers pass integer string-cell indices as well as z operands.
+ State cells;cells.era3StringLocals=true;cells.z[-1]="stale global";
+ writeStringCell(cells,-1,"Title");writeStringCell(cells,-2,"First");writeStringCell(cells,-3,"Second");
+ assert(readStringCell(cells,-1)=="Title"&&readText(cell(-1),cells,context)=="Title");
+ assert(cells.z.at(-1)=="stale global"&&readStringCell(cells,0).empty());
+ JsonNode definitions;VCMI_LIB_WRAP_NAMESPACE(era_campaign_dialogs)::Dialogs dialogs(definitions,cells,context);
+ assert(dialogs.execute({"M",{number(-1)}})["text"].String()=="Title");
+ const auto list=dialogs.execute({"G",{number(0),number(945),number(0),number(-1),number(-2),number(-3)}});
+ assert(list["text"].String()=="Title"&&list["choices"].Vector()[0]["label"].String()=="First"&&list["choices"].Vector()[1]["label"].String()=="Second");
+ dialogs.execute({"B",{number(1),number(-3),number(1)}});
+ assert(dialogs.execute({"P",{number(1)}})["pictures"].Vector()[0]["file"].String()=="Second");
+ cells.era3StringLocals=false;assert(readStringCell(cells,-1)=="stale global");
 }

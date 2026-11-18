@@ -11,11 +11,11 @@
     "scripts/era-bridge/campaigns/importer.mjs": "e130aa9e58463642b85bdf86ce2a0559a5c9ad2bc29dfa00ba23f91269f25fc0",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "3b82cec8cc18a5a6b51e5bc83c66a3f720f918e9b3b6f3c31b643080931b1934",
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b36ad88f8b6a155a82ec51c8c4194eef407cf6f2e635e0d3539b94b574d2e02b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "266dfa660958267f306e640f01b556ccda19d1e2634a0734d2e3ba5a39fee4cb",
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
     "work/browser-tests/wog-era3-function-metadata-cases.mjs": "50602bab31eb91a668bafd2d8ba19aa018287b7ff20320513b734c4ffc51bb7b"
   },
   "nativeBuild": {
@@ -337,5 +337,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

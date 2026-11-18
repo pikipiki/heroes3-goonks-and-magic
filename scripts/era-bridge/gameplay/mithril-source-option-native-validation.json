@@ -8,7 +8,7 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "1010b9a13e28b44b45f1294661df51b96738f2e5c0badf25640bfc9c794bbc6d",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "60a05ad51a888af261192caf24cd5b43aa9603dc4d320d90c31cda6c6a51212e",
@@ -404,5 +404,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

@@ -328,12 +328,23 @@ inline bool scopedZIndex(const State & state,std::int32_t index)
  if(state.frames.empty())throw std::runtime_error("Missing source campaign local frame");
  return true;
 }
+inline std::string readStringCell(const State & state,std::int32_t index)
+{
+ // Numeric dialog parameters historically use zero for an empty optional cell.
+ // Explicit z0 operands remain rejected by the local-z contract below.
+ return index!=0&&scopedZIndex(state,index)?lookup(state.frames.back().z,index):lookup(state.z,index);
+}
+inline void writeStringCell(State & state,std::int32_t index,std::string value)
+{
+ if(index!=0&&scopedZIndex(state,index))state.frames.back().z[index]=localString(std::move(value));
+ else state.z[index]=std::move(value);
+}
 inline std::string readText(const Operand&input,const State&state,const Context&context)
 {
  const auto&operand=resolveMacro(input,state);
  if(operand.kind==Kind::String)return formatText(operand.text,state,context);
  if(operand.kind==Kind::Named&&operand.space=='s')return lookup(state.associative,associativeName(formatText(operand.name,state,context))).text;
- if(operand.kind==Kind::Variable&&operand.space=='z'&&operand.index){const auto index=readNumber(*operand.index,state,context);return scopedZIndex(state,index)?lookup(state.frames.back().z,index):lookup(state.z,index);}
+ if(operand.kind==Kind::Variable&&operand.space=='z'&&operand.index){const auto index=readNumber(*operand.index,state,context);scopedZIndex(state,index);return readStringCell(state,index);}
  throw std::runtime_error("Non-text campaign operand");
 }
 inline void writeText(const Operand&input,State&state,const Context&context,std::string value)
@@ -342,8 +353,7 @@ inline void writeText(const Operand&input,State&state,const Context&context,std:
  if(operand.kind==Kind::Named&&operand.space=='s'){state.associative[associativeName(formatText(operand.name,state,context))].text=std::move(value);return;}
  if(operand.kind!=Kind::Variable||operand.space!='z'||!operand.index)throw std::runtime_error("Non-text campaign destination");
  const auto index=readNumber(*operand.index,state,context);
- if(scopedZIndex(state,index))state.frames.back().z[index]=localString(std::move(value));
- else state.z[index]=std::move(value);
+ scopedZIndex(state,index);writeStringCell(state,index,std::move(value));
 }
 inline std::string formatText(const std::string & text,const State & state,const Context & context)
 {

@@ -285,6 +285,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='string-receivers'){
+  const {runStringReceivers}=await import('./wog-era3-string-receivers-cases.mjs');
+  await runStringReceivers({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:950})});
+ }
  if(process.env.CASES==='quick-scope'){
   const {runQuickScope}=await import('./wog-era3-quick-scope-cases.mjs');
   await runQuickScope({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:949})});

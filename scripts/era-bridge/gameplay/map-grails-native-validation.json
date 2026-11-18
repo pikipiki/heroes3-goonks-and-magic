@@ -10,8 +10,8 @@
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
     "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
     "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
@@ -1449,5 +1449,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

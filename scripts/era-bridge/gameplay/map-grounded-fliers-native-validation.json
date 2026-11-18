@@ -67,7 +67,7 @@
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "9335d886ef7f4346886643182b257dd3dad1146182383fc363ddd402d251422e",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182",
     "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "b18ac4a8a3a478e0a4a8b773b4068b05d9c4e3c75c8a917d2e398a113331a99e",
@@ -80,11 +80,11 @@
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
     "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "f9b67803593c2b7d2781102459bb848e0bdf9b2e121e2b9ae350a677e5045196",
     "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
     "tests/era-map-grounded-fliers.test.mjs": "19e1e7c8733ec6c9d12b6a866332d07a0193c87c87e4e599a01fe1301ea99426",
     "tests/fixtures/era-gameplay/map-grounded-fliers-reference.json": "ee354297e5d0bc380cd56501379f17a04dc4dd4580339ecbb74a5da41d9bf475",
     "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
-    "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
+    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1183,5 +1183,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+      "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

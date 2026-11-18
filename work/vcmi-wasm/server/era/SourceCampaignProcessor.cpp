@@ -1623,7 +1623,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    }
    else throw std::runtime_error("Original campaign: unsupported source name kind");
    const auto count=TextOperations::getUnicodeCharactersCount(name);if(count>511)TextOperations::trimRightUnicode(name,count-511);
-   vm.z[destination]=std::move(name);return Step::Continue;
+   writeStringCell(vm,destination,std::move(name));return Step::Continue;
   }
   if(op.code=="V")
   {
@@ -2097,7 +2097,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
     else
     {
      const int index=number(argument);if(index==0)return std::nullopt;
-     require((index>=1&&index<=1000)||(index>=-10&&index<=-1),"external portrait string table is not admitted");text=lookup(vm.z,index);
+     require((index>=1&&index<=1000)||(index>=-10&&index<=-1),"external portrait string table is not admitted");text=readStringCell(vm,index);
     }
     for(const auto & candidate:era_campaign_media::candidates(text.substr(0,12)))
      if(CResourceHandler::get()->existsResource(ResourcePath(candidate.resource,EResType::IMAGE)))return candidate.resource;
@@ -2490,7 +2490,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
     if(argument.access==Access::Write){writeText(argument,vm,context,event->message.toString());return Step::Continue;}
     require(argument.access==Access::Read,"event message needs a string reference");
     if(argument.kind==Kind::Variable&&argument.space=='z')text=readText(argument,vm,context);
-    else{const int index=number(argument);require(index==-1||(index>=1&&index<=1000)||(index>=-10&&index<=-2),"external event message strings are not admitted");if(index!=-1)text=lookup(vm.z,index);}
+    else{const int index=number(argument);require(index==-1||(index>=1&&index<=1000)||(index>=-10&&index<=-2),"external event message strings are not admitted");if(index!=-1)text=readStringCell(vm,index);}
    }
    else text=argument.kind==Kind::Number&&argument.number==-1?std::string():readText(argument,vm,context);
    auto change=mutation("event",event->id);change["message"].String()=text;

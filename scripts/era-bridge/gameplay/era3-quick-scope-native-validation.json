@@ -17,16 +17,16 @@
   },
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b36ad88f8b6a155a82ec51c8c4194eef407cf6f2e635e0d3539b94b574d2e02b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "266dfa660958267f306e640f01b556ccda19d1e2634a0734d2e3ba5a39fee4cb",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
     "tests/native/Era3QuickVars.test.cpp": "e82f6b920e1a6186019341538543a46f79bee57914c988dd74ffbca330832d11",
     "tests/native/Era3QuickVarsCodec.test.cpp": "8fa869aa21d30396674dfe6cb5aa2d1a2908e89d7345e7e68ecc9404862a0058",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
     "work/browser-tests/wog-era3-quick-scope-cases.mjs": "41e00e1c172fec7552e9449f2c45176df6a94210804318921b1d8a04376099fa",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
     "tests/fixtures/era-gameplay/era3-quick-scope-reference.json": "a19a8a90be522376c3c124061b80c4235a0b4d17287ad180700c252d4e40e1fa"
   },
   "nativeBuild": {
@@ -568,5 +568,16 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }

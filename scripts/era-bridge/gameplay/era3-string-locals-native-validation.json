@@ -11,15 +11,15 @@
     "scripts/era-bridge/campaigns/native-compiler.mjs": "3b82cec8cc18a5a6b51e5bc83c66a3f720f918e9b3b6f3c31b643080931b1934",
     "scripts/era-bridge/campaigns/parser.mjs": "0b83c20325e58f085be8017a13fadcaf3c01f2e150e54c3e76b12bb02783a913",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b36ad88f8b6a155a82ec51c8c4194eef407cf6f2e635e0d3539b94b574d2e02b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "266dfa660958267f306e640f01b556ccda19d1e2634a0734d2e3ba5a39fee4cb",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846",
-    "tests/native/EraCampaignStringLocals.test.cpp": "fd6a426466119c6ec1f289cb4dbe3d158a3ce18e78e7075c5f68cfe6a7d5ae42",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
-    "work/browser-tests/wog-era3-string-locals-cases.mjs": "95d8584e80cd5d25fddf27f4ed2ccbda8895f6ebdb46ced2a61977fe9d280783",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b",
+    "tests/native/EraCampaignStringLocals.test.cpp": "0feaf3c3dca36a7704c94622b15bce1e1f73031d040e0b20b11e93801a8c97f7",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+    "work/browser-tests/wog-era3-string-locals-cases.mjs": "6cd07e4ca87373c7974b3cf88230de23369922a5d54d0ef31558846b6cd48110",
     "work/browser-tests/native-ui-actions.mjs": "96f7cacb1b889afdcc985ee3a8997fac70ef7cac97d96be26822a78c47738bef",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "60a05ad51a888af261192caf24cd5b43aa9603dc4d320d90c31cda6c6a51212e",
@@ -27,7 +27,7 @@
     "tests/era-campaign-locals.test.mjs": "81ccbd66d4313ae19d916eb4509a948e1e113915efcc194a92348ac8b03041ee",
     "tests/era-campaign-string-locals.test.mjs": "744fadb9c3b9c7a0f6ff3f398ceb47ea75dcd699e3cf637459ed53c5112e3689",
     "tests/fixtures/era-gameplay/era3-string-locals-reference.json": "ee1577f6043201f713b121a09d51f259b292c0cb6b4877cde52e0fd97ff6ee18",
-    "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
+    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1017,5 +1017,20 @@
       "logSha256": "b33419f93d6f848a2f954e636dc93b248d8ec68773187c2e15cc0444df4820dc"
     },
     "siteVerified": true
+  },
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+      "tests/native/EraCampaignStringLocals.test.cpp": "fd6a426466119c6ec1f289cb4dbe3d158a3ce18e78e7075c5f68cfe6a7d5ae42",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
+      "work/browser-tests/wog-era3-string-locals-cases.mjs": "95d8584e80cd5d25fddf27f4ed2ccbda8895f6ebdb46ced2a61977fe9d280783",
+      "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   }
 }
