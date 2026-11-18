@@ -16,6 +16,9 @@ test('rewriting published modules never follows source file or directory links',
   fs.writeFileSync(path.join(outside,'mod.json'),'{"enabled":true}\n');
   fs.symlinkSync(path.join(outside,'mobile.mjs'),path.join(source,'mobile.mjs'));
   fs.symlinkSync(outside,path.join(source,'nested'),'dir');
+  fs.mkdirSync(output);
+  fs.symlinkSync(path.join(outside,'mobile.mjs'),path.join(output,'mobile.mjs'));
+  fs.symlinkSync(outside,path.join(output,'nested'),'dir');
   copyPublicTree(source,output);
   for(const file of ['mobile.mjs','nested/mobile.mjs']){
    const target=path.join(output,file);assert.equal(fs.lstatSync(target).isSymbolicLink(),false);
