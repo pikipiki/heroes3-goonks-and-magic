@@ -5,3 +5,10 @@ test('A funded recruitment shows the selected total without claiming funds are m
 test('Special-resource shortages and an empty stock have distinct explanations',()=>{const state={...base,recruitUnit:{count:2,cost:[0,2,0,0,0,0,100]},resources:[0,1,0,0,0,0,90]};assert(recruitmentSummary(state).includes('Il manque 1 mercure + 10 or'));const empty=recruitmentSummary({...state,recruitUnit:{...state.recruitUnit,count:0}});assert(empty.includes('Stock épuisé'));assert(!empty.includes('Il manque'));});
 
 test('Recruitment supports additional native resources such as mithril',()=>{const summary=recruitmentSummary({recruitUnit:{count:3,cost:[0,0,0,0,0,0,50,2]},resourceTypes:[{},{},{},{},{},{},{},{id:7,key:'mithril',name:'Mithril'}],resources:[0,0,0,0,0,0,50,1],recruitMaximum:0,recruitAmount:0});assert.match(summary,/mithril/i);assert.match(summary,/Il manque 1 mithril/);});
+
+test('Compact recruitment keeps only the total and groups gold without shortening other resources',()=>{
+ const state={recruitUnit:{count:12,cost:[9999,0,0,0,0,0,9999999]},resources:[99999,0,0,0,0,0,99999999],recruitMaximum:10,recruitAmount:1};
+ assert.equal(recruitmentSummary(state,'en',{compact:true}),'Total: 9999 wood + 9 999 999 gold');
+ assert.equal(recruitmentSummary(state,'fr',{compact:true}),'Total : 9999 bois + 9 999 999 or');
+ assert.match(recruitmentSummary({...base,recruitAmount:0},'en',{compact:true}),/Missing 20 gold/);
+});

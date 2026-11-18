@@ -28,8 +28,8 @@ export function createGameCalendar(root){
   const days=value.untilNextWeek;
   const recruitLabel=english?(days===1?'Recruits in 1 day':`Recruits in ${days} days`):(days===1?'Recrues dans 1 jour':`Recrues dans ${days} jours`);
   const status=recruits?recruitLabel:remaining;
-  next.hidden=recruits;
-  cue.hidden=!recruits;
+  next.hidden=true;
+  cue.hidden=false;
   calendar.toggleAttribute('data-recruits-soon',recruits&&days===1);
   if(recruits)calendar.setAttribute('aria-label',`${town?town+'. ':''}${label}. ${recruitLabel}`);
   else calendar.removeAttribute('aria-label');
