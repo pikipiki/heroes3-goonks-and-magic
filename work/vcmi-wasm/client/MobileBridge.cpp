@@ -560,6 +560,20 @@ MobileArmyUpgradePlan mobilePlanArmyUpgrades(CPlayerInterface * player,const CAr
   }plan.cost+=cost;plan.steps.push_back({SlotID(slot),CreatureID(step.source),CreatureID(step.upgrade.target),actual.getCount(),cost});}
   plan.view["units"].Vector().push_back(std::move(unit));
  }
+ // Explain an empty quote without changing the native upgrade eligibility.
+ if(plan.view["units"].Vector().empty())
+ {
+  const auto hero=dynamic_cast<const CGHeroInstance *>(object);
+  const auto town=hero?hero->getVisitedTown():dynamic_cast<const CGTownInstance *>(object);
+  bool hasEvolution=false,matchingFaction=false;
+  for(const auto & entry:object->Slots())
+   if(!entry.second->getCreature()->upgrades.empty())
+   {
+    hasEvolution=true;
+    if(town&&entry.second->getCreature()->getFactionID()==town->getFactionID())matchingFaction=true;
+   }
+  plan.view["unavailableReason"].String()=!hasEvolution?"noEvolution":!town?"noTown":!matchingFaction?"wrongTown":"requiredBuilding";
+ }
  for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())plan.view["cost"].Vector().push_back(JsonNode(int64_t(plan.cost[resource])));
  JsonNode signature=plan.view;
  for(const auto & step:plan.steps){JsonNode item;for(const int value:{step.slot.getNum(),step.source.getNum(),step.target.getNum(),step.count})item.Vector().push_back(JsonNode(value));for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())item.Vector().push_back(JsonNode(int64_t(step.cost[resource])));signature["steps"].Vector().push_back(item);}

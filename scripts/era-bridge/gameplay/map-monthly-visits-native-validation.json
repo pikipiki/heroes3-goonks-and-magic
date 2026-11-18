@@ -578,5 +578,95 @@
     "Source option101 selection modes and the rest of the WoG catalogue.",
     "Windows ERA binary comparison and native multi-client monthly visitation scenarios remain outside this bounded proof.",
     "Complete gameplay packs remain disabled."
-  ]
+  ],
+  "sourceCompatibility": {
+    "scope": "Additive empty army-upgrade quote explanations in MobileBridge only. Original monthly proof and its engine remain historical; all monthly rule source bindings are unchanged.",
+    "sourceBindings": {
+      "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3"
+    },
+    "nativeBuild": {
+      "command": "ninja -j32 html5",
+      "exitCode": 0,
+      "logSha256": "f8b5c06663c84ae6836da4cee671e297fdfd770f8e61da3dfdb92570dc6dd6f1"
+    },
+    "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+    "report": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            12,
+            12,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": true,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": false,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
+    }
+  }
 }
