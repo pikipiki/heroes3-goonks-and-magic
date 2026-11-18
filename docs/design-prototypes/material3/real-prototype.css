@@ -1,0 +1,76 @@
+/* Preview only. Paint real game components; do not replace their content,
+   commands, artwork, layout contracts or native canvas. */
+@layer real-heroes-prototype,screen-layouts,mui,heroes-material;
+@layer real-heroes-prototype {
+ html[data-real-prototype=heroes] #mobile-app,
+ html[data-real-prototype=heroes] #game-menu {
+  color:#fff0ca!important;
+  background:#362619 url('/web/h3-theme/stone.png') repeat!important;
+ }
+ html[data-real-prototype=heroes] :is(.creature-presentation,.hero-equipment-page,.hero-exchange-page,.mobile-sheet,.market-page,.dialog-presentation,.town-service,.mobile-spellbook,.mobile-mage-guild,.progression-page,#game-menu){
+  background:linear-gradient(110deg,#47291955,#140e09bb),url('/web/h3-theme/stone.png') repeat!important;
+  box-shadow:inset 0 0 0 1px #f4d68b,inset 0 0 0 3px #473113,inset 0 0 0 4px #bb9555!important;
+ }
+ html[data-real-prototype=heroes] :is(#mobile-app,#game-menu) :is(button,.MuiButton-root):not(.town-building-hit):not(.native-dialog-close-hit),
+ html[data-real-prototype=heroes] #game-menu-toggle {
+  font-family:Georgia,'Times New Roman',serif!important;
+  color:#ffecb4!important;
+  border-radius:0!important;
+  border-color:#b79a61!important;
+  background:linear-gradient(#efbf6410,#0e080955),url('/web/h3-theme/button-normal.png') center/100% 100%!important;
+  box-shadow:inset 1px 1px #ffebbe99,inset -2px -2px #130b08dd,0 1px 2px #0007!important;
+  text-shadow:1px 1px 1px #000!important;
+ }
+ html[data-real-prototype=heroes] :is(#mobile-app,#game-menu) :is(button.primary,button.MuiButton-contained,[aria-pressed=true],[aria-selected=true]) {
+  color:#fff1bb!important;
+  background:linear-gradient(#9d3821dd,#4a120eeb),url('/web/h3-theme/stone.png') center!important;
+  border-color:#f6d98a!important;
+  box-shadow:inset 0 0 0 1px #806039,inset 0 0 0 2px #ffe6a0,0 1px 3px #0009!important;
+ }
+ html[data-real-prototype=heroes] :is(#mobile-app,#game-menu) button:disabled {
+  opacity:.52!important;
+  box-shadow:inset 1px 1px #bda57655,inset -1px -1px #0d0807!important;
+ }
+ html[data-real-prototype=heroes] :is(.mobile-top,.mobile-nav,.sheet-head,.creature-view-head,.hero-card-head,.exchange-toolbar,.market-header,#game-menu>header){
+  background:linear-gradient(#6f2517ba,#30170be8),url('/web/h3-theme/stone.png') repeat!important;
+  border-color:#d4b16b!important;
+  box-shadow:inset 0 1px #f9e3a177,inset 0 -1px #efd39988!important;
+ }
+ html[data-real-prototype=heroes] :is(#mobile-app,#game-menu) :is(h1,h2,h3,h4){
+  font-family:Georgia,'Times New Roman',serif!important;
+  color:#ffe6a4!important;
+  text-shadow:1px 1px 1px #150a05!important;
+ }
+ html[data-real-prototype=heroes] :is(.hall-form,.recruit-variants button,.exchange-slot,.army-slot,.hero-army-slot,.fort-creature,.creature-upgrade,.game-cheat){
+  background:linear-gradient(#130d09aa,#21160cdd),url('/web/h3-theme/stone.png') repeat!important;
+  border-color:#c1a367!important;
+  box-shadow:inset 0 0 0 1px #26170c,inset 0 0 0 2px #987746!important;
+ }
+ html[data-real-prototype=heroes] :is(.creature-stage,.hall-art,.recruit-visual,.unit-header){
+  background:radial-gradient(ellipse at bottom,#6d512c88,#150e08aa)!important;
+ }
+ html[data-real-prototype=heroes] :is(#mobile-app,#game-menu) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]),select,.MuiOutlinedInput-root){
+  color:#fff0c6!important;
+  background:#20150edb!important;
+  border-radius:0!important;
+  box-shadow:inset 1px 1px 2px #000b!important;
+ }
+ html[data-real-prototype=heroes] :is(.MuiOutlinedInput-notchedOutline,.material-select-trigger){border-color:#d1ae65!important}
+ html[data-real-prototype=heroes] :is(.creature-stats,.hero-primary-skills,.battle-unit-stats) {
+  color:#ffedbf!important;
+  font-variant-numeric:tabular-nums!important;
+ }
+ html[data-real-prototype=heroes] :is(.ui-action-dock,.hall-actions,.recruit-controls,.exchange-actions,.game-menu-return){
+  background:linear-gradient(#372419dd,#25160eee),url('/web/h3-theme/stone.png') repeat!important;
+ }
+ html[data-real-prototype=heroes] .ui-screen-header{border-color:#b59453!important}
+ html[data-real-prototype=heroes] :is(.ui-material-menu,.MuiMenu-paper){
+  color:#fff0c6!important;
+  border:2px ridge #d4b36c!important;
+  background:#382719 url('/web/h3-theme/stone.png')!important;
+ }
+ /* The header already has the native close control. Keep one exit and give
+    the real price/description the recovered height in this purchase window. */
+ html[data-real-prototype=heroes] .town-service[data-kind=blacksmith]>footer [data-service-back]{display:none!important}
+ html[data-real-prototype=heroes] .town-service[data-kind=blacksmith] .service-cost{position:sticky!important;bottom:0!important;background:#271a10!important}
+}

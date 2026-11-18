@@ -1,0 +1,1737 @@
+{
+  "scope": "Real native game and production UI factories; CSS-only design preview",
+  "engineArchive": "outputs/vcmi-wasm-goonk-0.4.272-engine.tar.gz",
+  "engineArchiveSha256": "c6ddbcdb37892dc37816cd11becf134b97c4a4a7ba6e7cd78fdba460bc934a08",
+  "prototypeCssSha256": "06d2b32419ea59f795b44bca9c911365d0f8e27e4816f6a2437b5e0605f8ab95",
+  "samples": [
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "town-360x640-current-9a815302d876.jpg",
+      "sha256": "9a815302d87665c93827c0ffb934856843319eff5e847465d79d968be82f48d6",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "town-360x640-heroes-5b6a7809fb3c.jpg",
+      "sha256": "5b6a7809fb3c7eb8b46ab5dae9cbd4a1d3b366cf1c91887abb67323e9335db5c",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "town-320x568-current-32275dfeafbf.jpg",
+      "sha256": "32275dfeafbf49bbe16c7ba7b6a8d6dd0ee52e00beeac2559a76265292f7c36f",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "town-320x568-heroes-be975ef03626.jpg",
+      "sha256": "be975ef036263c70068f1eb97746b4d6419a812c1f435a7646008700e1e8d588",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "town-640x360-current-14a9962ccf3e.jpg",
+      "sha256": "14a9962ccf3ee3278541b1163d052f78f27d21d51bcf3ccb1c2e5e37323bec5f",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "town-640x360-heroes-fd52ab40c3f1.jpg",
+      "sha256": "fd52ab40c3f10a85b9fb3d81e84bb405e1bf64698427929157fe15261c8fbc40",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "town-568x280-current-614062e219e9.jpg",
+      "sha256": "614062e219e961a008b60ca81c7f9730202dd91308b5064a07e38337582d3d02",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "town",
+      "label": "Château",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "town-568x280-heroes-cd2657f7c6cf.jpg",
+      "sha256": "cd2657f7c6cf9e8d2dabf3f1a2d98156038ba43dca820a6227118004b428f5d3",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "town",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "fort-360x640-current-6bfafbc84ab0.jpg",
+      "sha256": "6bfafbc84ab0b235b82c5711c28bf357aeadff468bb9765eddbd1298258d94a6",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "fort-360x640-heroes-ea1876494900.jpg",
+      "sha256": "ea1876494900b7b56cb56f2395235962e7f5cd1b1f895b857741cff80b03e7ef",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "fort-320x568-current-b4779891e138.jpg",
+      "sha256": "b4779891e138b4f5f75a9a98e70e282815a4aadb2fb7b89c54aae14065e33662",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "fort-320x568-heroes-a9cba6bfb26e.jpg",
+      "sha256": "a9cba6bfb26ef6d470d4546f5e6f2dc8c9667b2cda537e568e57b8ce021aa669",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "fort-640x360-current-8ecb361a9c57.jpg",
+      "sha256": "8ecb361a9c57bc6c655a460e21ec0b803fd7c9ec1fa830af44e3b008c6c0a43c",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "fort-640x360-heroes-1dc57c2c9dd3.jpg",
+      "sha256": "1dc57c2c9dd3b14c7450fe30c375237ee15c6fd5306102c0cab5823d5f7f4727",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "fort-568x280-current-6460f673930a.jpg",
+      "sha256": "6460f673930acb8e12386ea9e0cc95654366962e385dd07cf77bbe09dfd2e4fd",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "fort",
+      "label": "Hall de recrutement",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "fort-568x280-heroes-ae197efa9952.jpg",
+      "sha256": "ae197efa99522d452446d56e483d0e0fa25336432c1f5fc1c0e3f11c192567c3",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "fort",
+      "dialogKind": "fort",
+      "hasNativeEngine": true,
+      "canvases": 23,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "hero-360x640-current-1c3b59915fcb.jpg",
+      "sha256": "1c3b59915fcbe2bd88904b1e1957c2a394fe3b724cedf92f52ef3dd32c7af934",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "hero-360x640-heroes-6f86728bc00a.jpg",
+      "sha256": "6f86728bc00a7924e812f5636e33c541cf89ebba37826515fe3d0f95dc6224a7",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "hero-320x568-current-5a027c591272.jpg",
+      "sha256": "5a027c5912725e88a271b8d915a6ae49778a65ddb62ed6450694332f9f5bb077",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "hero-320x568-heroes-de13a3c0ce41.jpg",
+      "sha256": "de13a3c0ce41ab3ddd6f70371888e3e77abc20a0610db82726b2331f5193ace6",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "hero-640x360-current-35507cb4a9c1.jpg",
+      "sha256": "35507cb4a9c19bd5267b566cd79b1aa7b35c795feed0d904475b2e6e8677e3b3",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "hero-640x360-heroes-4a45b26dd21b.jpg",
+      "sha256": "4a45b26dd21b4624aaeca6e0cfae28fe687d79535fcc6927318912361b6a4aa6",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "hero-568x280-current-aee3ed90a365.jpg",
+      "sha256": "aee3ed90a3656b9f94985bafbcd6ee673f0d6410af72f5bb9c8f69f1d3c59577",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "hero",
+      "label": "Armée du héros",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "hero-568x280-heroes-c1826d693aad.jpg",
+      "sha256": "c1826d693aadde03f05777aef8f1531eb67789805eb289b202668a8a803d3cae",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "equipment-360x640-current-1c3b59915fcb.jpg",
+      "sha256": "1c3b59915fcbe2bd88904b1e1957c2a394fe3b724cedf92f52ef3dd32c7af934",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "equipment-360x640-heroes-6f86728bc00a.jpg",
+      "sha256": "6f86728bc00a7924e812f5636e33c541cf89ebba37826515fe3d0f95dc6224a7",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "equipment-320x568-current-5a027c591272.jpg",
+      "sha256": "5a027c5912725e88a271b8d915a6ae49778a65ddb62ed6450694332f9f5bb077",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "equipment-320x568-heroes-de13a3c0ce41.jpg",
+      "sha256": "de13a3c0ce41ab3ddd6f70371888e3e77abc20a0610db82726b2331f5193ace6",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 11,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "equipment-640x360-current-35507cb4a9c1.jpg",
+      "sha256": "35507cb4a9c19bd5267b566cd79b1aa7b35c795feed0d904475b2e6e8677e3b3",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "equipment-640x360-heroes-4a45b26dd21b.jpg",
+      "sha256": "4a45b26dd21b4624aaeca6e0cfae28fe687d79535fcc6927318912361b6a4aa6",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "equipment-568x280-current-aee3ed90a365.jpg",
+      "sha256": "aee3ed90a3656b9f94985bafbcd6ee673f0d6410af72f5bb9c8f69f1d3c59577",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "equipment",
+      "label": "Équipement du héros",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "equipment-568x280-heroes-c1826d693aad.jpg",
+      "sha256": "c1826d693aadde03f05777aef8f1531eb67789805eb289b202668a8a803d3cae",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 10,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "skills-360x640-current-05df059cb596.jpg",
+      "sha256": "05df059cb5969ac1cfc7a65ac37113c151d0f9c5caf145d57f29e2e254b041df",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 13,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "skills-360x640-heroes-1e78b32e0fce.jpg",
+      "sha256": "1e78b32e0fce199b9bf4659abec51f8e2d388fd6b8ab0d3f37f35a837e5ed2bf",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 13,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "skills-320x568-current-00747645b732.jpg",
+      "sha256": "00747645b732eae659d6521c171030bd5977e13880f2a373d0b6f018da7897b6",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 13,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "skills-320x568-heroes-b74a6323bd14.jpg",
+      "sha256": "b74a6323bd144e7e2d31fa69c3ca1ae1c1c1b68ed5c2d7f59c223bf11a1e928c",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 13,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "skills-640x360-current-0775a47cbf8b.jpg",
+      "sha256": "0775a47cbf8bc8da08331c0817f51f5506ff3f38ef000344ce6f742367bdf8f2",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 12,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "skills-640x360-heroes-7496fdb8e736.jpg",
+      "sha256": "7496fdb8e736e8a067f1af4f69ac6fcbc654ac97d33fda6c2b98dbdcc7a4f4f6",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 12,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "skills-568x280-current-2a3fd0bc65b0.jpg",
+      "sha256": "2a3fd0bc65b04205dc0b96bb77b496e99fa0cffbb1390bb6e5d487c09836461b",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 12,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "skills",
+      "label": "Compétences du héros",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "skills-568x280-heroes-95d44148ee11.jpg",
+      "sha256": "95d44148ee11d18f798b0c40aab27c6287e8d16d295d77a4c0595f7bf80e0c31",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "hero",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 12,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "marketplace-360x640-current-c222c636c74d.jpg",
+      "sha256": "c222c636c74d0556bd0b42568bde94e283dedc2791b87ba39989d9e330b28125",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "marketplace-360x640-heroes-61b03483c363.jpg",
+      "sha256": "61b03483c3633bdf9d912d4f93e6afdd5ed39829f68f40a681f4bbabe4b60478",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "marketplace-320x568-current-01cba54f561c.jpg",
+      "sha256": "01cba54f561c0d3bd1b14727df139059b92294d1d6e0ba4922d22a2a4f9f0f42",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "marketplace-320x568-heroes-c3f777dcd465.jpg",
+      "sha256": "c3f777dcd46546d425892b01c509a55bc5e2bf5be2fc26d4f19ba04b2dbbb574",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "marketplace-640x360-current-5a1e90b45914.jpg",
+      "sha256": "5a1e90b459148eacdfc33b5e7ed94072bdcd1d07379cb6eb9a5f7cd92b63a485",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "marketplace-640x360-heroes-04103c6c88ee.jpg",
+      "sha256": "04103c6c88ee65d7be9acf984766040d99a6eceb9aba91fedabdd971ef8a8cff",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "marketplace-568x280-current-168a141bdd72.jpg",
+      "sha256": "168a141bdd72983b79689df29749f626d600be6e3c929bff2a1ac3e3e57dc09d",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "marketplace",
+      "label": "Marché",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "marketplace-568x280-heroes-fcd248541955.jpg",
+      "sha256": "fcd248541955e69d8b6eba1a5c521f63f06ebba1b04b07bc3bff373ef35708f3",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "market",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "mageGuild1-360x640-current-3e48f3d2a6cb.jpg",
+      "sha256": "3e48f3d2a6cb856a7892cc6f4df2bacce9ffc71a25e9e977475e3906d4669d16",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "mageGuild1-360x640-heroes-77ca79b8ad3d.jpg",
+      "sha256": "77ca79b8ad3d1d1583e5fa0e754b288e92c1b9793c3a01cf0b345b8ac87faf7d",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "mageGuild1-320x568-current-f3ef4c5d1a46.jpg",
+      "sha256": "f3ef4c5d1a4650dc5907e1c1eccadca9d01471de9a52be6cbc6ca982efb079ec",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "mageGuild1-320x568-heroes-0d757fa7ba6b.jpg",
+      "sha256": "0d757fa7ba6b7bd161e1a525339c1cecd900c3c3bbc88f995fe1bd6d7987275a",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "mageGuild1-640x360-current-fd8be761df98.jpg",
+      "sha256": "fd8be761df985c36385d2811fc3acd5a02c95a1eb526efc8095793ea591eb8d7",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "mageGuild1-640x360-heroes-71137aadceb3.jpg",
+      "sha256": "71137aadceb350bafab46cd9c91ce365e2b179ce1342ed50d18080d381813d69",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "mageGuild1-568x280-current-5e362c029777.jpg",
+      "sha256": "5e362c02977740e9ee75e69828c85346d68ff65f3368f9469273ee7908154d1f",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "mageGuild1",
+      "label": "Guilde des mages",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "mageGuild1-568x280-heroes-c0bec153d215.jpg",
+      "sha256": "c0bec153d2152ffcd9c087f02811d0376aba36898d36f04b61296f362f91e9d9",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "mage-guild",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 1,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "tavern-360x640-current-ac78f60ac5d4.jpg",
+      "sha256": "ac78f60ac5d4e8ff378b7dba00cc89c2d841309400518a11bd34cd52c9501582",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "tavern-360x640-heroes-fea5581b1f86.jpg",
+      "sha256": "fea5581b1f865afc4cc93282e1d4f3930ff92e85a25ba8cd8cb9c6a0801af166",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "tavern-320x568-current-ad5f8bcb70bf.jpg",
+      "sha256": "ad5f8bcb70bf3bbfb3a50f8a4b41491bdbe56c5ac3c2622b0b79508a909a6e37",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "tavern-320x568-heroes-ec302fa41a15.jpg",
+      "sha256": "ec302fa41a1524de679e94e7e8609d20553c6ccd13b144fb002f62746dfa4e33",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "tavern-640x360-current-605f554afdb1.jpg",
+      "sha256": "605f554afdb15707a4a9034557a6420d2386da446274751a7705c7919d5561f0",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "tavern-640x360-heroes-2a3c949c6f58.jpg",
+      "sha256": "2a3c949c6f586a9189b7db37d16b48b6bc774ca26a80f3d20bdf3e58fbfc05ba",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "tavern-568x280-current-8dbdfbbb9b29.jpg",
+      "sha256": "8dbdfbbb9b29fb17d92e12f4d3bb83d270fadb41b95acf2510363841d0aeb6ff",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "tavern",
+      "label": "Recrutement des héros",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "tavern-568x280-heroes-d11b5445d426.jpg",
+      "sha256": "d11b5445d4264b0a159374488ce5d80a9b5334895807527ddcb9b978014b54bf",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "dialog",
+      "dialogKind": "tavern",
+      "hasNativeEngine": true,
+      "canvases": 3,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "blacksmith-360x640-current-ed15d1fd2d65.jpg",
+      "sha256": "ed15d1fd2d659f1351bb880d5e46ce5e6e59439442abb90fe854b84cd8be733c",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "blacksmith-360x640-heroes-3a3573614bf4.jpg",
+      "sha256": "3a3573614bf47c90c0072598daa1417ce1d28ec0c780436e2b2c66a522f2ecc0",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "blacksmith-320x568-current-a4223ad02ba7.jpg",
+      "sha256": "a4223ad02ba78c96b561396852d46abbfffe9732de68816bd1e238a87cd74199",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "blacksmith-320x568-heroes-5531d41260b1.jpg",
+      "sha256": "5531d41260b1a4d7b022de17362182caa3239f0d52566f76bc7987cab8fe6653",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "blacksmith-640x360-current-aca6b56a27d8.jpg",
+      "sha256": "aca6b56a27d87619fd340cbba1e8cd137f986c8199499aa3bb0ae4fd06701706",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "blacksmith-640x360-heroes-4053228b4a09.jpg",
+      "sha256": "4053228b4a096fad199f1e50f57dfb6dfff33427394f095d5d4fdc4ab1949a63",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "blacksmith-568x280-current-9392f852564a.jpg",
+      "sha256": "9392f852564afb00f291c88e5a668b1880d02b891eda25851a5f865f07be67f8",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "blacksmith",
+      "label": "Machines de guerre",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "blacksmith-568x280-heroes-120e256a856c.jpg",
+      "sha256": "120e256a856cc3647be142c6a27f1637bad69a3d9b5bcc2a62434cb4983285b5",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "dialog",
+      "dialogKind": "blacksmith",
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "spellbook-360x640-current-73bdab66e3ff.jpg",
+      "sha256": "73bdab66e3ff3f69edb7fd0f072993db1fe5f8d9f8d62d58aed6419e94098d1b",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "spellbook-360x640-heroes-717b3042fb2d.jpg",
+      "sha256": "717b3042fb2d82cc97b8cd99dde60bafadd96721852ca1694f6dff13a1f64624",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "spellbook-320x568-current-d569a24b8b35.jpg",
+      "sha256": "d569a24b8b35c2a064f88a3de971a1763ee1f530954655a636e2afe033edae5b",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "spellbook-320x568-heroes-8439a63cfb28.jpg",
+      "sha256": "8439a63cfb28b06d434406942c6caa41743f9d6fb01406e33febe97ea1664934",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "spellbook-640x360-current-68e5dc4e0de3.jpg",
+      "sha256": "68e5dc4e0de3de013a4e71428d34741909366ba503b1974bb9e446e36186641a",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "spellbook-640x360-heroes-7ab4dc9b12fe.jpg",
+      "sha256": "7ab4dc9b12feea30bb409be908625fb7b858cb5d483a12ac58d9f07acb040da0",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "spellbook-568x280-current-676055206f6e.jpg",
+      "sha256": "676055206f6e402fe17287ffd541c750f509c43d39844b7d9734a4358c58568b",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "spellbook",
+      "label": "Grimoire",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "spellbook-568x280-heroes-89d69a9d77ba.jpg",
+      "sha256": "89d69a9d77ba471445233c1f5b434ae064d5c38b689decfbcd8b6066ea5b34f7",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "spellbook",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 0,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "map-360x640-current-8a2421233cb6.jpg",
+      "sha256": "8a2421233cb67f6a22125ee8eb74d70c2ce163f2ac50d4c06d49e776788024f9",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "map-360x640-heroes-4051a2af9a2a.jpg",
+      "sha256": "4051a2af9a2a7eab2549cdb75874e0298dfd6576d72a79b8221b929bcc5b0b4d",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "map-320x568-current-fd4f4fb283b2.jpg",
+      "sha256": "fd4f4fb283b22022ec66564998f44a3c6b4013187a0eb7f55c7ee449678a451b",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "map-320x568-heroes-6400c9188de8.jpg",
+      "sha256": "6400c9188de812346e1991079584fb7ed625127bb6853206c2618e687cf0193a",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "map-640x360-current-c0d9f6dbf9ce.jpg",
+      "sha256": "c0d9f6dbf9ce5e62d5ce4abfc147366076e44f54ffbd794352e56297ac2fb801",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "map-640x360-heroes-d669957a866a.jpg",
+      "sha256": "d669957a866a27ed17485e3f5c9d03861d40084db918228407d15b9626dc9640",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "map-568x280-current-259f68d14d50.jpg",
+      "sha256": "259f68d14d502cc1bb826e1a83ae63dd1f91add583c8a43557ec49530d262301",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "map",
+      "label": "Carte d’aventure",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "map-568x280-heroes-9f7c9a44aa5c.jpg",
+      "sha256": "9f7c9a44aa5c0381dd9a97120977cfd73cedb3f35350b5e5563df47373044f42",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 360,
+      "height": 640,
+      "design": "current",
+      "file": "settings-360x640-current-7481850b92cc.jpg",
+      "sha256": "7481850b92cc9d78fec0df8ef4f4cea2497696ae0968851124a3cbea6503625d",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 360,
+      "height": 640,
+      "design": "heroes",
+      "file": "settings-360x640-heroes-bbba3913dd0d.jpg",
+      "sha256": "bbba3913dd0d888cbd9c7b3237c88eeb36f844979b4a3f54458108c5dfbe7fc0",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 320,
+      "height": 568,
+      "design": "current",
+      "file": "settings-320x568-current-e56ed31ac136.jpg",
+      "sha256": "e56ed31ac136c1802f276bb7e474329ed539654adbca4dfc818c57e86f70bbc7",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 320,
+      "height": 568,
+      "design": "heroes",
+      "file": "settings-320x568-heroes-524c8a34da38.jpg",
+      "sha256": "524c8a34da38e50e3673de64efeaf8de56a435a4a308e2ace783d30088daf349",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 640,
+      "height": 360,
+      "design": "current",
+      "file": "settings-640x360-current-e168d4403232.jpg",
+      "sha256": "e168d44032324e9ecc9f7b4d317b9e69107188cdf49f7c1f4db140fa716b9a90",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 640,
+      "height": 360,
+      "design": "heroes",
+      "file": "settings-640x360-heroes-679a0764a029.jpg",
+      "sha256": "679a0764a029899fe8ebd637b83ff1844fecb8b737fc915db8c3e11bac3becc7",
+      "viewport": {
+        "width": 640,
+        "height": 360
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 568,
+      "height": 280,
+      "design": "current",
+      "file": "settings-568x280-current-2fbf1ad03d2c.jpg",
+      "sha256": "2fbf1ad03d2c1edb0101ac382c4ca58eb52f4a837ec42be67e2e206d133c8586",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    },
+    {
+      "screen": "settings",
+      "label": "Paramètres",
+      "width": 568,
+      "height": 280,
+      "design": "heroes",
+      "file": "settings-568x280-heroes-740c610ad850.jpg",
+      "sha256": "740c610ad8504823c0d47be4a0f5cf68e7457f31ddd8af2f45b2a77a220b1020",
+      "viewport": {
+        "width": 568,
+        "height": 280
+      },
+      "mode": "map",
+      "dialogKind": null,
+      "hasNativeEngine": true,
+      "canvases": 2,
+      "placeholderCount": 0
+    }
+  ],
+  "errors": []
+}

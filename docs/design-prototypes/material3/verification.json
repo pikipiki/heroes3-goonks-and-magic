@@ -1,33 +1,9 @@
 {
-  "date": "2026-11-18",
-  "scope": "HTML design prototypes only; no native gameplay or animation validation",
-  "families": 56,
-  "variants": 175,
-  "directions": [
-    "Héritage clair",
-    "Focus tactique"
-  ],
-  "language": "fr",
-  "engines": [
-    {
-      "name": "chromium",
-      "layoutCases": 1400,
-      "stressCases": 700,
-      "findings": 0,
-      "pageErrors": []
-    },
-    {
-      "name": "webkit",
-      "layoutCases": 1400,
-      "stressCases": 700,
-      "findings": 0,
-      "pageErrors": []
-    }
-  ],
-  "sources": {
-    "docs/design-prototypes/material3/gallery.template.html": "26a6daf18df64d714355b5ae551db7e53cd9ceb962de2161902995595a1822ed",
-    "docs/design-prototypes/material3/build.mjs": "e2717d4100df55250afc57f7cb8a831fb7c30be3ced01000ad0efb8148ba56a2",
-    "docs/ui-audit/inventory.json": "8d1c1a310831d978493184c05809cd24162b609168a2626669e2aa9e8362992d",
-    "work/browser-tests/material-prototypes-e2e.mjs": "0f1d115275734055a2a9a38dea8fc4b1d19d430a565171b2c6ec36525cb709ec"
-  }
+  "scope": "Real native game and production UI factories; CSS-only design preview",
+  "engineArchiveSha256": "c6ddbcdb37892dc37816cd11becf134b97c4a4a7ba6e7cd78fdba460bc934a08",
+  "prototypeCssSha256": "06d2b32419ea59f795b44bca9c911365d0f8e27e4816f6a2437b5e0605f8ab95",
+  "nativeCaptures": 96,
+  "mockModules": 0,
+  "placeholderElements": 0,
+  "pageErrors": []
 }

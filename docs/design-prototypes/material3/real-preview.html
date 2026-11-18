@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Heroes III — aperçu réel de la refonte</title>
+<script>
+ // Use the game's supported temporary-memory mode for this isolated demo.
+ // This avoids installing a second persistent copy of the game data.
+ sessionStorage.setItem('heroes-goonk.storage-failed','true');
+ localStorage.setItem('heroes-goonk.language','fr');
+</script>
+<style>
+ :root{color-scheme:dark;font:14px/20px system-ui;background:#151310;color:#f3e7cb}
+ *{box-sizing:border-box}body{margin:0;padding:16px}
+ header{max-width:1100px;margin:0 auto 16px;display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+ h1{font:22px/28px Georgia,serif;margin:0 24px 0 0;color:#f0d69a}
+ label{display:grid;gap:4px}select,button{font:inherit;min-height:48px;padding:8px 12px;color:#fff0cf;background:#32271c;border:1px solid #ab8950;border-radius:0}
+ button{cursor:pointer}p{margin:0;max-width:1100px;margin-inline:auto;color:#d0bea0}
+ #stage{margin:16px auto;display:flex;justify-content:center;max-width:1100px;overflow:auto;padding:8px;background:#1d1a15}
+ iframe{box-sizing:content-box;display:block;flex:none;border:2px ridge #d6b46b;background:#2a1c12;width:360px;height:640px}
+ #status{min-height:24px}
+</style>
+<header>
+ <h1>Heroes III · écrans réels</h1>
+ <label>Habillage<select id="design"><option value="heroes">Heroes III · relief et textures</option><option value="current">Version actuelle du jeu</option></select></label>
+ <label>Viewport<select id="size"><option value="360,640">Portrait · 360 × 640</option><option value="320,568">Portrait · 320 × 568</option><option value="640,360">Paysage · 640 × 360</option><option value="568,280">Paysage · 568 × 280</option></select></label>
+ <label>Écran<select id="screen"><option value="town">Château</option><option value="fort">Hall de recrutement</option><option value="hero">Héros · armée</option><option value="equipment">Héros · équipement</option><option value="skills">Héros · compétences</option><option value="marketplace">Marché</option><option value="mageGuild1">Guilde des mages</option><option value="tavern">Recruter un héros</option><option value="blacksmith">Machines de guerre</option><option value="spellbook">Grimoire</option><option value="map">Carte d’aventure</option><option value="settings">Paramètres</option></select></label>
+ <button id="open" type="button">Ouvrir cet écran</button>
+</header>
+<p>Vrai moteur, vrais composants et fichiers du jeu. Nouvelle partie locale de démonstration ; aucune sauvegarde existante n’est utilisée.</p>
+<div id="stage"><iframe id="game" title="Heroes Goonk — aperçu natif isolé" src="/game.html?mobile=1" allow="cross-origin-isolated"></iframe></div>
+<p id="status" role="status">Chargement du moteur et des données Heroes III…</p>
+<script type="module">
+ const frame=document.querySelector('#game'),status=document.querySelector('#status');
+ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+ const state=()=>frame.contentWindow?.goonkMobileState;
+ const command=(...args)=>frame.contentWindow.Module._vcmiMobileCommand(...args,...Array(6-args.length).fill(0));
+ const wait=async(test,timeout=240000)=>{const until=Date.now()+timeout;while(!test()){if(Date.now()>until)throw Error('Le moteur n’a pas terminé cette étape.');await sleep(100);}};
+ const skin=()=>{const doc=frame.contentDocument;if(!doc)return;doc.documentElement.dataset.realPrototype=document.querySelector('#design').value;let link=doc.querySelector('#real-prototype-style');if(!link){link=doc.createElement('link');link.id='real-prototype-style';link.rel='stylesheet';link.href='/real-prototype.css';doc.head.prepend(link);}};
+ frame.addEventListener('load',skin);document.querySelector('#design').addEventListener('change',skin);
+ document.querySelector('#size').addEventListener('change',e=>{const [w,h]=e.target.value.split(',');frame.style.width=w+'px';frame.style.height=h+'px';});
+ async function click(selector){const doc=frame.contentDocument,node=doc.querySelector(selector);if(!node)throw Error('La commande de cet écran n’est pas disponible ici.');if(!node.getBoundingClientRect().width){const menu=node.closest('[role=menu]')?.id;doc.querySelector('button[aria-controls="'+menu+'"]')?.click();await sleep(80);}node.click();await sleep(180);}
+ async function map(){frame.contentDocument.querySelector('#game-menu[open]')?.close();for(let n=0;n<10&&state()?.mode!=='map';n++){command(0);await sleep(160);}await wait(()=>state()?.mode==='map');}
+ const requested=new URLSearchParams(location.search);
+ const initialSize=requested.get('viewport');if([...document.querySelector('#size').options].some(o=>o.value===initialSize)){document.querySelector('#size').value=initialSize;document.querySelector('#size').dispatchEvent(new Event('change'));}
+ const initialScreen=requested.get('screen');if([...document.querySelector('#screen').options].some(o=>o.value===initialScreen))document.querySelector('#screen').value=initialScreen;
+ let ready=false;
+ async function openScreen(screen){if(!ready)throw Error('Attends la fin du chargement.');await map();if(screen==='map')return;if(screen==='hero'||screen==='equipment'||screen==='skills'){command(55);await wait(()=>state()?.mode==='hero');if(screen!=='hero')await click('[data-hero-tab="'+(screen==='skills'?'skills':'worn')+'"]');return;}if(screen==='spellbook'){command(55);await wait(()=>state()?.mode==='hero');command(62,17);await wait(()=>state()?.mode==='spellbook');return;}if(screen==='settings'){await click('#game-menu-toggle');await click('[data-menu=settings]');return;}command(5,0);await wait(()=>state()?.mode==='town');if(screen==='town')return;if(screen==='fort'){command(54);await wait(()=>state()?.mode==='fort');return;}const building=state().buildings?.filter(b=>b.built&&String(b.key).split(':').at(-1)===screen).at(-1);if(!building)throw Error('Bâtiment non disponible dans ce château.');command(39,building.id);}
+ document.querySelector('#open').addEventListener('click',async()=>{try{await openScreen(document.querySelector('#screen').value);status.textContent='Écran natif : '+document.querySelector('#screen').selectedOptions[0].textContent;}catch(e){status.textContent=e.message;}});
+ localStorage.setItem('heroes-goonk.language','fr');
+ await wait(()=>state()?.mode==='menu');skin();status.textContent='Création de la partie locale de démonstration…';
+ command(20,1);await wait(()=>state()?.mode==='lobby'&&state()?.lobbyReady);command(21);await sleep(250);command(22);await wait(()=>state()?.mode==='map'&&state()?.turn);
+ // These are the game's normal, local cheat commands, not fabricated UI state.
+ // They expose the genuine buildings and spells for this disposable demo.
+ if(state().cheatsAllowed){command(29,0);command(29,3);await sleep(250);}
+ command(5,0);await wait(()=>state()?.mode==='town');if(state().cheatsAllowed){command(29,4);await sleep(700);}
+ ready=true;skin();status.textContent='Prêt · tous les éléments affichés viennent du vrai jeu. Tu peux jouer et changer d’écran.';
+ window.realPrototype={frame,state,command,openScreen,ready:()=>ready};
+ if(initialScreen)await openScreen(initialScreen);
+</script>
+</html>
