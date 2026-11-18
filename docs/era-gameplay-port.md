@@ -401,17 +401,17 @@ publié ne connaît pas encore le septième. Ces preuves ne constituent ni
 l'activation du profil WoG complet ni le port des écritures UN:P des packs
 externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
 
-Le catalogue candidat contient treize réglages par partie : les six premiers,
-le mithril et six règles de carte (114, 115, 121, 122, 124 et 128). Les règles
+Le catalogue candidat contient quinze réglages par partie : les six premiers,
+le mithril et huit règles de carte (114, 115, 116, 121, 122, 124, 128 et 130). Les règles
 114/115/121/122/124/128 peuvent hériter de leur configuration, être activées ou
 être désactivées sans changer les autres parties. Les tests inversent
 volontairement leur configuration globale : combats avec dégâts effectifs,
 déplacements et renouvellement quotidien, production hebdomadaire avec
 protection au mithril, achat du second Capitole et effet des plaines magiques.
-Le chargement conserve leurs choix et les six ou sept réglages des anciennes
-sauvegardes. Le format courant préfixe le catalogue par sa longueur pour
+Le chargement conserve les choix des anciens catalogues à six, sept, treize
+ou quatorze réglages. Le format courant préfixe le catalogue par sa longueur pour
 permettre les ajouts suivants sans réinterpréter les octets historiques.
-Les quinze autres règles de carte et les six modes source de sélection de
+Les treize autres règles de carte et les six modes source de sélection de
 l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
 complets et ne revendique pas le port de leurs commandes UN:P.
 
@@ -426,8 +426,23 @@ avec des quantités proches des seuils, un héros de l'IA et une héroïne en
 réserve. Un groupe de 25 piquiers au rang 1 passe à 26 : son expérience
 moyenne descend de 1000 à 961, son rang à 0 et sa défense effective de 6 à 5.
 Le contrôle du format annonce la nouvelle capacité aux autres versions du
-moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les quatorze autres règles et les modes de sélection source restent
+moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les treize autres règles et les modes de sélection source restent
 à porter ; cette étape n'active pas les profils complets.
+
+La règle 130 construit les Graals une fois au premier jour, après le stock
+initial, sans consommer le quota de construction. Elle concerne les villes
+possédées, ennemies et neutres ; tout Conflux présent désactive cette règle,
+quel que soit son propriétaire, et les Graals déjà construits restent intacts.
+Treize parcours natifs couvrent les six choix d’héritage, les trois propriétaires
+du Conflux et les formats portrait/paysage/souris. Le stock initial reste à
+14 piquiers, le quota normal reste disponible et les revenus réels incluent
+5000 pièces d’or par Graal possédé. Une suppression après reprise reste
+respectée les jours suivants, y compris après une seconde sauvegarde/reprise.
+Le quinzième choix porte une nouvelle capacité de sauvegarde ; les anciens
+catalogues à 13 et 14 choix gardent leurs frontières et une ancienne partie
+à 14 choix ne reçoit pas cette règle depuis les nouveaux réglages globaux.
+La preuve est `scripts/era-bridge/gameplay/map-grails-native-validation.json`.
+Cette règle n’admet pas le catalogue complet ni les six modes source de sélection.
 
 L'activation du mithril est désormais enregistrée avec chaque nouvelle partie.
 Changer les réglages de l'installation ne modifie plus ce choix à la reprise.

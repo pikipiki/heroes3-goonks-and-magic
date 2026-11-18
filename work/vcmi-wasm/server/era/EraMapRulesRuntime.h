@@ -9,6 +9,8 @@
 #include "../../lib/networkPacks/EraGameplayPacks.h"
 #include "../../lib/TerrainHandler.h"
 #include "../../lib/mapObjectConstructors/AObjectTypeHandler.h"
+#include "../../lib/mapObjects/CGTownInstance.h"
+#include "../../lib/entities/building/CBuilding.h"
 
 namespace era_compat::map_rules
 {
@@ -32,7 +34,26 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("124",era_bridge::WogOption::MultipleCapitols);
     choice("128",era_bridge::WogOption::AllBreath);
     choice("116",era_bridge::WogOption::DailyArmyGrowth);
+    choice("130",era_bridge::WogOption::TownGrails);
+    // The original menu removes rule130 when ANY Conflux exists, including
+    // neutral/enemy towns. Never enable Aurora Borealis through this rule.
+    for(const auto * town:gh.gameState().getMap().getObjects<CGTownInstance>())
+        if(town->getFactionID()==FactionID::CONFLUX)
+            packet.state["rules"]["130"].Bool()=false;
     gh.sendAndApply(packet);
+}
+inline void buildTownGrails(CGameHandler & gh)
+{
+    auto saved=state(gh.gameInfo());
+    if(!saved["rules"]["130"].Bool()||saved["grailsApplied"].Bool())return;
+    // Run after the first NewTurn packet, matching the source day-one
+    // timer, not during initial stock/income generation. Existing Grails
+    // stay intact, and later town construction/capture must not replay it.
+    for(const auto * town:gh.gameState().getMap().getObjects<CGTownInstance>())
+        if(town->getTown()->buildings.count(BuildingID::GRAIL)&&!town->hasBuilt(BuildingID::GRAIL))
+            gh.buildStructure(town->id,BuildingID::GRAIL,true);
+    saved["grailsApplied"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void changeWeeklyMines(CGameHandler & gh)
 {
@@ -97,5 +118,5 @@ inline void growHeroArmies(CGameHandler & gh)
     gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)
-{changeWeeklyMines(gh);growHeroArmies(gh);}
+{buildTownGrails(gh);changeWeeklyMines(gh);growHeroArmies(gh);}
 }

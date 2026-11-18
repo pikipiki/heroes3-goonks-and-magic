@@ -11,11 +11,14 @@ enum class WogOption : std::size_t
 {
     Commanders=0, StackExperience=1, Replacements=2, BuildTwice=3,
     FourthUpgrades=4, EighthCreatures=5, MithrilEnhancements=6, DailyMagicPlains=7, AllDoubleAttack=8,
-    DoubleMovement=9, WeeklyMineResources=10, MultipleCapitols=11, AllBreath=12, DailyArmyGrowth=13
+    DoubleMovement=9, WeeklyMineResources=10, MultipleCapitols=11, AllBreath=12, DailyArmyGrowth=13,
+    TownGrails=14
 };
 inline constexpr std::size_t wogLegacyOptionCount=6;
 inline constexpr std::size_t wogMithrilOptionCount=7;
-inline constexpr std::size_t wogOptionCount=14;
+inline constexpr std::size_t wogMapRuleOptionCount=13;
+inline constexpr std::size_t wogArmyGrowthOptionCount=14;
+inline constexpr std::size_t wogOptionCount=15;
 inline std::array<int8_t,wogOptionCount> defaultWogChoices()
 {std::array<int8_t,wogOptionCount> result;result.fill(-1);return result;}
 inline constexpr bool validWogChoice(int value){return value>=-1&&value<=1;}

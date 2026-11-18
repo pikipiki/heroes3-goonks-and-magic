@@ -49,10 +49,13 @@ struct DLL_LINKAGE ExtraOptionsInfo
 			{
 				// Length-prefixed choices let the catalogue grow without changing
 				// the byte boundaries of every earlier choice count.
+				const auto supported=h.hasFeature(Handler::Version::GOONK_WOG_TOWN_GRAILS)?era_bridge::wogOptionCount:
+					h.hasFeature(Handler::Version::GOONK_WOG_ARMY_GROWTH)?era_bridge::wogArmyGrowthOptionCount:
+					era_bridge::wogMapRuleOptionCount;
 				std::vector<int8_t> choices;
-				if(h.saving)choices.assign(wogOptions.begin(),wogOptions.end());
+				if(h.saving)choices.assign(wogOptions.begin(),wogOptions.begin()+supported);
 				h & choices;
-				if(choices.size()>wogOptions.size())throw std::runtime_error("Unknown WoG game option");
+				if(choices.size()>supported)throw std::runtime_error("Unknown WoG game option");
 				if(!h.saving)
 				{
 					wogOptions.fill(-1);

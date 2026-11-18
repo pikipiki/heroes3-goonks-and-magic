@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/ERA-Projects/era-project-eng",
+  "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+  "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+  "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+  "fragments": [
+    {
+      "startLine": 169,
+      "endLine": 181,
+      "sha256": "7d25ca4a73cab568ed5b3378bd5133cd723325af9c3cc415e146464976c38095",
+      "text": "\n!?FU(OnEveryDay)&i^timerDay^=1;\n  !!UN:P101/?(mapRulesMode:y);                                                               [check wogify options number - 5 means no rules]\n  !!FU&(mapRulesMode)=(WOG_NO_MAP_RULES):E;                                                  [Exit timer if map rules are disabled in wogify options]\n\n  !!if&i^timerOnce^;\n    !!UN:U(OBJ_TOWN)/(TOWN_CONFLUX)/?(isAnyConflux:y) P234/?(isBannerBanned:y);\n\n    !!FU(NewIntArray):P21/?(rulesList:y);\n    !!FU(WOG_101_ReadOptionsFromMenu):P?(rulesList);\n\n    !!SN&(isAnyConflux:y):M(rulesList)/19/d*-1;                                                [clear grails option affection lol]\n    !!SN&(isBannerBanned:y):M(rulesList)/20/d*-1;                                           [clear warlord banners affection lol]\n"
+    },
+    {
+      "startLine": 860,
+      "endLine": 873,
+      "sha256": "85178935602fd2adeb975235eaeabf00c6fd268ef5ca80d83e4fb94182a954ce",
+      "text": "** function to build a grail in town # x16\n!?FU(WOG_101_BuildGrailsInTowns);\n  !!UN:U(OBJ_TOWN)/(ANY_OBJ)/?(townsAmount:y);\n  !!if&(townsAmount);\n    !!UN:C(GAME_MANAGER)/(UNC_UINT32)/?(game:y); \n    !!UN:C(game)/136724/(UNC_UINT32)/?(ptr:y); \n    !!re i/0/(townsAmount)/1/-1;\n      !!VR(town:y):Si *360 +(ptr);\n      !!SN:E6025696/(CALLCONV_THISCALL)/(town)/26/(FALSE)/(FALSE); [don't restrict bulding and don't give bonuses to heroes;]\n    !!en;\n    !!UN:C(ADV_MANAGER)/4/?(advMgr:y) C(advMgr)/228/4/?(screenPosition:y);\n    !!SN:E4271008/(CALLCONV_THISCALL)/(advMgr)/(screenPosition:y)/1/1/0/0/0; [redraw minimap]\n  !!en;\n\n"
+    }
+  ]
+}
