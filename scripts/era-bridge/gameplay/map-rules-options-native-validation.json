@@ -19,7 +19,7 @@
   "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
   "parentEngineSha256": "8a045a77916f46ff11bb8b6ef1c5864ac3de69a6f6d9ed96d3731799cbdb40b6",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
+    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
     "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
     "tests/native/EraWogOptions.test.cpp": "8196052417a569c094bcf2cd1527e010de05b2f3ff82142e129d65d8ea57fa1e",
     "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde",
@@ -528,5 +528,12 @@
     ],
     "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
     "choiceCountUnchanged": 19
+  },
+  "mathEvidenceOnlyRevalidation": {
+    "scope": "Evidence and documentation only; engine, runtime scenarios and their historical reports unchanged. No new native run claimed.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
   }
 }

@@ -13,7 +13,7 @@
     "heroConstantSha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
+    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
     "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
     "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
     "tests/era-map-army-growth-native.test.mjs": "30a390c57f31cc827a338c3a01ff83ba3a48b74bce87b449a3259d0921271dca",
@@ -1086,5 +1086,12 @@
     ],
     "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
     "choiceCountUnchanged": 19
+  },
+  "mathEvidenceOnlyRevalidation": {
+    "scope": "Evidence and documentation only; engine, runtime scenarios and their historical reports unchanged. No new native run claimed.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
   }
 }

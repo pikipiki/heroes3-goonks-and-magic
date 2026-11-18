@@ -228,7 +228,7 @@
   "nativeRules": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
   "mathSource": {
     "file": "scripts/era-bridge/gameplay/math-source.json",
-    "sha256": "c7e07376e68745b41b4814833a8df77d0b3709d60356bf25172a0522d06b9c71"
+    "sha256": "03cdffc6aa696d73ce99741295d569fdcf8902eb18e440282e7e98394c2e095f"
   },
   "nativeRulesSha256": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
   "nativeConfiguration": {
@@ -239,7 +239,7 @@
   "status": "partial-rule-library",
   "battleOutcomeValidation": "scripts/era-bridge/gameplay/henchmen-battle-outcomes-native-validation.json",
   "unresolved": [
-    "Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.",
+    "Floating-point primitives match extracted DLL functions on the documented finite corpus under two explicit x87 control words; the full Windows ERA runtime, actual FPU state, exceptions and whole int32 domain remain unvalidated.",
     "Per-game JSON settings support numbers, booleans and TRUE/FALSE strings; arbitrary ERM constant names require the shared symbol resolver.",
     "AI rewards read the active source VM integer i^battleExpAIPct^; missing, signed, overflow and saved values pass native scenarios. The distinct prefixed configuration and paired string are not substituted; complete profile namespace integration remains unadmitted.",
     "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",

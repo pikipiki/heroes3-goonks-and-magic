@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "originalMath": {
+    "sourceSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+    "sourceFile": "work/era-gameplay-reference/era.dll",
+    "imageBase": 4194304,
+    "blocks": [
+      {
+        "name": "sqrt_export",
+        "kind": "code",
+        "va": 4874160,
+        "endExclusive": 4874191,
+        "rva": 679856,
+        "fileOffset": 676784,
+        "size": 31,
+        "sha256": "1844e8eb9784e0600f0628953d9f0f5083d7ad4a4d29441931940ab29cf0e61c"
+      },
+      {
+        "name": "pow_export",
+        "kind": "code",
+        "va": 4874192,
+        "endExclusive": 4874219,
+        "rva": 679888,
+        "fileOffset": 676816,
+        "size": 27,
+        "sha256": "c79e9842cc31cba314945b49bb77852ca173af6f1d121bf04f3c2c29a6f67d9f"
+      },
+      {
+        "name": "sqrt_callee",
+        "kind": "code",
+        "va": 4208396,
+        "endExclusive": 4208409,
+        "rva": 14092,
+        "fileOffset": 11020,
+        "size": 13,
+        "sha256": "32acf2ea0996c5e1059ecd00e14f3c4f645ed521cd5b5f63c0e5e2f4b1e70e8c"
+      },
+      {
+        "name": "pow_callee",
+        "kind": "code",
+        "va": 4267080,
+        "endExclusive": 4267210,
+        "rva": 72776,
+        "fileOffset": 69704,
+        "size": 130,
+        "sha256": "e477283e89b01f255f693c7645c1b2a79faaafabf6b4afd25f4cc6ff33a2711c"
+      },
+      {
+        "name": "pow_constant",
+        "kind": "data",
+        "va": 4895024,
+        "endExclusive": 4895032,
+        "rva": 700720,
+        "fileOffset": 696624,
+        "size": 8,
+        "sha256": "d31fd89040be33e989108350841a8f9f32d17dcb74dd708fa0303f4aaa5c1b5a"
+      }
+    ]
+  },
+  "actualHeader": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
+  "actualHeaderSha256": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+  "module": "Emscripten4.0.23 probe includes the actual header. hero_root and level_rate call its functions. Raw model_pow* wrappers duplicate the unexposed double-to-Single expression; powf_bits is a comparison only.",
+  "compileCommand": "em++ -std=gnu++20 -Oz -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -fwasm-exceptions -pthread -I/work/vcmi-wasm/lib/era wasm-model.cpp --no-entry -sMODULARIZE=1 -sEXPORT_NAME=createMath -sENVIRONMENT=node -sWASM_ASYNC_COMPILATION=0 -sALLOW_MEMORY_GROWTH=0 -sFILESYSTEM=0 -sPTHREAD_POOL_SIZE=0 -o wasm-model.js",
+  "limits": [
+    "Extracted x87 code ran in an x86 container on an ARM64 host/daemon; exact translation backend unknown.",
+    "Both explicit x87 control words were checked, but neither is established as the ERA process control word.",
+    "Probe tests the actual helper header, not the full published game module.",
+    "No negative, NaN, infinity, exception or full-int32-domain proof."
+  ],
+  "sha256": {
+    "golden-vectors.json": "01b4157d383e59f719938e3be439e44bfbed1df4b047ffc27489e62f49c04943",
+    "wasm-model.cpp": "cd33f1e02ee6a774ba8a9515225fc074c1efce1351ac6c9dab7b063324293a22",
+    "wasm-model.js": "3dbe468d0b29808e67a02102cf30fe3afb14c4e76f9703ff6c7ac2c64f8b53c3",
+    "wasm-model.wasm": "ee83391322dcb4354c2d2a85c5d2105a7e916becaa9ede921ca7f6a02e8ed981"
+  }
+}

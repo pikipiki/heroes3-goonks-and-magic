@@ -1,0 +1,429 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "evidenceKind": "ordinary PE byte inspection, LLVM objdump and isolated extracted-code execution; not REA native Evidence",
+  "sourceDll": {
+    "file": "work/era-gameplay-reference/era.dll",
+    "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+    "size": 781824,
+    "format": "PE32 Intel80386",
+    "imageBase": 4194304
+  },
+  "extractedBlocks": [
+    {
+      "name": "sqrt_export",
+      "kind": "code",
+      "va": 4874160,
+      "endExclusive": 4874191,
+      "rva": 679856,
+      "fileOffset": 676784,
+      "size": 31,
+      "sha256": "1844e8eb9784e0600f0628953d9f0f5083d7ad4a4d29441931940ab29cf0e61c"
+    },
+    {
+      "name": "pow_export",
+      "kind": "code",
+      "va": 4874192,
+      "endExclusive": 4874219,
+      "rva": 679888,
+      "fileOffset": 676816,
+      "size": 27,
+      "sha256": "c79e9842cc31cba314945b49bb77852ca173af6f1d121bf04f3c2c29a6f67d9f"
+    },
+    {
+      "name": "sqrt_callee",
+      "kind": "code",
+      "va": 4208396,
+      "endExclusive": 4208409,
+      "rva": 14092,
+      "fileOffset": 11020,
+      "size": 13,
+      "sha256": "32acf2ea0996c5e1059ecd00e14f3c4f645ed521cd5b5f63c0e5e2f4b1e70e8c"
+    },
+    {
+      "name": "pow_callee",
+      "kind": "code",
+      "va": 4267080,
+      "endExclusive": 4267210,
+      "rva": 72776,
+      "fileOffset": 69704,
+      "size": 130,
+      "sha256": "e477283e89b01f255f693c7645c1b2a79faaafabf6b4afd25f4cc6ff33a2711c"
+    },
+    {
+      "name": "pow_constant",
+      "kind": "data",
+      "va": 4895024,
+      "endExclusive": 4895032,
+      "rva": 700720,
+      "fileOffset": 696624,
+      "size": 8,
+      "sha256": "d31fd89040be33e989108350841a8f9f32d17dcb74dd708fa0303f4aaa5c1b5a"
+    }
+  ],
+  "execution": {
+    "status": "completed",
+    "elfSha256": "ca9b2f36a88240242aa4d28e6208056c0d01a7f32325ff1871601626644c8161",
+    "originalBlocksByteIdentical": true,
+    "noDynamicInterpreter": true,
+    "noDynamicSection": true,
+    "noRelocations": true,
+    "noWindowsEntryOrInitialization": true,
+    "selectedControlWords": [
+      "0x037f",
+      "0x027f"
+    ],
+    "controlWordReadbackVerified": true,
+    "inputCountPerControlWord": 6865,
+    "outputCount": 13730,
+    "environment": {
+      "hostArch": {
+        "exitCode": 0,
+        "stdout": "arm64",
+        "stderr": ""
+      },
+      "dockerServerArch": {
+        "exitCode": 0,
+        "stdout": "arm64",
+        "stderr": ""
+      },
+      "containerImage": {
+        "exitCode": 0,
+        "stdout": "heroes-goonk-build-env:local",
+        "stderr": ""
+      },
+      "containerRuntime": {
+        "exitCode": 127,
+        "stdout": "Linux aed5571dfd86 6.10.14-linuxkit #1 SMP Fri Nov 29 17:22:03 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\n",
+        "stderr": ""
+      }
+    }
+  },
+  "webAssembly": {
+    "actualHeaderComparison": {
+      "schema": 1,
+      "actualHeader": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
+      "actualHeaderSha256": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+      "wasmSha256": "ee83391322dcb4354c2d2a85c5d2105a7e916becaa9ede921ca7f6a02e8ed981",
+      "summary": {
+        "sqrt-cw037f": {
+          "count": 4191,
+          "actualExpressionFloatBitDifferences": 0,
+          "powfFloatBitDifferences": 0,
+          "actualExpressionTruncationDifferences": 0,
+          "actualHeaderConsumedDifferences": 0,
+          "actualHeaderConsumedCases": 4191
+        },
+        "pow-cw037f": {
+          "count": 2674,
+          "actualExpressionFloatBitDifferences": 0,
+          "powfFloatBitDifferences": 4,
+          "actualExpressionTruncationDifferences": 0,
+          "actualHeaderConsumedDifferences": 0,
+          "actualHeaderConsumedCases": 2622
+        },
+        "sqrt-cw027f": {
+          "count": 4191,
+          "actualExpressionFloatBitDifferences": 0,
+          "powfFloatBitDifferences": 0,
+          "actualExpressionTruncationDifferences": 0,
+          "actualHeaderConsumedDifferences": 0,
+          "actualHeaderConsumedCases": 4191
+        },
+        "pow-cw027f": {
+          "count": 2674,
+          "actualExpressionFloatBitDifferences": 0,
+          "powfFloatBitDifferences": 4,
+          "actualExpressionTruncationDifferences": 0,
+          "actualHeaderConsumedDifferences": 0,
+          "actualHeaderConsumedCases": 2622
+        }
+      },
+      "differences": [
+        {
+          "index": 1245,
+          "op": 1,
+          "controlWord": 895,
+          "base": 623.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1111359467,
+          "actualExpressionBits": 1111359467,
+          "directPowfBits": 1111359468,
+          "actualHeaderInput": 623,
+          "actualHeaderConsumed": 140,
+          "expectedHeaderConsumed": 140
+        },
+        {
+          "index": 6046,
+          "op": 1,
+          "controlWord": 895,
+          "base": 1869419776.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1219659240,
+          "actualExpressionBits": 1219659240,
+          "directPowfBits": 1219659241,
+          "actualHeaderInput": 1869419776,
+          "actualHeaderConsumed": 1096840,
+          "expectedHeaderConsumed": 1096840
+        },
+        {
+          "index": 6073,
+          "op": 1,
+          "controlWord": 895,
+          "base": 1136290816.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1216638036,
+          "actualExpressionBits": 1216638036,
+          "directPowfBits": 1216638037,
+          "actualHeaderInput": 1136290816,
+          "actualHeaderConsumed": 813600,
+          "expectedHeaderConsumed": 813600
+        },
+        {
+          "index": 6500,
+          "op": 1,
+          "controlWord": 895,
+          "base": 783215808.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1213454766,
+          "actualExpressionBits": 1213454766,
+          "directPowfBits": 1213454767,
+          "actualHeaderInput": 783215808,
+          "actualHeaderConsumed": 650800,
+          "expectedHeaderConsumed": 650800
+        },
+        {
+          "index": 1245,
+          "op": 1,
+          "controlWord": 639,
+          "base": 623.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1111359467,
+          "actualExpressionBits": 1111359467,
+          "directPowfBits": 1111359468,
+          "actualHeaderInput": 623,
+          "actualHeaderConsumed": 140,
+          "expectedHeaderConsumed": 140
+        },
+        {
+          "index": 6046,
+          "op": 1,
+          "controlWord": 639,
+          "base": 1869419776.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1219659240,
+          "actualExpressionBits": 1219659240,
+          "directPowfBits": 1219659241,
+          "actualHeaderInput": 1869419776,
+          "actualHeaderConsumed": 1096840,
+          "expectedHeaderConsumed": 1096840
+        },
+        {
+          "index": 6073,
+          "op": 1,
+          "controlWord": 639,
+          "base": 1136290816.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1216638036,
+          "actualExpressionBits": 1216638036,
+          "directPowfBits": 1216638037,
+          "actualHeaderInput": 1136290816,
+          "actualHeaderConsumed": 813600,
+          "expectedHeaderConsumed": 813600
+        },
+        {
+          "index": 6500,
+          "op": 1,
+          "controlWord": 639,
+          "base": 783215808.0,
+          "exponent": 0.6000000238418579,
+          "oracleBits": 1213454766,
+          "actualExpressionBits": 1213454766,
+          "directPowfBits": 1213454767,
+          "actualHeaderInput": 783215808,
+          "actualHeaderConsumed": 650800,
+          "expectedHeaderConsumed": 650800
+        }
+      ],
+      "fallbackCases": [
+        {
+          "fight": 0,
+          "ai": 1,
+          "value": 140
+        },
+        {
+          "fight": 0,
+          "ai": 2,
+          "value": 140
+        },
+        {
+          "fight": 0,
+          "ai": 12,
+          "value": 140
+        },
+        {
+          "fight": 0,
+          "ai": 13,
+          "value": 10
+        },
+        {
+          "fight": 0,
+          "ai": 650,
+          "value": 140
+        },
+        {
+          "fight": 0,
+          "ai": 1000,
+          "value": 180
+        },
+        {
+          "fight": 0,
+          "ai": 2147483647,
+          "value": 1192000
+        }
+      ],
+      "note": "The actual header computes pow(double(baseSingle),double(exponentSingle)) then rounds to Single, not powf. The raw-expression wrapper duplicates that one expression; consumed integers call the actual header functions.",
+      "limitations": [
+        "Selected positive finite inputs only; full ERA FPU word unknown; extracted x87 code ran under ARM64-to-x86 translation/emulation.",
+        "The probe module uses the actual header with matching Oz/C++20/wasm-exceptions/pthread flags, not a call into the published full game module."
+      ]
+    },
+    "millionCostBaseComparison": {
+      "schema": 1,
+      "scope": "Every integer cost base1..1000000 at exponent Single3/5; raw expression and the actual included header alternativeLevelRate(0,AI), with source fallback650 below13.",
+      "summary": {
+        "cw037f": {
+          "inputs": 1000000,
+          "actualExpressionFloatBitDifferences": 0,
+          "directPowfFloatBitDifferences": 620,
+          "actualExpressionTruncationDifferences": 0,
+          "directPowfTruncationDifferences": 0,
+          "actualHeaderLevelRateDifferences": 0,
+          "maxActualExpressionUlpDifference": 0,
+          "maxDirectPowfUlpDifference": 1,
+          "fallbackLevelAt650": 140
+        },
+        "cw027f": {
+          "inputs": 1000000,
+          "actualExpressionFloatBitDifferences": 0,
+          "directPowfFloatBitDifferences": 620,
+          "actualExpressionTruncationDifferences": 0,
+          "directPowfTruncationDifferences": 0,
+          "actualHeaderLevelRateDifferences": 0,
+          "maxActualExpressionUlpDifference": 0,
+          "maxDirectPowfUlpDifference": 1,
+          "fallbackLevelAt650": 140
+        }
+      },
+      "controlWordOutputDifferences": 0,
+      "actualDifferences": [],
+      "controlWordDifferences": [],
+      "directPowfDifferencesFile": "direct-powf-differences.json",
+      "sha256": {
+        "vectors.bin": "362d2d2a4e736810762153cc8ac93768c568a99839ffcad9c7ab4e07ef3435fb",
+        "oracle-i386": "c00b940f63610eec8f5073e63482cbd5f60a77722cc0ceb4a860e1fe2f469e85",
+        "oracle-validation.json": "99b4baadf822823d269ff36cad46f6ff28cf809503e911be6b9f8225f5134c38",
+        "oracle-results.bin": "07b690ffe49320d92de2121ecd483b825f354796d0973d5353bd74c324fb1d6f",
+        "wasm-results.bin": "5f795bf06df22bf0cb8833a7b845c19dcb0ce90d8ab494550fb04bc14d87c9e5"
+      },
+      "limitations": [
+        "Extracted ERA math ran under translation/emulation; actual ERA process control word and exception state remain unknown.",
+        "Positive finite input range only, not the entire int32 input domain.",
+        "The WASM probe includes the real header and production optimization/exception/thread flags; it does not call into the published full game module."
+      ]
+    },
+    "costSelectorBranches": {
+      "fightBranchCases": 999988,
+      "fightBranchDifferences": 0,
+      "examples": [],
+      "selectors": [
+        {
+          "fight": 0,
+          "ai": 0,
+          "selectedBase": 650,
+          "levelRate": 140
+        },
+        {
+          "fight": 0,
+          "ai": 1,
+          "selectedBase": 650,
+          "levelRate": 140
+        },
+        {
+          "fight": 12,
+          "ai": 12,
+          "selectedBase": 650,
+          "levelRate": 140
+        },
+        {
+          "fight": 12,
+          "ai": 13,
+          "selectedBase": 13,
+          "levelRate": 10
+        },
+        {
+          "fight": 13,
+          "ai": 12,
+          "selectedBase": 13,
+          "levelRate": 10
+        },
+        {
+          "fight": 13,
+          "ai": 1000000,
+          "selectedBase": 13,
+          "levelRate": 10
+        },
+        {
+          "fight": 12,
+          "ai": 1000000,
+          "selectedBase": 1000000,
+          "levelRate": 11940
+        },
+        {
+          "fight": 650,
+          "ai": 12,
+          "selectedBase": 650,
+          "levelRate": 140
+        },
+        {
+          "fight": 0,
+          "ai": 2147483647,
+          "selectedBase": 2147483647,
+          "levelRate": 1192000
+        },
+        {
+          "fight": 2147483647,
+          "ai": 13,
+          "selectedBase": 2147483647,
+          "levelRate": 1192000
+        },
+        {
+          "fight": 12,
+          "ai": 2147483647,
+          "selectedBase": 2147483647,
+          "levelRate": 1192000
+        }
+      ]
+    },
+    "candidateTest": "452 checks passed: 64 root vectors, 83 cost-base vectors, 11 selector vectors; no Windows executable bytes in candidate",
+    "headerContainerAndHostSha256Equal": true
+  },
+  "limitations": [
+    "Extracted x87 code ran in an x86 container on an ARM64 host/daemon; exact translation backend unknown.",
+    "Both explicit x87 control words were checked, but neither is established as the ERA process control word.",
+    "Probe tests the actual helper header, not the full published game module.",
+    "No negative, NaN, infinity, exception or full-int32-domain proof."
+  ],
+  "privateReportSha256": "3cb2f066cd35d0ab0d751639e080fb227d7d0c3ce36f4f39d6c8ab69b54d0095",
+  "sourceBindings": {
+    "tests/fixtures/era-gameplay/henchmen-math/golden-vectors.json": "01b4157d383e59f719938e3be439e44bfbed1df4b047ffc27489e62f49c04943",
+    "tests/fixtures/era-gameplay/henchmen-math/wasm-model.cpp": "cd33f1e02ee6a774ba8a9515225fc074c1efce1351ac6c9dab7b063324293a22",
+    "tests/fixtures/era-gameplay/henchmen-math/wasm-model.js": "3dbe468d0b29808e67a02102cf30fe3afb14c4e76f9703ff6c7ac2c64f8b53c3",
+    "tests/fixtures/era-gameplay/henchmen-math/wasm-model.wasm": "ee83391322dcb4354c2d2a85c5d2105a7e916becaa9ede921ca7f6a02e8ed981",
+    "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "9967c147c70d269e16746cc23aa02536a1c8d9fc5403df6feff9acb8ef472f4f",
+    "tests/fixtures/era-gameplay/henchmen-math/test-math.cjs": "6e4b3a3126b587372355d94ba641566cf8a68b2589710432fe4229015b7eec28",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d"
+  }
+}

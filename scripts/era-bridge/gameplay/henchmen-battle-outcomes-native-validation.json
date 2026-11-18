@@ -11,8 +11,8 @@
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "13f85e01f99fc90f810abb44939d831ffda0af8a5d519e3df31bfdcf99728b2a",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/wog-henchmen-battle-outcomes-cases.mjs": "6426f932c85ce81908a05e7b65ad2788c7fc1b47eefcaa97167e7c6e14842e49",
-    "scripts/era-bridge/gameplay/henchmen.mjs": "f50db90a3b6852aea08ed9448767a9e5a36c2610014e7a9418f6b301f23e1939",
-    "scripts/era-bridge/gameplay/henchmen.json": "ac5387d06c07f57f0c6fdaa912f991c63da37c31e5fbd1723ff096b96ace29fe",
+    "scripts/era-bridge/gameplay/henchmen.mjs": "fd4cc9ac3004039354888f7a046f08ebb2959645fb6844bbe2ce749bc27a60fe",
+    "scripts/era-bridge/gameplay/henchmen.json": "35b793559d0114a132061955eb3a8cd7bc4a864ed44066c2a23d28fdecc6bbe4",
     "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d"
   },
   "source": {
@@ -291,5 +291,13 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "mathEvidenceOnlyRevalidation": {
+    "scope": "Evidence and documentation only; engine, runtime scenarios and their historical reports unchanged. No new native run claimed.",
+    "previousBindings": {
+      "scripts/era-bridge/gameplay/henchmen.mjs": "f50db90a3b6852aea08ed9448767a9e5a36c2610014e7a9418f6b301f23e1939",
+      "scripts/era-bridge/gameplay/henchmen.json": "ac5387d06c07f57f0c6fdaa912f991c63da37c31e5fbd1723ff096b96ace29fe"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
   }
 }

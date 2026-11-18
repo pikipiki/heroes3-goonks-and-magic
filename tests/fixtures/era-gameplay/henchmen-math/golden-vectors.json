@@ -1,0 +1,1654 @@
+{
+  "schema": 1,
+  "scope": "Observed positive finite vectors, selected near integer boundaries; not exhaustive. No Windows executable bytes are included.",
+  "powerExponentSingleBits": 1058642330,
+  "roots": [
+    {
+      "gain": 1,
+      "inputSingleBits": 1065353216,
+      "eraResultBits": {
+        "cw037f": 1065353216,
+        "cw027f": 1065353216
+      },
+      "truncated": 1
+    },
+    {
+      "gain": 2,
+      "inputSingleBits": 1073741824,
+      "eraResultBits": {
+        "cw037f": 1068827891,
+        "cw027f": 1068827891
+      },
+      "truncated": 1
+    },
+    {
+      "gain": 3,
+      "inputSingleBits": 1077936128,
+      "eraResultBits": {
+        "cw037f": 1071494103,
+        "cw027f": 1071494103
+      },
+      "truncated": 1
+    },
+    {
+      "gain": 4,
+      "inputSingleBits": 1082130432,
+      "eraResultBits": {
+        "cw037f": 1073741824,
+        "cw027f": 1073741824
+      },
+      "truncated": 2
+    },
+    {
+      "gain": 5,
+      "inputSingleBits": 1084227584,
+      "eraResultBits": {
+        "cw037f": 1074731965,
+        "cw027f": 1074731965
+      },
+      "truncated": 2
+    },
+    {
+      "gain": 8,
+      "inputSingleBits": 1090519040,
+      "eraResultBits": {
+        "cw037f": 1077216499,
+        "cw027f": 1077216499
+      },
+      "truncated": 2
+    },
+    {
+      "gain": 9,
+      "inputSingleBits": 1091567616,
+      "eraResultBits": {
+        "cw037f": 1077936128,
+        "cw027f": 1077936128
+      },
+      "truncated": 3
+    },
+    {
+      "gain": 10,
+      "inputSingleBits": 1092616192,
+      "eraResultBits": {
+        "cw037f": 1078616770,
+        "cw027f": 1078616770
+      },
+      "truncated": 3
+    },
+    {
+      "gain": 15,
+      "inputSingleBits": 1097859072,
+      "eraResultBits": {
+        "cw037f": 1081597686,
+        "cw027f": 1081597686
+      },
+      "truncated": 3
+    },
+    {
+      "gain": 16,
+      "inputSingleBits": 1098907648,
+      "eraResultBits": {
+        "cw037f": 1082130432,
+        "cw027f": 1082130432
+      },
+      "truncated": 4
+    },
+    {
+      "gain": 17,
+      "inputSingleBits": 1099431936,
+      "eraResultBits": {
+        "cw037f": 1082388603,
+        "cw027f": 1082388603
+      },
+      "truncated": 4
+    },
+    {
+      "gain": 24,
+      "inputSingleBits": 1103101952,
+      "eraResultBits": {
+        "cw037f": 1084015729,
+        "cw027f": 1084015729
+      },
+      "truncated": 4
+    },
+    {
+      "gain": 25,
+      "inputSingleBits": 1103626240,
+      "eraResultBits": {
+        "cw037f": 1084227584,
+        "cw027f": 1084227584
+      },
+      "truncated": 5
+    },
+    {
+      "gain": 26,
+      "inputSingleBits": 1104150528,
+      "eraResultBits": {
+        "cw037f": 1084435243,
+        "cw027f": 1084435243
+      },
+      "truncated": 5
+    },
+    {
+      "gain": 36,
+      "inputSingleBits": 1108344832,
+      "eraResultBits": {
+        "cw037f": 1086324736,
+        "cw027f": 1086324736
+      },
+      "truncated": 6
+    },
+    {
+      "gain": 49,
+      "inputSingleBits": 1111752704,
+      "eraResultBits": {
+        "cw037f": 1088421888,
+        "cw027f": 1088421888
+      },
+      "truncated": 7
+    },
+    {
+      "gain": 64,
+      "inputSingleBits": 1115684864,
+      "eraResultBits": {
+        "cw037f": 1090519040,
+        "cw027f": 1090519040
+      },
+      "truncated": 8
+    },
+    {
+      "gain": 81,
+      "inputSingleBits": 1117913088,
+      "eraResultBits": {
+        "cw037f": 1091567616,
+        "cw027f": 1091567616
+      },
+      "truncated": 9
+    },
+    {
+      "gain": 99,
+      "inputSingleBits": 1120272384,
+      "eraResultBits": {
+        "cw037f": 1092563631,
+        "cw027f": 1092563631
+      },
+      "truncated": 9
+    },
+    {
+      "gain": 100,
+      "inputSingleBits": 1120403456,
+      "eraResultBits": {
+        "cw037f": 1092616192,
+        "cw027f": 1092616192
+      },
+      "truncated": 10
+    },
+    {
+      "gain": 101,
+      "inputSingleBits": 1120534528,
+      "eraResultBits": {
+        "cw037f": 1092668490,
+        "cw027f": 1092668490
+      },
+      "truncated": 10
+    },
+    {
+      "gain": 121,
+      "inputSingleBits": 1123155968,
+      "eraResultBits": {
+        "cw037f": 1093664768,
+        "cw027f": 1093664768
+      },
+      "truncated": 11
+    },
+    {
+      "gain": 144,
+      "inputSingleBits": 1125122048,
+      "eraResultBits": {
+        "cw037f": 1094713344,
+        "cw027f": 1094713344
+      },
+      "truncated": 12
+    },
+    {
+      "gain": 169,
+      "inputSingleBits": 1126760448,
+      "eraResultBits": {
+        "cw037f": 1095761920,
+        "cw027f": 1095761920
+      },
+      "truncated": 13
+    },
+    {
+      "gain": 196,
+      "inputSingleBits": 1128529920,
+      "eraResultBits": {
+        "cw037f": 1096810496,
+        "cw027f": 1096810496
+      },
+      "truncated": 14
+    },
+    {
+      "gain": 224,
+      "inputSingleBits": 1130364928,
+      "eraResultBits": {
+        "cw037f": 1097824081,
+        "cw027f": 1097824081
+      },
+      "truncated": 14
+    },
+    {
+      "gain": 225,
+      "inputSingleBits": 1130430464,
+      "eraResultBits": {
+        "cw037f": 1097859072,
+        "cw027f": 1097859072
+      },
+      "truncated": 15
+    },
+    {
+      "gain": 226,
+      "inputSingleBits": 1130496000,
+      "eraResultBits": {
+        "cw037f": 1097893986,
+        "cw027f": 1097893986
+      },
+      "truncated": 15
+    },
+    {
+      "gain": 256,
+      "inputSingleBits": 1132462080,
+      "eraResultBits": {
+        "cw037f": 1098907648,
+        "cw027f": 1098907648
+      },
+      "truncated": 16
+    },
+    {
+      "gain": 289,
+      "inputSingleBits": 1133543424,
+      "eraResultBits": {
+        "cw037f": 1099431936,
+        "cw027f": 1099431936
+      },
+      "truncated": 17
+    },
+    {
+      "gain": 324,
+      "inputSingleBits": 1134690304,
+      "eraResultBits": {
+        "cw037f": 1099956224,
+        "cw027f": 1099956224
+      },
+      "truncated": 18
+    },
+    {
+      "gain": 361,
+      "inputSingleBits": 1135902720,
+      "eraResultBits": {
+        "cw037f": 1100480512,
+        "cw027f": 1100480512
+      },
+      "truncated": 19
+    },
+    {
+      "gain": 399,
+      "inputSingleBits": 1137147904,
+      "eraResultBits": {
+        "cw037f": 1100991685,
+        "cw027f": 1100991685
+      },
+      "truncated": 19
+    },
+    {
+      "gain": 400,
+      "inputSingleBits": 1137180672,
+      "eraResultBits": {
+        "cw037f": 1101004800,
+        "cw027f": 1101004800
+      },
+      "truncated": 20
+    },
+    {
+      "gain": 401,
+      "inputSingleBits": 1137213440,
+      "eraResultBits": {
+        "cw037f": 1101017899,
+        "cw027f": 1101017899
+      },
+      "truncated": 20
+    },
+    {
+      "gain": 441,
+      "inputSingleBits": 1138524160,
+      "eraResultBits": {
+        "cw037f": 1101529088,
+        "cw027f": 1101529088
+      },
+      "truncated": 21
+    },
+    {
+      "gain": 484,
+      "inputSingleBits": 1139933184,
+      "eraResultBits": {
+        "cw037f": 1102053376,
+        "cw027f": 1102053376
+      },
+      "truncated": 22
+    },
+    {
+      "gain": 529,
+      "inputSingleBits": 1141129216,
+      "eraResultBits": {
+        "cw037f": 1102577664,
+        "cw027f": 1102577664
+      },
+      "truncated": 23
+    },
+    {
+      "gain": 576,
+      "inputSingleBits": 1141899264,
+      "eraResultBits": {
+        "cw037f": 1103101952,
+        "cw027f": 1103101952
+      },
+      "truncated": 24
+    },
+    {
+      "gain": 625,
+      "inputSingleBits": 1142702080,
+      "eraResultBits": {
+        "cw037f": 1103626240,
+        "cw027f": 1103626240
+      },
+      "truncated": 25
+    },
+    {
+      "gain": 676,
+      "inputSingleBits": 1143537664,
+      "eraResultBits": {
+        "cw037f": 1104150528,
+        "cw027f": 1104150528
+      },
+      "truncated": 26
+    },
+    {
+      "gain": 729,
+      "inputSingleBits": 1144406016,
+      "eraResultBits": {
+        "cw037f": 1104674816,
+        "cw027f": 1104674816
+      },
+      "truncated": 27
+    },
+    {
+      "gain": 784,
+      "inputSingleBits": 1145307136,
+      "eraResultBits": {
+        "cw037f": 1105199104,
+        "cw027f": 1105199104
+      },
+      "truncated": 28
+    },
+    {
+      "gain": 841,
+      "inputSingleBits": 1146241024,
+      "eraResultBits": {
+        "cw037f": 1105723392,
+        "cw027f": 1105723392
+      },
+      "truncated": 29
+    },
+    {
+      "gain": 900,
+      "inputSingleBits": 1147207680,
+      "eraResultBits": {
+        "cw037f": 1106247680,
+        "cw027f": 1106247680
+      },
+      "truncated": 30
+    },
+    {
+      "gain": 961,
+      "inputSingleBits": 1148207104,
+      "eraResultBits": {
+        "cw037f": 1106771968,
+        "cw027f": 1106771968
+      },
+      "truncated": 31
+    },
+    {
+      "gain": 9604,
+      "inputSingleBits": 1175851008,
+      "eraResultBits": {
+        "cw037f": 1120141312,
+        "cw027f": 1120141312
+      },
+      "truncated": 98
+    },
+    {
+      "gain": 38025,
+      "inputSingleBits": 1192528128,
+      "eraResultBits": {
+        "cw037f": 1128464384,
+        "cw027f": 1128464384
+      },
+      "truncated": 195
+    },
+    {
+      "gain": 85264,
+      "inputSingleBits": 1202096128,
+      "eraResultBits": {
+        "cw037f": 1133641728,
+        "cw027f": 1133641728
+      },
+      "truncated": 292
+    },
+    {
+      "gain": 151321,
+      "inputSingleBits": 1209255488,
+      "eraResultBits": {
+        "cw037f": 1136820224,
+        "cw027f": 1136820224
+      },
+      "truncated": 389
+    },
+    {
+      "gain": 236196,
+      "inputSingleBits": 1214687488,
+      "eraResultBits": {
+        "cw037f": 1139998720,
+        "cw027f": 1139998720
+      },
+      "truncated": 486
+    },
+    {
+      "gain": 339889,
+      "inputSingleBits": 1218836000,
+      "eraResultBits": {
+        "cw037f": 1142013952,
+        "cw027f": 1142013952
+      },
+      "truncated": 583
+    },
+    {
+      "gain": 462400,
+      "inputSingleBits": 1222756352,
+      "eraResultBits": {
+        "cw037f": 1143603200,
+        "cw027f": 1143603200
+      },
+      "truncated": 680
+    },
+    {
+      "gain": 603729,
+      "inputSingleBits": 1226007824,
+      "eraResultBits": {
+        "cw037f": 1145192448,
+        "cw027f": 1145192448
+      },
+      "truncated": 777
+    },
+    {
+      "gain": 763876,
+      "inputSingleBits": 1228570176,
+      "eraResultBits": {
+        "cw037f": 1146781696,
+        "cw027f": 1146781696
+      },
+      "truncated": 874
+    },
+    {
+      "gain": 942841,
+      "inputSingleBits": 1231433616,
+      "eraResultBits": {
+        "cw037f": 1148370944,
+        "cw027f": 1148370944
+      },
+      "truncated": 971
+    },
+    {
+      "gain": 1140624,
+      "inputSingleBits": 1233861760,
+      "eraResultBits": {
+        "cw037f": 1149599744,
+        "cw027f": 1149599744
+      },
+      "truncated": 1068
+    },
+    {
+      "gain": 1357225,
+      "inputSingleBits": 1235594568,
+      "eraResultBits": {
+        "cw037f": 1150394368,
+        "cw027f": 1150394368
+      },
+      "truncated": 1165
+    },
+    {
+      "gain": 1592644,
+      "inputSingleBits": 1237477920,
+      "eraResultBits": {
+        "cw037f": 1151188992,
+        "cw027f": 1151188992
+      },
+      "truncated": 1262
+    },
+    {
+      "gain": 1846881,
+      "inputSingleBits": 1239511816,
+      "eraResultBits": {
+        "cw037f": 1151983616,
+        "cw027f": 1151983616
+      },
+      "truncated": 1359
+    },
+    {
+      "gain": 2119936,
+      "inputSingleBits": 1241605120,
+      "eraResultBits": {
+        "cw037f": 1152778240,
+        "cw027f": 1152778240
+      },
+      "truncated": 1456
+    },
+    {
+      "gain": 2411809,
+      "inputSingleBits": 1242772612,
+      "eraResultBits": {
+        "cw037f": 1153572864,
+        "cw027f": 1153572864
+      },
+      "truncated": 1553
+    },
+    {
+      "gain": 2722500,
+      "inputSingleBits": 1244015376,
+      "eraResultBits": {
+        "cw037f": 1154367488,
+        "cw027f": 1154367488
+      },
+      "truncated": 1650
+    },
+    {
+      "gain": 2147483647,
+      "inputSingleBits": 1325400064,
+      "eraResultBits": {
+        "cw037f": 1194657011,
+        "cw027f": 1194657011
+      },
+      "truncated": 46340
+    }
+  ],
+  "costBases": [
+    {
+      "costBase": 1,
+      "inputSingleBits": 1065353216,
+      "eraResultBits": {
+        "cw037f": 1065353216,
+        "cw027f": 1065353216
+      },
+      "truncated": 1,
+      "selectedBaseWithFightZero": 650,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 2,
+      "inputSingleBits": 1073741824,
+      "eraResultBits": {
+        "cw037f": 1069679360,
+        "cw027f": 1069679360
+      },
+      "truncated": 1,
+      "selectedBaseWithFightZero": 650,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 12,
+      "inputSingleBits": 1094713344,
+      "eraResultBits": {
+        "cw037f": 1083055877,
+        "cw027f": 1083055877
+      },
+      "truncated": 4,
+      "selectedBaseWithFightZero": 650,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 13,
+      "inputSingleBits": 1095761920,
+      "eraResultBits": {
+        "cw037f": 1083514105,
+        "cw027f": 1083514105
+      },
+      "truncated": 4,
+      "selectedBaseWithFightZero": 13,
+      "levelRateWithFightZero": 10
+    },
+    {
+      "costBase": 31,
+      "inputSingleBits": 1106771968,
+      "eraResultBits": {
+        "cw037f": 1090202473,
+        "cw027f": 1090202473
+      },
+      "truncated": 7,
+      "selectedBaseWithFightZero": 31,
+      "levelRateWithFightZero": 20
+    },
+    {
+      "costBase": 32,
+      "inputSingleBits": 1107296256,
+      "eraResultBits": {
+        "cw037f": 1090519041,
+        "cw027f": 1090519041
+      },
+      "truncated": 8,
+      "selectedBaseWithFightZero": 32,
+      "levelRateWithFightZero": 20
+    },
+    {
+      "costBase": 33,
+      "inputSingleBits": 1107558400,
+      "eraResultBits": {
+        "cw037f": 1090675358,
+        "cw027f": 1090675358
+      },
+      "truncated": 8,
+      "selectedBaseWithFightZero": 33,
+      "levelRateWithFightZero": 20
+    },
+    {
+      "costBase": 186,
+      "inputSingleBits": 1127874560,
+      "eraResultBits": {
+        "cw037f": 1102577108,
+        "cw027f": 1102577108
+      },
+      "truncated": 22,
+      "selectedBaseWithFightZero": 186,
+      "levelRateWithFightZero": 60
+    },
+    {
+      "costBase": 242,
+      "inputSingleBits": 1131544576,
+      "eraResultBits": {
+        "cw037f": 1104639836,
+        "cw027f": 1104639836
+      },
+      "truncated": 26,
+      "selectedBaseWithFightZero": 242,
+      "levelRateWithFightZero": 70
+    },
+    {
+      "costBase": 243,
+      "inputSingleBits": 1131610112,
+      "eraResultBits": {
+        "cw037f": 1104674818,
+        "cw027f": 1104674818
+      },
+      "truncated": 27,
+      "selectedBaseWithFightZero": 243,
+      "levelRateWithFightZero": 80
+    },
+    {
+      "costBase": 244,
+      "inputSingleBits": 1131675648,
+      "eraResultBits": {
+        "cw037f": 1104709742,
+        "cw027f": 1104709742
+      },
+      "truncated": 27,
+      "selectedBaseWithFightZero": 244,
+      "levelRateWithFightZero": 80
+    },
+    {
+      "costBase": 623,
+      "inputSingleBits": 1142669312,
+      "eraResultBits": {
+        "cw037f": 1111359467,
+        "cw027f": 1111359467
+      },
+      "truncated": 47,
+      "selectedBaseWithFightZero": 623,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 649,
+      "inputSingleBits": 1143095296,
+      "eraResultBits": {
+        "cw037f": 1111668710,
+        "cw027f": 1111668710
+      },
+      "truncated": 48,
+      "selectedBaseWithFightZero": 649,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 650,
+      "inputSingleBits": 1143111680,
+      "eraResultBits": {
+        "cw037f": 1111680504,
+        "cw027f": 1111680504
+      },
+      "truncated": 48,
+      "selectedBaseWithFightZero": 650,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 651,
+      "inputSingleBits": 1143128064,
+      "eraResultBits": {
+        "cw037f": 1111692290,
+        "cw027f": 1111692290
+      },
+      "truncated": 48,
+      "selectedBaseWithFightZero": 651,
+      "levelRateWithFightZero": 140
+    },
+    {
+      "costBase": 999,
+      "inputSingleBits": 1148829696,
+      "eraResultBits": {
+        "cw037f": 1115437893,
+        "cw027f": 1115437893
+      },
+      "truncated": 63,
+      "selectedBaseWithFightZero": 999,
+      "levelRateWithFightZero": 180
+    },
+    {
+      "costBase": 1000,
+      "inputSingleBits": 1148846080,
+      "eraResultBits": {
+        "cw037f": 1115447819,
+        "cw027f": 1115447819
+      },
+      "truncated": 63,
+      "selectedBaseWithFightZero": 1000,
+      "levelRateWithFightZero": 180
+    },
+    {
+      "costBase": 1023,
+      "inputSingleBits": 1149222912,
+      "eraResultBits": {
+        "cw037f": 1115675034,
+        "cw027f": 1115675034
+      },
+      "truncated": 63,
+      "selectedBaseWithFightZero": 1023,
+      "levelRateWithFightZero": 180
+    },
+    {
+      "costBase": 1024,
+      "inputSingleBits": 1149239296,
+      "eraResultBits": {
+        "cw037f": 1115684865,
+        "cw027f": 1115684865
+      },
+      "truncated": 64,
+      "selectedBaseWithFightZero": 1024,
+      "levelRateWithFightZero": 190
+    },
+    {
+      "costBase": 1025,
+      "inputSingleBits": 1149247488,
+      "eraResultBits": {
+        "cw037f": 1115689780,
+        "cw027f": 1115689780
+      },
+      "truncated": 64,
+      "selectedBaseWithFightZero": 1025,
+      "levelRateWithFightZero": 190
+    },
+    {
+      "costBase": 3124,
+      "inputSingleBits": 1162035200,
+      "eraResultBits": {
+        "cw037f": 1123677113,
+        "cw027f": 1123677113
+      },
+      "truncated": 124,
+      "selectedBaseWithFightZero": 3124,
+      "levelRateWithFightZero": 370
+    },
+    {
+      "costBase": 3125,
+      "inputSingleBits": 1162039296,
+      "eraResultBits": {
+        "cw037f": 1123680259,
+        "cw027f": 1123680259
+      },
+      "truncated": 125,
+      "selectedBaseWithFightZero": 3125,
+      "levelRateWithFightZero": 370
+    },
+    {
+      "costBase": 3126,
+      "inputSingleBits": 1162043392,
+      "eraResultBits": {
+        "cw037f": 1123683405,
+        "cw027f": 1123683405
+      },
+      "truncated": 125,
+      "selectedBaseWithFightZero": 3126,
+      "levelRateWithFightZero": 370
+    },
+    {
+      "costBase": 7776,
+      "inputSingleBits": 1173553152,
+      "eraResultBits": {
+        "cw037f": 1129840643,
+        "cw027f": 1129840643
+      },
+      "truncated": 216,
+      "selectedBaseWithFightZero": 7776,
+      "levelRateWithFightZero": 640
+    },
+    {
+      "costBase": 16807,
+      "inputSingleBits": 1183010304,
+      "eraResultBits": {
+        "cw037f": 1135312899,
+        "cw027f": 1135312899
+      },
+      "truncated": 343,
+      "selectedBaseWithFightZero": 16807,
+      "levelRateWithFightZero": 1020
+    },
+    {
+      "costBase": 32768,
+      "inputSingleBits": 1191182336,
+      "eraResultBits": {
+        "cw037f": 1140850690,
+        "cw027f": 1140850690
+      },
+      "truncated": 512,
+      "selectedBaseWithFightZero": 32768,
+      "levelRateWithFightZero": 1530
+    },
+    {
+      "costBase": 59049,
+      "inputSingleBits": 1197910272,
+      "eraResultBits": {
+        "cw037f": 1144406019,
+        "cw027f": 1144406019
+      },
+      "truncated": 729,
+      "selectedBaseWithFightZero": 59049,
+      "levelRateWithFightZero": 2180
+    },
+    {
+      "costBase": 99999,
+      "inputSingleBits": 1203982208,
+      "eraResultBits": {
+        "cw037f": 1148845986,
+        "cw027f": 1148845986
+      },
+      "truncated": 999,
+      "selectedBaseWithFightZero": 99999,
+      "levelRateWithFightZero": 2990
+    },
+    {
+      "costBase": 100000,
+      "inputSingleBits": 1203982336,
+      "eraResultBits": {
+        "cw037f": 1148846084,
+        "cw027f": 1148846084
+      },
+      "truncated": 1000,
+      "selectedBaseWithFightZero": 100000,
+      "levelRateWithFightZero": 3000
+    },
+    {
+      "costBase": 100001,
+      "inputSingleBits": 1203982464,
+      "eraResultBits": {
+        "cw037f": 1148846183,
+        "cw027f": 1148846183
+      },
+      "truncated": 1000,
+      "selectedBaseWithFightZero": 100001,
+      "levelRateWithFightZero": 3000
+    },
+    {
+      "costBase": 161051,
+      "inputSingleBits": 1209878208,
+      "eraResultBits": {
+        "cw037f": 1151754243,
+        "cw027f": 1151754243
+      },
+      "truncated": 1331,
+      "selectedBaseWithFightZero": 161051,
+      "levelRateWithFightZero": 3990
+    },
+    {
+      "costBase": 248832,
+      "inputSingleBits": 1215496192,
+      "eraResultBits": {
+        "cw037f": 1155006468,
+        "cw027f": 1155006468
+      },
+      "truncated": 1728,
+      "selectedBaseWithFightZero": 248832,
+      "levelRateWithFightZero": 5180
+    },
+    {
+      "costBase": 371293,
+      "inputSingleBits": 1219840928,
+      "eraResultBits": {
+        "cw037f": 1158238211,
+        "cw027f": 1158238211
+      },
+      "truncated": 2197,
+      "selectedBaseWithFightZero": 371293,
+      "levelRateWithFightZero": 6590
+    },
+    {
+      "costBase": 537824,
+      "inputSingleBits": 1224953344,
+      "eraResultBits": {
+        "cw037f": 1160478724,
+        "cw027f": 1160478724
+      },
+      "truncated": 2744,
+      "selectedBaseWithFightZero": 537824,
+      "levelRateWithFightZero": 8230
+    },
+    {
+      "costBase": 759374,
+      "inputSingleBits": 1228498144,
+      "eraResultBits": {
+        "cw037f": 1163063290,
+        "cw027f": 1163063290
+      },
+      "truncated": 3374,
+      "selectedBaseWithFightZero": 759374,
+      "levelRateWithFightZero": 10120
+    },
+    {
+      "costBase": 759375,
+      "inputSingleBits": 1228498160,
+      "eraResultBits": {
+        "cw037f": 1163063300,
+        "cw027f": 1163063300
+      },
+      "truncated": 3375,
+      "selectedBaseWithFightZero": 759375,
+      "levelRateWithFightZero": 10120
+    },
+    {
+      "costBase": 759376,
+      "inputSingleBits": 1228498176,
+      "eraResultBits": {
+        "cw037f": 1163063311,
+        "cw027f": 1163063311
+      },
+      "truncated": 3375,
+      "selectedBaseWithFightZero": 759376,
+      "levelRateWithFightZero": 10120
+    },
+    {
+      "costBase": 1000000,
+      "inputSingleBits": 1232348160,
+      "eraResultBits": {
+        "cw037f": 1165545771,
+        "cw027f": 1165545771
+      },
+      "truncated": 3981,
+      "selectedBaseWithFightZero": 1000000,
+      "levelRateWithFightZero": 11940
+    },
+    {
+      "costBase": 1048575,
+      "inputSingleBits": 1233125360,
+      "eraResultBits": {
+        "cw037f": 1166016508,
+        "cw027f": 1166016508
+      },
+      "truncated": 4095,
+      "selectedBaseWithFightZero": 1048575,
+      "levelRateWithFightZero": 12280
+    },
+    {
+      "costBase": 1419856,
+      "inputSingleBits": 1236095616,
+      "eraResultBits": {
+        "cw037f": 1167689727,
+        "cw027f": 1167689727
+      },
+      "truncated": 4912,
+      "selectedBaseWithFightZero": 1419856,
+      "levelRateWithFightZero": 14730
+    },
+    {
+      "costBase": 1889567,
+      "inputSingleBits": 1239853304,
+      "eraResultBits": {
+        "cw037f": 1169571840,
+        "cw027f": 1169571840
+      },
+      "truncated": 5832,
+      "selectedBaseWithFightZero": 1889567,
+      "levelRateWithFightZero": 17490
+    },
+    {
+      "costBase": 2476097,
+      "inputSingleBits": 1243029764,
+      "eraResultBits": {
+        "cw037f": 1171675134,
+        "cw027f": 1171675134
+      },
+      "truncated": 6858,
+      "selectedBaseWithFightZero": 2476097,
+      "levelRateWithFightZero": 20570
+    },
+    {
+      "costBase": 2476098,
+      "inputSingleBits": 1243029768,
+      "eraResultBits": {
+        "cw037f": 1171675138,
+        "cw027f": 1171675138
+      },
+      "truncated": 6859,
+      "selectedBaseWithFightZero": 2476098,
+      "levelRateWithFightZero": 20570
+    },
+    {
+      "costBase": 3199998,
+      "inputSingleBits": 1245925368,
+      "eraResultBits": {
+        "cw037f": 1174011904,
+        "cw027f": 1174011904
+      },
+      "truncated": 8000,
+      "selectedBaseWithFightZero": 3199998,
+      "levelRateWithFightZero": 24000
+    },
+    {
+      "costBase": 3199999,
+      "inputSingleBits": 1245925372,
+      "eraResultBits": {
+        "cw037f": 1174011907,
+        "cw027f": 1174011907
+      },
+      "truncated": 8000,
+      "selectedBaseWithFightZero": 3199999,
+      "levelRateWithFightZero": 24000
+    },
+    {
+      "costBase": 3200000,
+      "inputSingleBits": 1245925376,
+      "eraResultBits": {
+        "cw037f": 1174011910,
+        "cw027f": 1174011910
+      },
+      "truncated": 8000,
+      "selectedBaseWithFightZero": 3200000,
+      "levelRateWithFightZero": 24000
+    },
+    {
+      "costBase": 3200001,
+      "inputSingleBits": 1245925380,
+      "eraResultBits": {
+        "cw037f": 1174011913,
+        "cw027f": 1174011913
+      },
+      "truncated": 8000,
+      "selectedBaseWithFightZero": 3200001,
+      "levelRateWithFightZero": 24000
+    },
+    {
+      "costBase": 4084098,
+      "inputSingleBits": 1249461768,
+      "eraResultBits": {
+        "cw037f": 1175499775,
+        "cw027f": 1175499775
+      },
+      "truncated": 9260,
+      "selectedBaseWithFightZero": 4084098,
+      "levelRateWithFightZero": 27780
+    },
+    {
+      "costBase": 4084099,
+      "inputSingleBits": 1249461772,
+      "eraResultBits": {
+        "cw037f": 1175499777,
+        "cw027f": 1175499777
+      },
+      "truncated": 9261,
+      "selectedBaseWithFightZero": 4084099,
+      "levelRateWithFightZero": 27780
+    },
+    {
+      "costBase": 5153629,
+      "inputSingleBits": 1251821242,
+      "eraResultBits": {
+        "cw037f": 1176920064,
+        "cw027f": 1176920064
+      },
+      "truncated": 10648,
+      "selectedBaseWithFightZero": 5153629,
+      "levelRateWithFightZero": 31940
+    },
+    {
+      "costBase": 5153630,
+      "inputSingleBits": 1251821244,
+      "eraResultBits": {
+        "cw037f": 1176920065,
+        "cw027f": 1176920065
+      },
+      "truncated": 10648,
+      "selectedBaseWithFightZero": 5153630,
+      "levelRateWithFightZero": 31940
+    },
+    {
+      "costBase": 6436340,
+      "inputSingleBits": 1254386664,
+      "eraResultBits": {
+        "cw037f": 1178475521,
+        "cw027f": 1178475521
+      },
+      "truncated": 12167,
+      "selectedBaseWithFightZero": 6436340,
+      "levelRateWithFightZero": 36500
+    },
+    {
+      "costBase": 24299984,
+      "inputSingleBits": 1270441192,
+      "eraResultBits": {
+        "cw037f": 1188229120,
+        "cw027f": 1188229120
+      },
+      "truncated": 27000,
+      "selectedBaseWithFightZero": 24299984,
+      "levelRateWithFightZero": 81000
+    },
+    {
+      "costBase": 102399999,
+      "inputSingleBits": 1287868416,
+      "eraResultBits": {
+        "cw037f": 1199177735,
+        "cw027f": 1199177735
+      },
+      "truncated": 64000,
+      "selectedBaseWithFightZero": 102399999,
+      "levelRateWithFightZero": 192000
+    },
+    {
+      "costBase": 102400000,
+      "inputSingleBits": 1287868416,
+      "eraResultBits": {
+        "cw037f": 1199177735,
+        "cw027f": 1199177735
+      },
+      "truncated": 64000,
+      "selectedBaseWithFightZero": 102400000,
+      "levelRateWithFightZero": 192000
+    },
+    {
+      "costBase": 102400001,
+      "inputSingleBits": 1287868416,
+      "eraResultBits": {
+        "cw037f": 1199177735,
+        "cw027f": 1199177735
+      },
+      "truncated": 64000,
+      "selectedBaseWithFightZero": 102400001,
+      "levelRateWithFightZero": 192000
+    },
+    {
+      "costBase": 164916096,
+      "inputSingleBits": 1293764280,
+      "eraResultBits": {
+        "cw037f": 1202085888,
+        "cw027f": 1202085888
+      },
+      "truncated": 85184,
+      "selectedBaseWithFightZero": 164916096,
+      "levelRateWithFightZero": 255550
+    },
+    {
+      "costBase": 247458560,
+      "inputSingleBits": 1298923184,
+      "eraResultBits": {
+        "cw037f": 1205091840,
+        "cw027f": 1205091840
+      },
+      "truncated": 108668,
+      "selectedBaseWithFightZero": 247458560,
+      "levelRateWithFightZero": 326000
+    },
+    {
+      "costBase": 312499744,
+      "inputSingleBits": 1301611249,
+      "eraResultBits": {
+        "cw037f": 1207182336,
+        "cw027f": 1207182336
+      },
+      "truncated": 125000,
+      "selectedBaseWithFightZero": 312499744,
+      "levelRateWithFightZero": 375000
+    },
+    {
+      "costBase": 345024992,
+      "inputSingleBits": 1302627663,
+      "eraResultBits": {
+        "cw037f": 1208060608,
+        "cw027f": 1208060608
+      },
+      "truncated": 132651,
+      "selectedBaseWithFightZero": 345024992,
+      "levelRateWithFightZero": 397950
+    },
+    {
+      "costBase": 356808672,
+      "inputSingleBits": 1302995903,
+      "eraResultBits": {
+        "cw037f": 1208233408,
+        "cw027f": 1208233408
+      },
+      "truncated": 135351,
+      "selectedBaseWithFightZero": 356808672,
+      "levelRateWithFightZero": 406050
+    },
+    {
+      "costBase": 491731648,
+      "inputSingleBits": 1307212246,
+      "eraResultBits": {
+        "cw037f": 1210071616,
+        "cw027f": 1210071616
+      },
+      "truncated": 164073,
+      "selectedBaseWithFightZero": 491731648,
+      "levelRateWithFightZero": 492210
+    },
+    {
+      "costBase": 502150112,
+      "inputSingleBits": 1307537823,
+      "eraResultBits": {
+        "cw037f": 1210204544,
+        "cw027f": 1210204544
+      },
+      "truncated": 166150,
+      "selectedBaseWithFightZero": 502150112,
+      "levelRateWithFightZero": 498450
+    },
+    {
+      "costBase": 705249664,
+      "inputSingleBits": 1311253766,
+      "eraResultBits": {
+        "cw037f": 1212608192,
+        "cw027f": 1212608192
+      },
+      "truncated": 203707,
+      "selectedBaseWithFightZero": 705249664,
+      "levelRateWithFightZero": 611120
+    },
+    {
+      "costBase": 783215808,
+      "inputSingleBits": 1312471987,
+      "eraResultBits": {
+        "cw037f": 1213454766,
+        "cw027f": 1213454766
+      },
+      "truncated": 216934,
+      "selectedBaseWithFightZero": 783215808,
+      "levelRateWithFightZero": 650800
+    },
+    {
+      "costBase": 805267008,
+      "inputSingleBits": 1312816537,
+      "eraResultBits": {
+        "cw037f": 1213688000,
+        "cw027f": 1213688000
+      },
+      "truncated": 220579,
+      "selectedBaseWithFightZero": 805267008,
+      "levelRateWithFightZero": 661730
+    },
+    {
+      "costBase": 849339008,
+      "inputSingleBits": 1313505162,
+      "eraResultBits": {
+        "cw037f": 1214146624,
+        "cw027f": 1214146624
+      },
+      "truncated": 227745,
+      "selectedBaseWithFightZero": 849339008,
+      "levelRateWithFightZero": 683230
+    },
+    {
+      "costBase": 1136290816,
+      "inputSingleBits": 1317500120,
+      "eraResultBits": {
+        "cw037f": 1216638036,
+        "cw027f": 1216638036
+      },
+      "truncated": 271202,
+      "selectedBaseWithFightZero": 1136290816,
+      "levelRateWithFightZero": 813600
+    },
+    {
+      "costBase": 1182889088,
+      "inputSingleBits": 1317864169,
+      "eraResultBits": {
+        "cw037f": 1216849856,
+        "cw027f": 1216849856
+      },
+      "truncated": 277822,
+      "selectedBaseWithFightZero": 1182889088,
+      "levelRateWithFightZero": 833460
+    },
+    {
+      "costBase": 1457517824,
+      "inputSingleBits": 1320009706,
+      "eraResultBits": {
+        "cw037f": 1218036256,
+        "cw027f": 1218036256
+      },
+      "truncated": 314897,
+      "selectedBaseWithFightZero": 1457517824,
+      "levelRateWithFightZero": 944690
+    },
+    {
+      "costBase": 1577574656,
+      "inputSingleBits": 1320947650,
+      "eraResultBits": {
+        "cw037f": 1218526368,
+        "cw027f": 1218526368
+      },
+      "truncated": 330213,
+      "selectedBaseWithFightZero": 1577574656,
+      "levelRateWithFightZero": 990630
+    },
+    {
+      "costBase": 1590279168,
+      "inputSingleBits": 1321046904,
+      "eraResultBits": {
+        "cw037f": 1218577344,
+        "cw027f": 1218577344
+      },
+      "truncated": 331806,
+      "selectedBaseWithFightZero": 1590279168,
+      "levelRateWithFightZero": 995410
+    },
+    {
+      "costBase": 1644125824,
+      "inputSingleBits": 1321467581,
+      "eraResultBits": {
+        "cw037f": 1218791616,
+        "cw027f": 1218791616
+      },
+      "truncated": 338502,
+      "selectedBaseWithFightZero": 1644125824,
+      "levelRateWithFightZero": 1015500
+    },
+    {
+      "costBase": 1653283328,
+      "inputSingleBits": 1321539124,
+      "eraResultBits": {
+        "cw037f": 1218827776,
+        "cw027f": 1218827776
+      },
+      "truncated": 339632,
+      "selectedBaseWithFightZero": 1653283328,
+      "levelRateWithFightZero": 1018890
+    },
+    {
+      "costBase": 1713994112,
+      "inputSingleBits": 1322013427,
+      "eraResultBits": {
+        "cw037f": 1219065504,
+        "cw027f": 1219065504
+      },
+      "truncated": 347061,
+      "selectedBaseWithFightZero": 1713994112,
+      "levelRateWithFightZero": 1041180
+    },
+    {
+      "costBase": 1848848896,
+      "inputSingleBits": 1323066980,
+      "eraResultBits": {
+        "cw037f": 1219581824,
+        "cw027f": 1219581824
+      },
+      "truncated": 363196,
+      "selectedBaseWithFightZero": 1848848896,
+      "levelRateWithFightZero": 1089580
+    },
+    {
+      "costBase": 1866972288,
+      "inputSingleBits": 1323208569,
+      "eraResultBits": {
+        "cw037f": 1219650048,
+        "cw027f": 1219650048
+      },
+      "truncated": 365328,
+      "selectedBaseWithFightZero": 1866972288,
+      "levelRateWithFightZero": 1095980
+    },
+    {
+      "costBase": 1869419776,
+      "inputSingleBits": 1323227690,
+      "eraResultBits": {
+        "cw037f": 1219659240,
+        "cw027f": 1219659240
+      },
+      "truncated": 365615,
+      "selectedBaseWithFightZero": 1869419776,
+      "levelRateWithFightZero": 1096840
+    },
+    {
+      "costBase": 1976887936,
+      "inputSingleBits": 1324067285,
+      "eraResultBits": {
+        "cw037f": 1220058272,
+        "cw027f": 1220058272
+      },
+      "truncated": 378085,
+      "selectedBaseWithFightZero": 1976887936,
+      "levelRateWithFightZero": 1134250
+    },
+    {
+      "costBase": 2073071592,
+      "inputSingleBits": 1324818720,
+      "eraResultBits": {
+        "cw037f": 1220408102,
+        "cw027f": 1220408102
+      },
+      "truncated": 389017,
+      "selectedBaseWithFightZero": 2073071592,
+      "levelRateWithFightZero": 1167050
+    },
+    {
+      "costBase": 2073071593,
+      "inputSingleBits": 1324818720,
+      "eraResultBits": {
+        "cw037f": 1220408102,
+        "cw027f": 1220408102
+      },
+      "truncated": 389017,
+      "selectedBaseWithFightZero": 2073071593,
+      "levelRateWithFightZero": 1167050
+    },
+    {
+      "costBase": 2073071594,
+      "inputSingleBits": 1324818720,
+      "eraResultBits": {
+        "cw037f": 1220408102,
+        "cw027f": 1220408102
+      },
+      "truncated": 389017,
+      "selectedBaseWithFightZero": 2073071594,
+      "levelRateWithFightZero": 1167050
+    },
+    {
+      "costBase": 2147483647,
+      "inputSingleBits": 1325400064,
+      "eraResultBits": {
+        "cw037f": 1220674311,
+        "cw027f": 1220674311
+      },
+      "truncated": 397336,
+      "selectedBaseWithFightZero": 2147483647,
+      "levelRateWithFightZero": 1192000
+    }
+  ],
+  "selectors": [
+    {
+      "fight": 0,
+      "ai": 0,
+      "selectedBase": 650,
+      "levelRate": 140,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1143111680,
+        "eraResultBits": {
+          "cw037f": 1111680504,
+          "cw027f": 1111680504
+        },
+        "truncated": 48
+      }
+    },
+    {
+      "fight": 0,
+      "ai": 1,
+      "selectedBase": 650,
+      "levelRate": 140,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1143111680,
+        "eraResultBits": {
+          "cw037f": 1111680504,
+          "cw027f": 1111680504
+        },
+        "truncated": 48
+      }
+    },
+    {
+      "fight": 12,
+      "ai": 12,
+      "selectedBase": 650,
+      "levelRate": 140,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1143111680,
+        "eraResultBits": {
+          "cw037f": 1111680504,
+          "cw027f": 1111680504
+        },
+        "truncated": 48
+      }
+    },
+    {
+      "fight": 12,
+      "ai": 13,
+      "selectedBase": 13,
+      "levelRate": 10,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1095761920,
+        "eraResultBits": {
+          "cw037f": 1083514105,
+          "cw027f": 1083514105
+        },
+        "truncated": 4
+      }
+    },
+    {
+      "fight": 13,
+      "ai": 12,
+      "selectedBase": 13,
+      "levelRate": 10,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1095761920,
+        "eraResultBits": {
+          "cw037f": 1083514105,
+          "cw027f": 1083514105
+        },
+        "truncated": 4
+      }
+    },
+    {
+      "fight": 13,
+      "ai": 1000000,
+      "selectedBase": 13,
+      "levelRate": 10,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1095761920,
+        "eraResultBits": {
+          "cw037f": 1083514105,
+          "cw027f": 1083514105
+        },
+        "truncated": 4
+      }
+    },
+    {
+      "fight": 12,
+      "ai": 1000000,
+      "selectedBase": 1000000,
+      "levelRate": 11940,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1232348160,
+        "eraResultBits": {
+          "cw037f": 1165545771,
+          "cw027f": 1165545771
+        },
+        "truncated": 3981
+      }
+    },
+    {
+      "fight": 650,
+      "ai": 12,
+      "selectedBase": 650,
+      "levelRate": 140,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1143111680,
+        "eraResultBits": {
+          "cw037f": 1111680504,
+          "cw027f": 1111680504
+        },
+        "truncated": 48
+      }
+    },
+    {
+      "fight": 0,
+      "ai": 2147483647,
+      "selectedBase": 2147483647,
+      "levelRate": 1192000,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1325400064,
+        "eraResultBits": {
+          "cw037f": 1220674311,
+          "cw027f": 1220674311
+        },
+        "truncated": 397336
+      }
+    },
+    {
+      "fight": 2147483647,
+      "ai": 13,
+      "selectedBase": 2147483647,
+      "levelRate": 1192000,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1325400064,
+        "eraResultBits": {
+          "cw037f": 1220674311,
+          "cw027f": 1220674311
+        },
+        "truncated": 397336
+      }
+    },
+    {
+      "fight": 12,
+      "ai": 2147483647,
+      "selectedBase": 2147483647,
+      "levelRate": 1192000,
+      "eraSelectedBaseResult": {
+        "inputSingleBits": 1325400064,
+        "eraResultBits": {
+          "cw037f": 1220674311,
+          "cw027f": 1220674311
+        },
+        "truncated": 397336
+      }
+    }
+  ]
+}

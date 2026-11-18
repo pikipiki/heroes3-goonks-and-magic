@@ -53,7 +53,7 @@ export function buildHenchmenContract(projectRoot=root){
   enabled:false,status:'partial-rule-library',
   battleOutcomeValidation:'scripts/era-bridge/gameplay/henchmen-battle-outcomes-native-validation.json',
   unresolved:[
-   'Floating-point primitives are derived from primary kernel source; binary differential validation has not been obtained.',
+   'Floating-point primitives match extracted DLL functions on the documented finite corpus under two explicit x87 control words; the full Windows ERA runtime, actual FPU state, exceptions and whole int32 domain remain unvalidated.',
    'Per-game JSON settings support numbers, booleans and TRUE/FALSE strings; arbitrary ERM constant names require the shared symbol resolver.',
    'AI rewards read the active source VM integer i^battleExpAIPct^; missing, signed, overflow and saved values pass native scenarios. The distinct prefixed configuration and paired string are not substituted; complete profile namespace integration remains unadmitted.',
    'Native core adapters exist; complete source fidelity and configurable profiles are not admitted.',

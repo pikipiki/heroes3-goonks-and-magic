@@ -232,9 +232,16 @@ en float32, y compris l'exposant 3/5. Les identités de ces sources sont dans
 
 Deux points empêchent encore de présenter ces calculs comme un système complet :
 
-1. Le modèle mathématique est rapproché des sources primaires, sans comparaison
-   différentielle avec le binaire livré. L'analyse native tentée a expiré avant
-   de produire des preuves ; elle n'est pas comptée comme une validation.
+1. Une comparaison bornée exécute les fonctions mathématiques extraites de la
+   DLL et le véritable en-tête C++ compilé en WebAssembly : aucun écart avec
+   l'expression du port sur 6 865 entrées initiales et un million de bases de
+   coût, pour chacun des mots de contrôle x87 `0x037f` et `0x027f`. La fixture
+   permanente vérifie 452 assertions sur des valeurs sélectionnées, sans code
+   Windows. Les empreintes et limites figurent dans
+   `scripts/era-bridge/gameplay/henchmen-math-binary-validation.json`.
+   L'exécution x86 a utilisé une traduction sur hôte ARM64 ; le processus ERA
+   Windows, son état FPU réel, ses exceptions et le domaine int32 complet
+   restent à valider. Cette preuve ne suffit donc pas à activer le profil.
 2. Le script de récompense lit `i^battleExpAIPct^`, tandis que son réglage définit
    `i^hench_battleExpAIPct^`. Aucune définition du premier nom n'a été trouvée dans
    les cinq packs récupérés. Le moteur consulte maintenant la cellule entière

@@ -8,7 +8,7 @@
   "sourceOption": 36,
   "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
+    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
     "scripts/era-bridge/gameplay/mithril.json": "1c0e1e1e01d3299c17590dc8691cbd69faa634b1402f920c466e4ff739f630ea",
     "tests/era-wog-options-native.test.mjs": "1ae28580b56670d1c7de6671efdde54cf3e7911eb7e147b1550a8965abdef2bc",
     "tests/native/EraWogOptions.test.cpp": "dcc59ff67f9eed497dcf267ac43ac7d6c892cab2e5dd3116e1f04e0be296a4eb",
@@ -349,5 +349,12 @@
     ],
     "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
     "choiceCountUnchanged": 19
+  },
+  "mathEvidenceOnlyRevalidation": {
+    "scope": "Evidence and documentation only; engine, runtime scenarios and their historical reports unchanged. No new native run claimed.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
   }
 }

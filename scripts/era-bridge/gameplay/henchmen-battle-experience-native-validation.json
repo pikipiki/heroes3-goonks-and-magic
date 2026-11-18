@@ -11,9 +11,9 @@
     "lines": "250-271,746-778"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
-    "scripts/era-bridge/gameplay/henchmen.mjs": "49a1f00f5b9f2b5f8911e30ed6e191a1dc112dcd96757f6ff9842f435e810b5f",
-    "scripts/era-bridge/gameplay/henchmen.json": "8415a540f3fcb53801102f8a32acda49473495c6a31108cd5b2ba901112c636b",
+    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
+    "scripts/era-bridge/gameplay/henchmen.mjs": "fd4cc9ac3004039354888f7a046f08ebb2959645fb6844bbe2ce749bc27a60fe",
+    "scripts/era-bridge/gameplay/henchmen.json": "35b793559d0114a132061955eb3a8cd7bc4a864ed44066c2a23d28fdecc6bbe4",
     "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/wog-henchmen-battle-experience-cases.mjs": "c8e12a19af45b9d4bfdc22814cfa805d336d6a942f210ed36a92e605ed422152",
@@ -226,5 +226,14 @@
     ],
     "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
     "choiceCountUnchanged": 19
+  },
+  "mathEvidenceOnlyRevalidation": {
+    "scope": "Evidence and documentation only; engine, runtime scenarios and their historical reports unchanged. No new native run claimed.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
+      "scripts/era-bridge/gameplay/henchmen.mjs": "49a1f00f5b9f2b5f8911e30ed6e191a1dc112dcd96757f6ff9842f435e810b5f",
+      "scripts/era-bridge/gameplay/henchmen.json": "8415a540f3fcb53801102f8a32acda49473495c6a31108cd5b2ba901112c636b"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
   }
 }

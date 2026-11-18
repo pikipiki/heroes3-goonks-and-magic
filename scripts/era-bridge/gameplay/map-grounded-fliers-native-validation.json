@@ -84,7 +84,7 @@
     "tests/era-map-grounded-fliers.test.mjs": "19e1e7c8733ec6c9d12b6a866332d07a0193c87c87e4e599a01fe1301ea99426",
     "tests/fixtures/era-gameplay/map-grounded-fliers-reference.json": "ee354297e5d0bc380cd56501379f17a04dc4dd4580339ecbb74a5da41d9bf475",
     "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
-    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a"
+    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1165,5 +1165,12 @@
     ],
     "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
     "choiceCountUnchanged": 19
+  },
+  "mathEvidenceOnlyRevalidation": {
+    "scope": "Evidence and documentation only; engine, runtime scenarios and their historical reports unchanged. No new native run claimed.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
   }
 }

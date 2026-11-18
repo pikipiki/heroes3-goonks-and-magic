@@ -35,5 +35,11 @@
   },
   "evidenceKind": "primary-source",
   "binaryDifferentialValidated": false,
-  "note": "Source-based model. No claim that the source commit is identical to a supplied DLL. The attempted Hopper analysis timed out before producing binary evidence."
+  "note": "Primary-source model supplemented by a bounded comparison with extracted DLL functions at explicit x87 control words. The actual ERA process FPU state, Windows exceptions and full integer domain remain unvalidated; this does not admit a whole profile.",
+  "boundedBinaryComparison": {
+    "file": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json",
+    "sha256": "353908e07d98ddd13ef4f6acf84cc64b5c17e4c15ede720024ced0479f53b551",
+    "status": "extracted-code-finite-domain-validated",
+    "fullWindowsEraRuntimeValidated": false
+  }
 }
