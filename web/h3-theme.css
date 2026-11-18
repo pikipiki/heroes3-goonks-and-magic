@@ -160,5 +160,5 @@
 #mobile-app .spell-enemy-indicator{color:#ffc0ff}
 
 /* Visible short captions belong to their own non-overlapping town touch cell. */
-#mobile-app[data-town-layout=portrait] .town-building-name{display:block!important;bottom:0;transform:none;box-sizing:border-box;padding:0 2px;border:1px solid #ad8e50;background:#20150eea;font:10px/12px Georgia;overflow:hidden;white-space:pre-line}
+#mobile-app[data-town-layout=portrait] .town-building-name{display:flex!important;align-items:center;justify-content:center;bottom:0;transform:none;box-sizing:border-box;padding:0 2px;border:1px solid #ad8e50;background:#20150eea;font:10px/12px Georgia;overflow:hidden;white-space:pre-line}
 #mobile-app:not([data-mode=town]) .town-portrait-buildings{display:none!important}
