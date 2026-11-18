@@ -4,14 +4,14 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Native WoG map rule130: one-time Grails in all compatible towns after initial day stock, all owners, disabled if any Conflux exists. Independent fifteenth per-game choice; source option101 selection modes and complete catalogue remain unadmitted.",
-  "sourceBaseCommit": "85c48b7c51a54549673cd3662045ca1c832599ea",
-  "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+  "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "8681677e9fa4be2b339534d9af28d8eafa6dc72242c9d3629a2f018a832dce0c",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "baab62fea5aeda38b6050cad54efc8b37af06e060e9b7bcb2ba0de3d657febe4",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "7bfc3a0bd36ca68cc605e24087409bba39e94d102e6c85946765324e1f081b18",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "b2d0675fe5add734db86655412795c682a738d6d784631add758998429536185",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
     "web/wog-options.mjs": "cd7721fbba1c6f9d9c73a6108054752b5ff4db9b48df51ef3c3c41b0087b7d0f",
     "mod/tum-era/content/config/wog-map-rules.json": "5154564c322445681bddfbc9cf566a953764ea52140705f07af9ee40eedcea96",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5",
@@ -21,8 +21,8 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 108,
-    "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
+    "targets": 49,
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -50,9 +50,9 @@
   "reports": {
     "touchPortrait": {
       "passed": true,
-      "scope": "native WoG130 town Grails",
+      "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "configured": false,
@@ -89,9 +89,9 @@
             1,
             1
           ],
-          "startingGold": 20000,
-          "day2Gold": 36500,
-          "day3Gold": 48000,
+          "startingGold": 20500,
+          "day2Gold": 37000,
+          "day3Gold": 48500,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -150,9 +150,9 @@
             0,
             0
           ],
-          "startingGold": 20900,
-          "day2Gold": 22400,
-          "day3Gold": 23900,
+          "startingGold": 20600,
+          "day2Gold": 22100,
+          "day3Gold": 23600,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -178,20 +178,203 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "e90f2a9abc5a9b291d7296d1263458cab2f537347ca3beb1871be647f6e5b85f",
+      "rawReportSha256": "1bb3b287be1cf5298c3469b9383b1aea32c3c6a948d7a97e7faa38ccfc98aae6",
       "programFileSha256": {
         "8": "714e85f5b2403cf929eccd81da7e6519f1c9b96af72a0a6911db2152dbb67297"
       }
     },
     "touchLandscape": {
       "passed": true,
-      "scope": "native WoG130 town Grails",
+      "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "configured": false,
           "choice": -1,
+          "active": false,
+          "conflux": null,
+          "initial": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "removed": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "next": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "startingGold": 20700,
+          "day2Gold": 22200,
+          "day3Gold": 23700,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "existingGrailPreserved": true,
+          "removedGrailNotRebuilt": true,
+          "freeConstructionPreservesDailyAllowance": true,
+          "firstStock": 14,
+          "postRemovalNativeSaveReload": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "types": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "configured": true,
+          "choice": -1,
+          "active": true,
+          "conflux": null,
+          "initial": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "removed": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "next": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "startingGold": 20500,
+          "day2Gold": 37000,
+          "day3Gold": 48500,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "existingGrailPreserved": true,
+          "removedGrailNotRebuilt": true,
+          "freeConstructionPreservesDailyAllowance": true,
+          "firstStock": 14,
+          "postRemovalNativeSaveReload": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "types": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "conflux": null,
+          "initial": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "removed": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "next": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "startingGold": 20000,
+          "day2Gold": 36500,
+          "day3Gold": 48000,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "existingGrailPreserved": true,
+          "removedGrailNotRebuilt": true,
+          "freeConstructionPreservesDailyAllowance": true,
+          "firstStock": 14,
+          "postRemovalNativeSaveReload": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "types": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "configured": true,
+          "choice": 0,
           "active": false,
           "conflux": null,
           "initial": [
@@ -227,189 +410,6 @@
           "startingGold": 20000,
           "day2Gold": 21500,
           "day3Gold": 23000,
-          "nativeSaveReload": true,
-          "reversedGlobalDefault": true,
-          "existingGrailPreserved": true,
-          "removedGrailNotRebuilt": true,
-          "freeConstructionPreservesDailyAllowance": true,
-          "firstStock": 14,
-          "postRemovalNativeSaveReload": false,
-          "viewport": {
-            "width": 844,
-            "height": 390
-          },
-          "input": "touch",
-          "types": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "configured": true,
-          "choice": -1,
-          "active": true,
-          "conflux": null,
-          "initial": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "removed": [
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "next": [
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "startingGold": 20000,
-          "day2Gold": 36500,
-          "day3Gold": 48000,
-          "nativeSaveReload": true,
-          "reversedGlobalDefault": true,
-          "existingGrailPreserved": true,
-          "removedGrailNotRebuilt": true,
-          "freeConstructionPreservesDailyAllowance": true,
-          "firstStock": 14,
-          "postRemovalNativeSaveReload": true,
-          "viewport": {
-            "width": 844,
-            "height": 390
-          },
-          "input": "touch",
-          "types": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "configured": false,
-          "choice": 1,
-          "active": true,
-          "conflux": null,
-          "initial": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "removed": [
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "next": [
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "startingGold": 20000,
-          "day2Gold": 36500,
-          "day3Gold": 48000,
-          "nativeSaveReload": true,
-          "reversedGlobalDefault": true,
-          "existingGrailPreserved": true,
-          "removedGrailNotRebuilt": true,
-          "freeConstructionPreservesDailyAllowance": true,
-          "firstStock": 14,
-          "postRemovalNativeSaveReload": true,
-          "viewport": {
-            "width": 844,
-            "height": 390
-          },
-          "input": "touch",
-          "types": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "configured": true,
-          "choice": 0,
-          "active": false,
-          "conflux": null,
-          "initial": [
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "removed": [
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "next": [
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "startingGold": 21000,
-          "day2Gold": 22500,
-          "day3Gold": 24000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -593,9 +593,9 @@
             0,
             0
           ],
-          "startingGold": 20000,
-          "day2Gold": 21500,
-          "day3Gold": 23000,
+          "startingGold": 21000,
+          "day2Gold": 22500,
+          "day3Gold": 24000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -658,9 +658,9 @@
             0,
             0
           ],
-          "startingGold": 20000,
-          "day2Gold": 22000,
-          "day3Gold": 24000,
+          "startingGold": 20900,
+          "day2Gold": 22900,
+          "day3Gold": 24900,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -752,7 +752,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "040189c2231195a012f7cf4abfb75403af2a02cea1c9121c659f71b5a4c7b38a",
+      "rawReportSha256": "df08f53ddc8f719c7e99b37ed2b384430a5e3087592e4f8bebc26c54d0942f58",
       "programFileSha256": {
         "8": "714e85f5b2403cf929eccd81da7e6519f1c9b96af72a0a6911db2152dbb67297",
         "9": "8baac58b3118c9484b5c2a6912464619a01ae8d0604fa047231dc10575f8338f"
@@ -760,9 +760,9 @@
     },
     "desktopMouse": {
       "passed": true,
-      "scope": "native WoG130 town Grails",
+      "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "configured": true,
@@ -799,9 +799,9 @@
             1,
             1
           ],
-          "startingGold": 20000,
-          "day2Gold": 36500,
-          "day3Gold": 48000,
+          "startingGold": 20900,
+          "day2Gold": 37400,
+          "day3Gold": 48900,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -863,9 +863,9 @@
             0,
             0
           ],
-          "startingGold": 20000,
-          "day2Gold": 21500,
-          "day3Gold": 23000,
+          "startingGold": 20500,
+          "day2Gold": 22000,
+          "day3Gold": 23500,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -892,7 +892,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "92bbf2064bd71fef0b2ecbae71e801b66a19a20af378d5ea6dbb828bececdbae",
+      "rawReportSha256": "1407bf6ee11fade555946a459ef538f773e9244184b12725f7c1c86dad10e582",
       "programFileSha256": {
         "8": "714e85f5b2403cf929eccd81da7e6519f1c9b96af72a0a6911db2152dbb67297",
         "9": "8baac58b3118c9484b5c2a6912464619a01ae8d0604fa047231dc10575f8338f"
@@ -973,7 +973,7 @@
     "passed": true,
     "scope": "mithril-sites",
     "completeRules": false,
-    "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
     "scenarios": [
       {
         "legacyFourteenChoiceSave": true,
@@ -983,18 +983,18 @@
       }
     ],
     "errors": [],
-    "rawReportSha256": "ccca88ed637ffbe2fcd2fd81d79146a39e30f5e2dfe680ef1813a9dcd0b3e9c7"
+    "rawReportSha256": "3428533ddc4ca3db97fd86608620726225054acdb046ec4fcc70571ef103e13d"
   },
   "previousEngineSave": {
     "passed": true,
     "scope": "native-core-only",
     "completeRules": false,
-    "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
     "scenarios": [
       "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
     ],
     "errors": [],
-    "rawReportSha256": "e101e34117200b46e8dd745f78345e4e5057deeeec2582cc4b03fe01f9f565a3"
+    "rawReportSha256": "9a444f04bc68b0cbda81eb7fbaee07949fa6423953a4cf29a852349603f2c8dc"
   },
   "serialization": {
     "catalogueCounts": [
@@ -1010,7 +1010,9 @@
     "largerThanPeerCapabilityRejected": true,
     "invalidChoicesRejected": true,
     "unitExitCode": 0,
-    "unitLogSha256": "8ffbc09120c28aa6d991ad4ede14837c8c9b62296623f8466c18585fcdf55dc5"
+    "unitLogSha256": "8ffbc09120c28aa6d991ad4ede14837c8c9b62296623f8466c18585fcdf55dc5",
+    "quickScopeSaveCapability": true,
+    "catalogueCountUnchanged": 16
   },
   "remaining": [
     "Other 13 map rules",
@@ -1296,6 +1298,16 @@
         "errors": [],
         "rawReportSha256": "2ad23f710a701c33fb681d8c38df0117541e8914c7e23e150972b4971f17802e"
       }
+    }
+  },
+  "sourceContext": {
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "publishedEngine": "0.4.258",
+    "nativeBackendChanged": true,
+    "archive": {
+      "file": "outputs/vcmi-wasm-goonk-0.4.258-engine.tar.gz",
+      "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
+      "runtimeByteIdenticalToTestedCandidate": true
     }
   }
 }

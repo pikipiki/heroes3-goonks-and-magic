@@ -4,9 +4,9 @@
   "completeRules": false,
   "advancedClassesProfileAdmitted": false,
   "scope": "Original acm_GetHeroClass lookup from controlled persistent mastery flags, not the class promotion system or complete Advanced Classes profile.",
-  "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
-  "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
-  "compilerOnlyChangeReusesVerifiedNativeEngine": true,
+  "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+  "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "ae3854ab1bf3e3610cb079eafb5ddf6647f666e314c581f3079f676b2e2eea66",
@@ -14,15 +14,15 @@
     "tests/fixtures/era-gameplay/advanced-class-identity-1.1.erm": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94",
     "work/browser-tests/wog-advanced-class-identity-cases.mjs": "8fad7e30a7a8b5da211c054efb11e8695614ea719f559f151a8dcf9c2e402f20",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
-    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "241a3eea158e64fc0dafd6bd4b508ca592f558ceda58cf03903c321793eb8e37",
-    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "6510e6944769a1c8c3ca9b0d2712280eddbe1682ff4e1793ee7fcb2ab1997ccd",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b3572e87c8cc9db71583847d3541aaf9e2e1178bd195b1e15964d766fd1554ae",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "ccce0ce91e1e9da4ce20e7c8adfe02ac38ab069c0abd9c867c02e4fe0c068173",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2",
-    "work/browser-tests/wog-advanced-core-cases.mjs": "61ec4e3a7ede00ff449d8e1dfd0cfe2b4560503f669a73f3515295219b946919",
+    "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
     "scripts/era-bridge/campaigns/importer.mjs": "d19be1f5f4d4dab127a0317810fc11543bd7ea2790e8cb608c0fa129df3b7740",
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "432c8665027a76065f449881ad4c2e2acb4552eed645f91f7c706761469f5aba",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
     "work/browser-tests/wog-era3-numeric-calls-fixture.mjs": "4e72a89f3dd7b628f42174730eab30f3c64103ca2e73abb68d55edcb1380d013",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63"
@@ -71,7 +71,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "kind": "class",
@@ -244,13 +244,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "d6f7a3917102246474439ff1c6aff172648a85d4fe84a83b72f248c580c3d82d"
+      "sharedRunReportSha256": "b08da7f291329f1848ca1a4ffed89ba8bc7426f65730bccd075054fdd1d79d4b"
     },
     "touchLandscape": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "kind": "class",
@@ -423,13 +423,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "faa02e1d542194c06ef6b0c2f329e830bbb5f45edd31c2df6ecc487a3e92c365"
+      "sharedRunReportSha256": "99dc9ec632a161560fceefa0482f121d03d3bb933a212eacdf2e556f2ca4586b"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "kind": "class",
@@ -602,30 +602,32 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "192d3aa5c0f2f8c88140e5004cd43435db94159c95ddbe674915b269d86b80cb"
+      "sharedRunReportSha256": "09d436dff8f0c1eb7cbbe3fc7c0c193456c27e69241e743ea752b1ac3e8d9905"
     }
   },
   "webAssemblyVerification": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "reusedNativeEngineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
-    "logSha256": "f8fb6ca69a55e92b7abe96d5fbe2be993dd17b24b2114d0082ec6d0086cfdc80"
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
+    "reusedNativeEngineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+    "warMachinesAdmitted": false
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 5,
-    "logSha256": "f8fb6ca69a55e92b7abe96d5fbe2be993dd17b24b2114d0082ec6d0086cfdc80",
+    "targets": 49,
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
   "compilerFollowUp": {
-    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
     "constantLocalArraysAstV4": true,
     "explicitLocalFreeing": true,
     "groupedNativeRevalidation": true,
-    "nativeEngineUnchanged": true,
-    "validation": "scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json"
+    "nativeEngineUnchanged": false,
+    "validation": "scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json",
+    "quickRegisterScopeFix": true
   },
   "originalNativeBuild": {
     "command": "ninja -j32 html5",
@@ -636,9 +638,15 @@
     "warMachinesAdmitted": false
   },
   "sourceContext": {
-    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
-    "publishedEngine": "0.4.254",
-    "nativeEngineUnchanged": true,
-    "localBuildByteIdenticalToPublishedEngine": true
-  }
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "publishedEngine": "0.4.258",
+    "nativeBackendChanged": true,
+    "archive": {
+      "file": "outputs/vcmi-wasm-goonk-0.4.258-engine.tar.gz",
+      "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
+      "runtimeByteIdenticalToTestedCandidate": true
+    }
+  },
+  "quickScopeRevalidation": true,
+  "quickScopeValidation": "scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json"
 }

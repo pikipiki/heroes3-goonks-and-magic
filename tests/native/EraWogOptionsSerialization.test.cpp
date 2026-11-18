@@ -50,7 +50,7 @@ int main()
         version>=V::GOONK_WOG_ARMY_GROWTH?14u:
         version>=V::GOONK_WOG_OPTION_CATALOGUE?13u:
         version>=V::GOONK_WOG_OPTIONS_EXTENDED?7u:6u;};
-    for(auto version:{V::GOONK_WOG_OPTIONS,V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_HENCHMAN_BATTLE_EXPERIENCE,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::CURRENT})
+    for(auto version:{V::GOONK_WOG_OPTIONS,V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_HENCHMAN_BATTLE_EXPERIENCE,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::CURRENT})
     {
         ExtraOptionsInfo original;original.cheatsAllowed=false;original.unlimitedReplay=true;
         for(std::size_t i=0;i<original.wogOptions.size();++i)original.wogOptions[i]=static_cast<int8_t>(i%3)-1;
@@ -65,7 +65,7 @@ int main()
     Bytes old{false,V::BONUS_TRIGGER,{1,0,73},0};ExtraOptionsInfo restored;restored.wogOptions.fill(1);restored.serialize(old);
     for(auto choice:restored.wogOptions)assert(choice==-1);
     int8_t sentinel=0;old&sentinel;assert(sentinel==73);
-    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::CURRENT})
+    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::CURRENT})
         for(int invalid:{-128,-2,2,127})
         {
             const auto count=countFor(version);const auto prefix=version>=V::GOONK_WOG_OPTION_CATALOGUE?4u:0u;
@@ -93,7 +93,7 @@ int main()
     }
     // A new reader must still enforce the capability of an older stream,
     // rather than accepting a future choice merely because its array fits.
-    for(auto version:{V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS})
+    for(auto version:{V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS})
     {
         const auto count=countFor(version)+1;
         std::vector<int8_t> bytes(6+count,0);bytes[2]=static_cast<int8_t>(count);

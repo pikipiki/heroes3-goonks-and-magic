@@ -4,8 +4,8 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Read-only source UN:P36 matches canonical frozen native Mithril activation; existing inactive Potion Fountains UN:P17 stays zero. No source setters or additional option IDs admitted.",
-  "sourceBaseCommit": "85c48b7c51a54549673cd3662045ca1c832599ea",
-  "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+  "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
@@ -18,8 +18,8 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 108,
-    "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
+    "targets": 49,
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -42,7 +42,7 @@
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "globalModule": false,
@@ -148,14 +148,14 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "c7532598fca08b8a356e8a27682369530a136586fc2b57afefbdb62aab4b2040",
+      "rawReportSha256": "05c6c14027ffeb3c022d62c50af487b55ef0a3c295434faa6d15c262cbc5054e",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     },
     "touchPortrait": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "globalModule": true,
@@ -193,14 +193,14 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "c869fba65b4aee7806755f8a05bbb87a2b017f27826f5761d49a48e091956137",
+      "rawReportSha256": "d74080eb6e87f0b0af063f277f52e4990688ace03d90f5aef05e1ec46f50e74a",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "globalModule": false,
@@ -238,7 +238,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "080e36f67080e90b83c828bfdb8863b01f0b5bfbd830cc5cfe140d3b301fd93b",
+      "rawReportSha256": "794d497f4ff5f598295d4e3c5ab100def35ecbb53d8bc5a172d7485167d7a6e5",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     }
   },
@@ -275,5 +275,15 @@
     ],
     "errors": [],
     "rawReportSha256": "e101e34117200b46e8dd745f78345e4e5057deeeec2582cc4b03fe01f9f565a3"
+  },
+  "sourceContext": {
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "publishedEngine": "0.4.258",
+    "nativeBackendChanged": true,
+    "archive": {
+      "file": "outputs/vcmi-wasm-goonk-0.4.258-engine.tar.gz",
+      "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
+      "runtimeByteIdenticalToTestedCandidate": true
+    }
   }
 }

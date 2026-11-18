@@ -1,0 +1,40 @@
+{
+  "repository": "https://github.com/ethernidee/era",
+  "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+  "file": "Erm.pas",
+  "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+  "fragments": [
+    {
+      "startLine": 5694,
+      "endLine": 5710,
+      "text": "  procedure SaveVars;\n  var\n    i: integer;\n\n  begin\n    SavedY := y^;\n\n    if ErmLegacySupport and ((TriggerId < TRIGGER_FU1) or (TriggerId > TRIGGER_FU29999)) then begin\n      SavedNY := ny^;\n    end;\n\n    SavedE         := e^;\n    SavedX         := x^;\n    x^             := ArgXVars;\n    SavedQuickVars := QuickVars^;\n\n    SavedNumArgsReceived            := NumFuncArgsReceived;\n",
+      "sha256": "c43ccbb87b1a4fcfbf6dedb9cfadc07b91aa866bf01d33095ee3bb5079074767"
+    },
+    {
+      "startLine": 5743,
+      "endLine": 5759,
+      "text": "  procedure RestoreVars;\n  var\n    i: integer;\n\n  begin\n    y^ := SavedY;\n\n    if ErmLegacySupport and ((TriggerId < TRIGGER_FU1) or (TriggerId > TRIGGER_FU29999)) then begin\n      ny^ := SavedNY;\n    end;\n\n    e^         := SavedE;\n    RetXVars   := x^;\n    x^         := SavedX;\n    QuickVars^ := SavedQuickVars;\n\n    NumFuncArgsReceived            := SavedNumArgsReceived;\n",
+      "sha256": "c1e87717552251965d98b5b2d835cd62f26714d1a72d92aae476b00d788a4bb8"
+    },
+    {
+      "startLine": 6088,
+      "endLine": 6100,
+      "text": "      if FuncArgs <> nil then begin\n        for j := 0 to NumFuncArgsReceived - 1 do begin\n          if (FuncArgs[j].GetCheckType() = PARAM_CHECK_GET) and (FuncArgs[j].GetType() in PARAM_VARTYPES_STRINGS) then begin\n            RetStrVars[j + 1] := GetInterpolatedZVarAddr(x[j + 1]);\n          end;\n        end;\n      end;\n\n      RestoreVars;\n\n      if LocalData.Items <> nil then begin\n        for j := LocalData.Items.Count - 1 downto 0 do begin\n          LocalData.Items[j] := nil;\n",
+      "sha256": "4c3b9af209e32c6630d5b3598a1fe3e19a4beb18b3f17b4cc4b6ea470fc9cc25"
+    },
+    {
+      "startLine": 8486,
+      "endLine": 8502,
+      "text": "procedure ApplyFuncByRefRes (SubCmd: PErmSubCmd; NumParams: integer);\nvar\n  Param: PErmCmdParam;\n  i:     integer;\n\nbegin\n  for i := 0 to NumParams - 1 do begin\n    Param := @SubCmd.Params[i];\n\n    if Param.GetCheckType() = PARAM_CHECK_GET then begin\n      if Param.GetType() in PARAM_VARTYPES_STRINGS then begin\n        SetErmParamValue(Param, integer(pchar(RetStrVars[i + 1])), FLAG_ASSIGNABLE_STRINGS);\n      end else begin\n        SetErmParamValue(Param, RetXVars[i + 1]);\n      end;\n    end;\n  end;\n",
+      "sha256": "fc4f502b41dcdad41595addf6fd53798800997ab8088fa922a9c7e5110533060"
+    },
+    {
+      "startLine": 8565,
+      "endLine": 8574,
+      "text": "\n  for i := NumParams to High(ArgXVars) - 1 do begin\n    ArgXVars[i + 1]              := 0;\n    FuncArgsGetSyntaxFlagsPassed := FuncArgsGetSyntaxFlagsPassed or (1 shl (i shl 1));\n  end;\n\n  NumFuncArgsPassed := NumParams;\n  FireErmEvent(FuncId);\n  ApplyFuncByRefRes(SubCmd, NumParams);\n\n",
+      "sha256": "a569334f5478dea521f4a3ae8f1f19fd660841115bbbac25ca04f3b80e7f8f9b"
+    }
+  ],
+  "quickRegisters": "f..t",
+  "referenceKind": "Audited original ERA3 SaveVars/RestoreVars and FU copy-out ordering, not execution of the Windows ERA binary"
+}

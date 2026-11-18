@@ -4,10 +4,10 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Native WoG123 monthly hero-local reset for the ten documented HE:V categories, original hero types0..155. Independent sixteenth per-game choice. Not the full HE:V receiver or source option101 selection modes.",
-  "sourceBaseCommit": "85c48b7c51a54549673cd3662045ca1c832599ea",
-  "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+  "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "65d8f3136ccf08e4ff49ed1a8b0418f360e764165237e6a6c116f7f77d1310fa",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
@@ -16,9 +16,9 @@
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "8681677e9fa4be2b339534d9af28d8eafa6dc72242c9d3629a2f018a832dce0c",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "baab62fea5aeda38b6050cad54efc8b37af06e060e9b7bcb2ba0de3d657febe4",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "7bfc3a0bd36ca68cc605e24087409bba39e94d102e6c85946765324e1f081b18",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "b2d0675fe5add734db86655412795c682a738d6d784631add758998429536185",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
     "web/wog-options.mjs": "cd7721fbba1c6f9d9c73a6108054752b5ff4db9b48df51ef3c3c41b0087b7d0f",
     "mod/tum-era/content/config/wog-map-rules.json": "5154564c322445681bddfbc9cf566a953764ea52140705f07af9ee40eedcea96",
@@ -29,18 +29,10 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 5,
-    "logSha256": "b5b2e49fc29cf2fecb9a146d1c3157b5acc92bbc383ae82f65f9daa49d08d72f",
+    "targets": 49,
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
     "unverifiedWarMachineHooksExcluded": true,
-    "warMachinesAdmitted": false,
-    "priorBuild": {
-      "command": "ninja -j32 html5",
-      "exitCode": 0,
-      "targets": 108,
-      "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
-      "unverifiedWarMachineHooksExcluded": true,
-      "warMachinesAdmitted": false
-    }
+    "warMachinesAdmitted": false
   },
   "upstreamReference": {
     "repository": "https://github.com/ERA-Projects/era-project-eng",
@@ -85,7 +77,7 @@
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "configured": false,
@@ -293,14 +285,14 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "a471d274269caf6b79a651dac2f897786c1f80b3dff0f7a19f2341d7219068d1",
+      "rawReportSha256": "71e381be20747ab58fd5750f9fcda1770b4b6f47782f36edbfcdcd229258a2ac",
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
     },
     "touchPortrait": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "configured": false,
@@ -372,14 +364,14 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "cc5efd3561952fd0a647cd62ef457247135f3fea9c6d3dd9af3b6f943948f5e6",
+      "rawReportSha256": "d3f7b4d113a2c25d4c1801753e0454ccd700d7d652f6c41cab2539ec086925d1",
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "configured": false,
@@ -451,7 +443,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "91e1e93fbb367b5e9c8e4eef29740cb318c6663fb1aab7b5cb1ca7a6dab519c7",
+      "rawReportSha256": "a9e77bdbcf219a06107e6cfd862fd4c47f4cc3e547d0dfff0064db7a0fe9012b",
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
     }
   },
@@ -503,7 +495,7 @@
     "passed": true,
     "scope": "mithril-sites",
     "completeRules": false,
-    "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
     "scenarios": [
       {
         "legacyFifteenChoiceSave": true,
@@ -512,7 +504,7 @@
       }
     ],
     "errors": [],
-    "rawReportSha256": "e0fb8dd72e47bfd424f7bdc02c60b492823922e51750e0ff3594bd44965c59cb"
+    "rawReportSha256": "581c52fab975ad2933fc5ac4b83603be3c59d642dd9503f2f5f2e00bf33acd0c"
   },
   "serialization": {
     "catalogueCounts": [
@@ -528,7 +520,9 @@
     "largerThanPeerCapabilityRejected": true,
     "invalidChoicesRejected": true,
     "unitExitCode": 0,
-    "unitLogSha256": "8ffbc09120c28aa6d991ad4ede14837c8c9b62296623f8466c18585fcdf55dc5"
+    "unitLogSha256": "8ffbc09120c28aa6d991ad4ede14837c8c9b62296623f8466c18585fcdf55dc5",
+    "quickScopeSaveCapability": true,
+    "catalogueCountUnchanged": 16
   },
   "integrationChecks": {
     "sourceBaseCommit": "85c48b7c51a54549673cd3662045ca1c832599ea",
@@ -537,7 +531,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "nativeSaveReload": true,
@@ -569,7 +563,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "e11e76366bd44f15690c722b4a02379e9cdc4dc8c9ebc95b361b418224898756"
+      "rawReportSha256": "bfabd3e905d7bb78b7596401ce4f0acb22cc7c5fb80d0f3666823e6ae0d8b296"
     }
   },
   "calendarFixture": "Private original UN:M1 holds ordinary months; random wandering-monster spawns do not obstruct site visits. No production calendar change.",
@@ -667,6 +661,16 @@
       ],
       "errors": [],
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
+    }
+  },
+  "sourceContext": {
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "publishedEngine": "0.4.258",
+    "nativeBackendChanged": true,
+    "archive": {
+      "file": "outputs/vcmi-wasm-goonk-0.4.258-engine.tar.gz",
+      "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
+      "runtimeByteIdenticalToTestedCandidate": true
     }
   }
 }

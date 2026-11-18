@@ -122,6 +122,20 @@ arguments de comparaison et les boucles `DO` restent hors de ce mode borné.
 Cette étape ne valide pas le profil complet.
 La preuve est `scripts/era-bridge/gameplay/era3-numeric-calls-native-validation.json`.
 
+Les appels ERA 3 sauvegardent aussi les quinze variables rapides `f` à `t`.
+La fonction appelée hérite de leurs valeurs ; au retour, l’appelant les retrouve
+avant la recopie des sorties, y compris lors d’un retour anticipé. Les reprises
+natives couvrent deux appels imbriqués, un instantané vide, les extrêmes signés
+et les sorties vers `f` et `g`. Le témoin sur le moteur précédent reproduit
+l’écrasement des variables de l’appelant. La nouvelle capacité de sauvegarde
+empêche ce moteur de perdre silencieusement les instantanés ; il refuse le
+nouveau fichier avant d’exécuter les scripts. Les continuations anciennes sans
+instantané gardent leur comportement partagé au retour, tandis que les nouveaux
+appels enregistrent leur instantané. Le catalogue reste à seize choix. Les
+règles des déclencheurs, les registres réservés et les locales `z`/`e` restent
+hors du périmètre de ce correctif `FU:P`. Preuve :
+`scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json`.
+
 Le nombre d’arguments et leurs indicateurs de syntaxe numériques sont portés
 avec `FU:A` et `FU:S` dans un contrat AST v5 explicite. Les arguments manquants
 peuvent recevoir des valeurs par défaut ; ces valeurs sont évaluées avant la

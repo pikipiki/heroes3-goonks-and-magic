@@ -67,4 +67,8 @@ export async function runAdvancedCore({boot,state,wait,page,report,output,save})
   const {runLocalArrays}=await import('./wog-era3-local-arrays-cases.mjs');
   await runLocalArrays({boot,state,wait,page,report,output,save});
  }
+ if(process.env.AC_QUICK_SCOPE==='1'){
+  const {runQuickScope}=await import('./wog-era3-quick-scope-cases.mjs');
+  await runQuickScope({boot,state,wait,page,report,output,save});
+ }
 }

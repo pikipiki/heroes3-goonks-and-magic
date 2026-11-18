@@ -80,7 +80,8 @@ test('native local arrays preserve caller registers, copy-out and suspended fram
  assert.equal(proof.activation,false);assert.equal(proof.completeRules,false);assert.equal(proof.profilesAdmitted,false);
  for(const [file,hash]of Object.entries(proof.sourceBindings))assert.equal(sha(fs.readFileSync(file)),hash,file);
  for(const fragment of proof.upstreamReference.fragments)assert.equal(sha(fragment.text),fragment.sha256);
- assert.equal(proof.compilerOnlyChangeReusesVerifiedNativeEngine,true);
+ assert.equal(proof.compilerOnlyChangeReusesVerifiedNativeEngine,false);
+ assert.equal(proof.quickScopeRevalidation,true);
  assert.equal(proof.webAssemblyVerification.exitCode,0);assert.equal(proof.webAssemblyVerification.warMachinesAdmitted,false);
  assert.equal(proof.legacyAst.identical,133);assert.equal(proof.legacyAst.knownMalformed,4);
  assert.equal(proof.legacyAst.advancedCoreProgramByteIdentical,true);assert.equal(proof.legacyAst.previousCompilerRejectsArray,true);

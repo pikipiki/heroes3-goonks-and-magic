@@ -66,8 +66,11 @@ class Executor
   const auto outputs=call.returnTargets;
   const auto returned=state.frames.back().x;
   const bool initializer=call.initializer,local=call.localFrame;
+  const bool restoreQuickVars=call.restoreQuickVars;
+  auto savedQuickVars=std::move(call.savedQuickVars);
   state.continuations.pop_back();
   if(local){if(state.frames.size()<2)throw std::runtime_error("Campaign call frame underflow");state.frames.pop_back();}
+  if(restoreQuickVars)state.fast=std::move(savedQuickVars);
   for(std::size_t i=0;i<outputs.size();++i)if(outputs[i].access==Access::Write)
    writeNumber(outputs[i],state,context,lookup(returned,static_cast<std::int32_t>(i+1)));
   if(initializer){state.initializing=false;state.initialized=true;}
@@ -100,6 +103,7 @@ class Executor
   }
   Continuation call;call.programSha256=program.sha256;call.blocks=std::move(blocks);call.visibleBlocks=visible;
   call.localFrame=true;call.loop=loop;call.loopEnd=end;call.loopStep=step;call.initialX=frame.x;call.returnTargets=arguments;
+  if(program.era3IntegerCalls){call.restoreQuickVars=true;call.savedQuickVars=state.fast;}
   if(loop)frame.x[16]=start;
   state.frames.push_back(std::move(frame));state.continuations.push_back(std::move(call));
  }

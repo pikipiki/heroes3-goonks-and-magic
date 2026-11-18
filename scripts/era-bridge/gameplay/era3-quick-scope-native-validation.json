@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "ERA3 FU:P quick registers f..t are inherited on entry, restored before ordered copy-out, and persisted across nested suspension. Classic programs remain unchanged. Old pending continuations without a caller snapshot retain their previous shared behavior on return.",
+  "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+  "sourceContext": {
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "publishedEngine": "0.4.258",
+    "nativeBackendChanged": true,
+    "archive": {
+      "file": "outputs/vcmi-wasm-goonk-0.4.258-engine.tar.gz",
+      "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
+      "runtimeByteIdenticalToTestedCandidate": true
+    }
+  },
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b3572e87c8cc9db71583847d3541aaf9e2e1178bd195b1e15964d766fd1554ae",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "ccce0ce91e1e9da4ce20e7c8adfe02ac38ab069c0abd9c867c02e4fe0c068173",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
+    "tests/native/Era3QuickVars.test.cpp": "e82f6b920e1a6186019341538543a46f79bee57914c988dd74ffbca330832d11",
+    "tests/native/Era3QuickVarsCodec.test.cpp": "8fa869aa21d30396674dfe6cb5aa2d1a2908e89d7345e7e68ecc9404862a0058",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
+    "work/browser-tests/wog-era3-quick-scope-cases.mjs": "07abecf4ba191c775d44a5a5791af42f26a9e15df1556b3452c46675b1f02351",
+    "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
+    "tests/fixtures/era-gameplay/era3-quick-scope-reference.json": "a19a8a90be522376c3c124061b80c4235a0b4d17287ad180700c252d4e40e1fa"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 49,
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
+    "unverifiedWarMachineHooksExcluded": true,
+    "warMachinesAdmitted": false
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ethernidee/era",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "file": "Erm.pas",
+    "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "fragments": [
+      {
+        "startLine": 5694,
+        "endLine": 5710,
+        "text": "  procedure SaveVars;\n  var\n    i: integer;\n\n  begin\n    SavedY := y^;\n\n    if ErmLegacySupport and ((TriggerId < TRIGGER_FU1) or (TriggerId > TRIGGER_FU29999)) then begin\n      SavedNY := ny^;\n    end;\n\n    SavedE         := e^;\n    SavedX         := x^;\n    x^             := ArgXVars;\n    SavedQuickVars := QuickVars^;\n\n    SavedNumArgsReceived            := NumFuncArgsReceived;\n",
+        "sha256": "c43ccbb87b1a4fcfbf6dedb9cfadc07b91aa866bf01d33095ee3bb5079074767"
+      },
+      {
+        "startLine": 5743,
+        "endLine": 5759,
+        "text": "  procedure RestoreVars;\n  var\n    i: integer;\n\n  begin\n    y^ := SavedY;\n\n    if ErmLegacySupport and ((TriggerId < TRIGGER_FU1) or (TriggerId > TRIGGER_FU29999)) then begin\n      ny^ := SavedNY;\n    end;\n\n    e^         := SavedE;\n    RetXVars   := x^;\n    x^         := SavedX;\n    QuickVars^ := SavedQuickVars;\n\n    NumFuncArgsReceived            := SavedNumArgsReceived;\n",
+        "sha256": "c1e87717552251965d98b5b2d835cd62f26714d1a72d92aae476b00d788a4bb8"
+      },
+      {
+        "startLine": 6088,
+        "endLine": 6100,
+        "text": "      if FuncArgs <> nil then begin\n        for j := 0 to NumFuncArgsReceived - 1 do begin\n          if (FuncArgs[j].GetCheckType() = PARAM_CHECK_GET) and (FuncArgs[j].GetType() in PARAM_VARTYPES_STRINGS) then begin\n            RetStrVars[j + 1] := GetInterpolatedZVarAddr(x[j + 1]);\n          end;\n        end;\n      end;\n\n      RestoreVars;\n\n      if LocalData.Items <> nil then begin\n        for j := LocalData.Items.Count - 1 downto 0 do begin\n          LocalData.Items[j] := nil;\n",
+        "sha256": "4c3b9af209e32c6630d5b3598a1fe3e19a4beb18b3f17b4cc4b6ea470fc9cc25"
+      },
+      {
+        "startLine": 8486,
+        "endLine": 8502,
+        "text": "procedure ApplyFuncByRefRes (SubCmd: PErmSubCmd; NumParams: integer);\nvar\n  Param: PErmCmdParam;\n  i:     integer;\n\nbegin\n  for i := 0 to NumParams - 1 do begin\n    Param := @SubCmd.Params[i];\n\n    if Param.GetCheckType() = PARAM_CHECK_GET then begin\n      if Param.GetType() in PARAM_VARTYPES_STRINGS then begin\n        SetErmParamValue(Param, integer(pchar(RetStrVars[i + 1])), FLAG_ASSIGNABLE_STRINGS);\n      end else begin\n        SetErmParamValue(Param, RetXVars[i + 1]);\n      end;\n    end;\n  end;\n",
+        "sha256": "fc4f502b41dcdad41595addf6fd53798800997ab8088fa922a9c7e5110533060"
+      },
+      {
+        "startLine": 8565,
+        "endLine": 8574,
+        "text": "\n  for i := NumParams to High(ArgXVars) - 1 do begin\n    ArgXVars[i + 1]              := 0;\n    FuncArgsGetSyntaxFlagsPassed := FuncArgsGetSyntaxFlagsPassed or (1 shl (i shl 1));\n  end;\n\n  NumFuncArgsPassed := NumParams;\n  FireErmEvent(FuncId);\n  ApplyFuncByRefRes(SubCmd, NumParams);\n\n",
+        "sha256": "a569334f5478dea521f4a3ae8f1f19fd660841115bbbac25ca04f3b80e7f8f9b"
+      }
+    ],
+    "quickRegisters": "f..t",
+    "referenceKind": "Audited original ERA3 SaveVars/RestoreVars and FU copy-out ordering, not execution of the Windows ERA binary"
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+      "scenarios": [
+        {
+          "kind": "era3-quick-scope",
+          "historicalSharedBehavior": false,
+          "legacyPendingSave": false,
+          "empty": "QUICK EMPTY RETURN 0",
+          "nested": "QUICK NESTED 2000/2001/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014",
+          "returned": [
+            1000,
+            55,
+            1002,
+            1003,
+            1004,
+            1005,
+            1006,
+            1007,
+            1008,
+            1009,
+            1010,
+            1011,
+            1012,
+            1013,
+            1014
+          ],
+          "root": [
+            42,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            2147483647
+          ],
+          "rootText": "QUICK ROOT 42/12/13/14/15/16/17/18/19/20/21/22/23/24/2147483647 inherited -2147483648/1000 unreachable 0",
+          "allFifteenQuickRegisters": true,
+          "copyOutAfterRestoration": true,
+          "earlyReturn": true,
+          "emptyScopeNativeSaveReload": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "nativeSaveVersion": 915,
+          "programSha256": "4315a8bc94d42d1f2b7836c80e28ece390eb2725bde24d706a269e006c35d341",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "b08da7f291329f1848ca1a4ffed89ba8bc7426f65730bccd075054fdd1d79d4b",
+      "programFileSha256": "09cb8f079b33f3656bae85cdc5f20631990c2d1eb8d043dccc05a565680d44d0"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+      "scenarios": [
+        {
+          "kind": "era3-quick-scope",
+          "historicalSharedBehavior": false,
+          "legacyPendingSave": false,
+          "empty": "QUICK EMPTY RETURN 0",
+          "nested": "QUICK NESTED 2000/2001/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014",
+          "returned": [
+            1000,
+            55,
+            1002,
+            1003,
+            1004,
+            1005,
+            1006,
+            1007,
+            1008,
+            1009,
+            1010,
+            1011,
+            1012,
+            1013,
+            1014
+          ],
+          "root": [
+            42,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            2147483647
+          ],
+          "rootText": "QUICK ROOT 42/12/13/14/15/16/17/18/19/20/21/22/23/24/2147483647 inherited -2147483648/1000 unreachable 0",
+          "allFifteenQuickRegisters": true,
+          "copyOutAfterRestoration": true,
+          "earlyReturn": true,
+          "emptyScopeNativeSaveReload": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "nativeSaveVersion": 915,
+          "programSha256": "4315a8bc94d42d1f2b7836c80e28ece390eb2725bde24d706a269e006c35d341",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "99dc9ec632a161560fceefa0482f121d03d3bb933a212eacdf2e556f2ca4586b",
+      "programFileSha256": "09cb8f079b33f3656bae85cdc5f20631990c2d1eb8d043dccc05a565680d44d0"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+      "scenarios": [
+        {
+          "kind": "era3-quick-scope",
+          "historicalSharedBehavior": false,
+          "legacyPendingSave": false,
+          "empty": "QUICK EMPTY RETURN 0",
+          "nested": "QUICK NESTED 2000/2001/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014",
+          "returned": [
+            1000,
+            55,
+            1002,
+            1003,
+            1004,
+            1005,
+            1006,
+            1007,
+            1008,
+            1009,
+            1010,
+            1011,
+            1012,
+            1013,
+            1014
+          ],
+          "root": [
+            42,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            2147483647
+          ],
+          "rootText": "QUICK ROOT 42/12/13/14/15/16/17/18/19/20/21/22/23/24/2147483647 inherited -2147483648/1000 unreachable 0",
+          "allFifteenQuickRegisters": true,
+          "copyOutAfterRestoration": true,
+          "earlyReturn": true,
+          "emptyScopeNativeSaveReload": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "nativeSaveVersion": 915,
+          "programSha256": "4315a8bc94d42d1f2b7836c80e28ece390eb2725bde24d706a269e006c35d341",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "09d436dff8f0c1eb7cbbe3fc7c0c193456c27e69241e743ea752b1ac3e8d9905",
+      "programFileSha256": "09cb8f079b33f3656bae85cdc5f20631990c2d1eb8d043dccc05a565680d44d0"
+    }
+  },
+  "codec": {
+    "command": "Linux C++17 production JsonNode/runtime codec with -fsanitize=address,undefined",
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fullExistingCodecExitCode": 0,
+    "fullExistingCodecLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "remaining": [
+    "Full ERA trigger scope, reserved v997..1000/f996..1000 and local z/e variables.",
+    "ERA3 DO and complete external gameplay packs.",
+    "Separate WoG358 quick-register scope audit; its existing interpreter behavior is preserved."
+  ],
+  "historicalControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope",
+        "historicalSharedBehavior": true,
+        "legacyPendingSave": false,
+        "empty": "QUICK EMPTY RETURN 999",
+        "nested": "QUICK NESTED 2000/2001/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014",
+        "returned": [
+          2000,
+          55,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "root": [
+          42,
+          55,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "rootText": "QUICK ROOT 42/55/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014 inherited -2147483648/1000 unreachable 0",
+        "allFifteenQuickRegisters": true,
+        "copyOutAfterRestoration": false,
+        "earlyReturn": true,
+        "emptyScopeNativeSaveReload": true,
+        "nestedNativeSaveReload": true,
+        "completedNativeSaveReload": true,
+        "nativeSaveVersion": 914,
+        "programSha256": "4315a8bc94d42d1f2b7836c80e28ece390eb2725bde24d706a269e006c35d341",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "2542854b25428eb55e5e82172498796cb3386dd7645aaf75bfb1732838702185"
+  },
+  "legacyPendingSave": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope",
+        "historicalSharedBehavior": true,
+        "legacyPendingSave": true,
+        "empty": null,
+        "nested": "QUICK NESTED 2000/2001/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014",
+        "returned": [
+          2000,
+          55,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "root": [
+          42,
+          55,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "rootText": "QUICK ROOT 42/55/2002/2003/2004/2005/2006/2007/2008/2009/2010/2011/2012/2013/2014 inherited -2147483648/1000 unreachable 0",
+        "allFifteenQuickRegisters": true,
+        "copyOutAfterRestoration": false,
+        "earlyReturn": true,
+        "emptyScopeNativeSaveReload": false,
+        "nestedNativeSaveReload": true,
+        "completedNativeSaveReload": true,
+        "nativeSaveVersion": 915,
+        "programSha256": "4315a8bc94d42d1f2b7836c80e28ece390eb2725bde24d706a269e006c35d341",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "649df35b4209420a1148e9a1c80853c4ccbf7328246bd6da9c006a47205fb7e8"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 915,
+        "readerVersion": 914,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "ca65f42792071fdad6faf60629f366c609fcb2c437a7032b456cfc561257df4c"
+  },
+  "serialization": {
+    "previousSaveVersion": 914,
+    "newSaveVersion": 915,
+    "oldEngineRejectsNewSave": true,
+    "oldPendingSnapshotMissingMigrationVerified": true,
+    "catalogueCountUnchanged": 16
+  },
+  "publicationVerification": {
+    "release": "0.4.258",
+    "cleanTrackedModManifestSha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+    "unverifiedFieldCatapultExcluded": true,
+    "nativeTransportFiles": 10464,
+    "transportBytes": 702295309,
+    "siteVerificationExitCode": 0,
+    "siteVerificationLogSha256": "c1829ec96021e44744349f2c2c45a396376a5a0f794a1452939d9e75e2f33153"
+  }
+}

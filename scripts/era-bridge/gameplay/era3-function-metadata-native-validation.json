@@ -4,16 +4,16 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "ERA3 numeric FU:A defaults/count and FU:S argument syntax indicators in explicit AST v5. Query outputs flag0, ordinary/unpassed integer inputs flag1; strings, floats, modifiers and DO remain unadmitted. No complete gameplay profile admission.",
-  "sourceBaseCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
-  "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+  "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
     "scripts/era-bridge/campaigns/importer.mjs": "d19be1f5f4d4dab127a0317810fc11543bd7ea2790e8cb608c0fa129df3b7740",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2",
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "432c8665027a76065f449881ad4c2e2acb4552eed645f91f7c706761469f5aba",
-    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "241a3eea158e64fc0dafd6bd4b508ca592f558ceda58cf03903c321793eb8e37",
-    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "6510e6944769a1c8c3ca9b0d2712280eddbe1682ff4e1793ee7fcb2ab1997ccd",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b3572e87c8cc9db71583847d3541aaf9e2e1178bd195b1e15964d766fd1554ae",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "ccce0ce91e1e9da4ce20e7c8adfe02ac38ab069c0abd9c867c02e4fe0c068173",
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
     "work/browser-tests/wog-era3-function-metadata-cases.mjs": "50602bab31eb91a668bafd2d8ba19aa018287b7ff20320513b734c4ffc51bb7b"
@@ -21,8 +21,8 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 20,
-    "logSha256": "f2a4bf28e3e29b10e72d9e0783626882e68af871559649bee249a383f976ea59",
+    "targets": 49,
+    "logSha256": "7664eb446661873361ffc9e381e800bf99ccd13d322585210ec7bd91d4ae2350",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -51,7 +51,15 @@
     "undefinedBehaviorSanitizer": true,
     "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "pendingContinuationMetadataReload": true,
-    "malformedArgumentsAndIndexRangeRejected": true
+    "malformedArgumentsAndIndexRangeRejected": true,
+    "quickScopeRevalidation": {
+      "exitCode": 0,
+      "sanitizers": [
+        "address",
+        "undefined"
+      ],
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
   },
   "oldReaderControl": {
     "sourceCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
@@ -74,7 +82,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "kind": "era3-function-metadata",
@@ -132,13 +140,14 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "6c1124ca5f1e11121407dfc56cc142a1ed164d233c7283e10338b13aab8d05fd"
+      "rawReportSha256": "30d43f05ebaa798a856f3073703ba73f2049b1ffb4c159e6bf4188f0edd173ef",
+      "programFileSha256": "e8d1e2f75ce40a06b44de63ffd04dd6dee376131b2cff5818f20fc787112eb30"
     },
     "touchLandscape": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "kind": "era3-function-metadata",
@@ -196,13 +205,14 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "c577bcb077b6508b8b7e63351121244908aa0f19fc46b920a3ea62180eeef4f5"
+      "rawReportSha256": "5adec73381291be2758f0a8005b13c261d3106e8ede88160df3575fa7083aad5",
+      "programFileSha256": "e8d1e2f75ce40a06b44de63ffd04dd6dee376131b2cff5818f20fc787112eb30"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
       "scenarios": [
         {
           "kind": "era3-function-metadata",
@@ -260,7 +270,8 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "8d1daaafc0c8828b65685963649a41355b965a5675aedd1c472d216165332a46"
+      "rawReportSha256": "7f68951e74e2b97fdd1a8e92584ba34a3bf8adc17694d0a9ef75fe458c592385",
+      "programFileSha256": "e8d1e2f75ce40a06b44de63ffd04dd6dee376131b2cff5818f20fc787112eb30"
     }
   },
   "previousEngineSave": {
@@ -273,5 +284,15 @@
     ],
     "errors": [],
     "sharedRunReportSha256": "383fcdab7d7a7cf3ade3a6c413507d4bf3ef4a1c3df230c859108ed069d6493d"
+  },
+  "sourceContext": {
+    "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "publishedEngine": "0.4.258",
+    "nativeBackendChanged": true,
+    "archive": {
+      "file": "outputs/vcmi-wasm-goonk-0.4.258-engine.tar.gz",
+      "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
+      "runtimeByteIdenticalToTestedCandidate": true
+    }
   }
 }

@@ -110,6 +110,10 @@ struct Continuation
  std::size_t blockCursor=0,visibleBlocks=static_cast<std::size_t>(-1);
  bool initializer=false,loop=false;
  bool localFrame=false;
+ // ERA saves quick registers on FU entry and restores them before copy-out.
+ // Missing snapshots in older pending saves retain their historical behavior.
+ bool restoreQuickVars=false;
+ std::map<char,std::int32_t> savedQuickVars;
  std::int32_t loopEnd=0,loopStep=1;
  std::map<std::int32_t,std::int32_t> initialX;
  std::vector<Operand> returnTargets;
