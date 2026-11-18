@@ -1,8 +1,18 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import {compileErm} from '../../scripts/era-bridge/campaigns/parser.mjs';
 
+export function monthlyCalendarFixture(){
+ // An ordinary source month keeps random wandering-monster spawns off the
+ // sites under test. The production map and calendar settings stay untouched.
+ const scriptProgram=compileErm(Buffer.from('!#UN:M1;'),{source:'Private ordinary month for native site revisits'});
+ scriptProgram.originalMessages=['ZVSE private native mithril option query'];
+ return scriptProgram;
+}
 export async function runMonthlyVisits({boot,state,command,wait,walk,nextDay,page,output,report,readCompletedNativeSave}){
+ const scriptProgram=monthlyCalendarFixture();
+ fs.writeFileSync(path.join(output,'program.json'),JSON.stringify(scriptProgram,null,2));
  const desktop=process.env.CASES==='monthly-desktop',portrait=process.env.MONTHLY_PORTRAIT==='1';
  const control=process.env.CASES==='monthly-control';
  const matrix=control?[[true,null,false]]:desktop||portrait?[[false,1,true],[true,0,false]]:
@@ -12,13 +22,13 @@ export async function runMonthlyVisits({boot,state,command,wait,walk,nextDay,pag
   const result=(await state()).heroWindow.primarySkills;await command(0);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);return result;
  };
  if(process.env.MONTHLY_OLD_SAVE){
-  await boot({enabled:false,monthlyConfigured:true,save:[...fs.readFileSync(process.env.MONTHLY_OLD_SAVE)]});
+  await boot({enabled:false,scriptProgram,monthlyConfigured:true,save:[...fs.readFileSync(process.env.MONTHLY_OLD_SAVE)]});
   const before=await skills();assert.equal((await state()).day,28);await nextDay();assert.equal((await state()).day,29);
   await walk(1,-1);await walk(-1,1);assert.deepEqual(await skills(),before,'A fifteen-choice save never inherits a new monthly reset');
   report.scenarios.push({legacyFifteenChoiceSave:true,monthlyRemainsDisabled:true,continuedNewMonth:true});await page().close();return;
  }
  for(const [configured,choice,active]of matrix){
-  const options={enabled:false,monthlyFixture:true,monthlyConfigured:configured,monthlyChoice:choice,...(portrait?{viewport:{width:390,height:844}}:{})};
+  const options={enabled:false,scriptProgram,monthlyFixture:true,monthlyConfigured:configured,monthlyChoice:choice,...(portrait?{viewport:{width:390,height:844}}:{})};
   await boot(options);const initial=await skills();let atTower=false;
   const visitBoth=async()=>{await walk(atTower?1:2,atTower?-1:0);await walk(-1,1);atTower=true;};
   await visitBoth();const first=await skills();

@@ -81,3 +81,7 @@ html.goonk-mobile #mobile-app[data-market-view=mobile] {
  #mobile-app .market-grid[data-side=give] button{grid-template-columns:18px minmax(0,1fr);column-gap:3px;font-size:11px}
  #mobile-app .market-grid[data-side=give] img{width:18px;height:18px}
 }
+
+.market-total[data-trade=true]{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px}
+.market-total-resource{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.market-total-resource img{display:block;width:26px;height:24px;object-fit:contain;flex:none}

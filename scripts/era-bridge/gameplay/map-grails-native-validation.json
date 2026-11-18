@@ -4,7 +4,7 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Native WoG map rule130: one-time Grails in all compatible towns after initial day stock, all owners, disabled if any Conflux exists. Independent fifteenth per-game choice; source option101 selection modes and complete catalogue remain unadmitted.",
-  "sourceBaseCommit": "90a54e95b1bd2b37377dfdc0c1c50878d99a734a",
+  "sourceBaseCommit": "85c48b7c51a54549673cd3662045ca1c832599ea",
   "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
@@ -1010,7 +1010,7 @@
     "largerThanPeerCapabilityRejected": true,
     "invalidChoicesRejected": true,
     "unitExitCode": 0,
-    "unitLogSha256": "857fccbe7325e4f890778f3ecdb8b75edd3acabbe2810a09c27246b46c3cd1e0"
+    "unitLogSha256": "8ffbc09120c28aa6d991ad4ede14837c8c9b62296623f8466c18585fcdf55dc5"
   },
   "remaining": [
     "Other 13 map rules",

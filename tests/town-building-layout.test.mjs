@@ -14,3 +14,10 @@ test('Complete English and French names fit separate sprite/caption touch cells 
 });
 test('Native names translate in both directions without overriding renamed buildings',()=>{const names=townBuildingNames.goonk.dwellingUp2Lvl2;assert.equal(localizedTownBuildingName({key:'goonk:dwellingUp2Lvl2',name:names.en},'goonk','fr'),names.fr);assert.equal(localizedTownBuildingName({key:'goonk:dwellingUp2Lvl2',name:names.fr},'goonk','en'),names.en);assert.equal(localizedTownBuildingName({key:'goonk:dwellingUp2Lvl2',name:'Custom sanctuary'},'goonk','fr'),'Custom sanctuary');assert.deepEqual(wrapTownBuildingLabel('Bubu Supreme Fartomancer Sanctuary',90),['Bubu Supreme','Fartomancer','Sanctuary']);});
 test('Town actions share embedded gold artwork and select the offered war machine icon',()=>{for(const key of ['hall','armies','build','heroes','market','guild','ballista','ammo','tent'])assert.match(townActionIcon(key),/^data:image\/svg\+xml,/);assert.equal(townWarMachineIcon({key:'core:ammoCart'}),townActionIcon('ammo'));assert.equal(townWarMachineIcon({key:'core:firstAidTent'}),townActionIcon('tent'));assert.equal(townWarMachineIcon({key:'core:ballista'}),townActionIcon('ballista'));});
+test('Changing the native subtitle language preserves every sprite and touch rectangle',()=>{
+ const geometry=buildings=>buildings.map(({id,x,y,w,h,hit,labelHeight})=>({id,x,y,w,h,hit,labelHeight}));
+ for(const faction of ['goonk',...Object.keys(townBuildingArt)])for(const[width,height]of[[320,344],[360,427],[430,635],[472,279],[324,320],[780,768]]){
+  const inLanguage=language=>{const source=records(faction).map(b=>({...b,name:localizedTownBuildingName(b,faction,language)}));return denseTownBuildings(width,height,factionPortraitBuildings(width,height,source,faction).map(b=>({...b,label:localizedTownBuildingName(b,faction,language)})),faction,language);};
+  assert.deepEqual(geometry(inLanguage('en')),geometry(inLanguage('fr')),[faction,width,height].join(':'));
+ }
+});

@@ -86,7 +86,7 @@ export function createTownPortrait({root,scene,asset,command,getState,openBuildi
   const source=state.buildings||[],size=[view.width,view.height,faction].join(':'),language=getLanguage();
   if(source!==layoutSource||size!==layoutSize||language!==layoutLanguage){
    layoutSource=source;layoutSize=size;layoutLanguage=language;const key=JSON.stringify([size,language,source.map(b=>[b.id,b.key,b.name,b.built,b.baseId,b.upgradeId])]);
-   if(key!==layoutSignature){layoutSignature=key;layoutBuildings=denseTownBuildings(view.width,view.height,factionPortraitBuildings(view.width,view.height,source,faction,{minimumRowHeight:eighth?44:0}).map(b=>({...b,label:localizedTownBuildingName({...b,name:plainGameText(b.name)},faction,language,translate)})),faction,language,text=>captionMeasure.measureText(text).width);}
+   if(key!==layoutSignature){layoutSignature=key;layoutBuildings=denseTownBuildings(view.width,view.height,factionPortraitBuildings(view.width,view.height,source,faction,{minimumRowHeight:eighth?44:0}).map(b=>({...b,label:localizedTownBuildingName({...b,name:plainGameText(b.name)},faction,language,translate),layoutLabels:['en','fr'].map(locale=>localizedTownBuildingName({...b,name:plainGameText(b.name)},faction,locale,translate))})),faction,language,text=>captionMeasure.measureText(text).width);}
   }
   const buildings=layoutBuildings;
   return {faction,background:backgrounds.get(faction),buildings,artwork:buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):buildingSprite(faction,b.artKey)),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}))};
