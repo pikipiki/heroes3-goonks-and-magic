@@ -890,6 +890,12 @@ void CStackWindow::initBonusesList()
 	? static_cast<const IBonusBearer*>(info->stack)  // Use CStack in battle
 	: static_cast<const IBonusBearer*>(info->stackNode);  // Use CStackInstance outside of battle
 
+	activeBonuses = visibleBonuses(info->creature, bonusSource, info->stackNode);
+}
+
+std::vector<CStackWindow::BonusInfo> CStackWindow::visibleBonuses(const CCreature * creature, const IBonusBearer * bonusSource, const CStackInstance * graphicsSource)
+{
+	std::vector<BonusInfo> result;
 	auto bonusToString = [bonusSource](const std::shared_ptr<Bonus> & bonus) -> std::string
 	{
 		if(!bonus->description.empty())
@@ -899,7 +905,7 @@ void CStackWindow::initBonusesList()
 	};
 
 	BonusList receivedBonuses = *bonusSource->getBonuses(Selector::all);
-	BonusList abilities = info->creature->getExportedBonusList();
+	BonusList abilities = creature->getExportedBonusList();
 
 	// remove all bonuses that are not propagated away
 	// such bonuses should be present in received bonuses, and if not - this means that they are behind inactive limiter, such as inactive stack experience bonuses
@@ -983,19 +989,31 @@ void CStackWindow::initBonusesList()
 	{
 		bonusInfo.description = bonusToString(b);
 		//FIXME: we possibly use fakeNode, which does not have the correct bonus value
-		bonusInfo.imagePath = info->stackNode->bonusToGraphics(b);
+		if(graphicsSource)
+			bonusInfo.imagePath = graphicsSource->bonusToGraphics(b);
 		bonusInfo.bonusSource = b->source;
 
 		//if it's possible to give any description or image for this kind of bonus
 		if(!bonusInfo.description.empty() && !b->hidden)
-			activeBonuses.push_back(bonusInfo);
+			result.push_back(bonusInfo);
 	}
+	return result;
 }
 
 std::vector<std::string> CStackWindow::getMobileAbilities() const
 {
+	return abilityDescriptions(activeBonuses);
+}
+
+std::vector<std::string> CStackWindow::getMobileCreatureAbilities(const CStackInstance * preview)
+{
+ return abilityDescriptions(visibleBonuses(preview->getCreature(), preview, nullptr));
+}
+
+std::vector<std::string> CStackWindow::abilityDescriptions(const std::vector<BonusInfo> & bonuses)
+{
 	std::vector<std::string> descriptions;
-	for(const auto & bonus : activeBonuses)
+	for(const auto & bonus : bonuses)
 	{
 		if(bonus.bonusSource != BonusSource::CREATURE_ABILITY && bonus.bonusSource != BonusSource::STACK_EXPERIENCE)
 			continue;

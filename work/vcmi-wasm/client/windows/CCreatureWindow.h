@@ -18,6 +18,7 @@ VCMI_LIB_NAMESPACE_BEGIN
 
 class CCommanderInstance;
 class CStackInstance;
+class IBonusBearer;
 class CStack;
 class UpgradeInfo;
 
@@ -193,6 +194,8 @@ class CStackWindow : public CWindowObject
 
 	void initSections();
 	void initBonusesList();
+	static std::vector<BonusInfo> visibleBonuses(const CCreature * creature, const IBonusBearer * source, const CStackInstance * graphicsSource);
+	static std::vector<std::string> abilityDescriptions(const std::vector<BonusInfo> & bonuses);
 
 	void init();
 	void close() override;
@@ -213,6 +216,7 @@ public:
 	const CStack * getMobileBattleStack() const;
 	unsigned getMobileCount() const;
 	std::vector<std::string> getMobileAbilities() const;
+	static std::vector<std::string> getMobileCreatureAbilities(const CStackInstance * preview);
 	// for battles
 	CStackWindow(const CStack * stack, bool popup);
 

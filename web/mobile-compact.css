@@ -361,3 +361,84 @@ html.goonk-mobile #mobile-app[data-mode=town] .town-action>span{min-width:0;font
 @container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=town] .town-machine-action>span{font-size:10px!important;line-height:1;white-space:normal}
 }
+/* Shared chrome never falls into an implicit row below a full-screen service. */
+@container goonk-viewport (orientation:portrait){
+ html.goonk-mobile #mobile-viewport #mobile-app>.mobile-top{grid-column:1!important;grid-row:1!important;align-self:start}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-town-service]{grid-template-rows:auto minmax(0,1fr)!important}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-town-service]>.mobile-play{grid-column:1!important;grid-row:2!important}
+}
+html.goonk-mobile #mobile-app .town-service[data-kind=thieves-guild]{grid-template-columns:minmax(0,1fr);grid-template-rows:44px minmax(0,1fr) 44px;gap:4px;padding:6px;border-width:5px}
+#mobile-app .town-service[data-kind=thieves-guild] header{padding:0;border:0;grid-column:1;grid-row:1}
+#mobile-app .town-service[data-kind=thieves-guild] h2{font-size:20px}
+#mobile-app .town-service[data-kind=thieves-guild] footer{grid-column:1;grid-row:3}
+#mobile-app .town-service[data-kind=thieves-guild] .guild-rankings{grid-column:1;grid-row:2;overflow:visible;min-height:0}
+#mobile-app .town-service[data-kind=thieves-guild] table{height:100%;font-size:clamp(10px,1.65cqh,13px);line-height:1.15}
+#mobile-app .town-service[data-kind=thieves-guild] :is(th,td){padding:2px;position:static;overflow-wrap:anywhere;vertical-align:middle}
+#mobile-app .town-service[data-kind=thieves-guild] th:first-child{width:27%}
+#mobile-app .town-service[data-kind=thieves-guild] .guild-rank{padding:0;border:0;background:none;font-size:1.15em;font-weight:bold}
+#mobile-app .town-service[data-kind=thieves-guild] .kingdom-flag{width:10px;height:14px;margin:1px}
+#mobile-app .town-service[data-kind=thieves-guild] [data-intelligence-start]>*{border-top:2px ridge #c2a056}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-town-service]>.mobile-top{grid-column:2!important;grid-row:1!important;position:relative!important;z-index:8}
+ html.goonk-mobile #mobile-app .town-service[data-kind=thieves-guild]{grid-template-columns:minmax(0,1fr) calc(var(--control-rail) - 12px);grid-template-rows:minmax(0,1fr) 44px}
+ #mobile-app .town-service[data-kind=thieves-guild] header{grid-column:2;grid-row:1;align-self:start;padding-top:calc(var(--mobile-top-height,51px) + 4px)}
+ #mobile-app .town-service[data-kind=thieves-guild] footer{grid-column:2;grid-row:2}
+ #mobile-app .town-service[data-kind=thieves-guild] .guild-rankings{grid-column:1;grid-row:1/-1}
+ #mobile-app .town-service[data-kind=thieves-guild] table{font-size:10px;line-height:1.05}
+ #mobile-app .town-service[data-kind=thieves-guild] :is(th,td){padding:1px 2px}
+}
+#mobile-app .town-service[data-kind=thieves-guild] table{box-sizing:border-box;height:calc(100% - 4px);margin:0;border-spacing:0;font-size:clamp(9px,1.5cqh,12px)}
+#mobile-app .town-service[data-kind=thieves-guild] footer{grid-template-columns:minmax(0,1fr)}
+#mobile-app .town-service[data-kind=thieves-guild] .guild-rank{width:auto;height:auto;min-height:0;line-height:inherit}
+html.goonk-mobile #mobile-viewport #mobile-app[data-town-service]>.mobile-top{display:grid!important}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-town-service]{grid-template-columns:minmax(0,1fr) var(--control-rail)!important;grid-template-rows:auto minmax(0,1fr)!important}
+}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=blacksmith] header{padding-top:calc(var(--mobile-top-height,51px) + 4px)}
+}
+#mobile-app .town-service[data-kind=thieves-guild] header{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:2px}
+#mobile-app .town-service[data-kind=thieves-guild] h2{flex:none}
+#mobile-app .guild-help{margin:0;font-size:10px;line-height:1.1;color:#ddc697}
+#mobile-app .guild-identity{display:flex;align-items:center;justify-content:center;gap:3px;min-width:0}
+#mobile-app .guild-identity>canvas{width:28px;height:28px;flex:none;object-fit:contain}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-identity{display:block}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-identity>canvas{width:16px;height:16px}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild] header{justify-content:flex-start}
+}
+
+#mobile-app .guild-primary-row th>canvas{width:14px;height:14px;vertical-align:middle;margin-right:3px}
+#mobile-app .guild-primary-row td{font-weight:bold;color:#ffe0a0}
+#mobile-app .guild-primary-row abbr{display:none;text-decoration:none}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) :is(th,td){padding:0 1px}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) th:first-child{width:24%}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-skill-name{display:none}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-primary-row abbr{display:inline}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) table{font-size:9px}
+}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild] :is(th,td){padding:0 1px}
+ #mobile-app .guild-identity>canvas{width:24px;height:24px}
+}
+#mobile-app .guild-identity>canvas{display:inline-block;vertical-align:middle}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .kingdom-name{display:none}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-primary-row th>canvas{width:10px;height:10px;margin-right:2px}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) th:first-child{width:20%}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-identity>canvas{width:12px;height:12px}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-rank{font-size:1em}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .kingdom-flag{height:12px}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-primary-row th>canvas{width:9px;height:9px}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ html.goonk-mobile #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]){padding:4px;border-width:4px}
+}
+@container goonk-viewport (orientation:landscape) and (max-width:600px){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) table{font-size:8.5px}
+}
