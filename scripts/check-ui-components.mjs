@@ -3,7 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 const isUiModule=path=>(/^web\/.*\.mjs$/.test(path)&&!path.startsWith('web/ui/'))||(/^src\/.*\.[cm]?[jt]sx?$/.test(path)&&!path.startsWith('src/ui/'));
 export function requiresUiLibrary(path,source){return isUiModule(path)&&(/(?:createElement\(|innerHTML\s*=|insertAdjacentHTML\()/u.test(source)&&/(?:<(?:button|header|footer|dialog|form)\b|createElement\(['"](?:button|dialog|header|footer)['"])/u.test(source)||/\.[jt]sx$/.test(path)&&/<(?:[A-Z][\w.]*|button|header|footer|dialog|form|section|main|div)\b/u.test(source));}
-export const importsUiLibrary=source=>/from\s*['"][^'"]*\/ui\/(?:material-components|components|primitives|screen|action-dock|menu)(?:\.[cm]?[jt]sx?)?['"]/u.test(source);
+export const importsUiLibrary=source=>/from\s*['"][^'"]*\/ui\/(?:material-components|components|primitives|screen|action-dock|menu|heroes-kit)(?:\.[cm]?[jt]sx?)?['"]/u.test(source);
 export function violations(files,read){return files.filter(file=>{if(!isUiModule(file))return false;const source=read(file);return requiresUiLibrary(file,source)&&!importsUiLibrary(source);});}
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const staged=process.argv.includes('--staged'),args=staged?['diff','--cached','--name-only','--diff-filter=ACMR','-z']:['diff','HEAD','--name-only','--diff-filter=ACMR','-z'];

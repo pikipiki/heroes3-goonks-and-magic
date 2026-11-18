@@ -1,0 +1,8 @@
+import {build} from 'esbuild';
+import fs from 'node:fs';
+import path from 'node:path';
+const out=path.resolve(process.env.HEROES_KIT_OUTPUT||'/tmp/heroes-design-system');
+fs.mkdirSync(out,{recursive:true});
+await build({entryPoints:['docs/design-prototypes/material3/design-system.mjs'],outdir:out,entryNames:'design-system',bundle:true,external:['/web/*'],format:'esm',target:['safari16.4','chrome100'],minify:true,define:{'process.env.NODE_ENV':'"production"'},legalComments:'eof'});
+fs.copyFileSync('docs/design-prototypes/material3/design-system.html',path.join(out,'design-system.html'));
+console.log(out);

@@ -1,5 +1,31 @@
 # Interface commune Heroes Goonk
 
+## Bibliothèque de référence Heroes III
+
+Le catalogue interactif se lance avec `node scripts/serve-design-system.mjs`, puis s’ouvre sur `http://127.0.0.1:8942/design-system.html`. L’onglet **Recrutement** compose les mêmes éléments dans un écran portrait/paysage. Le bundle de revue est généré dans `/tmp/heroes-design-system`, jamais chargé par le jeu publié.
+
+Pour cette refonte, importer les compositions de `src/ui/heroes-kit.mjs`, leur feuille `src/ui/heroes-kit.css` et les primitives de `src/ui/components.mjs`. Placer le nouvel écran sous `ThemeProvider` avec `heroesReferenceTheme`. Ne pas copier le CSS du catalogue dans un écran : enrichir la composition commune. Les gestionnaires, données, traductions et URL des assets sont fournis par l’appelant ; la bibliothèque ne commande pas le moteur et ne possède aucune sauvegarde.
+
+| Composition | Réutilisation |
+| --- | --- |
+| `HeroesPanel`, `HeroesButton`, `HeroesClose` | Cadres, actions principales rouges, secondaires brunes, fermeture |
+| `ScreenShell`, `ActionDock` | Contenu et commandes ; titre/actions à droite en paysage, commandes fixées en bas en portrait |
+| `CreatureArt`, `EvolutionCard`, `ChoiceTile` | Recadrage d’atlas réel, évolutions, cartes de sorts/bâtiments/choix |
+| `StatGrid`, `ResourceCost`, `ResourceStrip` | Caractéristiques et icônes des ressources ; or affiché en entier |
+| `QuantityControl`, `PurchaseSummary` | Champ numérique et curseur synchronisés, stock, prix unitaire, total |
+| `ArmySlot`, `HeroesDataTable` | Emplacements, troupes, tableaux avec en-têtes accessibles |
+| `ConfirmDialog` | Titre, contenu et actions de confirmation localisées |
+
+Les sélecteurs, cases, radios circulaires, onglets, messages, infobulles, indicateurs de progression et badges sont les composants MUI réels exportés par la façade. Leur apparence est configurée dans `heroesReferenceTheme`. Les espacements utilisent une base de 8 px avec demi-pas de 4 px ; les cibles de bouton restent au moins 48 px. Le choix explicite du propriétaire conserve les boutons et cadres carrés, avec les textures et le relief Heroes III. Cela constitue une adaptation de Material, pas une certification de conformité intégrale.
+
+Le catalogue utilise les trois évolutions Picpique réellement présentes dans `mod/goonk/Content/config/creatures.json`, leur traduction française et leurs illustrations HD. Stock/ressources sont des valeurs de démonstration identifiées ; les confirmations ne modifient aucune partie. L’illustration du catalogue est fixe : la lecture animée reste celle du moteur. Ni quatrième évolution inventée ni texte de remplissage de la référence ne sont ajoutés.
+
+L’habillage a été confronté aux archives de l’installation originale fournie par le propriétaire (`vcmi-data/Data/H3bitmap.lod` et `H3sprite.lod`) : fonds `DIBOX128.PCX`/`DiBoxBck.pcx`, cadres `RECQ320.PCX` et bouton `IOKAY.DEF`. Le bouton original et celui de la copie de données du projet ont le même SHA-256 décompressé : `b5b00d52fbd25916c2eaaa51be22d8b8e6fd67166d6ed482974c91b450d3ceba`. La bibliothèque réutilise les textures, bordures de bouton et coins décorés déjà extraits dans `web/h3-theme/`, sans ajouter une seconde collection d’images. Les cadres ornés sont une variante de panneau ; les panneaux internes restent plus sobres pour garder la hiérarchie.
+
+Validation : `node work/browser-tests/heroes-design-system-e2e.mjs`, serveur ouvert. Chromium et WebKit, français/anglais, 320×568, 360×640, 568×280, 640×360 et 1280×720 ; captures dans `/tmp/heroes-kit-review`. Ces contrôles ne remplacent pas les tests d’un écran connecté au moteur. Le déploiement de la bibliothèque à tous les écrans existants reste une migration distincte, à vérifier écran par écran.
+
+Références vérifiées : [cibles tactiles Material](https://developer.android.com/develop/ui/compose/accessibility/api-defaults), [navigation et dispositions adaptatives](https://developer.android.com/design/ui/mobile/guides/layout-and-content/layout-and-nav-patterns).
+
 L’interface utilise **React et les composants réels `@mui/material`**, avec un thème Heroes III centralisé dans `src/ui/theme.mjs`. MUI adopte Material Design 2 par défaut : les rôles typographiques, cibles de 48 px et compositions adaptatives M3 sont définis dans ce thème et dans les composants de structure. Installer MUI ne constitue pas, à lui seul, une certification M3.
 
 ## Composants à réutiliser

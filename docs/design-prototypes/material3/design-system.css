@@ -1,0 +1,453 @@
+html,
+body,
+#design-system {
+  margin: 0;
+  min-height: 100%;
+  background: #1d130c;
+}
+.ds-root {
+  min-height: 100dvh;
+}
+.ds-catalogue {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.ds-intro {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 24px;
+  align-items: start;
+  justify-content: space-between;
+}
+.ds-note {
+  font-size: 12px;
+  color: #d5c49c;
+  line-height: 20px;
+  margin-top: 12px !important;
+}
+.ds-navigation {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.ds-navigation .MuiSelect-select {
+  padding: 12px !important;
+}
+.ds-navigation .MuiInputBase-root {
+  min-height: 48px;
+}
+.ds-flow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ds-form {
+  display: grid;
+  gap: 16px;
+}
+.ds-check {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  min-height: 48px;
+}
+.ds-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.ds-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(100px, 40%) minmax(0, 1fr);
+  gap: 16px;
+}
+.ds-sample-art {
+  height: 280px;
+}
+.ds-detail-grid p {
+  margin-top: 12px;
+}
+.ds-army-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.ds-notice {
+  position: fixed !important;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 1400;
+  max-width: 600px;
+}
+.ds-calendar {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 12px;
+}
+.ds-recruitment {
+  display: grid;
+  grid-template-columns: minmax(120px, 23%) minmax(0, 1fr) minmax(0, 1fr);
+  height: 100%;
+  gap: 12px;
+  min-height: 0;
+}
+.ds-evolutions {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  min-height: 0;
+}
+.ds-creature {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  min-height: 0;
+}
+.ds-portrait {
+  padding: 8px;
+  min-height: 0;
+  box-shadow: inset 0 0 0 3px #62461f, inset 0 0 0 4px #e3bd69;
+}
+.ds-description {
+  overflow-y: auto;
+  scrollbar-color: #d6b269 #24170e;
+  scrollbar-width: thin;
+  font-size: 16px;
+  line-height: 24px;
+}
+.ds-description p,
+.ds-description ul {
+  margin-top: 16px;
+}
+.ds-description ul {
+  padding-left: 20px;
+}
+.ds-description li + li {
+  margin-top: 12px;
+}
+.ds-root[data-view=recruitment] {
+  height: 100dvh;
+}
+.ds-root .hk-screen-heading h1 {
+  font-size: 22px;
+  line-height: 28px;
+}
+@media (max-width: 700px) {
+  .ds-catalogue {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+  .ds-intro {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ds-card-grid {
+    gap: 8px;
+  }
+  .ds-card-grid .hk-evolution-label {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .ds-army-grid {
+    gap: 8px;
+  }
+  .ds-sample-art {
+    height: 200px;
+  }
+}
+@media (orientation: portrait) {
+  .ds-recruitment {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    height: auto;
+  }
+  .ds-evolutions {
+    grid-column: 2;
+    grid-row: 1;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .ds-evolutions .hk-evolution.MuiButton-root {
+    flex-direction: row;
+    justify-content: start;
+    padding: 8px;
+    gap: 8px;
+  }
+  .ds-evolutions .hk-art {
+    width: 40px;
+    height: 48px;
+  }
+  .ds-evolutions .hk-evolution-label {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .ds-creature {
+    grid-column: 1;
+    grid-row: 1;
+    grid-template-rows: 1fr auto;
+    gap: 8px;
+  }
+  .ds-description {
+    grid-column: 1/-1;
+    max-height: 240px;
+  }
+  .ds-portrait {
+    min-height: 160px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats {
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats > div {
+    padding: 4px 6px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats dd {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats dt {
+    font-size: 11px;
+  }
+  .ds-root[data-view=recruitment] .hk-stock-price strong {
+    font-size: 24px;
+  }
+  .ds-root[data-view=recruitment] {
+    height: auto;
+  }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .ds-root[data-view=recruitment] .hk-screen {
+    grid-template-columns: minmax(0, 1fr) 240px;
+  }
+  .ds-root[data-view=recruitment] .hk-command {
+    padding: 8px;
+    gap: 8px;
+    overflow-y: auto;
+  }
+  .ds-root[data-view=recruitment] .hk-screen-content {
+    padding: 8px;
+  }
+  .ds-root[data-view=recruitment] .ds-navigation {
+    margin-bottom: 8px;
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .ds-navigation > .MuiButton-root {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .ds-root[data-view=recruitment] .ds-calendar {
+    display: none;
+  }
+  .ds-root[data-view=recruitment] .hk-screen-heading {
+    padding-block: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-screen-heading h1 {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .ds-root[data-view=recruitment] .hk-resource-strip .hk-cost-item {
+    font-size: 10px;
+  }
+  .ds-root[data-view=recruitment] .hk-resource-strip img {
+    width: 18px;
+    height: 18px;
+  }
+  .ds-root[data-view=recruitment] .hk-purchase {
+    gap: 8px;
+  }
+  .ds-root[data-view=recruitment] .hk-panel {
+    padding: 8px;
+  }
+  .ds-root[data-view=recruitment] .hk-stock-price {
+    gap: 8px;
+  }
+  .ds-root[data-view=recruitment] .hk-stock-price strong {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .ds-root[data-view=recruitment] .hk-stock-price .hk-cost {
+    font-size: 14px;
+  }
+  .ds-root[data-view=recruitment] .hk-actions {
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-actions > .MuiButton-root {
+    padding: 8px 6px;
+    min-width: 48px;
+    font-size: 12px;
+  }
+  .ds-root[data-view=recruitment] .ds-recruitment {
+    grid-template-columns: minmax(80px, 25%) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+  .ds-root[data-view=recruitment] .ds-evolutions {
+    gap: 8px;
+  }
+  .ds-root[data-view=recruitment] .hk-evolution .hk-art {
+    width: 32px;
+    height: 32px;
+  }
+  .ds-root[data-view=recruitment] .hk-evolution-label {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats {
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats > div {
+    padding: 2px 6px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats dd {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .ds-root[data-view=recruitment] .hk-stats dt {
+    font-size: 11px;
+  }
+  .ds-root[data-view=recruitment] .ds-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .ds-root[data-view=recruitment] .ds-evolutions .hk-evolution {
+    padding: 6px;
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-evolution-label {
+    font-weight: 400;
+  }
+  .ds-root[data-view=recruitment] .hk-evolution[aria-pressed=true] .hk-evolution-label {
+    font-weight: 600;
+  }
+}
+.ds-recruits {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid #e3bd69;
+  box-shadow: inset 0 0 0 1px #725125;
+}
+@media (orientation: portrait) {
+  .ds-root[data-view=recruitment] .ds-evolutions .hk-art {
+    width: 32px;
+    height: 32px;
+  }
+  .ds-root[data-view=recruitment] .ds-evolutions .hk-evolution {
+    padding: 4px;
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .ds-evolutions .hk-evolution-label {
+    font-weight: 400;
+  }
+}
+@media (orientation: landscape) and (max-height: 320px) {
+  .ds-root[data-view=recruitment] .ds-evolutions .hk-art {
+    height: 24px;
+    width: 24px;
+  }
+  .ds-root[data-view=recruitment] .ds-evolutions .hk-tier {
+    display: inline;
+    margin-right: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-command {
+    overflow: hidden;
+  }
+  .ds-root[data-view=recruitment] .hk-command-body {
+    overflow: auto;
+    flex: 1 1 auto;
+  }
+  .ds-root[data-view=recruitment] .hk-command > .hk-actions {
+    flex-shrink: 0;
+  }
+}
+@media (orientation: portrait) {
+  .ds-root[data-view=recruitment] {
+    height: 100dvh;
+  }
+  .ds-root[data-view=recruitment] .hk-chrome {
+    padding: 8px 16px;
+  }
+  .ds-root[data-view=recruitment] .hk-screen-heading {
+    padding-block: 8px;
+  }
+  .ds-root[data-view=recruitment] .ds-calendar {
+    margin-top: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-screen-content {
+    padding: 8px 16px;
+  }
+  .ds-root[data-view=recruitment] .ds-recruitment {
+    height: 100%;
+    grid-template-rows: minmax(224px, 1fr) minmax(64px, .4fr);
+    gap: 8px;
+  }
+  .ds-root[data-view=recruitment] .ds-description {
+    max-height: none;
+    padding: 8px;
+  }
+  .ds-root[data-view=recruitment] .ds-description p {
+    margin-top: 8px;
+  }
+  .ds-root[data-view=recruitment] .ds-portrait {
+    min-height: 80px;
+  }
+  .ds-root[data-view=recruitment] .hk-purchase {
+    gap: 4px;
+  }
+  .ds-root[data-view=recruitment] .hk-purchase .hk-panel {
+    padding: 6px 8px;
+  }
+  .ds-root[data-view=recruitment] .hk-stock-price strong {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .ds-root[data-view=recruitment] .hk-stock-price .hk-cost {
+    margin-top: 0;
+    font-size: 14px;
+  }
+  .ds-root[data-view=recruitment] .hk-command > .hk-actions {
+    padding-top: 8px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+}
+@media (orientation: portrait) {
+  .ds-root[data-view=recruitment] .hk-chrome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 76px;
+    gap: 8px;
+    align-items: center;
+  }
+  .ds-root[data-view=recruitment] .hk-resource-strip {
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+  .ds-root[data-view=recruitment] .hk-resource-strip img {
+    width: 18px;
+    height: 18px;
+  }
+  .ds-root[data-view=recruitment] .hk-resource-strip .hk-cost-item {
+    font-size: 10px;
+  }
+  .ds-root[data-view=recruitment] .ds-calendar {
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    font-size: 10px;
+  }
+  .ds-root[data-view=recruitment] .ds-recruits {
+    padding: 2px 6px;
+    white-space: nowrap;
+  }
+}
