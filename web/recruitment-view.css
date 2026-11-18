@@ -122,3 +122,15 @@ html.goonk-mobile #mobile-app[data-mode=recruit] :is(#town-overview,.town-view,.
 @container goonk-viewport (orientation:portrait){
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="3"] .recruit-variants button:last-child{grid-column:1/-1}
 }
+
+/* Names vary between evolutions; reserve their height so the artwork and
+   description cannot jump when the selected name wraps to a second line. */
+html.goonk-mobile #mobile-app .recruitment-view .creature-view-head h2{height:40px;line-height:1.1;display:flex;align-items:center;box-sizing:border-box}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .recruitment-view .creature-view-head h2{height:32px}
+}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .recruitment-view .recruit-stock{flex-direction:row;gap:4px}
+ html.goonk-mobile #mobile-app .recruitment-view .recruit-stock strong{font-size:16px;line-height:18px}
+ html.goonk-mobile #mobile-app .recruitment-view .featured-price>span:first-child{width:auto;font-size:9px;line-height:11px}
+}

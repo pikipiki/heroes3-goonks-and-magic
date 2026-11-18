@@ -22,6 +22,11 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
  const fitVariantNames=()=>{
   if(fitting)return;fitting=true;requestAnimationFrame(()=>{
    fitting=false;
+   const title=panel.querySelector('.creature-view-head h2');
+   if(panel.classList.contains('recruitment-view')&&title){
+    const key=title.clientWidth+':'+title.clientHeight+':'+title.textContent;
+    if(title._fitName!==key){title._fitName=key;const start=root.clientWidth>root.clientHeight?14:18;for(let size=start;size>=9;size-=.5){title.style.fontSize=size+'px';if(title.scrollHeight<=title.clientHeight&&title.scrollWidth<=title.clientWidth)break;}}
+   }
    for(const button of panel.querySelectorAll('.recruit-variants button')){
     const name=button.querySelector('.variant-name'),w=button.clientWidth,h=button.clientHeight;
     if(!w||!h||!name)continue;

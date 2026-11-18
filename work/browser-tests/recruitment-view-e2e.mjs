@@ -30,6 +30,13 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
    assert(quantity.y+quantity.height<=nav.y+1,'Quantity sits above fixed action buttons '+JSON.stringify({size,quantity,nav}));
    for(const selector of ['[data-ui=confirm-recruit]','[data-ui=max-recruit]','.mobile-nav [data-ui=cancel-recruit]']){const box=await rect(selector);assert(box.width>=44&&box.height>=44&&box.y>=0&&box.y+box.height<=size.height+1,'Fixed action visible '+JSON.stringify({size,selector,box}));}
    assert(await page.locator('.calendar-recruit-cue').isVisible());assert(await page.locator('.calendar-next-week').isHidden());
+   await page.evaluate(()=>window.previewBefore=document.querySelector('[data-preview-creature]'));
+   await send({...base,recruitUnit:variants[3]});await page.waitForTimeout(150);
+   assert.deepEqual(await rect('.creature-stage'),art,'Longest evolution name cannot shift the animation');
+   assert.deepEqual(await rect('.mobile-recruit-amount'),quantity,'Longest name cannot move quantity');
+   assert(await page.evaluate(()=>previewBefore===document.querySelector('[data-preview-creature]')),'Long name selection retains the animation');
+   assert(await page.locator('.creature-view-head h2').evaluate(e=>e.scrollHeight<=e.clientHeight&&e.scrollWidth<=e.clientWidth),'Full selected name fits without ellipsis');
+   await send(base);await page.waitForTimeout(100);
    const before={art,choices,nav,quantity};
    await send({...base,recruitUnit:{...base.recruitUnit,description:baseUnit.description.repeat(100)}});await page.waitForTimeout(150);
    assert.deepEqual(await rect('.creature-stage'),before.art,'Long description cannot resize animation');assert.deepEqual(await rect('.recruit-variants'),before.choices,'Evolution cards stay fixed');assert.deepEqual(await rect('.mobile-nav'),before.nav);assert.deepEqual(await rect('.mobile-recruit-amount'),before.quantity);
