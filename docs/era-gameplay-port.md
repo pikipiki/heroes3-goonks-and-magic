@@ -321,6 +321,20 @@ Les quinze autres règles de carte et les six modes source de sélection de
 l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
 complets et ne revendique pas le port de leurs commandes UN:P.
 
+La règle 116 ajoute un quatorzième choix : croissance quotidienne de 4 % des
+armées des 156 héros d'origine, y compris leurs groupes en réserve. La
+croissance commence au deuxième jour, arrondit à l'entier inférieur et plafonne
+à 100 000, sans réduire les groupes déjà supérieurs au plafond. L'expérience
+totale est conservée et répartie entre les nouvelles créatures. Une transaction
+validée sur les deux états du jeu applique la croissance une seule fois par
+journée, y compris après rechargement. Les scénarios utilisent sept groupes
+avec des quantités proches des seuils, un héros de l'IA et une héroïne en
+réserve. Un groupe de 25 piquiers au rang 1 passe à 26 : son expérience
+moyenne descend de 1000 à 961, son rang à 0 et sa défense effective de 6 à 5.
+Le contrôle du format annonce la nouvelle capacité aux autres versions du
+moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les quatorze autres règles et les modes de sélection source restent
+à porter ; cette étape n'active pas les profils complets.
+
 L'activation du mithril est désormais enregistrée avec chaque nouvelle partie.
 Changer les réglages de l'installation ne modifie plus ce choix à la reprise.
 Les anciennes sauvegardes contenant des améliorations ou une graine mithril

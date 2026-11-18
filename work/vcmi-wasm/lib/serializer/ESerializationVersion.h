@@ -77,8 +77,10 @@ enum class ESerializationVersion : int32_t
 
 	GOONK_WOG_OPTION_CATALOGUE, // length-prefixed native WoG choices, including map rules
 
+	GOONK_WOG_ARMY_GROWTH, // new native map-rule capability and fourteen-choice peers
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_WOG_OPTION_CATALOGUE,
+	CURRENT = GOONK_WOG_ARMY_GROWTH,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

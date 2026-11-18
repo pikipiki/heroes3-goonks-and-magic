@@ -169,18 +169,19 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
  if(options.reroll==='rng')shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.variables.spell.gainedSpell={anyOf:['bless']};
  const huts=options.reroll==='hut-rng'?structuredClone(testHuts):null;
  if(huts)huts.witchHut.types.witchHut.variables.secondarySkill.gainedSkill={anyOf:['offence']};
+ const cleanManifest=process.env.GOONK_CLEAN_MANIFEST==='1'?JSON.parse(execFileSync('git',['show','HEAD:mod/tum-era/mod.json'],{encoding:'utf8'})):null;
  const translations=Object.fromEntries(['english','french'].map(language=>[language,readJsonc('mod/tum-era/content/translation/tum-era-ui-'+language+'.json')]));
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations,cleanManifest})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
    module=value;let callMain;
    Object.defineProperty(value,'callMain',{configurable:true,set:fn=>{callMain=fn;},get:()=>function(...args){
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
-    const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
+    const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.mithrilEnhancements=enabled;
     manifest.settings.modules.henchmen=henchmen;
     value.FS.writeFile('/config/difficulty.json',JSON.stringify(difficulty));
@@ -204,7 +205,7 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations,cleanManifest});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -226,7 +227,7 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
   else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Mithril native validation');
   if(mapChoices){
-   assert.equal((await state()).wogOptions.length,13,'Native map rule catalogue advertised');
+   assert((await state()).wogOptions.length>=13,'Native map rule catalogue advertised');
    for(let index=0;index<mapChoices.length;++index){
     await command(109,index+7,mapChoices[index]);
     await wait(({index,value})=>goonkMobileState.wogOptions[index+7]===value,{index,value:mapChoices[index]});

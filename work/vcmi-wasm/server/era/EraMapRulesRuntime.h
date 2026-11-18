@@ -1,6 +1,7 @@
 #pragma once
 #include "../CGameHandler.h"
 #include "../../lib/era/EraWogOptions.h"
+#include "../../lib/era/EraMapArmyGrowth.h"
 #include "../../lib/StartInfo.h"
 #include "../../lib/era/EraMapRulesModel.h"
 #include "../../lib/era/EraMithrilModel.h"
@@ -30,6 +31,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("122",era_bridge::WogOption::WeeklyMineResources);
     choice("124",era_bridge::WogOption::MultipleCapitols);
     choice("128",era_bridge::WogOption::AllBreath);
+    choice("116",era_bridge::WogOption::DailyArmyGrowth);
     gh.sendAndApply(packet);
 }
 inline void changeWeeklyMines(CGameHandler & gh)
@@ -72,6 +74,28 @@ inline void placeDailyPlains(CGameHandler & gh,PlayerColor player)
         plains->setAnchorPos(position);gh.newObject(plains,hero->getOwner());
     }
 }
+inline void growHeroArmies(CGameHandler & gh)
+{
+    const auto & saved=state(gh.gameInfo());const auto day=gh.gameInfo().getDate(Date::DAY);
+    if(!saved["rules"]["116"].Bool()||day<=1||saved["armyGrowthDay"].Integer()>=day)return;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=saved;
+    packet.state["armyGrowthDay"].Integer()=day;
+    packet.state["armyGrowth"].Vector().clear();
+    const auto heroes=sourceArmyHeroes(gh.gameState().getMap());
+    for(int id=0;id<156;++id)
+        if(const auto * hero=heroes[id])
+            for(int slot=0;slot<7;++slot)
+                if(hero->hasStackAtSlot(SlotID(slot)))
+                {
+                    const auto old=hero->getStackCount(SlotID(slot));
+                    const auto count=era_bridge::map_rules::dailyArmyCount(old);
+                    if(count<=old)continue;
+                    JsonNode row;row["hero"].Integer()=id;row["slot"].Integer()=slot;
+                    row["before"].Integer()=old;row["count"].Integer()=count;
+                    packet.state["armyGrowth"].Vector().push_back(std::move(row));
+                }
+    gh.sendAndApply(packet);
+}
 inline void onNewDay(CGameHandler & gh)
-{changeWeeklyMines(gh);}
+{changeWeeklyMines(gh);growHeroArmies(gh);}
 }

@@ -14,6 +14,7 @@ const rules = [
   ['Mines change resources weekly', 'Production des mines modifiée chaque semaine', 'Mines change their resource at the start of each new week.', 'Les mines changent de ressource au début de chaque nouvelle semaine.'],
   ['Multiple Capitols', 'Plusieurs Capitoles', 'Allow a Capitol in every town.', 'Permettre un Capitole dans chaque ville.'],
   ['Breath attacks for all creatures', 'Souffle pour toutes les créatures', 'Eligible creatures strike through two adjacent hexes.', 'Les créatures compatibles frappent à travers deux cases adjacentes.'],
+  ['Daily army growth', 'Croissance quotidienne des armées', 'Original hero stacks grow by 4% each day, up to 100,000 creatures.', 'Les groupes des héros d’origine grandissent de 4 % par jour, jusqu’à 100 000 créatures.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

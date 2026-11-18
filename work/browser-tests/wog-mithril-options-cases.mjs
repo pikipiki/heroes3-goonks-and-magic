@@ -23,11 +23,11 @@ export async function runMithrilOptions({boot,panel,buy,state,command,wait,page,
  if(mode==='options-legacy-consumer'){
   assert(process.env.MITHRIL_LEGACY_DIR);
   for(const enabled of [false,true]){
-   const file=process.env.MITHRIL_LEGACY_SEVEN?`extended-false-${enabled?1:-1}.vsgm1`:`old-six-options-${enabled?'on':'off'}.vsgm1`;
+   const file=process.env.MITHRIL_LEGACY_VECTOR?`extended-${enabled?'false-1':'true-0'}.vsgm1`:process.env.MITHRIL_LEGACY_SEVEN?`extended-false-${enabled?1:-1}.vsgm1`:`old-six-options-${enabled?'on':'off'}.vsgm1`;
    const bytes=[...fs.readFileSync(path.join(process.env.MITHRIL_LEGACY_DIR,file))];
    await boot({save:bytes,enabled:!enabled});const data=await inspect(enabled);
-   if(process.env.MITHRIL_LEGACY_SEVEN&&enabled){assert.equal(data.amount,93);assert(data.offers.some(row=>row.kind===0&&row.active&&row.dailyIncome===2000),'Old purchased mine and payment survive');}
-   report.scenarios.push(`original-${process.env.MITHRIL_LEGACY_SEVEN?'seven':'six'}-options-load-frozen-${enabled}`);await page().close();
+   if((process.env.MITHRIL_LEGACY_SEVEN||process.env.MITHRIL_LEGACY_VECTOR)&&enabled){assert.equal(data.amount,93);assert(data.offers.some(row=>row.kind===0&&row.active&&row.dailyIncome===2000),'Old purchased mine and payment survive');}
+   report.scenarios.push(`original-${process.env.MITHRIL_LEGACY_VECTOR?'vector13':process.env.MITHRIL_LEGACY_SEVEN?'seven':'six'}-options-load-frozen-${enabled}`);await page().close();
   }
   return;
  }

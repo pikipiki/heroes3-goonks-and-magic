@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {chromium} from 'playwright-core';
 import {silenceTestAudio} from './silent-audio.mjs';
 import {readCompletedNativeSave} from './native-save-completed.mjs';
+import {readJsonc} from '../../scripts/era-bridge/objects/production-resolvers.mjs';
 
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8797';
 const output=process.env.REVIEW_OUTPUT||'/private/tmp/goonk-henchmen-native';
@@ -29,7 +30,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
+function fixture({growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -84,6 +85,19 @@ else:
  if opts['twoGuards']:
   import copy
   guard=copy.deepcopy(objects[-1]);guard.update({'instanceName':'henchmenSecondGuard','x':12});objects.append(guard)
+if opts['growthFixture']:
+ for o in objects:
+  if o['instanceName']=='goonkHero':
+   o['options']['army']=[{'type':'core:'+kind,'amount':count} for kind,count in zip(['peasant','archer','griffin','monk','pikeman','swordsman','archangel'],[100000,24,49,99999,25,100001,300])]
+   o['options']['artifacts']['misc1']='core:shacklesOfWar'
+  if o['instanceName']=='enemyTown':o['options'].update({'army':[],'buildings':{'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']}})
+  if o['instanceName']=='enemyHenchmanHero':
+   o.update({'x':30,'y':30});o['options'].update({'army':[{'type':'core:peasant','amount':50}],'patrolRadius':0})
+ import copy
+ training=copy.deepcopy(next(o for o in objects if o['instanceName']=='enemyHenchmanHero'))
+ training.update({'instanceName':'growthTrainingHero','x':10,'y':11})
+ training['options'].update({'type':'core:edric','army':[{'type':'core:peasant','amount':6500}],'artifacts':{},'spellBook':[],'secondarySkills':{}})
+ objects.append(training)
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';header['heroLevelLimit']=opts['heroLevelLimit']
 if opts['scriptTown'] or opts['scriptAI']:
@@ -96,6 +110,9 @@ if opts['scriptTown'] or opts['scriptAI']:
   for day in [3,4]:
    header['events'].append({'name':'owner list transition '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],
     'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+if opts['growthFixture']:
+ header['heroLevelLimit']=1
+ for day in [2,3]:header['events'].append({'name':'private growth pool witness '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Henchmen native validation';entries[name]=json.dumps(text).encode()
@@ -104,27 +121,40 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
+`,JSON.stringify({growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
 }
 
-async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
- const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES);
+ const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop,bypassCSP:true});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
- await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram})=>{
+ const cleanManifest=process.env.GOONK_CLEAN_MANIFEST==='1'?JSON.parse(execFileSync('git',['show','HEAD:mod/tum-era/mod.json'],{encoding:'utf8'})):null;
+ const growthDifficulty=growthChoice===null?null:readJsonc('work/vcmi-wasm/config/difficulty.json');
+ if(growthDifficulty)for(const rule of Object.values(growthDifficulty.ai))if(rule.resources)for(const key of Object.keys(rule.resources))rule.resources[key]=0;
+ await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
    module=value;let callMain;
    Object.defineProperty(value,'callMain',{configurable:true,set:fn=>{callMain=fn;},get:()=>function(...args){
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
-    const manifest=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
+    const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
+    if(growthChoice!==null){
+     manifest.settings.modules.commanders=false;
+     value.FS.writeFile('/config/difficulty.json',JSON.stringify(growthDifficulty));
+     manifest.settings.combat??={};manifest.settings.combat.layouts??={};
+     const attacker=[36,53,70,87,104,121,19],defender=[20,54,88,122,156,37,71];
+     manifest.settings.combat.layouts.default={tacticsAllowed:false,obstaclesAllowed:false,attackerCommander:137,defenderCommander:149,attackerUnits:attacker,defenderUnits:defender,attackerUnitsLoose:Array.from({length:7},()=>attacker),attackerUnitsTight:Array.from({length:7},()=>attacker),defenderUnitsLoose:Array.from({length:7},()=>defender),defenderUnitsTight:Array.from({length:7},()=>defender)};
+     const name='config/growth-private-heroes.json';manifest.heroes=[...(manifest.heroes||[]),name];
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({'core:valeska':{army:[{creature:'core:peasant',min:100,max:100}]}}));
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json',JSON.stringify({mapRules:{116:growthConfigured}}));
+    }
     if(scriptProgram){
      const directory='/home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns/';
      const registry=JSON.parse(value.FS.readFile(directory+'registry.json',{encoding:'utf8'}));
@@ -162,7 +192,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
+ },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -183,6 +213,13 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
   if(classic)await command(21);
   else await page.locator('#mobile-map-select').selectOption(String(map.index),{force:true});
   await wait(()=>goonkMobileState.selectedMap==='000 - Henchmen native validation');
+  if(growthChoice!==null){
+   assert((await state()).wogOptions.length>=14);
+   const input=page.locator(`input[data-wog-option="13"][value="${growthChoice}"]`);
+   await page.locator('.wog-options summary')[desktop?'click':'tap']();await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[13]===value,growthChoice);
+   await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
+  }
   if(difficulty!==undefined){await command(25,difficulty);await wait(value=>goonkMobileState.difficulty===value,difficulty);}
   if(classic)await command(22);
   else if(desktop)await page.locator('[data-ui=begin]').click();
@@ -193,7 +230,7 @@ async function boot({save,enabled=true,originURL=origin,settings,difficulty,poor
 
 async function sheet(){
  if(['classic','classic-context'].includes(process.env.CASES))await command(55);
- else await page.locator('[data-ui=heroes]')[process.env.CASES==='town-resurrection-desktop'?'click':'tap']();
+ else await page.locator('[data-ui=heroes]')[process.env.CASES==='town-resurrection-desktop'||process.env.GROWTH_DESKTOP==='1'?'click':'tap']();
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
 }
@@ -234,6 +271,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='army-growth'){
+  const {runArmyGrowth}=await import('./wog-map-army-growth-cases.mjs');
+  await runArmyGrowth({boot,sheet,state,command,wait,approachEnemy,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:940})});
+ }
  if(process.env.CASES==='battle-start-experience'){
   const {runBattleStartExperience}=await import('./wog-henchmen-battle-experience-cases.mjs');
   await runBattleStartExperience({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,

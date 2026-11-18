@@ -1,5 +1,6 @@
 #pragma once
 #include "EraSourceCreatureLevels.h"
+#include "EraMapArmyGrowth.h"
 #include "../GameLibrary.h"
 #include "../CCreatureHandler.h"
 #include "../bonuses/Limiters.h"
@@ -30,6 +31,7 @@ inline TLimiterPtr creatureRuleLimiter()
 }
 inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
 {
+    applyArmyGrowth(gs,next);
     const auto & previous=gs.getMap().eraGameplayState["mapRules"];
     const auto add=[&](const char * code,BonusType type)
     {
