@@ -22,6 +22,10 @@ export function createMarketplace({root, command, refresh}) {
  const find = s => panel.querySelector(s);
  const amount = find('input'), total = find('.market-total');
  const controls = Object.fromEntries([...panel.querySelectorAll('[data-market]')].map(button=>[button.dataset.market,button]));
+ const warmedIcons=new Map();
+ const warmIcon=url=>{if(!url||warmedIcons.has(url))return;const image=new Image();warmedIcons.set(url,image);image.src=url;image.decode?.().catch(()=>{});};
+ for(const resource of resourceDescriptors(Array(7).fill(0)))warmIcon(resourceIconURL(resource));
+ let totalKey='';
  let state = {}, give = null, receive = null, lots = 1, classic = false, pending = null, timer, status = '', signature = '';
 
  function view() {
@@ -48,6 +52,7 @@ export function createMarketplace({root, command, refresh}) {
     button.type = 'button';
     button.dataset.resourceId = resource.id;
     const url = resourceIconURL(resource,window.goonkAssetURLs);
+    warmIcon(url);
     if(url) {
      const icon = document.createElement('img');icon.src=url;icon.alt='';
      button.append(icon);
@@ -96,11 +101,26 @@ export function createMarketplace({root, command, refresh}) {
   }
   const source=rows.find(r=>r.id===give), target=rows.find(r=>r.id===receive);
   if(status||!quote||!max){
+   totalKey='';delete total.dataset.trade;
    total.textContent=status?text[status]:!quote?text.prompt:text.shortage;
   }else{
-   const format=new Intl.NumberFormat(getLanguage());
-   total.textContent=`${format.format(lots*quote[2])} ${resourceName(source)} → ${format.format(lots*quote[3])} ${resourceName(target)}`;
-   total.setAttribute('aria-label',text.total+': '+total.textContent);
+   const pair=[source,target],urls=pair.map(resource=>resourceIconURL(resource,window.goonkAssetURLs));
+   const key=JSON.stringify(pair.map((resource,index)=>[resource.id,resourceName(resource),urls[index]]));
+   if(key!==totalKey){
+    totalKey=key;total.dataset.trade='true';total.replaceChildren();
+    pair.forEach((resource,index)=>{
+     if(index){const arrow=document.createElement('span');arrow.textContent='→';arrow.setAttribute('aria-hidden','true');total.append(arrow);}
+     const item=document.createElement('span');item.className='market-total-resource';
+     const quantity=document.createElement('strong');quantity.className='market-total-value';item.append(quantity);
+     const name=resourceName(resource);
+     if(urls[index]){const icon=document.createElement('img');icon.src=urls[index];icon.alt=name;icon.title=name;icon.width=26;icon.height=24;item.append(icon);}
+     else{const fallback=document.createElement('span');fallback.textContent=name;item.append(fallback);}
+     total.append(item);
+    });
+   }
+   const amounts=pair.map((resource,index)=>new Intl.NumberFormat(resource.key==='gold'?'fr-FR':getLanguage()).format(lots*quote[index+2]).replace(/[\u00a0\u202f]/g,' '));
+   total.querySelectorAll('.market-total-value').forEach((node,index)=>{if(node.textContent!==amounts[index])node.textContent=amounts[index];});
+   total.setAttribute('aria-label',`${text.total}: ${amounts[0]} ${resourceName(source)} → ${amounts[1]} ${resourceName(target)}`);
    return;
   }
   total.removeAttribute('aria-label');
