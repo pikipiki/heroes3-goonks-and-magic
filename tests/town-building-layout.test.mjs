@@ -1,0 +1,16 @@
+import{test}from'node:test';import assert from'node:assert/strict';
+import{TOWN_SITES,factionPortraitBuildings}from'../web/town-portrait.mjs';
+import{townBuildingArt}from'../web/town/building-art.mjs';
+import{denseTownBuildings,wrapTownBuildingLabel}from'../web/town-building-layout.mjs';
+import{townBuildingNames,localizedTownBuildingName}from'../web/town-building-names.mjs';
+import{townActionIcon,townWarMachineIcon}from'../web/town-action-icons.mjs';
+function records(faction){const keys=faction==='goonk'?TOWN_SITES.flatMap(s=>s[1]):Object.keys(townBuildingArt[faction]),bases=new Map();return [...new Set(keys)].map((key,id)=>{const family=key.replace(/dwellingUp\d?Lvl/,'dwellingLvl').replace(/mageGuild\d/,'mageGuild1').replace(/citadel|castle/,'fort').replace(/townHall|cityHall|capitol/,'villageHall');if(!bases.has(family))bases.set(family,id);const baseId=bases.get(family);return {id,baseId,upgradeId:id===baseId?-1:baseId,key:(faction==='goonk'?'goonk':'core')+':'+key,name:townBuildingNames[faction]?.[key]?.en||key,built:true};});}
+test('Complete English and French names fit separate sprite/caption touch cells in all ten factions',()=>{
+ for(const faction of ['goonk',...Object.keys(townBuildingArt)])for(const language of ['en','fr'])for(const[w,h]of[[320,344],[360,427],[430,635],[472,279],[780,768]]){
+  const base=factionPortraitBuildings(w,h,records(faction),faction).map(b=>({...b,label:localizedTownBuildingName(b,faction,language)})),packed=denseTownBuildings(w,h,base,faction,language);assert.equal(packed.length,base.length);
+  for(const b of packed){assert.equal(b.label,base.find(x=>x.id===b.id).label);assert(b.labelLines?.length,'Captions reserve measured rows');assert.equal(b.labelLines.join(' ').replace(/\s+/g,' '),b.label.replace(/\s+/g,' '),'No truncated names');assert(b.hit.w>=44&&b.hit.h>=44);assert(b.hit.x>=0&&b.hit.y>=0&&b.hit.x+b.hit.w<=w+.01&&b.hit.y+b.hit.h<=h+.01);assert(b.y+b.h<=b.hit.y+b.hit.h-b.labelHeight+.01,'Caption stays below its building');}
+  for(let i=0;i<packed.length;i++)for(let j=i+1;j<packed.length;j++){const a=packed[i].hit,b=packed[j].hit;assert(!(a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h),'Disjoint cells '+[faction,language,w,h,i,j]);}
+ }
+});
+test('Native names translate in both directions without overriding renamed buildings',()=>{const names=townBuildingNames.goonk.dwellingUp2Lvl2;assert.equal(localizedTownBuildingName({key:'goonk:dwellingUp2Lvl2',name:names.en},'goonk','fr'),names.fr);assert.equal(localizedTownBuildingName({key:'goonk:dwellingUp2Lvl2',name:names.fr},'goonk','en'),names.en);assert.equal(localizedTownBuildingName({key:'goonk:dwellingUp2Lvl2',name:'Custom sanctuary'},'goonk','fr'),'Custom sanctuary');assert.deepEqual(wrapTownBuildingLabel('Bubu Supreme Fartomancer Sanctuary',90),['Bubu Supreme','Fartomancer','Sanctuary']);});
+test('Town actions share embedded gold artwork and select the offered war machine icon',()=>{for(const key of ['hall','armies','build','heroes','market','guild','ballista','ammo','tent'])assert.match(townActionIcon(key),/^data:image\/svg\+xml,/);assert.equal(townWarMachineIcon({key:'core:ammoCart'}),townActionIcon('ammo'));assert.equal(townWarMachineIcon({key:'core:firstAidTent'}),townActionIcon('tent'));assert.equal(townWarMachineIcon({key:'core:ballista'}),townActionIcon('ballista'));});

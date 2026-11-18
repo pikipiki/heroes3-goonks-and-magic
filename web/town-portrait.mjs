@@ -1,3 +1,7 @@
+import{localizedTownBuildingName}from'./town-building-names.mjs';
+import{denseTownBuildings}from'./town-building-layout.mjs';
+import{getLanguage,translate}from'./i18n.mjs';
+function drawTownBuilding(ctx,image,b){if(b.crop){const [x,y,w,h]=b.crop;ctx.drawImage(image,x*image.naturalWidth,y*image.naturalHeight,w*image.naturalWidth,h*image.naturalHeight,b.x,b.y,b.w,b.h);}else ctx.drawImage(image,b.x,b.y,b.w,b.h);}
 import {paintBuildingOutline} from './image-outline.mjs';
 import{plainGameText}from'./game-text.mjs';
 import{buildingSizes}from'./town-building-sizes.mjs';
@@ -66,6 +70,7 @@ export function factionPortraitBuildings(width,height,buildings,faction,{minimum
 }
 export function createTownPortrait({root,scene,asset,command,getState,openBuildings}){
  const overlay=document.createElement('section');overlay.className='town-portrait-buildings';overlay.setAttribute('aria-label','Bâtiments de la ville');overlay.hidden=true;root.querySelector('.mobile-play').append(overlay);
+ let layoutSource=null,layoutSize='',layoutLanguage='',layoutSignature='',layoutBuildings=[];const captionMeasure=document.createElement('canvas').getContext('2d');captionMeasure.font='10px Georgia';
  const images=new Map(),buttons=new Map(),decoded=new WeakSet(),failed=new WeakSet();let hovered=null,signature='',activeFaction=null,newBuilding=null;
  const image=url=>{if(!url)return null;if(!images.has(url)){const img=new Image();img.addEventListener('error',()=>failed.add(img),{once:true});img.addEventListener('load',()=>{if(img.decode)img.decode().then(()=>decoded.add(img),()=>failed.add(img));else decoded.add(img);},{once:true});img.src=url;images.set(url,img);}return images.get(url);};
  const ready=img=>img?.complete&&img.naturalWidth>0&&decoded.has(img);
@@ -78,7 +83,12 @@ export function createTownPortrait({root,scene,asset,command,getState,openBuildi
   if(activeFaction!==faction){activeFaction=faction;buttons.clear();overlay.replaceChildren();hovered=null;signature='';}
   if(!backgrounds.has(faction))backgrounds.set(faction,image(new URL(faction==='goonk'?'./town/portrait-v2.webp':'./town/'+faction+'/portrait-v1.webp',import.meta.url).href));
   const eighth=eighthTownRecruitment(state),view=eighth?eighthTownViewport(width,height):{x:0,y:0,width,height};
-  const buildings=factionPortraitBuildings(view.width,view.height,state.buildings||[],faction,{minimumRowHeight:eighth?44:0}).map(b=>({...b,x:b.x+view.x,y:b.y+view.y,hit:{...b.hit,x:b.hit.x+view.x,y:b.hit.y+view.y}}));
+  const source=state.buildings||[],size=[view.width,view.height,faction].join(':'),language=getLanguage();
+  if(source!==layoutSource||size!==layoutSize||language!==layoutLanguage){
+   layoutSource=source;layoutSize=size;layoutLanguage=language;const key=JSON.stringify([size,language,source.map(b=>[b.id,b.key,b.name,b.built,b.baseId,b.upgradeId])]);
+   if(key!==layoutSignature){layoutSignature=key;layoutBuildings=denseTownBuildings(view.width,view.height,factionPortraitBuildings(view.width,view.height,source,faction,{minimumRowHeight:eighth?44:0}).map(b=>({...b,label:localizedTownBuildingName({...b,name:plainGameText(b.name)},faction,language,translate)})),faction,language,text=>captionMeasure.measureText(text).width);}
+  }
+  const buildings=layoutBuildings;
   return {faction,background:backgrounds.get(faction),buildings,artwork:buildings.map(b=>({b,picture:image(faction==='goonk'?asset('goonk/structure-'+b.artKey+'.png'):buildingSprite(faction,b.artKey)),outline:faction==='goonk'?image(asset('goonk/outline-'+b.artKey+'.png')):null}))};
  };
  const prepare=(state,enabled=true)=>{
@@ -86,7 +96,8 @@ export function createTownPortrait({root,scene,asset,command,getState,openBuildi
   const {background,artwork}=assets(state,scene.clientWidth||root.clientWidth,scene.clientHeight||root.clientHeight);
   return settled(background)&&artwork.every(({picture})=>settled(picture));
  };
- return {prepare,highlight(id){newBuilding=id;},
+ return {prepare,
+highlight(id){newBuilding=id;},
   paint(ctx,width,height,state,enabled){
    const faction=portraitTownFaction(state);
    if(!enabled||state.mode!=='town'||!faction){overlay.hidden=true;delete root.dataset.townLayout;return false;}
@@ -94,11 +105,11 @@ export function createTownPortrait({root,scene,asset,command,getState,openBuildi
    if(!settled(background)){overlay.hidden=true;return true;}
    root.dataset.townLayout='portrait';overlay.dataset.faction=faction;overlay.hidden=false;overlay.style.width=width+'px';overlay.style.height=height+'px';
    const scale=Math.max(width/background.naturalWidth,height/background.naturalHeight),bw=width/scale,bh=height/scale;if(ready(background))ctx.drawImage(background,(background.naturalWidth-bw)/2,(background.naturalHeight-bh)/2,bw,bh,0,0,width,height);
-   for(const {b,picture,outline}of artwork){if(!ready(picture))continue;ctx.drawImage(picture,b.x,b.y,b.w,b.h);if(newBuilding===b.id){paintBuildingOutline(ctx,picture,b.x,b.y,b.w,b.h);}if(hovered===b.id){if(ready(outline))ctx.drawImage(outline,b.x,b.y,b.w,b.h);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;ctx.drawImage(picture,b.x,b.y,b.w,b.h);ctx.restore();}}}
-   const next=JSON.stringify([faction,width,height,buildings.map(b=>[b.id,b.name])]);
+   for(const {b,picture,outline}of artwork){if(!ready(picture))continue;drawTownBuilding(ctx,picture,b);if(newBuilding===b.id){paintBuildingOutline(ctx,picture,b.x,b.y,b.w,b.h,undefined,b.crop);}if(hovered===b.id){if(ready(outline))drawTownBuilding(ctx,outline,b);else{ctx.save();ctx.shadowColor='#ffe78a';ctx.shadowBlur=8;drawTownBuilding(ctx,picture,b);ctx.restore();}}}
+   const next=JSON.stringify([faction,width,height,getLanguage(),buildings.map(b=>[b.id,b.name,b.hit])]);
    if(signature!==next){signature=next;const active=new Set(buildings.map(b=>b.id));for(const [id,button]of buttons)if(!active.has(id)){button.remove();buttons.delete(id);if(hovered===id)hovered=null;}
-    for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;if(/^dwelling(?:Up)?Lvl8$/.test(b.key))command(30,7);else command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
-     const name=plainGameText(b.name),isGrail=faction==='goonk'&&b.site==='grail';button.setAttribute('aria-label',name);button.toggleAttribute('data-town-grail',isGrail);const nameLabel=button.querySelector('span'),labelWidth=isGrail?64:Math.min(180,Math.max(70,name.length*6.5+16));if(nameLabel.textContent!==(isGrail?'Graal':name))nameLabel.textContent=isGrail?'Graal':name;nameLabel.style.width=labelWidth+'px';nameLabel.style.left=(Math.max(6,Math.min(width-labelWidth-6,b.hit.x+b.hit.w/2-labelWidth/2))-b.hit.x)+'px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
+    for(const b of buildings){let button=buttons.get(b.id);if(!button){button=document.createElement('button');button.className='town-building-hit';button.translate=false;button.dataset.townBuilding=b.id;const label=document.createElement('span');label.className='town-building-name';label.translate=false;button.append(label);button.addEventListener('pointerenter',()=>hovered=b.id);button.addEventListener('pointerleave',()=>hovered=null);button.addEventListener('focus',()=>hovered=b.id);button.addEventListener('blur',()=>hovered=null);button.addEventListener('click',event=>{event.stopPropagation();const current=getState();if(current.mode==='town'&&current.buildings?.some(record=>record.id===b.id&&record.built)){hovered=b.id;if(/^dwelling(?:Up)?Lvl8$/.test(b.key))command(30,7);else command(39,b.id);}});buttons.set(b.id,button);overlay.append(button);}
+     const name=b.label||plainGameText(b.name),isGrail=faction==='goonk'&&b.site==='grail';button.setAttribute('aria-label',name);button.toggleAttribute('data-town-grail',isGrail);const nameLabel=button.querySelector('span'),labelWidth=isGrail?64:Math.min(180,Math.max(70,name.length*6.5+16));button.title=name;const caption=(b.labelLines||[b.label]).join('\n');if(nameLabel.textContent!==caption)nameLabel.textContent=caption;nameLabel.style.width=b.hit.w+'px';nameLabel.style.height=(b.labelHeight||14)+'px';nameLabel.style.left='0px';Object.assign(button.style,{left:b.hit.x+'px',top:b.hit.y+'px',width:b.hit.w+'px',height:b.hit.h+'px'});
     }
    }
    return true;

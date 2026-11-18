@@ -351,3 +351,13 @@ html.goonk-mobile #mobile-app .mobile-calendar .calendar-next-week{display:none!
  html.goonk-mobile #game-menu[data-page=home]>nav:not([hidden]){gap:3px;padding:6px;box-sizing:border-box}
  html.goonk-mobile #game-menu[data-page=home]>nav button{min-height:44px;height:44px;padding:4px;line-height:1.2}
 }
+
+html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>.town-action{display:grid;grid-template-columns:28px minmax(0,1fr);gap:5px;align-items:center;justify-items:center}
+html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav .town-action-icon{width:28px!important;height:28px!important;object-fit:contain;flex:none}
+html.goonk-mobile #mobile-app[data-mode=town] .town-action>span{min-width:0;font-size:12px!important;line-height:1.1;margin:0}
+@container goonk-viewport (orientation:portrait){
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav>.town-machine-action{grid-column:span 3!important}
+}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=town] .town-machine-action>span{font-size:10px!important;line-height:1;white-space:normal}
+}
