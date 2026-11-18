@@ -11,17 +11,17 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
+    "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "99e0a428e36390833ba5b4716fd62c41d92ba5b92f5bbb37e9ee40f752d950fc",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf7e696cfaa8738d0d5e2c18d08605582e8cd1be371398f33e73f4af67de2be2",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
     "work/vcmi-wasm/client/MobileBridge.cpp": "5968fdd394b0cfcc068a0569a47c97e9e642d56794af3b7cbe5025737ebc8aa0",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "8834ae5dd6d6c7f792d45ec3a422c4b5ee0857ebcc39d8d80ae04693827961bf",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -141,5 +141,31 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "groundedFliersCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
+      "work/vcmi-wasm/server/CGameHandler.cpp": "8834ae5dd6d6c7f792d45ec3a422c4b5ee0857ebcc39d8d80ae04693827961bf",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33"
+    },
+    "historicalReportsRetained": true,
+    "existingFeatureSemanticsUnchanged": true,
+    "newRule": 111,
+    "newChoiceIndex": 17,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
   }
 }

@@ -180,6 +180,7 @@ void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
 {
 	// Source rule117 runs after the initial dwelling stocks have been generated.
 	era_compat::map_rules::addExtraDwellingCreatures(*gameHandler);
+	era_compat::map_rules::groundFliers(*gameHandler);
 	era_compat::map_rules::placeDailyPlains(*gameHandler,which);
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
     applyEraWayfarerDay(*gameHandler,*playerState);

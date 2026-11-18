@@ -19,6 +19,7 @@ const rules = [
   ['Grails in all towns', 'Graal dans toutes les villes', 'Build Grails at the start, only if the map contains no Conflux town.', 'Construire les Graals au départ, uniquement si la carte ne contient aucune ville Conflux.'],
   ['Monthly site visits', 'Visites des sites chaque mois', 'Original heroes can revisit stat sites, schools and knowledge sites each month.', 'Les héros d’origine peuvent revisiter les sites de caractéristiques, les écoles et les lieux de savoir chaque mois.'],
   ['Boars in dwellings', 'Sangliers dans les habitations', 'Add twelve boars to eligible original dwellings at the start.', 'Ajouter douze sangliers dans les habitations d’origine compatibles au départ.'],
+  ['Grounded fliers without retaliation', 'Créatures volantes au sol sans riposte', 'Flying creatures lose their natural flight and their attacks cannot be retaliated against.', 'Les créatures volantes perdent leur vol naturel et leurs attaques ne provoquent plus de riposte.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

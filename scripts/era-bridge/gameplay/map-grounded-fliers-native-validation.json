@@ -1,0 +1,1101 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Source rule111 selects current base fliers once, excluding source machines/commanders/dummies and previously disabled flight; map-local base flight mask and no-retaliation ability survive native saves while independent flight grants remain applicable.",
+  "sourceBaseCommit": "f84ac4e0b2b1d95b2046b4b9cfa689fb18db9dc2",
+  "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+  "upstreamReference": {
+    "schema": 1,
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "rule": 111,
+    "excludedSourceIds": [
+      122,
+      124,
+      126,
+      128,
+      145,
+      146,
+      147,
+      148,
+      149,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191
+    ],
+    "fragments": [
+      {
+        "startLine": 70,
+        "endLine": 84,
+        "text": "** function to only take effect at start ALL of them works for all players - function call is :P :D;\n; Daily events now starts from the second day only - same mechanism as the original H3\n!?FU(WOG_101_RunMapRulesOnce);\n  !!FU(WOG_101_BuildGrailsInTowns)&i^wog_101_map_rule_19_isEnabled^:P;           [build grails in towns - executed once]\n\n  !!FU(WOG_101_SetDoubledHeroesMovements)&i^wog_101_map_rule_10_isEnabled^:P;    [executed once - needed for the first player turn]\n  !!FU(WOG_101_PlaceWarlordsBanner)&i^wog_101_map_rule_20_isEnabled^:P;          [executed once]\n\n  !!FU(WOG_101_AllowMultiplyCapitols)&i^wog_101_map_rule_13_isEnabled^:P;        [executed once]\n  !!FU(WOG_101_AddBoarsOrAirElemsToDwells)&i^wog_101_map_rule_6_isEnabled^:P;    [executed once]\n  !!FU(WOG_101_SetDoubledArtifacts)&i^wog_101_map_rule_8_isEnabled^:P;           [executed once]\n\n  !!FU(WOG_101_SetUpMonsters):P;                                                 [executed once]\n  !!FU(WOG_101_HideMapInitPlayer)&i^wog_101_map_rule_9_isEnabled^:P;\n\n",
+        "sha256": "55b48e343faf732aeb5b2e9af6d48d3f0903fdc815dad810dcb25f7540230f7c"
+      },
+      {
+        "startLine": 372,
+        "endLine": 384,
+        "text": "    !!if&(noFlying);\n      !!re i/(MON_FIRST)/(maxMonId);\n        !!SN:M(shouldThisMonIdBeAffected)/i/?(haveTo:y);\n        !!co&(haveTo:y)=(FALSE);\n\n        !!MA:Xi/?f;\n        !!VRf:&(MON_FLAG_FLYER);\n        !!if&f;\n          !!MA:Xi/d-(MON_FLAG_FLYER) Xi/d|(MON_FLAG_NO_RETALIATION);\n        !!en;\n      !!en;\n    !!en;\n\n",
+        "sha256": "f87d7a01c34ba88f8a059e03cb25df8a8784f79c5585f829daf0818465a05c26"
+      },
+      {
+        "startLine": 410,
+        "endLine": 425,
+        "text": "!#VA(arrayId:x) (maxMonId:x);\n  !!VR(arraySize:y):S(maxMonId) +1;\n  !!FU(NewIntArray):P(arraySize)/?(arrayId);\n\n  !!re (mon:y)/0/(maxMonId);\n    !!co&(mon)>=(MON_CATAPULT)/(mon)<=(MON_ARROW_TOWERS);  // exit, if it is a war machine\n    !!co&(mon)>=(MON_COMMANDER_FIRST_A)/(mon)<=(MON_COMMANDER_LAST_D);  // exit, if it is a commander\n    !!co|(mon)=(MON_NOT_USED_1)/(mon)=(MON_NOT_USED_2)/(mon)=(MON_NOT_USED_3)/(mon)=(MON_NOT_USED_4);  // exit, if it is a dummy-catapult (from the War Machine Scriptes)\n\n    !!SN:M(arrayId)/(mon)/(TRUE);\n  !!en;\n\n  !!SN:F^ExtendArrayLifetime^/(arrayId);\n\n\n\n",
+        "sha256": "6cacaaec69216109c061c3db3b8e90ba367f3c3229fbeb45883f43c4b2ffea20"
+      }
+    ]
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "998a1f9bbb29923ac06485c55fc0ab4ffda28c5d07cbb86a9040cff90bf90980",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "d9bb137d246e9bbd729d52584f434dd0db26cc52dd6ba625db4b9dc7ef15ad62",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ce5dc19e1f8d958f35cac34cf033e3d18f2e304838e00618cbdeb4a8956c2afb",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "810e6f0a7441177a4bb0a6ccc9f20883cddf0443b57264df88db223be671fa89",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "d5871d09fc0cd850ffff0908245e980b6939c4797e7ecf53bc9870cdf831bbd8",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5",
+    "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "b18ac4a8a3a478e0a4a8b773b4068b05d9c4e3c75c8a917d2e398a113331a99e",
+    "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
+    "mod/tum-era/content/config/wog-map-rules.json": "c345a64f36df48d89a95f59db6f1e9277d073fd4dbc44b113ff2b9b51b7ba936",
+    "web/wog-options.mjs": "26f1e2a7b4f2d0ca1336324a2c9ec93d7ccdebd0b5c6b21cda8141fc7541def8",
+    "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
+    "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
+    "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
+    "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "e71d588f6f24c16385c15972d1e85e9c2958a66744c29ac1a1e5fc7fee46a621",
+    "work/browser-tests/wog-options-components-e2e.mjs": "5206791d1c824db0534acbd52cf649edec642dee22334cb9b9582ad875e7e495",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "811f8bea104cea752d74a57b7b15e760bb41eee051534ce1af8591e135fbba6f",
+    "tests/era-map-grounded-fliers.test.mjs": "19e1e7c8733ec6c9d12b6a866332d07a0193c87c87e4e599a01fe1301ea99426",
+    "tests/fixtures/era-gameplay/map-grounded-fliers-reference.json": "ee354297e5d0bc380cd56501379f17a04dc4dd4580339ecbb74a5da41d9bf475",
+    "scripts/era-bridge/gameplay/map-rules.json": "7d5302588cd5d7c7902453ce3ec4b6feb401e6d268ac72df9128dd17e647cef3",
+    "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "incrementalTargetCount": 108,
+    "logSha256": "921aa17f30f319491430601c421c85f3108cb2e2932ddb06f1d1a3a1cc7c22dd",
+    "unverifiedWarMachinePrototypesExcluded": true
+  },
+  "linuxSanitizers": {
+    "command": "C++17 option serializer -fsanitize=address,undefined",
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3003,
+    "mismatches": [],
+    "expectedManifestSha256": "ea251b36d4326101bdec7f9c888d5da8c5dc76ab3c40674aaa1e75f3098f16cd"
+  },
+  "serialization": {
+    "catalogueCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "previousSaveVersion": 916,
+    "newSaveVersion": 917,
+    "historicalWireSizesAndPeerBoundsPreserved": true
+  },
+  "preGroundedProgramSha256": "adb44337afae0a792d466b77369600c728f78ba6cac60d5245d2e8df1e9a2f17",
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": -1,
+          "active": false,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": -1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": false,
+          "choice": 0,
+          "active": false,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:pikeman",
+          "control": null,
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:pikeman": [
+              "{Jousting Immunity}\nThis unit takes no extra damage from jousting",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:vampire",
+          "control": null,
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:vampire": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks",
+              "{Undead}\nCreature is Undead and is immune to effects that only affect living"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": "pre-grounded",
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": "grant",
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "wake-of-gods.commanders:astralSpirit1",
+          "control": "excluded",
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "wake-of-gods.commanders:astralSpirit1": [
+              "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Spell Damage Reduction}\nReduces damage from all spells by 5%",
+              "{Spellcaster}\nCan cast Counterstrike"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ad3a3d3b3878db80ea6b8dd9f62375c1cadd1e8845a0a128f9b86efabdf31fcd"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": "grant",
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "f8a06833325dd7d81a1740cf67e5c0c8a6695a9f1d53c68ef3f7e536700bcd5e"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": false,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "actorKey": "core:griffin",
+          "control": null,
+          "affected": false,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 1,
+          "targetDamage": 10,
+          "remainingRetaliations": 0,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "actorKey": "core:griffin",
+          "control": "grant",
+          "affected": true,
+          "nativeSaveVersion": 917,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "legacySeventeenChoiceSave": false,
+          "flying": true,
+          "actorDamage": 0,
+          "targetDamage": 10,
+          "remainingRetaliations": 1,
+          "abilities": {
+            "core:griffin": [
+              "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{No Retaliation}\nEnemies cannot retaliate against this unit's melee attacks"
+            ],
+            "core:ballista": [
+              "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ]
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "a9dffb6648cc0a02a7b4f949f1c8e56f6711033f846532a5df942de00d2dc199"
+    }
+  },
+  "legacySave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "scenarios": [
+      {
+        "configured": false,
+        "choice": null,
+        "active": false,
+        "actorKey": "core:griffin",
+        "control": null,
+        "affected": false,
+        "nativeSaveVersion": 917,
+        "nativeSaveReload": true,
+        "reversedGlobalDefault": true,
+        "legacySeventeenChoiceSave": true,
+        "flying": true,
+        "actorDamage": 1,
+        "targetDamage": 10,
+        "remainingRetaliations": 0,
+        "abilities": {
+          "core:griffin": [
+            "{Additional Retaliations}\nThis unit can retaliate 1 additional time(s)",
+            "{Flying}\nThis unit flies and ignores battlefield obstacles while moving",
+            "{Neutral Morale}\nThis creature is immune to morale effects"
+          ],
+          "core:ballista": [
+            "{Automatically Controlled}\nThis unit cannot be manually controlled by player by default.",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ]
+        },
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "3962382c7116d10c5d0c89b2fe1cd56b6f0ed0b06adcd3ea39f6c5d387c27574"
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "scenarios": [
+      {
+        "legacyProducer": true,
+        "nativeSaveVersion": 916
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "a18de48c8220ebc9ec1abbc941415ca5ef519cb9f35a769f0a03b7abf2a494ca"
+  },
+  "oldReaderControl": {
+    "kind": "era3-quick-scope-old-reader",
+    "futureVersion": 917,
+    "readerVersion": 916,
+    "rejectedBeforeScriptExecution": true
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 7,
+      "rawReportSha256": "01c902a3de417392452015f0d3b9dc75524be45307b144100682dc15e79e2bf8"
+    },
+    "mithril": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "a8c04ed8c0910572333767b8364fc1a2d78450b097c0bf8801c121ec52890738"
+    },
+    "dwellings": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 3,
+      "rawReportSha256": "246a2d1d2e1d6d6699d16f56690d99c9918f128fc109a38f2bd8c9bf7877b387"
+    },
+    "monthly": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "e772d947f5e3f460e4764089ac3d1f5d419dafe9039ef9b414fe1d3e1b029625"
+    },
+    "grails": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "ec3c374dc21999cd26fb24b4bd32e4f4d21442f7def556894495c7b5bcdb1458"
+    },
+    "learning": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 5,
+      "rawReportSha256": "419c45d844db6f9e9977821f5a2d35c5b4954d30388bec6ce3d6ba181189dfeb"
+    },
+    "hench-town": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "4bfb839dfc510d12c4e0c0adc9077288bf9ce4ca65bddd52de7094e62efbf662"
+    },
+    "army-growth": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 4,
+      "rawReportSha256": "9cca5e19377990419ff69807c1a818d7a6f5502a241796501eff8b23706338af"
+    },
+    "shared-reward": {
+      "passed": true,
+      "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "4bda312d53e379654808e1cb01f86329d0e07398ba8c689831788a3f1aa477d9"
+    }
+  },
+  "mobileUI": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": []
+  },
+  "publication": {
+    "version": "0.4.264",
+    "archive": "outputs/vcmi-wasm-goonk-0.4.264-engine.tar.gz",
+    "archiveSha256": "5c07b2b35f28b392fe77b77cafabb90a93c5511508b1512fe773b86a1532534a",
+    "runtimeByteIdenticalToTestedEngine": true
+  },
+  "remaining": [
+    "Ten map rules and the six source selection modes of option101.",
+    "Complete Henchmen variants, external profiles and remaining source-specific mithril operations.",
+    "Shared creature prototypes used by recruitment previews do not include map-local combat overlays."
+  ],
+  "publicationVerification": {
+    "fullSuite": {
+      "total": 907,
+      "passed": 853,
+      "skipped": 54,
+      "failed": 0,
+      "logSha256": "3d258365b0c0dafac7ec74e46f865284968e3a40691a28a406249d6ea0cd72b3"
+    },
+    "staticSite": {
+      "nativeFileCount": 10464,
+      "transportBytes": 702295393,
+      "verified": true,
+      "logSha256": "898bfd4fa0bad4518b30742ece0d5e0182a2beff8c4fcfd509a120d0ab665b74"
+    },
+    "freshTumInventoryTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "archiveMembersByteIdenticalToTestedEngine": true
+  }
+}

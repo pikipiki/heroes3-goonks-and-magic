@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
     "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9"
   },
   "nativeBuild": {
@@ -315,5 +315,29 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "groundedFliersCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "previousSourceBindings": {
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb"
+    },
+    "historicalReportsRetained": true,
+    "existingFeatureSemanticsUnchanged": true,
+    "newRule": 111,
+    "newChoiceIndex": 17,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
   }
 }

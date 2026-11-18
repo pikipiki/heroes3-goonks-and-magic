@@ -2,6 +2,7 @@
 #include "../CGameHandler.h"
 #include "../../lib/era/EraWogOptions.h"
 #include "../../lib/era/EraMapArmyGrowth.h"
+#include "../../lib/era/EraMapCreatureRules.h"
 #include "../../lib/era/EraMapMonthlyVisitRules.h"
 #include "../../lib/era/EraMapExtraDwellingRules.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
@@ -31,6 +32,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
         packet.state["rules"][code].Bool()=firstTurn&&era_bridge::wogOptionEnabled(
             gh.gameInfo(),option,configured[code].Bool());
     };
+    choice("111",era_bridge::WogOption::GroundedFliers);
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);
@@ -155,6 +157,23 @@ inline void addExtraDwellingCreatures(CGameHandler & gh)
         saved["extraDwellingObjects"][std::to_string(dwelling->id.getNum())].Bool()=true;
     }
     saved["extraDwellingApplied"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
+}
+inline void groundFliers(CGameHandler & gh)
+{
+    auto saved=state(gh.gameInfo());
+    if(!saved["rules"]["111"].Bool()||saved["groundedFliersApplied"].Bool())return;
+    saved["groundedFliers"].Vector().clear();
+    LIBRARY->creatures()->forEach([&](const Creature * entry,bool &)
+    {
+        const auto * creature=entry->getId().toCreature();
+        if(excludedCreature(creature->getJsonKey())||flightAlreadyDisabled(gh.gameState(),creature->getId())
+            ||!creature->hasBonus(Selector::type()(BonusType::FLYING)
+                .And(Selector::sourceTypeSel(BonusSource::CREATURE_ABILITY))))return;
+        JsonNode row;row.Integer()=creature->getId().getNum();
+        saved["groundedFliers"].Vector().push_back(std::move(row));
+    });
+    saved["groundedFliersApplied"].Bool()=true;
     EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)

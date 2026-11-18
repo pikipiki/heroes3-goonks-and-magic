@@ -20,10 +20,10 @@
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b3572e87c8cc9db71583847d3541aaf9e2e1178bd195b1e15964d766fd1554ae",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "ccce0ce91e1e9da4ce20e7c8adfe02ac38ab069c0abd9c867c02e4fe0c068173",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "810e6f0a7441177a4bb0a6ccc9f20883cddf0443b57264df88db223be671fa89",
     "tests/native/Era3QuickVars.test.cpp": "e82f6b920e1a6186019341538543a46f79bee57914c988dd74ffbca330832d11",
     "tests/native/Era3QuickVarsCodec.test.cpp": "8fa869aa21d30396674dfe6cb5aa2d1a2908e89d7345e7e68ecc9404862a0058",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "811f8bea104cea752d74a57b7b15e760bb41eee051534ce1af8591e135fbba6f",
     "work/browser-tests/wog-era3-quick-scope-cases.mjs": "07abecf4ba191c775d44a5a5791af42f26a9e15df1556b3452c46675b1f02351",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
@@ -476,5 +476,30 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "groundedFliersCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620"
+    },
+    "historicalReportsRetained": true,
+    "existingFeatureSemanticsUnchanged": true,
+    "newRule": 111,
+    "newChoiceIndex": 17,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
   }
 }

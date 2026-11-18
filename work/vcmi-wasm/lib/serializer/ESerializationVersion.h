@@ -84,9 +84,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_ERA3_QUICK_LOCALS, // persisted caller quick-register snapshots before FU copy-out
 
 	GOONK_WOG_EXTRA_DWELLING_CREATURES, // source rule117 and seventeen-choice peers
+	GOONK_WOG_GROUNDED_FLIERS, // source rule111 and eighteen-choice peers
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_WOG_EXTRA_DWELLING_CREATURES,
+	CURRENT = GOONK_WOG_GROUNDED_FLIERS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

@@ -13,7 +13,7 @@
     "distinctConfigurationVariable": "hench_battleExpAIPct"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
+    "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b",
     "scripts/era-bridge/gameplay/henchmen.json": "9203baf6211b04302317586e66e267aa0a362b9d555624a88539192115cd2842",
     "scripts/era-bridge/gameplay/henchmen.mjs": "a43ef27db0f0ec64f62510870cd0914904ff6a6f032b1a1dd780a05e9c2c37ed",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
@@ -22,7 +22,7 @@
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "07e45028612aebab6ba15e79312b44f41c19458730f93d19a4b06faa9022ab71",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "b95945c7de99d3ae8476e61f671e0e6a677ec7931fce510660943843ef5e1618",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "ad7a9b309c84b8aab088a30a7279045143f255489b3c24766497521b410b0aa1",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -143,5 +143,30 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "groundedFliersCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33"
+    },
+    "historicalReportsRetained": true,
+    "existingFeatureSemanticsUnchanged": true,
+    "newRule": 111,
+    "newChoiceIndex": 17,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
   }
 }

@@ -30,11 +30,44 @@ inline TLimiterPtr creatureRuleLimiter()
     result->add(std::make_shared<CreatureLevelLimiter>());
     result->add(excluded);return result;
 }
+inline BonusSourceID flightDisabledSource(CreatureID id)
+{return BonusSourceID(BonusCustomSource(0x57400000+id.getNum()));}
+inline bool flightAlreadyDisabled(const CGameState & gs,CreatureID id)
+{
+    const auto & bonuses=gs.globalEffects.getExportedBonusList();
+    return std::any_of(bonuses.begin(),bonuses.end(),[&](const auto & bonus)
+    {
+        return bonus->source==BonusSource::OTHER&&bonus->sid==flightDisabledSource(id)
+            &&bonus->type==BonusType::NONE&&bonus->val==1&&bonus->hidden
+            &&bonus->stacking=="eraCampaign:flightDisabled:v1";
+    });
+}
+inline void applyGroundedFliers(CGameState & gs,const JsonNode & next,const JsonNode & previous)
+{
+    if(!next["groundedFliersApplied"].Bool()||previous["groundedFliersApplied"].Bool())return;
+    for(const auto & row:next["groundedFliers"].Vector())
+    {
+        const CreatureID id(row.Integer());const auto * creature=id.toCreature();
+        if(!creature||excludedCreature(creature->getJsonKey()))
+            throw std::runtime_error("Invalid WoG grounded flier");
+        auto marker=std::make_shared<Bonus>(BonusDuration::PERMANENT,BonusType::NONE,
+            BonusSource::OTHER,1,flightDisabledSource(id));
+        marker->stacking="eraCampaign:flightDisabled:v1";marker->hidden=true;
+        marker->limiter=std::make_shared<CCreatureTypeLimiter>(*creature,false);
+        gs.globalEffects.addNewBonus(marker);
+        auto noRetaliation=std::make_shared<Bonus>(BonusDuration::PERMANENT,BonusType::BLOCKS_RETALIATION,
+            BonusSource::CREATURE_ABILITY,1,BonusSourceID());
+        noRetaliation->valType=BonusValueType::INDEPENDENT_MAX;
+        noRetaliation->limiter=std::make_shared<CCreatureTypeLimiter>(*creature,false);
+        gs.globalEffects.addNewBonus(noRetaliation);
+    }
+}
 inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
 {
     applyArmyGrowth(gs,next);
     applyMonthlyVisits(gs,next);
     const auto & previous=gs.getMap().eraGameplayState["mapRules"];
+    applyGroundedFliers(gs,next,previous);
     const auto add=[&](const char * code,BonusType type)
     {
         if(!next["rules"][code].Bool()||previous["rules"][code].Bool())return;

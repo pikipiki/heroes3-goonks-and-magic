@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/ERA-Projects/era-project-eng",
+  "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+  "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+  "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+  "rule": 111,
+  "excludedSourceIds": [
+    122,
+    124,
+    126,
+    128,
+    145,
+    146,
+    147,
+    148,
+    149,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191
+  ],
+  "fragments": [
+    {
+      "startLine": 70,
+      "endLine": 84,
+      "text": "** function to only take effect at start ALL of them works for all players - function call is :P :D;\n; Daily events now starts from the second day only - same mechanism as the original H3\n!?FU(WOG_101_RunMapRulesOnce);\n  !!FU(WOG_101_BuildGrailsInTowns)&i^wog_101_map_rule_19_isEnabled^:P;           [build grails in towns - executed once]\n\n  !!FU(WOG_101_SetDoubledHeroesMovements)&i^wog_101_map_rule_10_isEnabled^:P;    [executed once - needed for the first player turn]\n  !!FU(WOG_101_PlaceWarlordsBanner)&i^wog_101_map_rule_20_isEnabled^:P;          [executed once]\n\n  !!FU(WOG_101_AllowMultiplyCapitols)&i^wog_101_map_rule_13_isEnabled^:P;        [executed once]\n  !!FU(WOG_101_AddBoarsOrAirElemsToDwells)&i^wog_101_map_rule_6_isEnabled^:P;    [executed once]\n  !!FU(WOG_101_SetDoubledArtifacts)&i^wog_101_map_rule_8_isEnabled^:P;           [executed once]\n\n  !!FU(WOG_101_SetUpMonsters):P;                                                 [executed once]\n  !!FU(WOG_101_HideMapInitPlayer)&i^wog_101_map_rule_9_isEnabled^:P;\n\n",
+      "sha256": "55b48e343faf732aeb5b2e9af6d48d3f0903fdc815dad810dcb25f7540230f7c"
+    },
+    {
+      "startLine": 372,
+      "endLine": 384,
+      "text": "    !!if&(noFlying);\n      !!re i/(MON_FIRST)/(maxMonId);\n        !!SN:M(shouldThisMonIdBeAffected)/i/?(haveTo:y);\n        !!co&(haveTo:y)=(FALSE);\n\n        !!MA:Xi/?f;\n        !!VRf:&(MON_FLAG_FLYER);\n        !!if&f;\n          !!MA:Xi/d-(MON_FLAG_FLYER) Xi/d|(MON_FLAG_NO_RETALIATION);\n        !!en;\n      !!en;\n    !!en;\n\n",
+      "sha256": "f87d7a01c34ba88f8a059e03cb25df8a8784f79c5585f829daf0818465a05c26"
+    },
+    {
+      "startLine": 410,
+      "endLine": 425,
+      "text": "!#VA(arrayId:x) (maxMonId:x);\n  !!VR(arraySize:y):S(maxMonId) +1;\n  !!FU(NewIntArray):P(arraySize)/?(arrayId);\n\n  !!re (mon:y)/0/(maxMonId);\n    !!co&(mon)>=(MON_CATAPULT)/(mon)<=(MON_ARROW_TOWERS);  // exit, if it is a war machine\n    !!co&(mon)>=(MON_COMMANDER_FIRST_A)/(mon)<=(MON_COMMANDER_LAST_D);  // exit, if it is a commander\n    !!co|(mon)=(MON_NOT_USED_1)/(mon)=(MON_NOT_USED_2)/(mon)=(MON_NOT_USED_3)/(mon)=(MON_NOT_USED_4);  // exit, if it is a dummy-catapult (from the War Machine Scriptes)\n\n    !!SN:M(arrayId)/(mon)/(TRUE);\n  !!en;\n\n  !!SN:F^ExtendArrayLifetime^/(arrayId);\n\n\n\n",
+      "sha256": "6cacaaec69216109c061c3db3b8e90ba367f3c3229fbeb45883f43c4b2ffea20"
+    }
+  ]
+}

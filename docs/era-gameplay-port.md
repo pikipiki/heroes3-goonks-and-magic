@@ -438,17 +438,17 @@ publié ne connaît pas encore le septième. Ces preuves ne constituent ni
 l'activation du profil WoG complet ni le port des écritures UN:P des packs
 externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
 
-Le catalogue candidat contient dix-sept réglages par partie : les six premiers,
-le mithril et dix règles de carte (114, 115, 116, 117, 121, 122, 123, 124, 128 et 130). Les règles
+Le catalogue candidat contient dix-huit réglages par partie : les six premiers,
+le mithril et onze règles de carte (111, 114, 115, 116, 117, 121, 122, 123, 124, 128 et 130). Les règles
 114/115/121/122/124/128 peuvent hériter de leur configuration, être activées ou
 être désactivées sans changer les autres parties. Les tests inversent
 volontairement leur configuration globale : combats avec dégâts effectifs,
 déplacements et renouvellement quotidien, production hebdomadaire avec
 protection au mithril, achat du second Capitole et effet des plaines magiques.
 Le chargement conserve les choix des anciens catalogues à six, sept, treize,
-quatorze, quinze ou seize réglages. Le format courant préfixe le catalogue par sa longueur pour
+quatorze, quinze, seize ou dix-sept réglages. Le format courant préfixe le catalogue par sa longueur pour
 permettre les ajouts suivants sans réinterpréter les octets historiques.
-Les onze autres règles de carte et les six modes source de sélection de
+Les dix autres règles de carte et les six modes source de sélection de
 l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
 complets et ne revendique pas le port de leurs commandes UN:P.
 
@@ -463,7 +463,7 @@ avec des quantités proches des seuils, un héros de l'IA et une héroïne en
 réserve. Un groupe de 25 piquiers au rang 1 passe à 26 : son expérience
 moyenne descend de 1000 à 961, son rang à 0 et sa défense effective de 6 à 5.
 Le contrôle du format annonce la nouvelle capacité aux autres versions du
-moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les onze autres règles et les modes de sélection source restent
+moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les dix autres règles et les modes de sélection source restent
 à porter ; cette étape n'active pas les profils complets.
 
 La règle 130 construit les Graals une fois au premier jour, après le stock
@@ -707,3 +707,17 @@ Le nouveau format916 laisse aux anciens formats leurs nombres de réglages
 respectifs et le moteur915 refuse les nouvelles sauvegardes. Les profils
 complets restent désactivés. Preuve bornée :
 `scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json`.
+
+La règle WoG111 retire le vol naturel des créatures concernées et empêche leurs
+adversaires de riposter à leurs attaques. Les machines de guerre, commandants
+et quatre identités inutilisées de la source restent exclus. Une créature dont
+le vol a déjà été retiré avant cette règle ne reçoit pas la capacité sans riposte.
+La sélection se fait une fois dans l’état de la partie ; les bonus de vol
+accordés séparément restent applicables. Les définitions partagées des créatures
+ne sont pas modifiées. Le dix-huitième choix propose Carte/Oui/Non avec le
+composant tactile commun. Le format917 distingue cette capacité du format916
+à dix-sept choix. Les combats de contrôle couvrent le choix hérité, Oui/Non,
+le vol accordé par artefact, un retrait de vol préalable, les créatures
+terrestres, les vampires et les commandants exclus, après sauvegarde/reprise.
+Cette étape ne suffit pas à activer les profils complets. Preuve bornée :
+`scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json`.
