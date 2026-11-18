@@ -1,0 +1,24 @@
+!?FU(acm_GetHeroClass);
+!#VA(hero:x);       hero ID
+!#VA(class:x);      OUT. One of ACM_CLASS_XXX constants or ACM_NO_CLASS
+!#VA(classLevel:x); OUT. One of ACM_CLASS_LEVEL_XXX constants or ACM_NO_CLASS_LEVEL. Levels till Master are ignored and not used in the mod.
+
+!!VR(class):S(ACM_NO_CLASS);
+!!VR(classLevel):S(ACM_NO_CLASS_LEVEL);
+
+!!VR(isWarrior:y):Si^Master_Warrior_Hero%(hero)^;
+!!VR(isMage:y):Si^Master_Mage_Hero%(hero)^;
+!!VR(isAdventurer:y):Si^Master_Adventurer_Hero%(hero)^;
+
+!!VR(class)&(isWarrior)=(TRUE):S(ACM_CLASS_WARRIOR);
+!!VR(class)&(isMage)=(TRUE):S(ACM_CLASS_MAGE);
+!!VR(class)&(isAdventurer)=(TRUE):S(ACM_CLASS_ADVENTURER);
+!!VR(class)&(isWarrior)=(TRUE)/(isMage)=(TRUE):S(ACM_CLASS_BATTLEMAGE);
+!!VR(class)&(isWarrior)=(TRUE)/(isAdventurer)=(TRUE):S(ACM_CLASS_HUNTER);
+!!VR(class)&(isMage)=(TRUE)/(isAdventurer)=(TRUE):S(ACM_CLASS_DRUID);
+
+!!if&(class)<>(ACM_NO_CLASS);
+  !!VR(classLevel):S(ACM_CLASS_LEVEL_MASTER);
+  !!VR(classLevel)|i^Grandmaster_Warrior_Hero%(hero)^=(TRUE)/i^Grandmaster_Mage_Hero%(hero)^=(TRUE)/i^Grandmaster_Adventurer_Hero%(hero)^=(TRUE):S(ACM_CLASS_LEVEL_GRANDMASTER);
+!!en;
+

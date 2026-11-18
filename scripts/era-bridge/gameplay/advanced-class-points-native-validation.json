@@ -7,7 +7,7 @@
   "sourceBaseCommit": "740d03aa60a98ff8bcbc3986fc3ef7058493e675",
   "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
   "sourceBindings": {
-    "scripts/era-bridge/campaigns/parser.mjs": "cad37dda2a2d008dff55274e33337386cfb533335c568201f73c370996b197b4",
+    "scripts/era-bridge/campaigns/parser.mjs": "3364a53a6a424ba6f43076b62aafb76f0ac5317f30f075cb7c7cf96dbe1e34a1",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "74eaa937947bace07899067bb9a2daacdae87c19da42a59a2ea4bbd028778f23",
     "scripts/era-bridge/gameplay/advanced-class-points.mjs": "c71989623964642c1454a474950cc290030896be10689bf0b164df12e483fb34",
     "tests/fixtures/era-gameplay/advanced-class-points-1.1.erm": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5",
@@ -17,7 +17,8 @@
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "30186b21787b629e9ee675bdb3cec2ba91369e53574363829b964950b7bbe08b",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f2b2f144f77fb53a770e787253608c323cb3bc157f0d212ca2eaff55f8ad19a4",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "27be8fffd284d2ba0838fbd2c38f62dce7cc706ac5ac5177759f8f1d6a39aed7",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2c97ee0043ebe21723791cd063c32b236ed1fdc9d2fda7067531442740ce82f"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "9e8f4ca90ac5d8145a8ae25b73a8a72ed1b9fe0535185536143833208bf76e4a",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "9b16c89c1674a12047e41c4dda4cf01ede2524964193d69db5cb501f9f8a438c"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -123,6 +124,10 @@
           "nativeBadgeQuery": true,
           "pendingNativeSaveReload": true,
           "completedNativeSaveReload": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
           "input": "touch"
         }
       ],
@@ -301,6 +306,10 @@
           "nativeBadgeQuery": true,
           "pendingNativeSaveReload": true,
           "completedNativeSaveReload": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
           "input": "mouse"
         }
       ],
@@ -316,5 +325,11 @@
       ],
       "errors": []
     }
+  },
+  "compilerFollowUp": {
+    "sourceBaseCommit": "4da1ec26f82ae74781237cdd25e1463cacf78d23",
+    "erm2ScalarLocalsAdded": true,
+    "originalCalculationRecheckedOnTouchLandscapePortraitAndMouse": true,
+    "nativeEngineUnchanged": true
   }
 }

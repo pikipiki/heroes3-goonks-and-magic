@@ -48,6 +48,19 @@ que les promotions, compétences au-delà du niveau Expert et autres systèmes
 du pack. Cette validation bornée n’admet pas le profil complet. Les preuves
 figurent dans `scripts/era-bridge/gameplay/advanced-class-points-native-validation.json`.
 
+Le compilateur prend aussi en charge les variables scalaires locales `x`/`y`
+d’ERM2 : déclarations `VA` ou en ligne, allocations dans les limites source
+16/100, remise à zéro du dictionnaire de noms à chaque nouveau déclencheur,
+et interpolation des noms de héros dans les variables persistantes.
+Le script original `acm_GetHeroClass` s’exécute ainsi sans réécriture :
+16 combinaisons de drapeaux Maître/Grand Maître vérifient les classes simples
+et hybrides, leur priorité, un autre héros et la préservation des variables
+lors d’un appel imbriqué. Les sauvegardes sont reprises au toucher en portrait
+et à la souris. Ces drapeaux sont des entrées contrôlées ; cette étape ne
+porte pas encore leur attribution par les promotions. Les tableaux, les
+variables locales `z`/`e` et la libération explicite restent refusés.
+La preuve bornée est `scripts/era-bridge/gameplay/advanced-class-identity-native-validation.json`.
+
 ## Références récupérées
 
 Distribution officielle :

@@ -1,5 +1,6 @@
 /** Original campaign ERM syntax only. Compiling a program never executes it. */
 import crypto from 'node:crypto';
+import {createLocalBindings} from './local-bindings.mjs';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const fail=(message,source)=>{throw new Error(`${source??'ERM'}: ${message}`);};
 export const campaignReceivers=new Set('IF VR UN HE OW OB HO TR TM FU LE MO CD CH DW CA DO GR MC MA WG HT BA BF BU BM BG QW PO MW MT BH CE SN'.split(' '));
@@ -102,12 +103,14 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={}}={})
  if(!bindings||typeof bindings!=='object'||Array.isArray(bindings))fail('Invalid identifier bindings',source);
  const bound=Object.fromEntries(Object.entries(bindings).sort(([a],[b])=>a<b?-1:a>b?1:0));
  for(const[name,value]of Object.entries(bound))if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)||!Number.isSafeInteger(value)||value< -2147483648||value>4294967295)fail('Invalid identifier binding '+name,source);
- const tokens=tokenizeErm(bytes,{source,encoding}),blocks=[],initializers=[],flows=new Map();let current=null,modern=false;
+ const erm2=Buffer.from(bytes).subarray(0,5).toString()==='ZVSE2',lowerLocals=erm2?createLocalBindings(bound):null;
+ const tokens=tokenizeErm(bytes,{source,encoding}),blocks=[],initializers=[],flows=new Map();let current=null,modern=erm2;
  const stackFor=commands=>{if(!flows.has(commands))flows.set(commands,[]);return flows.get(commands);};
  const target=(command,index)=>{command.operations[0].args[0].number=index;};
  const jump=(record,code)=>({...record,receiver:'__flow',selectors:[],operations:[{code,args:[{kind:'number',access:'read',number:0}]}]});
  for(const token of tokens){try{
-  const statement=bindIdentifiers(token.statement,bound);
+  const statement=lowerLocals?lowerLocals(token.statement):bindIdentifiers(token.statement,bound);
+  if(statement===null)continue;
   const m=/^!([!?#$])([A-Za-z]{2})([^:;]*)(?::([\s\S]*))?;$/.exec(statement);if(!m)fail('Invalid statement '+token.statement);
   const kind=m[1],receiver=m[2].toUpperCase(),at=firstOutside(m[3],text=>/^[&|]/.exec(text))?.index??-1,selectorText=at<0?m[3]:m[3].slice(0,at),conditionText=at<0?'':m[3].slice(at+1),selectors=splitOutside(selectorText).filter(s=>s.trim()).map(parseOperand),conditions=parseConditions(conditionText,m[3][at]==='|'?'any':'all');
   const record={receiver,selectors,conditions,source:{line:token.line,offset:token.offset,endOffset:token.endOffset,sha256:token.sha256}};
