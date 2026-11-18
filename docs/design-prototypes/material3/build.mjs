@@ -1,24 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import portraits from '../../../web/goonk-hd-portraits-data.mjs';
-
-const dir=path.dirname(new URL(import.meta.url).pathname);
-const inventory=JSON.parse(fs.readFileSync('docs/ui-audit/inventory.json','utf8'));
-const assets={};
-function asset(key,file){assets[key]='data:image/'+(file.endsWith('.svg')?'svg+xml':file.endsWith('.webp')?'webp':'png')+';base64,'+fs.readFileSync(file).toString('base64');}
-asset('creatures','web/h3-theme/goonks/base-v1.webp');
-asset('map','web/h3-theme/adventure-map.svg');
-asset('hero','web/h3-theme/hero-silhouette.svg');
-asset('hall','web/h3-theme/town-hall.png');
-asset('fort','web/h3-theme/town-fort.png');
-for(const resource of ['wood','mercury','ore','sulfur','crystal','gems','gold'])asset(resource,'web/h3-theme/resource-'+resource+'.png');
-for(const spell of [0,7,15,17,24,46])asset('spell'+spell,'web/h3-theme/spells/'+spell+'.png');
-const rects=Object.entries(portraits).filter(([,r])=>r.file.endsWith('/base-v1.webp')).map(([key,r])=>({key,...r}));
-const screens=inventory.screens.map(s=>({id:s.id,source:s.source,variants:s.variants}));
-let html=fs.readFileSync(path.join(dir,'gallery.template.html'),'utf8').replace('__INVENTORY__',JSON.stringify(screens)).replace('__ASSETS__',JSON.stringify(assets)).replace('__RECTS__',JSON.stringify(rects));
-if(Buffer.byteLength(html)>=1000000)throw new Error('Inline gallery exceeds 1 MB');
-fs.writeFileSync(path.join(dir,'prototypes.html'),html);
-fs.writeFileSync(path.join(dir,'coverage.json'),JSON.stringify({scope:'Prototype compositions; no native gameplay or animation validation',families:screens.length,variants:screens.reduce((n,s)=>n+s.variants.length,0),directions:['Héritage clair','Focus tactique'],viewports:[[360,640],[320,568],[640,360],[568,280]],screens},null,2)+'\n');
-const output=process.env.PROTOTYPE_OUTPUT;
-if(output){fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,html);}
-console.log(`${screens.length} families / ${screens.reduce((n,s)=>n+s.variants.length,0)} states / ${Buffer.byteLength(html)} bytes`);
+import {execFileSync} from 'node:child_process';
+const dir='docs/design-prototypes/material3';
+const data=JSON.parse(fs.readFileSync(dir+'/real-captures.json','utf8'));
+const revision=process.env.REAL_UI_ASSET_REVISION||execFileSync('git',['log','-1','--format=%H','--',dir+'/captures'],{encoding:'utf8'}).trim();
+if(!/^[a-f0-9]{40}$/.test(revision))throw Error('Commit the verified native captures before building the gallery.');
+const base=`https://cdn.jsdelivr.net/gh/pikipiki/heroes3-goonks-and-magic@${revision}/${dir}/captures`;
+const embedded={};
+for(const sample of data.samples.filter(s=>s.screen==='blacksmith'&&s.width===640&&s.height===360))embedded[sample.file]='data:image/jpeg;base64,'+fs.readFileSync(path.join(dir,'captures',sample.file)).toString('base64');
+const publicData={samples:data.samples.map(({screen,label,width,height,design,file})=>({screen,label,width,height,design,file}))};
+const html=fs.readFileSync(dir+'/gallery.template.html','utf8').replace('__REAL_DATA__',JSON.stringify(publicData)).replace('__EMBEDDED__',JSON.stringify(embedded)).replace('__ASSET_BASE__',base);
+if(Buffer.byteLength(html)>=1000000)throw Error('Gallery exceeds 1 MB');
+fs.writeFileSync(dir+'/prototypes.html',html);
+if(process.env.PROTOTYPE_OUTPUT)fs.writeFileSync(process.env.PROTOTYPE_OUTPUT,html);
+console.log(`${new Set(data.samples.map(s=>s.screen)).size} actual screens; ${data.samples.length} native captures; ${Buffer.byteLength(html)} bytes`);
