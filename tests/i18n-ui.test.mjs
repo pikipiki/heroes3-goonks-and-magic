@@ -31,3 +31,21 @@ test('Contextual actions and owned war machines translate in both directions',()
   assert.equal(translate(en,'fr'),fr);assert.equal(translate(fr,'en'),en);
  }
 });
+
+test('Recruitment labels and native creature names are complete in both languages',()=>{
+ for(const [fr,en]of [['Salle de recrutement','Recruitment hall'],['Tout recruter','Recruit all'],['Serpent de mer','Sea Serpent'],['Léviathan','Leviathan'],['Défense','Defense'],['Attaque','Attack'],['Guilde des mages','Mage guild'],['État du bâtiment','Building status'],['Catégories','Categories'],['Campagne','Campaign'],['Nouvelle partie','New game']]){
+  assert.equal(translate(en,'fr'),fr);assert.equal(translate(fr,'en'),en);
+ }
+ assert.equal(translate('Recruit 12','fr'),'Recruter 12');
+ assert.equal(translate('Creatures in stack: 15','fr'),'Créatures dans la troupe : 15');
+});
+
+test('Already localized catalogue entries remain unchanged, including proper names',()=>{
+ for(const [fr,en]of Object.entries(catalogue)){
+  assert.equal(translate(fr,'fr'),fr,'French text: '+fr);
+  assert.equal(translate(en,'en'),en,'English text: '+en);
+ }
+ assert.equal(translate('Picpique, Lancier de cristal × 3','en'),'Picpique, Crystal Lancer × 3');
+ assert.equal(translate('Picpique, Crystal Lancer × 3','en'),'Picpique, Crystal Lancer × 3');
+ assert.equal(translate('Bienvenue dans Heroes Goonk · 2026','fr'),'Bienvenue dans Heroes Goonk · 2026');
+});

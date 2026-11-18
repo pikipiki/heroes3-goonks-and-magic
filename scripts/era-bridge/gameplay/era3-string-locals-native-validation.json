@@ -879,5 +879,143 @@
       "cleanManifestUsed": true,
       "engineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
     }
+  },
+  "frontendMergeVerification": {
+    "applicationVersion": "0.4.271",
+    "mergedCommits": [
+      "e2104c2916f15ddb5c99c550cc9b487d029e6a86",
+      "850d5c8da13cd70a850e25d62a3705b227da8bf5"
+    ],
+    "engineUnchanged": true,
+    "reports": {
+      "touchPortrait": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e",
+        "scenarios": [
+          {
+            "kind": "era3-string-locals",
+            "seen": [
+              "STR ENTRY []",
+              "STR PARENT alpha/beta+/gamma size -1 addr -3/-1/-2",
+              "STR CHILD ENTRY []",
+              "STR CHILD child",
+              "STR EMPTY child",
+              "STR RETURN alpha/beta+/gamma global persisted",
+              "STR REUSE beta+!/gamma addr -2",
+              "STR EARLY beta+!",
+              "STR HANDLER gamma",
+              "STR INIT initializer global persisted"
+            ],
+            "nestedNativeSaveReload": true,
+            "completedNativeSaveReload": true,
+            "negativeBankArrayAddresses": true,
+            "sourceNegativePoolSizeQuirk": true,
+            "dynamicWrite": true,
+            "reusedContentsRetained": true,
+            "earlyExitRestoresCaller": true,
+            "matchingHandlersShareBank": true,
+            "initializationBankRestored": true,
+            "programSha256": "9ce640c4220e12da297fbb6479d1f423e5b4d0a3babe36070988c380a93e0780",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "54a17a0839aee8e3808ad020ccf9b95fa56ed2ebf7358a487865790e1be3edfc"
+      },
+      "touchLandscape": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e",
+        "scenarios": [
+          {
+            "kind": "era3-string-locals",
+            "seen": [
+              "STR ENTRY []",
+              "STR PARENT alpha/beta+/gamma size -1 addr -3/-1/-2",
+              "STR CHILD ENTRY []",
+              "STR CHILD child",
+              "STR EMPTY child",
+              "STR RETURN alpha/beta+/gamma global persisted",
+              "STR REUSE beta+!/gamma addr -2",
+              "STR EARLY beta+!",
+              "STR HANDLER gamma",
+              "STR INIT initializer global persisted"
+            ],
+            "nestedNativeSaveReload": true,
+            "completedNativeSaveReload": true,
+            "negativeBankArrayAddresses": true,
+            "sourceNegativePoolSizeQuirk": true,
+            "dynamicWrite": true,
+            "reusedContentsRetained": true,
+            "earlyExitRestoresCaller": true,
+            "matchingHandlersShareBank": true,
+            "initializationBankRestored": true,
+            "programSha256": "9ce640c4220e12da297fbb6479d1f423e5b4d0a3babe36070988c380a93e0780",
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "18ef864f1ba69796d9b5797599916fea5fc914655519f025710918a5d89de89f"
+      },
+      "desktopMouse": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e",
+        "scenarios": [
+          {
+            "kind": "era3-string-locals",
+            "seen": [
+              "STR ENTRY []",
+              "STR PARENT alpha/beta+/gamma size -1 addr -3/-1/-2",
+              "STR CHILD ENTRY []",
+              "STR CHILD child",
+              "STR EMPTY child",
+              "STR RETURN alpha/beta+/gamma global persisted",
+              "STR REUSE beta+!/gamma addr -2",
+              "STR EARLY beta+!",
+              "STR HANDLER gamma",
+              "STR INIT initializer global persisted"
+            ],
+            "nestedNativeSaveReload": true,
+            "completedNativeSaveReload": true,
+            "negativeBankArrayAddresses": true,
+            "sourceNegativePoolSizeQuirk": true,
+            "dynamicWrite": true,
+            "reusedContentsRetained": true,
+            "earlyExitRestoresCaller": true,
+            "matchingHandlersShareBank": true,
+            "initializationBankRestored": true,
+            "programSha256": "9ce640c4220e12da297fbb6479d1f423e5b4d0a3babe36070988c380a93e0780",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "082b6c336c19cde4883d6c5677f568c35cb2337a1981baac1e048a58566380ec"
+      }
+    },
+    "nodeTests": {
+      "total": 918,
+      "passed": 863,
+      "failed": 0,
+      "skipped": 55,
+      "logSha256": "b33419f93d6f848a2f954e636dc93b248d8ec68773187c2e15cc0444df4820dc"
+    },
+    "siteVerified": true
   }
 }

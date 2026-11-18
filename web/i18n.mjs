@@ -8,17 +8,37 @@ export const getLanguage=()=>localeSession.language;
 let dictionary={};if(typeof window!=='undefined')try{const response=await fetch(new URL('./i18n-dictionary.json',import.meta.url));dictionary=await response.json();}catch(error){console.error('Translation catalogue unavailable',error);}
 // Keep the same translation rules available to DOM text and canvas renderers.
 export function createTranslator(catalogue){
- const reverse=Object.fromEntries(Object.entries(catalogue).map(([fr,en])=>[en,fr]));
- const tokens=Object.entries(catalogue).sort((a,b)=>b[0].length-a[0].length),back=Object.entries(reverse).sort((a,b)=>b[0].length-a[0].length);
+ // The first entry is the canonical label; later contextual synonyms must
+ // not replace it (for example “Attack” as a stat is “Attaque”).
+ const reverse={};for(const [fr,en]of Object.entries(catalogue))reverse[en]??=fr;
+ const compile=(source,targets)=>{
+  const protectedText=new Set(targets);
+  const phrases=[...new Set([...Object.keys(source),...protectedText])].filter(s=>s.length>=3).sort((a,b)=>b.length-a.length);
+  return {source,protectedText,phrases};
+ };
+ const rules={en:compile(catalogue,Object.values(catalogue)),fr:compile(reverse,Object.keys(catalogue))};
  return(value,lang='en')=>{
-  const text=String(value??''),table=lang==='fr'?reverse:catalogue,entries=lang==='fr'?back:tokens;
-  if(table[text])return table[text];
-  let result=text;
-  for(const [a,b]of entries){
-   // Short resource names such as French “or” must not rewrite English prose.
-   if(a.length<3||!result.includes(a))continue;
-   result=result.replaceAll(a,(match,offset,whole)=>{const before=whole[offset-1],after=whole[offset+match.length];return before&&/\p{L}/u.test(before)||after&&/\p{L}/u.test(after)?match:b;});
+  const text=String(value??''),{source,protectedText,phrases}=rules[lang==='fr'?'fr':'en'];
+  if(protectedText.has(text))return text;
+  if(source[text])return source[text];
+  // Reserve matches in the original text, longest first. Never feed translated
+  // output into another rule, or translate inside an already localized name.
+  const matches=[];
+  for(const phrase of phrases){
+   let offset=text.indexOf(phrase);
+   while(offset!==-1){
+    const end=offset+phrase.length,before=text[offset-1],after=text[end];
+    if(!(before&&/\p{L}/u.test(before)&&/\p{L}/u.test(phrase[0]))&&
+       !(after&&/\p{L}/u.test(after)&&/\p{L}/u.test(phrase.at(-1)))&&
+       !matches.some(m=>offset<m.end&&end>m.offset))
+     matches.push({offset,end,value:protectedText.has(phrase)?phrase:source[phrase]});
+    offset=text.indexOf(phrase,offset+phrase.length);
+   }
   }
+  matches.sort((a,b)=>a.offset-b.offset);
+  let result='',cursor=0;
+  for(const m of matches){result+=text.slice(cursor,m.offset)+m.value;cursor=m.end;}
+  result+=text.slice(cursor);
   // HP labels are often embedded in a live stat line rather than separate nodes.
   const from=lang==='fr'?'HP':'PV',to=lang==='fr'?'PV':'HP';
   return result.replace(new RegExp('(^|[^\\p{L}\\p{N}_])'+from+'(?=$|[^\\p{L}\\p{N}_])','gu'),(_,prefix)=>prefix+to);
