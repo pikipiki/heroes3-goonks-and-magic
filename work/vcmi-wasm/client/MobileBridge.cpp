@@ -2524,10 +2524,15 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   return;
  }
  if(action==41){
-  const auto army=dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));
-  if(!army||army->getOwner()!=p->playerID||b<0||b>=7||!army->hasStackAtSlot(SlotID(b)))return;
+  // Tavern candidates are not owned map objects. Only the army of the hero
+  // already visible in the equipment window may be inspected without ownership.
+  const auto preview=ENGINE->windows().topWindow<CHeroWindow>();
+  const auto visibleHero=preview?preview->curHero:nullptr;
+  const bool inspectingVisibleHero=visibleHero&&visibleHero->id.getNum()==a;
+  const CArmedInstance * army=inspectingVisibleHero?visibleHero:dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));
+  if(!army||(!inspectingVisibleHero&&army->getOwner()!=p->playerID)||b<0||b>=7||!army->hasStackAtSlot(SlotID(b)))return;
   if(auto old=ENGINE->windows().topWindow<CStackWindow>()){
-   if(old->isCommanderLevelUp())return;
+   if(old->isCommanderLevelUp()||old->getMobileStack()==&army->getStack(SlotID(b)))return;
    std::static_pointer_cast<CWindowObject>(old)->close();
   }
   if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow&&!ENGINE->windows().topWindow<CHeroWindow>())return;
