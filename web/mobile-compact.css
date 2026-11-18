@@ -397,3 +397,48 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-town-service]>.mobile-top{di
 @container goonk-viewport (orientation:landscape){
  #mobile-app .town-service[data-kind=blacksmith] header{padding-top:calc(var(--mobile-top-height,51px) + 4px)}
 }
+#mobile-app .town-service[data-kind=thieves-guild] header{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:2px}
+#mobile-app .town-service[data-kind=thieves-guild] h2{flex:none}
+#mobile-app .guild-help{margin:0;font-size:10px;line-height:1.1;color:#ddc697}
+#mobile-app .guild-identity{display:flex;align-items:center;justify-content:center;gap:3px;min-width:0}
+#mobile-app .guild-identity>canvas{width:28px;height:28px;flex:none;object-fit:contain}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-identity{display:block}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-identity>canvas{width:16px;height:16px}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild] header{justify-content:flex-start}
+}
+
+#mobile-app .guild-primary-row th>canvas{width:14px;height:14px;vertical-align:middle;margin-right:3px}
+#mobile-app .guild-primary-row td{font-weight:bold;color:#ffe0a0}
+#mobile-app .guild-primary-row abbr{display:none;text-decoration:none}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) :is(th,td){padding:0 1px}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) th:first-child{width:24%}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-skill-name{display:none}
+#mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-primary-row abbr{display:inline}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) table{font-size:9px}
+}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild] :is(th,td){padding:0 1px}
+ #mobile-app .guild-identity>canvas{width:24px;height:24px}
+}
+#mobile-app .guild-identity>canvas{display:inline-block;vertical-align:middle}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .kingdom-name{display:none}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-primary-row th>canvas{width:10px;height:10px;margin-right:2px}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) th:first-child{width:20%}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-identity>canvas{width:12px;height:12px}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-rank{font-size:1em}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .kingdom-flag{height:12px}
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) .guild-primary-row th>canvas{width:9px;height:9px}
+}
+@container goonk-viewport (orientation:landscape) and (max-height:360px){
+ html.goonk-mobile #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]){padding:4px;border-width:4px}
+}
+@container goonk-viewport (orientation:landscape) and (max-width:600px){
+ #mobile-app .town-service[data-kind=thieves-guild]:is([data-players="5"],[data-players="6"],[data-players="7"],[data-players="8"]) table{font-size:8.5px}
+}

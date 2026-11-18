@@ -1216,14 +1216,26 @@ void publishMobileState(){
   n["mode"].String()="dialog";n["dialogKind"].String()="thieves-guild";
   SThievesGuildInfo info;p->cb->getThievesGuildInfo(info,guild->getMobileOwner());
   auto & data=n["thievesGuild"];
+  HeroIconFrames guildIcons;
+  for(int i=0;i<4;++i){JsonNode icon;addHeroIcon(guildIcons,icon,"PSKIL42",i==3?5:i);data["primaryIcons"].Vector().push_back(std::move(icon));}
   for(const auto color:info.playerColors){JsonNode player;player["color"].Integer()=color.getNum();
    static const std::array names={"Red","Blue","Tan","Green","Orange","Purple","Teal","Pink"};
    player["name"].String()=names.at(color.getNum());
-   if(const auto it=info.colorToBestHero.find(color);it!=info.colorToBestHero.end())player["hero"].String()=it->second.name;
-   if(const auto it=info.bestCreature.find(color);it!=info.bestCreature.end()&&it->second!=CreatureID::NONE)player["creature"].String()=it->second.toCreature()->getNameSingularTranslated();
+   if(const auto it=info.colorToBestHero.find(color);it!=info.colorToBestHero.end()){
+    player["hero"].String()=it->second.name;
+    if(it->second.portraitSource.isValid()){
+     addHeroIcon(guildIcons,player["heroPortrait"],"PortraitsSmall",it->second.getIconIndex());
+     if(it->second.details)for(const auto value:it->second.details->primskills)player["primarySkills"].Vector().emplace_back(double(value));
+    }
+   }
+   if(const auto it=info.bestCreature.find(color);it!=info.bestCreature.end()&&it->second!=CreatureID::NONE){
+    player["creature"].String()=it->second.toCreature()->getNameSingularTranslated();
+    player["creatureId"].Integer()=it->second.getNum();portraitIds.insert(it->second.getNum());
+   }
    if(const auto it=info.personality.find(color);it!=info.personality.end()&&it->second!=EAiTactic::RANDOM)player["personality"].String()=LIBRARY->generaltexth->arraytxt[it->second==EAiTactic::NONE?172:168+int(it->second)];
    data["players"].Vector().push_back(player);
   }
+  publishHeroIcons(guildIcons);
   const std::array rankings={&info.numOfTowns,&info.numOfHeroes,&info.gold,&info.woodOre,&info.mercSulfCrystGems,&info.obelisks,&info.artifacts,&info.army,&info.income};
   static const std::array labels={"Towns","Heroes","Gold","Wood and ore","Rare resources","Obelisks","Artifacts","Army strength","Daily income"};
   for(size_t i=0;i<rankings.size();++i){JsonNode row;row["label"].String()=labels[i];int rank=0;for(const auto & place:*rankings[i]){++rank;for(const auto color:place)row["ranks"][std::to_string(color.getNum())].Integer()=rank;}data["rows"].Vector().push_back(row);}

@@ -1,19 +1,6 @@
-import{chromium}from'playwright-core';import assert from'node:assert/strict';import fs from'node:fs';import{execFileSync}from'node:child_process';import{silenceTestAudio}from'./silent-audio.mjs';
+import{chromium}from'playwright-core';import assert from'node:assert/strict';import fs from'node:fs';import{creatureTownFixture}from'./creature-town-fixture.mjs';import{silenceTestAudio}from'./silent-audio.mjs';
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8996',language=process.env.TEST_LANGUAGE||'en',out='/tmp/goonk-recruitment-abilities-'+language;fs.mkdirSync(out,{recursive:true});
-const fixture=execFileSync('python3',['-c',`import zipfile,json,io,copy,sys,importlib.util
-with zipfile.ZipFile('maps/000-Goonk.vmap') as z:entries={n:z.read(n) for n in z.namelist()}
-objects=[o for o in json.loads(entries['objects.json']) if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
-town=next(o for o in objects if o['instanceName']=='goonkTown');objects.remove(town)
-for i,faction in enumerate(['goonk','castle','rampart','tower','inferno','necropolis','dungeon','stronghold','fortress','conflux']):
- t=copy.deepcopy(town);t.update(instanceName='abilityTown'+str(i),subtype=('goonk:' if i==0 else 'core:')+faction,x=9+(i%3)*10,y=9+(i//3)*8);t['options']['name']=faction;t['options']['buildings']={'allOf':['core:villageHall','core:tavern','core:fort','core:dwellingLvl1']};objects.append(t)
-entries['objects.json']=json.dumps(objects).encode();h=json.loads(entries['header.json']);h['name']='000 - Creature abilities';entries['header.json']=json.dumps(h).encode()
-for name in ['english.json','french.json']:
- t=json.loads(entries[name]);t['mapName']=h['name'];entries[name]=json.dumps(t).encode()
-spec=importlib.util.spec_from_file_location('normalize','scripts/normalize-map-instances.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod);entries=mod.normalize(entries)
-o=io.BytesIO()
-with zipfile.ZipFile(o,'w',zipfile.ZIP_DEFLATED) as z:
- for n,v in entries.items():z.writestr(n,v)
-sys.stdout.buffer.write(o.getvalue())`]);
+const fixture=creatureTownFixture;
 const browser=await chromium.launch({headless:true});try{const p=await browser.newPage({viewport:{width:360,height:659},hasTouch:true}),errors=[];await silenceTestAudio(p);await p.addInitScript(language=>localStorage.setItem('heroes-goonk.language',language),language);p.on('pageerror',e=>errors.push(e.message));const wait=(f,a)=>p.waitForFunction(f,a,{timeout:240000}),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);await p.goto(origin+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu'&&goonkSessionRecovery?.phase==='done');await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/003-Goonks-WoG.vmap',new Uint8Array(bytes)),[...fixture]);await cmd(20,1);await wait(()=>goonkMobileState.lobbyReady&&goonkMobileState.maps?.some(m=>m.name==='000 - Creature abilities'));await cmd(24,await p.evaluate(()=>goonkMobileState.maps.find(m=>m.name==='000 - Creature abilities').index));await wait(()=>goonkMobileState.selectedMap==='000 - Creature abilities');await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn&&goonkMobileState.towns?.length===10);const report=[];
 for(let town=0;town<10;town++){await cmd(5,town);await wait(()=>goonkMobileState.mode==='town');const faction=await p.evaluate(()=>goonkMobileState.townFaction);await cmd(29,4);await p.waitForTimeout(300);await cmd(54);await wait(()=>goonkMobileState.mode==='fort'&&goonkMobileState.fortFamilies?.length>6);const families=await p.evaluate(()=>goonkMobileState.fortFamilies),units=families.flatMap(f=>f.variants);let nonempty=0;
 for(const u of units){assert(u.abilities===undefined||Array.isArray(u.abilities),'Preview abilities are valid '+u.name);await cmd(42,u.id);await wait(id=>goonkMobileState.mode==='creature'&&goonkMobileState.creatureUnit?.id===id,u.id);const detail=await p.evaluate(()=>goonkMobileState.creatureUnit);assert.deepEqual(u.abilities||[],detail.abilities||[],'Recruitment matches classic details: '+u.name);if(u.abilities?.length)nonempty++;await cmd(43);await wait(()=>goonkMobileState.mode==='fort');}
