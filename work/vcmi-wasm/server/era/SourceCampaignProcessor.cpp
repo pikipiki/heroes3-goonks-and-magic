@@ -569,7 +569,7 @@ struct SourceCampaignProcessor::Impl final:Host
    if(saved.isNull())
     if(const auto & campaign=gh.gameState().getStartInfo()->campState;campaign&&!campaign->getSourceCampaignVariables().isNull())
      vm=era_campaign::persistentVariables(era_campaign_json::readState(campaign->getSourceCampaignVariables()));
-   if(vm.programSha256.empty())vm.programSha256=program.sha256;
+   if(vm.programSha256.empty()){vm.programSha256=program.sha256;vm.era3StringLocals=program.era3StringLocals;}
    // The first native new-turn pass can create world state (including fire)
    // before the interface starts the ERM initializers. Bind that world to the
    // decoded VM identity now; persist() must not receive a null source digest.

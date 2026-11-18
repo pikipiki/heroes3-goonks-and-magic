@@ -164,9 +164,10 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={},dial
    if(op.code==='S'&&(op.args.length!==2||op.args[0].access!=='read'||op.args[1].access!=='write'||op.args.some(arg=>!integerArgument(arg))))fail('ERA3 FU:S requires an integer index and numeric output',source);
   }
  }
+ const stringLocals=lowerLocals?.usesStringLocals===true;
  const sourceSha256=sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),boundNames=Object.keys(bound).length>0;
- const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{})}))):sourceSha256;
+ const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),...(stringLocals?{stringLocals:'era3-z-ascii'}:{})}))):sourceSha256;
  const integerBounds=[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='VR'&&c.operations.some(op=>op.code==='F'));
- const version=metadata?5:era3?4:integerBounds?3:modern||boundNames?2:1;
- return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),initializers,blocks};
+ const version=stringLocals?6:metadata?5:era3?4:integerBounds?3:modern||boundNames?2:1;
+ return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),...(stringLocals?{stringLocals:'era3-z-ascii'}:{}),initializers,blocks};
 }

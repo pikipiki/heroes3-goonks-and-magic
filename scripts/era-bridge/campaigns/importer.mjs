@@ -58,7 +58,7 @@ export function extractCaveScripts(bytes){
 export function mergePrograms(sources,{source,mapSha256,dialect='auto'}={}){
  const programs=sources.map(entry=>compileErm(entry.bytes,{source:entry.id,encoding:entry.encoding||'utf-8',dialect:entry.dialect||dialect,bindings:entry.bindings||{}}));
  const initializers=mergeSourceInitializers(programs),mode=sourceCallDialect(programs),version=Math.max(1,...programs.map(p=>p.schemaVersion));
- const result={schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,...(mode==='era3-integers'?{functionArguments:mode}:{}),...(version>=5?{functionMetadata:'era3-integers'}:{}),source,mapSha256,sources:sources.map(({id,sha256,offset,length,firstOccurrence,eventIndex})=>({id,sha256,...(offset===undefined?{}:{offset,length}),...(firstOccurrence===undefined?{}:{firstOccurrence}),...(eventIndex===undefined?{}:{eventIndex})})),initializers,blocks:programs.flatMap(p=>p.blocks)};
+ const result={schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,...(mode==='era3-integers'?{functionArguments:mode}:{}),...(programs.some(p=>p.functionMetadata)?{functionMetadata:'era3-integers'}:{}),...(programs.some(p=>p.stringLocals)?{stringLocals:'era3-z-ascii'}:{}),source,mapSha256,sources:sources.map(({id,sha256,offset,length,firstOccurrence,eventIndex})=>({id,sha256,...(offset===undefined?{}:{offset,length}),...(firstOccurrence===undefined?{}:{firstOccurrence}),...(eventIndex===undefined?{}:{eventIndex})})),initializers,blocks:programs.flatMap(p=>p.blocks)};
  result.sha256=sha256(Buffer.from(JSON.stringify(result)));return result;
 }
 export function compileCaveFile(file='mod/wake-of-gods/Mods/maps/content/maps/Cave of Gerfrex.h3m'){

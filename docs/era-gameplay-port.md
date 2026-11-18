@@ -58,7 +58,7 @@ et hybrides, leur priorité, un autre héros et la préservation des variables
 lors d’un appel imbriqué. Les sauvegardes sont reprises au toucher en portrait
 et à la souris. Ces drapeaux sont des entrées contrôlées ; cette étape ne
 porte pas encore leur attribution par les promotions. Les variables locales
-`z`/`e` restent refusées.
+`e` restent refusées ; les chaînes locales `z` disposent du contrat borné ci-dessous.
 La preuve bornée est `scripts/era-bridge/gameplay/advanced-class-identity-native-validation.json`.
 
 Les tableaux locaux numériques `x`/`y` à indices constants utilisent désormais
@@ -73,6 +73,25 @@ compilée conservent exactement leurs octets. Cette extension produit le contrat
 AST v4 existant ; elle n’admet pas encore les helpers de tableaux de chaînes
 des packs complets. Preuve bornée :
 `scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json`.
+
+Les chaînes locales nommées `z` et leurs tableaux utilisent maintenant les dix
+cellules négatives ERA3. Pour une allocation de trois cellules, les éléments
+occupent `z-3`, `z-2`, `z-1` ; les adresses calculées ajoutent l’indice à cette
+base. La réutilisation des plages conserve leur contenu. Le résultat inhabituel
+de `[SIZE]` sur cette plage négative suit le calcul source : pour cette première
+allocation de trois cellules, il vaut `-1`, et non la longueur du tableau.
+Chaque appel commence avec des chaînes vides ; un retour normal ou anticipé
+restaure les chaînes de l’appelant. Les gestionnaires d’un même déclencheur
+partagent leur plage. Les sauvegardes conservent aussi les appels imbriqués
+et les chaînes à restaurer après un événement suspendu.
+
+Cette extension utilise AST v6 et la sauvegarde native 920, sans changer les
+19 choix de partie. Les anciens programmes conservent leurs contrats et leur
+comportement. Les valeurs admises sont ASCII, sans NUL, jusqu’à 511 octets ;
+les conversions de page de codes et la troncature restent à rapprocher de la
+source avant admission. Les arguments `FU:P` textuels, les locales `e`, les
+chaînes ERT et les profils complets restent à porter. La preuve bornée est
+`scripts/era-bridge/gameplay/era3-string-locals-native-validation.json`.
 
 La libération explicite `VA(-nom)` des variables et tableaux `x`/`y` suit
 également l’allocateur ERA : récupération de la fin de plage ou ajout du bloc

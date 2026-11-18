@@ -54,7 +54,7 @@ export function compileNativeCampaign(file) {
    const version = Math.max(1, ...programs.map(p => p.schemaVersion));
    const program = {schemaVersion: version, contract: 'source-campaign-erm-ast-v'+version,
     ...(programs[0]?.functionArguments?{functionArguments:programs[0].functionArguments}:{}),
-    ...(version>=5?{functionMetadata:'era3-integers'}:{}),
+    ...(programs.some(p=>p.functionMetadata)?{functionMetadata:'era3-integers'}:{}),...(programs.some(p=>p.stringLocals)?{stringLocals:'era3-z-ascii'}:{}),
     source: campaign.name + '!' + map.member, mapSha256: map.mapSha256,
     sources: programs.map((p, index) => ({id: p.source, originalSha256: p.originalSha256,
      compiledSha256: p.sha256, firstOccurrence: map.sources[index].firstOccurrence,

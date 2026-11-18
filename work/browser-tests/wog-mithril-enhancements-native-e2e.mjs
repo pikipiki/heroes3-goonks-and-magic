@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {revealNativeAction,selectNativeOption} from './native-ui-actions.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -348,13 +349,13 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
 }
 
 async function panel(){
- if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[usesMouse?'click':'tap']();
+ if(await page.locator('.mithril-panel').isHidden()){const action=await revealNativeAction(page,'button[data-mithril-open]',{mouse:usesMouse});await action[usesMouse?'click':'tap']();}
  await wait(()=>goonkMobileState.mithril);
  return (await state()).mithril;
 }
 async function buy(offer){
  const before=await panel();
- if(offer.kind===8)await page.locator(`[data-mithril-terrain="${offer.id}"]`).selectOption(String(offer.choice??0));
+ if(offer.kind===8)await selectNativeOption(page,`[data-mithril-terrain="${offer.id}"]`,offer.choice??0,{mouse:usesMouse});
  await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[usesMouse?'click':'tap']();
  if(offer.kind===6){
   await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
@@ -604,7 +605,7 @@ try{
  await command(1200,5,0,(await state()).mithril.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,amount);
  report.scenarios.push('owned-mine-double-income-payment-and-stale-request');
- await page.locator('[data-mithril-close]').tap();await page.locator('[data-ui=heroes]').tap();
+ await page.locator('[data-mithril-close]').tap();await (await revealNativeAction(page,'[data-ui=heroes]')).tap();
  await wait(()=>goonkMobileState.heroWindow?.henchman);
  if(!await page.locator('[data-hero-tab=henchman]').isVisible())await page.locator('.hero-bag-tabs .ui-overflow-trigger:visible').tap();
  await page.locator('[data-hero-tab=henchman]').tap();
@@ -643,7 +644,7 @@ try{
  const touch=await page.context().newCDPSession(page);
  for(const viewport of [{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:1024,height:768}]){
   await page.setViewportSize(viewport);
-  const layout=await page.locator('.mithril-panel').evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,closes:node.querySelectorAll('[data-mithril-close]').length,scroll:getComputedStyle(node.querySelector('.mithril-content')).overflowY,small:[...node.querySelectorAll('button,select')].some(button=>button.getBoundingClientRect().height<44)}));
+  const layout=await page.locator('.mithril-panel').evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,closes:node.querySelectorAll('[data-mithril-close]').length,scroll:getComputedStyle(node.querySelector('.mithril-content')).overflowY,small:[...node.querySelectorAll('button,select,[role=combobox]')].some(button=>{const box=button.getBoundingClientRect();return box.width>0&&box.height>0&&(box.width<48||box.height<48);})}));
   assert(layout.closes===1&&!layout.small&&layout.scrollWidth<=layout.width+1&&['auto','scroll'].includes(layout.scroll),JSON.stringify(layout));
   const content=page.locator('.mithril-content');await content.evaluate(node=>{node.scrollTop=0;});
   const box=await content.boundingBox();assert(box&&box.height>100);
@@ -663,7 +664,7 @@ try{
  const saved=await readCompletedNativeSave(page,command,{tag:917});
  if(process.env.MITHRIL_EXPORT_SAVE)fs.writeFileSync(process.env.MITHRIL_EXPORT_SAVE,Buffer.from(saved));
  await page.close();await boot({save:[...saved],henchmen:true});
- await page.locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);
+ await (await revealNativeAction(page,'[data-ui=heroes]')).tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);
  assert.equal((await state()).heroWindow.henchman.unit.key,'core:archangel');assert((await state()).heroWindow.henchman.alive);
  await command(63);await wait(()=>goonkMobileState.mode==='map');data=await panel();
  report.scenarios.push('companion-and-mithril-restored-from-same-save');

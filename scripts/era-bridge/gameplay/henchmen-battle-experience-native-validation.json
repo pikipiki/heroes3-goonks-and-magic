@@ -11,14 +11,14 @@
     "lines": "250-271,746-778"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
+    "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651",
     "scripts/era-bridge/gameplay/henchmen.mjs": "fd4cc9ac3004039354888f7a046f08ebb2959645fb6844bbe2ce749bc27a60fe",
     "scripts/era-bridge/gameplay/henchmen.json": "35b793559d0114a132061955eb3a8cd7bc4a864ed44066c2a23d28fdecc6bbe4",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
     "work/browser-tests/wog-henchmen-battle-experience-cases.mjs": "c8e12a19af45b9d4bfdc22814cfa805d336d6a942f210ed36a92e605ed422152",
     "work/vcmi-wasm/lib/battle/BattleInfo.h": "302fb3a34732998f98b12f6b52e2e154e6e601166edf38fa6c06594773f829b9",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6ad22e6b30a158d3493ee0e28506bc8964411faff3452bcc184dcf51808555a2",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "e5dd27973eb93be808a3b4ddd360989e25cf15e32c7ed5215503cdbd8fecef44",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "5c74948eaa8db1a565eb0f3ae8e2dc3243afe3fda289d96ec4dab3bc20684660"
   },
@@ -235,5 +235,16 @@
       "scripts/era-bridge/gameplay/henchmen.json": "8415a540f3fcb53801102f8a32acda49473495c6a31108cd5b2ba901112c636b"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
+  },
+  "stringLocalsRevalidation": {
+    "scope": "Legacy contracts remain unchanged; historical native reports retained. New local-z scope and current-engine regressions are documented separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6ad22e6b30a158d3493ee0e28506bc8964411faff3452bcc184dcf51808555a2",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
+    "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
   }
 }

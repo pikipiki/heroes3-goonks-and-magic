@@ -12,19 +12,23 @@ export function mithrilSourceOptionFixture({deferInitialRead=false}={}){
 export async function runMithrilSourceOption({boot,panel,buy,state,command,wait,page,output,report,readCompletedNativeSave}){
  const scriptProgram=mithrilSourceOptionFixture({deferInitialRead:process.env.CASES==='source-option-control'});fs.writeFileSync(path.join(output,'program.json'),JSON.stringify(scriptProgram,null,2));
  const desktop=process.env.CASES==='source-option-desktop';
+ const availability=async active=>{
+  await page().waitForFunction(active=>{const button=document.querySelector('button[data-mithril-open]');return button&&button.hidden===!active;},active);
+  assert.equal(await page().locator('button[data-mithril-open]').evaluate(button=>!button.hidden),active,'Source flag matches native purchase availability, including overflow menus');
+ };
  const ack=async()=>{const button=page().locator('[data-dialog-confirm]');if(await button.count())await button[desktop?'click':'tap']();else await command(1);};
  const query=async(step,active)=>{
   await wait(step=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.lines?.some(line=>line.includes('OPTION36 '+step)),step);
   const text=(await state()).dialogPresentation.lines.join(' ');assert(text.includes(`OPTION36 ${step} 0/${active?1:0}`),text);return text;
  };
  const inspect=async active=>{
-  assert.equal(await page().locator('button[data-mithril-open]').isVisible(),active,'Source flag matches native purchase availability');
+  await availability(active);
   assert.equal((await state()).resources[7],active?93:100,'Source reads never spend mithril');
   return active?await panel():null;
  };
  if(process.env.CASES==='source-option-control'){
   await boot({enabled:true,wogChoice:1,scriptProgram});
-  assert.equal(await page().locator('button[data-mithril-open]').isVisible(),true);
+  await availability(true);
   const data=await panel(),mine=data.offers.find(row=>row.kind===0&&row.cost===7);assert(mine);
   await buy(mine);assert.equal((await state()).resources[7],93);
   await page().locator('[data-mithril-close]').tap();await command(3);
@@ -44,7 +48,7 @@ export async function runMithrilSourceOption({boot,panel,buy,state,command,wait,
   await boot({...options,expectedDialog:'source-campaign'});const initial=await query(1,active);await ack();
   await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
   assert.equal((await state()).resources[7],100);
-  assert.equal(await page().locator('button[data-mithril-open]').isVisible(),active);
+  await availability(active);
   let mine;
   if(active){const data=await panel();mine=data.offers.find(row=>row.kind===0&&row.cost===7);assert(mine);await buy(mine);assert.equal((await state()).resources[7],93);}
   const bytes=await readCompletedNativeSave(page(),command);fs.writeFileSync(path.join(output,`source-option-${enabled}-${wogChoice}.vsgm1`),bytes);

@@ -55,7 +55,7 @@ export async function runQuickScope({boot,state,wait,page,report,output,save}){
   report.scenarios.push({kind:'era3-quick-scope-old-reader',futureVersion:Number(match[1]),readerVersion:Number(match[2]),rejectedBeforeScriptExecution:true});
   await page().close();await attempt;return;
  }
- const old=process.env.QUICK_OLD_CONTROL==='1'||!!process.env.QUICK_LEGACY_SAVE;
+ const old=process.env.QUICK_OLD_CONTROL==='1'||!!process.env.QUICK_LEGACY_SAVE&&process.env.QUICK_LEGACY_HAS_SNAPSHOT!=='1';
  const returned=quickNames.map((_,i)=>i===1?55:(old?2000:1000)+i);
  const root=old?quickNames.map((_,i)=>i===0?42:i===1?55:2000+i):quickInitial.map((value,i)=>i===0?42:value);
  const nested='QUICK NESTED '+quickNames.map((_,i)=>2000+i).join('/');

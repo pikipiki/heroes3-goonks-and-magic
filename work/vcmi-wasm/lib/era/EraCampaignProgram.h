@@ -92,12 +92,14 @@ struct Program
  std::string sha256,source;
  bool era3IntegerCalls=false;
  bool era3FunctionMetadata=false;
+ bool era3StringLocals=false;
  std::vector<Command> initializers;
  std::vector<Trigger> blocks;
 };
 struct Frame
 {
  std::map<std::int32_t,std::int32_t> x,y;
+ std::map<std::int32_t,std::string> z;
 };
 struct Continuation
 {
@@ -114,6 +116,8 @@ struct Continuation
  // Missing snapshots in older pending saves retain their historical behavior.
  bool restoreQuickVars=false;
  std::map<char,std::int32_t> savedQuickVars;
+ bool restoreLocalStrings=false;
+ std::map<std::int32_t,std::string> savedLocalStrings;
  std::int32_t loopEnd=0,loopStep=1;
  std::map<std::int32_t,std::int32_t> initialX;
  std::vector<Operand> returnTargets;
@@ -145,6 +149,7 @@ struct State
 {
  std::string programSha256;
  bool initialized=false,initializing=false;
+ bool era3StringLocals=false;
  std::map<std::int32_t,bool> flags;
  std::map<std::int32_t,std::int32_t> v;
  std::map<std::int32_t,std::string> z;
@@ -308,12 +313,27 @@ inline void writeNumber(const Operand&input,State&state,const Context&context,st
  }
 }
 inline std::string formatText(const std::string & text,const State & state,const Context & context);
+inline std::string localString(std::string value)
+{
+ // ERA's nz cells contain at most 511 ANSI bytes plus NUL. Codepage conversion
+ // and truncation remain unadmitted in this version of the local-z contract.
+ if(value.size()>511||value.find('\0')!=std::string::npos)throw std::runtime_error("ERA3 local string exceeds the admitted 511-byte text contract");
+ for(unsigned char byte:value)if(byte>=128)throw std::runtime_error("ERA3 local string requires an unvalidated ANSI codepage");
+ return value;
+}
+inline bool scopedZIndex(const State & state,std::int32_t index)
+{
+ if(!state.era3StringLocals||index>0)return false;
+ if(index< -10||index==0)throw std::runtime_error("ERA3 local z index outside -10..-1");
+ if(state.frames.empty())throw std::runtime_error("Missing source campaign local frame");
+ return true;
+}
 inline std::string readText(const Operand&input,const State&state,const Context&context)
 {
  const auto&operand=resolveMacro(input,state);
  if(operand.kind==Kind::String)return formatText(operand.text,state,context);
  if(operand.kind==Kind::Named&&operand.space=='s')return lookup(state.associative,associativeName(formatText(operand.name,state,context))).text;
- if(operand.kind==Kind::Variable&&operand.space=='z'&&operand.index)return lookup(state.z,readNumber(*operand.index,state,context));
+ if(operand.kind==Kind::Variable&&operand.space=='z'&&operand.index){const auto index=readNumber(*operand.index,state,context);return scopedZIndex(state,index)?lookup(state.frames.back().z,index):lookup(state.z,index);}
  throw std::runtime_error("Non-text campaign operand");
 }
 inline void writeText(const Operand&input,State&state,const Context&context,std::string value)
@@ -321,7 +341,9 @@ inline void writeText(const Operand&input,State&state,const Context&context,std:
  const auto&operand=resolveMacro(input,state);
  if(operand.kind==Kind::Named&&operand.space=='s'){state.associative[associativeName(formatText(operand.name,state,context))].text=std::move(value);return;}
  if(operand.kind!=Kind::Variable||operand.space!='z'||!operand.index)throw std::runtime_error("Non-text campaign destination");
- state.z[readNumber(*operand.index,state,context)]=std::move(value);
+ const auto index=readNumber(*operand.index,state,context);
+ if(scopedZIndex(state,index))state.frames.back().z[index]=localString(std::move(value));
+ else state.z[index]=std::move(value);
 }
 inline std::string formatText(const std::string & text,const State & state,const Context & context)
 {

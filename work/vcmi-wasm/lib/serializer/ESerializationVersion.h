@@ -87,9 +87,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_WOG_GROUNDED_FLIERS, // source rule111 and eighteen-choice peers
 	GOONK_WOG_INVERTED_SPEEDS, // source rule112 and nineteen-choice peers
 	GOONK_MITHRIL_SOURCE_DWELLINGS, // source MA:L eligibility and dwelling prices
+	GOONK_ERA3_STRING_LOCALS, // scoped negative z banks and suspended caller strings
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_MITHRIL_SOURCE_DWELLINGS,
+	CURRENT = GOONK_ERA3_STRING_LOCALS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

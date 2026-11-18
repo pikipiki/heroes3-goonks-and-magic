@@ -12,10 +12,10 @@
   },
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "af90aac06a2a5c699c5f9e9538af9173cd2f9d92d19c19966379df2708658710",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1",
     "scripts/era-bridge/gameplay/henchmen.mjs": "fd4cc9ac3004039354888f7a046f08ebb2959645fb6844bbe2ce749bc27a60fe",
     "scripts/era-bridge/gameplay/henchmen.json": "35b793559d0114a132061955eb3a8cd7bc4a864ed44066c2a23d28fdecc6bbe4",
-    "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac"
+    "docs/era-gameplay-port.md": "6e390e2fb0c0318e553d443de0940e40ddcc857666f769e3aba1cd0577914651"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -204,5 +204,14 @@
       "scripts/era-bridge/gameplay/henchmen.json": "d628637c9ae1dfe60efbcde41a6597693d37124918166521f9ded01a06c66978"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json"
+  },
+  "stringLocalsRevalidation": {
+    "scope": "Legacy contracts remain unchanged; historical native reports retained. New local-z scope and current-engine regressions are documented separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "c78496e93554326d088c892380d9d89ecabd8e0987a348a0c174d03c8043dbac",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
+    "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
   }
 }

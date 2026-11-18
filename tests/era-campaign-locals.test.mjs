@@ -34,7 +34,7 @@ test('ERM2 constants interpolate without touching unmarked literal identifiers',
 });
 
 test('ERM2 locals reject unimplemented types, unknown indices, invalid declarations and pool overflow',()=>{
- for(const source of ['!!VR(missing):S1;','!#VA(a:z);','!#VA(a:e);','!#VA(a[2]:y);!!VR(a[unknown]):S0;',
+ for(const source of ['!!VR(missing):S1;','!#VA(a:v);','!#VA(a:e);','!#VA(a[2]:y);!!VR(a[unknown]):S0;',
   '!#VA(-a);','!#VA(a:x);!!VR(a:y):S0;','!#VA(a:x):S1;',
   '!#VA(a:x);!!IF:M^%y(a)^;'])
   assert.throws(()=>compileErm('ZVSE2\n!?FU1;'+source),/ERM2/);

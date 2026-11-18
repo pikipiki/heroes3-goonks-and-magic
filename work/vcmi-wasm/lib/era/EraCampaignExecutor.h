@@ -68,9 +68,12 @@ class Executor
   const bool initializer=call.initializer,local=call.localFrame;
   const bool restoreQuickVars=call.restoreQuickVars;
   auto savedQuickVars=std::move(call.savedQuickVars);
+  const bool restoreLocalStrings=call.restoreLocalStrings;
+  auto savedLocalStrings=std::move(call.savedLocalStrings);
   state.continuations.pop_back();
   if(local){if(state.frames.size()<2)throw std::runtime_error("Campaign call frame underflow");state.frames.pop_back();}
   if(restoreQuickVars)state.fast=std::move(savedQuickVars);
+  if(restoreLocalStrings)state.frames.back().z=std::move(savedLocalStrings);
   for(std::size_t i=0;i<outputs.size();++i)if(outputs[i].access==Access::Write)
    writeNumber(outputs[i],state,context,lookup(returned,static_cast<std::int32_t>(i+1)));
   if(initializer){state.initializing=false;state.initialized=true;}
@@ -177,8 +180,9 @@ class Executor
 public:
  Executor(const Program&p,State&s,const Context&c,Host&h):program(p),state(s),context(c),host(h)
  {
-  if(state.programSha256.empty())state.programSha256=program.sha256;
+  if(state.programSha256.empty()){state.programSha256=program.sha256;state.era3StringLocals=program.era3StringLocals;}
   if(state.programSha256!=program.sha256)throw std::runtime_error("Campaign state/program mismatch");
+  if(state.era3StringLocals!=program.era3StringLocals)throw std::runtime_error("Campaign local-string contract mismatch");
   if(state.frames.empty())throw std::runtime_error("Missing campaign execution frame");
   for(const auto & call:state.continuations)
    if(call.programSha256!=program.sha256)throw std::runtime_error("Campaign continuation/program mismatch");
@@ -192,7 +196,9 @@ public:
  void dispatch(const std::string&receiver,const std::vector<std::int32_t>&selectors={},bool post=false)
  {
   if(!state.continuations.empty())throw std::runtime_error("Campaign event entered while a dialog is suspended");
-  Continuation call;call.programSha256=program.sha256;call.blocks=matching(receiver,selectors,post,allBlocks);state.continuations.push_back(std::move(call));
+  Continuation call;call.programSha256=program.sha256;call.blocks=matching(receiver,selectors,post,allBlocks);
+  if(program.era3StringLocals){call.restoreLocalStrings=true;call.savedLocalStrings=std::move(state.frames.back().z);state.frames.back().z.clear();}
+  state.continuations.push_back(std::move(call));
  }
  // Inspect trigger identities without entering or altering a suspended event.
  bool hasMatchingAny(const std::string & receiver,const std::vector<std::vector<std::int32_t>> & selectors,bool post=false)const
@@ -210,7 +216,9 @@ public:
    for(const auto index:matching(receiver,candidate,post,allBlocks))
     if(std::find(blocks.begin(),blocks.end(),index)==blocks.end())blocks.push_back(index);
   if(blocks.empty())return false;
-  Continuation call;call.programSha256=program.sha256;call.blocks=std::move(blocks);state.continuations.push_back(std::move(call));return true;
+  Continuation call;call.programSha256=program.sha256;call.blocks=std::move(blocks);
+  if(program.era3StringLocals){call.restoreLocalStrings=true;call.savedLocalStrings=std::move(state.frames.back().z);state.frames.back().z.clear();}
+  state.continuations.push_back(std::move(call));return true;
  }
  bool run(std::size_t budget=1000000)
  {

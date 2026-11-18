@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {chromium} from 'playwright-core';
 import {silenceTestAudio} from './silent-audio.mjs';
 import {readCompletedNativeSave} from './native-save-completed.mjs';
+import {revealNativeAction} from './native-ui-actions.mjs';
 import {readJsonc} from '../../scripts/era-bridge/objects/production-resolvers.mjs';
 
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8797';
@@ -243,7 +244,7 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,enab
 
 async function sheet(){
  if(['classic','classic-context'].includes(process.env.CASES))await command(55);
- else await page.locator('[data-ui=heroes]')[process.env.CASES==='town-resurrection-desktop'||process.env.GROWTH_DESKTOP==='1'?'click':'tap']();
+ else {const mouse=process.env.CASES==='town-resurrection-desktop'||process.env.GROWTH_DESKTOP==='1';const action=await revealNativeAction(page,'[data-ui=heroes]',{mouse});await action[mouse?'click':'tap']();}
  await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
  return (await state()).heroWindow;
 }
@@ -284,6 +285,14 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='quick-scope'){
+  const {runQuickScope}=await import('./wog-era3-quick-scope-cases.mjs');
+  await runQuickScope({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:949})});
+ }
+ if(process.env.CASES==='string-locals'){
+  const {runStringLocals}=await import('./wog-era3-string-locals-cases.mjs');
+  await runStringLocals({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:948})});
+ }
  if(process.env.CASES==='function-metadata'){
   const {runFunctionMetadata}=await import('./wog-era3-function-metadata-cases.mjs');
   await runFunctionMetadata({boot,state,wait,page:()=>page,command,save:()=>readCompletedNativeSave(page,command,{tag:946}),report,output});
