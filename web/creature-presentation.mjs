@@ -89,12 +89,12 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
     // native selection or description update arrives. Replacing the whole
     // panel clears its canvases for one frame and visibly flashes on mobile.
     const canvas=canvases[0];if(canvas&&canvas.dataset.previewCreature!==String(unit?.id)){canvas.dataset.previewCreature=String(unit?.id);canvas._previewVersion=null;canvas.setAttribute('aria-label','Animated '+(unit?.name||''));}
-    panel.querySelector('.creature-view-head h2').textContent=unit?.name||'';
+    const title=panel.querySelector('.creature-view-head h2'),name=unit?.name||'';if(title._recruitTitle!==name){title._recruitTitle=name;title.textContent=name;}
     markup(panel.querySelector('.creature-facts'),stats(unit||{}));
     const description=panel.querySelector('.recruit-description');
     const narrative=(typeof unit?.nativeFlags?.flying==='boolean'?'<div class="recruit-traits"><span>'+(unit.nativeFlags.flying?(getLanguage()==='fr'?'Volante':'Flying'):(getLanguage()==='fr'?'Au sol':'Ground'))+'</span>'+(unit.shooter?'<span>'+(getLanguage()==='fr'?'Tir à distance':'Ranged')+'</span>':'')+'</div>':'')+(unit?.description?'<p>'+esc(unit.description)+'</p>':'')+abilitySection(unit?.abilities,getLanguage());
     const changed=description.dataset.unit!==String(unit?.id);markup(description,narrative);if(changed){description.scrollTop=0;description.dataset.unit=String(unit?.id);}
-    panel.querySelector('.recruit-stock strong').textContent=unit?.count??0;
+    const stock=panel.querySelector('.recruit-stock strong'),count=String(unit?.count??0);if(stock.textContent!==count)stock.textContent=count;
     for(const button of panel.querySelectorAll('[data-variant]')){const selected=state.previewUnits?.[Number(button.dataset.variant)]?.id===unit?.id;const value=String(selected);if(button.getAttribute('aria-pressed')!==value)button.setAttribute('aria-pressed',value);}
     fitVariantNames();
    }

@@ -37,6 +37,9 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
    assert(await page.evaluate(()=>previewBefore===document.querySelector('[data-preview-creature]')),'Long name selection retains the animation');
    assert(await page.locator('.creature-view-head h2').evaluate(e=>e.scrollHeight<=e.clientHeight&&e.scrollWidth<=e.clientWidth),'Full selected name fits without ellipsis');
    await send(base);await page.waitForTimeout(100);
+   await page.evaluate(()=>window.titleNode=document.querySelector('.creature-view-head h2').firstChild);
+   await send(base);await page.waitForTimeout(80);
+   assert(await page.evaluate(()=>titleNode===document.querySelector('.creature-view-head h2').firstChild),'Repeated native snapshots do not replace translated title text');
    const before={art,choices,nav,quantity};
    await send({...base,recruitUnit:{...base.recruitUnit,description:baseUnit.description.repeat(100)}});await page.waitForTimeout(150);
    assert.deepEqual(await rect('.creature-stage'),before.art,'Long description cannot resize animation');assert.deepEqual(await rect('.recruit-variants'),before.choices,'Evolution cards stay fixed');assert.deepEqual(await rect('.mobile-nav'),before.nav);assert.deepEqual(await rect('.mobile-recruit-amount'),before.quantity);
