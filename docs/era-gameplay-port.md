@@ -413,6 +413,17 @@ choix enregistré ni trace d'utilisation, une ancienne partie reste désactivée
 Ces migrations concernent les sauvegardes natives Goonk, et non les fichiers
 binaires ERA. Les résultats sont dans `outputs/era-gameplay/mithril-native-legacy.json`.
 
+La lecture source `UN:P36/?variable` utilise le même choix enregistré que les
+achats et les effets natifs du mithril. Dix parcours vérifient les six combinaisons
+de choix local et global, les interfaces tactiles portrait/paysage et la souris,
+un achat réel de mine, puis une reprise avec le réglage global inversé. La lecture
+est répétée le lendemain après avoir remplacé les variables par des sentinelles.
+`UN:P17` conserve sa valeur zéro pour le script global Potion Fountains absent.
+L'ancien moteur est contrôlé séparément : son hôte source refuse bien `UN:P36`
+après un achat natif réussi. Les résultats sont liés aux sources dans
+`scripts/era-bridge/gameplay/mithril-source-option-native-validation.json`.
+Les écritures `UN:P`, les options 149/170/171 et les profils complets restent à porter.
+
 `scripts/era-bridge/gameplay/mithril.json` lie ce travail à la référence amont
 figée et conserve les écarts restant à résoudre. Le réglage
 `modules.mithrilEnhancements` est désactivé par défaut. Les interactions avec

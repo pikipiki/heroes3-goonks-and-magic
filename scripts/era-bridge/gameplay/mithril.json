@@ -27,7 +27,8 @@
   "randomValidation": "outputs/era-gameplay/mithril-native-random.json",
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
-    "Complete WoG option catalogue, source pack UN:P integration and full gameplay-profile activation."
+    "Source UN:P setters and options 149/170/171 integration.",
+    "Complete WoG option catalogue and full gameplay-profile activation."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
   "universityValidation": "outputs/era-gameplay/mithril-native-university.json",
@@ -37,5 +38,6 @@
   "classicValidation": "outputs/era-gameplay/mithril-native-classic.json",
   "legacySaveValidation": "outputs/era-gameplay/mithril-native-legacy.json",
   "touchValidation": "outputs/era-gameplay/mithril-native-touch.json",
-  "perGameOptionValidation": "scripts/era-bridge/gameplay/mithril-options-native-validation.json"
+  "perGameOptionValidation": "scripts/era-bridge/gameplay/mithril-options-native-validation.json",
+  "sourceOptionReadValidation": "scripts/era-bridge/gameplay/mithril-source-option-native-validation.json"
 }

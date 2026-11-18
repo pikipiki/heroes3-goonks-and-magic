@@ -1,0 +1,279 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Read-only source UN:P36 matches canonical frozen native Mithril activation; existing inactive Potion Fountains UN:P17 stays zero. No source setters or additional option IDs admitted.",
+  "sourceBaseCommit": "63a5a438fdff1289becb98f338f42675de50989f",
+  "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+  "sourceBindings": {
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
+    "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
+    "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b041dc4b4b3354f065abd6775bd18f71e7dd43f57a99d876c34060b3a1f8ac08",
+    "scripts/era-bridge/campaigns/parser.mjs": "54be127c1ed4b97810b3d4654d4624c61e358e91f6f58b8c1301bbe2fb5a60eb"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 5,
+    "logSha256": "7e6f7c3642ac780fe333af13b065f023e3079b94dc65f3a92ac514389f46e438",
+    "unverifiedWarMachineHooksExcluded": true,
+    "warMachinesAdmitted": false
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+  },
+  "unsupported": [
+    "UN:P setters",
+    "UN:P149 display integration",
+    "UN:P170 resource replacement integration",
+    "UN:P171 mill integration",
+    "complete WoG option catalogue",
+    "full gameplay profile activation"
+  ],
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "scenarios": [
+        {
+          "globalModule": false,
+          "choice": -1,
+          "active": false,
+          "initial": "OPTION36 1 0/0",
+          "next": "OPTION36 2 0/0",
+          "purchase": false,
+          "cost": 0,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "globalModule": true,
+          "choice": -1,
+          "active": true,
+          "initial": "OPTION36 1 0/1",
+          "next": "OPTION36 2 0/1",
+          "purchase": true,
+          "cost": 7,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "globalModule": false,
+          "choice": 1,
+          "active": true,
+          "initial": "OPTION36 1 0/1",
+          "next": "OPTION36 2 0/1",
+          "purchase": true,
+          "cost": 7,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "globalModule": true,
+          "choice": 0,
+          "active": false,
+          "initial": "OPTION36 1 0/0",
+          "next": "OPTION36 2 0/0",
+          "purchase": false,
+          "cost": 0,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "globalModule": false,
+          "choice": 0,
+          "active": false,
+          "initial": "OPTION36 1 0/0",
+          "next": "OPTION36 2 0/0",
+          "purchase": false,
+          "cost": 0,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "globalModule": true,
+          "choice": 1,
+          "active": true,
+          "initial": "OPTION36 1 0/1",
+          "next": "OPTION36 2 0/1",
+          "purchase": true,
+          "cost": 7,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "5f78ae30d88e8c0447fa1f240f0bce4594ff4368db9d3f5cbf57aa80e99bb0ee",
+      "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "scenarios": [
+        {
+          "globalModule": true,
+          "choice": -1,
+          "active": true,
+          "initial": "OPTION36 1 0/1",
+          "next": "OPTION36 2 0/1",
+          "purchase": true,
+          "cost": 7,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "globalModule": false,
+          "choice": -1,
+          "active": false,
+          "initial": "OPTION36 1 0/0",
+          "next": "OPTION36 2 0/0",
+          "purchase": false,
+          "cost": 0,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "fbb8ffb8b89ab0194d410f061cf3a81a712c42f320d1fa85e29a2b80a64a0804",
+      "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "scenarios": [
+        {
+          "globalModule": false,
+          "choice": 1,
+          "active": true,
+          "initial": "OPTION36 1 0/1",
+          "next": "OPTION36 2 0/1",
+          "purchase": true,
+          "cost": 7,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "globalModule": true,
+          "choice": 0,
+          "active": false,
+          "initial": "OPTION36 1 0/0",
+          "next": "OPTION36 2 0/0",
+          "purchase": false,
+          "cost": 0,
+          "nativePotionOption17": 0,
+          "saveReload": true,
+          "reversedGlobalDefault": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "b638a994dd597e67463ed609ebb7756a11d167d8c319cc6722ed1b3cd5fa38d6",
+      "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
+    }
+  },
+  "oldEngineControl": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+    "scenarios": [
+      {
+        "scope": "Old engine control: source UN:P36 is rejected after a real native Mithril purchase",
+        "unsupportedSourceRead": true,
+        "sourceProgramStopped": true,
+        "error": "Original campaign cave-gerfrex (ae5872b8ae59a2eb3979a981fb9572458097aa0c69ff5135f74e942e571e1f25) stopped: Original campaign: unvalidated original WoG option access",
+        "nativeEnabled": true,
+        "nativePurchase": true,
+        "cost": 7,
+        "expectedPageErrors": [
+          "ErrorEvent",
+          "Exception"
+        ]
+      }
+    ],
+    "errors": [],
+    "sharedRunReportSha256": "6e82516606018d533bb3bb24e7d83012175f4fffb193fb84084c56b8cd143576"
+  },
+  "previousEngineSave": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+    "scenarios": [
+      "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
+    ],
+    "errors": [],
+    "sharedRunReportSha256": "126b6bfb1eee2921bbfd2c67f8020f00d71b39d6defbfb57c41a8e2bc66ce920"
+  }
+}

@@ -1,6 +1,7 @@
 /* Original campaign event host; GPL-2.0-or-later. */
 #include "StdInc.h"
 #include "SourceCampaignProcessor.h"
+#include "EraCampaignWogOptions.h"
 #include "../CGameHandler.h"
 #include "../processors/NewTurnProcessor.h"
 #include "../processors/TurnOrderProcessor.h"
@@ -1584,10 +1585,10 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   if(op.code=="P")
   {
-   arity(op,2);require(args[0].access==Access::Read&&number(args[0])==17&&args[1].access==Access::Write,"unvalidated original WoG option access");
-   // The global Potion Fountains WoGification script is not installed or
-   // enabled by this host. Campaign battle potions are a separate mechanism.
-   value(0,args[1]);return Step::Continue;
+   arity(op,2);require(args[0].access==Access::Read&&args[1].access==Access::Write,"unvalidated original WoG option access");
+   const auto option=era_compat::source_options::read(gh.gameInfo(),number(args[0]));
+   require(option.has_value(),"unvalidated original WoG option access");
+   value(*option,args[1]);return Step::Continue;
   }
   if(op.code=="G")
   {

@@ -4,15 +4,15 @@
   "completeRules": false,
   "advancedClassesProfileAdmitted": false,
   "scope": "Original acm_GetSecSkillLevel and acm_SetSecSkillLevel routing against native Pathfinding with controlled extra-level flag adapters; original source array/string helpers, mastery effects and full profile are unadmitted.",
-  "sourceBaseCommit": "4a7dc66a9763916cbe360b80e210371877897365",
-  "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+  "sourceBaseCommit": "63a5a438fdff1289becb98f338f42675de50989f",
+  "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "54be127c1ed4b97810b3d4654d4624c61e358e91f6f58b8c1301bbe2fb5a60eb",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "848ee7c79afd9783e22c90389b73d454816b7ab3f71750f0bd99f2f7bad26df3",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "9b16c89c1674a12047e41c4dda4cf01ede2524964193d69db5cb501f9f8a438c",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "0cb885cf90972887bbbd5b8cd06f5680e39b05988a40200b6bbf72df49196cb4",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "a289652c66fa328bb36d03c8c0b3110ed402bb37f9f078e8058a3406e14badc9",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f2b2f144f77fb53a770e787253608c323cb3bc157f0d212ca2eaff55f8ad19a4",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
     "work/browser-tests/wog-advanced-core-cases.mjs": "478e1a5cc97f19323b17563cdbd46dd8b2e3bdcef1b9f759f5ff3345fe4b7773",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "de6a6f55e0c7f2c52e0f547828b090c14e8570ca46af933e081e564869a86dcc",
@@ -24,13 +24,14 @@
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "b00bb6720afe30fb06c97653690ca1220d39b357959c01eaeb13c0b3a2d03bb4",
     "work/browser-tests/wog-era3-numeric-calls-fixture.mjs": "4e72a89f3dd7b628f42174730eab30f3c64103ca2e73abb68d55edcb1380d013",
-    "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7"
+    "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 20,
-    "logSha256": "0446912366130606ab52e42b591e4c4072e955d910230d5cf01165892bea2c74",
+    "targets": 5,
+    "logSha256": "7e6f7c3642ac780fe333af13b065f023e3079b94dc65f3a92ac514389f46e438",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -78,7 +79,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
       "scenarios": [
         {
           "kind": "points",
@@ -511,13 +512,14 @@
           }
         }
       ],
-      "errors": []
+      "errors": [],
+      "sharedRunReportSha256": "40434dd38c39dc8a69f05e9132043f8263b9fcaf755b307abb9df5c8299216c8"
     },
     "touchLandscape": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
       "scenarios": [
         {
           "kind": "points",
@@ -950,13 +952,14 @@
           }
         }
       ],
-      "errors": []
+      "errors": [],
+      "sharedRunReportSha256": "07512dadd2166df380f4e3865a766a2728266b358f8e20af6f97472581f3edbf"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
       "scenarios": [
         {
           "kind": "points",
@@ -1389,17 +1392,19 @@
           }
         }
       ],
-      "errors": []
+      "errors": [],
+      "sharedRunReportSha256": "2c947b388ef074dcf3941ba7ab8491515768a96ee001a54aaf4d582e560a8732"
     }
   },
   "previousEngineSave": {
     "passed": true,
     "scope": "native-core-only",
     "completeRules": false,
-    "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+    "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
     "scenarios": [
       "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
     ],
-    "errors": []
+    "errors": [],
+    "sharedRunReportSha256": "126b6bfb1eee2921bbfd2c67f8020f00d71b39d6defbfb57c41a8e2bc66ce920"
   }
 }

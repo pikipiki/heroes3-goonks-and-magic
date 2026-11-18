@@ -26,7 +26,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -130,6 +130,11 @@ if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
 if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
 entries['surface_terrain.json']=json.dumps(terrain).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
+if opts['sourceOptions']:
+ header.setdefault('events',[]).extend([
+  {'name':'private mithril option source','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native mithril option query'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}},
+  {'name':'private mithril option next day','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}
+ ])
 if opts['universityAi']:header['allowedArtifacts']={'anyOf':['core:speculum']}
 if opts['reroll']=='rng':header['allowedSpells']={'anyOf':['core:bless','core:haste','core:slow']}
 if opts['reroll']=='hut-rng':header['allowedAbilities']={'noneOf':['core:eagleEye']}
@@ -142,10 +147,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  let mapChoices=null;
  if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
   mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
@@ -153,8 +158,8 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
   weeklyMines=!weeklyMines;multipleCapitols=!multipleCapitols;allBreath=!allBreath;
  }
  const classic=process.env.CASES==='classic';
- const desktop=['desktop','options-desktop'].includes(process.env.CASES);
- page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop});
+ const desktop=['desktop','options-desktop','source-option-desktop'].includes(process.env.CASES);
+ page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -174,7 +179,7 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations,cleanManifest})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations,cleanManifest,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -201,11 +206,19 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
     }
     const translationsDirectory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/translation';value.FS.mkdirTree(translationsDirectory);
     for(const [language,strings] of Object.entries(translations))value.FS.writeFile(translationsDirectory+'/tum-era-ui-'+language+'.json',JSON.stringify(strings));
+    if(scriptProgram){
+     const root='/home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns/';
+     const registry=JSON.parse(value.FS.readFile(root+'registry.json',{encoding:'utf8'}));
+     const entry=registry.programs.find(item=>item.id==='cave-gerfrex');if(!entry)throw Error('Missing private source fixture slot');
+     const program=JSON.parse(value.FS.readFile(root+'cave-gerfrex.json',{encoding:'utf8'}));
+     Object.assign(program,scriptProgram);entry.enabled=true;entry.programSha256=scriptProgram.sha256;
+     value.FS.writeFile(root+'cave-gerfrex.json',JSON.stringify(program));value.FS.writeFile(root+'registry.json',JSON.stringify(registry));
+    }
     value.FS.writeFile(file,JSON.stringify(manifest));
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations,cleanManifest});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,creatureRules,translations,cleanManifest,scriptProgram});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -219,7 +232,7 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
   await page.evaluate(bytes=>{for(const name of ['001-Goonks.vmap','003-Goonks-WoG.vmap']){
    const file='/home/web_user/.local/share/vcmi/Maps/'+name;
    try{Module.FS.stat(file);Module.FS.writeFile(file,new Uint8Array(bytes));}catch{}
-  }},[...fixture(options)]);
+  }},[...fixture({...options,sourceOptions:!!scriptProgram})]);
   await command(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);
   await wait(()=>goonkMobileState.maps?.some(row=>row.name==='000 - Mithril native validation'));
   const map=(await state()).maps.find(row=>row.name==='000 - Mithril native validation');
@@ -246,18 +259,18 @@ async function boot({save,wogChoice=null,enabled=true,henchmen=false,funds=100,p
   else if(desktop)await page.locator('[data-ui=begin]').click();
   else await page.locator('[data-ui=begin]').tap();
  }
- await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
+ await wait(kind=>goonkMobileState.mode==='map'&&goonkMobileState.turn||kind&&goonkMobileState.mode==='dialog'&&(kind==='any'||goonkMobileState.dialogKind===kind),expectedDialog);
 }
 
 async function panel(){
- if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[['desktop','options-desktop'].includes(process.env.CASES)?'click':'tap']();
+ if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[['desktop','options-desktop','source-option-desktop'].includes(process.env.CASES)?'click':'tap']();
  await wait(()=>goonkMobileState.mithril);
  return (await state()).mithril;
 }
 async function buy(offer){
  const before=await panel();
  if(offer.kind===8)await page.locator(`[data-mithril-terrain="${offer.id}"]`).selectOption(String(offer.choice??0));
- await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[['desktop','options-desktop'].includes(process.env.CASES)?'click':'tap']();
+ await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[['desktop','options-desktop','source-option-desktop'].includes(process.env.CASES)?'click':'tap']();
  if(offer.kind===6){
   await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
   await page.locator('.mithril-panel').waitFor({state:'hidden'});return;
@@ -293,6 +306,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('source-option')){
+  const {runMithrilSourceOption}=await import('./wog-mithril-source-option-cases.mjs');
+  await runMithrilSourceOption({boot,panel,buy,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
+ }
  if(['options','options-desktop','options-legacy-producer','options-legacy-consumer'].includes(process.env.CASES)){
   const {runMithrilOptions}=await import('./wog-mithril-options-cases.mjs');
   await runMithrilOptions({boot,panel,buy,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
