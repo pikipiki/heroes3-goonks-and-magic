@@ -30,6 +30,18 @@ inline bool unchangedOperand(const Operand & operand)
  return operand.access==Access::Read&&!operand.negate&&(operand.kind==Kind::Default||(operand.kind==Kind::Fast&&operand.name=="d"));
 }
 
+// ERA3 FU:P integer copy-in/copy-out arguments. String/ERT transfer and DO
+// require separate ports; reject those rather than borrowing358f semantics.
+inline bool era3IntegerArgument(const Operand & argument)
+{
+ if(argument.access!=Access::Read&&argument.access!=Access::Write)return false;
+ if(argument.access==Access::Write&&argument.negate)return false;
+ if(argument.kind==Kind::Variable)return argument.index&&(argument.space=='v'||argument.space=='x'||argument.space=='y'||argument.space=='w');
+ if(argument.kind==Kind::Named)return argument.space=='i';
+ if(argument.kind==Kind::Fast)return argument.name.size()==1&&argument.name[0]>='f'&&argument.name[0]<='t';
+ return argument.access==Access::Read&&(argument.kind==Kind::Number||argument.kind==Kind::Day);
+}
+
 struct Predicate
 {
  bool isFlag=false;
@@ -59,6 +71,7 @@ struct Trigger
 struct Program
 {
  std::string sha256,source;
+ bool era3IntegerCalls=false;
  std::vector<Command> initializers;
  std::vector<Trigger> blocks;
 };

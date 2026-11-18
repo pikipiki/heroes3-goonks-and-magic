@@ -6,13 +6,14 @@ import {mergeNativeInitializers} from '../../scripts/era-bridge/campaigns/native
 import {advancedClassPointsFixture} from './wog-advanced-class-points-cases.mjs';
 import {advancedClassIdentityFixture} from './wog-advanced-class-identity-cases.mjs';
 import {advancedClassSkillLevelsFixture,skillLevelInputs,skillLevelExpected} from './wog-advanced-class-skill-levels-fixture.mjs';
+import {era3NumericCallsFixture} from './wog-era3-numeric-calls-fixture.mjs';
 import {advancedClassPointsSource} from '../../scripts/era-bridge/gameplay/advanced-class-points.mjs';
 import {advancedClassIdentitySource} from '../../scripts/era-bridge/gameplay/advanced-class-identity.mjs';
 import {advancedClassSkillLevelsSource} from '../../scripts/era-bridge/gameplay/advanced-class-skill-levels.mjs';
 export function advancedCoreFixture(){
- const programs=[advancedClassPointsFixture(),advancedClassIdentityFixture(),advancedClassSkillLevelsFixture()];
+ const programs=[advancedClassPointsFixture(),advancedClassIdentityFixture(),advancedClassSkillLevelsFixture(),era3NumericCallsFixture()];
  const version=Math.max(...programs.map(p=>p.schemaVersion));
- const merged={schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source:'Private merged original Advanced Classes core probes',
+ const merged={schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source:'Private merged original Advanced Classes core probes',functionArguments:'era3-integers',
   components:programs.map(p=>({source:p.source,sha256:p.sha256})),
   originalMessages:['ZVSE private native companion town continuation'],
   initializers:mergeNativeInitializers(programs),blocks:programs.flatMap(p=>p.blocks)};
@@ -48,11 +49,18 @@ export async function runAdvancedCore({boot,state,wait,page,report,output,save})
  }
  assert((await read('SKILL STALE')).includes('SKILL STALE 2'));await ack();assert((await read('SKILL OTHER')).includes('SKILL OTHER 3'));await ack();
  const bounds=await read('BOUNDS ');assert(bounds.includes('BOUNDS 9/17/3/-2147483648'),bounds);await ack();
+ const callCases=[];
+ for(const [label,expected]of [['BASIC','42/41/0/0/0 caller 66/77/123'],['NAMED','12'],['FAST','8'],['READ','5/9/0/0'],['DUPLICATE','41/41/41/0/0']]){
+  const text=await read('CALLABI '+label);assert(text.includes('CALLABI '+label+' '+expected),text);callCases.push({label,text,expected});await ack();
+ }
+ await read('CALLABI PAUSE');await reload('numeric-nested-call-pending');await read('CALLABI PAUSE');await ack();
+ const nested=await read('CALLABI NESTED');assert(nested.includes('52/41/0/0/88/99 caller 66/77/123'),nested);callCases.push({label:'NESTED',text:nested});await ack();
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);const bytes=await save();fs.writeFileSync(path.join(output,'finished.vsgm1'),bytes);
  await page().close();await boot({...options,save:[...bytes]});assert.equal((await state()).mode,'map');
  shared.viewport=page().viewportSize();
  report.scenarios.push({kind:'points',source:advancedClassPointsSource,scope:'Original point calculation; commander and set dependencies remain controlled stubs',markers,nativeHeroSkillReads:true,nativeBadgeQuery:true,...shared},
   {kind:'class',source:advancedClassIdentitySource,scope:'Original class lookup from controlled mastery flags; no promotion admission',cases,triggerLocalPools:true,nestedCallPreservesCaller:true,heroSpecificNames:true,...shared},
-  {kind:'skill-level-routing',source:advancedClassSkillLevelsSource,scope:'Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission',cases:skillCases,staleFlagsDoNotOverrideAdvancedNativeSkill:true,otherSkillDoesNotInheritPathfindingFlags:true,integerBounds:bounds,...shared});
+  {kind:'skill-level-routing',source:advancedClassSkillLevelsSource,scope:'Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission',cases:skillCases,staleFlagsDoNotOverrideAdvancedNativeSkill:true,otherSkillDoesNotInheritPathfindingFlags:true,integerBounds:bounds,...shared},
+  {kind:'era3-numeric-calls',scope:'ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted',cases:callCases,nestedSaveReload:true,unpassedRegistersCleared:true,namedAndFastOutputs:true,duplicateOutputTargets:true,...shared});
  await page().close();
 }

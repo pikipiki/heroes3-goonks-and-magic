@@ -74,18 +74,24 @@ class Executor
  }
  void callFunction(std::int32_t function,const std::vector<Operand>&arguments,std::size_t visible,bool loop=false,std::int32_t start=0,std::int32_t end=0,std::int32_t step=1)
  {
+  if(program.era3IntegerCalls)
+  {
+   if(loop)throw std::runtime_error("ERA3 DO calls are not admitted");
+   for(const auto & argument:arguments)if(!era3IntegerArgument(argument))
+    throw std::runtime_error("ERA3 FU:P requires admitted integer arguments");
+  }
   if(arguments.size()>(loop?15u:16u))throw std::runtime_error("Too many campaign function parameters");
   if(loop&&(step==0||(step>0&&start>end)||(step<0&&start<end)))
   {if(step==0)throw std::runtime_error("Zero campaign loop step");return;}
   auto blocks=matching("FU",{function},false,visible);
   if(blocks.empty())return; // Original instruction calls cannot see later declarations.
   if(state.frames.size()>=128)throw std::runtime_error("Campaign call nesting limit");
-  Frame frame;frame.x=state.frames.back().x;
+  Frame frame;if(!program.era3IntegerCalls)frame.x=state.frames.back().x;
   for(std::size_t i=0;i<arguments.size();++i)
   {
    const auto & argument=resolveMacro(arguments[i],state);
    // Original ?vN passes the destination index as x#, then copies back on return.
-   if(argument.access==Access::Write)
+   if(argument.access==Access::Write&&!program.era3IntegerCalls)
    {
     if(argument.kind!=Kind::Variable||!argument.index)throw std::runtime_error("Invalid campaign function output");
     frame.x[static_cast<std::int32_t>(i+1)]=readNumber(*argument.index,state,context);

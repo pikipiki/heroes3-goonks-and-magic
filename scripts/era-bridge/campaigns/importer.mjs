@@ -4,6 +4,7 @@ import zlib from 'node:zlib';
 import crypto from 'node:crypto';
 import {parseJsonc} from '../artifacts/importer.mjs';
 import {compileErm} from './parser.mjs';
+import {mergeSourceInitializers,sourceCallDialect} from './program-merger.mjs';
 export const sha256=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 export const pinnedCampaignFiles={
  'zc1.vcmp':'b27d91661d2e47de76c9b013a08e091bc01a6244d7a38d566aec5b7f8d8d014d',
@@ -54,10 +55,10 @@ export function extractCaveScripts(bytes){
  }
  if(sources.length!==22)throw Error('Changed original Cave script count');return sources.sort((a,b)=>a.firstOccurrence-b.firstOccurrence||a.offset-b.offset);
 }
-export function mergePrograms(sources,{source,mapSha256}={}){
- const programs=sources.map(entry=>compileErm(entry.bytes,{source:entry.id,encoding:entry.encoding||'utf-8'}));
- let previousBlocks=0;const initializers=[];for(const p of programs){for(const c of p.initializers)initializers.push({...c,visibleBlocks:previousBlocks+c.visibleBlocks});previousBlocks+=p.blocks.length;}
- const result={schemaVersion:1,contract:'source-campaign-erm-ast-v1',source,mapSha256,sources:sources.map(({id,sha256,offset,length,firstOccurrence,eventIndex})=>({id,sha256,...(offset===undefined?{}:{offset,length}),...(firstOccurrence===undefined?{}:{firstOccurrence}),...(eventIndex===undefined?{}:{eventIndex})})),initializers,blocks:programs.flatMap(p=>p.blocks)};
+export function mergePrograms(sources,{source,mapSha256,dialect='auto'}={}){
+ const programs=sources.map(entry=>compileErm(entry.bytes,{source:entry.id,encoding:entry.encoding||'utf-8',dialect:entry.dialect||dialect,bindings:entry.bindings||{}}));
+ const initializers=mergeSourceInitializers(programs),mode=sourceCallDialect(programs),version=Math.max(1,...programs.map(p=>p.schemaVersion));
+ const result={schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,...(mode==='era3-integers'?{functionArguments:mode}:{}),source,mapSha256,sources:sources.map(({id,sha256,offset,length,firstOccurrence,eventIndex})=>({id,sha256,...(offset===undefined?{}:{offset,length}),...(firstOccurrence===undefined?{}:{firstOccurrence}),...(eventIndex===undefined?{}:{eventIndex})})),initializers,blocks:programs.flatMap(p=>p.blocks)};
  result.sha256=sha256(Buffer.from(JSON.stringify(result)));return result;
 }
 export function compileCaveFile(file='mod/wake-of-gods/Mods/maps/content/maps/Cave of Gerfrex.h3m'){

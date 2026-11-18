@@ -99,11 +99,13 @@ function bindIdentifiers(statement,bindings){
  }
  return output;
 }
-export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={}}={}){
+export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={},dialect='auto'}={}){
  if(!bindings||typeof bindings!=='object'||Array.isArray(bindings))fail('Invalid identifier bindings',source);
  const bound=Object.fromEntries(Object.entries(bindings).sort(([a],[b])=>a<b?-1:a>b?1:0));
  for(const[name,value]of Object.entries(bound))if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)||!Number.isSafeInteger(value)||value< -2147483648||value>4294967295)fail('Invalid identifier binding '+name,source);
- const erm2=Buffer.from(bytes).subarray(0,5).toString()==='ZVSE2',lowerLocals=erm2?createLocalBindings(bound):null;
+ if(!['auto','wog358','era3'].includes(dialect))fail('Unknown ERM dialect '+dialect,source);
+ const erm2=Buffer.from(bytes).subarray(0,5).toString()==='ZVSE2',era3=dialect==='era3'||dialect==='auto'&&erm2,lowerLocals=erm2?createLocalBindings(bound):null;
+ if(erm2&&dialect==='wog358')fail('ZVSE2 requires the ERA3 call dialect',source);
  const tokens=tokenizeErm(bytes,{source,encoding}),blocks=[],initializers=[],flows=new Map();let current=null,modern=erm2;
  const stackFor=commands=>{if(!flows.has(commands))flows.set(commands,[]);return flows.get(commands);};
  const target=(command,index)=>{command.operations[0].args[0].number=index;};
@@ -144,9 +146,16 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={}}={})
   commands.push({...record,operations:parseOperations(m[4]??'',receiver),...(kind==='#'?{visibleBlocks:blocks.length}:{})});
  }catch(e){fail('line'+token.line+' '+e.message,source);}}
  if([...flows.values()].some(stack=>stack.length))fail('Unterminated structured condition',source);
+ if(era3)for(const command of [...initializers,...blocks.flatMap(b=>b.commands)]){
+  if(command.receiver==='DO')fail('ERA3 DO calls are not admitted',source);
+  if(command.receiver==='FU')for(const op of command.operations)if(op.code==='P')for(const arg of op.args){
+   const mutable=arg.kind==='variable'&&'vxyw'.includes(arg.space)||arg.kind==='named'&&arg.space==='i'||arg.kind==='fast'&&/^[f-t]$/.test(arg.name);
+   if(!['read','write'].includes(arg.access)||arg.access==='write'&&arg.negate||!mutable&&!(arg.access==='read'&&['number','day'].includes(arg.kind)))fail('ERA3 FU:P requires admitted integer arguments',source);
+  }
+ }
  const sourceSha256=sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),boundNames=Object.keys(bound).length>0;
- const identity=boundNames?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound}))):sourceSha256;
+ const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{})}))):sourceSha256;
  const integerBounds=[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='VR'&&c.operations.some(op=>op.code==='F'));
- const version=integerBounds?3:modern||boundNames?2:1;
- return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames?{sourceSha256,bindings:bound}:{}),initializers,blocks};
+ const version=era3?4:integerBounds?3:modern||boundNames?2:1;
+ return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),initializers,blocks};
 }

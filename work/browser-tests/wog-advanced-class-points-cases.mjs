@@ -56,7 +56,7 @@ ${call('CONTROLLED-SETS')}
 ${call('ARENA')}
 !#IF:M^AC FINISH nested %V908^;
 `)]);
- const program=compileErm(source,{source:'Private native Advanced Classes calculation probe',bindings:advancedClassPointsBindings});
+ const program=compileErm(source,{source:'Private native Advanced Classes calculation probe',dialect:'era3',bindings:advancedClassPointsBindings});
  program.originalMessages=['ZVSE private native companion town continuation'];return program;
 }
 export async function runAdvancedClassPoints({boot,state,command,wait,page,report,output,save}){

@@ -82,6 +82,21 @@ int main()
  p.blocks={block("LE",{num(1)},{cmd("VR",{var('v',1)},"S",{num(30)}),cmd("FU",{num(7)},"P",{num(33),var('v',1,Access::Write)})}),
   block("FU",{num(7)},{cmd("VR",{var('v',2)},"S",{var('x',2)}),cmd("VR",{var('x',2)},"S",{var('x',1)}),cmd("VR",{var('x',2)},"+",{num(10)}),cmd("FU",{},"E"),cmd("VR",{var('x',2)},"+",{num(1)})})};
  State s;Executor e(p,s,context,host);e.dispatch("LE",{1});assert(e.run());assert(s.v[1]==43&&s.v[2]==1);assert(s.frames.size()==1);
+ // ERA3 FU:P copies the current numeric value in, clears unpassed x cells,
+ // and copies results back. Classic358f above still passes destination indexes.
+ Program era3=p;era3.sha256="era3-integer-calls";era3.era3IntegerCalls=true;
+ era3.blocks[1].commands.insert(era3.blocks[1].commands.begin(),cmd("VR",{var('v',3)},"S",{var('x',8)}));
+ State era3State;era3State.frames[0].x[8]=77;
+ Executor era3Vm(era3,era3State,context,host);era3Vm.dispatch("LE",{1});assert(era3Vm.run());
+ assert(era3State.v[1]==43&&era3State.v[2]==30&&era3State.v[3]==0&&era3State.frames[0].x[8]==77);
+ // A nested query resumes the copy-in value, not the caller's variable index.
+ Program numericPause;numericPause.sha256="era3-pending-call";numericPause.era3IntegerCalls=true;
+ numericPause.initializers={cmd("VR",{var('v',1)},"S",{num(41)}),cmd("FU",{num(7)},"P",{var('v',1,Access::Write)})};
+ numericPause.blocks={block("FU",{num(7)},{cmd("IF",{},"Prompt"),cmd("VR",{var('x',1)},"+",{num(1)})})};
+ State numericState;Recorder numericHost;Executor numericStart(numericPause,numericState,context,numericHost);numericStart.initialize();
+ assert(!numericStart.run()&&numericState.frames.back().x.at(1)==41);
+ State numericSaved=numericState;Executor numericResume(numericPause,numericSaved,context,numericHost);
+ assert(numericResume.run()&&numericSaved.v[1]==42&&numericHost.prompts==1);
  // A known original command error abandons that command, then resumes the trigger after acknowledgement.
  Program recover;recover.sha256="recover";Command failed;failed.receiver="CH";failed.operations={{"StopCommand",{}},{"Reply",{}}};recover.initializers={failed,cmd("VR",{var('v',7)},"S",{num(123)})};State rs;Recorder errorHost;Executor re(recover,rs,context,errorHost);re.initialize();assert(!re.run());assert(errorHost.prompts==1&&errorHost.replies==0);State savedError=rs;Executor rerun(recover,savedError,context,errorHost);assert(rerun.run());assert(errorHost.prompts==1&&errorHost.replies==0&&savedError.v[7]==123&&savedError.initialized);
  // Original Samaritan TM13 contains !!FU&v91=1:P. The omitted selector is

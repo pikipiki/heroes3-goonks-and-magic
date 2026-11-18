@@ -69,14 +69,23 @@ inline era_campaign::Command readCommand(const JsonNode&node)
 inline era_campaign::Program readProgram(const JsonNode&node)
 {
  object(node);const auto version=integer(node["schemaVersion"]);
- if((version!=1&&version!=2&&version!=3)||string(node["contract"])!="source-campaign-erm-ast-v"+std::to_string(version))throw std::runtime_error("Unknown source campaign AST contract");
+ if((version<1||version>4)||string(node["contract"])!="source-campaign-erm-ast-v"+std::to_string(version))throw std::runtime_error("Unknown source campaign AST contract");
  era_campaign::Program program;program.sha256=string(node["sha256"]);program.source=string(node["source"]);
+ if(version==4){if(string(node["functionArguments"])!="era3-integers")throw std::runtime_error("Unknown ERA3 function argument contract");program.era3IntegerCalls=true;}
+ else if(!node["functionArguments"].isNull())throw std::runtime_error("ERA3 function arguments require source AST v4");
  for(const auto&item:array(node["initializers"]))program.initializers.push_back(readCommand(item));
  for(const auto&item:array(node["blocks"])){object(item);era_campaign::Trigger trigger;trigger.receiver=string(item["receiver"]);const auto kind=string(item["kind"]);if(kind!="trigger"&&kind!="post-trigger")throw std::runtime_error("Unknown campaign trigger kind");trigger.post=kind=="post-trigger";trigger.selectors=readOperands(item["selectors"]);trigger.conditions=readConditions(item["conditions"]);for(const auto&command:array(item["commands"]))trigger.commands.push_back(readCommand(command));program.blocks.push_back(std::move(trigger));}
- const auto supported=[version](const auto & commands)
+ const auto supported=[version,&program](const auto & commands)
  {
   for(const auto & command:commands)
   {
+   if(program.era3IntegerCalls)
+   {
+    if(command.receiver=="DO")throw std::runtime_error("ERA3 DO calls are not admitted");
+    if(command.receiver=="FU")for(const auto & operation:command.operations)if(operation.code=="P")
+     for(const auto & argument:operation.args)if(!era_campaign::era3IntegerArgument(argument))
+      throw std::runtime_error("ERA3 FU:P requires admitted integer arguments");
+   }
    if(version<2&&command.receiver=="__flow")throw std::runtime_error("Structured control requires source AST v2");
    if(version<3&&command.receiver=="VR")for(const auto & operation:command.operations)
     if(operation.code=="F")throw std::runtime_error("Integer bounds require source AST v3");

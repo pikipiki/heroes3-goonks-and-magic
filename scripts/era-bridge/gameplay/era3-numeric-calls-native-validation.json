@@ -1,0 +1,1430 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "ERA3 numeric FU:P copy-in/copy-out in explicit ASTv4, keeping original358f calls unchanged. String/ERT arguments, modifiers, comparisons, macros, DO and argument introspection are unadmitted; full ERA/Advanced Classes/Reborn packs remain unadmitted.",
+  "sourceBaseCommit": "4a7dc66a9763916cbe360b80e210371877897365",
+  "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+  "sourceBindings": {
+    "scripts/era-bridge/campaigns/parser.mjs": "54be127c1ed4b97810b3d4654d4624c61e358e91f6f58b8c1301bbe2fb5a60eb",
+    "scripts/era-bridge/campaigns/native-compiler.mjs": "848ee7c79afd9783e22c90389b73d454816b7ab3f71750f0bd99f2f7bad26df3",
+    "scripts/era-bridge/campaigns/importer.mjs": "902b70da085f9917c35055aa736d5f9be2e36354b299e4bd4f53e850a7063246",
+    "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "9b16c89c1674a12047e41c4dda4cf01ede2524964193d69db5cb501f9f8a438c",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "b00bb6720afe30fb06c97653690ca1220d39b357959c01eaeb13c0b3a2d03bb4",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "0cb885cf90972887bbbd5b8cd06f5680e39b05988a40200b6bbf72df49196cb4",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "a289652c66fa328bb36d03c8c0b3110ed402bb37f9f078e8058a3406e14badc9",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f2b2f144f77fb53a770e787253608c323cb3bc157f0d212ca2eaff55f8ad19a4",
+    "work/browser-tests/wog-advanced-core-cases.mjs": "478e1a5cc97f19323b17563cdbd46dd8b2e3bdcef1b9f759f5ff3345fe4b7773",
+    "work/browser-tests/wog-era3-numeric-calls-fixture.mjs": "4e72a89f3dd7b628f42174730eab30f3c64103ca2e73abb68d55edcb1380d013",
+    "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "de6a6f55e0c7f2c52e0f547828b090c14e8570ca46af933e081e564869a86dcc",
+    "scripts/era-bridge/gameplay/advanced-class-points.mjs": "2a176f2ba07201fb8f6162c4ee73470a30ddef3b8639650347e53bc5caf0e84a",
+    "tests/native/EraCampaignExecutor.test.cpp": "7a3cf2adc7c591a1f22f85e92082e8ded6adb71fae0a55ed0efd889f3ad93f32",
+    "tests/native/EraCampaignRuntime.test.cpp": "b7938f2c93adb36a2014f374428f7e31ad189b878493b714d0e77ee95647759e"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 20,
+    "logSha256": "0446912366130606ab52e42b591e4c4072e955d910230d5cf01165892bea2c74",
+    "unverifiedWarMachineHooksExcluded": true,
+    "warMachinesAdmitted": false
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ethernidee/era",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "file": "Erm.pas",
+    "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "functions": [
+      "Hook_FU_P",
+      "ApplyFuncByRefRes"
+    ],
+    "referenceKind": "source, not an execution of the Windows ERA binary",
+    "numericWriteInputsUseCurrentValue": true,
+    "unpassedXRegistersZeroed": true,
+    "outputsAppliedInArgumentOrder": true
+  },
+  "codec": {
+    "productionJsonNode": true,
+    "sourceAstVersion": 4,
+    "explicitArgumentModeRequired": true,
+    "modeInV1V2V3Rejected": true,
+    "unsupportedDoRejected": true,
+    "addressSanitizer": true,
+    "undefinedBehaviorSanitizer": true,
+    "exitCode": 0,
+    "namedStringIntegerRoundTripLinux": true,
+    "associativeCodecExitCode": 0
+  },
+  "oldReaderControl": {
+    "sourceCommit": "4a7dc66a9763916cbe360b80e210371877897365",
+    "headerSha256": "2f2ee4e5170cdad30c7ea2a926f32673bdcf9d1cae745aec4dc7aa1c6443e101",
+    "probeSha256": "4928d4c36cfee9fba299bb750c5bbe0ec9c89be3ec5dc8e85c214f1891a37849",
+    "v3Accepted": true,
+    "v4RejectedBeforeScriptExecution": true,
+    "addressSanitizer": true,
+    "undefinedBehaviorSanitizer": true,
+    "exitCode": 0
+  },
+  "legacyConventionBefore": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "3f34b31a7f6442fce388e82ea5bcd0e99342fa7e18f5dc3731e249b2e14286ec",
+    "scenarios": [
+      {
+        "kind": "legacy-numeric-call-control",
+        "scope": "Classic358f numeric destination-index convention retained",
+        "text": "CALLABI BASIC 951/950/66/77/123 caller 66/77/123",
+        "programSha256": "87765c5cf7785267d11d30dfbda9b7da68f327d9c6c93382c92918f3b6a421cd"
+      }
+    ],
+    "errors": []
+  },
+  "legacyConventionAfter": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+    "scenarios": [
+      {
+        "kind": "legacy-numeric-call-control",
+        "scope": "Classic358f numeric destination-index convention retained",
+        "text": "CALLABI BASIC 951/950/66/77/123 caller 66/77/123",
+        "programSha256": "87765c5cf7785267d11d30dfbda9b7da68f327d9c6c93382c92918f3b6a421cd"
+      }
+    ],
+    "errors": []
+  },
+  "previousEngineSave": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+    "scenarios": [
+      "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
+    ],
+    "errors": []
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+      "scenarios": [
+        {
+          "kind": "points",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "Calc_Class_Points_Original",
+            "functionSha256": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5"
+          },
+          "scope": "Original point calculation; commander and set dependencies remain controlled stubs",
+          "markers": [
+            {
+              "label": "BASE",
+              "text": "AC BASE 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "SKILL-LEVELS",
+              "text": "AC SKILL-LEVELS 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "MASTER-FLAGS",
+              "text": "AC MASTER-FLAGS 13/14/14 | details 0/0/0/2/2/2/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "EASY-27",
+              "text": "AC EASY-27 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "BACKPACK-BADGE",
+              "text": "AC BACKPACK-BADGE 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "REAL-BADGE",
+              "text": "AC REAL-BADGE 18/19/19 | details 0/0/0/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-KING",
+              "text": "AC CONTROLLED-KING 22/23/23 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-SETS",
+              "text": "AC CONTROLLED-SETS 22/28/28 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "ARENA",
+              "text": "AC ARENA 23/29/29 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            }
+          ],
+          "nativeHeroSkillReads": true,
+          "nativeBadgeQuery": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "kind": "class",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetHeroClass",
+            "functionSha256": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94"
+          },
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "cases": [
+            {
+              "mask": 0,
+              "grandmaster": 0,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 0/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 0,
+              "expected": [
+                1,
+                4
+              ],
+              "text": "CLASS 0/1 1/4"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 0,
+              "expected": [
+                2,
+                4
+              ],
+              "text": "CLASS 0/2 2/4"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 0,
+              "expected": [
+                3,
+                4
+              ],
+              "text": "CLASS 0/3 3/4"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 0,
+              "expected": [
+                4,
+                4
+              ],
+              "text": "CLASS 0/4 4/4"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 0,
+              "expected": [
+                5,
+                4
+              ],
+              "text": "CLASS 0/5 5/4"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/6 6/4"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/7 6/4"
+            },
+            {
+              "mask": 0,
+              "grandmaster": 1,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 1/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 1,
+              "expected": [
+                1,
+                5
+              ],
+              "text": "CLASS 1/1 1/5"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 1,
+              "expected": [
+                2,
+                5
+              ],
+              "text": "CLASS 1/2 2/5"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 1,
+              "expected": [
+                3,
+                5
+              ],
+              "text": "CLASS 1/3 3/5"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 1,
+              "expected": [
+                4,
+                5
+              ],
+              "text": "CLASS 1/4 4/5"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 1,
+              "expected": [
+                5,
+                5
+              ],
+              "text": "CLASS 1/5 5/5"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/6 6/5"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/7 6/5"
+            }
+          ],
+          "triggerLocalPools": true,
+          "nestedCallPreservesCaller": true,
+          "heroSpecificNames": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "kind": "skill-level-routing",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetSecSkillLevel + acm_SetSecSkillLevel",
+            "functionSha256": "93fd9124497fa6524bd189b296ae0ab5256a5cd73852e43f1f71d0d5284d9557"
+          },
+          "scope": "Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission",
+          "cases": [
+            {
+              "input": -10,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 0 0/0/0/0"
+            },
+            {
+              "input": -1,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 1 0/0/0/0"
+            },
+            {
+              "input": 0,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 2 0/0/0/0"
+            },
+            {
+              "input": 1,
+              "expected": [
+                1,
+                1,
+                0,
+                0
+              ],
+              "text": "SKILL 3 1/1/0/0"
+            },
+            {
+              "input": 2,
+              "expected": [
+                2,
+                2,
+                0,
+                0
+              ],
+              "text": "SKILL 4 2/2/0/0"
+            },
+            {
+              "input": 3,
+              "expected": [
+                3,
+                3,
+                0,
+                0
+              ],
+              "text": "SKILL 5 3/3/0/0"
+            },
+            {
+              "input": 4,
+              "expected": [
+                3,
+                4,
+                1,
+                0
+              ],
+              "text": "SKILL 6 3/4/1/0"
+            },
+            {
+              "input": 5,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 7 3/5/1/1"
+            },
+            {
+              "input": 6,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 8 3/5/1/1"
+            },
+            {
+              "input": 10,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 9 3/5/1/1"
+            },
+            {
+              "input": 2147483647,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 10 3/5/1/1"
+            },
+            {
+              "input": -2147483648,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 11 0/0/0/0"
+            }
+          ],
+          "staleFlagsDoNotOverrideAdvancedNativeSkill": true,
+          "otherSkillDoesNotInheritPathfindingFlags": true,
+          "integerBounds": "BOUNDS 9/17/3/-2147483648",
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "kind": "era3-numeric-calls",
+          "scope": "ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted",
+          "cases": [
+            {
+              "label": "BASIC",
+              "text": "CALLABI BASIC 42/41/0/0/0 caller 66/77/123",
+              "expected": "42/41/0/0/0 caller 66/77/123"
+            },
+            {
+              "label": "NAMED",
+              "text": "CALLABI NAMED 12",
+              "expected": "12"
+            },
+            {
+              "label": "FAST",
+              "text": "CALLABI FAST 8",
+              "expected": "8"
+            },
+            {
+              "label": "READ",
+              "text": "CALLABI READ 5/9/0/0",
+              "expected": "5/9/0/0"
+            },
+            {
+              "label": "DUPLICATE",
+              "text": "CALLABI DUPLICATE 41/41/41/0/0",
+              "expected": "41/41/41/0/0"
+            },
+            {
+              "label": "NESTED",
+              "text": "CALLABI NESTED 52/41/0/0/88/99 caller 66/77/123"
+            }
+          ],
+          "nestedSaveReload": true,
+          "unpassedRegistersCleared": true,
+          "namedAndFastOutputs": true,
+          "duplicateOutputTargets": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ],
+      "errors": []
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+      "scenarios": [
+        {
+          "kind": "points",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "Calc_Class_Points_Original",
+            "functionSha256": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5"
+          },
+          "scope": "Original point calculation; commander and set dependencies remain controlled stubs",
+          "markers": [
+            {
+              "label": "BASE",
+              "text": "AC BASE 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "SKILL-LEVELS",
+              "text": "AC SKILL-LEVELS 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "MASTER-FLAGS",
+              "text": "AC MASTER-FLAGS 13/14/14 | details 0/0/0/2/2/2/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "EASY-27",
+              "text": "AC EASY-27 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "BACKPACK-BADGE",
+              "text": "AC BACKPACK-BADGE 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "REAL-BADGE",
+              "text": "AC REAL-BADGE 18/19/19 | details 0/0/0/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-KING",
+              "text": "AC CONTROLLED-KING 22/23/23 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-SETS",
+              "text": "AC CONTROLLED-SETS 22/28/28 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "ARENA",
+              "text": "AC ARENA 23/29/29 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            }
+          ],
+          "nativeHeroSkillReads": true,
+          "nativeBadgeQuery": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "class",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetHeroClass",
+            "functionSha256": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94"
+          },
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "cases": [
+            {
+              "mask": 0,
+              "grandmaster": 0,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 0/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 0,
+              "expected": [
+                1,
+                4
+              ],
+              "text": "CLASS 0/1 1/4"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 0,
+              "expected": [
+                2,
+                4
+              ],
+              "text": "CLASS 0/2 2/4"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 0,
+              "expected": [
+                3,
+                4
+              ],
+              "text": "CLASS 0/3 3/4"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 0,
+              "expected": [
+                4,
+                4
+              ],
+              "text": "CLASS 0/4 4/4"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 0,
+              "expected": [
+                5,
+                4
+              ],
+              "text": "CLASS 0/5 5/4"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/6 6/4"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/7 6/4"
+            },
+            {
+              "mask": 0,
+              "grandmaster": 1,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 1/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 1,
+              "expected": [
+                1,
+                5
+              ],
+              "text": "CLASS 1/1 1/5"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 1,
+              "expected": [
+                2,
+                5
+              ],
+              "text": "CLASS 1/2 2/5"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 1,
+              "expected": [
+                3,
+                5
+              ],
+              "text": "CLASS 1/3 3/5"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 1,
+              "expected": [
+                4,
+                5
+              ],
+              "text": "CLASS 1/4 4/5"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 1,
+              "expected": [
+                5,
+                5
+              ],
+              "text": "CLASS 1/5 5/5"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/6 6/5"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/7 6/5"
+            }
+          ],
+          "triggerLocalPools": true,
+          "nestedCallPreservesCaller": true,
+          "heroSpecificNames": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "skill-level-routing",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetSecSkillLevel + acm_SetSecSkillLevel",
+            "functionSha256": "93fd9124497fa6524bd189b296ae0ab5256a5cd73852e43f1f71d0d5284d9557"
+          },
+          "scope": "Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission",
+          "cases": [
+            {
+              "input": -10,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 0 0/0/0/0"
+            },
+            {
+              "input": -1,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 1 0/0/0/0"
+            },
+            {
+              "input": 0,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 2 0/0/0/0"
+            },
+            {
+              "input": 1,
+              "expected": [
+                1,
+                1,
+                0,
+                0
+              ],
+              "text": "SKILL 3 1/1/0/0"
+            },
+            {
+              "input": 2,
+              "expected": [
+                2,
+                2,
+                0,
+                0
+              ],
+              "text": "SKILL 4 2/2/0/0"
+            },
+            {
+              "input": 3,
+              "expected": [
+                3,
+                3,
+                0,
+                0
+              ],
+              "text": "SKILL 5 3/3/0/0"
+            },
+            {
+              "input": 4,
+              "expected": [
+                3,
+                4,
+                1,
+                0
+              ],
+              "text": "SKILL 6 3/4/1/0"
+            },
+            {
+              "input": 5,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 7 3/5/1/1"
+            },
+            {
+              "input": 6,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 8 3/5/1/1"
+            },
+            {
+              "input": 10,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 9 3/5/1/1"
+            },
+            {
+              "input": 2147483647,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 10 3/5/1/1"
+            },
+            {
+              "input": -2147483648,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 11 0/0/0/0"
+            }
+          ],
+          "staleFlagsDoNotOverrideAdvancedNativeSkill": true,
+          "otherSkillDoesNotInheritPathfindingFlags": true,
+          "integerBounds": "BOUNDS 9/17/3/-2147483648",
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-numeric-calls",
+          "scope": "ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted",
+          "cases": [
+            {
+              "label": "BASIC",
+              "text": "CALLABI BASIC 42/41/0/0/0 caller 66/77/123",
+              "expected": "42/41/0/0/0 caller 66/77/123"
+            },
+            {
+              "label": "NAMED",
+              "text": "CALLABI NAMED 12",
+              "expected": "12"
+            },
+            {
+              "label": "FAST",
+              "text": "CALLABI FAST 8",
+              "expected": "8"
+            },
+            {
+              "label": "READ",
+              "text": "CALLABI READ 5/9/0/0",
+              "expected": "5/9/0/0"
+            },
+            {
+              "label": "DUPLICATE",
+              "text": "CALLABI DUPLICATE 41/41/41/0/0",
+              "expected": "41/41/41/0/0"
+            },
+            {
+              "label": "NESTED",
+              "text": "CALLABI NESTED 52/41/0/0/88/99 caller 66/77/123"
+            }
+          ],
+          "nestedSaveReload": true,
+          "unpassedRegistersCleared": true,
+          "namedAndFastOutputs": true,
+          "duplicateOutputTargets": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ],
+      "errors": []
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "66f310c4ff18e9ee78b10aab7acec2fe923198257b02374b514354f0f6b0bc6d",
+      "scenarios": [
+        {
+          "kind": "points",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "Calc_Class_Points_Original",
+            "functionSha256": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5"
+          },
+          "scope": "Original point calculation; commander and set dependencies remain controlled stubs",
+          "markers": [
+            {
+              "label": "BASE",
+              "text": "AC BASE 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "SKILL-LEVELS",
+              "text": "AC SKILL-LEVELS 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "MASTER-FLAGS",
+              "text": "AC MASTER-FLAGS 13/14/14 | details 0/0/0/2/2/2/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "EASY-27",
+              "text": "AC EASY-27 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "BACKPACK-BADGE",
+              "text": "AC BACKPACK-BADGE 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "REAL-BADGE",
+              "text": "AC REAL-BADGE 18/19/19 | details 0/0/0/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-KING",
+              "text": "AC CONTROLLED-KING 22/23/23 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-SETS",
+              "text": "AC CONTROLLED-SETS 22/28/28 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "ARENA",
+              "text": "AC ARENA 23/29/29 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            }
+          ],
+          "nativeHeroSkillReads": true,
+          "nativeBadgeQuery": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        {
+          "kind": "class",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetHeroClass",
+            "functionSha256": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94"
+          },
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "cases": [
+            {
+              "mask": 0,
+              "grandmaster": 0,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 0/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 0,
+              "expected": [
+                1,
+                4
+              ],
+              "text": "CLASS 0/1 1/4"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 0,
+              "expected": [
+                2,
+                4
+              ],
+              "text": "CLASS 0/2 2/4"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 0,
+              "expected": [
+                3,
+                4
+              ],
+              "text": "CLASS 0/3 3/4"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 0,
+              "expected": [
+                4,
+                4
+              ],
+              "text": "CLASS 0/4 4/4"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 0,
+              "expected": [
+                5,
+                4
+              ],
+              "text": "CLASS 0/5 5/4"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/6 6/4"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/7 6/4"
+            },
+            {
+              "mask": 0,
+              "grandmaster": 1,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 1/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 1,
+              "expected": [
+                1,
+                5
+              ],
+              "text": "CLASS 1/1 1/5"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 1,
+              "expected": [
+                2,
+                5
+              ],
+              "text": "CLASS 1/2 2/5"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 1,
+              "expected": [
+                3,
+                5
+              ],
+              "text": "CLASS 1/3 3/5"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 1,
+              "expected": [
+                4,
+                5
+              ],
+              "text": "CLASS 1/4 4/5"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 1,
+              "expected": [
+                5,
+                5
+              ],
+              "text": "CLASS 1/5 5/5"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/6 6/5"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/7 6/5"
+            }
+          ],
+          "triggerLocalPools": true,
+          "nestedCallPreservesCaller": true,
+          "heroSpecificNames": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        {
+          "kind": "skill-level-routing",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetSecSkillLevel + acm_SetSecSkillLevel",
+            "functionSha256": "93fd9124497fa6524bd189b296ae0ab5256a5cd73852e43f1f71d0d5284d9557"
+          },
+          "scope": "Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission",
+          "cases": [
+            {
+              "input": -10,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 0 0/0/0/0"
+            },
+            {
+              "input": -1,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 1 0/0/0/0"
+            },
+            {
+              "input": 0,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 2 0/0/0/0"
+            },
+            {
+              "input": 1,
+              "expected": [
+                1,
+                1,
+                0,
+                0
+              ],
+              "text": "SKILL 3 1/1/0/0"
+            },
+            {
+              "input": 2,
+              "expected": [
+                2,
+                2,
+                0,
+                0
+              ],
+              "text": "SKILL 4 2/2/0/0"
+            },
+            {
+              "input": 3,
+              "expected": [
+                3,
+                3,
+                0,
+                0
+              ],
+              "text": "SKILL 5 3/3/0/0"
+            },
+            {
+              "input": 4,
+              "expected": [
+                3,
+                4,
+                1,
+                0
+              ],
+              "text": "SKILL 6 3/4/1/0"
+            },
+            {
+              "input": 5,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 7 3/5/1/1"
+            },
+            {
+              "input": 6,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 8 3/5/1/1"
+            },
+            {
+              "input": 10,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 9 3/5/1/1"
+            },
+            {
+              "input": 2147483647,
+              "expected": [
+                3,
+                5,
+                1,
+                1
+              ],
+              "text": "SKILL 10 3/5/1/1"
+            },
+            {
+              "input": -2147483648,
+              "expected": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "text": "SKILL 11 0/0/0/0"
+            }
+          ],
+          "staleFlagsDoNotOverrideAdvancedNativeSkill": true,
+          "otherSkillDoesNotInheritPathfindingFlags": true,
+          "integerBounds": "BOUNDS 9/17/3/-2147483648",
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        {
+          "kind": "era3-numeric-calls",
+          "scope": "ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted",
+          "cases": [
+            {
+              "label": "BASIC",
+              "text": "CALLABI BASIC 42/41/0/0/0 caller 66/77/123",
+              "expected": "42/41/0/0/0 caller 66/77/123"
+            },
+            {
+              "label": "NAMED",
+              "text": "CALLABI NAMED 12",
+              "expected": "12"
+            },
+            {
+              "label": "FAST",
+              "text": "CALLABI FAST 8",
+              "expected": "8"
+            },
+            {
+              "label": "READ",
+              "text": "CALLABI READ 5/9/0/0",
+              "expected": "5/9/0/0"
+            },
+            {
+              "label": "DUPLICATE",
+              "text": "CALLABI DUPLICATE 41/41/41/0/0",
+              "expected": "41/41/41/0/0"
+            },
+            {
+              "label": "NESTED",
+              "text": "CALLABI NESTED 52/41/0/0/88/99 caller 66/77/123"
+            }
+          ],
+          "nestedSaveReload": true,
+          "unpassedRegistersCleared": true,
+          "namedAndFastOutputs": true,
+          "duplicateOutputTargets": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "349042ad5416cc7859a1d7c08421362d0cd715df2ec8b60e220cf49af97a4c28",
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        }
+      ],
+      "errors": []
+    }
+  }
+}

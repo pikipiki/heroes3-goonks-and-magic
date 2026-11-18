@@ -2,6 +2,7 @@
  * Original archives remain unchanged; every repair is pinned and recorded.
  */
 import {compileErm} from './parser.mjs';
+import {mergeSourceInitializers} from './program-merger.mjs';
 import {readOriginalCampaign, sha256} from './importer.mjs';
 
 const repairs = new Map([
@@ -40,19 +41,7 @@ export function compileNativeSource(source) {
  return {...program, originalSha256, exceptions};
 }
 
-export function mergeNativeInitializers(programs) {
- let previousBlocks = 0;
- const initializers = [];
- for (const program of programs) {
-  const firstCommand = initializers.length;
-  for (const command of program.initializers)
-   initializers.push({...command, visibleBlocks: previousBlocks + command.visibleBlocks,
-    ...(command.receiver === '__flow' ? {operations: command.operations.map(op => ({...op,
-     args: op.args.map(arg => ({...arg, number: arg.number + firstCommand}))}))} : {})});
-  previousBlocks += program.blocks.length;
- }
- return initializers;
-}
+export const mergeNativeInitializers=mergeSourceInitializers;
 
 export function compileNativeCampaign(file) {
  const campaign = readOriginalCampaign(file);
@@ -64,6 +53,7 @@ export function compileNativeCampaign(file) {
    // A map has one ERM environment: variables and functions cross source events.
    const version = Math.max(1, ...programs.map(p => p.schemaVersion));
    const program = {schemaVersion: version, contract: 'source-campaign-erm-ast-v'+version,
+    ...(programs[0]?.functionArguments?{functionArguments:programs[0].functionArguments}:{}),
     source: campaign.name + '!' + map.member, mapSha256: map.mapSha256,
     sources: programs.map((p, index) => ({id: p.source, originalSha256: p.originalSha256,
      compiledSha256: p.sha256, firstOccurrence: map.sources[index].firstOccurrence,

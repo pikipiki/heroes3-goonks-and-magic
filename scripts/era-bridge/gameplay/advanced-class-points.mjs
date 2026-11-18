@@ -16,5 +16,5 @@ export function compileAdvancedClassPoints(bytes) {
  bytes=Buffer.from(bytes);
  const sha=createHash('sha256').update(bytes).digest('hex');
  if(sha!==advancedClassPointsSource.functionSha256)throw Error('Advanced Classes original calculation identity changed');
- return compileErm(bytes,{source:'Advanced Classes 1.1 / Calc_Class_Points_Original',bindings:advancedClassPointsBindings});
+ return compileErm(bytes,{source:'Advanced Classes 1.1 / Calc_Class_Points_Original',dialect:'era3',bindings:advancedClassPointsBindings});
 }

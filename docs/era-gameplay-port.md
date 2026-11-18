@@ -82,6 +82,23 @@ une même partie, sur téléphone en portrait/paysage et à la souris, pour
 réduire le coût des contrôles sans remplacer le moteur par une simulation.
 La preuve est `scripts/era-bridge/gameplay/advanced-class-skill-levels-native-validation.json`.
 
+Les appels numériques `FU:P` disposent maintenant d’un mode ERA 3 distinct :
+les paramètres en entrée/sortie reçoivent leur valeur courante, les registres
+`x` non transmis démarrent à zéro, puis les sorties sont recopiées dans leur
+ordre d’origine. Les campagnes WoG 3.58 conservent la convention précédente,
+avec passage de l’indice de destination. Les programmes ERA utilisent un
+contrat AST v4 explicite ; les importations refusent un mélange silencieux
+des deux conventions. Les importations de sources ERA sans signature `ZVSE2`
+peuvent déclarer leur dialecte à l’échelle du lot.
+
+Un témoin natif vérifie l’ancien résultat avant et après le changement. Les
+parcours ERA 3 vérifient les sorties numériques ordinaires, nommées et rapides,
+les destinations dupliquées, les registres de l’appelant et la sauvegarde
+suspendue dans un appel imbriqué. Les chaînes/ERT, les modificateurs, les
+arguments de comparaison, les boucles `DO` et l’introspection des arguments
+restent hors de ce mode borné. Cette étape ne valide pas le profil complet.
+La preuve est `scripts/era-bridge/gameplay/era3-numeric-calls-native-validation.json`.
+
 ## Références récupérées
 
 Distribution officielle :

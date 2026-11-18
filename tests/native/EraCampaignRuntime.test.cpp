@@ -102,7 +102,7 @@ int main()
  auto clip=makeCommand("VR","F",number(0));clip["selectors"].Vector().push_back(writeOperand(variable(10)));
  clip["operations"].Vector()[0]["args"].Vector().push_back(writeOperand(number(5)));
  boundsProgram["blocks"].Vector()[0]["commands"].Vector()={clip};
- for(const int version:{1,2,4}){
+ for(const int version:{1,2,5}){
   auto unsupported=boundsProgram;unsupported["schemaVersion"].Integer()=version;
   unsupported["contract"].String()="source-campaign-erm-ast-v"+std::to_string(version);
   rejects([&]{readProgram(unsupported);});
@@ -111,6 +111,15 @@ int main()
  invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;
  auto clipped=era_campaign_runtime::execute(boundsProgram,writeState(bounded),context,modernHost,invocation);
  assert(clipped.complete&&readState(clipped.state).v.at(10)==5);
+ // ERA3 numeric FU calls have an explicit v4 contract; older versions may
+ // not silently borrow this convention from the original358f campaigns.
+ auto era3Program=boundsProgram;era3Program["schemaVersion"].Integer()=4;era3Program["contract"].String()="source-campaign-erm-ast-v4";
+ era3Program["functionArguments"].String()="era3-integers";
+ assert(readProgram(era3Program).era3IntegerCalls);
+ auto invalidEra3=era3Program;invalidEra3.Struct().erase("functionArguments");rejects([&]{readProgram(invalidEra3);});
+ invalidEra3=era3Program;invalidEra3["functionArguments"].String()="unknown";rejects([&]{readProgram(invalidEra3);});
+ invalidEra3=era3Program;invalidEra3["schemaVersion"].Integer()=3;invalidEra3["contract"].String()="source-campaign-erm-ast-v3";rejects([&]{readProgram(invalidEra3);});
+ invalidEra3=era3Program;invalidEra3["blocks"].Vector()[0]["commands"].Vector()[0]["receiver"].String()="DO";rejects([&]{readProgram(invalidEra3);});
  // The actual engine JsonNode holds extended dialog definitions and replies.
  State dialogue;Context dc;JsonNode definitions;era_campaign_dialogs::Dialogs dialogs(definitions,dialogue,dc);
  const auto n=[](int value){Operand result;result.kind=Kind::Number;result.number=value;return result;};

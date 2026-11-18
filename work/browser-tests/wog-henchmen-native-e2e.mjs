@@ -271,6 +271,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='legacy-numeric-calls'){
+  const {runLegacyNumericCallsControl}=await import('./wog-era3-numeric-calls-fixture.mjs');
+  await runLegacyNumericCallsControl({boot,state,wait,page:()=>page,report,output});
+ }
  if(process.env.CASES==='advanced-core'){
   const {runAdvancedCore}=await import('./wog-advanced-core-cases.mjs');
   await runAdvancedCore({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:943})});

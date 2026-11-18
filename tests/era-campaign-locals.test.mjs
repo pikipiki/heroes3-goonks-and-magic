@@ -25,7 +25,7 @@ test('ERM2 scalar locals allocate source x/y pools and reset at each trigger',()
  assert.equal(b.kind,'post-trigger');
  assert.equal(b.commands[0].selectors[0].index.number,1);
  assert.equal(b.commands[0].operations[0].args[0].index.number,1);
- assert.equal(p.schemaVersion,2);
+ assert.equal(p.schemaVersion,4);
 });
 
 test('ERM2 constants interpolate without touching unmarked literal identifiers',()=>{
