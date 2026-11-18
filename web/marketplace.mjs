@@ -87,7 +87,7 @@ export function createMarketplace({root, command, refresh}) {
     const resource=rows[index], name=resourceName(resource);
     button.disabled=Boolean(pending)||(selling?resource.id===receive:resource.id===give);
     button.setAttribute('aria-pressed',String(resource.id===(selling?give:receive)));
-    button.lastElementChild.textContent=selling?compactResource(resource.value):'';
+    button.lastElementChild.textContent=selling?(resource.key==='gold'?new Intl.NumberFormat('fr-FR').format(resource.value).replace(/[\u00a0\u202f]/g,' '):compactResource(resource.value)):'';
     button.lastElementChild.hidden=!selling;
     button.querySelector('span').textContent=name;
     button.title=selling?`${name} · ${resource.value}`:name;

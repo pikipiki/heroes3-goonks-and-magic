@@ -19,6 +19,9 @@ export function protectMenuButtons(root,activate,{context=()=>'',clock=()=>perfo
  root.addEventListener('pointercancel',cancel,true);
  root.addEventListener('lostpointercapture',e=>{if(held?.id===e.pointerId)cancel();},true);
  root.addEventListener('click',e=>{
+  // The opener can retarget its delayed compatibility click inside the newly
+  // visible dialog. A fresh pointerdown clears this shield for the next tap.
+  if(clock()<shieldUntil&&(e.detail>0||e.pointerType==='touch'||e.pointerType==='pen')){consume(e);return;}
   const button=e.target.closest?.('button');
   if(!button||!root.contains(button))return;
   consume(e);

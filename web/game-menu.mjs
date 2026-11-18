@@ -18,17 +18,17 @@ function mountGameMenu(){
  warmSpellIcons();
  if(!document.querySelector('#mobile-app')&&isMobileLayout()){window.addEventListener('goonk-mobile-mounted',mountGameMenu,{once:true});return;}
  if(document.querySelector('#game-menu-toggle'))return;
-  let state={},tab='home',initialAudioApplied=false,newGamePending=false,pendingAudio=null,audioPhase='loading';
+  let state={},tab='home',initialAudioApplied=false,newGamePending=false,manualSaveRequested=false,pendingAudio=null,audioPhase='loading';
   let muted=false;try{muted=localStorage.getItem(muteKey)==='true';}catch{}
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
   const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
-  dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" data-native-click aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><footer class="game-menu-return"><button data-menu="back">Back</button></footer><p class="game-menu-status" role="status"></p>';
+  dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" data-native-click aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="save" translate="no">Save</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><footer class="game-menu-return"><button data-menu="back">Back</button></footer><p class="game-menu-status" role="status"></p>';
   (document.querySelector('#mobile-viewport')||document.body).append(dialog);
   const onlineTurn=document.createElement('p');
   onlineTurn.className='desktop-online-turn';onlineTurn.hidden=true;onlineTurn.setAttribute('role','status');
   document.body.append(onlineTurn);
-  const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status');
+  const content=dialog.querySelector('.game-menu-body'),status=dialog.querySelector('.game-menu-status'),saveButton=dialog.querySelector('[data-menu=save]');
   content.addEventListener('change',event=>{if(event.target.matches('[data-map-one-click],[data-map-two-clicks]')){setMapTwoClicks(event.target.matches('[data-map-two-clicks]'));content.querySelector('[data-map-one-click]').checked=!mapTwoClicks();content.querySelector('[data-map-two-clicks]').checked=mapTwoClicks();}if(event.target.matches('[data-battle-one-click]'))setBattleOneClick(event.target.checked);if(event.target.matches('[data-spell-one-click]'))setSpellOneClick(event.target.checked);if(event.target.matches('[data-default-battle-view]'))setDefaultBattleView(event.target.value);});
   const command=(action,value=0,preview=0)=>window.Module?._vcmiMobileCommand?.(action,value,preview,0,0,0);
   let hostedAlerts, hostedRequested;
@@ -53,6 +53,7 @@ function mountGameMenu(){
     hostedEntry.textContent=hostedTitle;
     dialog.querySelector('nav [data-menu=cheats]').hidden=state.cheatsAllowed===false;
     dialog.querySelector('.game-menu-return').hidden=tab==='home'||tab==='new-game'||tab==='cheats';dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=true;dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
+    saveButton.hidden=tab!=='home'||!state.day;saveButton.textContent=getLanguage()==='fr'?'Sauvegarder':'Save';saveButton.disabled=!state.autosaveAllowed||!!state.heroMoving||window.goonkAutosaveStatus?.phase==='saving';saveButton.setAttribute('aria-busy',String(window.goonkAutosaveStatus?.phase==='saving'));
     if(tab==='home'){content.innerHTML='';delete content.dataset.view;delete content.dataset.storage;return;}
     if(tab==='storage-help'){delete content.dataset.storage;if(content.dataset.view!=='storage-help'){content.dataset.view='storage-help';content.innerHTML=storageHelp();}return;}
     dialog.querySelector('[data-menu=settings]').setAttribute('aria-pressed',String(tab==='settings'));
@@ -136,6 +137,13 @@ function mountGameMenu(){
     window.goonkGameMenuState={muted,ready:initialAudioApplied,native:state};
   });
   window.addEventListener('goonk-autosave-status',e=>{const s=e.detail;dialog.querySelector('.autosave-status').textContent=s.phase==='error'?'Sauvegarde automatique : '+s.error:s.phase==='saving'?'Sauvegarde automatique en cours…':s.deferred?'Combat en cours : sauvegarde différée'+(s.lastSaved?' · dernière à '+new Date(s.lastSaved).toLocaleTimeString(getLanguage()==='fr'?'fr-FR':'en-GB'):''):s.lastSaved?'Sauvegarde automatique : '+new Date(s.lastSaved).toLocaleTimeString(getLanguage()==='fr'?'fr-FR':'en-GB')+' · cycle 10 s':'Sauvegarde automatique : cycle 10 s · en attente d’un état enregistrable';});
+  window.addEventListener('goonk-autosave-status',event=>{
+    const s=event.detail,fr=getLanguage()==='fr';saveButton.disabled=!state.autosaveAllowed||!!state.heroMoving||s.phase==='saving';saveButton.setAttribute('aria-busy',String(s.phase==='saving'));
+    if(manualSaveRequested&&s.phase!=='saving'){
+      manualSaveRequested=false;status.textContent=s.phase==='saved'?(fr?'Partie sauvegardée.':'Game saved.'):s.phase==='error'?(s.error||(fr?'Échec de la sauvegarde.':'Save failed.')):(fr?'Sauvegarde indisponible pour le moment.':'Saving is unavailable right now.');
+    }
+  });
+  window.addEventListener('goonk-language',()=>{saveButton.textContent=getLanguage()==='fr'?'Sauvegarder':'Save';});
   const menuPresses=protectMenuButtons(dialog,activateMenuButton,{context:()=>tab,nativeClick:true});
   bindPress(toggle,()=>{menuPresses.cancel();tab='home';render();status.textContent='';if(!dialog.open)dialog.showModal();});
   function activateMenuButton(button){
@@ -150,6 +158,7 @@ function mountGameMenu(){
     }
     if(action==='back'){tab=tab==='storage-help'?'storage':'home';delete content.dataset.view;render();return;}
     if(action==='storage-help'){tab='storage-help';render();return;}
+    if(action==='save'){if(!state.autosaveAllowed||state.heroMoving||window.goonkAutosaveStatus?.phase==='saving')return;manualSaveRequested=true;status.textContent=getLanguage()==='fr'?'Sauvegarde en cours…':'Saving…';window.dispatchEvent(new Event('goonk-save-now'));return;}
     if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';content.innerHTML='<h3>Retourner au menu principal ?</h3><p>The current session will end. Your existing saved games will be kept. Save first if you want to keep your latest progress.</p><div class="menu-confirm-actions"><button data-menu=confirm-new-game>Retour au menu principal</button><button data-menu=back>Back</button></div>';return;}
     if(action==='confirm-new-game'){
       if(newGamePending||!state.day||!window.Module?._vcmiMobileCommand)return;
