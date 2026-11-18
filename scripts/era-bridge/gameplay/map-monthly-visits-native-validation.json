@@ -20,7 +20,7 @@
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
     "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
-    "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4",
+    "web/wog-options.mjs": "af2bb3e8779bf12d6c4773698da9520ed35213d87511a865f552e2c4870eb7b1",
     "mod/tum-era/content/config/wog-map-rules.json": "846faa1044da6fac42aba7958e3029b6efb3a3003e6072f926c7d89f3fb79145",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "13514ff26f1f416aef3706d32de34c1190528982d4a119506b6f6f2e416c95ff",
@@ -708,5 +708,15 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "sharedRadioUiRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "applicationVersion": "0.4.263",
+    "previousSourceBindings": {
+      "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4"
+    },
+    "nativeEngineUnchanged": true,
+    "nativeTouchAndMouseScenariosPassed": 12,
+    "uiLanguagesAndBrowsersPassed": 16
   }
 }

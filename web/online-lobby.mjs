@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {isVisibleScenario,scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -25,7 +26,7 @@ function sendRoomAction(action, id) {
 
 export function createOnlineLobby(root, command) {
   const panel = document.createElement('section');
-  panel.className = 'online-lobby';
+  panel.className = 'online-lobby';useScreenComponents(panel);
   // This panel renders both languages itself; player and scenario names are literal.
   panel.setAttribute('translate', 'no');
   panel.hidden = true;
@@ -34,7 +35,7 @@ export function createOnlineLobby(root, command) {
   root.querySelector('.mobile-play').append(panel);
   const classic = panel.querySelector('[data-room-action=classic]');
   const body = panel.querySelector('.online-lobby-body');
-  const footer = panel.querySelector('footer');
+  const footer = document.createElement('div');footer.className='ui-action-group';panel.querySelector('footer').append(footer);
   const title = panel.querySelector('h2');
   const account = panel.querySelector('[data-online-account]');
   let state = {}, page = '', classicMode = false, sending = '', pendingTimer;

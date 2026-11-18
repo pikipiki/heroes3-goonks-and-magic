@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import{plainGameText}from'./game-text.mjs';
 import{bindPress}from'./mobile-press.mjs';
 import{getLanguage}from'./i18n.mjs';
@@ -7,6 +8,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const stableText=(node,value)=>{if(node.textContent!==value)node.textContent=value;};
 const rankName=n=>['I','II','III','IV','V','VI'][n]||String(n+1);
 export function createRecruitmentHall({panel,command,prices,stats,openBuildings}){
+ useScreenComponents(panel);
  const unlockBuilding=unit=>(state.buildings||[]).find(building=>building.id===unit.requiredBuildingId);
  const nameCanvas=document.createElement('canvas');nameCanvas.width=nameCanvas.height=1;
  const measure=nameCanvas.getContext('2d');

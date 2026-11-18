@@ -1,10 +1,11 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {getLanguage} from './i18n.mjs';
 import {plainGameText} from './game-text.mjs';
 const esc=value=>plainGameText(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Native callbacks and visibility rules remain authoritative for purchases and intelligence.
 export function createTownServices({root,command}){
- const panel=document.createElement('section');panel.className='town-service';panel.hidden=true;root.querySelector('.mobile-play').append(panel);
+ const panel=document.createElement('section');panel.className='town-service';useScreenComponents(panel);panel.hidden=true;root.querySelector('.mobile-play').append(panel);
  let state,key='',captureAt=0;
  panel.addEventListener('click',event=>{const b=event.target.closest('button');if(!b||b.disabled)return;if(b.hasAttribute('data-service-buy'))command(1);else if(b.hasAttribute('data-service-back'))command(state.dialogKind==='thieves-guild'?1:0);});
  return{

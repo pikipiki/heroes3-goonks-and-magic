@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {equipmentSlotNames, paintArtifactIcons} from './hero-equipment.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -8,7 +9,7 @@ const slotName=(slot,fr=true)=>slot.backpack?(fr?'Sac à dos':'Backpack'):equipm
 export function createHeroExchange({root,command,refresh,portrait}){
  const fr=getLanguage()==='fr';
  const panel=document.createElement('section');
- panel.className='hero-exchange-page';
+ panel.className='hero-exchange-page';useScreenComponents(panel);
  panel.setAttribute('aria-label',fr?'Échange entre héros':'Hero exchange');
  panel.hidden=true;
  root.querySelector('.mobile-play').append(panel);

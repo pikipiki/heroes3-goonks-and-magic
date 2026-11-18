@@ -1,0 +1,176 @@
+@import url('./tokens.css');
+:is(#mobile-app,#game-menu,.ui-popup) .ui-button{
+ box-sizing:border-box;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;margin:0!important;padding:6px 12px!important;
+ border:5px solid transparent!important;border-image:url('../h3-theme/button-frame.png') 5 fill stretch!important;border-radius:var(--ui-radius-control)!important;background:var(--ui-surface-container) url('../h3-theme/stone.png')!important;color:var(--ui-on-secondary)!important;
+ font:var(--ui-font-label)!important;text-shadow:none!important;box-shadow:none!important;white-space:normal;text-align:center;overflow-wrap:anywhere;touch-action:manipulation;
+}
+:is(#mobile-app,#game-menu,.ui-popup) .ui-button[data-ui-variant=filled]{background:var(--ui-primary-container)!important;color:var(--ui-on-primary-container)!important;outline:2px solid var(--ui-primary);outline-offset:-2px}
+:is(#mobile-app,#game-menu,.ui-popup) .ui-button[data-ui-variant=danger]{background:var(--ui-error)!important;color:var(--ui-on-error)!important;border-color:transparent!important}
+:is(#mobile-app,#game-menu,.ui-popup) .ui-button:disabled{opacity:.38!important;cursor:default}
+:is(#mobile-app,#game-menu,.ui-popup) :is(.ui-button,.ui-icon-button):focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:2px}
+:is(#mobile-app,#game-menu,.ui-popup) :is(.ui-button,.ui-icon-button):not(:disabled):hover{box-shadow:inset 0 0 0 100px #ffffff14!important}
+:is(#mobile-app,#game-menu,.ui-popup) :is(.ui-button,.ui-icon-button):not(:disabled):active{box-shadow:inset 0 0 0 100px #ffffff24!important}
+:is(#mobile-app,#game-menu) .ui-screen-header{box-sizing:border-box;display:flex!important;align-items:center!important;gap:var(--ui-space-3)!important;min-width:0;min-height:64px;padding:8px 12px!important;border:0!important;border-bottom:1px solid var(--ui-outline)!important;background:linear-gradient(#7c261be6,#3e180fe6),url('../h3-theme/stone.png')!important;color:var(--ui-on-surface)!important}
+:is(#mobile-app,#game-menu) .ui-screen-header :is(h1,h2){min-width:0;flex:1;margin:0!important;color:var(--ui-on-surface)!important;font:var(--ui-font-title)!important;white-space:normal!important;overflow-wrap:anywhere;overflow:visible!important;text-overflow:clip!important}
+:is(#mobile-app,#game-menu) .ui-screen-header>.ui-heading{flex:1;min-width:0}
+:is(#mobile-app,#game-menu) .ui-screen-header .ui-heading p{margin:4px 0 0;font:var(--ui-font-label);color:var(--ui-on-surface-variant)}
+:is(#mobile-app,#game-menu) .ui-icon-button{display:grid!important;place-items:center;box-sizing:border-box;flex:0 0 var(--ui-touch)!important;width:var(--ui-touch)!important;height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;margin:0 0 0 auto!important;padding:0!important;border:5px solid transparent!important;border-image:url('../h3-theme/button-frame.png') 5 fill stretch!important;border-radius:0!important;box-shadow:none!important;background:var(--ui-surface-container)!important;color:var(--ui-on-surface)!important;font:400 24px/1 system-ui!important;touch-action:manipulation}
+:is(#mobile-app,#game-menu) .ui-action-dock{box-sizing:border-box;display:flex!important;align-items:center;justify-content:flex-end;flex-direction:row!important;flex-wrap:wrap;gap:var(--ui-space-2)!important;min-width:0;padding:8px!important;border:0!important;border-top:1px solid var(--ui-outline)!important;background:var(--ui-surface-container) url('../h3-theme/stone.png')!important;color:var(--ui-on-surface);text-shadow:none}
+:is(#mobile-app,#game-menu) .ui-action-dock>button{flex:1 1 112px}
+:is(#mobile-app,#game-menu) .ui-action-dock>:is(p,.ui-dock-status){flex:1 0 100%;min-width:0;margin:0!important;font:var(--ui-font-label);color:var(--ui-on-surface-variant);overflow-wrap:anywhere;max-width:none!important}
+.ui-header-return,.redundant-return{display:none!important}
+.ui-notice{padding:12px 16px;border-radius:var(--ui-radius-panel);background:var(--ui-surface-high);color:var(--ui-on-surface);font:var(--ui-font-body)}
+.ui-notice[data-ui-tone=error]{color:var(--ui-error)}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .ui-action-dock{align-items:stretch;flex-direction:column!important;justify-content:flex-end;flex-wrap:nowrap}
+ #mobile-app .ui-action-dock>button{flex:0 0 auto;width:100%!important}
+ #mobile-app .ui-action-dock>:is(p,.ui-dock-status){flex:0 1 auto;width:100%}
+ #mobile-app .progression-page>header.ui-screen-header{grid-column:2!important;grid-row:1!important;align-self:start}
+ #mobile-app .progression-page>.progression-scroll{grid-column:1!important;grid-row:1/-1!important}
+ #mobile-app .progression-page>footer.ui-action-dock{grid-column:2!important;grid-row:2!important;padding-top:8px!important;min-height:0;overflow-y:auto;touch-action:pan-y}
+}
+@media(orientation:landscape) and (max-height:600px){
+ #game-menu>.ui-screen-header{grid-column:2!important;grid-row:1!important;align-self:start;min-height:64px}
+ #game-menu>.ui-action-dock{grid-column:2!important;grid-row:2!important;flex-direction:column!important;align-items:stretch;flex-wrap:nowrap}
+ #game-menu>.ui-action-dock>button{flex:0 0 auto;width:100%!important}
+}
+@media(prefers-reduced-motion:reduce){.ui-button,.ui-icon-button,.ui-popup{transition:none!important;animation:none!important}}
+.ui-popup:popover-open,.ui-popup[data-open=true]{display:block}
+.ui-popup{position:fixed;inset:0;z-index:2147483000;margin:0;padding:0;width:100%;height:100%;max-width:none;max-height:none;border:0;background:transparent;overflow:hidden;touch-action:none}
+.ui-popup::backdrop{background:transparent}
+.ui-popup-list{position:fixed;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:4px;background:var(--ui-surface-high);color:var(--ui-on-surface);border:1px solid var(--ui-outline);border-radius:var(--ui-radius-panel);box-shadow:var(--ui-elevation-menu)}
+:is(#mobile-app,#game-menu,.ui-popup) .ui-popup-list>.ui-button{display:block;min-height:48px!important;width:100%;margin:0!important;border:0!important;border-radius:0!important;text-align:left;background:transparent!important;color:var(--ui-on-surface)!important}
+:is(#mobile-app,#game-menu) .ui-action-dock>.ui-overflow-trigger{flex:0 1 96px}
+
+:is(#mobile-app,#game-menu) :is(.ui-action-dock,.ui-button,.ui-icon-button)[hidden]{display:none!important}
+:is(#mobile-app,#game-menu) .ui-button[aria-pressed=true]{outline:2px solid var(--ui-primary);outline-offset:-4px;background:var(--ui-surface-high)!important}
+:is(#mobile-app,#game-menu) .ui-button[aria-busy=true]{position:relative;padding-inline-end:40px!important}
+:is(#mobile-app,#game-menu) .ui-button[aria-busy=true]::after{content:'';position:absolute;right:12px;top:calc(50% - 8px);width:12px;height:12px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:ui-busy 800ms linear infinite}
+@keyframes ui-busy{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ui-button[aria-busy=true]::after{animation:none!important}}
+
+:is(#mobile-app,#game-menu) .ui-action-dock>.ui-action-group{flex:1;min-width:0}
+:is(#mobile-app,#game-menu) .ui-action-dock .ui-action-dock{padding:0!important;border:0!important}
+#mobile-app .building-actions.ui-action-dock{position:sticky;bottom:0;z-index:2;margin-top:8px}
+@container goonk-viewport (orientation:landscape){#mobile-app .building-actions.ui-action-dock{grid-column:2;align-self:end}}
+:is(#mobile-app,#game-menu) .ui-choice-tile{box-sizing:border-box;min-width:48px;min-height:48px!important;border-radius:var(--ui-radius-panel)!important;touch-action:manipulation}
+:is(#mobile-app,#game-menu) .ui-choice-tile:focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:-4px}
+:is(#mobile-app,#game-menu) .ui-choice-tile:disabled{opacity:.38}
+:is(#mobile-app,#game-menu) .ui-tab{box-sizing:border-box;min-height:48px!important;min-width:48px!important;border:0!important;border-image:none!important;border-radius:0!important;border-bottom:3px solid transparent!important;background:transparent!important;color:var(--ui-on-surface-variant)!important;font:var(--ui-font-tab)!important;padding:8px 4px!important;overflow-wrap:normal;word-break:normal}
+:is(#mobile-app,#game-menu) .ui-tab:is([aria-selected=true],[aria-pressed=true]){border-bottom-color:var(--ui-primary)!important;color:var(--ui-primary)!important}
+:is(#mobile-app,#game-menu) .ui-tab:focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:-4px}
+:is(#mobile-app,#game-menu) .ui-quantity-stepper{display:grid;grid-template-columns:48px minmax(0,1fr) 48px 56px;gap:8px;align-items:center;min-width:0}
+:is(#mobile-app,#game-menu) .ui-quantity-stepper input{box-sizing:border-box;min-width:0;width:100%;min-height:48px;border-radius:var(--ui-radius-field);font:var(--ui-font-body);background:var(--ui-surface);color:var(--ui-on-surface);border:1px solid var(--ui-outline)}
+.ui-resource-cost{display:inline-flex;gap:4px;align-items:center;white-space:nowrap}.ui-resource-cost img{width:24px;height:24px;object-fit:contain}
+.ui-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:8px;margin:0}.ui-stat-grid>div{padding:8px;background:var(--ui-surface-container);border-radius:8px}.ui-stat-grid dt{font:var(--ui-font-label);color:var(--ui-on-surface-variant)}.ui-stat-grid dd{margin:4px 0 0;font:600 18px/24px system-ui;color:var(--ui-on-surface);font-variant-numeric:tabular-nums}
+
+/* The short market rail keeps the primary action above two secondary actions. */
+#mobile-app .market-view-actions.ui-action-dock{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px!important}
+#mobile-app .market-view-actions.ui-action-dock>[data-market=trade]{grid-column:1/-1;grid-row:1}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .market-page .market-deal{min-height:0;gap:4px;align-content:end}
+ #mobile-app .market-page .market-view-actions.ui-action-dock{padding:4px!important;gap:4px!important}
+ #mobile-app .battle-result>.ui-action-dock{grid-area:2/2}
+}
+
+/* Reusable three-region screen: independently scrolling content and fixed actions. */
+#mobile-app .ui-screen-layout{grid-template-rows:auto minmax(0,1fr) auto!important;min-height:0;overflow:hidden}
+#mobile-app .ui-screen-content{min-width:0;min-height:0;overscroll-behavior:contain;touch-action:pan-y}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .ui-screen-layout{display:grid!important;grid-template-columns:minmax(0,1fr) clamp(176px,27cqw,260px)!important;grid-template-rows:auto minmax(0,1fr)!important;gap:8px!important}
+ #mobile-app .ui-screen-layout>.ui-screen-header{grid-area:1/2!important;align-self:start;max-height:100%;overflow-y:auto;touch-action:pan-y}
+ #mobile-app .ui-screen-layout>.ui-screen-content{grid-area:1/1/3/2!important;overflow-y:auto}
+ #mobile-app .ui-screen-layout>.ui-action-dock{grid-area:2/2!important;align-self:end;max-height:100%;overflow-y:auto;touch-action:pan-y}
+}
+
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .market-page .market-deal{grid-template-rows:auto auto auto!important;padding:4px!important}
+ #mobile-app .market-page .market-total{min-height:36px!important;padding:4px!important;box-sizing:border-box}
+}
+
+/* Main game navigation retains its spatial arrangement and game summary. */
+#mobile-app .ui-navigation>button{min-height:48px!important}
+#mobile-app .mobile-menu .lobby-footer>div{display:flex;gap:8px;width:100%}
+#mobile-app .mobile-menu .lobby-footer>div>button{flex:1;width:auto}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .mobile-menu .lobby-intro.ui-screen-header{display:flex!important;grid-column:2;grid-row:1;min-height:64px}
+ #mobile-app .mobile-menu .lobby-intro.ui-screen-header>img{display:none}
+}
+
+html.goonk-mobile #mobile-viewport #mobile-app .mobile-menu.ui-screen-layout:not([hidden]){display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr) auto!important;align-content:stretch;align-items:stretch;justify-content:stretch;padding:8px;gap:8px;text-align:left}
+#mobile-app .mobile-menu.ui-screen-layout>.ui-screen-header>img{width:32px;height:32px;object-fit:contain}
+#mobile-app .mobile-menu.ui-screen-layout>.lobby-scroll{width:100%;max-width:none;overflow-y:auto}
+#mobile-app .mobile-menu.ui-screen-layout>.lobby-footer{height:auto;min-height:0;padding:8px!important;gap:8px!important}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-viewport #mobile-app .mobile-menu.ui-screen-layout:not([hidden]){grid-template-columns:minmax(0,1fr) clamp(176px,27cqw,260px)!important;grid-template-rows:auto minmax(0,1fr)!important}
+ #mobile-app .mobile-menu.ui-screen-layout>.ui-screen-header{grid-area:1/2!important}
+ #mobile-app .mobile-menu.ui-screen-layout>.lobby-scroll{grid-area:1/1/3/2!important}
+ #mobile-app .mobile-menu.ui-screen-layout>.lobby-footer{grid-area:2/2!important;align-self:end}
+}
+
+#mobile-app .mobile-tavern.ui-screen-layout{align-content:stretch}
+#mobile-app .tavern-header.ui-screen-header{flex-wrap:wrap}
+#mobile-app .tavern-header.ui-screen-header>.tavern-cost{order:3;flex-basis:100%}
+#mobile-app .tavern-heroes.ui-screen-content{align-content:start}
+#mobile-app .online-login form.ui-screen-layout{display:grid;width:min(100%,640px);max-height:100%;padding:0;gap:8px}
+#mobile-app .online-login-content{display:grid;align-content:start;gap:16px;padding:16px;overflow-y:auto}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hero-exchange-page>.exchange-toolbar.ui-screen-header{grid-column:2;grid-row:1}
+ #mobile-app .hero-exchange-page>.exchange-tabs{grid-column:1;grid-row:1;align-self:start}
+ #mobile-app .hero-exchange-page>.exchange-inventories{grid-column:1;grid-row:2/-1}
+}
+
+/* Hidden screens must never become transparent hit targets after a rotation. */
+#mobile-app [data-ui-screen][hidden],#mobile-app .ui-screen-layout[hidden],#mobile-app .ui-screen-content[hidden]{display:none!important}
+
+:is(#mobile-app,#game-menu) .ui-choice-tile[aria-pressed=true]{outline:2px solid var(--ui-primary)!important;outline-offset:-3px}
+/* Legacy card layouts yield their outer rail to the shared screen shell. */
+#mobile-viewport #mobile-app [data-ui-screen] :is(.ui-action-dock>button,.ui-screen-header>button){min-width:48px!important;min-height:48px!important}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .ui-screen-layout>.campaign-body.ui-screen-content{display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important;grid-template-rows:minmax(0,1fr)!important}
+ #mobile-app .ui-screen-layout>.campaign-body>.campaign-regions{grid-area:1/1!important}
+ #mobile-app .ui-screen-layout>.campaign-body>.campaign-scroll{grid-area:1/2!important}
+ #mobile-app .ui-screen-layout>.mage-guild-library.ui-screen-content{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr)!important}
+ #mobile-app .ui-screen-layout>.mage-guild-library>nav{grid-column:1!important;grid-row:1!important;grid-template-rows:repeat(2,48px)!important}
+ #mobile-app .ui-screen-layout>.mage-guild-library>.mage-guild-shelf{grid-column:1!important;grid-row:2!important}
+}
+
+/* Hero commands stay outside the scrolling item or troop description. */
+#mobile-app .hero-equipment-page{grid-template-rows:78px 50px auto minmax(0,1fr) auto auto}
+#mobile-app .hero-equipment-page>:is(.hero-artifact-actions,.hero-army-dock-tools).ui-action-dock{display:flex!important;flex-direction:row!important;align-self:end;min-height:0}
+#mobile-app .hero-equipment-page>:is(.hero-artifact-actions,.hero-army-dock-tools).ui-action-dock>button{flex:1 1 0;min-width:0!important;padding:8px!important}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .hero-equipment-page{grid-template-rows:auto auto auto minmax(0,1fr) auto!important}
+ #mobile-app .hero-equipment-page>:is(.hero-artifact-actions,.hero-army-dock-tools).ui-action-dock{grid-column:2;grid-row:5}
+ #mobile-app .hero-equipment-page>.hero-artifact-detail{grid-column:2;grid-row:4;padding:4px;gap:2px}
+ #mobile-app .hero-equipment-page>.hero-artifact-detail p{margin:0}
+}
+
+:is(#mobile-app,#game-menu) .ui-button:not(:disabled):active{border-image-source:url('../h3-theme/button-frame-pressed.png')!important}
+
+#mobile-viewport #mobile-app .hero-bag-tabs.ui-compact-navigation{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:8px!important;padding:4px!important}
+#mobile-viewport #mobile-app .hero-bag-tabs.ui-compact-navigation>.ui-overflow-trigger{flex:1 1 auto;max-width:none;order:-1;white-space:normal;overflow-wrap:normal}
+#mobile-viewport #mobile-app .hero-bag-tabs.ui-compact-navigation>[data-hero-commander]{flex:0 0 48px;width:48px;padding:4px!important}
+#mobile-app .hero-equipment-page>:is(.hero-artifact-actions,.hero-army-dock-tools).ui-action-dock>button{overflow-wrap:normal;word-break:normal}
+#mobile-viewport #mobile-app .hero-bag-tabs.ui-compact-navigation>[data-hero-commander]{box-sizing:border-box;min-width:48px!important;max-width:48px!important}
+@container goonk-viewport (orientation:landscape){
+ #mobile-viewport #mobile-app .ui-screen-header :is(h1,h2){font-size:18px!important;line-height:1.2!important}
+ /* Guild floors are contextual navigation in the rail, leaving full height to spells. */
+ #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto minmax(0,1fr) auto!important}
+ #mobile-app .mobile-mage-guild.ui-screen-layout>.mage-guild-library.ui-screen-content{display:contents!important}
+ #mobile-app .mobile-mage-guild.ui-screen-layout>.mage-guild-library>nav{grid-column:2!important;grid-row:2!important;align-self:start}
+ #mobile-app .mobile-mage-guild.ui-screen-layout>.mage-guild-library>.mage-guild-shelf{grid-column:1!important;grid-row:1/-1!important}
+ #mobile-app .mobile-mage-guild.ui-screen-layout>.ui-action-dock{grid-row:3!important}
+}
+/* State changes must never animate geometry, font size or layout. */
+:is(#mobile-app,#game-menu) :is(.ui-button,.ui-icon-button,.ui-tab,.ui-choice-tile){transition:background-color 120ms linear,color 120ms linear,box-shadow 120ms linear!important;transform:none!important}
+
+:is(#mobile-app,#game-menu) .ui-screen-header>div{flex:1;min-width:0}
+#mobile-app .campaign-setup>.ui-screen-header{flex-wrap:nowrap!important}
+#mobile-viewport #mobile-app .hero-bag-tabs.ui-compact-navigation>.ui-overflow-trigger{border:5px solid transparent!important;border-image:url('../h3-theme/button-frame.png') 5 fill stretch!important}
+
+#mobile-app .ui-radio-choices{display:grid;grid-template-columns:repeat(var(--ui-choice-count,3),minmax(0,1fr));gap:var(--ui-space-2)}
+#mobile-app .ui-radio-choices label{display:flex;align-items:center;justify-content:center;gap:var(--ui-space-2);min-height:var(--ui-touch);width:auto;margin:0;padding:var(--ui-space-1);box-sizing:border-box;border:1px solid var(--ui-outline);border-radius:var(--ui-radius-control);font:var(--ui-font-label);cursor:pointer;color:var(--ui-on-surface)}
+#mobile-app .ui-radio-choices label:has(:checked){border-color:var(--ui-primary);background:var(--ui-secondary-container)}
+#mobile-app .ui-radio-choices label:has(:focus-visible){outline:2px solid var(--ui-focus);outline-offset:2px}
+#mobile-app .ui-radio-choices input{width:18px;height:18px;margin:0;accent-color:var(--ui-primary);flex:none}

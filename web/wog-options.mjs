@@ -1,4 +1,5 @@
 import {getLanguage} from './i18n.mjs';
+import {radioChoicesMarkup} from './ui/components.mjs';
 
 const rules = [
   ['Commanders', 'Commandants', 'A commander accompanies each eligible hero.', 'Un commandant accompagne chaque héros compatible.'],
@@ -35,7 +36,7 @@ export function createWogOptions({menu, command, onChange}) {
     fields.length = 0;
     for (let index = 0; index < rules.length; index++) {
       const field = document.createElement('fieldset');
-      field.innerHTML = `<legend></legend><p class="lobby-help"></p><div class="wog-rule-choices">${[-1, 1, 0].map(value => `<label><input type="radio" name="wog-${index}" data-wog-option="${index}" value="${value}"><span></span></label>`).join('')}</div>`;
+      field.innerHTML = `<legend></legend><p class="lobby-help"></p>${radioChoicesMarkup({name:`wog-${index}`,className:"wog-rule-choices",choices:[-1,1,0].map(value=>({value,attributes:`data-wog-option="${index}"`}))})}`;
       fields.push(field);
       form.querySelector('.wog-rules').append(field);
     }

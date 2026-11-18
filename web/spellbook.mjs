@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {spellOneClick} from './battle-preferences.mjs';
 import {getLanguage} from './i18n.mjs';
 import {spellSchoolIds,spellSchoolIndex} from './spell-schools.mjs';
@@ -15,7 +16,7 @@ const icon = spell => `<span class="spell-symbol" aria-hidden="true"><img class=
 
 export function createMobileSpellbook({root,command}){
  warmSpellIcons();
- const panel=document.createElement('section');panel.className='mobile-spellbook';panel.hidden=true;panel.setAttribute('aria-label','Spellbook');root.querySelector('.mobile-play').append(panel);
+ const panel=document.createElement('section');panel.className='mobile-spellbook';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Spellbook');root.querySelector('.mobile-play').append(panel);
  let signature='',state={},book={},pending=null,reusing=null,navigation=null,selected=null;const used=new Map();
  const hero=()=>state.heroId??state.heroName??'current';
  function choose(spell){if(pending||book.readOnly)return;pending={...spell,hero:hero(),mana:book.mana,school:book.school,page:book.page,combatSpells:book.combatSpells};reusing=null;command(49,spell.id);}

@@ -13,7 +13,7 @@
     "tests/era-wog-options-native.test.mjs": "1ae28580b56670d1c7de6671efdde54cf3e7911eb7e147b1550a8965abdef2bc",
     "tests/native/EraWogOptions.test.cpp": "dcc59ff67f9eed497dcf267ac43ac7d6c892cab2e5dd3116e1f04e0be296a4eb",
     "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
-    "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4",
+    "web/wog-options.mjs": "af2bb3e8779bf12d6c4773698da9520ed35213d87511a865f552e2c4870eb7b1",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
     "work/browser-tests/wog-mithril-options-cases.mjs": "092181e1cc10aa1cc6d78f962a104b9527a22626d545cc84fcc80ee1639f0cee",
     "work/browser-tests/wog-options-layout-e2e.mjs": "23e004a700c866149b8a7466cf34c3ab545730a0889f2f034d7f84e01565380e",
@@ -246,5 +246,15 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "sharedRadioUiRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "applicationVersion": "0.4.263",
+    "previousSourceBindings": {
+      "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4"
+    },
+    "nativeEngineUnchanged": true,
+    "nativeTouchAndMouseScenariosPassed": 12,
+    "uiLanguagesAndBrowsersPassed": 16
   }
 }

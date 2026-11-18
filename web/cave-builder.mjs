@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {plainGameText} from './game-text.mjs';
 const esc=v=>plainGameText(String(v??'')).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const factions=['Château','Rempart','Tour','Enfer','Nécropole','Donjon','Bastion','Forteresse','Conflux'];
@@ -9,6 +10,7 @@ export function createCaveBuilder({root,command}){
  root.append(host);
  let resourceNames=[...resources,'Or'],data=null,nativeExtensions=[],open=false,key='',choice=null,pending=false,timer;
  const panel=host.querySelector('section'),body=host.querySelector('.builder-scroll'),status=host.querySelector('[role=status]'),confirm=host.querySelector('[data-builder-confirm]');
+ useScreenComponents(panel);
  function patch(){
   host.hidden=!data?.available;host.classList.toggle('is-open',open&&!host.hidden);panel.hidden=!open||host.hidden;host.querySelector('[data-builder-open]').hidden=open;
   if(panel.hidden)return;

@@ -1,4 +1,4 @@
-import {createMaterialSelects} from './material-select.mjs';
+import {createMaterialSelects,useScreenComponents} from './ui/components.mjs';
 import {spellIconURL,warmSpellIcons} from './spell-icons.mjs';
 import {mapTwoClicks,setMapTwoClicks} from './map-click-preferences.mjs';
 import {defaultBattleView,setDefaultBattleView,battleOneClick,setBattleOneClick,spellOneClick,setSpellOneClick} from './battle-preferences.mjs';
@@ -23,7 +23,7 @@ function mountGameMenu(){
   let muted=false;try{muted=localStorage.getItem(muteKey)==='true';}catch{}
   const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');
   const brand=document.querySelector('#mobile-app .mobile-brand');if(brand)brand.replaceWith(toggle);else document.body.append(toggle);
-  const dialog=document.createElement('dialog');dialog.id='game-menu';dialog.setAttribute('aria-labelledby','game-menu-title');
+  const dialog=document.createElement('dialog');dialog.id='game-menu';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','game-menu-title');
   dialog.innerHTML='<header><button data-menu="back" hidden>← Back</button><h2 id="game-menu-title">Heroes Goonk</h2><button data-menu="close" data-native-click aria-label="Fermer le menu">✕</button></header><p class="autosave-status" aria-live="polite">Sauvegarde automatique : toutes les 10 secondes</p><nav aria-label="Rubriques du menu"><button data-menu="hosted-match" hidden></button><button data-menu="settings">Réglages</button><button data-menu="cheats">Codes de triche</button><button data-menu="save" translate="no">Save</button><button data-menu="storage">Stockage du jeu</button><button data-menu="new-game" class="new-game-in-session">New game</button></nav><div class="game-menu-body"></div><footer class="game-menu-return"><button data-menu="back">Back</button></footer><p class="game-menu-status" role="status"></p>';
   (document.querySelector('#mobile-viewport')||document.body).append(dialog);
   const onlineTurn=document.createElement('p');

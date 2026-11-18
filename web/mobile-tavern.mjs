@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
 import {canCloseTavern} from './native-dialog.mjs';
@@ -8,7 +9,7 @@ const escape = value => plainGameText(value).replace(/[&<>"']/g, character => ({
 
 export function createMobileTavern({root, command, pointer}) {
   const panel = document.createElement('section');
-  panel.className = 'mobile-tavern';
+  panel.className = 'mobile-tavern';useScreenComponents(panel);
   panel.hidden = true;
   panel.setAttribute('aria-labelledby', 'mobile-tavern-title');
   root.querySelector('.mobile-play').append(panel);

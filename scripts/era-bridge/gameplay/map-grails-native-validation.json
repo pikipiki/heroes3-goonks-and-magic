@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "74771c62276e7d40fc3cea56f8b4d5330861887ebd00d0dd8e824fb46e2595b1",
     "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
     "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
-    "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4",
+    "web/wog-options.mjs": "af2bb3e8779bf12d6c4773698da9520ed35213d87511a865f552e2c4870eb7b1",
     "mod/tum-era/content/config/wog-map-rules.json": "846faa1044da6fac42aba7958e3029b6efb3a3003e6072f926c7d89f3fb79145",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
     "work/browser-tests/wog-map-grails-cases.mjs": "2544794e94a9a79da9e4615c73dadecbbcc86f11ffecee333e139d27e3f34fe8",
@@ -1338,5 +1338,15 @@
       "shared-reward"
     ],
     "linuxWireAndRuleSanitizersExitCode": 0
+  },
+  "sharedRadioUiRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "applicationVersion": "0.4.263",
+    "previousSourceBindings": {
+      "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4"
+    },
+    "nativeEngineUnchanged": true,
+    "nativeTouchAndMouseScenariosPassed": 12,
+    "uiLanguagesAndBrowsersPassed": 16
   }
 }

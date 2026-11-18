@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reference": {
     "label": "TUM3.5 supplied source + installed VCMI WoG",
-    "release": "0.4.261",
+    "release": "0.4.263",
     "tumMetadata": {
       "caption": {
         "en_US": "Third Upgrade Mod",
@@ -138206,7 +138206,7 @@
         },
         {
           "file": "web/wog-options.mjs",
-          "sha256": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4"
+          "sha256": "af2bb3e8779bf12d6c4773698da9520ed35213d87511a865f552e2c4870eb7b1"
         }
       ],
       "evidence": [

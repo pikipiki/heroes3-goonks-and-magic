@@ -1,4 +1,4 @@
-import {createMaterialSelects} from './material-select.mjs';
+import {createMaterialSelects} from './ui/components.mjs';
 import {scenarioSize} from './scenario-details.mjs';
 
 const standardSizes = ['S', 'M', 'L', 'XL', 'H', 'XH', 'G'];

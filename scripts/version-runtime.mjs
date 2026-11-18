@@ -13,3 +13,8 @@ export function createRuntimeVersion(html,modules){
  for(const [name,bytes]of [...modules].sort(([a],[b])=>a.localeCompare(b)))hash.update(name+'\0').update(bytes).update('\0');
  return hash.digest('hex').slice(0,16);
 }
+
+// CSS imported by a versioned sheet must follow that same release as well.
+export function versionStylesheetImports(source,version){
+ return source.replace(/(@import\s+(?:url\(\s*)?['"]?)(\.{1,2}\/[^'"\s)]+\.css)(['"]?\s*\)?)/g,(_all,before,url,after)=>before+url+'?v='+version+after);
+}
