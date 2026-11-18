@@ -271,6 +271,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='advanced-core'){
+  const {runAdvancedCore}=await import('./wog-advanced-core-cases.mjs');
+  await runAdvancedCore({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:943})});
+ }
  if(process.env.CASES==='advanced-class-identity'){
   const {runAdvancedClassIdentity}=await import('./wog-advanced-class-identity-cases.mjs');
   await runAdvancedClassIdentity({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:942})});

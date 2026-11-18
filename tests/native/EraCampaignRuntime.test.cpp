@@ -95,6 +95,22 @@ int main()
  invocation.kind=era_campaign_runtime::InvocationKind::Resume;
  auto resumed=era_campaign_runtime::execute(modern,paused.state,context,modernHost,invocation);
  assert(resumed.complete&&modernHost.shown==1&&readState(resumed.state).v.at(10)==7&&readState(resumed.state).v.at(11)==7);
+ // The compiler emits VR:F only in v3, so older readers reject the program
+ // before running any earlier initializer or mutating a native hero.
+ JsonNode boundsProgram=ast;boundsProgram["schemaVersion"].Integer()=3;boundsProgram["contract"].String()="source-campaign-erm-ast-v3";
+ boundsProgram["sha256"].String()="bounds-codec";
+ auto clip=makeCommand("VR","F",number(0));clip["selectors"].Vector().push_back(writeOperand(variable(10)));
+ clip["operations"].Vector()[0]["args"].Vector().push_back(writeOperand(number(5)));
+ boundsProgram["blocks"].Vector()[0]["commands"].Vector()={clip};
+ for(const int version:{1,2,4}){
+  auto unsupported=boundsProgram;unsupported["schemaVersion"].Integer()=version;
+  unsupported["contract"].String()="source-campaign-erm-ast-v"+std::to_string(version);
+  rejects([&]{readProgram(unsupported);});
+ }
+ State bounded;bounded.programSha256="bounds-codec";bounded.initialized=true;bounded.v[10]=6;
+ invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;
+ auto clipped=era_campaign_runtime::execute(boundsProgram,writeState(bounded),context,modernHost,invocation);
+ assert(clipped.complete&&readState(clipped.state).v.at(10)==5);
  // The actual engine JsonNode holds extended dialog definitions and replies.
  State dialogue;Context dc;JsonNode definitions;era_campaign_dialogs::Dialogs dialogs(definitions,dialogue,dc);
  const auto n=[](int value){Operand result;result.kind=Kind::Number;result.number=value;return result;};

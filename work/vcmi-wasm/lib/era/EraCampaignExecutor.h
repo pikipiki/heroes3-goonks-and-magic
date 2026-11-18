@@ -130,6 +130,25 @@ class Executor
    }
    throw std::runtime_error("Unimplemented campaign text operation "+op.code);
   }
+  if(op.code=="F")
+  {
+   if(op.args.size()<2||op.args.size()>4)throw std::runtime_error("Campaign VR:F requires2..4 parameters");
+   for(const auto & argument:op.args)
+    if(argument.access!=Access::Read||unchangedOperand(argument)||textOperand(argument,state))
+     throw std::runtime_error("Campaign VR:F requires explicit integer values");
+   auto value=readNumber(destination,state,context);
+   const auto low=readNumber(op.args[0],state,context),high=readNumber(op.args[1],state,context);
+   const bool diagnostics=op.args.size()>=3&&readNumber(op.args[2],state,context)!=0;
+   const auto fallback=op.args.size()==4?readNumber(op.args[3],state,context):0;
+   bool outside=false;
+   // ERA VR_F applies the upper limit before the lower one, including when
+   // the supplied interval is reversed. Its fallback is not clamped again.
+   if(value>high){value=high;outside=true;}
+   if(value<low){value=low;outside=true;}
+   if(outside&&diagnostics)throw std::runtime_error("Campaign VR:F diagnostic continuation is not admitted");
+   if(outside&&op.args.size()==4)value=fallback;
+   writeNumber(destination,state,context,value);return;
+  }
   arity(op,1);auto value=readNumber(destination,state,context),right=readNumber(op.args[0],state,context);
   if(op.code=="S")value=right;
   else if(op.code=="+")value=add(value,right);

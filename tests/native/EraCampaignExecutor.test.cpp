@@ -132,6 +132,29 @@ int main()
  assert(de.hasMatchingAny("OB",{{11,67,0}},true));
  assert(ds.continuations.size()==1&&host.prompts==1&&host.replies==0);
  State restored=ds;Executor resumed(dialog,restored,context,host);assert(resumed.run());assert(host.prompts==1&&host.replies==1&&restored.v[2]==1&&restored.continuations.empty());
+ // ERA VR_F clips upper then lower and only uses the fourth argument when
+ // outside. A reversed interval and an outside fallback must not use clamp().
+ const std::vector<std::vector<int>> boundCases{
+  {INT_MIN,0,17,9,17},{-1,0,17,9,17},{0,0,0,9,17},{1,1,1,9,17},
+  {3,3,3,9,17},{5,5,5,9,17},{6,5,17,9,17},{INT_MAX,5,17,9,17}};
+ for(const auto & row:boundCases)
+  for(const auto & setting:std::vector<std::vector<int>>{
+   {0,5,0,row[1]},{0,5,1,row[2]},{9,3,0,row[3]},{9,3,1,row[4]},
+   {INT_MIN,INT_MAX,0,row[0]},{INT_MIN,INT_MAX,1,row[0]}})
+   {
+    Program bounds;bounds.sha256="integer-bounds";
+    std::vector<Operand> args{num(setting[0]),num(setting[1])};
+    if(setting[2]){args.push_back(num(0));args.push_back(num(17));}
+    bounds.blocks={block("LE",{}, {cmd("VR",{var('v',60)},"F",args)})};
+    State bounded;bounded.v[60]=row[0];Executor clip(bounds,bounded,context,host);clip.dispatch("LE");assert(clip.run());
+    assert(bounded.v[60]==setting[3]);
+   }
+ Program bounds;bounds.sha256="bounds-diagnostics";
+ bounds.blocks={block("LE",{}, {cmd("VR",{var('v',60)},"F",{num(0),num(5),num(1)})})};
+ State inRange;inRange.v[60]=3;Executor quiet(bounds,inRange,context,host);quiet.dispatch("LE");assert(quiet.run()&&inRange.v[60]==3);
+ State tooLarge;tooLarge.v[60]=6;Executor diagnostic(bounds,tooLarge,context,host);diagnostic.dispatch("LE");
+ bool refusedDiagnostic=false;try{diagnostic.run();}catch(const std::runtime_error&){refusedDiagnostic=true;}
+ assert(refusedDiagnostic&&tooLarge.v[60]==6);
  // Signed Win32 arithmetic and source random addition are not C++ UB.
  Program math;math.sha256="math";math.blocks={block("LE",{}, {cmd("VR",{var('v',1)},"S",{num(INT_MAX)}),cmd("VR",{var('v',1)},"+",{num(1)}),cmd("VR",{var('v',2)},"S",{num(1)}),cmd("VR",{var('v',2)},"T",{num(35)})})};
  State ms;Executor me(math,ms,context,host);me.dispatch("LE");assert(me.run()&&ms.v[1]==INT_MIN&&ms.v[2]==36);

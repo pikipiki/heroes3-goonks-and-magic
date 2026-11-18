@@ -61,6 +61,27 @@ porte pas encore leur attribution par les promotions. Les tableaux, les
 variables locales `z`/`e` et la libération explicite restent refusés.
 La preuve bornée est `scripts/era-bridge/gameplay/advanced-class-identity-native-validation.json`.
 
+Le bornage entier `VR:F` applique les limites dans l’ordre ERA (maximum,
+puis minimum), y compris pour un intervalle inversé, puis utilise la valeur
+de remplacement éventuelle sans la borner une seconde fois. Les nouveaux
+programmes qui utilisent cette opération portent un contrat AST v3, refusé
+par les lecteurs précédents avant l’exécution de leurs instructions. Les
+contrats v1/v2 existants conservent leurs programmes compilés. Les bornes
+omises `d`, les flottants et les dialogues de diagnostic restent hors périmètre.
+
+Les fonctions originales `acm_GetSecSkillLevel` et `acm_SetSecSkillLevel`
+s’exécutent également dans le moteur candidat : les niveaux demandés sont
+bornés entre 0 et 5, tandis que le moteur conserve un niveau natif entre 0
+et 3. Douze entrées, dont les extrêmes signés, une baisse du niveau natif et
+une autre compétence sont vérifiées avec sauvegarde/reprise. Les adaptateurs
+de drapeaux de maîtrise sont ici contrôlés et limités à Pathfinding ; les
+helpers originaux utilisant les tableaux de noms et les chaînes locales
+restent à porter, ainsi que les effets des compétences Maître/Grand Maître.
+Ces essais sont regroupés avec les calculs et classes déjà vérifiés dans
+une même partie, sur téléphone en portrait/paysage et à la souris, pour
+réduire le coût des contrôles sans remplacer le moteur par une simulation.
+La preuve est `scripts/era-bridge/gameplay/advanced-class-skill-levels-native-validation.json`.
+
 ## Références récupérées
 
 Distribution officielle :

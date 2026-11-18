@@ -146,6 +146,7 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={}}={})
  if([...flows.values()].some(stack=>stack.length))fail('Unterminated structured condition',source);
  const sourceSha256=sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),boundNames=Object.keys(bound).length>0;
  const identity=boundNames?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound}))):sourceSha256;
- const version=modern||boundNames?2:1;
+ const integerBounds=[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='VR'&&c.operations.some(op=>op.code==='F'));
+ const version=integerBounds?3:modern||boundNames?2:1;
  return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames?{sourceSha256,bindings:bound}:{}),initializers,blocks};
 }

@@ -4,19 +4,22 @@
   "completeRules": false,
   "advancedClassesProfileAdmitted": false,
   "scope": "Original acm_GetHeroClass lookup from controlled persistent mastery flags, not the class promotion system or complete Advanced Classes profile.",
-  "sourceBaseCommit": "4da1ec26f82ae74781237cdd25e1463cacf78d23",
-  "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
-  "compilerOnlyChangeReusesVerifiedNativeEngine": true,
+  "sourceBaseCommit": "e2066d2d7a26757d0192df007486c57d1f44273e",
+  "engineSha256": "3f34b31a7f6442fce388e82ea5bcd0e99342fa7e18f5dc3731e249b2e14286ec",
+  "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
-    "scripts/era-bridge/campaigns/parser.mjs": "3364a53a6a424ba6f43076b62aafb76f0ac5317f30f075cb7c7cf96dbe1e34a1",
+    "scripts/era-bridge/campaigns/parser.mjs": "dc98194e5aa47121bbd9dba1f96759cd6ff2ee857d8ba2620b258be484537bd0",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "9b16c89c1674a12047e41c4dda4cf01ede2524964193d69db5cb501f9f8a438c",
     "scripts/era-bridge/gameplay/advanced-class-identity.mjs": "0282dda77d77588f612f6025444589858bc0a276a66d62891db2db181771b597",
     "tests/fixtures/era-gameplay/advanced-class-identity-1.1.erm": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94",
     "work/browser-tests/wog-advanced-class-identity-cases.mjs": "8fad7e30a7a8b5da211c054efb11e8695614ea719f559f151a8dcf9c2e402f20",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "9e8f4ca90ac5d8145a8ae25b73a8a72ed1b9fe0535185536143833208bf76e4a",
-    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "6a8fbf05bd575b4cb87abc8b5510509c784b02063552462f22f622e8c8c32f36",
-    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "30186b21787b629e9ee675bdb3cec2ba91369e53574363829b964950b7bbe08b",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f2b2f144f77fb53a770e787253608c323cb3bc157f0d212ca2eaff55f8ad19a4"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "3ab0df51b83cbd752cabcd5f89f7cbcd15fd8fd080f15199933e2f5aa2a3c8de",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "2829ae408ae331d8f520230c3bf743a187a2f7b12a7614e59d32cb4d2b654e12",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "2f2ee4e5170cdad30c7ea2a926f32673bdcf9d1cae745aec4dc7aa1c6443e101",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f2b2f144f77fb53a770e787253608c323cb3bc157f0d212ca2eaff55f8ad19a4",
+    "scripts/era-bridge/campaigns/native-compiler.mjs": "74eaa937947bace07899067bb9a2daacdae87c19da42a59a2ea4bbd028778f23",
+    "work/browser-tests/wog-advanced-core-cases.mjs": "fa563fbf3a5415d9e3686cbd95f6d5cf6171f609a928d27696ddb2b7a88f70a9",
+    "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf"
   },
   "eraLocalAllocationReference": {
     "repository": "https://github.com/ethernidee/era",
@@ -62,9 +65,11 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+      "engineSha256": "3f34b31a7f6442fce388e82ea5bcd0e99342fa7e18f5dc3731e249b2e14286ec",
+      "errors": [],
       "scenarios": [
         {
+          "kind": "class",
           "source": {
             "repository": "https://github.com/ERA-Projects/era-project-eng",
             "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
@@ -73,7 +78,7 @@
             "function": "acm_GetHeroClass",
             "functionSha256": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94"
           },
-          "scope": "Original class lookup from controlled source mastery flags; promotion, extra skill levels and full profile remain unadmitted",
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
           "cases": [
             {
               "mask": 0,
@@ -225,22 +230,204 @@
           "heroSpecificNames": true,
           "pendingNativeSaveReload": true,
           "completedNativeSaveReload": true,
+          "mergedProgramSha256": "19770eda8f70be8990142fe4031d7a0cff6af6091f688a0225cc007653c56f4a",
+          "input": "touch",
           "viewport": {
             "width": 390,
             "height": 844
-          },
-          "input": "touch"
+          }
         }
       ],
-      "errors": []
+      "sharedRunReportSha256": "6c5981fb249a2bfe69cd79475346fb29f3e1295696f1654db9c2a8c84559e4ad"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "3f34b31a7f6442fce388e82ea5bcd0e99342fa7e18f5dc3731e249b2e14286ec",
+      "errors": [],
+      "scenarios": [
+        {
+          "kind": "class",
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "acm_GetHeroClass",
+            "functionSha256": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94"
+          },
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "cases": [
+            {
+              "mask": 0,
+              "grandmaster": 0,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 0/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 0,
+              "expected": [
+                1,
+                4
+              ],
+              "text": "CLASS 0/1 1/4"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 0,
+              "expected": [
+                2,
+                4
+              ],
+              "text": "CLASS 0/2 2/4"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 0,
+              "expected": [
+                3,
+                4
+              ],
+              "text": "CLASS 0/3 3/4"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 0,
+              "expected": [
+                4,
+                4
+              ],
+              "text": "CLASS 0/4 4/4"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 0,
+              "expected": [
+                5,
+                4
+              ],
+              "text": "CLASS 0/5 5/4"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/6 6/4"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 0,
+              "expected": [
+                6,
+                4
+              ],
+              "text": "CLASS 0/7 6/4"
+            },
+            {
+              "mask": 0,
+              "grandmaster": 1,
+              "expected": [
+                0,
+                0
+              ],
+              "text": "CLASS 1/0 0/0"
+            },
+            {
+              "mask": 1,
+              "grandmaster": 1,
+              "expected": [
+                1,
+                5
+              ],
+              "text": "CLASS 1/1 1/5"
+            },
+            {
+              "mask": 2,
+              "grandmaster": 1,
+              "expected": [
+                2,
+                5
+              ],
+              "text": "CLASS 1/2 2/5"
+            },
+            {
+              "mask": 3,
+              "grandmaster": 1,
+              "expected": [
+                3,
+                5
+              ],
+              "text": "CLASS 1/3 3/5"
+            },
+            {
+              "mask": 4,
+              "grandmaster": 1,
+              "expected": [
+                4,
+                5
+              ],
+              "text": "CLASS 1/4 4/5"
+            },
+            {
+              "mask": 5,
+              "grandmaster": 1,
+              "expected": [
+                5,
+                5
+              ],
+              "text": "CLASS 1/5 5/5"
+            },
+            {
+              "mask": 6,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/6 6/5"
+            },
+            {
+              "mask": 7,
+              "grandmaster": 1,
+              "expected": [
+                6,
+                5
+              ],
+              "text": "CLASS 1/7 6/5"
+            }
+          ],
+          "triggerLocalPools": true,
+          "nestedCallPreservesCaller": true,
+          "heroSpecificNames": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "mergedProgramSha256": "19770eda8f70be8990142fe4031d7a0cff6af6091f688a0225cc007653c56f4a",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ],
+      "sharedRunReportSha256": "106367880e11f2e8be6f5a9fb1f8857abd277268c98cb4ed54eecd6b6ecc7bb9"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+      "engineSha256": "3f34b31a7f6442fce388e82ea5bcd0e99342fa7e18f5dc3731e249b2e14286ec",
+      "errors": [],
       "scenarios": [
         {
+          "kind": "class",
           "source": {
             "repository": "https://github.com/ERA-Projects/era-project-eng",
             "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
@@ -249,7 +436,7 @@
             "function": "acm_GetHeroClass",
             "functionSha256": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94"
           },
-          "scope": "Original class lookup from controlled source mastery flags; promotion, extra skill levels and full profile remain unadmitted",
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
           "cases": [
             {
               "mask": 0,
@@ -401,20 +588,29 @@
           "heroSpecificNames": true,
           "pendingNativeSaveReload": true,
           "completedNativeSaveReload": true,
+          "mergedProgramSha256": "19770eda8f70be8990142fe4031d7a0cff6af6091f688a0225cc007653c56f4a",
+          "input": "mouse",
           "viewport": {
             "width": 1440,
             "height": 900
-          },
-          "input": "mouse"
+          }
         }
       ],
-      "errors": []
+      "sharedRunReportSha256": "0f4752fc5241fc24da05c3cc5e00642f02a19817e6f16beeea6d4412e52d8912"
     }
   },
   "webAssemblyVerification": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "engineUnchanged": true,
-    "logSha256": "bf522ef7bfc2e4f02a4a0b2a713077dc0b773bee35c1500d54e8b7d5cb8419bd"
+    "engineUnchanged": false,
+    "logSha256": "0dd2e5156e63c3c0a000ad89a4cd4357d6804c344ff3560979ad4204efbf308c"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 20,
+    "logSha256": "0dd2e5156e63c3c0a000ad89a4cd4357d6804c344ff3560979ad4204efbf308c",
+    "unverifiedWarMachineHooksExcluded": true,
+    "warMachinesAdmitted": false
   }
 }

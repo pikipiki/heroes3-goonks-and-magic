@@ -1,0 +1,30 @@
+!?FU(acm_GetSecSkillLevel);
+!#VA(hero:x);
+!#VA(skill:x);
+!#VA(result:x); Result is in (SKILL_NOT_LEARNED) .. (ACM_SKILL_GRANDMASTER) range
+
+!!HE(hero):S(skill)/?(result);
+
+!!if&(result)>=(SKILL_EXPERT);
+  !!FU(H3_Mod_Check_Skill_Level):P(hero)/?(isMaster:y)/?(isGrandmaster:y)/(skill);
+  !!VR(result)&(isMaster)<>(FALSE):S(ACM_SKILL_MASTER);
+  !!VR(result)&(isGrandmaster)<>(FALSE):S(ACM_SKILL_GRANDMASTER);
+!!en;
+
+!?FU(acm_SetSecSkillLevel);
+!#VA(hero:x);
+!#VA(skill:x);
+!#VA(level:x); Level must be in (SKILL_NOT_LEARNED) .. (ACM_SKILL_GRANDMASTER) range
+
+!!VR(level):F(SKILL_NOT_LEARNED)/(ACM_SKILL_GRANDMASTER);
+!!VR(nativeLevel:y):S(level) F(SKILL_NOT_LEARNED)/(SKILL_EXPERT);
+!!HE(hero):S(skill)/(nativeLevel);
+
+!!if&(level)<(ACM_SKILL_MASTER);
+  !!FU(H3_Mod_Set_Skill_ExtraLevel):P(hero)/(FALSE)/(FALSE)/(skill);
+!!el&(level)=(ACM_SKILL_MASTER);
+  !!FU(H3_Mod_Set_Skill_ExtraLevel):P(hero)/(TRUE)/(FALSE)/(skill);
+!!el&(level)=(ACM_SKILL_GRANDMASTER);
+  !!FU(H3_Mod_Set_Skill_ExtraLevel):P(hero)/(TRUE)/(TRUE)/(skill);
+!!en;
+
