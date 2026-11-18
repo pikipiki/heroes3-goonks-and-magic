@@ -6,7 +6,15 @@ Ne pas inclure de code de diagnostic temporaire dans les versions publiées. Le 
 
 Pour les changements du moteur, suivre également `work/vcmi-wasm/AGENTS.md` et vérifier la compilation WebAssembly avec `ninja -j32 html5`.
 
-Pour les écrans mobiles et iPad en paysage, privilégier une colonne de commandes à droite (titre et fermeture inclus) lorsqu'un en-tête réduit trop la hauteur du contenu. Garder une seule sortie visible par action ; permettre le défilement vertical des panneaux dont le contenu ne tient pas, sans désactiver ce geste sur un ancêtre.
+Pour les écrans mobiles et iPad en paysage, privilégier une colonne de commandes à droite (titre et fermeture inclus) lorsqu'un en-tête réduit trop la hauteur du contenu. Ne pas dupliquer les boutons « Retour » ; la croix ferme le panneau et la navigation reste dans la zone d’actions ; permettre le défilement vertical des panneaux dont le contenu ne tient pas, sans désactiver ce geste sur un ancêtre.
+
+## Bibliothèque UI obligatoire
+
+Avant toute modification d’interface, lire `docs/ui-components.md` et réutiliser `web/ui/components.mjs` et ses tokens. Toute nouvelle interface, tout nouveau bouton, menu, sélecteur, en-tête ou zone d’actions doit être composé à partir de cette bibliothèque. Si un composant manque, l’ajouter à la bibliothèque puis le réutiliser ; ne pas dupliquer le HTML/CSS d’un écran existant.
+
+Appliquer les règles de Material Design 3 à la structure, aux états et à l’accessibilité, avec le thème Heroes III et des boutons rectangulaires à angles droits (aucun bouton en pilule). Ne jamais animer dimensions, positions ou tailles de police. Les titres et libellés utilisent les tokens typographiques communs. Comparer les mêmes écrans avant/après, avec les mêmes données et dimensions, avant publication. En portrait : titre + croix en haut, actions globales en bas. En paysage mobile : titre + croix et actions à droite. Aucun bouton « Retour » dans un en-tête. Les contrôles contextuels restent près de leur contenu ; les actions secondaires nombreuses passent dans « Plus ».
+
+Installer et conserver le hook par `node scripts/install-ui-hook.mjs`. Avant commit, `node scripts/check-ui-components.mjs --staged` doit passer. Ce hook vérifie les nouveaux modules UI et ceux modifiés ; il ne dispense pas de vérifier les interactions et les deux orientations/langues. Ne jamais désactiver le hook pour publier une duplication de composants.
 
 ## graphify
 

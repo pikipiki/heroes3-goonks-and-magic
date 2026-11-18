@@ -1,3 +1,4 @@
+import {useNavigation} from './ui/components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
 import {canInspectBattle,inspectionUnits,battleInspectionMarkup} from './battle-inspection.mjs';
 import {mapTwoClicks} from './map-click-preferences.mjs';
@@ -249,7 +250,7 @@ function mount(){
     next.forEach((button,i)=>{const old=current[i];old.disabled=button.disabled;old.className=button.className;if(old._sourceMarkup!==button.innerHTML){old._sourceMarkup=button.innerHTML;old.innerHTML=button.innerHTML;}});
    }else nav.replaceChildren(...next);
    navHTML=html;
-  }const presentationBack=nav.querySelector('[data-ui=presentation-back]');if(presentationBack&&!presentationBack.dataset.directPress)bindPress(presentationBack,()=>command(43));feedback.paint();const heroList=nav.querySelector('.hero-movement-list');if(heroList)heroList.scrollLeft=heroScroll;paintHeroMovement();
+  }useNavigation(nav);const presentationBack=nav.querySelector('[data-ui=presentation-back]');if(presentationBack&&!presentationBack.dataset.directPress)bindPress(presentationBack,()=>command(43));feedback.paint();const heroList=nav.querySelector('.hero-movement-list');if(heroList)heroList.scrollLeft=heroScroll;paintHeroMovement();
  }
  const marketplace=createMarketplace({root,command,refresh:controls});
  function update(next,refresh=false){

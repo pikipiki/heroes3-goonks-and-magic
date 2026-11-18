@@ -1,3 +1,4 @@
+import {useActionDock} from './ui/components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {buildReason} from './mobile-layout.mjs';
@@ -215,6 +216,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     panel.innerHTML = building
       ? projectHeader(state, building) + detail(state, building) + completedUnlock
       : list(state, buildings);
+    if(building){const actions=document.createElement('footer');actions.className='building-actions';for(const button of panel.querySelectorAll('[data-building-action],[data-building-return]'))actions.append(button);if(actions.children.length){panel.append(actions);useActionDock(actions);}}
     body.replaceChildren(panel);
     const locked = panel.querySelector('.building-locked');
     locked?.addEventListener('toggle', () => { if (locked.isConnected) lockedOpen = locked.open; });

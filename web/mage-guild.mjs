@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {spellIconURL} from './spell-icons.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -10,7 +11,7 @@ const pageSize = 6;
 
 export function createMageGuild({root, command, pointer, resetView, asset}) {
   const panel = document.createElement('section');
-  panel.className = 'mobile-mage-guild';
+  panel.className = 'mobile-mage-guild';useScreenComponents(panel);
   panel.hidden = true;
   root.querySelector('.mobile-play').append(panel);
 

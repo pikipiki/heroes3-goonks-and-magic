@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {campaignDialogDraft,renderCampaignDialogForm,sendCampaignDialogReply,sendCampaignDialogDraft} from './campaign-dialog-form.mjs';
 import {highScorePresentation} from './high-score-presentation.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -10,7 +11,7 @@ const text=value=>plainGameText(value||'');
 // components and sends clicks to their current logical coordinates.
 export function createDialogPresentation({root,command,pointer,refresh=()=>{},scriptReply=sendCampaignDialogReply,scriptDraft=sendCampaignDialogDraft}){
  const progression=createProgressionChoices({root,command});
- const panel=document.createElement('section');panel.className='dialog-presentation';panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presentation-title');root.append(panel);
+ const panel=document.createElement('section');panel.className='dialog-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presentation-title');root.append(panel);
  let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null,replyingTo=null,campaignExit=null,campaignDraft=null;
  function holdCampaign(){panel.dataset.waiting='true';for(const button of panel.querySelectorAll('button,input'))button.disabled=true;}
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});

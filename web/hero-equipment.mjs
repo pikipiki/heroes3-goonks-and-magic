@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
@@ -26,7 +27,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
  let henchmanPending=null;
  const troopEquipment=createTroopEquipment({root,command});
  const troopDeployment=createTroopDeployment({root,command});
- const panel=document.createElement('section');panel.className='hero-equipment-page';panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);panel.addEventListener('dragstart',e=>e.preventDefault());let requestedDeployment=null;let state={},tab='worn',selected=null,signature='',classic=false,selectedArmySlot=null,splitActive=false,splitAmount=1;const scrollPositions={worn:0,backpack:0,skills:0,army:0};
+ const panel=document.createElement('section');panel.className='hero-equipment-page';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');root.querySelector('.mobile-play').append(panel);panel.addEventListener('dragstart',e=>e.preventDefault());let requestedDeployment=null;let state={},tab='worn',selected=null,signature='',classic=false,selectedArmySlot=null,splitActive=false,splitAmount=1;const scrollPositions={worn:0,backpack:0,skills:0,army:0};
  const switchView=value=>{classic=value;root.dataset.heroView=value?'classic':'mobile';panel.hidden=classic||state.mode!=='hero';onViewChange();};
  const slots=()=>tab==='worn'?state.heroWindow?.slots||[]:tab==='backpack'?state.heroWindow?.backpack||[]:[];
  function openCreatureDetails(slot){

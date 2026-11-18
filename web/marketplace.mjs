@@ -1,3 +1,4 @@
+import {useScreenComponents} from './ui/components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {compactResource, resourceDescriptors, resourceIconURL} from './resources.mjs';
 
@@ -9,7 +10,7 @@ const words = {
 
 export function createMarketplace({root, command, refresh}) {
  const panel = document.createElement('section');
- panel.className = 'market-page';
+ panel.className = 'market-page';useScreenComponents(panel);
  panel.hidden = true;
  panel.setAttribute('aria-labelledby','market-title');
  panel.innerHTML = `<header class="market-header"><img src="./web/h3-theme/resource-gold.png" alt=""><h2 id="market-title"></h2></header>

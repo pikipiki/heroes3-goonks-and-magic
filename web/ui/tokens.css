@@ -1,0 +1,14 @@
+/* Material 3 roles, expressed through the Heroes III palette. */
+:root{
+ --ui-space-1:4px;--ui-space-2:8px;--ui-space-3:12px;--ui-space-4:16px;--ui-space-6:24px;
+ --ui-touch:48px;--ui-icon:24px;--ui-radius-field:0px;--ui-radius-control:0px;--ui-radius-panel:0px;
+ --ui-surface:#241a10;--ui-surface-container:#302318;--ui-surface-high:#423323;
+ --ui-on-surface:#fff0cc;--ui-on-surface-variant:#dec8a4;--ui-outline:#a88c63;
+ --ui-primary:#edca84;--ui-primary-container:#651c10;--ui-on-primary-container:#fff0cc;--ui-on-primary:#302007;--ui-secondary-container:#57452d;--ui-on-secondary:#ffedc8;
+ --ui-error:#ffb4ab;--ui-on-error:#690005;--ui-focus:#fff0b1;
+ --ui-font-title:600 20px/24px Georgia,"Times New Roman",serif;--ui-font-title-compact:600 18px/22px Georgia,"Times New Roman",serif;
+ --ui-font-tab:600 12px/16px Georgia,"Times New Roman",serif;
+ --ui-font-label:600 14px/20px Georgia,"Times New Roman",serif;
+ --ui-font-body:400 16px/24px system-ui,-apple-system,"Segoe UI",sans-serif;
+ --ui-motion-fast:120ms;--ui-elevation-menu:0 8px 24px #0008;
+}

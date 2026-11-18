@@ -1,6 +1,6 @@
 {
   "name": "heroes-goonk",
-  "version": "0.4.260",
+  "version": "0.4.261",
   "private": true,
   "scripts": {
     "start": "cd work/browser-tests && node server.mjs",
@@ -12,6 +12,8 @@
     "package:web": "npm run prepare:web && npm run build:web && npm run verify:web && node scripts/package-site.mjs",
     "pack:game-data": "node scripts/pack-game-data.mjs",
     "audit:era": "node scripts/era-bridge/cli.mjs audit ../Third-Upgrade-Mod-Full outputs/era-bridge-audit.json",
-    "audit:compatibility": "node scripts/era-bridge/compatibility/build.mjs"
+    "audit:compatibility": "node scripts/era-bridge/compatibility/build.mjs",
+    "check:ui": "node scripts/check-ui-components.mjs --staged",
+    "install:ui-hook": "node scripts/install-ui-hook.mjs"
   }
 }
