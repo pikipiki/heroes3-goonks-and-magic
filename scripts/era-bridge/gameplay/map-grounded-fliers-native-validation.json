@@ -64,27 +64,27 @@
     ]
   },
   "sourceBindings": {
-    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "998a1f9bbb29923ac06485c55fc0ab4ffda28c5d07cbb86a9040cff90bf90980",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "d9bb137d246e9bbd729d52584f434dd0db26cc52dd6ba625db4b9dc7ef15ad62",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ce5dc19e1f8d958f35cac34cf033e3d18f2e304838e00618cbdeb4a8956c2afb",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "810e6f0a7441177a4bb0a6ccc9f20883cddf0443b57264df88db223be671fa89",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "d5871d09fc0cd850ffff0908245e980b6939c4797e7ecf53bc9870cdf831bbd8",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "9335d886ef7f4346886643182b257dd3dad1146182383fc363ddd402d251422e",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182",
     "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "b18ac4a8a3a478e0a4a8b773b4068b05d9c4e3c75c8a917d2e398a113331a99e",
     "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
-    "mod/tum-era/content/config/wog-map-rules.json": "c345a64f36df48d89a95f59db6f1e9277d073fd4dbc44b113ff2b9b51b7ba936",
-    "web/wog-options.mjs": "26f1e2a7b4f2d0ca1336324a2c9ec93d7ccdebd0b5c6b21cda8141fc7541def8",
+    "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
+    "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
     "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
     "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
     "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
     "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "e71d588f6f24c16385c15972d1e85e9c2958a66744c29ac1a1e5fc7fee46a621",
-    "work/browser-tests/wog-options-components-e2e.mjs": "5206791d1c824db0534acbd52cf649edec642dee22334cb9b9582ad875e7e495",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "811f8bea104cea752d74a57b7b15e760bb41eee051534ce1af8591e135fbba6f",
+    "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4",
     "tests/era-map-grounded-fliers.test.mjs": "19e1e7c8733ec6c9d12b6a866332d07a0193c87c87e4e599a01fe1301ea99426",
     "tests/fixtures/era-gameplay/map-grounded-fliers-reference.json": "ee354297e5d0bc380cd56501379f17a04dc4dd4580339ecbb74a5da41d9bf475",
-    "scripts/era-bridge/gameplay/map-rules.json": "7d5302588cd5d7c7902453ce3ec4b6feb401e6d268ac72df9128dd17e647cef3",
-    "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b"
+    "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
+    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1097,5 +1097,43 @@
       "failed": 0
     },
     "archiveMembersByteIdenticalToTestedEngine": true
+  },
+  "invertedSpeedsCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
+    "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "998a1f9bbb29923ac06485c55fc0ab4ffda28c5d07cbb86a9040cff90bf90980",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "d9bb137d246e9bbd729d52584f434dd0db26cc52dd6ba625db4b9dc7ef15ad62",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ce5dc19e1f8d958f35cac34cf033e3d18f2e304838e00618cbdeb4a8956c2afb",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "810e6f0a7441177a4bb0a6ccc9f20883cddf0443b57264df88db223be671fa89",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "d5871d09fc0cd850ffff0908245e980b6939c4797e7ecf53bc9870cdf831bbd8",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5",
+      "mod/tum-era/content/config/wog-map-rules.json": "c345a64f36df48d89a95f59db6f1e9277d073fd4dbc44b113ff2b9b51b7ba936",
+      "web/wog-options.mjs": "26f1e2a7b4f2d0ca1336324a2c9ec93d7ccdebd0b5c6b21cda8141fc7541def8",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
+      "work/browser-tests/wog-options-components-e2e.mjs": "5206791d1c824db0534acbd52cf649edec642dee22334cb9b9582ad875e7e495",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "811f8bea104cea752d74a57b7b15e760bb41eee051534ce1af8591e135fbba6f",
+      "scripts/era-bridge/gameplay/map-rules.json": "7d5302588cd5d7c7902453ce3ec4b6feb401e6d268ac72df9128dd17e647cef3",
+      "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b"
+    },
+    "historicalReportsRetained": true,
+    "receiverScope": "Only numeric MA reads now use live map-local canonical base overlays; all six numeric fields and subsequent writes are exercised with pending native save/reload. Other receiver branches are unchanged.",
+    "newRule": 112,
+    "newChoiceIndex": 18,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16,
+    "publicationStatusDocumentationCorrected": true
   }
 }

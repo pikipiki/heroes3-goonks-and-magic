@@ -13,16 +13,16 @@
     "distinctConfigurationVariable": "hench_battleExpAIPct"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b",
+    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9",
     "scripts/era-bridge/gameplay/henchmen.json": "9203baf6211b04302317586e66e267aa0a362b9d555624a88539192115cd2842",
     "scripts/era-bridge/gameplay/henchmen.mjs": "a43ef27db0f0ec64f62510870cd0914904ff6a6f032b1a1dd780a05e9c2c37ed",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/vcmi-wasm/client/CPlayerInterface.cpp": "1af7e27414aec46052a1babf112a4b6d6cd74fc7f51ad867e83477718bd4e27b",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "07e45028612aebab6ba15e79312b44f41c19458730f93d19a4b06faa9022ab71",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "b95945c7de99d3ae8476e61f671e0e6a677ec7931fce510660943843ef5e1618",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "c4bf01e653cb7a70431a7f4d5c3dfe6a31c7e7d41eea234e422329423d194549",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "ad7a9b309c84b8aab088a30a7279045143f255489b3c24766497521b410b0aa1",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -168,5 +168,33 @@
     ],
     "linuxHistoricalWireSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16
+  },
+  "invertedSpeedsCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
+    "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "261355b41a590929fc6c0000544f0ab8d0ad56d5cb2c05875cb45e0fd988ff0b",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "b95945c7de99d3ae8476e61f671e0e6a677ec7931fce510660943843ef5e1618",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5"
+    },
+    "historicalReportsRetained": true,
+    "receiverScope": "Only numeric MA reads now use live map-local canonical base overlays; all six numeric fields and subsequent writes are exercised with pending native save/reload. Other receiver branches are unchanged.",
+    "newRule": 112,
+    "newChoiceIndex": 18,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16,
+    "publicationStatusDocumentationCorrected": true
   }
 }

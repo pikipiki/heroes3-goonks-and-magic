@@ -2,6 +2,7 @@
 #include "EraSourceCreatureLevels.h"
 #include "EraMapArmyGrowth.h"
 #include "EraMapMonthlyVisits.h"
+#include "EraCampaignCreatureAttributes.h"
 #include "../GameLibrary.h"
 #include "../CCreatureHandler.h"
 #include "../bonuses/Limiters.h"
@@ -68,6 +69,9 @@ inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
     applyMonthlyVisits(gs,next);
     const auto & previous=gs.getMap().eraGameplayState["mapRules"];
     applyGroundedFliers(gs,next,previous);
+    if(next["invertedSpeedsApplied"].Bool()&&!previous["invertedSpeedsApplied"].Bool())
+        for(const auto & row:next["invertedSpeeds"].Vector())
+            era_campaign_creature_attributes::apply(gs,CreatureID(row["creature"].Integer()),'S',row["speed"].Integer());
     const auto add=[&](const char * code,BonusType type)
     {
         if(!next["rules"][code].Bool()||previous["rules"][code].Bool())return;

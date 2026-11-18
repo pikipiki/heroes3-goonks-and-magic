@@ -43,22 +43,22 @@
   },
   "sourceBindings": {
     "work/vcmi-wasm/lib/era/EraMapExtraDwellingRules.h": "2b5106610c9c0d85fa8652c506abffc1d7a37a6ca9a3d126cb0625fe03ba653e",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "d9bb137d246e9bbd729d52584f434dd0db26cc52dd6ba625db4b9dc7ef15ad62",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ce5dc19e1f8d958f35cac34cf033e3d18f2e304838e00618cbdeb4a8956c2afb",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "810e6f0a7441177a4bb0a6ccc9f20883cddf0443b57264df88db223be671fa89",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4",
     "work/vcmi-wasm/lib/mapObjects/CGDwelling.cpp": "e2b6c02df3d4e518d90977d506c77ffba23195404885cdcb042c56b4a0e8c676",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "d5871d09fc0cd850ffff0908245e980b6939c4797e7ecf53bc9870cdf831bbd8",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5",
-    "mod/tum-era/content/config/wog-map-rules.json": "c345a64f36df48d89a95f59db6f1e9277d073fd4dbc44b113ff2b9b51b7ba936",
-    "web/wog-options.mjs": "26f1e2a7b4f2d0ca1336324a2c9ec93d7ccdebd0b5c6b21cda8141fc7541def8",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182",
+    "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
+    "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
     "work/browser-tests/wog-map-extra-dwellings-cases.mjs": "0cbd422a9184ebf3963f2b4150c549a5de0b13f3dfbc7e11a71529ff3d5b63b1",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "811f8bea104cea752d74a57b7b15e760bb41eee051534ce1af8591e135fbba6f",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4",
     "tests/native/EraMapExtraDwellingRules.test.cpp": "108d462f593ca399ecf4d15bd984881716b08122786d67b2a67ef14a371d909d",
     "tests/era-map-extra-dwellings.test.mjs": "32283b22e5a17ae21edc2be7a473cea2dd274234fbb017bafd135df5e4a93ae8",
     "tests/fixtures/era-gameplay/map-extra-dwellings-reference.json": "d809c94a65121bfc163a0763043889e3868acab618d9eb9e4adf38a3d36e3465",
@@ -66,7 +66,7 @@
     "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
     "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
     "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
-    "work/browser-tests/wog-options-components-e2e.mjs": "5206791d1c824db0534acbd52cf649edec642dee22334cb9b9582ad875e7e495",
+    "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
     "work/browser-tests/ui-screen-adapters-e2e.mjs": "e6e3c0b734206780211f7022c311375ac999910319f7ffc1b9ba8e67a82ab430"
   },
   "nativeBuild": {
@@ -1178,6 +1178,40 @@
       "shared-reward"
     ],
     "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
+  },
+  "invertedSpeedsCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
+    "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "d9bb137d246e9bbd729d52584f434dd0db26cc52dd6ba625db4b9dc7ef15ad62",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ce5dc19e1f8d958f35cac34cf033e3d18f2e304838e00618cbdeb4a8956c2afb",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "810e6f0a7441177a4bb0a6ccc9f20883cddf0443b57264df88db223be671fa89",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "d5871d09fc0cd850ffff0908245e980b6939c4797e7ecf53bc9870cdf831bbd8",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5",
+      "mod/tum-era/content/config/wog-map-rules.json": "c345a64f36df48d89a95f59db6f1e9277d073fd4dbc44b113ff2b9b51b7ba936",
+      "web/wog-options.mjs": "26f1e2a7b4f2d0ca1336324a2c9ec93d7ccdebd0b5c6b21cda8141fc7541def8",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "811f8bea104cea752d74a57b7b15e760bb41eee051534ce1af8591e135fbba6f",
+      "work/browser-tests/wog-options-components-e2e.mjs": "5206791d1c824db0534acbd52cf649edec642dee22334cb9b9582ad875e7e495"
+    },
+    "historicalReportsRetained": true,
+    "receiverScope": "Only numeric MA reads now use live map-local canonical base overlays; all six numeric fields and subsequent writes are exercised with pending native save/reload. Other receiver branches are unchanged.",
+    "newRule": 112,
+    "newChoiceIndex": 18,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16
   }
 }

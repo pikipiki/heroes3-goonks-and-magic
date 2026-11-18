@@ -8,11 +8,11 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "c4bf01e653cb7a70431a7f4d5c3dfe6a31c7e7d41eea234e422329423d194549",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
     "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9"
   },
   "nativeBuild": {
@@ -338,6 +338,32 @@
       "shared-reward"
     ],
     "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
+  },
+  "invertedSpeedsCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
+    "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "47502f64d46eefc510d3932718156af76977c207f92734ec31beedcaf6ed25e6"
+    },
+    "historicalReportsRetained": true,
+    "receiverScope": "Only numeric MA reads now use live map-local canonical base overlays; all six numeric fields and subsequent writes are exercised with pending native save/reload. Other receiver branches are unchanged.",
+    "newRule": 112,
+    "newChoiceIndex": 18,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16
   }
 }

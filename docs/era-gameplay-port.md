@@ -6,11 +6,11 @@ profils séparés pour Advanced Classes et Reborn.
 
 ## État réel
 
-**Le portage complet n'est pas terminé. Aucun nouveau système n'est activé.**
+**Le portage complet n'est pas terminé. Les profils complets restent désactivés.**
 Le noyau Henchmen est maintenant raccordé aux héros, au réseau, aux combats et
 aux sauvegardes. Le réglage moteur `modules.henchmen` reste désactivé par défaut.
-La compilation candidate est testée localement ; son binaire n'est pas encore
-intégré à la version publique.
+Les étapes vérifiées sont intégrées progressivement aux binaires publiés.
+Les règles WoG validées disposent de choix indépendants par nouvelle partie.
 
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle
@@ -438,17 +438,17 @@ publié ne connaît pas encore le septième. Ces preuves ne constituent ni
 l'activation du profil WoG complet ni le port des écritures UN:P des packs
 externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
 
-Le catalogue candidat contient dix-huit réglages par partie : les six premiers,
-le mithril et onze règles de carte (111, 114, 115, 116, 117, 121, 122, 123, 124, 128 et 130). Les règles
+Le catalogue candidat contient dix-neuf réglages par partie : les six premiers,
+le mithril et douze règles de carte (111, 112, 114, 115, 116, 117, 121, 122, 123, 124, 128 et 130). Les règles
 114/115/121/122/124/128 peuvent hériter de leur configuration, être activées ou
 être désactivées sans changer les autres parties. Les tests inversent
 volontairement leur configuration globale : combats avec dégâts effectifs,
 déplacements et renouvellement quotidien, production hebdomadaire avec
 protection au mithril, achat du second Capitole et effet des plaines magiques.
 Le chargement conserve les choix des anciens catalogues à six, sept, treize,
-quatorze, quinze, seize ou dix-sept réglages. Le format courant préfixe le catalogue par sa longueur pour
+quatorze, quinze, seize, dix-sept ou dix-huit réglages. Le format courant préfixe le catalogue par sa longueur pour
 permettre les ajouts suivants sans réinterpréter les octets historiques.
-Les dix autres règles de carte et les six modes source de sélection de
+Les neuf autres règles de carte et les six modes source de sélection de
 l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
 complets et ne revendique pas le port de leurs commandes UN:P.
 
@@ -463,7 +463,7 @@ avec des quantités proches des seuils, un héros de l'IA et une héroïne en
 réserve. Un groupe de 25 piquiers au rang 1 passe à 26 : son expérience
 moyenne descend de 1000 à 961, son rang à 0 et sa défense effective de 6 à 5.
 Le contrôle du format annonce la nouvelle capacité aux autres versions du
-moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les dix autres règles et les modes de sélection source restent
+moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les neuf autres règles et les modes de sélection source restent
 à porter ; cette étape n'active pas les profils complets.
 
 La règle 130 construit les Graals une fois au premier jour, après le stock
@@ -721,3 +721,17 @@ le vol accordé par artefact, un retrait de vol préalable, les créatures
 terrestres, les vampires et les commandants exclus, après sauvegarde/reprise.
 Cette étape ne suffit pas à activer les profils complets. Preuve bornée :
 `scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json`.
+
+La règle WoG112 inverse les vitesses de base en calculant d’abord la vitesse
+maximale des créatures concernées, puis `maximum − vitesse + 3` pour chacune.
+Les machines de guerre, commandants et identités inutilisées exclus par la
+source ne participent pas au maximum. Les modifications de caractéristiques
+faites avant cette étape sont prises en compte. Les lectures et écritures MA
+utilisent ensuite la table vivante de la partie, distincte des bonus de héros,
+de rang ou de terrain ; une écriture ultérieure remplace la valeur inversée.
+L’inversion ne se rejoue pas après une sauvegarde, même si les réglages globaux
+changent. Le calcul conserve le débordement entier source et le bornage final
+de MA:S. Le dix-neuvième choix utilise les commandes tactiles communes ; le
+format918 conserve les catalogues précédents jusqu’à dix-huit choix.
+Les profils complets demeurent désactivés. Preuve bornée :
+`scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json`.

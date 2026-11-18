@@ -20,6 +20,7 @@ const rules = [
   ['Monthly site visits', 'Visites des sites chaque mois', 'Original heroes can revisit stat sites, schools and knowledge sites each month.', 'Les héros d’origine peuvent revisiter les sites de caractéristiques, les écoles et les lieux de savoir chaque mois.'],
   ['Boars in dwellings', 'Sangliers dans les habitations', 'Add twelve boars to eligible original dwellings at the start.', 'Ajouter douze sangliers dans les habitations d’origine compatibles au départ.'],
   ['Grounded fliers without retaliation', 'Créatures volantes au sol sans riposte', 'Flying creatures lose their natural flight and their attacks cannot be retaliated against.', 'Les créatures volantes perdent leur vol naturel et leurs attaques ne provoquent plus de riposte.'],
+  ['Inverted creature speeds', 'Vitesses des créatures inversées', 'Invert base speeds around the fastest eligible creature at the start.', 'Inverser les vitesses de base selon la créature compatible la plus rapide au départ.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

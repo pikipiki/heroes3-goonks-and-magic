@@ -189,7 +189,7 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  let mapChoices=null;
  if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
   mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
@@ -197,7 +197,7 @@ async function boot({groundedFliersChoice=null,groundedFliersConfigured=false,ex
   weeklyMines=!weeklyMines;multipleCapitols=!multipleCapitols;allBreath=!allBreath;
  }
  const classic=process.env.CASES==='classic';
- const desktop=['desktop','options-desktop','source-option-desktop','grails-desktop','monthly-desktop','extra-dwellings-desktop','grounded-fliers-desktop'].includes(process.env.CASES);
+ const desktop=['desktop','options-desktop','source-option-desktop','grails-desktop','monthly-desktop','extra-dwellings-desktop','grounded-fliers-desktop','inverted-speeds-desktop'].includes(process.env.CASES);
  page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
@@ -218,7 +218,7 @@ async function boot({groundedFliersChoice=null,groundedFliersConfigured=false,ex
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight,grantedFlight:!!options.ruleGrantedFlight,excludedFlyer:!!options.ruleExcludedFlyer}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,neutralTown,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -235,7 +235,7 @@ async function boot({groundedFliersChoice=null,groundedFliersConfigured=false,ex
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
     if(extraDwellingFixture){value.FS.writeFile('/config/objects/dwellings.json',JSON.stringify(extraDwellingDefinitions));}
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
-    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{111:groundedFliersConfigured,114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,sourceOptions:{67:neutralTown}}}));
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{111:groundedFliersConfigured,112:invertedSpeedsConfigured,114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,sourceOptions:{67:neutralTown}}}));
     if(creatureRules){
      manifest.settings.modules.commanders=false;
      const patch={};for(const key of [creatureRules.actor,'core:gnoll','core:peasant','core:ogre'])patch[key]={hitPoints:1000000,attack:0,defense:0,speed:key===creatureRules.actor?20:key==='core:ogre'?4:1,damage:{min:key===creatureRules.actor?10:1,max:key===creatureRules.actor?10:1},abilities:{mapRuleTestNoMorale:{type:'NO_MORALE'}}};
@@ -260,7 +260,7 @@ async function boot({groundedFliersChoice=null,groundedFliersConfigured=false,ex
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,neutralTown,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -296,6 +296,13 @@ async function boot({groundedFliersChoice=null,groundedFliersConfigured=false,ex
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
    assert.equal(await form.locator('input[data-wog-option="6"]:checked').inputValue(),String(wogChoice));
+  }
+  if(invertedSpeedsChoice!==null){
+   assert((await state()).wogOptions.length>=19,'Inverted speed option advertised by native engine');
+   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="18"][value="${invertedSpeedsChoice}"]`).locator('..');
+   await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[18]===value,invertedSpeedsChoice);
   }
   if(groundedFliersChoice!==null){
    assert((await state()).wogOptions.length>=18,'Grounded flier option advertised by native engine');
@@ -378,6 +385,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('inverted-speeds')){
+  const {runInvertedSpeeds}=await import('./wog-map-inverted-speeds-cases.mjs');
+  await runInvertedSpeeds({boot,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
+ }
  if(process.env.CASES?.startsWith('grounded-fliers')){
   const {runGroundedFliers}=await import('./wog-map-grounded-fliers-cases.mjs');
   await runGroundedFliers({boot,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});

@@ -1304,8 +1304,8 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   require(c.selectors.empty()&&op.code.size()==1,"source creature attribute takes no selector");arity(op,2);
   require(args[0].access==Access::Read&&number(args[0])>=0,"source creature attribute needs a nonnegative creature value");
   const auto selected=creature(number(args[0]));const char field=op.code.front();era_campaign_creature_attributes::fieldIndex(field);
-  const auto key=std::to_string(selected.getNum());const auto & previous=std::as_const(state)["creatureAttributes"][key][op.code];
-  int changed=value(previous.isNull()?era_campaign_creature_attributes::base(*selected.toCreature(),field):era_campaign_json::integer(previous),args[1]);
+  const auto key=std::to_string(selected.getNum());
+  int changed=value(era_campaign_creature_attributes::current(gh.gameState(),selected,field),args[1]);
   if(!query(op))
   {
    require(!gh.gameState().getBattle(player),"source creature attributes during an active battle are not admitted");

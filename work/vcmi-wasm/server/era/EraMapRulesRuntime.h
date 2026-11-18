@@ -3,6 +3,7 @@
 #include "../../lib/era/EraWogOptions.h"
 #include "../../lib/era/EraMapArmyGrowth.h"
 #include "../../lib/era/EraMapCreatureRules.h"
+#include "../../lib/era/EraMapInvertedSpeed.h"
 #include "../../lib/era/EraMapMonthlyVisitRules.h"
 #include "../../lib/era/EraMapExtraDwellingRules.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
@@ -33,6 +34,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
             gh.gameInfo(),option,configured[code].Bool());
     };
     choice("111",era_bridge::WogOption::GroundedFliers);
+    choice("112",era_bridge::WogOption::InvertedCreatureSpeeds);
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);
@@ -174,6 +176,27 @@ inline void groundFliers(CGameHandler & gh)
         saved["groundedFliers"].Vector().push_back(std::move(row));
     });
     saved["groundedFliersApplied"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
+}
+inline void invertCreatureSpeeds(CGameHandler & gh)
+{
+    auto saved=state(gh.gameInfo());
+    if(!saved["rules"]["112"].Bool()||saved["invertedSpeedsApplied"].Bool())return;
+    std::vector<std::pair<CreatureID,int>> initial;int maximum=0;
+    LIBRARY->creatures()->forEach([&](const Creature * entry,bool &)
+    {
+        if(excludedCreature(entry->getJsonKey()))return;
+        const auto id=entry->getId();const auto speed=era_campaign_creature_attributes::current(gh.gameState(),id,'S');
+        initial.emplace_back(id,speed);maximum=std::max(maximum,speed);
+    });
+    saved["invertedSpeeds"].Vector().clear();
+    for(const auto & [id,speed]:initial)
+    {
+        JsonNode row;row["creature"].Integer()=id.getNum();
+        row["speed"].Integer()=era_bridge::map_rules::invertedSpeed(maximum,speed);
+        saved["invertedSpeeds"].Vector().push_back(std::move(row));
+    }
+    saved["invertedSpeedsApplied"].Bool()=true;
     EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)

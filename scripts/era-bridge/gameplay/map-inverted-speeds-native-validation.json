@@ -1,0 +1,912 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Source112 over the current native creature table: freeze initial base speeds after source initialization, exclude source machines/commanders/dummies from the maximum, apply max-old+3 once, preserve later canonical MA writes and separate terrain/hero/rank bonuses. Six numeric MA fields are queried and edited through their map-local overlays.",
+  "nativeRosterAdaptation": "The native registered creature table replaces the source GetMaxMonsterId table; original source-bound exclusions and the commander family are retained.",
+  "sourceBaseCommit": "d9fa0ba702286abd4c33e477bc4b9cac0f284507",
+  "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+  "upstreamReference": {
+    "schema": 1,
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "rule": 112,
+    "arithmetic": "Signed 32-bit max-speed subtraction and addition, then the existing MA:S lower write clamp.",
+    "excludedSourceIds": [
+      122,
+      124,
+      126,
+      128,
+      145,
+      146,
+      147,
+      148,
+      149,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191
+    ],
+    "fragments": [
+      {
+        "startLine": 70,
+        "endLine": 84,
+        "text": "** function to only take effect at start ALL of them works for all players - function call is :P :D;\n; Daily events now starts from the second day only - same mechanism as the original H3\n!?FU(WOG_101_RunMapRulesOnce);\n  !!FU(WOG_101_BuildGrailsInTowns)&i^wog_101_map_rule_19_isEnabled^:P;           [build grails in towns - executed once]\n\n  !!FU(WOG_101_SetDoubledHeroesMovements)&i^wog_101_map_rule_10_isEnabled^:P;    [executed once - needed for the first player turn]\n  !!FU(WOG_101_PlaceWarlordsBanner)&i^wog_101_map_rule_20_isEnabled^:P;          [executed once]\n\n  !!FU(WOG_101_AllowMultiplyCapitols)&i^wog_101_map_rule_13_isEnabled^:P;        [executed once]\n  !!FU(WOG_101_AddBoarsOrAirElemsToDwells)&i^wog_101_map_rule_6_isEnabled^:P;    [executed once]\n  !!FU(WOG_101_SetDoubledArtifacts)&i^wog_101_map_rule_8_isEnabled^:P;           [executed once]\n\n  !!FU(WOG_101_SetUpMonsters):P;                                                 [executed once]\n  !!FU(WOG_101_HideMapInitPlayer)&i^wog_101_map_rule_9_isEnabled^:P;\n\n",
+        "sha256": "55b48e343faf732aeb5b2e9af6d48d3f0903fdc815dad810dcb25f7540230f7c"
+      },
+      {
+        "startLine": 385,
+        "endLine": 408,
+        "text": "    !!if&(invertedSpeedOn);\n      !!VR(maxSpeed:y):S0;\n\n      !!re i/(MON_FIRST)/(maxMonId);\n        !!SN:M(shouldThisMonIdBeAffected)/i/?(haveTo:y);\n        !!co&(haveTo:y)=(FALSE);\n        !!MA:Si/?s;\n        !!VR(maxSpeed)&s>(maxSpeed):Ss;Fs/d;\n      !!en;\n\n      *!IF:M^%(maxSpeed)^;\n      !!re i/(MON_FIRST)/(maxMonId);\n        !!SN:M(shouldThisMonIdBeAffected)/i/?(haveTo:y);\n        !!co&(haveTo:y)=(FALSE);\n        !!MA:Si/?s;\n        !!VR(speed:y):S(maxSpeed) -s +3;F3/d;\n        !!MA:Si/(speed:y);\n\n        *!FU(WOG_112_InvertMonsterSpeeds):Pi;[invert monster speeds]\n      !!en;\n    !!en;\n    \n  !!en;\n\n",
+        "sha256": "39d7d5ef65d4c2486a3fb045607c6ec56902a9d9b0c9ab13298a711300fe3629"
+      },
+      {
+        "startLine": 410,
+        "endLine": 425,
+        "text": "!#VA(arrayId:x) (maxMonId:x);\n  !!VR(arraySize:y):S(maxMonId) +1;\n  !!FU(NewIntArray):P(arraySize)/?(arrayId);\n\n  !!re (mon:y)/0/(maxMonId);\n    !!co&(mon)>=(MON_CATAPULT)/(mon)<=(MON_ARROW_TOWERS);  // exit, if it is a war machine\n    !!co&(mon)>=(MON_COMMANDER_FIRST_A)/(mon)<=(MON_COMMANDER_LAST_D);  // exit, if it is a commander\n    !!co|(mon)=(MON_NOT_USED_1)/(mon)=(MON_NOT_USED_2)/(mon)=(MON_NOT_USED_3)/(mon)=(MON_NOT_USED_4);  // exit, if it is a dummy-catapult (from the War Machine Scriptes)\n\n    !!SN:M(arrayId)/(mon)/(TRUE);\n  !!en;\n\n  !!SN:F^ExtendArrayLifetime^/(arrayId);\n\n\n\n",
+        "sha256": "6cacaaec69216109c061c3db3b8e90ba367f3c3229fbeb45883f43c4b2ffea20"
+      }
+    ]
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraMapInvertedSpeed.h": "ab98bcd943cedcec24160b8fd5162524f142086b65f42c4b371f260007445f7c",
+    "work/vcmi-wasm/lib/era/EraCampaignCreatureAttributes.h": "72a1f750704bdac12da915e95d8034470b6cb339b6db44f50a08623bf3e2e188",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "9335d886ef7f4346886643182b257dd3dad1146182383fc363ddd402d251422e",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "c4bf01e653cb7a70431a7f4d5c3dfe6a31c7e7d41eea234e422329423d194549",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182",
+    "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
+    "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
+    "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
+    "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
+    "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
+    "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
+    "work/browser-tests/wog-map-inverted-speeds-cases.mjs": "1b48b5af3576becac34793b24d1f9698a78c2bb33aca8bc70b25f985fafecb5b",
+    "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4",
+    "tests/native/EraMapInvertedSpeed.test.cpp": "fb67b3a2a30ed765eca50405204ed7dd87d77d2b33af5e4b9e355f11d25f60d1",
+    "tests/era-map-inverted-speeds.test.mjs": "06a4bf4c8b950ee63c10237df028a9511a0d0c1311d64cbb7248dc58a58a791e",
+    "tests/fixtures/era-gameplay/map-inverted-speeds-reference.json": "8cb7b93e3b022cca056e5f0c74562c9e87e1253aff45d4eed4bc163717a17ab0",
+    "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
+    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "incrementalTargetCount": 108,
+    "logSha256": "670f49961800ea0dd850731a77c0839813812939fbfc6c9aaa4b8bd48f01f928",
+    "unverifiedWarMachinePrototypesExcluded": true
+  },
+  "linuxSanitizers": {
+    "command": "C++17 option serializer and inverted speed boundaries -fsanitize=address,undefined",
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3004,
+    "mismatches": [],
+    "expectedManifestSha256": "f6c807a3abdc53c004768f6cf54a2fa538db3a888f00352aeee2eb75273d23c8"
+  },
+  "serialization": {
+    "catalogueCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "previousSaveVersion": 917,
+    "newSaveVersion": 918,
+    "historicalWireSizesAndPeerBoundsPreserved": true
+  },
+  "programFileSha256": "2895b0503c7dc91f4538df3cac51f9e68c0662d602d5bfe1975ead8549d289f6",
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": -1,
+          "active": false,
+          "message": "SPEED 1 2 20 2000 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            1,
+            2,
+            20,
+            2000,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 3,
+            "enemy": 20,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": -1,
+          "active": true,
+          "message": "SPEED 2002 2003 1983 3 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            2002,
+            2003,
+            1983,
+            3,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 2004,
+            "enemy": 1983,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "message": "SPEED 2002 2003 1983 3 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            2002,
+            2003,
+            1983,
+            3,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 2004,
+            "enemy": 1983,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "message": "SPEED 1 2 20 2000 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            1,
+            2,
+            20,
+            2000,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 3,
+            "enemy": 20,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": false,
+          "choice": 0,
+          "active": false,
+          "message": "SPEED 1 2 20 2000 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            1,
+            2,
+            20,
+            2000,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 3,
+            "enemy": 20,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "message": "SPEED 2002 2003 1983 3 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            2002,
+            2003,
+            1983,
+            3,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 2004,
+            "enemy": 1983,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "5217331e78e71faa0fbc16aadbf2376335d9305b1e77a9f0d8c8e3e47332a152"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "message": "SPEED 2002 2003 1983 3 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            2002,
+            2003,
+            1983,
+            3,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 2004,
+            "enemy": 1983,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "message": "SPEED 1 2 20 2000 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            1,
+            2,
+            20,
+            2000,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 3,
+            "enemy": 20,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "93c218f3c333e87fa27e1b655c5e235ce0410aed626aecc2b8c4ecc7da34be3b"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "message": "SPEED 2002 2003 1983 3 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            2002,
+            2003,
+            1983,
+            3,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 2004,
+            "enemy": 1983,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "message": "SPEED 1 2 20 2000 9999 8888 ATTR 102 18 19 20 21",
+          "rawSpeeds": [
+            1,
+            2,
+            20,
+            2000,
+            9999,
+            8888
+          ],
+          "battleSpeeds": {
+            "actor": 3,
+            "enemy": 20,
+            "nativeGrassBonus": 1
+          },
+          "nativeSaveVersion": 918,
+          "nativeSaveReload": true,
+          "pendingNativeSaveReload": true,
+          "pendingDialogConfirmedByPointer": true,
+          "reversedGlobalDefault": true,
+          "noInversionReplay": true,
+          "legacyEighteenChoiceSave": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "fb42480ab9213b445d63982c90801482f4e4fe0eda099ab5df60d5c26896971d"
+    }
+  },
+  "legacySave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+    "scenarios": [
+      {
+        "configured": false,
+        "choice": null,
+        "active": false,
+        "message": "SPEED 1 2 20 2000 9999 8888 ATTR 102 18 19 20 21",
+        "rawSpeeds": [
+          1,
+          2,
+          20,
+          2000,
+          9999,
+          8888
+        ],
+        "battleSpeeds": {
+          "actor": 3,
+          "enemy": 20,
+          "nativeGrassBonus": 1
+        },
+        "nativeSaveVersion": 918,
+        "nativeSaveReload": true,
+        "pendingNativeSaveReload": true,
+        "pendingDialogConfirmedByPointer": true,
+        "reversedGlobalDefault": true,
+        "noInversionReplay": true,
+        "legacyEighteenChoiceSave": true,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "c098e7d8d5ff1bdb1130732924f445a9e09a0548779d8c72dfa95bf333ffa5fa"
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "scenarios": [
+      {
+        "legacyProducer": true,
+        "nativeSaveVersion": 917
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "232f37ff8f2571c4c6c65c07217ba94e53ce99b74b565f270115e3dc9c1052ee"
+  },
+  "oldReaderControl": {
+    "kind": "era3-quick-scope-old-reader",
+    "futureVersion": 918,
+    "readerVersion": 917,
+    "rejectedBeforeScriptExecution": true
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 7,
+      "rawReportSha256": "229195c9d74edc194b2f3dc606870d582499eb4d4bb4c47f6c53b92efc70078d"
+    },
+    "mithril": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "76f2401cb2d407912d8d52b26402b42199776501119f834f90812dd68e52ca56"
+    },
+    "dwellings": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 3,
+      "rawReportSha256": "6f065767e308d4986925fd28ed3a3fdc775335005302cdcfca07dd7614baabe9"
+    },
+    "grounded-fliers": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 3,
+      "rawReportSha256": "ff68c1138bc7ce17722ad7cbb35a858d6f035a561319c8a5beaba7b696fec9ef"
+    },
+    "monthly": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "f271274edadec01861165e8ada9f0bf169948eae49c6e71613a49a6c4421522a"
+    },
+    "grails": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "c0e691cb0b55f82c8c79f82af586f44cdfb644859cda0f17529e8cc915772337"
+    },
+    "learning": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 5,
+      "rawReportSha256": "156172efe224a22603df6e3f2ba4912c93bcac8a3f55bb546945062f779ac457"
+    },
+    "hench-town": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "865c30df58ab151688da9edd750de3f39281f50647decf527ebba650c70c46db"
+    },
+    "army-growth": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 4,
+      "rawReportSha256": "97e477ab8ce925b18fa73e345ab6433105277c4595633920b0e2a17d6c9cb105"
+    },
+    "shared-reward": {
+      "passed": true,
+      "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "f919a942128fd290b7ddc2083d0a533fca53ac894f1b7b9d9f554dbe72a1c639"
+    }
+  },
+  "mobileUI": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": []
+  },
+  "publication": {
+    "version": "0.4.265",
+    "archive": "outputs/vcmi-wasm-goonk-0.4.265-engine.tar.gz",
+    "archiveSha256": "96d1c5078495b4b3134e4840caff867e3aff765d33875d929034ca3000f0404f",
+    "runtimeByteIdenticalToTestedEngine": true
+  },
+  "remaining": [
+    "Nine map rules and the six source selection modes of option101.",
+    "Complete Henchmen variants, external profiles and remaining source-specific mithril operations.",
+    "Shared creature prototypes used by recruitment previews do not include map-local combat overlays."
+  ],
+  "publicationVerification": {
+    "fullSuite": {
+      "total": 909,
+      "passed": 855,
+      "skipped": 54,
+      "failed": 0,
+      "logSha256": "2a9373f5e9f93271339c7255a91e9a7489d5b4d25efcfbf7c7340d4af422dfe6"
+    },
+    "staticSite": {
+      "nativeFileCount": 10464,
+      "transportBytes": 702295411,
+      "verified": true,
+      "logSha256": "23b85a2cb7cbdd18e0978f2876bbf8591f7df13a40c108063823e0bc04e2fa38"
+    },
+    "freshTumInventoryTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "archiveMembersByteIdenticalToTestedEngine": true
+  }
+}
