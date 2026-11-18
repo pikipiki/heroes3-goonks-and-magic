@@ -18,7 +18,7 @@
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "d199283bbc3c8ab14d2a95993b2c75ea71252f3f7bf657956d3e8a1d0f2e18ec",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "e4e2d6a9ca4d9faab524233c42e976a9c10b487837a1e813b1f58707e131f8ae",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
   },
   "nativeBuild": {
@@ -136,5 +136,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }

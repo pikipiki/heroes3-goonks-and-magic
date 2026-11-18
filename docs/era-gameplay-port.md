@@ -799,3 +799,16 @@ annonce ces critères sans ajouter de choix aux dix-neuf réglages existants.
 Les options source149/170/171, les mutations MA:L externes et le calendrier
 exact des moulins restent à porter. Preuve bornée :
 `scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json`.
+
+Le calcul d’expérience des compagnons conserve maintenant la soustraction
+entière signée sur32 bits du script Enhanced Henchmen. Un dépassement positif
+peut donc produire un gain négatif et déclencher la sortie prévue lorsque le
+transfert de campagne est actif. Sans ce transfert, la composante racine carrée
+vaut zéro et le gain signé continue vers le calcul d’expérience de créature.
+Cette conversion est corroborée par18 appels aux véritables fonctions
+Sqrt/Trunc64/VR:S de la DLL chargée sous Wine, à un point de chargement de plugin,
+avec trois mots de contrôle x87. Le processus utilise une bibliothèque IFC20
+substituée et n’atteint pas un scénario initialisé : ces observations bornées
+ne valident ni Windows natif ni l’ensemble du pack. La sonde WebAssembly
+recompilée vérifie les12 entrées entières de ces observations ; les NaN ne sont
+pas convertis directement en entier C++.

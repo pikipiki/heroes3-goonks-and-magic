@@ -15,7 +15,7 @@
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-era3-function-metadata-cases.mjs": "50602bab31eb91a668bafd2d8ba19aa018287b7ff20320513b734c4ffc51bb7b"
   },
   "nativeBuild": {
@@ -360,5 +360,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }

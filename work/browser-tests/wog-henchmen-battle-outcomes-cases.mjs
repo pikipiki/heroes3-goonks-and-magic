@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import {revealNativeAction} from './native-ui-actions.mjs';
 
 export async function runBattleOutcomes({boot,sheet,state,command,wait,startBattle,resolve,page,report,output,save}){
  const choices=process.env.HENCH_OUTCOME_CONTROL==='1'?[false]:[false,true];
@@ -13,6 +14,7 @@ export async function runBattleOutcomes({boot,sheet,state,command,wait,startBatt
   await wait(()=>goonkMobileState.canRetreat);await command(38);await resolve();
   await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn&&goonkMobileState.autosaveAllowed);
   await command(5,0);await wait(()=>goonkMobileState.mode==='town');
+  await revealNativeAction(page(),'[data-ui=recruit-heroes]',{mouse:process.env.GROWTH_DESKTOP==='1'});
   await page().locator('[data-ui=recruit-heroes]')[process.env.GROWTH_DESKTOP==='1'?'click':'tap']();
   await wait(()=>goonkMobileState.dialogKind==='tavern');
   const candidates=(await state()).tavernHeroes;
@@ -26,6 +28,7 @@ export async function runBattleOutcomes({boot,sheet,state,command,wait,startBatt
   const bytes=await save();fs.writeFileSync(path.join(output,`retreated-${campaignTransfer}.vsgm1`),bytes);
   await page().close();await boot({...options,save:[...bytes]});
   await command(5,0);await wait(()=>goonkMobileState.mode==='town');
+  await revealNativeAction(page(),'[data-ui=recruit-heroes]',{mouse:process.env.GROWTH_DESKTOP==='1'});
   await page().locator('[data-ui=recruit-heroes]')[process.env.GROWTH_DESKTOP==='1'?'click':'tap']();await wait(()=>goonkMobileState.dialogKind==='tavern');
   const restoredCandidate=Object.entries((await state()).tavernHeroes).find(([,hero])=>hero.name===before.name);assert(restoredCandidate);
   await command(72,Number(restoredCandidate[0]));await wait(name=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow?.name===name,before.name);

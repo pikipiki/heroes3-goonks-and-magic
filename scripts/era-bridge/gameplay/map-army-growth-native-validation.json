@@ -13,13 +13,13 @@
     "heroConstantSha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762",
+    "docs/era-gameplay-port.md": "dbd11b524132cc83dbd559615503d33f90d5825be2ca791968b93c17e255ecc4",
     "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
     "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
     "tests/era-map-army-growth-native.test.mjs": "30a390c57f31cc827a338c3a01ff83ba3a48b74bce87b449a3259d0921271dca",
     "tests/native/EraMapArmyGrowthRules.test.cpp": "1128fe385e0c5e9244f431b54156bbb146be25ebc22722f7732b558038d7c40c",
     "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
     "work/browser-tests/wog-mithril-options-cases.mjs": "2f04d0e99f5eed70bab70378331a898d88e7f806079e8472ff8429c0774c7383",
@@ -1124,5 +1124,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }

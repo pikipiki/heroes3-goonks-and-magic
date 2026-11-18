@@ -11,7 +11,7 @@
     "work/vcmi-wasm/lib/era/EraHenchmanScalarRuntime.h": "20172611e25cc92949fa30451a3898b1a56ffac7eb6ffa67b7a6752843afe395",
     "work/vcmi-wasm/lib/era/EraDeflectionRuntime.h": "0f519f9b99ebfbb2ca124bd8a6ee85ad15ba54362afcc456426999416bcf1367",
     "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h": "51e1e7a400689590dfb476d1fe42a7dd5568e91c1f1e2faf88b8f869eeeec808",
-    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "45a2ae87a70e81d12182902c5dad4eadc7446d9f21df2ec93a3d1891bee13e59",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
     "work/vcmi-wasm/client/MobileBridge.cpp": "fdcf73c9a79387a6703bf0e52ab65c24c550a9e6c3ff1622e173177d7b91ffba",
     "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "604c3430e23e05b7cb7f5986319fddd4d7192e4a4818e5470e3390c94e05bf1d",
     "work/vcmi-wasm/lib/CStack.cpp": "0d588aa9cc811e9506603befdddaad9d96af760ac3abf8272d4f62c5bdd591b1",
@@ -19,11 +19,11 @@
     "tests/henchman-sheet.test.mjs": "d9e9cfae49d4e6bca83e00874e0238f7579ae5ee3dbec3ee7f0f783b7410b255",
     "scripts/era-bridge/gameplay/import-henchmen-banner-table.mjs": "7a2c1fe82efa636c595553ed4defe070befbbac2105fdae6b3acb8178e6de16c",
     "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "7dfee22cde596e84c5f44ca4e3790ca3d2125f1decd31e21fd323c435cf38746",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "1ca13f214cdc79c48ae7c7ec0b113d6ad9b973f9d9a7e0aa01306c6e3ccec55f",
     "work/vcmi-wasm/client/windows/CHeroWindow.h": "bec062c6cdc86c569f20a424e082ade8a0cf5715704cac5c59e5925a386aa2fc",
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "810e09175ac886d0d9c3ae72685793439e3eb2f2b462477f9c24b58c9de45f9f",
-    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
     "web/hero-equipment.mjs": "369f07750ce0e1c7d8bdbbc6b1043d39673153d648844f1c8d3ae0b6ea9c8233",
     "web/hero-equipment.css": "05b6e4b3dac50b84618ac814466b65b15d62e42ac99b862a6d9778ea03c015a7",
     "work/browser-tests/wog-henchmen-banner-block-cases.mjs": "ed96969abeb5b6c9bd643bbeb650c59102f228116f04aaba7db5bb3cf1ee5afd"
@@ -261,5 +261,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+      "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "45a2ae87a70e81d12182902c5dad4eadc7446d9f21df2ec93a3d1891bee13e59"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }

@@ -22,5 +22,10 @@ if(process.argv[2])assert.equal(sha(process.argv[2]),provenance.actualHeaderSha2
   assert.equal(wasm._level_rate(0,row.costBase),row.levelRateWithFightZero,`level consumed cost=${row.costBase}`); checks+=3;
  }
  for(const row of golden.selectors){assert.equal(wasm._level_rate(row.fight,row.ai),row.levelRate,`selector fight=${row.fight} ai=${row.ai}`);checks++;}
+ const loaded=require('./loaded-era-observations.json');
+ for(const row of loaded.observations.results){
+  const gain=[9,0,-1,-2147483648][row.inputIndex];
+  if(gain!==undefined)assert.equal(wasm._hero_root(gain),row.actualStoredInt32,`loaded DLL integer result gain=${gain}, CW=${row.controlWord}`);
+ }
  console.log(JSON.stringify({checks,rootVectors:golden.roots.length,costBaseVectors:golden.costBases.length,selectorVectors:golden.selectors.length,status:'passed'}));
 })().catch(error=>{console.error(error);process.exitCode=1;});

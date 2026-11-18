@@ -228,9 +228,9 @@
   "nativeRules": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
   "mathSource": {
     "file": "scripts/era-bridge/gameplay/math-source.json",
-    "sha256": "03cdffc6aa696d73ce99741295d569fdcf8902eb18e440282e7e98394c2e095f"
+    "sha256": "ce4229eccf5ab8da74a8df806fa2ba82f0648be94e3518140834c933cdc95c41"
   },
-  "nativeRulesSha256": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+  "nativeRulesSha256": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
   "nativeConfiguration": {
     "file": "mod/tum-era/content/config/henchmen-settings.json",
     "sha256": "edf22e1e29e26f00f5dab9f2dd2d82ba4028d1fb397ac1f75fd03da002a4cf31"
@@ -239,13 +239,13 @@
   "status": "partial-rule-library",
   "battleOutcomeValidation": "scripts/era-bridge/gameplay/henchmen-battle-outcomes-native-validation.json",
   "unresolved": [
-    "Floating-point primitives match extracted DLL functions on the documented finite corpus under two explicit x87 control words; the full Windows ERA runtime, actual FPU state, exceptions and whole int32 domain remain unvalidated.",
+    "Floating-point primitives match extracted DLL functions on the documented positive corpus; real loaded Sqrt/Trunc64/VR:S calls under substituted Wine establish bounded negative integer results at plugin load. Full game events, native Windows FPU state, unmasked exceptions and the whole int32 domain remain unvalidated.",
     "Per-game JSON settings support numbers, booleans and TRUE/FALSE strings; arbitrary ERM constant names require the shared symbol resolver.",
     "AI rewards read the active source VM integer i^battleExpAIPct^; missing, signed, overflow and saved values pass native scenarios. The distinct prefixed configuration and paired string are not substituted; complete profile namespace integration remains unadmitted.",
     "Native core adapters exist; complete source fidelity and configurable profiles are not admitted.",
     "Native save/load, legacy choice migration and campaign crossover/settings scenarios pass; campaign restart, reserved/unplaced heroes and older campaign pools remain to validate.",
     "Army selection/replacement, resurrection and banner equipment are connected; the banner native validation report records the remaining battle and campaign cases.",
     "Battlefield actor, stats, spells and level-scaled guardians are connected; full death/action interactions remain incomplete.",
-    "Classic left/right pointer menus, mobile touch controls and shared-VM AI rewards pass dedicated scenarios; Zero hero XP at an authored level cap preserves the fixed reward only with campaign transfer off, including native save/load; Placement-time hero XP capture passes unchanged, pre-battle BA0 and in-combat BR0 changes with native save/load; A surviving human companion receives the fixed reward after retreat when campaignTransfer is off, including native pooled-hero tavern inspection and save/reload on touch and mouse; other loser/draw/negative-XP lifecycle, remaining inventory/spell cases and whole-pack native scenarios remain unvalidated."
+    "Classic left/right pointer menus, mobile touch controls and shared-VM AI rewards pass dedicated scenarios; Zero hero XP at an authored level cap preserves the fixed reward only with campaign transfer off, including native save/load; Placement-time hero XP capture passes unchanged, pre-battle BA0 and in-combat BR0 changes with native save/load; A surviving human companion receives the fixed reward after retreat when campaignTransfer is off, including native pooled-hero tavern inspection and save/reload on touch and mouse; Signed negative and wrapped-positive gains preserve the campaign-transfer guard, fixed reward and source stack-experience cap through native saves on touch and mouse; other loser/draw lifecycle, remaining inventory/spell cases and whole-pack native scenarios remain unvalidated."
   ]
 }

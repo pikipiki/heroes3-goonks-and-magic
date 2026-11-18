@@ -196,14 +196,15 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,
         if(actors.empty())continue;
         auto update=snapshot(*hero);update.alive=actors.front()->alive()&&actors.front()->getCount()>0;
         if(!update.alive)update.stackExperience=0;
-        const auto gained=std::max<int64_t>(0,int64_t(hero->exp)-previousExperience[static_cast<int>(side)]);
+        const auto gained=era_bridge::henchmen::heroExperienceGain(hero->exp,
+            static_cast<std::uint64_t>(previousExperience[static_cast<int>(side)]));
         const bool ai=!gh.gameInfo().getPlayerState(hero->getOwner())->isHuman();
         // OnAfterBattleUniversal visits both hero sides. Despite the source
         // comment mentioning victory, GiveExpAfterBattle has no winner or
         // draw guard. Its zero-gain exit depends only on campaign transfer.
         if((update.alive||ai)&&(!rules.campaignTransfer||gained>0))
         {
-            const auto root=era_bridge::henchmen::heroExperienceRoot(static_cast<int32_t>(std::min<int64_t>(gained,INT32_MAX)));
+            const auto root=era_bridge::henchmen::heroExperienceRoot(gained);
             // The source reads the unprefixed shared ERA cell. Its similarly
             // named configuration value is a different cell, not a fallback.
             const auto aiPercent=ai?gh.sourceCampaigns->namedInteger("battleExpAIPct"):0;
@@ -220,7 +221,7 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,
                         update.banner==5,*table);
                 else
                 {
-                    const auto added=std::min<int64_t>(gained*stack.getExperienceMultiplier(),stack.getMaxExperienceGainPerBattle());
+                    const auto added=std::min<int64_t>(std::max<int64_t>(0,gained)*stack.getExperienceMultiplier(),stack.getMaxExperienceGainPerBattle());
                     update.stackExperience=std::min<int64_t>(stack.getMaxExperiencePerUnit(),update.stackExperience+added);
                 }
             }

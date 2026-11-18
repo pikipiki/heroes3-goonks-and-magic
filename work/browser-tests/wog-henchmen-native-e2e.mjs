@@ -329,6 +329,11 @@ try{
   const {runBattleOutcomes}=await import('./wog-henchmen-battle-outcomes-cases.mjs');
   await runBattleOutcomes({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:945})});
  }
+ if(process.env.CASES==='signed-hero-experience'){
+  const {runSignedExperience}=await import('./wog-henchmen-signed-experience-cases.mjs');
+  await runSignedExperience({boot,sheet,command,wait,startBattle,resolve,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:938})});
+ }
  if(process.env.CASES==='battle-start-experience'){
   const {runBattleStartExperience}=await import('./wog-henchmen-battle-experience-cases.mjs');
   await runBattleStartExperience({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,

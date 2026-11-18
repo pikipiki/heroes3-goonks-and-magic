@@ -87,9 +87,17 @@ inline std::int32_t alternativeLevelRate(std::int32_t fightValue,std::int32_t ai
 inline std::int32_t levelRate(std::int32_t fightValue,std::int32_t aiValue,const Settings & settings)
 {return settings.alternativeLevelRate?alternativeLevelRate(fightValue,aiValue):classicLevelRate(fightValue,aiValue);}
 
+inline std::int32_t heroExperienceGain(std::uint64_t after,std::uint64_t before)
+{
+    // HE:E and the subsequent VR subtraction each expose a Win32 integer.
+    return word(std::uint32_t(after)-std::uint32_t(before));
+}
 inline std::int32_t heroExperienceRoot(std::int32_t gain)
 {
-    if(gain<0)throw std::invalid_argument("Henchmen: negative square-root input");
+    // The loaded ERA DLL's Sqrt -> Trunc64 -> VR:S path stores zero for
+    // negative inputs with masked x87 exceptions. Avoid an undefined C++
+    // NaN-to-integer conversion while preserving that consumed result.
+    if(gain<0)return 0;
     const float input=static_cast<float>(gain);
     const float result=std::sqrt(input);
     return static_cast<std::int32_t>(result);

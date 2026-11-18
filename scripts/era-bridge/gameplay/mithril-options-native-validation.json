@@ -8,7 +8,7 @@
   "sourceOption": 36,
   "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762",
+    "docs/era-gameplay-port.md": "dbd11b524132cc83dbd559615503d33f90d5825be2ca791968b93c17e255ecc4",
     "scripts/era-bridge/gameplay/mithril.json": "1c0e1e1e01d3299c17590dc8691cbd69faa634b1402f920c466e4ff739f630ea",
     "tests/era-wog-options-native.test.mjs": "1ae28580b56670d1c7de6671efdde54cf3e7911eb7e147b1550a8965abdef2bc",
     "tests/native/EraWogOptions.test.cpp": "dcc59ff67f9eed497dcf267ac43ac7d6c892cab2e5dd3116e1f04e0be296a4eb",
@@ -387,5 +387,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }

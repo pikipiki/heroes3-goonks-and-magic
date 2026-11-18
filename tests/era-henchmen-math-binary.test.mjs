@@ -26,3 +26,17 @@ test('bounded extracted ERA math observations match the current Henchmen WASM he
  assert.equal(source.boundedBinaryComparison.fullWindowsEraRuntimeValidated,false);
  assert.equal(createHash('sha256').update(fs.readFileSync(source.boundedBinaryComparison.file)).digest('hex'),source.boundedBinaryComparison.sha256);
 });
+
+test('loaded ERA Sqrt and VR:S store zero for the observed negative and quiet-NaN inputs',()=>{
+ const source=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/math-source.json'));
+ const file=source.loadedIntegerComparison.file;
+ assert.equal(createHash('sha256').update(fs.readFileSync(file)).digest('hex'),source.loadedIntegerComparison.sha256);
+ const d=JSON.parse(fs.readFileSync(file));assert.equal(d.fullWindowsEraRuntimeValidated,false);assert.equal(d.binaryDifferentialValidated,false);
+ assert.equal(d.observations.naturalControlWordAtProbeDllMain,0x023f);
+ assert.equal(d.observations.results.length,18);assert.equal(d.observations.exceptionsDuringDirectProbes,0);
+ for(const cw of [0x023f,0x037f,0x027f]){
+  const rows=d.observations.results.filter(r=>r.controlWord===cw);assert.equal(rows.length,6);
+  for(const row of rows){assert.equal(row.vrSuccess,1);assert.equal(row.actualStoredInt32,row.inputIndex===0?3:0);}
+ }
+ assert.equal(d.observations.restorationsToNaturalControlWord,18);
+});

@@ -54,7 +54,7 @@
     "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
     "work/browser-tests/wog-map-extra-dwellings-cases.mjs": "0cbd422a9184ebf3963f2b4150c549a5de0b13f3dfbc7e11a71529ff3d5b63b1",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
@@ -1311,5 +1311,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }
