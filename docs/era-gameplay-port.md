@@ -57,8 +57,8 @@ Le script original `acm_GetHeroClass` s’exécute ainsi sans réécriture :
 et hybrides, leur priorité, un autre héros et la préservation des variables
 lors d’un appel imbriqué. Les sauvegardes sont reprises au toucher en portrait
 et à la souris. Ces drapeaux sont des entrées contrôlées ; cette étape ne
-porte pas encore leur attribution par les promotions. Les tableaux à indices
-dynamiques et les variables locales `z`/`e` restent refusés.
+porte pas encore leur attribution par les promotions. Les variables locales
+`z`/`e` restent refusées.
 La preuve bornée est `scripts/era-bridge/gameplay/advanced-class-identity-native-validation.json`.
 
 Les tableaux locaux numériques `x`/`y` à indices constants utilisent désormais
@@ -70,8 +70,8 @@ Les parcours natifs vérifient un appel imbriqué, la restitution des quatre
 arguments, les deux limites des plages et deux sauvegardes/reprises en portrait,
 paysage et à la souris. Les 133 anciens programmes et la sonde Advanced Classes
 compilée conservent exactement leurs octets. Cette extension produit le contrat
-AST v4 existant ; elle ne simule pas les indices dynamiques et n’admet pas encore
-les helpers de tableaux de chaînes des packs complets. Preuve bornée :
+AST v4 existant ; elle n’admet pas encore les helpers de tableaux de chaînes
+des packs complets. Preuve bornée :
 `scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json`.
 
 La libération explicite `VA(-nom)` des variables et tableaux `x`/`y` suit
@@ -669,3 +669,21 @@ node work/browser-tests/wog-henchmen-native-e2e.mjs
 
 Ce scénario utilise une carte synthétique et des sauvegardes éphémères en
 mémoire. Il ne modifie aucune sauvegarde personnelle ni donnée publiée.
+
+Les indices dynamiques des tableaux locaux numériques fonctionnent maintenant
+dans les commandes ordinaires : indices `f` à `t`, ou première case d’une
+variable locale `x`/`y`. Chaque occurrence calcule son adresse dans une variable
+temporaire `y`, dans l’ordre du source ERA, puis libère ces emplacements après
+la commande. Les adresses de sortie sont ainsi conservées quand un premier
+résultat modifie l’indice avant la restitution du résultat suivant. Les essais
+natifs vérifient ce cas après sauvegarde/rechargement dans un appel imbriqué,
+en portrait et paysage tactiles et à la souris. Les 133 anciens programmes et
+les sondes Advanced Classes, tableaux constants et registres rapides gardent
+exactement leurs octets compilés. Le moteur et le contrat AST v4 sont inchangés.
+
+Les indices hors plage produisent l’adresse zéro, comme le préprocesseur ERA ;
+les essais couvrent uniquement cette adresse, pas son déréférencement. Les
+indices dynamiques dans les initialisations, déclarations et branches `el`,
+l’interpolation de valeurs dynamiques et les variables `z`/`e` restent refusés.
+Les profils complets demeurent désactivés. Preuve bornée :
+`scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json`.

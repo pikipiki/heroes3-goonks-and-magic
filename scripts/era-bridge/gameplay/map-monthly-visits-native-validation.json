@@ -8,7 +8,7 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
-    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
+    "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
@@ -672,5 +672,12 @@
       "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
       "runtimeByteIdenticalToTestedCandidate": true
     }
+  },
+  "dynamicCompilerRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json",
+    "legacyProgramsByteIdentical": 133,
+    "advancedCoreAndConstantArrayProgramsByteIdentical": true,
+    "newNativeProbePassedOnTouchAndMouse": true,
+    "nativeEngineUnchanged": true
   }
 }

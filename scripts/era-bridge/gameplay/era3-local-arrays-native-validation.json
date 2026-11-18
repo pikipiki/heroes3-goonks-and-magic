@@ -9,9 +9,9 @@
   "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
     "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
-    "scripts/era-bridge/campaigns/local-bindings.mjs": "ae3854ab1bf3e3610cb079eafb5ddf6647f666e314c581f3079f676b2e2eea66",
-    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
-    "work/browser-tests/wog-era3-local-arrays-cases.mjs": "eae78df53dc10b9a38cbe8a0a1ccf580857e1d87773303afe3b559fa62769b9d",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "de53fdab9cddaa5b3b63cd425d51134876f192010330c9bf965b97d9fe13a498",
+    "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9",
+    "work/browser-tests/wog-era3-local-arrays-cases.mjs": "7da679f5a0d0d23e4da647d9cb3b6fc9f24859b88563a4d724e2178f2b43eb59",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
@@ -222,5 +222,12 @@
     "warMachinesAdmitted": false
   },
   "quickScopeRevalidation": true,
-  "quickScopeValidation": "scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json"
+  "quickScopeValidation": "scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json",
+  "dynamicCompilerRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json",
+    "legacyProgramsByteIdentical": 133,
+    "advancedCoreAndConstantArrayProgramsByteIdentical": true,
+    "newNativeProbePassedOnTouchAndMouse": true,
+    "nativeEngineUnchanged": true
+  }
 }

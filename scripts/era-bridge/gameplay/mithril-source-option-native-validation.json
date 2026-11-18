@@ -13,7 +13,7 @@
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5",
-    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151"
+    "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -285,5 +285,12 @@
       "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
       "runtimeByteIdenticalToTestedCandidate": true
     }
+  },
+  "dynamicCompilerRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json",
+    "legacyProgramsByteIdentical": 133,
+    "advancedCoreAndConstantArrayProgramsByteIdentical": true,
+    "newNativeProbePassedOnTouchAndMouse": true,
+    "nativeEngineUnchanged": true
   }
 }

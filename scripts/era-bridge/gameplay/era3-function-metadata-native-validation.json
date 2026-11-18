@@ -7,7 +7,7 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
+    "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9",
     "scripts/era-bridge/campaigns/importer.mjs": "d19be1f5f4d4dab127a0317810fc11543bd7ea2790e8cb608c0fa129df3b7740",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2",
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
@@ -294,5 +294,12 @@
       "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
       "runtimeByteIdenticalToTestedCandidate": true
     }
+  },
+  "dynamicCompilerRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json",
+    "legacyProgramsByteIdentical": 133,
+    "advancedCoreAndConstantArrayProgramsByteIdentical": true,
+    "newNativeProbePassedOnTouchAndMouse": true,
+    "nativeEngineUnchanged": true
   }
 }

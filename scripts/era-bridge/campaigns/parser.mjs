@@ -111,7 +111,8 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={},dial
  const target=(command,index)=>{command.operations[0].args[0].number=index;};
  const jump=(record,code)=>({...record,receiver:'__flow',selectors:[],operations:[{code,args:[{kind:'number',access:'read',number:0}]}]});
  for(const token of tokens){try{
-  const statement=lowerLocals?lowerLocals(token.statement):bindIdentifiers(token.statement,bound);
+  const lowered=lowerLocals?lowerLocals(token.statement):bindIdentifiers(token.statement,bound);
+  for(const statement of Array.isArray(lowered)?lowered:[lowered]){
   if(statement===null)continue;
   const m=/^!([!?#$])([A-Za-z]{2})([^:;]*)(?::([\s\S]*))?;$/.exec(statement);if(!m)fail('Invalid statement '+token.statement);
   const kind=m[1],receiver=m[2].toUpperCase(),at=firstOutside(m[3],text=>/^[&|]/.exec(text))?.index??-1,selectorText=at<0?m[3]:m[3].slice(0,at),conditionText=at<0?'':m[3].slice(at+1),selectors=splitOutside(selectorText).filter(s=>s.trim()).map(parseOperand),conditions=parseConditions(conditionText,m[3][at]==='|'?'any':'all');
@@ -144,6 +145,7 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={},dial
   }
   if(!campaignReceivers.has(receiver))fail('Unbound receiver '+receiver);
   commands.push({...record,operations:parseOperations(m[4]??'',receiver),...(kind==='#'?{visibleBlocks:blocks.length}:{})});
+  }
  }catch(e){fail('line'+token.line+' '+e.message,source);}}
  if([...flows.values()].some(stack=>stack.length))fail('Unterminated structured condition',source);
  const metadata=era3&&[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='FU'&&c.operations.some(op=>['A','S'].includes(op.code)));

@@ -1,46 +1,61 @@
-/** Scalar and constant-index ERM2 x/y locals, following Erm.pas at 8c2fd47b.
- * Dynamic indices and z/e locals require additional source contracts.
+/** ERM2 numeric x/y locals and receiver-body indexing, following Erm.pas at 8c2fd47b.
+ * Dynamic value interpolation, initialization indices and z/e locals remain unadmitted.
  */
 export function createLocalBindings(constants) {
  const locals=new Map();let next={x:1,y:1},free={x:[],y:[]};
+ let prefixes=[],temporaries=[],dynamicAllowed=false;
+ const allocate=(key,type,count)=>{
+  const gap=free[type].findIndex(range=>range.count>=count);let index;
+  if(gap>=0){
+   const range=free[type][gap];index=range.index;
+   if(range.count===count)free[type].splice(gap,1);
+   else {range.index+=count;range.count-=count;}
+  }else{
+   if(count>(type==='x'?16:100)-next[type]+1)throw Error('ERM2 '+type+' local pool exhausted');
+   index=next[type];next[type]+=count;
+  }
+  const variable={type,index,count};locals.set(key,variable);return variable;
+ };
+ const release=key=>{
+  const variable=locals.get(key);if(!variable)throw Error('Cannot free undeclared ERM2 local '+key);
+  const pool=variable.type;
+  if(next[pool]===variable.index+variable.count)next[pool]-=variable.count;
+  else free[pool].unshift({index:variable.index,count:variable.count});
+  locals.delete(key);
+ };
  const resolve=(name,interpolation=false)=>{
   if(Object.hasOwn(constants,name)&&!/^[a-z][A-Za-z0-9]*$/.test(name))return String(constants[name]);
-  const declaration=/^([-@]?)([a-z][A-Za-z0-9]*)(?:\[(-?\d+|[A-Z][A-Z0-9_]*)\])?(?::([xy]))?$/.exec(name);
+  const declaration=/^([-@]?)([a-z][A-Za-z0-9]*)(?:\[(-?\d+|[A-Z][A-Z0-9_]*|[a-z][A-Za-z0-9]*)\])?(?::([xy]))?$/.exec(name);
   if(!declaration)throw Error('Unsupported ERM2 local '+name);
   const [,mode,key,subscript,type]=declaration,address=mode==='@';
-  const isSize=subscript==='SIZE';
+  const isSize=subscript==='SIZE',dynamic=subscript!==undefined&&/^[a-z]/.test(subscript);
   if(isSize&&address)throw Error('ERM2 SIZE cannot use the address operator');
-  let item=0;
-  if(subscript!==undefined&&!isSize){
+  let item=0,indexRegister;
+  if(dynamic){
+   if(/^[f-t]$/.test(subscript))indexRegister=subscript;
+   else {const indexVar=locals.get(subscript);if(!indexVar)throw Error('Undeclared ERM2 array index '+subscript);indexRegister=indexVar.type+indexVar.index;}
+  }else if(subscript!==undefined&&!isSize){
    item=/^-?\d+$/.test(subscript)?Number(subscript):constants[subscript];
    if(!Number.isSafeInteger(item)||item< -2147483648||item>2147483647)throw Error('Invalid ERM2 array index '+subscript);
   }
   let variable=locals.get(key);
-  if(mode==='-'){
-   if(!variable)throw Error('Cannot free undeclared ERM2 local '+key);
-   const pool=variable.type;
-   if(next[pool]===variable.index+variable.count)next[pool]-=variable.count;
-   else free[pool].unshift({index:variable.index,count:variable.count});
-   locals.delete(key);return '';
-  }
+  if(mode==='-'){release(key);return '';}
+  if(type&&dynamic)throw Error('Dynamic ERM2 array extents are not admitted');
   const requested=type?(subscript===undefined?1:item):null;
   if(type&&isSize)throw Error('ERM2 SIZE cannot declare an array');
   if(!variable){
    if(!type)throw Error('Undeclared ERM2 local '+key);
    if(requested<0)throw Error('Invalid ERM2 array size '+requested);
-   const count=Math.max(1,requested);
-   const gap=free[type].findIndex(range=>range.count>=count);let index;
-   if(gap>=0){
-    const range=free[type][gap];index=range.index;
-    if(range.count===count)free[type].splice(gap,1);
-    else {range.index+=count;range.count-=count;}
-   }else{
-    if(count>(type==='x'?16:100)-next[type]+1)throw Error('ERM2 '+type+' local pool exhausted');
-    index=next[type];next[type]+=count;
-   }
-   variable={type,index,count};locals.set(key,variable);
+   variable=allocate(key,type,Math.max(1,requested));
   }else if(type&&(variable.type!==type||variable.count!==requested))throw Error('Conflicting ERM2 local declaration '+key);
   if(isSize)return String(variable.count);
+  if(dynamic){
+   if(!dynamicAllowed)throw Error('Dynamic ERM2 local references require an ordinary receiver');
+   if(interpolation&&!address)throw Error('Dynamic ERM2 value interpolation is not admitted');
+   const temporary=String(temporaries.length+1),pointer=allocate(temporary,'y',1);temporaries.push(temporary);
+   prefixes.push(`!!VRy${pointer.index}:S${variable.index} +${indexRegister} F${variable.index}/${variable.index+variable.count-1}/0/0;`);
+   return address?(interpolation?'%Y':'y')+pointer.index:variable.type+'y'+pointer.index;
+  }
   if(type)item=0;else if(item<0)item+=variable.count;
   if(item<0||item>=variable.count)throw Error('ERM2 local array index out of range: '+name);
   const index=variable.index+item;
@@ -48,6 +63,8 @@ export function createLocalBindings(constants) {
  };
  return statement=>{
   if(/^![?$]/.test(statement)){locals.clear();next={x:1,y:1};free={x:[],y:[]};}
+  prefixes=[];temporaries=[];
+  dynamicAllowed=statement.startsWith('!!')&&!/^!!el(?:[&|:;])/.test(statement);
   const dummy=statement.startsWith('!#VA');
   if(dummy&&!/^!#VA(?:\s*\([-@]?[a-z][A-Za-z0-9]*(?:\[-?\d+\]|\[[A-Z][A-Z0-9_]*\])?(?::[xy])?\))+\s*;$/.test(statement))throw Error('Unsupported ERM2 local declaration');
   let output=statement.slice(0,2),quote='';
@@ -70,6 +87,7 @@ export function createLocalBindings(constants) {
    }
    output+=c;i++;
   }
-  return dummy?null:output;
+  for(const temporary of temporaries)release(temporary);
+  return dummy?null:prefixes.length?[...prefixes,output]:output;
  };
 }

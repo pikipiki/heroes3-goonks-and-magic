@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Numeric x/y dynamic indices in ordinary receiver commands. Compiler temporaries follow source allocation and freeing. Dynamic value interpolation, declarations and initializer indices, structured else indices and z/e remain unadmitted. Out-of-bounds tests cover addresses only.",
+  "sourceBaseCommit": "0b70a3f208adf3667808d6b667e9c9fbe6cda330",
+  "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+  "compilerOnlyChangeReusesVerifiedNativeEngine": true,
+  "upstreamReference": {
+    "schema": 1,
+    "repository": "https://github.com/ethernidee/era",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "file": "Erm.pas",
+    "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "scope": "Numeric x/y dynamic indices in ordinary receiver commands. Compiler temporaries follow source allocation and freeing. Dynamic value interpolation, declarations and initializer indices, structured else indices and z/e remain unadmitted. Out-of-bounds tests cover addresses only.",
+    "fragments": [
+      {
+        "startLine": 2267,
+        "endLine": 2313,
+        "text": "        Token := StrLib.ExtractFromPchar(StartPtr, integer(VarName) - integer(StartPtr));\n\n        if HasNumericSize then begin\n          result := SysUtils.TryStrToInt(Token, ParsedVar.Index);\n        end else begin\n          result := DetectIdentType(Token, IdentType);\n\n          if not result or (IdentType = IDENT_TYPE_FUNC) then begin\n            ShowError(VarPos, SysUtils.Format('Invalid identifier: (%s)', [Token]));\n            exit;\n          end;\n\n          if IdentType = IDENT_TYPE_CONST then begin\n            if Token = MAGIC_SIZE_CONST_NAME then begin\n              ExistingConstValue := MAGIC_SIZE_CONST;\n              result             := not ParsedVar.IsAddr;\n\n              if not result then begin\n                ShowError(VarPos, 'Magic constant \"' + MAGIC_SIZE_CONST_NAME + '\" cannot be used with @ operator');\n                exit;\n              end;\n            end else begin\n              ExistingConstValue := 0;\n              result             := GlobalConsts.GetExistingValue(Token, pointer(ExistingConstValue));\n\n              if not result then begin\n                ShowError(VarPos, SysUtils.Format('Global constant \"%s\" is not defined', [Token]));\n                exit;\n              end;\n            end;\n\n            ParsedVar.Index := ExistingConstValue;\n          end else if IdentType = IDENT_TYPE_VAR then begin\n            if (Length(Token) = 1) and (Token[1] in ['f'..'t']) then begin\n              ParsedVar.IndexVar := QuickVarsPool[Token[1]];\n            end else begin\n              ParsedVar.IndexVar := LocalVars[Token];\n              result             := ParsedVar.IndexVar <> nil;\n\n              if not result then begin\n                ShowError(VarPos, SysUtils.Format('Usage of underclared local variable \"%s\"', [Token]));\n                exit;\n              end;\n            end;\n          end; // .else\n        end; // .else\n      end; // .if\n",
+        "sha256": "8ddb5c00d41088b11bf21fcc20ad8cb74c636bdab9ce7324229297de3e2b4d01"
+      },
+      {
+        "startLine": 2438,
+        "endLine": 2479,
+        "text": "        // Allocate temporary compiler variable to hold var item pointer\n        Inc(NumAllocatedCompilerVars);\n\n        if not AllocLocalVar(SysUtils.IntToStr(NumAllocatedCompilerVars), 'y', 1, TempVar) then begin\n          Dec(NumAllocatedCompilerVars);\n          ShowError(VarPos, 'Cannot allocate y-variable for array pointer');\n          Buf.Add('t');\n          exit;\n        end;\n\n        if IndexVar.VarType in ['f'..'t'] then begin\n          Buf.Insert(SysUtils.Format('!!VRy%d:S%d +%s F%d/%d/0/0; ', [\n            TempVar.RealStartIndex, LocalVar.RealStartIndex, IndexVar.VarType, LocalVar.RealStartIndex, LocalVar.RealStartIndex + LocalVar.Count - 1\n          ]), CmdStartBufPos);\n        end else begin\n          Buf.Insert(SysUtils.Format('!!VRy%d:S%d +%s%d F%d/%d/0/0; ', [\n            TempVar.RealStartIndex, LocalVar.RealStartIndex, IndexVar.VarType, IndexVar.RealStartIndex, LocalVar.RealStartIndex, LocalVar.RealStartIndex + LocalVar.Count - 1\n          ]), CmdStartBufPos);\n        end;\n\n        Inc(CmdStartBufPos);\n      end; // .else\n\n      if not IsAddr then begin\n        if IsInStr and not IsIndirectAddressing then begin\n          Buf.Add('%');\n        end;\n\n        if IndexVar = nil then begin\n          Buf.Add(LocalVar.VarType + SysUtils.IntToStr(VarIndex));\n        end else begin\n          Buf.Add(LocalVar.VarType + 'y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end else begin\n        if IndexVar = nil then begin\n          Buf.Add(SysUtils.IntToStr(VarIndex));\n        end else if not IsInStr then begin\n          Buf.Add('y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end else begin\n          Buf.Add('%y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end;\n",
+        "sha256": "bc1711a8efed1656d3ebb8f0312bac0ded1ca72d40742472b0a0ee8af44c0c11"
+      },
+      {
+        "startLine": 2783,
+        "endLine": 2791,
+        "text": "        Scanner.GotoNextChar;\n        Inc(CmdN);\n\n        // Release compiler temp variables\n        for i := 1 to NumAllocatedCompilerVars do begin\n          FreeLocalVar(SysUtils.IntToStr(i));\n          NumAllocatedCompilerVars := 0;\n        end;\n\n",
+        "sha256": "a13885173d7cb61c304de757f72f0ffd022ce331b7fe7f4cfba73952bb01b8e0"
+      },
+      {
+        "startLine": 2104,
+        "endLine": 2131,
+        "text": "  procedure FreeLocalVar (const VarName: string);\n  var\n  {Un} LocalVar: TErmLocalVar;\n       VarsPool: PLocalVarsPool;\n       VarRange: PVarRange;\n\n  begin\n    LocalVar := LocalVars[VarName];\n\n    if LocalVar = nil then begin\n      ShowError(VarPos, 'Cannot free local ERM variable, which was never allocated. Variable name: ' + VarName);\n    end else begin\n      VarsPool := @LocalVarsPools[LocalVarCharToId(LocalVar.VarType)];\n\n      if VarsPool.StartIndex = (LocalVar.StartIndex + LocalVar.Count) then begin\n        Dec(VarsPool.StartIndex, LocalVar.Count);\n        Inc(VarsPool.Count, LocalVar.Count);\n      end else begin\n        New(VarRange);\n        VarRange.StartIndex := LocalVar.StartIndex;\n        VarRange.Count      := LocalVar.Count;\n        VarRange.NextRange  := VarsPool.FreeRanges;\n        VarsPool.FreeRanges := VarRange;\n      end;\n\n      LocalVars.DeleteItem(VarName);\n    end; // .else\n  end; // .procedure FreeLocalVar\n",
+        "sha256": "1825a10dd6a708b37c4f80fcb53c6ace541cf00aca31714dd21ef8840805c8c2"
+      }
+    ]
+  },
+  "sourceBindings": {
+    "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "de53fdab9cddaa5b3b63cd425d51134876f192010330c9bf965b97d9fe13a498",
+    "work/browser-tests/wog-era3-dynamic-arrays-cases.mjs": "1f26c8f10368c51a5ef8bf9178ae9fb74d45fe8e5517e111bd91d6d373152167",
+    "tests/era-campaign-dynamic-local-arrays.test.mjs": "47ce50748ca6b99a445b75659e4b033b7c60b8065d69a50b201efb205415491c",
+    "tests/fixtures/era-gameplay/era3-dynamic-arrays-reference.json": "846a58135cc747929f7bb0df967e94dcd7942a6c0f79cefa09f7bb06f1b5d04b"
+  },
+  "legacyAst": {
+    "identical": 133,
+    "knownMalformed": 4,
+    "advancedCoreProgramByteIdentical": true,
+    "constantArrayProgramByteIdentical": true,
+    "quickScopeProgramByteIdentical": true,
+    "previousCompilerRejectsDynamicIndex": true
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+      "scenarios": [
+        {
+          "kind": "era3-dynamic-local-arrays",
+          "entry": "DYNAMIC ENTRY 50/81 addr 2/2 quick 0",
+          "nested": "DYNAMIC NESTED 0/99",
+          "returned": "DYNAMIC RETURN 0 items 10/99/30 args 7/81/9 quick 2 read 30 invalid 0/0",
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "capturedOutputIndexBeforeEarlierCopyOut": true,
+          "quickIndexRestoredAfterCall": true,
+          "outOfBoundsAddressOnly": true,
+          "programSha256": "4d88dceff9d2c17d879794c7a83781799221fac6bb3935fdea49ccf95cbed4d3",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9e557a4173d0d42cb574b5457fdd6e7727ab162709a581dffbd06c89a217f4d7",
+      "programFileSha256": "e954e79c61c09f922440b16265f393e606972baedc8f32d48045b09b0f539e7b"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+      "scenarios": [
+        {
+          "kind": "era3-dynamic-local-arrays",
+          "entry": "DYNAMIC ENTRY 50/81 addr 2/2 quick 0",
+          "nested": "DYNAMIC NESTED 0/99",
+          "returned": "DYNAMIC RETURN 0 items 10/99/30 args 7/81/9 quick 2 read 30 invalid 0/0",
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "capturedOutputIndexBeforeEarlierCopyOut": true,
+          "quickIndexRestoredAfterCall": true,
+          "outOfBoundsAddressOnly": true,
+          "programSha256": "4d88dceff9d2c17d879794c7a83781799221fac6bb3935fdea49ccf95cbed4d3",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "a53e19f86a529b919cb2c682849b40d1728cc03e8f25e55d3d8d64fb4bce8a76",
+      "programFileSha256": "e954e79c61c09f922440b16265f393e606972baedc8f32d48045b09b0f539e7b"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+      "scenarios": [
+        {
+          "kind": "era3-dynamic-local-arrays",
+          "entry": "DYNAMIC ENTRY 50/81 addr 2/2 quick 0",
+          "nested": "DYNAMIC NESTED 0/99",
+          "returned": "DYNAMIC RETURN 0 items 10/99/30 args 7/81/9 quick 2 read 30 invalid 0/0",
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "capturedOutputIndexBeforeEarlierCopyOut": true,
+          "quickIndexRestoredAfterCall": true,
+          "outOfBoundsAddressOnly": true,
+          "programSha256": "4d88dceff9d2c17d879794c7a83781799221fac6bb3935fdea49ccf95cbed4d3",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "51afc758a3d07ab3f165ac9aadf1ee858372f6fba905f448625935b7caba19a4",
+      "programFileSha256": "e954e79c61c09f922440b16265f393e606972baedc8f32d48045b09b0f539e7b"
+    }
+  },
+  "remaining": [
+    "Dynamic value interpolation and z/e locals.",
+    "Dynamic extents, initializer and trigger indices; structured else branches.",
+    "Out-of-bounds indirect x/y dereferences require a separate ERA source comparison.",
+    "Full Advanced Classes, ERA Scripts and Reborn packs remain unadmitted."
+  ]
+}

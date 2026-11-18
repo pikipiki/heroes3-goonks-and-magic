@@ -8,8 +8,8 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
-    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
-    "scripts/era-bridge/campaigns/local-bindings.mjs": "ae3854ab1bf3e3610cb079eafb5ddf6647f666e314c581f3079f676b2e2eea66",
+    "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "de53fdab9cddaa5b3b63cd425d51134876f192010330c9bf965b97d9fe13a498",
     "scripts/era-bridge/gameplay/advanced-class-identity.mjs": "0282dda77d77588f612f6025444589858bc0a276a66d62891db2db181771b597",
     "tests/fixtures/era-gameplay/advanced-class-identity-1.1.erm": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94",
     "work/browser-tests/wog-advanced-class-identity-cases.mjs": "8fad7e30a7a8b5da211c054efb11e8695614ea719f559f151a8dcf9c2e402f20",
@@ -648,5 +648,12 @@
     }
   },
   "quickScopeRevalidation": true,
-  "quickScopeValidation": "scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json"
+  "quickScopeValidation": "scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json",
+  "dynamicCompilerRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json",
+    "legacyProgramsByteIdentical": 133,
+    "advancedCoreAndConstantArrayProgramsByteIdentical": true,
+    "newNativeProbePassedOnTouchAndMouse": true,
+    "nativeEngineUnchanged": true
+  }
 }

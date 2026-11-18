@@ -35,7 +35,7 @@ test('ERM2 zero size allocates one source slot, and full arrays exhaust only the
 test('ERM2 constant arrays reject unknown extents, invalid bounds and conflicting redeclarations',()=>{
  for(const statement of ['!#VA(a[-1]:y);','!#VA(a[SIZE]:y);','!#VA(a[UNKNOWN]:y);',
   '!#VA(a[2]:y);!!VR(a[2]):S1;','!#VA(a[2]:y);!!VR(a[-3]):S1;',
-  '!#VA(a[2]:y);!!VR(a[i]):S1;','!#VA(a[2]:y);!!VR(a[2147483648]):S1;',
+'!#VA(a[2]:y);!!VR(a[2147483648]):S1;',
   '!#VA(a[2]:y);!!VR(@a[SIZE]):S1;','!#VA(a[2]:y);!#VA(a[3]:y);',
   '!#VA(a[2]:y);!#VA(a[2]:x);','!#VA(a[0]:y);!#VA(a[0]:y);'])
   assert.throws(()=>compileErm('ZVSE2\n!?FU1;'+statement),/ERM2/);

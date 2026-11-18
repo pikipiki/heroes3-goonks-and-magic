@@ -85,4 +85,8 @@ export async function runLocalArrays({boot,state,wait,page,report,output,save}){
  await page().close();await boot({...options,save:[...bytes]});assert.equal((await state()).mode,'map');
  report.scenarios.push({kind:'era3-constant-local-arrays',entry,nested,returned,copied,full,zero,layout,reused,nestedNativeSaveReload:true,reusedSlotsNativeSaveReload:true,completedNativeSaveReload:true,programSha256:scriptProgram.sha256,viewport:page().viewportSize(),input:process.env.GROWTH_DESKTOP==='1'?'mouse':'touch'});
  await page().close();
+ if(process.env.AC_DYNAMIC_ARRAYS==='1'){
+  const {runDynamicArrays}=await import('./wog-era3-dynamic-arrays-cases.mjs');
+  await runDynamicArrays({boot,state,wait,page,report,output,save});
+ }
 }
