@@ -18,6 +18,7 @@ export async function runMithrilDisplay({boot,state,command,wait,panel,page,outp
   const saved=await readCompletedNativeSave(page(),command,{tag:850});assert.equal(saved.readInt32LE(4),925);assert.equal(bytes.readInt32LE(4),924);assert.deepEqual((await state()).resources,before);
   report.scenarios.push({kind:'mithril-display-legacy-save',inputVersion:924,outputVersion:925,noRetroactiveDisplay:true,resourcesPreserved:true});await page().close();return;
  }
+ const expectedSaveVersion=Number(process.env.MITHRIL_DISPLAY_SAVE_VERSION||925);
  const classic=process.env.CASES==='display-classic',mouse=classic||process.env.CASES.endsWith('-desktop');
  const language=process.env.MITHRIL_DISPLAY_LANGUAGE||'en';
  const choices=[
@@ -64,12 +65,12 @@ export async function runMithrilDisplay({boot,state,command,wait,panel,page,outp
    await page().locator('[data-mithril-close]')[mouse?'click':'tap']();
   }else assert.equal(await page().locator('[data-mithril-open]:visible').count(),0);
   assert.deepEqual((await state()).resources,before,'Viewing information never spends resources');
-  const bytes=await readCompletedNativeSave(page(),command,{tag:849});fs.writeFileSync(path.join(output,row.name+'.vsgm1'),bytes);assert.equal(bytes.readInt32LE(4),925);
+  const bytes=await readCompletedNativeSave(page(),command,{tag:849});fs.writeFileSync(path.join(output,row.name+'.vsgm1'),bytes);assert.equal(bytes.readInt32LE(4),expectedSaveVersion);
   await page().close();await boot({...opts,enabled:true,save:[...bytes]});
   assert.equal(!!(await state()).mithrilDisplayEnabled,expectedDisplay);
   await command(3);await wait(()=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.lines?.join(' ').includes('DISPLAY NEXT '));
   const after=(await state()).dialogPresentation.lines.join(' ');assert(after.includes('DISPLAY NEXT '+expected),after);
   await command(1);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
-  report.scenarios.push({...row,language,input:mouse?'mouse':'touch',viewport:page().viewportSize(),expectedDisplay,liveSource149:live,saveVersion:925,frozenAfterChangedGlobalDefault:true,sourceOptionsBeforeAndAfterReload:true,readOnly:true,classic});await page().close();
+  report.scenarios.push({...row,language,input:mouse?'mouse':'touch',viewport:page().viewportSize(),expectedDisplay,liveSource149:live,saveVersion:expectedSaveVersion,frozenAfterChangedGlobalDefault:true,sourceOptionsBeforeAndAfterReload:true,readOnly:true,classic});await page().close();
  }
 }

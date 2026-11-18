@@ -11,7 +11,7 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e",
+    "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
@@ -292,5 +292,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
     "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
+  },
+  "liveCreatureLevelsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, dynamic-price and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
+    "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
   }
 }

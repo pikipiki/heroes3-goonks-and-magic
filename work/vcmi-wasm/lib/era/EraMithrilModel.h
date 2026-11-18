@@ -1,6 +1,7 @@
 #pragma once
 #include "EraMithrilRules.h"
 #include "EraMithrilDisplayRules.h"
+#include "EraCampaignCreatureAttributes.h"
 #include "EraWogOptions.h"
 #include "../StartInfo.h"
 #include "EraMapRulesModel.h"
@@ -115,6 +116,11 @@ inline CreatureID nextUpgrade(CreatureID creature)
     const auto & upgrades=creature.toCreature()->upgrades;
     return upgrades.empty()?CreatureID():*upgrades.begin();
 }
+inline std::optional<int> dwellingLevel(const IGameInfoCallback & cb,CreatureID creature)
+{
+    if(const auto saved=era_campaign_creature_attributes::levelOverride(cb.gameState(),creature))return saved;
+    return era_bridge::mithril::sourceDwellingLevel(creature.toCreature()->getJsonKey(),creature.toCreature()->getLevel());
+}
 inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,PlayerColor player,int choice=0)
 {
     Offer result;
@@ -139,8 +145,8 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
         const auto original=dwelling->creatures[0].second.front();
         const auto upgraded=nextUpgrade(original);
         if(!upgraded.hasValue()||upgraded==original)return result;
-        const auto originalLevel=era_bridge::mithril::sourceDwellingLevel(original.toCreature()->getJsonKey(),original.toCreature()->getLevel());
-        const auto upgradedLevel=era_bridge::mithril::sourceDwellingLevel(upgraded.toCreature()->getJsonKey(),upgraded.toCreature()->getLevel());
+        const auto originalLevel=dwellingLevel(cb,original);
+        const auto upgradedLevel=dwellingLevel(cb,upgraded);
         if(!originalLevel||!upgradedLevel||*originalLevel!=*upgradedLevel)return result;
         const CCreature * bloodDragon=nullptr;
         for(const auto & candidate:LIBRARY->creh->objects)
@@ -161,7 +167,7 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
             bool previous=false;
             for(const auto & candidate:LIBRARY->creh->objects)
                 if(candidate&&candidate->upgrades.count(original)){previous=true;break;}
-            result.cost=era_bridge::mithril::dwellingCost(*upgradedLevel,previous);
+            result.cost=era_bridge::mithril::dwellingCost(std::max(0,*upgradedLevel),previous);
             result.upgrades.push_back(upgraded);
         }
         return result;

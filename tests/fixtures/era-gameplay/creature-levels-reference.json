@@ -1,0 +1,314 @@
+{
+  "staticOnly": true,
+  "runtimeExecuted": false,
+  "reportSha256": "4d9446f6ad2c4b73605c28d2cd6d07628f6ce6dcc1f8fadbb19dde9b38c236a8",
+  "report": {
+    "schema": 1,
+    "evidenceKind": "Ordinary targeted PE static inspection and supplied Pascal/ERM source reads. Not REA native Evidence. No dynamic validation or game execution.",
+    "targets": {
+      "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+      "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+      "preferredImageBase": 4194304
+    },
+    "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "sourceSha256": {
+      "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+      "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+      "work/downloads/era-kernel-source/Era.cfg": "e204273453809a965e0c23c6dc440bbc5d8ca8d61aaaf303743f9c4504cd427a",
+      "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+      "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/245 wog - creatures level 7th only gain half experience.erm": "aafce884bafe1deee708da8e6385fe020b462f9ef430cacc3b3c43933c810fc4",
+      "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/7 wog - enhanced artifacts.erm": "ce82e1219adbf9848aa8067626cd5d74db6650deed176d0baecf342b20395db4",
+      "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+    },
+    "contract": {
+      "receiver": "MA:L",
+      "receiverTableEntryVa": 7965410,
+      "handlerVa": 7693251,
+      "levelBranchVa": 7693498,
+      "field": "Heroes.TMonInfo.SubGroup",
+      "fieldOffset": 4,
+      "recordStride": 116,
+      "onDiskBase": 8195216,
+      "valueType": "signed int32,4bytes",
+      "sourceLevelConvention": "zero-based: ordinary0..6 correspond to creature levels1..7; -1 is accepted as unavailable/no subgroup. MON_MAX_LEVEL=6 in ERA constants.",
+      "getter": "ZvsApply reads signed int32 field; its nonzero GET result skips both clamp and modification marker. No read-time normalization or +1 conversion.",
+      "setter": "Plain SET or relative modifier writes through common PutVal first, then signed clamp[-1,6], then modification marker7504d6.",
+      "relativeArithmetic": "Common PutVal operates in int32; addition, subtraction and low32-bit multiplication wrap before MA:L signed clamping. No overflow rejection or saturation before the clamp.",
+      "rounding": "The level branch and Add/Sub/Mul paths are integer-only. There is no floating-point rounding in MA:L. Generic signed integer division uses truncation toward zero. Coercion of a floating argument by the command parser is not established here.",
+      "creatureIdGuard": "On-disk handler accepts0<=id<197; actual expanded-roster relocation/patches are a separate boundary."
+    },
+    "regions": [
+      {
+        "file": "h3era.exe",
+        "name": "Receiver MA table entry",
+        "rva": 3771106,
+        "preferredVa": 7965410,
+        "endExclusiveVa": 7965420,
+        "fileOffset": 3357410,
+        "size": 10,
+        "sha256": "c4f0e3a818e8842048e7513e86d34d24fd694623f47e88f2249b02b8792af23a",
+        "observation": "Packed ID0x414d identifies MA; handler pointer7563c3 and config0."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "MA L jump-table entry",
+        "rva": 3500367,
+        "preferredVa": 7694671,
+        "endExclusiveVa": 7694675,
+        "fileOffset": 3086671,
+        "size": 4,
+        "sha256": "df445cdee4f8d829dfe33a7d4c783341cee315c91a7c875919fbfb8aa6754526",
+        "observation": "L-A=11 selects branch7564ba."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "MA parameter and creature guard",
+        "rva": 3498985,
+        "preferredVa": 7693289,
+        "endExclusiveVa": 7693382,
+        "fileOffset": 3085289,
+        "size": 93,
+        "sha256": "53d9ee1a1610a1eb75839451f6a71b9dc6357cd6c80486c65c3bc9b9108eca8a",
+        "observation": "Require at least2 parameters; creature ID0..196 on disk, then dispatch subcommand by jump table."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "MA:L get/set and signed clamp",
+        "rva": 3499194,
+        "preferredVa": 7693498,
+        "endExclusiveVa": 7693615,
+        "fileOffset": 3085498,
+        "size": 117,
+        "sha256": "0d352d0cef8f02d0b2fa0a6059a77340423c584a77843122d1ed6292bd45ad94",
+        "observation": "Pass MonInfoBase+0x74*id+4 with size4 and parameter1 to ZvsApply74195d. Nonzero return skips mutation. On SET, signed lower bound-1 and upper bound6 are enforced, then7504d6(id) called."
+      },
+      {
+        "file": "era.dll",
+        "name": "ZvsApply hook set/get",
+        "rva": 607664,
+        "preferredVa": 4801968,
+        "endExclusiveVa": 4802135,
+        "fileOffset": 604592,
+        "size": 167,
+        "sha256": "99c91839e205ac866d64e4b691e65131571329b00d00a262fb215fad0849f6b4",
+        "observation": "SET calls PutVal494290 synchronously; GET reads source value and writes destination ERM parameter, returning nonzero. Shared hook already identified and installed in prior option149 proof."
+      },
+      {
+        "file": "era.dll",
+        "name": "PutVal Add/Sub/Mul",
+        "rva": 607066,
+        "preferredVa": 4801370,
+        "endExclusiveVa": 4801404,
+        "fileOffset": 603994,
+        "size": 34,
+        "sha256": "4bdf48bb711cfa9d6d75cffe79af9200f9524b202149879e19a23283aaf74cb7",
+        "observation": "32-bit ADD, SUB, IMUL, no overflow checks between operation and common final-store path."
+      },
+      {
+        "file": "era.dll",
+        "name": "PutVal final32 store",
+        "rva": 607231,
+        "preferredVa": 4801535,
+        "endExclusiveVa": 4801580,
+        "fileOffset": 604159,
+        "size": 45,
+        "sha256": "cbee135585037f9bb367fe2313178c2b662a0ea92e597dc1eef36d65d945f1cb",
+        "observation": "For size4, store the computed32-bit value to the supplied pointer. No level-specific clamp in this common helper."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "MA modification marker",
+        "rva": 3474646,
+        "preferredVa": 7668950,
+        "endExclusiveVa": 7669042,
+        "fileOffset": 3060950,
+        "size": 92,
+        "sha256": "ad5012e5ca92f2864951f0da490aa60bad0861a1e343b314324f4bed8f519293",
+        "observation": "Validates ID, calls7103d2(current day), stores returned integer in per-creature table8a3210[id]. This function does not recompute bonuses, native tier, recruitment, or existing stacks."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "Current-day helper",
+        "rva": 3212242,
+        "preferredVa": 7406546,
+        "endExclusiveVa": 7406621,
+        "fileOffset": 2798546,
+        "size": 75,
+        "sha256": "cb3251c8d1bd3b9fd6b34857249f4091a8b9b518bf0d90bcb006ad273944b12b",
+        "observation": "Reads GameDate at840ce0 and calculates absolute day from day/week/month; Erm.pas785 names it ZvsGetCurrDay."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "Modified-descriptor copy excerpt",
+        "rva": 3474869,
+        "preferredVa": 7669173,
+        "endExclusiveVa": 7669236,
+        "fileOffset": 3061173,
+        "size": 63,
+        "sha256": "5687e0cc6920605b3b298aed2e500a2ac6408c49b46b43cca513014cd60aa8b9",
+        "observation": "A separate marker-conditioned path copies the level field into a modified-creature record at2773870. Full lifecycle/serialization semantics not established here."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "Native level consumer excerpt",
+        "rva": 146823,
+        "preferredVa": 4341127,
+        "endExclusiveVa": 4341144,
+        "fileOffset": 146823,
+        "size": 17,
+        "sha256": "0a2c5c8d6ed63faf59bbdbf7d8123120c6b1d8586bae9773bc5aac18411d3638",
+        "observation": "Reads MonInfo+4 via runtime base6747b0 and passes it to4e6260. Exact downstream gameplay admission not asserted."
+      },
+      {
+        "file": "h3era.exe",
+        "name": "Native level6 comparison",
+        "rva": 172276,
+        "preferredVa": 4366580,
+        "endExclusiveVa": 4366604,
+        "fileOffset": 172276,
+        "size": 24,
+        "sha256": "4dd87389da1e31ca03d876ab784be03f21a6e0cdab4b3d2e1698f16493d75d81",
+        "observation": "Native code compares this same field to6. This confirms a shared descriptor field rather than a separate ERM-only attribute."
+      }
+    ],
+    "sourceCrossChecks": {
+      "Heroes.pas": [
+        735,
+        737,
+        770,
+        1040,
+        1045,
+        1389,
+        2890
+      ],
+      "Erm.pas": [
+        785,
+        5408,
+        5470,
+        5516,
+        5557,
+        9611
+      ],
+      "Era.cfg": [
+        17,
+        18
+      ],
+      "boundedHookSearch": "No explicit MA:L receiver replacement or patch at7563/7564/7565/7569/7504d6 was found in supplied kernel Pascal. Generic ZvsApply is hooked. Third-party plugins and automatic extended-roster relocation are not excluded."
+    },
+    "boundedConsumers": [
+      {
+        "source": "42 wog - mithril enhancements.erm",
+        "lines": [
+          331,
+          358
+        ],
+        "effects": "Eligibility compares current source MA:L of base/upgraded creature for equality. Basic mithril dwelling cost uses upgraded source level:<=3 costs1,4..5 costs2,>5 costs3. A new MA:L value can therefore affect both eligibility and price without changing any creature stats or native town tier."
+      },
+      {
+        "source": "245 wog - creatures level 7th only gain half experience.erm",
+        "lines": [
+          28,
+          33
+        ],
+        "effects": "Reads MA:L and applies the level7+ experience rule when source level>=MON_MAX_LEVEL(6). This is another explicit ERM consumer, not part of a limited mithril-only admission."
+      },
+      {
+        "source": "7 wog - enhanced artifacts.erm",
+        "lines": [
+          421,
+          429
+        ],
+        "effects": "Pendant of Life script reads MA:L to choose a derived HP expression. Not automatically admitted by supporting mithril reads."
+      },
+      {
+        "source": "native excerpts",
+        "effects": "The shared descriptor has native readers and separate modified-descriptor copying. Their existence is observed, but a full list, refresh timing and complete gameplay consequences are not established."
+      }
+    ],
+    "derivedExamples": {
+      "kind": "Static arithmetic deductions, not executed observations",
+      "cases": [
+        {
+          "previous": 0,
+          "modifier": "set",
+          "argument": -2,
+          "putValInt32": -2,
+          "storedAfterMaLClamp": -1
+        },
+        {
+          "previous": 0,
+          "modifier": "set",
+          "argument": -1,
+          "putValInt32": -1,
+          "storedAfterMaLClamp": -1
+        },
+        {
+          "previous": 0,
+          "modifier": "set",
+          "argument": 0,
+          "putValInt32": 0,
+          "storedAfterMaLClamp": 0
+        },
+        {
+          "previous": 0,
+          "modifier": "set",
+          "argument": 6,
+          "putValInt32": 6,
+          "storedAfterMaLClamp": 6
+        },
+        {
+          "previous": 0,
+          "modifier": "set",
+          "argument": 7,
+          "putValInt32": 7,
+          "storedAfterMaLClamp": 6
+        },
+        {
+          "previous": 6,
+          "modifier": "add",
+          "argument": 1,
+          "putValInt32": 7,
+          "storedAfterMaLClamp": 6
+        },
+        {
+          "previous": 0,
+          "modifier": "sub",
+          "argument": 2,
+          "putValInt32": -2,
+          "storedAfterMaLClamp": -1
+        },
+        {
+          "previous": 6,
+          "modifier": "add",
+          "argument": 2147483647,
+          "putValInt32": -2147483643,
+          "storedAfterMaLClamp": -1
+        },
+        {
+          "previous": -1,
+          "modifier": "add",
+          "argument": -2147483648,
+          "putValInt32": 2147483647,
+          "storedAfterMaLClamp": 6
+        },
+        {
+          "previous": 6,
+          "modifier": "mul",
+          "argument": 2147483647,
+          "putValInt32": -6,
+          "storedAfterMaLClamp": -1
+        }
+      ],
+      "criticalCase": "MA:L0/d2147483647 with previous L0=6: modulo32 sum0x80000005=-2147483643, then signed clamp to-1.",
+      "getterBoundary": "A pre-existing field value7 would be read as7 by GET; SET7 would store6 in the observed on-disk branch. Do not clamp raw reads to6."
+    },
+    "limits": [
+      "No game, Wine or container execution. No source files or build container were modified.",
+      "Exact original game/ERA identities are recorded, but arbitrary mod/plugin runtime patches and expanded-roster address relocation are not dynamically validated.",
+      "The signed[-1,6] setter clamp is an observed on-disk MA:L branch; GET bypasses it. Initial data or other direct writes can expose values outside that range.",
+      "The per-creature day marker is observed; complete persistence, synchronization and refresh of existing stacks were not traced.",
+      "Consumers were intentionally bounded to mithril and a few source/native witnesses. No general admission of native bonuses, town tiers, HP rules or experience systems follows from adding mithril MA:L support.",
+      "No original executable bytes or disassembly text appear in this report."
+    ]
+  }
+}

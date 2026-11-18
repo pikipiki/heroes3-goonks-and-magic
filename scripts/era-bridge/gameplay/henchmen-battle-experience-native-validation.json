@@ -11,14 +11,14 @@
     "lines": "250-271,746-778"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e",
+    "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "760ed6ec534cc166736d304e09bf6ce95e8e377763f89385cc9ee45233868055",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "f2bbf322c1977a2f90d17550a9c2f8ffe1857e5cc1551834a01731abab5a87e7",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-battle-experience-cases.mjs": "c8e12a19af45b9d4bfdc22814cfa805d336d6a942f210ed36a92e605ed422152",
     "work/vcmi-wasm/lib/battle/BattleInfo.h": "302fb3a34732998f98b12f6b52e2e154e6e601166edf38fa6c06594773f829b9",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5f1bd7f4ad5cb76958fc9e9dc14e31fa52fb001a3280d8ee4e6ab71183694030",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a4d9f197089ecd0e8994fbd4b6d4b39965074ff55ff7b79326522a630cefdc64",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "e5dd27973eb93be808a3b4ddd360989e25cf15e32c7ed5215503cdbd8fecef44",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "5c74948eaa8db1a565eb0f3ae8e2dc3243afe3fda289d96ec4dab3bc20684660"
   },
@@ -309,5 +309,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
     "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
+  },
+  "liveCreatureLevelsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, dynamic-price and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "760ed6ec534cc166736d304e09bf6ce95e8e377763f89385cc9ee45233868055",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5f1bd7f4ad5cb76958fc9e9dc14e31fa52fb001a3280d8ee4e6ab71183694030",
+      "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
+    "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
   }
 }

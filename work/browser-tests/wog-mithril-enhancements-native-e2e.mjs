@@ -217,7 +217,7 @@ async function boot({displayMithrilChoice=null,resourceMithrilChoice=null,native
   dailyPlains=!dailyPlains;allDoubleAttack=!allDoubleAttack;doubleMovement=!doubleMovement;
   weeklyMines=!weeklyMines;multipleCapitols=!multipleCapitols;allBreath=!allBreath;
  }
- const classic=process.env.CASES==='classic'||process.env.CASES==='display-classic';
+ const classic=process.env.CASES==='classic'||process.env.CASES==='display-classic'||process.env.CASES==='live-levels-classic';
  const desktop=usesMouse;
  page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
@@ -436,6 +436,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('live-levels')){
+  const {runMithrilLiveLevels}=await import('./wog-mithril-live-levels-cases.mjs');
+  await runMithrilLiveLevels({boot,state,command,wait,walk,panel,buy,page:()=>page,output,report,readCompletedNativeSave});
+ }
  if(process.env.CASES?.startsWith('display-')){
   const {runMithrilDisplay}=await import('./wog-mithril-display-cases.mjs');
   await runMithrilDisplay({boot,state,command,wait,panel,page:()=>page,output,report,readCompletedNativeSave});

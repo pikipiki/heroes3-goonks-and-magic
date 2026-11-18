@@ -870,3 +870,24 @@ Les contrôles portent sur le français/anglais, les interfaces native et web,
 le toucher/souris, les combinaisons d’options et le rechargement après changement
 des préférences globales. Cette étape ne déclare aucun profil complet jouable.
 Preuve : `scripts/era-bridge/gameplay/mithril-display-native-validation.json`.
+
+
+Les écritures MA:L externes sont désormais exécutées dans l’état propre à la
+carte et utilisées par les offres d’amélioration des logements. Les lectures
+conservent le niveau source brut ; les écritures appliquent le calcul entier
+signé sur32 bits, puis la borne source[-1,6]. Deux niveaux[-1] égaux restent
+admissibles et utilisent le premier tarif. Un changement de niveau invalide les
+devis déjà affichés : une ancienne demande ne peut pas débiter un nouveau prix.
+Le format926 conserve les vingt-deux choix et enregistre ces niveaux avec la VM.
+Les parties925 sans mutations conservent leurs anciens tarifs ; une nouvelle
+partie ne récupère aucun niveau de la précédente.
+
+Les essais couvrent six logements, sept achats, une amélioration successive,
+les débordements signés, les niveaux négatifs, le clic droit natif, le toucher
+en portrait/paysage, la souris et les sauvegardes. Les définitions partagées de
+créatures ne sont pas modifiées. Cette validation ne généralise pas MA:L aux
+tiers de combat natifs, à l’expérience, aux arguments flottants ou aux écritures
+pendant un combat. Le marquage mémoire de jour de l’exécutable original et ses
+propagations arbitraires restent hors du contrat admis. Les profils complets
+restent désactivés. Preuve :
+`scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json`.

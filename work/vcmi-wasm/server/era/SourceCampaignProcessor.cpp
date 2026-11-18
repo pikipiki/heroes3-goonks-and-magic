@@ -57,6 +57,7 @@
 #include "../../lib/mapObjects/CGMysteriousCave.h"
 #include "../../lib/mapObjects/army/CStackInstance.h"
 #include "../../lib/networkPacks/SourceCampaignChange.h"
+#include "../../lib/networkPacks/EraGameplayPacks.h"
 #include "../../lib/networkPacks/PacksForClient.h"
 #include "../../lib/networkPacks/PacksForServer.h"
 #include "../../lib/networkPacks/ArtifactLocation.h"
@@ -1311,9 +1312,16 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   {
    require(!gh.gameState().getBattle(player),"source creature attributes during an active battle are not admitted");
    if(field=='S')changed=std::max(1,changed); // 358f MA:S clamps writes after Apply, not reads.
-   require(changed>=(field=='P'?1:0),"nonpositive health or negative source creature attributes are not admitted");
+   if(field=='L')changed=era_bridge::creature_levels::writeLevel(changed);
+   require(changed>=(field=='L'?-1:field=='P'?1:0),"nonpositive health or negative source creature attributes are not admitted");
    state["creatureAttributes"][key][op.code].Integer()=changed;
    auto change=mutation("creatureAttribute",ObjectInstanceID::NONE);change["creature"].Integer()=selected.getNum();change["field"].String()=op.code;change["amount"].Integer()=changed;persist(change);
+   if(field=='L')
+   {
+    EraGameplayChange quote;quote.system="mithril";quote.state=era_compat::mithril::state(gh.gameInfo());
+    quote.state["revision"].Integer()=static_cast<uint32_t>(era_compat::mithril::revision(gh.gameInfo())+1U);
+    gh.sendAndApply(quote);
+   }
   }
   return Step::Continue;
  }
