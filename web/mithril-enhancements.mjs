@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const upgradeText=offer=>Array.isArray(offer.upgrades)&&offer.upgrades.length?offer.upgrades.join(', '):offer.upgrade||'';
@@ -27,7 +27,7 @@ export function createMithrilEnhancements({root,command}){
  const button=document.createElement('button');button.dataset.mithrilOpen='';button.textContent='Mithril';button.hidden=true;
  root.querySelector('.scene-tools').append(button);
  const panel=document.createElement('section');panel.className='mithril-panel';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','mithril-title');
- panel.innerHTML='<header><h2 id="mithril-title">Mithril</h2><button data-mithril-close aria-label="Fermer">✕</button></header><div class="mithril-content"></div>';
+ renderMarkup(panel,'<header><h2 id="mithril-title">Mithril</h2><button data-mithril-close aria-label="Fermer">✕</button></header><div class="mithril-content"></div>');
  root.append(panel);
  let open=false,state={},signature='',pending=null,pendingKind=null;
  const selectedTerrains={};
@@ -50,7 +50,7 @@ export function createMithrilEnhancements({root,command}){
   panel.hidden=false;
   const next=JSON.stringify([state.mithril,state.turn,pending,getLanguage(),selectedTerrains]);if(signature===next)return;signature=next;
   const content=panel.querySelector('.mithril-content'),scroll=content.scrollTop;
-  content.innerHTML=renderMithrilOffers(state.mithril,{pending:pending!==null,canAct:state.turn,selectedTerrains});content.scrollTop=scroll;
+  renderMarkup(content,renderMithrilOffers(state.mithril,{pending:pending!==null,canAct:state.turn,selectedTerrains}));content.scrollTop=scroll;
  }
  return {update(next){state=next;button.hidden=!next.mithrilEnabled||next.mode!=='map';if(open&&(next.mode!=='map'||!next.mithrilEnabled)){close();return;}if(pending!==null&&next.mithril?.revision!==pending){const preview=pendingKind===6&&next.mithril?.revision>pending;pending=null;pendingKind=null;if(preview){close();return;}}render();},get active(){return open;}};
 }

@@ -1,0 +1,23 @@
+import {chromium,webkit}from'playwright-core';import fs from'node:fs';import path from'node:path';import assert from'node:assert/strict';import{execFileSync}from'node:child_process';import{screenCases,stateFor}from'./material-screen-cases.mjs';import{inspectMaterialPage}from'./material-audit.mjs';import{silenceTestAudio}from'./silent-audio.mjs';
+const before=process.env.UI_COMPARE_BASELINE==='1',reference='7e7633ea31754d40959fa16eceb2ac69b747164f',report={reference,before,samples:[]};
+for(const[kind,engine]of Object.entries({chromium,webkit})){
+ if(process.env.UI_ENGINE&&process.env.UI_ENGINE!==kind)continue;const browser=await engine.launch({headless:true});try{
+ const p=await browser.newPage({hasTouch:true}),errors=[];p.on('pageerror',e=>errors.push(e.message));await silenceTestAudio(p);
+ await p.route('**/web/**',route=>{const file=path.resolve('web',new URL(route.request().url()).pathname.split('/web/')[1]);if(before&&/\.(mjs|css)$/.test(file)){try{return route.fulfill({body:execFileSync('git',['show',reference+':'+path.relative(process.cwd(),file)],{stdio:'pipe'}),contentType:file.endsWith('.css')?'text/css':'text/javascript'});}catch{}}return fs.existsSync(file)?route.fulfill({path:file}):route.abort();});
+ await p.route('**/opfs-worker.js',route=>route.fulfill({contentType:'text/javascript',body:'export const opfsList=async()=>({}),opfsUnlink=async()=>{},opfsFlush=async()=>{};'}));
+ await p.route('**/matrix?mobile=1',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">${['mobile','battle-result','loading','game-menu','h3-theme','session-recovery','mobile-upgrade','marketplace','online-login','online-lobby'].map(name=>'<link rel=stylesheet href=/web/'+name+'.css>').join('')}<canvas id=canvas width=800 height=600></canvas><script>window.calls=[];Module={_vcmiOnlineRoomAction(){},_vcmiMobileEnable(){},_vcmiMobileCommand(...args){calls.push(args)},_vcmiMobilePointer(){}};</script><script type=module src=/web/mobile.mjs></script><script type=module src=/web/game-menu.mjs></script>`}));
+ await p.goto('http://localhost/matrix?mobile=1');await p.waitForSelector('#game-menu-toggle');
+ for(const language of(process.env.UI_LANGUAGE?[process.env.UI_LANGUAGE]:['fr','en']))for(const viewport of[{width:320,height:568},{width:360,height:640},{width:430,height:932},{width:568,height:280},{width:716,height:279},{width:844,height:390}]){
+ if(process.env.UI_SIZE&&Number(process.env.UI_SIZE)!==viewport.width)continue;await p.setViewportSize(viewport);await p.evaluate(async language=>(await import('/web/i18n.mjs')).setLanguage(language),language);
+ for(const entry of screenCases.filter(entry=>!process.env.UI_CASES||process.env.UI_CASES.split(',').includes(entry[0]))){
+  await p.evaluate(state=>{for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();dispatchEvent(new CustomEvent('goonk-state',{detail:state}));},stateFor(entry));await p.waitForTimeout(120);
+  for(const selector of entry.slice(2)){const target=p.locator(selector);if(await target.count()&&!await target.isVisible()&&selector.startsWith('[data-hero-tab'))await p.locator('.hero-bag-tabs>.ui-overflow-trigger').tap();if(await target.count()&&await target.isVisible()){await target.tap({timeout:3000});await p.evaluate(state=>dispatchEvent(new CustomEvent('goonk-state',{detail:state})),stateFor(entry));await p.waitForTimeout(50);}}
+  const sample=before?{}:await inspectMaterialPage(p);report.samples.push({engine:kind,language,viewport,case:entry[0],...sample});
+  if(language==='fr'&&[320,568,716].includes(viewport.width))await p.screenshot({path:`/tmp/matrix-${before?'before':'after'}-${kind}-${entry[0]}-${viewport.width}.png`});
+  assert.deepEqual(errors,[],entry[0]+' console errors');if(entry[0]==='mithril')await p.locator('[data-mithril-close]').tap();if(entry[0]==='builder')await p.locator('[data-builder-close]').tap();
+ }
+ }
+ console.log('PASS',kind,before?'before comparison':'real screen matrix',report.samples.filter(s=>s.engine===kind).length,'screen/language/viewport cases');
+ }finally{await browser.close();fs.writeFileSync('/tmp/mui-screen-matrix-'+(before?'before':'after')+'.json',JSON.stringify(report,null,2));}
+}
+const failures=report.samples.flatMap(sample=>(sample.failures||[]).map(f=>({case:sample.case,engine:sample.engine,viewport:sample.viewport,...f})));fs.writeFileSync('/tmp/mui-screen-matrix-findings-'+(before?'before':'after')+'.json',JSON.stringify(failures,null,2));console.log('Findings',failures.length);if(!before&&failures.length)process.exitCode=1;

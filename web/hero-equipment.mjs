@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
@@ -122,7 +122,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
   const armySlots=heroArmy?.slots||[];
   const armyCount=armySlots.filter(s=>s&&s.count>0).length;
-  const selectedUnit=Number.isInteger(selectedArmySlot)?armySlots[selectedArmySlot]:null;
+  const selectedUnit=Number.isInteger(selectedArmySlot)?armySlots[selectedArmySlot]:null;panel.dataset.armySelected=String(!!selectedUnit);
   if(selectedUnit&&selectedUnit.count>1){
    splitAmount=Math.max(1,Math.min(selectedUnit.count-1,splitAmount));
   }
@@ -138,14 +138,14 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    </div>`;
   const hint=hero.owned===false?'Select an item to read its effects.':backpack?'Select an item to read its effects or move it.':
    'Five slots hold accessories. Ballista, ammo cart, first aid tent and catapult have one slot each. The spellbook has its own slot.';
-  panel.innerHTML=`<header class="hero-card-head">
+  renderMarkup(panel,`<header class="hero-card-head">
    <canvas class="hero-face" width="58" height="64" aria-hidden="true"></canvas>
    <div><h2>${esc(hero.name)}</h2><p>Level ${hero.level??1} ${esc(hero.className)}</p>
     <div class="hero-vitals"><span>${heroIcon(hero.manaIcon)}${hero.mana??0} / ${hero.manaLimit??0} mana</span>
      ${hero.experience===undefined?'':`<span>${heroIcon(hero.experienceIcon)}${hero.experience.toLocaleString()} XP</span>`}</div></div>
    <button data-hero-close aria-label="${hero.owned===false?'Back':'Back to map'}">✕</button>
   </header>
-  <dl class="hero-primary" aria-label="Primary stats">${['Attack','Defense','Power','Knowledge'].map((name,i)=>`<div><dt>${name}</dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
+  <dl class="hero-primary" translate="no" aria-label="Primary stats">${(getLanguage()==='fr'?['Attaque','Défense','Puissance','Connaissance']:['Attack','Defense','Power','Knowledge']).map((name,i)=>`<div><dt>${name}</dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
   <nav class="hero-bag-tabs" aria-label="Hero sheet">
    <button data-hero-tab="army" aria-pressed="${isArmy}" ${picked?'disabled':''}>${fr?'Armée':'Army'} · ${armyCount}</button>
    <button data-hero-tab="worn" aria-pressed="${tab==='worn'}">${fr?'Équipement':'Equipment'}</button>
@@ -183,7 +183,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
      ${!picked&&item?.canDisassemble?`<button data-hero-combine="1" ${!state.turn?'disabled':''}>${fr?'Démonter':'Disassemble'}</button>`:!picked&&item?.canAssemble?`<button data-hero-combine="0" ${!state.turn?'disabled':''}>${fr?'Assembler':'Assemble'}</button>`:`<button data-hero-cancel ${!picked?'disabled':''}>Cancel move</button>`}
     </div>`}
    `}
-  </section>`;
+  </section>`);
   panel.querySelector('.hero-equipment-grid').scrollTop=scrollPositions[tab]||0;
   panel.querySelector('.hero-bag-tabs').scrollLeft=navScrollLeft;
   if(rebalanceFocused)panel.querySelector('[data-hero-source-rebalance]')?.focus({preventScroll:true});

@@ -1,3 +1,4 @@
+import {renderMarkup} from './ui/material-components.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {gameDate} from './game-calendar.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -16,8 +17,8 @@ export function createWeeklyRecruits(body){
   const next=JSON.stringify([state.weeklyRecruitsReady,date,language,towns.map(item=>[item.id,item.name]),town?.weeklyRecruits]);
   if(signature===next)return;
   signature=next;
-  if(!state.weeklyRecruitsReady){body.innerHTML=fr?'<p role="status">Chargement des recrues…</p>':'<p role="status">Loading recruits…</p>';return;}
-  if(!town){body.innerHTML=fr?'<p>Aucune ville sous ton contrôle.</p>':'<p>No towns under your control.</p>';return;}
+  if(!state.weeklyRecruitsReady){renderMarkup(body,fr?'<p role="status">Chargement des recrues…</p>':'<p role="status">Loading recruits…</p>');return;}
+  if(!town){renderMarkup(body,fr?'<p>Aucune ville sous ton contrôle.</p>':'<p>No towns under your control.</p>');return;}
 
   const rows=(town.weeklyRecruits || []).map(row=>{
    const [first]=row.forms || [];
@@ -31,10 +32,10 @@ export function createWeeklyRecruits(body){
   const townControl=towns.length>1?`<label class="weekly-town">${fr?'Ville':'Town'} <select>${towns.map(item=>`<option value="${item.id}" ${item.id===townId?'selected':''}>${escape(item.name)}</option>`).join('')}</select></label>`:`<h3>${escape(town.name)}</h3>`;
   const focused=body.contains(document.activeElement)&&document.activeElement.matches('select');
   const scroll=body.scrollTop;
-  body.innerHTML=`<section class="weekly-roster">${townControl}<p class="weekly-date">${caption}</p>
+  renderMarkup(body,`<section class="weekly-roster">${townControl}<p class="weekly-date">${caption}</p>
    <table aria-label="${fr?'Recrues par niveau':'Recruits by level'}"><thead><tr><th scope="col">${fr?'Créatures':'Creatures'}</th><th scope="col">${fr?'En stock':'In stock'}</th><th scope="col">${fr?'Semaine suivante':'Next week'}</th></tr></thead><tbody>${rows}</tbody></table>
    <p class="weekly-note">${fr?'🔒 Forme verrouillée. Stock partagé entre les formes débloquées d’une même ligne.':'🔒 Locked tier. Stock shared across unlocked tiers of the same line.'}</p>
-   <p class="weekly-note">${fr?'Prévision selon les bâtiments actuels et les bonus connus. Les semaines spéciales peuvent la modifier.':'Estimate based on current buildings and known bonuses. Special weeks may alter this.'}</p></section>`;
+   <p class="weekly-note">${fr?'Prévision selon les bâtiments actuels et les bonus connus. Les semaines spéciales peuvent la modifier.':'Estimate based on current buildings and known bonuses. Special weeks may alter this.'}</p></section>`);
   const selector=body.querySelector('select');
   selector?.addEventListener('change',event=>{townId=Number(event.target.value);update(state);});
   if(focused)selector?.focus({preventScroll:true});

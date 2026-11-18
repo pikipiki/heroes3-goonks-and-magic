@@ -10,6 +10,10 @@ test('UI guard covers new screens and leaves logic and library internals alone',
  assert.deepEqual(violations(['outputs/large-catalogue.json','game-data/binary.bin'],()=>{throw Error('Unrelated data must never be read');}),[]);
  assert(requiresUiLibrary('web/new-screen.mjs',markup));assert(!requiresUiLibrary('web/logic.mjs','export const count=3;'));assert(!requiresUiLibrary('web/ui/new-component.mjs',markup));assert(!requiresUiLibrary('tests/screen.test.mjs',markup));
  assert(importsUiLibrary("import {useScreenComponents} from './ui/components.mjs';"));assert.deepEqual(violations(['web/a.mjs','web/b.mjs'],file=>file.endsWith('a.mjs')?markup:"import {buttonMarkup} from './ui/components.mjs';"+markup),['web/a.mjs']);
+ assert(requiresUiLibrary('src/screens/Army.tsx','export const Army=()=> <section><Button>Recruit</Button></section>;'));
+ assert(importsUiLibrary("import {Button} from '../ui/components.mjs';"));
+ assert(importsUiLibrary("import {renderMarkup} from './ui/material-components.mjs';"));
+ assert(!requiresUiLibrary('src/ui/Army.tsx','export const Army=()=> <Button>Recruit</Button>;'));
 });
 test('pre-commit reads the index, rejects copied UI, and installer is idempotent',()=>{
  const cwd=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-ui-hook-')),git=(...args)=>execFileSync('git',args,{cwd,stdio:'pipe'});

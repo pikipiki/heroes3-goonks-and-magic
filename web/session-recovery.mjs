@@ -1,3 +1,4 @@
+import {useScreenComponents,uiText,renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import {requestedHostedMatch} from './hosted-turn-notifications.mjs';
 import {scenarioTitle} from './scenario-title.mjs';
 const RECOVERY_CHOICE_MS=1800;
@@ -79,8 +80,9 @@ export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=
 }
 export function installSessionRecovery({win=window,doc=document}={}){
  const dialog=doc.createElement('dialog');dialog.className='session-recovery';dialog.setAttribute('aria-labelledby','session-recovery-title');
- dialog.innerHTML='<h2 id="session-recovery-title">Reprise de ta partie</h2><p class="session-recovery-message" role="status" aria-live="polite"></p><button type="button">Choisir une autre partie</button>';
- doc.body.append(dialog);const message=dialog.querySelector('p'),button=dialog.querySelector('button');
+ renderMarkup(dialog,'<header><h2 id="session-recovery-title"></h2></header><div class="session-recovery-content"><p class="session-recovery-message" role="status" aria-live="polite"></p></div><footer><button type="button"></button></footer>');
+ dialog.querySelector('h2').textContent=uiText('Resume your game','Reprise de ta partie');
+ doc.body.append(dialog);useScreenComponents(dialog);const message=dialog.querySelector('p'),button=dialog.querySelector('button');
  const url=new URL(win.location.href),manual=url.searchParams.get('choose-save')==='1',newGame=url.searchParams.get('new-game')==='1',campaign=url.searchParams.get('new-campaign')==='1';if(campaign){url.searchParams.delete('new-campaign');win.history.replaceState(null,'',url.href);}if(newGame){url.searchParams.delete('new-game');win.history.replaceState(null,'',url.href);}if(manual){url.searchParams.delete('choose-save');win.history.replaceState(null,'',url.href);}
  let custom=null;try{const value=JSON.parse(url.searchParams.get('custom-game'));if(Array.isArray(value)&&value.length===5&&value.every(Number.isInteger)&&value[0]>=2&&value[0]<=8&&value[1]>=1&&value[1]<=value[0]&&[36,72,108,144].includes(value[2]))custom=value;}catch{}if(custom){url.searchParams.delete('custom-game');win.history.replaceState(null,'',url.href);}
  const skipResume=url.searchParams.has('skip-autoresume');
@@ -92,11 +94,11 @@ export function installSessionRecovery({win=window,doc=document}={}){
  },onMenu:state=>win.dispatchEvent(new CustomEvent('goonk-state',{detail:state})),listSaves:()=>listLocalSaves(win.Module?.FS),command:(a,b=0,c=0,d=0,e=0,f=0)=>win.Module?._vcmiMobileCommand?.(a,b,c,d,e,f),onStatus:info=>{
   win.goonkSessionRecovery=info;
   const show=info.busy||info.phase==='failed';dialog.dataset.busy=String(info.busy);button.hidden=!info.canDismiss;
-  button.textContent=info.requiresReload?'Recharger le jeu et revenir au menu':'Choisir une autre partie';
+  button.textContent=info.requiresReload?uiText('Reload and return to menu','Recharger le jeu et revenir au menu'):uiText('Choose another game','Choisir une autre partie');
   message.textContent=info.error||(info.phase==='returning'?'Retour au menu principal…':null)||(['custom-opening','custom-configuring'].includes(info.phase)?'Preparing game options…':null)||(info.phase==='starting'?'Chargement de la dernière sauvegarde…':info.phase==='ready'?(info.scenario?scenarioTitle(info.scenario):'Reprise de la dernière sauvegarde…'):'Recherche de la dernière sauvegarde enregistrée sur cet appareil…');
   if(show&&!dialog.open)dialog.showModal();else if(!show&&dialog.open)dialog.close();
  }});
- button.onclick=()=>recovery.dismiss();dialog.addEventListener('cancel',event=>{event.preventDefault();recovery.dismiss();});dialog.addEventListener('keydown',event=>event.stopPropagation());
+ setClickHandler(button,()=>recovery.dismiss());dialog.addEventListener('cancel',event=>{event.preventDefault();recovery.dismiss();});dialog.addEventListener('keydown',event=>event.stopPropagation());
  // Run before the mobile lobby's default selection; it must not race the resume choice.
  win.addEventListener('goonk-state',event=>{recovery.update(event.detail);if(recovery.intercept)event.stopImmediatePropagation();},true);
  const timer=win.setInterval(()=>{if(!doc.hidden)recovery.tick();},1000);

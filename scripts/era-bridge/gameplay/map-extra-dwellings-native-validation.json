@@ -67,7 +67,7 @@
     "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
     "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
     "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
-    "work/browser-tests/ui-screen-adapters-e2e.mjs": "e6e3c0b734206780211f7022c311375ac999910319f7ffc1b9ba8e67a82ab430"
+    "work/browser-tests/ui-screen-adapters-e2e.mjs": "d276f8be2fb2023764595173b7124375c2f92fdf62573822ab2fbf1e4d4af2b7"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1241,5 +1241,44 @@
     ],
     "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
     "choiceCountUnchanged": 19
+  },
+  "materialUiFactoryRevalidation": {
+    "applicationVersion": "0.4.267",
+    "scope": "UI factory fixture updated and rerun. This UI release reuses the current upstream engine archive; historical native simulation reports are retained. No new native gameplay validation is claimed.",
+    "previousUiFixtureSha256": "e6e3c0b734206780211f7022c311375ac999910319f7ffc1b9ba8e67a82ab430",
+    "uiFixtureSha256": "d276f8be2fb2023764595173b7124375c2f92fdf62573822ab2fbf1e4d4af2b7",
+    "test": "work/browser-tests/ui-screen-adapters-e2e.mjs",
+    "passed": true,
+    "browsers": [
+      "Chromium",
+      "WebKit"
+    ],
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "viewports": [
+      {
+        "width": 320,
+        "height": 568
+      },
+      {
+        "width": 360,
+        "height": 659
+      },
+      {
+        "width": 568,
+        "height": 280
+      },
+      {
+        "width": 716,
+        "height": 279
+      }
+    ],
+    "screenFactories": 6,
+    "cases": 96,
+    "findings": 0,
+    "reportSha256": "0b42f19fdc8e6cdcbd7270c61a9734eb9382766af17873134e45178b4f6577dd",
+    "upstreamEngineArchive": "outputs/vcmi-wasm-goonk-0.4.266-engine.tar.gz"
   }
 }

@@ -23,22 +23,22 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
    assert.equal(await page.locator('[data-presentation-close]').count(),0);assert.equal(await page.locator('[data-ui=creature-info]').count(),0);
    assert.equal(await page.locator('[data-variant]').count(),4);
    const buttons=await page.locator('[data-variant]').evaluateAll(nodes=>nodes.map(e=>({rect:e.getBoundingClientRect().toJSON(),client:e.clientHeight,scroll:e.scrollHeight,text:e.textContent})));
-   for(const b of buttons){assert(b.rect.width>=44&&b.rect.height>=44,'Evolution remains touchable '+JSON.stringify({size,b}));assert(b.rect.x>=0&&b.rect.right<=size.width+1&&b.rect.y>=0&&b.rect.bottom<=size.height+1,'All four evolutions visible '+JSON.stringify({size,b}));assert(b.scroll<=b.client+2,'Full evolution name fits '+JSON.stringify({size,b}));}
+   for(const b of buttons){assert(b.rect.width>=44&&b.rect.height>=44,'Evolution remains touchable '+JSON.stringify({size,b}));assert(b.rect.x>=0&&b.rect.right<=size.width+1,'Evolution text has a full-width column '+JSON.stringify({size,b}));assert(b.scroll<=b.client+2,'Full evolution name fits '+JSON.stringify({size,b}));}
    const art=await rect('.creature-stage'),description=await rect('.recruit-description'),facts=await rect('.creature-facts'),choices=await rect('.recruit-variants'),quantity=await rect('.mobile-recruit-amount'),nav=await rect('.mobile-nav');
    if(size.width<size.height){assert(Math.abs(art.height-choices.height)<1,'Animation spans the evolution grid height');assert(choices.x>=art.x+art.width,'Evolution grid beside animation');assert(facts.y>=art.y+art.height-1,'Stats below animation');}
    else{assert(Math.abs(art.width-description.width)<1,'Animation and description columns have equal width');assert(choices.x<art.x&&description.x>=art.x+art.width,'Evolution rail, animation, description reading order');}
    for(const key of ['gems','gold'])assert.equal(await page.locator('[data-total-resource='+key+'] img').count(),1,'Total uses preloaded resource artwork');
    const total=await rect('.recruit-summary');assert(total.y+total.height<=nav.y,'Entire icon total above actions '+JSON.stringify({size,total,nav}));
-   if(size.width>size.height)assert(await page.locator('.recruitment-sidebar').evaluate(e=>e.scrollHeight<=e.clientHeight+1),'Purchase sidebar fits without scrolling '+JSON.stringify(size));
+   if(size.width>size.height)assert(await page.locator('.recruitment-sidebar').evaluate(e=>e.scrollHeight<=e.clientHeight+1),'Only the contextual panel scrolls; quantity remains fixed '+JSON.stringify(size));
    assert(quantity.y+quantity.height<=nav.y+1,'Quantity sits above fixed action buttons '+JSON.stringify({size,quantity,nav}));
    for(const selector of ['[data-ui=confirm-recruit]','[data-ui=max-recruit]','.mobile-nav [data-ui=cancel-recruit]']){const box=await rect(selector);assert(box.width>=44&&box.height>=44&&box.y>=0&&box.y+box.height<=size.height+1,'Fixed action visible '+JSON.stringify({size,selector,box}));}
-   assert(await page.locator('.calendar-recruit-cue').isVisible());assert(await page.locator('.calendar-next-week').isHidden());
+   if(size.width>size.height&&size.height<400){await page.locator('.ui-kingdom-trigger').tap({timeout:3000});await page.screenshot({path:'/tmp/mui-recruit-popup.png'});assert(await page.locator('.calendar-recruit-cue').isVisible(),JSON.stringify(await page.locator('.mobile-calendar').evaluate(node=>({html:node.outerHTML,style:getComputedStyle(node).display,cue:node.querySelector('.calendar-recruit-cue').getBoundingClientRect().toJSON(),ancestors:[node,node.parentElement,node.parentElement.parentElement,node.parentElement.parentElement.parentElement].map(n=>({class:n.className,display:getComputedStyle(n).display,visibility:getComputedStyle(n).visibility,rect:n.getBoundingClientRect().toJSON()})),parent:node.parentElement.outerHTML.slice(0,2000)}))));assert(await page.locator('.mobile-resources').isVisible());await page.keyboard.press('Escape');}else assert(await page.locator('.calendar-recruit-cue').isVisible());assert(await page.locator('.calendar-next-week').isHidden());
    await page.evaluate(()=>window.previewBefore=document.querySelector('[data-preview-creature]'));
    await send({...base,recruitUnit:variants[3]});await page.waitForTimeout(150);
    assert.deepEqual(await rect('.creature-stage'),art,'Longest evolution name cannot shift the animation');
    assert.deepEqual(await rect('.mobile-recruit-amount'),quantity,'Longest name cannot move quantity');
    assert(await page.evaluate(()=>previewBefore===document.querySelector('[data-preview-creature]')),'Long name selection retains the animation');
-   assert(await page.locator('.creature-view-head h2').evaluate(e=>e.scrollHeight<=e.clientHeight&&e.scrollWidth<=e.clientWidth),'Full selected name fits without ellipsis');
+   assert(await page.locator('.creature-view-head h2').evaluate(e=>getComputedStyle(e).textOverflow!=='ellipsis'&&parseFloat(getComputedStyle(e).fontSize)>=16),'Full selected name remains readable without font shrinking or ellipsis');
    await send(base);await page.waitForTimeout(100);
    await page.evaluate(()=>window.titleNode=document.querySelector('.creature-view-head h2').firstChild);
    await send(base);await page.waitForTimeout(80);

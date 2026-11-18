@@ -18,8 +18,8 @@ for(const [kind,engine]of Object.entries({chromium,webkit})){
    await p.setViewportSize(size);await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));await first.scrollIntoViewIfNeeded();
    const r=await first.boundingBox();assert(r.width>=96&&r.width<=128.1&&Math.abs(r.width-r.height)<1,JSON.stringify(r));const card=await first.locator('..').boundingBox();assert(r.x>=card.x&&r.x+r.width<=card.x+card.width);await p.screenshot({path:'/tmp/scenario-previews-'+kind+'-'+size.width+'.png'});
   }
-  await p.locator('.lobby-picker input').fill('XL_WARZONE_A');assert.equal(await p.locator('[data-choice-value]:visible').count(),1);assert.equal(await p.locator('.lobby-picker-grid img:not([data-preview-ready])').getAttribute('alt'),'Aperçu indisponible');assert.equal(await p.locator('.lobby-choice-copy[data-preview-error]').getAttribute('data-preview-error'),'Aperçu indisponible');
-  await p.locator('.lobby-picker input').fill('');await images.last().scrollIntoViewIfNeeded();await p.waitForFunction(()=>{const images=[...document.querySelectorAll('.lobby-picker-grid img')];return images.at(-1).naturalWidth===128;});
+  await p.locator('.lobby-picker input[type=search]').fill('XL_WARZONE_A');assert.equal(await p.locator('[data-choice-value]:visible').count(),1);assert.equal(await p.locator('.lobby-picker-grid img:not([data-preview-ready])').getAttribute('alt'),'Aperçu indisponible');assert.equal(await p.locator('.lobby-choice-copy[data-preview-error]').getAttribute('data-preview-error'),'Aperçu indisponible');
+  await p.locator('.lobby-picker input[type=search]').fill('');await images.last().scrollIntoViewIfNeeded();await p.waitForFunction(()=>{const images=[...document.querySelectorAll('.lobby-picker-grid img')];return images.at(-1).naturalWidth===128;});
   assert.equal(await p.evaluate(()=>nativeCalls),0);assert.deepEqual(errors,[]);console.log('PASS',kind,'357 preloaded entries, 356 real previews, explicit unavailable map, large stable thumbnails and zero native map loads');
  }finally{await browser.close();}
 }

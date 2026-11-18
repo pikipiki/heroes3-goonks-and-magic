@@ -16,3 +16,11 @@ body[data-goonk-boot] #canvas,body[data-goonk-boot] #mobile-app,body[data-goonk-
 #spinner #status[data-temporary-boot] .temporary-boot-step{display:block;color:#d3ad66;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
 #spinner #status[data-temporary-boot] .temporary-boot-detail{margin:0 0 6px;font-variant-numeric:tabular-nums;color:#f9d897}
 #spinner #status[data-temporary-boot] .temporary-boot-detail:empty{display:none}
+/* Critical startup cannot depend on the React bundle or service-worker state.
+   Its values are inlined from the generated MUI theme tokens above. */
+#spinner{background:var(--ui-surface,#241a10)!important;color:var(--ui-on-surface,#fff0cc)!important;font:var(--ui-font-body,400 16px/24px Georgia,serif)}
+#spinner #status{font:var(--ui-font-body-medium,400 14px/20px Georgia,serif);color:inherit;margin:16px auto;padding:0 16px}
+#spinner button,#spinner #status[data-temporary-boot] button{box-sizing:border-box;min-width:48px;min-height:48px;padding:8px 16px;border:1px solid var(--ui-outline,#a88c63);border-radius:0;background:var(--ui-primary-container,#651c10);color:var(--ui-on-primary-container,#fff0cc);font:var(--ui-font-label,500 14px/20px Georgia,serif);touch-action:manipulation;word-break:normal;overflow-wrap:normal}
+#spinner button:focus-visible{outline:3px solid var(--ui-focus,#fff0b1);outline-offset:2px}
+#spinner :is(p,small,noscript){overflow-wrap:normal;word-break:normal;hyphens:none}
+@media(orientation:landscape) and (max-height:500px){#spinner .spinner-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;padding:16px!important;align-items:center}#spinner .spinner-logo{grid-column:1;grid-row:1/-1;max-width:100%!important;width:100%!important;height:min(70dvh,240px)!important}#spinner #status{grid-column:2;width:100%;padding:0;margin:0}#spinner #hosting-retry{grid-column:2}}

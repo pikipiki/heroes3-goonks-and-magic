@@ -1,3 +1,4 @@
+import {renderMarkup} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedCastles} from './hosted-castles.mjs';
@@ -11,7 +12,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const t = (en, french) => fr ? french : en;
   const section = document.createElement('section');
   section.className = 'hosted-match-settings';
-  section.innerHTML = `
+  renderMarkup(section,`
     <p class="hosted-match-loading hosted-create-loading" data-create-loading role="status" hidden></p>
     <div class="hosted-match-settings" data-create-form hidden>
       <label><span></span><select data-create-players></select><small data-player-help></small></label>
@@ -37,7 +38,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
         <p class="lobby-picker-empty" hidden></p>
       </div>
       <footer><button type="button" data-picker-close data-native-click></button></footer>
-    </dialog>`;
+    </dialog>`);
   const submit = section.querySelector('[data-create-match=submit]');
   const form = section.querySelector('[data-create-form]');
   const loader = section.querySelector('[data-create-loading]');
@@ -132,7 +133,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       row.dataset.totalPlayers = item.players;
       row.dataset.nativeClick = '';
       row.setAttribute('aria-pressed', String(item === selected));
-      row.innerHTML = '<img src="./web/h3-theme/adventure-map.svg" alt=""><span class="lobby-choice-copy"><span class="lobby-choice-name"></span><small class="lobby-map-meta"></small></span><span class="lobby-choice-check" aria-hidden="true"></span>';
+      renderMarkup(row,'<img src="./web/h3-theme/adventure-map.svg" alt=""><span class="lobby-choice-copy"><span class="lobby-choice-name"></span><small class="lobby-map-meta"></small></span><span class="lobby-choice-check" aria-hidden="true"></span>');
       showScenarioPreview(row.querySelector('img'),item.id,{catalogueOnly:true});
       const data = metadata(item);
       const details = row.querySelector('.lobby-map-meta');

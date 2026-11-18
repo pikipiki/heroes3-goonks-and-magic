@@ -17,12 +17,12 @@ for(const [kind,engine]of Object.entries({chromium,webkit})){
    ['login',{mode:'online-login',onlineHasAccount:false},'.online-login'],
    ['campaign',{mode:'campaign-scenario',campaignScenario:{name:'Long Live the Queen',selected:0,bonus:0,difficulty:1,chooseDifficulty:true,canStart:true,scenarioName:'Homecoming',scenarioDescription:'Campaign description. '.repeat(30),scenarios:[{id:0,name:'Homecoming',available:true}],bonuses:[{id:0,description:'14 Pikemen'}]}},'.campaign-setup']
   ];
-  for(const language of ['fr','en'])for(const viewport of [{width:360,height:659},{width:716,height:279}]){
+  for(const language of ['fr','en'])for(const viewport of [{width:320,height:568},{width:360,height:659},{width:568,height:280},{width:716,height:279}]){
    await p.setViewportSize(viewport);
    for(const [name,state,selector]of cases){
     await p.evaluate(({name,state,language})=>show(name,state,language),{name,state,language});await p.locator(selector).waitFor({state:'visible'});
     if(baseline){await p.evaluate(()=>document.fonts.ready);await p.screenshot({path:'/tmp/ui-before-'+kind+'-'+name+'-'+language+'-'+viewport.width+'.png'});continue;}
-    const panel=p.locator(selector),header=panel.locator('.ui-screen-header').first();assert(await header.isVisible(),name+' shared header');assert.equal(await header.locator('h1,h2').first().evaluate(node=>getComputedStyle(node).fontSize),viewport.width>viewport.height?'18px':'20px','Titles follow the shared type scale');
+    const panel=p.locator(selector),header=panel.locator('.ui-screen-header').first();assert(await header.isVisible(),name+' shared header');assert.equal(await header.locator('h1,h2').first().evaluate(node=>getComputedStyle(node).fontSize),viewport.width>viewport.height?'16px':'22px','Titles follow the shared type scale');
     assert.equal(await header.locator('button').filter({hasText:/^(?:←\s*)?(?:Back|Retour)$/}).count(),0,'No return button in '+name+' header');
     for(const button of await panel.locator('.ui-screen-header button,.ui-action-dock>button').all())if(await button.isVisible()){
      assert.equal(await button.evaluate(node=>getComputedStyle(node).borderRadius),'0px','Buttons keep square corners');assert(!await button.evaluate(node=>getComputedStyle(node).transitionProperty.split(',').some(value=>value.trim()==='all')),'Layout changes never animate');

@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
 import {canCloseTavern} from './native-dialog.mjs';
@@ -25,7 +25,7 @@ export function createMobileTavern({root, command, pointer}) {
       !canRecruit && heroes.length ? tavern.recruitReason || t('Recrutement indisponible.', 'Recruitment unavailable.') : '';
     const amount = Number.isFinite(tavern.cost) ? new Intl.NumberFormat(fr ? 'fr-FR' : 'en-US').format(tavern.cost) : '';
     const rumorOpen = panel.querySelector('details')?.open;
-    panel.innerHTML = `<header class="tavern-header"><h2 id="mobile-tavern-title">${t('Taverne', 'Tavern')}</h2>
+    renderMarkup(panel,`<header class="tavern-header"><h2 id="mobile-tavern-title">${t('Taverne', 'Tavern')}</h2>
       ${amount ? `<span class="tavern-cost"><img src="./web/h3-theme/resource-gold.png" alt="">${amount} ${t('or par héros', 'gold per hero')}</span>` : ''}
       <button type="button" data-tavern-close aria-label="${t('Fermer la taverne', 'Close tavern')}">✕</button></header>
       <div class="tavern-heroes" aria-label="${t('Héros à recruter', 'Heroes for hire')}">
@@ -42,7 +42,7 @@ export function createMobileTavern({root, command, pointer}) {
         ${tavern.thievesGuild ? `<button type="button" data-tavern-extra="thievesGuild">${t('Guilde des voleurs', 'Thieves’ Guild')}</button>` : ''}
         ${tavern.invite ? `<button type="button" data-tavern-extra="invite">${t('Inviter un héros', 'Invite a hero')}</button>` : ''}
         ${tavern.rumor ? `<details ${rumorOpen ? 'open' : ''}><summary>${t('Rumeur', 'Rumor')}</summary><p>${escape(tavern.rumor)}</p></details>` : ''}
-      </footer>`;
+      </footer>`);
     portraits = [...panel.querySelectorAll('[data-tavern-portrait]')].map(canvas => ({
       canvas, context: canvas.getContext('2d'), rect: state.tavernHeroes[canvas.dataset.tavernPortrait].rect,
     }));

@@ -1,3 +1,4 @@
+import {renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
 if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./commander-tree.css',import.meta.url).href;document.head.append(link);}
@@ -18,7 +19,7 @@ export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},on
  const mastered=tree.skills.filter(s=>s.rank>=tree.masterRank).length,learned=tree.abilities.filter(a=>a.learned).length;
  const intro=el('div','tree-overview');intro.append(el('strong','',tr('Build your commander’s abilities','Développe les capacités de ton commandant')),el('p','tree-intro',tr(`Raise two skills to Master (${tree.masterRank}/${tree.maxRank}), then choose their ability at a level-up.`,`Monte deux compétences au rang Maître (${tree.masterRank}/${tree.maxRank}), puis choisis leur capacité lors d’une montée de niveau.`)),el('small','tree-summary',tr(`${mastered}/${tree.skills.length} Master skills · ${learned}/${tree.abilities.length} abilities learned`,`${mastered}/${tree.skills.length} compétences Maître · ${learned}/${tree.abilities.length} capacités acquises`)));root.append(intro);
  const filters=el('nav','tree-skills');filters.setAttribute('aria-label',tr('Filter abilities by skill','Filtrer les capacités par compétence'));
- const button=(label,active,callback)=>{const b=el('button','',label);b.type='button';b.setAttribute('aria-pressed',String(active));b.onclick=callback;return b;};
+ const button=(label,active,callback)=>{const b=el('button','',label);b.type='button';b.setAttribute('aria-pressed',String(active));setClickHandler(b,callback);return b;};
  const all=button(tr('All abilities','Toutes les capacités'),filter===null,()=>onFilter(null));all.className='tree-all';filters.append(all);
  for(const skill of tree.skills){
   const group=el('div','tree-skill'),name=names[skill.id]??skill.name,b=button('',filter===skill.id,()=>onFilter(filter===skill.id?null:skill.id));b.dataset.treeSkill=skill.id;b.title=plainGameText(skill.description||'');
@@ -36,7 +37,7 @@ export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},on
   const state=commanderAbilityState(ability,tree),selected=tree.selectedSkill===ability.id,card=el('article','tree-ability');card.dataset.treeAbility=ability.id;card.dataset.status=state;
   const parents=el('div','tree-parents');
   for(const id of ability.requires){const skill=tree.skills.find(s=>s.id===id),parent=el('span',''),rank=skill?.rank??0;parent.dataset.met=String(rank>=tree.masterRank);parent.append(icon(id),el('strong','',names[id]??skill?.name),el('small','',`${Math.min(rank,tree.masterRank)}/${tree.masterRank} · ${rank>=tree.masterRank?tr('Master ✓','Maître ✓'):tr('Master required','Maître requis')}`));const bar=el('progress','');bar.max=tree.masterRank;bar.value=Math.min(rank,tree.masterRank);bar.setAttribute('aria-label',`${names[id]} ${rank}/${tree.masterRank}`);parent.append(bar);parents.append(parent);}card.append(parents);
-  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 22');svg.setAttribute('aria-hidden','true');svg.innerHTML='<path d="M45 0v7l55 12 55-12V0M100 19v3" fill="none" stroke="currentColor" stroke-width="2"/>';card.append(svg);
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 22');svg.setAttribute('aria-hidden','true');renderMarkup(svg,'<path d="M45 0v7l55 12 55-12V0M100 19v3" fill="none" stroke="currentColor" stroke-width="2"/>');card.append(svg);
   const lines=plainGameText(ability.description||'').split('\n').filter(Boolean),title=ability.name||(lines.length>1?lines.shift():tr('Special ability','Capacité spéciale'));
   const heading=el('div','tree-ability-heading'),medallion=el('span','tree-combination');for(const id of ability.requires)medallion.append(icon(id));heading.append(medallion,el('h3','',title));card.append(heading,el('p','tree-effect',lines.join('\n')));
   const status=el('strong','tree-status',state==='learned'?tr('✓ Learned','✓ Acquise'):ability.selectable?tr('Choose at this level-up','À choisir à cette montée de niveau'):state==='ready'?tr('Unlocked · choose at a level-up','Débloquée · à choisir à une montée de niveau'):tr('Locked · both Master ranks required','Verrouillée · deux rangs Maître requis'));card.append(status);

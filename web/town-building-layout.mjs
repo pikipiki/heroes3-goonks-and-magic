@@ -14,12 +14,12 @@ export function townBuildingLabel(building,faction,language='en'){
 const intersects=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
 const contains=(a,b)=>a.x<=b.x&&a.y<=b.y&&a.x+a.w>=b.x+b.w&&a.y+a.h>=b.y+b.h;
 export function wrapTownBuildingLabel(text,width,measure=text=>text.length*4.7){
- const lines=[];let line='';for(const word of String(text).split(/\s+/)){const next=line?line+' '+word:word;if(measure(next)<=width){line=next;continue;}if(line){lines.push(line);line='';}if(measure(word)<=width){line=word;continue;}for(const character of word){if(line&&measure(line+character)>width){lines.push(line);line='';}line+=character;}}if(line)lines.push(line);return lines.length?lines:[''];
+ const lines=[];let line='';for(const word of String(text).split(/\s+/)){const next=line?line+' '+word:word;if(measure(next)<=width){line=next;continue;}if(line){lines.push(line);line='';}if(measure(word)<=width){line=word;continue;}line=word;}if(line)lines.push(line);return lines.length?lines:[''];
 }
 function pack(width,height,records,factor,strategy=0,measure){
  const measureText=measure||(text=>text.length*4.7);
  const gap=3,placed=[],free=[{x:2,y:2,w:width-4,h:height-4}];
- const sizes=records.map((b,index)=>{const sw=b.w*factor,sh=b.h*factor,w=Math.ceil(Math.max(60,sw,...b.layoutLabels.flatMap(label=>label.split(/\s+/).map(word=>measureText(word)+6)))),labelLines=wrapTownBuildingLabel(b.label,w-6,measureText),labelHeight=Math.max(...b.layoutLabels.map(label=>wrapTownBuildingLabel(label,w-6,measureText).length))*12+2;return {b,index,sw,sh,labelLines,labelHeight,w:w+gap,h:Math.ceil(Math.max(44,sh+labelHeight))+gap};}).sort((a,b)=>(strategy===1?b.w*b.h-a.w*a.h:strategy===2?b.h-a.h:Math.max(b.w,b.h)-Math.max(a.w,a.h))||a.index-b.index);
+ const sizes=records.map((b,index)=>{const sw=b.w*factor,sh=b.h*factor,w=Math.ceil(Math.max(60,sw,...b.layoutLabels.flatMap(label=>label.split(/\s+/).map(word=>measureText(word)+6)))),labelLines=wrapTownBuildingLabel(b.label,w-6,measureText),labelHeight=Math.max(...b.layoutLabels.map(label=>wrapTownBuildingLabel(label,w-6,measureText).length))*12+2;return {b,index,sw,sh,labelLines,labelHeight,w:w+gap,h:Math.ceil(Math.max(48,sh+labelHeight))+gap};}).sort((a,b)=>(strategy===1?b.w*b.h-a.w*a.h:strategy===2?b.h-a.h:Math.max(b.w,b.h)-Math.max(a.w,a.h))||a.index-b.index);
  for(const item of sizes){
   let best=null;
   for(const rect of free){if(item.w>rect.w||item.h>rect.h)continue;const short=Math.min(rect.w-item.w,rect.h-item.h),long=Math.max(rect.w-item.w,rect.h-item.h);const score=strategy===3?rect.w*rect.h-item.w*item.h:short*1000+long;if(!best||score<best.score)best={x:rect.x,y:rect.y,w:item.w,h:item.h,score};}

@@ -19,7 +19,7 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
  assert.equal(selects.length,3);for(const select of selects){assert.equal(select.radius,'0px');assert(select.height>=48&&select.width>width*.65);assert.equal(select.border,selects[0].border);assert.equal(select.font,selects[0].font);}
 
  for(const [language,expected] of [['fr',['Réglages','Déplacement en un clic','Déplacement en deux clics','Masquer les déplacements ennemis','Sélection des sorts en un clic','Les textes natifs du jeu utiliseront cette langue à la prochaine ouverture du jeu.']],['en',['Settings','One-click movement','Two-click movement','Hide enemy movement','One-click spell selection','Native game text uses this language the next time you open the game.']]]){
-  await p.locator('[data-language] + .material-select-trigger').tap();await p.getByRole('option',{name:language==='fr'?/^(Français|French)$/:/^(English|Anglais)$/}).tap();
+  await p.locator('[data-language] + .material-select-host [role=combobox]').tap();await p.getByRole('option',{name:language==='fr'?/^(Français|French)$/:/^(English|Anglais)$/}).tap();
   await p.waitForFunction(([title,label])=>document.querySelector('#game-menu-title').textContent===title&&document.querySelector('[data-map-one-click]').closest('label').textContent===label,expected.slice(0,2));
   const text=await p.locator('#game-menu').textContent();for(const phrase of expected)assert(text.includes(phrase),'Complete settings translation: '+phrase);
  }
@@ -28,7 +28,7 @@ for(const [kind,engine] of Object.entries({chromium,webkit})){
  const body=p.locator('.game-menu-body');await body.evaluate(e=>e.scrollTop=e.scrollHeight);
  await p.locator('[data-menu=close]').tap();await p.locator('#game-menu-toggle').tap();await p.locator('[data-menu=settings]').tap();
  assert.equal(await body.evaluate(e=>e.scrollTop),0,'Settings reopen at the top so the option cannot stay above the clipped scroll position');
- const label=await option.locator('..').boundingBox(),content=await body.boundingBox();assert(label.y>=content.y&&label.y+label.height<=content.y+content.height,'Two-click option is in view on entering settings');
+ const label=await option.locator('xpath=ancestor::label').boundingBox(),content=await body.boundingBox();assert(label.y>=content.y&&label.y+label.height<=content.y+content.height,'Two-click option is in view on entering settings');
  await p.setViewportSize({width:873,height:width});await p.waitForTimeout(150);
  const rail=await p.locator('#game-menu>header').boundingBox(),list=await body.boundingBox(),back=await p.locator('.game-menu-return').boundingBox();assert(rail.x>=list.x+list.width-1&&back.x>=list.x+list.width-1,'Landscape settings actions are on the right');assert(list.height>=width-35,'Settings list uses the full landscape height');await body.evaluate(e=>e.scrollTop=e.scrollHeight);assert(await body.evaluate(e=>e.scrollTop)>0,'Settings content scrolls vertically');
  await p.setViewportSize({width,height:873});

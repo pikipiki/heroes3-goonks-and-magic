@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {getLanguage} from './i18n.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
@@ -37,8 +37,8 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
  function updateFactionCard(c,s,list){
   if(c.dataset.control!=='castle'){
    c.dataset.control='castle';
-   c.innerHTML='<h3></h3><button type="button" class="lobby-choice-card" aria-haspopup="dialog"><figure class="lobby-faction-art"></figure><span><small>Starting faction</small><strong>Choose…</strong><em>Choose castle <span aria-hidden="true">›</span></em></span></button>';
-   c.querySelector('button').onclick=()=>open(s);
+   renderMarkup(c,'<h3></h3><button type="button" class="lobby-choice-card" aria-haspopup="dialog"><figure class="lobby-faction-art"></figure><span><small>Starting faction</small><strong>Choose…</strong><em>Choose castle <span aria-hidden="true">›</span></em></span></button>');
+   setClickHandler(c.querySelector('button'),()=>open(s));
   }
   const heading=c.querySelector('h3'),headingText=title(s);
   if(heading._sourceText!==headingText){
@@ -64,7 +64,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   button._artKey=key;
   if(!key||button._shownArtKey===key)return;
   const illustration=document.createElement('div');
-  illustration.innerHTML=art(s,choice.value);
+  renderMarkup(illustration,art(s,choice.value));
   const figure=illustration.firstElementChild;
   void Promise.all([...figure.querySelectorAll('img')].map(image=>image.decode().catch(()=>{image.hidden=true;}))).then(()=>{
    if(!button.isConnected||button._artKey!==key)return;
@@ -88,7 +88,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   const isFaction=faction(s),button=controls.get(s)?.querySelector('button');
   const opening=isFaction?{select:s,button}:null;
   if(opening){pendingOpen=opening;button.setAttribute('aria-busy','true');}
-  if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','lobby-picker-title');dialog.innerHTML='<header><h2 id="lobby-picker-title" tabindex="-1"></h2><button type="button" data-picker-close aria-label="Close choices">✕</button></header><div class="lobby-picker-content"><label class="lobby-picker-search">Search<input type="search" aria-label="Search choices" placeholder="Search…"></label><div class="lobby-picker-grid" role="group"></div><p class="lobby-picker-empty" hidden>No matching choices.</p></div><footer><button type="button" data-picker-back>← Back</button></footer>';menu.append(dialog);dialog.querySelector('[data-picker-close]').onclick=close;dialog.querySelector('[data-picker-back]').onclick=close;dialog.addEventListener('cancel',()=>source=null);filters=mountScenarioFilters(dialog);dialog.querySelector('.lobby-picker-grid').onclick=e=>{const b=e.target.closest('[data-choice-value]');if(!b||b.disabled||!source)return;const selected=source,value=b.dataset.choiceValue;close();change(selected,value);};}
+  if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','lobby-picker-title');renderMarkup(dialog,'<header><h2 id="lobby-picker-title" tabindex="-1"></h2><button type="button" data-picker-close aria-label="Close choices">✕</button></header><div class="lobby-picker-content"><label class="lobby-picker-search">Search<input type="search" aria-label="Search choices" placeholder="Search…"></label><div class="lobby-picker-grid" role="group"></div><p class="lobby-picker-empty" hidden>No matching choices.</p></div><footer><button type="button" data-picker-back>← Back</button></footer>');menu.append(dialog);setClickHandler(dialog.querySelector('[data-picker-close]'),close);setClickHandler(dialog.querySelector('[data-picker-back]'),close);dialog.addEventListener('cancel',()=>source=null);filters=mountScenarioFilters(dialog);setClickHandler(dialog.querySelector('.lobby-picker-grid'),e=>{const b=e.target.closest('[data-choice-value]');if(!b||b.disabled||!source)return;const selected=source,value=b.dataset.choiceValue;close();change(selected,value);});}
   dialog.dataset.kind=isFaction?'castle':'map';
   dialog.querySelector('h2').textContent=title(s);
   dialog.querySelector('.lobby-picker-grid').setAttribute('aria-label',title(s));
@@ -97,14 +97,14 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
   dialog.querySelector('.lobby-picker-empty').textContent='No matching choices.';
   const maps=new Map((!isFaction&&state.mode==='lobby'?state.maps??[]:[]).map(map=>[String(map.index),soloMapMetadata(map,state)]));
   const fr=getLanguage()==='fr';
-  dialog.querySelector('.lobby-picker-grid').innerHTML=options(s).map(o=>{
+  renderMarkup(dialog.querySelector('.lobby-picker-grid'),options(s).map(o=>{
    const map=maps.get(o.value);
    const name=`<span class="lobby-choice-name">${esc(o.label)}</span>`;
    const metadata=map?scenarioDetails(map,fr):'';
    const details=metadata?`<small class="lobby-map-meta">${esc(metadata)}</small>`:'';
    const copy=isFaction?name:`<span class="lobby-choice-copy">${name}${details}</span>`;
    return `<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`;
-  }).join('');
+  }).join(''));
   if(isMap)for(const image of dialog.querySelectorAll('[data-choice-value] img'))showScenarioPreview(image,maps.get(image.closest('[data-choice-value]').dataset.choiceValue)?.path,{catalogueOnly:true});
   filters.update([...dialog.querySelectorAll('[data-choice-value]')].map(row=>({row,map:maps.get(row.dataset.choiceValue)})),{french:fr,enabled:isMap});
   if(opening){
@@ -125,8 +125,8 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
    if(s.id==='mobile-map-select'){
     if(c.dataset.control!=='map'){
      c.dataset.control='map';
-     c.innerHTML='<h3></h3><button type="button" class="lobby-choice-card" aria-haspopup="dialog"><img class="lobby-map-emblem" src="./web/h3-theme/adventure-map.svg" alt=""><span><small></small><strong></strong><em></em></span></button>';
-     c.querySelector('button').onclick=()=>open(s);
+     renderMarkup(c,'<h3></h3><button type="button" class="lobby-choice-card" aria-haspopup="dialog"><img class="lobby-map-emblem" src="./web/h3-theme/adventure-map.svg" alt=""><span><small></small><strong></strong><em></em></span></button>');
+     setClickHandler(c.querySelector('button'),()=>open(s));
     }
     const busy=s.dataset.updating==='true',load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
     const map=state.maps?.find(item=>String(item.index)===s.value);
@@ -145,8 +145,8 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
    if(faction(s)){preloadFactionArt(s,list);updateFactionCard(c,s,list);continue;}
    const key=JSON.stringify([list,s.value,s.disabled,s.dataset.updating,title(s)]);if(c._key===key)continue;c._key=key;
    const heading=`<h3>${esc(title(s))}</h3>`;
-   if(s.id==='mobile-difficulty'||s.hasAttribute('data-custom-size')){const isDifficulty=s.id==='mobile-difficulty';c.dataset.control='tiles';c.innerHTML=heading+`<div class="lobby-choice-tiles" role="group" aria-label="${esc(title(s))}">${list.map((o,i)=>`<button type="button" data-tile-value="${esc(o.value)}" aria-pressed="${s.value===o.value}" ${s.disabled||o.disabled?'disabled':''}><span class="lobby-tile-symbol" aria-hidden="true">${isDifficulty?'◆'.repeat(i+1):['S','M','L','XL'][i]}</span><strong>${esc(o.label)}</strong></button>`).join('')}</div>`+(isDifficulty?`<p class="lobby-choice-help">${difficulty[Number(s.value)]||''}</p>`:'');c.querySelectorAll('[data-tile-value]').forEach(b=>b.onclick=()=>change(s,b.dataset.tileValue));
-   }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){c.dataset.control='counter';const index=list.findIndex(o=>o.value===s.value);c.innerHTML=heading+`<div class="lobby-counter"><button type="button" data-counter="-1" aria-label="Decrease ${esc(title(s))}" ${s.disabled||index<=0?'disabled':''}>−</button><output aria-live="polite"><strong>${esc(s.value)}</strong><span>${s.hasAttribute('data-custom-humans')?'Human players':'New map players'}</span></output><button type="button" data-counter="1" aria-label="Increase ${esc(title(s))}" ${s.disabled||index>=list.length-1?'disabled':''}>+</button></div>`;c.querySelectorAll('[data-counter]').forEach(b=>b.onclick=()=>{const i=list.findIndex(o=>o.value===s.value),next=list[i+Number(b.dataset.counter)];if(next)change(s,next.value);});
+   if(s.id==='mobile-difficulty'||s.hasAttribute('data-custom-size')){const isDifficulty=s.id==='mobile-difficulty';c.dataset.control='tiles';renderMarkup(c,heading+`<div class="lobby-choice-tiles" role="group" aria-label="${esc(title(s))}">${list.map((o,i)=>`<button type="button" data-tile-value="${esc(o.value)}" aria-pressed="${s.value===o.value}" ${s.disabled||o.disabled?'disabled':''}><span class="lobby-tile-symbol" aria-hidden="true">${isDifficulty?'◆'.repeat(i+1):['S','M','L','XL'][i]}</span><strong>${esc(o.label)}</strong></button>`).join('')}</div>`+(isDifficulty?`<p class="lobby-choice-help">${difficulty[Number(s.value)]||''}</p>`:''));c.querySelectorAll('[data-tile-value]').forEach(b=>setClickHandler(b,()=>change(s,b.dataset.tileValue)));
+   }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){c.dataset.control='counter';const index=list.findIndex(o=>o.value===s.value);renderMarkup(c,heading+`<div class="lobby-counter"><button type="button" data-counter="-1" aria-label="Decrease ${esc(title(s))}" ${s.disabled||index<=0?'disabled':''}>−</button><output aria-live="polite"><strong>${esc(s.value)}</strong><span>${s.hasAttribute('data-custom-humans')?'Human players':'New map players'}</span></output><button type="button" data-counter="1" aria-label="Increase ${esc(title(s))}" ${s.disabled||index>=list.length-1?'disabled':''}>+</button></div>`);c.querySelectorAll('[data-counter]').forEach(b=>setClickHandler(b,()=>{const i=list.findIndex(o=>o.value===s.value),next=list[i+Number(b.dataset.counter)];if(next)change(s,next.value);}));
    }
   }
  }

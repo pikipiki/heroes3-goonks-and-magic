@@ -1,3 +1,4 @@
+import {renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 export function gameDate(day){
  if(!Number.isInteger(day)||day<1)return null;
@@ -11,7 +12,7 @@ export function createGameCalendar(root){
  const compactDate=document.createElement('span'),cue=document.createElement('span');
  next.className='calendar-next-week';compactDate.className='calendar-compact';
  cue.className='calendar-recruit-cue';
- cue.innerHTML='<span data-recruit-label></span><strong data-recruit-days></strong><span class="calendar-chevron" aria-hidden="true">›</span>';
+ renderMarkup(cue,'<span data-recruit-label></span><strong data-recruit-days></strong><span class="calendar-chevron" aria-hidden="true">›</span>');
  const cueLabel=cue.querySelector('[data-recruit-label]'),cueDays=cue.querySelector('[data-recruit-days]');
  const location=document.createElement('span');location.className='calendar-location';
  calendar.append(date,compactDate,next,cue,location);root.querySelector('.mobile-top').append(calendar);
