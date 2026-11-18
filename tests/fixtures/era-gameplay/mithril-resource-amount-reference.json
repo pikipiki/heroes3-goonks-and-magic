@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "evidenceKind": "Targeted static PE inspection with ordinary LLVM objdump and Pascal/ERM source reads; not REA native Evidence. No execution was performed for this investigation.",
+  "targets": {
+    "h3era.exe": {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+      "imageBase": 4194304
+    },
+    "era.dll": {
+      "file": "work/era-gameplay-reference/era.dll",
+      "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+    }
+  },
+  "source42": {
+    "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+    "lines": [
+      501,
+      550
+    ],
+    "operations": [
+      "Read AR:V into n; only replace piles with2<=n<=9.",
+      "For wood,ore,gold: n=integer-truncation(n/2)+1. Other resource types keep n.",
+      "Recreate resource pile as mithril, then write AR:V=n.",
+      "For campfires: FR:B?r/?n followed by B(RES_MITHRIL)/n, preserving n."
+    ]
+  },
+  "binaryObservations": [
+    {
+      "name": "AR receiver object guard",
+      "rva": 3421875,
+      "preferredVa": 7616179,
+      "endExclusiveVa": 7616334,
+      "fileOffset": 3008179,
+      "size": 155,
+      "sha256": "d067636e3bfe033b411f7307f5ab788441d11f2ed42e68656bef02a272c20359",
+      "observation": "Object type checked against79(resource),5(artifact),93(scroll); raw object-setup DWORD selected."
+    },
+    {
+      "name": "AR:V raw amount read/write branch",
+      "rva": 3422128,
+      "preferredVa": 7616432,
+      "endExclusiveVa": 7616540,
+      "fileOffset": 3008432,
+      "size": 108,
+      "sha256": "58bc4f343a609e9a5b42cee99ce308ce6c6d5bc9a53c74ac03b1715b13809814",
+      "observation": "V dispatch reads setupDWORD&0x7ffff, passes this integer to ZvsApply without checking resource subtype or scaling. On a simple setter, it writes a zero-extended16-bit local into low19bits and preserves high13bits. Getter exits before this rewrite when ZvsApply reports GET. Large setters are outside option170 range."
+    },
+    {
+      "name": "Resource pickup quantity and gold multiplier",
+      "rva": 672752,
+      "preferredVa": 4867056,
+      "endExclusiveVa": 4867135,
+      "fileOffset": 672752,
+      "size": 79,
+      "sha256": "39dda7f4bb3369b660e82eb2a021a840a926bbfe8e7b645410d1a893db79dcf5",
+      "observation": "Read raw quantity from low19bits. Read resource subtype at object+0x22. If subtype=6(gold), multiply raw quantity by100; otherwise retain it."
+    },
+    {
+      "name": "Resource pickup reward call1",
+      "rva": 673036,
+      "preferredVa": 4867340,
+      "endExclusiveVa": 4867355,
+      "fileOffset": 673036,
+      "size": 15,
+      "sha256": "d0fbf7e0f709e8d936827bcce5166d611fe1008f0b5b1c858551fd27fdd30815",
+      "observation": "Pass calculated quantity and resource subtype to the grant primitive at0x4e3870."
+    },
+    {
+      "name": "Resource pickup reward call2",
+      "rva": 673601,
+      "preferredVa": 4867905,
+      "endExclusiveVa": 4867921,
+      "fileOffset": 673601,
+      "size": 16,
+      "sha256": "8e3b012d1b8e94a42d2b7666377ad443783076846fac972d0470ece3449eec88",
+      "observation": "Alternative collection path passes the same calculated quantity and subtype to0x4e3870."
+    },
+    {
+      "name": "FR:B packed resource and amount",
+      "rva": 3379548,
+      "preferredVa": 7573852,
+      "endExclusiveVa": 7574023,
+      "fileOffset": 2965852,
+      "size": 171,
+      "sha256": "fa0297f737aca3d0853456337d1c974b9fb54a702931bd9a297dd3371fd63204",
+      "observation": "B dispatch: resource type is low4bits; amount is setupDWORD>>4 (28-bit field). Both are passed to ZvsApply separately. Type write preserves the amount; quantity write preserves the type. Setter local is zero-extended16bit before repacking; outside normal small quantities, this is a legacy limitation."
+    },
+    {
+      "name": "Campfire pickup decode and both rewards",
+      "rva": 658832,
+      "preferredVa": 4853136,
+      "endExclusiveVa": 4853254,
+      "fileOffset": 658832,
+      "size": 118,
+      "sha256": "b72ca5c15cc78fcac45b8a6681b371789ef9f009ba1b24e35f618d269c6536c3",
+      "observation": "Read selected type from low4bits and quantity from the signed low16bits of setupDWORD>>4. Unconditionally pass100*quantity and resource6(gold) to0x4e3870, then quantity and selected resource type to the same primitive."
+    },
+    {
+      "name": "Original resource-grant primitive validation",
+      "rva": 931952,
+      "preferredVa": 5126256,
+      "endExclusiveVa": 5126314,
+      "fileOffset": 931952,
+      "size": 58,
+      "sha256": "e560695ad95cea55272377c88bd8c14a089d9117e19f82a79a9307252350ac62",
+      "observation": "On-disk primitive accepts resource IDs0..6, reads player amount and adds the requested quantity. Actual mithril ID7 grants require additional WoG behavior not followed here."
+    }
+  ],
+  "eraSourceCrossCheck": {
+    "file": "work/downloads/era-kernel-source/Erm.pas",
+    "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "lines": [
+      5516,
+      5557,
+      9611,
+      9614
+    ],
+    "observation": "ERA hooks ZvsApply at0x74195d. Hook_ZvsApply implements GET via SetErmParamValue and plain SET via PutVal, with no resource-specific multiplier. A bounded search of supplied Erm/AdvErm/GameExt/Tweaks source found no separate AR/FR receiver replacement or direct patch of the examined AR/FR instruction addresses; this is not exhaustive dynamic patch discovery."
+  },
+  "conclusions": {
+    "resourcePileUnits": "AR:V exposes internal count units, not the final displayed/credited gold amount. Gold countn yields100*n gold; wood,ore and ordinary non-gold quantities use n directly. AR:V itself performs no division-by100 or gold-specific rounding.",
+    "option170Gold": "A gold pile with raw AR:V5 (500gold at pickup) becomes floor(5/2)+1=3mithril; testing the full gold amount500 against2..9 would be wrong.",
+    "option170Truncation": "For source option170, integer division by2 truncates positive odd counts:2,3,4,5,6,7,8,9 map to2,2,3,3,4,4,5,5. These small setters suffer no16-bit loss.",
+    "campfireGoldConservation": "FR:B changes only selected non-gold type and keeps quantityn. The campfire gold component is calculated separately as100*n, so its formula and amount remain intact when the selected type changes to mithril. n5 remains500gold plus5 units of the selected resource, subject to WoG handling of mithril."
+  },
+  "derivedExamples": {
+    "goldPileOption170": [
+      {
+        "rawARV": 2,
+        "goldBeforeReplacement": 200,
+        "mithrilAfterReplacement": 2
+      },
+      {
+        "rawARV": 3,
+        "goldBeforeReplacement": 300,
+        "mithrilAfterReplacement": 2
+      },
+      {
+        "rawARV": 4,
+        "goldBeforeReplacement": 400,
+        "mithrilAfterReplacement": 3
+      },
+      {
+        "rawARV": 5,
+        "goldBeforeReplacement": 500,
+        "mithrilAfterReplacement": 3
+      },
+      {
+        "rawARV": 6,
+        "goldBeforeReplacement": 600,
+        "mithrilAfterReplacement": 4
+      },
+      {
+        "rawARV": 7,
+        "goldBeforeReplacement": 700,
+        "mithrilAfterReplacement": 4
+      },
+      {
+        "rawARV": 8,
+        "goldBeforeReplacement": 800,
+        "mithrilAfterReplacement": 5
+      },
+      {
+        "rawARV": 9,
+        "goldBeforeReplacement": 900,
+        "mithrilAfterReplacement": 5
+      }
+    ],
+    "campfire": [
+      {
+        "FRBQuantity": 2,
+        "goldComponent": 200,
+        "selectedResourceUnits": 2
+      },
+      {
+        "FRBQuantity": 3,
+        "goldComponent": 300,
+        "selectedResourceUnits": 3
+      },
+      {
+        "FRBQuantity": 4,
+        "goldComponent": 400,
+        "selectedResourceUnits": 4
+      },
+      {
+        "FRBQuantity": 5,
+        "goldComponent": 500,
+        "selectedResourceUnits": 5
+      },
+      {
+        "FRBQuantity": 6,
+        "goldComponent": 600,
+        "selectedResourceUnits": 6
+      },
+      {
+        "FRBQuantity": 9,
+        "goldComponent": 900,
+        "selectedResourceUnits": 9
+      }
+    ]
+  },
+  "limits": [
+    "Static observations and derived examples only; no pile or campfire collection was executed. No new game instance or container was started.",
+    "Observed instruction ranges describe supplied on-disk EXE. Generic ERA ZvsApply hook was checked in matching supplied source, not dynamically inspected after every mod/plugin patch.",
+    "Effective mithril-grant interception and UI labels are not established by this bounded analysis. In particular, the original grant primitive still validates IDs0..6.",
+    "Map-file import conversion from arbitrary non-multiple-of100 gold values was not investigated; AR:V reads an already packed internal count.",
+    "Large/negative AR:V and FR:B setter behavior, signed16bit campfire overflow and unrelated receivers are outside option170 scope.",
+    "No original Windows executable bytes or disassembly text are included in this report."
+  ]
+}

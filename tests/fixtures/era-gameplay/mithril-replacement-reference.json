@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+  },
+  "sourceFragments": [
+    {
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "line": 61,
+      "endLine": 62,
+      "text": "!#DC(WOG_170_RESOURCE_FREQUENCY) = 18;\n!#DC(WOG_170_CAMPFIRE_FREQUENCY) = 18;\n",
+      "sha256": "6ce0285ac5d99f0780a175a22e37bdf8d523cc220e6063db92182b13d469d04c"
+    },
+    {
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "line": 94,
+      "endLine": 118,
+      "text": "!!VR(options[0]):C36/149/170/171;\n\n!!re i/0/(options[SIZE])/1/-1;\n  !!UN:P(options[i])/?(isEnabled:y);\n  !!VRi^wog_%(options[i])_enabled^:S(isEnabled:y);\n  !!if&(isEnabled:y);\n    !!UN:B0/1;   (Enable Mithril)\n    !!UN&i<3:P149/1;[Enable Mithril Display if Mithril script or Mithril Replacement is enabled][Check if Mithril in Windmills and Gardens is enabled: v4]\n  !!en;\n!!en;\n\n!!if&i^wog_170_enabled^;\n  !!VRi^wog_170_%(OBJ_RESOURCE)_maxStep^:S(WOG_170_RESOURCE_FREQUENCY) *2 -1;\n  !!VRi^wog_170_%(OBJ_CAMPFIRE)_maxStep^:S(WOG_170_CAMPFIRE_FREQUENCY) *2 -1;\n!!en;\n\n!#FU(WOG_36_Initialization):P;\n\n!?FU(OnAfterErmInstructions);\n!!VRi^wog_170_%(OBJ_RESOURCE)_maxStep^:S0;\n!!VRi^wog_170_%(OBJ_CAMPFIRE)_maxStep^:S0;\n!!VRi^wog_170_%(OBJ_RESOURCE)_interval^:S0;\n!!VRi^wog_170_%(OBJ_CAMPFIRE)_interval^:S0;\n\n\n",
+      "sha256": "580dd293c55ae5d3bc5e8c3e64735ce25bdb02bea747c1e783f86b8216560c5b"
+    },
+    {
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "line": 501,
+      "endLine": 550,
+      "text": "!?FU(WOG_OnIterateAllMapObjects)&i^wog_170_enabled^;\n!#VA(x:x) (y:x) (z:x);\n!#VA(objType:x);\n!#VA(objSubtype:x);\n!#VA(isYellowSquare:x); boolean.\n!#VA(isPassable:x);     boolean.\n\n; check: is entry to the object\n!!FU&(isYellowSquare)<>(TRUE):E;\n; Exit if not resouce or campfire\n!!FU&(objType)<>(OBJ_RESOURCE)/(objType)<>(OBJ_CAMPFIRE):E;\n\n!!VR(mithrilPlaced:y):S(FALSE);\n\n!!if&i^wog_36_%(objType)_interval^<=0;\n  !!if&(objType:x)=(OBJ_RESOURCE);\n    !!AR(x)/(y)/(z):V?n;\n\n    ; Replace only when the amount of the resource pile is reasonable\n    ; Archer30: AR:R, AR:G, AR:X are hardly useful here, there are syntax error as of ERA 3.9.10\n    !!if&n>=2/n<=9;\n      ; Divide by 2 Then add 1 to get the same amount range as other stacks if wood, ore or gold\n      !!if|(objSubtype:x)=(RES_ORE)/(objSubtype:x)=(RES_WOOD)/(objSubtype:x)=(RES_GOLD);\n        !!VRn::2 +1;\n      !!en;\n\n      !!UN:O(x)/(y)/(z)/1/0 I(x)/(y)/(z)/(OBJ_RESOURCE)/(RES_MITHRIL); [Delete old resource pile, place Mithril]\n      !!AR(x)/(y)/(z):Vn;               [set new amount]\n      !!VR(mithrilPlaced):S(TRUE);\n    !!en;\n\n  !!el&(objType:x)=(OBJ_CAMPFIRE);\n    !!FR(x)/(y)/(z):B?r/?n B(RES_MITHRIL)/n; [Get resource and amount)(Setup to contain Mithril]\n    !!VR(mithrilPlaced):S(TRUE);\n  !!en;\n!!en;\n\n; If object has added mithril, get the next object of the same type to be dealt with\n!!if&(mithrilPlaced);\n  !!VRi^wog_36_%(objType)_interval^:R0/0/i^wog_170_%(objType)_maxStep^;\n; If object was not dealt with, minus one on the global var\n!!el;\n  !!VRi^wog_36_%(objType)_interval^:-1;\n!!en;\n\n!?FU(OnAfterErmInstructions)&i^wog_170_enabled^;\n!!VRi^wog_170_%(OBJ_RESOURCE)_num^:S(NULL);\n!!VRi^wog_170_%(OBJ_CAMPFIRE)_num^:S(NULL);\n\n*** Upgrade Shrines ***\n",
+      "sha256": "a33e675016328b68412406d5163fc640db63e4b0802d8d9de3545f104e27bf1f"
+    },
+    {
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/9000 wog - stdlib.erm",
+      "line": 288,
+      "endLine": 311,
+      "text": "!?FU(OnAfterErmInstructions); \r\n; deleting the sound in the delete object function\r\n; because it causes a crash\r\n!!UN:C4893167/2/?(patch:y);\r\n!!UN:C4893167/2/24555;\r\n; get size of the map\r\n!!UN:X?(mapSize:y)/?(hasUnderground:y); \r\n; pass once through all cells of the map\r\n!!re l/0/(hasUnderground)/1;  coord z\r\n  !!re k/0/(mapSize)/1/-1;    coord y\r\n    !!re i/0/(mapSize)/1/-1;  coord x\r\n      !!OBi/k/l:T?(objType:y) U?(objSubtype:y);\r\n      !!TRi/k/l:E?(isYellowSquare:y) P?(isPassable:y); \r\n      !!VR(isYellowSquare):X1;  reverse param isYellowSquare\r\n      !!FU(WOG_OnIterateAllMapObjects):Pi/k/l/(objType)/(objSubtype)/(isYellowSquare)/(isPassable);\r\n    !!en;\r\n  !!en;\r\n!!en;\r\n; restoring the source code of the sound\r\n; in the delete objects function\r\n!!UN:C4893167/2/(patch); \r\n\r\n!?FU(WOG_AdvMgr_HideHero);\r\n!#VA(hero[3]:x);\r\n",
+      "sha256": "8870d596250d2ccb7cfacdaea5fcfa9e2c34c50e988c47c96b6126f094940377"
+    },
+    {
+      "file": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+      "line": 5,
+      "endLine": 5,
+      "text": "!#DC(NULL)  = 0;\r\n",
+      "sha256": "2c6b46dced83ceda6f2ab7b160e1bd349800e4e16f37cf2ec20960c4a9c66609"
+    }
+  ],
+  "binaryReference": {
+    "file": "tests/fixtures/era-gameplay/mithril-resource-amount-reference.json",
+    "sha256": "5e328c1c842c6b129341935c239ed756119ee4490afba646f203b399eccd0263",
+    "privateRawReportSha256": "5e328c1c842c6b129341935c239ed756119ee4490afba646f203b399eccd0263",
+    "staticOnly": true,
+    "runtimeExecuted": false
+  }
+}

@@ -6,13 +6,13 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "44f840f364db1e092a4e44f9eccc6bd9da0807ac25b262027f96d8aef7a5981e",
+    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "c7400644acef48fefcdc3328e1cac0af835c21dbf44f1027fb19a4e8b128d67f"
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "fff528d09befbc68fd4e9f47ede454d97b641fbd0775edb8f8d4dd70f81de22d",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -273,5 +273,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
+  },
+  "mithrilReplacementRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "44f840f364db1e092a4e44f9eccc6bd9da0807ac25b262027f96d8aef7a5981e",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "c7400644acef48fefcdc3328e1cac0af835c21dbf44f1027fb19a4e8b128d67f"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
   }
 }

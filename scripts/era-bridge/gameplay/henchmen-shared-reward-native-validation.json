@@ -13,16 +13,16 @@
     "distinctConfigurationVariable": "hench_battleExpAIPct"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "44f840f364db1e092a4e44f9eccc6bd9da0807ac25b262027f96d8aef7a5981e",
+    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
     "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/vcmi-wasm/client/CPlayerInterface.cpp": "1af7e27414aec46052a1babf112a4b6d6cd74fc7f51ad867e83477718bd4e27b",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "ad7a9b309c84b8aab088a30a7279045143f255489b3c24766497521b410b0aa1",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291"
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "fff528d09befbc68fd4e9f47ede454d97b641fbd0775edb8f8d4dd70f81de22d",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -282,5 +282,16 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
+  },
+  "mithrilReplacementRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "44f840f364db1e092a4e44f9eccc6bd9da0807ac25b262027f96d8aef7a5981e",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "ad7a9b309c84b8aab088a30a7279045143f255489b3c24766497521b410b0aa1",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
   }
 }

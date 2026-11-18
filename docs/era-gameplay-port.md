@@ -796,7 +796,7 @@ natives sans identité source utilisent leur rang natif converti en base zéro.
 Les achats modifient uniquement les types de créatures et conservent tous les
 stocks, y compris après une seconde amélioration et une sauvegarde. Le format919
 annonce ces critères sans ajouter de choix aux dix-neuf réglages existants.
-Les options source149/170 et les mutations MA:L externes restent à porter.
+L’option source149 et les mutations MA:L externes restent à porter.
 Le calendrier des moulins est traité séparément par la règle171 ci-dessous. Preuve bornée :
 `scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json`.
 
@@ -829,3 +829,21 @@ UN:P171 expose ce même état, avant l’initialisation puis après sauvegarde.
 Le générateur natif est utilisé : une égalité de séquence avec le générateur
 ERA n’est pas revendiquée. Le partage complet de PO:N avec des scripts externes,
 les récepteurs GD/ML/WM arbitraires et les profils complets restent à porter.
+
+
+La règle170 ajoute un vingt-et-unième choix Carte/Oui/Non pour placer du mithril
+parmi les piles de ressources et les feux de camp au début de l’aventure.
+Le passage unique suit les cases jaunes dans l’ordre z/y/x du stdlib WoG,
+distinct de l’ordre UN:U de la règle171. Les compteurs des deux types d’objet
+restent indépendants. Les piles admissibles contiennent2 à9 unités internes ;
+pour l’or, une unité interne représente100 or. Le bois, le minerai et l’or
+appliquent ensuite la division entière par2, suivie de+1. Le remplacement recrée
+la pile, comme UN:O/I dans la source. Les feux de camp conservent leur composante
+or et la quantité de leur ressource sélectionnée, devenue mithril.
+Les compteurs wog_36 sont partagés avec la VM source ; le nettoyage wog_170
+reste distinct et conserve les chaînes appariées. Le format924 conserve les
+vingt choix antérieurs ; les parties923 déjà démarrées ne sont pas remplacées
+rétroactivement. Les quantités natives d’or non multiples de100, qui n’ont pas
+d’équivalent dans le champ d’origine, sont conservées. Les combinaisons de
+récompenses natives non standard et les écritures arbitraires AR/FR restent
+hors de cette validation, comme les profils complets.

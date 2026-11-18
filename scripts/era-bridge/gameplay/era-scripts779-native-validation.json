@@ -17,7 +17,7 @@
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "4becc4fe9f23efbc7d5a9af89ae08a6c3b2326cf7530f79ebd61ca252a51d3e1",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
     "tests/native/EraScriptRules.test.cpp": "96fa2b497b65fc1e34bafd72322aa632e24bdec926adb616b06c3853171aa985",
     "tests/fixtures/era-gameplay/era-native-learning-reference.json": "35176eddf2845a64eebc605289fbbf40e13a57b81ce537c406315c16cf62eb9a",
@@ -164,5 +164,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
+  },
+  "mithrilReplacementRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
   }
 }

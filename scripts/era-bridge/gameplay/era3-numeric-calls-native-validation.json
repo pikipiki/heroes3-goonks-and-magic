@@ -15,7 +15,7 @@
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "fff528d09befbc68fd4e9f47ede454d97b641fbd0775edb8f8d4dd70f81de22d",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-era3-numeric-calls-fixture.mjs": "4e72a89f3dd7b628f42174730eab30f3c64103ca2e73abb68d55edcb1380d013",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
@@ -23,7 +23,7 @@
     "scripts/era-bridge/gameplay/advanced-class-points.mjs": "2a176f2ba07201fb8f6162c4ee73470a30ddef3b8639650347e53bc5caf0e84a",
     "tests/native/EraCampaignExecutor.test.cpp": "7a3cf2adc7c591a1f22f85e92082e8ded6adb71fae0a55ed0efd889f3ad93f32",
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "230ec23a4fa35e838958563bb96e2c6f77499b6c210562200b2fcc329e3c9b23"
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "4b9edae848a4d90cc2efcb6139037e6b1e75f62ed2db9e22a444753c6ef6a955"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1589,5 +1589,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
+  },
+  "mithrilReplacementRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "230ec23a4fa35e838958563bb96e2c6f77499b6c210562200b2fcc329e3c9b23",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
   }
 }

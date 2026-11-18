@@ -1,0 +1,1380 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Native source170 first-map pass: original pile counter units2..9, original wood/ore/gold amount conversion, campfire gold preservation, independent36-namespace intervals,170 cleanup and paired string preservation. Native extensions without a packed original quantity are preserved.",
+  "sourceBaseCommit": "90f4e341f7ef3e2d2d677c7ca9d29bba6cd9811b",
+  "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+  "servedEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+    "web/wog-options.mjs": "621e3220d0e4f4c06df2f8e75a5f2451f937f5cc7cb73b51b22058c557e53f99",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "1dee8af901a65389307357de4b6fd9782f1da1bb13882416fafc46490472bd6d",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8046b0f71f087a27cd2c99fb9970772f99fa0c418ea59351207bbfd0c590a122",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "79d404f7a5bc6d06e177ac99112d7be4c29dadd622bab99f97dea0338f61df16",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "5a425edbd37ffd60f33fbf4e52a79c0a79aa3de1a1ada32471f574e36dc5dfd9",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "4b9edae848a4d90cc2efcb6139037e6b1e75f62ed2db9e22a444753c6ef6a955",
+    "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "fb560bb89b311ec842d90b095082fe1665682924aca305e182b96d33e00167f5",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "fff528d09befbc68fd4e9f47ede454d97b641fbd0775edb8f8d4dd70f81de22d",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
+    "work/vcmi-wasm/lib/era/EraMithrilReplacementRules.h": "e36e812bc4f368245cdb89bf40400a3f7648e14bfe966c337cfe81f386a52f83",
+    "work/vcmi-wasm/server/era/EraMithrilResourceReplacement.h": "87ad6cfc59ef502162ae0d71091b00fe239c9e6d32bd5c66c1fdbe4517739eff",
+    "tests/native/EraMithrilReplacementRules.test.cpp": "e6a06c29f5eaac9545d7799db6563645f35a985c45dcc1d2021fd9e4eb46de6d",
+    "tests/era-mithril-replacement.test.mjs": "9d9d8ba08c89807052a8787100b98a8ab592dfc916d9c9af88dfc505b535d8ba",
+    "tests/fixtures/era-gameplay/mithril-replacement-reference.json": "1593061d586ad1aa192ea1146d33830ec55e53ea496b8f5d504275aff71cfb04",
+    "tests/fixtures/era-gameplay/mithril-resource-amount-reference.json": "5e328c1c842c6b129341935c239ed756119ee4490afba646f203b399eccd0263",
+    "work/browser-tests/wog-mithril-replacement-cases.mjs": "acd660260c9aaa09bf247cc9abd2cffde9beaba78cdd494c9426df54dbbd88b9"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 5,
+    "logSha256": "f9ade49320650c0bbded5f6ad51da419272c9252ad97de74b2d783f7d95f8eec",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "tests": [
+      {
+        "name": "EraMithrilReplacementRules",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "EraWogOptionsSerialization",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3008,
+    "mismatches": [],
+    "expectedManifestSha256": "24ce247b45e56c3565f3d054a01e714d4284aab1b0342e570b79e43573446336"
+  },
+  "upstreamReference": {
+    "schema": 1,
+    "upstream": {
+      "repository": "https://github.com/ERA-Projects/era-project-eng",
+      "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+    },
+    "sourceFragments": [
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "line": 61,
+        "endLine": 62,
+        "text": "!#DC(WOG_170_RESOURCE_FREQUENCY) = 18;\n!#DC(WOG_170_CAMPFIRE_FREQUENCY) = 18;\n",
+        "sha256": "6ce0285ac5d99f0780a175a22e37bdf8d523cc220e6063db92182b13d469d04c"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "line": 94,
+        "endLine": 118,
+        "text": "!!VR(options[0]):C36/149/170/171;\n\n!!re i/0/(options[SIZE])/1/-1;\n  !!UN:P(options[i])/?(isEnabled:y);\n  !!VRi^wog_%(options[i])_enabled^:S(isEnabled:y);\n  !!if&(isEnabled:y);\n    !!UN:B0/1;   (Enable Mithril)\n    !!UN&i<3:P149/1;[Enable Mithril Display if Mithril script or Mithril Replacement is enabled][Check if Mithril in Windmills and Gardens is enabled: v4]\n  !!en;\n!!en;\n\n!!if&i^wog_170_enabled^;\n  !!VRi^wog_170_%(OBJ_RESOURCE)_maxStep^:S(WOG_170_RESOURCE_FREQUENCY) *2 -1;\n  !!VRi^wog_170_%(OBJ_CAMPFIRE)_maxStep^:S(WOG_170_CAMPFIRE_FREQUENCY) *2 -1;\n!!en;\n\n!#FU(WOG_36_Initialization):P;\n\n!?FU(OnAfterErmInstructions);\n!!VRi^wog_170_%(OBJ_RESOURCE)_maxStep^:S0;\n!!VRi^wog_170_%(OBJ_CAMPFIRE)_maxStep^:S0;\n!!VRi^wog_170_%(OBJ_RESOURCE)_interval^:S0;\n!!VRi^wog_170_%(OBJ_CAMPFIRE)_interval^:S0;\n\n\n",
+        "sha256": "580dd293c55ae5d3bc5e8c3e64735ce25bdb02bea747c1e783f86b8216560c5b"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "line": 501,
+        "endLine": 550,
+        "text": "!?FU(WOG_OnIterateAllMapObjects)&i^wog_170_enabled^;\n!#VA(x:x) (y:x) (z:x);\n!#VA(objType:x);\n!#VA(objSubtype:x);\n!#VA(isYellowSquare:x); boolean.\n!#VA(isPassable:x);     boolean.\n\n; check: is entry to the object\n!!FU&(isYellowSquare)<>(TRUE):E;\n; Exit if not resouce or campfire\n!!FU&(objType)<>(OBJ_RESOURCE)/(objType)<>(OBJ_CAMPFIRE):E;\n\n!!VR(mithrilPlaced:y):S(FALSE);\n\n!!if&i^wog_36_%(objType)_interval^<=0;\n  !!if&(objType:x)=(OBJ_RESOURCE);\n    !!AR(x)/(y)/(z):V?n;\n\n    ; Replace only when the amount of the resource pile is reasonable\n    ; Archer30: AR:R, AR:G, AR:X are hardly useful here, there are syntax error as of ERA 3.9.10\n    !!if&n>=2/n<=9;\n      ; Divide by 2 Then add 1 to get the same amount range as other stacks if wood, ore or gold\n      !!if|(objSubtype:x)=(RES_ORE)/(objSubtype:x)=(RES_WOOD)/(objSubtype:x)=(RES_GOLD);\n        !!VRn::2 +1;\n      !!en;\n\n      !!UN:O(x)/(y)/(z)/1/0 I(x)/(y)/(z)/(OBJ_RESOURCE)/(RES_MITHRIL); [Delete old resource pile, place Mithril]\n      !!AR(x)/(y)/(z):Vn;               [set new amount]\n      !!VR(mithrilPlaced):S(TRUE);\n    !!en;\n\n  !!el&(objType:x)=(OBJ_CAMPFIRE);\n    !!FR(x)/(y)/(z):B?r/?n B(RES_MITHRIL)/n; [Get resource and amount)(Setup to contain Mithril]\n    !!VR(mithrilPlaced):S(TRUE);\n  !!en;\n!!en;\n\n; If object has added mithril, get the next object of the same type to be dealt with\n!!if&(mithrilPlaced);\n  !!VRi^wog_36_%(objType)_interval^:R0/0/i^wog_170_%(objType)_maxStep^;\n; If object was not dealt with, minus one on the global var\n!!el;\n  !!VRi^wog_36_%(objType)_interval^:-1;\n!!en;\n\n!?FU(OnAfterErmInstructions)&i^wog_170_enabled^;\n!!VRi^wog_170_%(OBJ_RESOURCE)_num^:S(NULL);\n!!VRi^wog_170_%(OBJ_CAMPFIRE)_num^:S(NULL);\n\n*** Upgrade Shrines ***\n",
+        "sha256": "a33e675016328b68412406d5163fc640db63e4b0802d8d9de3545f104e27bf1f"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/9000 wog - stdlib.erm",
+        "line": 288,
+        "endLine": 311,
+        "text": "!?FU(OnAfterErmInstructions); \r\n; deleting the sound in the delete object function\r\n; because it causes a crash\r\n!!UN:C4893167/2/?(patch:y);\r\n!!UN:C4893167/2/24555;\r\n; get size of the map\r\n!!UN:X?(mapSize:y)/?(hasUnderground:y); \r\n; pass once through all cells of the map\r\n!!re l/0/(hasUnderground)/1;  coord z\r\n  !!re k/0/(mapSize)/1/-1;    coord y\r\n    !!re i/0/(mapSize)/1/-1;  coord x\r\n      !!OBi/k/l:T?(objType:y) U?(objSubtype:y);\r\n      !!TRi/k/l:E?(isYellowSquare:y) P?(isPassable:y); \r\n      !!VR(isYellowSquare):X1;  reverse param isYellowSquare\r\n      !!FU(WOG_OnIterateAllMapObjects):Pi/k/l/(objType)/(objSubtype)/(isYellowSquare)/(isPassable);\r\n    !!en;\r\n  !!en;\r\n!!en;\r\n; restoring the source code of the sound\r\n; in the delete objects function\r\n!!UN:C4893167/2/(patch); \r\n\r\n!?FU(WOG_AdvMgr_HideHero);\r\n!#VA(hero[3]:x);\r\n",
+        "sha256": "8870d596250d2ccb7cfacdaea5fcfa9e2c34c50e988c47c96b6126f094940377"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+        "line": 5,
+        "endLine": 5,
+        "text": "!#DC(NULL)  = 0;\r\n",
+        "sha256": "2c6b46dced83ceda6f2ab7b160e1bd349800e4e16f37cf2ec20960c4a9c66609"
+      }
+    ],
+    "binaryReference": {
+      "file": "tests/fixtures/era-gameplay/mithril-resource-amount-reference.json",
+      "sha256": "5e328c1c842c6b129341935c239ed756119ee4490afba646f203b399eccd0263",
+      "privateRawReportSha256": "5e328c1c842c6b129341935c239ed756119ee4490afba646f203b399eccd0263",
+      "staticOnly": true,
+      "runtimeExecuted": false
+    }
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "scenarios": [
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "gold",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "campfire",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            600,
+            6
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/0/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "d9a031c3e228aa9c4747a4ef431ed0e3484c975fbb7d0128593387480d231d34"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "scenarios": [
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "gold",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "campfire",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            600,
+            6
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/0/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "shared-counter",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "a4cfe9f0c9112e5d1e540a33fd6fa99e03ccea34f71472be202276b599da89d2"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "scenarios": [
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "gold",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "campfire",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            600,
+            6
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/0/0/0/paired",
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "b0c080f67abf8df650921fa1ef66c3138b5f73edc07146cdcb235ea8bf92fc83"
+    }
+  },
+  "amounts": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+    "scenarios": [
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "guarded",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "wood",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "rare",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "large",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1000,
+          0
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/-1/0/0/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "small",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/-1/0/0/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "native-fractional-gold",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          550,
+          0
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/-1/0/0/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "a361f1b43f288ef861eda55eecd927c966472c19aedd4ca9ec8d3a8b4f4bd0a6"
+  },
+  "disabled": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+    "scenarios": [
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "gold",
+        "active": false,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500,
+          0
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 0/0/0/888/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-guard-control",
+        "active": false,
+        "originalGuardsRetained": true,
+        "nativeSaveReloadBeforePickup": true
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "campfire",
+        "active": false,
+        "delta": [
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          600,
+          0
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 0/0/0/888/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "shared-counter",
+        "active": false,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500,
+          0
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 0/2/0/888/paired",
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "3a8aed3dd9e67ed4905ffcd825549366615150b3fb7fe5eb83827649d8d94c1e"
+  },
+  "inherited": {
+    "on": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "scenarios": [
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "gold",
+          "active": true,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          "source36Disabled": false,
+          "source171Disabled": true,
+          "globalModule": true,
+          "choice": -1,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+          "readyCounterMessage": null,
+          "oneTimePassPreserved": false,
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "5dcf9c224e518556dde4a09843dcc9add15f7859787499df0b08e4bf9de2e934"
+    },
+    "off": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "scenarios": [
+        {
+          "kind": "mithril-resource-replacement",
+          "name": "gold",
+          "active": false,
+          "delta": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            500,
+            0
+          ],
+          "source36Disabled": true,
+          "source171Disabled": true,
+          "globalModule": false,
+          "choice": -1,
+          "source170FrozenAcrossChangedDefaults": true,
+          "nativeSaveReloadBeforePickup": true,
+          "sourceCounterMessage": "REPLACEMENT NEXT 0/0/0/888/paired",
+          "readyCounterMessage": null,
+          "oneTimePassPreserved": false,
+          "pairedStringPreserved": true,
+          "nativeSaveVersion": 924,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2082f804b2b46fa54f96007b0480c8734f3579e0fd49bfd6068312f18506057c"
+    }
+  },
+  "oneTime": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+    "scenarios": [
+      {
+        "kind": "mithril-resource-replacement",
+        "name": "shared-counter",
+        "active": true,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        "source36Disabled": true,
+        "source171Disabled": true,
+        "globalModule": false,
+        "choice": 1,
+        "source170FrozenAcrossChangedDefaults": true,
+        "nativeSaveReloadBeforePickup": true,
+        "sourceCounterMessage": "REPLACEMENT NEXT 1/24/0/0/paired",
+        "readyCounterMessage": "REPLACEMENT READY 1/24/0/0/paired",
+        "oneTimePassPreserved": true,
+        "pairedStringPreserved": true,
+        "nativeSaveVersion": 924,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "f562bc6248efa04ab3dd4630cf70bc2e548d69eb3196f02888409c9fb757174a"
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801",
+    "scenarios": [
+      {
+        "kind": "mithril-replacement-legacy-producer",
+        "version": 923,
+        "day": 1,
+        "originalGold": 500
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "688f717b422a2fad89315a29b6553e27e68eea24a924510c04cda77871a71047"
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+    "scenarios": [
+      {
+        "kind": "mithril-replacement-legacy-consumer",
+        "inputVersion": 923,
+        "outputVersion": 924,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          500,
+          0
+        ],
+        "noRetroactiveReplacement": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "3d7722a1f2e0fef0ca9fe7a17980bababf485e8a7c28bc5ba5a5413a6f60e0e0"
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "errors": [],
+      "rawReportSha256": "2a0c39293ede63c2ce0e56f2f2aee6066a33f7085c4d5a61740d33be94bda538",
+      "scenarioCount": 7,
+      "scenarios": [
+        {
+          "kind": "points",
+          "scope": "Original point calculation; commander and set dependencies remain controlled stubs",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "class",
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "skill-level-routing",
+          "scope": "Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-numeric-calls",
+          "scope": "ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-constant-local-arrays",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-dynamic-local-arrays",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-quick-scope",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "errors": [],
+      "rawReportSha256": "5835f16e5bcbf5e092887757a920738b308236404ef00c3a8e1032bf8fd5a9b1",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-function-metadata",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ]
+    },
+    "signed-henchmen": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "errors": [],
+      "rawReportSha256": "e6094df43161d9ed671623519d64e35aa2fe03e51e75597e35ef7f6851aeaaaf",
+      "scenarioCount": 4,
+      "scenarios": [
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative"
+        }
+      ]
+    },
+    "source36": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "errors": [],
+      "rawReportSha256": "1e176e0376b1b514e8088bc488b70874c4c9f58a46307cf87fd93ad27d560da9",
+      "scenarioCount": 2,
+      "scenarios": [
+        {
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        {
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        }
+      ]
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "errors": [],
+      "rawReportSha256": "49577bd414926d44ac1cca7ab311da2417a124af73bbd9bc314dcf225f8e4e98",
+      "scenarioCount": 17,
+      "scenarios": [
+        "owned-mine-double-income-payment-and-stale-request",
+        "companion-and-mithril-transactions-coexist",
+        "native-dwelling-upgrade-preserves-stock",
+        "nearby-weekly-site-payment",
+        "advanced-university-payment",
+        "owned-shipyard-creates-lighthouse",
+        "town-magical-terrain-payment",
+        "monolith-exit-fog-revealed",
+        "monolith-camera-shows-exit-and-returns-to-selected-entrance",
+        "mobile-town-one-card-nine-terrain-picker-retains-chosen-option",
+        "phone-and-ipad-scrollable-layout",
+        "phone-and-ipad-real-touch-vertical-scroll-without-keyboard",
+        "companion-and-mithril-restored-from-same-save",
+        "native-save-reload",
+        "mine-expires-after-seven-income-periods",
+        "disabled-module-baseline",
+        "insufficient-mithril-rejected-by-server"
+      ]
+    },
+    "weekly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+      "errors": [],
+      "rawReportSha256": "7238c2524e606afec4fd7d48c3901378a9930428e429da407ac782ec520f439e",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "mithril-weekly-waterwheel",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    }
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 924,
+        "readerVersion": 923,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "4cbce6f404f123086b810d20a285049f8d5ccce4fdc2204ca24ba0dd630609b3"
+  },
+  "serialization": {
+    "previousSaveVersion": 923,
+    "saveVersion": 924,
+    "choiceCount": 21,
+    "legacyChoiceCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "legacyReplacementPolicy": 0,
+    "newReplacementPolicy": 1
+  },
+  "ui": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "9b849a010afe6dab01f712a56b95c19ce26afd7f8e258a1b52609f04c1f45f33"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.276-engine.tar.gz",
+    "sha256": "3c14a39b46ba14eda9e04ad53be43a88af3553f937ccd959b21c16795b21f150",
+    "runtimeByteIdenticalToTestedCandidate": true,
+    "runtimeFiles": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ],
+    "finalDockerRuntimeComparison": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ]
+  },
+  "remaining": [
+    "Source149 information callbacks and external MA:L changes in enhancement prices.",
+    "Arbitrary AR/FR setters, nonstandard native reward combinations and late external maximum-step overrides.",
+    "Complete gameplay profiles and exact ERA RNG sequence remain unadmitted; binary quantity evidence is static only."
+  ],
+  "publicationVerification": {
+    "release": "0.4.276",
+    "nodeTests": {
+      "total": 931,
+      "passed": 875,
+      "failed": 0,
+      "skipped": 56
+    },
+    "freshTumTests": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "siteBuild": true,
+    "siteVerified": true,
+    "nativeFilesByteVerified": 10464,
+    "transportBytes": 702295411
+  }
+}

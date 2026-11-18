@@ -31,7 +31,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -159,6 +159,17 @@ if opts['grailFixture']:
   town['options']={'name':'Grail '+faction,'army':[],'hasFort':True,'buildings':{'allOf':['core:villageHall','core:fort','core:dwellingLvl1']+(['core:grail'] if index==1 else []),'noneOf':['core:tavern']}}
   if owner and owner!='neutral':town['options']['owner']=owner
   objects.append(town)
+if opts['replacementFixture']:
+ objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
+ f=opts['replacementFixture']
+ for i in range(f.get('prefix',0)):
+  site('replacementPrefix'+str(i),'resource','gold',3+i,3)
+  objects[-1]['options']['amount']=500
+ if f.get('campfire'):site('replacementTarget','campfire','campfire',9,11)
+ else:
+  site('replacementTarget','resource',f['resource'],9,11)
+  objects[-1]['options']['amount']=f['amount']
+  if f.get('guarded'):objects[-1]['options']['guards']=[{'type':'core:peasant','amount':1}]
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
 if opts['extraDwellingFixture'] or opts['dwellingLevelFixture']:terrain=[['gr0_' for _ in row] for row in terrain]
@@ -173,7 +184,7 @@ if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
 if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
 entries['surface_terrain.json']=json.dumps(terrain).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
-if opts['monthlyFixture'] or opts['extraDwellingFixture'] or opts['dwellingLevelFixture']:header['events']=[]
+if opts['monthlyFixture'] or opts['extraDwellingFixture'] or opts['dwellingLevelFixture'] or opts['replacementFixture']:header['events']=[]
 if opts['grailFixture']:
  for day in [1,3]:
   header.setdefault('events',[]).append({'name':'private grail query day'+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
@@ -182,6 +193,8 @@ if opts['sourceOptions']:
   {'name':'private mithril option source','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native mithril option query'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}},
   {'name':'private mithril option next day','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}
  ])
+if opts['replacementFixture'] and opts['replacementFixture'].get('observeReady'):
+ header.setdefault('events',[]).append({'name':'inspect initial source170 counters','firstOccurrence':0,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['1'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['universityAi']:header['allowedArtifacts']={'anyOf':['core:speculum']}
 if opts['reroll']=='rng':header['allowedSpells']={'anyOf':['core:bless','core:haste','core:slow']}
 if opts['reroll']=='hut-rng':header['allowedAbilities']={'noneOf':['core:eagleEye']}
@@ -194,10 +207,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({resourceMithrilChoice=null,nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  let mapChoices=null;
  if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
   mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
@@ -307,6 +320,13 @@ async function boot({nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=
    await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
    assert.equal(await form.locator('input[data-wog-option="6"]:checked').inputValue(),String(wogChoice));
   }
+  if(resourceMithrilChoice!==null){
+   assert((await state()).wogOptions.length>=21,'Resource mithril option advertised by native engine');
+   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="20"][value="${resourceMithrilChoice}"]`).locator('..');
+   await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[20]===value,resourceMithrilChoice);
+  }
   if(weeklyMithrilChoice!==null){
    assert((await state()).wogOptions.length>=20,'Weekly mithril option advertised by native engine');
    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
@@ -349,7 +369,7 @@ async function boot({nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[14]===value,grailChoice);
   }
-  if(options.monthlyFixture||options.extraDwellingFixture||options.dwellingLevelFixture||options.reroll?.startsWith('weekly-')){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
+  if(options.monthlyFixture||options.extraDwellingFixture||options.dwellingLevelFixture||options.replacementFixture||options.reroll?.startsWith('weekly-')){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
   if(options.grailFixture){await command(109,3,0);await wait(()=>goonkMobileState.wogOptions[3]===0);}
   if(classic)await command(22);
   else if(desktop)await page.locator('[data-ui=begin]').click();
@@ -688,6 +708,16 @@ try{
  assert(data.offers.every(row=>!row.available));await command(1200,0,7,data.revision);await page.waitForTimeout(300);
  assert.equal((await state()).mithril.amount,0);assert.equal((await state()).mithril.revision,data.revision);
  report.scenarios.push('insufficient-mithril-rejected-by-server');await page.close();
+ }
+ if(process.env.CASES?.startsWith('mithril-replacement-legacy')){
+  const {runReplacementLegacy}=await import('./wog-mithril-replacement-cases.mjs');
+  await runReplacementLegacy({boot,walk,state,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:932})});
+ }
+ else if(process.env.CASES?.startsWith('mithril-replacement')){
+  const {runMithrilResourceReplacement}=await import('./wog-mithril-replacement-cases.mjs');
+  await runMithrilResourceReplacement({boot,walk,nextDay,state,command,wait,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:933})});
  }
  if(process.env.CASES==='weekly-windmill-upgrade'){
   const {runWindmillWeeklyUpgrade}=await import('./wog-mithril-weekly-cases.mjs');

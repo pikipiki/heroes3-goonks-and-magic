@@ -8,7 +8,7 @@
   "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "servedEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "44f840f364db1e092a4e44f9eccc6bd9da0807ac25b262027f96d8aef7a5981e",
+    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
     "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2197f8f9490fa23e47f7e327369fc67a143849619c10ca43a4ad882cfdbdb3b8",
     "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
     "scripts/era-bridge/gameplay/math-source.json": "ce4229eccf5ab8da74a8df806fa2ba82f0648be94e3518140834c933cdc95c41",
@@ -409,5 +409,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
+  },
+  "mithrilReplacementRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "44f840f364db1e092a4e44f9eccc6bd9da0807ac25b262027f96d8aef7a5981e"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
   }
 }

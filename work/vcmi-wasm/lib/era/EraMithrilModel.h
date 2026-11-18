@@ -55,6 +55,13 @@ inline bool weeklyEnabled(const IGameInfoCallback & cb)
             cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS));
     return weeklySourceContract(cb)&&state(cb)["weeklyEnabled"].Bool();
 }
+inline bool resourceReplacementEnabled(const IGameInfoCallback & cb)
+{
+    if(state(cb)["replacementRuleVersion"].isNull()&&cb.getDate(Date::DAY)==0)
+        return era_bridge::wogOptionEnabled(cb,era_bridge::WogOption::MithrilResourceReplacement,
+            cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS));
+    return state(cb)["replacementRuleVersion"].Integer()>=1&&state(cb)["replacementEnabled"].Bool();
+}
 inline GameResID resource()
 {
     for(const auto & object:LIBRARY->resourceTypeHandler->objects)

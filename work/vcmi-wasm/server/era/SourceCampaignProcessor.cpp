@@ -2604,6 +2604,12 @@ int32_t SourceCampaignProcessor::namedInteger(const std::string & name)
  const auto found=impl->vm.associative.find(era_campaign::associativeName(name));
  return found==impl->vm.associative.end()?0:found->second.integer;
 }
+void SourceCampaignProcessor::setNamedInteger(const std::string & name,int32_t value)
+{
+ impl->bind();if(!impl->active)return;
+ impl->vm.associative[era_campaign::associativeName(name)].integer=value;
+ impl->persist();
+}
 bool SourceCampaignProcessor::onReady(PlayerColor player){return impl->onReady(player);}
 bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
 {
