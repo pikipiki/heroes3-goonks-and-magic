@@ -4,12 +4,12 @@
   "completeRules": false,
   "advancedClassesProfileAdmitted": false,
   "scope": "Original acm_GetHeroClass lookup from controlled persistent mastery flags, not the class promotion system or complete Advanced Classes profile.",
-  "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+  "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
   "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
   "compilerOnlyChangeReusesVerifiedNativeEngine": true,
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
-    "scripts/era-bridge/campaigns/local-bindings.mjs": "eac9cc6d1ca09e4ad6abdc514da2c4424cdc68bbab83234728d59c6bd93280b0",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "ae3854ab1bf3e3610cb079eafb5ddf6647f666e314c581f3079f676b2e2eea66",
     "scripts/era-bridge/gameplay/advanced-class-identity.mjs": "0282dda77d77588f612f6025444589858bc0a276a66d62891db2db181771b597",
     "tests/fixtures/era-gameplay/advanced-class-identity-1.1.erm": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94",
     "work/browser-tests/wog-advanced-class-identity-cases.mjs": "8fad7e30a7a8b5da211c054efb11e8695614ea719f559f151a8dcf9c2e402f20",
@@ -244,7 +244,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "f1991c85652b242d5cee73ac67eb26d8a8aae2b81019e0bc82796f6b953fa452"
+      "sharedRunReportSha256": "d6f7a3917102246474439ff1c6aff172648a85d4fe84a83b72f248c580c3d82d"
     },
     "touchLandscape": {
       "passed": true,
@@ -423,7 +423,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2e8a7d557802623db93821cfbbaec886def241bebb61ec499e53c7990989f54c"
+      "sharedRunReportSha256": "faa02e1d542194c06ef6b0c2f329e830bbb5f45edd31c2df6ecc487a3e92c365"
     },
     "desktopMouse": {
       "passed": true,
@@ -602,7 +602,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2db3f00f00cb5ce6e8f70930e9ad568efeaeb59aad9270ac22ac7283e9dcd247"
+      "sharedRunReportSha256": "192d3aa5c0f2f8c88140e5004cd43435db94159c95ddbe674915b269d86b80cb"
     }
   },
   "webAssemblyVerification": {
@@ -620,8 +620,9 @@
     "warMachinesAdmitted": false
   },
   "compilerFollowUp": {
-    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
     "constantLocalArraysAstV4": true,
+    "explicitLocalFreeing": true,
     "groupedNativeRevalidation": true,
     "nativeEngineUnchanged": true,
     "validation": "scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json"
@@ -635,9 +636,9 @@
     "warMachinesAdmitted": false
   },
   "sourceContext": {
-    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
-    "mergingOriginCommit": "5933131f33d136b8417bc54fe91f7ed43e0991bc",
+    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
     "publishedEngine": "0.4.254",
+    "nativeEngineUnchanged": true,
     "localBuildByteIdenticalToPublishedEngine": true
   }
 }

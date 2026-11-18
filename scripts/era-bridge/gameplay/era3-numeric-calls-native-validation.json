@@ -4,14 +4,14 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "ERA3 numeric FU:P copy-in/copy-out in explicit ASTv4, keeping original358f calls unchanged. String/ERT arguments, modifiers, comparisons, macros and DO are unadmitted; full ERA/Advanced Classes/Reborn packs remain unadmitted.",
-  "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+  "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
   "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2",
     "scripts/era-bridge/campaigns/importer.mjs": "d19be1f5f4d4dab127a0317810fc11543bd7ea2790e8cb608c0fa129df3b7740",
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
-    "scripts/era-bridge/campaigns/local-bindings.mjs": "eac9cc6d1ca09e4ad6abdc514da2c4424cdc68bbab83234728d59c6bd93280b0",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "ae3854ab1bf3e3610cb079eafb5ddf6647f666e314c581f3079f676b2e2eea66",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "432c8665027a76065f449881ad4c2e2acb4552eed645f91f7c706761469f5aba",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "241a3eea158e64fc0dafd6bd4b508ca592f558ceda58cf03903c321793eb8e37",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "6510e6944769a1c8c3ca9b0d2712280eddbe1682ff4e1793ee7fcb2ab1997ccd",
@@ -550,7 +550,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "f1991c85652b242d5cee73ac67eb26d8a8aae2b81019e0bc82796f6b953fa452"
+      "sharedRunReportSha256": "d6f7a3917102246474439ff1c6aff172648a85d4fe84a83b72f248c580c3d82d"
     },
     "touchLandscape": {
       "passed": true,
@@ -990,7 +990,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2e8a7d557802623db93821cfbbaec886def241bebb61ec499e53c7990989f54c"
+      "sharedRunReportSha256": "faa02e1d542194c06ef6b0c2f329e830bbb5f45edd31c2df6ecc487a3e92c365"
     },
     "desktopMouse": {
       "passed": true,
@@ -1430,13 +1430,14 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2db3f00f00cb5ce6e8f70930e9ad568efeaeb59aad9270ac22ac7283e9dcd247"
+      "sharedRunReportSha256": "192d3aa5c0f2f8c88140e5004cd43435db94159c95ddbe674915b269d86b80cb"
     }
   },
   "compilerOnlyChangeReusesVerifiedNativeEngine": true,
   "compilerFollowUp": {
-    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
     "constantLocalArraysAstV4": true,
+    "explicitLocalFreeing": true,
     "groupedNativeRevalidation": true,
     "nativeEngineUnchanged": true,
     "validation": "scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json"
@@ -1456,9 +1457,9 @@
     "logSha256": "f8fb6ca69a55e92b7abe96d5fbe2be993dd17b24b2114d0082ec6d0086cfdc80"
   },
   "sourceContext": {
-    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
-    "mergingOriginCommit": "5933131f33d136b8417bc54fe91f7ed43e0991bc",
+    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
     "publishedEngine": "0.4.254",
+    "nativeEngineUnchanged": true,
     "localBuildByteIdenticalToPublishedEngine": true
   }
 }

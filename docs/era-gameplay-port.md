@@ -58,7 +58,7 @@ et hybrides, leur priorité, un autre héros et la préservation des variables
 lors d’un appel imbriqué. Les sauvegardes sont reprises au toucher en portrait
 et à la souris. Ces drapeaux sont des entrées contrôlées ; cette étape ne
 porte pas encore leur attribution par les promotions. Les tableaux à indices
-dynamiques, les variables locales `z`/`e` et la libération explicite restent refusés.
+dynamiques et les variables locales `z`/`e` restent refusés.
 La preuve bornée est `scripts/era-bridge/gameplay/advanced-class-identity-native-validation.json`.
 
 Les tableaux locaux numériques `x`/`y` à indices constants utilisent désormais
@@ -73,6 +73,16 @@ compilée conservent exactement leurs octets. Cette extension produit le contrat
 AST v4 existant ; elle ne simule pas les indices dynamiques et n’admet pas encore
 les helpers de tableaux de chaînes des packs complets. Preuve bornée :
 `scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json`.
+
+La libération explicite `VA(-nom)` des variables et tableaux `x`/`y` suit
+également l’allocateur ERA : récupération de la fin de plage ou ajout du bloc
+à la liste libre, puis première plage assez grande en partant de la plus récente.
+Les blocs voisins ne sont pas fusionnés. La réutilisation conserve le contenu
+des registres du déclencheur ; elle n’insère aucune remise à zéro. Les scénarios
+natifs vérifient les adresses effectivement choisies, les valeurs conservées,
+la réallocation d’un nom dans l’autre plage et une reprise pendant ce parcours.
+Les nouveaux déclencheurs repartent avec des plages vides et les mêmes limites.
+La preuve des tableaux ci-dessus couvre aussi ces règles de libération.
 
 Le bornage entier `VR:F` applique les limites dans l’ordre ERA (maximum,
 puis minimum), y compris pour un intervalle inversé, puis utilise la valeur

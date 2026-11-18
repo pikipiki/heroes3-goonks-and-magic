@@ -42,6 +42,38 @@ test('ERM2 constant arrays reject unknown extents, invalid bounds and conflictin
  assert.doesNotThrow(()=>compileErm('ZVSE2\n!?FU1;!#VA(a[2]:y);!#VA(a[2]:y);!!VR(a[-2]):S1;'));
 });
 
+test('ERM2 freeing reuses the first sufficient recent gap and rewinds only the allocation tail',()=>{
+ const p=compileErm(`ZVSE2
+!?FU1;
+!#VA(a[3]:y) (b[2]:y) (c[3]:y) (tail[2]:y);
+!#VA(-b) (-c);
+!#VA(small[2]:y) (pair[2]:y) (single:y);
+!#VA(-tail);
+!#VA(wide[4]:y);
+!!VRv1:S(@small);!!VRv2:S(@pair);!!VRv3:S(@single);!!VRv4:S(@wide);
+!#VA(-small) (-pair) (-single);
+!#VA(aligned[2]:y);
+!#VA(-wide);
+!#VA(end[3]:y);
+!#VA(-aligned) (-end);
+!#VA(reused:y) (pair:x);
+!!VRv5:S(@reused);!!VRv6:S(@pair);
+!?FU2;
+!#VA(a[100]:y) (b[16]:x);
+!!VRv7:S(@a);!!VRv8:S(@b);`);
+ assert.deepEqual(p.blocks[0].commands.map(c=>c.operations[0].args[0].number),[6,4,8,9,4,1]);
+ assert.deepEqual(p.blocks[1].commands.map(c=>c.operations[0].args[0].number),[1,1]);
+});
+
+test('ERM2 freeing preserves native fragmentation, rejects stale names and permits same-name allocation',()=>{
+ // ERA does not merge a freed gap with an adjacent tail range.
+ assert.throws(()=>compileErm('ZVSE2\n!?FU1;!#VA(a[3]:y) (b[97]:y);!#VA(-a) (-b);!#VA(all[100]:y);'),/pool exhausted/);
+ for(const statement of ['!#VA(-missing);','!#VA(a:y);!#VA(-a) (-a);','!#VA(a:y);!#VA(-a);!!VR(a):S1;'])
+  assert.throws(()=>compileErm('ZVSE2\n!?FU1;'+statement),/ERM2/);
+ const p=compileErm('ZVSE2\n!?FU1;!#VA(a[0]:y);!#VA(-a);!#VA(a[16]:x);!!VRv1:S(@a[-1]);');
+ assert.equal(p.blocks[0].commands[0].operations[0].args[0].number,16);
+});
+
 test('native local arrays preserve caller registers, copy-out and suspended frames on touch and mouse',()=>{
  const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
  const proof=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json'));
@@ -61,9 +93,12 @@ test('native local arrays preserve caller registers, copy-out and suspended fram
   assert.equal(s.nested,'ARRAY NESTED 6 values 71/72');assert.equal(s.returned,'ARRAY RETURN 78/2/23/7 locals 77/10/20/30');
   assert.equal(s.copied,'ARRAY OUTPUT 78/2/23/7');assert.equal(s.full,'ARRAY FULL 16/100 sizes 16/100 addr 16/100');
   assert.equal(s.zero,'ARRAY ZERO 42/43 size 1 addr 1/2');
+  assert.equal(s.layout,'FREE LAYOUT 6/4/8/9 values 31/32/21/33/41/42/0/0');
+  assert.equal(s.reused,'FREE REUSE 4 value 21 scalar 99');assert.equal(s.reusedSlotsNativeSaveReload,true);
   assert.equal(s.nestedNativeSaveReload,true);assert.equal(s.completedNativeSaveReload,true);
  }
  assert.equal(proof.reports.touchPortrait.scenarios[0].viewport.width,390);
  assert.equal(proof.reports.desktopMouse.scenarios[0].input,'mouse');
  assert.equal(proof.previousEngineSave.passed,true);
+ assert.equal(proof.freeingControl.previousCompilerRejectsFree,true);
 });

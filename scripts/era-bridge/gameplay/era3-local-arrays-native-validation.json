@@ -3,21 +3,21 @@
   "activation": false,
   "completeRules": false,
   "profilesAdmitted": false,
-  "scope": "ERA3 preprocessing of constant-index numeric x/y local arrays into the existing ASTv4 numeric register operations. Dynamic indices, local strings/floats and explicit freeing remain unadmitted.",
-  "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+  "scope": "ERA3 constant-index numeric x/y local arrays and explicit freeing, with source first-fit free ranges, lowered into the existing ASTv4 register operations. Dynamic indices and local strings/floats remain unadmitted.",
+  "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
   "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
   "compilerOnlyChangeReusesVerifiedNativeEngine": true,
   "sourceBindings": {
     "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
-    "scripts/era-bridge/campaigns/local-bindings.mjs": "eac9cc6d1ca09e4ad6abdc514da2c4424cdc68bbab83234728d59c6bd93280b0",
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "ae3854ab1bf3e3610cb079eafb5ddf6647f666e314c581f3079f676b2e2eea66",
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
-    "work/browser-tests/wog-era3-local-arrays-cases.mjs": "6fa8fa4b108cdfab4b31beb98915a528d7309ff2b1d571b30e95cb1c10c6d5b9",
+    "work/browser-tests/wog-era3-local-arrays-cases.mjs": "eae78df53dc10b9a38cbe8a0a1ccf580857e1d87773303afe3b559fa62769b9d",
     "work/browser-tests/wog-advanced-core-cases.mjs": "61ec4e3a7ede00ff449d8e1dfd0cfe2b4560503f669a73f3515295219b946919",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "432c8665027a76065f449881ad4c2e2acb4552eed645f91f7c706761469f5aba",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "241a3eea158e64fc0dafd6bd4b508ca592f558ceda58cf03903c321793eb8e37",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "6510e6944769a1c8c3ca9b0d2712280eddbe1682ff4e1793ee7fcb2ab1997ccd",
-    "tests/fixtures/era-gameplay/era3-local-arrays-reference.json": "cdea7996a11f1d1a7da57b22995c6aaafba7c87a21d1c08e5dc9d8c8a5092eb5"
+    "tests/fixtures/era-gameplay/era3-local-arrays-reference.json": "9593410cd806ebd6887952394b3d5fb092921cc373b799b6ce8ff0465d1e567f"
   },
   "upstreamReference": {
     "repository": "https://github.com/ethernidee/era",
@@ -54,9 +54,21 @@
         "endLine": 2479,
         "text": "      if not IsAddr then begin\n        if IsInStr and not IsIndirectAddressing then begin\n          Buf.Add('%');\n        end;\n\n        if IndexVar = nil then begin\n          Buf.Add(LocalVar.VarType + SysUtils.IntToStr(VarIndex));\n        end else begin\n          Buf.Add(LocalVar.VarType + 'y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end else begin\n        if IndexVar = nil then begin\n          Buf.Add(SysUtils.IntToStr(VarIndex));\n        end else if not IsInStr then begin\n          Buf.Add('y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end else begin\n          Buf.Add('%y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end;\n",
         "sha256": "c70361274bebb9b97eba5ab14670793cbc1045c6f432114f42316bee8ce1543d"
+      },
+      {
+        "startLine": 2104,
+        "endLine": 2131,
+        "text": "  procedure FreeLocalVar (const VarName: string);\n  var\n  {Un} LocalVar: TErmLocalVar;\n       VarsPool: PLocalVarsPool;\n       VarRange: PVarRange;\n\n  begin\n    LocalVar := LocalVars[VarName];\n\n    if LocalVar = nil then begin\n      ShowError(VarPos, 'Cannot free local ERM variable, which was never allocated. Variable name: ' + VarName);\n    end else begin\n      VarsPool := @LocalVarsPools[LocalVarCharToId(LocalVar.VarType)];\n\n      if VarsPool.StartIndex = (LocalVar.StartIndex + LocalVar.Count) then begin\n        Dec(VarsPool.StartIndex, LocalVar.Count);\n        Inc(VarsPool.Count, LocalVar.Count);\n      end else begin\n        New(VarRange);\n        VarRange.StartIndex := LocalVar.StartIndex;\n        VarRange.Count      := LocalVar.Count;\n        VarRange.NextRange  := VarsPool.FreeRanges;\n        VarsPool.FreeRanges := VarRange;\n      end;\n\n      LocalVars.DeleteItem(VarName);\n    end; // .else\n  end; // .procedure FreeLocalVar\n",
+        "sha256": "1825a10dd6a708b37c4f80fcb53c6ace541cf00aca31714dd21ef8840805c8c2"
+      },
+      {
+        "startLine": 2155,
+        "endLine": 2187,
+        "text": "    while not result and (VarRange <> nil) do begin\n      if VarRange.Count >= Count then begin\n        result              := true;\n        LocalVar            := TErmLocalVar.Create;\n        LocalVar.StartIndex := VarRange.StartIndex;\n        LocalVar.Count      := Count;\n        LocalVar.VarType    := VarType;\n        LocalVar.IsNegative := VarsPool.IsNegative;\n        LocalVars[VarName]  := LocalVar;\n\n        if VarRange.Count = Count then begin\n          if PrevRange = nil then begin\n            VarsPool.FreeRanges := VarRange.NextRange;\n          end else begin\n            PrevRange.NextRange := VarRange.NextRange;\n          end;\n\n          Dispose(VarRange);\n        end else begin\n          Inc(VarRange.StartIndex, Count);\n          Dec(VarRange.Count,      Count);\n        end;\n      end else begin\n        VarRange := VarRange.NextRange;\n      end; // .else\n\n      PrevRange := VarRange;\n    end; // .while\n\n    if not result then begin\n      if VarsPool.Count < Count then begin\n        ShowError(VarPos, 'Cannot allocate more local ' + VarType + '-vars');\n      end else begin\n",
+        "sha256": "b099f0585158e69c58ff8968044a27614e4bbeba795552e74147a00305b583c1"
       }
     ],
-    "scope": "Constant-index x/y local allocation, negative indices, SIZE and numeric addresses; dynamic index compiler temporaries and freeing remain outside this port."
+    "scope": "Constant-index x/y local allocation, negative indices, SIZE, numeric addresses and explicit freeing with source first-fit gaps. Dynamic index compiler temporaries and z/e locals remain outside this port."
   },
   "reports": {
     "touchPortrait": {
@@ -73,9 +85,12 @@
           "copied": "ARRAY OUTPUT 78/2/23/7",
           "full": "ARRAY FULL 16/100 sizes 16/100 addr 16/100",
           "zero": "ARRAY ZERO 42/43 size 1 addr 1/2",
+          "layout": "FREE LAYOUT 6/4/8/9 values 31/32/21/33/41/42/0/0",
+          "reused": "FREE REUSE 4 value 21 scalar 99",
           "nestedNativeSaveReload": true,
+          "reusedSlotsNativeSaveReload": true,
           "completedNativeSaveReload": true,
-          "programSha256": "57285d1440bb7ec3c9272002e95b910d2ed570f493325120764e9d4d92c2f89f",
+          "programSha256": "68bbc6473dab05977912d38b55aaed84db7a601d8f77032761b92b9280449ed9",
           "viewport": {
             "width": 390,
             "height": 844
@@ -84,8 +99,8 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "f1991c85652b242d5cee73ac67eb26d8a8aae2b81019e0bc82796f6b953fa452",
-      "programFileSha256": "8db5390d819991133327c163ba295cf08a130b6e9d453cbcaad57ae9eef4e833"
+      "sharedRunReportSha256": "d6f7a3917102246474439ff1c6aff172648a85d4fe84a83b72f248c580c3d82d",
+      "programFileSha256": "5ffd9a9609abfe80d3381017b2ab1c565d50fa94e19d623e7bbc7250bde926df"
     },
     "touchLandscape": {
       "passed": true,
@@ -101,9 +116,12 @@
           "copied": "ARRAY OUTPUT 78/2/23/7",
           "full": "ARRAY FULL 16/100 sizes 16/100 addr 16/100",
           "zero": "ARRAY ZERO 42/43 size 1 addr 1/2",
+          "layout": "FREE LAYOUT 6/4/8/9 values 31/32/21/33/41/42/0/0",
+          "reused": "FREE REUSE 4 value 21 scalar 99",
           "nestedNativeSaveReload": true,
+          "reusedSlotsNativeSaveReload": true,
           "completedNativeSaveReload": true,
-          "programSha256": "57285d1440bb7ec3c9272002e95b910d2ed570f493325120764e9d4d92c2f89f",
+          "programSha256": "68bbc6473dab05977912d38b55aaed84db7a601d8f77032761b92b9280449ed9",
           "viewport": {
             "width": 844,
             "height": 390
@@ -112,8 +130,8 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2e8a7d557802623db93821cfbbaec886def241bebb61ec499e53c7990989f54c",
-      "programFileSha256": "8db5390d819991133327c163ba295cf08a130b6e9d453cbcaad57ae9eef4e833"
+      "sharedRunReportSha256": "faa02e1d542194c06ef6b0c2f329e830bbb5f45edd31c2df6ecc487a3e92c365",
+      "programFileSha256": "5ffd9a9609abfe80d3381017b2ab1c565d50fa94e19d623e7bbc7250bde926df"
     },
     "desktopMouse": {
       "passed": true,
@@ -129,9 +147,12 @@
           "copied": "ARRAY OUTPUT 78/2/23/7",
           "full": "ARRAY FULL 16/100 sizes 16/100 addr 16/100",
           "zero": "ARRAY ZERO 42/43 size 1 addr 1/2",
+          "layout": "FREE LAYOUT 6/4/8/9 values 31/32/21/33/41/42/0/0",
+          "reused": "FREE REUSE 4 value 21 scalar 99",
           "nestedNativeSaveReload": true,
+          "reusedSlotsNativeSaveReload": true,
           "completedNativeSaveReload": true,
-          "programSha256": "57285d1440bb7ec3c9272002e95b910d2ed570f493325120764e9d4d92c2f89f",
+          "programSha256": "68bbc6473dab05977912d38b55aaed84db7a601d8f77032761b92b9280449ed9",
           "viewport": {
             "width": 1440,
             "height": 900
@@ -140,8 +161,8 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2db3f00f00cb5ce6e8f70930e9ad568efeaeb59aad9270ac22ac7283e9dcd247",
-      "programFileSha256": "8db5390d819991133327c163ba295cf08a130b6e9d453cbcaad57ae9eef4e833"
+      "sharedRunReportSha256": "192d3aa5c0f2f8c88140e5004cd43435db94159c95ddbe674915b269d86b80cb",
+      "programFileSha256": "5ffd9a9609abfe80d3381017b2ab1c565d50fa94e19d623e7bbc7250bde926df"
     }
   },
   "legacyAst": {
@@ -173,14 +194,19 @@
   },
   "remaining": [
     "Dynamic indices require source compiler temporaries and clamping semantics.",
-    "Explicit local freeing and fragmented pool reallocation.",
-    "Local z/e arrays and complete Advanced Classes/Reborn array helpers.",
+    "Local z/e arrays, their pool management and complete Advanced Classes/Reborn array helpers.",
     "Full gameplay profiles remain disabled."
   ],
   "sourceContext": {
-    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
-    "mergingOriginCommit": "5933131f33d136b8417bc54fe91f7ed43e0991bc",
+    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
     "publishedEngine": "0.4.254",
+    "nativeEngineUnchanged": true,
     "localBuildByteIdenticalToPublishedEngine": true
+  },
+  "freeingControl": {
+    "sourceBaseCommit": "771a5c4e6317a9688c59330ba58815227b17fbb2",
+    "previousCompilerRejectsFree": true,
+    "passed": true,
+    "logSha256": "f28614812850117c21b8db61f36a7011e72dd0f8efb5a91337d11104ed6080e3"
   }
 }

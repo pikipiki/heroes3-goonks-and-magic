@@ -33,7 +33,19 @@
       "endLine": 2479,
       "text": "      if not IsAddr then begin\n        if IsInStr and not IsIndirectAddressing then begin\n          Buf.Add('%');\n        end;\n\n        if IndexVar = nil then begin\n          Buf.Add(LocalVar.VarType + SysUtils.IntToStr(VarIndex));\n        end else begin\n          Buf.Add(LocalVar.VarType + 'y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end else begin\n        if IndexVar = nil then begin\n          Buf.Add(SysUtils.IntToStr(VarIndex));\n        end else if not IsInStr then begin\n          Buf.Add('y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end else begin\n          Buf.Add('%y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end;\n",
       "sha256": "c70361274bebb9b97eba5ab14670793cbc1045c6f432114f42316bee8ce1543d"
+    },
+    {
+      "startLine": 2104,
+      "endLine": 2131,
+      "text": "  procedure FreeLocalVar (const VarName: string);\n  var\n  {Un} LocalVar: TErmLocalVar;\n       VarsPool: PLocalVarsPool;\n       VarRange: PVarRange;\n\n  begin\n    LocalVar := LocalVars[VarName];\n\n    if LocalVar = nil then begin\n      ShowError(VarPos, 'Cannot free local ERM variable, which was never allocated. Variable name: ' + VarName);\n    end else begin\n      VarsPool := @LocalVarsPools[LocalVarCharToId(LocalVar.VarType)];\n\n      if VarsPool.StartIndex = (LocalVar.StartIndex + LocalVar.Count) then begin\n        Dec(VarsPool.StartIndex, LocalVar.Count);\n        Inc(VarsPool.Count, LocalVar.Count);\n      end else begin\n        New(VarRange);\n        VarRange.StartIndex := LocalVar.StartIndex;\n        VarRange.Count      := LocalVar.Count;\n        VarRange.NextRange  := VarsPool.FreeRanges;\n        VarsPool.FreeRanges := VarRange;\n      end;\n\n      LocalVars.DeleteItem(VarName);\n    end; // .else\n  end; // .procedure FreeLocalVar\n",
+      "sha256": "1825a10dd6a708b37c4f80fcb53c6ace541cf00aca31714dd21ef8840805c8c2"
+    },
+    {
+      "startLine": 2155,
+      "endLine": 2187,
+      "text": "    while not result and (VarRange <> nil) do begin\n      if VarRange.Count >= Count then begin\n        result              := true;\n        LocalVar            := TErmLocalVar.Create;\n        LocalVar.StartIndex := VarRange.StartIndex;\n        LocalVar.Count      := Count;\n        LocalVar.VarType    := VarType;\n        LocalVar.IsNegative := VarsPool.IsNegative;\n        LocalVars[VarName]  := LocalVar;\n\n        if VarRange.Count = Count then begin\n          if PrevRange = nil then begin\n            VarsPool.FreeRanges := VarRange.NextRange;\n          end else begin\n            PrevRange.NextRange := VarRange.NextRange;\n          end;\n\n          Dispose(VarRange);\n        end else begin\n          Inc(VarRange.StartIndex, Count);\n          Dec(VarRange.Count,      Count);\n        end;\n      end else begin\n        VarRange := VarRange.NextRange;\n      end; // .else\n\n      PrevRange := VarRange;\n    end; // .while\n\n    if not result then begin\n      if VarsPool.Count < Count then begin\n        ShowError(VarPos, 'Cannot allocate more local ' + VarType + '-vars');\n      end else begin\n",
+      "sha256": "b099f0585158e69c58ff8968044a27614e4bbeba795552e74147a00305b583c1"
     }
   ],
-  "scope": "Constant-index x/y local allocation, negative indices, SIZE and numeric addresses; dynamic index compiler temporaries and freeing remain outside this port."
+  "scope": "Constant-index x/y local allocation, negative indices, SIZE, numeric addresses and explicit freeing with source first-fit gaps. Dynamic index compiler temporaries and z/e locals remain outside this port."
 }

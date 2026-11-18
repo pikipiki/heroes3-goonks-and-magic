@@ -32,11 +32,31 @@ export function localArraysFixture(){
 !!VR(empty):S42;
 !!VR(tail):S43;
 !!IF:M^ARRAY ZERO %(empty)/%(tail) size %(empty[SIZE]) addr %(@empty)/%(@tail)^;
+!?FU9423;
+!#VA(a[3]:y) (b[2]:y) (c[3]:y) (tail[2]:y);
+!!VR(a):C11/12/13;
+!!VR(b):C21/22;
+!!VR(c):C31/32/33;
+!!VR(tail):C41/42;
+!#VA(-b) (-c);
+!#VA(small[2]:y) (pair[2]:y) (single:y);
+!#VA(-tail);
+!#VA(wide[4]:y);
+!!IF:M^FREE LAYOUT %(@small)/%(@pair)/%(@single)/%(@wide) values %(small[0])/%(small[1])/%(pair[0])/%(single)/%(wide[0])/%(wide[1])/%(wide[2])/%(wide[3])^;
+!#VA(-small) (-pair) (-single);
+!#VA(aligned[2]:y);
+!#VA(-wide);
+!#VA(end[3]:y);
+!#VA(-aligned) (-end);
+!#VA(reused:y) (pair:x);
+!!VR(pair):S99;
+!!IF:M^FREE REUSE %(@reused) value %(reused) scalar %(pair)^;
 !#VRv980:S1;!#VRv981:S2;!#VRv982:S3;!#VRv983:S4;
 !#FU9419:P?v980/?v981/?v982/?v983;
 !#IF:M^ARRAY OUTPUT %V980/%V981/%V982/%V983^;
 !#FU9421:P;
-!#FU9422:P;`;
+!#FU9422:P;
+!#FU9423:P;`;
  const p=compileErm(Buffer.from(source),{source:'Private ERA3 constant local-array probe',bindings:{ARRAY_SIZE:3}});
  p.originalMessages=['ZVSE private native companion town continuation'];return p;
 }
@@ -56,9 +76,13 @@ export async function runLocalArrays({boot,state,wait,page,report,output,save}){
  const copied=await check('ARRAY OUTPUT 78/2/23/7');
  const full=await check('ARRAY FULL 16/100 sizes 16/100 addr 16/100');
  const zero=await check('ARRAY ZERO 42/43 size 1 addr 1/2');
+ const layout='FREE LAYOUT 6/4/8/9 values 31/32/21/33/41/42/0/0';await read(layout);
+ const freed=await save();fs.writeFileSync(path.join(output,'local-arrays-reused-slots.vsgm1'),freed);
+ await page().close();await boot({...options,save:[...freed],expectedDialog:'source-campaign'});await read(layout);await ack();
+ const reused=await check('FREE REUSE 4 value 21 scalar 99');
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
  const bytes=await save();fs.writeFileSync(path.join(output,'local-arrays-complete.vsgm1'),bytes);
  await page().close();await boot({...options,save:[...bytes]});assert.equal((await state()).mode,'map');
- report.scenarios.push({kind:'era3-constant-local-arrays',entry,nested,returned,copied,full,zero,nestedNativeSaveReload:true,completedNativeSaveReload:true,programSha256:scriptProgram.sha256,viewport:page().viewportSize(),input:process.env.GROWTH_DESKTOP==='1'?'mouse':'touch'});
+ report.scenarios.push({kind:'era3-constant-local-arrays',entry,nested,returned,copied,full,zero,layout,reused,nestedNativeSaveReload:true,reusedSlotsNativeSaveReload:true,completedNativeSaveReload:true,programSha256:scriptProgram.sha256,viewport:page().viewportSize(),input:process.env.GROWTH_DESKTOP==='1'?'mouse':'touch'});
  await page().close();
 }
