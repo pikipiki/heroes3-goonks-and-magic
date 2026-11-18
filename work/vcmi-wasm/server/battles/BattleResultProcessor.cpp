@@ -398,8 +398,7 @@ void BattleResultProcessor::endBattleConfirmPrepared(const CBattleInfoCallback &
 	if(!finishingBattle->isDraw() && finishingBattle->winnerSide==BattleSide::ATTACKER && attackerHero && !defenderHero)
 		CGMysteriousCave::grantNeutralLoot(*gameHandler,attackerHero);
 
-    era_compat::henchmen::finishBattle(*gameHandler,battle,finishingBattle->winnerSide,
-        finishingBattle->isDraw(),henchmanHeroExperience);
+    era_compat::henchmen::finishBattle(*gameHandler,battle,henchmanHeroExperience);
 
 	// Add statistics
 	if(!finishingBattle->isDraw())

@@ -4,8 +4,8 @@
   "completeRules": false,
   "advancedClassesProfileAdmitted": false,
   "scope": "Original acm_GetSecSkillLevel and acm_SetSecSkillLevel routing against native Pathfinding with controlled extra-level flag adapters; original source array/string helpers, mastery effects and full profile are unadmitted.",
-  "sourceBaseCommit": "63a5a438fdff1289becb98f338f42675de50989f",
-  "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+  "sourceBaseCommit": "f64852a96088bd1ecf838d9c64c7439fdfc3edb0",
+  "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "54be127c1ed4b97810b3d4654d4624c61e358e91f6f58b8c1301bbe2fb5a60eb",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "848ee7c79afd9783e22c90389b73d454816b7ab3f71750f0bd99f2f7bad26df3",
@@ -15,7 +15,7 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
     "work/browser-tests/wog-advanced-core-cases.mjs": "478e1a5cc97f19323b17563cdbd46dd8b2e3bdcef1b9f759f5ff3345fe4b7773",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "de6a6f55e0c7f2c52e0f547828b090c14e8570ca46af933e081e564869a86dcc",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "7c65369de6ddef87d532f1f6d2e419679e18969f15a62c6e022cc91b1dfc91c3",
     "scripts/era-bridge/gameplay/advanced-class-skill-levels.mjs": "ffd721a061c4f4df87ad03b712989d80c2a26a2341ead41ce28c7817d2a6ee45",
     "tests/fixtures/era-gameplay/advanced-class-skill-levels-1.1.erm": "93fd9124497fa6524bd189b296ae0ab5256a5cd73852e43f1f71d0d5284d9557",
     "tests/native/EraCampaignExecutor.test.cpp": "7a3cf2adc7c591a1f22f85e92082e8ded6adb71fae0a55ed0efd889f3ad93f32",
@@ -30,8 +30,8 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 5,
-    "logSha256": "7e6f7c3642ac780fe333af13b065f023e3079b94dc65f3a92ac514389f46e438",
+    "targets": 9,
+    "logSha256": "ec37eb65c320eefbac788e10b14639abb3e7e35556c8af5ac65990950ae2c525",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -79,7 +79,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
       "scenarios": [
         {
           "kind": "points",
@@ -513,13 +513,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "40434dd38c39dc8a69f05e9132043f8263b9fcaf755b307abb9df5c8299216c8"
+      "sharedRunReportSha256": "a8134e56bd8046c9cad3fe1ea03b05648e73a4c1ac1caba076f1df6087c0bd98"
     },
     "touchLandscape": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
       "scenarios": [
         {
           "kind": "points",
@@ -953,13 +953,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "07512dadd2166df380f4e3865a766a2728266b358f8e20af6f97472581f3edbf"
+      "sharedRunReportSha256": "d47ba7c19663f39d00bcb3e4f797bd521c941e5d2eb12e0ec92fcdbd2165e7f0"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
       "scenarios": [
         {
           "kind": "points",
@@ -1393,18 +1393,18 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2c947b388ef074dcf3941ba7ab8491515768a96ee001a54aaf4d582e560a8732"
+      "sharedRunReportSha256": "63df19d259c32e98e99fb8cc540c0e823b8a65381b7606e3a79173ba08a90546"
     }
   },
   "previousEngineSave": {
     "passed": true,
     "scope": "native-core-only",
     "completeRules": false,
-    "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+    "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
     "scenarios": [
       "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
     ],
     "errors": [],
-    "sharedRunReportSha256": "126b6bfb1eee2921bbfd2c67f8020f00d71b39d6defbfb57c41a8e2bc66ce920"
+    "sharedRunReportSha256": "687a620deca5df88b2d2d15d04f3146bbb93933cdc03ec8d9c8af3c920c0fda3"
   }
 }

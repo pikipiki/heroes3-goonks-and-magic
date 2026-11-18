@@ -30,7 +30,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
+function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -40,6 +40,11 @@ if opts['scriptTown'] or opts['scriptAI']:
  import copy
  town=next(o for o in objects if o['instanceName']=='goonkTown');castle=next(o for o in objects if o['instanceName']=='enemyTown')
  town.update({'subtype':'core:castle','x':10,'template':copy.deepcopy(castle['template']),'options':{'owner':'red','name':'Goonkbourg','hasFort':True,'army':[],'buildings':{'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']}}})
+if opts['retreatFixture']:
+ import copy
+ town=next(o for o in objects if o['instanceName']=='goonkTown');castle=next(o for o in objects if o['instanceName']=='enemyTown')
+ town.update({'subtype':'core:castle','template':copy.deepcopy(castle['template'])})
+ town['options']['buildings']={'allOf':['core:villageHall','core:fort','core:tavern'],'noneOf':[]}
 if opts['aiTown']:
  town=next(o for o in objects if o['instanceName']=='enemyTown')
  town['options']['buildings']={'allOf':['core:villageHall','core:fort','core:mageGuild1'],'noneOf':['core:tavern']}
@@ -121,7 +126,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
+`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
 }
 
 async function boot({save,viewport,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
@@ -290,6 +295,10 @@ try{
  if(process.env.CASES==='army-growth'){
   const {runArmyGrowth}=await import('./wog-map-army-growth-cases.mjs');
   await runArmyGrowth({boot,sheet,state,command,wait,approachEnemy,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:940})});
+ }
+ if(process.env.CASES==='battle-outcomes'){
+  const {runBattleOutcomes}=await import('./wog-henchmen-battle-outcomes-cases.mjs');
+  await runBattleOutcomes({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:945})});
  }
  if(process.env.CASES==='battle-start-experience'){
   const {runBattleStartExperience}=await import('./wog-henchmen-battle-experience-cases.mjs');

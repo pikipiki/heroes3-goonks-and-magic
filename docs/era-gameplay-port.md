@@ -99,6 +99,17 @@ arguments de comparaison, les boucles `DO` et l’introspection des arguments
 restent hors de ce mode borné. Cette étape ne valide pas le profil complet.
 La preuve est `scripts/era-bridge/gameplay/era3-numeric-calls-native-validation.json`.
 
+Le traitement de fin de combat Henchmen suit aussi les deux côtés, sans filtre
+supplémentaire sur le vainqueur ou le match nul. Le script source applique son
+filtre de gain nul uniquement avec `campaignTransfer`. Six parcours natifs
+vérifient un compagnon humain vivant après retraite : 100 points fixes avec
+transfert désactivé, zéro avec transfert activé, sans expérience pour le héros.
+Le héros retiré est inspecté dans la taverne avant recrutement, puis de nouveau
+après une sauvegarde/reprise, sur téléphone portrait/paysage et à la souris.
+Un témoin avec l'ancien moteur confirme la récompense manquante. Les combats
+nuls, autres pertes, gains négatifs et acteurs absents restent à vérifier.
+La preuve est `scripts/era-bridge/gameplay/henchmen-battle-outcomes-native-validation.json`.
+
 ## Références récupérées
 
 Distribution officielle :
