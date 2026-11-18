@@ -60,6 +60,25 @@ struct Command
  std::vector<Operation> operations;
  std::size_t visibleBlocks=static_cast<std::size_t>(-1);
 };
+inline void validateEra3FunctionMetadata(const Command & command,const Operation & operation)
+{
+ if(!command.selectors.empty())throw std::runtime_error("ERA3 function metadata takes no selector");
+ const auto & args=operation.args;
+ if(operation.code=="A")
+ {
+  if(args.empty()||args.size()>16)throw std::runtime_error("Invalid ERA3 FU:A argument count");
+  for(const auto & arg:args)
+   if(!era3IntegerArgument(arg)||(arg.access!=Access::Read&&args.size()!=1))
+    throw std::runtime_error("ERA3 FU:A requires integer defaults or one numeric output");
+ }
+ else if(operation.code=="S")
+ {
+  if(args.size()!=2||args[0].access!=Access::Read||args[1].access!=Access::Write
+   ||!era3IntegerArgument(args[0])||!era3IntegerArgument(args[1]))
+   throw std::runtime_error("ERA3 FU:S requires an integer index and numeric output");
+ }
+ else throw std::runtime_error("Unknown ERA3 function metadata operation");
+}
 struct Trigger
 {
  std::string receiver;
@@ -72,6 +91,7 @@ struct Program
 {
  std::string sha256,source;
  bool era3IntegerCalls=false;
+ bool era3FunctionMetadata=false;
  std::vector<Command> initializers;
  std::vector<Trigger> blocks;
 };

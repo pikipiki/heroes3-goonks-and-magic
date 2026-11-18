@@ -95,9 +95,22 @@ Un témoin natif vérifie l’ancien résultat avant et après le changement. Le
 parcours ERA 3 vérifient les sorties numériques ordinaires, nommées et rapides,
 les destinations dupliquées, les registres de l’appelant et la sauvegarde
 suspendue dans un appel imbriqué. Les chaînes/ERT, les modificateurs, les
-arguments de comparaison, les boucles `DO` et l’introspection des arguments
-restent hors de ce mode borné. Cette étape ne valide pas le profil complet.
+arguments de comparaison et les boucles `DO` restent hors de ce mode borné.
+Cette étape ne valide pas le profil complet.
 La preuve est `scripts/era-bridge/gameplay/era3-numeric-calls-native-validation.json`.
+
+Le nombre d’arguments et leurs indicateurs de syntaxe numériques sont portés
+avec `FU:A` et `FU:S` dans un contrat AST v5 explicite. Les arguments manquants
+peuvent recevoir des valeurs par défaut ; ces valeurs sont évaluées avant la
+modification des registres. Un argument transmis en sortie donne l’indicateur
+zéro, une entrée ordinaire ou non transmise donne un. Les extensions à chaînes,
+flottants et modificateurs restent refusées. Le lecteur précédent accepte
+v4 et refuse v5 avant exécution. Le codec réel et les parcours natifs vérifient
+les appels sans argument, les 16 arguments, les destinations nommées/rapides,
+les valeurs par défaut dépendantes et les métadonnées d’appels imbriqués
+après sauvegarde/reprise en portrait, paysage et à la souris. Cette étape
+ne valide pas les profils complets.
+La preuve est `scripts/era-bridge/gameplay/era3-function-metadata-native-validation.json`.
 
 Le traitement de fin de combat Henchmen suit aussi les deux côtés, sans filtre
 supplémentaire sur le vainqueur ou le match nul. Le script source applique son

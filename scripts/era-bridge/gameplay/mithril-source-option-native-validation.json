@@ -4,8 +4,8 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Read-only source UN:P36 matches canonical frozen native Mithril activation; existing inactive Potion Fountains UN:P17 stays zero. No source setters or additional option IDs admitted.",
-  "sourceBaseCommit": "63a5a438fdff1289becb98f338f42675de50989f",
-  "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+  "sourceBaseCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
+  "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
@@ -13,13 +13,13 @@
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b041dc4b4b3354f065abd6775bd18f71e7dd43f57a99d876c34060b3a1f8ac08",
-    "scripts/era-bridge/campaigns/parser.mjs": "54be127c1ed4b97810b3d4654d4624c61e358e91f6f58b8c1301bbe2fb5a60eb"
+    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 5,
-    "logSha256": "7e6f7c3642ac780fe333af13b065f023e3079b94dc65f3a92ac514389f46e438",
+    "targets": 20,
+    "logSha256": "f2a4bf28e3e29b10e72d9e0783626882e68af871559649bee249a383f976ea59",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -42,7 +42,7 @@
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "globalModule": false,
@@ -148,14 +148,14 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "5f78ae30d88e8c0447fa1f240f0bce4594ff4368db9d3f5cbf57aa80e99bb0ee",
+      "sharedRunReportSha256": "7808bf334ab97eec870875e382fc75ab26821cd3e0b596b7f896d5f20582ac46",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     },
     "touchPortrait": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "globalModule": true,
@@ -193,14 +193,14 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "fbb8ffb8b89ab0194d410f061cf3a81a712c42f320d1fa85e29a2b80a64a0804",
+      "sharedRunReportSha256": "f1dad8056542a8a266d3589b1be9ec7166f52ec1e2006c9c525c33e268e43e15",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "globalModule": false,
@@ -238,7 +238,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "b638a994dd597e67463ed609ebb7756a11d167d8c319cc6722ed1b3cd5fa38d6",
+      "sharedRunReportSha256": "ea0889f2c4a1655354d689d67b7b74d3dcfe77ca9cf0ec7d7306b4690ca2ea36",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     }
   },
@@ -269,11 +269,11 @@
     "passed": true,
     "scope": "native-core-only",
     "completeRules": false,
-    "engineSha256": "66e684ea0bb5e3adff50e777007d79102edd50392c4bb298bfacd4a6d32f7bd4",
+    "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
     "scenarios": [
       "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
     ],
     "errors": [],
-    "sharedRunReportSha256": "126b6bfb1eee2921bbfd2c67f8020f00d71b39d6defbfb57c41a8e2bc66ce920"
+    "sharedRunReportSha256": "383fcdab7d7a7cf3ade3a6c413507d4bf3ef4a1c3df230c859108ed069d6493d"
   }
 }

@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "ERA3 numeric FU:A defaults/count and FU:S argument syntax indicators in explicit AST v5. Query outputs flag0, ordinary/unpassed integer inputs flag1; strings, floats, modifiers and DO remain unadmitted. No complete gameplay profile admission.",
+  "sourceBaseCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
+  "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+  "sourceBindings": {
+    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
+    "scripts/era-bridge/campaigns/importer.mjs": "d19be1f5f4d4dab127a0317810fc11543bd7ea2790e8cb608c0fa129df3b7740",
+    "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2",
+    "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "432c8665027a76065f449881ad4c2e2acb4552eed645f91f7c706761469f5aba",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "241a3eea158e64fc0dafd6bd4b508ca592f558ceda58cf03903c321793eb8e37",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "6510e6944769a1c8c3ca9b0d2712280eddbe1682ff4e1793ee7fcb2ab1997ccd",
+    "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
+    "work/browser-tests/wog-era3-function-metadata-cases.mjs": "50602bab31eb91a668bafd2d8ba19aa018287b7ff20320513b734c4ffc51bb7b"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 20,
+    "logSha256": "f2a4bf28e3e29b10e72d9e0783626882e68af871559649bee249a383f976ea59",
+    "unverifiedWarMachineHooksExcluded": true,
+    "warMachinesAdmitted": false
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ethernidee/era",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "file": "Erm.pas",
+    "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "functions": [
+      "Hook_FU_EXT",
+      "GetParamFuSyntaxFlags"
+    ],
+    "referenceKind": "source, not an execution of the Windows ERA binary",
+    "metadataLines": [
+      8790,
+      8839
+    ],
+    "syntaxFlagLines": [
+      8505,
+      8515
+    ]
+  },
+  "codec": {
+    "exitCode": 0,
+    "addressSanitizer": true,
+    "undefinedBehaviorSanitizer": true,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pendingContinuationMetadataReload": true,
+    "malformedArgumentsAndIndexRangeRejected": true
+  },
+  "oldReaderControl": {
+    "sourceCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
+    "headerSha256": "a289652c66fa328bb36d03c8c0b3110ed402bb37f9f078e8058a3406e14badc9",
+    "probeSha256": "25e25e601655b4460bc3fee154c88fe0e558aebf320b5f9b055c8e1fc69bfd23",
+    "v4Accepted": true,
+    "v5RejectedBeforeScriptExecution": true,
+    "addressSanitizer": true,
+    "undefinedBehaviorSanitizer": true,
+    "exitCode": 0
+  },
+  "legacyAst": {
+    "checked": 133,
+    "rejectedKnownMalformedSources": 4,
+    "byteIdenticalLegacyAst": true,
+    "logSha256": "d843689cb4bd6bf99ca3757485b0f6ad66b4faeeec9261b687e130e5dae0586f"
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+      "scenarios": [
+        {
+          "kind": "era3-function-metadata",
+          "cases": [
+            {
+              "text": "META ROW 0 0 11/22/33 flags 1/1/1 count 0",
+              "returned": "META RETURN 0 0/1",
+              "count": 0,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 1 1 7/22/33 flags 1/1/1 count 1",
+              "returned": "META RETURN 1 1/1",
+              "count": 1,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 2 1 8/22/33 flags 0/1/1 count 1",
+              "returned": "META RETURN 2 1/0",
+              "count": 1,
+              "flag": 0
+            },
+            {
+              "text": "META ROW 3 2 7/8/33 flags 1/0/1 count 2",
+              "returned": "META RETURN 3 2/1",
+              "count": 2,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 4 16 1/2/3 flags 1/1/0 count 16",
+              "returned": "META RETURN 4 16/1",
+              "count": 16,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 5 1 9/22/33 flags 0/1/1 count 1",
+              "returned": "META RETURN 5 1/0",
+              "count": 1,
+              "flag": 0
+            }
+          ],
+          "nested": "META NESTED 2/1/2/1 caller 9/10",
+          "defaults": "META DEFAULTS 44/5/6 count 0",
+          "rootCount": 0,
+          "rootSyntax": 1,
+          "namedCountAndFastSyntax": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "programSha256": "d4e5c995b0be77d011186486175fe21c0f9a06f3f03264aa6728e9f0d366138d",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "6c1124ca5f1e11121407dfc56cc142a1ed164d233c7283e10338b13aab8d05fd"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+      "scenarios": [
+        {
+          "kind": "era3-function-metadata",
+          "cases": [
+            {
+              "text": "META ROW 0 0 11/22/33 flags 1/1/1 count 0",
+              "returned": "META RETURN 0 0/1",
+              "count": 0,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 1 1 7/22/33 flags 1/1/1 count 1",
+              "returned": "META RETURN 1 1/1",
+              "count": 1,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 2 1 8/22/33 flags 0/1/1 count 1",
+              "returned": "META RETURN 2 1/0",
+              "count": 1,
+              "flag": 0
+            },
+            {
+              "text": "META ROW 3 2 7/8/33 flags 1/0/1 count 2",
+              "returned": "META RETURN 3 2/1",
+              "count": 2,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 4 16 1/2/3 flags 1/1/0 count 16",
+              "returned": "META RETURN 4 16/1",
+              "count": 16,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 5 1 9/22/33 flags 0/1/1 count 1",
+              "returned": "META RETURN 5 1/0",
+              "count": 1,
+              "flag": 0
+            }
+          ],
+          "nested": "META NESTED 2/1/2/1 caller 9/10",
+          "defaults": "META DEFAULTS 44/5/6 count 0",
+          "rootCount": 0,
+          "rootSyntax": 1,
+          "namedCountAndFastSyntax": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "programSha256": "d4e5c995b0be77d011186486175fe21c0f9a06f3f03264aa6728e9f0d366138d",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "c577bcb077b6508b8b7e63351121244908aa0f19fc46b920a3ea62180eeef4f5"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+      "scenarios": [
+        {
+          "kind": "era3-function-metadata",
+          "cases": [
+            {
+              "text": "META ROW 0 0 11/22/33 flags 1/1/1 count 0",
+              "returned": "META RETURN 0 0/1",
+              "count": 0,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 1 1 7/22/33 flags 1/1/1 count 1",
+              "returned": "META RETURN 1 1/1",
+              "count": 1,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 2 1 8/22/33 flags 0/1/1 count 1",
+              "returned": "META RETURN 2 1/0",
+              "count": 1,
+              "flag": 0
+            },
+            {
+              "text": "META ROW 3 2 7/8/33 flags 1/0/1 count 2",
+              "returned": "META RETURN 3 2/1",
+              "count": 2,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 4 16 1/2/3 flags 1/1/0 count 16",
+              "returned": "META RETURN 4 16/1",
+              "count": 16,
+              "flag": 1
+            },
+            {
+              "text": "META ROW 5 1 9/22/33 flags 0/1/1 count 1",
+              "returned": "META RETURN 5 1/0",
+              "count": 1,
+              "flag": 0
+            }
+          ],
+          "nested": "META NESTED 2/1/2/1 caller 9/10",
+          "defaults": "META DEFAULTS 44/5/6 count 0",
+          "rootCount": 0,
+          "rootSyntax": 1,
+          "namedCountAndFastSyntax": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "programSha256": "d4e5c995b0be77d011186486175fe21c0f9a06f3f03264aa6728e9f0d366138d",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "8d1daaafc0c8828b65685963649a41355b965a5675aedd1c472d216165332a46"
+    }
+  },
+  "previousEngineSave": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
+    "scenarios": [
+      "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
+    ],
+    "errors": [],
+    "sharedRunReportSha256": "383fcdab7d7a7cf3ade3a6c413507d4bf3ef4a1c3df230c859108ed069d6493d"
+  }
+}

@@ -102,7 +102,7 @@ int main()
  auto clip=makeCommand("VR","F",number(0));clip["selectors"].Vector().push_back(writeOperand(variable(10)));
  clip["operations"].Vector()[0]["args"].Vector().push_back(writeOperand(number(5)));
  boundsProgram["blocks"].Vector()[0]["commands"].Vector()={clip};
- for(const int version:{1,2,5}){
+ for(const int version:{1,2,5,6}){
   auto unsupported=boundsProgram;unsupported["schemaVersion"].Integer()=version;
   unsupported["contract"].String()="source-campaign-erm-ast-v"+std::to_string(version);
   rejects([&]{readProgram(unsupported);});
@@ -120,6 +120,61 @@ int main()
  invalidEra3=era3Program;invalidEra3["functionArguments"].String()="unknown";rejects([&]{readProgram(invalidEra3);});
  invalidEra3=era3Program;invalidEra3["schemaVersion"].Integer()=3;invalidEra3["contract"].String()="source-campaign-erm-ast-v3";rejects([&]{readProgram(invalidEra3);});
  invalidEra3=era3Program;invalidEra3["blocks"].Vector()[0]["commands"].Vector()[0]["receiver"].String()="DO";rejects([&]{readProgram(invalidEra3);});
+ // V5 stores argument metadata in the existing call continuation: no
+ // transient native counters may be needed when a nested query is resumed.
+ auto metadataProgram=era3Program;metadataProgram["schemaVersion"].Integer()=5;
+ metadataProgram["contract"].String()="source-campaign-erm-ast-v5";
+ metadataProgram["functionMetadata"].String()="era3-integers";
+ metadataProgram["sha256"].String()="function-metadata-codec";
+ auto commandWith=[&](const std::string & receiver,const std::string & code,
+  std::initializer_list<Operand> selectors,std::initializer_list<Operand> args){
+  JsonNode command;command["receiver"].String()=receiver;command["conditions"].Vector();
+  command["selectors"].Vector();for(const auto & value:selectors)command["selectors"].Vector().push_back(writeOperand(value));
+  JsonNode op;op["code"].String()=code;op["args"].Vector();for(const auto & value:args)op["args"].Vector().push_back(writeOperand(value));
+  command["operations"].Vector().push_back(op);return command;
+ };
+ const auto output=[&](int index,char space='v'){auto value=variable(index);value.space=space;value.access=Access::Write;return value;};
+ const auto local=[&](int index,char space='x'){auto value=variable(index);value.space=space;return value;};
+ auto entry=metadataProgram["blocks"].Vector()[0];entry["receiver"].String()="LE";
+ entry["commands"].Vector()={commandWith("FU","P",{number(7)},{number(7),output(1)})};
+ auto function=entry;function["receiver"].String()="FU";function["selectors"].Vector().push_back(writeOperand(number(7)));
+ function["commands"].Vector()={commandWith("FU","A",{},{output(1,'y')}),
+  commandWith("FU","S",{},{number(1),output(2)}),commandWith("FU","S",{},{number(2),output(3)}),
+  commandWith("FU","S",{},{number(3),output(4)}),commandWith("VR","S",{local(2)},{number(42)}),
+  commandWith("IF","M",{},{text}),commandWith("FU","A",{},{number(11),number(22),number(33)}),
+  commandWith("FU","A",{},{output(5)}),commandWith("VR","S",{variable(6)},{local(3)}),
+  commandWith("VR","S",{variable(7)},{local(1,'y')})};
+ metadataProgram["blocks"].Vector()={entry,function};
+ assert(readProgram(metadataProgram).era3FunctionMetadata);
+ auto invalidMetadata=metadataProgram;invalidMetadata.Struct().erase("functionMetadata");rejects([&]{readProgram(invalidMetadata);});
+ invalidMetadata=metadataProgram;invalidMetadata["schemaVersion"].Integer()=4;invalidMetadata["contract"].String()="source-campaign-erm-ast-v4";
+ rejects([&]{readProgram(invalidMetadata);});invalidMetadata.Struct().erase("functionMetadata");rejects([&]{readProgram(invalidMetadata);});
+ QueryHost metadataHost;State metadataState;metadataState.initialized=true;metadataState.programSha256="function-metadata-codec";metadataState.v[1]=9;
+ invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;
+ auto metadataPending=era_campaign_runtime::execute(metadataProgram,writeState(metadataState),context,metadataHost,invocation);
+ assert(!metadataPending.complete&&metadataHost.shown==1);
+ auto pendingArguments=readState(metadataPending.state);
+ assert(pendingArguments.frames.back().y.at(1)==2&&pendingArguments.v.at(2)==1&&pendingArguments.v.at(3)==0&&pendingArguments.v.at(4)==1);
+ invocation.kind=era_campaign_runtime::InvocationKind::Resume;
+ const auto metadataDone=era_campaign_runtime::execute(metadataProgram,writeState(pendingArguments),context,metadataHost,invocation);
+ const auto doneArguments=readState(metadataDone.state);
+ assert(metadataDone.complete&&metadataHost.shown==1&&doneArguments.v.at(1)==42);
+ assert(doneArguments.v.at(5)==2&&doneArguments.v.at(6)==33&&doneArguments.v.at(7)==2);
+ invalidMetadata=metadataProgram;
+ invalidMetadata["blocks"].Vector()[1]["commands"].Vector()[0]["operations"].Vector()[0]["args"].Vector().clear();
+ rejects([&]{readProgram(invalidMetadata);});
+ invalidMetadata=metadataProgram;
+ invalidMetadata["blocks"].Vector()[1]["commands"].Vector()[0]["selectors"].Vector().push_back(writeOperand(number(7)));
+ rejects([&]{readProgram(invalidMetadata);});
+ invalidMetadata=metadataProgram;
+ invalidMetadata["blocks"].Vector()[1]["commands"].Vector()[0]["operations"].Vector()[0]["args"].Vector()[0]=writeOperand(output(1,'z'));
+ rejects([&]{readProgram(invalidMetadata);});
+ for(const auto invalidIndex:{0,17}){
+  invalidMetadata=metadataProgram;
+  invalidMetadata["blocks"].Vector()[1]["commands"].Vector()[1]["operations"].Vector()[0]["args"].Vector()[0]=writeOperand(number(invalidIndex));
+  invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;
+  rejects([&]{era_campaign_runtime::execute(invalidMetadata,writeState(metadataState),context,metadataHost,invocation);});
+ }
  // The actual engine JsonNode holds extended dialog definitions and replies.
  State dialogue;Context dc;JsonNode definitions;era_campaign_dialogs::Dialogs dialogs(definitions,dialogue,dc);
  const auto n=[](int value){Operand result;result.kind=Kind::Number;result.number=value;return result;};

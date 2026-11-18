@@ -4,12 +4,12 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Remove the extra winner/draw gate from native Henchmen reward eligibility. Native proof covers a living human companion after retreat with zero hero XP, campaignTransfer on/off, pooled-hero tavern inspection and save/reload. Other defeat/draw, negative XP and absent actor lifecycles remain unvalidated.",
-  "sourceBaseCommit": "f64852a96088bd1ecf838d9c64c7439fdfc3edb0",
-  "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+  "sourceBaseCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
+  "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "2c0953e8b481d6c64e6be4a1767bf36fba559f8da8601391bf52f2ed3010e054",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "13f85e01f99fc90f810abb44939d831ffda0af8a5d519e3df31bfdcf99728b2a",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "7c65369de6ddef87d532f1f6d2e419679e18969f15a62c6e022cc91b1dfc91c3",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
     "work/browser-tests/wog-henchmen-battle-outcomes-cases.mjs": "6426f932c85ce81908a05e7b65ad2788c7fc1b47eefcaa97167e7c6e14842e49",
     "scripts/era-bridge/gameplay/henchmen.mjs": "f50db90a3b6852aea08ed9448767a9e5a36c2610014e7a9418f6b301f23e1939",
     "scripts/era-bridge/gameplay/henchmen.json": "ac5387d06c07f57f0c6fdaa912f991c63da37c31e5fbd1723ff096b96ace29fe",
@@ -34,8 +34,8 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 9,
-    "logSha256": "ec37eb65c320eefbac788e10b14639abb3e7e35556c8af5ac65990950ae2c525",
+    "targets": 20,
+    "logSha256": "f2a4bf28e3e29b10e72d9e0783626882e68af871559649bee249a383f976ea59",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -44,7 +44,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "nativeSaveReload": true,
@@ -76,13 +76,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "f495e0e2c349532ae6cf55aae26b2552bd1975d015d16040067eec7932ca0a7a"
+      "sharedRunReportSha256": "f35ffe49c41f565a4f55d52be2d5060e8845587fbf9d4e43f1939c195c60869a"
     },
     "touchLandscape": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "nativeSaveReload": true,
@@ -114,13 +114,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "9bef675a192319e07cc171876899dc381ed36007d7a45d8ffa2c2b16aba8fedc"
+      "sharedRunReportSha256": "21bca8fc7efed9ca56b93f00d7d9959431ae1a1e3068d64a510cb8c87a775dbd"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "nativeSaveReload": true,
@@ -152,7 +152,7 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "29a2f9ef522e444505379d252d5f49649fb25cbca949c5645e0ddaf3beed737d"
+      "sharedRunReportSha256": "63a50b7639bac24ea4a5e2e58794aead07b35671dd488ac39b28be33e90f8fc7"
     }
   },
   "historicalControl": {
@@ -184,7 +184,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "heroAtLevelCap": true,
@@ -202,13 +202,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "11167f364c04c79b45beca50081e142ab555b68801747976ce3f83fe3770d355"
+      "sharedRunReportSha256": "a014feef9d6b1a5328079adaf43fd3e3f2b052f393d4b4985ce9337f6db50cd9"
     },
     "battle-start-experience": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         {
           "stage": "none",
@@ -233,13 +233,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "2d352bda772e5a2f4d1edf7e90afc44e24d879d99db0fc98409db548051d9279"
+      "sharedRunReportSha256": "632cede9a8eea8cc9c630fb0f1c588a8bbe7383d16f5de0b82829ce23d1a9a95"
     },
     "ai-shared-reward": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+      "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
       "scenarios": [
         "AI-victory-shared-integer-missing-reward-0-ignores-prefixed-and-string-cells",
         "AI-victory-shared-integer-150-reward-150-ignores-prefixed-and-string-cells",
@@ -249,19 +249,19 @@
         "AI-victory-shared-integer-2147483647-reward-0-ignores-prefixed-and-string-cells"
       ],
       "errors": [],
-      "sharedRunReportSha256": "a61baf8dd8c1dc2ee2cd4e63f1001745722227038920b9a118476f675a381c12"
+      "sharedRunReportSha256": "1d3f1ba694a51e925cd54d922563967be8a4f905e5730f31d5c62f7f9376bfaf"
     }
   },
   "previousEngineSave": {
     "passed": true,
     "scope": "native-core-only",
     "completeRules": false,
-    "engineSha256": "fc5660aae2ff848b6937c3d76d43ea0e597f7b12a0e2e14ad5803aa19438e960",
+    "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
     "scenarios": [
       "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
     ],
     "errors": [],
-    "sharedRunReportSha256": "687a620deca5df88b2d2d15d04f3146bbb93933cdc03ec8d9c8af3c920c0fda3"
+    "sharedRunReportSha256": "383fcdab7d7a7cf3ade3a6c413507d4bf3ef4a1c3df230c859108ed069d6493d"
   },
   "remaining": [
     "Other defeat and draw outcomes",

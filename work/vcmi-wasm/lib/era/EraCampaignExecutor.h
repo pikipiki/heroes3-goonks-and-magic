@@ -286,6 +286,34 @@ public:
    }
    if(command.receiver=="FU"||command.receiver=="DO")
    {
+    if(command.receiver=="FU"&&(op.code=="A"||op.code=="S")&&program.era3FunctionMetadata)
+    {
+     validateEra3FunctionMetadata(command,op);
+     const auto & call=state.continuations.back();
+     const auto count=call.localFrame?call.returnTargets.size():0;
+     if(op.code=="A")
+     {
+      if(op.args.size()==1&&op.args[0].access==Access::Write)
+       writeNumber(op.args[0],state,context,static_cast<std::int32_t>(count));
+      else
+      {
+       // ERA evaluates every default before changing any x register.
+       std::vector<std::int32_t> defaults;
+       for(const auto & arg:op.args)defaults.push_back(readNumber(arg,state,context));
+       for(std::size_t i=count;i<defaults.size();++i)
+        state.frames.back().x[static_cast<std::int32_t>(i+1)]=defaults[i];
+      }
+     }
+     else
+     {
+      const auto index=readNumber(op.args[0],state,context);
+      if(index<1||index>16)throw std::runtime_error("ERA3 FU:S argument index outside 1..16");
+      // Unpassed integer arguments keep the source's ordinary input flag.
+      const auto flag=static_cast<std::size_t>(index)<=count&&call.returnTargets[index-1].access==Access::Write?0:1;
+      writeNumber(op.args[1],state,context,flag);
+     }
+     continue;
+    }
     if(op.code=="E"&&command.receiver=="FU"){arity(op,0);finishFrame();continue;}
     if(op.code!="P")throw std::runtime_error("Unimplemented campaign function operation "+op.code);
     const auto count=command.receiver=="DO"?4u:1u;

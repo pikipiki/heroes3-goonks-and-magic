@@ -276,6 +276,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='function-metadata'){
+  const {runFunctionMetadata}=await import('./wog-era3-function-metadata-cases.mjs');
+  await runFunctionMetadata({boot,state,wait,page:()=>page,command,save:()=>readCompletedNativeSave(page,command,{tag:946}),report,output});
+ }
  if(process.env.CASES==='legacy-numeric-calls'){
   const {runLegacyNumericCallsControl}=await import('./wog-era3-numeric-calls-fixture.mjs');
   await runLegacyNumericCallsControl({boot,state,wait,page:()=>page,report,output});

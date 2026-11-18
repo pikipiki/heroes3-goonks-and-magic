@@ -146,16 +146,25 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={},dial
   commands.push({...record,operations:parseOperations(m[4]??'',receiver),...(kind==='#'?{visibleBlocks:blocks.length}:{})});
  }catch(e){fail('line'+token.line+' '+e.message,source);}}
  if([...flows.values()].some(stack=>stack.length))fail('Unterminated structured condition',source);
+ const metadata=era3&&[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='FU'&&c.operations.some(op=>['A','S'].includes(op.code)));
+ const integerArgument=arg=>{
+  const mutable=arg.kind==='variable'&&'vxyw'.includes(arg.space)||arg.kind==='named'&&arg.space==='i'||arg.kind==='fast'&&/^[f-t]$/.test(arg.name);
+  return ['read','write'].includes(arg.access)&&!(arg.access==='write'&&arg.negate)&&(mutable||arg.access==='read'&&['number','day'].includes(arg.kind));
+ };
  if(era3)for(const command of [...initializers,...blocks.flatMap(b=>b.commands)]){
   if(command.receiver==='DO')fail('ERA3 DO calls are not admitted',source);
   if(command.receiver==='FU')for(const op of command.operations)if(op.code==='P')for(const arg of op.args){
-   const mutable=arg.kind==='variable'&&'vxyw'.includes(arg.space)||arg.kind==='named'&&arg.space==='i'||arg.kind==='fast'&&/^[f-t]$/.test(arg.name);
-   if(!['read','write'].includes(arg.access)||arg.access==='write'&&arg.negate||!mutable&&!(arg.access==='read'&&['number','day'].includes(arg.kind)))fail('ERA3 FU:P requires admitted integer arguments',source);
+   if(!integerArgument(arg))fail('ERA3 FU:P requires admitted integer arguments',source);
+  }
+  if(command.receiver==='FU')for(const op of command.operations)if(['A','S'].includes(op.code)){
+   if(command.selectors.length)fail('ERA3 function metadata takes no selector',source);
+   if(op.code==='A'&&(!op.args.length||op.args.length>16||op.args.some(arg=>!integerArgument(arg)||arg.access!=='read'&&op.args.length!==1)))fail('ERA3 FU:A requires integer defaults or one numeric output',source);
+   if(op.code==='S'&&(op.args.length!==2||op.args[0].access!=='read'||op.args[1].access!=='write'||op.args.some(arg=>!integerArgument(arg))))fail('ERA3 FU:S requires an integer index and numeric output',source);
   }
  }
  const sourceSha256=sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),boundNames=Object.keys(bound).length>0;
- const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{})}))):sourceSha256;
+ const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{})}))):sourceSha256;
  const integerBounds=[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='VR'&&c.operations.some(op=>op.code==='F'));
- const version=era3?4:integerBounds?3:modern||boundNames?2:1;
- return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),initializers,blocks};
+ const version=metadata?5:era3?4:integerBounds?3:modern||boundNames?2:1;
+ return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),initializers,blocks};
 }
