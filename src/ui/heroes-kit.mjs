@@ -109,9 +109,6 @@ export function ConfirmDialog({ open, title, children, onClose, onConfirm, cance
 export function HeroesDataTable({ label, columns, rows, rowKey = "id" }) {
   return h("div", { className: "hk-table-scroll", tabIndex: 0, role: "region", "aria-label": label }, h(Table, { "aria-label": label }, h(TableHead, null, h(TableRow, null, columns.map((column) => h(TableCell, { key: column.key, scope: "col" }, column.label)))), h(TableBody, null, rows.map((row) => h(TableRow, { key: row[rowKey] }, columns.map((column, index) => h(TableCell, { key: column.key, component: index === 0 ? "th" : "td", scope: index === 0 ? "row" : void 0 }, row[column.key])))))));
 }
-export function HeroesIcon({ src, label = "", size = 32 }) {
-  return h("span", { className: "hk-icon", style: { width: size, height: size } }, h("img", { src, alt: label, width: size, height: size, decoding: "async" }));
-}
 export function HeroesAccordion({ title, icon, children, ...props }) {
   const id = React.useId();
   return h(Accordion, props, h(AccordionSummary, { id: id + "-summary", "aria-controls": id + "-content", expandIcon: h("span", { "aria-hidden": true, className: "hk-chevron" }, "\u2304") }, icon, h(Typography, { component: "span", variant: "h3" }, title)), h(AccordionDetails, null, children));

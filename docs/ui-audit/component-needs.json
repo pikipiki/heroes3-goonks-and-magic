@@ -1,0 +1,3720 @@
+{
+  "schemaVersion": 1,
+  "scope": "Source review of registered interface modules plus additional screens found in DOM contracts; not a claim of visual validation of all states.",
+  "method": "Read sources, UI structures and existing screen contracts. Existing native captures cover 12 screens only. No phone/session changed.",
+  "screenCount": 58,
+  "variantCount": 185,
+  "components": [
+    {
+      "id": "screen",
+      "fr": "Structure adaptative",
+      "en": "Adaptive shell",
+      "status": "available",
+      "implementation": "ScreenShell, ActionDock",
+      "implementationEn": "ScreenShell, ActionDock",
+      "usedBy": [
+        "mobile",
+        "game-menu",
+        "hosted-match-create",
+        "online-lobby",
+        "online-login",
+        "lobby-choices",
+        "campaign-setup",
+        "hero-equipment",
+        "hero-exchange",
+        "creature-presentation",
+        "town-services",
+        "town-building-menu",
+        "army-upgrades",
+        "troop-actions",
+        "troop-deployment",
+        "troop-equipment",
+        "mithril-enhancements",
+        "dialog-presentation",
+        "progression-choices",
+        "spellbook",
+        "mage-guild",
+        "marketplace",
+        "mobile-tavern",
+        "recruitment-families",
+        "storage-page",
+        "session-recovery",
+        "campaign-media",
+        "hosted-turn-notifications",
+        "battle-result",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "panel",
+      "fr": "Panneaux et cadres",
+      "en": "Panels and frames",
+      "status": "available",
+      "implementation": "HeroesPanel",
+      "implementationEn": "HeroesPanel",
+      "usedBy": []
+    },
+    {
+      "id": "actions",
+      "fr": "Actions et fermeture",
+      "en": "Actions and close",
+      "status": "available",
+      "implementation": "HeroesButton, HeroesClose",
+      "implementationEn": "HeroesButton, HeroesClose",
+      "usedBy": [
+        "mobile",
+        "game-menu",
+        "online-lobby",
+        "online-login",
+        "creature-presentation",
+        "town-services",
+        "town-portrait",
+        "storage-page",
+        "session-recovery",
+        "boot-screen",
+        "loading",
+        "campaign-media",
+        "battle-controls",
+        "henchman-sheet",
+        "storage",
+        "battle-result"
+      ]
+    },
+    {
+      "id": "fields",
+      "fr": "Champs de formulaire",
+      "en": "Form fields",
+      "status": "mui",
+      "implementation": "TextField",
+      "implementationEn": "TextField",
+      "usedBy": [
+        "game-menu",
+        "hosted-match-create",
+        "online-lobby",
+        "online-login",
+        "lobby-options",
+        "campaign-dialog-form",
+        "high-score-presentation"
+      ]
+    },
+    {
+      "id": "select",
+      "fr": "Sélecteurs et menus",
+      "en": "Selectors and menus",
+      "status": "mui",
+      "implementation": "Select, Menu, MenuItem",
+      "implementationEn": "Select, Menu, MenuItem",
+      "usedBy": [
+        "game-menu",
+        "hosted-match-create",
+        "campaign-setup",
+        "thieves-guild-view",
+        "troop-deployment",
+        "troop-equipment",
+        "mithril-enhancements",
+        "progression-choices",
+        "weekly-recruits",
+        "lobby-options",
+        "scenario-filters",
+        "hosted-castles",
+        "material-select"
+      ]
+    },
+    {
+      "id": "choice",
+      "fr": "Cases et boutons radio",
+      "en": "Checkboxes and radios",
+      "status": "mui",
+      "implementation": "Checkbox, RadioGroup",
+      "implementationEn": "Checkbox, RadioGroup",
+      "usedBy": [
+        "game-menu",
+        "hosted-match-create",
+        "lobby-choices",
+        "wog-options",
+        "lobby-options",
+        "campaign-dialog-form"
+      ]
+    },
+    {
+      "id": "tabs",
+      "fr": "Onglets",
+      "en": "Tabs",
+      "status": "mui",
+      "implementation": "Tabs, Tab",
+      "implementationEn": "Tabs, Tab",
+      "usedBy": [
+        "hero-equipment",
+        "hero-exchange",
+        "thieves-guild-view",
+        "town-building-menu",
+        "spellbook",
+        "mage-guild"
+      ]
+    },
+    {
+      "id": "accordion",
+      "fr": "Accordéons",
+      "en": "Accordions",
+      "status": "available",
+      "implementation": "HeroesAccordion",
+      "implementationEn": "HeroesAccordion",
+      "usedBy": [
+        "game-menu",
+        "wog-options",
+        "scenario-filters"
+      ]
+    },
+    {
+      "id": "feedback",
+      "fr": "Messages et progression",
+      "en": "Feedback and progress",
+      "status": "mui",
+      "implementation": "Alert, CircularProgress, LinearProgress",
+      "implementationEn": "Alert, CircularProgress, LinearProgress",
+      "usedBy": [
+        "game-menu",
+        "hosted-match-create",
+        "online-lobby",
+        "online-login",
+        "campaign-setup",
+        "thieves-guild-view",
+        "town-building-menu",
+        "army-upgrades",
+        "troop-actions",
+        "troop-deployment",
+        "mithril-enhancements",
+        "commander-tree",
+        "spellbook",
+        "mage-guild",
+        "marketplace",
+        "mobile-tavern",
+        "storage-page",
+        "session-recovery",
+        "boot-screen",
+        "loading",
+        "hosted-turn-notifications",
+        "wog-options",
+        "scenario-filters",
+        "hosted-code-copy",
+        "scenario-details",
+        "recruitment-summary",
+        "hosting-index",
+        "storage",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "confirm",
+      "fr": "Confirmation",
+      "en": "Confirmation",
+      "status": "available",
+      "implementation": "ConfirmDialog",
+      "implementationEn": "ConfirmDialog",
+      "usedBy": [
+        "game-menu",
+        "hero-exchange",
+        "town-building-menu",
+        "army-upgrades",
+        "troop-actions",
+        "troop-deployment",
+        "troop-equipment",
+        "dialog-presentation",
+        "progression-choices",
+        "spellbook",
+        "marketplace",
+        "storage-page",
+        "hosted-turn-notifications",
+        "campaign-dialog-form",
+        "high-score-presentation",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "quantity",
+      "fr": "Quantité et curseur",
+      "en": "Quantity and slider",
+      "status": "available",
+      "implementation": "QuantityControl",
+      "implementationEn": "QuantityControl",
+      "usedBy": [
+        "hero-exchange",
+        "troop-deployment",
+        "marketplace",
+        "recruitment-summary"
+      ]
+    },
+    {
+      "id": "resources",
+      "fr": "Ressources et coûts",
+      "en": "Resources and costs",
+      "status": "available",
+      "implementation": "ResourceStrip, ResourceCost",
+      "implementationEn": "ResourceStrip, ResourceCost",
+      "usedBy": [
+        "creature-presentation",
+        "town-services",
+        "town-building-menu",
+        "army-upgrades",
+        "mithril-enhancements",
+        "dialog-presentation",
+        "progression-choices",
+        "spellbook",
+        "marketplace",
+        "mobile-tavern",
+        "town-recruitment",
+        "recruitment-families",
+        "weekly-recruits",
+        "game-calendar",
+        "resources",
+        "recruitment-summary",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "stats",
+      "fr": "Caractéristiques",
+      "en": "Statistics",
+      "status": "available",
+      "implementation": "StatGrid",
+      "implementationEn": "StatGrid",
+      "usedBy": [
+        "hero-equipment",
+        "creature-presentation",
+        "troop-equipment",
+        "commander-tree",
+        "recruitment-families",
+        "henchman-sheet",
+        "battle-inspection"
+      ]
+    },
+    {
+      "id": "evolution",
+      "fr": "Carte d’évolution",
+      "en": "Evolution card",
+      "status": "available",
+      "implementation": "EvolutionCard",
+      "implementationEn": "EvolutionCard",
+      "usedBy": []
+    },
+    {
+      "id": "card",
+      "fr": "Carte de sélection",
+      "en": "Selection card",
+      "status": "available",
+      "implementation": "ChoiceTile",
+      "implementationEn": "ChoiceTile",
+      "usedBy": [
+        "mobile",
+        "lobby-choices",
+        "campaign-setup",
+        "town-services",
+        "town-building-menu",
+        "troop-actions",
+        "troop-deployment",
+        "mithril-enhancements",
+        "dialog-presentation",
+        "progression-choices",
+        "commander-tree",
+        "spellbook",
+        "mage-guild",
+        "marketplace",
+        "hosted-castles",
+        "campaign-dialog-form",
+        "henchman-sheet",
+        "battle-inspection",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "slot",
+      "fr": "Emplacement de troupe",
+      "en": "Army slot",
+      "status": "available",
+      "implementation": "ArmySlot",
+      "implementationEn": "ArmySlot",
+      "usedBy": [
+        "army-panel"
+      ]
+    },
+    {
+      "id": "table",
+      "fr": "Tableau accessible",
+      "en": "Accessible table",
+      "status": "available",
+      "implementation": "HeroesDataTable",
+      "implementationEn": "HeroesDataTable",
+      "usedBy": [
+        "thieves-guild-view",
+        "weekly-recruits"
+      ]
+    },
+    {
+      "id": "purchase",
+      "fr": "Stock, prix et total",
+      "en": "Stock, price and total",
+      "status": "available",
+      "implementation": "PurchaseSummary",
+      "implementationEn": "PurchaseSummary",
+      "usedBy": [
+        "creature-presentation",
+        "town-services",
+        "town-recruitment",
+        "recruitment-families",
+        "recruitment-summary"
+      ]
+    },
+    {
+      "id": "calendar",
+      "fr": "Bandeau du royaume",
+      "en": "Kingdom chrome",
+      "status": "compose",
+      "implementation": "Ressources, recrues et date stables ; respect de la modalité",
+      "implementationEn": "Stable resources, recruits and date; modal boundary respected",
+      "usedBy": [
+        "mobile",
+        "town-portrait",
+        "weekly-recruits",
+        "game-calendar"
+      ]
+    },
+    {
+      "id": "search",
+      "fr": "Recherche et filtres",
+      "en": "Search and filters",
+      "status": "compose",
+      "implementation": "Recherche, compteur, filtres repliables, vide et réinitialisation",
+      "implementationEn": "Search, count, collapsible filters, empty state and reset",
+      "usedBy": [
+        "mobile",
+        "hosted-match-create",
+        "lobby-choices",
+        "town-building-menu",
+        "spellbook",
+        "scenario-filters"
+      ]
+    },
+    {
+      "id": "scenario",
+      "fr": "Carte et aperçu du scénario",
+      "en": "Scenario card and preview",
+      "status": "compose",
+      "implementation": "Vraie minicarte, taille, joueurs, factions et sélection",
+      "implementationEn": "Actual minimap, size, players, factions and selection",
+      "usedBy": [
+        "mobile",
+        "hosted-match-create",
+        "online-lobby",
+        "lobby-choices",
+        "campaign-setup",
+        "scenario-details"
+      ]
+    },
+    {
+      "id": "players",
+      "fr": "Configuration des joueurs",
+      "en": "Player setup",
+      "status": "compose",
+      "implementation": "Couleur, équipe, faction, humain/IA, état prêt ; jusqu’à huit joueurs",
+      "implementationEn": "Color, team, faction, human/AI and readiness for up to eight players",
+      "usedBy": [
+        "mobile",
+        "hosted-match-create",
+        "online-lobby",
+        "lobby-choices",
+        "lobby-options",
+        "hosted-castles",
+        "scenario-details"
+      ]
+    },
+    {
+      "id": "hero",
+      "fr": "Identité du héros",
+      "en": "Hero identity",
+      "status": "compose",
+      "implementation": "Portrait, nom complet, classe, niveau, mana, expérience et spécialité",
+      "implementationEn": "Portrait, full name, class, level, mana, experience and specialty",
+      "usedBy": [
+        "mobile",
+        "hero-equipment",
+        "hero-exchange",
+        "thieves-guild-view",
+        "dialog-presentation",
+        "mobile-tavern",
+        "henchman-sheet"
+      ]
+    },
+    {
+      "id": "army",
+      "fr": "Grille des armées",
+      "en": "Army grid",
+      "status": "compose",
+      "implementation": "Sept emplacements, case Tout améliorer, fusion, vide et sélection",
+      "implementationEn": "Seven slots, Upgrade all cell, merging, empty state and selection",
+      "usedBy": [
+        "hero-equipment",
+        "hero-exchange",
+        "army-panel"
+      ]
+    },
+    {
+      "id": "inventory",
+      "fr": "Inventaire d’artefacts",
+      "en": "Artifact inventory",
+      "status": "compose",
+      "implementation": "Emplacements compatibles, équipé/sac, objets verrouillés et sélection",
+      "implementationEn": "Compatible slots, equipped/backpack, locked items and selection",
+      "usedBy": [
+        "hero-equipment",
+        "hero-exchange",
+        "troop-equipment",
+        "progression-choices",
+        "henchman-sheet"
+      ]
+    },
+    {
+      "id": "transfer",
+      "fr": "Échange et scission",
+      "en": "Transfer and split",
+      "status": "compose",
+      "implementation": "Deux armées/inventaires, destination, quantité, tout transférer et confirmation",
+      "implementationEn": "Two armies/inventories, destination, quantity, transfer all and confirmation",
+      "usedBy": [
+        "hero-equipment",
+        "hero-exchange",
+        "army-panel"
+      ]
+    },
+    {
+      "id": "details",
+      "fr": "Fiche de créature",
+      "en": "Creature details",
+      "status": "compose",
+      "implementation": "Illustration, statistiques, description et capacités natives complètes",
+      "implementationEn": "Artwork, statistics, complete native descriptions and abilities",
+      "usedBy": [
+        "mobile",
+        "hero-equipment",
+        "creature-presentation",
+        "troop-actions",
+        "troop-equipment",
+        "mobile-tavern",
+        "town-recruitment",
+        "recruitment-families",
+        "battle-inspection",
+        "battle-result"
+      ]
+    },
+    {
+      "id": "evolution-grid",
+      "fr": "Choix des évolutions",
+      "en": "Evolution picker",
+      "status": "compose",
+      "implementation": "Une à quatre évolutions, nom entier, sélection stable et grille sans trou",
+      "implementationEn": "One to four evolutions, full names, stable selection and no grid gaps",
+      "usedBy": [
+        "creature-presentation",
+        "progression-choices",
+        "recruitment-families"
+      ]
+    },
+    {
+      "id": "roster",
+      "fr": "Liste de recrutement",
+      "en": "Recruitment roster",
+      "status": "compose",
+      "implementation": "Familles, deux rangées en portrait, indisponibilité et stock partagé",
+      "implementationEn": "Families, two portrait rows, availability and shared stock",
+      "usedBy": [
+        "mobile",
+        "town-recruitment",
+        "recruitment-families",
+        "weekly-recruits"
+      ]
+    },
+    {
+      "id": "building",
+      "fr": "Projet de construction",
+      "en": "Building project",
+      "status": "compose",
+      "implementation": "Image, nom, sous-titre, prérequis, coût et raison d’indisponibilité",
+      "implementationEn": "Picture, name, subtitle, prerequisites, cost and unavailable reason",
+      "usedBy": [
+        "town-building-menu",
+        "town-portrait",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "hire",
+      "fr": "Recrutement d’un héros",
+      "en": "Hero hiring",
+      "status": "compose",
+      "implementation": "Identité, aperçu des compétences/équipement/grimoire, prix et recrutement",
+      "implementationEn": "Identity, skills/equipment/spellbook preview, price and recruitment",
+      "usedBy": [
+        "mobile-tavern"
+      ]
+    },
+    {
+      "id": "spells",
+      "fr": "Choix et détail d’un sort",
+      "en": "Spell picker and details",
+      "status": "compose",
+      "implementation": "Écoles, coût, description, cible, indisponibilité et réutilisation",
+      "implementationEn": "Schools, cost, description, targeting, availability and reuse",
+      "usedBy": [
+        "hero-equipment",
+        "spellbook",
+        "mage-guild"
+      ]
+    },
+    {
+      "id": "skills",
+      "fr": "Arbre de compétences",
+      "en": "Skill tree",
+      "status": "compose",
+      "implementation": "Nœuds, liens, niveaux, prérequis et état sélectionnable",
+      "implementationEn": "Nodes, links, levels, prerequisites and selectable state",
+      "usedBy": [
+        "hero-equipment",
+        "dialog-presentation",
+        "commander-tree",
+        "henchman-sheet"
+      ]
+    },
+    {
+      "id": "upgrade",
+      "fr": "Devis d’amélioration",
+      "en": "Upgrade quote",
+      "status": "compose",
+      "implementation": "Avant/après, évolution maximale, coût global et motif de refus localisé",
+      "implementationEn": "Before/after, final evolution, total cost and localized rejection reason",
+      "usedBy": [
+        "hero-equipment",
+        "army-upgrades",
+        "army-panel",
+        "mithril-enhancements"
+      ]
+    },
+    {
+      "id": "trade",
+      "fr": "Échange de ressources",
+      "en": "Resource trade",
+      "status": "compose",
+      "implementation": "Donner/recevoir, taux, quantité, total et ressources insuffisantes",
+      "implementationEn": "Give/receive, rate, quantity, total and insufficient resources",
+      "usedBy": [
+        "marketplace"
+      ]
+    },
+    {
+      "id": "ranking",
+      "fr": "Classement et renseignements",
+      "en": "Rankings and intelligence",
+      "status": "compose",
+      "implementation": "Huit joueurs, rangs ex æquo, informations inconnues, détail par joueur",
+      "implementationEn": "Eight players, ties, unknown intelligence and player details",
+      "usedBy": [
+        "town-services",
+        "thieves-guild-view",
+        "high-score-presentation"
+      ]
+    },
+    {
+      "id": "battle-hud",
+      "fr": "Commandes et inspection de combat",
+      "en": "Battle HUD and inspection",
+      "status": "compose",
+      "implementation": "Créature active, statistiques, états, initiative et actions disponibles",
+      "implementationEn": "Active creature, statistics, effects, initiative and available actions",
+      "usedBy": [
+        "mobile",
+        "battle-dual-view",
+        "battle-inspection"
+      ]
+    },
+    {
+      "id": "result",
+      "fr": "Résultat de combat",
+      "en": "Battle result",
+      "status": "compose",
+      "implementation": "Victoire/défaite, expérience, pertes d’une unité ou plus et score",
+      "implementationEn": "Victory/defeat, experience, losses of one creature or more and score",
+      "usedBy": [
+        "mobile",
+        "dialog-presentation",
+        "high-score-presentation",
+        "battle-result"
+      ]
+    },
+    {
+      "id": "save",
+      "fr": "Sauvegardes et reprise",
+      "en": "Saves and recovery",
+      "status": "compose",
+      "implementation": "Liste, métadonnées, import/export, reprendre, supprimer et état vide",
+      "implementationEn": "List, metadata, import/export, resume, delete and empty state",
+      "usedBy": [
+        "game-menu",
+        "session-recovery",
+        "hosted-turn-notifications"
+      ]
+    },
+    {
+      "id": "storage",
+      "fr": "Occupation du stockage",
+      "en": "Storage usage",
+      "status": "compose",
+      "implementation": "Occupation, téléchargement, disponibilité hors ligne et réparation",
+      "implementationEn": "Usage, downloads, offline availability and repair",
+      "usedBy": [
+        "game-menu",
+        "storage-page",
+        "boot-screen",
+        "loading",
+        "hosting-index",
+        "storage"
+      ]
+    },
+    {
+      "id": "rules",
+      "fr": "Option de règle avec aide",
+      "en": "Rule option with help",
+      "status": "compose",
+      "implementation": "Libellé localisé, choix, explication et dépendances",
+      "implementationEn": "Localized label, choice, explanation and dependencies",
+      "usedBy": [
+        "game-menu",
+        "wog-options",
+        "lobby-options",
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "copy",
+      "fr": "Code et copie",
+      "en": "Code and copy",
+      "status": "compose",
+      "implementation": "Code lisible, copie, succès/échec et solution de repli",
+      "implementationEn": "Readable code, copy, success/error and fallback",
+      "usedBy": [
+        "hosted-match-create",
+        "online-lobby",
+        "hosted-turn-notifications",
+        "hosted-code-copy"
+      ]
+    },
+    {
+      "id": "dynamic",
+      "fr": "Formulaire de dialogue natif",
+      "en": "Native dialog form",
+      "status": "compose",
+      "implementation": "Récompense obligatoire, choix multiple, nombre, texte et validation",
+      "implementationEn": "Required reward selection, multiple choice, number, text and validation",
+      "usedBy": [
+        "dialog-presentation",
+        "campaign-dialog-form"
+      ]
+    },
+    {
+      "id": "media",
+      "fr": "Illustration et vidéo",
+      "en": "Picture and video",
+      "status": "compose",
+      "implementation": "Média réel, légende, lecture/pause, chargement, erreur et sortie",
+      "implementationEn": "Actual media, caption, play/pause, loading, error and exit",
+      "usedBy": [
+        "campaign-setup",
+        "campaign-media"
+      ]
+    },
+    {
+      "id": "consequences",
+      "fr": "Résumé des conséquences",
+      "en": "Consequence summary",
+      "status": "compose",
+      "implementation": "Pertes, coûts, ressources récupérées, évacuation et confirmation explicite",
+      "implementationEn": "Losses, costs, recovered resources, evacuation and explicit confirmation",
+      "usedBy": [
+        "cave-builder"
+      ]
+    },
+    {
+      "id": "scene",
+      "fr": "Scène et zones interactives",
+      "en": "Scene and hit areas",
+      "status": "engine",
+      "implementation": "Conserver le canvas et ses coordonnées ; ne pas peindre les bâtiments en MUI",
+      "implementationEn": "Keep canvas and coordinates; do not paint buildings with MUI",
+      "usedBy": [
+        "mobile",
+        "campaign-setup",
+        "town-portrait",
+        "town-recruitment",
+        "battle-dual-view",
+        "battle-vertical",
+        "image-outline"
+      ]
+    },
+    {
+      "id": "animation",
+      "fr": "Animation de créature",
+      "en": "Creature animation",
+      "status": "engine",
+      "implementation": "Réutiliser le lecteur natif, son cadrage et son ordonnanceur",
+      "implementationEn": "Reuse the native player, crop and scheduler",
+      "usedBy": [
+        "creature-presentation",
+        "recruitment-families",
+        "battle-vertical",
+        "battle-result"
+      ]
+    },
+    {
+      "id": "tactical",
+      "fr": "Trajet et cibles tactiques",
+      "en": "Tactical path and targets",
+      "status": "engine",
+      "implementation": "Cases accessibles, trajectoire, tir, cibles des sorts et confirmation",
+      "implementationEn": "Reachable hexes, path, ranged attacks, spell targets and confirmation",
+      "usedBy": [
+        "mobile",
+        "battle-dual-view",
+        "battle-controls",
+        "battle-vertical"
+      ]
+    },
+    {
+      "id": "minimap",
+      "fr": "Minicarte et navigation",
+      "en": "Minimap and navigation",
+      "status": "engine",
+      "implementation": "Panoramique, zoom et centrage avec conversion des coordonnées",
+      "implementationEn": "Pan, zoom and centering with coordinate conversion",
+      "usedBy": [
+        "mobile",
+        "battle-dual-view"
+      ]
+    }
+  ],
+  "screens": [
+    {
+      "id": "mobile",
+      "source": "web/mobile.mjs",
+      "kind": "screen",
+      "variants": [
+        "Accueil",
+        "Multijoueur",
+        "Préparer la partie",
+        "Charger une partie",
+        "Catalogue des campagnes",
+        "Carte d’aventure",
+        "Château",
+        "Combat classique",
+        "Combat vertical",
+        "Combat stratégique",
+        "Choix des cibles",
+        "Inspection en combat",
+        "Recrutement global",
+        "Liste des héros",
+        "Liste des villes"
+      ],
+      "variantsEn": [
+        "Home",
+        "Multiplayer",
+        "Game setup",
+        "Load game",
+        "Campaign catalogue",
+        "Adventure map",
+        "Town",
+        "Classic battle",
+        "Vertical battle",
+        "Strategic battle",
+        "Target selection",
+        "Battle inspection",
+        "Global recruitment",
+        "Hero list",
+        "Town list"
+      ],
+      "category": "Navigation",
+      "needs": [
+        "screen",
+        "actions",
+        "calendar",
+        "card",
+        "search",
+        "scenario",
+        "players",
+        "hero",
+        "roster",
+        "scene",
+        "minimap",
+        "battle-hud",
+        "tactical",
+        "details",
+        "result"
+      ],
+      "sourceSHA256": "b3e7f4f728acfbce24a53624ce80a7e3492ac52bc97b4ca44387f1bd20d5cc78",
+      "evidence": [
+        {
+          "line": 68,
+          "excerpt": "const homeMenu = '<h1>Le royaume des Goonks</h1><p>Une aventure au bout des doigts.<br>Explore, construis et mène tes peluches au combat.</p><button class=\"primary\" data-action=\"20"
+        },
+        {
+          "line": 74,
+          "excerpt": "const root=document.createElement('section');root.id='mobile-app';root.dataset.mode='menu';root.setAttribute('aria-label','Heroes Goonk tactile');renderMarkup(root,`<header class=\""
+        },
+        {
+          "line": 76,
+          "excerpt": "const viewportFrame=document.createElement('div');viewportFrame.id='mobile-viewport';root.before(viewportFrame);viewportFrame.append(root);"
+        },
+        {
+          "line": 78,
+          "excerpt": "const townZoom=document.createElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-"
+        },
+        {
+          "line": 110,
+          "excerpt": "renderMarkup(menu,homeMenu+'<button type=\"button\" data-open-multiplayer>Multijoueur</button>');"
+        },
+        {
+          "line": 118,
+          "excerpt": "renderMarkup(menu,'<h1 tabindex=\"-1\">Multijoueur</h1><button type=\"button\" data-action=\"75\">Appareil de l’hôte</button><button type=\"button\" data-open-hosted-match>Serveur dédié</b"
+        },
+        {
+          "line": 135,
+          "excerpt": "const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelec"
+        },
+        {
+          "line": 136,
+          "excerpt": "function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(b"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "game-menu",
+      "source": "web/game-menu.mjs",
+      "kind": "screen",
+      "variants": [
+        "Menu",
+        "Paramètres",
+        "Triche",
+        "Audio",
+        "Stockage",
+        "Aide au stockage",
+        "Confirmation nouvelle partie"
+      ],
+      "variantsEn": [
+        "Menu",
+        "Settings",
+        "Cheats",
+        "Audio",
+        "Storage",
+        "Storage help",
+        "New game confirmation"
+      ],
+      "category": "Navigation",
+      "needs": [
+        "screen",
+        "actions",
+        "fields",
+        "select",
+        "choice",
+        "accordion",
+        "rules",
+        "feedback",
+        "save",
+        "storage",
+        "confirm"
+      ],
+      "sourceSHA256": "a769ac850fe87301042a178e94aaf843c363373dba0ec316161cde918d2cebdb",
+      "evidence": [
+        {
+          "line": 24,
+          "excerpt": "const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');"
+        },
+        {
+          "line": 26,
+          "excerpt": "const dialog=document.createElement('dialog');dialog.id='game-menu';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','game-menu-title');"
+        },
+        {
+          "line": 27,
+          "excerpt": "renderMarkup(dialog,'<header><button data-menu=\"back\" hidden>← Back</button><h2 id=\"game-menu-title\">Heroes Goonk</h2><button data-menu=\"close\" data-native-click aria-label=\"Fermer"
+        },
+        {
+          "line": 29,
+          "excerpt": "const onlineTurn=document.createElement('p');"
+        },
+        {
+          "line": 78,
+          "excerpt": "if(content.dataset.storage!=='ready'){content.dataset.storage='ready';renderMarkup(content,storageGuide(location.hostname)+'<dl class=\"storage-sizes\"><div><dt>Fichiers du jeu</dt><"
+        },
+        {
+          "line": 84,
+          "excerpt": "content.dataset.view='settings';renderMarkup(content,'<label class=\"language-setting setting-select\">Language<select data-language><option value=en>English</option><option value=fr"
+        },
+        {
+          "line": 113,
+          "excerpt": "return '<article class=\"game-cheat\"><h3>'+cheat.title+'</h3><p>'+cheat.description+'</p><code>'+cheat.code+'</code><button data-cheat=\"'+cheat.id+'\" '+(reason?'disabled':'')+' aria"
+        },
+        {
+          "line": 165,
+          "excerpt": "if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';renderMarkup(content,'<h3>Retourner au menu principal ?</h3><p>The current session will end. Your ex"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hosted-match-create",
+      "source": "web/hosted-match-create.mjs",
+      "kind": "screen",
+      "variants": [
+        "Créer une partie hébergée",
+        "Catalogue des cartes hébergées",
+        "Choisir les châteaux",
+        "Invitations et codes"
+      ],
+      "variantsEn": [
+        "Create hosted game",
+        "Hosted maps",
+        "Choose towns",
+        "Invitations and codes"
+      ],
+      "category": "Partie",
+      "needs": [
+        "screen",
+        "fields",
+        "select",
+        "choice",
+        "scenario",
+        "players",
+        "search",
+        "copy",
+        "feedback"
+      ],
+      "sourceSHA256": "40528fa785dd1e8278681a1230271eba6b7553a9773cdac76db58fde132bfe69",
+      "evidence": [
+        {
+          "line": 10,
+          "excerpt": "export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, onLaunch) {"
+        },
+        {
+          "line": 13,
+          "excerpt": "const section = document.createElement('section');"
+        },
+        {
+          "line": 18,
+          "excerpt": "<label><span></span><select data-create-players></select><small data-player-help></small></label>"
+        },
+        {
+          "line": 19,
+          "excerpt": "<button type=\"button\" class=\"hosted-scenario-choice\" data-create-map data-native-click aria-haspopup=\"dialog\" aria-controls=\"hosted-map-picker\">"
+        },
+        {
+          "line": 23,
+          "excerpt": "<label data-create-timer-field hidden><span></span><select data-create-timer aria-describedby=\"hosted-timer-help\"></select><small id=\"hosted-timer-help\"></small></label>"
+        },
+        {
+          "line": 24,
+          "excerpt": "<label class=\"online-cheats-option\"><input type=\"checkbox\" data-create-cheats><span data-create-cheats-label></span></label>"
+        },
+        {
+          "line": 29,
+          "excerpt": "<button type=\"button\" class=\"primary\" data-create-match=\"submit\"></button>"
+        },
+        {
+          "line": 32,
+          "excerpt": "<dialog id=\"hosted-map-picker\" class=\"lobby-picker\" data-kind=\"map\" aria-labelledby=\"hosted-map-title\">"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "online-lobby",
+      "source": "web/online-lobby.mjs",
+      "kind": "screen",
+      "variants": [
+        "Liste des joueurs",
+        "Création",
+        "Aperçu",
+        "Invitation",
+        "Scénario"
+      ],
+      "variantsEn": [
+        "Player list",
+        "Creation",
+        "Preview",
+        "Invitation",
+        "Scenario"
+      ],
+      "category": "Partie",
+      "needs": [
+        "screen",
+        "actions",
+        "players",
+        "scenario",
+        "fields",
+        "copy",
+        "feedback"
+      ],
+      "sourceSHA256": "35e4abb1898993126b043c88cb10a2de252c4745c4a1ae2566dc529d6c24dc62",
+      "evidence": [
+        {
+          "line": 27,
+          "excerpt": "export function createOnlineLobby(root, command) {"
+        },
+        {
+          "line": 28,
+          "excerpt": "const panel = document.createElement('section');"
+        },
+        {
+          "line": 34,
+          "excerpt": "renderMarkup(panel,'<header><div><h2 id=\"online-lobby-title\"></h2><p data-online-account></p></div><button type=\"button\" data-room-action=\"classic\"></button></header><div class=\"on"
+        },
+        {
+          "line": 38,
+          "excerpt": "const footer = document.createElement('div');footer.className='ui-action-group';panel.querySelector('footer').append(footer);"
+        },
+        {
+          "line": 46,
+          "excerpt": "`<button type=\"button\" data-room-action=\"${action}\"${id ? ` data-room-id=\"${escape(id)}\"` : ''}${pressed === undefined ? '' : ` aria-pressed=\"${pressed}\"`}${disabled ? ' disabled' "
+        },
+        {
+          "line": 86,
+          "excerpt": "for(const [index,row]of [...list.children].entries()){const map=scenarios[index];if(map?.index===state.onlineScenarioIndex){const image=document.createElement('img');image.width=im"
+        },
+        {
+          "line": 130,
+          "excerpt": "write(body, `<section><label>${t('Find a player', 'Chercher un joueur')}<input type=\"search\" data-online-player-search autocomplete=\"off\"></label>"
+        },
+        {
+          "line": 148,
+          "excerpt": "write(body, `<label>${t('Search maps', 'Chercher une carte')}<input type=\"search\" data-online-scenario-search></label>"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "online-login",
+      "source": "web/online-login.mjs",
+      "kind": "screen",
+      "variants": [
+        "Connexion",
+        "Connexion en cours",
+        "Erreur de connexion"
+      ],
+      "variantsEn": [
+        "Login",
+        "Connecting",
+        "Connection error"
+      ],
+      "category": "Partie",
+      "needs": [
+        "screen",
+        "fields",
+        "actions",
+        "feedback"
+      ],
+      "sourceSHA256": "ef304c4857eaf65eb4ea647753aa3c39e880b485f231b1e1adfd0d0e51048530",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function guardOnlineNameKeyboard(window) {"
+        },
+        {
+          "line": 25,
+          "excerpt": "export function createOnlineLogin(root, command) {"
+        },
+        {
+          "line": 26,
+          "excerpt": "const panel = document.createElement('section');"
+        },
+        {
+          "line": 29,
+          "excerpt": "renderMarkup(panel,`<form class=\"ui-screen-layout\"><header><h2>Connexion</h2><button type=\"button\" data-close aria-label=\"Back\">✕</button></header>"
+        },
+        {
+          "line": 31,
+          "excerpt": "<label><span></span><input name=\"player-name\" data-online-name type=\"text\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"none\" spellcheck=\"false\" aria-describedby=\"online-na"
+        },
+        {
+          "line": 32,
+          "excerpt": "<p role=\"status\" aria-live=\"polite\"></p></div><footer class=\"ui-action-dock\"><button type=\"submit\" class=\"primary\"></button></footer></form>`);"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "lobby-choices",
+      "source": "web/lobby-choices.mjs",
+      "kind": "screen",
+      "variants": [
+        "Cartes",
+        "Factions",
+        "Difficulté",
+        "Options de partie"
+      ],
+      "variantsEn": [
+        "Maps",
+        "Factions",
+        "Difficulty",
+        "Game options"
+      ],
+      "category": "Partie",
+      "needs": [
+        "screen",
+        "scenario",
+        "search",
+        "card",
+        "players",
+        "choice"
+      ],
+      "sourceSHA256": "3507219a0161d854925c31790be79c3592d5057f81b2cc2dfdd8e0bd1ed99176",
+      "evidence": [
+        {
+          "line": 16,
+          "excerpt": "export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){"
+        },
+        {
+          "line": 40,
+          "excerpt": "renderMarkup(c,'<h3></h3><button type=\"button\" class=\"lobby-choice-card\" aria-haspopup=\"dialog\"><figure class=\"lobby-faction-art\"></figure><span><small>Starting faction</small><str"
+        },
+        {
+          "line": 48,
+          "excerpt": "const colour=document.createElement('i');"
+        },
+        {
+          "line": 66,
+          "excerpt": "const illustration=document.createElement('div');"
+        },
+        {
+          "line": 91,
+          "excerpt": "if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','lobby-picker-tit"
+        },
+        {
+          "line": 106,
+          "excerpt": "return `<button type=\"button\" data-choice-value=\"${esc(o.value)}\" aria-pressed=\"${o.value===s.value}\" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src=\"./web/h3-the"
+        },
+        {
+          "line": 123,
+          "excerpt": "for(const s of menu.querySelectorAll('select:not(.lobby-picker select)')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1"
+        },
+        {
+          "line": 128,
+          "excerpt": "renderMarkup(c,'<h3></h3><button type=\"button\" class=\"lobby-choice-card\" aria-haspopup=\"dialog\"><img class=\"lobby-map-emblem\" src=\"./web/h3-theme/adventure-map.svg\" alt=\"\"><span><s"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "campaign-setup",
+      "source": "web/campaign-setup.mjs",
+      "kind": "screen",
+      "variants": [
+        "Scénario",
+        "Bonus",
+        "Introduction",
+        "Chargement de campagne"
+      ],
+      "variantsEn": [
+        "Scenario",
+        "Bonus",
+        "Introduction",
+        "Campaign loading"
+      ],
+      "category": "Campagne",
+      "needs": [
+        "screen",
+        "scenario",
+        "card",
+        "media",
+        "scene",
+        "select",
+        "feedback"
+      ],
+      "sourceSHA256": "68762c59560df40afb5742b9687e6966cd890b38e5b6fd7c7fe8c6bf9ecf4dfb",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function createCampaignSetup({root,command}){"
+        },
+        {
+          "line": 5,
+          "excerpt": "const panel=document.createElement('section');panel.className='campaign-setup';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Campaign setup');root.q"
+        },
+        {
+          "line": 7,
+          "excerpt": "renderMarkup(panel,`<header><div><small>Campaign</small><h1>${esc(data.name||(intro?'Campaign introduction':'Starting scenario…'))}</h1></div>${!intro&&!loading?'<button data-campa"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hero-equipment",
+      "source": "web/hero-equipment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Armée",
+        "Équipement",
+        "Sac",
+        "Compétences",
+        "Compagnon",
+        "Héros à recruter"
+      ],
+      "variantsEn": [
+        "Army",
+        "Equipment",
+        "Backpack",
+        "Skills",
+        "Henchman",
+        "Hero for hire"
+      ],
+      "category": "Héros",
+      "needs": [
+        "screen",
+        "hero",
+        "stats",
+        "tabs",
+        "army",
+        "inventory",
+        "skills",
+        "spells",
+        "upgrade",
+        "details",
+        "transfer"
+      ],
+      "sourceSHA256": "51647e925e4c821aae9b7228b787f9b541dab21e30a65991b488946e05a4d74c",
+      "evidence": [
+        {
+          "line": 10,
+          "excerpt": "const heroIcon=index=>Number.isInteger(index)?`<canvas class=\"hero-icon\" width=\"48\" height=\"48\" data-hero-icon=\"${index}\" aria-hidden=\"true\"></canvas>`:'';"
+        },
+        {
+          "line": 14,
+          "excerpt": "export function paintArtifactIcons(panel){"
+        },
+        {
+          "line": 26,
+          "excerpt": "export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{},onManage=()=>{},onUpgradeAll=()=>{}}){"
+        },
+        {
+          "line": 30,
+          "excerpt": "const panel=document.createElement('section');panel.className='hero-equipment-page';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Hero equipment');r"
+        },
+        {
+          "line": 39,
+          "excerpt": "function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class=\"hero-ar"
+        },
+        {
+          "line": 76,
+          "excerpt": "<button type=\"button\" class=\"hero-army-slot hero-army-empty${isTarget?' can-target':''}\" data-army-slot=\"${slot}\" aria-pressed=\"false\" aria-label=\"${fr?`Emplacement libre #${slot+1"
+        },
+        {
+          "line": 85,
+          "excerpt": "<button type=\"button\" class=\"hero-army-slot${isSelected?' selected':''}${isTarget?' can-target':''}\" data-army-slot=\"${slot}\" aria-pressed=\"${isSelected}\" aria-label=\"${esc(`${unit"
+        },
+        {
+          "line": 109,
+          "excerpt": "<button class=\"army-upgrade-all\" data-hero-upgrade-all ${!state.turn||hero.owned===false||!items.some(Boolean)?'disabled':''}><img src=\"./web/h3-theme/troops.svg\" alt=\"\" aria-hidde"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hero-exchange",
+      "source": "web/hero-exchange.mjs",
+      "kind": "screen",
+      "variants": [
+        "Armées",
+        "Artefacts",
+        "Échange confirmé"
+      ],
+      "variantsEn": [
+        "Armies",
+        "Artifacts",
+        "Confirmed exchange"
+      ],
+      "category": "Héros",
+      "needs": [
+        "screen",
+        "hero",
+        "tabs",
+        "army",
+        "inventory",
+        "transfer",
+        "quantity",
+        "confirm"
+      ],
+      "sourceSHA256": "7c6fecdfccb650738b3e286671106b1d526ae6acb338be284430bb708127fcf5",
+      "evidence": [
+        {
+          "line": 9,
+          "excerpt": "export function createHeroExchange({root,command,refresh,portrait}){"
+        },
+        {
+          "line": 11,
+          "excerpt": "const panel=document.createElement('section');"
+        },
+        {
+          "line": 59,
+          "excerpt": "return `<button type=\"button\" aria-label=\"${escape(heroes[side].name)}, ${escape(label)}${troops&&slot.name?`, ${slot.count}`:''}\" class=\"exchange-slot${compatible?' can-receive':'"
+        },
+        {
+          "line": 61,
+          "excerpt": "${slot.name?(troops?`<span class=\"exchange-troop-art\">${portrait(slot)}<strong class=\"exchange-troop-count\">${slot.count}</strong></span>`:`<canvas width=\"64\" height=\"64\" data-arti"
+        },
+        {
+          "line": 72,
+          "excerpt": "<header>${hero.portrait?.w?`<canvas class=\"exchange-face\" width=\"48\" height=\"56\" data-exchange-face=\"${side}\" aria-hidden=\"true\"></canvas>`:''}"
+        },
+        {
+          "line": 91,
+          "excerpt": "<button type=\"button\" data-exchange-classic data-exchange-focus=\"classic\" ${pending||confirmFinish?'disabled':''}>${fr?'Classique':'Classic'}</button>"
+        },
+        {
+          "line": 92,
+          "excerpt": "<button type=\"button\" data-exchange-close data-exchange-focus=\"close\" aria-label=\"${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close "
+        },
+        {
+          "line": 95,
+          "excerpt": "<button type=\"button\" data-exchange-tab=\"equipment\" data-exchange-focus=\"equipment\" aria-pressed=\"${!troops}\" ${pending?'disabled':''}>${fr?'Équipement':'Equipment'}</button>"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "creature-presentation",
+      "source": "web/creature-presentation.mjs",
+      "kind": "screen",
+      "variants": [
+        "Détails de créature",
+        "Recrutement château",
+        "Recrutement carte",
+        "Évolutions"
+      ],
+      "variantsEn": [
+        "Creature details",
+        "Town recruitment",
+        "Map recruitment",
+        "Evolutions"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "details",
+        "animation",
+        "stats",
+        "evolution-grid",
+        "purchase",
+        "resources",
+        "actions"
+      ],
+      "sourceSHA256": "0cfc03be664fd4e51f7bf93c510377b45abf8628501f09d45ba6eb31b2b50701",
+      "evidence": [
+        {
+          "line": 17,
+          "excerpt": "export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){"
+        },
+        {
+          "line": 18,
+          "excerpt": "const panel=document.createElement('section');panel.className='creature-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Creature overvie"
+        },
+        {
+          "line": 41,
+          "excerpt": "if(key!==signature){if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root.querySelector('.mobile-play').append(choices,amount);const "
+        },
+        {
+          "line": 50,
+          "excerpt": "panel.insertAdjacentHTML('beforeend',`<div class=\"featured-creature\"><div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" aria-label=\"Animated ${esc(unit?.name)}"
+        },
+        {
+          "line": 52,
+          "excerpt": "const variants=document.createElement('div');variants.className='recruit-variants';"
+        },
+        {
+          "line": 57,
+          "excerpt": "renderMarkup(variants,choices.map(({u,index})=>`<button data-variant=\"${index}\" aria-pressed=\"${u.id===unit?.id}\">${creaturePortrait(u)}<span class=\"variant-name\">${esc(u.name)}</s"
+        },
+        {
+          "line": 58,
+          "excerpt": "const visual=document.createElement('div');visual.className='recruit-visual';visual.append(panel.querySelector('.creature-stage'),variants);"
+        },
+        {
+          "line": 59,
+          "excerpt": "const controls=document.createElement('section');controls.className='recruit-controls';controls.append(amount);"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "town-services",
+      "source": "web/town-services.mjs",
+      "kind": "screen",
+      "variants": [
+        "Machines de guerre",
+        "Guilde des voleurs"
+      ],
+      "variantsEn": [
+        "War machines",
+        "Thieves guild"
+      ],
+      "category": "Châteaux",
+      "needs": [
+        "screen",
+        "card",
+        "resources",
+        "purchase",
+        "ranking",
+        "actions"
+      ],
+      "sourceSHA256": "cd1d06c67d57108193a0b6004641b80036a15968676bbb46337a89479b341f97",
+      "evidence": [
+        {
+          "line": 8,
+          "excerpt": "export function createTownServices({root,command}){"
+        },
+        {
+          "line": 9,
+          "excerpt": "const panel=document.createElement('section');panel.className='town-service';useScreenComponents(panel);panel.hidden=true;root.querySelector('.mobile-play').append(panel);"
+        },
+        {
+          "line": 15,
+          "excerpt": "const head=title=>`<header><h2>${esc(title)}</h2><button type=\"button\" data-service-back aria-label=\"Close\">✕</button></header>`;"
+        },
+        {
+          "line": 17,
+          "excerpt": "renderMarkup(panel,`${head('Blacksmith')}<div class=\"service-art\"><canvas width=\"640\" height=\"480\" aria-label=\"${esc(data?.unit?.name||'War machine')}\"></canvas></div><section clas"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "thieves-guild-view",
+      "source": "web/thieves-guild-view.mjs",
+      "kind": "screen",
+      "variants": [
+        "Classements 2 joueurs",
+        "Classements 8 joueurs",
+        "Renseignements 2 joueurs",
+        "Renseignements 8 joueurs",
+        "Renseignements inconnus"
+      ],
+      "variantsEn": [
+        "Rankings: two players",
+        "Rankings: eight players",
+        "Intelligence: two players",
+        "Intelligence: eight players",
+        "Unknown intelligence"
+      ],
+      "category": "Châteaux",
+      "needs": [
+        "ranking",
+        "tabs",
+        "select",
+        "table",
+        "hero",
+        "feedback"
+      ],
+      "sourceSHA256": "2117cdf6df1ac35376c8ac2d9f66bcd306ec8c1882138dd4f39dc57286bb1a76",
+      "evidence": [
+        {
+          "line": 9,
+          "excerpt": "const icon=(id,label)=>Number.isInteger(id)?`<canvas width=\"48\" height=\"48\" data-guild-icon=\"${id}\" role=\"img\" aria-label=\"${esc(label)}\"></canvas>`:'';"
+        },
+        {
+          "line": 10,
+          "excerpt": "export function createThievesGuildView(panel){"
+        },
+        {
+          "line": 33,
+          "excerpt": "renderMarkup(panel,screenHeaderMarkup({title:t('Thieves’ Guild','Guilde des voleurs'),closeAttributes:'data-service-back',closeLabel:t('Close','Fermer')})+`<nav class=\"guild-view-t"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "town-building-menu",
+      "source": "web/town-building-menu.mjs",
+      "kind": "screen",
+      "variants": [
+        "Catalogue des bâtiments",
+        "Détail de bâtiment",
+        "Construction indisponible"
+      ],
+      "variantsEn": [
+        "Building catalogue",
+        "Building details",
+        "Construction unavailable"
+      ],
+      "category": "Châteaux",
+      "needs": [
+        "screen",
+        "building",
+        "card",
+        "resources",
+        "search",
+        "tabs",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "fb19cb6bb630411c03a5198809211158bd27c4f1a5d96fbd7b1baf91cf3fa6f5",
+      "evidence": [
+        {
+          "line": 61,
+          "excerpt": "export function nextBuildingPrerequisite(state, building) {"
+        },
+        {
+          "line": 65,
+          "excerpt": "export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {"
+        },
+        {
+          "line": 146,
+          "excerpt": "return `<button type=\"button\" class=\"building-tile\" data-building-id=\"${building.id}\">${picture(state, building)}"
+        },
+        {
+          "line": 167,
+          "excerpt": "<button type=\"button\" data-building-tab=\"built\" aria-pressed=\"${tab === 'built'}\">${count('Construits', builtCount)}</button>"
+        },
+        {
+          "line": 168,
+          "excerpt": "<button type=\"button\" data-building-tab=\"unbuilt\" aria-pressed=\"${tab === 'unbuilt'}\">${count('À construire', buildings.length - builtCount)}</button>"
+        },
+        {
+          "line": 169,
+          "excerpt": "${grail ? '<button type=\"button\" data-building-grail>Graal</button>' : ''}"
+        },
+        {
+          "line": 171,
+          "excerpt": "${filters.map(name => `<button type=\"button\" data-building-filter=\"${name}\" aria-pressed=\"${name === filter}\">${name || 'Tous'}</button>`).join('')}"
+        },
+        {
+          "line": 186,
+          "excerpt": "<button type=\"button\" class=\"primary\" data-building-prerequisite=\"${prerequisite.id}\">"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "army-upgrades",
+      "source": "web/army-upgrades.mjs",
+      "kind": "screen",
+      "variants": [
+        "Devis",
+        "Confirmation",
+        "Ressources insuffisantes",
+        "Mauvais château",
+        "Aucune évolution"
+      ],
+      "variantsEn": [
+        "Quote",
+        "Confirmation",
+        "Insufficient resources",
+        "Wrong town",
+        "No evolution"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "upgrade",
+        "resources",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "afbedd18c835876b157a5b25a0f9e0c06904ea21a89aff95057e18920fd20d1e",
+      "evidence": [
+        {
+          "line": 6,
+          "excerpt": "export function armyUpgradeAffordable(quote,resources=[]){return !!quote?.units?.length&&(quote.cost||[]).every((cost,i)=>cost>=0&&cost<=(resources[i]||0));}"
+        },
+        {
+          "line": 7,
+          "excerpt": "export function armyUpgradeUnavailableMessage(quote,language=getLanguage()){"
+        },
+        {
+          "line": 16,
+          "excerpt": "export function createArmyUpgrades({root,command,portrait=()=>''}){"
+        },
+        {
+          "line": 17,
+          "excerpt": "const panel=document.createElement('section');panel.className='progression-page army-upgrades-page';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog')"
+        },
+        {
+          "line": 25,
+          "excerpt": "renderMarkup(panel,`${screenHeaderMarkup({title:tr('Upgrade all','Tout améliorer'),titleId:'army-upgrades-title'})}<div class=\"progression-scroll\">${unavailable?`<p role=\"status\">$"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "army-panel",
+      "source": "web/army-panel.mjs",
+      "kind": "content",
+      "variants": [
+        "Garnison et héros",
+        "Garnison seule",
+        "Transfert",
+        "Scinder"
+      ],
+      "variantsEn": [
+        "Garrison and hero",
+        "Garrison only",
+        "Transfer",
+        "Split"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "army",
+        "slot",
+        "transfer",
+        "upgrade"
+      ],
+      "sourceSHA256": "34657db3963b4723b461ad54c3545a28726cff569d698fd51df176332152d158",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onManage,onUpgradeAll,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{"
+        },
+        {
+          "line": 9,
+          "excerpt": "const panel=document.createElement('div');panel.className='army-panel';panel.dataset.armyCount=String(showVisitorPlaceholder?Math.max(2,armies.length):armies.length);"
+        },
+        {
+          "line": 10,
+          "excerpt": "const rosters=document.createElement('div');rosters.className='army-rosters';"
+        },
+        {
+          "line": 11,
+          "excerpt": "const dock=document.createElement('footer');dock.id='army-options';dock.className='army-dock';"
+        },
+        {
+          "line": 12,
+          "excerpt": "const status=document.createElement('p');status.className='army-selection';status.setAttribute('role','status');status.textContent=readOnly?(fr?'Disponible à ton tour':'Available o"
+        },
+        {
+          "line": 13,
+          "excerpt": "const tools=document.createElement('div');tools.className='army-transfer-tools';"
+        },
+        {
+          "line": 14,
+          "excerpt": "const splitLabel=document.createElement('label');splitLabel.className='army-split-toggle';"
+        },
+        {
+          "line": 15,
+          "excerpt": "const split=document.createElement('input');split.id='army-split';split.type='checkbox';split.disabled=true;splitLabel.append(split,fr?'Scinder':'Split');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "troop-actions",
+      "source": "web/troop-actions.mjs",
+      "kind": "screen",
+      "variants": [
+        "Gérer une troupe",
+        "Libérer",
+        "Laisser sur la carte"
+      ],
+      "variantsEn": [
+        "Manage troop",
+        "Dismiss",
+        "Leave on the map"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "details",
+        "card",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "0d4e6a806003169d12e28d786f6ef116f1f2a1a666b7d08ade1edb978d4223b3",
+      "evidence": [
+        {
+          "line": 6,
+          "excerpt": "export function troopActionCapabilities(state,armyId,slot){"
+        },
+        {
+          "line": 14,
+          "excerpt": "export function createTroopActions({root,command,portrait=()=>'',onLeave=()=>{}}){"
+        },
+        {
+          "line": 15,
+          "excerpt": "const panel=document.createElement('section');panel.className='progression-page troop-actions-page';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog')"
+        },
+        {
+          "line": 27,
+          "excerpt": "`<div class=\"troop-action-choices\"><button data-troop-action=\"leave\" ${cap.leave?'':'disabled'}><img src=\"./web/h3-theme/troop-leave.svg\" alt=\"\"><strong>${tr('Leave on the map','La"
+        },
+        {
+          "line": 29,
+          "excerpt": "</div><footer><p role=\"status\">${esc(pending?tr('Waiting for the game…','En attente du jeu…'):message)}</p>${confirming?`<button class=\"primary\" data-troop-action=\"confirm\" ${pendi"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "troop-deployment",
+      "source": "web/troop-deployment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Déployer",
+        "Déploiement indisponible"
+      ],
+      "variantsEn": [
+        "Deploy",
+        "Deployment unavailable"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "quantity",
+        "select",
+        "card",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "44d56afd375552a6c205e88e576638f988da8d93d52237c5bdd067ae5976e6ab",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function createTroopDeployment({root,command}){"
+        },
+        {
+          "line": 5,
+          "excerpt": "const panel=document.createElement('section');panel.className='progression-page troop-deployment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('ari"
+        },
+        {
+          "line": 6,
+          "excerpt": "renderMarkup(panel,'<header><h2 id=\"troop-deployment-title\"></h2></header><div class=\"progression-scroll\"><label class=\"progression-family\"><span data-deploy-label></span><select d"
+        },
+        {
+          "line": 9,
+          "excerpt": "for(const direction of layout){const b=document.createElement(direction===null?'span':'button');if(direction===null){b.className='deployment-origin';b.textContent='◆';}else{b.type="
+        },
+        {
+          "line": 19,
+          "excerpt": "const select=node('troop'),key=JSON.stringify(data.troops.map(u=>[u.slot,u.name,u.count,u.maximum]));if(select._key!==key){select._key=key;select.replaceChildren(...data.troops.map"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "troop-equipment",
+      "source": "web/troop-equipment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Troupe",
+        "Objet",
+        "Confirmation"
+      ],
+      "variantsEn": [
+        "Troop",
+        "Item",
+        "Confirmation"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "details",
+        "inventory",
+        "stats",
+        "select",
+        "confirm"
+      ],
+      "sourceSHA256": "68b309532b478e7c4cb82f4a15eda271d93969682edfd4c7a64cbd5538c9b3fd",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function createTroopEquipment({root,command}){"
+        },
+        {
+          "line": 8,
+          "excerpt": "const panel=document.createElement('section');panel.className='progression-page troop-equipment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria"
+        },
+        {
+          "line": 9,
+          "excerpt": "renderMarkup(panel,'<header><h2 id=\"troop-equipment-title\"></h2></header><div class=\"progression-scroll\"><label class=\"progression-family\"><span data-troop-label></span><select dat"
+        },
+        {
+          "line": 18,
+          "excerpt": "const selector=panel.querySelector('[data-troop-select]'),troopKey=JSON.stringify(data.troops.map(t=>[t.slot,t.name,t.count]));if(selector._key!==troopKey){selector._key=troopKey;s"
+        },
+        {
+          "line": 19,
+          "excerpt": "const current=panel.querySelector('.troop-current'),key=JSON.stringify([slot,t.equipped,getLanguage()]);if(current._key!==key){current._key=key;renderMarkup(current,`<h3>${esc(t.na"
+        },
+        {
+          "line": 22,
+          "excerpt": "for(const item of items){let b=inventory.querySelector(`[data-troop-item=\"${item.id}\"]`);if(!b){b=document.createElement('button');b.className='progression-offer';b.dataset.troopIt"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "mithril-enhancements",
+      "source": "web/mithril-enhancements.mjs",
+      "kind": "screen",
+      "variants": [
+        "Améliorations de mithril"
+      ],
+      "variantsEn": [
+        "Mithril enhancements"
+      ],
+      "category": "Économie",
+      "needs": [
+        "screen",
+        "upgrade",
+        "card",
+        "resources",
+        "select",
+        "feedback"
+      ],
+      "sourceSHA256": "ecdd62b92ea69de7b77b8b6a38f90ee011d458118b8ae7555fd68a478e96389c",
+      "evidence": [
+        {
+          "line": 5,
+          "excerpt": "export function renderMithrilOffers(data,{pending=false,canAct=false,selectedTerrains={}}={}){"
+        },
+        {
+          "line": 22,
+          "excerpt": "${offer.terrainChoices?`<label>${fr?'Terrain de siège':'Siege terrain'}<select data-mithril-terrain=\"${offer.id}\" ${pending||!canAct?'disabled':''}>${offer.terrainChoices.map(row=>"
+        },
+        {
+          "line": 23,
+          "excerpt": "${offer.active?`<p>${offer.days?`${offer.days} ${fr?'jours restants':'days remaining'}`:(fr?'Amélioré':'Enhanced')}</p>`:`<button data-mithril-buy=\"${offer.id}\" data-mithril-choice"
+        },
+        {
+          "line": 26,
+          "excerpt": "export function createMithrilEnhancements({root,command}){"
+        },
+        {
+          "line": 27,
+          "excerpt": "const button=document.createElement('button');button.dataset.mithrilOpen='';button.textContent='Mithril';button.hidden=true;"
+        },
+        {
+          "line": 29,
+          "excerpt": "const panel=document.createElement('section');panel.className='mithril-panel';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('a"
+        },
+        {
+          "line": 30,
+          "excerpt": "renderMarkup(panel,'<header><h2 id=\"mithril-title\">Mithril</h2><button data-mithril-close aria-label=\"Fermer\">✕</button></header><div class=\"mithril-content\"></div>');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "dialog-presentation",
+      "source": "web/dialog-presentation.mjs",
+      "kind": "screen",
+      "variants": [
+        "Message",
+        "Choix de récompense",
+        "Commandeur",
+        "Niveau du commandeur",
+        "Formulaire ERM",
+        "Meilleurs scores"
+      ],
+      "variantsEn": [
+        "Message",
+        "Reward choice",
+        "Commander",
+        "Commander level",
+        "ERM form",
+        "High scores"
+      ],
+      "category": "Navigation",
+      "needs": [
+        "screen",
+        "dynamic",
+        "confirm",
+        "card",
+        "resources",
+        "hero",
+        "skills",
+        "result"
+      ],
+      "sourceSHA256": "d96723bfeac72cebd1ca38ba5f0977b699496b41697e1726b60529a6c639a8d6",
+      "evidence": [
+        {
+          "line": 12,
+          "excerpt": "export function createDialogPresentation({root,command,pointer,refresh=()=>{},scriptReply=sendCampaignDialogReply,scriptDraft=sendCampaignDialogDraft}){"
+        },
+        {
+          "line": 14,
+          "excerpt": "const panel=document.createElement('section');panel.className='dialog-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presen"
+        },
+        {
+          "line": 57,
+          "excerpt": "const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map"
+        },
+        {
+          "line": 59,
+          "excerpt": "if(data.commanderTree){const toggle=document.createElement('button');toggle.type='button';toggle.dataset.commanderTree='';toggle.textContent=getLanguage()==='fr'?(treeOpen?'Compéte"
+        },
+        {
+          "line": 60,
+          "excerpt": "const content=document.createElement('div');content.className='dialog-copy';"
+        },
+        {
+          "line": 61,
+          "excerpt": "if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image."
+        },
+        {
+          "line": 63,
+          "excerpt": "for(const line of lines){const p=document.createElement('p');p.textContent=line;content.append(p);}"
+        },
+        {
+          "line": 64,
+          "excerpt": "if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit."
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "progression-choices",
+      "source": "web/progression-choices.mjs",
+      "kind": "screen",
+      "variants": [
+        "Tour",
+        "Choix de famille",
+        "Choix de progression"
+      ],
+      "variantsEn": [
+        "Turn",
+        "Family choice",
+        "Progression choice"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "card",
+        "evolution-grid",
+        "inventory",
+        "resources",
+        "select",
+        "confirm"
+      ],
+      "sourceSHA256": "079816c9331d400e06b5a9ce1a118afede11f520b45fd8b107212dea5edf8946",
+      "evidence": [
+        {
+          "line": 6,
+          "excerpt": "if(typeof document!=='undefined'){const s=document.createElement('link');s.rel='stylesheet';s.href=new URL('./progression.css',import.meta.url).href;document.head.append(s);}"
+        },
+        {
+          "line": 7,
+          "excerpt": "export function paintProgressionArtifacts(root){"
+        },
+        {
+          "line": 11,
+          "excerpt": "export function createProgressionChoices({root,command}){"
+        },
+        {
+          "line": 12,
+          "excerpt": "const panel=document.createElement('section');panel.className='progression-page progression-choices';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog'"
+        },
+        {
+          "line": 20,
+          "excerpt": "renderMarkup(panel,`${screenHeaderMarkup({title:data.visitedObject||data.title,titleId:'progression-title'})}<div class=\"progression-scroll\"><details class=\"progression-rules\"><sum"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "commander-tree",
+      "source": "web/commander-tree.mjs",
+      "kind": "content",
+      "variants": [
+        "Toutes les capacités",
+        "Spécialisation",
+        "Choix de compétence"
+      ],
+      "variantsEn": [
+        "All abilities",
+        "Specialization",
+        "Skill choice"
+      ],
+      "category": "Héros",
+      "needs": [
+        "skills",
+        "stats",
+        "card",
+        "feedback"
+      ],
+      "sourceSHA256": "f9faad3895c46bddb0bc61917f58c9719a900bad0fa7197d7695ee5b6a047f8a",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./commander-tree.css',import.meta.url).href;document.head.appen"
+        },
+        {
+          "line": 7,
+          "excerpt": "const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};"
+        },
+        {
+          "line": 9,
+          "excerpt": "export function commanderAbilityState(ability,tree){"
+        },
+        {
+          "line": 15,
+          "excerpt": "export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},onSelect=()=>{}}={}){"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "spellbook",
+      "source": "web/spellbook.mjs",
+      "kind": "screen",
+      "variants": [
+        "Combat",
+        "Aventure",
+        "Lecture seule",
+        "Sort indisponible",
+        "Confirmation",
+        "Réutilisation"
+      ],
+      "variantsEn": [
+        "Battle",
+        "Adventure",
+        "Read only",
+        "Spell unavailable",
+        "Confirmation",
+        "Reuse"
+      ],
+      "category": "Magie",
+      "needs": [
+        "screen",
+        "spells",
+        "tabs",
+        "search",
+        "resources",
+        "card",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "6d0ffc546daa0d7e9a68ddb63eda84a9f06117a0910d4913ed99e030de43bd67",
+      "evidence": [
+        {
+          "line": 17,
+          "excerpt": "export function createMobileSpellbook({root,command}){"
+        },
+        {
+          "line": 19,
+          "excerpt": "const panel=document.createElement('section');panel.className='mobile-spellbook';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Spellbook');root.quer"
+        },
+        {
+          "line": 23,
+          "excerpt": "panel.addEventListener('error',event=>{const img=event.target;if(!img.matches?.('.spell-icon'))return;const spell=book.spells?.find(s=>s.id===Number(img.dataset.icon));const origin"
+        },
+        {
+          "line": 53,
+          "excerpt": "<button data-close-book aria-label=\"Close spellbook\">✕</button>"
+        },
+        {
+          "line": 56,
+          "excerpt": "<button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy=\"true\"':''} title=\"${esc(previous?previous.name:'No spell used yet')}\">"
+        },
+        {
+          "line": 61,
+          "excerpt": "${book.inCombat===false?`<nav class=\"spell-contexts\" aria-label=\"Spell types\"><button data-spell-context=\"0\" aria-pressed=\"${!book.combatSpells}\">Adventure spells</button><button d"
+        },
+        {
+          "line": 62,
+          "excerpt": "<nav class=\"spell-schools\" aria-label=\"Spell categories\">${schools.map(([symbol,name],i)=>`<button data-school=\"${i}\" aria-pressed=\"${spellSchoolIds[i]===book.school}\"><span aria-h"
+        },
+        {
+          "line": 63,
+          "excerpt": "<label class=\"spell-school-picker\"><select data-school-select aria-label=\"${getLanguage()==='fr'?'École de magie':'Magic school'}\">${schools.map(([,name],index)=>`<option value=\"${"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "mage-guild",
+      "source": "web/mage-guild.mjs",
+      "kind": "screen",
+      "variants": [
+        "Étages",
+        "Sorts",
+        "Étage fermé",
+        "Recherche"
+      ],
+      "variantsEn": [
+        "Floors",
+        "Spells",
+        "Locked floor",
+        "Research"
+      ],
+      "category": "Magie",
+      "needs": [
+        "screen",
+        "spells",
+        "tabs",
+        "card",
+        "feedback"
+      ],
+      "sourceSHA256": "33b7ec0b63d9d20ac1f21360d175f9f6d80d86f37c5d0587fd86986b480949dd",
+      "evidence": [
+        {
+          "line": 12,
+          "excerpt": "export function createMageGuild({root, command, pointer, resetView, asset}) {"
+        },
+        {
+          "line": 13,
+          "excerpt": "const panel = document.createElement('section');"
+        },
+        {
+          "line": 33,
+          "excerpt": "const header = `<header><h2>${title}</h2><button type=\"button\" data-guild-view>${viewLabel}</button>"
+        },
+        {
+          "line": 34,
+          "excerpt": "<button type=\"button\" data-guild-close aria-label=\"${t('Fermer', 'Close')}\">✕</button></header>`;"
+        },
+        {
+          "line": 50,
+          "excerpt": "return `<button type=\"button\" data-guild-level=\"${number}\" data-floor-status=\"${state}\" aria-pressed=\"${number === level}\""
+        },
+        {
+          "line": 58,
+          "excerpt": "${guild.allSpells ? `<div class=\"mage-guild-empty\"><button type=\"button\" data-guild-all>${t('Tous les sorts', 'All spells')}</button></div>` :"
+        },
+        {
+          "line": 61,
+          "excerpt": "${visible.map(spell => `<button type=\"button\" data-guild-spell=\"${spell.id}\" aria-pressed=\"${spell.id === selected.id}\">"
+        },
+        {
+          "line": 66,
+          "excerpt": "${guild.canResearch || !selected.description ? `<button type=\"button\" data-guild-inspect=\"${selected.id}\">"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "marketplace",
+      "source": "web/marketplace.mjs",
+      "kind": "screen",
+      "variants": [
+        "Échange",
+        "Ressource insuffisante",
+        "Échange en cours"
+      ],
+      "variantsEn": [
+        "Trade",
+        "Insufficient resources",
+        "Trading"
+      ],
+      "category": "Économie",
+      "needs": [
+        "screen",
+        "trade",
+        "resources",
+        "quantity",
+        "card",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "92d6cec1f0bdd4c4656009cbc63c876973dc37576a6663766d7693f84da4ce65",
+      "evidence": [
+        {
+          "line": 11,
+          "excerpt": "export function createMarketplace({root, command, refresh}) {"
+        },
+        {
+          "line": 12,
+          "excerpt": "const panel = document.createElement('section');"
+        },
+        {
+          "line": 20,
+          "excerpt": "<button type=\"button\" data-market=\"minus\">−</button><input type=\"number\" inputmode=\"numeric\" min=\"1\" step=\"1\"><button type=\"button\" data-market=\"plus\">+</button><button type=\"butto"
+        },
+        {
+          "line": 21,
+          "excerpt": "</div><button class=\"primary\" type=\"button\" data-market=\"trade\"></button></div><footer class=\"market-view-actions\"><button type=\"button\" data-market=\"classic\"></button><button clas"
+        },
+        {
+          "line": 52,
+          "excerpt": "const button = document.createElement('button');"
+        },
+        {
+          "line": 58,
+          "excerpt": "const icon = document.createElement('img');icon.src=url;icon.alt='';"
+        },
+        {
+          "line": 61,
+          "excerpt": "button.append(document.createElement('span'),document.createElement('small'));"
+        },
+        {
+          "line": 113,
+          "excerpt": "if(index){const arrow=document.createElement('span');arrow.textContent='→';arrow.setAttribute('aria-hidden','true');total.append(arrow);}"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "mobile-tavern",
+      "source": "web/mobile-tavern.mjs",
+      "kind": "screen",
+      "variants": [
+        "Héros disponibles",
+        "Taverne vide",
+        "Recrutement indisponible",
+        "Rumeur"
+      ],
+      "variantsEn": [
+        "Available heroes",
+        "Empty tavern",
+        "Recruitment unavailable",
+        "Rumor"
+      ],
+      "category": "Héros",
+      "needs": [
+        "screen",
+        "hire",
+        "hero",
+        "resources",
+        "details",
+        "feedback"
+      ],
+      "sourceSHA256": "1758c49e327ae84377b271187662a65315e860e6394521558452692d173aedf5",
+      "evidence": [
+        {
+          "line": 10,
+          "excerpt": "export function createMobileTavern({root, command, pointer}) {"
+        },
+        {
+          "line": 11,
+          "excerpt": "const panel = document.createElement('section');"
+        },
+        {
+          "line": 30,
+          "excerpt": "<button type=\"button\" data-tavern-close aria-label=\"${t('Fermer la taverne', 'Close tavern')}\">✕</button></header>"
+        },
+        {
+          "line": 33,
+          "excerpt": "<div class=\"tavern-identity\"><canvas width=\"116\" height=\"128\" data-tavern-portrait=\"${index}\" aria-hidden=\"true\"></canvas>"
+        },
+        {
+          "line": 36,
+          "excerpt": "<button type=\"button\" data-tavern-equipment=\"${index}\" aria-label=\"${t('Équipement de', 'Equipment of')} ${escape(hero.name)}\">${t('Équipement', 'Equipment')}</button>"
+        },
+        {
+          "line": 37,
+          "excerpt": "<button type=\"button\" class=\"primary\" data-tavern-recruit=\"${index}\" aria-label=\"${t('Recruter', 'Recruit')} ${escape(hero.name)}\" ${canRecruit && Number.isInteger(hero.id) ? '' : "
+        },
+        {
+          "line": 42,
+          "excerpt": "${tavern.thievesGuild ? `<button type=\"button\" data-tavern-extra=\"thievesGuild\">${t('Guilde des voleurs', 'Thieves’ Guild')}</button>` : ''}"
+        },
+        {
+          "line": 43,
+          "excerpt": "${tavern.invite ? `<button type=\"button\" data-tavern-extra=\"invite\">${t('Inviter un héros', 'Invite a hero')}</button>` : ''}"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "town-portrait",
+      "source": "web/town-portrait.mjs",
+      "kind": "screen",
+      "variants": [
+        "Château portrait",
+        "Château paysage",
+        "Chaque faction",
+        "Bâtiment et sous-titre"
+      ],
+      "variantsEn": [
+        "Portrait town",
+        "Landscape town",
+        "Every faction",
+        "Building and subtitle"
+      ],
+      "category": "Châteaux",
+      "needs": [
+        "scene",
+        "building",
+        "calendar",
+        "actions"
+      ],
+      "sourceSHA256": "af60d8b2477bc6af7b337af456043175c97d9eedde25fda6e06296106188e170",
+      "evidence": [
+        {
+          "line": 32,
+          "excerpt": "export function isGoonkTown(state){return state.townFaction==='goonk:goonk'||(state.buildings||[]).some(b=>String(b.key).startsWith('goonk:'));}"
+        },
+        {
+          "line": 33,
+          "excerpt": "export function townPortraitBuildings(width,height,buildings=[]){const result=[];for(const [site,variants,x,y,maxW,maxH]of TOWN_SITES){const building=[...variants].reverse().map(ke"
+        },
+        {
+          "line": 34,
+          "excerpt": "export function portraitTownFaction(state){if(isGoonkTown(state))return 'goonk';const key=String(state.townFaction||'').split(':').at(-1);return townBuildingArt[key]?key:null;}"
+        },
+        {
+          "line": 37,
+          "excerpt": "export function townBuildingCardImage(state,building,asset){"
+        },
+        {
+          "line": 43,
+          "excerpt": "export function eighthTownRecruitment(state){"
+        },
+        {
+          "line": 51,
+          "excerpt": "export function eighthTownViewport(width,height){return {x:0,y:0,width,height,badgeWidth:0};}"
+        },
+        {
+          "line": 52,
+          "excerpt": "export function factionPortraitBuildings(width,height,buildings,faction,{minimumRowHeight=0}={}){"
+        },
+        {
+          "line": 71,
+          "excerpt": "export function createTownPortrait({root,scene,asset,command,getState,openBuildings}){"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "town-recruitment",
+      "source": "web/town-recruitment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Fort classique adapté"
+      ],
+      "variantsEn": [
+        "Adapted classic fort"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "scene",
+        "roster",
+        "purchase",
+        "resources",
+        "details"
+      ],
+      "sourceSHA256": "586e7ae3c53dc592805bc4b720b6d03272becbb43eaaa804d40347bf4eeaf528",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function createNativeFort({root,getState,pointer}){"
+        },
+        {
+          "line": 5,
+          "excerpt": "const panel=document.createElement('section');panel.className='native-fort';panel.hidden=true;panel.setAttribute('aria-label','Créatures du château');"
+        },
+        {
+          "line": 6,
+          "excerpt": "const help=document.createElement('p');help.className='native-fort-help';help.textContent='Choisis une créature pour recruter tes troupes.';"
+        },
+        {
+          "line": 7,
+          "excerpt": "const grid=document.createElement('div');grid.className='native-fort-grid';panel.append(help,grid);root.querySelector('.mobile-play').append(panel);"
+        },
+        {
+          "line": 14,
+          "excerpt": "const button=document.createElement('button');button.className='native-fort-card';button.setAttribute('aria-label','Recruter les créatures du niveau '+(index+1));"
+        },
+        {
+          "line": 15,
+          "excerpt": "const canvas=document.createElement('canvas');canvas.setAttribute('aria-hidden','true');button.append(canvas);grid.append(button);"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "recruitment-families",
+      "source": "web/recruitment-families.mjs",
+      "kind": "screen",
+      "variants": [
+        "Familles de créatures",
+        "Créature disponible",
+        "Créature verrouillée"
+      ],
+      "variantsEn": [
+        "Creature families",
+        "Available creature",
+        "Locked creature"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "screen",
+        "roster",
+        "evolution-grid",
+        "animation",
+        "stats",
+        "purchase",
+        "details",
+        "resources"
+      ],
+      "sourceSHA256": "dc23041844787c9ae88038cd2ef242d101f26ebb840b1bef20016003e9882310",
+      "evidence": [
+        {
+          "line": 5,
+          "excerpt": "export function recruitmentFamilies(state){return state.fortFamilies?.length?state.fortFamilies:(state.fortRows||[]).map(row=>({level:row.level,count:row.count,variants:(state.recr"
+        },
+        {
+          "line": 6,
+          "excerpt": "export function recruitMaximum(unit,resources=[]){if(!unit?.built)return 0;let count=Math.max(0,Math.floor(unit.count||0));for(const[i,cost]of(unit.cost||[]).entries())if(cost>0)co"
+        },
+        {
+          "line": 10,
+          "excerpt": "export function createRecruitmentHall({panel,command,prices,stats,openBuildings}){"
+        },
+        {
+          "line": 59,
+          "excerpt": "detail.dataset.unit=u.id;renderMarkup(detail,`<div class=\"hall-feature\"><div><div class=\"hall-feature-title\"><h3 title=\"${esc(u.name)}\">${esc(u.name)}</h3><span class=\"hall-unit-pr"
+        },
+        {
+          "line": 60,
+          "excerpt": "const context=document.createElement('div');context.className='hall-purchase-context';context.append(detail.querySelector('.hall-feature'),detail.querySelector('.hall-quantity'));d"
+        },
+        {
+          "line": 84,
+          "excerpt": "if(!old)savedScroll=null;if(old){restoreMovedActions(old);for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "weekly-recruits",
+      "source": "web/weekly-recruits.mjs",
+      "kind": "content",
+      "variants": [
+        "Recrues hebdomadaires"
+      ],
+      "variantsEn": [
+        "Weekly recruits"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "roster",
+        "table",
+        "select",
+        "calendar",
+        "resources"
+      ],
+      "sourceSHA256": "760c0b1984463802e05ff989e7953db9b677f03dad60f574f3824eadff9eb981",
+      "evidence": [
+        {
+          "line": 10,
+          "excerpt": "export function createWeeklyRecruits(body){"
+        },
+        {
+          "line": 32,
+          "excerpt": "const townControl=towns.length>1?`<label class=\"weekly-town\">${fr?'Ville':'Town'} <select>${towns.map(item=>`<option value=\"${item.id}\" ${item.id===townId?'selected':''}>${escape(i"
+        },
+        {
+          "line": 36,
+          "excerpt": "<table aria-label=\"${fr?'Recrues par niveau':'Recruits by level'}\"><thead><tr><th scope=\"col\">${fr?'Créatures':'Creatures'}</th><th scope=\"col\">${fr?'En stock':'In stock'}</th><th "
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "storage-page",
+      "source": "web/storage-page.mjs",
+      "kind": "screen",
+      "variants": [
+        "Stockage autonome",
+        "Aide",
+        "Confirmation suppression",
+        "Progression",
+        "Erreur"
+      ],
+      "variantsEn": [
+        "Standalone storage",
+        "Help",
+        "Delete confirmation",
+        "Progress",
+        "Error"
+      ],
+      "category": "Technique",
+      "needs": [
+        "screen",
+        "storage",
+        "feedback",
+        "actions",
+        "confirm"
+      ],
+      "sourceSHA256": "e475c60489d4018a0928c045c38fa077831021943c2eee98ded9d7d68afa18bb",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "const root=document.querySelector('#storage-manager');renderMarkup(root,`<header><h1>${GAME_NAME}</h1><p>Stockage sur cet appareil</p></header>${storageGuide(location.hostname)}<di"
+        },
+        {
+          "line": 8,
+          "excerpt": "const content=document.createElement('div');content.className='storage-content';"
+        },
+        {
+          "line": 10,
+          "excerpt": "const footer=document.createElement('footer'),link=root.querySelector('.storage-return');decorateButton(link);footer.append(link);root.append(content,footer);useScreenComponents(ro"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "session-recovery",
+      "source": "web/session-recovery.mjs",
+      "kind": "screen",
+      "variants": [
+        "Recherche de sauvegarde",
+        "Reprise",
+        "Erreur",
+        "Choisir une autre partie"
+      ],
+      "variantsEn": [
+        "Save search",
+        "Resume",
+        "Error",
+        "Choose another game"
+      ],
+      "category": "Technique",
+      "needs": [
+        "screen",
+        "save",
+        "feedback",
+        "actions"
+      ],
+      "sourceSHA256": "c811090c6a2236fccc812ab36a48db81ac7979749fef69b51ae4980497806556",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function listLocalSaves(FS){"
+        },
+        {
+          "line": 13,
+          "excerpt": "export function createSessionRecovery({listSaves,command,onStatus=()=>{},manual=false,newGame=false,campaign=false,hosted=false,custom=null,skipResume=false,onRestart=()=>{},onMenu"
+        },
+        {
+          "line": 81,
+          "excerpt": "export function installSessionRecovery({win=window,doc=document}={}){"
+        },
+        {
+          "line": 82,
+          "excerpt": "const dialog=doc.createElement('dialog');dialog.className='session-recovery';dialog.setAttribute('aria-labelledby','session-recovery-title');"
+        },
+        {
+          "line": 83,
+          "excerpt": "renderMarkup(dialog,'<header><h2 id=\"session-recovery-title\"></h2></header><div class=\"session-recovery-content\"><p class=\"session-recovery-message\" role=\"status\" aria-live=\"polite"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "boot-screen",
+      "source": "web/boot-screen.mjs",
+      "kind": "screen",
+      "variants": [
+        "Chargement temporaire",
+        "Progression",
+        "Erreur"
+      ],
+      "variantsEn": [
+        "Temporary loading",
+        "Progress",
+        "Error"
+      ],
+      "category": "Technique",
+      "needs": [
+        "feedback",
+        "storage",
+        "actions"
+      ],
+      "sourceSHA256": "9830256498ced4031fc83f09f3c20c9b0eeb94316adf093e20a63e8e3503c5f3",
+      "evidence": [
+        {
+          "line": 6,
+          "excerpt": "export function createTemporaryBoot(status){"
+        },
+        {
+          "line": 8,
+          "excerpt": "const readyStatus=document.createElement('div');"
+        },
+        {
+          "line": 18,
+          "excerpt": "const progress=document.createElement('progress');"
+        },
+        {
+          "line": 21,
+          "excerpt": "const stage=document.createElement('small');"
+        },
+        {
+          "line": 24,
+          "excerpt": "const title=document.createElement('p');"
+        },
+        {
+          "line": 26,
+          "excerpt": "const info=document.createElement('p');"
+        },
+        {
+          "line": 29,
+          "excerpt": "const note=document.createElement('small');"
+        },
+        {
+          "line": 77,
+          "excerpt": "const message=document.createElement('p');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "loading",
+      "source": "web/loading.mjs",
+      "kind": "screen",
+      "variants": [
+        "Chargement des fichiers",
+        "Chargement interrompu"
+      ],
+      "variantsEn": [
+        "File loading",
+        "Loading interrupted"
+      ],
+      "category": "Technique",
+      "needs": [
+        "feedback",
+        "storage",
+        "actions"
+      ],
+      "sourceSHA256": "ee7678483e5e538c1826d952bc1fcf083aebc50e401af844d4b8fa31193fbab8",
+      "evidence": [
+        {
+          "line": 2,
+          "excerpt": "export function createLoadingView(status){"
+        },
+        {
+          "line": 3,
+          "excerpt": "const view=document.createElement('section');view.id='asset-loading';view.setAttribute('aria-label','Chargement du jeu');"
+        },
+        {
+          "line": 4,
+          "excerpt": "const title=document.createElement('h2'),summary=document.createElement('p'),bar=document.createElement('progress'),details=document.createElement('p'),list=document.createElement("
+        },
+        {
+          "line": 6,
+          "excerpt": "const render=()=>{frame=0;const p=latest;title.textContent=p.phase==='ready'?'Données prêtes':p.phase==='save'?'Enregistrement sur cet appareil':'Téléchargement du jeu';summary.tex"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "campaign-media",
+      "source": "web/campaign-media.mjs",
+      "kind": "screen",
+      "variants": [
+        "Illustration",
+        "Vidéo de campagne"
+      ],
+      "variantsEn": [
+        "Picture",
+        "Campaign video"
+      ],
+      "category": "Campagne",
+      "needs": [
+        "screen",
+        "media",
+        "actions"
+      ],
+      "sourceSHA256": "59f6a42a0809de7520d4905c86bf43e949c6495ea09645741957d950df1313bd",
+      "evidence": [
+        {
+          "line": 6,
+          "excerpt": "export function closeCampaignMediaViewer(){if(viewer){const current=viewer;viewer=null;current.close();current.remove();}}"
+        },
+        {
+          "line": 7,
+          "excerpt": "export function campaignMediaPicture(picture){"
+        },
+        {
+          "line": 9,
+          "excerpt": "const button=document.createElement('button');button.type='button';button.className='campaign-media-thumbnail';"
+        },
+        {
+          "line": 10,
+          "excerpt": "const image=document.createElement('img');image.src=new URL(media.url,import.meta.url).href;image.width=media.width;image.height=media.height;image.alt=picture.hint||picture.label|"
+        },
+        {
+          "line": 13,
+          "excerpt": "closeCampaignMediaViewer();const dialog=document.createElement('dialog');viewer=dialog;dialog.className='campaign-media-viewer';"
+        },
+        {
+          "line": 14,
+          "excerpt": "const controls=document.createElement('header'),title=document.createElement('h2'),close=document.createElement('button');"
+        },
+        {
+          "line": 17,
+          "excerpt": "const scroll=document.createElement('div');scroll.className='campaign-media-scroll';scroll.tabIndex=0;"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "game-calendar",
+      "source": "web/game-calendar.mjs",
+      "kind": "content",
+      "variants": [
+        "Ressources",
+        "Recrues",
+        "Date"
+      ],
+      "variantsEn": [
+        "Resources",
+        "Recruits",
+        "Date"
+      ],
+      "category": "Navigation",
+      "needs": [
+        "calendar",
+        "resources"
+      ],
+      "sourceSHA256": "69ce25862a596998a67d840106a7f9a01a47d3fa421ff1387360c4a683faeedd",
+      "evidence": [
+        {
+          "line": 3,
+          "excerpt": "export function gameDate(day){"
+        },
+        {
+          "line": 9,
+          "excerpt": "export function createGameCalendar(root){"
+        },
+        {
+          "line": 10,
+          "excerpt": "const calendar=document.createElement('button');calendar.type='button';calendar.className='mobile-calendar';calendar.dataset.ui='weekly-recruits';calendar.hidden=true;"
+        },
+        {
+          "line": 11,
+          "excerpt": "const date=document.createElement('span'),next=document.createElement('span');"
+        },
+        {
+          "line": 12,
+          "excerpt": "const compactDate=document.createElement('span'),cue=document.createElement('span');"
+        },
+        {
+          "line": 17,
+          "excerpt": "const location=document.createElement('span');location.className='calendar-location';"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hosted-turn-notifications",
+      "source": "web/hosted-turn-notifications.mjs",
+      "kind": "screen",
+      "variants": [
+        "Notification de tour",
+        "Partie hébergée"
+      ],
+      "variantsEn": [
+        "Turn notification",
+        "Hosted game"
+      ],
+      "category": "Partie",
+      "needs": [
+        "screen",
+        "save",
+        "copy",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "bd15a9dceb4fcc7d350ed03da824be471130241183620c9b2596f2b5dd3a2125",
+      "evidence": [
+        {
+          "line": 18,
+          "excerpt": "export function requestedHostedMatch(search = location.search) {"
+        },
+        {
+          "line": 79,
+          "excerpt": "export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint, publicKey}, language, onJoining, requested = null) {"
+        },
+        {
+          "line": 83,
+          "excerpt": "const layout = document.createElement('div');"
+        },
+        {
+          "line": 85,
+          "excerpt": "const modes = document.createElement('div');"
+        },
+        {
+          "line": 87,
+          "excerpt": "const createMode = document.createElement('button');"
+        },
+        {
+          "line": 88,
+          "excerpt": "const joinMode = document.createElement('button');"
+        },
+        {
+          "line": 89,
+          "excerpt": "const libraryMode = document.createElement('button');"
+        },
+        {
+          "line": 99,
+          "excerpt": "const createPanel = document.createElement('div');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "wog-options",
+      "source": "web/wog-options.mjs",
+      "kind": "content",
+      "variants": [
+        "Options WoG"
+      ],
+      "variantsEn": [
+        "WoG options"
+      ],
+      "category": "Partie",
+      "needs": [
+        "rules",
+        "accordion",
+        "choice",
+        "feedback"
+      ],
+      "sourceSHA256": "90eccd5b0de2f40c5fe3cc9f7ec7a4c1cd2471bb36ef54f391a03bf79b41d876",
+      "evidence": [
+        {
+          "line": 27,
+          "excerpt": "export function createWogOptions({menu, command, onChange}) {"
+        },
+        {
+          "line": 36,
+          "excerpt": "form = document.createElement('details');"
+        },
+        {
+          "line": 41,
+          "excerpt": "const field = document.createElement('fieldset');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "lobby-options",
+      "source": "web/lobby-options.mjs",
+      "kind": "content",
+      "variants": [
+        "Options de nouvelle carte"
+      ],
+      "variantsEn": [
+        "New map options"
+      ],
+      "category": "Partie",
+      "needs": [
+        "rules",
+        "players",
+        "fields",
+        "choice",
+        "select"
+      ],
+      "sourceSHA256": "6ae32adacc41eec4e9f77d1b5fb93ba20da5beaadb8824829c46a7f110f79893",
+      "evidence": [
+        {
+          "line": 3,
+          "excerpt": "export function createLobbyOptions({menu,getState,command,onChange}){"
+        },
+        {
+          "line": 48,
+          "excerpt": "return{observe,get pending(){return !!request;},get error(){return error;},update(state,changingScenario=false){if(state.mode!=='lobby'){form=null;return;}if(!form?.isConnected){fo"
+        },
+        {
+          "line": 60,
+          "excerpt": "if(towns._key!==key){towns._key=key;renderMarkup(towns,(state.players||[]).map(p=>`<label><span class=\"lobby-player-label\"><i class=\"lobby-player-colour\" data-player-colour=\"${Numb"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "scenario-filters",
+      "source": "web/scenario-filters.mjs",
+      "kind": "content",
+      "variants": [
+        "Filtres de cartes",
+        "Aucun résultat"
+      ],
+      "variantsEn": [
+        "Map filters",
+        "No results"
+      ],
+      "category": "Partie",
+      "needs": [
+        "search",
+        "select",
+        "accordion",
+        "feedback"
+      ],
+      "sourceSHA256": "05c052a61ae17251b31e696ba7b509ff345866ab16ba8300f623c0ad8cc41fc1",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function mountScenarioFilters(root) {"
+        },
+        {
+          "line": 10,
+          "excerpt": "const panel = document.createElement('div');"
+        },
+        {
+          "line": 16,
+          "excerpt": "<label><span></span><select data-filter=\"humans\"></select></label>"
+        },
+        {
+          "line": 17,
+          "excerpt": "<label><span></span><select data-filter=\"computers\"></select></label>"
+        },
+        {
+          "line": 18,
+          "excerpt": "<label><span></span><select data-filter=\"size\"></select></label>"
+        },
+        {
+          "line": 19,
+          "excerpt": "<label><span></span><select data-filter=\"players\"></select></label>"
+        },
+        {
+          "line": 20,
+          "excerpt": "<label><span></span><select data-filter=\"faction\"></select></label>"
+        },
+        {
+          "line": 23,
+          "excerpt": "<div class=\"scenario-filter-status\"><span role=\"status\"></span><button type=\"button\" data-filter-reset hidden></button></div>`);"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hosted-castles",
+      "source": "web/hosted-castles.mjs",
+      "kind": "content",
+      "variants": [
+        "Choix de château hébergé"
+      ],
+      "variantsEn": [
+        "Hosted town selection"
+      ],
+      "category": "Partie",
+      "needs": [
+        "card",
+        "players",
+        "select"
+      ],
+      "sourceSHA256": "f2ae1f43ba056efd14a354a07d263e58b0d62fdbacbfd79247047af57bfe444e",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function mountHostedCastles(root, fr, onRosterChange) {"
+        },
+        {
+          "line": 9,
+          "excerpt": "const list = document.createElement('div');"
+        },
+        {
+          "line": 11,
+          "excerpt": "const picker = document.createElement('dialog');"
+        },
+        {
+          "line": 16,
+          "excerpt": "renderMarkup(picker,'<header><h2 id=\"hosted-castle-title\" tabindex=\"-1\" autofocus></h2><button type=\"button\" data-castle-close data-native-click>✕</button></header><div class=\"lobb"
+        },
+        {
+          "line": 58,
+          "excerpt": "const button = document.createElement('button');"
+        },
+        {
+          "line": 85,
+          "excerpt": "const container = document.createElement('section');"
+        },
+        {
+          "line": 86,
+          "excerpt": "const header = document.createElement('div');"
+        },
+        {
+          "line": 88,
+          "excerpt": "const heading = document.createElement('h3');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hosted-code-copy",
+      "source": "web/hosted-code-copy.mjs",
+      "kind": "content",
+      "variants": [
+        "Copier un code",
+        "Copie impossible"
+      ],
+      "variantsEn": [
+        "Copy code",
+        "Copy failed"
+      ],
+      "category": "Partie",
+      "needs": [
+        "copy",
+        "feedback"
+      ],
+      "sourceSHA256": "4771db1ce1b679d145b090f9c3d4eddbf6884054e14a85330ab09f293e71006f",
+      "evidence": [
+        {
+          "line": 1,
+          "excerpt": "export function createHostedCodeCopy(fr) {"
+        },
+        {
+          "line": 2,
+          "excerpt": "const element = document.createElement('div');"
+        },
+        {
+          "line": 4,
+          "excerpt": "const button = document.createElement('button');"
+        },
+        {
+          "line": 9,
+          "excerpt": "const help = document.createElement('small');"
+        },
+        {
+          "line": 13,
+          "excerpt": "const input = document.createElement('input');"
+        },
+        {
+          "line": 22,
+          "excerpt": "const status = document.createElement('small');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "material-select",
+      "source": "web/material-select.mjs",
+      "kind": "screen",
+      "variants": [
+        "Fermé",
+        "Ouvert",
+        "Désactivé",
+        "Clavier"
+      ],
+      "variantsEn": [
+        "Closed",
+        "Open",
+        "Disabled",
+        "Keyboard"
+      ],
+      "category": "Navigation",
+      "needs": [
+        "select"
+      ],
+      "sourceSHA256": "d8b54cb9a7d16eb479938277c910977b3692ccd06f972ed8ca29d14eb0711288",
+      "evidence": [
+        {
+          "line": 6,
+          "excerpt": "export function createMaterialSelects(root){"
+        },
+        {
+          "line": 13,
+          "excerpt": "if(!record){const host=document.createElement('span');host.className='material-select-host';select.classList.add('material-select-source');select.tabIndex=-1;select.setAttribute('a"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "campaign-dialog-form",
+      "source": "web/campaign-dialog-form.mjs",
+      "kind": "content",
+      "variants": [
+        "Choix",
+        "Champ texte",
+        "Champ nombre",
+        "Illustration"
+      ],
+      "variantsEn": [
+        "Choice",
+        "Text field",
+        "Number field",
+        "Picture"
+      ],
+      "category": "Campagne",
+      "needs": [
+        "dynamic",
+        "fields",
+        "choice",
+        "card",
+        "confirm"
+      ],
+      "sourceSHA256": "28326377eaab0d267012f3a07587db50fb3a2b8f0cba2c73e6f0ee6b099e0418",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function campaignDialogDraft(model){return{queryId:model.queryId,selection:model.draft?.selection??model.selection??model.initial??model.choices?.[0]?.value??0,text:model.dr"
+        },
+        {
+          "line": 5,
+          "excerpt": "export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>{}}){"
+        },
+        {
+          "line": 6,
+          "excerpt": "const form=document.createElement('form');form.className='campaign-dialog-form';form.dataset.kind=model.kind;"
+        },
+        {
+          "line": 9,
+          "excerpt": "const label=document.createElement('label'),caption=document.createElement('span'),input=document.createElement('input');"
+        },
+        {
+          "line": 13,
+          "excerpt": "const pictures=document.createElement('div');pictures.className='campaign-dialog-pictures';"
+        },
+        {
+          "line": 15,
+          "excerpt": "const frame=document.createElement('figure'),original=campaignMediaPicture(picture);if(original)frame.append(original);else{const canvas=document.createElement('canvas');canvas.wid"
+        },
+        {
+          "line": 19,
+          "excerpt": "const fieldset=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent=plainGameText(model.choiceLabel)||(getLanguage()==='fr'?'Choix':'Choice"
+        },
+        {
+          "line": 22,
+          "excerpt": "const label=document.createElement('label'),input=document.createElement('input'),copy=document.createElement('span'),title=document.createElement('strong');"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "battle-dual-view",
+      "source": "web/battle-dual-view.mjs",
+      "kind": "screen",
+      "variants": [
+        "Vue stratégique",
+        "Vue de l’action"
+      ],
+      "variantsEn": [
+        "Strategic view",
+        "Action view"
+      ],
+      "category": "Combat",
+      "needs": [
+        "scene",
+        "battle-hud",
+        "tactical",
+        "minimap"
+      ],
+      "sourceSHA256": "9ae5b6d848cd8e34b36e50f809fa4bbff4a0bd392b16e2f6386a135ec6fd2d2d",
+      "evidence": [
+        {
+          "line": 12,
+          "excerpt": "export function fitBattleDetail(width,height,focus,points=[],scaleOverride=null){"
+        },
+        {
+          "line": 27,
+          "excerpt": "export function battleOverviewPoint(x,y,width,height,clampToField=false){"
+        },
+        {
+          "line": 35,
+          "excerpt": "export function overviewCreature(point,units,scale){"
+        },
+        {
+          "line": 42,
+          "excerpt": "export function portraitBattleSplit(width,height){"
+        },
+        {
+          "line": 47,
+          "excerpt": "export function createBattleDualView({root,scene,getState,getView=()=>'whole',onFocus}){"
+        },
+        {
+          "line": 48,
+          "excerpt": "const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href=new URL('./battle-dual-view.css',import.meta.url).href;document.head.append(stylesheet);"
+        },
+        {
+          "line": 49,
+          "excerpt": "const strategic=document.createElement('section');strategic.className='battle-strategic-view';strategic.setAttribute('aria-label','Vue stratégique du combat');strategic.hidden=true"
+        },
+        {
+          "line": 50,
+          "excerpt": "const canvas=document.createElement('canvas');canvas.id='battle-strategic-scene';canvas.setAttribute('aria-label','Écran d’action. Touchez une case ou une cible pour préparer une a"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "battle-controls",
+      "source": "web/battle-controls.mjs",
+      "kind": "graphics",
+      "variants": [
+        "Interactions tactiles de combat"
+      ],
+      "variantsEn": [
+        "Battle touch interactions"
+      ],
+      "category": "Combat",
+      "needs": [
+        "tactical",
+        "actions"
+      ],
+      "sourceSHA256": "cdb4196c976e231121b0e4e99a42a97bde69095c53a3a6a4541c70ed5f9a6bde",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function protectBattleControls(root){"
+        },
+        {
+          "line": 31,
+          "excerpt": "const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./battle-controls.css',import.meta.url).href;document.head.append(link);"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "battle-vertical",
+      "source": "web/battle-vertical.mjs",
+      "kind": "graphics",
+      "variants": [
+        "Rendu du champ de bataille"
+      ],
+      "variantsEn": [
+        "Battlefield rendering"
+      ],
+      "category": "Combat",
+      "needs": [
+        "scene",
+        "animation",
+        "tactical"
+      ],
+      "sourceSHA256": "fdb3f67560cb2cb48d1fabb6e95d6ad94c9b91ffa860df63dc33f3897d1c499e",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function verticalBattleGeometry(width,height){"
+        },
+        {
+          "line": 16,
+          "excerpt": "export function animatedBattlePosition(previous,next,elapsed,duration=50){"
+        },
+        {
+          "line": 21,
+          "excerpt": "export function resetVerticalBattle(){previousBounds=null;poses.clear();lastTime=0;gridLayer=null;gridCells=null;gridUnits=null;}"
+        },
+        {
+          "line": 38,
+          "excerpt": "const canvas=gridLayer?.canvas||doc.createElement('canvas');if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;"
+        },
+        {
+          "line": 45,
+          "excerpt": "export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds,tracking){"
+        },
+        {
+          "line": 102,
+          "excerpt": "export function pickVerticalUnit(point,units,markers=[]){"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "image-outline",
+      "source": "web/image-outline.mjs",
+      "kind": "graphics",
+      "variants": [
+        "Contours des sprites"
+      ],
+      "variantsEn": [
+        "Sprite outlines"
+      ],
+      "category": "Châteaux",
+      "needs": [
+        "scene"
+      ],
+      "sourceSHA256": "e36b514f821c2cfdaa5cfccf88dfce2b15562a252c19bb1d71dd2ff4218a5394",
+      "evidence": [
+        {
+          "line": 3,
+          "excerpt": "export function paintBuildingOutline(ctx,picture,x,y,w,h,color='#ff453d',crop=null){"
+        },
+        {
+          "line": 4,
+          "excerpt": "let mask=masks.get(picture);if(!mask){mask=document.createElement('canvas');mask.width=picture.naturalWidth||picture.width;mask.height=picture.naturalHeight||picture.height;const c"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "resources",
+      "source": "web/resources.mjs",
+      "kind": "content",
+      "variants": [
+        "Affichage des ressources"
+      ],
+      "variantsEn": [
+        "Resource display"
+      ],
+      "category": "Navigation",
+      "needs": [
+        "resources"
+      ],
+      "sourceSHA256": "d2f6dbb7742ead551dc122224384e2dd17ea34b2784b604b2c88fb6f7ed36801",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function compactResource(value){const n=amount(value);if(Math.abs(n)<1000)return String(n);const divisor=Math.abs(n)>=1e6?1e6:1e3,suffix=divisor===1e6?'M':'k';return decimal"
+        },
+        {
+          "line": 12,
+          "excerpt": "export function resourceDescriptors(values,metadata=[],language=getLanguage()){"
+        },
+        {
+          "line": 22,
+          "excerpt": "export function resourceIconURL(resource,entries=[]){"
+        },
+        {
+          "line": 36,
+          "excerpt": "export function formatResourceCost(values,metadata=[]){"
+        },
+        {
+          "line": 40,
+          "excerpt": "export function renderResources(container,values,metadata=[],{assets=globalThis.window?.goonkAssetURLs||[]}={}){"
+        },
+        {
+          "line": 48,
+          "excerpt": "const item=document.createElement('span');item.className='mobile-resource';item.dataset.resource=row.key;item.dataset.resourceId=String(row.id);item.setAttribute('role','listitem')"
+        },
+        {
+          "line": 49,
+          "excerpt": "const image=document.createElement('img');image.alt='';image.width=22;image.height=20;image.hidden=!row.url;if(row.url)image.src=row.url;"
+        },
+        {
+          "line": 50,
+          "excerpt": "const fallback=document.createElement('span');fallback.className='resource-name';fallback.textContent=row.name;fallback.hidden=Boolean(row.url);fallback.setAttribute('aria-hidden',"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "henchman-sheet",
+      "source": "web/henchman-sheet.mjs",
+      "kind": "content",
+      "variants": [
+        "Compagnon",
+        "Équipement du compagnon"
+      ],
+      "variantsEn": [
+        "Henchman",
+        "Henchman equipment"
+      ],
+      "category": "Héros",
+      "needs": [
+        "hero",
+        "stats",
+        "inventory",
+        "skills",
+        "card",
+        "actions"
+      ],
+      "sourceSHA256": "e2baadf65fe89f054c54da9f6e94caa2388d7b0f87c0c7db972bf3e4d3843735",
+      "evidence": [
+        {
+          "line": 3,
+          "excerpt": "export function renderHenchmanSheet(hero,{portrait=()=>'',canAct=false,pending=false}={}){"
+        },
+        {
+          "line": 16,
+          "excerpt": "<div class=\"henchman-actions\">${state.alive?'':`<button data-henchman-action=\"2\" ${disabled||!state.canResurrect?'disabled':''}>${fr?'Ressusciter':'Resurrect'} · ${state.resurrecti"
+        },
+        {
+          "line": 17,
+          "excerpt": "<button data-henchman-action=\"1\" ${disabled?'disabled':''}>${fr?'Renvoyer':'Dismiss'}</button></div>"
+        },
+        {
+          "line": 22,
+          "excerpt": "${held&&state.canEquipHeldBanner?`<button data-henchman-action=\"6\" ${!canAct||pending?'disabled':''}>${fr?'Donner la bannière portée':'Give held banner'}</button>`:''}"
+        },
+        {
+          "line": 24,
+          "excerpt": "<div class=\"henchman-candidates\">${banners.map((name,style)=>`<button data-henchman-action=\"4\" data-henchman-slot=\"${style}\" aria-pressed=\"${state.bannerStyle===style}\" ${disabled|"
+        },
+        {
+          "line": 25,
+          "excerpt": "<button data-henchman-action=\"5\" ${disabled||!state.canReturnBanner?'disabled':''}>${fr?'Remettre dans le sac':'Return to backpack'}</button>`:"
+        },
+        {
+          "line": 26,
+          "excerpt": "`<p>${fr?'Une bannière de guerre dans le sac peut être confiée au compagnon.':'A Warlord’s Banner in your backpack can be given to the henchman.'}</p><button data-henchman-action=\""
+        },
+        {
+          "line": 30,
+          "excerpt": "<div class=\"henchman-candidates\">${(state.candidates||[]).map(candidate=>`<button data-henchman-action=\"0\" data-henchman-slot=\"${candidate.slot}\" data-henchman-creature=\"${candidat"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "battle-inspection",
+      "source": "web/battle-inspection.mjs",
+      "kind": "content",
+      "variants": [
+        "Détails en combat"
+      ],
+      "variantsEn": [
+        "Battle details"
+      ],
+      "category": "Combat",
+      "needs": [
+        "battle-hud",
+        "details",
+        "card",
+        "stats"
+      ],
+      "sourceSHA256": "f6b3e41ab6ab643ac33283a8573f8c30c1fa147dc4b2b06e57479763950ef67a",
+      "evidence": [
+        {
+          "line": 3,
+          "excerpt": "export function canInspectBattle(state){return state.mode==='battle'&&state.manualControl!==false&&!state.autoCombat&&!!(state.canAct||state.canEndTactics);}"
+        },
+        {
+          "line": 4,
+          "excerpt": "export function inspectionUnits(state){return(state.battleUnits||[]).filter(u=>Number.isInteger(u.stackId)&&u.stackId>=0&&u.count>0);}"
+        },
+        {
+          "line": 5,
+          "excerpt": "export function battleInspectionMarkup(state,portrait=()=> ''){"
+        },
+        {
+          "line": 7,
+          "excerpt": "return `<p class=\"battle-inspection-help\">${ready?(fr?'Choisis une créature pour ouvrir sa fiche. Cette action ne déplace aucune troupe et ne lance ni attaque ni sort.':'Choose a c"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "high-score-presentation",
+      "source": "web/high-score-presentation.mjs",
+      "kind": "content",
+      "variants": [
+        "Victoire",
+        "Défaite",
+        "Enregistrer le score"
+      ],
+      "variantsEn": [
+        "Victory",
+        "Defeat",
+        "Save score"
+      ],
+      "category": "Combat",
+      "needs": [
+        "result",
+        "ranking",
+        "fields",
+        "confirm"
+      ],
+      "sourceSHA256": "14732172be26b7e53e17e912897eac80654aa29ad2273d9e1bb848e4a48ec596",
+      "evidence": [
+        {
+          "line": 1,
+          "excerpt": "export function highScorePresentation(score, language='en') {"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "scenario-details",
+      "source": "web/scenario-details.mjs",
+      "kind": "content",
+      "variants": [
+        "Détails de carte"
+      ],
+      "variantsEn": [
+        "Map details"
+      ],
+      "category": "Partie",
+      "needs": [
+        "scenario",
+        "players",
+        "feedback"
+      ],
+      "sourceSHA256": "70fb91222285e99c446a0f40a10512aba0448babd53379461494aaf3a3b69ca0",
+      "evidence": [
+        {
+          "line": 3,
+          "excerpt": "export function scenarioSize({width, height}) {"
+        },
+        {
+          "line": 8,
+          "excerpt": "export function playerBreakdown(humans, computers, fr) {"
+        },
+        {
+          "line": 14,
+          "excerpt": "export function scenarioDetails({width, height, players, castleChoices, humanSeats, humans}, fr) {"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "recruitment-summary",
+      "source": "web/recruitment-summary.mjs",
+      "kind": "content",
+      "variants": [
+        "Coût et quantité"
+      ],
+      "variantsEn": [
+        "Cost and quantity"
+      ],
+      "category": "Créatures",
+      "needs": [
+        "purchase",
+        "resources",
+        "quantity",
+        "feedback"
+      ],
+      "sourceSHA256": "36b7aed29452dd512906546dc75fc385d9f3f63c7ec9871a886cf75c7f71462a",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function recruitmentSummary(state, language = (typeof window !== 'undefined' ? getLanguage() : 'fr'),{compact=false}={}){"
+        },
+        {
+          "line": 21,
+          "excerpt": "export function recruitmentSummaryMarkup(state,language=getLanguage(),assets=globalThis.window?.goonkAssetURLs||[]){"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "hosting-index",
+      "source": "web/hosting-index.html",
+      "kind": "document",
+      "variants": [
+        "Petit écran portrait",
+        "Petit écran paysage"
+      ],
+      "variantsEn": [
+        "Small portrait screen",
+        "Small landscape screen"
+      ],
+      "category": "Technique",
+      "needs": [
+        "feedback",
+        "storage"
+      ],
+      "sourceSHA256": "c02715783ec601612af158524a29dc2a416716705a52d8af1165ed83cd393632",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "<body><figure id=\"spinner\"><div class=\"spinner-content\"><img src=\"./dosvcmi.png\" class=\"spinner-logo\" width=\"256\" height=\"256\" alt=\"Heroes Goonk\"><div id=\"status\"><p id=\"hosting-st"
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "storage",
+      "source": "web/storage.html",
+      "kind": "document",
+      "variants": [
+        "Petit écran portrait",
+        "Petit écran paysage"
+      ],
+      "variantsEn": [
+        "Small portrait screen",
+        "Small landscape screen"
+      ],
+      "category": "Technique",
+      "needs": [
+        "storage",
+        "feedback",
+        "actions"
+      ],
+      "sourceSHA256": "c7df3715a5d1917e59f993298a0de21f82102b033bd7f6aed85c5bb56b9498ac",
+      "evidence": [],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "battle-result",
+      "source": "web/battle-result.mjs",
+      "kind": "screen",
+      "variants": [
+        "Victoire de combat",
+        "Défaite de combat",
+        "Une seule perte",
+        "Aucune perte"
+      ],
+      "variantsEn": [
+        "Battle victory",
+        "Battle defeat",
+        "One casualty",
+        "No casualties"
+      ],
+      "category": "Combat",
+      "needs": [
+        "screen",
+        "result",
+        "details",
+        "animation",
+        "actions"
+      ],
+      "sourceSHA256": "5b05192a40362a1ef3b33bd9f544a4ea9091e15ba2910b66ce6218d2e8f90b27",
+      "evidence": [
+        {
+          "line": 4,
+          "excerpt": "export function createBattleResult({root,command}){"
+        },
+        {
+          "line": 5,
+          "excerpt": "const panel=document.createElement('section');panel.className='battle-result';useScreenComponents(panel);panel.hidden=true;root.append(panel);let data,key='',captureAfter=0,pending"
+        },
+        {
+          "line": 6,
+          "excerpt": "const text=(tag,value)=>{const el=document.createElement(tag);el.textContent=plainGameText(value);return el;};"
+        },
+        {
+          "line": 8,
+          "excerpt": "return{update(state){data=state.mode==='dialog'&&state.dialogKind==='battle-result'?state.battleResult:null;panel.hidden=!data;root.toggleAttribute('data-battle-result',!!data);if("
+        }
+      ],
+      "review": "source-reviewed"
+    },
+    {
+      "id": "cave-builder",
+      "source": "web/cave-builder.mjs",
+      "kind": "screen",
+      "variants": [
+        "Démolition",
+        "Évacuation des occupants",
+        "Combat contre les occupants",
+        "Reconstruction",
+        "Recrutement des fantômes",
+        "Récupération du Graal"
+      ],
+      "variantsEn": [
+        "Demolition",
+        "Evacuate occupants",
+        "Fight occupants",
+        "Reconstruction",
+        "Recruit ghosts",
+        "Recover the Grail"
+      ],
+      "category": "Châteaux",
+      "needs": [
+        "screen",
+        "building",
+        "card",
+        "resources",
+        "rules",
+        "consequences",
+        "confirm",
+        "feedback"
+      ],
+      "sourceSHA256": "9bd967e9559e3e1f4b39ed9b54dd80d6d27ce311dbb9ae2223e1c5352f8e6b31",
+      "evidence": [
+        {
+          "line": 7,
+          "excerpt": "export function createCaveBuilder({root,command}){"
+        },
+        {
+          "line": 8,
+          "excerpt": "const host=document.createElement('div');host.className='cave-builder';host.hidden=true;"
+        },
+        {
+          "line": 9,
+          "excerpt": "renderMarkup(host,'<button type=\"button\" data-builder-open>Bâtisseur</button><section hidden role=\"dialog\" aria-modal=\"true\" aria-label=\"Bâtisseur\"><header><h2>Bâtisseur</h2><butto"
+        },
+        {
+          "line": 20,
+          "excerpt": "`<p>${data.rebuildReady?'Choisis la faction de la ville reconstruite.':data.rebuildReason||'Reconstruction disponible au prochain tour indiqué : '+Number(data.rebuildReadyDay)+'.'}"
+        },
+        {
+          "line": 21,
+          "excerpt": "(data.buildings||[]).map(b=>`<article><h3>${esc(b.name)}</h3><p>Démolition : ${Number(b.gold)} or.</p>${b.minimumExperience||b.minimumArmyHealth?`<p>Conditions : ${Number(b.minimum"
+        }
+      ],
+      "review": "source-reviewed"
+    }
+  ]
+}

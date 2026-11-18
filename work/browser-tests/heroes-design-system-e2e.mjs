@@ -27,6 +27,20 @@ for(const [engineName,engine]of Object.entries({chromium,webkit})){
   const sliderFinish=await page.locator('.MuiSlider-thumb').first().evaluate(e=>({thumb:getComputedStyle(e).backgroundImage,rail:getComputedStyle(e.parentElement.querySelector('.MuiSlider-rail')).boxShadow,track:getComputedStyle(e.parentElement.querySelector('.MuiSlider-track')).backgroundImage}));
   assert(sliderFinish.thumb.includes('gradient'));assert(sliderFinish.track.includes('gradient'));assert.notEqual(sliderFinish.rail,'none');
   await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await secondary.evaluate(e=>getComputedStyle(e).transitionDuration),'0s');await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.getByRole('button',{name:'Écrans',exact:true}).click();
+  const review=JSON.parse(fs.readFileSync('docs/ui-audit/component-needs.json','utf8'));
+  assert.equal(await page.locator('[data-screen-id]').count(),review.screenCount);
+  for(const screen of review.screens){
+   await page.locator(`[data-screen-id="${screen.id}"]`).click();
+   assert.equal(await page.locator('[data-reviewed-screen]').getAttribute('data-reviewed-screen'),screen.id);
+   assert.equal(await page.locator('.ds-review-needs>div').count(),screen.needs.length);
+  }
+  await page.getByLabel('Rechercher un écran').fill('spellbook');assert.equal(await page.locator('[data-screen-id]').count(),1);
+  await page.getByRole('combobox',{name:'Langue',exact:true}).click();await page.getByRole('option',{name:'English',exact:true}).click();
+  assert.equal(await page.locator('.ds-review-details h2').textContent(),'Battle');
+  await page.getByRole('combobox',{name:'Language',exact:true}).click();await page.getByRole('option',{name:'Français',exact:true}).click();
+  await page.getByRole('button',{name:'Composants',exact:true}).click();
+  assert.equal(await page.locator('.hk-icon').count(),0,'raised icon feature removed');
   for(const [width,height]of [[320,568],[360,640],[640,360],[568,280],[1280,720]]){
    await page.setViewportSize({width,height});
    for(const language of ['fr','en']){

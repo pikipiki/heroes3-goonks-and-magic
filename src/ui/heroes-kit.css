@@ -393,20 +393,6 @@
     0 6px 14px #000b,
     0 0 12px #edc16b30;
 }
-.hk-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  vertical-align: middle;
-}
-.hk-icon img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 0 #ffe9a044) drop-shadow(0 3px 2px #000b);
-}
 .hk-chevron {
   font-size: 24px;
   line-height: 24px;
