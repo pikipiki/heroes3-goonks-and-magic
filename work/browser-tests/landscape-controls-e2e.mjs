@@ -47,6 +47,13 @@ for(const kind of ['chromium','webkit']){
     if(width===1024)await page.screenshot({path:'/tmp/landscape-'+kind+'-'+name+'.png'});
    }
   }
+  for(const [width,height] of [[360,659],[430,932]]){
+   await page.setViewportSize({width,height});
+   for(const [name,state] of cases){
+    await page.evaluate(state=>dispatchEvent(new CustomEvent('goonk-state',{detail:state})),{...base,...state});await page.waitForTimeout(70);
+    const header=await page.locator('.mobile-top').boundingBox();if(header&&header.height)assert(header.y<=1&&header.x>=-1&&header.x+header.width<=width+1,name+' portrait header stays at the top '+JSON.stringify(header));
+   }
+  }
   assert.deepEqual(errors,[]);console.log('PASS',kind,cases.length,'screens, phone and iPad landscape, right controls and full-height scenes');
  }finally{await browser.close();}
 }
