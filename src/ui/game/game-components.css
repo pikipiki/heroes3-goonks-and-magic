@@ -1,0 +1,224 @@
+.gx-form-grid,
+.gx-two-panes,
+.gx-creature-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.gx-card {
+  border-color: #d2ae64 !important;
+  background: #24170e !important;
+  color: #fff0c2 !important;
+}
+.gx-card [aria-pressed=true] {
+  background: #791e12;
+}
+.gx-army-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.gx-army-cell.MuiButton-root {
+  width: 100%;
+  height: 96px;
+  min-width: 0;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+.gx-army-cell[aria-pressed=true] {
+  outline: 2px solid #ffe7a0;
+  outline-offset: -3px;
+}
+.gx-inventory-grid,
+.gx-spell-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.gx-inventory-grid .hk-choice-tile,
+.gx-spell-grid .hk-choice-tile {
+  flex-wrap: wrap;
+}
+.gx-evolution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.gx-evolution-grid > :last-child:nth-child(3) {
+  grid-column: 1/-1;
+}
+.gx-creature-art {
+  height: 220px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #a5884b;
+}
+.gx-roster {
+  display: grid;
+  grid-auto-rows: calc((100% - 12px)/2);
+  gap: 12px;
+  overflow: auto;
+  min-height: 0;
+}
+.gx-roster-forms {
+  display: flex;
+  gap: 8px;
+  overflow: auto;
+  padding: 4px;
+}
+.gx-roster-forms > .MuiButton-root {
+  flex: 1;
+  min-width: 96px;
+  flex-direction: column;
+  padding: 8px;
+}
+.gx-initiative {
+  overflow: auto;
+  padding: 4px;
+  max-width: 100%;
+}
+.gx-media {
+  display: block;
+  object-fit: contain;
+  max-height: 50dvh;
+  width: 100%;
+  background: #130c07;
+}
+.hk-root .MuiCardActionArea-focusHighlight {
+  background-color: #edca84;
+}
+.hk-root .MuiChip-label {
+  white-space: normal;
+}
+@media (max-width: 420px) {
+  .gx-form-grid,
+  .gx-two-panes,
+  .gx-creature-details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gx-army-grid {
+    gap: 4px;
+  }
+  .gx-army-cell.MuiButton-root {
+    height: 88px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .gx-creature-art {
+    height: 180px;
+  }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .gx-two-panes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gx-creature-art {
+    height: 160px;
+  }
+}
+.gx-army-cell .hk-art {
+  width: 48px;
+  height: 48px;
+  flex: none;
+}
+@media (max-width: 420px) {
+  .gx-army-cell .hk-art,
+  .gx-army-cell img {
+    width: 40px;
+    height: 40px;
+  }
+}
+.gx-chrome .hk-resource-strip {
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.gx-chrome .hk-cost {
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+}
+.gx-chrome .hk-cost-item {
+  font-size: 10px;
+}
+.gx-chrome .hk-resource-gold {
+  flex: 2.2;
+}
+.hk-choice-tile .hk-cost img {
+  width: 20px;
+  height: 20px;
+}
+.gx-roster > .hk-panel {
+  padding: 8px;
+  overflow: hidden;
+}
+.gx-roster-forms {
+  display: grid;
+  grid-template-columns: repeat(var(--gx-forms,3), minmax(72px, 1fr));
+  gap: 4px;
+  overflow: auto;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+}
+.gx-roster-forms > .MuiButton-root {
+  min-width: 0;
+  padding: 4px;
+  gap: 4px;
+  font-size: 11px;
+  line-height: 14px;
+}
+.gx-roster-forms .hk-art {
+  width: 100%;
+  height: 100%;
+}
+.gx-roster-forms .hk-cost {
+  font-size: 11px;
+  gap: 4px;
+}
+.gx-roster-forms .hk-cost img {
+  width: 16px;
+  height: 16px;
+}
+.gx-roster-forms .MuiStack-root {
+  min-width: 0;
+}
+@media (max-width: 420px) {
+  .gx-army-cell.MuiButton-root {
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+.gx-roster-forms > .MuiButton-root {
+  height: 100%;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+.gx-roster-forms > .MuiButton-root > .MuiStack-root {
+  flex: 1;
+  min-height: 0;
+}
+.gx-roster-art {
+  flex: 1;
+  min-height: 32px;
+  max-height: 72px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gx-roster-art img {
+  max-height: 72px;
+}
+.gx-roster-forms > .MuiButton-root > span {
+  flex-shrink: 0;
+}
+.gx-roster-forms > .MuiButton-root:focus-visible {
+  outline-offset: -3px;
+}

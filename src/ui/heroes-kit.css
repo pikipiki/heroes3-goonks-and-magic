@@ -134,7 +134,8 @@
 .hk-quantity {
   display: grid;
   grid-template-columns: 100px minmax(60px, 1fr);
-  gap: 24px;
+  column-gap: 24px;
+  row-gap: 8px;
   align-items: center;
   padding-right: 12px;
 }

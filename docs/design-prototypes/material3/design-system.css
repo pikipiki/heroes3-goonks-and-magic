@@ -522,3 +522,22 @@ body,
     white-space: normal;
   }
 }
+.ds-game-examples {
+  max-width: 1100px;
+  margin: auto;
+  padding: 24px;
+}
+.ds-game-example {
+  min-width: 0;
+}
+.ds-game-examples .MuiAlert-root {
+  min-width: 0;
+}
+.ds-game-examples .MuiAlert-message {
+  min-width: 0;
+}
+@media (max-width: 700px) {
+  .ds-game-examples {
+    padding: 16px;
+  }
+}

@@ -12,6 +12,8 @@
       "status": "available",
       "implementation": "ScreenShell, ActionDock",
       "implementationEn": "ScreenShell, ActionDock",
+      "specification": "ScreenShell, ActionDock",
+      "specificationEn": "ScreenShell, ActionDock",
       "usedBy": [
         "mobile",
         "game-menu",
@@ -52,6 +54,8 @@
       "status": "available",
       "implementation": "HeroesPanel",
       "implementationEn": "HeroesPanel",
+      "specification": "HeroesPanel",
+      "specificationEn": "HeroesPanel",
       "usedBy": []
     },
     {
@@ -61,6 +65,8 @@
       "status": "available",
       "implementation": "HeroesButton, HeroesClose",
       "implementationEn": "HeroesButton, HeroesClose",
+      "specification": "HeroesButton, HeroesClose",
+      "specificationEn": "HeroesButton, HeroesClose",
       "usedBy": [
         "mobile",
         "game-menu",
@@ -87,6 +93,8 @@
       "status": "mui",
       "implementation": "TextField",
       "implementationEn": "TextField",
+      "specification": "TextField",
+      "specificationEn": "TextField",
       "usedBy": [
         "game-menu",
         "hosted-match-create",
@@ -104,6 +112,8 @@
       "status": "mui",
       "implementation": "Select, Menu, MenuItem",
       "implementationEn": "Select, Menu, MenuItem",
+      "specification": "Select, Menu, MenuItem",
+      "specificationEn": "Select, Menu, MenuItem",
       "usedBy": [
         "game-menu",
         "hosted-match-create",
@@ -127,6 +137,8 @@
       "status": "mui",
       "implementation": "Checkbox, RadioGroup",
       "implementationEn": "Checkbox, RadioGroup",
+      "specification": "Checkbox, RadioGroup",
+      "specificationEn": "Checkbox, RadioGroup",
       "usedBy": [
         "game-menu",
         "hosted-match-create",
@@ -143,6 +155,8 @@
       "status": "mui",
       "implementation": "Tabs, Tab",
       "implementationEn": "Tabs, Tab",
+      "specification": "Tabs, Tab",
+      "specificationEn": "Tabs, Tab",
       "usedBy": [
         "hero-equipment",
         "hero-exchange",
@@ -159,8 +173,11 @@
       "status": "available",
       "implementation": "HeroesAccordion",
       "implementationEn": "HeroesAccordion",
+      "specification": "HeroesAccordion",
+      "specificationEn": "HeroesAccordion",
       "usedBy": [
         "game-menu",
+        "mithril-enhancements",
         "wog-options",
         "scenario-filters"
       ]
@@ -172,6 +189,8 @@
       "status": "mui",
       "implementation": "Alert, CircularProgress, LinearProgress",
       "implementationEn": "Alert, CircularProgress, LinearProgress",
+      "specification": "Alert, CircularProgress, LinearProgress",
+      "specificationEn": "Alert, CircularProgress, LinearProgress",
       "usedBy": [
         "game-menu",
         "hosted-match-create",
@@ -211,6 +230,8 @@
       "status": "available",
       "implementation": "ConfirmDialog",
       "implementationEn": "ConfirmDialog",
+      "specification": "ConfirmDialog",
+      "specificationEn": "ConfirmDialog",
       "usedBy": [
         "game-menu",
         "hero-exchange",
@@ -237,6 +258,8 @@
       "status": "available",
       "implementation": "QuantityControl",
       "implementationEn": "QuantityControl",
+      "specification": "QuantityControl",
+      "specificationEn": "QuantityControl",
       "usedBy": [
         "hero-exchange",
         "troop-deployment",
@@ -251,6 +274,8 @@
       "status": "available",
       "implementation": "ResourceStrip, ResourceCost",
       "implementationEn": "ResourceStrip, ResourceCost",
+      "specification": "ResourceStrip, ResourceCost",
+      "specificationEn": "ResourceStrip, ResourceCost",
       "usedBy": [
         "creature-presentation",
         "town-services",
@@ -278,6 +303,8 @@
       "status": "available",
       "implementation": "StatGrid",
       "implementationEn": "StatGrid",
+      "specification": "StatGrid",
+      "specificationEn": "StatGrid",
       "usedBy": [
         "hero-equipment",
         "creature-presentation",
@@ -295,6 +322,8 @@
       "status": "available",
       "implementation": "EvolutionCard",
       "implementationEn": "EvolutionCard",
+      "specification": "EvolutionCard",
+      "specificationEn": "EvolutionCard",
       "usedBy": []
     },
     {
@@ -304,6 +333,8 @@
       "status": "available",
       "implementation": "ChoiceTile",
       "implementationEn": "ChoiceTile",
+      "specification": "ChoiceTile",
+      "specificationEn": "ChoiceTile",
       "usedBy": [
         "mobile",
         "lobby-choices",
@@ -333,6 +364,8 @@
       "status": "available",
       "implementation": "ArmySlot",
       "implementationEn": "ArmySlot",
+      "specification": "ArmySlot",
+      "specificationEn": "ArmySlot",
       "usedBy": [
         "army-panel"
       ]
@@ -344,6 +377,8 @@
       "status": "available",
       "implementation": "HeroesDataTable",
       "implementationEn": "HeroesDataTable",
+      "specification": "HeroesDataTable",
+      "specificationEn": "HeroesDataTable",
       "usedBy": [
         "thieves-guild-view",
         "weekly-recruits"
@@ -356,6 +391,8 @@
       "status": "available",
       "implementation": "PurchaseSummary",
       "implementationEn": "PurchaseSummary",
+      "specification": "PurchaseSummary",
+      "specificationEn": "PurchaseSummary",
       "usedBy": [
         "creature-presentation",
         "town-services",
@@ -368,9 +405,12 @@
       "id": "calendar",
       "fr": "Bandeau du royaume",
       "en": "Kingdom chrome",
-      "status": "compose",
-      "implementation": "Ressources, recrues et date stables ; respect de la modalité",
-      "implementationEn": "Stable resources, recruits and date; modal boundary respected",
+      "status": "available",
+      "implementation": "KingdomChrome",
+      "implementationEn": "KingdomChrome",
+      "specification": "Ressources, recrues et date stables ; respect de la modalité",
+      "specificationEn": "Stable resources, recruits and date; modal boundary respected",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "mobile",
         "town-portrait",
@@ -382,9 +422,12 @@
       "id": "search",
       "fr": "Recherche et filtres",
       "en": "Search and filters",
-      "status": "compose",
-      "implementation": "Recherche, compteur, filtres repliables, vide et réinitialisation",
-      "implementationEn": "Search, count, collapsible filters, empty state and reset",
+      "status": "available",
+      "implementation": "SearchFilterBar",
+      "implementationEn": "SearchFilterBar",
+      "specification": "Recherche, compteur, filtres repliables, vide et réinitialisation",
+      "specificationEn": "Search, count, collapsible filters, empty state and reset",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "mobile",
         "hosted-match-create",
@@ -398,9 +441,12 @@
       "id": "scenario",
       "fr": "Carte et aperçu du scénario",
       "en": "Scenario card and preview",
-      "status": "compose",
-      "implementation": "Vraie minicarte, taille, joueurs, factions et sélection",
-      "implementationEn": "Actual minimap, size, players, factions and selection",
+      "status": "available",
+      "implementation": "ScenarioCard",
+      "implementationEn": "ScenarioCard",
+      "specification": "Vraie minicarte, taille, joueurs, factions et sélection",
+      "specificationEn": "Actual minimap, size, players, factions and selection",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "mobile",
         "hosted-match-create",
@@ -414,9 +460,12 @@
       "id": "players",
       "fr": "Configuration des joueurs",
       "en": "Player setup",
-      "status": "compose",
-      "implementation": "Couleur, équipe, faction, humain/IA, état prêt ; jusqu’à huit joueurs",
-      "implementationEn": "Color, team, faction, human/AI and readiness for up to eight players",
+      "status": "available",
+      "implementation": "PlayerSetup",
+      "implementationEn": "PlayerSetup",
+      "specification": "Couleur, équipe, faction, humain/IA, état prêt ; jusqu’à huit joueurs",
+      "specificationEn": "Color, team, faction, human/AI and readiness for up to eight players",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "mobile",
         "hosted-match-create",
@@ -431,9 +480,12 @@
       "id": "hero",
       "fr": "Identité du héros",
       "en": "Hero identity",
-      "status": "compose",
-      "implementation": "Portrait, nom complet, classe, niveau, mana, expérience et spécialité",
-      "implementationEn": "Portrait, full name, class, level, mana, experience and specialty",
+      "status": "available",
+      "implementation": "HeroIdentityCard",
+      "implementationEn": "HeroIdentityCard",
+      "specification": "Portrait, nom complet, classe, niveau, mana, expérience et spécialité",
+      "specificationEn": "Portrait, full name, class, level, mana, experience and specialty",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "mobile",
         "hero-equipment",
@@ -448,9 +500,12 @@
       "id": "army",
       "fr": "Grille des armées",
       "en": "Army grid",
-      "status": "compose",
-      "implementation": "Sept emplacements, case Tout améliorer, fusion, vide et sélection",
-      "implementationEn": "Seven slots, Upgrade all cell, merging, empty state and selection",
+      "status": "available",
+      "implementation": "ArmyGrid",
+      "implementationEn": "ArmyGrid",
+      "specification": "Sept emplacements, case Tout améliorer, fusion, vide et sélection",
+      "specificationEn": "Seven slots, Upgrade all cell, merging, empty state and selection",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "hero-equipment",
         "hero-exchange",
@@ -461,9 +516,12 @@
       "id": "inventory",
       "fr": "Inventaire d’artefacts",
       "en": "Artifact inventory",
-      "status": "compose",
-      "implementation": "Emplacements compatibles, équipé/sac, objets verrouillés et sélection",
-      "implementationEn": "Compatible slots, equipped/backpack, locked items and selection",
+      "status": "available",
+      "implementation": "InventoryGrid",
+      "implementationEn": "InventoryGrid",
+      "specification": "Emplacements compatibles, équipé/sac, objets verrouillés et sélection",
+      "specificationEn": "Compatible slots, equipped/backpack, locked items and selection",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "hero-equipment",
         "hero-exchange",
@@ -476,9 +534,12 @@
       "id": "transfer",
       "fr": "Échange et scission",
       "en": "Transfer and split",
-      "status": "compose",
-      "implementation": "Deux armées/inventaires, destination, quantité, tout transférer et confirmation",
-      "implementationEn": "Two armies/inventories, destination, quantity, transfer all and confirmation",
+      "status": "available",
+      "implementation": "TransferPanel",
+      "implementationEn": "TransferPanel",
+      "specification": "Deux armées/inventaires, destination, quantité, tout transférer et confirmation",
+      "specificationEn": "Two armies/inventories, destination, quantity, transfer all and confirmation",
+      "source": "src/ui/game/setup-hero.jsx",
       "usedBy": [
         "hero-equipment",
         "hero-exchange",
@@ -489,9 +550,12 @@
       "id": "details",
       "fr": "Fiche de créature",
       "en": "Creature details",
-      "status": "compose",
-      "implementation": "Illustration, statistiques, description et capacités natives complètes",
-      "implementationEn": "Artwork, statistics, complete native descriptions and abilities",
+      "status": "available",
+      "implementation": "CreatureDetails",
+      "implementationEn": "CreatureDetails",
+      "specification": "Illustration, statistiques, description et capacités natives complètes",
+      "specificationEn": "Artwork, statistics, complete native descriptions and abilities",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "mobile",
         "hero-equipment",
@@ -509,9 +573,12 @@
       "id": "evolution-grid",
       "fr": "Choix des évolutions",
       "en": "Evolution picker",
-      "status": "compose",
-      "implementation": "Une à quatre évolutions, nom entier, sélection stable et grille sans trou",
-      "implementationEn": "One to four evolutions, full names, stable selection and no grid gaps",
+      "status": "available",
+      "implementation": "EvolutionPicker",
+      "implementationEn": "EvolutionPicker",
+      "specification": "Une à quatre évolutions, nom entier, sélection stable et grille sans trou",
+      "specificationEn": "One to four evolutions, full names, stable selection and no grid gaps",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "creature-presentation",
         "progression-choices",
@@ -522,9 +589,12 @@
       "id": "roster",
       "fr": "Liste de recrutement",
       "en": "Recruitment roster",
-      "status": "compose",
-      "implementation": "Familles, deux rangées en portrait, indisponibilité et stock partagé",
-      "implementationEn": "Families, two portrait rows, availability and shared stock",
+      "status": "available",
+      "implementation": "RecruitmentRoster",
+      "implementationEn": "RecruitmentRoster",
+      "specification": "Familles, deux rangées en portrait, indisponibilité et stock partagé",
+      "specificationEn": "Families, two portrait rows, availability and shared stock",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "mobile",
         "town-recruitment",
@@ -536,9 +606,12 @@
       "id": "building",
       "fr": "Projet de construction",
       "en": "Building project",
-      "status": "compose",
-      "implementation": "Image, nom, sous-titre, prérequis, coût et raison d’indisponibilité",
-      "implementationEn": "Picture, name, subtitle, prerequisites, cost and unavailable reason",
+      "status": "available",
+      "implementation": "BuildingProject",
+      "implementationEn": "BuildingProject",
+      "specification": "Image, nom, sous-titre, prérequis, coût et raison d’indisponibilité",
+      "specificationEn": "Picture, name, subtitle, prerequisites, cost and unavailable reason",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "town-building-menu",
         "town-portrait",
@@ -549,9 +622,12 @@
       "id": "hire",
       "fr": "Recrutement d’un héros",
       "en": "Hero hiring",
-      "status": "compose",
-      "implementation": "Identité, aperçu des compétences/équipement/grimoire, prix et recrutement",
-      "implementationEn": "Identity, skills/equipment/spellbook preview, price and recruitment",
+      "status": "available",
+      "implementation": "HeroHireCard",
+      "implementationEn": "HeroHireCard",
+      "specification": "Identité, aperçu des compétences/équipement/grimoire, prix et recrutement",
+      "specificationEn": "Identity, skills/equipment/spellbook preview, price and recruitment",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "mobile-tavern"
       ]
@@ -560,9 +636,12 @@
       "id": "spells",
       "fr": "Choix et détail d’un sort",
       "en": "Spell picker and details",
-      "status": "compose",
-      "implementation": "Écoles, coût, description, cible, indisponibilité et réutilisation",
-      "implementationEn": "Schools, cost, description, targeting, availability and reuse",
+      "status": "available",
+      "implementation": "SpellPicker",
+      "implementationEn": "SpellPicker",
+      "specification": "Écoles, coût, description, cible, indisponibilité et réutilisation",
+      "specificationEn": "Schools, cost, description, targeting, availability and reuse",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "hero-equipment",
         "spellbook",
@@ -573,9 +652,12 @@
       "id": "skills",
       "fr": "Arbre de compétences",
       "en": "Skill tree",
-      "status": "compose",
-      "implementation": "Nœuds, liens, niveaux, prérequis et état sélectionnable",
-      "implementationEn": "Nodes, links, levels, prerequisites and selectable state",
+      "status": "available",
+      "implementation": "SkillTree",
+      "implementationEn": "SkillTree",
+      "specification": "Nœuds, liens, niveaux, prérequis et état sélectionnable",
+      "specificationEn": "Nodes, links, levels, prerequisites and selectable state",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "hero-equipment",
         "dialog-presentation",
@@ -587,9 +669,12 @@
       "id": "upgrade",
       "fr": "Devis d’amélioration",
       "en": "Upgrade quote",
-      "status": "compose",
-      "implementation": "Avant/après, évolution maximale, coût global et motif de refus localisé",
-      "implementationEn": "Before/after, final evolution, total cost and localized rejection reason",
+      "status": "available",
+      "implementation": "UpgradeQuote",
+      "implementationEn": "UpgradeQuote",
+      "specification": "Avant/après, évolution maximale, coût global et motif de refus localisé",
+      "specificationEn": "Before/after, final evolution, total cost and localized rejection reason",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "hero-equipment",
         "army-upgrades",
@@ -601,9 +686,12 @@
       "id": "trade",
       "fr": "Échange de ressources",
       "en": "Resource trade",
-      "status": "compose",
-      "implementation": "Donner/recevoir, taux, quantité, total et ressources insuffisantes",
-      "implementationEn": "Give/receive, rate, quantity, total and insufficient resources",
+      "status": "available",
+      "implementation": "MarketTradePanel",
+      "implementationEn": "MarketTradePanel",
+      "specification": "Donner/recevoir, taux, quantité, total et ressources insuffisantes",
+      "specificationEn": "Give/receive, rate, quantity, total and insufficient resources",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "marketplace"
       ]
@@ -612,9 +700,12 @@
       "id": "ranking",
       "fr": "Classement et renseignements",
       "en": "Rankings and intelligence",
-      "status": "compose",
-      "implementation": "Huit joueurs, rangs ex æquo, informations inconnues, détail par joueur",
-      "implementationEn": "Eight players, ties, unknown intelligence and player details",
+      "status": "available",
+      "implementation": "KingdomRanking",
+      "implementationEn": "KingdomRanking",
+      "specification": "Huit joueurs, rangs ex æquo, informations inconnues, détail par joueur",
+      "specificationEn": "Eight players, ties, unknown intelligence and player details",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "town-services",
         "thieves-guild-view",
@@ -625,9 +716,12 @@
       "id": "battle-hud",
       "fr": "Commandes et inspection de combat",
       "en": "Battle HUD and inspection",
-      "status": "compose",
-      "implementation": "Créature active, statistiques, états, initiative et actions disponibles",
-      "implementationEn": "Active creature, statistics, effects, initiative and available actions",
+      "status": "available",
+      "implementation": "BattleHUD",
+      "implementationEn": "BattleHUD",
+      "specification": "Créature active, statistiques, états, initiative et actions disponibles",
+      "specificationEn": "Active creature, statistics, effects, initiative and available actions",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "mobile",
         "battle-dual-view",
@@ -638,9 +732,12 @@
       "id": "result",
       "fr": "Résultat de combat",
       "en": "Battle result",
-      "status": "compose",
-      "implementation": "Victoire/défaite, expérience, pertes d’une unité ou plus et score",
-      "implementationEn": "Victory/defeat, experience, losses of one creature or more and score",
+      "status": "available",
+      "implementation": "BattleResult",
+      "implementationEn": "BattleResult",
+      "specification": "Victoire/défaite, expérience, pertes d’une unité ou plus et score",
+      "specificationEn": "Victory/defeat, experience, losses of one creature or more and score",
+      "source": "src/ui/game/recruitment-battle.jsx",
       "usedBy": [
         "mobile",
         "dialog-presentation",
@@ -652,9 +749,12 @@
       "id": "save",
       "fr": "Sauvegardes et reprise",
       "en": "Saves and recovery",
-      "status": "compose",
-      "implementation": "Liste, métadonnées, import/export, reprendre, supprimer et état vide",
-      "implementationEn": "List, metadata, import/export, resume, delete and empty state",
+      "status": "available",
+      "implementation": "SaveRecoveryPanel",
+      "implementationEn": "SaveRecoveryPanel",
+      "specification": "Liste, métadonnées, import/export, reprendre, supprimer et état vide",
+      "specificationEn": "List, metadata, import/export, resume, delete and empty state",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "game-menu",
         "session-recovery",
@@ -665,9 +765,12 @@
       "id": "storage",
       "fr": "Occupation du stockage",
       "en": "Storage usage",
-      "status": "compose",
-      "implementation": "Occupation, téléchargement, disponibilité hors ligne et réparation",
-      "implementationEn": "Usage, downloads, offline availability and repair",
+      "status": "available",
+      "implementation": "StorageUsage",
+      "implementationEn": "StorageUsage",
+      "specification": "Occupation, téléchargement, disponibilité hors ligne et réparation",
+      "specificationEn": "Usage, downloads, offline availability and repair",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "game-menu",
         "storage-page",
@@ -681,9 +784,12 @@
       "id": "rules",
       "fr": "Option de règle avec aide",
       "en": "Rule option with help",
-      "status": "compose",
-      "implementation": "Libellé localisé, choix, explication et dépendances",
-      "implementationEn": "Localized label, choice, explanation and dependencies",
+      "status": "available",
+      "implementation": "RuleOptionRow",
+      "implementationEn": "RuleOptionRow",
+      "specification": "Libellé localisé, choix, explication et dépendances",
+      "specificationEn": "Localized label, choice, explanation and dependencies",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "game-menu",
         "wog-options",
@@ -695,9 +801,12 @@
       "id": "copy",
       "fr": "Code et copie",
       "en": "Code and copy",
-      "status": "compose",
-      "implementation": "Code lisible, copie, succès/échec et solution de repli",
-      "implementationEn": "Readable code, copy, success/error and fallback",
+      "status": "available",
+      "implementation": "CopyCodeField",
+      "implementationEn": "CopyCodeField",
+      "specification": "Code lisible, copie, succès/échec et solution de repli",
+      "specificationEn": "Readable code, copy, success/error and fallback",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "hosted-match-create",
         "online-lobby",
@@ -709,9 +818,12 @@
       "id": "dynamic",
       "fr": "Formulaire de dialogue natif",
       "en": "Native dialog form",
-      "status": "compose",
-      "implementation": "Récompense obligatoire, choix multiple, nombre, texte et validation",
-      "implementationEn": "Required reward selection, multiple choice, number, text and validation",
+      "status": "available",
+      "implementation": "NativeDialogForm",
+      "implementationEn": "NativeDialogForm",
+      "specification": "Récompense obligatoire, choix multiple, nombre, texte et validation",
+      "specificationEn": "Required reward selection, multiple choice, number, text and validation",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "dialog-presentation",
         "campaign-dialog-form"
@@ -721,9 +833,12 @@
       "id": "media",
       "fr": "Illustration et vidéo",
       "en": "Picture and video",
-      "status": "compose",
-      "implementation": "Média réel, légende, lecture/pause, chargement, erreur et sortie",
-      "implementationEn": "Actual media, caption, play/pause, loading, error and exit",
+      "status": "available",
+      "implementation": "MediaViewer",
+      "implementationEn": "MediaViewer",
+      "specification": "Média réel, légende, lecture/pause, chargement, erreur et sortie",
+      "specificationEn": "Actual media, caption, play/pause, loading, error and exit",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "campaign-setup",
         "campaign-media"
@@ -733,9 +848,12 @@
       "id": "consequences",
       "fr": "Résumé des conséquences",
       "en": "Consequence summary",
-      "status": "compose",
-      "implementation": "Pertes, coûts, ressources récupérées, évacuation et confirmation explicite",
-      "implementationEn": "Losses, costs, recovered resources, evacuation and explicit confirmation",
+      "status": "available",
+      "implementation": "ConsequenceSummary",
+      "implementationEn": "ConsequenceSummary",
+      "specification": "Pertes, coûts, ressources récupérées, évacuation et confirmation explicite",
+      "specificationEn": "Losses, costs, recovered resources, evacuation and explicit confirmation",
+      "source": "src/ui/game/services.jsx",
       "usedBy": [
         "cave-builder"
       ]
@@ -747,6 +865,8 @@
       "status": "engine",
       "implementation": "Conserver le canvas et ses coordonnées ; ne pas peindre les bâtiments en MUI",
       "implementationEn": "Keep canvas and coordinates; do not paint buildings with MUI",
+      "specification": "Conserver le canvas et ses coordonnées ; ne pas peindre les bâtiments en MUI",
+      "specificationEn": "Keep canvas and coordinates; do not paint buildings with MUI",
       "usedBy": [
         "mobile",
         "campaign-setup",
@@ -764,6 +884,8 @@
       "status": "engine",
       "implementation": "Réutiliser le lecteur natif, son cadrage et son ordonnanceur",
       "implementationEn": "Reuse the native player, crop and scheduler",
+      "specification": "Réutiliser le lecteur natif, son cadrage et son ordonnanceur",
+      "specificationEn": "Reuse the native player, crop and scheduler",
       "usedBy": [
         "creature-presentation",
         "recruitment-families",
@@ -778,6 +900,8 @@
       "status": "engine",
       "implementation": "Cases accessibles, trajectoire, tir, cibles des sorts et confirmation",
       "implementationEn": "Reachable hexes, path, ranged attacks, spell targets and confirmation",
+      "specification": "Cases accessibles, trajectoire, tir, cibles des sorts et confirmation",
+      "specificationEn": "Reachable hexes, path, ranged attacks, spell targets and confirmation",
       "usedBy": [
         "mobile",
         "battle-dual-view",
@@ -792,6 +916,8 @@
       "status": "engine",
       "implementation": "Panoramique, zoom et centrage avec conversion des coordonnées",
       "implementationEn": "Pan, zoom and centering with coordinate conversion",
+      "specification": "Panoramique, zoom et centrage avec conversion des coordonnées",
+      "specificationEn": "Pan, zoom and centering with coordinate conversion",
       "usedBy": [
         "mobile",
         "battle-dual-view"
@@ -1868,9 +1994,10 @@
         "card",
         "resources",
         "select",
-        "feedback"
+        "feedback",
+        "accordion"
       ],
-      "sourceSHA256": "ecdd62b92ea69de7b77b8b6a38f90ee011d458118b8ae7555fd68a478e96389c",
+      "sourceSHA256": "48ac8021d45e327fff8fbf8832dfd7a5c226834c18e50cdf28383103590b37fa",
       "evidence": [
         {
           "line": 5,
@@ -1899,6 +2026,10 @@
         {
           "line": 30,
           "excerpt": "renderMarkup(panel,'<header><h2 id=\"mithril-title\">Mithril</h2><button data-mithril-close aria-label=\"Fermer\">✕</button></header><div class=\"mithril-content\"></div>');"
+        },
+        {
+          "line": 55,
+          "excerpt": "const information=info?`<section class=\"mithril-information\"><p>${esc(info.total)}</p>${info.prices?.length?`<button data-mithril-prices aria-expanded=\"${pricesOpen}\" aria-controls"
         }
       ],
       "review": "source-reviewed"
@@ -2870,18 +3001,18 @@
         "choice",
         "feedback"
       ],
-      "sourceSHA256": "90eccd5b0de2f40c5fe3cc9f7ec7a4c1cd2471bb36ef54f391a03bf79b41d876",
+      "sourceSHA256": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
       "evidence": [
         {
-          "line": 27,
+          "line": 31,
           "excerpt": "export function createWogOptions({menu, command, onChange}) {"
         },
         {
-          "line": 36,
+          "line": 40,
           "excerpt": "form = document.createElement('details');"
         },
         {
-          "line": 41,
+          "line": 45,
           "excerpt": "const field = document.createElement('fieldset');"
         }
       ],
