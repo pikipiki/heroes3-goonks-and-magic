@@ -158,3 +158,7 @@
 #mobile-app .melee-indicator{color:#ff6b6b}
 #mobile-app .spell-ally-indicator{color:#b9ff9a}
 #mobile-app .spell-enemy-indicator{color:#ffc0ff}
+
+/* Visible short captions belong to their own non-overlapping town touch cell. */
+#mobile-app[data-town-layout=portrait] .town-building-name{display:block!important;bottom:0;transform:none;box-sizing:border-box;padding:0 2px;border:1px solid #ad8e50;background:#20150eea;font:10px/12px Georgia;overflow:hidden;white-space:pre-line}
+#mobile-app:not([data-mode=town]) .town-portrait-buildings{display:none!important}
