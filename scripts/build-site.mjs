@@ -8,10 +8,11 @@ import {packSmallAssets,deduplicateAssetURLs} from './asset-packs.mjs';
 import {visitBaseGame} from './base-game.mjs';
 import {makeManifest} from './assets.mjs';import {renderPage} from './page.mjs';
 import {publishCampaignMedia} from './publish-campaign-media.mjs';
+import {copyPublicTree} from './copy-public-tree.mjs';
 const root=path.resolve(process.env.GOONK_ENGINE_DIR||'work/vcmi-wasm/emscripten/html5'),data=path.resolve('work/game-data/homm3eng/home/web_user/.local/share/vcmi'),dist=process.env.GOONK_AUDIT_OUTPUT?path.resolve(process.env.GOONK_AUDIT_OUTPUT):path.resolve('dist');
 if(process.env.GOONK_AUDIT_OUTPUT&&(!dist.startsWith(path.resolve(os.tmpdir())+path.sep)||!path.basename(dist).startsWith('goonk-')))throw Error('Audit output must be a goonk- directory inside the system temporary directory.');
 if(!fs.existsSync(root))throw Error('Extraire le moteur précompilé dans work/vcmi-wasm/emscripten/ avant de construire le site.');
-fs.rmSync(dist,{recursive:true,force:true});fs.cpSync(root,dist,{recursive:true});fs.cpSync('web',path.join(dist,'web'),{recursive:true});
+fs.rmSync(dist,{recursive:true,force:true});copyPublicTree(root,dist);copyPublicTree('web',path.join(dist,'web'));
 publishCampaignMedia(dist);
 // Use the same OPFS worker for the web installer and the engine's startup mount.
 fs.copyFileSync('work/vcmi-wasm/lib/html5/opfs-worker.js',path.join(dist,'opfs-worker.js'));

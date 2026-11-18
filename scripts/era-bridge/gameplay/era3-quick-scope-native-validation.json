@@ -443,12 +443,14 @@
     "catalogueCountUnchanged": 16
   },
   "publicationVerification": {
-    "release": "0.4.258",
+    "release": "0.4.259",
     "cleanTrackedModManifestSha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
     "unverifiedFieldCatapultExcluded": true,
     "nativeTransportFiles": 10464,
     "transportBytes": 702295309,
     "siteVerificationExitCode": 0,
-    "siteVerificationLogSha256": "c1829ec96021e44744349f2c2c45a396376a5a0f794a1452939d9e75e2f33153"
+    "siteVerificationLogSha256": "c1829ec96021e44744349f2c2c45a396376a5a0f794a1452939d9e75e2f33153",
+    "sourceLinksMaterialized": true,
+    "sourceWebUnchangedAfterBuild": true
   }
 }
