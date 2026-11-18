@@ -42,7 +42,7 @@ export function applyScreenComponents(root){
  if(close){if(close.textContent!=='✕')close.textContent='✕';decorateButton(close,{icon:true});close.setAttribute('aria-label',uiText('Close','Fermer'));if(close.dataset.uiHeaderClose==='true'&&source&&source!==close&&close.disabled!==source.disabled)close.disabled=source.disabled;}
  for(const selector of [contract.headerActions,contract.extraActions].filter(Boolean))for(const button of root.querySelectorAll(selector)){if(button!==close){const dock=ensureDock(root,contract),actions=dock.querySelector(':scope>.ui-action-group')||dock;if(!actions.contains(button))actions.append(button);}}
  if(root.matches('.online-lobby')&&close&&source&&source!==close&&!source.hidden)source.hidden=true;
- const dock=find(root,contract.dock)||root.querySelector(':scope>.ui-action-dock');
+ const dock=find(root,contract.dock)||root.querySelector(':scope>footer.ui-action-dock');
  if(contract.liftDock&&dock&&dock.parentElement!==root)root.append(dock);
  if(contract.status&&dock)for(const status of root.querySelectorAll(contract.status))if(status.parentElement!==dock)dock.prepend(status);
  if(dock)useActionDock(dock,{overflow:!root.matches('#game-menu'),limit:dock.matches('.hero-army-dock-tools')?1:contract.dockLimit??3,...(dock.matches('.hero-army-dock-tools')?{keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-hero-army-details'))}:{})});
