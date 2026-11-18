@@ -34,4 +34,10 @@ test('native WoG130 builds once, preserves initial stock/quota and excludes ever
  assert.deepEqual(proof.historicalControl.scenarios[0].initial,[0,1,0,0,0,0,0,0]);
  assert.equal(proof.legacyFourteenChoiceSave.scenarios[0].grailRemainsDisabled,true);
  assert.equal(proof.previousEngineSave.passed,true);
+ assert.equal(proof.postMergeValidation.nativeBuild.exitCode,0);
+ for(const report of Object.values(proof.postMergeValidation.reports)){
+  assert.equal(report.passed,true);assert.deepEqual(report.errors,[]);
+  assert.equal(report.engineSha256,proof.postMergeValidation.engineSha256);
+  assert.equal(report.scenarios.length,2);
+ }
 });

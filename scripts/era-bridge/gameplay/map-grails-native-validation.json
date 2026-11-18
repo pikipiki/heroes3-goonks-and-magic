@@ -1016,5 +1016,285 @@
     "Source option101 six selection modes",
     "Complete WoG/ERA/Advanced Classes/Reborn profiles",
     "Full source binary differential comparison"
-  ]
+  ],
+  "postMergeValidation": {
+    "sourceMergeCommit": "f0bc6e0367b42c210dccb1abe18ed7232c24bf39",
+    "engineSha256": "00effc1975261d54e1378766bb4812f82381173b9398e56f474de951b40813fa",
+    "nativeBuild": {
+      "command": "ninja -j32 html5",
+      "exitCode": 0,
+      "targets": 17,
+      "logSha256": "8115d28cf0a8d36b60bc8637a59d264de79905211aae24238803345acf862305"
+    },
+    "reports": {
+      "touchPortrait": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "00effc1975261d54e1378766bb4812f82381173b9398e56f474de951b40813fa",
+        "scenarios": [
+          {
+            "configured": false,
+            "choice": 1,
+            "active": true,
+            "conflux": null,
+            "initial": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "removed": [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "next": [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "startingGold": 20000,
+            "day2Gold": 36500,
+            "day3Gold": 48000,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "existingGrailPreserved": true,
+            "removedGrailNotRebuilt": true,
+            "freeConstructionPreservesDailyAllowance": true,
+            "firstStock": 14,
+            "postRemovalNativeSaveReload": true,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch",
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "configured": true,
+            "choice": 0,
+            "active": false,
+            "conflux": null,
+            "initial": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "removed": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "next": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "startingGold": 20000,
+            "day2Gold": 21500,
+            "day3Gold": 23000,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "existingGrailPreserved": true,
+            "removedGrailNotRebuilt": true,
+            "freeConstructionPreservesDailyAllowance": true,
+            "firstStock": 14,
+            "postRemovalNativeSaveReload": false,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch",
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "2ee9cc7c0db8f07607ead38a2e75d7e3be0d8e5b36f9bce9f912ea77515e93d8"
+      },
+      "desktopMouse": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "00effc1975261d54e1378766bb4812f82381173b9398e56f474de951b40813fa",
+        "scenarios": [
+          {
+            "configured": true,
+            "choice": -1,
+            "active": true,
+            "conflux": null,
+            "initial": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "removed": [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "next": [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "startingGold": 20000,
+            "day2Gold": 36500,
+            "day3Gold": 48000,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "existingGrailPreserved": true,
+            "removedGrailNotRebuilt": true,
+            "freeConstructionPreservesDailyAllowance": true,
+            "firstStock": 14,
+            "postRemovalNativeSaveReload": true,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse",
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "configured": true,
+            "choice": 1,
+            "active": false,
+            "conflux": "neutral",
+            "initial": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "removed": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "next": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "startingGold": 21000,
+            "day2Gold": 22500,
+            "day3Gold": 24000,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "existingGrailPreserved": true,
+            "removedGrailNotRebuilt": true,
+            "freeConstructionPreservesDailyAllowance": true,
+            "firstStock": 14,
+            "postRemovalNativeSaveReload": false,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse",
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "2ad23f710a701c33fb681d8c38df0117541e8914c7e23e150972b4971f17802e"
+      }
+    }
+  }
 }
