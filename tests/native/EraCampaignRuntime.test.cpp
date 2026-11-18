@@ -10,9 +10,9 @@ using namespace era_campaign_json;
 
 struct QueryHost final:Host
 {
- int shown=0;
- Step execute(const Command&,const Operation&op,State&,const Context&)override
- {if(op.code!="M")throw std::runtime_error("Unexpected receiver in codec test");++shown;return Step::Suspend;}
+ int shown=0;bool clearGuard=false;
+ Step execute(const Command&,const Operation&op,State&state,const Context&)override
+ {if(op.code!="M")throw std::runtime_error("Unexpected receiver in codec test");++shown;if(clearGuard)state.flags[1]=false;return Step::Suspend;}
  int32_t random(int32_t maximum,bool)override{return maximum;}
 };
 template<class F>void rejects(F && function)
@@ -67,6 +67,34 @@ int main()
  rejects([&]{era_campaign_runtime::execute(ast,broken,context,host,invocation);});
  invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;
  rejects([&]{era_campaign_runtime::execute(ast,JsonNode(),context,host,invocation);});
+ // V2 structured control uses the same saved continuation codec. A query
+ // changing the guard must not move a resumed branch into its else arm.
+ JsonNode modern=ast;modern["schemaVersion"].Integer()=2;modern["contract"].String()="source-campaign-erm-ast-v2";
+ modern["sha256"].String()="structured-codec";
+ auto number=[](int value){Operand result;result.kind=Kind::Number;result.number=value;return result;};
+ auto variable=[&](int index){Operand result;result.kind=Kind::Variable;result.space='v';result.index=std::make_shared<Operand>(number(index));return result;};
+ auto makeCommand=[&](const std::string & receiver,const std::string & code,Operand arg){
+  JsonNode result;result["receiver"].String()=receiver;result["selectors"].Vector();result["conditions"].Vector();
+  JsonNode op;op["code"].String()=code;op["args"].Vector().push_back(writeOperand(arg));result["operations"].Vector().push_back(op);return result;
+ };
+ auto branch=makeCommand("__flow","F",number(4));
+ JsonNode predicate;predicate["flag"].Integer()=1;predicate["expected"].Bool()=true;
+ JsonNode group;group["any"].Vector().push_back(predicate);branch["conditions"].Vector().push_back(group);
+ auto add=makeCommand("VR","+",number(7));add["selectors"].Vector().push_back(writeOperand(variable(10)));
+ auto wrong=add;wrong["operations"].Vector()[0]["args"].Vector()[0]=writeOperand(number(999));
+ auto after=add;after["selectors"].Vector()[0]=writeOperand(variable(11));
+ auto & instructions=modern["blocks"].Vector()[0]["commands"].Vector();
+ instructions={branch,command,add,makeCommand("__flow","J",number(5)),wrong,after};
+ auto mislabeled=modern;mislabeled["schemaVersion"].Integer()=1;mislabeled["contract"].String()="source-campaign-erm-ast-v1";
+ rejects([&]{readProgram(mislabeled);});
+ QueryHost modernHost;modernHost.clearGuard=true;State modernState;modernState.flags[1]=true;
+ modernState.programSha256="structured-codec";modernState.initialized=true;
+ invocation.kind=era_campaign_runtime::InvocationKind::Dispatch;invocation.receiver="LE";
+ auto paused=era_campaign_runtime::execute(modern,writeState(modernState),context,modernHost,invocation);
+ assert(!paused.complete&&modernHost.shown==1&&!readState(paused.state).flags.at(1));
+ invocation.kind=era_campaign_runtime::InvocationKind::Resume;
+ auto resumed=era_campaign_runtime::execute(modern,paused.state,context,modernHost,invocation);
+ assert(resumed.complete&&modernHost.shown==1&&readState(resumed.state).v.at(10)==7&&readState(resumed.state).v.at(11)==7);
  // The actual engine JsonNode holds extended dialog definitions and replies.
  State dialogue;Context dc;JsonNode definitions;era_campaign_dialogs::Dialogs dialogs(definitions,dialogue,dc);
  const auto n=[](int value){Operand result;result.kind=Kind::Number;result.number=value;return result;};

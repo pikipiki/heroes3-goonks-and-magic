@@ -86,16 +86,63 @@ export function tokenizeErm(bytes,{encoding='utf-8',source='ERM'}={}){
  }
  return tokens;
 }
-export function compileErm(bytes,{source='ERM',encoding='utf-8'}={}){
- const tokens=tokenizeErm(bytes,{source,encoding}),blocks=[],initializers=[];let current=null;
+function bindIdentifiers(statement,bindings){
+ let output=statement.slice(0,2),quote='';
+ for(let i=2;i<statement.length;){
+  const c=statement[i];
+  if(quote){output+=c;i++;if(c===quote)quote='';continue;}
+  if(c==='^'||c==='@'||c==='$'){quote=c;output+=c;i++;continue;}
+  const found=c==='('?/^\(([A-Za-z_][A-Za-z0-9_]*)\)/.exec(statement.slice(i)):null;
+  if(found&&Object.hasOwn(bindings,found[1])){output+=String(bindings[found[1]]);i+=found[0].length;}
+  else{output+=c;i++;}
+ }
+ return output;
+}
+export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={}}={}){
+ if(!bindings||typeof bindings!=='object'||Array.isArray(bindings))fail('Invalid identifier bindings',source);
+ const bound=Object.fromEntries(Object.entries(bindings).sort(([a],[b])=>a<b?-1:a>b?1:0));
+ for(const[name,value]of Object.entries(bound))if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)||!Number.isSafeInteger(value)||value< -2147483648||value>4294967295)fail('Invalid identifier binding '+name,source);
+ const tokens=tokenizeErm(bytes,{source,encoding}),blocks=[],initializers=[],flows=new Map();let current=null,modern=false;
+ const stackFor=commands=>{if(!flows.has(commands))flows.set(commands,[]);return flows.get(commands);};
+ const target=(command,index)=>{command.operations[0].args[0].number=index;};
+ const jump=(record,code)=>({...record,receiver:'__flow',selectors:[],operations:[{code,args:[{kind:'number',access:'read',number:0}]}]});
  for(const token of tokens){try{
-  const m=/^!([!?#$])([A-Za-z]{2})([^:;]*)(?::([\s\S]*))?;$/.exec(token.statement);if(!m)fail('Invalid statement '+token.statement);
+  const statement=bindIdentifiers(token.statement,bound);
+  const m=/^!([!?#$])([A-Za-z]{2})([^:;]*)(?::([\s\S]*))?;$/.exec(statement);if(!m)fail('Invalid statement '+token.statement);
   const kind=m[1],receiver=m[2].toUpperCase(),at=firstOutside(m[3],text=>/^[&|]/.exec(text))?.index??-1,selectorText=at<0?m[3]:m[3].slice(0,at),conditionText=at<0?'':m[3].slice(at+1),selectors=splitOutside(selectorText).filter(s=>s.trim()).map(parseOperand),conditions=parseConditions(conditionText,m[3][at]==='|'?'any':'all');
   const record={receiver,selectors,conditions,source:{line:token.line,offset:token.offset,endOffset:token.endOffset,sha256:token.sha256}};
-  if(kind==='?'||kind==='$'){current={...record,kind:kind==='?'?'trigger':'post-trigger',commands:[]};blocks.push(current);continue;}
+  if(kind==='?'||kind==='$'){
+   if([...flows.values()].some(stack=>stack.length))fail('Structured condition crosses a trigger declaration');
+   current={...record,kind:kind==='?'?'trigger':'post-trigger',commands:[]};blocks.push(current);continue;
+  }
+  const commands=kind==='#'?initializers:current?.commands;
+  if(!commands)fail('Receiver before first trigger');
+  if(['if','el','en'].includes(m[2])){
+   if(kind==='#')record.visibleBlocks=blocks.length;
+   if(selectors.length||m[4]!==undefined)fail('Structured control takes conditions only');
+   modern=true;const stack=stackFor(commands);
+   if(m[2]==='if'){
+    const branch=jump(record,'F');commands.push(branch);stack.push({branch,ends:[],hasElse:false});
+   }else{
+    if(!stack.length)fail('Structured '+m[2]+' without if');const frame=stack.at(-1);
+    if(m[2]==='el'){
+     if(frame.hasElse)fail('Structured branch after else');
+     const end=jump({...record,conditions:[]},'J');commands.push(end);frame.ends.push(end);target(frame.branch,commands.length);
+     frame.hasElse=!conditions.length;
+     if(conditions.length){frame.branch=jump(record,'F');commands.push(frame.branch);}else frame.branch=null;
+    }else{
+     if(conditions.length)fail('Structured end takes no condition');
+     if(frame.branch)target(frame.branch,commands.length);for(const end of frame.ends)target(end,commands.length);stack.pop();
+    }
+   }
+   continue;
+  }
   if(!campaignReceivers.has(receiver))fail('Unbound receiver '+receiver);
-  const command={...record,operations:parseOperations(m[4]??'',receiver)};
-  if(kind==='#')initializers.push({...command,visibleBlocks:blocks.length});else {if(!current)fail('Receiver before first trigger');current.commands.push(command);}
+  commands.push({...record,operations:parseOperations(m[4]??'',receiver),...(kind==='#'?{visibleBlocks:blocks.length}:{})});
  }catch(e){fail('line'+token.line+' '+e.message,source);}}
- return{schemaVersion:1,contract:'source-campaign-erm-ast-v1',source,encoding,sha256:sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),initializers,blocks};
+ if([...flows.values()].some(stack=>stack.length))fail('Unterminated structured condition',source);
+ const sourceSha256=sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),boundNames=Object.keys(bound).length>0;
+ const identity=boundNames?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound}))):sourceSha256;
+ const version=modern||boundNames?2:1;
+ return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames?{sourceSha256,bindings:bound}:{}),initializers,blocks};
 }

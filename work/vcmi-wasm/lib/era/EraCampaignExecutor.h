@@ -214,6 +214,20 @@ public:
     call.blockCursor++;call.command=0;call.operation=0;call.commandConditionAccepted=false;continue;
    }
    const auto & command=commands[call.command];
+   if(command.receiver=="__flow")
+   {
+    if(!command.selectors.empty()||command.operations.size()!=1||call.operation!=0)
+     throw std::runtime_error("Invalid structured campaign control");
+    const auto & flow=command.operations.front();arity(flow,1);
+    const auto & argument=flow.args.front();
+    if(argument.kind!=Kind::Number||argument.access!=Access::Read||(flow.code!="F"&&flow.code!="J")
+     ||argument.number<0||static_cast<std::size_t>(argument.number)<=call.command||static_cast<std::size_t>(argument.number)>commands.size()
+     ||(flow.code=="J"&&!command.conditions.empty()))
+     throw std::runtime_error("Invalid structured campaign branch target");
+    const bool take=flow.code=="J"||!accepts(command.conditions,state,context);
+    call.command=take?static_cast<std::size_t>(argument.number):call.command+1;
+    call.operation=0;call.commandConditionAccepted=false;continue;
+   }
    if(!call.commandConditionAccepted)
    {
     if(!accepts(command.conditions,state,context)){call.command++;call.operation=0;continue;}

@@ -36,6 +36,31 @@ int main()
  assert(era_campaign_hero_experience::levelFor(1000,4,required)==2&&era_campaign_hero_experience::levelFor(2000,4,required)==3);
  assert(era_campaign_hero_experience::levelFor(INT_MAX,4,required)==4);
  Context context;Recorder host;
+ // A structured branch is decided once, even when a native query changes its
+ // guard while suspended. The saved PC also skips the unselected else branch.
+ Program structured;structured.sha256="structured-branches";
+ auto branch=cmd("__flow",{},"F",{num(5)});
+ Predicate active;active.isFlag=true;active.flag=1;branch.conditions={{active}};
+ structured.blocks={block("LE",{}, {branch,cmd("IF",{},"Prompt"),
+  cmd("VR",{var('v',70)},"+",{num(10)}),cmd("__flow",{},"J",{num(6)}),
+  cmd("VR",{var('v',70)},"S",{num(999)}),
+  cmd("VR",{var('v',70)},"+",{num(20)}),cmd("VR",{var('v',71)},"+",{num(1)})})};
+ State flowState;flowState.flags[1]=true;Recorder flowHost;
+ Executor flowStart(structured,flowState,context,flowHost);flowStart.dispatch("LE");
+ assert(!flowStart.run()&&!flowState.flags[1]&&flowHost.prompts==1);
+ auto flowSaved=flowState;Executor flowResume(structured,flowSaved,context,flowHost);
+ assert(flowResume.run()&&flowSaved.v[70]==10&&flowSaved.v[71]==1&&flowHost.prompts==1);
+ State flowElse;Executor flowFallback(structured,flowElse,context,flowHost);flowFallback.dispatch("LE");
+ assert(flowFallback.run()&&flowElse.v[70]==20&&flowElse.v[71]==1&&flowHost.prompts==1);
+ // Corrupt ASTs cannot turn the forward-only control into a loop or escape.
+ for(const int invalid:{-1,0,8}){
+  Program malformed=structured;malformed.sha256="bad-branch";
+  malformed.blocks[0].commands[0].operations[0].args[0]=num(invalid);
+  State badState;Executor badFlow(malformed,badState,context,flowHost);badFlow.dispatch("LE");
+  bool rejectedBranch=false;try{badFlow.run();}catch(const std::runtime_error&){rejectedBranch=true;}
+  assert(rejectedBranch);
+ }
+
  // A Life of Adventure uses !?BA&889 without a selector. It is BA0,
  // interleaved with explicit BA0 in source order, and never a BA1 event.
  Program battleDefaults;battleDefaults.sha256="battle-default-zero";

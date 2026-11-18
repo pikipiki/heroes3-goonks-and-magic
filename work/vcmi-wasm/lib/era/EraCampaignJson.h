@@ -68,10 +68,16 @@ inline era_campaign::Command readCommand(const JsonNode&node)
 }
 inline era_campaign::Program readProgram(const JsonNode&node)
 {
- object(node);if(integer(node["schemaVersion"])!=1||string(node["contract"])!="source-campaign-erm-ast-v1")throw std::runtime_error("Unknown source campaign AST contract");
+ object(node);const auto version=integer(node["schemaVersion"]);
+ if((version!=1&&version!=2)||string(node["contract"])!="source-campaign-erm-ast-v"+std::to_string(version))throw std::runtime_error("Unknown source campaign AST contract");
  era_campaign::Program program;program.sha256=string(node["sha256"]);program.source=string(node["source"]);
  for(const auto&item:array(node["initializers"]))program.initializers.push_back(readCommand(item));
  for(const auto&item:array(node["blocks"])){object(item);era_campaign::Trigger trigger;trigger.receiver=string(item["receiver"]);const auto kind=string(item["kind"]);if(kind!="trigger"&&kind!="post-trigger")throw std::runtime_error("Unknown campaign trigger kind");trigger.post=kind=="post-trigger";trigger.selectors=readOperands(item["selectors"]);trigger.conditions=readConditions(item["conditions"]);for(const auto&command:array(item["commands"]))trigger.commands.push_back(readCommand(command));program.blocks.push_back(std::move(trigger));}
+ if(version==1)
+ {
+  const auto legacy=[](const auto & commands){for(const auto & command:commands)if(command.receiver=="__flow")throw std::runtime_error("Structured control requires source AST v2");};
+  legacy(program.initializers);for(const auto & block:program.blocks)legacy(block.commands);
+ }
  return program;
 }
 template<class V,class Write> JsonNode writeMap(const std::map<std::int32_t,V>&values,Write write)

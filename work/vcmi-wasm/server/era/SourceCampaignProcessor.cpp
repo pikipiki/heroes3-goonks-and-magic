@@ -2058,8 +2058,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   else if(op.code=="B")
   {
-   arity(op,2);require(args[0].access==Access::Read,"hero text field must be a value");
-   const int field=number(args[0]);require(field==0||field==1||field==3,"unsupported hero text field");
+   arity(op,2);require(args[0].access==Access::Read,"hero field must be a value");
+   const int field=number(args[0]);
+   if(field==2)
+   {
+    require(args[1].access==Access::Write||args[1].access==Access::Compare,"hero class is read-only");
+    value(h->getHeroClassID().getNum(),args[1]);return Step::Continue;
+   }
+   require(field==0||field==1||field==3,"unsupported hero text field");
    const auto old=field==0?(h->nameCustomTextId.empty()?std::string():h->getNameTranslated()):field==1?(h->biographyCustomTextId.empty()?std::string():h->getBiographyTranslated()):LIBRARY->generaltexth->translate(h->getHeroType()->getBiographyTextID());
    if(args[1].access==Access::Write)writeText(args[1],vm,context,old);
    else

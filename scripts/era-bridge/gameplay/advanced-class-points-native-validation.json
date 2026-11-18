@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "advancedClassesProfileAdmitted": false,
+  "scope": "Original Advanced Classes 1.1 point calculation only; commander and artifact-set functions are controlled dependency stubs. No full profile, promotion or extra skill level admission.",
+  "sourceBaseCommit": "740d03aa60a98ff8bcbc3986fc3ef7058493e675",
+  "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+  "sourceBindings": {
+    "scripts/era-bridge/campaigns/parser.mjs": "cad37dda2a2d008dff55274e33337386cfb533335c568201f73c370996b197b4",
+    "scripts/era-bridge/campaigns/native-compiler.mjs": "74eaa937947bace07899067bb9a2daacdae87c19da42a59a2ea4bbd028778f23",
+    "scripts/era-bridge/gameplay/advanced-class-points.mjs": "c71989623964642c1454a474950cc290030896be10689bf0b164df12e483fb34",
+    "tests/fixtures/era-gameplay/advanced-class-points-1.1.erm": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5",
+    "tests/native/EraCampaignExecutor.test.cpp": "a87d3aa55a994e62999775af2df98e791651009e5d9b53976f520f63d5ea428c",
+    "tests/native/EraCampaignRuntime.test.cpp": "0ce00ecd8ed90862ad48209abdfc1b2f5642abc0ba40fd1cff1dde591c1cb496",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "6a8fbf05bd575b4cb87abc8b5510509c784b02063552462f22f622e8c8c32f36",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "30186b21787b629e9ee675bdb3cec2ba91369e53574363829b964950b7bbe08b",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f2b2f144f77fb53a770e787253608c323cb3bc157f0d212ca2eaff55f8ad19a4",
+    "work/browser-tests/wog-advanced-class-points-cases.mjs": "27be8fffd284d2ba0838fbd2c38f62dce7cc706ac5ac5177759f8f1d6a39aed7",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2c97ee0043ebe21723791cd063c32b236ed1fdc9d2fda7067531442740ce82f"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 20,
+    "logSha256": "0446912366130606ab52e42b591e4c4072e955d910230d5cf01165892bea2c74",
+    "unverifiedWarMachineHooksExcluded": true
+  },
+  "codec": {
+    "productionJsonNode": true,
+    "structuredPendingContinuationReload": true,
+    "legacyAstAccepted": true,
+    "structuredControlInV1Rejected": true,
+    "addressSanitizer": true,
+    "undefinedBehaviorSanitizer": true,
+    "exitCode": 0
+  },
+  "legacyAst": {
+    "checked": 133,
+    "rejectedKnownMalformedSources": 4,
+    "byteIdenticalLegacyAst": true
+  },
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+      "scenarios": [
+        {
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "Calc_Class_Points_Original",
+            "functionSha256": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5"
+          },
+          "scope": "Original point calculation; commander class and artifact sets are controlled dependency stubs, not admitted pack mechanics",
+          "markers": [
+            {
+              "label": "ENTRY",
+              "text": "AC ENTRY",
+              "day": 1
+            },
+            {
+              "label": "ENTRY",
+              "text": "AC ENTRY",
+              "day": 1
+            },
+            {
+              "label": "BASE",
+              "text": "AC BASE 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "SKILL-LEVELS",
+              "text": "AC SKILL-LEVELS 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "MASTER-FLAGS",
+              "text": "AC MASTER-FLAGS 13/14/14 | details 0/0/0/2/2/2/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "EASY-27",
+              "text": "AC EASY-27 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "BACKPACK-BADGE",
+              "text": "AC BACKPACK-BADGE 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "REAL-BADGE",
+              "text": "AC REAL-BADGE 18/19/19 | details 0/0/0/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-KING",
+              "text": "AC CONTROLLED-KING 22/23/23 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-SETS",
+              "text": "AC CONTROLLED-SETS 22/28/28 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "ARENA",
+              "text": "AC ARENA 23/29/29 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "FINISH",
+              "text": "AC FINISH nested 123",
+              "day": 1
+            }
+          ],
+          "nativeHeroSkillReads": true,
+          "nativeBadgeQuery": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "input": "touch"
+        }
+      ],
+      "errors": []
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+      "scenarios": [
+        {
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "Calc_Class_Points_Original",
+            "functionSha256": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5"
+          },
+          "scope": "Original point calculation; commander class and artifact sets are controlled dependency stubs, not admitted pack mechanics",
+          "markers": [
+            {
+              "label": "ENTRY",
+              "text": "AC ENTRY",
+              "day": 1
+            },
+            {
+              "label": "ENTRY",
+              "text": "AC ENTRY",
+              "day": 1
+            },
+            {
+              "label": "BASE",
+              "text": "AC BASE 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "SKILL-LEVELS",
+              "text": "AC SKILL-LEVELS 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "MASTER-FLAGS",
+              "text": "AC MASTER-FLAGS 13/14/14 | details 0/0/0/2/2/2/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "EASY-27",
+              "text": "AC EASY-27 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "BACKPACK-BADGE",
+              "text": "AC BACKPACK-BADGE 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "REAL-BADGE",
+              "text": "AC REAL-BADGE 18/19/19 | details 0/0/0/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-KING",
+              "text": "AC CONTROLLED-KING 22/23/23 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-SETS",
+              "text": "AC CONTROLLED-SETS 22/28/28 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "ARENA",
+              "text": "AC ARENA 23/29/29 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "FINISH",
+              "text": "AC FINISH nested 123",
+              "day": 1
+            }
+          ],
+          "nativeHeroSkillReads": true,
+          "nativeBadgeQuery": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": []
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+      "scenarios": [
+        {
+          "source": {
+            "repository": "https://github.com/ERA-Projects/era-project-eng",
+            "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+            "path": "Mods/Advanced Classes Mod/Data/s/advanced classes skills.erm",
+            "fileSha256": "a4f14fbecacc4b93b60ee49ebd068bd4f120bb0c77a9d14830c357ab3691ca92",
+            "function": "Calc_Class_Points_Original",
+            "functionSha256": "1d8fe7d126d5d668c294139e0eef580e947f1f5facc57f72e49902b4f21b38b5"
+          },
+          "scope": "Original point calculation; commander class and artifact sets are controlled dependency stubs, not admitted pack mechanics",
+          "markers": [
+            {
+              "label": "ENTRY",
+              "text": "AC ENTRY",
+              "day": 1
+            },
+            {
+              "label": "ENTRY",
+              "text": "AC ENTRY",
+              "day": 1
+            },
+            {
+              "label": "BASE",
+              "text": "AC BASE 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "SKILL-LEVELS",
+              "text": "AC SKILL-LEVELS 11/12/12 | details 0/0/0/0/0/0/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "MASTER-FLAGS",
+              "text": "AC MASTER-FLAGS 13/14/14 | details 0/0/0/2/2/2/0/0/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "EASY-27",
+              "text": "AC EASY-27 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "BACKPACK-BADGE",
+              "text": "AC BACKPACK-BADGE 17/18/18 | details 0/0/0/2/2/2/4/5/0 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "REAL-BADGE",
+              "text": "AC REAL-BADGE 18/19/19 | details 0/0/0/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-KING",
+              "text": "AC CONTROLLED-KING 22/23/23 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "CONTROLLED-SETS",
+              "text": "AC CONTROLLED-SETS 22/28/28 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "ARENA",
+              "text": "AC ARENA 23/29/29 | details 4/4/4/2/2/2/4/5/1 | skills 3 | class 0",
+              "day": 1
+            },
+            {
+              "label": "FINISH",
+              "text": "AC FINISH nested 123",
+              "day": 1
+            }
+          ],
+          "nativeHeroSkillReads": true,
+          "nativeBadgeQuery": true,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "input": "mouse"
+        }
+      ],
+      "errors": []
+    },
+    "previousEngineSave": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "690c024b2c9fd13f9cc02661d2227db9c2892aebdd384b79b2a4288202022254",
+      "scenarios": [
+        "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
+      ],
+      "errors": []
+    }
+  }
+}

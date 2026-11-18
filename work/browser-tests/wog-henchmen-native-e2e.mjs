@@ -124,11 +124,11 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
 }
 
-async function boot({save,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,viewport,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
- page=await browser.newPage({viewport:classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390},hasTouch:!desktop,bypassCSP:true});
+ page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop,bypassCSP:true});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
@@ -271,6 +271,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='advanced-class-points'){
+  const {runAdvancedClassPoints}=await import('./wog-advanced-class-points-cases.mjs');
+  await runAdvancedClassPoints({boot,state,command,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:941})});
+ }
  if(process.env.CASES==='army-growth'){
   const {runArmyGrowth}=await import('./wog-map-army-growth-cases.mjs');
   await runArmyGrowth({boot,sheet,state,command,wait,approachEnemy,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:940})});

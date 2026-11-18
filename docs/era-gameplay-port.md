@@ -29,6 +29,25 @@ Les noms dynamiques non ASCII restent refusés tant que leur page de codes
 n'est pas reproduite. Cette étape ne suffit pas à rendre un profil complet
 jouable ; la référence est `tests/fixtures/era-gameplay/era-associative-reference.json`.
 
+Le calcul original `Calc_Class_Points_Original` d’Advanced Classes 1.1
+est désormais compilé avec ses 339 instructions inchangées et exécuté dans
+le moteur candidat. Le lecteur accepte les conditions structurées `if/el/en`
+et les identifiants de fonctions explicitement liés, dans un contrat AST v2.
+Les programmes classiques conservent le contrat v1 et leur sortie binaire
+JSON ; les anciens moteurs refusent le contrat v2.
+La lecture `HE:B2` retourne la classe réelle du héros sans autoriser sa mutation.
+
+Les parcours natifs tactiles en paysage et portrait, ainsi qu’à la souris,
+vérifient les points des compétences présentes, leurs drapeaux de maîtrise,
+le mode facilité au niveau 27, le Badge du courage dans le sac puis équipé,
+et les récompenses d’arène. Une sauvegarde pendant une condition restaure
+le dialogue et poursuit la branche choisie sans la réévaluer ni la rejouer.
+Les dépendances de classe du commandant et d’ensembles d’artefacts utilisent
+ici des réponses contrôlées : leurs calculs réels restent à porter, de même
+que les promotions, compétences au-delà du niveau Expert et autres systèmes
+du pack. Cette validation bornée n’admet pas le profil complet. Les preuves
+figurent dans `scripts/era-bridge/gameplay/advanced-class-points-native-validation.json`.
+
 ## Références récupérées
 
 Distribution officielle :
