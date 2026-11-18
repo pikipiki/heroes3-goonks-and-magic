@@ -1,6 +1,11 @@
 /* Shared chrome reservation and content/command boundaries. Keep full-sized
    controls; only the content region scrolls when a phone runs out of height. */
 @layer screen-layouts {
+ /* The home-indicator inset belongs inside the sheet. Reserving it on the
+    outer grid leaves an uncovered strip below its opaque background. */
+ #mobile-app[data-mode=creature]{padding-bottom:0!important}
+ #mobile-app[data-mode=creature]>.mobile-nav{display:none!important}
+ #mobile-app[data-mode=creature] .creature-presentation{box-sizing:border-box!important;padding-bottom:max(8px,var(--safe-bottom,0px))!important}
  #mobile-app[data-battle-result]>.mobile-top,
  #mobile-app[data-dialog-presentation]>.mobile-top,
  #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile]>.mobile-top{display:none!important}
