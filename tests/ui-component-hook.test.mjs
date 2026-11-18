@@ -12,6 +12,7 @@ test('UI guard covers new screens and leaves logic and library internals alone',
  assert(importsUiLibrary("import {useScreenComponents} from './ui/components.mjs';"));assert.deepEqual(violations(['web/a.mjs','web/b.mjs'],file=>file.endsWith('a.mjs')?markup:"import {buttonMarkup} from './ui/components.mjs';"+markup),['web/a.mjs']);
  assert(requiresUiLibrary('src/screens/Army.tsx','export const Army=()=> <section><Button>Recruit</Button></section>;'));
  assert(importsUiLibrary("import {Button} from '../ui/components.mjs';"));
+ assert(importsUiLibrary("import {ScreenShell} from '../ui/heroes-kit.mjs';"));
  assert(importsUiLibrary("import {renderMarkup} from './ui/material-components.mjs';"));
  assert(!requiresUiLibrary('src/ui/Army.tsx','export const Army=()=> <Button>Recruit</Button>;'));
 });

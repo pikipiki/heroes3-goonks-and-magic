@@ -1,0 +1,401 @@
+.hk-root {
+  color: #fff0c2;
+  background: #1d130c url(/web/h3-theme/stone.png) repeat;
+  font: 16px/1.5 Georgia, serif;
+  min-height: 100dvh;
+  --hk-gap:12px;
+  color-scheme: dark;
+}
+.hk-root * {
+  box-sizing: border-box;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.hk-root h1,
+.hk-root h2,
+.hk-root h3,
+.hk-root p {
+  margin: 0;
+}
+.hk-panel {
+  border: 1px solid #b49151;
+  background:
+    linear-gradient(
+      110deg,
+      #261a11e8,
+      #21160dd9);
+  padding: 12px;
+  min-width: 0;
+}
+.hk-panel-title {
+  margin-bottom: 12px !important;
+}
+.hk-cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hk-cost-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.hk-cost img {
+  object-fit: contain;
+  flex: none;
+  image-rendering: auto;
+}
+.hk-resource-strip {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hk-resource-strip .hk-cost-item {
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+}
+.hk-resource-strip .hk-cost {
+  gap: 0;
+}
+.hk-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hk-evolution.MuiButton-root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+  padding: 10px;
+  justify-content: center;
+}
+.hk-evolution[aria-pressed=true],
+.hk-choice-tile[aria-pressed=true],
+.hk-army-slot[aria-pressed=true] {
+  background:
+    linear-gradient(
+      110deg,
+      #a23520,
+      #65180e) !important;
+  outline: 2px solid #ffe7a0;
+  outline-offset: -3px;
+}
+.hk-evolution .hk-art {
+  width: 72px;
+  height: 80px;
+  flex: none;
+}
+.hk-evolution-label {
+  display: block;
+  text-align: left;
+}
+.hk-tier {
+  display: block;
+  color: #d5c49c;
+  font-size: 12px;
+}
+.hk-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+.hk-stats > div {
+  padding: 6px 10px;
+  border: 1px solid #a5884b;
+  background: #24190fcf;
+  min-width: 0;
+}
+.hk-stats > div:last-child:nth-child(odd) {
+  grid-column: 1/-1;
+}
+.hk-stats dt {
+  font-size: 12px;
+  color: #d5c49c;
+}
+.hk-stats dd {
+  margin: 0;
+  text-align: right;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.hk-quantity {
+  display: grid;
+  grid-template-columns: 100px minmax(60px, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding-right: 12px;
+}
+.hk-stock-price {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 12px;
+  font-size: 12px;
+}
+.hk-stock-price > span + span {
+  border-left: 1px solid #a5884b;
+  padding-left: 12px;
+}
+.hk-stock-price strong {
+  display: block;
+  font-size: 28px;
+  line-height: 32px;
+}
+.hk-stock-price .hk-cost {
+  display: flex;
+  margin-top: 4px;
+  font-size: 16px;
+}
+.hk-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.hk-purchase {
+  display: grid;
+  gap: 12px;
+}
+.hk-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hk-actions > .MuiButton-root {
+  flex: 1;
+}
+.hk-command {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border-left: 2px solid #be9e5a;
+  background: #24170ee6;
+  min-width: 0;
+  min-height: 0;
+}
+.hk-command-body {
+  margin-top: auto;
+  min-height: 0;
+}
+.hk-screen-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-block: 1px solid #a5884b;
+  padding-block: 12px;
+}
+.hk-screen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 30%);
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+}
+.hk-screen-content {
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+}
+.hk-army-slot.MuiButton-root {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 8px;
+  width: 100%;
+  min-height: 128px;
+}
+.hk-army-slot .hk-art {
+  height: 72px;
+  width: 64px;
+}
+.hk-army-slot > span:first-child:not(:last-child) {
+  font-size: 28px;
+}
+.hk-army-slot > span {
+  font-size: 12px;
+}
+.hk-choice-tile.MuiButton-root {
+  display: flex;
+  gap: 12px;
+  text-align: left;
+  justify-content: start;
+}
+.hk-choice-tile img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.hk-choice-tile small {
+  display: block;
+  color: #d5c49c;
+}
+.hk-root :focus-visible {
+  outline: 3px solid #fff0ab;
+  outline-offset: 3px;
+}
+@media (orientation: portrait) {
+  .hk-screen {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100%;
+  }
+  .hk-command {
+    display: contents;
+  }
+  .hk-command > .hk-chrome {
+    order: -2;
+    padding: 12px 16px;
+    background: #24170e;
+  }
+  .hk-screen-heading {
+    order: -1;
+    margin-inline: 16px;
+  }
+  .hk-screen-content {
+    padding: 16px;
+  }
+  .hk-command-body {
+    margin: 0;
+    padding: 0 16px 16px;
+  }
+  .hk-command > .hk-actions {
+    padding: 12px 16px;
+    position: sticky;
+    bottom: 0;
+    background: #24170ff7;
+    border-top: 1px solid #be9e5a;
+    z-index: 2;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hk-root * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (orientation: portrait) {
+  .hk-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .hk-command > .hk-chrome {
+    order: -2;
+  }
+  .hk-screen-content {
+    overflow-y: auto;
+  }
+  .hk-command > .hk-actions {
+    position: static;
+  }
+  .hk-command-body {
+    padding-bottom: 8px;
+  }
+}
+.hk-table-scroll {
+  max-width: 100%;
+  overflow: auto;
+}
+.hk-table-scroll th,
+.hk-table-scroll td {
+  word-break: normal;
+}
+.hk-stats dt {
+  line-height: 16px;
+}
+@media (orientation: portrait) {
+  .hk-screen .hk-stats > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .hk-screen .hk-stats > div {
+    padding: 2px 6px;
+  }
+}
+.hk-root {
+  background-image: linear-gradient(#1b110944, #1b110944), url(/web/h3-theme/stone.png);
+}
+.hk-panel {
+  background-image: linear-gradient(#24170bb8, #1b1009cc), url(/web/h3-theme/stone.png);
+  box-shadow: inset 1px 1px #e2c07b55, inset -1px -1px #000b;
+}
+.hk-ornate {
+  border: 12px solid transparent;
+  border-image: url(/web/h3-theme/recruit-frame.png) 18 18 28 18 stretch;
+  padding: 16px;
+}
+.hk-ornate .hk-panel-title {
+  font-weight: 600;
+  text-shadow: 1px 2px #000;
+  text-align: center;
+  border-bottom: 1px solid #a5884b;
+  padding-bottom: 12px;
+}
+.hk-command {
+  background-image: linear-gradient(#25170bc4, #1d1109df), url(/web/h3-theme/stone.png);
+  box-shadow: inset 2px 0 #e2c07b55;
+}
+.hk-evolution[aria-pressed=true],
+.hk-choice-tile[aria-pressed=true],
+.hk-army-slot[aria-pressed=true] {
+  background-image: linear-gradient(#a2352099, #65180edd), url(/web/h3-theme/stone.png) !important;
+  border-image: none !important;
+  box-shadow:
+    inset 0 1px 0 #fff2b8,
+    inset 0 0 0 2px #a4772d,
+    inset 0 0 0 3px #f4d58a,
+    0 2px 0 #0d0805,
+    0 5px 10px #0009;
+}
+.hk-screen {
+  border: 8px solid transparent;
+  border-image: url(/web/h3-theme/recruit-frame.png) 18 18 28 18 stretch;
+}
+.hk-stats > div {
+  box-shadow: inset 1px 1px #e2c07b55, inset -1px -1px #000b;
+}
+.hk-panel {
+  border-color: #d2ae64;
+  background-image: linear-gradient(#24180eec, #1b110af2), url(/web/h3-theme/stone.png);
+  box-shadow: inset 0 1px 0 #ffe5a04d, 0 3px 8px #0007;
+}
+.hk-ornate {
+  border-color: transparent;
+}
+.hk-evolution[aria-pressed=true]:hover,
+.hk-choice-tile[aria-pressed=true]:hover,
+.hk-army-slot[aria-pressed=true]:hover {
+  background-image: linear-gradient(#bc4124bf, #7c1e0ee8), url(/web/h3-theme/stone.png) !important;
+  box-shadow:
+    inset 0 1px 0 #fff7d2,
+    inset 0 0 0 2px #b98a38,
+    inset 0 0 0 3px #ffe4a0,
+    0 6px 14px #000b,
+    0 0 12px #edc16b30;
+}
+.hk-chevron {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  filter: drop-shadow(0 2px 1px #000);
+}
