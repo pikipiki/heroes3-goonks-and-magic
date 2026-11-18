@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "ERA3 preprocessing of constant-index numeric x/y local arrays into the existing ASTv4 numeric register operations. Dynamic indices, local strings/floats and explicit freeing remain unadmitted.",
+  "sourceBaseCommit": "dcc9da09d464bd89652e640217fb0f47a91e5a83",
+  "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+  "compilerOnlyChangeReusesVerifiedNativeEngine": true,
+  "sourceBindings": {
+    "scripts/era-bridge/campaigns/local-bindings.mjs": "eac9cc6d1ca09e4ad6abdc514da2c4424cdc68bbab83234728d59c6bd93280b0",
+    "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
+    "work/browser-tests/wog-era3-local-arrays-cases.mjs": "6fa8fa4b108cdfab4b31beb98915a528d7309ff2b1d571b30e95cb1c10c6d5b9",
+    "work/browser-tests/wog-advanced-core-cases.mjs": "61ec4e3a7ede00ff449d8e1dfd0cfe2b4560503f669a73f3515295219b946919",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "432c8665027a76065f449881ad4c2e2acb4552eed645f91f7c706761469f5aba",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "241a3eea158e64fc0dafd6bd4b508ca592f558ceda58cf03903c321793eb8e37",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "6510e6944769a1c8c3ca9b0d2712280eddbe1682ff4e1793ee7fcb2ab1997ccd",
+    "tests/fixtures/era-gameplay/era3-local-arrays-reference.json": "cdea7996a11f1d1a7da57b22995c6aaafba7c87a21d1c08e5dc9d8c8a5092eb5"
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ethernidee/era",
+    "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "file": "Erm.pas",
+    "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "fragments": [
+      {
+        "startLine": 2037,
+        "endLine": 2052,
+        "text": "  procedure InitLocalVarsPools;\n  begin\n    with LocalVarsPools[LOCAL_VAR_TYPE_ID_Y] do begin\n      StartIndex := 1;\n      Count      := 100;\n      IsNegative := false;\n      FreeRanges := nil;\n    end;\n\n    with LocalVarsPools[LOCAL_VAR_TYPE_ID_X] do begin\n      StartIndex := 1;\n      Count      := 16;\n      IsNegative := false;\n      FreeRanges := nil;\n    end;\n\n",
+        "sha256": "bdc7e858fbac98734f087b2a841c5b231bb2e58980be479aa5ad5086da9daae8"
+      },
+      {
+        "startLine": 2141,
+        "endLine": 2153,
+        "text": "    result   := false;\n\n    if Count < 0 then begin\n      ShowError(VarPos, 'Cannot allocate local ERM variables array of ' + IntToStr(Count) + ' size');\n      exit;\n    end;\n\n    if Count = 0 then begin\n      Inc(Count);\n    end;\n\n    VarRange  := VarsPool.FreeRanges;\n    PrevRange := nil;\n",
+        "sha256": "289e35abc8c8f260b18e2054be75fcfcc6fbba10d0f4b1faa9868422cb883d3f"
+      },
+      {
+        "startLine": 2378,
+        "endLine": 2404,
+        "text": "          end;\n\n          result := AllocLocalVar(ParsedVar.Name, ParsedVar.VarType, ParsedVar.Index, LocalVar);\n\n          if not result then begin\n            exit;\n          end;\n        end else begin\n          if ParsedVar.IsDeclaration and ((LocalVar.VarType <> ParsedVar.VarType) or (LocalVar.Count <> ParsedVar.Index)) then begin\n            ShowError(VarPos, Format('Redeclaration of local variable \"%s\" must have the same type and length as original declaration', [ParsedVar.Name]));\n            result := false; exit;\n          end;\n\n          if ArrIndex = MAGIC_SIZE_CONST then begin\n            IsAddr   := true;\n            ArrIndex := LocalVar.Count - LocalVar.StartIndex;\n          end else begin\n            if ArrIndex < 0 then begin\n              ArrIndex := LocalVar.Count + ArrIndex;\n            end;\n\n            result := (ArrIndex >= 0) and (ArrIndex < LocalVar.Count);\n\n            if not result then begin\n              ShowError(VarPos, Format('Local array index %d is out of range: 0..%d', [ArrIndex, LocalVar.Count - 1]));\n            end;\n          end; // .else\n",
+        "sha256": "511fabe815e266e4807195ebd882c8073b6904011a20a43b6dc67a2bd9a60efe"
+      },
+      {
+        "startLine": 2430,
+        "endLine": 2441,
+        "text": "        VarIndex := LocalVar.RealStartIndex + ArrIndex;\n\n        // The last condition part is an small hack to make an exception for SIZE constant\n        if not Math.InRange(ArrIndex, 0, LocalVar.Count - 1) and (not IsAddr or (VarIndex <> LocalVar.Count)) then begin\n          ShowError(VarPos, SysUtils.Format('Array index %d is out of [%d..%d] range', [ArrIndex, 0, LocalVar.Count - 1]));\n          VarIndex := Alg.ToRange(VarIndex, LocalVar.RealStartIndex, LocalVar.RealStartIndex + LocalVar.Count - 1);\n        end;\n      end else begin\n        // Allocate temporary compiler variable to hold var item pointer\n        Inc(NumAllocatedCompilerVars);\n\n        if not AllocLocalVar(SysUtils.IntToStr(NumAllocatedCompilerVars), 'y', 1, TempVar) then begin\n",
+        "sha256": "65dc85c0676bf8f1dc1410225d25502327e1db5aa5c2065e1bf893012ae74c61"
+      },
+      {
+        "startLine": 2461,
+        "endLine": 2479,
+        "text": "      if not IsAddr then begin\n        if IsInStr and not IsIndirectAddressing then begin\n          Buf.Add('%');\n        end;\n\n        if IndexVar = nil then begin\n          Buf.Add(LocalVar.VarType + SysUtils.IntToStr(VarIndex));\n        end else begin\n          Buf.Add(LocalVar.VarType + 'y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end else begin\n        if IndexVar = nil then begin\n          Buf.Add(SysUtils.IntToStr(VarIndex));\n        end else if not IsInStr then begin\n          Buf.Add('y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end else begin\n          Buf.Add('%y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end;\n",
+        "sha256": "c70361274bebb9b97eba5ab14670793cbc1045c6f432114f42316bee8ce1543d"
+      }
+    ],
+    "scope": "Constant-index x/y local allocation, negative indices, SIZE and numeric addresses; dynamic index compiler temporaries and freeing remain outside this port."
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "scenarios": [
+        {
+          "kind": "era3-constant-local-arrays",
+          "entry": "ARRAY ENTRY 1/2/3/4 items 10/20/30 size 3 addr 2/4",
+          "nested": "ARRAY NESTED 6 values 71/72",
+          "returned": "ARRAY RETURN 78/2/23/7 locals 77/10/20/30",
+          "copied": "ARRAY OUTPUT 78/2/23/7",
+          "full": "ARRAY FULL 16/100 sizes 16/100 addr 16/100",
+          "zero": "ARRAY ZERO 42/43 size 1 addr 1/2",
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "programSha256": "57285d1440bb7ec3c9272002e95b910d2ed570f493325120764e9d4d92c2f89f",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "193eff13d3cda5d2b2cecd00b2e84607335af1830e1de498433ef154638b8d68",
+      "programFileSha256": "8db5390d819991133327c163ba295cf08a130b6e9d453cbcaad57ae9eef4e833"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "scenarios": [
+        {
+          "kind": "era3-constant-local-arrays",
+          "entry": "ARRAY ENTRY 1/2/3/4 items 10/20/30 size 3 addr 2/4",
+          "nested": "ARRAY NESTED 6 values 71/72",
+          "returned": "ARRAY RETURN 78/2/23/7 locals 77/10/20/30",
+          "copied": "ARRAY OUTPUT 78/2/23/7",
+          "full": "ARRAY FULL 16/100 sizes 16/100 addr 16/100",
+          "zero": "ARRAY ZERO 42/43 size 1 addr 1/2",
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "programSha256": "57285d1440bb7ec3c9272002e95b910d2ed570f493325120764e9d4d92c2f89f",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "081f67448f32f0cc0c1c7e05f1f852976b0100af5607ee93bcfa04dcd430fc75",
+      "programFileSha256": "8db5390d819991133327c163ba295cf08a130b6e9d453cbcaad57ae9eef4e833"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "scenarios": [
+        {
+          "kind": "era3-constant-local-arrays",
+          "entry": "ARRAY ENTRY 1/2/3/4 items 10/20/30 size 3 addr 2/4",
+          "nested": "ARRAY NESTED 6 values 71/72",
+          "returned": "ARRAY RETURN 78/2/23/7 locals 77/10/20/30",
+          "copied": "ARRAY OUTPUT 78/2/23/7",
+          "full": "ARRAY FULL 16/100 sizes 16/100 addr 16/100",
+          "zero": "ARRAY ZERO 42/43 size 1 addr 1/2",
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "programSha256": "57285d1440bb7ec3c9272002e95b910d2ed570f493325120764e9d4d92c2f89f",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "sharedRunReportSha256": "3ec0dabfcd7fbed4e04d405caa2a99e6605d232bfbc4e3dff1d302fc6ac28d40",
+      "programFileSha256": "8db5390d819991133327c163ba295cf08a130b6e9d453cbcaad57ae9eef4e833"
+    }
+  },
+  "legacyAst": {
+    "sourceBaseCommit": "dcc9da09d464bd89652e640217fb0f47a91e5a83",
+    "identical": 133,
+    "knownMalformed": 4,
+    "advancedCoreProgramByteIdentical": true,
+    "previousCompilerRejectsArray": true,
+    "passed": true,
+    "logSha256": "2cb137263dc361448d572f9c09359e181e1eb846076c204b53baa3852c489566"
+  },
+  "previousEngineSave": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+    "scenarios": [
+      "previous-fourteen-choice-save-preserves-applied-growth-and-continues-on-next-day"
+    ],
+    "errors": [],
+    "sharedRunReportSha256": "0276967dce0caee2eca455b13e94c5bb9619441f88ea64e7897b3de2e1011abd"
+  },
+  "webAssemblyVerification": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "logSha256": "5807700412611530c1ba57238fbe3eb76ea81710edd4d2366322bb751f819fd6",
+    "reusedNativeEngineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+    "warMachinesAdmitted": false
+  },
+  "remaining": [
+    "Dynamic indices require source compiler temporaries and clamping semantics.",
+    "Explicit local freeing and fragmented pool reallocation.",
+    "Local z/e arrays and complete Advanced Classes/Reborn array helpers.",
+    "Full gameplay profiles remain disabled."
+  ]
+}

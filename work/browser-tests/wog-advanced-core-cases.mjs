@@ -63,4 +63,8 @@ export async function runAdvancedCore({boot,state,wait,page,report,output,save})
   {kind:'skill-level-routing',source:advancedClassSkillLevelsSource,scope:'Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission',cases:skillCases,staleFlagsDoNotOverrideAdvancedNativeSkill:true,otherSkillDoesNotInheritPathfindingFlags:true,integerBounds:bounds,...shared},
   {kind:'era3-numeric-calls',scope:'ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted',cases:callCases,nestedSaveReload:true,unpassedRegistersCleared:true,namedAndFastOutputs:true,duplicateOutputTargets:true,...shared});
  await page().close();
+ if(process.env.AC_LOCAL_ARRAYS==='1'){
+  const {runLocalArrays}=await import('./wog-era3-local-arrays-cases.mjs');
+  await runLocalArrays({boot,state,wait,page,report,output,save});
+ }
 }

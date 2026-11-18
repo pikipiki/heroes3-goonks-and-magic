@@ -57,9 +57,22 @@ Le script original `acm_GetHeroClass` s’exécute ainsi sans réécriture :
 et hybrides, leur priorité, un autre héros et la préservation des variables
 lors d’un appel imbriqué. Les sauvegardes sont reprises au toucher en portrait
 et à la souris. Ces drapeaux sont des entrées contrôlées ; cette étape ne
-porte pas encore leur attribution par les promotions. Les tableaux, les
-variables locales `z`/`e` et la libération explicite restent refusés.
+porte pas encore leur attribution par les promotions. Les tableaux à indices
+dynamiques, les variables locales `z`/`e` et la libération explicite restent refusés.
 La preuve bornée est `scripts/era-bridge/gameplay/advanced-class-identity-native-validation.json`.
+
+Les tableaux locaux numériques `x`/`y` à indices constants utilisent désormais
+les mêmes plages contiguës que les scalaires. Les indices négatifs, `[SIZE]`,
+les adresses `(@tableau)` et les tailles constantes respectent le préprocesseur
+ERA ; une taille zéro réserve un emplacement, comme dans le noyau d’origine.
+Les tableaux dépassant les 16 arguments ou 100 variables locales sont refusés.
+Les parcours natifs vérifient un appel imbriqué, la restitution des quatre
+arguments, les deux limites des plages et deux sauvegardes/reprises en portrait,
+paysage et à la souris. Les 133 anciens programmes et la sonde Advanced Classes
+compilée conservent exactement leurs octets. Cette extension produit le contrat
+AST v4 existant ; elle ne simule pas les indices dynamiques et n’admet pas encore
+les helpers de tableaux de chaînes des packs complets. Preuve bornée :
+`scripts/era-bridge/gameplay/era3-local-arrays-native-validation.json`.
 
 Le bornage entier `VR:F` applique les limites dans l’ordre ERA (maximum,
 puis minimum), y compris pour un intervalle inversé, puis utilise la valeur

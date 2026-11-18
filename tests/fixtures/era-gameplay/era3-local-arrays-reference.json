@@ -1,0 +1,39 @@
+{
+  "repository": "https://github.com/ethernidee/era",
+  "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+  "file": "Erm.pas",
+  "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+  "fragments": [
+    {
+      "startLine": 2037,
+      "endLine": 2052,
+      "text": "  procedure InitLocalVarsPools;\n  begin\n    with LocalVarsPools[LOCAL_VAR_TYPE_ID_Y] do begin\n      StartIndex := 1;\n      Count      := 100;\n      IsNegative := false;\n      FreeRanges := nil;\n    end;\n\n    with LocalVarsPools[LOCAL_VAR_TYPE_ID_X] do begin\n      StartIndex := 1;\n      Count      := 16;\n      IsNegative := false;\n      FreeRanges := nil;\n    end;\n\n",
+      "sha256": "bdc7e858fbac98734f087b2a841c5b231bb2e58980be479aa5ad5086da9daae8"
+    },
+    {
+      "startLine": 2141,
+      "endLine": 2153,
+      "text": "    result   := false;\n\n    if Count < 0 then begin\n      ShowError(VarPos, 'Cannot allocate local ERM variables array of ' + IntToStr(Count) + ' size');\n      exit;\n    end;\n\n    if Count = 0 then begin\n      Inc(Count);\n    end;\n\n    VarRange  := VarsPool.FreeRanges;\n    PrevRange := nil;\n",
+      "sha256": "289e35abc8c8f260b18e2054be75fcfcc6fbba10d0f4b1faa9868422cb883d3f"
+    },
+    {
+      "startLine": 2378,
+      "endLine": 2404,
+      "text": "          end;\n\n          result := AllocLocalVar(ParsedVar.Name, ParsedVar.VarType, ParsedVar.Index, LocalVar);\n\n          if not result then begin\n            exit;\n          end;\n        end else begin\n          if ParsedVar.IsDeclaration and ((LocalVar.VarType <> ParsedVar.VarType) or (LocalVar.Count <> ParsedVar.Index)) then begin\n            ShowError(VarPos, Format('Redeclaration of local variable \"%s\" must have the same type and length as original declaration', [ParsedVar.Name]));\n            result := false; exit;\n          end;\n\n          if ArrIndex = MAGIC_SIZE_CONST then begin\n            IsAddr   := true;\n            ArrIndex := LocalVar.Count - LocalVar.StartIndex;\n          end else begin\n            if ArrIndex < 0 then begin\n              ArrIndex := LocalVar.Count + ArrIndex;\n            end;\n\n            result := (ArrIndex >= 0) and (ArrIndex < LocalVar.Count);\n\n            if not result then begin\n              ShowError(VarPos, Format('Local array index %d is out of range: 0..%d', [ArrIndex, LocalVar.Count - 1]));\n            end;\n          end; // .else\n",
+      "sha256": "511fabe815e266e4807195ebd882c8073b6904011a20a43b6dc67a2bd9a60efe"
+    },
+    {
+      "startLine": 2430,
+      "endLine": 2441,
+      "text": "        VarIndex := LocalVar.RealStartIndex + ArrIndex;\n\n        // The last condition part is an small hack to make an exception for SIZE constant\n        if not Math.InRange(ArrIndex, 0, LocalVar.Count - 1) and (not IsAddr or (VarIndex <> LocalVar.Count)) then begin\n          ShowError(VarPos, SysUtils.Format('Array index %d is out of [%d..%d] range', [ArrIndex, 0, LocalVar.Count - 1]));\n          VarIndex := Alg.ToRange(VarIndex, LocalVar.RealStartIndex, LocalVar.RealStartIndex + LocalVar.Count - 1);\n        end;\n      end else begin\n        // Allocate temporary compiler variable to hold var item pointer\n        Inc(NumAllocatedCompilerVars);\n\n        if not AllocLocalVar(SysUtils.IntToStr(NumAllocatedCompilerVars), 'y', 1, TempVar) then begin\n",
+      "sha256": "65dc85c0676bf8f1dc1410225d25502327e1db5aa5c2065e1bf893012ae74c61"
+    },
+    {
+      "startLine": 2461,
+      "endLine": 2479,
+      "text": "      if not IsAddr then begin\n        if IsInStr and not IsIndirectAddressing then begin\n          Buf.Add('%');\n        end;\n\n        if IndexVar = nil then begin\n          Buf.Add(LocalVar.VarType + SysUtils.IntToStr(VarIndex));\n        end else begin\n          Buf.Add(LocalVar.VarType + 'y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end else begin\n        if IndexVar = nil then begin\n          Buf.Add(SysUtils.IntToStr(VarIndex));\n        end else if not IsInStr then begin\n          Buf.Add('y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end else begin\n          Buf.Add('%y' + SysUtils.IntToStr(TempVar.StartIndex));\n        end;\n      end;\n",
+      "sha256": "c70361274bebb9b97eba5ab14670793cbc1045c6f432114f42316bee8ce1543d"
+    }
+  ],
+  "scope": "Constant-index x/y local allocation, negative indices, SIZE and numeric addresses; dynamic index compiler temporaries and freeing remain outside this port."
+}

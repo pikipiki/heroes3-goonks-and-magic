@@ -1,25 +1,40 @@
-/** Scalar ERM2 x/y locals, following Erm.pas PreprocessErm at 8c2fd47b.
- * Unsupported arrays, freeing and z/e locals are rejected rather than approximated.
+/** Scalar and constant-index ERM2 x/y locals, following Erm.pas at 8c2fd47b.
+ * Dynamic indices, freeing and z/e locals require additional source contracts.
  */
 export function createLocalBindings(constants) {
  const locals=new Map();let next={x:1,y:1};
  const resolve=(name,interpolation=false)=>{
   if(Object.hasOwn(constants,name)&&!/^[a-z][A-Za-z0-9]*$/.test(name))return String(constants[name]);
-  const declaration=/^([a-z][A-Za-z0-9]*)(?::([xy]))?$/.exec(name);
+  const declaration=/^(@?)([a-z][A-Za-z0-9]*)(?:\[(-?\d+|[A-Z][A-Z0-9_]*)\])?(?::([xy]))?$/.exec(name);
   if(!declaration)throw Error('Unsupported ERM2 local '+name);
-  const [,key,type]=declaration;
+  const [,address,key,subscript,type]=declaration;
+  const isSize=subscript==='SIZE';
+  if(isSize&&address)throw Error('ERM2 SIZE cannot use the address operator');
+  let item=0;
+  if(subscript!==undefined&&!isSize){
+   item=/^-?\d+$/.test(subscript)?Number(subscript):constants[subscript];
+   if(!Number.isSafeInteger(item)||item< -2147483648||item>2147483647)throw Error('Invalid ERM2 array index '+subscript);
+  }
+  const requested=type?(subscript===undefined?1:item):null;
+  if(type&&isSize)throw Error('ERM2 SIZE cannot declare an array');
   let variable=locals.get(key);
   if(!variable){
    if(!type)throw Error('Undeclared ERM2 local '+key);
-   if(next[type]>(type==='x'?16:100))throw Error('ERM2 '+type+' local pool exhausted');
-   variable={type,index:next[type]++};locals.set(key,variable);
-  }else if(type&&variable.type!==type)throw Error('Conflicting ERM2 local declaration '+key);
-  return (interpolation?'%'+variable.type.toUpperCase():variable.type)+variable.index;
+   if(requested<0)throw Error('Invalid ERM2 array size '+requested);
+   const count=Math.max(1,requested);
+   if(count>(type==='x'?16:100)-next[type]+1)throw Error('ERM2 '+type+' local pool exhausted');
+   variable={type,index:next[type],count};next[type]+=count;locals.set(key,variable);
+  }else if(type&&(variable.type!==type||variable.count!==requested))throw Error('Conflicting ERM2 local declaration '+key);
+  if(isSize)return String(variable.count);
+  if(type)item=0;else if(item<0)item+=variable.count;
+  if(item<0||item>=variable.count)throw Error('ERM2 local array index out of range: '+name);
+  const index=variable.index+item;
+  return address?String(index):(interpolation?'%'+variable.type.toUpperCase():variable.type)+index;
  };
  return statement=>{
   if(/^![?$]/.test(statement)){locals.clear();next={x:1,y:1};}
   const dummy=statement.startsWith('!#VA');
-  if(dummy&&!/^!#VA(?:\s*\([a-z][A-Za-z0-9]*(?::[xy])?\))+\s*;$/.test(statement))throw Error('Unsupported ERM2 local declaration');
+  if(dummy&&!/^!#VA(?:\s*\(@?[a-z][A-Za-z0-9]*(?:\[-?\d+\]|\[[A-Z][A-Z0-9_]*\])?(?::[xy])?\))+\s*;$/.test(statement))throw Error('Unsupported ERM2 local declaration');
   let output=statement.slice(0,2),quote='';
   for(let i=2;i<statement.length;){
    const c=statement[i];

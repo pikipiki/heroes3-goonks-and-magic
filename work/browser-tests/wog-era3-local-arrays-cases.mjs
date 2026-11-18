@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {compileErm} from '../../scripts/era-bridge/campaigns/parser.mjs';
+
+export function localArraysFixture(){
+ const source=`ZVSE2
+!?FU9419;
+!#VA(args[3]:x) (tail:x);
+!#VA(prefix:y) (items[ARRAY_SIZE]:y) (result:y);
+!!VR(prefix):S77;
+!!VR(items[0]):C10/20/30;
+!!VR(result):S(items[-1]);
+!!IF:M^ARRAY ENTRY %(args[0])/%(args[1])/%(args[-1])/%(tail) items %(items[0])/%(items[1])/%(items[-1]) size %(items[SIZE]) addr %(@items)/%(@items[-1])^;
+!!FU9420:P?x1;
+!!VR(args[-1]):+(items[1]);
+!!VR(tail):+(items[SIZE]);
+!!IF:M^ARRAY RETURN %(args[0])/%(args[1])/%(args[-1])/%(tail) locals %(prefix)/%(items[0])/%(items[1])/%(result)^;
+!?FU9420;
+!#VA(input:x) (values[2]:y);
+!!VR(values[0]):C71/72;
+!!VR(input):+5;
+!!IF:M^ARRAY NESTED %(input) values %(values[0])/%(values[-1])^;
+!!VR(input):+(values[-1]);
+!?FU9421;
+!#VA(args[16]:x) (values[100]:y);
+!!VR(args[-1]):S16;
+!!VR(values[-1]):S100;
+!!IF:M^ARRAY FULL %(args[-1])/%(values[-1]) sizes %(args[SIZE])/%(values[SIZE]) addr %(@args[-1])/%(@values[-1])^;
+!?FU9422;
+!#VA(empty[0]:y) (tail:y);
+!!VR(empty):S42;
+!!VR(tail):S43;
+!!IF:M^ARRAY ZERO %(empty)/%(tail) size %(empty[SIZE]) addr %(@empty)/%(@tail)^;
+!#VRv980:S1;!#VRv981:S2;!#VRv982:S3;!#VRv983:S4;
+!#FU9419:P?v980/?v981/?v982/?v983;
+!#IF:M^ARRAY OUTPUT %V980/%V981/%V982/%V983^;
+!#FU9421:P;
+!#FU9422:P;`;
+ const p=compileErm(Buffer.from(source),{source:'Private ERA3 constant local-array probe',bindings:{ARRAY_SIZE:3}});
+ p.originalMessages=['ZVSE private native companion town continuation'];return p;
+}
+
+export async function runLocalArrays({boot,state,wait,page,report,output,save}){
+ const scriptProgram=localArraysFixture();fs.writeFileSync(path.join(output,'local-arrays-program.json'),JSON.stringify(scriptProgram,null,2));
+ const options={enabled:false,scriptTown:true,scriptProgram,...(process.env.AC_PORTRAIT==='1'?{viewport:{width:390,height:844}}:{})};
+ const read=async text=>{await wait(text=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.lines?.join(' ')===text,text);return(await state()).dialogPresentation.lines.join(' ');};
+ const ack=async()=>{const old=(await state()).dialogPresentation.lines.join(' ');await page().locator('[data-dialog-confirm]')[process.env.GROWTH_DESKTOP==='1'?'click':'tap']();await wait(old=>goonkMobileState.mode!=='dialog'||goonkMobileState.dialogPresentation?.lines?.join(' ')!==old,old);};
+ const check=async text=>{const result=await read(text);await ack();return result;};
+ await boot({...options,expectedDialog:'source-campaign'});
+ const entry=await check('ARRAY ENTRY 1/2/3/4 items 10/20/30 size 3 addr 2/4');
+ const nested='ARRAY NESTED 6 values 71/72';await read(nested);
+ const pending=await save();fs.writeFileSync(path.join(output,'local-arrays-nested.vsgm1'),pending);
+ await page().close();await boot({...options,save:[...pending],expectedDialog:'source-campaign'});await read(nested);await ack();
+ const returned=await check('ARRAY RETURN 78/2/23/7 locals 77/10/20/30');
+ const copied=await check('ARRAY OUTPUT 78/2/23/7');
+ const full=await check('ARRAY FULL 16/100 sizes 16/100 addr 16/100');
+ const zero=await check('ARRAY ZERO 42/43 size 1 addr 1/2');
+ await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
+ const bytes=await save();fs.writeFileSync(path.join(output,'local-arrays-complete.vsgm1'),bytes);
+ await page().close();await boot({...options,save:[...bytes]});assert.equal((await state()).mode,'map');
+ report.scenarios.push({kind:'era3-constant-local-arrays',entry,nested,returned,copied,full,zero,nestedNativeSaveReload:true,completedNativeSaveReload:true,programSha256:scriptProgram.sha256,viewport:page().viewportSize(),input:process.env.GROWTH_DESKTOP==='1'?'mouse':'touch'});
+ await page().close();
+}
