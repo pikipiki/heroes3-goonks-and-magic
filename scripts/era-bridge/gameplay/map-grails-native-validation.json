@@ -4,25 +4,25 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Native WoG map rule130: one-time Grails in all compatible towns after initial day stock, all owners, disabled if any Conflux exists. Independent fifteenth per-game choice; source option101 selection modes and complete catalogue remain unadmitted.",
-  "sourceBaseCommit": "5ae73ae95a9ed83a34e19971d44d61d593370c7a",
-  "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+  "sourceBaseCommit": "90a54e95b1bd2b37377dfdc0c1c50878d99a734a",
+  "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "d972444d850ead65bd23c408a0dbaacf3e70a39dd7635a9dd6ee477ff0bfe4f5",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "36e169432d4392c81a979e595e51d62a026cad512b2abbadf7cece0d5232608e",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a223ef8bfd38d807f2f02426d15464a1d89539b15ff0a64431cb464d6b6e863b",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4f902761acd123cc69e29ca971241350192861a827f4f58dec11c42efa15f297",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "21836878758365451deb2d9fd25735bab58eb4d37eea21cec4f6322ac181f0c0",
-    "web/wog-options.mjs": "effb494afd47786180729faf96a70ac2d7883fa77b87a711b1d3f381ce7a6518",
-    "mod/tum-era/content/config/wog-map-rules.json": "01b9558a0260a2ea5a99832aec8c39b8e9878987fa4910b45ec47eabcac09b74",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d46438ef588fe5f1a9ebb60a68001637ebad72c28556d4438545e9f04a48f911",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "8681677e9fa4be2b339534d9af28d8eafa6dc72242c9d3629a2f018a832dce0c",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "baab62fea5aeda38b6050cad54efc8b37af06e060e9b7bcb2ba0de3d657febe4",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "7bfc3a0bd36ca68cc605e24087409bba39e94d102e6c85946765324e1f081b18",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "b2d0675fe5add734db86655412795c682a738d6d784631add758998429536185",
+    "web/wog-options.mjs": "cd7721fbba1c6f9d9c73a6108054752b5ff4db9b48df51ef3c3c41b0087b7d0f",
+    "mod/tum-era/content/config/wog-map-rules.json": "5154564c322445681bddfbc9cf566a953764ea52140705f07af9ee40eedcea96",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5",
     "work/browser-tests/wog-map-grails-cases.mjs": "2544794e94a9a79da9e4615c73dadecbbcc86f11ffecee333e139d27e3f34fe8",
     "tests/fixtures/era-gameplay/map-grails-reference.json": "1cfd4fb97d868416d86134f10d225c91e3496570396310780af880a291c220c9"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 104,
-    "logSha256": "ad1305792aa741764c6cd7ddc0c68e2506c3b06d9cca0f8a518705ad407fa85b",
+    "targets": 108,
+    "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -52,7 +52,7 @@
       "passed": true,
       "scope": "native WoG130 town Grails",
       "completeRules": false,
-      "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
       "scenarios": [
         {
           "configured": false,
@@ -89,9 +89,9 @@
             1,
             1
           ],
-          "startingGold": 20600,
-          "day2Gold": 37100,
-          "day3Gold": 48600,
+          "startingGold": 20000,
+          "day2Gold": 36500,
+          "day3Gold": 48000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -150,9 +150,9 @@
             0,
             0
           ],
-          "startingGold": 20700,
-          "day2Gold": 22200,
-          "day3Gold": 23700,
+          "startingGold": 20900,
+          "day2Gold": 22400,
+          "day3Gold": 23900,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -178,7 +178,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "9a96950b2c632625a5325844d0bed3a5de5dbf8d0ee407704d1376f09c6b30af",
+      "rawReportSha256": "e90f2a9abc5a9b291d7296d1263458cab2f537347ca3beb1871be647f6e5b85f",
       "programFileSha256": {
         "8": "714e85f5b2403cf929eccd81da7e6519f1c9b96af72a0a6911db2152dbb67297"
       }
@@ -187,7 +187,7 @@
       "passed": true,
       "scope": "native WoG130 town Grails",
       "completeRules": false,
-      "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
       "scenarios": [
         {
           "configured": false,
@@ -285,9 +285,9 @@
             1,
             1
           ],
-          "startingGold": 20800,
-          "day2Gold": 37300,
-          "day3Gold": 48800,
+          "startingGold": 20000,
+          "day2Gold": 36500,
+          "day3Gold": 48000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -346,9 +346,9 @@
             1,
             1
           ],
-          "startingGold": 21000,
-          "day2Gold": 37500,
-          "day3Gold": 49000,
+          "startingGold": 20000,
+          "day2Gold": 36500,
+          "day3Gold": 48000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -407,9 +407,9 @@
             0,
             0
           ],
-          "startingGold": 20800,
-          "day2Gold": 22300,
-          "day3Gold": 23800,
+          "startingGold": 21000,
+          "day2Gold": 22500,
+          "day3Gold": 24000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -593,9 +593,9 @@
             0,
             0
           ],
-          "startingGold": 21000,
-          "day2Gold": 22500,
-          "day3Gold": 24000,
+          "startingGold": 20000,
+          "day2Gold": 21500,
+          "day3Gold": 23000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -752,7 +752,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "f15b5a630480feb3abf4d22ac458ff9c9a699c43f17c03e456c874f76846e3fc",
+      "rawReportSha256": "040189c2231195a012f7cf4abfb75403af2a02cea1c9121c659f71b5a4c7b38a",
       "programFileSha256": {
         "8": "714e85f5b2403cf929eccd81da7e6519f1c9b96af72a0a6911db2152dbb67297",
         "9": "8baac58b3118c9484b5c2a6912464619a01ae8d0604fa047231dc10575f8338f"
@@ -762,7 +762,7 @@
       "passed": true,
       "scope": "native WoG130 town Grails",
       "completeRules": false,
-      "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
       "scenarios": [
         {
           "configured": true,
@@ -863,9 +863,9 @@
             0,
             0
           ],
-          "startingGold": 20700,
-          "day2Gold": 22200,
-          "day3Gold": 23700,
+          "startingGold": 20000,
+          "day2Gold": 21500,
+          "day3Gold": 23000,
           "nativeSaveReload": true,
           "reversedGlobalDefault": true,
           "existingGrailPreserved": true,
@@ -892,7 +892,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "68331701f130df9c5c6fd4e6806e662abaa1d4452af2eddf59182721f90035c6",
+      "rawReportSha256": "92bbf2064bd71fef0b2ecbae71e801b66a19a20af378d5ea6dbb828bececdbae",
       "programFileSha256": {
         "8": "714e85f5b2403cf929eccd81da7e6519f1c9b96af72a0a6911db2152dbb67297",
         "9": "8baac58b3118c9484b5c2a6912464619a01ae8d0604fa047231dc10575f8338f"
@@ -1002,14 +1002,15 @@
       7,
       13,
       14,
-      15
+      15,
+      16
     ],
     "historicalByteBoundariesPreserved": true,
     "shorterCataloguesInheritNewChoices": true,
     "largerThanPeerCapabilityRejected": true,
     "invalidChoicesRejected": true,
     "unitExitCode": 0,
-    "unitLogSha256": "309f17b0843fd5f2c646f67ec7fb9af6dae60031a9e5bedfae6564177f1066e1"
+    "unitLogSha256": "857fccbe7325e4f890778f3ecdb8b75edd3acabbe2810a09c27246b46c3cd1e0"
   },
   "remaining": [
     "Other 13 map rules",

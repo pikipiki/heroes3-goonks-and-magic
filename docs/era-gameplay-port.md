@@ -401,17 +401,17 @@ publié ne connaît pas encore le septième. Ces preuves ne constituent ni
 l'activation du profil WoG complet ni le port des écritures UN:P des packs
 externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
 
-Le catalogue candidat contient quinze réglages par partie : les six premiers,
-le mithril et huit règles de carte (114, 115, 116, 121, 122, 124, 128 et 130). Les règles
+Le catalogue candidat contient seize réglages par partie : les six premiers,
+le mithril et neuf règles de carte (114, 115, 116, 121, 122, 123, 124, 128 et 130). Les règles
 114/115/121/122/124/128 peuvent hériter de leur configuration, être activées ou
 être désactivées sans changer les autres parties. Les tests inversent
 volontairement leur configuration globale : combats avec dégâts effectifs,
 déplacements et renouvellement quotidien, production hebdomadaire avec
 protection au mithril, achat du second Capitole et effet des plaines magiques.
-Le chargement conserve les choix des anciens catalogues à six, sept, treize
-ou quatorze réglages. Le format courant préfixe le catalogue par sa longueur pour
+Le chargement conserve les choix des anciens catalogues à six, sept, treize,
+quatorze ou quinze réglages. Le format courant préfixe le catalogue par sa longueur pour
 permettre les ajouts suivants sans réinterpréter les octets historiques.
-Les treize autres règles de carte et les six modes source de sélection de
+Les douze autres règles de carte et les six modes source de sélection de
 l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
 complets et ne revendique pas le port de leurs commandes UN:P.
 
@@ -426,7 +426,7 @@ avec des quantités proches des seuils, un héros de l'IA et une héroïne en
 réserve. Un groupe de 25 piquiers au rang 1 passe à 26 : son expérience
 moyenne descend de 1000 à 961, son rang à 0 et sa défense effective de 6 à 5.
 Le contrôle du format annonce la nouvelle capacité aux autres versions du
-moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les treize autres règles et les modes de sélection source restent
+moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les douze autres règles et les modes de sélection source restent
 à porter ; cette étape n'active pas les profils complets.
 
 La règle 130 construit les Graals une fois au premier jour, après le stock
@@ -443,6 +443,18 @@ catalogues à 13 et 14 choix gardent leurs frontières et une ancienne partie
 à 14 choix ne reçoit pas cette règle depuis les nouveaux réglages globaux.
 La preuve est `scripts/era-bridge/gameplay/map-grails-native-validation.json`.
 Cette règle n’admet pas le catalogue complet ni les six modes source de sélection.
+
+La règle 123 ajoute un seizième choix : au premier jour d’un nouveau mois
+(jours 29, 57, etc.), les 156 héros d’origine peuvent revisiter les dix familles
+de sites couvertes par HE:V0–9. Seules leurs visites personnelles sont retirées ;
+les autres sites, les découvertes des joueurs et le repérage des équipes restent
+intacts. Le choix est figé dans la sauvegarde. Les parcours natifs contrôlent
+les gains réels d’attaque et de défense, l’absence de répétition pendant le mois,
+le jour 28, puis le passage au jour 29 et le jour 30. Deux sauvegardes/reprises
+encadrent ce changement ; une ancienne sauvegarde à quinze choix ne reçoit pas
+la nouvelle règle depuis la configuration globale. Cette adaptation ne porte
+pas à elle seule le récepteur HE:V complet ni les modes de sélection UN:P101.
+Preuve : `scripts/era-bridge/gameplay/map-monthly-visits-native-validation.json`.
 
 L'activation du mithril est désormais enregistrée avec chaque nouvelle partie.
 Changer les réglages de l'installation ne modifie plus ce choix à la reprise.

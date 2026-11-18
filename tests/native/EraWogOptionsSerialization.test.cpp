@@ -45,7 +45,8 @@ int main()
 {
     using V=ESerializationVersion;
     // Literal historical wire sizes, independent of the production constants.
-    const auto countFor=[](V version){return version>=V::GOONK_WOG_TOWN_GRAILS?15u:
+    const auto countFor=[](V version){return version>=V::GOONK_WOG_MONTHLY_VISITS?16u:
+        version>=V::GOONK_WOG_TOWN_GRAILS?15u:
         version>=V::GOONK_WOG_ARMY_GROWTH?14u:
         version>=V::GOONK_WOG_OPTION_CATALOGUE?13u:
         version>=V::GOONK_WOG_OPTIONS_EXTENDED?7u:6u;};
@@ -64,7 +65,7 @@ int main()
     Bytes old{false,V::BONUS_TRIGGER,{1,0,73},0};ExtraOptionsInfo restored;restored.wogOptions.fill(1);restored.serialize(old);
     for(auto choice:restored.wogOptions)assert(choice==-1);
     int8_t sentinel=0;old&sentinel;assert(sentinel==73);
-    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::CURRENT})
+    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::CURRENT})
         for(int invalid:{-128,-2,2,127})
         {
             const auto count=countFor(version);const auto prefix=version>=V::GOONK_WOG_OPTION_CATALOGUE?4u:0u;
@@ -80,7 +81,7 @@ int main()
         }
     // A shorter stored catalogue inherits appended choices. An unknown larger
     // catalogue is rejected instead of silently dropping gameplay rules.
-    for(unsigned count:{0u,3u,13u,14u,static_cast<unsigned>(era_bridge::wogOptionCount+1)})
+    for(unsigned count:{0u,3u,13u,14u,15u,static_cast<unsigned>(era_bridge::wogOptionCount+1)})
     {
         std::vector<int8_t> bytes(6+count,0);bytes[2]=static_cast<int8_t>(count);bytes.push_back(73);
         Bytes input{false,V::CURRENT,bytes,0};ExtraOptionsInfo value;bool threw=false;

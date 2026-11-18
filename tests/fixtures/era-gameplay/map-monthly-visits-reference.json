@@ -1,0 +1,38 @@
+{
+  "repository": "https://github.com/ERA-Projects/era-project-eng",
+  "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+  "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+  "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+  "fragments": [
+    {
+      "startLine": 88,
+      "endLine": 104,
+      "sha256": "a510d0e165de7d591c6ce8a3f43a143e576f0f6d398f2836ccb78d6195849294",
+      "text": "!?FU(OnEveryDay)&i^timerDay^>1;\n\n  !!FU(WOG_101_SetMonstersHalfPrice)&i^wog_101_map_rule_2_isEnabled^:P D;\n  !!FU(WOG_101_PlaceMagicPlains)&i^wog_101_map_rule_3_isEnabled^:Pi^timerOwner^ Di^timerOwner^;\n\n  !!FU(WOG_101_HideMapInitPlayer):P(CURRENT_PLAYER) D(CURRENT_PLAYER);\n\n  !!if&i^timerOnce^;\n    !!FU(WOG_101_UpgradeTo8thLvl)&i^wog_101_map_rule_14_isEnabled^:P D;       \n    !!FU(WOG_101_IncreaseArmies)&i^timerOnce^/i^wog_101_map_rule_5_isEnabled^:P D;                     [build grails in towns]\n\n    !!if&i^timerWeekDay^=1;\n      !!FU(WOG_101_ClearHeroVisistedObjects)&i^timerMonthDay^=1/i^wog_101_map_rule_12_isEnabled^:P D;\n      !!FU(WOG_101_UpdateWarlordsBannerGuard)&i^wog_101_map_rule_20_isEnabled^:P D;\n      !!FU(WOG_101_ChangeMineProductions)&i^wog_101_map_rule_11_isEnabled^:P D;\n    !!en;\n  !!en;\n"
+    },
+    {
+      "startLine": 539,
+      "endLine": 546,
+      "sha256": "bd54bfc1e25fb4f78fa40f633113ff1e80b95c0150c835b6ea1f09bb3cf324aa",
+      "text": "** function to let hero revisit objects\n!?FU(WOG_101_ClearHeroVisistedObjects);\n  !!re i/0/(HERO_LAST_WOG);\n    !!re j/0/9;\n      !!HEi:Vj/0; [set hero to have not visited all objects of this type]\n    !!en;\n  !!en;\n** end of function\n"
+    }
+  ],
+  "receiverReference": "https://www.h3wog.com/erm_help/receivers/receiver_he_right.htm",
+  "heroTypeRange": [
+    0,
+    155
+  ],
+  "visitObjectTypes": [
+    100,
+    23,
+    32,
+    51,
+    61,
+    102,
+    41,
+    4,
+    47,
+    107
+  ],
+  "referenceKind": "Audited ERM source and documented HE:V mapping; not execution of the Windows ERA binary"
+}

@@ -80,8 +80,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_WOG_ARMY_GROWTH, // new native map-rule capability and fourteen-choice peers
 	GOONK_WOG_TOWN_GRAILS, // one-time source map rule and fifteen-choice peers
 
+	GOONK_WOG_MONTHLY_VISITS, // bounded monthly source hero visit reset, sixteen choices
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_WOG_TOWN_GRAILS,
+	CURRENT = GOONK_WOG_MONTHLY_VISITS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

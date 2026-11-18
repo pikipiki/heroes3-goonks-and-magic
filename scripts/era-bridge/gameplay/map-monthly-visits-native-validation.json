@@ -1,0 +1,526 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Native WoG123 monthly hero-local reset for the ten documented HE:V categories, original hero types0..155. Independent sixteenth per-game choice. Not the full HE:V receiver or source option101 selection modes.",
+  "sourceBaseCommit": "90a54e95b1bd2b37377dfdc0c1c50878d99a734a",
+  "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
+    "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
+    "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "6c31cb0f7c0b66d567794d9030a8ce3961f83c06c06a57ba7a04b907321e4cd3",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "8681677e9fa4be2b339534d9af28d8eafa6dc72242c9d3629a2f018a832dce0c",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "baab62fea5aeda38b6050cad54efc8b37af06e060e9b7bcb2ba0de3d657febe4",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "7bfc3a0bd36ca68cc605e24087409bba39e94d102e6c85946765324e1f081b18",
+    "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "b2d0675fe5add734db86655412795c682a738d6d784631add758998429536185",
+    "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
+    "web/wog-options.mjs": "cd7721fbba1c6f9d9c73a6108054752b5ff4db9b48df51ef3c3c41b0087b7d0f",
+    "mod/tum-era/content/config/wog-map-rules.json": "5154564c322445681bddfbc9cf566a953764ea52140705f07af9ee40eedcea96",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5",
+    "work/browser-tests/wog-map-monthly-visits-cases.mjs": "3a66e588ab3abedc2539239005eb4c282bddd29d6ada92cee9d479c71a719714",
+    "tests/fixtures/era-gameplay/map-monthly-visits-reference.json": "270b82d4388d72f3fb75d3879b7715892b1a1fe3265fde663935961e9c77e17f"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 108,
+    "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
+    "unverifiedWarMachineHooksExcluded": true,
+    "warMachinesAdmitted": false
+  },
+  "upstreamReference": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "fragments": [
+      {
+        "startLine": 88,
+        "endLine": 104,
+        "sha256": "a510d0e165de7d591c6ce8a3f43a143e576f0f6d398f2836ccb78d6195849294",
+        "text": "!?FU(OnEveryDay)&i^timerDay^>1;\n\n  !!FU(WOG_101_SetMonstersHalfPrice)&i^wog_101_map_rule_2_isEnabled^:P D;\n  !!FU(WOG_101_PlaceMagicPlains)&i^wog_101_map_rule_3_isEnabled^:Pi^timerOwner^ Di^timerOwner^;\n\n  !!FU(WOG_101_HideMapInitPlayer):P(CURRENT_PLAYER) D(CURRENT_PLAYER);\n\n  !!if&i^timerOnce^;\n    !!FU(WOG_101_UpgradeTo8thLvl)&i^wog_101_map_rule_14_isEnabled^:P D;       \n    !!FU(WOG_101_IncreaseArmies)&i^timerOnce^/i^wog_101_map_rule_5_isEnabled^:P D;                     [build grails in towns]\n\n    !!if&i^timerWeekDay^=1;\n      !!FU(WOG_101_ClearHeroVisistedObjects)&i^timerMonthDay^=1/i^wog_101_map_rule_12_isEnabled^:P D;\n      !!FU(WOG_101_UpdateWarlordsBannerGuard)&i^wog_101_map_rule_20_isEnabled^:P D;\n      !!FU(WOG_101_ChangeMineProductions)&i^wog_101_map_rule_11_isEnabled^:P D;\n    !!en;\n  !!en;\n"
+      },
+      {
+        "startLine": 539,
+        "endLine": 546,
+        "sha256": "bd54bfc1e25fb4f78fa40f633113ff1e80b95c0150c835b6ea1f09bb3cf324aa",
+        "text": "** function to let hero revisit objects\n!?FU(WOG_101_ClearHeroVisistedObjects);\n  !!re i/0/(HERO_LAST_WOG);\n    !!re j/0/9;\n      !!HEi:Vj/0; [set hero to have not visited all objects of this type]\n    !!en;\n  !!en;\n** end of function\n"
+      }
+    ],
+    "receiverReference": "https://www.h3wog.com/erm_help/receivers/receiver_he_right.htm",
+    "heroTypeRange": [
+      0,
+      155
+    ],
+    "visitObjectTypes": [
+      100,
+      23,
+      32,
+      51,
+      61,
+      102,
+      41,
+      4,
+      47,
+      107
+    ],
+    "referenceKind": "Audited ERM source and documented HE:V mapping; not execution of the Windows ERA binary"
+  },
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": -1,
+          "active": false,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": false,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": -1,
+          "active": true,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            12,
+            12,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": true,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            12,
+            12,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": true,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": false,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": false,
+          "choice": 0,
+          "active": false,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": false,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 1,
+          "active": true,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            12,
+            12,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": true,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "e7fd76a8e4f3346b0bf71bed316e0b27a5e0174db92223144f25823e6d87808a"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            12,
+            12,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": true,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": false,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "be484a66d9319bc5457a8845bec771686c9141e805d5d958daba1c934044818f"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+      "scenarios": [
+        {
+          "configured": false,
+          "choice": 1,
+          "active": true,
+          "initial": [
+            12,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            13,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            14,
+            12,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": true,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "configured": true,
+          "choice": 0,
+          "active": false,
+          "initial": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "first": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "second": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "day28NoReset": true,
+          "day29Reset": false,
+          "day30NoReset": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "noResetReplay": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "94cd1d0521d8b4d84012d3c199b8b81518c83cb189b79dc267dd6f6a1b6652e2"
+    }
+  },
+  "historicalControl": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "00effc1975261d54e1378766bb4812f82381173b9398e56f474de951b40813fa",
+    "scenarios": [
+      {
+        "configured": true,
+        "choice": null,
+        "active": false,
+        "initial": [
+          10,
+          10,
+          10,
+          10
+        ],
+        "first": [
+          11,
+          11,
+          10,
+          10
+        ],
+        "second": [
+          11,
+          11,
+          10,
+          10
+        ],
+        "day28NoReset": true,
+        "day29Reset": false,
+        "day30NoReset": true,
+        "nativeSaveReload": true,
+        "reversedGlobalDefault": true,
+        "noResetReplay": true,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "825d760fc274eeee7affc1204f4208ca57e93789f9aa9516525364feee98d3e9"
+  },
+  "legacyFifteenChoiceSave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
+    "scenarios": [
+      {
+        "legacyFifteenChoiceSave": true,
+        "monthlyRemainsDisabled": true,
+        "continuedNewMonth": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "c3a1175d5899367b919ef04c95aa43c686f90bdc96f2a9b20d4ec34f64a360f6"
+  },
+  "serialization": {
+    "catalogueCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16
+    ],
+    "historicalByteBoundariesPreserved": true,
+    "shorterCataloguesInheritNewChoices": true,
+    "largerThanPeerCapabilityRejected": true,
+    "invalidChoicesRejected": true,
+    "unitExitCode": 0,
+    "unitLogSha256": "857fccbe7325e4f890778f3ecdb8b75edd3acabbe2810a09c27246b46c3cd1e0"
+  },
+  "remaining": [
+    "Full HE:V addressing/read/write receiver is not admitted by this native monthly rule.",
+    "Source option101 selection modes and the rest of the WoG catalogue.",
+    "Windows ERA binary comparison and native multi-client monthly visitation scenarios remain outside this bounded proof.",
+    "Complete gameplay packs remain disabled."
+  ]
+}

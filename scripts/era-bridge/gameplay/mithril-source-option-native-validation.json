@@ -4,22 +4,22 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "Read-only source UN:P36 matches canonical frozen native Mithril activation; existing inactive Potion Fountains UN:P17 stays zero. No source setters or additional option IDs admitted.",
-  "sourceBaseCommit": "5ae73ae95a9ed83a34e19971d44d61d593370c7a",
-  "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+  "sourceBaseCommit": "90a54e95b1bd2b37377dfdc0c1c50878d99a734a",
+  "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d46438ef588fe5f1a9ebb60a68001637ebad72c28556d4438545e9f04a48f911",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5",
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "targets": 104,
-    "logSha256": "ad1305792aa741764c6cd7ddc0c68e2506c3b06d9cca0f8a518705ad407fa85b",
+    "targets": 108,
+    "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
     "unverifiedWarMachineHooksExcluded": true,
     "warMachinesAdmitted": false
   },
@@ -42,7 +42,7 @@
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
       "scenarios": [
         {
           "globalModule": false,
@@ -148,14 +148,14 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "3cc9560389551c1ca6ec0d23496ccc0f487386782223e399faf6bf426286a1ab",
+      "rawReportSha256": "c7532598fca08b8a356e8a27682369530a136586fc2b57afefbdb62aab4b2040",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     },
     "touchPortrait": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
       "scenarios": [
         {
           "globalModule": true,
@@ -193,14 +193,14 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "a5901702e7c503ceb222ebd5b4065d9b5c656c7dc2c40bfb3769a782d3f594eb",
+      "rawReportSha256": "c869fba65b4aee7806755f8a05bbb87a2b017f27826f5761d49a48e091956137",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "f19f0839da4ebb5ff514c02df4aadd0f22a512fcdc1406dade09f172bf5d6d12",
+      "engineSha256": "47bf0c36a28f0311f3c19e186e283604440be013115ee1d5decc328d4570c923",
       "scenarios": [
         {
           "globalModule": false,
@@ -238,7 +238,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "68d874194cf672c8ee95b56d18bdadcf4dc410a54f05d8ab4ae54350a59ea536",
+      "rawReportSha256": "080e36f67080e90b83c828bfdb8863b01f0b5bfbd830cc5cfe140d3b301fd93b",
       "programFileSha256": "f38e3cda62bac6ef6d547ab2edba496f1468821ad869adb1c858a212631f174e"
     }
   },

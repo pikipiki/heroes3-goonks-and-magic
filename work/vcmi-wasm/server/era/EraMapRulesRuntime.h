@@ -2,6 +2,7 @@
 #include "../CGameHandler.h"
 #include "../../lib/era/EraWogOptions.h"
 #include "../../lib/era/EraMapArmyGrowth.h"
+#include "../../lib/era/EraMapMonthlyVisitRules.h"
 #include "../../lib/StartInfo.h"
 #include "../../lib/era/EraMapRulesModel.h"
 #include "../../lib/era/EraMithrilModel.h"
@@ -35,6 +36,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("128",era_bridge::WogOption::AllBreath);
     choice("116",era_bridge::WogOption::DailyArmyGrowth);
     choice("130",era_bridge::WogOption::TownGrails);
+    choice("123",era_bridge::WogOption::MonthlyVisits);
     // The original menu removes rule130 when ANY Conflux exists, including
     // neutral/enemy towns. Never enable Aurora Borealis through this rule.
     for(const auto * town:gh.gameState().getMap().getObjects<CGTownInstance>())
@@ -117,6 +119,14 @@ inline void growHeroArmies(CGameHandler & gh)
                 }
     gh.sendAndApply(packet);
 }
+inline void resetMonthlyVisits(CGameHandler & gh)
+{
+    const auto & saved=state(gh.gameInfo());const auto day=gh.gameInfo().getDate(Date::DAY);
+    if(!saved["rules"]["123"].Bool()||!era_bridge::map_rules::monthlyVisitDay(day)
+        ||saved["visitsResetDay"].Integer()>=day)return;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=saved;
+    packet.state["visitsResetDay"].Integer()=day;gh.sendAndApply(packet);
+}
 inline void onNewDay(CGameHandler & gh)
-{buildTownGrails(gh);changeWeeklyMines(gh);growHeroArmies(gh);}
+{buildTownGrails(gh);changeWeeklyMines(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
 }
