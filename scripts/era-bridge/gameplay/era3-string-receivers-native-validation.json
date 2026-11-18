@@ -7,18 +7,18 @@
   "sourceBaseCommit": "e9d8f0ff0707bef20ec657b4bd81730debc46ba0",
   "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
   "sourceBindings": {
-    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/vcmi-wasm/lib/era/EraCampaignDialogs.h": "1e856fb7305d109731cd36501cfbabf45ae8b116f916b2d88d4e635cc08b8857",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "084d6b48b0564b79ed05d12c949fd98de00e3ee1246d238375c0c081fcedd03f",
     "tests/native/EraCampaignStringLocals.test.cpp": "0feaf3c3dca36a7704c94622b15bce1e1f73031d040e0b20b11e93801a8c97f7",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
-    "work/browser-tests/wog-era3-string-receivers-cases.mjs": "fc2300a47960b50ccb26fb80421edc50b779dc6f8a1ba4e79e925053d4c8fc09",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "04ac0f1df0decd57ca33255f57f8f63265e09acec0d838906c359711a2fb8c31",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
+    "work/browser-tests/wog-era3-string-receivers-cases.mjs": "fa46a386bbc891ec53d310f2f1aeba31d207f2e45703c546d43fdc4acaa97f20",
     "work/browser-tests/wog-era3-string-locals-cases.mjs": "6cd07e4ca87373c7974b3cf88230de23369922a5d54d0ef31558846b6cd48110",
     "tests/era-campaign-string-receivers.test.mjs": "68121184ac8a32faeee5dfdc47fb4f31b182af22177393d302160961dd3c25a2",
     "tests/fixtures/era-gameplay/era3-string-receivers-reference.json": "663318d957dcf7df0a6589d53a2d1b569341aab473c20203ff6f499b754444b4",
-    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1"
+    "docs/era-gameplay-port.md": "dbd11b524132cc83dbd559615503d33f90d5825be2ca791968b93c17e255ecc4"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -539,5 +539,28 @@
       "cleanManifestUsed": true,
       "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
     }
+  },
+  "randomRangesRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
+      "work/browser-tests/wog-era3-string-receivers-cases.mjs": "fc2300a47960b50ccb26fb80421edc50b779dc6f8a1ba4e79e925053d4c8fc09",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
+    "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
   }
 }

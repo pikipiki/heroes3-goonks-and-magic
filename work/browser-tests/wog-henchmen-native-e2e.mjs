@@ -285,6 +285,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='random-ranges'){
+  const {runRandomRanges}=await import('./wog-era3-random-ranges-cases.mjs');
+  await runRandomRanges({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:951})});
+ }
  if(process.env.CASES==='string-receivers'){
   const {runStringReceivers}=await import('./wog-era3-string-receivers-cases.mjs');
   await runStringReceivers({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:950})});
@@ -324,6 +328,11 @@ try{
  if(process.env.CASES==='battle-outcomes'){
   const {runBattleOutcomes}=await import('./wog-henchmen-battle-outcomes-cases.mjs');
   await runBattleOutcomes({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:945})});
+ }
+ if(process.env.CASES==='signed-hero-experience'){
+  const {runSignedExperience}=await import('./wog-henchmen-signed-experience-cases.mjs');
+  await runSignedExperience({boot,sheet,command,wait,startBattle,resolve,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:938})});
  }
  if(process.env.CASES==='battle-start-experience'){
   const {runBattleStartExperience}=await import('./wog-henchmen-battle-experience-cases.mjs');

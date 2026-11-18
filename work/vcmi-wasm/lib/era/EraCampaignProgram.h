@@ -79,6 +79,15 @@ inline void validateEra3FunctionMetadata(const Command & command,const Operation
  }
  else throw std::runtime_error("Unknown ERA3 function metadata operation");
 }
+inline void validateEra3RandomRange(const Command & command,const Operation & operation)
+{
+ if(command.selectors.size()!=1||!era3IntegerArgument(command.selectors[0])
+    ||command.selectors[0].kind==Kind::Number||command.selectors[0].kind==Kind::Day)
+  throw std::runtime_error("ERA3 random range requires an integer destination");
+ if(operation.code!="R"||(operation.args.size()!=1&&operation.args.size()!=3))throw std::runtime_error("ERA3 random operation requires VR:R with one or three arguments");
+ for(const auto & argument:operation.args)
+  if(argument.access!=Access::Read||!era3IntegerArgument(argument))throw std::runtime_error("ERA3 random bounds require explicit integer values");
+}
 struct Trigger
 {
  std::string receiver;
@@ -93,6 +102,7 @@ struct Program
  bool era3IntegerCalls=false;
  bool era3FunctionMetadata=false;
  bool era3StringLocals=false;
+ bool era3RandomRanges=false;
  std::vector<Command> initializers;
  std::vector<Trigger> blocks;
 };

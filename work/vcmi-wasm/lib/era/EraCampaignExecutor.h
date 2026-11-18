@@ -14,6 +14,15 @@ struct Host
  virtual ~Host()=default;
  virtual Step execute(const Command&,const Operation&,State&,const Context&)=0;
  virtual std::int32_t random(std::int32_t maximum,bool timeBased)=0;
+ virtual std::int32_t randomRange(std::int32_t minimum,std::int32_t maximum)
+ {
+  if(minimum>=maximum)return minimum;
+  const auto width=std::int64_t(maximum)-minimum;
+  if(width>INT32_MAX)throw std::runtime_error("Campaign host does not support a wide random interval");
+  const auto draw=random(static_cast<std::int32_t>(width),false);
+  if(draw<0||draw>width)throw std::runtime_error("Campaign random generator out of range");
+  return static_cast<std::int32_t>(std::int64_t(minimum)+draw);
+ }
 };
 class Executor
 {
@@ -162,6 +171,18 @@ class Executor
    if(outside&&op.args.size()==4)value=fallback;
    writeNumber(destination,state,context,value);return;
   }
+  if(op.code=="R"&&op.args.size()==3)
+  {
+   if(!program.era3RandomRanges)throw std::runtime_error("ERA3 explicit random ranges require source AST v7");
+   validateEra3RandomRange(command,op);
+   readNumber(op.args[0],state,context); // ERA evaluates the ignored first argument.
+   const auto low=readNumber(op.args[1],state,context),high=readNumber(op.args[2],state,context);
+   // ERA's RandomRange returns the lower bound without consuming a draw for
+   // equal or reversed intervals. The three-argument form assigns its result.
+   const auto draw=low>=high?low:host.randomRange(low,high);
+   if(low<high&&(draw<low||draw>high))throw std::runtime_error("Campaign random generator out of range");
+   writeNumber(destination,state,context,draw);return;
+  }
   arity(op,1);auto value=readNumber(destination,state,context),right=readNumber(op.args[0],state,context);
   if(op.code=="S")value=right;
   else if(op.code=="+")value=add(value,right);
@@ -173,7 +194,16 @@ class Executor
   else if(op.code=="|")value=signed32(std::uint32_t(value)|std::uint32_t(right));
   else if(op.code=="X")value=signed32(std::uint32_t(value)^std::uint32_t(right));
   else if(op.code=="R"||op.code=="T")
-  {if(right<0)throw std::runtime_error("Negative campaign random bound");const auto draw=host.random(right,op.code=="T");if(draw<0||draw>right)throw std::runtime_error("Campaign random generator out of range");value=add(value,draw);}
+  {
+   if(op.code=="R"&&program.era3RandomRanges)
+   {
+    validateEra3RandomRange(command,op);
+    const auto draw=right<=0?0:host.randomRange(0,right);
+    if(draw<0||(right>0&&draw>right))throw std::runtime_error("Campaign random generator out of range");
+    value=add(value,draw);
+   }
+   else{if(right<0)throw std::runtime_error("Negative campaign random bound");const auto draw=host.random(right,op.code=="T");if(draw<0||draw>right)throw std::runtime_error("Campaign random generator out of range");value=add(value,draw);}
+  }
   else throw std::runtime_error("Unimplemented campaign numeric operation "+op.code);
   writeNumber(destination,state,context,value);
  }

@@ -58,7 +58,7 @@
     ]
   },
   "actualHeader": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
-  "actualHeaderSha256": "6ca1562af55ee1cc23de13b2d064863f070b8d6308b9b5c0127716d72caeb61d",
+  "actualHeaderSha256": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
   "module": "Emscripten4.0.23 probe includes the actual header. hero_root and level_rate call its functions. Raw model_pow* wrappers duplicate the unexposed double-to-Single expression; powf_bits is a comparison only.",
   "compileCommand": "em++ -std=gnu++20 -Oz -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -fwasm-exceptions -pthread -I/work/vcmi-wasm/lib/era wasm-model.cpp --no-entry -sMODULARIZE=1 -sEXPORT_NAME=createMath -sENVIRONMENT=node -sWASM_ASYNC_COMPILATION=0 -sALLOW_MEMORY_GROWTH=0 -sFILESYSTEM=0 -sPTHREAD_POOL_SIZE=0 -o wasm-model.js",
   "limits": [
@@ -70,7 +70,13 @@
   "sha256": {
     "golden-vectors.json": "01b4157d383e59f719938e3be439e44bfbed1df4b047ffc27489e62f49c04943",
     "wasm-model.cpp": "cd33f1e02ee6a774ba8a9515225fc074c1efce1351ac6c9dab7b063324293a22",
-    "wasm-model.js": "3dbe468d0b29808e67a02102cf30fe3afb14c4e76f9703ff6c7ac2c64f8b53c3",
-    "wasm-model.wasm": "ee83391322dcb4354c2d2a85c5d2105a7e916becaa9ede921ca7f6a02e8ed981"
+    "wasm-model.js": "90465b0fd12c96281e352dc0e8d827b683b311b0544584795faeadd67a5d23cc",
+    "wasm-model.wasm": "e4e646a6b9b7996bf8ed95d15a2396c2fc432c93d93388c76a6ccde430467121",
+    "loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817"
+  },
+  "loadedEraIntegerComparison": {
+    "file": "loaded-era-observations.json",
+    "integerCases": 12,
+    "scope": "Direct real Sqrt/Trunc64/VR:S calls at plugin load under Wine; masked-exception negative integer results only. No native Windows or complete event validation."
   }
 }

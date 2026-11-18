@@ -40,6 +40,12 @@ int main()
     settings.alternativeLevelRate=true;
     assert(heroExperienceRoot(0)==0&&heroExperienceRoot(9999)==99&&heroExperienceRoot(10000)==100);
     assert(heroExperienceRoot(INT_MAX)==46340);
+    assert(heroExperienceRoot(-1)==0&&heroExperienceRoot(INT_MIN)==0);
+    assert(heroExperienceGain(3000000000ULL,0)==-1294967296);
+    assert(heroExperienceGain(0,400)==-400);
+    assert(heroExperienceGain(0,0xffffffffULL)==1);
+    assert(heroExperienceGain(0x100000190ULL,0x100000000ULL)==400);
+    assert(heroExperienceGain(0xffffffffffffffffULL,0)==-1);
     // Prove Single input rounding, rather than replacing it with integer sqrt:
     assert(heroExperienceRoot(16777215)==4095);
     assert(heroExperienceRoot(16777216)==4096);
@@ -82,6 +88,7 @@ int main()
     assert(battlefieldStackExperience(3000,true,3,xp)==12000);
     assert(battlefieldStackExperience(3000,false,3,xp)==3000);
     assert(limitStackExperience(-1,xp)==12000);
+    assert(stackExperienceGain(0,-400,false,xp)==12000);
 
     assert(!eligible({{1,1}},false,false));
     assert(eligible({{1,2}},false,false));

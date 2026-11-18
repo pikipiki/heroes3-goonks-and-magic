@@ -104,6 +104,19 @@ des portraits et messages d’événement passent par le même résolveur ; leur
 scénarios ERA3 complets restent à vérifier. Preuve bornée :
 `scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json`.
 
+La forme ERA3 `VR:R0/min/max` dispose du contrat AST v7 : le premier entier
+est ignoré, et le tirage inclusif entre les deux bornes remplace la valeur
+précédente. Des bornes égales ou inversées rendent la borne minimale sans
+consommer de tirage. La forme à un paramètre conserve son addition ; en ERA3, une borne supérieure
+nulle ou négative ne consomme aucun tirage et conserve la valeur précédente.
+Les scénarios natifs couvrent les bornes signées, le domaine int32 entier,
+une sauvegarde imbriquée et la reproduction exacte de la suite après reprise
+d’un même point de contrôle. La sauvegarde devient 922, avec toujours 19 choix
+de partie. Le générateur utilisé est celui du jeu natif ; son flux n’est pas
+présenté comme identique au générateur ERA. Le réensemencement, les paramètres
+libres et le générateur indépendant `VR:T` restent à porter. Preuve bornée :
+`scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json`.
+
 La libération explicite `VA(-nom)` des variables et tableaux `x`/`y` suit
 également l’allocateur ERA : récupération de la fin de plage ou ajout du bloc
 à la liste libre, puis première plage assez grande en partant de la plus récente.
@@ -786,3 +799,16 @@ annonce ces critères sans ajouter de choix aux dix-neuf réglages existants.
 Les options source149/170/171, les mutations MA:L externes et le calendrier
 exact des moulins restent à porter. Preuve bornée :
 `scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json`.
+
+Le calcul d’expérience des compagnons conserve maintenant la soustraction
+entière signée sur32 bits du script Enhanced Henchmen. Un dépassement positif
+peut donc produire un gain négatif et déclencher la sortie prévue lorsque le
+transfert de campagne est actif. Sans ce transfert, la composante racine carrée
+vaut zéro et le gain signé continue vers le calcul d’expérience de créature.
+Cette conversion est corroborée par18 appels aux véritables fonctions
+Sqrt/Trunc64/VR:S de la DLL chargée sous Wine, à un point de chargement de plugin,
+avec trois mots de contrôle x87. Le processus utilise une bibliothèque IFC20
+substituée et n’atteint pas un scénario initialisé : ces observations bornées
+ne valident ni Windows natif ni l’ensemble du pack. La sonde WebAssembly
+recompilée vérifie les12 entrées entières de ces observations ; les NaN ne sont
+pas convertis directement en entier C++.

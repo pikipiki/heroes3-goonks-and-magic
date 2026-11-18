@@ -1,0 +1,405 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Signed32 hero experience gain, campaign-transfer guard, negative square-root consumed integer result and source creature experience calculation after actual native battles.",
+  "sourceBaseCommit": "8953d094f67e972f11cb1d4f4e91d72ae9f7acbf",
+  "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+  "servedEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "dbd11b524132cc83dbd559615503d33f90d5825be2ca791968b93c17e255ecc4",
+    "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2197f8f9490fa23e47f7e327369fc67a143849619c10ca43a4ad882cfdbdb3b8",
+    "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
+    "scripts/era-bridge/gameplay/math-source.json": "ce4229eccf5ab8da74a8df806fa2ba82f0648be94e3518140834c933cdc95c41",
+    "tests/era-henchmen-math-binary.test.mjs": "eb2f857d9d0bbf3ae0f12650429bbb46cf80d6044053320a7370ec03ac1a0cb6",
+    "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "79bd148d110f16f8b258f43b8cb62cbcf693e185a83652635778771f2a6a888a",
+    "tests/fixtures/era-gameplay/henchmen-math/test-math.cjs": "4b114fe02e014dd7554714b8f13633883e550fb1e87b3739c7f286bb6a379daa",
+    "tests/fixtures/era-gameplay/henchmen-math/wasm-model.js": "90465b0fd12c96281e352dc0e8d827b683b311b0544584795faeadd67a5d23cc",
+    "tests/fixtures/era-gameplay/henchmen-math/wasm-model.wasm": "e4e646a6b9b7996bf8ed95d15a2396c2fc432c93d93388c76a6ccde430467121",
+    "tests/native/EraHenchmanRules.test.cpp": "95905d6afe79f137f508f7da4d9f287fb87fb2c70d26d32cfd2e5c30fc431008",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
+    "tests/fixtures/era-gameplay/henchmen-math/loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817",
+    "work/browser-tests/wog-henchmen-signed-experience-cases.mjs": "aab841d8efc3c4198ef756c4c9483da5e26fc8137d0592690aa26f460052d13a",
+    "tests/era-henchmen-signed-experience.test.mjs": "b73f1ccdeed1713246d360951a52224625d2efbc74baa8d224819c25ede1326a",
+    "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
+    "work/browser-tests/wog-henchmen-battle-outcomes-cases.mjs": "6e084f4ba0aa2bcf88727de41d6012a2d2606785dfee18c262483d2f776e77c5"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 19,
+    "logSha256": "4acbca192e47ec26a1ff243c44157e30e53966d11bb254a9bc075024130aced5",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "test": "EraHenchmanRules",
+    "logSha256": "ea984f847b2daaaf35fd3fae933f7c9a36f75b1ddd04894a085361842ef195cd"
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3004,
+    "mismatches": [],
+    "expectedManifestSha256": "f89bf105e005af5365784b0124420a0bb72710e22cb518d1de77aed71ce6964d"
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "scenarios": [
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive",
+          "campaignTransfer": true,
+          "sourceSignedGain": -1294967295,
+          "heroExperience": -1294967295,
+          "companionReward": 0,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "1958e7701750298de6bcdf3b9eaa84563cf7ebcaf3346a4cdfad7f0041f14171"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive",
+          "campaignTransfer": false,
+          "sourceSignedGain": -1294967295,
+          "heroExperience": -1294967295,
+          "companionReward": 100,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "1958e7701750298de6bcdf3b9eaa84563cf7ebcaf3346a4cdfad7f0041f14171"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative",
+          "campaignTransfer": true,
+          "sourceSignedGain": -400,
+          "heroExperience": 0,
+          "companionReward": 0,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "62c59d7f0135e6c16b2f8d8ab20fefb5f220b4c5656361a1ff3107dc4e76c963"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative",
+          "campaignTransfer": false,
+          "sourceSignedGain": -400,
+          "heroExperience": 0,
+          "companionReward": 100,
+          "stackExperience": 134750,
+          "nativeSaveReload": true,
+          "programSha256": "62c59d7f0135e6c16b2f8d8ab20fefb5f220b4c5656361a1ff3107dc4e76c963"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ba458bebe4a8662f74aafbfdac19ef3d2719234a4e1be56fd62233edea7b6aac"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "scenarios": [
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive",
+          "campaignTransfer": true,
+          "sourceSignedGain": -1294967295,
+          "heroExperience": -1294967295,
+          "companionReward": 0,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "1958e7701750298de6bcdf3b9eaa84563cf7ebcaf3346a4cdfad7f0041f14171"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive",
+          "campaignTransfer": false,
+          "sourceSignedGain": -1294967295,
+          "heroExperience": -1294967295,
+          "companionReward": 100,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "1958e7701750298de6bcdf3b9eaa84563cf7ebcaf3346a4cdfad7f0041f14171"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative",
+          "campaignTransfer": true,
+          "sourceSignedGain": -400,
+          "heroExperience": 0,
+          "companionReward": 0,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "62c59d7f0135e6c16b2f8d8ab20fefb5f220b4c5656361a1ff3107dc4e76c963"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative",
+          "campaignTransfer": false,
+          "sourceSignedGain": -400,
+          "heroExperience": 0,
+          "companionReward": 100,
+          "stackExperience": 134750,
+          "nativeSaveReload": true,
+          "programSha256": "62c59d7f0135e6c16b2f8d8ab20fefb5f220b4c5656361a1ff3107dc4e76c963"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ba458bebe4a8662f74aafbfdac19ef3d2719234a4e1be56fd62233edea7b6aac"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "scenarios": [
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive",
+          "campaignTransfer": true,
+          "sourceSignedGain": -1294967295,
+          "heroExperience": -1294967295,
+          "companionReward": 0,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "1958e7701750298de6bcdf3b9eaa84563cf7ebcaf3346a4cdfad7f0041f14171"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "wrapped-positive",
+          "campaignTransfer": false,
+          "sourceSignedGain": -1294967295,
+          "heroExperience": -1294967295,
+          "companionReward": 100,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "1958e7701750298de6bcdf3b9eaa84563cf7ebcaf3346a4cdfad7f0041f14171"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative",
+          "campaignTransfer": true,
+          "sourceSignedGain": -400,
+          "heroExperience": 0,
+          "companionReward": 0,
+          "stackExperience": 0,
+          "nativeSaveReload": true,
+          "programSha256": "62c59d7f0135e6c16b2f8d8ab20fefb5f220b4c5656361a1ff3107dc4e76c963"
+        },
+        {
+          "kind": "henchmen-signed-experience",
+          "name": "negative",
+          "campaignTransfer": false,
+          "sourceSignedGain": -400,
+          "heroExperience": 0,
+          "companionReward": 100,
+          "stackExperience": 134750,
+          "nativeSaveReload": true,
+          "programSha256": "62c59d7f0135e6c16b2f8d8ab20fefb5f220b4c5656361a1ff3107dc4e76c963"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ba458bebe4a8662f74aafbfdac19ef3d2719234a4e1be56fd62233edea7b6aac"
+    }
+  },
+  "nativeRegressions": {
+    "positive": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "errors": [],
+      "rawReportSha256": "ecf70c6fe4af0eb9e4bf2229327fa1afcfc372df34e35febb60ab7e3194e0784",
+      "scenarioCount": 3,
+      "scenarios": [
+        {},
+        {},
+        {}
+      ]
+    },
+    "zero": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "errors": [],
+      "rawReportSha256": "928f9b80fee318578c76fd6937aafeec2f889b7051c0f8c759d888654d8a5c12",
+      "scenarioCount": 2,
+      "scenarios": [
+        {},
+        {}
+      ]
+    },
+    "outcomes": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "errors": [],
+      "rawReportSha256": "4c29a5fb43732233580b5e67084537e6940674ec7165bdfd5dba0977874270a3",
+      "scenarioCount": 2,
+      "scenarios": [
+        {
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "random": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "errors": [],
+      "rawReportSha256": "435442668612759036f7ad3693009851ac0edb83672f1d0afcc92f875116fb65",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-random-ranges",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "shared-reward": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "errors": [],
+      "rawReportSha256": "d1d773d245d383514b21c8ba9f2bfaabbfda39439c9cd1fddc7b7564f1e1ab81",
+      "scenarioCount": 6,
+      "scenarios": [
+        "AI-victory-shared-integer-missing-reward-0-ignores-prefixed-and-string-cells",
+        "AI-victory-shared-integer-150-reward-150-ignores-prefixed-and-string-cells",
+        "transferred-winning-hero-and-shared-variable-reward-survive-native-save-reload",
+        "script-owner-loss-return-and-repeated-same-owner-assignment-update-the-live-hero-list-without-empty-dialogs-or-duplicates",
+        "AI-victory-shared-integer--50-reward-0-ignores-prefixed-and-string-cells",
+        "AI-victory-shared-integer-2147483647-reward-0-ignores-prefixed-and-string-cells"
+      ]
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
+      "errors": [],
+      "rawReportSha256": "d7e685e9d81760964b41c85c3fa43096475ea59249dfd7ffe38bfabdd751d7cd",
+      "scenarioCount": 17,
+      "scenarios": [
+        "owned-mine-double-income-payment-and-stale-request",
+        "companion-and-mithril-transactions-coexist",
+        "native-dwelling-upgrade-preserves-stock",
+        "nearby-weekly-site-payment",
+        "advanced-university-payment",
+        "owned-shipyard-creates-lighthouse",
+        "town-magical-terrain-payment",
+        "monolith-exit-fog-revealed",
+        "monolith-camera-shows-exit-and-returns-to-selected-entrance",
+        "mobile-town-one-card-nine-terrain-picker-retains-chosen-option",
+        "phone-and-ipad-scrollable-layout",
+        "phone-and-ipad-real-touch-vertical-scroll-without-keyboard",
+        "companion-and-mithril-restored-from-same-save",
+        "native-save-reload",
+        "mine-expires-after-seven-income-periods",
+        "disabled-module-baseline",
+        "insufficient-mithril-rejected-by-server"
+      ]
+    }
+  },
+  "serialization": {
+    "saveVersion": 922,
+    "choiceCount": 19,
+    "layoutUnchanged": true
+  },
+  "oldEngineControl": {
+    "observedCompanionReward": 1000,
+    "expectedCompanionReward": 0,
+    "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+    "expectedFailureLogSha256": "ef33686accf0804c31692cedbbdf7d675b7e232e58d164c74c439b6572bb1fb2"
+  },
+  "loadedEraIntegerObservations": 18,
+  "fullWindowsEraRuntimeValidated": false,
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.274-engine.tar.gz",
+    "sha256": "b1c52c7f2e19c6257ee595919cf104dbc181e37873b53ca3d66f653317d1abe2",
+    "runtimeByteIdenticalToTestedCandidate": true,
+    "runtimeFiles": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ]
+  },
+  "remaining": [
+    "Full Henchmen campaign/death/spell/inventory lifecycle and complete external profiles.",
+    "Full Windows-native math/FPU/game-event validation. Foreign creature fallback is a native extension, not an ERA source-table claim."
+  ],
+  "publicationVerification": {
+    "release": "0.4.274",
+    "nodeTests": {
+      "total": 927,
+      "passed": 871,
+      "failed": 0,
+      "skipped": 56
+    },
+    "freshTumTests": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "siteBuild": true,
+    "siteVerified": true,
+    "nativeFilesByteVerified": 10464,
+    "transportBytes": 702295411
+  }
+}

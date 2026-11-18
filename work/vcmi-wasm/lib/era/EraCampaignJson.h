@@ -69,14 +69,16 @@ inline era_campaign::Command readCommand(const JsonNode&node)
 inline era_campaign::Program readProgram(const JsonNode&node)
 {
  object(node);const auto version=integer(node["schemaVersion"]);
- if((version<1||version>6)||string(node["contract"])!="source-campaign-erm-ast-v"+std::to_string(version))throw std::runtime_error("Unknown source campaign AST contract");
+ if((version<1||version>7)||string(node["contract"])!="source-campaign-erm-ast-v"+std::to_string(version))throw std::runtime_error("Unknown source campaign AST contract");
  era_campaign::Program program;program.sha256=string(node["sha256"]);program.source=string(node["source"]);
  if(version>=4){if(string(node["functionArguments"])!="era3-integers")throw std::runtime_error("Unknown ERA3 function argument contract");program.era3IntegerCalls=true;}
  else if(!node["functionArguments"].isNull())throw std::runtime_error("ERA3 function arguments require source AST v4");
- if(version==5||(version==6&&!node["functionMetadata"].isNull())){if(string(node["functionMetadata"])!="era3-integers")throw std::runtime_error("Unknown ERA3 function metadata contract");program.era3FunctionMetadata=true;}
+ if(version==5||(version>=6&&!node["functionMetadata"].isNull())){if(string(node["functionMetadata"])!="era3-integers")throw std::runtime_error("Unknown ERA3 function metadata contract");program.era3FunctionMetadata=true;}
  else if(!node["functionMetadata"].isNull())throw std::runtime_error("ERA3 function metadata requires source AST v5");
- if(version==6){if(string(node["stringLocals"])!="era3-z-ascii")throw std::runtime_error("Unknown ERA3 local-string contract");program.era3StringLocals=true;}
+ if(version==6||(version==7&&!node["stringLocals"].isNull())){if(string(node["stringLocals"])!="era3-z-ascii")throw std::runtime_error("Unknown ERA3 local-string contract");program.era3StringLocals=true;}
  else if(!node["stringLocals"].isNull())throw std::runtime_error("ERA3 local strings require source AST v6");
+ if(version==7){if(string(node["randomRanges"])!="era3-integers")throw std::runtime_error("Unknown ERA3 random-range contract");program.era3RandomRanges=true;}
+ else if(!node["randomRanges"].isNull())throw std::runtime_error("ERA3 random ranges require source AST v7");
  for(const auto&item:array(node["initializers"]))program.initializers.push_back(readCommand(item));
  for(const auto&item:array(node["blocks"])){object(item);era_campaign::Trigger trigger;trigger.receiver=string(item["receiver"]);const auto kind=string(item["kind"]);if(kind!="trigger"&&kind!="post-trigger")throw std::runtime_error("Unknown campaign trigger kind");trigger.post=kind=="post-trigger";trigger.selectors=readOperands(item["selectors"]);trigger.conditions=readConditions(item["conditions"]);for(const auto&command:array(item["commands"]))trigger.commands.push_back(readCommand(command));program.blocks.push_back(std::move(trigger));}
  const auto supported=[version,&program](const auto & commands)
@@ -94,6 +96,16 @@ inline era_campaign::Program readProgram(const JsonNode&node)
      if(!program.era3FunctionMetadata)throw std::runtime_error("ERA3 function metadata requires source AST v5");
      era_campaign::validateEra3FunctionMetadata(command,operation);
     }
+   }
+   if(command.receiver=="VR")for(const auto & operation:command.operations)
+   {
+    if(operation.code=="R"&&(operation.args.size()==3||program.era3RandomRanges&&operation.args.size()==1))
+    {
+     if(!program.era3RandomRanges)throw std::runtime_error("ERA3 explicit random ranges require source AST v7");
+     era_campaign::validateEra3RandomRange(command,operation);
+    }
+    else if(program.era3IntegerCalls&&(operation.code=="R"||operation.code=="T")&&operation.args.size()!=1)
+     throw std::runtime_error("ERA3 random seeding, explicit T ranges and free parameters are not admitted");
    }
    if(version<2&&command.receiver=="__flow")throw std::runtime_error("Structured control requires source AST v2");
    if(version<3&&command.receiver=="VR")for(const auto & operation:command.operations)
