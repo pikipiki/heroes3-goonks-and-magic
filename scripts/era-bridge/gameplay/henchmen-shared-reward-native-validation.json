@@ -13,7 +13,7 @@
     "distinctConfigurationVariable": "hench_battleExpAIPct"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9",
+    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
     "scripts/era-bridge/gameplay/henchmen.json": "9203baf6211b04302317586e66e267aa0a362b9d555624a88539192115cd2842",
     "scripts/era-bridge/gameplay/henchmen.mjs": "a43ef27db0f0ec64f62510870cd0914904ff6a6f032b1a1dd780a05e9c2c37ed",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
@@ -196,5 +196,31 @@
     "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16,
     "publicationStatusDocumentationCorrected": true
+  },
+  "mithrilDwellingLevelsRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9"
+    },
+    "historicalReportsRetained": true,
+    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "inverted-speeds",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward",
+      "sites",
+      "conflux"
+    ],
+    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
+    "choiceCountUnchanged": 19
   }
 }

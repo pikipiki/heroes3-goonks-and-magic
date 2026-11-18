@@ -111,7 +111,10 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
         if(object.ID!=Obj::CREATURE_GENERATOR1&&object.ID!=Obj::CREATURE_GENERATOR4)return result;
         const auto original=dwelling->creatures[0].second.front();
         const auto upgraded=nextUpgrade(original);
-        if(!upgraded.hasValue()||upgraded==original||upgraded.toCreature()->getLevel()!=original.toCreature()->getLevel())return result;
+        if(!upgraded.hasValue()||upgraded==original)return result;
+        const auto originalLevel=era_bridge::mithril::sourceDwellingLevel(original.toCreature()->getJsonKey(),original.toCreature()->getLevel());
+        const auto upgradedLevel=era_bridge::mithril::sourceDwellingLevel(upgraded.toCreature()->getJsonKey(),upgraded.toCreature()->getLevel());
+        if(!originalLevel||!upgradedLevel||*originalLevel!=*upgradedLevel)return result;
         const CCreature * bloodDragon=nullptr;
         for(const auto & candidate:LIBRARY->creh->objects)
             if(candidate&&candidate->getJsonKey()=="wake-of-gods.level8units:bloodDragon")bloodDragon=candidate.get();
@@ -131,7 +134,7 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
             bool previous=false;
             for(const auto & candidate:LIBRARY->creh->objects)
                 if(candidate&&candidate->upgrades.count(original)){previous=true;break;}
-            result.cost=era_bridge::mithril::dwellingCost(upgraded.toCreature()->getLevel(),previous);
+            result.cost=era_bridge::mithril::dwellingCost(*upgradedLevel,previous);
             result.upgrades.push_back(upgraded);
         }
         return result;

@@ -14,6 +14,15 @@ int main()
     assert(mineCost(0,true)==1&&mineCost(1,true)==3&&mineCost(6,true)==5);
     assert(dwellingCost(1,false)==1&&dwellingCost(3,false)==1&&dwellingCost(4,false)==2);
     assert(dwellingCost(5,true)==4&&dwellingCost(6,true)==6);
+    assert(dwellingCost(0,false)==1&&dwellingCost(0,true)==2&&dwellingCost(-1,false)==0);
+    assert(sourceDwellingLevel("core:ogre",4)==3);
+    assert(sourceDwellingLevel("core:ogreMage",4)==3);
+    assert(sourceDwellingLevel("core:cavalier",6)==5);
+    assert(sourceDwellingLevel("core:champion",6)==5);
+    assert(sourceDwellingLevel("core:swordsman",4)==0);
+    assert(sourceDwellingLevel("core:crusader",4)==3);
+    assert(sourceDwellingLevel("foreign:creature",4)==3);
+    assert(!sourceDwellingLevel("foreign:creature",0));
     for(int offset=0;offset<7;++offset)assert(mineActive(20+offset,27));
     assert(!mineActive(27,27)&&!mineActive(99,0));
     assert(daysRemaining(20,27)==7&&daysRemaining(28,27)==0);

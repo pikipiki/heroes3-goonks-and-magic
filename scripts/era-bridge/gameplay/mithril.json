@@ -28,7 +28,8 @@
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
     "Source UN:P setters and options 149/170/171 integration.",
-    "Complete WoG option catalogue and full gameplay-profile activation."
+    "Complete WoG option catalogue and full gameplay-profile activation.",
+    "Exact PO2, option171 and weekly mill/garden scheduling, including the timing of upgraded mill rewards."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
   "universityValidation": "outputs/era-gameplay/mithril-native-university.json",
@@ -39,5 +40,6 @@
   "legacySaveValidation": "outputs/era-gameplay/mithril-native-legacy.json",
   "touchValidation": "outputs/era-gameplay/mithril-native-touch.json",
   "perGameOptionValidation": "scripts/era-bridge/gameplay/mithril-options-native-validation.json",
-  "sourceOptionReadValidation": "scripts/era-bridge/gameplay/mithril-source-option-native-validation.json"
+  "sourceOptionReadValidation": "scripts/era-bridge/gameplay/mithril-source-option-native-validation.json",
+  "dwellingSourceLevelsValidation": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json"
 }

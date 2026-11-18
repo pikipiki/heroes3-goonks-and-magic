@@ -1,5 +1,6 @@
 /* WoG Mithril Enhancements v1.4, script42 (2023 revision). GPL-2.0-or-later. */
 #pragma once
+#include "EraSourceCreatureLevels.h"
 #include <algorithm>
 #include <cstdint>
 #include <cstdlib>
@@ -22,10 +23,17 @@ inline int mineCost(int sourceResource,bool weeklyResourceChange=false)
     }
     return sourceResource>=6?7:4;
 }
-inline int dwellingCost(int tier,bool alreadyUpgraded)
+inline std::optional<int> sourceDwellingLevel(std::string_view key,int nativeTier)
 {
-    if(tier<1)return 0;
-    const int base=tier<=3?1:tier<=5?2:3;
+    const auto source=sourceCreatureIdForLevel(key);
+    if(source)return sourceInitialCreatureLevel(*source);
+    // Native extensions express the same level using one-based tiers.
+    return nativeTier>0?std::optional<int>(nativeTier-1):std::nullopt;
+}
+inline int dwellingCost(int sourceLevel,bool alreadyUpgraded)
+{
+    if(sourceLevel<0)return 0;
+    const int base=sourceLevel<=3?1:sourceLevel<=5?2:3;
     return base*(alreadyUpgraded?2:1);
 }
 inline bool near(int hx,int hy,int hz,int ox,int oy,int oz)

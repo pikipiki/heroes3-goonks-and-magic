@@ -9,10 +9,10 @@
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "c4bf01e653cb7a70431a7f4d5c3dfe6a31c7e7d41eea234e422329423d194549",
-    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
-    "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "1010b9a13e28b44b45f1294661df51b96738f2e5c0badf25640bfc9c794bbc6d",
+    "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "b29cdfaf50e6a98a6ca0e007cce73437e03d929fb5cc65bf3fb99669ca9c650c",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "cc9570eedcda605c7ce45a0ce7c1cb9869d5860f0eee43a78d5c1f6d072d8faf",
     "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9"
   },
   "nativeBuild": {
@@ -365,5 +365,33 @@
     ],
     "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16
+  },
+  "mithrilDwellingLevelsRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
+      "work/vcmi-wasm/lib/era/EraMithrilRules.h": "301bc4fb781c3d571d02fc849ca9bf653977376cc900ca9ece51bab6b46da356",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e"
+    },
+    "historicalReportsRetained": true,
+    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "inverted-speeds",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward",
+      "sites",
+      "conflux"
+    ],
+    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
+    "choiceCountUnchanged": 19
   }
 }

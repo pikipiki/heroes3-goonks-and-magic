@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/ERA-Projects/era-project-eng",
+  "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+  "file": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+  "fileSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+  "sourceLevelConvention": "Zero-based MA:L, including supplied TUM level overrides.",
+  "swordsmanOverride": {
+    "file": "Data/Creatures/6.cfg",
+    "text": "Level=0\nSktransformer=361\n",
+    "sha256": "cf37f67180ce26dfe2e784ea42ee5335208f629a43c0b0dd4d2a2fe5032ba92c"
+  },
+  "fragments": [
+    {
+      "startLine": 266,
+      "endLine": 310,
+      "text": "\n!!if&(cost);\n  !!CM:R0;                                [disable standard popup]\n  !!SN:H^monname^/(upgMon)/1/?(upgMonName:z);         [Get new creature name- plural]\n  !!SN:H^monname^/(mon)/1/?(monName:z);            [Get old creature name- plural]\n\n  !!VRn:S(cost:y) -1 F0/1;\n  !!FU(WOG_GameMgr_GetDwellingName):P(OBJ_CREATURE_GENERATOR_1)/(dwellingType:x);/?(objName:z);\n\n  !!SN:T^wog.36.dwelling.%n^/?(msg:z)/^objName^/s^result^/^monName^/(monName)/^upgMonName^/(upgMonName)/^cost^/(cost)/^number^/(number);\n  !!IF:Q1/(RES_MITHRIL)/(cost:y)/(MSG_TYPE_QUESTION)/(msg:z);\n\n  !!if&1;\n    !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-(cost:y);               (take Mithril)\n    !!DW4:M0/(upgMon)/d; (Upgrade dwelling)\n  !!en;\n\n!!en;\n\n; Object Type 20 - only Elemental Conflux is supported\n; Only upgrading once is allowed even if mod supported as for balance concern\n!?FU(WOG_36_UpgradeDwelling_2);\n!#VA(upgMon[4]:y);\n\n!!FU(WOG_36_GetDwellingUpgradeDetails):P?(mon:y)/?(upgMon[0])/?(number:y)/?(canUpgrade:y);\n\n!!if&(canUpgrade)/(mon)=(MON_AIR_ELEMENTAL); [Check if the first slot is Air Elemental to know whether the dwelling has been upgraded once]\n  !!CM:R0;         (disable standard popup)\n  !!SN:T^wog.36.dwelling.elementalConflux^/?(msg:z)/^number^/(number:y);\n  !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/4/(MSG_TYPE_QUESTION)/(msg:z);\n\n  !!if&1;\n    !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-4;        (take Mithril)\n\n    ; Upgrade dwelling\n    !!DW4:M0/(upgMon[0])/d;\n\n    !!re i/1/3;\n      !!DW4:Mi/?(mon:y)/d;\n      !!FU(GetUpgradedMonster):P(mon)/?(upgMon);\n      !!DW4&(upgMon)<>(NO_MON):Mi/(upgMon)/d;\n    !!en;\n  !!en;\n!!en;\n\n",
+      "sha256": "1aef64ba6c329fc555bf1b94ab6b3e518ce6cc1c8b0cec5039fb7fca9a4d5676"
+    },
+    {
+      "startLine": 313,
+      "endLine": 366,
+      "text": "!#VA(mon:x) (upgMon:x) (mithrilOwned:x) (cost:x);\n\n!!VR(cost):S0;\n\n!!DW4:O?y1;       (check who owns dwelling)\n!!FU&y1=(NO_OWNER):E; (abort if unowned)\n\n!!OW:Ty1/?y21;       (Check team)\n!!OW:C?y2;           (check current player)\n!!OW:Ty2/?y22;       (Check team)\n!!FU&y21<>y22:E; (abort if not same)\n\n; Check for upgrade of the creature\n!!DW4:M0/?(mon)/d;\n!!FU(GetUpgradedMonster):P(mon)/?(upgMon);\n!!FU|(upgMon)=(NO_MON)/(mon)=(upgMon):E;\n\n; Exit if the upgraded monster has a different level with the original\n!!MA:L(mon)/?y36 L(upgMon)/?y37;\n!!FU&y37<>y36:E;\n\n; Exit if the upgraded monster is stronger than Blood Dragon (weakest Level 8)\n!!MA:F(upgMon)/?y30 F(MON_BLOOD_DRAGON)/?y34;\n!!FU&y30>=y34:E;\n\n; Check if the upgrade is one of the monster of the other slots, exit if positive\n!!re i/1/3;\n  !!DW4:Mi/?y35/d;\n  !!FU&(upgMon)=y35:E;\n!!en;\n\n; Check if the dwelling has been upgraded at least once\n!!VRy31:S(FALSE);\n!!FU(GetDegradedMonCandidates):P(mon)/?y32;\n!!SN:My32/?y33;\n!!VRy31&y33>0:S(TRUE);\n\n; Get the basic cost of upgrade\n!!MA:L(upgMon)/?y30;\n\n!!if&y30<=3;\n  !!VRy6:S1;                            [y6 - cost of mithril]\n!!el&y30>3/y30<=5;\n  !!VRy6:S2;\n!!el;\n  !!VRy6:S3;\n!!en;\n\n; Double the cost if the dwelling has been upgraded\n!!VRy6&y31:*2;\n\n!!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/?(mithrilOwned);[get amount of mithril]\n!!FU&(mithrilOwned)<y6:E;                           [check if has enough mithril]\n\n",
+      "sha256": "a5399475fea37018042e03b252a2cc17ce661c913ccbb6d1002b2ccf9ef82e8b"
+    }
+  ]
+}

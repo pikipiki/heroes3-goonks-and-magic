@@ -11,7 +11,7 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9",
+    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "99e0a428e36390833ba5b4716fd62c41d92ba5b92f5bbb37e9ee40f752d950fc",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf7e696cfaa8738d0d5e2c18d08605582e8cd1be371398f33e73f4af67de2be2",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
@@ -194,5 +194,31 @@
     "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16,
     "publicationStatusDocumentationCorrected": true
+  },
+  "mithrilDwellingLevelsRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9"
+    },
+    "historicalReportsRetained": true,
+    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "inverted-speeds",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward",
+      "sites",
+      "conflux"
+    ],
+    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
+    "choiceCountUnchanged": 19
   }
 }

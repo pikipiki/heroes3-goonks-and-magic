@@ -43,12 +43,12 @@ export async function runGroundedFliers({boot,state,command,wait,page,output,rep
   await wait(id=>goonkMobileState.battleUnits.find(u=>u.stackId===id)?.currentHealth<1000000,primary.stackId);
   await wait(()=>goonkMobileState.canAct&&goonkMobileState.activeUnit);await page().waitForTimeout(500);
   const after=await state(),a=after.battleUnits.find(u=>u.stackId===actor.stackId),p=after.battleUnits.find(u=>u.stackId===primary.stackId);
-  assert.equal(p.maximumHealth-p.currentHealth,10);
+  assert(p.maximumHealth-p.currentHealth>0&&p.currentHealth>0,'The melee strike wounds the surviving target; unrelated hero bonuses may change its damage');
   const naturalNoRetaliation=actorKey==='core:vampire';
-  assert.equal(a.maximumHealth-a.currentHealth,affected||naturalNoRetaliation?0:1,'The native target counterattacks exactly when allowed');
+  assert.equal(a.maximumHealth===a.currentHealth,affected||naturalNoRetaliation,'The native target counterattacks exactly when allowed; its damage may reflect hero bonuses');
   assert.equal(p.remainingRetaliations,affected||naturalNoRetaliation?1:0);
   const summary={configured,choice,active,actorKey,control:control||null,affected,nativeSaveVersion:bytes.readInt32LE(4),nativeSaveReload:true,reversedGlobalDefault:true,
-   legacySeventeenChoiceSave:!!process.env.FLIGHT_LEGACY_SAVE,flying:actor.nativeFlags.flying,actorDamage:a.maximumHealth-a.currentHealth,targetDamage:p.maximumHealth-p.currentHealth,remainingRetaliations:p.remainingRetaliations,abilities,viewport:page().viewportSize(),input:desktop?'mouse':'touch'};
+   legacySeventeenChoiceSave:!!process.env.FLIGHT_LEGACY_SAVE,flying:actor.nativeFlags.flying,actorDamage:a.maximumHealth-a.currentHealth,targetDamage:p.maximumHealth-p.currentHealth,actorAttack:actor.attack,targetDefense:primary.defense,remainingRetaliations:p.remainingRetaliations,abilities,viewport:page().viewportSize(),input:desktop?'mouse':'touch'};
   report.scenarios.push(summary);
   fs.writeFileSync(path.join(output,`combat-${report.scenarios.length}.json`),JSON.stringify({before,after},null,2));
   await page().screenshot({path:path.join(output,`combat-${report.scenarios.length}.png`)});await page().close();

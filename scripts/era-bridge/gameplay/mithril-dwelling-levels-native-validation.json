@@ -1,0 +1,736 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Mithril dwelling eligibility and prices use audited initial source MA:L, including zero and TUM overrides; native extensions adapt their one-based tiers. Six pointer-driven purchases preserve stocks and deduct nine mithril through native save/reload. Source149/170/171, external MA:L mutations and exact mill scheduling remain unadmitted.",
+  "sourceBaseCommit": "51a317f35110a5979a214a51737aecc51c7cee98",
+  "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+  "upstreamReference": {
+    "schema": 1,
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "fileSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+    "sourceLevelConvention": "Zero-based MA:L, including supplied TUM level overrides.",
+    "swordsmanOverride": {
+      "file": "Data/Creatures/6.cfg",
+      "text": "Level=0\nSktransformer=361\n",
+      "sha256": "cf37f67180ce26dfe2e784ea42ee5335208f629a43c0b0dd4d2a2fe5032ba92c"
+    },
+    "fragments": [
+      {
+        "startLine": 266,
+        "endLine": 310,
+        "text": "\n!!if&(cost);\n  !!CM:R0;                                [disable standard popup]\n  !!SN:H^monname^/(upgMon)/1/?(upgMonName:z);         [Get new creature name- plural]\n  !!SN:H^monname^/(mon)/1/?(monName:z);            [Get old creature name- plural]\n\n  !!VRn:S(cost:y) -1 F0/1;\n  !!FU(WOG_GameMgr_GetDwellingName):P(OBJ_CREATURE_GENERATOR_1)/(dwellingType:x);/?(objName:z);\n\n  !!SN:T^wog.36.dwelling.%n^/?(msg:z)/^objName^/s^result^/^monName^/(monName)/^upgMonName^/(upgMonName)/^cost^/(cost)/^number^/(number);\n  !!IF:Q1/(RES_MITHRIL)/(cost:y)/(MSG_TYPE_QUESTION)/(msg:z);\n\n  !!if&1;\n    !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-(cost:y);               (take Mithril)\n    !!DW4:M0/(upgMon)/d; (Upgrade dwelling)\n  !!en;\n\n!!en;\n\n; Object Type 20 - only Elemental Conflux is supported\n; Only upgrading once is allowed even if mod supported as for balance concern\n!?FU(WOG_36_UpgradeDwelling_2);\n!#VA(upgMon[4]:y);\n\n!!FU(WOG_36_GetDwellingUpgradeDetails):P?(mon:y)/?(upgMon[0])/?(number:y)/?(canUpgrade:y);\n\n!!if&(canUpgrade)/(mon)=(MON_AIR_ELEMENTAL); [Check if the first slot is Air Elemental to know whether the dwelling has been upgraded once]\n  !!CM:R0;         (disable standard popup)\n  !!SN:T^wog.36.dwelling.elementalConflux^/?(msg:z)/^number^/(number:y);\n  !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/4/(MSG_TYPE_QUESTION)/(msg:z);\n\n  !!if&1;\n    !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-4;        (take Mithril)\n\n    ; Upgrade dwelling\n    !!DW4:M0/(upgMon[0])/d;\n\n    !!re i/1/3;\n      !!DW4:Mi/?(mon:y)/d;\n      !!FU(GetUpgradedMonster):P(mon)/?(upgMon);\n      !!DW4&(upgMon)<>(NO_MON):Mi/(upgMon)/d;\n    !!en;\n  !!en;\n!!en;\n\n",
+        "sha256": "1aef64ba6c329fc555bf1b94ab6b3e518ce6cc1c8b0cec5039fb7fca9a4d5676"
+      },
+      {
+        "startLine": 313,
+        "endLine": 366,
+        "text": "!#VA(mon:x) (upgMon:x) (mithrilOwned:x) (cost:x);\n\n!!VR(cost):S0;\n\n!!DW4:O?y1;       (check who owns dwelling)\n!!FU&y1=(NO_OWNER):E; (abort if unowned)\n\n!!OW:Ty1/?y21;       (Check team)\n!!OW:C?y2;           (check current player)\n!!OW:Ty2/?y22;       (Check team)\n!!FU&y21<>y22:E; (abort if not same)\n\n; Check for upgrade of the creature\n!!DW4:M0/?(mon)/d;\n!!FU(GetUpgradedMonster):P(mon)/?(upgMon);\n!!FU|(upgMon)=(NO_MON)/(mon)=(upgMon):E;\n\n; Exit if the upgraded monster has a different level with the original\n!!MA:L(mon)/?y36 L(upgMon)/?y37;\n!!FU&y37<>y36:E;\n\n; Exit if the upgraded monster is stronger than Blood Dragon (weakest Level 8)\n!!MA:F(upgMon)/?y30 F(MON_BLOOD_DRAGON)/?y34;\n!!FU&y30>=y34:E;\n\n; Check if the upgrade is one of the monster of the other slots, exit if positive\n!!re i/1/3;\n  !!DW4:Mi/?y35/d;\n  !!FU&(upgMon)=y35:E;\n!!en;\n\n; Check if the dwelling has been upgraded at least once\n!!VRy31:S(FALSE);\n!!FU(GetDegradedMonCandidates):P(mon)/?y32;\n!!SN:My32/?y33;\n!!VRy31&y33>0:S(TRUE);\n\n; Get the basic cost of upgrade\n!!MA:L(upgMon)/?y30;\n\n!!if&y30<=3;\n  !!VRy6:S1;                            [y6 - cost of mithril]\n!!el&y30>3/y30<=5;\n  !!VRy6:S2;\n!!el;\n  !!VRy6:S3;\n!!en;\n\n; Double the cost if the dwelling has been upgraded\n!!VRy6&y31:*2;\n\n!!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/?(mithrilOwned);[get amount of mithril]\n!!FU&(mithrilOwned)<y6:E;                           [check if has enough mithril]\n\n",
+        "sha256": "a5399475fea37018042e03b252a2cc17ce661c913ccbb6d1002b2ccf9ef82e8b"
+      }
+    ]
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "1010b9a13e28b44b45f1294661df51b96738f2e5c0badf25640bfc9c794bbc6d",
+    "work/vcmi-wasm/lib/era/EraSourceCreatureLevels.h": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6ad22e6b30a158d3493ee0e28506bc8964411faff3452bcc184dcf51808555a2",
+    "tests/native/EraMithrilRules.test.cpp": "78f53f1a5cc22eacf2dbc20a7c49cd6649d179834c3a1fbe85d3313e2784e6f1",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "cc9570eedcda605c7ce45a0ce7c1cb9869d5860f0eee43a78d5c1f6d072d8faf",
+    "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "f9b67803593c2b7d2781102459bb848e0bdf9b2e121e2b9ae350a677e5045196",
+    "work/browser-tests/wog-mithril-dwelling-levels-cases.mjs": "bd2ba6c620a9e7b2e995d673d78431dc660181a0553563c4b1b31a9059d926f9",
+    "tests/era-mithril-dwelling-levels.test.mjs": "22037b2d528171aa4ae8cd04b2023dc2cf3a39505fb7b247971a4421a8f02d35",
+    "tests/fixtures/era-gameplay/mithril-dwelling-levels-reference.json": "aeb65486da5a06fa4d7ea4b5a373d7a507f2252fbdbb10bda9f355f587f76012",
+    "scripts/era-bridge/gameplay/mithril.json": "1c0e1e1e01d3299c17590dc8691cbd69faa634b1402f920c466e4ff739f630ea",
+    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "incrementalTargetCount": 45,
+    "logSha256": "90e4f3946918a364b1d658160363840729ecdb160a2b9fb237256944b3a0eb24",
+    "unverifiedWarMachinePrototypesExcluded": true
+  },
+  "linuxSanitizers": {
+    "command": "C++17 Mithril rules and historical option serializer -fsanitize=address,undefined",
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3004,
+    "mismatches": [],
+    "expectedManifestSha256": "8d718c3847be05ad84667b3db0128c5bd5a318963d89946cd263089e2b7f095e"
+  },
+  "serialization": {
+    "previousSaveVersion": 918,
+    "newSaveVersion": 919,
+    "choiceCount": 19,
+    "capabilityChangeWithoutNewChoice": true,
+    "historicalWireSizesAndPeerBoundsPreserved": true
+  },
+  "programFileSha256": "ac89025b08303b881f33be2a95dc33a67fa6a0ddd27c89863f258c3089e8a1e8",
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "scenarios": [
+        {
+          "costs": [
+            1,
+            1,
+            2,
+            null,
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              14
+            ],
+            [
+              90,
+              4
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              62,
+              4
+            ],
+            [
+              64,
+              3
+            ]
+          ],
+          "restored": [
+            [
+              1,
+              14
+            ],
+            [
+              91,
+              4
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              91,
+              4
+            ],
+            [
+              65,
+              3
+            ]
+          ],
+          "purchases": [
+            {
+              "index": 0,
+              "cost": 1,
+              "remaining": 99
+            },
+            {
+              "index": 1,
+              "cost": 1,
+              "remaining": 98
+            },
+            {
+              "index": 2,
+              "cost": 2,
+              "remaining": 96
+            },
+            {
+              "index": 4,
+              "cost": 1,
+              "remaining": 95
+            },
+            {
+              "index": 4,
+              "cost": 2,
+              "remaining": 93
+            },
+            {
+              "index": 5,
+              "cost": 2,
+              "remaining": 91
+            }
+          ],
+          "initialMithril": 100,
+          "restoredMithril": 91,
+          "nativeSaveVersion": 919,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "swordsmanSourceLevelMismatchBlocked": true,
+          "alreadyUpgradedSourceCostDoubled": true,
+          "legacyEighteenOrNineteenChoiceSave": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "disabledFreshGame": true,
+          "noSavedActivationLeak": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ef63ffe7e93fe062abe1d31d551a3ada986a7c6cbf89cd02e8332715fe4f6378"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "scenarios": [
+        {
+          "costs": [
+            1,
+            1,
+            2,
+            null,
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              14
+            ],
+            [
+              90,
+              4
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              62,
+              4
+            ],
+            [
+              64,
+              3
+            ]
+          ],
+          "restored": [
+            [
+              1,
+              14
+            ],
+            [
+              91,
+              4
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              91,
+              4
+            ],
+            [
+              65,
+              3
+            ]
+          ],
+          "purchases": [
+            {
+              "index": 0,
+              "cost": 1,
+              "remaining": 99
+            },
+            {
+              "index": 1,
+              "cost": 1,
+              "remaining": 98
+            },
+            {
+              "index": 2,
+              "cost": 2,
+              "remaining": 96
+            },
+            {
+              "index": 4,
+              "cost": 1,
+              "remaining": 95
+            },
+            {
+              "index": 4,
+              "cost": 2,
+              "remaining": 93
+            },
+            {
+              "index": 5,
+              "cost": 2,
+              "remaining": 91
+            }
+          ],
+          "initialMithril": 100,
+          "restoredMithril": 91,
+          "nativeSaveVersion": 919,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "swordsmanSourceLevelMismatchBlocked": true,
+          "alreadyUpgradedSourceCostDoubled": true,
+          "legacyEighteenOrNineteenChoiceSave": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "disabledFreshGame": true,
+          "noSavedActivationLeak": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "f3869fa15a13d4a229e9bf9e878d77d68b142ea2bd72533626d7937d2a118927"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "scenarios": [
+        {
+          "costs": [
+            1,
+            1,
+            2,
+            null,
+            1,
+            2
+          ],
+          "initial": [
+            [
+              0,
+              14
+            ],
+            [
+              90,
+              4
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              62,
+              4
+            ],
+            [
+              64,
+              3
+            ]
+          ],
+          "restored": [
+            [
+              1,
+              14
+            ],
+            [
+              91,
+              4
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              91,
+              4
+            ],
+            [
+              65,
+              3
+            ]
+          ],
+          "purchases": [
+            {
+              "index": 0,
+              "cost": 1,
+              "remaining": 99
+            },
+            {
+              "index": 1,
+              "cost": 1,
+              "remaining": 98
+            },
+            {
+              "index": 2,
+              "cost": 2,
+              "remaining": 96
+            },
+            {
+              "index": 4,
+              "cost": 1,
+              "remaining": 95
+            },
+            {
+              "index": 4,
+              "cost": 2,
+              "remaining": 93
+            },
+            {
+              "index": 5,
+              "cost": 2,
+              "remaining": 91
+            }
+          ],
+          "initialMithril": 100,
+          "restoredMithril": 91,
+          "nativeSaveVersion": 919,
+          "nativeSaveReload": true,
+          "reversedGlobalDefault": true,
+          "swordsmanSourceLevelMismatchBlocked": true,
+          "alreadyUpgradedSourceCostDoubled": true,
+          "legacyEighteenOrNineteenChoiceSave": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "disabledFreshGame": true,
+          "noSavedActivationLeak": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "1e629d3c63707e93ac1dc70abea331e20ee3234823f54686a452fc7cae802dd3"
+    }
+  },
+  "oldPublishedControl": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
+    "scenarios": [
+      {
+        "oldPublishedControl": true,
+        "costs": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2
+        ],
+        "nativeSaveVersion": 918,
+        "swordsmanIncorrectlyEligible": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "95484f69e417d52a462a9ee565848b6f454ec1b1af72c1514a3dafe03a8f2798"
+  },
+  "legacySave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "scenarios": [
+      {
+        "costs": [
+          1,
+          1,
+          2,
+          null,
+          1,
+          2
+        ],
+        "initial": [
+          [
+            0,
+            14
+          ],
+          [
+            90,
+            4
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            62,
+            4
+          ],
+          [
+            64,
+            3
+          ]
+        ],
+        "restored": [
+          [
+            1,
+            14
+          ],
+          [
+            91,
+            4
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            91,
+            4
+          ],
+          [
+            65,
+            3
+          ]
+        ],
+        "purchases": [
+          {
+            "index": 0,
+            "cost": 1,
+            "remaining": 99
+          },
+          {
+            "index": 1,
+            "cost": 1,
+            "remaining": 98
+          },
+          {
+            "index": 2,
+            "cost": 2,
+            "remaining": 96
+          },
+          {
+            "index": 4,
+            "cost": 1,
+            "remaining": 95
+          },
+          {
+            "index": 4,
+            "cost": 2,
+            "remaining": 93
+          },
+          {
+            "index": 5,
+            "cost": 2,
+            "remaining": 91
+          }
+        ],
+        "initialMithril": 100,
+        "restoredMithril": 91,
+        "nativeSaveVersion": 919,
+        "nativeSaveReload": true,
+        "reversedGlobalDefault": true,
+        "swordsmanSourceLevelMismatchBlocked": true,
+        "alreadyUpgradedSourceCostDoubled": true,
+        "legacyEighteenOrNineteenChoiceSave": true,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      },
+      {
+        "disabledFreshGame": true,
+        "noSavedActivationLeak": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "68d616f86441419772773bc27e860adce6f6b565e16e612756ff5298bc28f5ed"
+  },
+  "oldReaderControl": {
+    "kind": "era3-quick-scope-old-reader",
+    "futureVersion": 919,
+    "readerVersion": 918,
+    "rejectedBeforeScriptExecution": true
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 7,
+      "rawReportSha256": "5f156d24ce02326138a30136fcda412afb571da7f1e140687bf2e28c85bde0f8"
+    },
+    "mithril": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "3a617bdfbeedb566a22d5954ab67baa8a07288b1c203b30eced7968f874284c3"
+    },
+    "dwellings": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 3,
+      "rawReportSha256": "c4622edea088b228e4d49b5ed69223c4d17e53d6a83a5d68774ee461d9056bdb"
+    },
+    "grounded-fliers": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 3,
+      "rawReportSha256": "bc0c614a62436dc97355e7958134c73b1d7ed2b28801ede3a1e73d9c626238c8"
+    },
+    "inverted-speeds": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "73470ae9f8874f88f258f2085f97e7a9df3d4049b7ad21f766df1d2c969e0142"
+    },
+    "monthly": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "70e1f2ac6ccaeec6de59496555db99bcd01d95164b38d847893f1d82a7aa1ae8"
+    },
+    "grails": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 2,
+      "rawReportSha256": "e0626cd033ba279cc73c87ebbd7c140bcb733463a5b2ad4581fe79569da97bd5"
+    },
+    "learning": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 5,
+      "rawReportSha256": "4282676998b298a7ad8d165f1b91544749c14dd33e24f51b6beba3da61a9e71e"
+    },
+    "hench-town": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "f33ed7ec29319f809b24973ac8b39d73b01a18026d4a1bff46b68be5f1408857"
+    },
+    "army-growth": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 4,
+      "rawReportSha256": "b2b812dcb53744193c0b89aeaa63609523dce196a15151aee4e1006112747f55"
+    },
+    "shared-reward": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 6,
+      "rawReportSha256": "914653423272b372fa5da23c1d5807d659785affbe1c68acb9b109e16c7c4dd1"
+    },
+    "sites": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 17,
+      "rawReportSha256": "9e91b4bf28e54aad6425834980d73ba91044ed9896f149401b4030c238b09a6c"
+    },
+    "conflux": {
+      "passed": true,
+      "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+      "errors": [],
+      "scenarioCount": 1,
+      "rawReportSha256": "4849600aa8a751e99813edb938cb22ac9535725b79c06223cd16dc9aa0dcc17a"
+    }
+  },
+  "publication": {
+    "version": "0.4.266",
+    "archive": "outputs/vcmi-wasm-goonk-0.4.266-engine.tar.gz",
+    "archiveSha256": "7a194a11e1b9568c3a41120330e37c495afbee8c07bbced81b27f399a7843876",
+    "runtimeByteIdenticalToTestedEngine": true
+  },
+  "remaining": [
+    "Source UN:P setters and options149/170/171.",
+    "Exact mill/garden PO2 weekly scheduling and native reward timing.",
+    "External source MA:L mutations and complete profile admission."
+  ],
+  "preGameConnectionObservation": {
+    "phase": "Lobby opening before game initialization",
+    "mode": "connecting",
+    "causeUnattributed": true,
+    "identicalRerunPassedWithoutProductCodeChange": true,
+    "failedStateSha256": "f6db9d8af33f5759e1865dbc33f93365548edfaf26bc0f8623491e86373b8413",
+    "logSha256": "713d852de1e2c64e898e1830bb92bd4d2c97585cf3d818b886fb162063ae3074"
+  },
+  "combatFixtureCorrection": {
+    "previousAssumedDamage": 10,
+    "observedDamage": 9,
+    "attackerAttack": 1,
+    "targetDefense": 2,
+    "scope": "Successful melee damage is checked without assuming starting hero bonuses; exact retaliation behavior remains asserted. No product combat code changed.",
+    "failedStateSha256": "c821d0aad97257f16da26aaec1293bf08d1d4e790055c6bd00ab576d516db74b"
+  },
+  "compactNavigationFixtureUpdate": {
+    "sharedHeroTabsMenuOpenedBeforeSelectingCompanion": true,
+    "productUIUnchanged": true,
+    "logSha256": "76588e4d50f72f7a8ebdedd14d586e862fa537aae011c2322c38e7f181138a66"
+  },
+  "publicationVerification": {
+    "fullSuite": {
+      "total": 910,
+      "passed": 856,
+      "skipped": 54,
+      "failed": 0,
+      "logSha256": "f0a9976b3b454a838a0ee29ed2b4e50a1a18d1b01cd61374dbac5a9a04381c0f"
+    },
+    "staticSite": {
+      "nativeFileCount": 10464,
+      "transportBytes": 702295411,
+      "verified": true,
+      "logSha256": "23b85a2cb7cbdd18e0978f2876bbf8591f7df13a40c108063823e0bc04e2fa38"
+    },
+    "freshTumInventoryTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "archiveMembersByteIdenticalToTestedEngine": true
+  }
+}

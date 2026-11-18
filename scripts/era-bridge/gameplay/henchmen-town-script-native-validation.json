@@ -6,7 +6,7 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9",
+    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
@@ -193,5 +193,31 @@
     "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16,
     "publicationStatusDocumentationCorrected": true
+  },
+  "mithrilDwellingLevelsRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9"
+    },
+    "historicalReportsRetained": true,
+    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "inverted-speeds",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward",
+      "sites",
+      "conflux"
+    ],
+    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
+    "choiceCountUnchanged": 19
   }
 }

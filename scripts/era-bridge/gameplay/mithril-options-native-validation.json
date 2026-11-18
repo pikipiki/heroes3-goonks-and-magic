@@ -8,21 +8,21 @@
   "sourceOption": 36,
   "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9",
-    "scripts/era-bridge/gameplay/mithril.json": "11fbba8fcce01bb2d86cc4b933d60a37e8ab28fa1cc72a7f40a75f15a1da6e75",
+    "docs/era-gameplay-port.md": "3d0d938f9f8fe8862f003533db93dc5a64f7e72697ffd81d2cf38a00e7430f7a",
+    "scripts/era-bridge/gameplay/mithril.json": "1c0e1e1e01d3299c17590dc8691cbd69faa634b1402f920c466e4ff739f630ea",
     "tests/era-wog-options-native.test.mjs": "1ae28580b56670d1c7de6671efdde54cf3e7911eb7e147b1550a8965abdef2bc",
     "tests/native/EraWogOptions.test.cpp": "dcc59ff67f9eed497dcf267ac43ac7d6c892cab2e5dd3116e1f04e0be296a4eb",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde",
     "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "cc9570eedcda605c7ce45a0ce7c1cb9869d5860f0eee43a78d5c1f6d072d8faf",
     "work/browser-tests/wog-mithril-options-cases.mjs": "092181e1cc10aa1cc6d78f962a104b9527a22626d545cc84fcc80ee1639f0cee",
     "work/browser-tests/wog-options-layout-e2e.mjs": "23e004a700c866149b8a7466cf34c3ab545730a0889f2f034d7f84e01565380e",
     "work/browser-tests/wog-options169-cases.mjs": "b7e32ae7df6a2dbe26e4701b1685ef81ca15bdf72ed6260d48a4745c310e2d7e",
     "work/browser-tests/wog-options169-native-e2e.mjs": "8a0214e45833f713a75fbbb089436916f0e64886925d7138911c445760f6f210",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
-    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "1010b9a13e28b44b45f1294661df51b96738f2e5c0badf25640bfc9c794bbc6d",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4"
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6ad22e6b30a158d3493ee0e28506bc8964411faff3452bcc184dcf51808555a2"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -318,5 +318,36 @@
     "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16,
     "publicationStatusDocumentationCorrected": true
+  },
+  "mithrilDwellingLevelsRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "789af5ce64a20dfd15a27645f7756e5c5c6c21441b375606be7d835a4a25b4d9",
+      "scripts/era-bridge/gameplay/mithril.json": "11fbba8fcce01bb2d86cc4b933d60a37e8ab28fa1cc72a7f40a75f15a1da6e75",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
+      "work/vcmi-wasm/lib/era/EraMithrilModel.h": "401fba77b52499aa591c0293bcb5f3b35bdff4f6a342e039ab19f2c364dccede",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4"
+    },
+    "historicalReportsRetained": true,
+    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "inverted-speeds",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward",
+      "sites",
+      "conflux"
+    ],
+    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
+    "choiceCountUnchanged": 19
   }
 }

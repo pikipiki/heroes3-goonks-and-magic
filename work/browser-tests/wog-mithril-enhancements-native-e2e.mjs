@@ -9,6 +9,7 @@ import {readCompletedNativeSave} from './native-save-completed.mjs';
 import {readJsonc} from '../../scripts/era-bridge/objects/production-resolvers.mjs';
 
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8798';
+const usesMouse=process.env.CASES==='desktop'||process.env.CASES?.endsWith('-desktop');
 const output=process.env.REVIEW_OUTPUT||'/private/tmp/goonk-mithril-native';
 fs.mkdirSync(output,{recursive:true});
 const browser=await chromium.launch({headless:true});
@@ -29,7 +30,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -120,6 +121,10 @@ if opts['creatureRuleFixture']:
  objects.append(enemy)
 if opts['movementWater']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
 if opts['capitolCapture']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown','secondCapitolTown']]
+if opts['dwellingLevelFixture']:
+ objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
+ for index,subtype in enumerate(['guardhouse','ogreFort','trainingGrounds','barracks','estate','mausoleum']):
+  site('mithrilLevelDwelling'+str(index),'creatureGeneratorCommon',subtype,10+index*3,11,'red')
 if opts['extraDwellingFixture']:
  objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
  for o in objects:
@@ -153,7 +158,7 @@ if opts['grailFixture']:
   objects.append(town)
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
-if opts['extraDwellingFixture']:terrain=[['gr0_' for _ in row] for row in terrain]
+if opts['extraDwellingFixture'] or opts['dwellingLevelFixture']:terrain=[['gr0_' for _ in row] for row in terrain]
 for y,row in enumerate(terrain):
  for x in range(len(row)):
   if 20<=x<=22 or 20<=y<=22: row[x]='rc0_'
@@ -165,7 +170,7 @@ if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
 if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
 entries['surface_terrain.json']=json.dumps(terrain).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
-if opts['monthlyFixture'] or opts['extraDwellingFixture']:header['events']=[]
+if opts['monthlyFixture'] or opts['extraDwellingFixture'] or opts['dwellingLevelFixture']:header['events']=[]
 if opts['grailFixture']:
  for day in [1,3]:
   header.setdefault('events',[]).append({'name':'private grail query day'+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
@@ -186,7 +191,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
 async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
@@ -197,7 +202,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
   weeklyMines=!weeklyMines;multipleCapitols=!multipleCapitols;allBreath=!allBreath;
  }
  const classic=process.env.CASES==='classic';
- const desktop=['desktop','options-desktop','source-option-desktop','grails-desktop','monthly-desktop','extra-dwellings-desktop','grounded-fliers-desktop','inverted-speeds-desktop'].includes(process.env.CASES);
+ const desktop=usesMouse;
  page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
@@ -218,7 +223,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight,grantedFlight:!!options.ruleGrantedFlight,excludedFlyer:!!options.ruleExcludedFlyer}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -236,6 +241,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
     if(extraDwellingFixture){value.FS.writeFile('/config/objects/dwellings.json',JSON.stringify(extraDwellingDefinitions));}
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
     value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{111:groundedFliersConfigured,112:invertedSpeedsConfigured,114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,sourceOptions:{67:neutralTown}}}));
+    if(dwellingLevelFixture){manifest.creatures??=[];manifest.creatures.push('config/mithril-dwelling-levels-test.json');value.FS.writeFile(directory+'/mithril-dwelling-levels-test.json',JSON.stringify({'core:vampireLord':{upgrades:['core:ogreMage']}}));}
     if(creatureRules){
      manifest.settings.modules.commanders=false;
      const patch={};for(const key of [creatureRules.actor,'core:gnoll','core:peasant','core:ogre'])patch[key]={hitPoints:1000000,attack:0,defense:0,speed:key===creatureRules.actor?20:key==='core:ogre'?4:1,damage:{min:key===creatureRules.actor?10:1,max:key===creatureRules.actor?10:1},abilities:{mapRuleTestNoMorale:{type:'NO_MORALE'}}};
@@ -260,7 +266,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture:!!options.dwellingLevelFixture,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -332,7 +338,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[14]===value,grailChoice);
   }
-  if(options.monthlyFixture||options.extraDwellingFixture){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
+  if(options.monthlyFixture||options.extraDwellingFixture||options.dwellingLevelFixture){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
   if(options.grailFixture){await command(109,3,0);await wait(()=>goonkMobileState.wogOptions[3]===0);}
   if(classic)await command(22);
   else if(desktop)await page.locator('[data-ui=begin]').click();
@@ -342,14 +348,14 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
 }
 
 async function panel(){
- if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[['desktop','options-desktop','source-option-desktop'].includes(process.env.CASES)?'click':'tap']();
+ if(await page.locator('.mithril-panel').isHidden())await page.locator('button[data-mithril-open]')[usesMouse?'click':'tap']();
  await wait(()=>goonkMobileState.mithril);
  return (await state()).mithril;
 }
 async function buy(offer){
  const before=await panel();
  if(offer.kind===8)await page.locator(`[data-mithril-terrain="${offer.id}"]`).selectOption(String(offer.choice??0));
- await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[['desktop','options-desktop','source-option-desktop'].includes(process.env.CASES)?'click':'tap']();
+ await page.locator(`[data-mithril-buy="${offer.id}"][data-mithril-choice="${offer.choice||0}"]`)[usesMouse?'click':'tap']();
  if(offer.kind===6){
   await wait(amount=>goonkMobileState.resources[7]===amount,before.amount-offer.cost);
   await page.locator('.mithril-panel').waitFor({state:'hidden'});return;
@@ -385,6 +391,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('dwelling-levels')){
+  const {runMithrilDwellingLevels}=await import('./wog-mithril-dwelling-levels-cases.mjs');
+  await runMithrilDwellingLevels({boot,state,command,wait,walk,panel,buy,page:()=>page,output,report,readCompletedNativeSave});
+ }
  if(process.env.CASES?.startsWith('inverted-speeds')){
   const {runInvertedSpeeds}=await import('./wog-map-inverted-speeds-cases.mjs');
   await runInvertedSpeeds({boot,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
@@ -595,7 +605,9 @@ try{
  assert.equal((await state()).mithril.amount,amount);
  report.scenarios.push('owned-mine-double-income-payment-and-stale-request');
  await page.locator('[data-mithril-close]').tap();await page.locator('[data-ui=heroes]').tap();
- await wait(()=>goonkMobileState.heroWindow?.henchman);await page.locator('[data-hero-tab=henchman]').tap();
+ await wait(()=>goonkMobileState.heroWindow?.henchman);
+ if(!await page.locator('[data-hero-tab=henchman]').isVisible())await page.locator('.hero-bag-tabs .ui-overflow-trigger:visible').tap();
+ await page.locator('[data-hero-tab=henchman]').tap();
  await page.locator('[data-henchman-slot="0"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
  await command(63);await wait(()=>goonkMobileState.mode==='map');await panel();
  assert.equal((await state()).mithril.amount,amount);

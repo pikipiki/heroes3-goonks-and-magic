@@ -735,3 +735,17 @@ de MA:S. Le dix-neuvième choix utilise les commandes tactiles communes ; le
 format918 conserve les catalogues précédents jusqu’à dix-huit choix.
 Les profils complets demeurent désactivés. Preuve bornée :
 `scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json`.
+
+Les améliorations d’habitations au mithril utilisent désormais les niveaux
+initiaux MA:L audités pour comparer les créatures et calculer le prix. Le
+niveau source zéro est valide. Une amélioration de niveau source3 coûte un
+mithril, celle de niveau5 en coûte deux ; un groupe déjà amélioré double le
+prix. Les casernes de TUM dont l’épéiste a été ramené au niveau source0 ne
+peuvent plus contourner la différence avec le croisé de niveau3. Les extensions
+natives sans identité source utilisent leur rang natif converti en base zéro.
+Les achats modifient uniquement les types de créatures et conservent tous les
+stocks, y compris après une seconde amélioration et une sauvegarde. Le format919
+annonce ces critères sans ajouter de choix aux dix-neuf réglages existants.
+Les options source149/170/171, les mutations MA:L externes et le calendrier
+exact des moulins restent à porter. Preuve bornée :
+`scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json`.
