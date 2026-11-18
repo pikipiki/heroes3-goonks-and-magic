@@ -7,12 +7,12 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9ea9dbfff5f16b631c6faafce4f1b2675a5a3bb9f30d171d65e878e4ead3d438",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790"
   },
   "nativeBuild": {
@@ -463,5 +463,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
+  },
+  "fortlessTownsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9ea9dbfff5f16b631c6faafce4f1b2675a5a3bb9f30d171d65e878e4ead3d438"
+    },
+    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
+    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
   }
 }

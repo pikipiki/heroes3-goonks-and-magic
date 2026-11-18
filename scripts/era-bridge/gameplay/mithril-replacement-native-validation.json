@@ -8,19 +8,19 @@
   "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
   "servedEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "f2bbf322c1977a2f90d17550a9c2f8ffe1857e5cc1551834a01731abab5a87e7",
-    "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9ea9dbfff5f16b631c6faafce4f1b2675a5a3bb9f30d171d65e878e4ead3d438",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
+    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
+    "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a4d9f197089ecd0e8994fbd4b6d4b39965074ff55ff7b79326522a630cefdc64",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
     "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9",
     "work/vcmi-wasm/lib/era/EraMithrilReplacementRules.h": "e36e812bc4f368245cdb89bf40400a3f7648e14bfe966c337cfe81f386a52f83",
     "work/vcmi-wasm/server/era/EraMithrilResourceReplacement.h": "87ad6cfc59ef502162ae0d71091b00fe239c9e6d32bd5c66c1fdbe4517739eff",
     "tests/native/EraMithrilReplacementRules.test.cpp": "e6a06c29f5eaac9545d7799db6563645f35a985c45dcc1d2021fd9e4eb46de6d",
@@ -1406,5 +1406,21 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
+  },
+  "fortlessTownsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "f2bbf322c1977a2f90d17550a9c2f8ffe1857e5cc1551834a01731abab5a87e7",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a4d9f197089ecd0e8994fbd4b6d4b39965074ff55ff7b79326522a630cefdc64",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9ea9dbfff5f16b631c6faafce4f1b2675a5a3bb9f30d171d65e878e4ead3d438",
+      "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8"
+    },
+    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
+    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
   }
 }

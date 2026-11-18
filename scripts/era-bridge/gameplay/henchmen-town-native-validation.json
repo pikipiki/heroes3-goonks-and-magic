@@ -11,7 +11,7 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8",
+    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
@@ -21,7 +21,7 @@
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -300,5 +300,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
+  },
+  "fortlessTownsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
+      "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8"
+    },
+    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
+    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
   }
 }

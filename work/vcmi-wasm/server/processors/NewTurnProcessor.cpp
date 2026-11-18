@@ -815,6 +815,7 @@ NewTurn NewTurnProcessor::generateNewTurnPack()
 	bool firstTurn = !gameHandler->gameInfo().getDate(Date::DAY);
 	era_compat::henchmen::initializeSettings(*gameHandler,firstTurn);
 	era_compat::map_rules::initializeSettings(*gameHandler,firstTurn);
+	era_compat::map_rules::removeInitialFortifications(*gameHandler,firstTurn);
 	era_compat::script_rules::initializeSettings(*gameHandler,firstTurn);
 	era_compat::mithril::initializeSeed(*gameHandler,firstTurn);
 	bool newWeek = gameHandler->gameInfo().getDate(Date::DAY_OF_WEEK) == 7; //day numbers are confusing, as day was not yet switched

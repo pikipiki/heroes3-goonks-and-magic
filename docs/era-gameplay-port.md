@@ -891,3 +891,22 @@ pendant un combat. Le marquage mémoire de jour de l’exécutable original et s
 propagations arbitraires restent hors du contrat admis. Les profils complets
 restent désactivés. Preuve :
 `scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json`.
+
+
+La règle131 porte le catalogue à treize règles de carte sur vingt-et-une.
+Les deux nouveaux choix Carte/Oui/Non retirent les Châteaux, Citadelles et Forts
+au départ, ou préservent les villes appartenant à l’IA avec l’option144. Les
+villes neutres restent concernées, comme dans le script131. La suppression
+s’effectue une seule fois avant la génération du premier tour et actualise
+l’apparence et les bonus des villes. Elle ne dépense aucune ressource ni action
+de construction. Les forts reconstruits et les villes capturées plus tard ne
+sont pas retraités, y compris après sauvegarde et changement des préférences.
+
+Les essais couvrent les neuf factions d’origine, Goonk avec un héros en visite,
+les propriétaires humains/IA/neutres, les trois niveaux de fortification et
+l’accès au recrutement sans fort. Les anciennes parties926 restent fortifiées
+malgré un nouveau réglage global actif. Le format927 annonce vingt-quatre choix
+et conserve exactement les limites des anciens formats. Les deux contrôles
+utilisent les composants communs, au toucher et à la souris, en français et en
+anglais. Les profils complets restent désactivés. Preuve :
+`scripts/era-bridge/gameplay/map-fortless-native-validation.json`.

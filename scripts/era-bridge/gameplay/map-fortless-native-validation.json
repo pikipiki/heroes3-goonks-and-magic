@@ -1,0 +1,1760 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Native initial map rules131/144: remove Castle/Citadel/Fort once; optionally preserve AI towns while neutral and human towns stay eligible. Recalculate appearance/bonuses without spending gold or build actions, preserve rebuilt/captured towns and old games.",
+  "sourceBaseCommit": "6ea12c709bc4bd7e3270298b10d6747a94ab30f0",
+  "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+  "sourceBindings": {
+    "mod/tum-era/content/config/wog-map-rules.json": "9152c6ef91a6081dcb87beb97b9f7ea713576338ec3a5db859502240374a14a9",
+    "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
+    "work/vcmi-wasm/lib/era/EraMapFortlessRules.h": "b1fb5406d9b103ac7656ac6ea15dd59f68c58d1a590b4eabb83731576f33f246",
+    "work/vcmi-wasm/lib/era/EraMapFortlessTowns.h": "e1eaca193a391bcff531e36540b194a18008c5cb4f736c639a538735b1e1870c",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "77b35c7e7d32dde12b3f08353f27baef146ba42130219a7112df40b19db96ca9",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "63906782f2c71adbfde6ebb50ec9f42b39f112c83b0ce52df9660151d603053b",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9",
+    "tests/native/EraMapFortlessRules.test.cpp": "bb89011115365288ca289d8b71b67cc635d489c30c019ba31771a90268dbc17e",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
+    "work/browser-tests/wog-map-fortless-cases.mjs": "78639617fe6b4582424834e3be045c86547641e4094138be7c85d897fa05070f",
+    "tests/fixtures/era-gameplay/map-fortless-reference.json": "f7d3ecab64b7db682e9a29bc6cb92e17dbb948c3f0d21d4c37cd33e9c63a4156",
+    "scripts/era-bridge/gameplay/map-rules.json": "dae70d0e007f8d0d22af3400d3a001fa7ef54cfb738c9a01a540f08c1aa50c7e",
+    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
+    "tests/era-map-fortless.test.mjs": "36c986217460602ee1f9226ecfbcd0dfcb46a46def2dd430e1b509d02ca2dabb",
+    "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 109,
+    "logSha256": "1c8929e7c6884ba02f63a517fd33b5ad16876381d73aaa6bb65f23b0a33182e5",
+    "finalVerificationLogSha256": "5807700412611530c1ba57238fbe3eb76ea81710edd4d2366322bb751f819fd6",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "tests": [
+      {
+        "name": "EraMapFortlessRules",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "EraWogOptionsSerialization",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3012,
+    "mismatches": [],
+    "expectedManifestSha256": "6fbfa028d6e0807fb188246e3d1c1f0184483543cbf34cc4ffa9c55c41081978"
+  },
+  "upstreamReference": {
+    "sourceSha256": "6d0761637e3105a5fe2d89213574ec547266579f65db54dd0b945945eb6e9013",
+    "sourceFragments": [
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/131 wog - towns start without forts.erm",
+        "lines": [
+          12,
+          25
+        ],
+        "text": "!#DC(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS) = 131;\r\n!#DC(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS_ONLY_HUMAN) = 144;\r\n\r\n\r\n; function for passing through all map objects\r\n!?FU(WOG_OnIterateAllMapObjects);\r\n!#VA(x:x) (y:x) (z:x);\r\n!#VA(objType:x);\r\n!#VA(objSubtype:x);\r\n!#VA(isYellowSquare:x); boolean.\r\n!#VA(isPassable:x);     boolean.\r\n\r\n; check: is entry to the object\r\n!!FU&(isYellowSquare)<>(TRUE):E;\r\n",
+        "sha256": "1e76f00161bec7d6d6227b2e30cd9e838e992556297e74faf451613d02f16da4"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/131 wog - towns start without forts.erm",
+        "lines": [
+          27,
+          75
+        ],
+        "text": "; check option is enabled\r\n!!UN:P(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS)/?(wogOption:y);  \r\n!!FU&(wogOption)<>(TRUE):E;\r\n\r\n; if hero visitor town\r\n!!if&(objType)=(OBJ_HERO):;\r\n    !!FU(WOG_AdvMgr_GetMapItem):P(x)/(y)/(z)/?(mapItem:y);\r\n    !!FU(WOG_MapItem_GetRealType):P(mapItem)/?(objType);\r\n!!en;\r\n\r\n; check: object type\r\n!!FU&(objType)<>(OBJ_TOWN):E;\r\n\r\n; get town owner\r\n!!CA(x)/(y)/(z):O?(owner:y);\r\n \r\n; if owner exists\r\n!!if&(owner)<>(NO_PLAYER):;\r\n  !!OW:I(owner)/?(isAI:y);\r\n  !!if&(isAI)=(TRUE):;\r\n    !!UN:P(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS_ONLY_HUMAN)/?(wogOption2:y); \r\n    !!FU&(wogOption2)=(TRUE):E;\r\n  !!en;  \r\n!!en;\r\n\r\n; remove castle, citadel, forts\r\n!!CA(x)/(y)/(z):B2/9 B2/8 B2/7;\r\n\r\n; set correct def\r\n!!FU(WOG_AdvMgr_GetMapItem):P(x)/(y)/(z)/?(mapItem2:y);\r\n!!FU(WOG_GameMgr_MapItem_ResetDef):P(mapItem2);\r\n\r\n\r\n** End of Script **\r\n",
+        "sha256": "794afd31d291d08e00a6c8ef4eccf1ec3782fdf14c93dfc0e46fdb08a10861d9"
+      }
+    ],
+    "sourceOptions": [
+      131,
+      144
+    ],
+    "fortificationSourceIds": [
+      9,
+      8,
+      7
+    ],
+    "neutralTownsRemainEligible": true
+  },
+  "programFileSha256": "8d295df850b97953de4702e9ab25f857655c5e1e5796bc3737d7527f6b57ecea",
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "scenarios": [
+        {
+          "name": "all-towns",
+          "configured": false,
+          "choice": 1,
+          "preserveConfigured": false,
+          "preserveChoice": 0,
+          "active": true,
+          "preserve": false,
+          "ready": {
+            "text": "FORTS READY 1/0 0/0/0/0/0/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 1/0 1/0/0/0/0/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 1/0 1/0/0/0/0/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "preserve-ai",
+          "configured": false,
+          "choice": 1,
+          "preserveConfigured": false,
+          "preserveChoice": 1,
+          "active": true,
+          "preserve": true,
+          "ready": {
+            "text": "FORTS READY 1/1 0/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              0,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "forced-off",
+          "configured": true,
+          "choice": 0,
+          "preserveConfigured": true,
+          "preserveChoice": 1,
+          "active": false,
+          "preserve": true,
+          "ready": {
+            "text": "FORTS READY 0/1 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 0/1 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 0/1 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "inherited-on",
+          "configured": true,
+          "choice": -1,
+          "preserveConfigured": true,
+          "preserveChoice": -1,
+          "active": true,
+          "preserve": true,
+          "ready": {
+            "text": "FORTS READY 1/1 0/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              0,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "inherited-off",
+          "configured": false,
+          "choice": -1,
+          "preserveConfigured": false,
+          "preserveChoice": -1,
+          "active": false,
+          "preserve": false,
+          "ready": {
+            "text": "FORTS READY 0/0 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 0/0 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 0/0 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "1ec005d7b90a0229f6e8043aea8a3973698cb79fcaf98eedb88a4daa83ca4ede"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "scenarios": [
+        {
+          "name": "all-towns",
+          "configured": false,
+          "choice": 1,
+          "preserveConfigured": false,
+          "preserveChoice": 0,
+          "active": true,
+          "preserve": false,
+          "ready": {
+            "text": "FORTS READY 1/0 0/0/0/0/0/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 1/0 1/0/0/0/0/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 1/0 1/0/0/0/0/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        },
+        {
+          "name": "preserve-ai",
+          "configured": false,
+          "choice": 1,
+          "preserveConfigured": false,
+          "preserveChoice": 1,
+          "active": true,
+          "preserve": true,
+          "ready": {
+            "text": "FORTS READY 1/1 0/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              0,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2ca1b7b473bf3caab63039c890b6fc1de947a43e335026670502c7e55ba84c25"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "scenarios": [
+        {
+          "name": "preserve-ai",
+          "configured": false,
+          "choice": 1,
+          "preserveConfigured": false,
+          "preserveChoice": 1,
+          "active": true,
+          "preserve": true,
+          "ready": {
+            "text": "FORTS READY 1/1 0/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              0,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 1/1 1/7/0/0/7/0/0/0/0 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              1,
+              7,
+              0,
+              0,
+              7,
+              0,
+              0,
+              0,
+              0
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        },
+        {
+          "name": "forced-off",
+          "configured": true,
+          "choice": 0,
+          "preserveConfigured": true,
+          "preserveChoice": 1,
+          "active": false,
+          "preserve": true,
+          "ready": {
+            "text": "FORTS READY 0/1 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "rebuilt": {
+            "text": "FORTS REBUILT 0/1 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "restored": {
+            "text": "FORTS RESTORED 0/1 7/7/1/3/7/3/1/7/7 types 0/1/2/3/4/5/6/7/8",
+            "ranks": [
+              7,
+              7,
+              1,
+              3,
+              7,
+              3,
+              1,
+              7,
+              7
+            ],
+            "types": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "firstStock": 14,
+          "recruitmentAccessible": true,
+          "customFaction": true,
+          "visitingHeroPreserved": true,
+          "nativeSaveReload": true,
+          "reversedGlobalDefaults": true,
+          "rebuiltFortNotRemoved": true,
+          "capturedTownNotReprocessed": true,
+          "saveVersion": 927,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "633f29d96685aa9d49c0c7b0b60725c6cba87915b00e94a9025cf08d9b3f7839"
+    }
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657",
+    "scenarios": [
+      {
+        "kind": "fortless-legacy-producer",
+        "saveVersion": 926
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "fef33e1d39346644b04008f7cf79a9261515e0fbfb9849e397738bccff420398"
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+    "scenarios": [
+      {
+        "kind": "fortless-legacy-consumer",
+        "saveVersion": 927,
+        "inputVersion": 926,
+        "noRetroactiveFortRemoval": true,
+        "continuedNextDay": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "f66dd78f6aa822e9e2483d01538b4f83c7c4d86ff141f78a8d9157acb1b0fb48"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 927,
+        "readerVersion": 926,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "95038caf33aada45f635cd0e186c3e8423ec4720a7bbd15e9a5fa86e2ac82e97"
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "4e2b86c4b41090a4dc35a1bad46141af1518b714dc58ccc7514febc710241dcd",
+      "scenarioCount": 7
+    },
+    "metadata": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "cd85c870d2505e47fcf9f8fe181637d76a4df07dd01fdf052aed37151156adff",
+      "scenarioCount": 1
+    },
+    "signed-henchmen": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "5afac2806e62b9808107c4b6ccf9039f3c0efbdd62b8f6a8c0ae68d08902e748",
+      "scenarioCount": 4
+    },
+    "source36": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "5673da45120fb77bd2ee554e99524207da630af205bf2ed71b294903d65370c7",
+      "scenarioCount": 2
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "5df3302193405c6df95c9fb159bccf9eeda779b6d4ad330d19c13bf4bd720871",
+      "scenarioCount": 17
+    },
+    "weekly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "fc8234ff46946272bc589bcce8ff87c350af3598f8c5da670cc7b29457111f11",
+      "scenarioCount": 1
+    },
+    "display": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+      "errors": [],
+      "rawReportSha256": "3331c5774155c02d8b33fdd4e69c56addc429305d1e9dd0b93667384c21b7df2",
+      "scenarioCount": 1
+    }
+  },
+  "serialization": {
+    "previousSaveVersion": 926,
+    "saveVersion": 927,
+    "choiceCount": 24,
+    "legacyChoiceCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ]
+  },
+  "ui": {
+    "townsWithoutForts": {
+      "passed": true,
+      "cases": [
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9b849a010afe6dab01f712a56b95c19ce26afd7f8e258a1b52609f04c1f45f33"
+    },
+    "preserveAiForts": {
+      "passed": true,
+      "cases": [
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9b849a010afe6dab01f712a56b95c19ce26afd7f8e258a1b52609f04c1f45f33"
+    }
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.279-engine.tar.gz",
+    "sha256": "70be2581aee96f13ba2e52f927d780befcd2ef9d531f4a642aa9beea5233b4ab",
+    "runtimeFiles": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ]
+  },
+  "remaining": [
+    "Eight other map rules and the six original selection modes for option101.",
+    "Complete gameplay profiles, arbitrary source event ordering and exact ERA RNG sequence remain unadmitted."
+  ],
+  "servedEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+  "publicationVerification": {
+    "release": "0.4.279",
+    "nodeTests": {
+      "total": 937,
+      "passed": 881,
+      "failed": 0,
+      "skipped": 56
+    },
+    "freshTumTests": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "siteBuild": true,
+    "siteVerified": true,
+    "nativeFilesByteVerified": 10464,
+    "transportBytes": 702298666
+  }
+}

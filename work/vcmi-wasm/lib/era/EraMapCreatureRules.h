@@ -2,6 +2,7 @@
 #include "EraSourceCreatureLevels.h"
 #include "EraMapArmyGrowth.h"
 #include "EraMapMonthlyVisits.h"
+#include "EraMapFortlessTowns.h"
 #include "EraCampaignCreatureAttributes.h"
 #include "../GameLibrary.h"
 #include "../CCreatureHandler.h"
@@ -65,6 +66,7 @@ inline void applyGroundedFliers(CGameState & gs,const JsonNode & next,const Json
 }
 inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
 {
+    applyInitialFortifications(gs,next);
     applyArmyGrowth(gs,next);
     applyMonthlyVisits(gs,next);
     const auto & previous=gs.getMap().eraGameplayState["mapRules"];

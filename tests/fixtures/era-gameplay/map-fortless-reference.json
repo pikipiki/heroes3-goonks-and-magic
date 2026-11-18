@@ -1,0 +1,33 @@
+{
+  "sourceSha256": "6d0761637e3105a5fe2d89213574ec547266579f65db54dd0b945945eb6e9013",
+  "sourceFragments": [
+    {
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/131 wog - towns start without forts.erm",
+      "lines": [
+        12,
+        25
+      ],
+      "text": "!#DC(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS) = 131;\r\n!#DC(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS_ONLY_HUMAN) = 144;\r\n\r\n\r\n; function for passing through all map objects\r\n!?FU(WOG_OnIterateAllMapObjects);\r\n!#VA(x:x) (y:x) (z:x);\r\n!#VA(objType:x);\r\n!#VA(objSubtype:x);\r\n!#VA(isYellowSquare:x); boolean.\r\n!#VA(isPassable:x);     boolean.\r\n\r\n; check: is entry to the object\r\n!!FU&(isYellowSquare)<>(TRUE):E;\r\n",
+      "sha256": "1e76f00161bec7d6d6227b2e30cd9e838e992556297e74faf451613d02f16da4"
+    },
+    {
+      "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/131 wog - towns start without forts.erm",
+      "lines": [
+        27,
+        75
+      ],
+      "text": "; check option is enabled\r\n!!UN:P(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS)/?(wogOption:y);  \r\n!!FU&(wogOption)<>(TRUE):E;\r\n\r\n; if hero visitor town\r\n!!if&(objType)=(OBJ_HERO):;\r\n    !!FU(WOG_AdvMgr_GetMapItem):P(x)/(y)/(z)/?(mapItem:y);\r\n    !!FU(WOG_MapItem_GetRealType):P(mapItem)/?(objType);\r\n!!en;\r\n\r\n; check: object type\r\n!!FU&(objType)<>(OBJ_TOWN):E;\r\n\r\n; get town owner\r\n!!CA(x)/(y)/(z):O?(owner:y);\r\n \r\n; if owner exists\r\n!!if&(owner)<>(NO_PLAYER):;\r\n  !!OW:I(owner)/?(isAI:y);\r\n  !!if&(isAI)=(TRUE):;\r\n    !!UN:P(WOG_OPT_ALL_TOWNS_WITHOUT_FORTS_ONLY_HUMAN)/?(wogOption2:y); \r\n    !!FU&(wogOption2)=(TRUE):E;\r\n  !!en;  \r\n!!en;\r\n\r\n; remove castle, citadel, forts\r\n!!CA(x)/(y)/(z):B2/9 B2/8 B2/7;\r\n\r\n; set correct def\r\n!!FU(WOG_AdvMgr_GetMapItem):P(x)/(y)/(z)/?(mapItem2:y);\r\n!!FU(WOG_GameMgr_MapItem_ResetDef):P(mapItem2);\r\n\r\n\r\n** End of Script **\r\n",
+      "sha256": "794afd31d291d08e00a6c8ef4eccf1ec3782fdf14c93dfc0e46fdb08a10861d9"
+    }
+  ],
+  "sourceOptions": [
+    131,
+    144
+  ],
+  "fortificationSourceIds": [
+    9,
+    8,
+    7
+  ],
+  "neutralTownsRemainEligible": true
+}

@@ -94,9 +94,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_MITHRIL_RESOURCE_REPLACEMENT, // source170 first-map resource/campfire pass, twenty-one choices
 	GOONK_MITHRIL_DISPLAY, // source149 frozen information choice, twenty-two choices
 	GOONK_ERA_CREATURE_LEVELS, // map-local source MA:L reads/writes and mithril dwelling prices
+	GOONK_WOG_FORTLESS_TOWNS, // source131/144 first-map fortifications, twenty-four choices
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_ERA_CREATURE_LEVELS,
+	CURRENT = GOONK_WOG_FORTLESS_TOWNS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

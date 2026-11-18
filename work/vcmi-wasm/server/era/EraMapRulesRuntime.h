@@ -4,6 +4,7 @@
 #include "../../lib/era/EraMapArmyGrowth.h"
 #include "../../lib/era/EraMapCreatureRules.h"
 #include "../../lib/era/EraMapInvertedSpeed.h"
+#include "../../lib/era/EraMapFortlessRules.h"
 #include "../../lib/era/EraMapMonthlyVisitRules.h"
 #include "../../lib/era/EraMapExtraDwellingRules.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
@@ -45,6 +46,9 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("130",era_bridge::WogOption::TownGrails);
     choice("123",era_bridge::WogOption::MonthlyVisits);
     choice("117",era_bridge::WogOption::ExtraDwellingCreatures);
+    choice("131",era_bridge::WogOption::TownsWithoutForts);
+    packet.state["sourceOptions"]["144"].Bool()=firstTurn&&era_bridge::wogOptionEnabled(
+        gh.gameInfo(),era_bridge::WogOption::PreserveAiForts,configured["sourceOptions"]["144"].Bool());
     packet.state["sourceOptions"]["67"].Bool()=firstTurn&&configured["sourceOptions"]["67"].Bool();
     // The original menu removes rule130 when ANY Conflux exists, including
     // neutral/enemy towns. Never enable Aurora Borealis through this rule.
@@ -52,6 +56,21 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
         if(town->getFactionID()==FactionID::CONFLUX)
             packet.state["rules"]["130"].Bool()=false;
     gh.sendAndApply(packet);
+}
+inline void removeInitialFortifications(CGameHandler & gh,bool firstTurn)
+{
+    auto saved=state(gh.gameInfo());
+    if(!firstTurn||!saved["rules"]["131"].Bool()||saved["fortlessApplied"].Bool())return;
+    const bool preserveAi=saved["sourceOptions"]["144"].Bool();
+    for(const auto * town:gh.gameState().getMap().getObjects<CGTownInstance>())
+    {
+        const auto owner=town->getOwner();
+        const auto * player=owner.isValidPlayer()?gh.gameInfo().getPlayerState(owner):nullptr;
+        if(era_bridge::map_rules::removeInitialFortifications(true,preserveAi,owner.isValidPlayer(),player&&player->isHuman()))
+            saved["fortlessTowns"].Vector().emplace_back(town->id.getNum());
+    }
+    saved["fortlessApplied"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void buildTownGrails(CGameHandler & gh)
 {

@@ -6,7 +6,7 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8",
+    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
@@ -300,5 +300,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
+  },
+  "fortlessTownsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "6c83415eebaf6fcd36125245445da034a5297023adcd4ae6cec63b9f088ab0e8"
+    },
+    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
+    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
   }
 }
