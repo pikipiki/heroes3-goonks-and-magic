@@ -151,6 +151,14 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,enab
     const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
     if(growthChoice!==null){
+     // Starting artifacts are random. Keep unrelated daily army conversions
+     // from changing the seven authored growth/experience witnesses.
+     const runtimeFile='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/era-bridge-runtime.json';
+     const runtime=JSON.parse(value.FS.readFile(runtimeFile,{encoding:'utf8'}));
+     for(const[key,policy]of Object.entries(runtime.artifacts||{})){
+      delete policy.dailyConversions;if(!Object.keys(policy).length)delete runtime.artifacts[key];
+     }
+     value.FS.writeFile(runtimeFile,JSON.stringify(runtime));
      manifest.settings.modules.commanders=false;
      value.FS.writeFile('/config/difficulty.json',JSON.stringify(growthDifficulty));
      manifest.settings.combat??={};manifest.settings.combat.layouts??={};

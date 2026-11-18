@@ -13,16 +13,16 @@
     "distinctConfigurationVariable": "hench_battleExpAIPct"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "c8fa742e2e0df5db662b454f58f3ef3005cb5f21c8f6e357c25b31afef51ca82",
+    "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
     "scripts/era-bridge/gameplay/henchmen.json": "9203baf6211b04302317586e66e267aa0a362b9d555624a88539192115cd2842",
     "scripts/era-bridge/gameplay/henchmen.mjs": "a43ef27db0f0ec64f62510870cd0914904ff6a6f032b1a1dd780a05e9c2c37ed",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "488a0d387ab8e2557312c3efef3ef6c77ed2827512a09a7a2296c329f0a62662",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/vcmi-wasm/client/CPlayerInterface.cpp": "1af7e27414aec46052a1babf112a4b6d6cd74fc7f51ad867e83477718bd4e27b",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "07e45028612aebab6ba15e79312b44f41c19458730f93d19a4b06faa9022ab71",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "b95945c7de99d3ae8476e61f671e0e6a677ec7931fce510660943843ef5e1618",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "ad7a9b309c84b8aab088a30a7279045143f255489b3c24766497521b410b0aa1",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "f131a8e0a634aedc014a4ad38027274cf430d27c2c63fd7953412727b872d5ce"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -119,5 +119,29 @@
     "Campaign restart and reserved/unplaced hero lifecycle",
     "Remaining spell, inventory and battle death/action interactions",
     "Original floating-point binary differential attestation"
-  ]
+  ],
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "c8fa742e2e0df5db662b454f58f3ef3005cb5f21c8f6e357c25b31afef51ca82",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "488a0d387ab8e2557312c3efef3ef6c77ed2827512a09a7a2296c329f0a62662",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "f131a8e0a634aedc014a4ad38027274cf430d27c2c63fd7953412727b872d5ce"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
+  }
 }

@@ -382,7 +382,7 @@ std::vector<Component> CGDwelling::getPopupComponents(PlayerColor player) const
 			for (auto const & creature : creatureLevel.second)
 			{
 				if (canSeeUnitAmount)
-					result.emplace_back(ComponentType::CREATURE, creature, creatures.front().first);
+					result.emplace_back(ComponentType::CREATURE, creature, creatureLevel.first);
 				else
 					result.emplace_back(ComponentType::CREATURE, creature);
 			}
@@ -439,6 +439,8 @@ void CGDwelling::updateGuards(IGameEventCallback & gameEvents) const
 bool CGDwelling::sourceCampaignRecruits() const
 {
  if(!cb||(ID!=Obj::CREATURE_GENERATOR1&&ID!=Obj::CREATURE_GENERATOR4))return false;
+ const auto & mapRules=cb->gameState().getMap().eraGameplayState["mapRules"];
+ if(mapRules["rules"]["117"].Bool()&&mapRules["extraDwellingObjects"][std::to_string(id.getNum())].Bool())return true;
  const auto & vm=cb->gameState().getSourceCampaignState();
  return era_campaign_admission::admitted(vm)&&vm["dwellings"][std::to_string(id.getNum())]["configured"].Bool();
 }

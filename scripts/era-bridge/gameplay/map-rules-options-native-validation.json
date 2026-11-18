@@ -19,18 +19,18 @@
   "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
   "parentEngineSha256": "8a045a77916f46ff11bb8b6ef1c5864ac3de69a6f6d9ed96d3731799cbdb40b6",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "319ae8d44565287b7f14db52bf898ccb3d05025b69400ddf2ec1ffd498dbc9e1",
-    "scripts/era-bridge/gameplay/map-rules.json": "20ebab2f443a119143dd52f162c3372678b58d893f6535be2ddfcb7fb22b118a",
+    "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
+    "scripts/era-bridge/gameplay/map-rules.json": "78d56a06dce91bc959fe5ac893fb455ba94ebab1bcbdf337dba4e8d90cffd28d",
     "tests/native/EraWogOptions.test.cpp": "8196052417a569c094bcf2cd1527e010de05b2f3ff82142e129d65d8ea57fa1e",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "e597dd8cebebfddb7c79e7f7f7395cc7767dae84a6abc84b0c0d88469df3c726",
-    "web/wog-options.mjs": "38264bd51391cc4905355f572f2878823fdb8e3c3129b0ba27e776e462f40c2f",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "596e5b822b61e3b3574631bc2f3e9e9929e327203059974b450aa51649c8fcd7",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
+    "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
     "work/browser-tests/wog-mithril-options-cases.mjs": "3d70065c75cb062fbae4256bcbeceb649e9c41e88f0debc1d5bb615d66823c66",
     "work/browser-tests/wog-options-layout-e2e.mjs": "3262c9001a3c70bef09fd04673fd348df04a863e36f8045d14edc5d8c5bd183a",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8424f86fa313cce239dda8de0abd7b631c8b246ff3a7ff6c37ce030b88587f79",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "6f3a5f7cf1238104370f1bb12fa823fc871cd6ea3403bbb076bfb5623f99bc96",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a5ae62593c65838d6171b41c6eb2f242f52e5b43483b67d51539d2343a0d366a",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f60085abbce3eeaeb11706fdc7a249d93d01b12f44b255e4e803ef868306cc7c"
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "74771c62276e7d40fc3cea56f8b4d5330861887ebd00d0dd8e824fb46e2595b1",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f03da5ec957f186d517569b2865fe1ffe406cc551505cdaea6ce4864933c510",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "93e21d186c354638349c3c7e10510fa1970a0b5e2a51c7719f9e20c4f446867b"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -393,5 +393,35 @@
     "Other15 map rules and six source selection modes for101",
     "Full source UN:P integration and complete pack activation",
     "Private engine contains dormant unadmitted work and is not the published runtime"
-  ]
+  ],
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "319ae8d44565287b7f14db52bf898ccb3d05025b69400ddf2ec1ffd498dbc9e1",
+      "scripts/era-bridge/gameplay/map-rules.json": "20ebab2f443a119143dd52f162c3372678b58d893f6535be2ddfcb7fb22b118a",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "e597dd8cebebfddb7c79e7f7f7395cc7767dae84a6abc84b0c0d88469df3c726",
+      "web/wog-options.mjs": "38264bd51391cc4905355f572f2878823fdb8e3c3129b0ba27e776e462f40c2f",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "596e5b822b61e3b3574631bc2f3e9e9929e327203059974b450aa51649c8fcd7",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8424f86fa313cce239dda8de0abd7b631c8b246ff3a7ff6c37ce030b88587f79",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "6f3a5f7cf1238104370f1bb12fa823fc871cd6ea3403bbb076bfb5623f99bc96",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a5ae62593c65838d6171b41c6eb2f242f52e5b43483b67d51539d2343a0d366a",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f60085abbce3eeaeb11706fdc7a249d93d01b12f44b255e4e803ef868306cc7c"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
+  }
 }

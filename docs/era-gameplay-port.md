@@ -131,7 +131,7 @@ l’écrasement des variables de l’appelant. La nouvelle capacité de sauvegar
 empêche ce moteur de perdre silencieusement les instantanés ; il refuse le
 nouveau fichier avant d’exécuter les scripts. Les continuations anciennes sans
 instantané gardent leur comportement partagé au retour, tandis que les nouveaux
-appels enregistrent leur instantané. Le catalogue reste à seize choix. Les
+appels enregistrent leur instantané. Ce correctif conservait les seize choix existants. Les
 règles des déclencheurs, les registres réservés et les locales `z`/`e` restent
 hors du périmètre de ce correctif `FU:P`. Preuve :
 `scripts/era-bridge/gameplay/era3-quick-scope-native-validation.json`.
@@ -438,17 +438,17 @@ publié ne connaît pas encore le septième. Ces preuves ne constituent ni
 l'activation du profil WoG complet ni le port des écritures UN:P des packs
 externes. Détails : `scripts/era-bridge/gameplay/mithril-options-native-validation.json`.
 
-Le catalogue candidat contient seize réglages par partie : les six premiers,
-le mithril et neuf règles de carte (114, 115, 116, 121, 122, 123, 124, 128 et 130). Les règles
+Le catalogue candidat contient dix-sept réglages par partie : les six premiers,
+le mithril et dix règles de carte (114, 115, 116, 117, 121, 122, 123, 124, 128 et 130). Les règles
 114/115/121/122/124/128 peuvent hériter de leur configuration, être activées ou
 être désactivées sans changer les autres parties. Les tests inversent
 volontairement leur configuration globale : combats avec dégâts effectifs,
 déplacements et renouvellement quotidien, production hebdomadaire avec
 protection au mithril, achat du second Capitole et effet des plaines magiques.
 Le chargement conserve les choix des anciens catalogues à six, sept, treize,
-quatorze ou quinze réglages. Le format courant préfixe le catalogue par sa longueur pour
+quatorze, quinze ou seize réglages. Le format courant préfixe le catalogue par sa longueur pour
 permettre les ajouts suivants sans réinterpréter les octets historiques.
-Les douze autres règles de carte et les six modes source de sélection de
+Les onze autres règles de carte et les six modes source de sélection de
 l'option 101 ne sont pas encore portés. Le catalogue n'active pas les packs
 complets et ne revendique pas le port de leurs commandes UN:P.
 
@@ -463,7 +463,7 @@ avec des quantités proches des seuils, un héros de l'IA et une héroïne en
 réserve. Un groupe de 25 piquiers au rang 1 passe à 26 : son expérience
 moyenne descend de 1000 à 961, son rang à 0 et sa défense effective de 6 à 5.
 Le contrôle du format annonce la nouvelle capacité aux autres versions du
-moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les douze autres règles et les modes de sélection source restent
+moteur ; les anciens catalogues et les transactions sauvegardées restent lus. Les onze autres règles et les modes de sélection source restent
 à porter ; cette étape n'active pas les profils complets.
 
 La règle 130 construit les Graals une fois au premier jour, après le stock
@@ -687,3 +687,23 @@ indices dynamiques dans les initialisations, déclarations et branches `el`,
 l’interpolation de valeurs dynamiques et les variables `z`/`e` restent refusés.
 Les profils complets demeurent désactivés. Preuve bornée :
 `scripts/era-bridge/gameplay/era3-dynamic-arrays-native-validation.json`.
+
+La règle WoG117 ajoute douze sangliers dans le deuxième emplacement des
+habitations communes compatibles, après la création des stocks initiaux. Elle
+remplace uniquement cet emplacement : les archers déjà disponibles et les
+autres emplacements restent intacts. Les créatures du premier niveau source,
+sangliers, nomades et élémentaires d’air ou de tempête sont exclus ; les
+habitations spéciales de type20 restent intactes. Les identités sans niveau
+source rapproché sont conservées sans modification.
+
+Le dix-septième réglage par partie propose Carte/Oui/Non au toucher et à la
+souris. Les stocks ajoutés utilisent le recrutement natif de plusieurs groupes,
+avec le curseur de quantité accessible sans clavier et le bon stock par groupe
+dans les aperçus. L’application unique et les choix gelés survivent à la
+sauvegarde ; une ancienne partie à seize réglages ne reçoit pas cette règle.
+La variante source67, lorsqu’elle est configurée avant la partie, choisit douze
+élémentaires d’air ; son exposition en lecture ne porte pas le pack Neutral Town.
+Le nouveau format916 laisse aux anciens formats leurs nombres de réglages
+respectifs et le moteur915 refuse les nouvelles sauvegardes. Les profils
+complets restent désactivés. Preuve bornée :
+`scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json`.

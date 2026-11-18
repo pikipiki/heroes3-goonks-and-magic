@@ -17,6 +17,7 @@ const rules = [
   ['Daily army growth', 'Croissance quotidienne des armées', 'Original hero stacks grow by 4% each day, up to 100,000 creatures.', 'Les groupes des héros d’origine grandissent de 4 % par jour, jusqu’à 100 000 créatures.'],
   ['Grails in all towns', 'Graal dans toutes les villes', 'Build Grails at the start, only if the map contains no Conflux town.', 'Construire les Graals au départ, uniquement si la carte ne contient aucune ville Conflux.'],
   ['Monthly site visits', 'Visites des sites chaque mois', 'Original heroes can revisit stat sites, schools and knowledge sites each month.', 'Les héros d’origine peuvent revisiter les sites de caractéristiques, les écoles et les lieux de savoir chaque mois.'],
+  ['Boars in dwellings', 'Sangliers dans les habitations', 'Add twelve boars to eligible original dwellings at the start.', 'Ajouter douze sangliers dans les habitations d’origine compatibles au départ.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

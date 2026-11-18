@@ -83,8 +83,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_WOG_MONTHLY_VISITS, // bounded monthly source hero visit reset, sixteen choices
 	GOONK_ERA3_QUICK_LOCALS, // persisted caller quick-register snapshots before FU copy-out
 
+	GOONK_WOG_EXTRA_DWELLING_CREATURES, // source rule117 and seventeen-choice peers
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_ERA3_QUICK_LOCALS,
+	CURRENT = GOONK_WOG_EXTRA_DWELLING_CREATURES,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

@@ -16,6 +16,9 @@ const engineDirectory=process.env.GOONK_ENGINE_DIR||'work/downloads/mithril-nati
 const sha=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const report={scope:'mithril-sites',completeRules:false,engineSha256:sha(path.join(engineDirectory,'vcmiclient.wasm')),scenarios:[],errors:[]};
 const testDifficulty=readJsonc('work/vcmi-wasm/config/difficulty.json');
+const testExtraDwellingDefinitions=readJsonc('work/vcmi-wasm/config/objects/dwellings.json');
+testExtraDwellingDefinitions.creatureGeneratorCommon.types.archersTower.creatures=[['archer'],['pikeman'],['orc']];
+testExtraDwellingDefinitions.creatureGeneratorCommon.types.fireConflux.creatures=[['stormElemental']];
 const testMarkets=readJsonc('work/vcmi-wasm/config/objects/markets.json');
 const testShrines=readJsonc('work/vcmi-wasm/config/objects/shrine.json');
 const testModdables=readJsonc('work/vcmi-wasm/config/objects/moddables.json');
@@ -26,7 +29,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -117,6 +120,13 @@ if opts['creatureRuleFixture']:
  objects.append(enemy)
 if opts['movementWater']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
 if opts['capitolCapture']:objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown','secondCapitolTown']]
+if opts['extraDwellingFixture']:
+ objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
+ for o in objects:
+  if o['instanceName']=='goonkHero':o.update({'x':9,'y':11})
+  else:o['options']['buildings']={'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']}
+ for index,subtype in enumerate(['archersTower','guardhouse','boarGlen','nomadTent','airConflux','fireConflux','golemFactory']):
+  site('extraDwelling'+str(index),'creatureGeneratorSpecial' if subtype=='golemFactory' else 'creatureGeneratorCommon',subtype,10+index*3,11,'red')
 if opts['monthlyFixture']:
  objects=[o for o in objects if o['instanceName'] in ['goonkHero','goonkTown','enemyTown']]
  for o in objects:
@@ -143,6 +153,7 @@ if opts['grailFixture']:
   objects.append(town)
 entries['objects.json']=json.dumps(objects).encode()
 terrain=json.loads(entries['surface_terrain.json'])
+if opts['extraDwellingFixture']:terrain=[['gr0_' for _ in row] for row in terrain]
 for y,row in enumerate(terrain):
  for x in range(len(row)):
   if 20<=x<=22 or 20<=y<=22: row[x]='rc0_'
@@ -154,7 +165,7 @@ if opts['plainsBlock']=='water':terrain[12][10]='wt0_'
 if opts['plainsBlock']=='underground':entries['underground_terrain.json']=json.dumps(terrain).encode()
 entries['surface_terrain.json']=json.dumps(terrain).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Mithril native validation'
-if opts['monthlyFixture']:header['events']=[]
+if opts['monthlyFixture'] or opts['extraDwellingFixture']:header['events']=[]
 if opts['grailFixture']:
  for day in [1,3]:
   header.setdefault('events',[]).append({'name':'private grail query day'+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
@@ -175,10 +186,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  let mapChoices=null;
  if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
   mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
@@ -186,7 +197,7 @@ async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null
   weeklyMines=!weeklyMines;multipleCapitols=!multipleCapitols;allBreath=!allBreath;
  }
  const classic=process.env.CASES==='classic';
- const desktop=['desktop','options-desktop','source-option-desktop','grails-desktop','monthly-desktop'].includes(process.env.CASES);
+ const desktop=['desktop','options-desktop','source-option-desktop','grails-desktop','monthly-desktop','extra-dwellings-desktop'].includes(process.env.CASES);
  page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
  await silenceTestAudio(page);
@@ -207,7 +218,7 @@ async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,creatureRules,translations,cleanManifest,scriptProgram})=>{
+ await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,neutralTown,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -222,8 +233,9 @@ async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null
     if(shrines)value.FS.writeFile('/config/objects/shrine.json',JSON.stringify(shrines));
     if(huts)value.FS.writeFile('/config/objects/witchHut.json',JSON.stringify(huts));
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
+    if(extraDwellingFixture){value.FS.writeFile('/config/objects/dwellings.json',JSON.stringify(extraDwellingDefinitions));}
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
-    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured}}));
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,sourceOptions:{67:neutralTown}}}));
     if(creatureRules){
      manifest.settings.modules.commanders=false;
      const patch={};for(const key of [creatureRules.actor,'core:gnoll','core:peasant','core:ogre'])patch[key]={hitPoints:1000000,attack:0,defense:0,speed:key===creatureRules.actor?20:key==='core:ogre'?4:1,damage:{min:key===creatureRules.actor?10:1,max:key===creatureRules.actor?10:1},abilities:{mapRuleTestNoMorale:{type:'NO_MORALE'}}};
@@ -246,7 +258,7 @@ async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,creatureRules,translations,cleanManifest,scriptProgram});
+ },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,neutralTown,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -283,6 +295,13 @@ async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null
    await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
    assert.equal(await form.locator('input[data-wog-option="6"]:checked').inputValue(),String(wogChoice));
   }
+  if(extraDwellingChoice!==null){
+   assert((await state()).wogOptions.length>=17,'Extra dwelling option advertised by native engine');
+   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="16"][value="${extraDwellingChoice}"]`).locator('..');
+   await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[16]===value,extraDwellingChoice);
+  }
   if(monthlyChoice!==null){
    assert((await state()).wogOptions.length>=16,'Monthly visit option advertised by native engine');
    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
@@ -297,7 +316,7 @@ async function boot({monthlyChoice=null,monthlyConfigured=false,grailChoice=null
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[14]===value,grailChoice);
   }
-  if(options.monthlyFixture){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
+  if(options.monthlyFixture||options.extraDwellingFixture){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
   if(options.grailFixture){await command(109,3,0);await wait(()=>goonkMobileState.wogOptions[3]===0);}
   if(classic)await command(22);
   else if(desktop)await page.locator('[data-ui=begin]').click();
@@ -337,7 +356,7 @@ async function walk(dx,dy=0){
  await command(6);await page.waitForTimeout(150);
  const point=await page.evaluate(({dx,dy})=>{const v=goonkMobileState.mapOverview.view;return{x:v.x+v.w/2+32*dx,y:v.y+v.h/2+32*dy};},{dx,dy});
  await page.evaluate(p=>Module._vcmiMobilePointer(p.x,p.y,1),point);await wait(()=>goonkMobileState.hasPath);await command(2);
- for(let i=0;i<400;++i){const s=await state();if(s.mode==='recruit')return s;if(s.mode==='dialog'){await command(1);await wait(token=>goonkMobileState.windowToken!==token||goonkMobileState.mode!=='dialog',s.windowToken);}else if(i>3&&s.mode==='map'&&!s.hasPath&&!s.heroMoving)return s;await page.waitForTimeout(100);}
+ for(let i=0;i<400;++i){const s=await state();if(s.mode==='recruit')return s;if(s.mode==='dialog'){await command(1);await wait(old=>goonkMobileState.windowToken!==old.token||goonkMobileState.mode!=='dialog'||goonkMobileState.dialogPresentation?.lines?.join(' ')!==old.text,{token:s.windowToken,text:s.dialogPresentation?.lines?.join(' ')});}else if(i>3&&s.mode==='map'&&!s.hasPath&&!s.heroMoving)return s;await page.waitForTimeout(100);}
  throw Error('Site visit did not finish');
 }
 async function recruitmentStock(){
@@ -350,6 +369,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
+ if(process.env.CASES?.startsWith('extra-dwellings')){
+  const {runExtraDwellings}=await import('./wog-map-extra-dwellings-cases.mjs');
+  await runExtraDwellings({boot,state,command,wait,walk,nextDay,recruitmentStock,page:()=>page,output,report,readCompletedNativeSave});
+ }
  if(process.env.CASES?.startsWith('monthly')){
   const {runMonthlyVisits}=await import('./wog-map-monthly-visits-cases.mjs');
   await runMonthlyVisits({boot,state,command,wait,walk,nextDay,page:()=>page,output,report,readCompletedNativeSave});

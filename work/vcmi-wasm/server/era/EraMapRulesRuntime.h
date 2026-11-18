@@ -3,6 +3,9 @@
 #include "../../lib/era/EraWogOptions.h"
 #include "../../lib/era/EraMapArmyGrowth.h"
 #include "../../lib/era/EraMapMonthlyVisitRules.h"
+#include "../../lib/era/EraMapExtraDwellingRules.h"
+#include "../../lib/era/EraSourceCreatureLevels.h"
+#include "../../lib/mapObjects/CGDwelling.h"
 #include "../../lib/StartInfo.h"
 #include "../../lib/era/EraMapRulesModel.h"
 #include "../../lib/era/EraMithrilModel.h"
@@ -37,6 +40,8 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("116",era_bridge::WogOption::DailyArmyGrowth);
     choice("130",era_bridge::WogOption::TownGrails);
     choice("123",era_bridge::WogOption::MonthlyVisits);
+    choice("117",era_bridge::WogOption::ExtraDwellingCreatures);
+    packet.state["sourceOptions"]["67"].Bool()=firstTurn&&configured["sourceOptions"]["67"].Bool();
     // The original menu removes rule130 when ANY Conflux exists, including
     // neutral/enemy towns. Never enable Aurora Borealis through this rule.
     for(const auto * town:gh.gameState().getMap().getObjects<CGTownInstance>())
@@ -126,6 +131,31 @@ inline void resetMonthlyVisits(CGameHandler & gh)
         ||saved["visitsResetDay"].Integer()>=day)return;
     EraGameplayChange packet;packet.system="mapRules";packet.state=saved;
     packet.state["visitsResetDay"].Integer()=day;gh.sendAndApply(packet);
+}
+inline void addExtraDwellingCreatures(CGameHandler & gh)
+{
+    auto saved=state(gh.gameInfo());
+    if(!saved["rules"]["117"].Bool()||saved["extraDwellingApplied"].Bool())return;
+    const bool neutralTown=saved["sourceOptions"]["67"].Bool();
+    const CreatureID added(CreatureID::decode(neutralTown?"core:airElemental":"core:boar"));
+    if(!added.toCreature())throw std::runtime_error("Missing WoG extra dwelling creature");
+    for(const auto * dwelling:gh.gameState().getMap().getObjects<CGDwelling>())
+    {
+        if(dwelling->ID!=Obj::CREATURE_GENERATOR1||dwelling->creatures.empty()
+            ||dwelling->creatures.front().second.empty())continue;
+        const auto * first=dwelling->creatures.front().second.front().toCreature();
+        const auto source=era_bridge::sourceCreatureIdForLevel(first->getJsonKey());
+        const auto level=era_bridge::sourceCreatureLevelForKey(first->getJsonKey());
+        if(!source||!level||!era_bridge::map_rules::extraDwellingCreature(
+            dwelling->ID.getNum(),*source,*level))continue;
+        SetAvailableCreatures stock;stock.tid=dwelling->id;stock.creatures=dwelling->creatures;
+        if(stock.creatures.size()<2)stock.creatures.resize(2);
+        stock.creatures[1]={era_bridge::map_rules::extraDwellingInitialStock,{added}};
+        gh.sendAndApply(stock);
+        saved["extraDwellingObjects"][std::to_string(dwelling->id.getNum())].Bool()=true;
+    }
+    saved["extraDwellingApplied"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)
 {buildTownGrails(gh);changeWeeklyMines(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}

@@ -7,14 +7,14 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "8681677e9fa4be2b339534d9af28d8eafa6dc72242c9d3629a2f018a832dce0c",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "baab62fea5aeda38b6050cad54efc8b37af06e060e9b7bcb2ba0de3d657febe4",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
-    "web/wog-options.mjs": "cd7721fbba1c6f9d9c73a6108054752b5ff4db9b48df51ef3c3c41b0087b7d0f",
-    "mod/tum-era/content/config/wog-map-rules.json": "5154564c322445681bddfbc9cf566a953764ea52140705f07af9ee40eedcea96",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "93e21d186c354638349c3c7e10510fa1970a0b5e2a51c7719f9e20c4f446867b",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f03da5ec957f186d517569b2865fe1ffe406cc551505cdaea6ce4864933c510",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "74771c62276e7d40fc3cea56f8b4d5330861887ebd00d0dd8e824fb46e2595b1",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
+    "web/wog-options.mjs": "d4dc1872ee40388b43bd546afe532ae9c95f9dcada03b7058ded6e010021a9f4",
+    "mod/tum-era/content/config/wog-map-rules.json": "846faa1044da6fac42aba7958e3029b6efb3a3003e6072f926c7d89f3fb79145",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
     "work/browser-tests/wog-map-grails-cases.mjs": "2544794e94a9a79da9e4615c73dadecbbcc86f11ffecee333e139d27e3f34fe8",
     "tests/fixtures/era-gameplay/map-grails-reference.json": "1cfd4fb97d868416d86134f10d225c91e3496570396310780af880a291c220c9"
   },
@@ -1309,5 +1309,34 @@
       "sha256": "365e70383014ef0308582c5193102b9287d2788845ab0f4c5294edf1a3c83525",
       "runtimeByteIdenticalToTestedCandidate": true
     }
+  },
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "7ffa0c06cdfcdb91831f9c33fb514531fe6d2fc96b361a9963c2cae048023751",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "8681677e9fa4be2b339534d9af28d8eafa6dc72242c9d3629a2f018a832dce0c",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "baab62fea5aeda38b6050cad54efc8b37af06e060e9b7bcb2ba0de3d657febe4",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
+      "web/wog-options.mjs": "cd7721fbba1c6f9d9c73a6108054752b5ff4db9b48df51ef3c3c41b0087b7d0f",
+      "mod/tum-era/content/config/wog-map-rules.json": "5154564c322445681bddfbc9cf566a953764ea52140705f07af9ee40eedcea96",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "71aa1635d6500f3c7a3e8ac14e182785cb1b5cdd2609ecfe645f8ac86e16d9e5"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
   }
 }

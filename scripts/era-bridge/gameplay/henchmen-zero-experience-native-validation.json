@@ -12,10 +12,10 @@
   },
   "sourceBindings": {
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "af90aac06a2a5c699c5f9e9538af9173cd2f9d92d19c19966379df2708658710",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "748ec4ca46ccb37baa0c42b7131c72edb7d9b09bbad3d04c07d74bbed6335e7f",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "scripts/era-bridge/gameplay/henchmen.mjs": "429a243f6ee0c991b3cef7ef75bf077bacb8c47827782277b77fa797ea995d10",
     "scripts/era-bridge/gameplay/henchmen.json": "d628637c9ae1dfe60efbcde41a6597693d37124918166521f9ded01a06c66978",
-    "docs/era-gameplay-port.md": "1239691ef6552a0576d35c08bc5860756eabf268c5ad1be6f6d3108070808041"
+    "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -96,5 +96,28 @@
     "Battle-start hero experience capture",
     "Source loser/retreat/negative and overflow experience lifecycle",
     "Remaining inventory, spell, campaign restart and full pack admission"
-  ]
+  ],
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "748ec4ca46ccb37baa0c42b7131c72edb7d9b09bbad3d04c07d74bbed6335e7f",
+      "docs/era-gameplay-port.md": "1239691ef6552a0576d35c08bc5860756eabf268c5ad1be6f6d3108070808041"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
+  }
 }

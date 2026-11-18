@@ -6,8 +6,8 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "604045a96813c48dae3b0e9c38085a431edf183e76e5026311ec5028bc3ecffb",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "5353d122933a0ecbb51674e3f42aa3cbc3944ddabd27fd84ed56c3368b4a4ba0",
+    "docs/era-gameplay-port.md": "cddb02eb2e5a196538dd5b5c08025588d0c8c626d18e775382e473da75b96181",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "364ba88042db2c32468e402b50ab00e33c2157601e7135b7812f5a2e453b8d67",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
@@ -118,5 +118,28 @@
     "Classic right-click smart companion flow",
     "Reserved/unplaced campaign hero progression lifecycle",
     "Shared named ERA reward namespace and complete profile admission"
-  ]
+  ],
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "docs/era-gameplay-port.md": "604045a96813c48dae3b0e9c38085a431edf183e76e5026311ec5028bc3ecffb",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "5353d122933a0ecbb51674e3f42aa3cbc3944ddabd27fd84ed56c3368b4a4ba0"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
+  }
 }

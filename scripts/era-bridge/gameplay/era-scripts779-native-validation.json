@@ -17,12 +17,12 @@
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "4becc4fe9f23efbc7d5a9af89ae08a6c3b2326cf7530f79ebd61ca252a51d3e1",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "af9f5866b677f66909cd03197b530d64dcde2d2551f9e7291c81f6199264f90a",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
     "tests/native/EraScriptRules.test.cpp": "96fa2b497b65fc1e34bafd72322aa632e24bdec926adb616b06c3853171aa985",
     "tests/fixtures/era-gameplay/era-native-learning-reference.json": "35176eddf2845a64eebc605289fbbf40e13a57b81ce537c406315c16cf62eb9a",
     "scripts/era-bridge/gameplay/verify-era-native-learning.py": "d288344e6483e1200b6058b92e3a658035d8247d4983a8b087ed124239ff2e67",
-    "work/browser-tests/era-learning-stone-native-e2e.mjs": "93cbb167cc14e85b0f91cd2cefd7ebff5b7beb25b7396f0f4f5925e405172760"
+    "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838"
   },
   "nativeABI": {
     "artifact": {
@@ -84,5 +84,28 @@
     "Interactions with other scripts changing the source global stone base experience",
     "Older engine save without eraScripts state loaded through native browser fixture"
   ],
-  "errors": []
+  "errors": [],
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "af9f5866b677f66909cd03197b530d64dcde2d2551f9e7291c81f6199264f90a",
+      "work/browser-tests/era-learning-stone-native-e2e.mjs": "93cbb167cc14e85b0f91cd2cefd7ebff5b7beb25b7396f0f4f5925e405172760"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
+  }
 }

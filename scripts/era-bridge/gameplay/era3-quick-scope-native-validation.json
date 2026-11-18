@@ -20,13 +20,13 @@
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b3572e87c8cc9db71583847d3541aaf9e2e1178bd195b1e15964d766fd1554ae",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "ccce0ce91e1e9da4ce20e7c8adfe02ac38ab069c0abd9c867c02e4fe0c068173",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
     "tests/native/Era3QuickVars.test.cpp": "e82f6b920e1a6186019341538543a46f79bee57914c988dd74ffbca330832d11",
     "tests/native/Era3QuickVarsCodec.test.cpp": "8fa869aa21d30396674dfe6cb5aa2d1a2908e89d7345e7e68ecc9404862a0058",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
     "work/browser-tests/wog-era3-quick-scope-cases.mjs": "07abecf4ba191c775d44a5a5791af42f26a9e15df1556b3452c46675b1f02351",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "tests/fixtures/era-gameplay/era3-quick-scope-reference.json": "a19a8a90be522376c3c124061b80c4235a0b4d17287ad180700c252d4e40e1fa"
   },
   "nativeBuild": {
@@ -452,5 +452,29 @@
     "siteVerificationLogSha256": "c1829ec96021e44744349f2c2c45a396376a5a0f794a1452939d9e75e2f33153",
     "sourceLinksMaterialized": true,
     "sourceWebUnchangedAfterBuild": true
+  },
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "4dfa8a92d8d740f0f9abc483c961fe4368ad6b237ff87572373a3303e1c4f66f",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "bb39191678e9bbc5e55906fe90b7e95b67af2c431031d7698707ce6324aa2384",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
   }
 }

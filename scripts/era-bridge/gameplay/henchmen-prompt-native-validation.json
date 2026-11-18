@@ -18,7 +18,7 @@
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "d199283bbc3c8ab14d2a95993b2c75ea71252f3f7bf657956d3e8a1d0f2e18ec",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "e4e2d6a9ca4d9faab524233c42e976a9c10b487837a1e813b1f58707e131f8ae",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "77b0f561de3c7325c9d8ce65acde9d86ae4e3ff0564672a5c5a3f767129cbeb0",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
   },
   "nativeBuild": {
@@ -90,5 +90,27 @@
     "Classic right-click companion smart dialog",
     "Campaign restart and reserved unplaced hero lifecycle",
     "Full source namespace integration and profile admission"
-  ]
+  ],
+  "extraDwellingCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "previousSourceBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "77b0f561de3c7325c9d8ce65acde9d86ae4e3ff0564672a5c5a3f767129cbeb0"
+    },
+    "historicalReportsRetained": true,
+    "existingOption17And36SemanticsUnchanged": true,
+    "newRuleAndChoice": 117,
+    "newChoiceIndex": 16,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "monthly",
+      "grails",
+      "hench-town",
+      "learning",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxWireAndRuleSanitizersExitCode": 0
+  }
 }

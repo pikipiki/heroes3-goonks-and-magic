@@ -23,6 +23,7 @@ spec=importlib.util.spec_from_file_location('n','scripts/normalize-map-instances
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
  for name,data in entries.items():z.writestr(name,data)
 import sys;sys.stdout.buffer.write(out.getvalue())`]);
+const cleanManifest=process.env.GOONK_CLEAN_MANIFEST==='1'?JSON.parse(execFileSync('git',['show','HEAD:mod/tum-era/mod.json'],{encoding:'utf8'})):null;
 const map=fixture();fs.writeFileSync(out+'/private-learning.vmap',map);
 const browser=await chromium.launch({headless:true});let page;const errors=[];
 const state=()=>page.evaluate(()=>goonkMobileState),cmd=(...a)=>page.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]),wait=(f,a,t=90000)=>page.waitForFunction(f,a,{timeout:t});
@@ -30,10 +31,11 @@ async function createPage(enabled,save,{specialist=false}={}){
  page=await browser.newPage({viewport,hasTouch:true,bypassCSP:true});await silenceTestAudio(page);
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>fs.appendFileSync(out+'/console.log',m.type()+': '+m.text()+'\n'));
 
- await page.addInitScript(({enabled,specialist})=>{
+ await page.addInitScript(({enabled,specialist,cleanManifest})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');let current;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>current,set:m=>{
    current=m;let main;Object.defineProperty(m,'callMain',{configurable:true,set:f=>main=f,get:()=>function(...args){
+    if(cleanManifest)m.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json',JSON.stringify(cleanManifest));
     const value=JSON.stringify({eraScripts:{schemaVersion:1,profile:'era-scripts',rules:{'779':enabled}}});
     m.FS.writeFile('/config/era-script-rules.json',value);
     const config='/home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/mapSupport/Content/config/era-script-rules.json';
@@ -42,7 +44,7 @@ async function createPage(enabled,save,{specialist=false}={}){
     return main.apply(m,args);
    }});
   }});
- },{enabled,specialist});
+ },{enabled,specialist,cleanManifest});
  await page.goto(origin+'/game.html?mobile=1');await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done',null,240000);
  if(save){
   await page.evaluate(bytes=>{const root='/home/web_user/.local/share/vcmi/Saves/';Module.FS.mkdirTree(root);Module.FS.writeFile(root+'Goonk-auto.vsgm1',new Uint8Array(bytes));},[...save]);
