@@ -331,3 +331,6 @@ html.goonk-mobile #mobile-viewport[data-orientation=portrait] #mobile-app[data-h
  #mobile-app .mobile-spellbook>header{padding:0 6px 0 52px!important;min-height:44px!important}
  #mobile-app .mobile-spellbook .spell-content{box-sizing:border-box}
 }
+
+/* All resource headers retain the framed weekly countdown. */
+html.goonk-mobile #mobile-app .mobile-calendar .calendar-next-week{display:none!important}
