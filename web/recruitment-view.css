@@ -134,3 +134,42 @@ html.goonk-mobile #mobile-app .recruitment-view .creature-view-head h2{height:40
  html.goonk-mobile #mobile-app .recruitment-view .recruit-stock strong{font-size:16px;line-height:18px}
  html.goonk-mobile #mobile-app .recruitment-view .featured-price>span:first-child{width:auto;font-size:9px;line-height:11px}
 }
+
+/* Keep the icon total in the fixed purchase block, above the action row. */
+html.goonk-mobile #mobile-app .recruitment-view .recruit-summary{display:flex;align-items:center;flex-wrap:wrap;gap:2px 6px;line-height:18px;font-size:12px}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-summary .creature-price{align-items:center;gap:3px}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-summary img{width:16px;height:16px;object-fit:contain}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-unavailable{flex-basis:100%;font-size:11px;line-height:14px}
+html.goonk-mobile #mobile-app .recruitment-view input{margin:0!important}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{padding-bottom:50px!important}
+ html.goonk-mobile #mobile-app .recruitment-view .featured-price>span:first-child{width:100%;line-height:10px}
+ html.goonk-mobile #mobile-app .recruitment-view .featured-price{gap:2px 4px;font-size:11px;line-height:14px}
+ html.goonk-mobile #mobile-app .recruitment-view .featured-price img{width:14px;height:14px}
+}
+
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .recruitment-view :is(.featured-price,.recruit-stock){padding:2px}
+}
+
+html.goonk-mobile #mobile-app .recruitment-view .recruit-summary[hidden]{display:none!important}
+html.goonk-mobile #mobile-app .recruitment-view .featured-price .creature-price{align-items:center}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,1fr) clamp(92px,14cqw,130px) minmax(0,1.4fr) var(--control-rail)!important}
+ html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats dt{min-width:0}
+}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .recruitment-view .creature-stats dt{overflow-wrap:normal;word-break:normal}
+ html.goonk-mobile #mobile-app .recruitment-view .creature-stats dd{white-space:nowrap;text-align:right}
+ html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats dd{font-size:14px;line-height:17px;flex:0 0 auto;margin:0 0 0 auto}
+}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar{height:16px;min-height:16px!important}
+ html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{gap:2px}
+ html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{padding-bottom:0!important}
+ html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount label{margin:0;padding:0}
+}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-unavailable{flex-basis:auto}
+@container goonk-viewport (orientation:landscape){
+ html.goonk-mobile #mobile-app .recruitment-view .creature-view-head h2{height:24px}
+}

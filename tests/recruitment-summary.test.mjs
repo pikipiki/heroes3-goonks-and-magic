@@ -1,4 +1,4 @@
-import {test} from 'node:test';import assert from 'node:assert/strict';import {recruitmentSummary} from '../web/recruitment-summary.mjs';
+import {test} from 'node:test';import assert from 'node:assert/strict';import {recruitmentSummary,recruitmentSummaryMarkup} from '../web/recruitment-summary.mjs';
 const base={recruitUnit:{count:14,cost:[0,0,0,0,0,0,98]},resources:[35,10,25,10,10,10,78],recruitMaximum:0,recruitAmount:0};
 test('Available stock is distinct from affordable recruits and explains the exact missing gold',()=>{const text=recruitmentSummary(base);for(const part of ['Stock : 14','Recrutables : 0','Prix par unité : 98 or','Il manque 20 or pour une unité.'])assert(text.includes(part));assert(!text.includes('Total :'));});
 test('A funded recruitment shows the selected total without claiming funds are missing',()=>{const text=recruitmentSummary({...base,resources:[0,0,0,0,0,0,500],recruitMaximum:5,recruitAmount:3});assert(text.includes('Recrutables : 5'));assert(text.includes('Total : 294 or'));assert(!text.includes('Il manque'));});
@@ -11,4 +11,13 @@ test('Compact recruitment keeps only the total and groups gold without shortenin
  assert.equal(recruitmentSummary(state,'en',{compact:true}),'Total: 9999 wood + 9 999 999 gold');
  assert.equal(recruitmentSummary(state,'fr',{compact:true}),'Total : 9999 bois + 9 999 999 or');
  assert.match(recruitmentSummary({...base,recruitAmount:0},'en',{compact:true}),/Missing 20 gold/);
+});
+
+test('Icon total shares unit-price artwork, groups gold and tracks selected quantity',()=>{
+ const state={recruitUnit:{count:4,cost:[0,0,0,0,0,2,3333333]},recruitAmount:3,recruitMaximum:4};
+ const html=recruitmentSummaryMarkup(state,'en');
+ assert.match(html,/resource-gems\.png/);assert.match(html,/resource-gold\.png/);
+ assert.match(html,/>6<\/span>/);assert.match(html,/>9 999 999<\/span>/);
+ assert(!html.includes('Can recruit'));assert(!html.includes('k<'));
+ assert.match(recruitmentSummaryMarkup({...state,recruitAmount:0},'fr'),/>0<\/span>/);
 });

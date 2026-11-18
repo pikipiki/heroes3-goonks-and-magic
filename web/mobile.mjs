@@ -39,7 +39,7 @@ import {createActionFeedback} from './action-feedback.mjs';
 import {renderArmyPanel} from './army-panel.mjs';
 import {canViewWeeklyRecruits,createGameCalendar} from './game-calendar.mjs';
 import {createWeeklyRecruits} from './weekly-recruits.mjs';
-import {recruitmentSummary} from './recruitment-summary.mjs';
+import {recruitmentSummaryMarkup} from './recruitment-summary.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {createNativeFort} from './town-recruitment.mjs';
 import {protectBattleControls} from './battle-controls.mjs';
@@ -323,7 +323,7 @@ function mount(){
   const choices=root.querySelector('.recruit-choices');choices.hidden=true;
 
   const amountBox=root.querySelector('.mobile-recruit-amount');amountBox.hidden=state.mode!=='recruit';
-  if(state.mode==='recruit'){for(const input of amountBox.querySelectorAll('input')){input.max=state.recruitMaximum||0;input.disabled=recruitLoading||!(state.recruitMaximum>0);if(document.activeElement!==input)input.value=state.recruitAmount||0;}const summary=amountBox.querySelector('.recruit-summary'),text=recruitmentSummary(state,getLanguage(),{compact:true});summary.setAttribute('aria-live','polite');if(summary.textContent!==text)summary.textContent=text;}
+  if(state.mode==='recruit'){for(const input of amountBox.querySelectorAll('input')){input.max=state.recruitMaximum||0;input.disabled=recruitLoading||!(state.recruitMaximum>0);if(document.activeElement!==input)input.value=state.recruitAmount||0;}const summary=amountBox.querySelector('.recruit-summary'),html=recruitmentSummaryMarkup(state,getLanguage());summary.setAttribute('aria-live','polite');if(summary._sourceMarkup!==html){summary._sourceMarkup=html;summary.innerHTML=html;}}
   root.dataset.battleView='native';root.querySelector('.battle-view').hidden=state.mode!=='battle';syncBattleView();overview.hidden=!['map','town'].includes(state.mode)||(state.mode==='town'&&root.dataset.townLayout==='portrait');if(state.mode==='map'){overview.setAttribute('aria-label','Vue d’ensemble de la carte. Flèches pour déplacer la vue.');overview.setAttribute('role','group');overview.tabIndex=0;}else{overview.removeAttribute('role');overview.removeAttribute('tabindex');}root.querySelector('.map-center').disabled=!state.heroName&&!state.worldView;root.querySelector('.map-castle').disabled=!state.towns?.length;syncViewButton();renderBattlePanel();
   const townOverview=root.querySelector('#town-overview');townOverview.hidden=state.mode!=='town';
   root.querySelector('.town-view').hidden=state.mode!=='town';townZoom.hidden=state.mode!=='town'||root.clientWidth<root.clientHeight;townZoom.textContent=townWhole?'＋ Zoom in':'− Zoom out';
