@@ -4,8 +4,8 @@
   "completeRules": false,
   "profilesAdmitted": false,
   "scope": "ERA3 numeric FU:P copy-in/copy-out in explicit ASTv4, keeping original358f calls unchanged. String/ERT arguments, modifiers, comparisons, macros and DO are unadmitted; full ERA/Advanced Classes/Reborn packs remain unadmitted.",
-  "sourceBaseCommit": "dcc9da09d464bd89652e640217fb0f47a91e5a83",
-  "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+  "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+  "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
   "sourceBindings": {
     "scripts/era-bridge/campaigns/parser.mjs": "902716a9875e00dc4a1a3b3faea0cde6416943d1a996b4acf52273f665cce151",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2",
@@ -29,17 +29,9 @@
     "command": "ninja -j32 html5",
     "exitCode": 0,
     "targets": 5,
-    "logSha256": "b5b2e49fc29cf2fecb9a146d1c3157b5acc92bbc383ae82f65f9daa49d08d72f",
+    "logSha256": "f8fb6ca69a55e92b7abe96d5fbe2be993dd17b24b2114d0082ec6d0086cfdc80",
     "unverifiedWarMachineHooksExcluded": true,
-    "warMachinesAdmitted": false,
-    "priorBuild": {
-      "command": "ninja -j32 html5",
-      "exitCode": 0,
-      "targets": 108,
-      "logSha256": "3858a54eb2dc8972c39660b77fe69d5b965e3778d66cebaa396c3bd87a254bfc",
-      "unverifiedWarMachineHooksExcluded": true,
-      "warMachinesAdmitted": false
-    }
+    "warMachinesAdmitted": false
   },
   "upstreamReference": {
     "repository": "https://github.com/ethernidee/era",
@@ -124,7 +116,7 @@
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
       "scenarios": [
         {
           "kind": "points",
@@ -558,13 +550,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "193eff13d3cda5d2b2cecd00b2e84607335af1830e1de498433ef154638b8d68"
+      "sharedRunReportSha256": "f1991c85652b242d5cee73ac67eb26d8a8aae2b81019e0bc82796f6b953fa452"
     },
     "touchLandscape": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
       "scenarios": [
         {
           "kind": "points",
@@ -998,13 +990,13 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "081f67448f32f0cc0c1c7e05f1f852976b0100af5607ee93bcfa04dcd430fc75"
+      "sharedRunReportSha256": "2e8a7d557802623db93821cfbbaec886def241bebb61ec499e53c7990989f54c"
     },
     "desktopMouse": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
+      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
       "scenarios": [
         {
           "kind": "points",
@@ -1438,12 +1430,12 @@
         }
       ],
       "errors": [],
-      "sharedRunReportSha256": "3ec0dabfcd7fbed4e04d405caa2a99e6605d232bfbc4e3dff1d302fc6ac28d40"
+      "sharedRunReportSha256": "2db3f00f00cb5ce6e8f70930e9ad568efeaeb59aad9270ac22ac7283e9dcd247"
     }
   },
   "compilerOnlyChangeReusesVerifiedNativeEngine": true,
   "compilerFollowUp": {
-    "sourceBaseCommit": "dcc9da09d464bd89652e640217fb0f47a91e5a83",
+    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
     "constantLocalArraysAstV4": true,
     "groupedNativeRevalidation": true,
     "nativeEngineUnchanged": true,
@@ -1460,7 +1452,13 @@
   "webAssemblyVerification": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "reusedNativeEngineSha256": "73e0b6638884620b7de114a519bfbfeb165f835b6ff629bd8d38abc6eeb9a6d5",
-    "logSha256": "5807700412611530c1ba57238fbe3eb76ea81710edd4d2366322bb751f819fd6"
+    "reusedNativeEngineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+    "logSha256": "f8fb6ca69a55e92b7abe96d5fbe2be993dd17b24b2114d0082ec6d0086cfdc80"
+  },
+  "sourceContext": {
+    "sourceBaseCommit": "95529d2e89d23de4236c3b4f43850bca51c0dce9",
+    "mergingOriginCommit": "5933131f33d136b8417bc54fe91f7ed43e0991bc",
+    "publishedEngine": "0.4.254",
+    "localBuildByteIdenticalToPublishedEngine": true
   }
 }

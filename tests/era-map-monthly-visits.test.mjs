@@ -30,13 +30,15 @@ test('native monthly visits persist choices, preserve old saves and reward only 
  const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
  const proof=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-monthly-visits-native-validation.json'));
  assert.equal(proof.activation,false);assert.equal(proof.completeRules,false);assert.equal(proof.profilesAdmitted,false);
- for(const [file,hash]of Object.entries(proof.sourceBindings))assert.equal(sha(fs.readFileSync(file)),hash,file);
+ const compatibility=proof.sourceCompatibility;
+ for(const [file,hash]of Object.entries(proof.sourceBindings))assert.equal(sha(fs.readFileSync(file)),compatibility?.sourceBindings[file]||hash,file);
+ if(compatibility){assert.deepEqual(Object.keys(compatibility.sourceBindings),['work/vcmi-wasm/client/MobileBridge.cpp']);assert.equal(compatibility.nativeBuild.exitCode,0);assert.equal(compatibility.report.scenarios.length,2);assert.notEqual(compatibility.engineSha256,proof.engineSha256);}
  for(const fragment of proof.upstreamReference.fragments)assert.equal(sha(fragment.text),fragment.sha256);
  assert.equal(proof.nativeBuild.exitCode,0);assert.equal(proof.nativeBuild.warMachinesAdmitted,false);
  assert.deepEqual(proof.serialization.catalogueCounts,[6,7,13,14,15,16]);
  assert.deepEqual(Object.values(proof.reports).map(r=>r.scenarios.length),[6,2,2]);
- for(const report of Object.values(proof.reports)){
-  assert.equal(report.passed,true);assert.deepEqual(report.errors,[]);assert.equal(report.engineSha256,proof.engineSha256);
+ for(const report of [...Object.values(proof.reports),...(compatibility?[compatibility.report]:[])]){
+  assert.equal(report.passed,true);assert.deepEqual(report.errors,[]);assert.equal(report.engineSha256,report===compatibility?.report?compatibility.engineSha256:proof.engineSha256);
   assert.equal(report.programFileSha256,sha(JSON.stringify(monthlyCalendarFixture(),null,2)));
   for(const s of report.scenarios){
    assert.equal(s.active,s.choice<0?s.configured:s.choice===1);

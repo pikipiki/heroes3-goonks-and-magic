@@ -13,6 +13,14 @@ for(const kind of ['chromium','webkit']){
  await p.locator('.army-upgrade-all').first().click();await p.evaluate(()=>ui.update(state));await p.locator('[data-army-upgrade-confirm]').click();assert.deepEqual((await p.evaluate(()=>calls)).at(-1),[122,1,51]);
  await p.evaluate(()=>{state.armyUpgradeQuote={...state.armyUpgradeQuote,hash:52,status:'changed',cost:[0,0,0,0,0,0,400]};ui.update(state);});assert(await p.locator('.army-upgrades-page [role=status]').innerText().then(t=>/changed|changé/.test(t)));assert(!await p.locator('[data-army-upgrade-confirm]').isDisabled());
  for(const size of [{width:360,height:640},{width:716,height:335},{width:430,height:873}]){await p.setViewportSize(size);await p.waitForTimeout(100);await p.screenshot({path:`/tmp/goonk242-upgrade-${kind}-${size.width}.png`});for(const selector of ['[data-army-upgrade-confirm]','[data-army-upgrade-cancel]']){const r=await p.locator(selector).boundingBox();assert(r.x>=0&&r.y>=0&&r.x+r.width<=size.width+1&&r.y+r.height<=size.height+1,selector+JSON.stringify(r));}}
- await p.evaluate(()=>{state.resources[6]=399;ui.update(state);});assert(await p.locator('[data-army-upgrade-confirm]').isDisabled());console.log('PASS',kind,'bulk controls, cancellation, stale quote, affordability and portrait/landscape');
+ await p.evaluate(()=>{state.resources[6]=399;ui.update(state);});assert(await p.locator('[data-army-upgrade-confirm]').isDisabled());await p.locator('[data-army-upgrade-cancel]').click();
+ for(const language of ['en','fr'])for(const reason of ['noTown','wrongTown','requiredBuilding','noEvolution']){
+  await p.evaluate(async({language,reason})=>{const {setLanguage}=await import('/web/i18n.mjs');setLanguage(language);state.armyUpgradeQuote={armyId:1,hash:60,status:'ready',units:[],cost:[],unavailableReason:reason};ui.show(1);ui.update(state);},{language,reason});
+  const text=await p.locator('.army-upgrades-page [role=status]').innerText();
+  assert.match(text,language==='fr'?/château|évolution/:/town|evolution/);assert(await p.locator('[data-army-upgrade-confirm]').isDisabled());
+  assert(await p.locator('[data-army-upgrade-confirm]').isHidden());for(const size of [{width:360,height:659},{width:716,height:279}]){await p.setViewportSize(size);const r=await p.locator('[data-army-upgrade-cancel]').boundingBox();assert(r.x>=0&&r.y>=0&&r.x+r.width<=size.width+1&&r.y+r.height<=size.height+1,'Error Return stays visible');}
+  await p.locator('[data-army-upgrade-cancel]').click();
+ }
+ console.log('PASS',kind,'bulk controls, cancellation, stale quote, affordability and portrait/landscape');
  }finally{await browser.close();}
 }
