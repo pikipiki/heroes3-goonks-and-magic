@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "fileSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+  },
+  "sourceFragments": [
+    {
+      "line": 67,
+      "endLine": 67,
+      "text": "!#DC(WOG_171_MILL_GARDEN_FREQUENCY) = 12;\n",
+      "sha256": "4d845f703f2a9c7987d96850aadfc4fc3034c80cf11248305397f219f29c4de3"
+    },
+    {
+      "line": 94,
+      "endLine": 101,
+      "text": "!!VR(options[0]):C36/149/170/171;\n\n!!re i/0/(options[SIZE])/1/-1;\n  !!UN:P(options[i])/?(isEnabled:y);\n  !!VRi^wog_%(options[i])_enabled^:S(isEnabled:y);\n  !!if&(isEnabled:y);\n    !!UN:B0/1;   (Enable Mithril)\n    !!UN&i<3:P149/1;[Enable Mithril Display if Mithril script or Mithril Replacement is enabled][Check if Mithril in Windmills and Gardens is enabled: v4]\n",
+      "sha256": "51409e290c4b4163382396f02bf136e3078dd648d1b24792bab05d38de4fcb03"
+    },
+    {
+      "line": 456,
+      "endLine": 498,
+      "text": "!!if&i^timerWeekDay^=1/i^timerOnce^/i^wog_171_enabled^;\n  !!FU(WOG_171_PlaceMithrilIntoMillsAndGardens):P;\n!!en;\n\n!?FU(WOG_171_PlaceMithrilIntoMillsAndGardens);\n\n  !!VR(x:y):S-1;\n  !!re i;\n    !!UN:U(OBJ_MYSTICAL_GARDEN)/(ANY_OBJ)/-1/(x)/(y:y)/(z:y);\n    !!br&(x)<0;\n    !!VRr:R0/1/(WOG_171_MILL_GARDEN_FREQUENCY);\n    !!if&r=(WOG_171_MILL_GARDEN_FREQUENCY);\n      !!GD(x)/(y)/(z):B(RES_MITHRIL);            [add mithril]\n    !!en;\n  !!en;\n\n  !!VR(x:y):S-1;\n  !!re i;\n    !!UN:U(OBJ_WATER_WHEEL)/(ANY_OBJ)/-1/(x)/(y:y)/(z:y);\n    !!br&(x)<0;\n    !!PO(x)/(y)/(z):N?(isUpgraded:y);                 [(Get PO number at position)]\n\n    !!if&(isUpgraded:y);\n      !!WM(x)/(y)/(z):Bd*2;                           [(Water Wheel now contains new value)]\n      *!PO(x)/(y)/(z):N0;                             [(reset upgrade)] - in WoG 3.58f it did not reset\n    !!en;\n  !!en;\n\n  !!VR(x:y):S-1;\n  !!re i;\n    !!UN:U(OBJ_WINDMILL)/(ANY_OBJ)/-1/(x)/(y:y)/(z:y);\n    !!br&(x)<0;\n    !!VRr:R0/1/(WOG_171_MILL_GARDEN_FREQUENCY);\n    !!if&r=(WOG_171_MILL_GARDEN_FREQUENCY);\n      !!ML(x)/(y)/(z):B(RES_MITHRIL)/d;               [(Water Wheel now contains new  mithril)]\n    !!en;\n\n    !!PO(x)/(y)/(z):N?(isUpgraded:y);                 [(Get PO number at position)]\n    !!if&(isUpgraded:y);\n      !!ML(x)/(y)/(z):Bd/d*2;                         [(Water Wheel now contains new value)]\n      *!PO(x)/(y)/(z):N0;                             [(reset upgrade)] - in WoG 3.58f it did not reset\n    !!en;\n  !!en;\n",
+      "sha256": "c2a44d9ad57c9032be4aa4ff4033723afc966c96d7077bcbbe0818a8f3cc8ae3"
+    },
+    {
+      "line": 689,
+      "endLine": 710,
+      "text": "!?FU(WOG_36_UpgradeObject);\n!#VA(dlgShown:x) (objType:x) (cost:x);\n\n!!VR(dlgShown):S(FALSE);\n!!POv4/v5/v6:N?(upgraded:y);                                                   [(Get PO number)]\n!!if&(upgraded:y)=0;\n  !!OW:R-1/(RES_MITHRIL)/?(number:y);                                          [(Get amount of mithril)]\n  !!if&(number)>=(cost);\n    !!VR(dlgShown):S(TRUE);\n    !!CM:R0;                                                                   [(disable standard popup)]\n\n    !!SN:T^wog.36.upgrade.%(objType)^/?(msg:z)/^number^/(number)/^cost^/(cost);\n    !!IF:Q1/(RES_MITHRIL)/(cost)/(MSG_TYPE_QUESTION)/(msg:z);\n\n    !!if&1;\n      !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-(cost);\n      !!POv4/v5/v6:N2;                                                         [(setup so it's upgraded)]\n    !!en;\n  !!en;\n!!en;\n\n\n",
+      "sha256": "093de682d332310b66830a0c6082bdace93c2fa8f4e47d7fc5510bda9a4a7608"
+    }
+  ],
+  "officialReceiverDocumentation": [
+    {
+      "url": "https://h3era.github.io/ERM-Help/Rec/GD.htm",
+      "semantics": "GD:B selects the resource identity. Garden availability is separate GD:T."
+    },
+    {
+      "url": "https://h3era.github.io/ERM-Help/Rec/WM.htm",
+      "semantics": "WM:B counts gold in units of500. Zero marks the wheel as visited."
+    },
+    {
+      "url": "https://h3era.github.io/ERM-Help/Rec/ML.htm",
+      "semantics": "ML:B takes resource identity and amount separately."
+    },
+    {
+      "url": "https://h3era.github.io/ERM-Help/Rec/UN.htm",
+      "semantics": "UN:U enumerates the surface before underground, in diagonals shown by the official coordinate diagram: (0,0),(1,0),(0,1),(2,0),(1,1),(0,2)."
+    }
+  ],
+  "scope": "Native source171 schedule and standard site rewards, distinct frozen source36 purchase choice. This does not admit complete scripts or external profiles."
+}

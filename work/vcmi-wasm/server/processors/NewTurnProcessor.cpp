@@ -13,6 +13,7 @@
 #include "../era/EraMapRulesRuntime.h"
 #include "../era/EraScriptRulesRuntime.h"
 #include "../era/EraMithrilRandomSeed.h"
+#include "../era/EraMithrilWeeklySites.h"
 #include "../era/SourceCampaignProcessor.h"
 #include "NewTurnProcessor.h"
 
@@ -178,6 +179,8 @@ void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 
 void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
 {
+    // Global object newTurn has regenerated weekly stocks before players run.
+    era_compat::mithril::weeklySites(*gameHandler);
 	// Source rule117 runs after the initial dwelling stocks have been generated.
 	era_compat::map_rules::addExtraDwellingCreatures(*gameHandler);
 	era_compat::map_rules::groundFliers(*gameHandler);

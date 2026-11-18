@@ -153,7 +153,7 @@ void CRewardableObject::grantReward(IGameEventCallback & gameEvents, ui32 reward
 {
 	gameEvents.setObjPropertyValue(id, ObjProperty::REWARD_SELECT, rewardID);
 	grantRewardBeforeLevelup(gameEvents, configuration.info.at(rewardID), hero);
-	if((ID==Obj::WINDMILL||ID==Obj::WATER_WHEEL)&&era_compat::mithril::millActive(*cb,id))
+	if((ID==Obj::WINDMILL||ID==Obj::WATER_WHEEL)&&!era_compat::mithril::weeklySourceContract(*cb)&&era_compat::mithril::millActive(*cb,id))
 		gameEvents.giveResources(hero->getOwner(),configuration.info.at(rewardID).reward.resources);
 	
 	// hero is not blocked by levelup dialog - grant remainder immediately

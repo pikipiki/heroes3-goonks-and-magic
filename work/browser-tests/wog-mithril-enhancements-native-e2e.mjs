@@ -74,6 +74,8 @@ elif opts['reroll'] in ['hut','hut-rng']:
  site('mithrilHut','witchHut','witchHut',10,11)
  objects[-1]['options']['rewardable']={'variables':{'preset':{'secondarySkill@gainedSkill':'core:offence'}}}
 elif opts['reroll']=='university': site('mithrilAdvancedUniversity','university','object',9,11)
+elif opts['reroll']=='weekly-garden': site('weeklyGarden','mysticalGarden','mysticalGarden',9,11)
+elif opts['reroll']=='weekly-windmill': site('weeklyWindmill','windmill','windmill',9,11)
 elif opts['reroll']=='payout': site('mithrilPayout','waterWheel','waterWheel',9,11)
 elif opts['reroll']=='conflux': site('mithrilConflux','creatureGeneratorSpecial','elementalConflux',9,11,'red')
 else: site('mithrilMill','windmill','windmill',10,11)
@@ -195,7 +197,7 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  let mapChoices=null;
  if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
   mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
@@ -224,12 +226,13 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight,grantedFlight:!!options.ruleGrantedFlight,excludedFlyer:!!options.ruleExcludedFlyer}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
+ await page.addInitScript(({nativeSeed,enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
    module=value;let callMain;
    Object.defineProperty(value,'callMain',{configurable:true,set:fn=>{callMain=fn;},get:()=>function(...args){
+    if(nativeSeed){const dir='/home/web_user/.config/vcmi';value.FS.mkdirTree(dir);value.FS.writeFile(dir+'/settings.json',JSON.stringify({server:{seed:nativeSeed}}));}
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.mithrilEnhancements=enabled;
@@ -267,7 +270,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture:!!options.dwellingLevelFixture,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
+ },{nativeSeed,enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture:!!options.dwellingLevelFixture,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -304,6 +307,13 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
    await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
    assert.equal(await form.locator('input[data-wog-option="6"]:checked').inputValue(),String(wogChoice));
   }
+  if(weeklyMithrilChoice!==null){
+   assert((await state()).wogOptions.length>=20,'Weekly mithril option advertised by native engine');
+   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="19"][value="${weeklyMithrilChoice}"]`).locator('..');
+   await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[19]===value,weeklyMithrilChoice);
+  }
   if(invertedSpeedsChoice!==null){
    assert((await state()).wogOptions.length>=19,'Inverted speed option advertised by native engine');
    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
@@ -339,7 +349,7 @@ async function boot({invertedSpeedsChoice=null,invertedSpeedsConfigured=false,gr
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[14]===value,grailChoice);
   }
-  if(options.monthlyFixture||options.extraDwellingFixture||options.dwellingLevelFixture){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
+  if(options.monthlyFixture||options.extraDwellingFixture||options.dwellingLevelFixture||options.reroll?.startsWith('weekly-')){await command(109,2,0);await wait(()=>goonkMobileState.wogOptions[2]===0);}
   if(options.grailFixture){await command(109,3,0);await wait(()=>goonkMobileState.wogOptions[3]===0);}
   if(classic)await command(22);
   else if(desktop)await page.locator('[data-ui=begin]').click();
@@ -365,7 +375,7 @@ async function buy(offer){
  assert.equal((await state()).mithril.amount,before.amount-offer.cost);
 }
 async function nextDay(){
- if(await page.locator('.mithril-panel').isVisible())await page.locator('[data-mithril-close]').tap();
+ if(await page.locator('.mithril-panel').isVisible())await page.locator('[data-mithril-close]')[usesMouse?'click':'tap']();
  const old=(await state()).day;await command(3);
  for(let i=0;i<600;++i){
   const current=await state();
@@ -679,6 +689,30 @@ try{
  assert.equal((await state()).mithril.amount,0);assert.equal((await state()).mithril.revision,data.revision);
  report.scenarios.push('insufficient-mithril-rejected-by-server');await page.close();
  }
+ if(process.env.CASES==='weekly-windmill-upgrade'){
+  const {runWindmillWeeklyUpgrade}=await import('./wog-mithril-weekly-cases.mjs');
+  await runWindmillWeeklyUpgrade({boot,panel,buy,walk,nextDay,state,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:934})});
+ }
+ if(process.env.CASES==='weekly-source-option'){
+  const {runWeeklySourceOption}=await import('./wog-mithril-weekly-cases.mjs');
+  await runWeeklySourceOption({boot,state,command,wait,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:935})});
+ }
+ if(process.env.CASES?.startsWith('weekly-legacy')){
+  const {runLegacyWeeklyWheel}=await import('./wog-mithril-weekly-cases.mjs');
+  await runLegacyWeeklyWheel({boot,panel,buy,walk,nextDay,state,command,wait,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:936})});
+ }
+ if(process.env.CASES==='weekly-source-seeds'){
+  const {runWeeklySourceSeeds}=await import('./wog-mithril-weekly-cases.mjs');
+  await runWeeklySourceSeeds({boot,walk,state,page:()=>page,report});
+ }
+ if(process.env.CASES?.startsWith('weekly-mithril')){
+  const {runWeeklyMithril}=await import('./wog-mithril-weekly-cases.mjs');
+  await runWeeklyMithril({boot,panel,buy,walk,nextDay,state,command,wait,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:937})});
+ }
  if(!process.env.CASES||process.env.CASES==='payout'){
   const rewards=[];
   for(const enhanced of [false,true]){
@@ -689,8 +723,8 @@ try{
    await walk(-1);gold=(await state()).resources[6];await walk(1);const second=(await state()).resources[6]-gold;assert(second>0);
    rewards.push({first,second});await page.close();
   }
-  assert.equal(rewards[1].first,2*rewards[0].first);assert.equal(rewards[1].second,2*rewards[0].second);
-  report.scenarios.push('waterwheel-actual-reward-doubled-on-first-and-second-week');
+  assert.equal(rewards[1].first,rewards[0].first);assert.equal(rewards[1].second,2*rewards[0].second);
+  report.scenarios.push('waterwheel-purchase-preserves-current-stock-and-doubles-next-week');
  }
  if(!process.env.CASES||process.env.CASES==='conflux'){
   await boot({reroll:'conflux'});assert.equal((await walk(1)).mode,'recruit');

@@ -22,9 +22,19 @@ inline void initializeSeed(CGameHandler & gh,bool firstTurn)
     const auto & cb=gh.gameInfo();
     const bool active=enabled(cb);
     const bool createSeed=firstTurn&&active&&state(cb)["seed"].isNull();
-    if(state(cb)["enabled"].isBool()&&!createSeed)return;
+    const bool createWeeklyPolicy=state(cb)["weeklyRuleVersion"].isNull();
+    if(state(cb)["enabled"].isBool()&&!createSeed&&!createWeeklyPolicy)return;
     EraGameplayChange packet;packet.system="mithril";packet.state=state(cb);
     packet.state["enabled"].Bool()=active;
+    if(createWeeklyPolicy)
+    {
+        // Existing saves retain the old mill adapter. Newly started games
+        // freeze source171 independently of the source36 purchase choice.
+        packet.state["weeklyRuleVersion"].Integer()=firstTurn?1:0;
+        packet.state["weeklyEnabled"].Bool()=firstTurn&&era_bridge::wogOptionEnabled(cb,
+            era_bridge::WogOption::MithrilWeeklySites,
+            cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS));
+    }
     if(createSeed)packet.state["seed"].Integer()=independentSeed();
     gh.sendAndApply(packet);
 }

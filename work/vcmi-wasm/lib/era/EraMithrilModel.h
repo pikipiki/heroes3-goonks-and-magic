@@ -46,6 +46,15 @@ inline uint32_t revision(const IGameInfoCallback & cb)
 {return static_cast<uint32_t>(state(cb)["revision"].Integer());}
 inline const JsonNode & entry(const IGameInfoCallback & cb,ObjectInstanceID object)
 {return state(cb)["objects"][std::to_string(object.getNum())];}
+inline bool weeklySourceContract(const IGameInfoCallback & cb)
+{return state(cb)["weeklyRuleVersion"].Integer()>=1;}
+inline bool weeklyEnabled(const IGameInfoCallback & cb)
+{
+    if(state(cb)["weeklyRuleVersion"].isNull()&&cb.getDate(Date::DAY)==0)
+        return era_bridge::wogOptionEnabled(cb,era_bridge::WogOption::MithrilWeeklySites,
+            cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS));
+    return weeklySourceContract(cb)&&state(cb)["weeklyEnabled"].Bool();
+}
 inline GameResID resource()
 {
     for(const auto & object:LIBRARY->resourceTypeHandler->objects)

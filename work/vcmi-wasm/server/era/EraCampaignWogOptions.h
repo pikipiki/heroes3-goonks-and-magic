@@ -14,6 +14,7 @@ inline std::optional<int> read(const IGameInfoCallback & callback,int option)
     // Read the exact frozen per-game flag used by native purchases, visits,
     // income and save migration; never read a second global/default flag.
     if(option==36)return mithril::enabled(callback)?1:0;
+    if(option==171)return mithril::weeklyEnabled(callback)?1:0;
     // Source option67 selects the extra dwelling species. The separate
     // Neutral Town gameplay pack is not enabled by exposing this frozen flag.
     if(option==67)

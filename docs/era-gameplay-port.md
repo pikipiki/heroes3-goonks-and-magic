@@ -796,8 +796,8 @@ natives sans identité source utilisent leur rang natif converti en base zéro.
 Les achats modifient uniquement les types de créatures et conservent tous les
 stocks, y compris après une seconde amélioration et une sauvegarde. Le format919
 annonce ces critères sans ajouter de choix aux dix-neuf réglages existants.
-Les options source149/170/171, les mutations MA:L externes et le calendrier
-exact des moulins restent à porter. Preuve bornée :
+Les options source149/170 et les mutations MA:L externes restent à porter.
+Le calendrier des moulins est traité séparément par la règle171 ci-dessous. Preuve bornée :
 `scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json`.
 
 Le calcul d’expérience des compagnons conserve maintenant la soustraction
@@ -812,3 +812,20 @@ substituée et n’atteint pas un scénario initialisé : ces observations born�
 ne valident ni Windows natif ni l’ensemble du pack. La sonde WebAssembly
 recompilée vérifie les12 entrées entières de ces observations ; les NaN ne sont
 pas convertis directement en entier C++.
+
+
+La règle171 dispose d’un vingtième choix Carte/Oui/Non, enregistré séparément
+des achats au mithril de la règle36. Chaque lundi, les jardins et moulins à
+vent ont une chance sur douze de contenir du mithril. Les moulins améliorés
+doublent leur stock à cette étape hebdomadaire ; un achat ne modifie plus le
+stock de la semaine en cours. Les moulins à eau reviennent à leur stock normal
+avant application de l’amélioration, sans doublement cumulatif. Les recherches
+UN:U sont rapprochées de l’ordre diagonal documenté, surface puis souterrain,
+avec les jardins traités avant les moulins à eau puis les moulins à vent.
+Le format923 conserve les dix-neuf choix des formats antérieurs. Les parties
+existantes gardent leur ancien comportement de moulin ; elles ne reçoivent pas
+rétroactivement la nouvelle règle. Les nouvelles parties figent leur choix et
+UN:P171 expose ce même état, avant l’initialisation puis après sauvegarde.
+Le générateur natif est utilisé : une égalité de séquence avec le générateur
+ERA n’est pas revendiquée. Le partage complet de PO:N avec des scripts externes,
+les récepteurs GD/ML/WM arbitraires et les profils complets restent à porter.

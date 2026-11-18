@@ -90,9 +90,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_ERA3_STRING_LOCALS, // scoped negative z banks and suspended caller strings
 	GOONK_ERA3_STRING_RECEIVERS, // native receiver and numeric dialog access to local z banks
 	GOONK_ERA3_RANDOM_RANGES, // ERA3 VR:R explicit inclusive integer bounds
+	GOONK_MITHRIL_WEEKLY_SITES, // source171 weekly site rewards and twenty-choice peers
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_ERA3_RANDOM_RANGES,
+	CURRENT = GOONK_MITHRIL_WEEKLY_SITES,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

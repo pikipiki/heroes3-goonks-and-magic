@@ -21,6 +21,7 @@ const rules = [
   ['Boars in dwellings', 'Sangliers dans les habitations', 'Add twelve boars to eligible original dwellings at the start.', 'Ajouter douze sangliers dans les habitations d’origine compatibles au départ.'],
   ['Grounded fliers without retaliation', 'Créatures volantes au sol sans riposte', 'Flying creatures lose their natural flight and their attacks cannot be retaliated against.', 'Les créatures volantes perdent leur vol naturel et leurs attaques ne provoquent plus de riposte.'],
   ['Inverted creature speeds', 'Vitesses des créatures inversées', 'Invert base speeds around the fastest eligible creature at the start.', 'Inverser les vitesses de base selon la créature compatible la plus rapide au départ.'],
+  ['Weekly mithril in gardens and mills', 'Mithril hebdomadaire dans les jardins et moulins', 'Gardens and windmills can yield mithril each Monday. Enhanced mills double their stored weekly reward.', 'Les jardins et moulins à vent peuvent produire du mithril chaque lundi. Les moulins améliorés doublent leur réserve hebdomadaire.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {
