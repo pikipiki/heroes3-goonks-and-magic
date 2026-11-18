@@ -10,6 +10,23 @@ for(const [engineName,engine]of Object.entries({chromium,webkit})){
   const page=await browser.newPage();await silenceTestAudio(page);
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(origin+'/design-system.html');
+  const actions=page.locator('.ds-section').first(),secondary=actions.getByRole('button',{name:'Retour',exact:true});
+  const normalBox=await secondary.boundingBox();
+  await secondary.hover();
+  await page.waitForFunction(()=>getComputedStyle([...document.querySelectorAll('.ds-section button')].find(e=>e.textContent==='Retour')).boxShadow!=='none');
+  const finish=await secondary.evaluate(e=>{const s=getComputedStyle(e);return {shadow:s.boxShadow,border:s.borderImageSource,background:s.backgroundImage,duration:s.transitionDuration};});
+  assert.notEqual(finish.shadow,'none');assert.equal(finish.border,'none');assert(finish.background.includes('stone.png'));assert(finish.duration.split(',').some(n=>parseFloat(n)>0),'Material hover transition preserved');
+  const hoverBox=await secondary.boundingBox();assert.deepEqual(hoverBox,normalBox,'hover must not move the layout');
+  await page.mouse.down();await secondary.locator('.MuiTouchRipple-ripple').waitFor({state:'attached'});await page.mouse.up();
+  await page.locator('.ds-notice').getByRole('button').click();
+  await secondary.hover();await actions.screenshot({path:`/tmp/heroes-kit-review/${engineName}-hover-after.png`});
+  const accordion=page.getByRole('button',{name:'Capacités de la créature',exact:true});
+  await accordion.click();assert.equal(await accordion.getAttribute('aria-expanded'),'true');
+  await page.locator('.MuiCollapse-entered').nth(1).waitFor();
+  assert.equal(await page.locator('.MuiCollapse-entered').count(),2,'Material accordion expansion preserved');
+  const sliderFinish=await page.locator('.MuiSlider-thumb').first().evaluate(e=>({thumb:getComputedStyle(e).backgroundImage,rail:getComputedStyle(e.parentElement.querySelector('.MuiSlider-rail')).boxShadow,track:getComputedStyle(e.parentElement.querySelector('.MuiSlider-track')).backgroundImage}));
+  assert(sliderFinish.thumb.includes('gradient'));assert(sliderFinish.track.includes('gradient'));assert.notEqual(sliderFinish.rail,'none');
+  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await secondary.evaluate(e=>getComputedStyle(e).transitionDuration),'0s');await page.emulateMedia({reducedMotion:'no-preference'});
   for(const [width,height]of [[320,568],[360,640],[640,360],[568,280],[1280,720]]){
    await page.setViewportSize({width,height});
    for(const language of ['fr','en']){
@@ -44,7 +61,7 @@ for(const [engineName,engine]of Object.entries({chromium,webkit})){
     await page.getByRole('button',{name:language==='fr'?'Retour':'Back',exact:true}).click();
    }
   }
-  const broken=await page.locator('img').evaluateAll(images=>images.filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src));assert.deepEqual(broken,[]);assert.deepEqual(errors,[]);
+  const broken=await page.locator('img').evaluateAll(async images=>{await Promise.all(images.map(i=>i.decode().catch(()=>null)));return images.filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src);});assert.deepEqual(broken,[]);assert.deepEqual(errors,[]);
   console.log('PASS',engineName,'5 viewports × 2 languages, real data, evolution/quantity/confirmation, no horizontal overflow');
  }finally{await browser.close();}
 }

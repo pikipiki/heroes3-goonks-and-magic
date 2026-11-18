@@ -361,9 +361,11 @@
   background-image: linear-gradient(#a2352099, #65180edd), url(/web/h3-theme/stone.png) !important;
   border-image: none !important;
   box-shadow:
-    inset 0 0 0 1px #fff0ab,
-    inset 0 0 0 4px #8a6028,
-    inset 0 0 0 5px #ebc877;
+    inset 0 1px 0 #fff2b8,
+    inset 0 0 0 2px #a4772d,
+    inset 0 0 0 3px #f4d58a,
+    0 2px 0 #0d0805,
+    0 5px 10px #0009;
 }
 .hk-screen {
   border: 8px solid transparent;
@@ -371,4 +373,43 @@
 }
 .hk-stats > div {
   box-shadow: inset 1px 1px #e2c07b55, inset -1px -1px #000b;
+}
+.hk-panel {
+  border-color: #d2ae64;
+  background-image: linear-gradient(#24180eec, #1b110af2), url(/web/h3-theme/stone.png);
+  box-shadow: inset 0 1px 0 #ffe5a04d, 0 3px 8px #0007;
+}
+.hk-ornate {
+  border-color: transparent;
+}
+.hk-evolution[aria-pressed=true]:hover,
+.hk-choice-tile[aria-pressed=true]:hover,
+.hk-army-slot[aria-pressed=true]:hover {
+  background-image: linear-gradient(#bc4124bf, #7c1e0ee8), url(/web/h3-theme/stone.png) !important;
+  box-shadow:
+    inset 0 1px 0 #fff7d2,
+    inset 0 0 0 2px #b98a38,
+    inset 0 0 0 3px #ffe4a0,
+    0 6px 14px #000b,
+    0 0 12px #edc16b30;
+}
+.hk-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.hk-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 0 #ffe9a044) drop-shadow(0 3px 2px #000b);
+}
+.hk-chevron {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  filter: drop-shadow(0 2px 1px #000);
 }

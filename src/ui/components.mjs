@@ -32,5 +32,8 @@ export {default as TableHead} from '@mui/material/TableHead';
 export {default as TableBody} from '@mui/material/TableBody';
 export {default as TableRow} from '@mui/material/TableRow';
 export {default as TableCell} from '@mui/material/TableCell';
+export {default as Accordion} from '@mui/material/Accordion';
+export {default as AccordionSummary} from '@mui/material/AccordionSummary';
+export {default as AccordionDetails} from '@mui/material/AccordionDetails';
 export {ThemeProvider} from '@mui/material/styles';
 export {heroesTheme} from './theme.mjs';

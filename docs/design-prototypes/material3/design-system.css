@@ -451,3 +451,16 @@ body,
     white-space: nowrap;
   }
 }
+.ds-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 12px;
+}
+.ds-icon-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  text-align: center;
+}
