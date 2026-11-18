@@ -26,7 +26,7 @@ export function createOnlineLogin(root, command) {
   const panel = document.createElement('section');
   panel.className = 'online-login';useScreenComponents(panel);
   panel.hidden = true;
-  panel.innerHTML = `<form class="ui-screen-layout"><header><h2>Multijoueur sur l’appareil de l’hôte</h2><button type="button" data-close aria-label="Back">✕</button></header>
+  panel.innerHTML = `<form class="ui-screen-layout"><header><h2>Connexion</h2><button type="button" data-close aria-label="Back">✕</button></header>
     <div class="ui-screen-content online-login-content"><p>L’hôte doit garder le jeu ouvert pendant la partie.</p>
     <label><span></span><input name="player-name" data-online-name type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="online-name-help" minlength="4" maxlength="20" pattern="[A-Za-z0-9]+"><small id="online-name-help"></small></label>
     <p role="status" aria-live="polite"></p></div><footer class="ui-action-dock"><button type="submit" class="primary"></button></footer></form>`;
@@ -43,6 +43,7 @@ export function createOnlineLogin(root, command) {
 
   function render() {
     const french = getLanguage() === 'fr';
+    panel.querySelector('h2').textContent=french?'Connexion':'Sign in';
     const pending = submitting || state.onlinePending;
     label.hidden = Boolean(state.onlineHasAccount);
     const labelText = french ? 'Nom de joueur' : 'Player name';
