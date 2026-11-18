@@ -1,0 +1,20 @@
+/* Immediate Material-style menus in Heroes III colours. */
+select.material-select-source{display:none!important}
+:is(#mobile-app,#game-menu) button.material-select-trigger{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;width:100%;min-width:0;min-height:48px;margin:0;padding:10px 12px;
+ border:1px solid #c5a461!important;border-image:none!important;border-radius:4px!important;background:#24180c!important;color:#ffedbb!important;
+ font:17px/1.25 Georgia,serif;text-align:left;box-shadow:none!important;touch-action:manipulation;
+}
+.material-select-value{min-width:0;overflow-wrap:anywhere}
+.material-select-trigger::after{content:'';flex:0 0 7px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.material-select-trigger[aria-expanded=true]::after{transform:translateY(2px) rotate(225deg)}
+:is(#mobile-app,#game-menu) button.material-select-trigger:is(:focus-visible,[aria-expanded=true]){outline:2px solid #ffe293;outline-offset:1px}
+:is(#mobile-app,#game-menu) button.material-select-trigger:disabled{opacity:.45}
+.material-select-popup:popover-open,.material-select-popup[data-open=true]{display:block}
+.material-select-popup{z-index:2147483000;position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;color:#ffedbb;overflow:hidden;touch-action:none}
+.material-select-popup::backdrop{background:transparent}
+.material-select-list{position:fixed;box-sizing:border-box;margin:0;padding:4px 0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;background:#2d1e10;color:#ffedbb;border:1px solid #bc9954;border-radius:4px;box-shadow:0 6px 20px #0009;scroll-padding:4px}
+:is(#mobile-app,#game-menu,.material-select-popup) .material-select-list button[role=option]{display:block;box-sizing:border-box;width:100%;min-height:44px;margin:0;padding:10px 14px;border:0!important;border-image:none!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;color:inherit!important;font:16px/1.35 Georgia,serif;text-align:left;white-space:normal;overflow-wrap:anywhere;touch-action:pan-y}
+:is(#mobile-app,#game-menu,.material-select-popup) .material-select-list button[aria-selected=true]{background:#765323!important;color:#fff1bb!important;font-weight:bold}
+:is(#mobile-app,#game-menu,.material-select-popup) .material-select-list button[role=option]:focus{outline:2px solid #f3d58c;outline-offset:-3px;background:#59401f!important}
+.material-select-list button:disabled{opacity:.4}

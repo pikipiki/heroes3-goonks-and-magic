@@ -1,3 +1,4 @@
+import {createMaterialSelects} from './material-select.mjs';
 import {spellIconURL,warmSpellIcons} from './spell-icons.mjs';
 import {mapTwoClicks,setMapTwoClicks} from './map-click-preferences.mjs';
 import {defaultBattleView,setDefaultBattleView,battleOneClick,setBattleOneClick,spellOneClick,setSpellOneClick} from './battle-preferences.mjs';
@@ -35,6 +36,7 @@ function mountGameMenu(){
   let requestedMatch = requestedHostedMatch();
   const turnNotifications=createTurnNotifications({language:getLanguage});
   const movement=createMapSettings({send:value=>command(46,value.moveTime,value.hideEnemyMoves?1:0)});
+  const settingSelects=createMaterialSelects(dialog);
   const audio=installAudioRecovery({isMuted:()=>muted,onChange:info=>{audioPhase=info.phase;if(dialog.open&&tab==='settings')render();}});
   function openHostedMatch(requested=null){
     if(!window.goonkHostedAlerts||state.mode!=='menu')return;
@@ -92,6 +94,7 @@ function mountGameMenu(){
       const help=content.querySelector('#enemy-movement-help');
       const message=prefs.hideEnemyMoves?'Les adversaires jouent normalement, sans animation de marche ni suivi de caméra.':prefs.moveTime===0?'La caméra suit les héros ennemis visibles. La vitesse instantanée saute l’animation de marche.':'La caméra suit les héros ennemis pendant leur tour, dans les zones visibles de la carte.';
       if(help._sourceText!==message){help._sourceText=message;help.textContent=message;}
+      settingSelects.update();
       content.querySelector('.map-settings-health').textContent=!prefs.ready?'Chargement des réglages…':prefs.pending?'Application des réglages…':'Réglages conservés sur cet appareil.';
       const button=content.querySelector('[data-menu=sound]');button.textContent=muted?'🔇 Son coupé':'🔊 Son activé';button.setAttribute('aria-checked',String(!muted));button.setAttribute('aria-busy',String(pendingAudio!==null));button.disabled=!initialAudioApplied||pendingAudio!==null;
       content.querySelector('.audio-health').textContent=muted?'Musique et effets coupés.':audioPhase==='paused'?'Audio en pause. Coupe puis réactive le son avec ce bouton.':audioPhase==='closed'?'Audio indisponible : recharge le jeu.':audioPhase==='loading'?'Initialisation audio…':state.soundVolume===0&&state.musicVolume===0?'Volume du jeu à zéro. Coupe puis réactive le son avec ce bouton.':'Audio du jeu prêt.';

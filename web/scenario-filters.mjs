@@ -1,3 +1,4 @@
+import {createMaterialSelects} from './material-select.mjs';
 import {scenarioSize} from './scenario-details.mjs';
 
 const standardSizes = ['S', 'M', 'L', 'XL', 'H', 'XH', 'G'];
@@ -31,11 +32,13 @@ export function mountScenarioFilters(root) {
   const computers = panel.querySelector('[data-filter=computers]');
   const faction = panel.querySelector('[data-filter=faction]');
   const fields = [...panel.querySelectorAll('select')];
+  const selects = createMaterialSelects(panel);
   const countsFor = map => map.humanCounts ?? (Number.isInteger(map.humans) ? [map.humans] : []);
   let rows = [], fr = false;
   const t = (en, french) => fr ? french : en;
 
   function apply() {
+    selects.update();
     const query = searchKey(search.value.trim());
     let visible = 0;
     for (const {row, name, map, showComposition} of rows) {
