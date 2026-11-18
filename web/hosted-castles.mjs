@@ -1,3 +1,4 @@
+import {renderMarkup} from './ui/material-components.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 
 export function mountHostedCastles(root, fr, onRosterChange) {
@@ -12,7 +13,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
   picker.className = 'lobby-picker';
   picker.dataset.kind = 'castle';
   picker.setAttribute('aria-labelledby', 'hosted-castle-title');
-  picker.innerHTML = '<header><h2 id="hosted-castle-title" tabindex="-1" autofocus></h2><button type="button" data-castle-close data-native-click>✕</button></header><div class="lobby-picker-content"><div class="lobby-picker-grid" role="group" aria-labelledby="hosted-castle-title"></div></div><footer><button type="button" data-castle-close data-native-click></button></footer>';
+  renderMarkup(picker,'<header><h2 id="hosted-castle-title" tabindex="-1" autofocus></h2><button type="button" data-castle-close data-native-click>✕</button></header><div class="lobby-picker-content"><div class="lobby-picker-grid" role="group" aria-labelledby="hosted-castle-title"></div></div><footer><button type="button" data-castle-close data-native-click></button></footer>');
   picker.querySelector('header button').setAttribute('aria-label', t('Close castle picker', 'Fermer le choix du château'));
   picker.querySelector('footer button').textContent = t('← Back', '← Retour');
   root.replaceChildren(list, picker);
@@ -40,7 +41,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
     const selected = record.choices.length ? record.choices.find(item => item.id === record.value) ?? random :
       record.fixed ?? {name: t('Map faction', 'Faction de la carte')};
     const faction = selected.id === -1 ? random : selected;
-    record.card.innerHTML = factionArt(faction) + '<span><small></small><strong></strong><em></em></span>';
+    renderMarkup(record.card,factionArt(faction) + '<span><small></small><strong></strong><em></em></span>');
     record.card.querySelector('small').textContent = t('Starting faction', 'Faction de départ');
     record.card.querySelector('strong').textContent = faction.name;
     record.card.querySelector('em').textContent = record.choices.length ?
@@ -60,7 +61,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
       button.dataset.nativeClick = '';
       const selected = record.value === (faction.id === -1 ? null : faction.id);
       button.setAttribute('aria-pressed', String(selected));
-      button.innerHTML = factionArt(faction) + '<span class="lobby-choice-name"></span><span class="lobby-choice-check" aria-hidden="true"></span>';
+      renderMarkup(button,factionArt(faction) + '<span class="lobby-choice-name"></span><span class="lobby-choice-check" aria-hidden="true"></span>');
       button.querySelector('.lobby-choice-name').textContent = faction.name;
       if (selected) button.querySelector('.lobby-choice-check').textContent = '✓';
       return button;

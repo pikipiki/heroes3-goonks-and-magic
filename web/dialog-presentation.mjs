@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {campaignDialogDraft,renderCampaignDialogForm,sendCampaignDialogReply,sendCampaignDialogDraft} from './campaign-dialog-form.mjs';
 import {highScorePresentation} from './high-score-presentation.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -97,6 +97,9 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
    confirm.textContent=getLanguage()==='fr'?'Choisir cette créature':'Choose this creature';
    const cancel=panel.querySelector('[data-dialog-cancel]');if(cancel)cancel.textContent=getLanguage()==='fr'?'Passer ce choix':'Skip this choice';
   }
+  // Material UI owns the controls; the snapshot painter keeps the live canvas refs.
+  renderMarkup(header,header.innerHTML);renderMarkup(actions,actions.innerHTML);
+  const rects=icons.map(icon=>icon.rect);renderMarkup(choices,choices.innerHTML);icons=[...choices.querySelectorAll('canvas')].map((canvas,index)=>({canvas,rect:rects[index]}));if(hasSnapshot)drawIcons();
  }
  let trimmedObject=null,objectCrop=null;
  const snapshot=document.createElement('canvas');snapshot.width=800;snapshot.height=600;const context=snapshot.getContext('2d');

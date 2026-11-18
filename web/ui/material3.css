@@ -1,0 +1,93 @@
+/* An explicit important layer owns component metrics. Legacy page selectors
+   may arrange content, but cannot silently shrink a shared control. */
+@layer heroes-material {
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-button,.ui-icon-button,.ui-tab,.ui-choice-tile,.material-select-trigger,.ui-disclosure){box-sizing:border-box!important;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;border-radius:0!important;transition:background-color 120ms linear,color 120ms linear,box-shadow 120ms linear!important;transform:none!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-button{gap:var(--ui-space-1)!important;font:var(--ui-font-label)!important;padding:var(--ui-space-2) var(--ui-space-3)!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-icon-button{padding:0!important;width:var(--ui-touch)!important;height:var(--ui-touch)!important;flex:0 0 var(--ui-touch)!important;font:400 24px/1 system-ui!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-tab{font:var(--ui-font-label)!important;padding:var(--ui-space-2)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-tile{min-height:var(--ui-tile-size,var(--ui-touch))!important;font:var(--ui-font-label-medium)!important;padding:0!important;overflow-wrap:normal!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-tile img{width:16px!important;height:16px!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header{box-sizing:border-box!important;gap:var(--ui-space-2)!important;padding:var(--ui-header-padding,var(--ui-space-2) var(--ui-space-4))!important;min-width:0!important;min-height:var(--ui-header-min,var(--ui-appbar))!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header :is(h1,h2){font:var(--ui-font-title)!important;letter-spacing:0!important;min-width:0!important;margin:0!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock{gap:var(--ui-space-2)!important;padding:var(--ui-space-2)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.hero-bag-tabs,.lobby-panel-body){gap:var(--ui-space-2)!important;padding:var(--ui-space-2)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.material-select-trigger){box-sizing:border-box!important;min-height:var(--ui-field)!important;padding:var(--ui-space-2) var(--ui-space-4)!important;border-radius:0!important;font:var(--ui-font-body)!important;transition:border-color 120ms linear,background-color 120ms linear!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-text-field{width:100%!important;min-width:0!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-compact-input{min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;box-sizing:border-box!important;font:var(--ui-font-body)!important;transition:border-color 120ms linear!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-field{min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;display:inline-flex!important;align-items:center!important;gap:var(--ui-space-2)!important;touch-action:manipulation!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-input{flex:0 0 24px!important;width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;transition:background-color 120ms linear,border-color 120ms linear!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-slider{min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;touch-action:pan-y!important;transition:none!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-disclosure{padding:var(--ui-space-2) var(--ui-space-3)!important;font:var(--ui-font-label)!important;cursor:pointer!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.ui-compact-input):focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:2px!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.ui-compact-input)[aria-invalid=true]{border-color:var(--ui-error)!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)!important}
+  #mobile-app .ui-action-dock .ui-button{padding-inline:var(--ui-space-1)!important}
+ }
+ @media(orientation:landscape) and (max-height:600px){#game-menu .ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)!important}}
+ #mobile-app :is(#game-menu-toggle,.mobile-calendar,.scene-tools>button,.hero-movement-item>button,.hero-scroll){min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;box-sizing:border-box!important;border-radius:0!important;transition:background-color 120ms linear,color 120ms linear!important}
+ #mobile-app :is(.town-view,[data-ui=town-view]){min-height:48px!important;min-width:48px!important}
+ #mobile-app[data-mode=town]>.mobile-nav.ui-action-dock{display:grid!important;grid-template-columns:minmax(0,1fr) 80px 64px!important;grid-auto-rows:96px!important;gap:8px!important;padding:8px!important}
+ #mobile-app[data-mode=town]>.mobile-nav.ui-action-dock>button{grid-column:auto!important;min-width:0!important;margin:0!important;gap:4px!important;padding:4px!important}
+ #mobile-app[data-mode=town]>.mobile-nav .town-action-icon{width:24px!important;height:24px!important}
+ #mobile-app[data-mode=town]>.mobile-nav .town-action{display:flex!important;flex-direction:column!important}
+ @container goonk-viewport (orientation:landscape){#mobile-app[data-mode=town]>.mobile-nav.ui-action-dock{grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:48px!important;align-content:end!important}#mobile-app[data-mode=town]>.mobile-nav .town-action{flex-direction:row!important}}
+ #mobile-app .hero-movement-summary{gap:var(--ui-space-2)!important}
+ #mobile-app .hero-movement-item{min-height:var(--ui-touch)!important}
+ #mobile-app .mobile-top:has(>.mobile-calendar:not([hidden])){grid-template-rows:minmax(var(--ui-touch),auto) auto!important}
+ .campaign-media-thumbnail.ui-button{min-width:48px!important;min-height:48px!important;padding:8px!important;border-radius:0!important}
+ @media(prefers-reduced-motion:reduce){:is(#mobile-app,#game-menu,[data-ui-app]) *{transition:none!important;animation:none!important}}
+}
+
+#mobile-app[data-sheet=army] .army-grid{--ui-tile-size:68px}
+@container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid{--ui-tile-size:64px}}
+@layer heroes-material {
+ /* Readable, stable kingdom chrome: a 48px menu/calendar row and a shared
+    resource row. Gold spans two columns for unabridged grouped amounts. */
+ #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:48px 40px!important;gap:8px!important;padding:8px!important;width:auto!important;min-height:0!important;overflow:visible!important;align-items:center!important}
+ #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none!important}
+ #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>#game-menu-toggle{grid-area:1/1!important;width:48px!important;height:48px!important;padding:0!important}
+ #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>.mobile-calendar:not([hidden]){grid-area:1/2!important;display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;gap:8px!important;padding:0 4px!important;height:48px!important;min-height:48px!important;width:100%!important;font:var(--ui-font-body-small)!important;overflow:visible!important}
+ #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:2/1/3/3!important;display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;gap:0!important;width:100%!important;max-width:none!important;height:40px!important;min-width:0!important;padding:0!important;overflow:visible!important}
+ #mobile-app>.mobile-top .mobile-resource{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:0!important;min-width:0!important;padding:0!important;flex:none!important}
+ #mobile-app>.mobile-top .mobile-resource[data-resource=gold]{grid-column:span 2!important}
+ #mobile-app>.mobile-top .mobile-resource img{width:24px!important;height:24px!important;object-fit:contain!important}
+ #mobile-app>.mobile-top .resource-quantity{font:var(--ui-font-body-small)!important;letter-spacing:0!important;white-space:nowrap!important}
+ #mobile-app>.mobile-top .mobile-calendar>.calendar-compact,#mobile-app>.mobile-top .mobile-calendar>.calendar-next-week{display:none!important}
+ #mobile-app>.mobile-top .mobile-calendar>span:first-child{font:var(--ui-font-body-small)!important;white-space:nowrap!important}
+ #mobile-app>.mobile-top .calendar-recruit-cue{display:flex!important;align-items:center!important;gap:4px!important;padding:4px!important;font:var(--ui-font-label-medium)!important;line-height:16px!important;white-space:nowrap!important}
+ #mobile-app>.mobile-top .calendar-recruit-cue strong{font:var(--ui-font-label-medium)!important}
+ #mobile-app>.mobile-top .calendar-location{display:none!important}
+}
+@layer heroes-material {
+ #mobile-app>.mobile-top.ui-compact-chrome{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:48px!important;gap:8px!important;padding:8px!important;width:auto!important;height:64px!important;min-height:64px!important;overflow:visible!important}
+ #mobile-app>.mobile-top.ui-compact-chrome>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none!important}
+ #mobile-app .ui-kingdom-trigger:not([hidden]){display:flex!important;align-items:center!important;justify-content:center!important;grid-area:1/2!important;min-height:48px!important;min-width:48px!important}
+ #mobile-app .ui-kingdom-trigger[hidden]{display:none!important}
+ #mobile-app .ui-kingdom-popup .ui-popup-list{padding:8px!important}
+ #mobile-app .ui-kingdom-popup .mobile-resources{display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;width:100%!important;gap:0!important;height:40px!important}
+ #mobile-app .ui-kingdom-popup .mobile-calendar:not([hidden]){display:flex!important;width:100%!important;height:auto!important;min-height:48px!important;margin-top:8px!important;justify-content:space-between!important;gap:8px!important}
+}
+@layer mui {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top .calendar-recruit-cue{display:grid!important;grid-template-columns:auto 12px!important;grid-template-rows:16px 16px!important;gap:0 4px!important;min-width:64px!important;text-align:center!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-label]{grid-area:1/1!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-days]{grid-area:2/1!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue>.calendar-chevron{grid-area:1/2/3/3!important;align-self:center!important}
+ }
+}
+@layer mui {
+ #mobile-app>.mobile-nav.ui-map-compact{display:grid!important;grid-template-columns:minmax(0,1fr) 48px 64px!important;grid-template-rows:auto 48px!important;grid-auto-rows:auto!important;gap:8px!important;padding:8px!important;overflow:visible!important}
+ #mobile-app>.mobile-nav.ui-map-compact>.hero-movement-summary{grid-area:1/1/2/4!important;min-height:50px!important;max-height:none!important;padding:0!important}
+ #mobile-app>.mobile-nav.ui-map-compact>button:not([hidden]){grid-row:2!important;grid-column:auto!important;width:100%!important;min-width:0!important;min-height:48px!important;height:48px!important;margin:0!important;white-space:normal!important}
+}
+@layer mui {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){grid-template-columns:48px minmax(0,1fr) 96px!important}
+  #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:2/1/3/4!important}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>.mobile-calendar:not([hidden]){grid-area:1/3!important;display:flex!important;flex-direction:column!important;align-items:flex-end!important;justify-content:center!important;gap:0!important;padding:0!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue{order:1!important;height:32px!important;padding:0 4px!important;border:0!important;box-shadow:inset 0 0 0 1px var(--ui-outline)!important;box-sizing:border-box!important}
+  #mobile-app>.mobile-top .mobile-calendar>span:first-child{order:2!important;font:var(--ui-font-body-small)!important;height:16px!important;line-height:16px!important}
+  #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-top>.mobile-title{grid-area:1/2!important;display:flex!important;align-items:center!important;white-space:normal!important;overflow:auto!important;text-overflow:clip!important;font:var(--ui-font-title-compact)!important;max-height:48px!important;min-width:0!important}
+ }
+}

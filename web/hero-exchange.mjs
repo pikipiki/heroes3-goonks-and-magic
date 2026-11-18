@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {equipmentSlotNames, paintArtifactIcons} from './hero-equipment.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -59,7 +59,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    return `<button type="button" aria-label="${escape(heroes[side].name)}, ${escape(label)}${troops&&slot.name?`, ${slot.count}`:''}" class="exchange-slot${compatible?' can-receive':''}" data-exchange-slot="${side}:${slot.slot}"
     aria-pressed="${current}" ${disabled?'disabled':''}>
     ${slot.name?(troops?`<span class="exchange-troop-art">${portrait(slot)}<strong class="exchange-troop-count">${slot.count}</strong></span>`:`<canvas width="64" height="64" data-artifact-icon="${slot.icon}" aria-hidden="true"></canvas>`):'<span aria-hidden="true">＋</span>'}
-    <span><strong>${escape(troops&&!slot.name?(fr?'Libre':'Empty'):label)}</strong>
+    <span class="${troops&&slot.name?'ui-visually-hidden':''}"><strong>${escape(troops&&!slot.name?(fr?'Libre':'Empty'):label)}</strong>
     ${!troops&&!slot.backpack&&slot.name?`<small>${escape(slotName(slot,fr))}</small>`:''}</span>
    </button>`;
   };
@@ -86,7 +86,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    swap?(troops?(troopsOnly?(fr?'Les deux troupes vont être échangées.':'Both units will swap places.'):(fr?'Les deux troupes vont changer de héros.':'Both units will swap heroes.')):(fr?'Les deux objets vont changer de héros.':'Both items will swap heroes.')):
    (troops?(troopsOnly?(fr?'Les créatures vont rejoindre cette armée.':'The creatures will join this army.'):(fr?'Les créatures vont rejoindre l’autre héros.':'The creatures will join the other hero.')):(fr?'L’objet va rejoindre l’autre héros.':'The item will join the other hero.'));
   const disabled=!target||!available||!!pending||quantity<1||quantity>countLimit;
-  panel.innerHTML=`<header class="exchange-toolbar">
+  renderMarkup(panel,`<header class="exchange-toolbar">
    <h2>${joining?(fr?'Faire de la place':'Make room'):troopsOnly?(garrison?(fr?'Laisser des gardes':'Leave guards'):(fr?'Répartir les troupes':'Arrange army')):(fr?'Échange entre héros':'Hero exchange')}</h2>
    <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending||confirmFinish?'disabled':''}>${fr?'Classique':'Classic'}</button>
    <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close exchange')}" ${confirmFinish?'hidden':''} ${pending?'disabled':''}>${troopsOnly?(fr?'Terminer':'Done'):'×'}</button>
@@ -111,7 +111,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
     <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${fr?'Annuler':'Cancel'}</button>
     <button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer')}</button>
    </div>`:''}
-  </footer>`;
+  </footer>`);
   panel.querySelector('.exchange-inventories').scrollTop=scroll;
   const previous=focused?panel.querySelector(`[data-exchange-focus="${focused}"]`):focusedSlot?panel.querySelector(`[data-exchange-slot="${focusedSlot}"]`):null;
   if(previous&&!previous.disabled)previous.focus({preventScroll:true});

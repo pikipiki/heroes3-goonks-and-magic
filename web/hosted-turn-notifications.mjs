@@ -1,3 +1,4 @@
+import {renderMarkup} from './ui/material-components.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
 import {createHostedCodeCopy} from './hosted-code-copy.mjs';
@@ -99,7 +100,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   createPanel.id = 'hosted-create-panel';
   const library = document.createElement('section');
   library.className = 'hosted-game-library';
-  library.innerHTML = '<h3></h3><div class="hosted-game-list"></div><p data-library-empty hidden></p>';
+  renderMarkup(library,'<h3></h3><div class="hosted-game-list"></div><p data-library-empty hidden></p>');
   library.querySelector('h3').tabIndex = -1;
   library.querySelector('h3').textContent = fr ? 'Mes parties' : 'My games';
   library.querySelector('[data-library-empty]').textContent = fr ? 'Aucune partie mémorisée sur cet appareil.' : 'No games saved on this device.';
@@ -131,7 +132,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     void updateOccupancy();
   }
   field.className = 'hosted-match-settings';
-  field.innerHTML = '<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></label><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>';
+  renderMarkup(field,'<label><span></span><input type="password" data-hosted-seat-code autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"></label><div class="hosted-match-actions"><button type="button"></button><button type="button"></button></div><p role="status"></p>');
   const input = field.querySelector('input');
   input.placeholder = fr ? 'Colle ou saisis ton code' : 'Paste or enter your code';
   const [join, alerts] = field.querySelectorAll('button');
@@ -184,7 +185,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const deleteDialog = document.createElement('dialog');
   deleteDialog.className = 'hosted-delete-dialog';
   deleteDialog.setAttribute('aria-labelledby', 'hosted-delete-title');
-  deleteDialog.innerHTML = '<header><h2 id="hosted-delete-title"></h2></header><div class="hosted-delete-body"><p data-delete-name></p><p data-delete-help></p><div class="hosted-match-actions"><button type="button" data-delete-cancel data-native-click autofocus></button><button type="button" data-delete-confirm data-native-click class="hosted-delete"></button></div></div>';
+  renderMarkup(deleteDialog,'<header><h2 id="hosted-delete-title"></h2></header><div class="hosted-delete-body"><p data-delete-name></p><p data-delete-help></p><div class="hosted-match-actions"><button type="button" data-delete-cancel data-native-click autofocus></button><button type="button" data-delete-confirm data-native-click class="hosted-delete"></button></div></div>');
   deleteDialog.querySelector('h2').textContent = fr ? 'Supprimer cette partie ?' : 'Delete this game?';
   deleteDialog.querySelector('[data-delete-help]').textContent = fr ? 'La sauvegarde et les accès de tous les joueurs seront supprimés du serveur.' : 'The save and access for every player will be removed from the server.';
   const cancelDelete = deleteDialog.querySelector('[data-delete-cancel]');
@@ -219,7 +220,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   codeKinds.className = 'hosted-match-actions hosted-code-kinds';
   codeKinds.setAttribute('role', 'group');
   codeKinds.setAttribute('aria-label', fr ? 'Type de code' : 'Code type');
-  codeKinds.innerHTML = '<button type="button" data-code-kind="invite"></button><button type="button" data-code-kind="personal"></button>';
+  renderMarkup(codeKinds,'<button type="button" data-code-kind="invite"></button><button type="button" data-code-kind="personal"></button>');
   for (const button of codeKinds.children) button.dataset.nativeClick = '';
   codeKinds.children[0].textContent = fr ? 'Invitation' : 'Invitation';
   codeKinds.children[1].textContent = fr ? 'Mon code personnel' : 'My personal code';
@@ -312,7 +313,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
         button.type = 'button';
         button.dataset.savedId = item.matchId;
         button.dataset.nativeClick = '';
-        button.innerHTML = '<strong></strong><small></small><span></span>';
+        renderMarkup(button,'<strong></strong><small></small><span></span>');
         button.querySelector('strong').textContent = item.name || (fr ? 'Partie dédiée' : 'Hosted game');
         button.querySelector('small').textContent = '#' + item.matchId.slice(0, 6);
         button.querySelector('span').textContent = presenceText(item);

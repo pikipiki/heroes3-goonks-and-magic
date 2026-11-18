@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {spellIconURL} from './spell-icons.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -33,7 +33,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
     const header = `<header><h2>${title}</h2><button type="button" data-guild-view>${viewLabel}</button>
       <button type="button" data-guild-close aria-label="${t('Fermer', 'Close')}">✕</button></header>`;
     panel.setAttribute('aria-label', title);
-    if (classic) { panel.innerHTML = header; return; }
+    if (classic) { renderMarkup(panel,header); return; }
 
     const illustration = townBuildingCardImage({townFaction: guild.faction}, {key: 'mageGuild' + Math.max(1, built)}, asset);
     const levelLabel = t('Niveau', 'Level');
@@ -42,7 +42,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
     const emptyText = shelf === 'unavailable' ? t('Cette faction ne peut pas construire ce niveau.', 'This faction cannot build this guild level.') :
       shelf === 'sealed' ? t('Construis ce niveau de la guilde pour découvrir ses sorts.', 'Build this guild level to discover its spells.') :
       t('Aucun sort à ce niveau.', 'No spells at this level.');
-    panel.innerHTML = `${header}
+    renderMarkup(panel,`${header}
       <div class="mage-guild-library">
         <nav aria-label="${t('Étages de la tour', 'Guild floors')}">
           ${Array.from({length: floorCount}, (_, i) => {
@@ -70,7 +70,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
           ${pages > 1 ? `<footer><button type="button" data-guild-page="-1" aria-label="${t('Page précédente', 'Previous page')}" ${page === 0 ? 'disabled' : ''}>←</button>
             <span>${page + 1} / ${pages}</span><button type="button" data-guild-page="1" aria-label="${t('Page suivante', 'Next page')}" ${page + 1 === pages ? 'disabled' : ''}>→</button></footer>` : ''}
         </section>
-      </div>`;
+      </div>`);
   }
 
   panel.addEventListener('error', event => {

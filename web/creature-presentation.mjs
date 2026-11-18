@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import{hdCreaturePortrait,paintHDCreature}from'./goonk-hd-portraits.mjs';
 import{createRecruitmentHall}from'./recruitment-families.mjs';
 import{bindPress}from'./mobile-press.mjs';
@@ -18,26 +18,7 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
  const panel=document.createElement('section');panel.className='creature-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Creature overview');root.querySelector('.mobile-play').append(panel);
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  const hall=createRecruitmentHall({panel,command,prices,stats,buildingArt,openBuildings});
- let fitting=false;
- const markup=(node,html)=>{if(node&&node._recruitMarkup!==html){node._recruitMarkup=html;node.innerHTML=html;}};
- const fitVariantNames=()=>{
-  if(fitting)return;fitting=true;requestAnimationFrame(()=>{
-   fitting=false;
-   const title=panel.querySelector('.creature-view-head h2');
-   if(panel.classList.contains('recruitment-view')&&title){
-    const key=title.clientWidth+':'+title.clientHeight+':'+title.textContent;
-    if(title._fitName!==key){title._fitName=key;const start=root.clientWidth>root.clientHeight?14:18;for(let size=start;size>=9;size-=.5){title.style.fontSize=size+'px';if(title.scrollHeight<=title.clientHeight&&title.scrollWidth<=title.clientWidth)break;}}
-   }
-   for(const button of panel.querySelectorAll('.recruit-variants button')){
-    const name=button.querySelector('.variant-name'),w=button.clientWidth,h=button.clientHeight;
-    if(!w||!h||!name)continue;
-    const key=w+':'+h+':'+name.textContent;if(button._fitName===key)continue;button._fitName=key;
-    const room=Math.max(18,h-(button.querySelector('.variant-rank')?44:30));
-    for(let size=11;size>=8;size-=.5){name.style.fontSize=size+'px';if(name.scrollHeight<=room)break;}
-   }
-  });
- };
- if(typeof ResizeObserver!=='undefined')new ResizeObserver(fitVariantNames).observe(panel);
+ const markup=(node,html)=>{if(node&&node._recruitMarkup!==html){node._recruitMarkup=html;renderMarkup(node,html);}};
  const choices=root.querySelector('.recruit-choices'),amount=root.querySelector('.mobile-recruit-amount');let signature='',state={},canvases=[],iconsDirty=true;
  panel.addEventListener('scroll',()=>{iconsDirty=true;},{capture:true,passive:true});
  window.addEventListener('resize',()=>{iconsDirty=true;},{passive:true});
@@ -56,8 +37,8 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
  return{
   focusHallUnit:hall.focusUnit,
   update(next){state=next;const active=['fort','recruit','creature'].includes(state.mode);panel.hidden=!active;root.dataset.creatureView=active?state.mode:'';panel.classList.toggle('recruitment-view',state.mode==='recruit');if(!active){if(signature){hall.reset();choices.hidden=true;amount.hidden=true;root.querySelector('.mobile-play').append(choices,amount);for(const c of canvases){c.width=0;c.height=0;}canvases=[];panel.replaceChildren();signature='';}return;}
-   const unit=state.mode==='creature'?state.creatureUnit:state.recruitUnit,rows=state.fortRows||[],upgrades=state.creatureUpgrades||[],key=state.mode==='recruit'?JSON.stringify(['recruit',getLanguage(),(state.previewUnits?.length?state.previewUnits:[unit]).map(u=>[u?.id,u?.name,u?.upgradeRank])]):JSON.stringify([state.mode,unit?.id,state.mode==='fort'?null:(state.previewUnits||[]).map(u=>u.id),state.mode==='fort'?null:rows.map(u=>[u.id,u.built]),unit?.count,unit?.experienceRank,unit?.shooter,unit?.description,unit?.abilities,unit?.nativeFlags,getLanguage(),upgrades.map(u=>[u.id,u.cost,u.affordable])]);
-   if(key!==signature){if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root.querySelector('.mobile-play').append(choices,amount);const preserved=new Map(canvases.filter(c=>c.width&&c.height).map(c=>{const image=document.createElement('canvas');image.width=c.width;image.height=c.height;image.getContext('2d').drawImage(c,0,0);return [c.dataset.previewCreature,image];}));panel.innerHTML=`<header class="creature-view-head"><h2>${state.mode==='fort'?'Recruitment hall':esc(unit?.name||'Creature')}</h2>${state.mode==='fort'?'<button class="primary" data-recruit-all>Recruit all</button>':''}${state.mode==='recruit'?'':`<button class="primary" data-presentation-close aria-label="${state.mode==='recruit'?'Close recruitment':'Back to previous screen'}">← Back</button>`}</header>`;
+   const unit=state.mode==='creature'?state.creatureUnit:state.recruitUnit,rows=state.fortRows||[],upgrades=state.creatureUpgrades||[],key=state.mode==='fort'?JSON.stringify(['fort',getLanguage()]):state.mode==='recruit'?JSON.stringify(['recruit',getLanguage(),(state.previewUnits?.length?state.previewUnits:[unit]).map(u=>[u?.id,u?.name,u?.upgradeRank])]):JSON.stringify([state.mode,unit?.id,state.mode==='fort'?null:(state.previewUnits||[]).map(u=>u.id),state.mode==='fort'?null:rows.map(u=>[u.id,u.built]),unit?.count,unit?.experienceRank,unit?.shooter,unit?.description,unit?.abilities,unit?.nativeFlags,getLanguage(),upgrades.map(u=>[u.id,u.cost,u.affordable])]);
+   if(key!==signature){if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root.querySelector('.mobile-play').append(choices,amount);const preserved=new Map(canvases.filter(c=>c.width&&c.height).map(c=>{const image=document.createElement('canvas');image.width=c.width;image.height=c.height;image.getContext('2d').drawImage(c,0,0);return [c.dataset.previewCreature,image];}));renderMarkup(panel,`<header class="creature-view-head"><h2>${state.mode==='fort'?'Recruitment hall':esc(unit?.name||'Creature')}</h2>${state.mode==='fort'?'<button class="primary" data-recruit-all>Recruit all</button>':''}${state.mode==='recruit'?'':`<button class="primary" data-presentation-close aria-label="${state.mode==='recruit'?'Close recruitment':'Back to previous screen'}">← Back</button>`}</header>`);
     if(state.mode==='fort'){
      // The family gallery owns its responsive roster and selection.
 
@@ -73,11 +54,12 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
       if(choices.every(({u})=>u.upgradeRank))choices.sort((a,b)=>a.u.upgradeRank-b.u.upgradeRank);
       panel.dataset.variantCount=String(choices.length);variants.style.setProperty('--variant-count',String(choices.length));variants.style.setProperty('--variant-rows',String(Math.ceil(choices.length/2)));variants.hidden=choices.length<2;
       variants.setAttribute('role','group');variants.setAttribute('aria-label',getLanguage()==='fr'?'Créatures et évolutions':'Creatures and evolutions');
-      variants.innerHTML=choices.map(({u,index})=>`<button data-variant="${index}" aria-pressed="${u.id===unit?.id}">${creaturePortrait(u)}<span class="variant-name">${esc(u.name)}</span>${u.upgradeRank?`<small class="variant-rank">${['','I','II','III','IV','V','VI'][u.upgradeRank]||u.upgradeRank}</small>`:''}</button>`).join('');
+      renderMarkup(variants,choices.map(({u,index})=>`<button data-variant="${index}" aria-pressed="${u.id===unit?.id}">${creaturePortrait(u)}<span class="variant-name">${esc(u.name)}</span>${u.upgradeRank?`<small class="variant-rank">${['','I','II','III','IV','V','VI'][u.upgradeRank]||u.upgradeRank}</small>`:''}</button>`).join(''));
       const visual=document.createElement('div');visual.className='recruit-visual';visual.append(panel.querySelector('.creature-stage'),variants);
       const controls=document.createElement('section');controls.className='recruit-controls';controls.append(amount);
       const transaction=document.createElement('div');transaction.className='recruit-transaction';transaction.append(panel.querySelector('.recruit-economy'),controls);
-      const sidebar=document.createElement('aside');sidebar.className='recruitment-sidebar';sidebar.append(panel.querySelector('.creature-view-head'),transaction);
+      const context=document.createElement('div');context.className='recruit-context';context.append(panel.querySelector('.creature-view-head'),transaction.querySelector('.recruit-economy'));
+      const sidebar=document.createElement('aside');sidebar.className='recruitment-sidebar';sidebar.append(context,transaction);
       const details=panel.querySelector('.creature-details');panel.replaceChildren(visual,details,sidebar);
      }
      else if(upgrades.length)panel.insertAdjacentHTML('beforeend','<section class="creature-upgrades" aria-label="Creature upgrades"><h3>Upgrade this stack</h3><div class="upgrade-options" style="--upgrade-count:'+upgrades.length+'">'+upgrades.map(u=>`<article class="creature-upgrade"><div class="upgrade-creature">${creaturePortrait(u)}<strong>${esc(u.name)} × ${unit?.count??1}</strong></div><div class="upgrade-price"><span>Total cost</span>${prices(u,1,state.resourceTypes)}</div><button data-upgrade="${u.id}" aria-label="Upgrade to ${esc(u.name)}" ${!u.affordable?'disabled':''}>${u.affordable?'Upgrade':'Not enough resources'}</button></article>`).join('')+'</div></section>');
@@ -97,10 +79,9 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
     const changed=description.dataset.unit!==String(unit?.id);markup(description,narrative);if(changed){description.scrollTop=0;description.dataset.unit=String(unit?.id);}
     const stock=panel.querySelector('.recruit-stock strong'),count=String(unit?.count??0);if(stock.textContent!==count)stock.textContent=count;
     for(const button of panel.querySelectorAll('[data-variant]')){const selected=state.previewUnits?.[Number(button.dataset.variant)]?.id===unit?.id;const value=String(selected);if(button.getAttribute('aria-pressed')!==value)button.setAttribute('aria-pressed',value);}
-    fitVariantNames();
    }
    if(state.mode==='fort'){panel.querySelector('[data-recruit-all]').disabled=!state.turn;hall.update(state);canvases=hall.canvases;iconsDirty=true;}
-   else{const price=panel.querySelector('.featured-price');const html=state.mode==='recruit'?'<span>Cost per creature</span>'+prices(unit||{},1,state.resourceTypes):'<span>Creatures in stack: '+(unit?.count??1)+'</span>';if(price._sourceMarkup!==html){price._sourceMarkup=html;price.innerHTML=html;}}
+   else{const price=panel.querySelector('.featured-price');const html=state.mode==='recruit'?'<span>Cost per creature</span>'+prices(unit||{},1,state.resourceTypes):'<span>Creatures in stack: '+(unit?.count??1)+'</span>';if(price._sourceMarkup!==html){price._sourceMarkup=html;renderMarkup(price,html);}}
   },
   paint(source){if(panel.hidden)return false;if(document.hidden)return true;const isFort=state.mode==='fort';const sx=source.width/800,sy=source.height/600;
    const clip=isFort?panel.querySelector('.hall-families')?.getBoundingClientRect():null;let anyUnpainted=false;

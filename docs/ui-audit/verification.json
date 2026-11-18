@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "applicationVersion": "0.4.267",
+  "beforeReference": {
+    "commit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "version": "0.4.257",
+    "description": "Before reusable UI components",
+    "cases": 912
+  },
+  "matrix": {
+    "test": "work/browser-tests/material-screen-matrix-e2e.mjs",
+    "screens": 38,
+    "cases": 912,
+    "engines": [
+      "chromium",
+      "webkit"
+    ],
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "viewports": [
+      {
+        "width": 320,
+        "height": 568
+      },
+      {
+        "width": 360,
+        "height": 640
+      },
+      {
+        "width": 430,
+        "height": 932
+      },
+      {
+        "width": 568,
+        "height": 280
+      },
+      {
+        "width": 716,
+        "height": 279
+      },
+      {
+        "width": 844,
+        "height": 390
+      }
+    ],
+    "findings": 0,
+    "consoleErrors": 0,
+    "sha256": "76e737a8c759393ac5863fc88d6a993e204330facf47f0888ce6c42857605498"
+  },
+  "complementarySuites": {
+    "factories": {
+      "tests": [
+        "ui-screen-adapters"
+      ],
+      "samples": 210,
+      "findings": 0
+    },
+    "sharedControls": {
+      "tests": [
+        "ui-screen-adapters",
+        "mobile-settings-icons",
+        "recruitment-view"
+      ],
+      "samples": 304,
+      "findings": 0
+    },
+    "catalogue": {
+      "tests": [
+        "scenario-previews",
+        "wog-options-components"
+      ],
+      "samples": 134,
+      "findings": 0
+    },
+    "hallAndRotation": {
+      "tests": [
+        "hall-map-layout",
+        "recruitment-selection-scroll"
+      ],
+      "samples": 162,
+      "findings": 0
+    },
+    "otherVerifiedInteractions": {
+      "tests": [
+        "progression-layout",
+        "town-buildings-readable",
+        "guild-eight-players",
+        "material-surfaces",
+        "commander-tree-layout",
+        "wog-campaign-form-layout",
+        "marketplace-layout"
+      ],
+      "scope": "FR/EN, Chromium/WebKit; dix factions, huit joueurs, formulaires, menus et confirmations."
+    }
+  },
+  "unitTests": {
+    "total": 910,
+    "passed": 857,
+    "skipped": 53,
+    "failed": 0,
+    "scope": "Release sources, with the two unrelated native working files read from HEAD in an isolated view."
+  },
+  "limits": [
+    "Browser layouts and native command bridges use test models; this is not a full native gameplay or physical-device validation.",
+    "Inventoried variants without individual scenario evidence remain inventoried, not certified."
+  ],
+  "visualComparisonPairs": 228,
+  "menuLifecycle": {
+    "test": "work/browser-tests/material-menu-lifecycle-e2e.mjs",
+    "cycles": 64,
+    "engines": [
+      "chromium",
+      "webkit"
+    ],
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "rosterRebuild": true,
+    "headerActionsPreserved": true,
+    "consoleErrors": 0
+  }
+}

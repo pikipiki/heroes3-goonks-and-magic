@@ -35,3 +35,7 @@ outputs/heroes-goonk-netlify-pages.zip
 # Pinned upstream checkouts used by the ERA gameplay port, never site assets.
 /work/era-gameplay-reference/
 /work/era-archer-reference/
+
+# Generated from pinned React / Material UI dependencies.
+/node_modules/
+/web/ui/mui-runtime.mjs

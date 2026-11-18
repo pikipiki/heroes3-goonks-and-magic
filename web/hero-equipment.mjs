@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
@@ -122,7 +122,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
   const armySlots=heroArmy?.slots||[];
   const armyCount=armySlots.filter(s=>s&&s.count>0).length;
-  const selectedUnit=Number.isInteger(selectedArmySlot)?armySlots[selectedArmySlot]:null;
+  const selectedUnit=Number.isInteger(selectedArmySlot)?armySlots[selectedArmySlot]:null;panel.dataset.armySelected=String(!!selectedUnit);
   if(selectedUnit&&selectedUnit.count>1){
    splitAmount=Math.max(1,Math.min(selectedUnit.count-1,splitAmount));
   }
@@ -138,14 +138,14 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    </div>`;
   const hint=hero.owned===false?'Select an item to read its effects.':backpack?'Select an item to read its effects or move it.':
    'Five slots hold accessories. Ballista, ammo cart, first aid tent and catapult have one slot each. The spellbook has its own slot.';
-  panel.innerHTML=`<header class="hero-card-head">
+  renderMarkup(panel,`<header class="hero-card-head">
    <canvas class="hero-face" width="58" height="64" aria-hidden="true"></canvas>
    <div><h2>${esc(hero.name)}</h2><p>Level ${hero.level??1} ${esc(hero.className)}</p>
     <div class="hero-vitals"><span>${heroIcon(hero.manaIcon)}${hero.mana??0} / ${hero.manaLimit??0} mana</span>
      ${hero.experience===undefined?'':`<span>${heroIcon(hero.experienceIcon)}${hero.experience.toLocaleString()} XP</span>`}</div></div>
    <button data-hero-close aria-label="${hero.owned===false?'Back':'Back to map'}">✕</button>
   </header>
-  <dl class="hero-primary" aria-label="Primary stats">${['Attack','Defense','Power','Knowledge'].map((name,i)=>`<div><dt>${name}</dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
+  <dl class="hero-primary" translate="no" aria-label="Primary stats">${(getLanguage()==='fr'?['Attaque','Défense','Puissance','Connaissance']:['Attack','Defense','Power','Knowledge']).map((name,i)=>`<div><dt>${name}</dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
   <nav class="hero-bag-tabs" aria-label="Hero sheet">
    <button data-hero-tab="army" aria-pressed="${isArmy}" ${picked?'disabled':''}>${fr?'Armée':'Army'} · ${armyCount}</button>
    <button data-hero-tab="worn" aria-pressed="${tab==='worn'}">${fr?'Équipement':'Equipment'}</button>
@@ -183,7 +183,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
      ${!picked&&item?.canDisassemble?`<button data-hero-combine="1" ${!state.turn?'disabled':''}>${fr?'Démonter':'Disassemble'}</button>`:!picked&&item?.canAssemble?`<button data-hero-combine="0" ${!state.turn?'disabled':''}>${fr?'Assembler':'Assemble'}</button>`:`<button data-hero-cancel ${!picked?'disabled':''}>Cancel move</button>`}
     </div>`}
    `}
-  </section>`;
+  </section>`);
   panel.querySelector('.hero-equipment-grid').scrollTop=scrollPositions[tab]||0;
   panel.querySelector('.hero-bag-tabs').scrollLeft=navScrollLeft;
   if(rebalanceFocused)panel.querySelector('[data-hero-source-rebalance]')?.focus({preventScroll:true});
@@ -290,7 +290,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    render();
   }
  });
- return{showDeployment(slot){if(state.mode==='hero')troopDeployment.show(slot);else if(state.mode==='map'){requestedDeployment=slot;command(55);}},showMobile(){switchView(false);},showArmy(){tab='army';selected=null;selectedArmySlot=null;splitActive=false;if(state.mode==='hero')switchView(false);},update(next){troopDeployment.update(next);troopEquipment.update(next);if(!['hero','creature'].includes(state.mode)&&next.mode==='hero'&&next.heroWindow?.owned===false){tab='worn';selected=null;selectedArmySlot=null;splitActive=false;scrollPositions.worn=0;scrollPositions.backpack=0;scrollPositions.skills=0;scrollPositions.army=0;}state=next;if(requestedDeployment!==null&&next.mode==='hero'){const slot=requestedDeployment;requestedDeployment=null;troopDeployment.show(slot);}if(next.mode!=='hero'){panel.hidden=true;signature='';classic=false;delete root.dataset.heroView;return;}root.dataset.heroView=classic?'classic':'mobile';panel.hidden=classic;const key=JSON.stringify([next.heroWindow,next.turn,next.armies,next.troopDeployment]);if(key!==signature){signature=key;render();}},paint(source){if(troopDeployment.paint())return true;if(troopEquipment.paint())return true;if(panel.hidden||classic)return false;if(document.hidden)return true;const rect=state.heroWindow?.portrait,face=panel.querySelector('.hero-face');if(face&&rect?.w){face.getContext('2d').drawImage(source,rect.x*source.width/800,rect.y*source.height/600,rect.w*source.width/800,rect.h*source.height/600,0,0,58,64);}const heroAtlas=window.goonkHeroIconAtlas;
+ return{showDeployment(slot){if(state.mode==='hero')troopDeployment.show(slot);else if(state.mode==='map'){requestedDeployment=slot;command(55);}},showMobile(){switchView(false);},showArmy(){tab='army';selected=null;selectedArmySlot=null;splitActive=false;if(state.mode==='hero')switchView(false);},update(next){troopDeployment.update(next);troopEquipment.update(next);if(!['hero','creature'].includes(state.mode)&&next.mode==='hero'&&next.heroWindow?.owned===false){tab='skills';selected=null;selectedArmySlot=null;splitActive=false;scrollPositions.worn=0;scrollPositions.backpack=0;scrollPositions.skills=0;scrollPositions.army=0;}state=next;if(requestedDeployment!==null&&next.mode==='hero'){const slot=requestedDeployment;requestedDeployment=null;troopDeployment.show(slot);}if(next.mode!=='hero'){panel.hidden=true;signature='';classic=false;delete root.dataset.heroView;return;}root.dataset.heroView=classic?'classic':'mobile';panel.hidden=classic;const key=JSON.stringify([next.heroWindow,next.turn,next.armies,next.troopDeployment]);if(key!==signature){signature=key;render();}},paint(source){if(troopDeployment.paint())return true;if(troopEquipment.paint())return true;if(panel.hidden||classic)return false;if(document.hidden)return true;const rect=state.heroWindow?.portrait,face=panel.querySelector('.hero-face');if(face&&rect?.w){face.getContext('2d').drawImage(source,rect.x*source.width/800,rect.y*source.height/600,rect.w*source.width/800,rect.h*source.height/600,0,0,58,64);}const heroAtlas=window.goonkHeroIconAtlas;
   if(heroAtlas){
    for(const canvas of panel.querySelectorAll('[data-hero-icon]')){
     if(canvas._heroIconAtlas===heroAtlas)continue;

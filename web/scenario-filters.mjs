@@ -1,4 +1,4 @@
-import {createMaterialSelects} from './ui/components.mjs';
+import {createMaterialSelects,renderMarkup} from './ui/material-components.mjs';
 import {scenarioSize} from './scenario-details.mjs';
 
 const standardSizes = ['S', 'M', 'L', 'XL', 'H', 'XH', 'G'];
@@ -9,7 +9,7 @@ export function mountScenarioFilters(root) {
   const empty = root.querySelector('.lobby-picker-empty');
   const panel = document.createElement('div');
   panel.className = 'scenario-filters';
-  panel.innerHTML = `
+  renderMarkup(panel,`
     <details>
       <summary data-filter-summary></summary>
       <div class="scenario-filter-fields">
@@ -20,7 +20,7 @@ export function mountScenarioFilters(root) {
         <label><span></span><select data-filter="faction"></select></label>
       </div>
     </details>
-    <div class="scenario-filter-status"><span role="status"></span><button type="button" data-filter-reset hidden></button></div>`;
+    <div class="scenario-filter-status"><span role="status"></span><button type="button" data-filter-reset hidden></button></div>`);
   search.closest('label').after(panel);
   const disclosure = panel.querySelector('details');
   const summary = panel.querySelector('summary');

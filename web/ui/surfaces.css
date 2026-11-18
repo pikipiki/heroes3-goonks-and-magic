@@ -1,0 +1,31 @@
+/* Standalone surfaces use the same three regions as in-game screens. */
+@layer heroes-material {
+ :is(#storage-manager,.session-recovery,.campaign-media-viewer)[data-ui-app]{box-sizing:border-box!important;max-height:100dvh!important;color:var(--ui-on-surface)!important;background:var(--ui-surface) url('../h3-theme/stone.png')!important;border-radius:0!important;font:var(--ui-font-body)!important;overflow:hidden!important;padding:0!important;gap:0!important}
+ :is(.session-recovery,.campaign-media-viewer)[data-ui-app]:not([open]){display:none!important}
+ :is(#storage-manager,.session-recovery[open],.campaign-media-viewer[open])[data-ui-app]{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+ :is(#storage-manager,.session-recovery,.campaign-media-viewer)[data-ui-app]>.ui-screen-header{grid-column:1!important;grid-row:1!important}
+ :is(#storage-manager,.session-recovery,.campaign-media-viewer)[data-ui-app]>.ui-screen-content{grid-column:1!important;grid-row:2!important;min-height:0!important;min-width:0!important;overflow:auto!important;touch-action:pan-x pan-y pinch-zoom!important;overscroll-behavior:contain!important;padding:16px!important}
+ :is(#storage-manager,.session-recovery)[data-ui-app]>.ui-action-dock{grid-column:1!important;grid-row:3!important}
+ #storage-manager[data-ui-app]{height:calc(100dvh - 32px)!important;max-width:960px!important;margin:0 auto!important}
+ #storage-manager[data-ui-app] .storage-return{margin:0!important;text-decoration:none;flex:1;text-align:center}
+ #storage-manager[data-ui-app] :is(h1,h2,h3,p,dt,dd,button,a,summary){overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important}
+ #storage-manager[data-ui-app] .storage-sizes{margin:16px 0!important}
+ #storage-manager[data-ui-app] .storage-sizes>div{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:16px!important}
+ #storage-manager[data-ui-app] .storage-site{overflow-wrap:normal!important;word-break:normal!important;font:var(--ui-font-body-medium)!important}
+ #storage-manager[data-ui-app] .storage-identity{margin:16px 0!important}
+ #storage-manager[data-ui-app] p{font:var(--ui-font-body)!important}
+ .session-recovery[data-ui-app]{width:min(560px,calc(100vw - 32px))!important;max-width:none!important}
+ .session-recovery[data-ui-app] p{margin:0!important;font:var(--ui-font-body)!important}
+ .session-recovery[data-ui-app] footer{min-height:0!important}
+ .session-recovery[data-ui-app] footer:not(:has(button:not([hidden]))){display:none!important}
+ .campaign-media-viewer[data-ui-app]{inset:0!important;width:100%!important;height:100dvh!important;max-width:none!important;margin:0!important}
+ .campaign-media-viewer[data-ui-app]>.ui-screen-header{padding-top:max(8px,env(safe-area-inset-top))!important}
+ @media(orientation:landscape) and (max-height:600px){
+  :is(#storage-manager,.session-recovery[open],.campaign-media-viewer[open])[data-ui-app]{grid-template-columns:minmax(0,1fr) clamp(192px,30vw,280px)!important;grid-template-rows:minmax(0,1fr) auto!important}
+  :is(#storage-manager,.session-recovery,.campaign-media-viewer)[data-ui-app]>.ui-screen-header{grid-column:2!important;grid-row:1!important;align-self:start!important;flex-wrap:wrap!important;min-height:64px!important}
+  :is(#storage-manager,.session-recovery,.campaign-media-viewer)[data-ui-app]>.ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)!important}
+  :is(#storage-manager,.session-recovery,.campaign-media-viewer)[data-ui-app]>.ui-screen-content{grid-column:1!important;grid-row:1/-1!important}
+  :is(#storage-manager,.session-recovery)[data-ui-app]>.ui-action-dock{grid-column:2!important;grid-row:2!important;flex-direction:column!important}
+  .session-recovery[data-ui-app]{width:calc(100vw - 32px)!important}
+ }
+}

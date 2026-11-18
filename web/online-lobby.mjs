@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {isVisibleScenario,scenarioTitle} from './scenario-title.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -31,7 +31,7 @@ export function createOnlineLobby(root, command) {
   panel.setAttribute('translate', 'no');
   panel.hidden = true;
   panel.setAttribute('aria-labelledby', 'online-lobby-title');
-  panel.innerHTML = '<header><div><h2 id="online-lobby-title"></h2><p data-online-account></p></div><button type="button" data-room-action="classic"></button></header><div class="online-lobby-body"></div><footer class="online-lobby-actions"></footer>';
+  renderMarkup(panel,'<header><div><h2 id="online-lobby-title"></h2><p data-online-account></p></div><button type="button" data-room-action="classic"></button></header><div class="online-lobby-body"></div><footer class="online-lobby-actions"></footer>');
   root.querySelector('.mobile-play').append(panel);
   const classic = panel.querySelector('[data-room-action=classic]');
   const body = panel.querySelector('.online-lobby-body');
@@ -47,7 +47,7 @@ export function createOnlineLobby(root, command) {
   const write = (element, html) => {
     if (element.dataset.markup !== html) {
       element.dataset.markup = html;
-      element.innerHTML = html;
+      renderMarkup(element,html);
     }
   };
   const back = () => button(t('Back', 'Retour'), 'back');

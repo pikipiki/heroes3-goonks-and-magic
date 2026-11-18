@@ -1,3 +1,4 @@
+import {useScreenComponents,decorateButton} from './ui/components.mjs';
 import {campaignMedia} from './campaign-media-data.mjs';
 import {campaignMovieMedia} from './campaign-movie-data.mjs';
 import {getLanguage} from './i18n.mjs';
@@ -7,14 +8,14 @@ export function campaignMediaPicture(picture){
  const media=campaignMedia[picture.mediaKey]||campaignMovieMedia[picture.mediaKey];if(!media)return null;
  const button=document.createElement('button');button.type='button';button.className='campaign-media-thumbnail';
  const image=document.createElement('img');image.src=new URL(media.url,import.meta.url).href;image.width=media.width;image.height=media.height;image.alt=picture.hint||picture.label||'';image.decoding='async';
- button.setAttribute('aria-label',getLanguage()==='fr'?'Agrandir l’image':'Enlarge image');button.append(image);
+ button.dataset.uiApp='heroes';decorateButton(button);button.setAttribute('aria-label',getLanguage()==='fr'?'Agrandir l’image':'Enlarge image');button.append(image);
  button.addEventListener('click',()=>{
   closeCampaignMediaViewer();const dialog=document.createElement('dialog');viewer=dialog;dialog.className='campaign-media-viewer';
   const controls=document.createElement('header'),title=document.createElement('h2'),close=document.createElement('button');
-  title.textContent='Illustration';close.type='button';close.textContent=getLanguage()==='fr'?'Fermer':'Close';
+  title.textContent='Illustration';close.type='button';close.textContent='✕';close.dataset.close='';close.setAttribute('aria-label',getLanguage()==='fr'?'Fermer':'Close');
   title.id='campaign-media-title';dialog.setAttribute('aria-labelledby',title.id);controls.append(title,close);
   const scroll=document.createElement('div');scroll.className='campaign-media-scroll';scroll.tabIndex=0;
-  const full=image.cloneNode();full.decoding='sync';scroll.append(full);dialog.append(controls,scroll);document.body.append(dialog);
+  const full=image.cloneNode();full.decoding='sync';scroll.append(full);dialog.append(controls,scroll);document.body.append(dialog);useScreenComponents(dialog);
   const dismiss=()=>{if(viewer===dialog)viewer=null;dialog.remove();if(button.isConnected)button.focus({preventScroll:true});};
   dialog.addEventListener('close',dismiss,{once:true});close.addEventListener('click',()=>dialog.close());dialog.showModal();close.focus({preventScroll:true});
  });return button;

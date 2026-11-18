@@ -28,4 +28,4 @@ try {
   status.textContent = error.message;
   document.querySelector('#hosting-retry').hidden = false;
 }
-document.querySelector('#hosting-retry').onclick = () => { sessionStorage.removeItem(retryKey); location.reload(); };
+document.querySelector('#hosting-retry').addEventListener('click', () => { sessionStorage.removeItem(retryKey); location.reload(); });

@@ -1,4 +1,4 @@
-import {useActionDock} from './ui/components.mjs';
+import {useActionDock,renderMarkup} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {buildReason} from './mobile-layout.mjs';
@@ -213,9 +213,9 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const completedUnlock = unlockRoute && building?.id === unlockRoute.id && building.built
       ? `<p role="status"><span>Créature débloquée</span> · ${escape(unlockRoute.name)}</p>
         <button type="button" data-building-return>← Retour au recrutement</button>` : '';
-    panel.innerHTML = building
+    renderMarkup(panel,building
       ? projectHeader(state, building) + detail(state, building) + completedUnlock
-      : list(state, buildings);
+      : list(state, buildings));
     if(building){const actions=document.createElement('footer');actions.className='building-actions';for(const button of panel.querySelectorAll('[data-building-action],[data-building-return]'))actions.append(button);if(actions.children.length){panel.append(actions);useActionDock(actions);}}
     body.replaceChildren(panel);
     const locked = panel.querySelector('.building-locked');

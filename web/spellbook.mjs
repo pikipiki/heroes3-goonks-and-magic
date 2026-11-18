@@ -1,4 +1,4 @@
-import {useScreenComponents} from './ui/components.mjs';
+import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {spellOneClick} from './battle-preferences.mjs';
 import {getLanguage} from './i18n.mjs';
 import {spellSchoolIds,spellSchoolIndex} from './spell-schools.mjs';
@@ -27,6 +27,7 @@ export function createMobileSpellbook({root,command}){
   if(b.dataset.reuse!==undefined){const previous=used.get(hero());if(book.readOnly||!previous||book.mana<previous.cost)return;reusing={...previous};navigation=null;signature='';advanceReuse();return;}
   reusing=null;if(b.dataset.spellContext!==undefined){selected=null;command(70,Number(b.dataset.spellContext));return;}if(b.dataset.school!==undefined||b.dataset.page!==undefined){selected=null;panel.querySelector('.spell-list').scrollTop=0;}if(b.dataset.school!==undefined)command(51,Number(b.dataset.school));if(b.dataset.page!==undefined)command(50,Number(b.dataset.page));if(b.dataset.closeBook!==undefined){pending=null;command(0);}
  });
+ panel.addEventListener('change',event=>{if(event.target.matches('[data-school-select]')){selected=null;panel.querySelector('.spell-list').scrollTop=0;command(51,Number(event.target.value));}});
  function advanceReuse(){if(!reusing)return;const position=JSON.stringify(book);if(position===navigation)return;navigation=position;const spell=book.spells?.find(s=>s.id===reusing.id);if(spell){if(spell.enabled)choose(spell);else reusing=null;return;}
   if(book.inCombat===false&&typeof reusing.combatSpells==='boolean'&&book.combatSpells!==reusing.combatSpells){command(70,reusing.combatSpells?1:0);return;}
   if(book.school!==reusing.school){command(51,spellSchoolIndex(reusing.school));return;}
@@ -46,7 +47,7 @@ export function createMobileSpellbook({root,command}){
   const powerText=power&&Number.isFinite(power.original)&&Number.isFinite(power.effective)&&power.original!==power.effective?`${getLanguage()==='fr'?'Puissance':'Power'} ${power.original} → ${power.effective}`:'';
   const manaLimit=Number.isFinite(book.manaLimit)?` / ${book.manaLimit}`:'';
   const castLabel=book.inCombat===false?(book.combatSpells?'View spell':'Cast spell'):active?.target==='none'?'Cast spell':'Choose target';
-  panel.innerHTML=`
+  renderMarkup(panel,`
    <header>
     <h2>Spellbook <small>${book.mana??0}${manaLimit} mana</small>${powerText?`<small class="spell-effective-power">${esc(powerText)}</small>`:''}</h2>
     <button data-close-book aria-label="Close spellbook">✕</button>
@@ -56,8 +57,10 @@ export function createMobileSpellbook({root,command}){
      ${previous?`<img class="last-spell-icon" decoding="sync" src="${spellIconURL(previous.id)}" alt=""><span><small>Reuse last spell</small><strong>${esc(previous.name)}</strong></span><small>${previous.cost} mana</small>`:'Reuse last spell'}
     </button>
    </div>`}
+   <div class="spell-workspace">
    ${book.inCombat===false?`<nav class="spell-contexts" aria-label="Spell types"><button data-spell-context="0" aria-pressed="${!book.combatSpells}">Adventure spells</button><button data-spell-context="1" aria-pressed="${!!book.combatSpells}">Combat spells</button></nav>`:''}
    <nav class="spell-schools" aria-label="Spell categories">${schools.map(([symbol,name],i)=>`<button data-school="${i}" aria-pressed="${spellSchoolIds[i]===book.school}"><span aria-hidden="true">${symbol}</span> ${name}</button>`).join('')}</nav>
+   <label class="spell-school-picker"><select data-school-select aria-label="${getLanguage()==='fr'?'École de magie':'Magic school'}">${schools.map(([,name],index)=>`<option value="${index}" ${spellSchoolIds[index]===book.school?'selected':''}>${name}</option>`).join('')}</select></label>
    <div class="spell-content">
     <div class="spell-list" aria-label="Spells">
      ${spells.map(spell=>`<button class="spell-row${spell.enabled?'':' is-unavailable'}" data-spell="${spell.id}" aria-pressed="${spell.id===selected}">
@@ -72,10 +75,11 @@ export function createMobileSpellbook({root,command}){
       ${active.enabled||book.readOnly?'':`<p class="spell-warning">${warning}</p>`}`:'<p>Select a spell to see its effects.</p>'}
     </article>
    </div>
-   <footer>
     ${book.inCombat===true?'':`<div class="spell-pagination"><button data-page="-1" ${book.page>0?'':'disabled'}>← Previous page</button><span>Page ${(book.page??0)+1}</span><button data-page="1" ${book.page+1>=book.pages?'disabled':''}>Next page →</button></div>`}
+   </div>
+   <footer ${book.readOnly?'hidden':''}>
     ${book.readOnly?'':`<button class="spell-confirm primary" data-cast-spell ${active?.enabled?'':'disabled'}>${castLabel}${active?` · ${active.cost} mana`:''}</button>`}
-   </footer>`;
+   </footer>`);
   panel.querySelector('.spell-list').scrollTop=scroll;
  }
  return{update(next){const wasBook=state.mode==='spellbook';state=next;const mana=next.spellbook?.mana??next.heroMana;

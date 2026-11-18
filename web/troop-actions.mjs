@@ -1,4 +1,4 @@
-import {useScreenComponents,screenHeaderMarkup} from './ui/components.mjs';
+import {useScreenComponents,screenHeaderMarkup,renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -21,12 +21,12 @@ export function createTroopActions({root,command,portrait=()=>'',onLeave=()=>{}}
   panel.hidden=false;root.setAttribute('data-troop-actions','');
   const keep=cap.army.needsLastStack&&cap.army.slots.filter(Boolean).length===1;
   const leaveReason=state.mode==='town'?tr('Close the town and open the hero army to leave troops on the map.','Ferme le château et ouvre l’armée du héros pour laisser une troupe sur la carte.'):tr('Leaving troops requires a hero on land, an eligible troop and an empty adjacent tile.','Pour laisser une troupe : un héros à terre, une troupe autorisée et une case adjacente libre.');
-  panel.innerHTML=`${screenHeaderMarkup({title:tr('Manage troop','Gérer la troupe'),titleId:'troop-actions-title'})}<div class="progression-scroll">
+  renderMarkup(panel,`${screenHeaderMarkup({title:tr('Manage troop','Gérer la troupe'),titleId:'troop-actions-title'})}<div class="progression-scroll">
    <article class="troop-action-unit">${portrait(cap.unit)}<div><h3>${esc(cap.unit.name)} × ${cap.unit.count}</h3><p>${esc(cap.army.name)}</p></div></article>
    ${confirming?`<h3>${tr('Dismiss this troop?','Renvoyer cette troupe ?')}</h3><p>${tr('All creatures in this stack will leave your army permanently. They will not remain on the map.','Toutes les créatures de cette troupe quitteront définitivement ton armée. Elles ne resteront pas sur la carte.')}</p>`:
    `<div class="troop-action-choices"><button data-troop-action="leave" ${cap.leave?'':'disabled'}><img src="./web/h3-theme/troop-leave.svg" alt=""><strong>${tr('Leave on the map','Laisser sur la carte')}</strong><span>${tr('Choose the quantity and an adjacent tile.','Choisis la quantité et une case adjacente.')}</span></button><button data-troop-action="dismiss" ${cap.dismiss?'':'disabled'}><img src="./web/h3-theme/troop-dismiss.svg" alt=""><strong>${tr('Dismiss','Renvoyer')}</strong><span>${tr('The troop leaves permanently. Confirmation required.','La troupe part définitivement. Confirmation requise.')}</span></button></div>
    ${keep?`<p>${(cap.unit.count>1?tr('The hero must keep at least one creature. Split this stack first to keep some of them.','Le héros doit garder au moins une créature. Scinde cette troupe pour en garder une partie.'):tr('The hero must keep their last creature.','Le héros doit garder sa dernière créature.'))}</p>`:''}${!cap.leave?`<p>${leaveReason}</p>`:''}`}
-   </div><footer><p role="status">${esc(pending?tr('Waiting for the game…','En attente du jeu…'):message)}</p>${confirming?`<button class="primary" data-troop-action="confirm" ${pending||!cap.dismiss?'disabled':''}>${tr('Dismiss permanently','Renvoyer définitivement')}</button>`:''}<button data-troop-action="back" ${pending?'disabled':''}>${confirming?tr('Cancel','Annuler'):tr('Back','Retour')}</button></footer>`;
+   </div><footer><p role="status">${esc(pending?tr('Waiting for the game…','En attente du jeu…'):message)}</p>${confirming?`<button class="primary" data-troop-action="confirm" ${pending||!cap.dismiss?'disabled':''}>${tr('Dismiss permanently','Renvoyer définitivement')}</button>`:''}<button data-troop-action="back" ${pending?'disabled':''}>${confirming?tr('Cancel','Annuler'):tr('Back','Retour')}</button></footer>`);
  }
  panel.addEventListener('click',e=>{const b=e.target.closest('[data-troop-action]');if(!b||b.disabled||pending||!selection)return;const cap=troopActionCapabilities(state,selection.army,selection.slot);
   switch(b.dataset.troopAction){

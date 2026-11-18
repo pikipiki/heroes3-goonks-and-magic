@@ -1,0 +1,893 @@
+{
+  "schemaVersion": 1,
+  "scope": "Interfaces HTML mobiles et habillages des scènes de jeu ; les graphismes natifs restent du contenu.",
+  "requirements": {
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "engines": [
+      "chromium",
+      "webkit"
+    ],
+    "viewports": [
+      {
+        "width": 320,
+        "height": 568
+      },
+      {
+        "width": 568,
+        "height": 280
+      },
+      {
+        "width": 360,
+        "height": 659
+      },
+      {
+        "width": 716,
+        "height": 279
+      }
+    ]
+  },
+  "screens": [
+    {
+      "id": "mobile",
+      "source": "web/mobile.mjs",
+      "kind": "screen",
+      "variants": [
+        "Accueil",
+        "Multijoueur",
+        "Préparer la partie",
+        "Charger une partie",
+        "Catalogue des campagnes",
+        "Carte d’aventure",
+        "Château",
+        "Combat classique",
+        "Combat vertical",
+        "Combat stratégique",
+        "Choix des cibles",
+        "Inspection en combat",
+        "Recrutement global",
+        "Liste des héros",
+        "Liste des villes"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "game-menu",
+      "source": "web/game-menu.mjs",
+      "kind": "screen",
+      "variants": [
+        "Menu",
+        "Paramètres",
+        "Triche",
+        "Audio",
+        "Stockage",
+        "Aide au stockage",
+        "Confirmation nouvelle partie"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "hosted-match-create",
+      "source": "web/hosted-match-create.mjs",
+      "kind": "screen",
+      "variants": [
+        "Créer une partie hébergée",
+        "Catalogue des cartes hébergées",
+        "Choisir les châteaux",
+        "Invitations et codes"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "online-lobby",
+      "source": "web/online-lobby.mjs",
+      "kind": "screen",
+      "variants": [
+        "Liste des joueurs",
+        "Création",
+        "Aperçu",
+        "Invitation",
+        "Scénario"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "online-login",
+      "source": "web/online-login.mjs",
+      "kind": "screen",
+      "variants": [
+        "Connexion",
+        "Connexion en cours",
+        "Erreur de connexion"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "lobby-choices",
+      "source": "web/lobby-choices.mjs",
+      "kind": "screen",
+      "variants": [
+        "Cartes",
+        "Factions",
+        "Difficulté",
+        "Options de partie"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "campaign-setup",
+      "source": "web/campaign-setup.mjs",
+      "kind": "screen",
+      "variants": [
+        "Scénario",
+        "Bonus",
+        "Introduction",
+        "Chargement de campagne"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "hero-equipment",
+      "source": "web/hero-equipment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Armée",
+        "Équipement",
+        "Sac",
+        "Compétences",
+        "Compagnon",
+        "Héros à recruter"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "hero-exchange",
+      "source": "web/hero-exchange.mjs",
+      "kind": "screen",
+      "variants": [
+        "Armées",
+        "Artefacts",
+        "Échange confirmé"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "creature-presentation",
+      "source": "web/creature-presentation.mjs",
+      "kind": "screen",
+      "variants": [
+        "Détails de créature",
+        "Recrutement château",
+        "Recrutement carte",
+        "Évolutions"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "town-services",
+      "source": "web/town-services.mjs",
+      "kind": "screen",
+      "variants": [
+        "Machines de guerre",
+        "Guilde des voleurs"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "thieves-guild-view",
+      "source": "web/thieves-guild-view.mjs",
+      "kind": "screen",
+      "variants": [
+        "Classements 2 joueurs",
+        "Classements 8 joueurs",
+        "Renseignements 2 joueurs",
+        "Renseignements 8 joueurs",
+        "Renseignements inconnus"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "town-building-menu",
+      "source": "web/town-building-menu.mjs",
+      "kind": "screen",
+      "variants": [
+        "Catalogue des bâtiments",
+        "Détail de bâtiment",
+        "Construction indisponible"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "army-upgrades",
+      "source": "web/army-upgrades.mjs",
+      "kind": "screen",
+      "variants": [
+        "Devis",
+        "Confirmation",
+        "Ressources insuffisantes",
+        "Mauvais château",
+        "Aucune évolution"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "army-panel",
+      "source": "web/army-panel.mjs",
+      "kind": "content",
+      "variants": [
+        "Garnison et héros",
+        "Garnison seule",
+        "Transfert",
+        "Scinder"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "troop-actions",
+      "source": "web/troop-actions.mjs",
+      "kind": "screen",
+      "variants": [
+        "Gérer une troupe",
+        "Libérer",
+        "Laisser sur la carte"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "troop-deployment",
+      "source": "web/troop-deployment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Déployer",
+        "Déploiement indisponible"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "troop-equipment",
+      "source": "web/troop-equipment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Troupe",
+        "Objet",
+        "Confirmation"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "mithril-enhancements",
+      "source": "web/mithril-enhancements.mjs",
+      "kind": "screen",
+      "variants": [
+        "Améliorations de mithril"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "dialog-presentation",
+      "source": "web/dialog-presentation.mjs",
+      "kind": "screen",
+      "variants": [
+        "Message",
+        "Choix de récompense",
+        "Commandeur",
+        "Niveau du commandeur",
+        "Formulaire ERM",
+        "Meilleurs scores"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "progression-choices",
+      "source": "web/progression-choices.mjs",
+      "kind": "screen",
+      "variants": [
+        "Tour",
+        "Choix de famille",
+        "Choix de progression"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "commander-tree",
+      "source": "web/commander-tree.mjs",
+      "kind": "content",
+      "variants": [
+        "Toutes les capacités",
+        "Spécialisation",
+        "Choix de compétence"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "spellbook",
+      "source": "web/spellbook.mjs",
+      "kind": "screen",
+      "variants": [
+        "Combat",
+        "Aventure",
+        "Lecture seule",
+        "Sort indisponible",
+        "Confirmation",
+        "Réutilisation"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "mage-guild",
+      "source": "web/mage-guild.mjs",
+      "kind": "screen",
+      "variants": [
+        "Étages",
+        "Sorts",
+        "Étage fermé",
+        "Recherche"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "marketplace",
+      "source": "web/marketplace.mjs",
+      "kind": "screen",
+      "variants": [
+        "Échange",
+        "Ressource insuffisante",
+        "Échange en cours"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "mobile-tavern",
+      "source": "web/mobile-tavern.mjs",
+      "kind": "screen",
+      "variants": [
+        "Héros disponibles",
+        "Taverne vide",
+        "Recrutement indisponible",
+        "Rumeur"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "town-portrait",
+      "source": "web/town-portrait.mjs",
+      "kind": "screen",
+      "variants": [
+        "Château portrait",
+        "Château paysage",
+        "Chaque faction",
+        "Bâtiment et sous-titre"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "town-recruitment",
+      "source": "web/town-recruitment.mjs",
+      "kind": "screen",
+      "variants": [
+        "Fort classique adapté"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "recruitment-families",
+      "source": "web/recruitment-families.mjs",
+      "kind": "screen",
+      "variants": [
+        "Familles de créatures",
+        "Créature disponible",
+        "Créature verrouillée"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "weekly-recruits",
+      "source": "web/weekly-recruits.mjs",
+      "kind": "content",
+      "variants": [
+        "Recrues hebdomadaires"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "storage-page",
+      "source": "web/storage-page.mjs",
+      "kind": "screen",
+      "variants": [
+        "Stockage autonome",
+        "Aide",
+        "Confirmation suppression",
+        "Progression",
+        "Erreur"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "session-recovery",
+      "source": "web/session-recovery.mjs",
+      "kind": "screen",
+      "variants": [
+        "Recherche de sauvegarde",
+        "Reprise",
+        "Erreur",
+        "Choisir une autre partie"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "boot-screen",
+      "source": "web/boot-screen.mjs",
+      "kind": "screen",
+      "variants": [
+        "Chargement temporaire",
+        "Progression",
+        "Erreur"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "loading",
+      "source": "web/loading.mjs",
+      "kind": "screen",
+      "variants": [
+        "Chargement des fichiers",
+        "Chargement interrompu"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "campaign-media",
+      "source": "web/campaign-media.mjs",
+      "kind": "screen",
+      "variants": [
+        "Illustration",
+        "Vidéo de campagne"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "game-calendar",
+      "source": "web/game-calendar.mjs",
+      "kind": "content",
+      "variants": [
+        "Ressources",
+        "Recrues",
+        "Date"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "hosted-turn-notifications",
+      "source": "web/hosted-turn-notifications.mjs",
+      "kind": "screen",
+      "variants": [
+        "Notification de tour",
+        "Partie hébergée"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "wog-options",
+      "source": "web/wog-options.mjs",
+      "kind": "content",
+      "variants": [
+        "Options WoG"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "lobby-options",
+      "source": "web/lobby-options.mjs",
+      "kind": "content",
+      "variants": [
+        "Options de nouvelle carte"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "scenario-filters",
+      "source": "web/scenario-filters.mjs",
+      "kind": "content",
+      "variants": [
+        "Filtres de cartes",
+        "Aucun résultat"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "hosted-castles",
+      "source": "web/hosted-castles.mjs",
+      "kind": "content",
+      "variants": [
+        "Choix de château hébergé"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "hosted-code-copy",
+      "source": "web/hosted-code-copy.mjs",
+      "kind": "content",
+      "variants": [
+        "Copier un code",
+        "Copie impossible"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "material-select",
+      "source": "web/material-select.mjs",
+      "kind": "screen",
+      "variants": [
+        "Fermé",
+        "Ouvert",
+        "Désactivé",
+        "Clavier"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "campaign-dialog-form",
+      "source": "web/campaign-dialog-form.mjs",
+      "kind": "content",
+      "variants": [
+        "Choix",
+        "Champ texte",
+        "Champ nombre",
+        "Illustration"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "battle-dual-view",
+      "source": "web/battle-dual-view.mjs",
+      "kind": "screen",
+      "variants": [
+        "Vue stratégique",
+        "Vue de l’action"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "battle-controls",
+      "source": "web/battle-controls.mjs",
+      "kind": "graphics",
+      "variants": [
+        "Interactions tactiles de combat"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "battle-vertical",
+      "source": "web/battle-vertical.mjs",
+      "kind": "graphics",
+      "variants": [
+        "Rendu du champ de bataille"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "image-outline",
+      "source": "web/image-outline.mjs",
+      "kind": "graphics",
+      "variants": [
+        "Contours des sprites"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "resources",
+      "source": "web/resources.mjs",
+      "kind": "content",
+      "variants": [
+        "Affichage des ressources"
+      ],
+      "status": "audited",
+      "evidence": [
+        {
+          "report": "docs/ui-audit/verification.json",
+          "scope": "Cas exécutés dans la matrice ou les suites complémentaires ; ne certifie pas les variantes sans scénario individuel."
+        }
+      ]
+    },
+    {
+      "id": "henchman-sheet",
+      "source": "web/henchman-sheet.mjs",
+      "kind": "content",
+      "variants": [
+        "Compagnon",
+        "Équipement du compagnon"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "battle-inspection",
+      "source": "web/battle-inspection.mjs",
+      "kind": "content",
+      "variants": [
+        "Détails en combat"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "high-score-presentation",
+      "source": "web/high-score-presentation.mjs",
+      "kind": "content",
+      "variants": [
+        "Victoire",
+        "Défaite",
+        "Enregistrer le score"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "scenario-details",
+      "source": "web/scenario-details.mjs",
+      "kind": "content",
+      "variants": [
+        "Détails de carte"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "recruitment-summary",
+      "source": "web/recruitment-summary.mjs",
+      "kind": "content",
+      "variants": [
+        "Coût et quantité"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "hosting-index",
+      "source": "web/hosting-index.html",
+      "kind": "document",
+      "variants": [
+        "Petit écran portrait",
+        "Petit écran paysage"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    },
+    {
+      "id": "storage",
+      "source": "web/storage.html",
+      "kind": "document",
+      "variants": [
+        "Petit écran portrait",
+        "Petit écran paysage"
+      ],
+      "status": "inventoried",
+      "evidence": []
+    }
+  ]
+}
