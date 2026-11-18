@@ -164,10 +164,18 @@ export function compileErm(bytes,{source='ERM',encoding='utf-8',bindings={},dial
    if(op.code==='S'&&(op.args.length!==2||op.args[0].access!=='read'||op.args[1].access!=='write'||op.args.some(arg=>!integerArgument(arg))))fail('ERA3 FU:S requires an integer index and numeric output',source);
   }
  }
+ const randomRanges=era3&&[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='VR'&&c.operations.some(op=>op.code==='R'&&[1,3].includes(op.args.length)));
+ for(const command of [...initializers,...blocks.flatMap(b=>b.commands)])if(command.receiver==='VR')for(const op of command.operations){
+  if(op.code==='R'&&(era3&&op.args.length===1||op.args.length===3)){
+   if(!era3)fail('Explicit random ranges require the ERA3 dialect',source);
+   if(command.selectors.length!==1||!integerArgument(command.selectors[0])||['number','day'].includes(command.selectors[0].kind))fail('ERA3 random range requires an integer destination',source);
+   if(op.args.some(arg=>arg.access!=='read'||!integerArgument(arg)))fail('ERA3 random bounds require explicit integer values',source);
+  }else if(era3&&['R','T'].includes(op.code)&&op.args.length!==1)fail('ERA3 random seeding, explicit T ranges and free parameters are not admitted',source);
+ }
  const stringLocals=lowerLocals?.usesStringLocals===true;
  const sourceSha256=sha(Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes)),boundNames=Object.keys(bound).length>0;
- const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),...(stringLocals?{stringLocals:'era3-z-ascii'}:{})}))):sourceSha256;
+ const identity=boundNames||era3?sha(Buffer.from(JSON.stringify({sourceSha256,bindings:bound,...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),...(stringLocals?{stringLocals:'era3-z-ascii'}:{}),...(randomRanges?{randomRanges:'era3-integers'}:{})}))):sourceSha256;
  const integerBounds=[...initializers,...blocks.flatMap(b=>b.commands)].some(c=>c.receiver==='VR'&&c.operations.some(op=>op.code==='F'));
- const version=stringLocals?6:metadata?5:era3?4:integerBounds?3:modern||boundNames?2:1;
- return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),...(stringLocals?{stringLocals:'era3-z-ascii'}:{}),initializers,blocks};
+ const version=randomRanges?7:stringLocals?6:metadata?5:era3?4:integerBounds?3:modern||boundNames?2:1;
+ return{schemaVersion:version,contract:'source-campaign-erm-ast-v'+version,source,encoding,sha256:identity,...(boundNames||era3?{sourceSha256,bindings:bound}:{}),...(era3?{functionArguments:'era3-integers'}:{}),...(metadata?{functionMetadata:'era3-integers'}:{}),...(stringLocals?{stringLocals:'era3-z-ascii'}:{}),...(randomRanges?{randomRanges:'era3-integers'}:{}),initializers,blocks};
 }

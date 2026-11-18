@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "kernelRepository": "https://github.com/ethernidee/era",
+  "kernelCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+  "b2Repository": "https://github.com/ethernidee/b2",
+  "b2Commit": "b26cfca487ab2e5a535ba880fbd372605c9bfb70",
+  "sources": [
+    {
+      "file": "Erm.pas",
+      "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+      "fragments": [
+        {
+          "startLine": 8227,
+          "endLine": 8268,
+          "text": "function VR_Random (Cmd: char; NumParams: integer; ErmCmd: PErmCmd; SubCmd: PErmSubCmd): integer;\nvar\n  VarParam: PErmCmdParam;\n  ValType:  integer;\n\nbegin\n  result   := 1;\n  VarParam := @ErmCmd.Params[0];\n\n  if not(VarParam.GetType() in PARAM_VARTYPES_INTS) then begin\n    ShowErmError('\"!!VR\" - random functions can operate on integers only');\n    result := 0; exit;\n  end;\n\n  case Cmd of\n    'R': begin\n      if NumParams >= 4 then begin\n        result := ord(SetErmParamValue(VarParam, Tweaks.RandomRangeWithFreeParam(SubCmd.Nums[1], SubCmd.Nums[2], SubCmd.Nums[3])));\n      end else if NumParams >= 3 then begin\n        result := ord(SetErmParamValue(VarParam, Heroes.RandomRange(SubCmd.Nums[1], SubCmd.Nums[2])));\n      end else if NumParams >= 2 then begin\n        Heroes.SRand(SubCmd.Nums[1]);\n      end else begin\n        result := ord(SetErmParamValue(VarParam, GetErmParamValue(VarParam, ValType) + Heroes.RandomRange(0, SubCmd.Nums[0])));\n      end;\n    end;\n\n    'T': begin\n      if NumParams >= 3 then begin\n        result := ord(SetErmParamValue(VarParam, FastRand.Rng.RandomRange(SubCmd.Nums[1], SubCmd.Nums[2])));\n      end else if NumParams >= 2 then begin\n        ShowErmError('\"!!VR:T\" - it''s forbidden to seed the unique generator');\n        result := 0; exit;\n      end else begin\n        result := ord(SetErmParamValue(VarParam, GetErmParamValue(VarParam, ValType) + FastRand.Rng.RandomRange(0, SubCmd.Nums[0])));\n      end;\n    end;\n  else\n    ShowErmError('\"!!VR\" - impossible case in random operation');\n    result := 0; exit;\n  end; // .switch Cmd\nend; // .function VR_Random\n",
+          "sha256": "dfae7bcfa40f5cba29fd679ee28051436b9fdb2fbf8a2028403d29a5df125350"
+        }
+      ]
+    },
+    {
+      "file": "Heroes.pas",
+      "fileSha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+      "fragments": [
+        {
+          "startLine": 2228,
+          "endLine": 2237,
+          "text": "function RandomRange (Min, Max: integer): integer;\nbegin\n  result := ApiJack.CallFast(Ptr($50C7C0), Min, Max);\nend;\n\nprocedure SRand (Seed: integer);\nbegin\n  ApiJack.CallThis(Ptr($50C7B0), Seed);\nend;\n\n",
+          "sha256": "fb84ccfa2348273e3b27cc194e097d71e388e755e426dbb1d01a559b0703e8e3"
+        }
+      ]
+    },
+    {
+      "file": "Tweaks.pas",
+      "fileSha256": "1f46a1bc5b3392a7598792c5a832916927d8d996e3b3b0d8ac61da085bf2391d",
+      "fragments": [
+        {
+          "startLine": 1240,
+          "endLine": 1246,
+          "text": "function _RandomRangeWithFreeParam (CallerAddr: pointer; MinValue, MaxValue, FreeParam: integer): integer;\nbegin\n  CombatRngFreeParam := FreeParam;\n  result             := GlobalRng.RandomRange(MinValue, MaxValue);\n  DebugRandomRange(CallerAddr, MinValue, MaxValue, result);\n  CombatRngFreeParam := 0;\nend;\n",
+          "sha256": "576234cfe6cde805924c4e161d8af46eb71fb52a3def9954e92469e01668e08a"
+        },
+        {
+          "startLine": 2874,
+          "endLine": 2877,
+          "text": "  CLangRng               := FastRand.TClangRng.Create(FastRand.MakeSecureSeedWithFallback);\n  QualitativeRng         := FastRand.TXoroshiro128Rng.Create(FastRand.MakeSecureSeedWithFallback);\n  BattleDeterministicRng := TBattleDeterministicRng.Create(@CombatId, @CombatRound, @CombatActionId, @CombatRngFreeParam);\n  GlobalRng              := QualitativeRng;\n",
+          "sha256": "2c3ca86fa367ecdf83d7b450948859d8f99a7209028c12c85137cf6b700d4911"
+        }
+      ]
+    },
+    {
+      "file": "FastRand.pas",
+      "fileSha256": "a909da84e816484bc3d03c2982065fe49e827dc6eb5c4112d4a50401db554ba9",
+      "fragments": [
+        {
+          "startLine": 453,
+          "endLine": 491,
+          "text": "function RandomRange (Rng: TRng; MinValue, MaxValue: integer): integer;\nconst\n  MAX_UNBIAS_ATTEMPTS = 100;\n\nvar\n  RangeLen:         cardinal;\n  BiasedRangeLen:   cardinal;\n  MaxUnbiasedValue: cardinal;\n  i:                integer;\n\nbegin\n  {!} Assert(Rng <> nil);\n\n  if MinValue >= MaxValue then begin\n    result := MinValue;\n    exit;\n  end;\n\n  result := Rng.Random;\n\n  if (MinValue > Low(integer)) or (MaxValue < High(integer)) then begin\n    i                := 2;\n    RangeLen         := cardinal(MaxValue - MinValue) + 1;\n    BiasedRangeLen   := High(cardinal) mod RangeLen + 1;\n\n    if BiasedRangeLen = RangeLen then begin\n      BiasedRangeLen := 0;\n    end;\n\n    MaxUnbiasedValue := High(cardinal) - BiasedRangeLen;\n\n    while (cardinal(result) > MaxUnbiasedValue) and (i <= MAX_UNBIAS_ATTEMPTS) do begin\n      result := Rng.Random;\n      Inc(i);\n    end;\n\n    result := MinValue + integer(cardinal(result) mod RangeLen);\n  end;\nend;\n",
+          "sha256": "63c1972ad4f12b29d583ffe359f94941ad2c6971d3350f6a707f4342ee71db41"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "ERA3 integer VR:R one-argument addition and three-argument assignment are admitted here. Seeding, free parameters and the independent VR:T generator remain unadmitted.",
+    "The native game RNG is used and preserved in native saves. Its stream is not claimed identical to ERA\u2019s patched Heroes global generator."
+  ]
+}

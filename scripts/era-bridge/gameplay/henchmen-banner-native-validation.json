@@ -19,7 +19,7 @@
     "tests/henchman-sheet.test.mjs": "d9e9cfae49d4e6bca83e00874e0238f7579ae5ee3dbec3ee7f0f783b7410b255",
     "scripts/era-bridge/gameplay/import-henchmen-banner-table.mjs": "7a2c1fe82efa636c595553ed4defe070befbbac2105fdae6b3acb8178e6de16c",
     "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "7dfee22cde596e84c5f44ca4e3790ca3d2125f1decd31e21fd323c435cf38746",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "1ca13f214cdc79c48ae7c7ec0b113d6ad9b973f9d9a7e0aa01306c6e3ccec55f",
     "work/vcmi-wasm/client/windows/CHeroWindow.h": "bec062c6cdc86c569f20a424e082ade8a0cf5715704cac5c59e5925a386aa2fc",
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "810e09175ac886d0d9c3ae72685793439e3eb2f2b462477f9c24b58c9de45f9f",
@@ -253,5 +253,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
     "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
+  },
+  "randomRangesRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
+    "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
   }
 }

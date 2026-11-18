@@ -35,9 +35,13 @@ export async function runStringReceivers({boot,state,wait,page,report,output,sav
  const read=async text=>{await wait(text=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.lines?.join(' ')===text,text);assert.equal((await state()).dialogPresentation.lines.join(' '),text);};
  const ack=async()=>{const before=(await state()).dialogPresentation.lines.join(' ');await page().locator('[data-dialog-confirm]')[process.env.GROWTH_DESKTOP==='1'?'click':'tap']();await wait(before=>goonkMobileState.mode!=='dialog'||goonkMobileState.dialogPresentation?.lines?.join(' ')!==before,before);};
  const seen=[];const check=async text=>{await read(text);seen.push(text);await ack();};
- await boot({...options,expectedDialog:'source-campaign'});
- await check(old?'STRCELLS NAMES //':'STRCELLS NAMES Pathfinding/Archery/Logistics');
- await check('Pathfinding');await read('Scouting');
+ if(process.env.STRING_RECEIVERS_LEGACY_SAVE)await boot({...options,save:[...fs.readFileSync(process.env.STRING_RECEIVERS_LEGACY_SAVE)],expectedDialog:'source-campaign'});
+ else{
+  await boot({...options,expectedDialog:'source-campaign'});
+  await check(old?'STRCELLS NAMES //':'STRCELLS NAMES Pathfinding/Archery/Logistics');
+  await check('Pathfinding');
+ }
+ await read('Scouting');
  const pending=await save();fs.writeFileSync(path.join(output,'string-receivers-pending.vsgm1'),pending);
  await page().close();await boot({...options,save:[...pending],expectedDialog:'source-campaign'});await check('Scouting');
  await check(old?'STRCELLS RETURN //':'STRCELLS RETURN Pathfinding/Archery/Logistics');

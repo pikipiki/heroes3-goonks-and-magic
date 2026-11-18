@@ -599,6 +599,7 @@ struct SourceCampaignProcessor::Impl final:Host
   pending["kind"].String()="message";pending["text"].String()="Original script error: !!"+command.receiver+": "+message+" at "+pos.toString()+". This command is skipped; the following commands continue.";pending["flag"].Integer()=0;return Step::SuspendCommand;
  }
  int32_t random(int32_t maximum,bool)override{return gh.randomizer->getDefault().nextInt(maximum);}
+ int32_t randomRange(int32_t minimum,int32_t maximum)override{return gh.randomizer->getDefault().nextInt(minimum,maximum);}
  Step execute(const Command &,const Operation &,State &,const Context &)override;
  bool wanderingFree(const int3 & pos)const
  {

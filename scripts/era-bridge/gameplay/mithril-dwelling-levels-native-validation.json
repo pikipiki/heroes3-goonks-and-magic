@@ -37,16 +37,16 @@
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "1010b9a13e28b44b45f1294661df51b96738f2e5c0badf25640bfc9c794bbc6d",
     "work/vcmi-wasm/lib/era/EraSourceCreatureLevels.h": "bc043086acece6023b9f7124749eeadb11af6be0b43c16d301d62ee4dbab121e",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "084d6b48b0564b79ed05d12c949fd98de00e3ee1246d238375c0c081fcedd03f",
     "tests/native/EraMithrilRules.test.cpp": "78f53f1a5cc22eacf2dbc20a7c49cd6649d179834c3a1fbe85d3313e2784e6f1",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "04ac0f1df0decd57ca33255f57f8f63265e09acec0d838906c359711a2fb8c31",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
     "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "f9b67803593c2b7d2781102459bb848e0bdf9b2e121e2b9ae350a677e5045196",
     "work/browser-tests/wog-mithril-dwelling-levels-cases.mjs": "bd2ba6c620a9e7b2e995d673d78431dc660181a0553563c4b1b31a9059d926f9",
     "tests/era-mithril-dwelling-levels.test.mjs": "22037b2d528171aa4ae8cd04b2023dc2cf3a39505fb7b247971a4421a8f02d35",
     "tests/fixtures/era-gameplay/mithril-dwelling-levels-reference.json": "aeb65486da5a06fa4d7ea4b5a373d7a507f2252fbdbb10bda9f355f587f76012",
     "scripts/era-bridge/gameplay/mithril.json": "1c0e1e1e01d3299c17590dc8691cbd69faa634b1402f920c466e4ff739f630ea",
-    "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1"
+    "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -760,5 +760,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
     "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
+  },
+  "randomRangesRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "c4f52f7c9c9b7ecb3e8d389599c6f7f268cf3c1b049eb3503175c0bdabcbf4d1",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
+    "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
   }
 }

@@ -1,0 +1,660 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "ERA3 integer VR:R additive one-bound and assigning three-argument forms. Equal or reversed intervals return the lower bound without drawing. Native RNG persistence is verified; exact ERA generator sequence parity is not claimed.",
+  "sourceBaseCommit": "ffccb9f14049e341a009fc5b188deccba8a2bb4d",
+  "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "1395cca2d42a7490a2c6274a4e1ca1ff44e724f42beecf0c3407a8754e38f762",
+    "scripts/era-bridge/campaigns/importer.mjs": "932dcbf6f736ff30f5d313f9fda933d2defa84852716a880102cafaeff097009",
+    "scripts/era-bridge/campaigns/native-compiler.mjs": "c9f2498bdf10d9baa2cc65db376926941281634532aedc4283323ff2135db065",
+    "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "04ac0f1df0decd57ca33255f57f8f63265e09acec0d838906c359711a2fb8c31",
+    "work/browser-tests/wog-era3-string-receivers-cases.mjs": "fa46a386bbc891ec53d310f2f1aeba31d207f2e45703c546d43fdc4acaa97f20",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d",
+    "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
+    "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
+    "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "084d6b48b0564b79ed05d12c949fd98de00e3ee1246d238375c0c081fcedd03f",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541",
+    "tests/era-campaign-random-ranges.test.mjs": "f791fbfba8e275410c9822700d96a9c9d51df9d2b5b70e0bd6bdb883184ce3e9",
+    "tests/fixtures/era-gameplay/era3-random-ranges-reference.json": "204813273f83bcc937d99cfbe6246671e32b4996644f5ab2f1de45646e494ef1",
+    "tests/native/EraCampaignRandomRanges.test.cpp": "b25b7408180592b1f2964009d4787ddd8089ac76d67fc2979610b05b802536b7",
+    "work/browser-tests/wog-era3-random-ranges-cases.mjs": "b644ac9477b10e39325831b872e5a4fb661817e8cd56b6f6028b0368a59c0caf"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 20,
+    "logSha256": "9f0217cb121aaaf517ead1c477fcc044c565c233677f7be47ebe7339e1069755",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "newScopeLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regressions": [
+      {
+        "test": "EraCampaignExecutor",
+        "exitCode": 0
+      },
+      {
+        "test": "Era3QuickVars",
+        "exitCode": 0
+      },
+      {
+        "test": "Era3QuickVarsCodec",
+        "exitCode": 0
+      },
+      {
+        "test": "EraCampaignRuntime",
+        "exitCode": 0
+      },
+      {
+        "test": "EraCampaignAssociativeCodec",
+        "exitCode": 0
+      },
+      {
+        "test": "EraWogOptionsSerialization",
+        "exitCode": 0
+      }
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3004,
+    "mismatches": [],
+    "expectedManifestSha256": "ad6b22fdc4dd80a99d1f9393503d179d61a54811fd9060e1279bbf0bf1263d1d"
+  },
+  "upstreamReference": {
+    "schema": 1,
+    "kernelRepository": "https://github.com/ethernidee/era",
+    "kernelCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "b2Repository": "https://github.com/ethernidee/b2",
+    "b2Commit": "b26cfca487ab2e5a535ba880fbd372605c9bfb70",
+    "sources": [
+      {
+        "file": "Erm.pas",
+        "fileSha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+        "fragments": [
+          {
+            "startLine": 8227,
+            "endLine": 8268,
+            "text": "function VR_Random (Cmd: char; NumParams: integer; ErmCmd: PErmCmd; SubCmd: PErmSubCmd): integer;\nvar\n  VarParam: PErmCmdParam;\n  ValType:  integer;\n\nbegin\n  result   := 1;\n  VarParam := @ErmCmd.Params[0];\n\n  if not(VarParam.GetType() in PARAM_VARTYPES_INTS) then begin\n    ShowErmError('\"!!VR\" - random functions can operate on integers only');\n    result := 0; exit;\n  end;\n\n  case Cmd of\n    'R': begin\n      if NumParams >= 4 then begin\n        result := ord(SetErmParamValue(VarParam, Tweaks.RandomRangeWithFreeParam(SubCmd.Nums[1], SubCmd.Nums[2], SubCmd.Nums[3])));\n      end else if NumParams >= 3 then begin\n        result := ord(SetErmParamValue(VarParam, Heroes.RandomRange(SubCmd.Nums[1], SubCmd.Nums[2])));\n      end else if NumParams >= 2 then begin\n        Heroes.SRand(SubCmd.Nums[1]);\n      end else begin\n        result := ord(SetErmParamValue(VarParam, GetErmParamValue(VarParam, ValType) + Heroes.RandomRange(0, SubCmd.Nums[0])));\n      end;\n    end;\n\n    'T': begin\n      if NumParams >= 3 then begin\n        result := ord(SetErmParamValue(VarParam, FastRand.Rng.RandomRange(SubCmd.Nums[1], SubCmd.Nums[2])));\n      end else if NumParams >= 2 then begin\n        ShowErmError('\"!!VR:T\" - it''s forbidden to seed the unique generator');\n        result := 0; exit;\n      end else begin\n        result := ord(SetErmParamValue(VarParam, GetErmParamValue(VarParam, ValType) + FastRand.Rng.RandomRange(0, SubCmd.Nums[0])));\n      end;\n    end;\n  else\n    ShowErmError('\"!!VR\" - impossible case in random operation');\n    result := 0; exit;\n  end; // .switch Cmd\nend; // .function VR_Random\n",
+            "sha256": "dfae7bcfa40f5cba29fd679ee28051436b9fdb2fbf8a2028403d29a5df125350"
+          }
+        ]
+      },
+      {
+        "file": "Heroes.pas",
+        "fileSha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+        "fragments": [
+          {
+            "startLine": 2228,
+            "endLine": 2237,
+            "text": "function RandomRange (Min, Max: integer): integer;\nbegin\n  result := ApiJack.CallFast(Ptr($50C7C0), Min, Max);\nend;\n\nprocedure SRand (Seed: integer);\nbegin\n  ApiJack.CallThis(Ptr($50C7B0), Seed);\nend;\n\n",
+            "sha256": "fb84ccfa2348273e3b27cc194e097d71e388e755e426dbb1d01a559b0703e8e3"
+          }
+        ]
+      },
+      {
+        "file": "Tweaks.pas",
+        "fileSha256": "1f46a1bc5b3392a7598792c5a832916927d8d996e3b3b0d8ac61da085bf2391d",
+        "fragments": [
+          {
+            "startLine": 1240,
+            "endLine": 1246,
+            "text": "function _RandomRangeWithFreeParam (CallerAddr: pointer; MinValue, MaxValue, FreeParam: integer): integer;\nbegin\n  CombatRngFreeParam := FreeParam;\n  result             := GlobalRng.RandomRange(MinValue, MaxValue);\n  DebugRandomRange(CallerAddr, MinValue, MaxValue, result);\n  CombatRngFreeParam := 0;\nend;\n",
+            "sha256": "576234cfe6cde805924c4e161d8af46eb71fb52a3def9954e92469e01668e08a"
+          },
+          {
+            "startLine": 2874,
+            "endLine": 2877,
+            "text": "  CLangRng               := FastRand.TClangRng.Create(FastRand.MakeSecureSeedWithFallback);\n  QualitativeRng         := FastRand.TXoroshiro128Rng.Create(FastRand.MakeSecureSeedWithFallback);\n  BattleDeterministicRng := TBattleDeterministicRng.Create(@CombatId, @CombatRound, @CombatActionId, @CombatRngFreeParam);\n  GlobalRng              := QualitativeRng;\n",
+            "sha256": "2c3ca86fa367ecdf83d7b450948859d8f99a7209028c12c85137cf6b700d4911"
+          }
+        ]
+      },
+      {
+        "file": "FastRand.pas",
+        "fileSha256": "a909da84e816484bc3d03c2982065fe49e827dc6eb5c4112d4a50401db554ba9",
+        "fragments": [
+          {
+            "startLine": 453,
+            "endLine": 491,
+            "text": "function RandomRange (Rng: TRng; MinValue, MaxValue: integer): integer;\nconst\n  MAX_UNBIAS_ATTEMPTS = 100;\n\nvar\n  RangeLen:         cardinal;\n  BiasedRangeLen:   cardinal;\n  MaxUnbiasedValue: cardinal;\n  i:                integer;\n\nbegin\n  {!} Assert(Rng <> nil);\n\n  if MinValue >= MaxValue then begin\n    result := MinValue;\n    exit;\n  end;\n\n  result := Rng.Random;\n\n  if (MinValue > Low(integer)) or (MaxValue < High(integer)) then begin\n    i                := 2;\n    RangeLen         := cardinal(MaxValue - MinValue) + 1;\n    BiasedRangeLen   := High(cardinal) mod RangeLen + 1;\n\n    if BiasedRangeLen = RangeLen then begin\n      BiasedRangeLen := 0;\n    end;\n\n    MaxUnbiasedValue := High(cardinal) - BiasedRangeLen;\n\n    while (cardinal(result) > MaxUnbiasedValue) and (i <= MAX_UNBIAS_ATTEMPTS) do begin\n      result := Rng.Random;\n      Inc(i);\n    end;\n\n    result := MinValue + integer(cardinal(result) mod RangeLen);\n  end;\nend;\n",
+            "sha256": "63c1972ad4f12b29d583ffe359f94941ad2c6971d3350f6a707f4342ee71db41"
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "ERA3 integer VR:R one-argument addition and three-argument assignment are admitted here. Seeding, free parameters and the independent VR:T generator remain unadmitted.",
+      "The native game RNG is used and preserved in native saves. Its stream is not claimed identical to ERA’s patched Heroes global generator."
+    ]
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "scenarios": [
+        {
+          "kind": "era3-random-ranges",
+          "fixed": "RANGE FIXED 7/9/-11/-2147483648/2147483647/123",
+          "before": [
+            7,
+            -3,
+            1,
+            2090723984,
+            759223200,
+            -81570573,
+            19,
+            -8
+          ],
+          "after": [
+            9,
+            -2,
+            -4,
+            885589877,
+            1650505787,
+            -988567483,
+            13,
+            13
+          ],
+          "bounds": [
+            [
+              1,
+              12
+            ],
+            [
+              -12,
+              -1
+            ],
+            [
+              -4,
+              4
+            ],
+            [
+              -2147483648,
+              2147483647
+            ],
+            [
+              0,
+              2147483647
+            ],
+            [
+              -2147483648,
+              -1
+            ],
+            [
+              7,
+              19
+            ],
+            [
+              -50,
+              50
+            ]
+          ],
+          "checkpointReplayPreservesNativeRandomSequence": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "assignmentReplacesPreviousValue": true,
+          "signedAndFullInt32Bounds": true,
+          "nativeSaveVersion": 922,
+          "programSha256": "478dfe6147130749d9a08f7ee93b65e031613e8d0fe309d27f3fd310840016ff",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ad9d98866510ad80992f98144b93e86d3583e19e3a991da07e58648f49089d63"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "scenarios": [
+        {
+          "kind": "era3-random-ranges",
+          "fixed": "RANGE FIXED 7/9/-11/-2147483648/2147483647/123",
+          "before": [
+            1,
+            -5,
+            -3,
+            -482239849,
+            433541567,
+            -374903956,
+            9,
+            23
+          ],
+          "after": [
+            6,
+            -1,
+            -3,
+            1363545737,
+            782618581,
+            -509594021,
+            14,
+            -26
+          ],
+          "bounds": [
+            [
+              1,
+              12
+            ],
+            [
+              -12,
+              -1
+            ],
+            [
+              -4,
+              4
+            ],
+            [
+              -2147483648,
+              2147483647
+            ],
+            [
+              0,
+              2147483647
+            ],
+            [
+              -2147483648,
+              -1
+            ],
+            [
+              7,
+              19
+            ],
+            [
+              -50,
+              50
+            ]
+          ],
+          "checkpointReplayPreservesNativeRandomSequence": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "assignmentReplacesPreviousValue": true,
+          "signedAndFullInt32Bounds": true,
+          "nativeSaveVersion": 922,
+          "programSha256": "478dfe6147130749d9a08f7ee93b65e031613e8d0fe309d27f3fd310840016ff",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "30a015f071a162650cacde65769f97dfc6882c71e76886da37866c843ad26a2d"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "scenarios": [
+        {
+          "kind": "era3-random-ranges",
+          "fixed": "RANGE FIXED 7/9/-11/-2147483648/2147483647/123",
+          "before": [
+            1,
+            -5,
+            -3,
+            -482239849,
+            433541567,
+            -374903956,
+            9,
+            23
+          ],
+          "after": [
+            6,
+            -1,
+            -3,
+            1363545737,
+            782618581,
+            -509594021,
+            14,
+            -26
+          ],
+          "bounds": [
+            [
+              1,
+              12
+            ],
+            [
+              -12,
+              -1
+            ],
+            [
+              -4,
+              4
+            ],
+            [
+              -2147483648,
+              2147483647
+            ],
+            [
+              0,
+              2147483647
+            ],
+            [
+              -2147483648,
+              -1
+            ],
+            [
+              7,
+              19
+            ],
+            [
+              -50,
+              50
+            ]
+          ],
+          "checkpointReplayPreservesNativeRandomSequence": true,
+          "nestedNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "assignmentReplacesPreviousValue": true,
+          "signedAndFullInt32Bounds": true,
+          "nativeSaveVersion": 922,
+          "programSha256": "478dfe6147130749d9a08f7ee93b65e031613e8d0fe309d27f3fd310840016ff",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "848f103df047fa5ecb0387c96a7f98547dacc75ae4e11e205449c63a8cf85ace"
+    }
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "errors": [],
+      "rawReportSha256": "e69aa90a9a82c054fba788317fe0aa092e95e1daf927d43dd5574cf81282426a",
+      "scenarioCount": 7,
+      "scenarios": [
+        {
+          "kind": "points",
+          "scope": "Original point calculation; commander and set dependencies remain controlled stubs",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "class",
+          "scope": "Original class lookup from controlled mastery flags; no promotion admission",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "skill-level-routing",
+          "scope": "Original get/set skill-level routing against real native Pathfinding, with controlled Pathfinding flag adapters; no full skill effects or source array-helper admission",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-numeric-calls",
+          "scope": "ERA3 numeric FU:P copy-in/copy-out only; strings, relative/compare arguments and DO calls are unadmitted",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-constant-local-arrays",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-dynamic-local-arrays",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        },
+        {
+          "kind": "era3-quick-scope",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "errors": [],
+      "rawReportSha256": "912d80e3667ece473482e48e679da79a1868471738b2056d54f3c129d8ed3c00",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-function-metadata",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ]
+    },
+    "mithril": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "errors": [],
+      "rawReportSha256": "efdb8e80176c303045b7ea7e1c040dc59ccd9f3d647f109b75e511e5c8113120",
+      "scenarioCount": 2,
+      "scenarios": [
+        {
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        {
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        }
+      ]
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "errors": [],
+      "rawReportSha256": "938c59b211d20ad44bfabcfb08217b57cec2c3c80f55de14501a8003068260c8",
+      "scenarioCount": 17,
+      "scenarios": [
+        "owned-mine-double-income-payment-and-stale-request",
+        "companion-and-mithril-transactions-coexist",
+        "native-dwelling-upgrade-preserves-stock",
+        "nearby-weekly-site-payment",
+        "advanced-university-payment",
+        "owned-shipyard-creates-lighthouse",
+        "town-magical-terrain-payment",
+        "monolith-exit-fog-revealed",
+        "monolith-camera-shows-exit-and-returns-to-selected-entrance",
+        "mobile-town-one-card-nine-terrain-picker-retains-chosen-option",
+        "phone-and-ipad-scrollable-layout",
+        "phone-and-ipad-real-touch-vertical-scroll-without-keyboard",
+        "companion-and-mithril-restored-from-same-save",
+        "native-save-reload",
+        "mine-expires-after-seven-income-periods",
+        "disabled-module-baseline",
+        "insufficient-mithril-rejected-by-server"
+      ]
+    },
+    "string-receivers": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "errors": [],
+      "rawReportSha256": "2487081e39a52cf9a036562ee73c196697da638194a4def2c3f21374ffe80a7b",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-string-receivers",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    },
+    "legacy-receivers": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4",
+      "errors": [],
+      "rawReportSha256": "41b3a26358eda93cf36ac292cb1935e5174ae973adfb637482a9bcc84d91faa2",
+      "scenarioCount": 1,
+      "scenarios": [
+        {
+          "kind": "era3-string-receivers",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          }
+        }
+      ]
+    }
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 922,
+        "readerVersion": 921,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "3003c31aa905df34643903b3db889b64685785306d08a2f87a215e70cf6aeb59"
+  },
+  "serialization": {
+    "previousSaveVersion": 921,
+    "newSaveVersion": 922,
+    "choiceCount": 19,
+    "legacyScopeInputVersion": 921,
+    "legacyScopeOutputVersion": 922,
+    "legacyScopeInputSha256": "6da86099b6663a40c70a9912fc5ca12ec332f9fc019167136b5ded1fa66805db",
+    "legacyScopeOutputSha256": "a2b6f4fce8bc0902294bf06d87b3fe61bf1b04184b6e4541df4e68ac7649a047"
+  },
+  "legacyAst": {
+    "rows": 137,
+    "unique": 128,
+    "differences": [],
+    "unrepairedPrograms": 133,
+    "knownSourceRepairs": 4,
+    "mergedCampaignMaps": 11,
+    "mergedDifferences": [],
+    "caveByteIdentical": true,
+    "scope": "All campaign program rows and merged maps, including four existing source repairs; unique original source hashes counted separately. Cave merged program also compared."
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.273-engine.tar.gz",
+    "sha256": "ac3bd19d2ddd08b68ba667172129c104e25b28db6415875432af7e22e637bd21",
+    "runtimeByteIdenticalToTestedCandidate": true,
+    "runtimeFiles": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ]
+  },
+  "remaining": [
+    "Seeded and four-argument VR:R and independent VR:T generator semantics.",
+    "Exact ERA RNG stream and complete external gameplay profiles."
+  ],
+  "publicationVerification": {
+    "release": "0.4.273",
+    "nodeTests": {
+      "total": 925,
+      "passed": 869,
+      "failed": 0,
+      "skipped": 56
+    },
+    "freshTumTests": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "siteBuild": true,
+    "siteVerified": true,
+    "nativeFilesByteVerified": 10464,
+    "transportBytes": 702295411
+  }
+}

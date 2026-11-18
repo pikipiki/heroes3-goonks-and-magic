@@ -285,6 +285,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='random-ranges'){
+  const {runRandomRanges}=await import('./wog-era3-random-ranges-cases.mjs');
+  await runRandomRanges({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:951})});
+ }
  if(process.env.CASES==='string-receivers'){
   const {runStringReceivers}=await import('./wog-era3-string-receivers-cases.mjs');
   await runStringReceivers({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:950})});
