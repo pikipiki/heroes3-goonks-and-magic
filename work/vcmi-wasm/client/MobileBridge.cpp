@@ -1530,17 +1530,35 @@ void publishMobileState(){
    n["resourceTypes"].Vector().push_back(type);n["resources"].Vector().push_back(JsonNode(double(p->cb->getResourceAmount(resourceId))));
   }
   if(n["mode"].String()=="map"&&adventureInt){auto mini=adventureInt->getMobileMinimap();if(mini){auto size=p->cb->getMapSize();auto & m=n["mapOverview"];m["rect"]=rect(mini->pos);m["view"]=rect(adventureInt->getMobileMapRect());m["viewport"]=rect(mini->mobileVisibleArea());m["width"].Integer()=size.x;m["height"].Integer()=size.y;m["level"].Integer()=mini->mobileLevel();publishMobileMinimap(*mini);}}
-  if(era_compat::mithril::enabled(*p->cb))
+  const bool mithrilEnhancements=era_compat::mithril::enabled(*p->cb);
+  const bool mithrilDisplay=era_compat::mithril::displayEnabled(*p->cb);
+  n["mithrilEnabled"].Bool()=mithrilEnhancements;
+  n["mithrilDisplayEnabled"].Bool()=mithrilDisplay;
+  if(mithrilEnhancements||mithrilDisplay)
   {
-   n["mithrilEnabled"].Bool()=true;
    if(mobileMithrilPanel&&n["mode"].String()=="map")
    {
     auto & panel=n["mithril"];panel["revision"].Integer()=era_compat::mithril::revision(*p->cb);
     const auto currency=era_compat::mithril::resource();
     const auto amount=currency==GameResID::NONE?0:p->cb->getResourceAmount(currency);
     panel["amount"].Integer()=amount;
+    if(mithrilDisplay)
+    {
+     auto & info=panel["information"];
+     const auto text=[](const std::string & key){return LIBRARY->generaltexth->translate("tum-era.mithril.display."+key);};
+     auto total=text("total");
+     boost::replace_first(total,"%d",std::to_string(amount));
+     boost::replace_first(total,"%s",text(era_bridge::mithril::displayPlural(amount)?"plural":"singular"));
+     info["total"].String()=total;
+     if(mithrilEnhancements)
+     {
+      info["title"].String()=text("title");info["help"].String()=text("help");
+      for(int row=0;row<11;++row)info["prices"].Vector().emplace_back(text("price."+std::to_string(row)));
+     }
+    }
     for(const auto & object:static_cast<const IGameInfoCallback &>(*p->cb).gameState().getMap().objects)
     {
+     if(!mithrilEnhancements)break;
      if(!object||!p->cb->getObj(object->id,false))continue;
      if(object->ID!=Obj::MINE&&object->ID!=Obj::CREATURE_GENERATOR1&&object->ID!=Obj::CREATURE_GENERATOR4
       &&object->ID!=Obj::WINDMILL&&object->ID!=Obj::WATER_WHEEL&&object->ID!=Obj::UNIVERSITY

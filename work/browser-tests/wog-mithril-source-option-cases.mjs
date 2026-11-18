@@ -13,8 +13,15 @@ export async function runMithrilSourceOption({boot,panel,buy,state,command,wait,
  const scriptProgram=mithrilSourceOptionFixture({deferInitialRead:process.env.CASES==='source-option-control'});fs.writeFileSync(path.join(output,'program.json'),JSON.stringify(scriptProgram,null,2));
  const desktop=process.env.CASES==='source-option-desktop';
  const availability=async active=>{
-  await page().waitForFunction(active=>{const button=document.querySelector('button[data-mithril-open]');return button&&button.hidden===!active;},active);
-  assert.equal(await page().locator('button[data-mithril-open]').evaluate(button=>!button.hidden),active,'Source flag matches native purchase availability, including overflow menus');
+  const current=await state(),accessible=active||!!current.mithrilDisplayEnabled;
+  assert.equal(!!current.mithrilEnabled,active,'Source36 controls purchases independently of information');
+  await page().waitForFunction(accessible=>{const button=document.querySelector('button[data-mithril-open]');return button&&button.hidden===!accessible;},accessible);
+  assert.equal(await page().locator('button[data-mithril-open]').evaluate(button=>!button.hidden),accessible,'Information remains accessible when149 is active');
+  if(!active&&accessible){
+   const information=await panel();assert.equal(information.offers?.length||0,0);
+   assert.equal(await page().locator('[data-mithril-buy]').count(),0,'Information alone cannot offer purchases');
+   await page().locator('[data-mithril-close]')[desktop?'click':'tap']();
+  }
  };
  const ack=async()=>{const button=page().locator('[data-dialog-confirm]');if(await button.count())await button[desktop?'click':'tap']();else await command(1);};
  const query=async(step,active)=>{

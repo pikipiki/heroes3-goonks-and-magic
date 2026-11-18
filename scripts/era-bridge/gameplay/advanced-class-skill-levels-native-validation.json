@@ -25,7 +25,7 @@
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/browser-tests/wog-era3-numeric-calls-fixture.mjs": "4e72a89f3dd7b628f42174730eab30f3c64103ca2e73abb68d55edcb1380d013",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "4b9edae848a4d90cc2efcb6139037e6b1e75f62ed2db9e22a444753c6ef6a955"
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1572,5 +1572,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "4b9edae848a4d90cc2efcb6139037e6b1e75f62ed2db9e22a444753c6ef6a955"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

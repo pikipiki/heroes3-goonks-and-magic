@@ -23,6 +23,7 @@ const rules = [
   ['Inverted creature speeds', 'Vitesses des créatures inversées', 'Invert base speeds around the fastest eligible creature at the start.', 'Inverser les vitesses de base selon la créature compatible la plus rapide au départ.'],
   ['Weekly mithril in gardens and mills', 'Mithril hebdomadaire dans les jardins et moulins', 'Gardens and windmills can yield mithril each Monday. Enhanced mills double their stored weekly reward.', 'Les jardins et moulins à vent peuvent produire du mithril chaque lundi. Les moulins améliorés doublent leur réserve hebdomadaire.'],
   ['Mithril piles and campfires', 'Piles et feux de camp au mithril', 'Place mithril among eligible resource piles and campfires at the start.', 'Placer du mithril parmi les piles de ressources et les feux de camp compatibles au départ.'],
+  ['Mithril information', 'Informations sur le mithril', 'Show your mithril total. Enhancements also enable the price list.', 'Afficher votre réserve de mithril. Les améliorations donnent aussi accès aux tarifs.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

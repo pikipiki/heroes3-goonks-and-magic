@@ -8,7 +8,7 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
     "work/browser-tests/wog-era3-local-arrays-cases.mjs": "7da679f5a0d0d23e4da647d9cb3b6fc9f24859b88563a4d724e2178f2b43eb59",
@@ -293,5 +293,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

@@ -45,7 +45,8 @@ int main()
 {
     using V=ESerializationVersion;
     // Literal historical wire sizes, independent of the production constants.
-    const auto countFor=[](V version){return version>=V::GOONK_MITHRIL_RESOURCE_REPLACEMENT?21u:
+    const auto countFor=[](V version){return version>=V::GOONK_MITHRIL_DISPLAY?22u:
+        version>=V::GOONK_MITHRIL_RESOURCE_REPLACEMENT?21u:
         version>=V::GOONK_MITHRIL_WEEKLY_SITES?20u:
         version>=V::GOONK_WOG_INVERTED_SPEEDS?19u:
         version>=V::GOONK_WOG_GROUNDED_FLIERS?18u:
@@ -55,7 +56,7 @@ int main()
         version>=V::GOONK_WOG_ARMY_GROWTH?14u:
         version>=V::GOONK_WOG_OPTION_CATALOGUE?13u:
         version>=V::GOONK_WOG_OPTIONS_EXTENDED?7u:6u;};
-    for(auto version:{V::GOONK_WOG_OPTIONS,V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_HENCHMAN_BATTLE_EXPERIENCE,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::GOONK_ERA3_QUICK_LOCALS,V::GOONK_WOG_EXTRA_DWELLING_CREATURES,V::GOONK_WOG_GROUNDED_FLIERS,V::GOONK_WOG_INVERTED_SPEEDS,V::GOONK_MITHRIL_SOURCE_DWELLINGS,V::GOONK_ERA3_STRING_LOCALS,V::GOONK_ERA3_STRING_RECEIVERS,V::GOONK_ERA3_RANDOM_RANGES,V::GOONK_MITHRIL_WEEKLY_SITES,V::CURRENT})
+    for(auto version:{V::GOONK_WOG_OPTIONS,V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_HENCHMAN_BATTLE_EXPERIENCE,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::GOONK_ERA3_QUICK_LOCALS,V::GOONK_WOG_EXTRA_DWELLING_CREATURES,V::GOONK_WOG_GROUNDED_FLIERS,V::GOONK_WOG_INVERTED_SPEEDS,V::GOONK_MITHRIL_SOURCE_DWELLINGS,V::GOONK_ERA3_STRING_LOCALS,V::GOONK_ERA3_STRING_RECEIVERS,V::GOONK_ERA3_RANDOM_RANGES,V::GOONK_MITHRIL_WEEKLY_SITES,V::GOONK_MITHRIL_RESOURCE_REPLACEMENT,V::CURRENT})
     {
         ExtraOptionsInfo original;original.cheatsAllowed=false;original.unlimitedReplay=true;
         for(std::size_t i=0;i<original.wogOptions.size();++i)original.wogOptions[i]=static_cast<int8_t>(i%3)-1;
@@ -70,7 +71,7 @@ int main()
     Bytes old{false,V::BONUS_TRIGGER,{1,0,73},0};ExtraOptionsInfo restored;restored.wogOptions.fill(1);restored.serialize(old);
     for(auto choice:restored.wogOptions)assert(choice==-1);
     int8_t sentinel=0;old&sentinel;assert(sentinel==73);
-    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::GOONK_ERA3_QUICK_LOCALS,V::GOONK_WOG_EXTRA_DWELLING_CREATURES,V::GOONK_WOG_GROUNDED_FLIERS,V::GOONK_WOG_INVERTED_SPEEDS,V::GOONK_MITHRIL_SOURCE_DWELLINGS,V::GOONK_ERA3_STRING_LOCALS,V::GOONK_ERA3_STRING_RECEIVERS,V::GOONK_ERA3_RANDOM_RANGES,V::GOONK_MITHRIL_WEEKLY_SITES,V::CURRENT})
+    for(auto version:{V::GOONK_ERA_GAMEPLAY,V::GOONK_WOG_OPTIONS_EXTENDED,V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::GOONK_ERA3_QUICK_LOCALS,V::GOONK_WOG_EXTRA_DWELLING_CREATURES,V::GOONK_WOG_GROUNDED_FLIERS,V::GOONK_WOG_INVERTED_SPEEDS,V::GOONK_MITHRIL_SOURCE_DWELLINGS,V::GOONK_ERA3_STRING_LOCALS,V::GOONK_ERA3_STRING_RECEIVERS,V::GOONK_ERA3_RANDOM_RANGES,V::GOONK_MITHRIL_WEEKLY_SITES,V::GOONK_MITHRIL_RESOURCE_REPLACEMENT,V::CURRENT})
         for(int invalid:{-128,-2,2,127})
         {
             const auto count=countFor(version);const auto prefix=version>=V::GOONK_WOG_OPTION_CATALOGUE?4u:0u;
@@ -86,7 +87,7 @@ int main()
         }
     // A shorter stored catalogue inherits appended choices. An unknown larger
     // catalogue is rejected instead of silently dropping gameplay rules.
-    for(unsigned count:{0u,3u,13u,14u,15u,16u,17u,18u,19u,20u,static_cast<unsigned>(era_bridge::wogOptionCount+1)})
+    for(unsigned count:{0u,3u,13u,14u,15u,16u,17u,18u,19u,20u,21u,static_cast<unsigned>(era_bridge::wogOptionCount+1)})
     {
         std::vector<int8_t> bytes(6+count,0);bytes[2]=static_cast<int8_t>(count);bytes.push_back(73);
         Bytes input{false,V::CURRENT,bytes,0};ExtraOptionsInfo value;bool threw=false;
@@ -98,7 +99,7 @@ int main()
     }
     // A new reader must still enforce the capability of an older stream,
     // rather than accepting a future choice merely because its array fits.
-    for(auto version:{V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::GOONK_ERA3_QUICK_LOCALS,V::GOONK_WOG_EXTRA_DWELLING_CREATURES,V::GOONK_WOG_GROUNDED_FLIERS,V::GOONK_WOG_INVERTED_SPEEDS,V::GOONK_ERA3_RANDOM_RANGES,V::GOONK_MITHRIL_WEEKLY_SITES})
+    for(auto version:{V::GOONK_WOG_OPTION_CATALOGUE,V::GOONK_WOG_ARMY_GROWTH,V::GOONK_WOG_TOWN_GRAILS,V::GOONK_WOG_MONTHLY_VISITS,V::GOONK_ERA3_QUICK_LOCALS,V::GOONK_WOG_EXTRA_DWELLING_CREATURES,V::GOONK_WOG_GROUNDED_FLIERS,V::GOONK_WOG_INVERTED_SPEEDS,V::GOONK_ERA3_RANDOM_RANGES,V::GOONK_MITHRIL_WEEKLY_SITES,V::GOONK_MITHRIL_RESOURCE_REPLACEMENT})
     {
         const auto count=countFor(version)+1;
         std::vector<int8_t> bytes(6+count,0);bytes[2]=static_cast<int8_t>(count);

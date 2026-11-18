@@ -11,13 +11,13 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
-    "mod/tum-era/content/translation/tum-era-ui-english.json": "99e0a428e36390833ba5b4716fd62c41d92ba5b92f5bbb37e9ee40f752d950fc",
-    "mod/tum-era/content/translation/tum-era-ui-french.json": "bf7e696cfaa8738d0d5e2c18d08605582e8cd1be371398f33e73f4af67de2be2",
+    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "5968fdd394b0cfcc068a0569a47c97e9e642d56794af3b7cbe5025737ebc8aa0",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
@@ -281,5 +281,16 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "99e0a428e36390833ba5b4716fd62c41d92ba5b92f5bbb37e9ee40f752d950fc",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "bf7e696cfaa8738d0d5e2c18d08605582e8cd1be371398f33e73f4af67de2be2",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "5968fdd394b0cfcc068a0569a47c97e9e642d56794af3b7cbe5025737ebc8aa0",
+      "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

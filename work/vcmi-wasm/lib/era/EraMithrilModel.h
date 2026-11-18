@@ -1,5 +1,6 @@
 #pragma once
 #include "EraMithrilRules.h"
+#include "EraMithrilDisplayRules.h"
 #include "EraWogOptions.h"
 #include "../StartInfo.h"
 #include "EraMapRulesModel.h"
@@ -62,6 +63,16 @@ inline bool resourceReplacementEnabled(const IGameInfoCallback & cb)
             cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS));
     return state(cb)["replacementRuleVersion"].Integer()>=1&&state(cb)["replacementEnabled"].Bool();
 }
+inline bool displayEnabled(const IGameInfoCallback & cb)
+{
+    if(state(cb)["displayRuleVersion"].isNull()&&cb.getDate(Date::DAY)==0)
+        return era_bridge::mithril::displaySnapshot(era_bridge::wogOptionEnabled(cb,
+            era_bridge::WogOption::MithrilDisplay,
+            cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS)),enabled(cb));
+    return state(cb)["displayRuleVersion"].Integer()>=1&&state(cb)["displayEnabled"].Bool();
+}
+inline bool displaySourceOption(const IGameInfoCallback & cb)
+{return era_bridge::mithril::displayLiveOption(displayEnabled(cb),resourceReplacementEnabled(cb));}
 inline GameResID resource()
 {
     for(const auto & object:LIBRARY->resourceTypeHandler->objects)

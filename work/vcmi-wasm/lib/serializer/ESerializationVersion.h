@@ -92,9 +92,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_ERA3_RANDOM_RANGES, // ERA3 VR:R explicit inclusive integer bounds
 	GOONK_MITHRIL_WEEKLY_SITES, // source171 weekly site rewards and twenty-choice peers
 	GOONK_MITHRIL_RESOURCE_REPLACEMENT, // source170 first-map resource/campfire pass, twenty-one choices
+	GOONK_MITHRIL_DISPLAY, // source149 frozen information choice, twenty-two choices
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_MITHRIL_RESOURCE_REPLACEMENT,
+	CURRENT = GOONK_MITHRIL_DISPLAY,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

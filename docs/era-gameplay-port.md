@@ -796,7 +796,7 @@ natives sans identité source utilisent leur rang natif converti en base zéro.
 Les achats modifient uniquement les types de créatures et conservent tous les
 stocks, y compris après une seconde amélioration et une sauvegarde. Le format919
 annonce ces critères sans ajouter de choix aux dix-neuf réglages existants.
-L’option source149 et les mutations MA:L externes restent à porter.
+L’information source149 est traitée séparément ci-dessous ; les mutations MA:L externes restent à porter.
 Le calendrier des moulins est traité séparément par la règle171 ci-dessous. Preuve bornée :
 `scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json`.
 
@@ -847,3 +847,26 @@ rétroactivement. Les quantités natives d’or non multiples de100, qui n’ont
 d’équivalent dans le champ d’origine, sont conservées. Les combinaisons de
 récompenses natives non standard et les écritures arbitraires AR/FR restent
 hors de cette validation, comme les profils complets.
+
+
+La règle149 ajoute le vingt-deuxième choix Carte/Oui/Non pour consulter le
+mithril disponible. L’ordre d’initialisation36,149,170,171 est conservé :36
+force149 avant la capture de son indicateur d’information ;170 ne force que
+la valeur finale de UN:P149, après cette capture.171 reste indépendant.
+Le choix d’information est figé par partie et enregistré au format925 ; les
+anciennes sauvegardes conservent leurs achats et ne reçoivent pas de nouvelle
+politique d’information rétroactive. Le nombre de choix de chaque ancien
+format reste contrôlé lors du chargement.
+
+Le bouton Mithril permet la consultation au toucher et à la souris, même
+quand les achats sont désactivés. Avec les améliorations, il donne accès aux
+onze rubriques de tarifs, dont les exceptions du Conflux et des améliorations
+successives. La liste textuelle adaptée remplace l’image fixe mithPric.pcx ;
+elle défile verticalement sur mobile. L’interface native intercepte le clic
+droit du bilan du royaume et propose les tarifs après confirmation. Sans149,
+son aide d’origine reste disponible. Consulter ou fermer ne dépense rien.
+Les réserves de ressources ordinaires restent visibles indépendamment de149.
+Les contrôles portent sur le français/anglais, les interfaces native et web,
+le toucher/souris, les combinaisons d’options et le rechargement après changement
+des préférences globales. Cette étape ne déclare aucun profil complet jouable.
+Preuve : `scripts/era-bridge/gameplay/mithril-display-native-validation.json`.

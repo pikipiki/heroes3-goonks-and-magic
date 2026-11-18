@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/era/EraDeflectionRuntime.h": "0f519f9b99ebfbb2ca124bd8a6ee85ad15ba54362afcc456426999416bcf1367",
     "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h": "51e1e7a400689590dfb476d1fe42a7dd5568e91c1f1e2faf88b8f869eeeec808",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "fdcf73c9a79387a6703bf0e52ab65c24c550a9e6c3ff1622e173177d7b91ffba",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
     "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "604c3430e23e05b7cb7f5986319fddd4d7192e4a4818e5470e3390c94e05bf1d",
     "work/vcmi-wasm/lib/CStack.cpp": "0d588aa9cc811e9506603befdddaad9d96af760ac3abf8272d4f62c5bdd591b1",
     "web/henchman-sheet.mjs": "e2baadf65fe89f054c54da9f6e94caa2388d7b0f87c0c7db972bf3e4d3843735",
@@ -271,5 +271,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/client/MobileBridge.cpp": "fdcf73c9a79387a6703bf0e52ab65c24c550a9e6c3ff1622e173177d7b91ffba"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

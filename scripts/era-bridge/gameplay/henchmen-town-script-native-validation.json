@@ -6,7 +6,7 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
+    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
@@ -283,5 +283,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

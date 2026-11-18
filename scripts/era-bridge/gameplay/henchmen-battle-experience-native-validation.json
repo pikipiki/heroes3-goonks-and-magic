@@ -11,14 +11,14 @@
     "lines": "250-271,746-778"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d",
+    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "760ed6ec534cc166736d304e09bf6ce95e8e377763f89385cc9ee45233868055",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-battle-experience-cases.mjs": "c8e12a19af45b9d4bfdc22814cfa805d336d6a942f210ed36a92e605ed422152",
     "work/vcmi-wasm/lib/battle/BattleInfo.h": "302fb3a34732998f98b12f6b52e2e154e6e601166edf38fa6c06594773f829b9",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5f1bd7f4ad5cb76958fc9e9dc14e31fa52fb001a3280d8ee4e6ab71183694030",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "e5dd27973eb93be808a3b4ddd360989e25cf15e32c7ed5215503cdbd8fecef44",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "5c74948eaa8db1a565eb0f3ae8e2dc3243afe3fda289d96ec4dab3bc20684660"
   },
@@ -299,5 +299,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+      "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

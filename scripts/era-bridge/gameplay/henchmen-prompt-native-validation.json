@@ -14,10 +14,10 @@
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "4d57d85ca0f9b48e793a969326a52dee7de947439d330c5009c1a864f67aa79e",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "aab42bb560a9f179807d9ea9bc6adde7721f168b993d164c1498fca98733c036",
     "work/vcmi-wasm/server/battles/BattleProcessor.h": "5a6c7608997cee6907fa0348d458748b4dab9aa62cb34e9c829bbb4721bc4beb",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "3ababa8e08e1ebbe9bc8d7a41dd5a69b5a41dc041018ea5005ce85b6d52201a2",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
-    "mod/tum-era/content/translation/tum-era-ui-english.json": "d199283bbc3c8ab14d2a95993b2c75ea71252f3f7bf657956d3e8a1d0f2e18ec",
-    "mod/tum-era/content/translation/tum-era-ui-french.json": "e4e2d6a9ca4d9faab524233c42e976a9c10b487837a1e813b1f58707e131f8ae",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
   },
@@ -144,5 +144,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "d199283bbc3c8ab14d2a95993b2c75ea71252f3f7bf657956d3e8a1d0f2e18ec",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "e4e2d6a9ca4d9faab524233c42e976a9c10b487837a1e813b1f58707e131f8ae",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "3ababa8e08e1ebbe9bc8d7a41dd5a69b5a41dc041018ea5005ce85b6d52201a2"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }

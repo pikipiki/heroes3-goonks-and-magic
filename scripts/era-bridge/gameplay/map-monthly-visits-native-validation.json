@@ -7,22 +7,22 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "9335d886ef7f4346886643182b257dd3dad1146182383fc363ddd402d251422e",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "5a425edbd37ffd60f33fbf4e52a79c0a79aa3de1a1ada32471f574e36dc5dfd9",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8046b0f71f087a27cd2c99fb9970772f99fa0c418ea59351207bbfd0c590a122",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5f1bd7f4ad5cb76958fc9e9dc14e31fa52fb001a3280d8ee4e6ab71183694030",
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "760ed6ec534cc166736d304e09bf6ce95e8e377763f89385cc9ee45233868055",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
-    "web/wog-options.mjs": "621e3220d0e4f4c06df2f8e75a5f2451f937f5cc7cb73b51b22058c557e53f99",
+    "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
     "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "1dee8af901a65389307357de4b6fd9782f1da1bb13882416fafc46490472bd6d",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "f314c727218b2170c1ed47259e054eb3f8b95c10a2a8dc71b8ba55bf3d2b0462",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "13514ff26f1f416aef3706d32de34c1190528982d4a119506b6f6f2e416c95ff",
     "tests/fixtures/era-gameplay/map-monthly-visits-reference.json": "270b82d4388d72f3fb75d3879b7715892b1a1fe3265fde663935961e9c77e17f"
   },
@@ -574,21 +574,21 @@
     "Complete gameplay packs remain disabled."
   ],
   "sourceCompatibility": {
-    "scope": "Additive empty army-upgrade quote explanations in MobileBridge only. Original monthly proof and its engine remain historical; all monthly rule source bindings are unchanged.",
+    "scope": "Additive source149 information and separate display/purchase visibility in MobileBridge. Monthly rule implementation unchanged; both active and inactive month transitions, day28/29 save reload and no replay revalidated on the current engine. Historical compatibility report retained in sourceCompatibilityHistory.",
     "sourceBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261"
     },
     "nativeBuild": {
       "command": "ninja -j32 html5",
       "exitCode": 0,
-      "logSha256": "f8b5c06663c84ae6836da4cee671e297fdfd770f8e61da3dfdb92570dc6dd6f1"
+      "logSha256": "5015e514a6157a97090ab3b08fcd51a8e1ade336580a695f643cf8f0d4238198"
     },
-    "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+    "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
     "report": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
       "scenarios": [
         {
           "configured": false,
@@ -661,7 +661,8 @@
       ],
       "errors": [],
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
-    }
+    },
+    "rawReportSha256": "f3e2bae6f5db51f934d2f430022d989fa0f33b0987f8384b7208e6d3fe2edf1c"
   },
   "sourceContext": {
     "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
@@ -867,5 +868,111 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
-  }
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+      "web/wog-options.mjs": "621e3220d0e4f4c06df2f8e75a5f2451f937f5cc7cb73b51b22058c557e53f99",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8046b0f71f087a27cd2c99fb9970772f99fa0c418ea59351207bbfd0c590a122",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "5a425edbd37ffd60f33fbf4e52a79c0a79aa3de1a1ada32471f574e36dc5dfd9",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "1dee8af901a65389307357de4b6fd9782f1da1bb13882416fafc46490472bd6d"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
+  },
+  "sourceCompatibilityHistory": [
+    {
+      "scope": "Additive empty army-upgrade quote explanations in MobileBridge only. Original monthly proof and its engine remain historical; all monthly rule source bindings are unchanged.",
+      "sourceBindings": {
+        "work/vcmi-wasm/client/MobileBridge.cpp": "27e5e2124b15e5f17aa82c5dae0ddff711845d8866f4b834f21ca6d398b1b0c3"
+      },
+      "nativeBuild": {
+        "command": "ninja -j32 html5",
+        "exitCode": 0,
+        "logSha256": "f8b5c06663c84ae6836da4cee671e297fdfd770f8e61da3dfdb92570dc6dd6f1"
+      },
+      "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+      "report": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "aca99a42295d4c60c19f01587b844cd67ae47da3d737b83c9082e7266339b9b7",
+        "scenarios": [
+          {
+            "configured": false,
+            "choice": 1,
+            "active": true,
+            "initial": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "first": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "second": [
+              12,
+              12,
+              10,
+              10
+            ],
+            "day28NoReset": true,
+            "day29Reset": true,
+            "day30NoReset": true,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "noResetReplay": true,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          },
+          {
+            "configured": true,
+            "choice": 0,
+            "active": false,
+            "initial": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "first": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "second": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "day28NoReset": true,
+            "day29Reset": false,
+            "day30NoReset": true,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "noResetReplay": true,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
+      }
+    }
+  ]
 }

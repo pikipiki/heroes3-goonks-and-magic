@@ -25,6 +25,7 @@
 #include "../render/IImage.h"
 #include "../render/IRenderHandler.h"
 #include "../widgets/Buttons.h"
+#include "../windows/EraMithrilWindow.h"
 #include "../widgets/Images.h"
 #include "../widgets/TextControls.h"
 
@@ -153,6 +154,19 @@ std::shared_ptr<CIntObject> AdventureMapWidget::buildMapImage(const JsonNode & i
 		return std::make_shared<CFilledTexture>(path, targetArea, sourceArea);
 }
 
+namespace
+{
+class MithrilOverviewButton final : public CButton
+{
+public:
+    using CButton::CButton;
+    void showPopupWindow(const Point & cursorPosition) override
+    {
+        if(!era_compat::mithril::openClassicInformation())CButton::showPopupWindow(cursorPosition);
+    }
+};
+}
+
 std::shared_ptr<CIntObject> AdventureMapWidget::buildMapButton(const JsonNode & input)
 {
 	auto position = readTargetArea(input["area"]);
@@ -169,7 +183,10 @@ std::shared_ptr<CIntObject> AdventureMapWidget::buildMapButton(const JsonNode & 
 		ENGINE->renderHandler().updateGeneratedAssets();
 	}
 
-	auto button = std::make_shared<CButton>(position.topLeft(), image, help, 0, EShortcut::NONE, playerColored);
+	std::shared_ptr<CButton> button;
+	if(input["hotkey"].String()=="adventureKingdomOverview")
+		button=std::make_shared<MithrilOverviewButton>(position.topLeft(),image,help,0,EShortcut::NONE,playerColored);
+	else button=std::make_shared<CButton>(position.topLeft(),image,help,0,EShortcut::NONE,playerColored);
 
 	loadButtonBorderColor(button, input["borderColor"]);
 	loadButtonHotkey(button, input["hotkey"]);

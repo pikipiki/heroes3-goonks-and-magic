@@ -16,6 +16,7 @@ inline std::optional<int> read(const IGameInfoCallback & callback,int option)
     if(option==36)return mithril::enabled(callback)?1:0;
     if(option==171)return mithril::weeklyEnabled(callback)?1:0;
     if(option==170)return mithril::resourceReplacementEnabled(callback)?1:0;
+    if(option==149)return mithril::displaySourceOption(callback)?1:0;
     // Source option67 selects the extra dwelling species. The separate
     // Neutral Town gameplay pack is not enabled by exposing this frozen flag.
     if(option==67)

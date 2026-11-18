@@ -14,6 +14,27 @@ namespace era_compat::mithril
 inline std::string windowText(const std::string & key)
 {return LIBRARY->generaltexth->translate("tum-era.mithril."+key);}
 
+inline bool openClassicInformation()
+{
+    auto * player=GAME->interface();
+    if(!player||!displayEnabled(*player->cb))return false;
+    const auto currency=resource();
+    const int amount=currency==GameResID::NONE?0:player->cb->getResourceAmount(currency);
+    auto text=windowText("display.total");
+    boost::replace_first(text,"%d",std::to_string(amount));
+    boost::replace_first(text,"%s",windowText(era_bridge::mithril::displayPlural(amount)?"display.plural":"display.singular"));
+    if(!enabled(*player->cb)){player->showInfoDialog(text);return true;}
+    const auto owner=player->playerID;
+    player->showYesNoDialog(text+"\n\n"+windowText("display.question"),[owner]{
+        const auto * current=GAME->interface();
+        if(!current||current->playerID!=owner)return;
+        std::string prices="{"+windowText("display.title")+"}\n\n"+windowText("display.help");
+        for(int row=0;row<11;++row)prices+="\n\n"+windowText("display.price."+std::to_string(row));
+        GAME->interface()->showInfoDialog(prices);
+    },{});
+    return true;
+}
+
 inline void confirmClassicUpgrade(ObjectInstanceID id,int choice)
 {
     auto * player=GAME->interface();

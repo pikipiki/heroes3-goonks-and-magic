@@ -14,7 +14,7 @@ export function renderMithrilOffers(data,{pending=false,canAct=false,selectedTer
   const selected=choices.find(row=>(row.choice??0)===selectedTerrains[offer.id])||choices[0];
   offers.push({...selected,terrainChoices:choices});
  }
- return `<p>${data.amount??0} Mithril</p><div class="mithril-offers">${offers.map(offer=>`<article>
+ return `${data.information?'':`<p>${data.amount??0} Mithril</p>`}<div class="mithril-offers">${offers.map(offer=>`<article>
  <h3>${esc(offer.name)} <small>(${offer.x}, ${offer.y})</small></h3>
  <p>${esc(offer.kind===0&&offer.protection?(fr?'Protéger contre le prochain changement hebdomadaire de ressource':'Protect against the next weekly resource change'):labels[offer.kind]||offer.description||'')}${offer.kind===8?` · ${terrains[offer.choice??0]}`:''}${upgradeText(offer)?` · ${esc(upgradeText(offer))}`:''}</p>
  ${offer.current?`<p>${fr?'Actuellement':'Current'} : ${esc(offer.current)}</p>`:''}
@@ -29,7 +29,7 @@ export function createMithrilEnhancements({root,command}){
  const panel=document.createElement('section');panel.className='mithril-panel';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','mithril-title');
  renderMarkup(panel,'<header><h2 id="mithril-title">Mithril</h2><button data-mithril-close aria-label="Fermer">✕</button></header><div class="mithril-content"></div>');
  root.append(panel);
- let open=false,state={},signature='',pending=null,pendingKind=null;
+ let open=false,state={},signature='',pending=null,pendingKind=null,pricesOpen=false;
  const selectedTerrains={};
  const close=()=>{open=false;pending=null;pendingKind=null;panel.hidden=true;root.dataset.mithrilOpen='false';command(1201,0);};
  button.addEventListener('click',()=>{open=true;signature='';root.dataset.mithrilOpen='true';command(1201,1);});
@@ -39,6 +39,7 @@ export function createMithrilEnhancements({root,command}){
  });
  panel.addEventListener('click',event=>{
   if(event.target.closest('[data-mithril-close]')){close();return;}
+  if(event.target.closest('[data-mithril-prices]')){pricesOpen=!pricesOpen;signature='';render();return;}
   const buy=event.target.closest('[data-mithril-buy]');if(!buy||buy.disabled||pending!==null)return;
   pending=state.mithril?.revision??0;
   pendingKind=state.mithril?.offers?.find(row=>row.id===Number(buy.dataset.mithrilBuy)&&(row.choice??0)===Number(buy.dataset.mithrilChoice))?.kind??null;
@@ -48,9 +49,12 @@ export function createMithrilEnhancements({root,command}){
  function render(){
   if(!open||!state.mithril)return;
   panel.hidden=false;
-  const next=JSON.stringify([state.mithril,state.turn,pending,getLanguage(),selectedTerrains]);if(signature===next)return;signature=next;
+  const next=JSON.stringify([state.mithril,state.turn,pending,getLanguage(),selectedTerrains,pricesOpen]);if(signature===next)return;signature=next;
   const content=panel.querySelector('.mithril-content'),scroll=content.scrollTop;
-  renderMarkup(content,renderMithrilOffers(state.mithril,{pending:pending!==null,canAct:state.turn,selectedTerrains}));content.scrollTop=scroll;
+  const info=state.mithril.information,fr=getLanguage()==='fr';
+  const information=info?`<section class="mithril-information"><p>${esc(info.total)}</p>${info.prices?.length?`<button data-mithril-prices aria-expanded="${pricesOpen}" aria-controls="mithril-price-list">${esc(info.title)}</button><section id="mithril-price-list" ${pricesOpen?'':'hidden'}><h3>${esc(info.title)}</h3><p>${esc(info.help)}</p><ol>${info.prices.map(row=>`<li>${esc(row)}</li>`).join('')}</ol></section>`:''}</section>`:'';
+  panel.querySelector('[data-mithril-close]').setAttribute('aria-label',fr?'Fermer':'Close');
+  renderMarkup(content,information+(state.mithrilEnabled?renderMithrilOffers(state.mithril,{pending:pending!==null,canAct:state.turn,selectedTerrains}):''));content.scrollTop=scroll;
  }
- return {update(next){state=next;button.hidden=!next.mithrilEnabled||next.mode!=='map';if(open&&(next.mode!=='map'||!next.mithrilEnabled)){close();return;}if(pending!==null&&next.mithril?.revision!==pending){const preview=pendingKind===6&&next.mithril?.revision>pending;pending=null;pendingKind=null;if(preview){close();return;}}render();},get active(){return open;}};
+ return {update(next){state=next;const available=next.mithrilEnabled||next.mithrilDisplayEnabled;button.hidden=!available||next.mode!=='map';if(open&&(next.mode!=='map'||!available)){close();return;}if(pending!==null&&next.mithril?.revision!==pending){const preview=pendingKind===6&&next.mithril?.revision>pending;pending=null;pendingKind=null;if(preview){close();return;}}render();},get active(){return open;}};
 }

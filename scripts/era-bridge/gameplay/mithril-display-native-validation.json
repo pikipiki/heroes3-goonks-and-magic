@@ -1,0 +1,1807 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Source149 sequential option snapshot, final UN:P149 value, frozen information-only access and localized text price list on touch, mouse and classic overview right-click. Text list intentionally replaces fixed mithPric.pcx. Existing resources remain visible independently.",
+  "sourceBaseCommit": "cc77c1279cec1557fc27429cbff15811229a816b",
+  "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+  "sourceBindings": {
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "760ed6ec534cc166736d304e09bf6ce95e8e377763f89385cc9ee45233868055",
+    "web/mithril-enhancements.mjs": "48ac8021d45e327fff8fbf8832dfd7a5c226834c18e50cdf28383103590b37fa",
+    "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
+    "work/vcmi-wasm/client/adventureMap/AdventureMapWidget.cpp": "e217057948f462497dad18b8177a167474c6bf213414d64c7926168502b1a610",
+    "work/vcmi-wasm/client/windows/EraMithrilWindow.h": "93cbe63a106e76225b62bb11f5b3f75eda393249eb3bc7390e782c803615154a",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "74a9323c5c7b8bb1e31523e6a5c2ae91f25fa5d2e28ba9d83a4b49f8ceeb3a15",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5f1bd7f4ad5cb76958fc9e9dc14e31fa52fb001a3280d8ee4e6ab71183694030",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
+    "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
+    "work/vcmi-wasm/lib/era/EraMithrilDisplayRules.h": "fe510a53ab2a50a5d18ec6f7c788cb01183bf795445dc0763adbf22a55d1086a",
+    "tests/native/EraMithrilDisplayRules.test.cpp": "d4340a468c67a115d4048e7a4d79b359ac04271f0718d90c71f58044ddd3f2f8",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "f314c727218b2170c1ed47259e054eb3f8b95c10a2a8dc71b8ba55bf3d2b0462",
+    "work/browser-tests/wog-mithril-display-cases.mjs": "260db8f8796c7e48a77110adaabebb9a608e9260541c995e7fec79156f2c9770",
+    "work/browser-tests/mithril-information-components-e2e.mjs": "9847cfa54d321e61b29127c4e9feab879842a3acec4e6a03765f23bf22b47569",
+    "tests/fixtures/era-gameplay/mithril-display-reference.json": "6fbf6e269200a45d8db163b1562f7bc6c3d5ff888f45f970769984b89076a20d",
+    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e",
+    "tests/era-mithril-display.test.mjs": "5e4fdd375f7f754fd6e65509608e79bb82741265724f8a559184930e88478378",
+    "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
+    "docs/era-compatibility.md": "61534084c0bd810436d7f3b5e77cbe86b0356350ac643637f1f3ecc80f175763"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 109,
+    "logSha256": "5015e514a6157a97090ab3b08fcd51a8e1ade336580a695f643cf8f0d4238198",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "tests": [
+      {
+        "name": "EraMithrilDisplayRules",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "EraWogOptionsSerialization",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3009,
+    "mismatches": [],
+    "expectedManifestSha256": "d80d41fb9a434d4d7363d90c1cd2aaa58a3cc14ac386f54cc43feee3cb24c355"
+  },
+  "upstreamReference": {
+    "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+    "sourceFragments": [
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "lines": [
+          94,
+          103
+        ],
+        "text": "!!VR(options[0]):C36/149/170/171;\n\n!!re i/0/(options[SIZE])/1/-1;\n  !!UN:P(options[i])/?(isEnabled:y);\n  !!VRi^wog_%(options[i])_enabled^:S(isEnabled:y);\n  !!if&(isEnabled:y);\n    !!UN:B0/1;   (Enable Mithril)\n    !!UN&i<3:P149/1;[Enable Mithril Display if Mithril script or Mithril Replacement is enabled][Check if Mithril in Windmills and Gardens is enabled: v4]\n  !!en;\n!!en;\n",
+        "sha256": "adc9dbfea2417cb370950414eac259e9870ec8fde63a8b3457b827f7cec4bcd2"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "lines": [
+          120,
+          147
+        ],
+        "text": "!?FU(OnAdventureMapRightMouseClick)&i^mouse_item^=(ITEM_ADVMAP_KINGDOM_OVERVIEW_BTN)/i^wog_149_enabled^;\n!!CM:R0;\n!!FU(WOG_149_DisplayMithril):P;\n\n!?FU(WOG_149_DisplayMithril);\n!!OW:C?(player:y)/?(interactPlayer:y); [Store number of current player in y4]\n!!OW:R(interactPlayer)/(RES_MITHRIL)/?(number:y); [Store current player's Mithril in y-5]\n\n!!VRn:S(number) -1 F0/1;\n\n!!SN:T^wog.36.description.%n^/?(name:z) T^wog.36.description.msg^/?(msg:z)/^number^/(number)/^name^/(name);\n!!if&i^wog_36_enabled^;\n\n  !!IF:Q2/(PIC_TYPE_RES_MITHRIL)/(number:y)/(MSG_TYPE_QUESTION)/^%(msg:z)%T(wog.36.description.question)^; [Display Mithril and offer to display price list: Flag 2]\n\n  !!if&2;\n    !!VRz1:S^mithPric.pcx^;  [File and path name for Mithril Price List image: z1]\n    !!SN:F^PcxPngExists^/z1; [Check if Mithril Price List image is there: v1=True if yes]\n    !!if&v1;\n      !!IF:B1/1/0 P1; [Display Mithril price list]\n    !!el;\n      !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/0/(MSG_TYPE_MES)/^%T(wog.36.description.std)^; [Display standard dialogue price list if image file missing]\n    !!en;\n  !!en;\n!!el;\n  !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/(number:y)/(MSG_TYPE_MES)/(msg:z); [Just display total Mithril if Mithril script is disabled]\n!!en;\n\n",
+        "sha256": "dd91e93f0e6237b60385c588b73c27d92671c410627283ccf85c62ef13832147"
+      }
+    ],
+    "staticOptionDispatch": {
+      "schema": 1,
+      "evidenceKind": "Bounded ordinary PE static inspection and matching Pascal/ERM source reads; not REA native Evidence. No execution of game binaries or port code.",
+      "target": {
+        "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+        "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+        "preferredImageBase": 4194304
+      },
+      "source42": {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+        "lines": [
+          94,
+          103
+        ],
+        "order": [
+          36,
+          149,
+          170,
+          171
+        ],
+        "sequence": "Each iteration immediately reads UN:P(option)/?enabled, assigns that snapshot to wog_option_enabled, then if enabled calls UN:B0/1 and (only when loop index<3) UN:P149/1."
+      },
+      "regions": [
+        {
+          "file": "h3era.exe",
+          "name": "UN:P scalar/low-option dispatch",
+          "rva": 3354059,
+          "preferredVa": 7548363,
+          "endExclusiveVa": 7548436,
+          "fileOffset": 2940363,
+          "size": 73,
+          "sha256": "baeb5989e4c32cb108b2e37bcedee8335bb58459b7d9c909a4bb047a1e05301c",
+          "observation": "With at least2 parameters, first parameter is used as option index. Only indices0..4 use the nearby special jump table;149 goes to generic branch."
+        },
+        {
+          "file": "h3era.exe",
+          "name": "UN:P generic range check and same-address get/set",
+          "rva": 3354361,
+          "preferredVa": 7548665,
+          "endExclusiveVa": 7548804,
+          "fileOffset": 2940665,
+          "size": 139,
+          "sha256": "2427c609d383095c7fbd9790f1b832500a27cd577d957a59cb7883effd345346",
+          "observation": "Accept index0..999. Extra flag updates exist for5 and900, not149. Compute0x02771920+4*index, then pass that address, size4, SubCmd and parameter index1 to ZvsApply0x74195d. GET and SET use the identical address."
+        },
+        {
+          "file": "era.dll",
+          "name": "Installed ZvsApply target pointer",
+          "rva": 721384,
+          "preferredVa": 4915688,
+          "endExclusiveVa": 4915692,
+          "fileOffset": 717288,
+          "size": 4,
+          "sha256": "d2ebc26f7959c44dd7544d7bf3593117bb0520cd1ab5342caa464b51a7ba204b",
+          "observation": "Stored original function address is0x74195d."
+        },
+        {
+          "file": "era.dll",
+          "name": "ZvsApply hook installation",
+          "rva": 642383,
+          "preferredVa": 4836687,
+          "endExclusiveVa": 4836708,
+          "fileOffset": 639311,
+          "size": 21,
+          "sha256": "56bfd3852b2030e01c075c6d5933b433db271bc84adf059678526d41495f09c9",
+          "observation": "Install hook4945b0 over the target held at4b01e8. Matching source identifies this as Hook_ZvsApply."
+        },
+        {
+          "file": "era.dll",
+          "name": "Hook_ZvsApply set/get implementation",
+          "rva": 607664,
+          "preferredVa": 4801968,
+          "endExclusiveVa": 4802298,
+          "fileOffset": 604592,
+          "size": 330,
+          "sha256": "511a5bff601271c93e71a4147f960b9206b60fe0028bfb6441bf9ef7166587e0",
+          "observation": "SET(check typeNONE) synchronously calls PutVal494290 with the supplied pointer/size/value/modifier. GET loads from that pointer and passes the loaded value to SetErmParamValue4925a0. No special option149 or deferred configuration transaction is present."
+        }
+      ],
+      "matchingSource": {
+        "file": "work/downloads/era-kernel-source/Erm.pas",
+        "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+        "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "locations": {
+          "optionCountAndBanks": [
+            291,
+            293
+          ],
+          "TWoGOptions": 584,
+          "currentBase": 746,
+          "PutVal": [
+            5408,
+            5470
+          ],
+          "Hook_ZvsApply": [
+            5516,
+            5557
+          ],
+          "hookInstallation": 9611,
+          "UN_P3SpecialHook": [
+            6419,
+            6429,
+            9475
+          ]
+        },
+        "facts": [
+          "NUM_WOG_OPTIONS=1000, CURRENT_WOG_OPTIONS=0, GLOBAL_WOG_OPTIONS=1. Current bank is based at0x02771920.",
+          "PutVal plain SET uses FinalValue=Value and writes int32 to the supplied pointer immediately.",
+          "Hook_UN_P3 concerns option3(commanders), not149. Other source freeze hooks concern option5."
+        ]
+      },
+      "conclusion": {
+        "sameCell": true,
+        "optionIndex": 149,
+        "currentCellPreferredAddress": 41360244,
+        "currentCellHex": "0x02771b74",
+        "meaning": "UN:P149/1 immediately stores1 in the same current option integer that an immediately following UN:P149/? reads. It is not a display-only shadow value, delayed UI setting or a snapshot of the global bank.",
+        "sequentialEffect": "Option36 active forces current149=1 before149 is read, so wog_149_enabled becomes1 even when initial149=0. Option170 active forces149 only after its earlier snapshot, so170 alone leaves wog_149_enabled=0 while final current149=1. Option171 has loop index3, so it never forces149.",
+        "booleanFormula": {
+          "captured36": "initial36",
+          "captured149": "initial149 OR initial36",
+          "captured170": "initial170",
+          "captured171": "initial171",
+          "final149": "initial149 OR initial36 OR initial170"
+        }
+      },
+      "derivedReplay": {
+        "kind": "Independent sequential replay of source42, not runtime observation",
+        "booleanInputCombinations": 16,
+        "cases": [
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [],
+            "finalOption149": 0,
+            "enableMithrilCalled": false
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [],
+            "finalOption149": 0,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          }
+        ]
+      },
+      "limits": [
+        "No game, Wine process or container was started for this question. Conclusions combine on-disk native dispatch, matching ERA hook implementation and explicit source-script order.",
+        "Arbitrary third-party runtime patches, asynchronous external writes or other scripts changing the same option between these commands are outside the inspected scope.",
+        "This establishes the option149 set/get storage semantics and the captured variables in this initialization loop; it does not establish every consumer or GUI rendering rule of149.",
+        "Only plain UN:P149/1 and GET are needed here. Modified operators and unrelated low-option special cases were not exhaustively studied.",
+        "Report includes hashes/offsets/descriptive observations only, with no original Windows executable bytes or disassembly text."
+      ]
+    }
+  },
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "scenarios": [
+        {
+          "name": "display-only",
+          "enhancements": 0,
+          "display": 1,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 1,
+          "language": "en",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "enhancements-force-display",
+          "enhancements": 1,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 100,
+          "language": "en",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "replacement-forces-live-only",
+          "enhancements": 0,
+          "display": 0,
+          "replacement": 1,
+          "weekly": 0,
+          "funds": 0,
+          "language": "en",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "expectedDisplay": false,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "weekly-independent",
+          "enhancements": 0,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 1,
+          "funds": 2,
+          "language": "en",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "expectedDisplay": false,
+          "liveSource149": false,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "all-disabled",
+          "enhancements": 0,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 0,
+          "language": "en",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "expectedDisplay": false,
+          "liveSource149": false,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "display-and-replacement",
+          "enhancements": 0,
+          "display": 1,
+          "replacement": 1,
+          "weekly": 1,
+          "funds": 0,
+          "language": "en",
+          "input": "touch",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "efcefb364fc0499a28e9ffeb3af831dcb44fe7bc94f2c184c0077ae596698a12"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "scenarios": [
+        {
+          "name": "display-only",
+          "enhancements": 0,
+          "display": 1,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 1,
+          "language": "fr",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "enhancements-force-display",
+          "enhancements": 1,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 100,
+          "language": "fr",
+          "input": "touch",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "985b33ec26430412eb94b37b86dfcc487d96dc2470e51ac173f7a3cb9fa94e6a"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "scenarios": [
+        {
+          "name": "display-only",
+          "enhancements": 0,
+          "display": 1,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 1,
+          "language": "fr",
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        },
+        {
+          "name": "enhancements-force-display",
+          "enhancements": 1,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 100,
+          "language": "fr",
+          "input": "mouse",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "81767382a4e5c940e9ab3e3d83c88831d5c94d43a10e151b13383bef2e2594fe"
+    },
+    "classicFrench": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "scenarios": [
+        {
+          "name": "display-only",
+          "enhancements": 0,
+          "display": 1,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 1,
+          "language": "fr",
+          "input": "mouse",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": true
+        },
+        {
+          "name": "enhancements-force-display",
+          "enhancements": 1,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 100,
+          "language": "fr",
+          "input": "mouse",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": true
+        },
+        {
+          "name": "all-disabled",
+          "enhancements": 0,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 0,
+          "language": "fr",
+          "input": "mouse",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "expectedDisplay": false,
+          "liveSource149": false,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "0dc4081cb731888a5d430626f3275e0fee36815a8bbdf4e633b3fb8ac3ab1d68"
+    },
+    "classicEnglish": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "scenarios": [
+        {
+          "name": "display-only",
+          "enhancements": 0,
+          "display": 1,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 1,
+          "language": "en",
+          "input": "mouse",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": true
+        },
+        {
+          "name": "enhancements-force-display",
+          "enhancements": 1,
+          "display": 0,
+          "replacement": 0,
+          "weekly": 0,
+          "funds": 100,
+          "language": "en",
+          "input": "mouse",
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "expectedDisplay": true,
+          "liveSource149": true,
+          "saveVersion": 925,
+          "frozenAfterChangedGlobalDefault": true,
+          "sourceOptionsBeforeAndAfterReload": true,
+          "readOnly": true,
+          "classic": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "1032e07daf96a03da39fd9b42fff80dd17717022c71aca367b4b8aeaa0049fcd"
+    }
+  },
+  "legacySave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+    "scenarios": [
+      {
+        "kind": "mithril-display-legacy-save",
+        "inputVersion": 924,
+        "outputVersion": 925,
+        "noRetroactiveDisplay": true,
+        "resourcesPreserved": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "4a7883bf76257c8d98c7f0ed06c993dadfa9731ebe391ae93bce97119aef45a0"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 925,
+        "readerVersion": 924,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "317738555dbf24fe58dc6820ed26d5c116bfb6a35af8833923ca1e7794d27f42"
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "79d8fa3e9f0fe6609cc06fe47d8054c3ba5313fae03927ec10590f53750011eb",
+      "scenarioCount": 7
+    },
+    "metadata": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "aa9a5299288b8150ea029394c64af0442d7dc752682772180af5f1358e1d1270",
+      "scenarioCount": 1
+    },
+    "signed-henchmen": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "27bc8862f1d62b85ee9e73e250e75acb11d635e49a768158143fd7f4cdb9c9cc",
+      "scenarioCount": 4
+    },
+    "source36": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "500c498decfff40d3ad3ca8c39824e71c4d6651ddacc0e8a71425f08962dd2de",
+      "scenarioCount": 2
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "34184c743886611c04faf426c8f465a107160ec5cd57a692c175cdfcf31d9e05",
+      "scenarioCount": 17
+    },
+    "weekly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "e6361a867f57b68027baa965162cb304ac7ab3979e128e454caec00310b9d79b",
+      "scenarioCount": 1
+    },
+    "monthly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "f3e2bae6f5db51f934d2f430022d989fa0f33b0987f8384b7208e6d3fe2edf1c",
+      "scenarioCount": 2
+    }
+  },
+  "serialization": {
+    "previousSaveVersion": 924,
+    "saveVersion": 925,
+    "choiceCount": 22,
+    "legacyChoiceCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "newDisplayPolicy": 1,
+    "legacyDisplayPolicy": 0
+  },
+  "ui": {
+    "radio": {
+      "passed": true,
+      "cases": [
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9b849a010afe6dab01f712a56b95c19ce26afd7f8e258a1b52609f04c1f45f33"
+    },
+    "information": {
+      "passed": true,
+      "cases": [
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "geometry": {
+            "w": 132.625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "geometry": {
+            "w": 134.265625,
+            "h": 48,
+            "radius": "0px",
+            "mui": true
+          },
+          "verticalScroll": true,
+          "horizontalOverflow": false,
+          "singleClose": true,
+          "readOnly": true,
+          "informationOnly": true,
+          "disabled": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "473bfd59e7dd4e2c772a305f02dee1a1690fe4b6bcb27a61a6402f0e34935eeb"
+    }
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.277-engine.tar.gz",
+    "sha256": "2eae2c92be4c1b85cf29700a44d6b230b244143688350e2d6be6df168fd60ce6",
+    "runtimeFiles": [
+      {
+        "file": "dosvcmi.png",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.js",
+        "identical": true
+      },
+      {
+        "file": "mini-lz4.js",
+        "identical": true
+      },
+      {
+        "file": "dialogs.js",
+        "identical": true
+      },
+      {
+        "file": "game.html",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "identical": true
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "identical": true
+      },
+      {
+        "file": "opfs-worker.js",
+        "identical": true
+      }
+    ]
+  },
+  "remaining": [
+    "External MA:L changes in dwelling eligibility and enhancement prices.",
+    "Arbitrary AR/FR/GD/ML/WM setters and late external replacement maximum-step overrides.",
+    "Complete gameplay profiles and exact ERA RNG sequence remain unadmitted."
+  ],
+  "publicationVerification": {
+    "release": "0.4.277",
+    "nodeTests": {
+      "total": 933,
+      "passed": 877,
+      "failed": 0,
+      "skipped": 56
+    },
+    "freshTumTests": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "siteBuild": true,
+    "siteVerified": true,
+    "nativeFilesByteVerified": 10464,
+    "transportBytes": 702298628
+  }
+}

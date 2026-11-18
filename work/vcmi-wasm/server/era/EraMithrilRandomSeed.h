@@ -24,7 +24,8 @@ inline void initializeSeed(CGameHandler & gh,bool firstTurn)
     const bool createSeed=firstTurn&&active&&state(cb)["seed"].isNull();
     const bool createWeeklyPolicy=state(cb)["weeklyRuleVersion"].isNull();
     const bool createReplacementPolicy=state(cb)["replacementRuleVersion"].isNull();
-    if(state(cb)["enabled"].isBool()&&!createSeed&&!createWeeklyPolicy&&!createReplacementPolicy)return;
+    const bool createDisplayPolicy=state(cb)["displayRuleVersion"].isNull();
+    if(state(cb)["enabled"].isBool()&&!createSeed&&!createWeeklyPolicy&&!createReplacementPolicy&&!createDisplayPolicy)return;
     EraGameplayChange packet;packet.system="mithril";packet.state=state(cb);
     packet.state["enabled"].Bool()=active;
     if(createWeeklyPolicy)
@@ -42,6 +43,13 @@ inline void initializeSeed(CGameHandler & gh,bool firstTurn)
         packet.state["replacementEnabled"].Bool()=firstTurn&&era_bridge::wogOptionEnabled(cb,
             era_bridge::WogOption::MithrilResourceReplacement,
             cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS));
+    }
+    if(createDisplayPolicy)
+    {
+        packet.state["displayRuleVersion"].Integer()=firstTurn?1:0;
+        packet.state["displayEnabled"].Bool()=firstTurn&&era_bridge::mithril::displaySnapshot(
+            era_bridge::wogOptionEnabled(cb,era_bridge::WogOption::MithrilDisplay,
+                cb.getSettings().getBoolean(EGameSettings::MODULE_MITHRIL_ENHANCEMENTS)),active);
     }
     if(createSeed)packet.state["seed"].Integer()=independentSeed();
     gh.sendAndApply(packet);

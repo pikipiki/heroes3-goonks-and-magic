@@ -65,26 +65,26 @@
   },
   "sourceBindings": {
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "9335d886ef7f4346886643182b257dd3dad1146182383fc363ddd402d251422e",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "5a425edbd37ffd60f33fbf4e52a79c0a79aa3de1a1ada32471f574e36dc5dfd9",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8046b0f71f087a27cd2c99fb9970772f99fa0c418ea59351207bbfd0c590a122",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5f1bd7f4ad5cb76958fc9e9dc14e31fa52fb001a3280d8ee4e6ab71183694030",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
     "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "b18ac4a8a3a478e0a4a8b773b4068b05d9c4e3c75c8a917d2e398a113331a99e",
     "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
     "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
-    "web/wog-options.mjs": "621e3220d0e4f4c06df2f8e75a5f2451f937f5cc7cb73b51b22058c557e53f99",
+    "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
     "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
     "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
     "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "1dee8af901a65389307357de4b6fd9782f1da1bb13882416fafc46490472bd6d",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "f314c727218b2170c1ed47259e054eb3f8b95c10a2a8dc71b8ba55bf3d2b0462",
     "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "f9b67803593c2b7d2781102459bb848e0bdf9b2e121e2b9ae350a677e5045196",
     "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "760ed6ec534cc166736d304e09bf6ce95e8e377763f89385cc9ee45233868055",
     "tests/era-map-grounded-fliers.test.mjs": "19e1e7c8733ec6c9d12b6a866332d07a0193c87c87e4e599a01fe1301ea99426",
     "tests/fixtures/era-gameplay/map-grounded-fliers-reference.json": "ee354297e5d0bc380cd56501379f17a04dc4dd4580339ecbb74a5da41d9bf475",
     "scripts/era-bridge/gameplay/map-rules.json": "f38019cc21e5d5e0c64eeaa05bb115f3e7d640c10a7479901d2533df78523f74",
-    "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d"
+    "docs/era-gameplay-port.md": "9a949673d2bfad8d6b0fc98f45f0dfbb6e7b57676a8a5523e77683868ddd198e"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1241,5 +1241,19 @@
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
+  },
+  "mithrilDisplayRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "2753216298e2def40d50d5a143d17f285bc604a1c676f2d684883cca9c5b0144",
+      "web/wog-options.mjs": "621e3220d0e4f4c06df2f8e75a5f2451f937f5cc7cb73b51b22058c557e53f99",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "8046b0f71f087a27cd2c99fb9970772f99fa0c418ea59351207bbfd0c590a122",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "5a425edbd37ffd60f33fbf4e52a79c0a79aa3de1a1ada32471f574e36dc5dfd9",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c52cfb1876577fd1b2a61a2bc0fd375854f03ec17c68fdd1594c314f28f6443e",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "1dee8af901a65389307357de4b6fd9782f1da1bb13882416fafc46490472bd6d",
+      "docs/era-gameplay-port.md": "cb263455e9ae8dfb3bef132c40501b51846f685383aeb935450eea0af9f0423d"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+    "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
   }
 }
