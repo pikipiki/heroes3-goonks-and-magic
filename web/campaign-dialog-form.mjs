@@ -1,6 +1,6 @@
 import {createUIField} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {campaignMediaPicture} from './campaign-media.mjs';
 export function campaignDialogDraft(model){return{queryId:model.queryId,selection:model.draft?.selection??model.selection??model.initial??model.choices?.[0]?.value??0,text:model.draft?.text||''};}
 export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>{}}){

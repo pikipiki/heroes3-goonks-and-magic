@@ -1,5 +1,5 @@
 import {createUIElement,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 // Keep the engine's real loading artwork and cover only its non-interactive
 // status area. Generic fallback actions must never be shown over a loader.
 export function createLoadingState(root){

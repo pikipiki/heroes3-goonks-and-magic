@@ -1,5 +1,5 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 
 export function guardOnlineNameKeyboard(window) {
   // Register before SDL so its capture listeners cannot cancel native text input.

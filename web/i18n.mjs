@@ -1,10 +1,6 @@
-// Cache-busted imports and local previews must share one locale and observer.
-// Two independent observers translating in opposite directions can otherwise
-// keep the microtask queue busy indefinitely when the language changes.
-const localeKey=Symbol.for('heroes-goonk.locale-session');
-const localeSession=globalThis[localeKey]??={language:'en',initialized:false,redraw:()=>{}};
-if(!localeSession.initialized){localeSession.initialized=true;try{localeSession.language=localStorage.getItem('heroes-goonk.language')==='fr'?'fr':'en';}catch{}}
-export const getLanguage=()=>localeSession.language;
+// Locale selection is synchronous; loading the catalogue must not suspend UI primitives.
+import {localeSession,getLanguage} from './locale-state.mjs';
+export {getLanguage};
 let dictionary={};if(typeof window!=='undefined')try{const response=await fetch(new URL('./i18n-dictionary.json',import.meta.url));dictionary=await response.json();}catch(error){console.error('Translation catalogue unavailable',error);}
 // Keep the same translation rules available to DOM text and canvas renderers.
 export function createTranslator(catalogue){

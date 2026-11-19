@@ -1,6 +1,6 @@
 import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 export function gameDate(day){
  if(!Number.isInteger(day)||day<1)return null;
  const weekday=(day-1)%7+1,week=Math.floor((day-1)/7)%4+1,month=Math.floor((day-1)/28)+1;

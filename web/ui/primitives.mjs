@@ -1,4 +1,4 @@
-import {getLanguage} from '../i18n.mjs';
+import {getLanguage} from '../locale-state.mjs';
 export const uiText=(en,fr)=>getLanguage()==='fr'?fr:en;
 export const escapeUI=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 export function buttonMarkup({label,attributes='',variant='tonal',icon='',disabled=false}){

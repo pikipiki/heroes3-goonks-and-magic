@@ -1,5 +1,5 @@
 import {useScreenComponents,screenHeaderMarkup,resourceCostMarkup,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
 if(typeof Image!=='undefined'){const icon=new Image();icon.src=new URL('./h3-theme/troops.svg',import.meta.url).href;icon.decode?.().catch(()=>{});}

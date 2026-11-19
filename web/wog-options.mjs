@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {radioChoicesMarkup,renderMarkup,createAccordion} from './ui/material-components.mjs';
 import {createScrollAnchor} from './ui/scroll-anchor.mjs';
 import {syncMaterialFields} from './ui/mui-runtime.mjs';

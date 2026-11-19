@@ -3,7 +3,7 @@ import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
 import {bulkTransferSummary} from './army-transfer.mjs';
 import {bindPress} from './mobile-press.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 
 // The roster never changes geometry when a troop is selected or split.
 export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onManage,onUpgradeAll,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{}}){

@@ -1,5 +1,5 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {spellIconURL} from './spell-icons.mjs';
 import {plainGameText} from './game-text.mjs';
 import {townBuildingCardImage} from './town-portrait.mjs';

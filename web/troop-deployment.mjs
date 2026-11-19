@@ -1,5 +1,5 @@
 import {renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
 export function createTroopDeployment({root,command}){
  const panel=document.createElement('section');panel.className='progression-page troop-deployment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','troop-deployment-title');root.append(panel);

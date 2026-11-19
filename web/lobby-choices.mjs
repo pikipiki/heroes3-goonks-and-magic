@@ -1,6 +1,6 @@
 import {useScreenComponents,renderMarkup,setClickHandler,radioChoicesMarkup} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {difficultyIcon,warmSetupChoiceIcons} from './setup-choice-icons.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 import {scenarioDetails} from './scenario-details.mjs';

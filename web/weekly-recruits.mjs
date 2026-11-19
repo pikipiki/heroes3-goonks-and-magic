@@ -1,7 +1,7 @@
 import {renderMarkup} from './ui/material-components.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {gameDate} from './game-calendar.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({
  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',

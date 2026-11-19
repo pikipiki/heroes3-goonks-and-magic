@@ -5,7 +5,7 @@ import {highScorePresentation} from './high-score-presentation.mjs';
 import {plainGameText} from './game-text.mjs';
 import {closeCampaignMediaViewer} from './campaign-media.mjs';
 import {renderCommanderTree} from './commander-tree.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {createProgressionChoices} from './progression-choices.mjs';
 const text=value=>plainGameText(value||'');
 // Keep all decisions native. The DOM is a responsive presentation of the live

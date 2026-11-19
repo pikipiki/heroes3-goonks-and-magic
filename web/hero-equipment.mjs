@@ -1,5 +1,5 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
 import {renderHenchmanSheet} from './henchman-sheet.mjs';
@@ -155,7 +155,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    <button data-hero-tab="skills" aria-pressed="${skills}" ${picked?'disabled':''}>${fr?'Compétences':'Skills'}</button>
    ${hero.henchman?`<button data-hero-tab="henchman" aria-pressed="${isHenchman}" ${picked&&!hero.henchman.canEquipHeldBanner?'disabled':''}>${fr?'Compagnon':'Henchman'}</button>`:''}
    ${hero.owned===false?'':'<button data-hero-classic>Classic</button>'}
-   ${Number.isInteger(hero.commanderIcon)?`<button data-hero-commander aria-label="Open commander" title="Commander" ${picked?'disabled':''}>${heroIcon(hero.commanderIcon)}</button>`:''}
+   ${Number.isInteger(hero.commanderIcon)?`<button data-hero-commander aria-label="${fr?'Ouvrir le commandant':'Open commander'}" ${picked?'disabled':''}><span class="hero-commander-art" aria-hidden="true"><img src="./web/h3-theme/commander/defense.svg" alt="" width="24" height="24"><canvas class="hero-icon" width="48" height="48" data-hero-icon="${hero.commanderIcon}" hidden></canvas></span><span>${fr?'Commandant':'Commander'}</span></button>`:''}
   </nav>
   <section class="hero-equipment-grid" aria-label="${isArmy?'Army':skills?'Skills':backpack?'Backpack artefacts':'Worn artefacts'}">${contents}</section>
   <section class="hero-artifact-detail" aria-live="polite" ${skills||isHenchman?'hidden':''}>
@@ -299,6 +299,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     ctx.clearRect(0,0,size,size);
     ctx.drawImage(heroAtlas,index%columns*size,Math.floor(index/columns)*size,size,size,0,0,size,size);
     canvas._heroIconAtlas=heroAtlas;
+    const commanderArt=canvas.closest('.hero-commander-art');if(commanderArt){canvas.hidden=false;commanderArt.querySelector('img').hidden=true;}
    }
   }
   paintArtifactIcons(panel);

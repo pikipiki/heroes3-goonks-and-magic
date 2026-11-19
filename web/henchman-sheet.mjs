@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function renderHenchmanSheet(hero,{portrait=()=>'',canAct=false,pending=false}={}){
  const fr=getLanguage()==='fr',state=hero.henchman;

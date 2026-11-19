@@ -1,6 +1,6 @@
 import {useActionDock,renderMarkup,useScreenControls} from './ui/material-components.mjs';
 import {buildingFunctionSummary} from './town-building-summary.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {plainGameText} from './game-text.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {buildReason} from './mobile-layout.mjs';

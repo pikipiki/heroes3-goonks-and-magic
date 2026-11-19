@@ -3,7 +3,7 @@ import{hdCreaturePortrait,paintHDCreature}from'./goonk-hd-portraits.mjs';
 import{createRecruitmentHall}from'./recruitment-families.mjs';
 import{bindPress}from'./mobile-press.mjs';
 import{creaturePortrait}from'./creature-portraits.mjs';
-import{getLanguage}from'./i18n.mjs';
+import{getLanguage}from'./locale-state.mjs';
 import{resourceDescriptors,resourceIconURL,compactResource}from'./resources.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function abilitySection(abilities, language){

@@ -1,7 +1,7 @@
 import {useScreenComponents,renderMarkup,restoreMovedActions,createUIElement} from './ui/material-components.mjs';
 import{plainGameText}from'./game-text.mjs';
 import{bindPress}from'./mobile-press.mjs';
-import{getLanguage}from'./i18n.mjs';
+import{getLanguage}from'./locale-state.mjs';
 export function recruitmentFamilies(state){return state.fortFamilies?.length?state.fortFamilies:(state.fortRows||[]).map(row=>({level:row.level,count:row.count,variants:(state.recruits||[]).filter(u=>u.level===row.level).map((u,rank)=>({...u,rank,built:true})).concat([])})).map(f=>({...f,variants:f.variants.length?f.variants:[state.fortRows.find(u=>u.level===f.level)]}));}
 export function recruitMaximum(unit,resources=[]){if(!unit?.built)return 0;let count=Math.max(0,Math.floor(unit.count||0));for(const[i,cost]of(unit.cost||[]).entries())if(cost>0)count=Math.min(count,Math.floor((resources[i]||0)/cost));return count;}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

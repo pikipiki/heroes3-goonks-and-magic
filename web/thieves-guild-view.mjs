@@ -1,5 +1,5 @@
 import {screenHeaderMarkup,actionDockMarkup,buttonMarkup,statGridMarkup,createMaterialSelects,useRadarChart,useScreenComponents,escapeUI,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {plainGameText} from './game-text.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 const esc=value=>escapeUI(plainGameText(value??''));

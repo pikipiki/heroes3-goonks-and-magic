@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function canInspectBattle(state){return state.mode==='battle'&&state.manualControl!==false&&!state.autoCombat&&!!(state.canAct||state.canEndTactics);}
 export function inspectionUnits(state){return(state.battleUnits||[]).filter(u=>Number.isInteger(u.stackId)&&u.stackId>=0&&u.count>0);}

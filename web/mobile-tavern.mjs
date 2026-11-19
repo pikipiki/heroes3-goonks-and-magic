@@ -1,6 +1,6 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {canCloseTavern} from './native-dialog.mjs';
 
 const escape = value => plainGameText(value).replace(/[&<>"']/g, character => ({

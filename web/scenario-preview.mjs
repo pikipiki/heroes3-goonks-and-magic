@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const cache=new Map(),pending=new Map();
 const keyOf=key=>String(key||'').toUpperCase().replace(/\.(?:H3M|VMAP)$/,'');
 const catalogueRevision='31406a7f38010799';

@@ -2,7 +2,7 @@ import {createUIElement} from './ui/material-components.mjs';
 import {useScreenComponents,decorateButton} from './ui/components.mjs';
 import {campaignMedia} from './campaign-media-data.mjs';
 import {campaignMovieMedia} from './campaign-movie-data.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 let viewer;
 export function closeCampaignMediaViewer(){if(viewer){const current=viewer;viewer=null;current.close();current.remove();}}
 export function campaignMediaPicture(picture){

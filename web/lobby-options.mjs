@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {renderMarkup,setClickHandler,createAccordion} from './ui/material-components.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,'');
 export function createLobbyOptions({menu,getState,command,onChange}){

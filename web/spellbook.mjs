@@ -1,7 +1,7 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {createSpellScroll} from './spell-scroll.mjs';
 import {spellOneClick} from './battle-preferences.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {spellSchoolIds,spellSchoolIndex} from './spell-schools.mjs';
 import {spellIconURL,warmSpellIcons} from './spell-icons.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

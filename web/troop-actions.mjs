@@ -1,5 +1,5 @@
 import {useScreenComponents,screenHeaderMarkup,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 if(typeof Image!=='undefined')for(const name of ['troop-leave','troop-dismiss']){const icon=new Image();icon.src=new URL('./h3-theme/'+name+'.svg',import.meta.url).href;icon.decode?.().catch(()=>{});}

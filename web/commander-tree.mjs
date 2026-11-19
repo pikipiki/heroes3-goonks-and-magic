@@ -1,7 +1,7 @@
 import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./commander-tree.css',import.meta.url).href;document.head.append(link);}
 const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
 const art=['attack','defense','health','damage','speed','magic'];

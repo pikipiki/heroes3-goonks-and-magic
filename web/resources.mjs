@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 export const RESOURCE_TYPES=[['wood','Bois'],['mercury','Mercure'],['ore','Minerai'],['sulfur','Soufre'],['crystal','Cristaux'],['gems','Gemmes'],['gold','Or']];
 const locale=()=>getLanguage()==='fr'?'fr-FR':'en-US';
 const decimal={format:value=>new Intl.NumberFormat(locale(),{maximumFractionDigits:1}).format(value)},integer={format:value=>new Intl.NumberFormat(locale(),{maximumFractionDigits:0}).format(value)};

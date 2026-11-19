@@ -1,7 +1,7 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {equipmentSlotNames, paintArtifactIcons} from './hero-equipment.mjs';
 import {plainGameText} from './game-text.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 
 const escape=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const slotName=(slot,fr=true)=>slot.backpack?(fr?'Sac à dos':'Backpack'):equipmentSlotNames[slot.slot]||(fr?'Équipement':'Equipment');

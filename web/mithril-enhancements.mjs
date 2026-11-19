@@ -1,6 +1,6 @@
 import {createUIElement} from './ui/material-components.mjs';
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const upgradeText=offer=>Array.isArray(offer.upgrades)&&offer.upgrades.length?offer.upgrades.join(', '):offer.upgrade||'';
 export function renderMithrilOffers(data,{pending=false,canAct=false,selectedTerrains={}}={}){

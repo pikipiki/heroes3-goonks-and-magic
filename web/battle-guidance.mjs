@@ -1,4 +1,4 @@
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {battleCapabilities} from './battle-phase.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 export function battleGuidance(state){

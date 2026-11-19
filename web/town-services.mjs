@@ -1,7 +1,7 @@
 import {createThievesGuildView} from './thieves-guild-view.mjs';
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {plainGameText} from './game-text.mjs';
 const esc=value=>plainGameText(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Native callbacks and visibility rules remain authoritative for purchases and intelligence.

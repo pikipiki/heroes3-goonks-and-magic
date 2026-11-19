@@ -1,5 +1,5 @@
 import {ROOT} from './asset-cache.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 export const GAME_NAME='HEROES GOONK';
 export const STORAGE_LOCK='heroes-goonk-running';
 export const ASSET_INDEX='heroes-goonk.asset-index.v1';

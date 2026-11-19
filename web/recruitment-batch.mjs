@@ -1,5 +1,5 @@
 import {renderMarkup,createUIElement,buttonMarkup,useActionDock} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 // Batch confirmation/results share the same MUI roster and action composition.
 // A tap submits one native transaction; snapshots only acknowledge it.

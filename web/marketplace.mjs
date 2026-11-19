@@ -1,6 +1,6 @@
 import {createUIElement} from './ui/material-components.mjs';
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
-import {getLanguage} from './i18n.mjs';
+import {getLanguage} from './locale-state.mjs';
 import {compactResource, resourceDescriptors, resourceIconURL} from './resources.mjs';
 
 const englishNames = {wood:'Wood', mercury:'Mercury', ore:'Ore', sulfur:'Sulfur', crystal:'Crystal', gems:'Gems', gold:'Gold'};
