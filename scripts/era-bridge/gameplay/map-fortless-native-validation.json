@@ -24,7 +24,7 @@
     "work/browser-tests/wog-map-fortless-cases.mjs": "78639617fe6b4582424834e3be045c86547641e4094138be7c85d897fa05070f",
     "tests/fixtures/era-gameplay/map-fortless-reference.json": "f7d3ecab64b7db682e9a29bc6cb92e17dbb948c3f0d21d4c37cd33e9c63a4156",
     "scripts/era-bridge/gameplay/map-rules.json": "dae70d0e007f8d0d22af3400d3a001fa7ef54cfb738c9a01a540f08c1aa50c7e",
-    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
+    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
     "tests/era-map-fortless.test.mjs": "36c986217460602ee1f9226ecfbcd0dfcb46a46def2dd430e1b509d02ca2dabb",
     "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
   },
@@ -1756,5 +1756,13 @@
     "siteVerified": true,
     "nativeFilesByteVerified": 10464,
     "transportBytes": 702298666
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

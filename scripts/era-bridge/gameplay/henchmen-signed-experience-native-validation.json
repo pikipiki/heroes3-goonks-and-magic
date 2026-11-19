@@ -8,19 +8,19 @@
   "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "servedEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
-    "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2197f8f9490fa23e47f7e327369fc67a143849619c10ca43a4ad882cfdbdb3b8",
-    "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
-    "scripts/era-bridge/gameplay/math-source.json": "ce4229eccf5ab8da74a8df806fa2ba82f0648be94e3518140834c933cdc95c41",
+    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
+    "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2bf30d28cf5c688e4215910013361dc0756006f54568c453771c96110a609b89",
+    "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
+    "scripts/era-bridge/gameplay/math-source.json": "6a136d022eebeb315d861905371e6531c988d3e2bb3ac28656b34b6460973117",
     "tests/era-henchmen-math-binary.test.mjs": "eb2f857d9d0bbf3ae0f12650429bbb46cf80d6044053320a7370ec03ac1a0cb6",
-    "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "79bd148d110f16f8b258f43b8cb62cbcf693e185a83652635778771f2a6a888a",
+    "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "00690a89a647fa205096701d2a68fbdea76f6439a95ca1c1c4e169a162d85e83",
     "tests/fixtures/era-gameplay/henchmen-math/test-math.cjs": "4b114fe02e014dd7554714b8f13633883e550fb1e87b3739c7f286bb6a379daa",
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.js": "90465b0fd12c96281e352dc0e8d827b683b311b0544584795faeadd67a5d23cc",
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.wasm": "e4e646a6b9b7996bf8ed95d15a2396c2fc432c93d93388c76a6ccde430467121",
-    "tests/native/EraHenchmanRules.test.cpp": "95905d6afe79f137f508f7da4d9f287fb87fb2c70d26d32cfd2e5c30fc431008",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
-    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
-    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
+    "tests/native/EraHenchmanRules.test.cpp": "457f76e0d348bfe88a83bbf54ca30b9dbf5d79c68b80a5cd4dc43cd737f73dc6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
     "tests/fixtures/era-gameplay/henchmen-math/loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817",
     "work/browser-tests/wog-henchmen-signed-experience-cases.mjs": "aab841d8efc3c4198ef756c4c9483da5e26fc8137d0592690aa26f460052d13a",
     "tests/era-henchmen-signed-experience.test.mjs": "b73f1ccdeed1713246d360951a52224625d2efbc74baa8d224819c25ede1326a",
@@ -441,5 +441,17 @@
     },
     "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
     "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183",
+      "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "79bd148d110f16f8b258f43b8cb62cbcf693e185a83652635778771f2a6a888a",
+      "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
+      "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2197f8f9490fa23e47f7e327369fc67a143849619c10ca43a4ad882cfdbdb3b8",
+      "scripts/era-bridge/gameplay/math-source.json": "ce4229eccf5ab8da74a8df806fa2ba82f0648be94e3518140834c933cdc95c41"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

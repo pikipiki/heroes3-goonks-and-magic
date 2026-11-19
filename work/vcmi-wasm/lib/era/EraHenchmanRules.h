@@ -87,6 +87,12 @@ inline std::int32_t alternativeLevelRate(std::int32_t fightValue,std::int32_t ai
 inline std::int32_t levelRate(std::int32_t fightValue,std::int32_t aiValue,const Settings & settings)
 {return settings.alternativeLevelRate?alternativeLevelRate(fightValue,aiValue):classicLevelRate(fightValue,aiValue);}
 
+// GiveExpAfterBattle bypasses BOTH human companion checks for AI heroes.
+// Whether a battlefield actor was created is not one of its exit conditions.
+inline bool battleRewardEligible(bool ai,bool selected,bool alive,bool campaignTransfer,std::int32_t gained)
+{
+    return (ai||(selected&&alive))&&(!campaignTransfer||gained>0);
+}
 inline std::int32_t heroExperienceGain(std::uint64_t after,std::uint64_t before)
 {
     // HE:E and the subsequent VR subtraction each expose a Win32 integer.

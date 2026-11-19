@@ -7,12 +7,12 @@
   "sourceBaseCommit": "d877dcedaa13754f2311edfccae696ecbb5c9d82",
   "engineSha256": "730935737b0df20819e1481f1201e21622c6de8dccce07c838a25ea442fa8815",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "13f85e01f99fc90f810abb44939d831ffda0af8a5d519e3df31bfdcf99728b2a",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
     "work/browser-tests/wog-henchmen-battle-outcomes-cases.mjs": "6e084f4ba0aa2bcf88727de41d6012a2d2606785dfee18c262483d2f776e77c5",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
-    "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9",
+    "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
     "tests/fixtures/era-gameplay/enhanced-henchmen-1.2.erm": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d"
   },
   "source": {
@@ -335,5 +335,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
+      "scripts/era-bridge/gameplay/henchmen.json": "160e1ae3868b26c86c721f63e616625e88e81740dbfb8fc24e5226386fb9c7f9"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

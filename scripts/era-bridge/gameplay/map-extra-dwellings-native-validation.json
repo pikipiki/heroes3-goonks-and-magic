@@ -54,7 +54,7 @@
     "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
     "work/browser-tests/wog-map-extra-dwellings-cases.mjs": "0cbd422a9184ebf3963f2b4150c549a5de0b13f3dfbc7e11a71529ff3d5b63b1",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
     "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
@@ -1390,5 +1390,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
     "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

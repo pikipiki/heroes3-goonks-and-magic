@@ -8,6 +8,24 @@ using namespace era_bridge::henchmen;
 int main()
 {
     Settings settings;
+    // Human no-selection/dead checks are bypassed for AI, but not the
+    // campaign-transfer requirement for a strictly positive signed XP gain.
+    for(const bool selected:{false,true})
+        for(const bool alive:{false,true})
+        {
+            assert(battleRewardEligible(true,selected,alive,false,0));
+            assert(battleRewardEligible(true,selected,alive,false,INT_MIN));
+            assert(!battleRewardEligible(true,selected,alive,true,0));
+            assert(!battleRewardEligible(true,selected,alive,true,INT_MIN));
+            assert(battleRewardEligible(true,selected,alive,true,1));
+        }
+    assert(!battleRewardEligible(false,false,true,false,100));
+    assert(!battleRewardEligible(false,true,false,false,100));
+    assert(!battleRewardEligible(false,false,false,false,100));
+    assert(battleRewardEligible(false,true,true,false,0));
+    assert(battleRewardEligible(false,true,true,false,INT_MIN));
+    assert(!battleRewardEligible(false,true,true,true,0));
+    assert(battleRewardEligible(false,true,true,true,INT_MAX));
     assert(settings.stackExperience&&settings.banner&&!settings.freeBanner);
     assert(settings.returnToArmy&&settings.alternativeLevelRate&&settings.campaignTransfer);
     assert(settings.moreSantaGuards&&!settings.reviveAnywhere);

@@ -38,7 +38,7 @@
   "note": "Primary-source model supplemented by extracted positive-domain DLL comparisons and bounded real loaded Sqrt/Trunc64/VR:S observations at a substituted Wine plugin-load point. Full game events, native Windows FPU state and the entire integer domain remain unvalidated.",
   "boundedBinaryComparison": {
     "file": "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json",
-    "sha256": "2197f8f9490fa23e47f7e327369fc67a143849619c10ca43a4ad882cfdbdb3b8",
+    "sha256": "2bf30d28cf5c688e4215910013361dc0756006f54568c453771c96110a609b89",
     "status": "extracted-code-finite-domain-validated",
     "fullWindowsEraRuntimeValidated": false
   },

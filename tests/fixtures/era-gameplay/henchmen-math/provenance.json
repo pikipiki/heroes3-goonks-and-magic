@@ -58,7 +58,7 @@
     ]
   },
   "actualHeader": "work/vcmi-wasm/lib/era/EraHenchmanRules.h",
-  "actualHeaderSha256": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
+  "actualHeaderSha256": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
   "module": "Emscripten4.0.23 probe includes the actual header. hero_root and level_rate call its functions. Raw model_pow* wrappers duplicate the unexposed double-to-Single expression; powf_bits is a comparison only.",
   "compileCommand": "em++ -std=gnu++20 -Oz -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -fwasm-exceptions -pthread -I/work/vcmi-wasm/lib/era wasm-model.cpp --no-entry -sMODULARIZE=1 -sEXPORT_NAME=createMath -sENVIRONMENT=node -sWASM_ASYNC_COMPILATION=0 -sALLOW_MEMORY_GROWTH=0 -sFILESYSTEM=0 -sPTHREAD_POOL_SIZE=0 -o wasm-model.js",
   "limits": [
@@ -78,5 +78,10 @@
     "file": "loaded-era-observations.json",
     "integerCases": 12,
     "scope": "Direct real Sqrt/Trunc64/VR:S calls at plugin load under Wine; masked-exception negative integer results only. No native Windows or complete event validation."
+  },
+  "rewardGateRebuild": {
+    "compiledAgainstCurrentHeader": true,
+    "probeBytesIdentical": true,
+    "goldenVectorsChanged": false
   }
 }

@@ -25,7 +25,7 @@
     "tests/era-mithril-weekly.test.mjs": "5d2d89f66c125cdba6ba84fa5a3bc9c4ba55da6ac7f92e3b06ef26d14944c40d",
     "tests/fixtures/era-gameplay/mithril-weekly-reference.json": "b2f055835565a153e0e2e55b48ddd77c1c9e671df66f46cfa19653a6cde9817f",
     "work/browser-tests/wog-mithril-weekly-cases.mjs": "4814ce1293071883d7dc0b24505fb76bf8294e6ea677e53e9f347169395daf25",
-    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
+    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1253,5 +1253,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
     "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

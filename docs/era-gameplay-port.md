@@ -294,6 +294,15 @@ Deux points empêchent encore de présenter ces calculs comme un système comple
 
 ## Noyau Henchmen vérifié en jeu
 
+Le calcul après combat visite aussi les héros IA sans compagnon choisi ou
+sans acteur de compagnon déployé. Comme dans `hench_GiveExpAfterBattle`, seule
+l'IA contourne les contrôles « compagnon choisi et vivant » ; le réglage de
+transfert de campagne exige toujours un gain signé d'expérience du héros
+strictement positif. L'expérience ainsi accumulée reste attachée au héros et
+est conservée lors du choix ultérieur d'un compagnon et dans les sauvegardes.
+Les preuves et le contrôle avec le moteur précédent figurent dans
+`scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json`.
+
 Le scénario `work/browser-tests/wog-henchmen-native-e2e.mjs` vérifie le choix
 dans l'armée, l'acteur indépendant (emplacement interne −6), le gain
 d'expérience, le remplacement avec retour du compagnon vivant dans l'armée,

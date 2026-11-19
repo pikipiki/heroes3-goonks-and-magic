@@ -1,0 +1,459 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Enhanced Henchmen AI reward without selected/deployed companion; retain dead state and latent per-hero XP across native save, owner transfer and later human selection. Campaign transfer positive-XP gate and human checks retained.",
+  "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+  "sourceBaseCommit": "e88f30661f90a01984b88d17b3019ae23d1aec4b",
+  "sourceBindings": {
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
+    "tests/native/EraHenchmanRules.test.cpp": "457f76e0d348bfe88a83bbf54ca30b9dbf5d79c68b80a5cd4dc43cd737f73dc6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+    "work/browser-tests/wog-henchmen-ai-no-actor-cases.mjs": "8f855197e9d00a04b08c41d03db4856fbdcc97c4290fe0a614d3c956eb50b0a3",
+    "tests/era-henchmen-ai-no-actor.test.mjs": "18070ef820362aaca8b08a8fc6184ea718589c35b1d073fac0aae7e9824a8507"
+  },
+  "source": {
+    "file": "Mods/Enhanced Henchmen/Data/s/29 wog - henchmen.erm",
+    "sha256": "bd9b84132943e96af0e158486a150d97a35c5b0dd46266188a9251349cb22a3d",
+    "function": "hench_GiveExpAfterBattle",
+    "humanChecks": [
+      "w118 > NO_MON",
+      "w119 != FALSE"
+    ],
+    "aiBypassesBothHumanChecks": true,
+    "noDeployedActorGate": true,
+    "campaignTransferRequiresPositiveSignedHeroExperienceGain": true
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "compiledTargets": 19,
+    "finalVerificationLogSha256": "5807700412611530c1ba57238fbe3eb76ea81710edd4d2366322bb751f819fd6",
+    "warMachinesAdmitted": false
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3012,
+    "mismatches": [],
+    "expectedManifestSha256": "0a92903e89a0c7d99c5d89a620822fccf96d00a8fa47d18ab0443c91309a178f"
+  },
+  "reports": {
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "scenarios": [
+        {
+          "kind": "none",
+          "campaignTransfer": false,
+          "heroExperienceGain": 0,
+          "companionReward": 100,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "experience": 100,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": true
+        },
+        {
+          "kind": "none",
+          "campaignTransfer": true,
+          "heroExperienceGain": 0,
+          "companionReward": 0,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "experience": 0,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": true
+        },
+        {
+          "kind": "dead",
+          "campaignTransfer": false,
+          "heroExperienceGain": 0,
+          "companionReward": 100,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "experience": 200,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": false
+        },
+        {
+          "kind": "dead",
+          "campaignTransfer": true,
+          "heroExperienceGain": 0,
+          "companionReward": 0,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "experience": 100,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "d34fb809101c466312874d10f24f51df142ff5492ffa754aa38af513d5f25bed"
+    },
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "scenarios": [
+        {
+          "kind": "none",
+          "campaignTransfer": false,
+          "heroExperienceGain": 0,
+          "companionReward": 100,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "experience": 100,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": true
+        },
+        {
+          "kind": "none",
+          "campaignTransfer": true,
+          "heroExperienceGain": 0,
+          "companionReward": 0,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "experience": 0,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": true
+        },
+        {
+          "kind": "dead",
+          "campaignTransfer": false,
+          "heroExperienceGain": 0,
+          "companionReward": 100,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "experience": 200,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": false
+        },
+        {
+          "kind": "dead",
+          "campaignTransfer": true,
+          "heroExperienceGain": 0,
+          "companionReward": 0,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "experience": 100,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "3744bf6b038cb156f9e63d54ef1dd83f7fc95d8a9065d8b75689f75ea0e25eff"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "scenarios": [
+        {
+          "kind": "none",
+          "campaignTransfer": false,
+          "heroExperienceGain": 0,
+          "companionReward": 100,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "experience": 100,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": true
+        },
+        {
+          "kind": "none",
+          "campaignTransfer": true,
+          "heroExperienceGain": 0,
+          "companionReward": 0,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "experience": 0,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": true
+        },
+        {
+          "kind": "dead",
+          "campaignTransfer": false,
+          "heroExperienceGain": 0,
+          "companionReward": 100,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "experience": 200,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": false
+        },
+        {
+          "kind": "dead",
+          "campaignTransfer": true,
+          "heroExperienceGain": 0,
+          "companionReward": 0,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "experience": 100,
+          "noEnemyBattlefieldCompanion": true,
+          "nativeSaveReload": true,
+          "latentExperienceRevealedBySelection": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "3e3fb35d33d1e811aa833effcdc760b1f963190d732f1afe8eebc3ded0bc5f6e"
+    }
+  },
+  "previousEngineControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207",
+    "scenarios": [
+      {
+        "kind": "none",
+        "campaignTransfer": false,
+        "heroExperienceGain": 0,
+        "companionReward": 0,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "experience": 0,
+        "noEnemyBattlefieldCompanion": true,
+        "nativeSaveReload": true,
+        "latentExperienceRevealedBySelection": true
+      },
+      {
+        "kind": "none",
+        "campaignTransfer": true,
+        "heroExperienceGain": 0,
+        "companionReward": 0,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "experience": 0,
+        "noEnemyBattlefieldCompanion": true,
+        "nativeSaveReload": true,
+        "latentExperienceRevealedBySelection": true
+      },
+      {
+        "kind": "dead",
+        "campaignTransfer": false,
+        "heroExperienceGain": 0,
+        "companionReward": 0,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "experience": 100,
+        "noEnemyBattlefieldCompanion": true,
+        "nativeSaveReload": true,
+        "latentExperienceRevealedBySelection": false
+      },
+      {
+        "kind": "dead",
+        "campaignTransfer": true,
+        "heroExperienceGain": 0,
+        "companionReward": 0,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "input": "touch",
+        "experience": 100,
+        "noEnemyBattlefieldCompanion": true,
+        "nativeSaveReload": true,
+        "latentExperienceRevealedBySelection": false
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "ef2da1a6fe3873480bca0ae00592b47a1444f8023dd69ac63a5508cceb76c2ef"
+  },
+  "regressions": {
+    "sharedAI": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "errors": [],
+      "rawReportSha256": "03dfa95720fcf51bf3727ad30fad0dde105f25b6e44b19f93923ed02da80cd01",
+      "scenarioCount": 6
+    },
+    "progression": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "errors": [],
+      "rawReportSha256": "1ac848e96a8a1646fc9cc26fb0f3355fb917d205a78b7b25c7a1ba626c77b4cd",
+      "scenarioCount": 7
+    },
+    "outcomes": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "errors": [],
+      "rawReportSha256": "c4522622a16bc798d3277daa54c3e75e7e2093631ffc26930dabc1119d7d03b1",
+      "scenarioCount": 2
+    },
+    "signedXP": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "errors": [],
+      "rawReportSha256": "e7c0593f847f2c140493998b15817477d1119e767b43094889ca5dcd2727d35a",
+      "scenarioCount": 4
+    },
+    "mithrilOption": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+      "errors": [],
+      "rawReportSha256": "f298e46efeeb4c782cb31df1e5505f6656cad689349665881d25ecfc58c7b8a8",
+      "scenarioCount": 2
+    }
+  },
+  "serialization": {
+    "unchangedSaveVersion": 927,
+    "newFields": false
+  },
+  "privateFixture": {
+    "aiArmy": "1000 Emissaries of War, excluded by source AI companion selector",
+    "heroLevelLimit": 1,
+    "sharedBattleExpAIPct": 100,
+    "prefixedBattleExpAIPct": 900,
+    "zeroRandomReward": true,
+    "sourceProgramSha256": "4218bef0415395ee6b1667b33386c6ac26228d596719d189ee1d51390843c0b5",
+    "humanArmyAfterOwnerTransfer": "Two Archers added to reveal previously latent companion XP through actual selection"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.280-engine.tar.gz",
+    "sha256": "a651e64332d007de44c99f5c3bd56079718966159b437d12ae4fe9d83d82ee68",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6"
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42"
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425"
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6"
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc"
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1"
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "d118a463b3a8500585d79bc3910528325ec587499713b6c15587966a5d76ce88"
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "b9452feac07a39cf7c9d34ca21c28560f4d3aecd4c6e7f486f5832af765b1698"
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+      }
+    ]
+  },
+  "remaining": [
+    "Complete profiles remain unadmitted. No claim of full source event ordering or ERA RNG stream parity."
+  ],
+  "mathProbe": {
+    "currentHeaderRecompiled": true,
+    "runtimeBytesIdentical": true,
+    "goldenVectorsUnchanged": true,
+    "checks": 452
+  },
+  "publication": {
+    "version": "0.4.280",
+    "checks": {
+      "node": {
+        "tests": 938,
+        "passed": 882,
+        "skipped": 56,
+        "failed": 0
+      },
+      "freshTUM": {
+        "tests": 18,
+        "passed": 18,
+        "failed": 0
+      },
+      "site": {
+        "nativeFilesByteVerified": 10464,
+        "transportBytes": 702298666
+      }
+    },
+    "logSha256": {
+      "node-tests": "fae05dd4378cd98219f6c852b8ccca948e2331894e7dc852fa982c59fe9d5ebe",
+      "prepare-web": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
+      "verify-site": "d44e83d5b869590da34913e3d0f1c1a59e97b1e56114157ffb65d276251528f7"
+    }
+  }
+}

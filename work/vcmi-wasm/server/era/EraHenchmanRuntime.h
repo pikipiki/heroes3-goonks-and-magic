@@ -190,11 +190,11 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,
     for(const auto side:{BattleSide::ATTACKER,BattleSide::DEFENDER})
     {
         const auto * hero=battle.battleGetFightingHero(side);
-        if(!hero||!hero->henchman.stack)continue;
+        if(!hero)continue;
         const auto actors=battle.battleGetStacksIf([&](const CStack * stack)
             {return stack->unitSide()==side&&stack->unitSlot()==SlotID::HENCHMAN_SLOT_PLACEHOLDER;});
-        if(actors.empty())continue;
-        auto update=snapshot(*hero);update.alive=actors.front()->alive()&&actors.front()->getCount()>0;
+        auto update=snapshot(*hero);
+        if(!actors.empty())update.alive=actors.front()->alive()&&actors.front()->getCount()>0;
         if(!update.alive)update.stackExperience=0;
         const auto gained=era_bridge::henchmen::heroExperienceGain(hero->exp,
             static_cast<std::uint64_t>(previousExperience[static_cast<int>(side)]));
@@ -202,7 +202,7 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,
         // OnAfterBattleUniversal visits both hero sides. Despite the source
         // comment mentioning victory, GiveExpAfterBattle has no winner or
         // draw guard. Its zero-gain exit depends only on campaign transfer.
-        if((update.alive||ai)&&(!rules.campaignTransfer||gained>0))
+        if(era_bridge::henchmen::battleRewardEligible(ai,bool(hero->henchman.stack),update.alive,rules.campaignTransfer,gained))
         {
             const auto root=era_bridge::henchmen::heroExperienceRoot(gained);
             // The source reads the unprefixed shared ERA cell. Its similarly
@@ -210,9 +210,9 @@ inline void finishBattle(CGameHandler & gh,const CBattleInfoCallback & battle,
             const auto aiPercent=ai?gh.sourceCampaigns->namedInteger("battleExpAIPct"):0;
             const int reward=era_bridge::henchmen::battleExperience(gh.getRandomGenerator().nextInt(rules.battleRandom),root,hero->level,ai,aiPercent,rules);
             update.experience=era_bridge::henchmen::add(update.experience,reward);
-            const auto & stack=*hero->henchman.stack;
-            if(update.alive&&rules.stackExperience)
+            if(hero->henchman.stack&&update.alive&&rules.stackExperience)
             {
+                const auto & stack=*hero->henchman.stack;
                 const auto id=era_bridge::sourceCreatureIdForLevel(stack.getType()->getJsonKey());
                 const auto * table=id?era_bridge::henchmen::sourceExperienceTable(*id):nullptr;
                 if(table)

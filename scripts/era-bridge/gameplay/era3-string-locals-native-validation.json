@@ -18,7 +18,7 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
     "tests/native/EraCampaignStringLocals.test.cpp": "0feaf3c3dca36a7704c94622b15bce1e1f73031d040e0b20b11e93801a8c97f7",
     "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
     "work/browser-tests/wog-era3-string-locals-cases.mjs": "6cd07e4ca87373c7974b3cf88230de23369922a5d54d0ef31558846b6cd48110",
     "work/browser-tests/native-ui-actions.mjs": "96f7cacb1b889afdcc985ee3a8997fac70ef7cac97d96be26822a78c47738bef",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
@@ -27,7 +27,7 @@
     "tests/era-campaign-locals.test.mjs": "81ccbd66d4313ae19d916eb4509a948e1e113915efcc194a92348ac8b03041ee",
     "tests/era-campaign-string-locals.test.mjs": "744fadb9c3b9c7a0f6ff3f398ceb47ea75dcd699e3cf637459ed53c5112e3689",
     "tests/fixtures/era-gameplay/era3-string-locals-reference.json": "ee1577f6043201f713b121a09d51f259b292c0cb6b4877cde52e0fd97ff6ee18",
-    "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
+    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1117,5 +1117,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
     "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

@@ -422,9 +422,9 @@
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.cpp": "cd33f1e02ee6a774ba8a9515225fc074c1efce1351ac6c9dab7b063324293a22",
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.js": "90465b0fd12c96281e352dc0e8d827b683b311b0544584795faeadd67a5d23cc",
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.wasm": "e4e646a6b9b7996bf8ed95d15a2396c2fc432c93d93388c76a6ccde430467121",
-    "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "79bd148d110f16f8b258f43b8cb62cbcf693e185a83652635778771f2a6a888a",
+    "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "00690a89a647fa205096701d2a68fbdea76f6439a95ca1c1c4e169a162d85e83",
     "tests/fixtures/era-gameplay/henchmen-math/test-math.cjs": "4b114fe02e014dd7554714b8f13633883e550fb1e87b3739c7f286bb6a379daa",
-    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
+    "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "tests/fixtures/era-gameplay/henchmen-math/loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817"
   },
   "loadedEraIntegerRevalidation": {
@@ -439,5 +439,14 @@
     },
     "integerCases": 12,
     "fullWindowsEraRuntimeValidated": false
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "de057e422471c87746801b4beb55ecd29bdd36ac4ee47b84dd20d5d9eebb1e61",
+      "tests/fixtures/era-gameplay/henchmen-math/provenance.json": "79bd148d110f16f8b258f43b8cb62cbcf693e185a83652635778771f2a6a888a"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }

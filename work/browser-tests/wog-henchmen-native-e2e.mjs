@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false}={}){
+function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -79,6 +79,10 @@ if opts['enemyHero']:
  if opts['scriptAI']:
   enemy['options'].update({'patrolRadius':0,'army':[{'type':'core:archangel','amount':5},{'type':'core:archer','amount':10}],
    'henchman':{'type':'core:archer','experience':100,'stackExperience':0,'alive':True,'declined':False,'banner':-1}})
+ if opts['aiNoActor']:
+  enemy['options']['army']=[{'type':'wake-of-gods.messengersandemissaries:emissaryOfWar','amount':1000}]
+  if opts['aiNoActor']=='none': enemy['options'].pop('henchman',None)
+  else: enemy['options']['henchman'].update({'alive':False,'stackExperience':2500})
  if opts['aiTown']:
   enemy.update({'x':29,'y':30})
   enemy['options'].update({'patrolRadius':2,'spellBook':[],'henchman':{'type':'core:peasant','experience':100,'stackExperience':2500,'alive':False,'declined':False,'banner':8}})
@@ -127,7 +131,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI})]);
+`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor})]);
 }
 
 async function boot({save,viewport,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
@@ -350,6 +354,11 @@ try{
    await page.close();await boot({save:bytes});const restored=await sheet();assert.equal(restored.henchman.experience,after.henchman.experience);
    report.scenarios.push({heroAtLevelCap:true,campaignTransfer,heroExperience:0,companionReward:campaignTransfer?0:100,nativeSaveReload:true});await page.close();
   }
+ }
+ if(process.env.CASES==='ai-no-actor'){
+  const {runAINoActor}=await import('./wog-henchmen-ai-no-actor-cases.mjs');
+  await runAINoActor({boot,sheet,state,command,wait,startBattle,resolve,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:959})});
  }
  if(process.env.CASES==='ai-shared-reward'){
   const {runAISharedReward}=await import('./wog-henchmen-ai-reward-cases.mjs');

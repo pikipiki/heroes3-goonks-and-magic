@@ -30,7 +30,7 @@
     "work/vcmi-wasm/lib/era/EraHenchmanState.h": "8dc69025b63a44cb960d0c060c11adf38df2b32e76fd3ed2a6e19b39da6258ce",
     "work/vcmi-wasm/lib/era/EraHenchmanCampaign.h": "96976e8b0dc933a3c36834ed5309b62506f390952c3d7d713fc380e91bd1fc18",
     "work/vcmi-wasm/lib/campaign/CampaignState.cpp": "5183373c89539e74f72565cb0773586c0e36dc7aed5b01e387fca4941c5b6f2e",
-    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
     "tests/native/EraHenchmanCampaign.test.cpp": "29b1235b0e8f0aea739d4fcb8ec380322b5dcbe6ecfc94cca629d041fb32ed1a",
     "tests/era-henchmen-campaign.test.mjs": "8dd9f88c496eb7982abc531070e70cc3132217469e7750cdbdc7a9a0766d226e",
     "work/browser-tests/wog-henchmen-campaign-native-e2e.mjs": "8459d3a41024f43246ad6b58c6cb035cdfb3be1416dba87dd3d140d3bf9744a4",
@@ -321,5 +321,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
   }
 }
