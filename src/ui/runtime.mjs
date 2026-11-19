@@ -14,6 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Radio from '@mui/material/Radio';
 import Checkbox from '@mui/material/Checkbox';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepButton from '@mui/material/StepButton';
+import StepLabel from '@mui/material/StepLabel';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -69,6 +75,18 @@ function NativeProgress({input}){
  const {value:ignored,max,...props}=input;
  return h(LinearProgress,{...props,ref,variant:value===null?'indeterminate':'determinate',value:value===null?undefined:Math.max(0,Math.min(100,value/Number(max||1)*100))});
 }
+// Shared navigation primitives retain native game click commands.
+function NativeTabs({props,items}){
+ const [value,setValue]=useState(Math.max(0,items.findIndex(item=>item.getAttribute('aria-pressed')==='true')));
+ return h(Tabs,{...props,component:'nav',value,variant:'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
+}
+function NativeStepper({props,items}){
+ const active=items.findIndex(item=>item.getAttribute('aria-current')==='step');
+ return h(Stepper,{...props,component:'nav',orientation:'vertical',nonLinear:true,activeStep:active},items.map((item,index)=>{
+  const button=item.querySelector('button');
+  return h(Step,{key:index,completed:item.hasAttribute('data-built'),active:index===active},button?h(StepButton,{...propsFor(button),'data-mui-component':'StepButton'},...[...button.childNodes].map(element)):h(StepLabel,null,item.textContent));
+ }));
+}
 // Shared disclosure adapter: actual MUI Accordion/Summary/Details and Collapse.
 // Keep a small `open` compatibility accessor for imperative game controllers.
 function NativeAccordion({props,summary,content}){
@@ -81,6 +99,8 @@ function NativeAccordion({props,summary,content}){
   h(AccordionDetails,{'data-ui-accordion-content':''},...content.map(element)));
 }
 function element(node,index){if(node.nodeType===3)return node.textContent;if(node.nodeType!==1)return null;const props=propsFor(node);props.key=props.id||Object.entries(props).find(([key])=>key.startsWith('data-')&&!key.startsWith('data-ui-'))?.join(':')||index;
+ if(node.hasAttribute('data-ui-tabs'))return h(NativeTabs,{key:props.key,props,items:[...node.children].filter(child=>child.tagName==='BUTTON')});
+ if(node.hasAttribute('data-ui-stepper'))return h(NativeStepper,{key:props.key,props,items:[...node.children]});
  if(node.tagName==='DETAILS'){const summary=node.querySelector(':scope>summary');return h(NativeAccordion,{key:props.key,props,summary,content:[...node.childNodes].filter(child=>child!==summary)});}
  const choice=node.tagName==='LABEL'&&node.querySelector(':scope>input[type=radio],:scope>input[type=checkbox]');if(choice)return h(ChoiceField,{key:props.key,input:propsFor(choice),labelProps:props,label:[...node.childNodes].filter(child=>child!==choice).map(element)});
  const children=[...node.childNodes].map(element);if(node.tagName==='BUTTON'){const initiallyDisabled=Boolean(props.disabled);delete props.disabled;props.ref=button=>{if(button){button.disabled=initiallyDisabled;button.classList.toggle('Mui-disabled',initiallyDisabled);}};const endTurn=node.dataset.ui==='endturn'&&matchMedia('(orientation:landscape) and (max-height:400px)').matches;if(endTurn){props['aria-label']=node.textContent.replace(/^☀\s*/,'');props.title=props['aria-label'];}const icon=endTurn||/^[✕×✖−+☰]$/u.test(node.textContent.trim())&&!!node.getAttribute('aria-label');props['data-mui-component']=icon?'IconButton':'Button';props.variant=node.classList.contains('primary')||node.dataset.uiVariant==='filled'?'contained':'outlined';if(icon)delete props.variant;const control=h(icon?IconButton:Button,props,...(endTurn?[h(Box,{component:'span','aria-hidden':true},'☀')]:children));return node.matches('[data-exchange-slot]')?h(Tooltip,{key:props.key,title:props['aria-label']||node.textContent.trim(),describeChild:true},control):control;}

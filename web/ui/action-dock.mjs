@@ -3,9 +3,10 @@ import {decorateButton,uiText} from './primitives.mjs';
 import {createPopupMenu} from './menu.mjs';
 const records=new WeakMap();
 const exits=/^(?:[←↩⬅]\s*)?(?:Back|Retour|Cancel|Annuler)$/iu;
-export function useActionDock(dock,{overflow=true,limit=3,keepButtons,moreLabel}={}){
+export function useActionDock(dock,{overflow=true,limit=3,keepButtons,moreLabel,surface}={}){
  if(!dock)return;
  dock.classList.add('ui-action-dock');dock.dataset.uiActions='';
+ if(surface)dock.dataset.uiSurface=surface;
  for(const group of dock.querySelectorAll(':scope>.ui-action-group'))useActionDock(group,{overflow,limit});
  let record=records.get(dock);
  // A native refresh may replace the dock children while preserving its root.

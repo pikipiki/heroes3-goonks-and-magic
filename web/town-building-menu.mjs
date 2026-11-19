@@ -1,10 +1,14 @@
 import {useActionDock,renderMarkup} from './ui/material-components.mjs';
+import {getLanguage} from './i18n.mjs';
 import {plainGameText} from './game-text.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
 import {buildReason} from './mobile-layout.mjs';
 import {resourceDescriptors, resourceIconURL} from './resources.mjs';
 import {townBuildingCardImage} from './town-portrait.mjs';
 
+const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
+const categoryLabels={Magie:'Magic','Défenses':'Defenses','Économie':'Economy','Recrutement':'Recruitment','Spéciaux':'Special'};
+const goldCost=new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0});
 const categories = ['Magie', 'Défenses', 'Économie', 'Recrutement', 'Spéciaux'];
 const fallback = new URL('./h3-theme/town-hall.png', import.meta.url).href;
 const escape = text => String(text ?? '').replace(/[&<>"']/g, character => ({
@@ -64,7 +68,8 @@ export function nextBuildingPrerequisite(state, building) {
 
 export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {
   const images = new Map(), urls = new Map(), townProjects = new Map();
-  let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false;
+  let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false, projectExpanded;
+  let commandDock;
   let signature, listScroll = 0, pending, preloadedSignature = '', preloadedEntries = [], unlockRoute = null, project = null, construction, constructionTimer;
   function rememberProject(state, value) {
     project = value;
@@ -79,11 +84,11 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     if (!goal) return '';
     const byId = new Map(state.buildings.map(item => [item.id, item]));
     const steps = current.steps.map(id => byId.get(id)).filter(Boolean);
-    return `<section class="building-project" aria-label="Objectif de construction">
-      <div><span>Objectif</span> · <strong>${escape(displayName(goal))}</strong></div>
-      <ol>${steps.map((item, index) => `<li ${item.id === building?.id ? 'aria-current="step"' : ''} ${item.built ? 'data-built' : ''}>
-        ${item.built ? '✓' : index + 1 + ' ·'} ${escape(displayName(item))}</li>`).join('')}</ol>
-    </section>`;
+    const viewport=body.closest('#mobile-app'),wide=viewport&&viewport.clientWidth>viewport.clientHeight&&viewport.clientWidth>=640;
+    return `<details ${projectExpanded??wide?'open':''} class="building-project" aria-label="${tr('Construction dependencies','Dépendances de construction')}">
+      <summary><span class="building-project-head"><small>${tr('Goal','Objectif')}</small><span>${escape(displayName(goal))}</span></span></summary>
+      <ol data-ui-stepper aria-label="${tr('Construction steps','Étapes de construction')}">${steps.map(item=>`<li ${item.id===building?.id?'aria-current="step"':''} ${item.built?'data-built':''}><button type="button" data-building-project-step="${item.id}" ${item.id===building?.id?'aria-current="step"':''}>${escape(displayName(item))}</button></li>`).join('')}</ol>
+    </details>`;
   }
   function clearConstruction() {
     clearTimeout(constructionTimer);
@@ -92,10 +97,12 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   function preload(url) {
     if (!images.has(url)) {
       const image = new Image();
-      const entry = {image, ready: false};
-      image.onload = () => { entry.ready = true; };
+      let done;
+      const entry = {image, ready: false, done:new Promise(resolve=>{done=resolve;})};
+      const finish=()=>{entry.ready=image.naturalWidth>0;done(entry);};
+      image.onload = image.onerror = finish;
       image.src = url;
-      if (image.complete && image.naturalWidth > 0) entry.ready = true;
+      if(image.complete)finish();
       images.set(url, entry);
     }
     return images.get(url);
@@ -130,10 +137,10 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const rows = resourceDescriptors(building.cost, state.resourceTypes).filter(resource => resource.value);
     if (!rows.length) return '';
     return `<span class="building-cost">${rows.map(resource => {
-      const url = iconURL(resource), name = escape(resource.name);
+      const url = iconURL(resource), name = escape(resource.name),value=resource.key==='gold'?goldCost.format(resource.value).replace(/\u202f/g,' '):String(resource.value);
       return images.get(url)?.ready
-        ? `<span role="img" aria-label="${resource.value} ${name}" title="${name}"><img src="${escape(url)}" alt="">${resource.value}</span>`
-        : `<span>${resource.value} ${name}</span>`;
+        ? `<span role="img" aria-label="${value} ${name}" title="${name}"><img src="${escape(url)}" alt="">${value}</span>`
+        : `<span>${value} ${name}</span>`;
     }).join('')}</span>`;
   }
   const displayName = building => name(building) || 'Bâtiment sans nom';
@@ -163,18 +170,24 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const other = visible.filter(building => !available.includes(building));
     const grouped = categories.map(name => group(state, name, other.filter(building => category(building) === name))).join('');
     const collapse = available.length && other.length && !filter;
-    return `<div class="building-controls"><div class="building-tabs" role="group" aria-label="Building status"><span class="building-control-label">Building status</span>
-      <button type="button" data-building-tab="built" aria-pressed="${tab === 'built'}">${count('Construits', builtCount)}</button>
-      <button type="button" data-building-tab="unbuilt" aria-pressed="${tab === 'unbuilt'}">${count('À construire', buildings.length - builtCount)}</button>
-      ${grail ? '<button type="button" data-building-grail>Graal</button>' : ''}
-      </div><div class="building-filters" role="group" aria-label="Building categories"><span class="building-control-label">Categories</span>
-      ${filters.map(name => `<button type="button" data-building-filter="${name}" aria-pressed="${name === filter}">${name || 'Tous'}</button>`).join('')}
-      </div></div>
-      ${tab === 'unbuilt' && !state.turn ? '<p>Disponible à ton tour</p>' : ''}
-      ${group(state, 'Disponibles maintenant', available)}
-      ${collapse ? `<details class="building-locked" ${lockedOpen ? 'open' : ''}><summary>${count('À débloquer', other.length)}</summary>${grouped}</details>` : grouped}
-      ${visible.length ? '' : `<p>${tab === 'built' ? 'Aucun bâtiment construit.' : 'Tous les bâtiments sont déjà construits.'}</p>`}`;
+    return `<div class="building-controls">
+      <nav class="building-tabs" data-ui-tabs aria-label="${tr('Building status','État des bâtiments')}">
+       <button type="button" data-building-tab="built" aria-pressed="${tab==='built'}">${count(tr('Built','Construits'),builtCount)}</button>
+       <button type="button" data-building-tab="unbuilt" aria-pressed="${tab==='unbuilt'}">${count(tr('To build','À construire'),buildings.length-builtCount)}</button>
+      </nav>
+      <label class="building-category-filter"><span class="building-control-label">${tr('Category','Catégorie')}</span><select data-building-category aria-label="${tr('Building category','Catégorie de bâtiment')}">${filters.map(value=>`<option value="${value}" ${value===filter?'selected':''}>${value?(getLanguage()==='fr'?value:categoryLabels[value]):tr('All','Toutes')}</option>`).join('')}</select></label>
+      ${grail?'<button type="button" data-building-grail>Graal</button>':''}
+     </div><div class="building-list">
+      ${tab==='unbuilt'&&!state.turn?`<p>${tr('Available on your turn','Disponible à ton tour')}</p>`:''}
+      ${group(state,tr('Available now','Disponibles maintenant'),available)}
+      ${collapse?`<details class="building-locked" ${lockedOpen?'open':''}><summary>${count(tr('To unlock','À débloquer'),other.length)}</summary>${grouped}</details>`:grouped}
+      ${visible.length?'':`<p>${tab==='built'?tr('No buildings constructed yet.','Aucun bâtiment construit.'):tr('All buildings are already constructed.','Tous les bâtiments sont déjà construits.')}</p>`}
+     </div>`;
   }
+  function sideInfo(state,building,completed=''){
+   return `<article class="building-side-info" data-dock-cost="${!building.built&&!nextBuildingPrerequisite(state,building)}"><p class="building-availability">${escape(building.built?tr('Already built','Déjà construit'):building.allowed&&state.turn?tr('Ready to build','Prêt à construire'):[8,9].includes(building.state)?tr('To unlock','À débloquer'):tr('Unavailable','Indisponible'))}</p>${building.built?'':`<div class="building-price" aria-label="${tr('Construction cost','Coût de construction')}"><small>${tr('Construction cost','Coût de construction')}</small>${cost(state,building)}</div>`}${completed}</article>`;
+  }
+
   function detail(state, building) {
     const reason = building.built ? '' : !building.allowed ? constructionReason(building) : !state.turn ? 'Disponible à ton tour' : '';
     const descriptions = [...new Set((building.variants || [building]).map(description).filter(Boolean))];
@@ -183,12 +196,9 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const prerequisite = nextBuildingPrerequisite(state, building);
     const blocker = prerequisite ? `<div class="building-prerequisite"><strong>Construis d’abord</strong>
       <span>${escape(displayName(prerequisite))}</span></div>
-      <button type="button" class="primary" data-building-prerequisite="${prerequisite.id}">
-        <span>Aller à</span> ${escape(displayName(prerequisite))} ›</button>` :
+      ` :
       (reason ? `<p class="building-reason">${escape(project && building.state === 5 ?
         'La ville a déjà construit aujourd’hui. Tu pourras reprendre demain.' : reason)}</p>` : '');
-    const returnToGoal = project && project.id !== building.id ?
-      '<button type="button" data-building-goal>← Revenir à l’objectif</button>' : '';
     const unit = building.unlocksCreature;
     const key = building.key?.split(':').at(-1);
     const growth = key === 'citadel' ? 50 : key === 'castle' ? 100 : 0;
@@ -196,14 +206,19 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
           <strong>${escape(unit.name)}</strong><p>🔒 Actuellement verrouillée</p></div></div>` :
       (growth ? `<strong><span>Croissance de base des créatures</span> +${growth} %</strong>` : '');
     return `<article class="building-detail">${picture(state, building)}
-        <div><h3>${escape(displayName(building))}</h3>
+        <div><h3 tabindex="-1">${escape(displayName(building))}</h3>
         ${!building.built && (benefit || effects) ? `<section class="building-benefit">
           <h4>${unit ? 'Se débloque après construction' : 'Après construction'}</h4>
           ${benefit}${effects}</section>` : effects}
-        ${building.built ? '' : cost(state, building)}
         ${blocker}
-        ${prerequisite || unlockRoute && building.built ? '' : `<button type="button" class="primary" data-building-action ${reason || construction !== undefined ? 'disabled' : ''}>${construction === building.id ? 'Construction en cours…' : building.built ? 'Voir' : isGrail(building) ? 'Installer le Graal' : 'Construire'}</button>`}
-        ${returnToGoal}</div></article>`;
+</div></article>`;
+  }
+  function actionsFor(state,building){
+    if(!building||unlockRoute&&building.built)return '';
+    const prerequisite=nextBuildingPrerequisite(state,building);
+    if(prerequisite)return `<button type="button" class="primary" data-building-prerequisite="${prerequisite.id}"><span>${tr('Go to','Aller à')} ${escape(displayName(prerequisite))} ›</span></button>`;
+    const reason=building.built?'':!building.allowed?constructionReason(building):!state.turn?tr('Available on your turn','Disponible à ton tour'):'';
+    return `${building.built?'':`<div class="building-dock-cost" aria-label="${tr('Construction cost','Coût de construction')}">${cost(state,building)}</div>`}<button type="button" class="primary" data-building-action ${reason||construction!==undefined?'disabled':''}>${construction===building.id?tr('Building…','Construction en cours…'):building.built?tr('View','Voir'):isGrail(building)?tr('Install Grail','Installer le Graal'):tr('Build','Construire')}</button>`;
   }
   function render(state) {
     const buildings = buildingCards(visibleBuildings(state.buildings));
@@ -211,22 +226,28 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const panel = document.createElement('div');
     panel.className = 'building-menu';
     const completedUnlock = unlockRoute && building?.id === unlockRoute.id && building.built
-      ? `<p role="status"><span>Créature débloquée</span> · ${escape(unlockRoute.name)}</p>
-        <button type="button" data-building-return>← Retour au recrutement</button>` : '';
+      ? `<p class="building-completed" role="status"><span>${tr('Creature unlocked','Créature débloquée')}</span> · ${escape(unlockRoute.name)}</p>` : '';
     renderMarkup(panel,building
-      ? projectHeader(state, building) + detail(state, building) + completedUnlock
+      ? '<div class="building-content">'+projectHeader(state, building)+detail(state, building)+'</div>'+sideInfo(state,building,completedUnlock)
       : list(state, buildings));
-    if(building){const actions=document.createElement('footer');actions.className='building-actions';for(const button of panel.querySelectorAll('[data-building-action],[data-building-return]'))actions.append(button);if(actions.children.length){panel.append(actions);useActionDock(actions);}}
+    commandDock?.remove();commandDock=undefined;
+    const sheet=body.closest('.mobile-sheet');
+    if(sheet){sheet.dataset.buildingView=building?'detail':'list';sheet.dataset.buildingProject=String(!!panel.querySelector('.building-project'));sheet.dataset.buildingCompleted=String(!!completedUnlock);sheet.dataset.buildingBack=String(!!building&&!completedUnlock&&(!unlockRoute||project&&selected!==project.id));}
     body.replaceChildren(panel);
+    const commands=actionsFor(state,building);if(commands&&sheet){commandDock=document.createElement('footer');commandDock.className='building-actions';renderMarkup(commandDock,commands);sheet.append(commandDock);useActionDock(commandDock,{surface:'plain'});}
+    if(!building&&document.activeElement===backButton)sheet?.querySelector('[data-ui=close-sheet]')?.focus({preventScroll:true});
+    panel.addEventListener('change',event=>{if(!event.target.matches('[data-building-category]'))return;filter=event.target.value;lockedOpen=false;queueMicrotask(()=>{if(!panel.isConnected)return;render(getState());const list=body.querySelector('.building-list');if(list)list.scrollTop=0;requestAnimationFrame(()=>body.querySelector('.building-category-filter [role=combobox]')?.focus({preventScroll:true}));});});
+    const goal=panel.querySelector('.building-project');goal?.addEventListener('toggle',()=>{projectExpanded=goal.open;});
     const locked = panel.querySelector('.building-locked');
     locked?.addEventListener('toggle', () => { if (locked.isConnected) lockedOpen = locked.open; });
-    panel.addEventListener('click', event => {
+    const handleClick=event=>{
       const button = event.target.closest('button');
       if (!button || button.disabled) return;
       const current = getState();
       if (current.mode !== (unlockRoute ? 'fort' : 'town')) return;
       if (button.hasAttribute('data-building-return')) { closeSheet(); return; }
       const {buildingTab, buildingFilter, buildingId, buildingPrerequisite} = button.dataset;
+      if(button.dataset.buildingProjectStep!==undefined){if(!project){const goal=current.buildings?.find(item=>item.id===selected);if(goal&&prerequisites(current,goal).length)rememberProject(current,{id:goal.id,steps:routeBuildings(current,goal).map(item=>item.id)});}if(!project)return;const id=Number(button.dataset.buildingProjectStep);if(project.steps.includes(id))selectProjectBuilding(current,id);return;}
       if (buildingPrerequisite !== undefined) {
         const item = current.buildings?.find(record => record.id === selected);
         const steps = routeBuildings(current, item);
@@ -246,10 +267,10 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       } else if (buildingId !== undefined || button.hasAttribute('data-building-grail')) {
         selected = buildingId !== undefined ? Number(buildingId) : current.buildings?.find(isGrail)?.id;
         if (selected === undefined) { selected = null; return; }
-        listScroll = body.scrollTop;
+        listScroll = body.querySelector('.building-list')?.scrollTop??body.scrollTop;
         render(current);
         body.scrollTop = 0;
-        backButton.focus({preventScroll:true});
+        body.querySelector('.building-detail h3')?.focus({preventScroll:true});
       } else if (button.hasAttribute('data-building-action')) {
         const item = current.buildings?.find(record => record.id === selected);
         if (item?.built) { closeSheet(); command(39, item.id); }
@@ -269,13 +290,14 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
           }
         }
       }
-    });
+    };
+    panel.addEventListener('click',handleClick);commandDock?.addEventListener('click',handleClick);
   }
   function selectProjectBuilding(state, id) {
     selected = id;
     render(state);
     body.scrollTop = 0;
-    backButton.focus({preventScroll:true});
+    body.querySelector('.building-detail h3')?.focus({preventScroll:true});
   }
   function update(state) {
     const completed = construction === undefined ? null : state.buildings?.find(item => item.id === construction && item.built);
@@ -288,17 +310,21 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       }
       notify('Bâtiment construit · ' + plainGameText(completed.name));
     }
-    const next = JSON.stringify([state.turn, state.buildings, construction]);
+    const viewport=body.closest('#mobile-app');
+    const wide=!!viewport&&viewport.clientWidth>viewport.clientHeight&&viewport.clientWidth>=640;
+    const next = JSON.stringify([state.turn, state.buildings, construction,wide]);
     if (next === signature) return;
     signature = next;
+    const regions=['.building-list','.building-detail','.building-project [data-ui-stepper]'].map(selector=>({selector,top:body.querySelector(selector)?.scrollTop??0}));
     const scroll = body.scrollTop;
     const focus = document.activeElement;
     const selector = ['data-building-action','data-building-prerequisite','data-building-goal','data-building-id','data-building-tab','data-building-filter']
-      .find(attribute => body.contains(focus) && focus.hasAttribute(attribute));
+      .find(attribute => (body.contains(focus)||commandDock?.contains(focus)) && focus.hasAttribute(attribute));
     const value = selector && focus.getAttribute(selector);
     render(state);
     body.scrollTop = scroll;
-    if (selector) [...body.querySelectorAll(`[${selector}]`)].find(button => button.getAttribute(selector) === value)?.focus({preventScroll:true});
+    for(const region of regions){const node=body.querySelector(region.selector);if(node)node.scrollTop=region.top;}
+    if (selector) [...body.querySelectorAll(`[${selector}]`),...(commandDock?.querySelectorAll(`[${selector}]`)||[])].find(button => button.getAttribute(selector) === value)?.focus({preventScroll:true});
   }
   async function open(route = null) {
     const state = getState();
@@ -326,9 +352,10 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       project = townProjects.get(current.armyTownId) ?? null;
       if (project && !current.buildings?.some(item => item.id === project.id && !item.built)) rememberProject(current, null);
     }
-    tab = 'unbuilt'; filter = ''; selected = project?.id ?? null; lockedOpen = false; signature = undefined;
+    tab = 'unbuilt'; filter = ''; selected = project?.id ?? null; lockedOpen = false; projectExpanded=undefined; signature = undefined;
     openSheet('build', 'Bâtiments');
     update(getState());
+    body.closest('.mobile-sheet')?.querySelector('[data-ui=close-sheet]')?.focus({preventScroll:true});
     body.scrollTop = 0;
   }
   function back() {
@@ -344,14 +371,18 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     selected = null;
     render(getState());
     body.scrollTop = listScroll;
+    const list=body.querySelector('.building-list');if(list)list.scrollTop=listScroll;
     const tile = body.querySelector(`[data-building-id="${id}"]`);
     const target = tile?.getClientRects().length ? tile : body.querySelector('[data-building-grail]');
     target?.focus({preventScroll:true});
     return true;
   }
+  const viewport=body.closest('#mobile-app');if(viewport&&typeof ResizeObserver!=='undefined')new ResizeObserver(()=>{if(viewport.dataset.sheet==='build'&&!body.closest('.mobile-sheet')?.hidden)update(getState());}).observe(viewport);
   return {warm, open, update, back, artURL, cancel(resetProjects = false) {
     pending = null;
+    const sheet=body.closest('.mobile-sheet');if(sheet)for(const name of ['buildingView','buildingProject','buildingCompleted','buildingBack'])delete sheet.dataset[name];
     clearConstruction();
+    commandDock?.remove();commandDock=undefined;
     const route = unlockRoute;
     unlockRoute = project = null;
     if (resetProjects) townProjects.clear();
