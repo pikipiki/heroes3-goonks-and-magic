@@ -143,7 +143,17 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
    }
    const list=options(s);
    if(faction(s)){preloadFactionArt(s,list);updateFactionCard(c,s,list);continue;}
-   const key=JSON.stringify([list,s.value,s.disabled,s.dataset.updating,title(s)]);if(c._key===key)continue;c._key=key;
+   // A busy acknowledgement only changes availability. Rebuilding the cards
+   // above a scrolled option briefly shrinks the document and WebKit clamps
+   // its scroll position, even if the final heights are identical.
+   const key=JSON.stringify([list,s.value,s.dataset.updating,title(s)]);
+   if(c._key===key){
+    for(const button of c.querySelectorAll('[data-tile-value]'))button.disabled=s.disabled||!!list.find(option=>option.value===button.dataset.tileValue)?.disabled;
+    const index=list.findIndex(option=>option.value===s.value);
+    for(const button of c.querySelectorAll('[data-counter]'))button.disabled=s.disabled||(Number(button.dataset.counter)<0?index<=0:index>=list.length-1);
+    continue;
+   }
+   c._key=key;
    const heading=`<h3>${esc(title(s))}</h3>`;
    if(s.id==='mobile-difficulty'||s.hasAttribute('data-custom-size')||s.hasAttribute('data-player-income')){const isDifficulty=s.id==='mobile-difficulty';c.dataset.control='tiles';renderMarkup(c,heading+`<div class="lobby-choice-tiles" role="group" aria-label="${esc(title(s))}">${list.map((o,i)=>`<button type="button" data-tile-value="${esc(o.value)}" aria-pressed="${s.value===o.value}" ${s.disabled||o.disabled?'disabled':''}>${s.hasAttribute('data-player-income')?'':`<span class="lobby-tile-symbol" aria-hidden="true">${isDifficulty?'◆'.repeat(i+1):['S','M','L','XL'][i]}</span>`}<strong>${esc(o.label)}</strong></button>`).join('')}</div>`+(isDifficulty?`<p class="lobby-choice-help">${difficulty[Number(s.value)]||''}</p>`:''));c.querySelectorAll('[data-tile-value]').forEach(b=>setClickHandler(b,()=>change(s,b.dataset.tileValue)));
    }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){c.dataset.control='counter';const index=list.findIndex(o=>o.value===s.value);renderMarkup(c,heading+`<div class="lobby-counter"><button type="button" data-counter="-1" aria-label="Decrease ${esc(title(s))}" ${s.disabled||index<=0?'disabled':''}>−</button><output aria-live="polite"><strong>${esc(s.value)}</strong><span>${s.hasAttribute('data-custom-humans')?'Human players':'New map players'}</span></output><button type="button" data-counter="1" aria-label="Increase ${esc(title(s))}" ${s.disabled||index>=list.length-1?'disabled':''}>+</button></div>`);c.querySelectorAll('[data-counter]').forEach(b=>setClickHandler(b,()=>{const i=list.findIndex(o=>o.value===s.value),next=list[i+Number(b.dataset.counter)];if(next)change(s,next.value);}));

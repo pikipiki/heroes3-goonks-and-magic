@@ -1,5 +1,6 @@
 import {getLanguage} from './i18n.mjs';
 import {radioChoicesMarkup,renderMarkup} from './ui/material-components.mjs';
+import {createScrollAnchor} from './ui/scroll-anchor.mjs';
 import {syncMaterialFields} from './ui/mui-runtime.mjs';
 
 const rules = [
@@ -36,9 +37,10 @@ const rules = [
 ];
 
 export function createWogOptions({menu, command, onChange}) {
-  let form, pending = null, timer, language, error = '';
+  let form, scrollAnchor, pending = null, timer, language, error = '';
   const fields = [];
   function finish(message = '') {
+    if(pending)scrollAnchor?.begin();
     clearTimeout(timer);
     pending = null;
     error = message;
@@ -68,6 +70,7 @@ export function createWogOptions({menu, command, onChange}) {
       command(109, request.index, request.value);
     });
     menu.querySelector('.lobby-extra-options').append(form);
+    scrollAnchor=createScrollAnchor(form);
     language = null;
   }
   return {
@@ -81,6 +84,8 @@ export function createWogOptions({menu, command, onChange}) {
       if (!visible) { if (form?.isConnected && !form.hidden) form.hidden = true; return; }
       if (!form?.isConnected) mount();
       if (form.hidden) form.hidden = false;
+      const feedbackChanged=form.getAttribute('aria-busy')!==String(!!pending);
+      if(feedbackChanged)scrollAnchor.begin();
       const fr = getLanguage() === 'fr';
       if (language !== fr) {
         language = fr;
@@ -107,10 +112,11 @@ export function createWogOptions({menu, command, onChange}) {
       });
       syncMaterialFields(form);
       const status = form.querySelector('[role=status]');
-      const message = error || (pending ? fr ? 'Application du réglage…' : 'Applying setting…' : '');
+      const message = error || (pending ? fr ? 'Application du réglage…' : 'Applying setting…' : fr ? 'Options à jour.' : 'Options up to date.');
       if (status.textContent !== message) status.textContent = message;
       const busyValue = String(!!pending);
       if (form.getAttribute('aria-busy') !== busyValue) form.setAttribute('aria-busy', busyValue);
+      if(feedbackChanged)scrollAnchor.restore();
     },
   };
 }

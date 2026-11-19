@@ -4,7 +4,8 @@
 #mobile-app .wog-rules fieldset{min-width:0;margin:0;padding:var(--ui-space-2);border:1px solid var(--ui-outline);border-radius:var(--ui-radius-panel)}
 #mobile-app .wog-rules legend{max-width:100%;box-sizing:border-box;padding:0 var(--ui-space-1);font:var(--ui-font-label);overflow-wrap:normal;word-break:normal}
 #mobile-app .wog-rule-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ui-space-2);margin-top:var(--ui-space-2)}
-#mobile-app .wog-options-status:empty{display:none}
+/* Keep feedback in a fixed two-line slot through pending, success and error. */
+#mobile-app .wog-options-status{display:block;box-sizing:border-box;min-height:32px;margin:0;font:var(--ui-font-body-small);overflow-wrap:normal;word-break:normal}
 #mobile-app .wog-options [disabled]{opacity:.65}
 
 /* MUI owns the radio ring, checked state, focus and ripple. The label is
