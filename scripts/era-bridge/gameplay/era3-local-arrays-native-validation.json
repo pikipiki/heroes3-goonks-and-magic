@@ -10,10 +10,10 @@
   "sourceBindings": {
     "work/vcmi-wasm/client/MobileBridge.cpp": "31cc1ce1a3202a8aa77a27c15ca738ef55da786ee0d0d26dd74277cbea60f52f",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
-    "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+    "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
     "work/browser-tests/wog-era3-local-arrays-cases.mjs": "7da679f5a0d0d23e4da647d9cb3b6fc9f24859b88563a4d724e2178f2b43eb59",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
@@ -409,5 +409,14 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "commanderWordRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+    "scope": "Historical engines/reports retained. Source bindings refreshed; the linked proof lists the exact61 native regressions and source127 save/battle revalidations on941.",
+    "previousBindings": {
+      "sourceBindings/scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
+    },
+    "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
   }
 }

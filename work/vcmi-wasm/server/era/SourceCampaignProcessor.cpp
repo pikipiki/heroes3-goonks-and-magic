@@ -2048,6 +2048,33 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   if(!query(op)){auto change=mutation("playerResource",ObjectInstanceID::NONE);change["player"].Integer()=who.getNum();change["resource"].Integer()=resource.getNum();change["amount"].Integer()=changed;persist(change);}
   return Step::Continue;
  }
+ if(c.receiver=="CO")
+ {
+  require(c.selectors.size()==1,"commander requires one hero selector");
+  const auto * h=hero(number(c.selectors[0]));
+  require(h&&h->getCommander(),"original commander missing");
+  const auto * commander=h->getCommander();int type=commander->eraCommanderType;
+  if(!commander->eraExperienceWord)
+   for(int candidate=0;candidate<9;++candidate)
+    if(commander->getId()==LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(CreatureID(174+candidate))
+      ||commander->getId()==LIBRARY->mapFormat->getMapping(EMapFormat::WOG).remap(CreatureID(183+candidate))){type=candidate;break;}
+  require(type>=0&&type<9,"unbound original commander type");
+  if(op.code=="T"){arity(op,1);require(query(op),"commander type mutation is not admitted");value(type,args[0]);return Step::Continue;}
+  require(op.code=="X","unvalidated original commander operation");arity(op,2);
+  require(args[0].access==Access::Read,"commander field needs a value");const int field=number(args[0]);
+  require(field>=0&&field<=2,"commander field outside0..2");
+  if(field==2){require(args[1].access==Access::Write||args[1].access==Access::Compare,"commander level mutation is not admitted");value(commander->level,args[1]);return Step::Continue;}
+  if(field==0&&(args[1].access==Access::Write||args[1].access==Access::Compare))require(commander->eraExperienceWord,"original commander baseline is not initialized");
+  const int reference=commander->eraExperienceWord?commander->eraHeroExperienceReference:era_campaign_chest::signedWord(h->exp);
+  const int experience=era_campaign_chest::signedWord(commander->getTotalExperience());
+  const int changed=value(field==0?reference:experience,args[1]);
+  if(args[1].access!=Access::Write&&args[1].access!=Access::Compare&&!unchangedOperand(args[1]))
+  {
+   EraCommanderWordChange packet;packet.hero=h->id;packet.experience=field==1?changed:experience;packet.commanderType=type;
+   packet.reference=field==0?changed:reference;gh.sendAndApply(packet);
+  }
+  return Step::Continue;
+ }
  if(c.receiver=="HE")
  {
   require(c.selectors.size()==1,"Cave hero selector");const int selected=number(c.selectors[0]);const auto * h=op.code=="O"?hero(selected):ensureHero(selected);
@@ -2215,12 +2242,16 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    }
    const int changed=value(era_campaign_chest::signedWord(h->exp),args[0]);
    if(args[0].access==Access::Write||args[0].access==Access::Compare||unchangedOperand(args[0]))return Step::Continue;
+   if(args.size()>1&&h->getCommander()&&h->getCommander()->eraExperienceWord)
+   {
+    auto change=mutation("heroExperienceWord",h->id);change["experience"].Integer()=changed;persist(change);return Step::Continue;
+   }
    SetHeroExperience experience;experience.id=h->id;experience.mode=ChangeValueMode::ABSOLUTE;experience.val=static_cast<std::uint32_t>(changed);gh.sendAndApply(experience);
    if(args.size()>1)return Step::Continue;
    const int target=era_campaign_hero_experience::levelFor(changed,LIBRARY->heroh->maxSupportedLevel(),[](int level){return LIBRARY->heroh->reqExp(level);});
    if(static_cast<int>(h->level)>target)
    {auto change=mutation("heroLevel",h->id);change["level"].Integer()=target;persist(change);}
-   else if(h->gainsLevel())
+   else if(h->gainsLevel()||(h->getCommander()&&h->getCommander()->eraExperienceWord&&h->getCommander()->gainsLevel()))
    {
     // Reserve heroes have no player to answer or remove a dialog query. Native
     // neutral level-ups choose automatically and finish synchronously.

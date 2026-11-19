@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "CCommanderInstance.h"
+#include "../../era/EraStartingLevelRules.h"
 
 #include "../../GameLibrary.h"
 #include "../../entities/hero/CHeroHandler.h"
@@ -50,6 +51,7 @@ bool CCommanderInstance::canGainExperience() const
 
 int CCommanderInstance::getExpRank() const
 {
+    if(eraExperienceWord)return level;
 	return LIBRARY->heroh->level(getTotalExperience());
 }
 
@@ -74,6 +76,9 @@ ArtBearer CCommanderInstance::bearerType() const
 
 bool CCommanderInstance::gainsLevel() const
 {
+    if(eraExperienceWord)
+        return alive&&level<75&&level<LIBRARY->heroh->maxSupportedLevel()
+            &&int64_t(era_bridge::starting_level::signedWord(uint32_t(getTotalExperience())))>=int64_t(LIBRARY->heroh->reqExp(level+1));
 	return level < LIBRARY->heroh->maxSupportedLevel() && getTotalExperience() >= LIBRARY->heroh->reqExp(level + 1);
 }
 

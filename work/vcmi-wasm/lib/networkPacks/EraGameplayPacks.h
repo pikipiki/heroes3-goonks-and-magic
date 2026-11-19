@@ -29,6 +29,16 @@ struct DLL_LINKAGE EraResourceWordChange : public CPackForClient
     void visitTyped(ICPackVisitor & visitor) override;
     template<class Handler> void serialize(Handler & h){h & player;h & resource;h & amount;}
 };
+// Exact original commander XP record and its independent hero-XP baseline.
+struct DLL_LINKAGE EraCommanderWordChange : public CPackForClient
+{
+    ObjectInstanceID hero;
+    int32_t experience = 0;
+    int32_t reference = 0;
+    int8_t commanderType = -1;
+    void visitTyped(ICPackVisitor & visitor) override;
+    template<class Handler> void serialize(Handler & h){h & hero;h & experience;h & reference;h & commanderType;}
+};
 struct DLL_LINKAGE MithrilAction : public CPackForServer
 {
     ObjectInstanceID object;

@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "../era/EraCampaignExperienceWord.h"
+#include "../era/EraStartingLevelRules.h"
 #include "../era/EraEye278Native.h"
 #include "../era/EraFamiliarChannel43.h"
 #include "../era/EraBridgePolicies.h"
@@ -78,6 +79,14 @@ void GameStatePackVisitor::visitSetHeroExperience(SetHeroExperience & pack)
 	assert(hero);
 	hero->setExperience(pack.val, pack.mode);
  if(era_campaign_experience_word::active(*hero))hero->exp=static_cast<std::uint32_t>(hero->exp);
+ if(auto * commander=hero->getCommander();commander&&commander->eraExperienceWord&&commander->alive)
+ {
+  namespace rule=era_bridge::starting_level;
+  const auto next=rule::signedWord(uint32_t(hero->exp));
+  const auto delta=rule::commanderDelta(next,commander->eraHeroExperienceReference,commander->eraCommanderType==0);
+  commander->restoreCommanderExperienceWord(rule::add(rule::signedWord(uint32_t(commander->getTotalExperience())),delta));
+  commander->eraHeroExperienceReference=next;
+ }
 }
 
 void GameStatePackVisitor::visitGiveStackExperience(GiveStackExperience & pack)
@@ -1663,6 +1672,18 @@ void GameStatePackVisitor::visitEntitiesChanged(EntitiesChanged & pack)
 void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack)
 {
     era_compat::applySourceCampaignChange(gs,pack);
+}
+
+void GameStatePackVisitor::visitEraCommanderWordChange(EraCommanderWordChange & pack)
+{
+    auto * hero=gs.getHero(pack.hero);
+    if(!hero||!hero->getCommander()||pack.commanderType<0||pack.commanderType>8)
+        throw std::runtime_error("Invalid original commander experience record");
+    auto * commander=hero->getCommander();
+    commander->eraExperienceWord=true;
+    commander->eraHeroExperienceReference=pack.reference;
+    commander->eraCommanderType=pack.commanderType;
+    commander->restoreCommanderExperienceWord(pack.experience);
 }
 
 void GameStatePackVisitor::visitEraResourceWordChange(EraResourceWordChange & pack)

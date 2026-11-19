@@ -133,6 +133,8 @@ public:
     void restoreExperience(int64_t value);
     // Original script transformations may preserve a signed per-unit record.
     void restoreSourceExperience(int32_t average);
+    // Original CO:X1 writes a signed32 record, without gain caps or level-up.
+    void restoreCommanderExperienceWord(int32_t value);
 
 	bool valid(bool allowUnrandomized) const;
 	ArtPlacementMap putArtifact(const ArtifactPosition & pos, const CArtifactInstance * art) override; //from CArtifactSet

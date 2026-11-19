@@ -7,15 +7,15 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+    "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "c9f2498bdf10d9baa2cc65db376926941281634532aedc4283323ff2135db065",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
     "scripts/era-bridge/gameplay/advanced-class-skill-levels.mjs": "ffd721a061c4f4df87ad03b712989d80c2a26a2341ead41ce28c7817d2a6ee45",
     "tests/fixtures/era-gameplay/advanced-class-skill-levels-1.1.erm": "93fd9124497fa6524bd189b296ae0ab5256a5cd73852e43f1f71d0d5284d9557",
     "tests/native/EraCampaignExecutor.test.cpp": "7a3cf2adc7c591a1f22f85e92082e8ded6adb71fae0a55ed0efd889f3ad93f32",
@@ -1730,5 +1730,15 @@
       "sourceBindings/work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "9f71297e4ebd2272088e6b337c1ef693e87219f233b5a8df3366549c7cab3107"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "commanderWordRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+    "scope": "Historical engines/reports retained. Source bindings refreshed; the linked proof lists the exact61 native regressions and source127 save/battle revalidations on941.",
+    "previousBindings": {
+      "sourceBindings/scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+      "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
+    },
+    "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
   }
 }
