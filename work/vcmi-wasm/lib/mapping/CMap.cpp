@@ -996,14 +996,26 @@ std::vector<HeroTypeID> CMap::getHeroesInPool() const
 CGObjectInstance * CMap::getObject(ObjectInstanceID obj)
 {
 	if (static_cast<size_t>(obj.getNum()) < objects.size())
-		return objects.at(obj).get();
+	{
+		if(const auto & object = objects.at(obj))
+			return object.get();
+		const auto temporary = temporaryBattleArmies.find(obj);
+		if(temporary != temporaryBattleArmies.end())
+			return temporary->second.get();
+	}
 	return nullptr;
 }
 
 const CGObjectInstance * CMap::getObject(ObjectInstanceID obj) const
 {
 	if (static_cast<size_t>(obj.getNum()) < objects.size())
-		return objects.at(obj).get();
+	{
+		if(const auto & object = objects.at(obj))
+			return object.get();
+		const auto temporary = temporaryBattleArmies.find(obj);
+		if(temporary != temporaryBattleArmies.end())
+			return temporary->second.get();
+	}
 	return nullptr;
 }
 

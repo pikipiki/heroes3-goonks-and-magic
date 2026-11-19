@@ -16,6 +16,7 @@
 #include "MapTilesStorage.h"
 
 #include "../mapObjects/CGObjectInstance.h"
+#include "../mapObjects/army/CArmedInstance.h"
 #include "../callback/GameCallbackHolder.h"
 #include "../networkPacks/TradeItem.h"
 #include "../json/JsonNode.h"
@@ -84,6 +85,10 @@ public:
 	/// Central lists of items in game. Position of item in the vectors below is their (instance) id.
 	/// TODO: make private
 	std::vector<std::shared_ptr<CGObjectInstance>> objects;
+
+	/// Script battle participants own armies, not map occupancy. Their reserved
+	/// IDs remain null in objects, so map scans, guards and visits exclude them.
+	std::map<ObjectInstanceID, std::shared_ptr<CArmedInstance>> temporaryBattleArmies;
 
 	explicit CMap(IGameInfoCallback *cb);
 	~CMap();
@@ -350,6 +355,10 @@ public:
 		h & guardingCreaturePositions;
 
 		h & objects;
+		if(h.hasFeature(Handler::Version::GOONK_ERA_TEMPORARY_ARMIES))
+			h & temporaryBattleArmies;
+		else if(!h.saving)
+			temporaryBattleArmies.clear();
 		if (h.hasFeature(Handler::Version::NO_RAW_POINTERS_IN_SERIALIZER))
 			h & heroesOnMap;
 		else

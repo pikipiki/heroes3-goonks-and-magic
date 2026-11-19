@@ -18,8 +18,8 @@
     "web/dialog-presentation.mjs": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
-    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9",
+    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "30b5a7347be7e2c03f5388a0632dd66d9d38a670d7ffda5aa4c0f12738c4c6c4"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -251,5 +251,14 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
+  },
+  "temporaryArmyRevalidation": {
+    "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
+    "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
+      "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
+    },
+    "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   }
 }

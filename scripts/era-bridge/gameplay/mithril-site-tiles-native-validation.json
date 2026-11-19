@@ -7,13 +7,13 @@
   "engineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f",
   "sourceBaseCommit": "6fdd792db39e39e39032682916464c85b8fedfe4",
   "sourceBindings": {
-    "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89",
-    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
+    "docs/era-compatibility.md": "bec17db4c827f9824d75a9346ccad539435a6109b08b9c1176b8673731b65ca3",
+    "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
     "scripts/era-bridge/gameplay/mithril.json": "a5471a115a6c8a16a96e7c4b5996c47d076ed9cba3e1570171e2d3508fdc7f08",
     "tests/era-mithril-site-tiles.test.mjs": "b30d1d186abc129f053ff8fca149d3e24a6fed632703584eb958ef4e23750ccf",
     "tests/fixtures/era-gameplay/mithril-income-order-reference.json": "2674434a34e7b7bb2689c08e8f65cd3ae13615fb5b72e2d2e62fc72db03787d5",
     "tests/fixtures/era-gameplay/mithril-site-tiles-reference.json": "1e7fbcdf0367588a34cf22a9b8f9089c3fbd1404a11087c9693da7dde1797d64",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "46fc515e45ddf21c934d38f1bd3186492bff1cddc934a596ff5da66d4ba42df3",
     "work/browser-tests/wog-map-double-artifacts-cases.mjs": "f0fb6687e4f6ed29e144c0106cb771c32c90fa1ad4a3b024be1bd162887463db",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "work/browser-tests/wog-mithril-mine-tiles-cases.mjs": "a813f7e49026cb93b2eb28e30b039e87f107df4e2adac46927d17acf98d2ac7e",
@@ -21,11 +21,11 @@
     "work/browser-tests/wog-mithril-university-native-cases.mjs": "9a88d1919f5b5c874b1d185b32cc1c5e3c75ade8b9e4502894e39d00380b693a",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
     "work/vcmi-wasm/lib/mapObjects/CGMarket.cpp": "4706718d94d864c40ce868f325b0dd15106b6a3a38c3ed7c4c5f6bd6586ab82c",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2378447e7bd8ae58da3f443f0f8b0f04e50ae257281ddffed7135f60a7064039",
     "work/vcmi-wasm/server/era/EraMithrilRuntime.h": "249f533b8a4c3781f079d336557d3ce0bd2cbfdfc3d379df5f9a8885b75e3a9c",
     "work/vcmi-wasm/server/era/EraMithrilSiteTiles.h": "63d3d414b9976f487c05d0544ad771fbfda7cb1877a9b1a8dba5e8fe99012598",
     "work/vcmi-wasm/server/era/EraMithrilWeeklySites.h": "a7e5d3c4322b87fcacd69f4a05bcc6fedb02a203cc2881cc89e0872cdbfee0d8",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
   },
   "nativeBuild": {
@@ -1381,5 +1381,17 @@
       "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
+  },
+  "temporaryArmyRevalidation": {
+    "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
+    "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
+      "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89"
+    },
+    "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   }
 }

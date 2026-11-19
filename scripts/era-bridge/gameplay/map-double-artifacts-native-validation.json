@@ -7,8 +7,8 @@
   "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
   "sourceBaseCommit": "28c844896e88d9fd54d2332b87bf2e702d070a7e",
   "sourceBindings": {
-    "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89",
-    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
+    "docs/era-compatibility.md": "bec17db4c827f9824d75a9346ccad539435a6109b08b9c1176b8673731b65ca3",
+    "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
     "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
@@ -17,9 +17,9 @@
     "tests/era-map-double-artifacts.test.mjs": "039da5934ca956bd2d4e23c57be9aa91e64a45389ababb51d77fce5a1afa5e87",
     "tests/fixtures/era-gameplay/map-double-artifacts-reference.json": "2e8f1e481cdb813fae1bf78251f112fd7699d54fd878fd4d7f8fb988c8143292",
     "tests/native/EraMapDoubleArtifactRules.test.cpp": "69fa827354f9779d3a3a1dd6ee9e297d4ca846a0646f8b611a275b9b3e245cb2",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "46fc515e45ddf21c934d38f1bd3186492bff1cddc934a596ff5da66d4ba42df3",
     "web/wog-options.mjs": "4f9bd044ff913e05d1ee0ac5e0d79bf889aac57541452805f9caed91168fc635",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9",
     "work/browser-tests/wog-map-double-artifacts-ai-cases.mjs": "209144880506de9ceeb19122da87c04bfff8ea7da62e4a0259d95b8ee4c97962",
     "work/browser-tests/wog-map-double-artifacts-cases.mjs": "f0fb6687e4f6ed29e144c0106cb771c32c90fa1ad4a3b024be1bd162887463db",
     "work/browser-tests/wog-map-double-artifacts-compatibility-cases.mjs": "c04062102bff2d58b6c5f1b72434ae12a3e29e966a79a50f163bb94d6a5046da",
@@ -29,10 +29,10 @@
     "work/vcmi-wasm/lib/era/EraMapDoubleArtifactRules.h": "59f07afcc72e536c21d80226e85b47ee958ab01583abb9ad2b86c396b3f1bd5d",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "dc79e34464d3b628bf82990b8f1515a8ffed4fefec81681c05cc648717ed4457",
     "work/vcmi-wasm/lib/mapObjects/MiscObjects.cpp": "ebde12e45ebddc7b0afca6e777dafeae308d8cc22528fec0241240d5a7b26496",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2378447e7bd8ae58da3f443f0f8b0f04e50ae257281ddffed7135f60a7064039",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "9f71297e4ebd2272088e6b337c1ef693e87219f233b5a8df3366549c7cab3107",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "8bc15a33d0617c2cf5745e8f13d8840e5616b255873353beabccbcb66b514c46",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
   },
   "nativeBuild": {
@@ -1968,5 +1968,18 @@
       "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
+  },
+  "temporaryArmyRevalidation": {
+    "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
+    "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
+      "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89"
+    },
+    "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   }
 }

@@ -15,7 +15,7 @@
     "work/vcmi-wasm/lib/era/EraLearningStoneModel.h": "b9ff104fba574ba893eb87e85b19d747803c02ca411cc4ebf16989980ea9f124",
     "work/vcmi-wasm/lib/era/EraScriptRulesModel.h": "cc0f328507e20b4c93c704403c6e3c7b29b0b8355b3a42f73f25ba69df2909a8",
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "02854624d7c71697fd9f4d68b0335d665daf71934adcd0f72861474aa97fa559",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "2dc5c8070cabfaa9e2c9ff703a91ef307db32849ae13e3da4589f6bed2b9a3c2",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
@@ -245,5 +245,13 @@
       "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "a2c7d59dc5be056078559343e70565894b3c562c908eeaa3fbc1a3d4c12932e8"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
+  },
+  "temporaryArmyRevalidation": {
+    "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
+    "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "02854624d7c71697fd9f4d68b0335d665daf71934adcd0f72861474aa97fa559"
+    },
+    "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   }
 }

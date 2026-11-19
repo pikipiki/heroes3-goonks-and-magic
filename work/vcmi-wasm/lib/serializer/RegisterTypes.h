@@ -323,6 +323,7 @@ void registerTypes(Serializer &s)
     s.template registerType<HenchmanAction>(274);
     s.template registerType<EraGameplayChange>(275);
     s.template registerType<MithrilAction>(276);
+    s.template registerType<TemporaryBattleArmyChange>(277);
 }
 
 VCMI_LIB_NAMESPACE_END

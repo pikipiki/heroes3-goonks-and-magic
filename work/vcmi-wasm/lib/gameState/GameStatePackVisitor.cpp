@@ -1664,6 +1664,38 @@ void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack
     era_compat::applySourceCampaignChange(gs,pack);
 }
 
+void GameStatePackVisitor::visitTemporaryBattleArmyChange(TemporaryBattleArmyChange & pack)
+{
+    auto & map = gs.getMap();
+    if(pack.army)
+    {
+        const auto & army = pack.army;
+        if(pack.removedArmy.hasValue() || !army->appearance || army->id.getNum() < 0
+            || size_t(army->id.getNum()) != map.objects.size()
+            || army->getOwner() != PlayerColor::NEUTRAL || !map.isInTheMap(army->visitablePos())
+            || army->stacksCount() == 0 || army->stacksCount() > GameConstants::ARMY_SIZE
+            || !army->validTypes(false))
+            throw std::runtime_error("Invalid temporary battle army creation");
+        for(const auto & entry : army->Slots())
+            if(!entry.first.validSlot() || entry.second->getCount() <= 0)
+                throw std::runtime_error("Invalid temporary battle army stack");
+        map.allocateUniqueInstanceID();
+        map.temporaryBattleArmies.emplace(army->id, army);
+        // Network deserialization omits stack->army; unlike map saves it does
+        // not run CArmedInstance's loadingGamestate fix-up.
+        for(const auto & entry : army->Slots())entry.second->setArmy(army.get());
+        army->attachToBonusSystem(gs);
+    }
+    else
+    {
+        const auto found = map.temporaryBattleArmies.find(pack.removedArmy);
+        if(found == map.temporaryBattleArmies.end() || found->second->battle)
+            throw std::runtime_error("Invalid temporary battle army release");
+        found->second->detachFromBonusSystem(gs);
+        map.temporaryBattleArmies.erase(found);
+    }
+}
+
 void GameStatePackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
 {
     if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules"&&pack.system!="eraScripts"&&pack.system!="tileProperties"&&pack.system!="creaturePrices"&&pack.system!="artifactGrants")||!pack.state.isStruct())

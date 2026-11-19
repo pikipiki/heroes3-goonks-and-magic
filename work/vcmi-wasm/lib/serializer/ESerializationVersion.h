@@ -112,9 +112,11 @@ enum class ESerializationVersion : int32_t
 
 	GOONK_WOG_TOWN_BANNERS, // source239 guardians and thirty-one choices
 
+	GOONK_ERA_TEMPORARY_ARMIES, // off-map scripted battle armies and replicated lifetime
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
 
-	CURRENT = GOONK_WOG_TOWN_BANNERS,
+	CURRENT = GOONK_ERA_TEMPORARY_ARMIES,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

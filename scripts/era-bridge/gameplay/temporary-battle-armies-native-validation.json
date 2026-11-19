@@ -1,0 +1,889 @@
+{
+  "schema": 1,
+  "applicationVersion": "0.4.293",
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "scope": "Off-map army storage and replicated lifetime for the existing five-operand scripted HE:T battle host. Source127 and full HE:T formation remain unadmitted.",
+  "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+  "sourceBaseCommit": "c449be89dcfda668edad13c72d453db9c79ffc56",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
+    "package-lock.json": "0d0c5f6cd4b0488be30bddb8a5ff69621de2a7cf804e6067f28ffe787acacd38",
+    "package.json": "a3f8dac0ee03a42bd7a429d243f90b64e9f8f994a4fd5af6ae54aa9abe9be3f0",
+    "scripts/prepare-web.mjs": "2a7f4c4f3a477f219543f7139374330e39aa5d016530be72583374fbc607e27b",
+    "tests/era-temporary-battle-armies.test.mjs": "ad5f36eb5d24b205573d849bcdda0709f262ea5168159b9682220054d00ae098",
+    "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "46fc515e45ddf21c934d38f1bd3186492bff1cddc934a596ff5da66d4ba42df3",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9",
+    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "30b5a7347be7e2c03f5388a0632dd66d9d38a670d7ffda5aa4c0f12738c4c6c4",
+    "work/browser-tests/wog-temporary-battle-army-cases.mjs": "067a07c20d60157bf8ec3c87d4cd63e2594f6e79f85722d707e96e0677d05e1e",
+    "work/vcmi-wasm/lib/gameState/CGameState.cpp": "11a706b79dc60dcf22a1d7afc4f0b909cbd581098ce378e793405110c35f34ab",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "2dc5c8070cabfaa9e2c9ff703a91ef307db32849ae13e3da4589f6bed2b9a3c2",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h": "14e301259563d806b0eab75da66816e58d56bd8fb906e3ef4206f8210ebd4ad6",
+    "work/vcmi-wasm/lib/mapping/CMap.cpp": "7566645b82d554723470072ee2fa61230791d8b7eee918420d3dd4fcc363dd10",
+    "work/vcmi-wasm/lib/mapping/CMap.h": "556ac9f115d4f691730c384c7213b7ca0e7147d9f214f55b837d5de005739685",
+    "work/vcmi-wasm/lib/networkPacks/EraGameplayPacks.h": "8f7d6913c359d675e7e8574737d2c42bf2e542161a495fe33106349762f8d173",
+    "work/vcmi-wasm/lib/networkPacks/NetPackVisitor.h": "5ee67b3e0b6d4ccddcba193251f0edbf7e2bd1e6ddedb35da145a7dd4cf0d587",
+    "work/vcmi-wasm/lib/networkPacks/NetPacksLib.cpp": "9b243fb25b2d51a7cb6f6ef91891c782cef6890801e78309bc9b59e67b5bf716",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2378447e7bd8ae58da3f443f0f8b0f04e50ae257281ddffed7135f60a7064039",
+    "work/vcmi-wasm/lib/serializer/RegisterTypes.h": "d4b5c24a8834baee37c312332202881f665a1271a902bf952a97d97488fd58be",
+    "work/vcmi-wasm/server/era/EraTemporaryBattleArmy.h": "4b5cffdcfa8fbec204ec44c9b19f08a27d394888b35231eafbe689e6d51db539",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "logSha256": "24652fa86ef9c10d6460c9fb06aa7015f8a6d6898b8b27344c3526393cfc3600",
+    "sourceCopyPolicy": "Copy changed sources by hash, touch after copying, never synchronize during compilation."
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3040,
+    "mismatches": [],
+    "expectedManifestSha256": "24d29ac6a56e534f16b5a8eb04bffe60fb276da50ee029dfd2b9be51b16104e7",
+    "foreignChangesExcluded": [
+      "mod/tum-era/mod.json",
+      "work/vcmi-wasm/lib/battle/BattleInfo.cpp",
+      "work/vcmi-wasm/server/CGameHandler.cpp",
+      "work/vcmi-wasm/server/battles/BattleActionProcessor.cpp",
+      "work/vcmi-wasm/server/battles/BattleFlowProcessor.cpp"
+    ]
+  },
+  "reports": {
+    "portrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "scenarios": [
+        {
+          "temporaryArmy": true,
+          "mapEventCreated": false,
+          "creationAndReleasePackets": 2,
+          "companionPrompt": false,
+          "preBattleSaveReload": true,
+          "postBattleSaveReload": true,
+          "nativeTownVisitResumed": true,
+          "defeatedHeroSkipsNativeVisit": false,
+          "legacyInput": null,
+          "desktop": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "c58bd96fabf095d8ae2a56bb72696a2a3fa18dbeac0d35786bba4dec210b861b"
+    },
+    "offer": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "scenarios": [
+        {
+          "temporaryArmy": true,
+          "mapEventCreated": false,
+          "creationAndReleasePackets": 2,
+          "companionPrompt": true,
+          "preBattleSaveReload": true,
+          "postBattleSaveReload": true,
+          "nativeTownVisitResumed": true,
+          "defeatedHeroSkipsNativeVisit": false,
+          "legacyInput": null,
+          "desktop": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "1267ad503ceea6b577ebe7bf33b2360201a25e5c17583289b0a548480280d2df"
+    },
+    "legacyDesktop": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "scenarios": [
+        {
+          "temporaryArmy": true,
+          "mapEventCreated": false,
+          "creationAndReleasePackets": 2,
+          "companionPrompt": false,
+          "preBattleSaveReload": true,
+          "postBattleSaveReload": true,
+          "nativeTownVisitResumed": true,
+          "defeatedHeroSkipsNativeVisit": false,
+          "legacyInput": 938,
+          "desktop": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "7c664f580a21e60ce9f4ec2fa58a03db22011fd4d52d0552a6844509365b489c"
+    },
+    "defeat": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "scenarios": [
+        {
+          "temporaryArmy": true,
+          "mapEventCreated": false,
+          "creationAndReleasePackets": 2,
+          "companionPrompt": false,
+          "preBattleSaveReload": true,
+          "postBattleSaveReload": true,
+          "nativeTownVisitResumed": false,
+          "defeatedHeroSkipsNativeVisit": true,
+          "legacyInput": null,
+          "desktop": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "db18079a0318ecae6c6756c8d7bea065d3cace7ffb1024d253c67269bcf30ab0"
+    },
+    "progression": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "scenarios": [
+        {
+          "temporaryArmy": true,
+          "mapEventCreated": false,
+          "creationAndReleasePackets": 2,
+          "companionPrompt": false,
+          "progressionKinds": [
+            "commander-level-up"
+          ],
+          "progressedHero": {
+            "level": 8,
+            "experience": 10000
+          },
+          "preBattleSaveReload": true,
+          "postBattleSaveReload": true,
+          "nativeTownVisitResumed": true,
+          "defeatedHeroSkipsNativeVisit": false,
+          "legacyInput": null,
+          "desktop": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "edda91153ab8e2e9e89c4462660253914311485d086546c2e3f9206f930572a7"
+    }
+  },
+  "historicalControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+    "scenarios": [
+      {
+        "saveVersion": 938,
+        "preBattleSaveProduced": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "b9903c17bcb51985412c9e39594a2e9462f33daef808bd10b7fac3e86ab629ae"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 939,
+        "readerVersion": 938,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "17de17c6952da3a92e2c8f57164207be4a0dd2eaa099af0dd3cfe2bda5c35df6"
+  },
+  "regressions": {
+    "battle-outcomes": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "8bdf4cddd27837cdb7d72bca2ce842f68deef9445663efec2a83d9bcd194da93",
+      "scenarioCount": 2
+    },
+    "battle-experience": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "187dd05de3a7708de923c25f76d2c04c057cc3dd4e7064dc4dc657eb70fca88c",
+      "scenarioCount": 3
+    },
+    "town-script": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "ba05b2a342e0bcd9fdf77c7b278c9b455c32fb9ffeaf8036d1a84f6ce4ee915e",
+      "scenarioCount": 1
+    },
+    "on": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "53e9ce72b4159fffea4470b6782d2cd8bde3947eeb2c52d77167689f1d8ea1fd",
+      "scenarioCount": 1
+    },
+    "off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "ef770689d461365b30c8f659ed37569ffec2f65b42c90834f7aef4f617ca0196",
+      "scenarioCount": 1
+    },
+    "inherit-on": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "e9007e13efad027d4a9d51a29e89d84a5582e9a80aebe7f14d8a6089eff45971",
+      "scenarioCount": 1
+    },
+    "inherit-off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "308ab80aa00368a2dfd351f1f7ff087fc50b00142288fe8cf5cdfa991e6be73e",
+      "scenarioCount": 1
+    },
+    "prompt-touch": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "2c292b30daa53e82e9d6388df1b56da0a771196655a005a32f9dd44364f98068",
+      "scenarioCount": 5
+    },
+    "pages-touch": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "e48a77390b34b8a193100bbcfda76cbc9cb249799a6c6a2b8033b188cc428e09",
+      "scenarioCount": 1
+    },
+    "pages-desktop": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "8947a4e6209c0d21cfeb2946d8fbbbd4dc2f8bccb57f1733e5ce225aedb55cbb",
+      "scenarioCount": 1
+    },
+    "pool": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "4af80fe7367a0cbef6aaddaf5a0ab4a914cb1d16644183de8927082a7ead677f",
+      "scenarioCount": 1
+    },
+    "pool-combo": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "5c2d1f130e66584144abd5d2f26379a0a4f18aa1f82405bbab3f97e8205a415f",
+      "scenarioCount": 1
+    },
+    "pages-landscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "0e5cd7cfa8433b7aa214dc86403d319727e8df9159a9e9c0f87e7f8ecd20115d",
+      "scenarioCount": 1
+    },
+    "grant-accept": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "11719165607f77784c3cd79ebdace824531207a680ff89bf2043a2589ef90730",
+      "scenarioCount": 1
+    },
+    "grant-reject": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "7d81b7789908ab82482b6af377232a208dc5e48f8d12169c3c9cd9b965089dc8",
+      "scenarioCount": 1
+    },
+    "grant-ai": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "22ce4473f4a15c4c219d71ab8602970eb061b0ac7c750b5d7b195711e5006bf6",
+      "scenarioCount": 1
+    },
+    "grant-reserve": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "4333a2127bbe18c41c33dd38ff3b75368ddfae2933fbe60bb1b3c3ae89cf33bc",
+      "scenarioCount": 1
+    },
+    "grant-full": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "e111ff373de309ca8b63ccbbf9ad6b01213d64ffae25ba92d0917794f97f3516",
+      "scenarioCount": 1
+    },
+    "native-assembly": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "b4a33c02d0fcb3bc25d4520da49a6cfd6168dda23558e9b35fb2ce76f90b982c",
+      "scenarioCount": 1
+    },
+    "town": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "7bf9ac13395642d3e882f388038152885c022fada9111fc7320ad7d7efada15d",
+      "scenarioCount": 1
+    },
+    "legacy": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "28ff09494aabd47c59ec4f30401e53bb0a48f67510f72058afe70d1d3a4bc024",
+      "scenarioCount": 1
+    },
+    "object": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "2118386c479b54545b6ed7b87e5508aeb7b968f01597657a72344460abe954fb",
+      "scenarioCount": 1
+    },
+    "regression-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "da0c295705d2fc492c152cf631e1f42c4057dbdc380308e8ad65e8657c59b614",
+      "scenarioCount": 9
+    },
+    "regression-advanced-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "0ec1c6fd0c51369ebd50fe7a20fe9023dbd4b97817e653661ffa7e7ac0afaa83",
+      "scenarioCount": 4
+    },
+    "regression-prices": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "57d8ed28c9b4baeeb6d6aead9084db884ddfbb722967fea11398e64b911b3656",
+      "scenarioCount": 9
+    },
+    "regression-sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "d2eaaf5d864bdfb5a1dd2364dc9c9c17721436f1c005aabf4fd174bf0e36a6a1",
+      "scenarioCount": 17
+    },
+    "regression-no-shooting": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "77b26842a027213b401089dd5145059a618bc5fc947cfe821813b49aa61f18aa",
+      "scenarioCount": 1
+    },
+    "regression-eighth-upgrades": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "f6c51f4fa4f5a23821674d3b69d8444214d3e89c17754c3608401d5346a38aca",
+      "scenarioCount": 1
+    },
+    "regression-darkness": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "288c2cd987746eddf4cafcf46f07e40d57d87977822de2f7d25fd8b7054ec697",
+      "scenarioCount": 1
+    },
+    "regression-quick-scope": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "70a01ddf7e305775bb7303d75cbe6c8b588ba897ef11f1f3b025092dee873614",
+      "scenarioCount": 1
+    },
+    "regression-monthly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+      "errors": [],
+      "rawReportSha256": "865b47815cbef566f5045284899e0d6a55ede7aa34e125371e2a87c7259a322b",
+      "scenarioCount": 2
+    }
+  },
+  "regressionMatrix": [
+    {
+      "label": "battle-outcomes",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 2,
+      "log": "work/downloads/temporary-armies293-regression-battle-outcomes.log",
+      "report": "work/downloads/temporary-armies293-regression-battle-outcomes/result.json"
+    },
+    {
+      "label": "battle-experience",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 3,
+      "log": "work/downloads/temporary-armies293-regression-battle-experience.log",
+      "report": "work/downloads/temporary-armies293-regression-battle-experience/result.json"
+    },
+    {
+      "label": "town-script",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-town-script.log",
+      "report": "work/downloads/temporary-armies293-regression-town-script/result.json"
+    },
+    {
+      "label": "on",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-on.log",
+      "report": "work/downloads/temporary-armies293-regression-on/result.json"
+    },
+    {
+      "label": "off",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-off.log",
+      "report": "work/downloads/temporary-armies293-regression-off/result.json"
+    },
+    {
+      "label": "inherit-on",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-inherit-on.log",
+      "report": "work/downloads/temporary-armies293-regression-inherit-on/result.json"
+    },
+    {
+      "label": "inherit-off",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-inherit-off.log",
+      "report": "work/downloads/temporary-armies293-regression-inherit-off/result.json"
+    },
+    {
+      "label": "prompt-touch",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 5,
+      "log": "work/downloads/temporary-armies293-regression-prompt-touch.log",
+      "report": "work/downloads/temporary-armies293-regression-prompt-settled/result.json",
+      "responsiveResizeWait": true
+    },
+    {
+      "label": "pages-touch",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-pages-touch.log",
+      "report": "work/downloads/temporary-armies293-regression-pages-touch/result.json"
+    },
+    {
+      "label": "pages-desktop",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-pages-desktop.log",
+      "report": "work/downloads/temporary-armies293-regression-pages-desktop/result.json"
+    },
+    {
+      "label": "pool",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-pool.log",
+      "report": "work/downloads/temporary-armies293-regression-pool/result.json"
+    },
+    {
+      "label": "pool-combo",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-pool-combo.log",
+      "report": "work/downloads/temporary-armies293-regression-pool-combo/result.json"
+    },
+    {
+      "label": "pages-landscape",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-pages-landscape.log",
+      "report": "work/downloads/temporary-armies293-regression-pages-landscape/result.json"
+    },
+    {
+      "label": "grant-accept",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-grant-accept.log",
+      "report": "work/downloads/temporary-armies293-regression-grant-accept/result.json"
+    },
+    {
+      "label": "grant-reject",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-grant-reject.log",
+      "report": "work/downloads/temporary-armies293-regression-grant-reject/result.json"
+    },
+    {
+      "label": "grant-ai",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-grant-ai.log",
+      "report": "work/downloads/temporary-armies293-regression-grant-ai/result.json"
+    },
+    {
+      "label": "grant-reserve",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-grant-reserve.log",
+      "report": "work/downloads/temporary-armies293-regression-grant-reserve/result.json"
+    },
+    {
+      "label": "grant-full",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-grant-full.log",
+      "report": "work/downloads/temporary-armies293-regression-grant-full/result.json"
+    },
+    {
+      "label": "native-assembly",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-native-assembly.log",
+      "report": "work/downloads/temporary-armies293-regression-native-assembly/result.json"
+    },
+    {
+      "label": "town",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-town.log",
+      "report": "work/downloads/temporary-armies293-regression-town/result.json"
+    },
+    {
+      "label": "legacy",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-legacy.log",
+      "report": "work/downloads/temporary-armies293-regression-legacy/result.json"
+    },
+    {
+      "label": "object",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-object.log",
+      "report": "work/downloads/temporary-armies293-regression-object/result.json"
+    },
+    {
+      "label": "regression-core",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 9,
+      "log": "work/downloads/temporary-armies293-regression-regression-core.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-core/result.json"
+    },
+    {
+      "label": "regression-advanced-core",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 4,
+      "log": "work/downloads/temporary-armies293-regression-regression-advanced-core.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-advanced-core/result.json"
+    },
+    {
+      "label": "regression-prices",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 9,
+      "log": "work/downloads/temporary-armies293-regression-regression-prices.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-prices/result.json"
+    },
+    {
+      "label": "regression-sites",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 17,
+      "log": "work/downloads/temporary-armies293-regression-regression-sites.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-sites/result.json"
+    },
+    {
+      "label": "regression-no-shooting",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-regression-no-shooting.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-no-shooting/result.json"
+    },
+    {
+      "label": "regression-eighth-upgrades",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-regression-eighth-upgrades.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-eighth-upgrades/result.json"
+    },
+    {
+      "label": "regression-darkness",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-regression-darkness.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-darkness/result.json"
+    },
+    {
+      "label": "regression-quick-scope",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/temporary-armies293-regression-regression-quick-scope.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-quick-scope/result.json"
+    },
+    {
+      "label": "regression-monthly",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 2,
+      "log": "work/downloads/temporary-armies293-regression-regression-monthly.log",
+      "report": "work/downloads/temporary-armies293-regression-regression-monthly/result.json"
+    }
+  ],
+  "serialization": {
+    "saveVersion": 939,
+    "previousSaveVersion": 938,
+    "choiceCount": 31,
+    "newField": "CMap.temporaryBattleArmies",
+    "packetType": 277,
+    "legacyDefault": "Empty registry; existing map objects and frozen WoG choices retained.",
+    "companionOfferSaveAllowed": false,
+    "liveArmySaveFromCurrentUiObserved": false,
+    "legacyLiveMapCarrierReusedInNativeTest": false
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.293-engine.tar.gz",
+    "sha256": "012abe77ee74f5a0c1fbca6ea3e70765700ee360b4dba1d0e32e569aa6fe8a7a",
+    "runtimeFiles": [
+      {
+        "file": "html5/dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/vcmiclient.js",
+        "sha256": "bfbec16409b001181ff4165c09e7cf995a1fa4e26926ecf8c10d580b865d286c",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/vcmiclient.js.symbols",
+        "sha256": "82f308e07470dabd9cd5b6dcf078ce954613fddaf01f295acb970d6d3c9b6254",
+        "matchesCandidate": true
+      },
+      {
+        "file": "html5/vcmiclient.wasm",
+        "sha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+        "matchesCandidate": true
+      }
+    ]
+  },
+  "catalogue": {
+    "choiceCount": 31,
+    "source127Admitted": false,
+    "source118Admitted": false
+  },
+  "privateFixtureScope": {
+    "productionDiagnosticExportInstalled": false,
+    "description": "Memory-only private source programs/maps and native save exports; no production map or gameplay diagnostic export changed."
+  },
+  "testCorrection": {
+    "reason": "Responsive companion grid was sampled during resize; wait350ms before testing actual overflow and touch scroll. Product UI unchanged.",
+    "successfulReport": "temporary-armies293-regression-prompt-settled",
+    "scenarioCount": 5
+  },
+  "checks": {
+    "nativeScenarios": 5,
+    "regressionScenarios": 74,
+    "regressionReports": 31,
+    "finalUiNativeScenarios": 2,
+    "uiStabilityCases": 48,
+    "node": {
+      "tests": 979,
+      "passed": 923,
+      "skipped": 56,
+      "failed": 0,
+      "logSha256": "1427be5b61847528195a5086216e25c85d19e33f2fd776522922041fbf5cfb70",
+      "finalLogSha256": "eb0eba258999693f6bf4d8317e9b011a37ecb60dfbccde4d0b2cbfa434e9b717"
+    },
+    "prepareWeb": {
+      "exitCode": 0,
+      "logSha256": "383ad9dce4000dd3a8ffee1772fd2099cfe98d273e8266e934c3a0cc7fc2208e"
+    },
+    "buildWeb": {
+      "exitCode": 0,
+      "logSha256": "15b4b9c03f56109fd13e20ed705d9249b553b15f938209e060cfffda3595e46e"
+    },
+    "verifyWeb": {
+      "exitCode": 0,
+      "nativeFiles": 10464,
+      "transportBytes": 702299247,
+      "logSha256": "5ac7fc85406e00b3303aa9016559d8e80248c7043eba60eb0887c41dc8b3d2d2"
+    }
+  },
+  "remaining": [
+    "Source127 chance/date/warnings/gold/formation and source118/native ordered progression.",
+    "Six source101 selection modes.",
+    "Full Henchmen, WoG, mithril and separate Advanced Classes/ERA Scripts/Reborn profiles remain in progress.",
+    "Explicit battle replay and live-army saves are not established by these native tests."
+  ],
+  "uiRebuild": {
+    "scope": "Generated MUI runtime rebuilt from the already committed theme sources; no new product UI source change. Final native smoke tests and stability controls use this generated runtime.",
+    "compiledRuntime": {
+      "sha256": "3761d703cd0534e64011e4f69033cf5a5cb0bc019c20021bef3b87d2d587bd0f",
+      "bytes": 545696,
+      "tracked": false
+    },
+    "sourceBindings": {
+      "src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
+      "scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478"
+    },
+    "stability": {
+      "passed": true,
+      "caseCount": 48,
+      "inputCount": 31,
+      "reportSha256": "243caa1ad13a64dbedaa6149366bb6775575e925e00d7143d4da14d25b9fb1ca",
+      "logSha256": "7ebf9e05d5cd770ce3ac7e9156b033347f20243da04f515b2fa73b345d451ad7"
+    },
+    "nativeReports": {
+      "portrait": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+        "scenarios": [
+          {
+            "temporaryArmy": true,
+            "mapEventCreated": false,
+            "creationAndReleasePackets": 2,
+            "companionPrompt": false,
+            "progressionKinds": [],
+            "progressedHero": null,
+            "preBattleSaveReload": true,
+            "postBattleSaveReload": true,
+            "nativeTownVisitResumed": true,
+            "defeatedHeroSkipsNativeVisit": false,
+            "legacyInput": null,
+            "desktop": false
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "110ab2d22d71c633b05f5fa532830b327055a76c5b2d33086a187c86d2e73fbb"
+      },
+      "desktop": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+        "scenarios": [
+          {
+            "temporaryArmy": true,
+            "mapEventCreated": false,
+            "creationAndReleasePackets": 2,
+            "companionPrompt": false,
+            "progressionKinds": [],
+            "progressedHero": null,
+            "preBattleSaveReload": true,
+            "postBattleSaveReload": true,
+            "nativeTownVisitResumed": true,
+            "defeatedHeroSkipsNativeVisit": false,
+            "legacyInput": 938,
+            "desktop": true
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "838931bebaa385ad22f217d3fa969ac1bd573670d993a54096306d760ef391c9"
+      }
+    }
+  }
+}

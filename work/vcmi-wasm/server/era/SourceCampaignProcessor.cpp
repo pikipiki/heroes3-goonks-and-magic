@@ -1,6 +1,7 @@
 /* Original campaign event host; GPL-2.0-or-later. */
 #include "StdInc.h"
 #include "SourceCampaignProcessor.h"
+#include "EraTemporaryBattleArmy.h"
 #include "EraCampaignWogOptions.h"
 #include "EraMithrilSiteTiles.h"
 #include "EraSourceFogRuntime.h"
@@ -982,21 +983,35 @@ struct SourceCampaignProcessor::Impl final:Host
   {
    const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"scripted battle hero missing");
    const int3 position(pending["x"].Integer(),pending["y"].Integer(),pending["z"].Integer());
-   // A separate invisible event carries the temporary defenders. The visited
-   // object's guards, resources and reward configuration remain intact.
-   auto created=gh.createNewObject(position,Obj::EVENT,MapObjectSubID(0));
-   auto army=std::dynamic_pointer_cast<CGEvent>(created);require(army!=nullptr,"scripted battle carrier is not armed");
-   gh.newObject(army,player);
-   gh.insertNewStack({army->id,SlotID(0)},creature(pending["creature"].Integer()).toCreature(),pending["count"].Integer());
-   pending["army"].Integer()=army->id.getNum();persist();
+   // HE:T participants are not map events. Keep their typed army alive through
+   // result, level-up and replay queries, without adding occupancy or a visit.
+   ObjectInstanceID armyId=ObjectInstanceID::NONE;
+   if(pending["army"].isNumber())
+   {
+    armyId=ObjectInstanceID(pending["army"].Integer());
+    const auto & map=gh.gameState().getMap();
+    // A save at the pre-battle companion choice already owns its army. Reuse
+    // it after load. Pre939 saves may instead own the former map-event carrier.
+    require(map.temporaryBattleArmies.count(armyId)
+     ||dynamic_cast<const CGEvent *>(gh.gameInfo().getObjInstance(armyId)),"saved scripted battle army missing");
+   }
+   else
+   {
+    armyId=era_compat::temporary_armies::create(gh,position,
+     {{creature(pending["creature"].Integer()),int32_t(pending["count"].Integer())}});
+    pending["army"].Integer()=armyId.getNum();persist();
+   }
+   const auto * army=dynamic_cast<const CArmedInstance *>(gh.gameInfo().getObjInstance(armyId));
    auto barrier=std::make_shared<CampaignBattleQuery>(gh,h->getOwner(),[this](bool won)
    {
     const auto id=ObjectInstanceID(pending["army"].Integer());
-    if(const auto * temporary=gh.gameState().getObj(id))gh.removeObject(temporary,player);
+    if(gh.gameState().getMap().temporaryBattleArmies.count(id))era_compat::temporary_armies::release(gh,id);
+    else if(const auto * legacy=dynamic_cast<const CGEvent *>(gh.gameInfo().getObjInstance(id)))gh.removeObject(legacy,player);
+    else require(false,"scripted battle army disappeared before completion");
     shown.reset();writeFlag(1,vm,won);pending=JsonNode();run();
    });
    shown=barrier->queryID;gh.queries->addQuery(barrier);
-   gh.startBattle(h,army.get(),position,h,nullptr,BattleLayout::createDefaultLayout(gh.gameInfo(),h,army.get()),nullptr);return;
+   gh.startBattle(h,army,position,h,nullptr,BattleLayout::createDefaultLayout(gh.gameInfo(),h,army),nullptr);return;
   }
   auto dialog=std::make_shared<CGenericQuery>(&gh,player,[this](std::optional<int32_t> answer)
   {

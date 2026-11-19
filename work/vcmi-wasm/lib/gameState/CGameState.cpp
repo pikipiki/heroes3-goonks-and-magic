@@ -1572,6 +1572,9 @@ void CGameState::restoreBonusSystemTree()
 	for(auto & armed : map->getObjects<CGObjectInstance>())
 		armed->restoreBonusSystem(*this);
 
+	for(auto & temporary : map->temporaryBattleArmies)
+		temporary.second->restoreBonusSystem(*this);
+
 	for(auto & art : map->getArtifacts())
 		art->attachToBonusSystem(*this);
 

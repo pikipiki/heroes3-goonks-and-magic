@@ -1,0 +1,1723 @@
+{
+  "schema": 1,
+  "scope": "Static source127 and HE:T arithmetic/lifetime contracts. No source127 gameplay admission or original runtime equivalence. The native off-map army foundation does not yet implement this entire formation or visit rule.",
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "sourceScriptSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+  "reports": [
+    {
+      "name": "era-rogues127-battle/report.json",
+      "originalReportSha256": "b76da1c0bc4300d9a515e3792416e43e7197fd256246cbd521986dafcded397c",
+      "report": {
+        "scope": "Bounded ordinary static PE/Pascal/ERM inspection. No original execution, no REA Evidence, no tracked file or container changes. Graphify query first.",
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/AdvErm.pas",
+            "size": 122843,
+            "sha256": "cfd4a30049ab3fd93310b9f7ec9087469efbc134211c9cdaf4e310948417e13c"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          }
+        ],
+        "contract": {
+          "HE_T": "Five supplied arguments xyz,type,count enter synchronous nativecall bridge714740→4ac270→4ad160. Temporary enemy army lives at4ac270 stacklocal EBP-4c. Defenderhero null and owner-1. No mapmonster objectcreated or stored by this route.",
+          "groups": {
+            "domain": "Ordinary valid positiveN and positive strengths; overflow/corruptinputs not normalized here.",
+            "strength": "RatioR = current native hero army strength after4e5bd0 / (AIValue(currenttype)*N).44a950 uses currentcreaturetable AIValue+40 and signed32 products/sum.",
+            "baseGroups": [
+              {
+                "ratio": "R<0.5",
+                "groups": 7
+              },
+              {
+                "ratio": "0.5<=R<0.67",
+                "groups": 6
+              },
+              {
+                "ratio": "0.67<=R<1",
+                "groups": 5
+              },
+              {
+                "ratio": "1<=R<1.5",
+                "groups": 4
+              },
+              {
+                "ratio": "1.5<=R<2",
+                "groups": 3
+              },
+              {
+                "ratio": "2<=R<3",
+                "groups": 2
+              },
+              {
+                "ratio": "R>=3",
+                "groups": 1
+              }
+            ],
+            "drawAdjustment": "Call50c7c0 with1,100; draw<=20 subtract1, draw>=80 add1 ifG<7. ThenG=max(1,G),G=min(G,N). Exact randomdistribution/bias not separately re-audited.",
+            "distribution": "Initialize7empty slots. Fori0..G-1 write selectedtype and floor(N/G)+(i<N%G); remaining slots empty. Noextras means later permutation block is skipped.",
+            "upgradeCaveat": "Native conditional upgrade branch4ac420..4ac4b3 can replace middle stacktype when native rule/tablepredicate allows it and draw<=50. This pass does not establish effective runtime assignment rows for Rogue/WaterElemental nor all plugins, so cannot universally assert every generated stack keeps originaltype.",
+            "placementLimit": "Seven army indices and counts proven. Exact battlehex coordinates, tactics, nativebattlefieldobstacles and additionalplugin placement are not reconstructed."
+          },
+          "countAfterReturn": "4ac603 writes remaining primarytype count to resolved command argument local. HE:T receiver does not useZvsApply to write that localback into the originalERMvariable. Source rogueNum therefore remains its initial number for latergoldformula; it is not automatically replaced by survivors or kills.",
+          "ownership": {
+            "proved": "Native finalization result13d48==1 removes attacker through4da130, which sets hero.owner+22=-1. Draw-1 also routes attacker through the same removal. Normalattacker victory0 has no attacker removal in inspected result branches. HE:T caller then continues and sourceHE:O reads currentheroowner; source grantslandgold only owner!=-1.",
+            "retreatBoundary": "Retreat/surrender UI→13d48 result assignment was not independently traced. If these finish through ordinary nonwinning attackerfinalization, the same owner-1 effect and no-reward/cancel behavior follows. No claim that every plugin retreat/escape mechanism removesowner identically.",
+            "heroRecord": "Removal mutates the persistent hero record rather than freeing this pointer; ownerread afterreturn is meaningful in inspected native path. Tavern/campaignrecovery behavior not audited."
+          },
+          "SN_Q": {
+            "actualSourceSyntax": "Source77 uses SN&(owner)=(NO_OWNER):Q with zero Q arguments. -1 is conditionNO_OWNER, not argumentQ(-1).",
+            "effect": "AdvErm.pas2411 sets Erm.QuitTriggerFlag=true. ProcessErm6038..6045 consumesit and jumps toTriggersProcessed, skipping remaininghandlers of currentevent; _Quit event may stillfire6059..6063. In an already_Quit trigger theflag ends onlythat handlerloop. No direct native object cancel flagwrite in SN_Q implementation.",
+            "nativeSkip": "Independent OBwrapper74d56d rereadsheroowner afterdispatch.74d499 returns1 for negativeowner;705a47 thenjumps overnormalnativeeffect. Therefore lostowner stops source handlers viaSN:Q andnativeeffect viaownerpredicate. SN:Q alone withvalidowner doesnot establish cancellation.",
+            "victory": "If owner retained, this no-owner gate doesnotcancel nativeobjecteffect. Otherobject-disabledflags or scripts can still cancel it."
+          },
+          "saveAndResume": {
+            "proved": "Originalcallchain is synchronous: HE:T doesnotreturn until native4ad160returns, then updatesf1 and resumes followingHE:O command. Enemy army is an in-memory callstack local; bridge saves/restores79f138 flag aroundbattle.",
+            "unproved": "No cross-process save/load continuation contract established. In-battle save support, ERMcallstack serialization, battle replay restart and plugin persistence were not traced. Do not describe native transientarmy as a serializedmapobject or claim exact saved-pendingvisit schema from this evidence. An asynchronousport must preserve its continuation explicitly, but that is an implementation consequence, not evidenceof originalserialization."
+          }
+        },
+        "sourceReferences": [
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "lineStart": 661,
+            "lineEnd": 765,
+            "meaning": "26 OB handlers callambush and conditionallySN:Q; taskdescription22 is not literal handlercount in suppliedsource."
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "lineStart": 773,
+            "lineEnd": 838,
+            "meaning": "Flag875,HE:T,HE:O,landgoldformula andlastdate afterreturn."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/AdvErm.pas",
+            "lineStart": 2410,
+            "lineEnd": 2412,
+            "meaning": "SN Q onlysetsQuitTriggerFlag."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "lineStart": 6033,
+            "lineEnd": 6063,
+            "meaning": "ConsumeQuitTriggerFlag and optional_Quit dispatch."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE T receiver five arguments",
+            "preferredVa": "0x746d7a",
+            "endExclusiveVa": "0x746dea",
+            "rva": "0x346d7a",
+            "fileOffset": "0x2e1d7a",
+            "size": 112,
+            "sha256": "c25294ead9a0a98bc428215821ae2c129477112a23afb7aacab3c14d23161db7",
+            "observation": "At least5params. Pack xyz via711e7f; call714740 with pointer toresolvedcountargumentlocal, hero, creaturetype,packedcoords. On return setf1 from callresult. No SETback ofcount to sourcevariable."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE T battle bridge",
+            "preferredVa": "0x714740",
+            "endExclusiveVa": "0x71480d",
+            "rva": "0x314740",
+            "fileOffset": "0x2af740",
+            "size": 205,
+            "sha256": "2675a09749ce1b09be8a6a2841a2b8be26dd4bc77a68029dfbb3efa90ebd019b",
+            "observation": "Save79f138 flag; set according to human/AI ownerpredicate; call4ac270 with hero,primarytype,countlocalpointer,global8403d0,coords and no extras(-1,0,0,-1,0,0); restore79f138 after direct call returns. No enemyobject placement call."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "army strength helper",
+            "preferredVa": "0x44a950",
+            "endExclusiveVa": "0x44a989",
+            "rva": "0x4a950",
+            "fileOffset": "0x4a950",
+            "size": 57,
+            "sha256": "f4365a0db77a3ecfdf7a3f1b4c3ee8942a4a76c84ccb2300c05049d3ccfd00e1",
+            "observation": "Sum7slots excluding type-1, low32 AIValue currentcreaturetable+40 times signed32count. Dynamic6747b0 creaturetable."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "group strength and group count",
+            "preferredVa": "0x4ac2db",
+            "endExclusiveVa": "0x4ac3de",
+            "rva": "0xac2db",
+            "fileOffset": "0xac2db",
+            "size": 259,
+            "sha256": "67cb085de7331bef4894dd081ce689200c0712bf1bcf7245184de243b3129df6",
+            "observation": "Enemy strength=typeAIValue*primarycount, optionalextrasabsent in HE:T. Refreshhero4e5bd0 then strength44a950(heroarmy). x87 hero/enemy ratio; select1..7groups against doubles6776e0..677710. Draw50c7c0(1,100):<=20decrement;>=80increment ifbelow7. Clampmin1, thenmaxN."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "group ratio thresholds",
+            "preferredVa": "0x6776e0",
+            "endExclusiveVa": "0x677710",
+            "rva": "0x2776e0",
+            "fileOffset": "0x2776e0",
+            "size": 48,
+            "sha256": "c1ded8fe334d80e458a3b07baa82c75a72c83c1694b420400ee9ca11d075d965",
+            "observation": "Six doubles3,2,1.5,1,.67,.5."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "temporary army construction",
+            "preferredVa": "0x4ac3de",
+            "endExclusiveVa": "0x4ac420",
+            "rva": "0xac3de",
+            "fileOffset": "0xac3de",
+            "size": 66,
+            "sha256": "d587aaf70b13a060c8c62823b31bead8d7809b5031e59380350ca827fdab2bed",
+            "observation": "Stacklocal army atEBP-4c initialized44a750, primarytypes slots0..G-1; countfloor(N/G)+(i<N%G) via signedIDIV. No battlehex placement selected here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "army initializer",
+            "preferredVa": "0x44a750",
+            "endExclusiveVa": "0x44a76f",
+            "rva": "0x4a750",
+            "fileOffset": "0x4a750",
+            "size": 31,
+            "sha256": "7b5e8b21068c83ce165daef0966c2264faecdf6b8632f63b2aa5f6eb74e27364",
+            "observation": "Seven types=-1,sevencounts0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "conditional neutral upgrades",
+            "preferredVa": "0x4ac420",
+            "endExclusiveVa": "0x4ac4b3",
+            "rva": "0xac420",
+            "fileOffset": "0xac420",
+            "size": 147,
+            "sha256": "97d01855c443cd91d5428bd7adfa92233c57caede936ffe78c3a132203de21c9",
+            "observation": "Conditional default-rule/town-assignment predicate47aa50 and G>1,noextras,draw<=50 may replace middleprimary type with47aad0 upgrade. Not unconditionalsame-type proof for all mutabletables/plugins."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native combat call and local survivors",
+            "preferredVa": "0x4ac550",
+            "endExclusiveVa": "0x4ac617",
+            "rva": "0xac550",
+            "fileOffset": "0xac550",
+            "size": 199,
+            "sha256": "3d351f3e423259e1484d9b93b8406e448305ec3df3320c8549b36a1103632e66",
+            "observation": "Noextras skips permutationblock to4ac5c4. Call4ad160(coords,hero,heroarmy,-1,null,null,&temporaryarmy,seed,1,0). After return44aa90(temp,primarytype) writes remainingprimarycount into resolvedHEargumentlocal, then return combatresult. No map monster lifetime persisted here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native attacker setup",
+            "preferredVa": "0x4ad181",
+            "endExclusiveVa": "0x4ad194",
+            "rva": "0xad181",
+            "fileOffset": "0xad181",
+            "size": 19,
+            "sha256": "2822b186792b04936a2df5585883d126b4076747bb59ff23f309c9df66e4ac3e",
+            "observation": "Attackerhero=arg2 at+0c,initialowner read; finalization regionusesEDI attacker."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native result and attacker removal",
+            "preferredVa": "0x4ae36c",
+            "endExclusiveVa": "0x4ae424",
+            "rva": "0xae36c",
+            "fileOffset": "0xae36c",
+            "size": 184,
+            "sha256": "39ebc78f687dc48752cf6d3e07c8944b7ba2436616c0889072cd853adde944d4",
+            "observation": "Finalization flagarg9true. Battle result13d48==1 removesattackerEDI via4da130(1,0). Result0 goes otherbranch4ae424. -1 goes4ae550."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native loser common removal",
+            "preferredVa": "0x4ac645",
+            "endExclusiveVa": "0x4ac657",
+            "rva": "0xac645",
+            "fileOffset": "0xac645",
+            "size": 18,
+            "sha256": "996343af568e6725e1159640510dc57916c647c074237cbb7ee9fa20589cded5",
+            "observation": "4ac620 nonnullhero invokes4da130(1,0) before additionalnotifications."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native draw removal calls",
+            "preferredVa": "0x4ae550",
+            "endExclusiveVa": "0x4ae58d",
+            "rva": "0xae550",
+            "fileOffset": "0xae550",
+            "size": 61,
+            "sha256": "86c860b71377dfbbc0df3a98c55152ff42628f6dc9204900cef2f4060fccc600",
+            "observation": "Battle result-1 invokes4ac620 for attacker,then defenderwhenapplicable; HE:T defenderheronull."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hero removal owner mutation",
+            "preferredVa": "0x4da516",
+            "endExclusiveVa": "0x4da530",
+            "rva": "0xda516",
+            "fileOffset": "0xda516",
+            "size": 26,
+            "sha256": "91c5b6637380f1f911f0fd311535e075d5a2270ace0a0d9c3653aa16029d3ea3",
+            "observation": "Unconditionally sets hero+22=-1 at4da525; hero structure retained."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "OB dispatch final owner check",
+            "preferredVa": "0x74d752",
+            "endExclusiveVa": "0x74d79a",
+            "rva": "0x34d752",
+            "fileOffset": "0x2e8752",
+            "size": 72,
+            "sha256": "d4334e29f9e03f20c06d672b8af24becfae9ae39d446dc29ac7dff30cf1cbef1",
+            "observation": "After OBtriggerprocessing, rereadhero+22and passowner to74d499,return itsdecision."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "owner cancellation predicate",
+            "preferredVa": "0x74d4b3",
+            "endExclusiveVa": "0x74d4ce",
+            "rva": "0x34d4b3",
+            "fileOffset": "0x2e84b3",
+            "size": 27,
+            "sha256": "f079bc7454f25433d13769a26b3bbb8041575ffe94cd6a002a1bd1c104011ed6",
+            "observation": "Owner<0 or>8 returns1 before perobjectdisabledstate lookup; negativeowner stops ordinarynativevisitwrapper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "OB native skip branch",
+            "preferredVa": "0x705a3d",
+            "endExclusiveVa": "0x705a71",
+            "rva": "0x305a3d",
+            "fileOffset": "0x2a0a3d",
+            "size": 52,
+            "sha256": "54ee59091d2bacbe1503cf6deda1f233b0a13f60b55eb8e4d43fbf27b3338dc1",
+            "observation": "PreOBdispatch74d56d returnsnonzero→jump706189 skipnativeobjecteffect; doesnotreadQuitTriggerFlaghere."
+          }
+        ],
+        "limits": [
+          "Static only. No actualfight, retreatbutton, save/load, replay, multiplayerorplugin sessionexecuted.",
+          "Main temporaryarmy, groupdistribution andownerloserfinalization areproven. Exact effective WoG/ERAplugins hooks at4ac270,4ad160,47aa50andbattleplacement not exhaustively audited.",
+          "Native result13d48 winnercode semantics inferred from attacker/defender removalbranches; retreat/surrender mapping remains explicitlyconditional until its UI resultwriter is traced.",
+          "No complete state restorationaudit of allglobals across nestedERMevents; only localarmy and79f138 seen inbridge.",
+          "Unusualzero/negativecount, invalidtype and32-bit strengthoverflow can lead to different arithmeticpaths; no safeclamp invented.",
+          "No battlehexlayout or perplugin creatureupgradeparity claimed."
+        ]
+      }
+    },
+    {
+      "name": "era-rogues127-battle/formation-addendum.json",
+      "originalReportSha256": "e9f4e79c19124a7258d4c698c32eb9f4929115214a3666f30187409cf89f22ad",
+      "report": {
+        "scope": "Ordinary bounded static formation addendum only. No original runtime or REA Evidence; no tracked file or container changed. Graphify query first.",
+        "preservedInitialReport": {
+          "path": "work/downloads/era-rogues127-battle/report.json",
+          "sha256": "b76da1c0bc4300d9a515e3792416e43e7197fd256246cbd521986dafcded397c"
+        },
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/AdvErm.pas",
+            "size": 122843,
+            "sha256": "cfd4a30049ab3fd93310b9f7ec9087469efbc134211c9cdaf4e310948417e13c"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          }
+        ],
+        "correctionToInitialReport": "The earlier wordrefreshfor4e5bd0 is inaccurate: this helper reads and sums primaryskills withoutwrites. Its return is discarded here. It doesnotadjust the formationstrength ratio. The initialreport remains untouched asrequested.",
+        "contract": {
+          "numberSeven": "G startsliteral7 at4ac361; atmostsixthresholddecrements produce1..7. Armyinitializer44a750 separately initializes exactlysevennativearmyslots. G doesnotderivefromnumberofoccupiedherostacks. Noextras ensuresallGslotsprimary and noformationpermutation.",
+          "strengthAndRatio": "H=wrapSigned32(sumover7occupiedheroarmyslots(AIValue(type)*count)).E=wrapSigned32(AIValue(mon)*N) forHE:T5args(noextras). Current6747b0table,rowstride116,+40. R=double(H/E) via x87 integerloads/division thenFSTPqword. No directhero attack/defense, commander, artifacts or fightingvalue+3c multiplier in theseobserved instructions. Externalhooks/earlierarmychangesnotexcluded.",
+          "ratioGroups": [
+            {
+              "ratio": "R<0.5",
+              "groups": 7
+            },
+            {
+              "ratio": "0.5<=R<0.67",
+              "groups": 6
+            },
+            {
+              "ratio": "0.67<=R<1",
+              "groups": 5
+            },
+            {
+              "ratio": "1<=R<1.5",
+              "groups": 4
+            },
+            {
+              "ratio": "1.5<=R<2",
+              "groups": 3
+            },
+            {
+              "ratio": "2<=R<3",
+              "groups": 2
+            },
+            {
+              "ratio": "R>=3",
+              "groups": 1
+            }
+          ],
+          "floatDetails": {
+            "thresholdsBinary64Hex": [
+              "4008000000000000",
+              "4000000000000000",
+              "3ff8000000000000",
+              "3ff0000000000000",
+              "3fe570a3d70a3d71",
+              "3fe0000000000000"
+            ],
+            "comparison": "R<threshold stops with currentG, equalitycontinues decrement. Validfinitepositiveratio uses intervals inratioGroups. .67 constantis0.670000000000000039968...; implementationsshoulduseitsbinary64representation,notanintegercomparisonagainst67/100."
+          },
+          "rolls": {
+            "seed": "NativecallresetsCRTseed beforeformation towrap32(248071*x+276589*y+310111*z+155303), aftersigned10-bitx/yand4-bitzdecode. No claimothergameRNGstreamsareidentical.",
+            "first": "One drawD1=rand15%100+1 is consumed beforeNcap, includingN1.<=20 decrementsG;>=80 incrementsG onlyifG<7;thenmax1,minN. Thusintegerdrawbinsare1..20,21..79,80..100. ExactdistributionisLCG/modulo,notidealunbiasedpercentages.",
+            "second": "OnlyifallupgradegatespassafterNcap:1F698global/typegate,baseassignmentpredicate,G>1,extrasabsent. ThenoneadditionaldrawD2;D2<=50 upgradesmiddle,elsekeepsalltypes. No extra formationdraw afterD2 ininspectedHE:Tnoextrabranch.",
+            "CRT": "state=uint32(state*214013+2531011),rand15=(state>>16)&32767. Mod100+1. Seedingandtwodrawscannotbereplacedbyonedrawwithoutchangingsequence."
+          },
+          "upgrade": "Eligiblebasecreaturemusthavefaction!=-1,level0..6,andmatchcurrenttownbaseassignmentat[faction][level].Typealreadyinupgradedassignmentdoesnotpassbasepredicate. UpgradeIDiscurrenttownassignment[faction][7+level],nottype+1. ForG>1andD2<=50 onlyslot floor(G/2) changes type;allcountsunchanged. Ifmutableupgradecell=-1,thatrawvaluecanbestoredwithoutvalidationhere.",
+          "rogueAndWaterInitialTable": {
+            "Rogue143": "Embeddedclassificationfaction-1,level1→basepredicatefalse→onlyD1,allslotsremain143 ifclassificationnotmutated.",
+            "Water115": "Embeddedfaction8,level2,baseassignment115,upgradeassignment123. IfglobalGameMgr+1f698==0,type115shortcutpreventssecondrollandupgrade; ifnonzeroandG>1,eligibleD2canreplacejustmiddlewith123.",
+            "runtimeBoundary": "ClassificationtableisrelocatedandmutableinWoG/ERA; embeddedrowsareinitialreferenceobservations,notscreenshotsofloadedruntime. Thispassdoesnotprovealllaterclassificationwritesorpluginsabsent."
+          },
+          "quantityAndSlots": "ForpositiveN,G=min(N,max(1,adjustedG));q=N divG,r=N modG. Slot i0..G-1hascountq+(i<r),selectedmonexceptmiddlepossibleupgrade;slotsG..6type-1,count0. Thefirstremainder slotsreceive+1. Countsandtypeareint32,notpersistentmapmonsterobjectrecords.",
+          "nonPositiveN": {
+            "proved": "No N>0 syntaxguardorrejection inHE:Treceiveror4ac270beforestrengthdivision. Clampmin1thenminNforcesG=0forN0,G=NforN<0. SignedTEST/JLEat4ac3e8 skipsdistributionwhenG<=0;G>1upgradegatefails. Firstdrawstilloccursifprecedingx87arithmeticreturns. Emptylocalarmyispassedtonativebattlecall; no conversionNto1.",
+            "fpuLimit": "N0causeszeroenemystrengthandx87FDIVbeforecountcap. WithusualmaskedFPUexceptions,Rmayinf/NaNbutGfinally0;withunmaskedexceptionmaytrapbeforefirstroll. FPUcontrolstateandnativeemptyarmycombatoutcomeareunproved. NegativeN/overflowAIValuecasesareoutsideordinarygameplaydomain;donotinventsafeclamp."
+          }
+        },
+        "derivedExamplesNotExecuted": [
+          {
+            "assumptions": "FinitepositiveR=1, D1=50→baseG4; initialtableunmodified;eligiblewatermodeglobalnonzero;D2=30whenconsumed.",
+            "N": 1,
+            "G": 1,
+            "counts": [
+              1
+            ],
+            "rogueTypes": [
+              143
+            ],
+            "waterTypes": [
+              115
+            ],
+            "drawCount": 1
+          },
+          {
+            "assumptions": "SameR/D1;D2=30wheneligible.",
+            "N": 2,
+            "G": 2,
+            "counts": [
+              1,
+              1
+            ],
+            "rogueTypes": [
+              143,
+              143
+            ],
+            "waterTypes": [
+              115,
+              123
+            ],
+            "drawCountRogue": 1,
+            "drawCountWater": 2
+          },
+          {
+            "assumptions": "SameR/D1;D2=30wheneligible.",
+            "N": 7,
+            "G": 4,
+            "counts": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "rogueTypes": [
+              143,
+              143,
+              143,
+              143
+            ],
+            "waterTypes": [
+              115,
+              115,
+              123,
+              115
+            ],
+            "drawCountRogue": 1,
+            "drawCountWater": 2
+          },
+          {
+            "assumptions": "SameR/D1;D2=30wheneligible.",
+            "N": 80,
+            "G": 4,
+            "counts": [
+              20,
+              20,
+              20,
+              20
+            ],
+            "rogueTypes": [
+              143,
+              143,
+              143,
+              143
+            ],
+            "waterTypes": [
+              115,
+              115,
+              123,
+              115
+            ],
+            "drawCountRogue": 1,
+            "drawCountWater": 2
+          }
+        ],
+        "exampleBoundary": "NalonecannotdetermineG: H,AIValueandD1alsomatter. N1hasG1;N2hasG1or2;N7/N80canhaveG1..7. D2>50leavesallwater115;global0shortcutconsumesonlyD1andkeepswater115.",
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "coordinate seed",
+            "preferredVa": "0x4ac288",
+            "endExclusiveVa": "0x4ac2db",
+            "rva": "0xac288",
+            "fileOffset": "0xac288",
+            "size": 83,
+            "sha256": "321adb68283526952ca65a6c4ee07614ece2e918ab1d3aae3f12317837e9dcf0",
+            "observation": "Decodepackedxyz signed10/10/4; seedwrap32(248071*x+276589*y+310111*z+155303). Call50c7b0 toseednativeRNG before formationrolls."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "strength calculation and thresholds",
+            "preferredVa": "0x4ac2db",
+            "endExclusiveVa": "0x4ac398",
+            "rva": "0xac2db",
+            "fileOffset": "0xac2db",
+            "size": 189,
+            "sha256": "d9a836cb40299c09a12d3aa660c23644a6b4a9f855c7131f9cead0f25a6947f6",
+            "observation": "EnemyAIValue*count signedlow32. Hero44a950 resultused;4e5bd0 resultignored. Ratio via x87FILD/FDIV roundedto double local. InitialG7 andsixthresholdloop."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "group roll clamp and allocation",
+            "preferredVa": "0x4ac398",
+            "endExclusiveVa": "0x4ac420",
+            "rva": "0xac398",
+            "fileOffset": "0xac398",
+            "size": 136,
+            "sha256": "103aef7b17402209fa1f3cc5b001558f1c24382ff0892711e919aec542788a98",
+            "observation": "Firstdraw1..100 unconditional on N.<=20 decrement;>=80 increment ifG<7; clamp>=1 then<=N. IfG<=0 skipstackwrites. PositiveGdistributesquotient/remainder."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "upgrade gates and middle slot",
+            "preferredVa": "0x4ac420",
+            "endExclusiveVa": "0x4ac4b3",
+            "rva": "0xac420",
+            "fileOffset": "0xac420",
+            "size": 147,
+            "sha256": "97d01855c443cd91d5428bd7adfa92233c57caede936ffe78c3a132203de21c9",
+            "observation": "IfGameMgr+1f698==0 andtype112..115 skip. Else47aa50 requiredtrue,G>1,extrasabsent. Onlythen draw1..100;<=50 calls47aad0 andwritesmiddleindextrunc(G/2),preservingcount."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "no extras means no reorder",
+            "preferredVa": "0x4ac550",
+            "endExclusiveVa": "0x4ac5c4",
+            "rva": "0xac550",
+            "fileOffset": "0xac550",
+            "size": 116,
+            "sha256": "738f09ade106562dc05987d182983d0ebe83d53674fd6e01ad0dd32e5288e237",
+            "observation": "Withboth extratypes-1 jumpsdirectly4ac5c4,doesnotexecutepermutationtableblock."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "army strength helper",
+            "preferredVa": "0x44a950",
+            "endExclusiveVa": "0x44a989",
+            "rva": "0x4a950",
+            "fileOffset": "0x4a950",
+            "size": 57,
+            "sha256": "f4365a0db77a3ecfdf7a3f1b4c3ee8942a4a76c84ccb2300c05049d3ccfd00e1",
+            "observation": "Sum seven signedlow32 products currenttable[type].AIValue(+40)*count, skips type-1, no hero-stat factor."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "ignored primary skill helper",
+            "preferredVa": "0x4e5bd0",
+            "endExclusiveVa": "0x4e5c08",
+            "rva": "0xe5bd0",
+            "fileOffset": "0xe5bd0",
+            "size": 56,
+            "sha256": "f0f99a6426061de54025460f0a7e07d554670dc766f5d00886ffe0a04b109a23",
+            "observation": "Read fourprimarybytes at hero+476, sumclampedvalues; no writes. Returnoverwrittenbyfollowing44a950. Corrects priorreportrefreshwording."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "base town troop predicate",
+            "preferredVa": "0x47aa50",
+            "endExclusiveVa": "0x47aaad",
+            "rva": "0x7aa50",
+            "fileOffset": "0x7aa50",
+            "size": 93,
+            "sha256": "ffb6a5795e6b34ac0e8a245b7ef5ab9f7efaa13bdc96a097ffdaa8d1a2e2c23c",
+            "observation": "Creaturefaction=-1 rejects. Currentcreature[faction,level] mustmatchbasetownassignment andlevel0..6. Matchingupgradedgroupincreaseslevelby7 thenfailslevel<7; thusonly currentbaseeligible."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "current town upgrade lookup",
+            "preferredVa": "0x47aad0",
+            "endExclusiveVa": "0x47ab41",
+            "rva": "0x7aad0",
+            "fileOffset": "0x7aad0",
+            "size": 113,
+            "sha256": "63f4984f2675e8ad7ab9d0108fce79369e6c6254e11dae9008aea20c4cb17de5",
+            "observation": "Samebasepredicate; returntownassignment[faction][upgrade1][level]. Doesnotassumeid+1; returns-1onfailedpredicate. Successfulbasewithupgradecell-1canreturn-1."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "seed wrapper",
+            "preferredVa": "0x50c7b0",
+            "endExclusiveVa": "0x50c7be",
+            "rva": "0x10c7b0",
+            "fileOffset": "0x10c7b0",
+            "size": 14,
+            "sha256": "83ef1d1c3021fce57d156f01d40d9760d4f2053e915902e395a8db40f42a7fda",
+            "observation": "Storesseed67fbe4 andcallsCRT srand61841f."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "inclusive range modulo draw",
+            "preferredVa": "0x50c7c0",
+            "endExclusiveVa": "0x50c7e8",
+            "rva": "0x10c7c0",
+            "fileOffset": "0x10c7c0",
+            "size": 40,
+            "sha256": "5545fde25f7decf0e2b123fc1dc94d780476094a81f6fff506c2aa99cdac037f",
+            "observation": "Ifmax>min:rand61842c % (max-min+1)+min.Thus1..100 inclusive,oneCRTdraw. No rejectionloop/unbiasedsampling."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CRT seed and rand",
+            "preferredVa": "0x61841f",
+            "endExclusiveVa": "0x61844e",
+            "rva": "0x21841f",
+            "fileOffset": "0x21841f",
+            "size": 47,
+            "sha256": "570fd7437a5f4228b6ef6f467fc0683bd42c2be81a7505fed52a37a0b3d33083",
+            "observation": "Threadlocalstate+14; srandstoresseed;randstate=wrap32(state*214013+2531011),return(state>>16)&32767. Exactlyoneadvanceperrange1..100call."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "threshold binary64 constants",
+            "preferredVa": "0x6776e0",
+            "endExclusiveVa": "0x677710",
+            "rva": "0x2776e0",
+            "fileOffset": "0x2776e0",
+            "size": 48,
+            "sha256": "c1ded8fe334d80e458a3b07baa82c75a72c83c1694b420400ee9ca11d075d965",
+            "observation": "3,2,1.5,1,.67,.5. .67bits3fe570a3d70a3d71,notexactrational67/100."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "embedded Conflux town assignment row",
+            "preferredVa": "0x674974",
+            "endExclusiveVa": "0x6749ac",
+            "rva": "0x274974",
+            "fileOffset": "0x274974",
+            "size": 56,
+            "sha256": "59978051fc59d9baac7b4982ef5f7b1b30dd25a268ed06d8b9cd29a9c1f6974c",
+            "observation": "Base118,112,115,114,113,120,130;upgraded119,127,123,129,125,121,131. Water115level2→upgrade123."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "embedded Rogue classification",
+            "preferredVa": "0x674484",
+            "endExclusiveVa": "0x67448c",
+            "rva": "0x274484",
+            "fileOffset": "0x274484",
+            "size": 8,
+            "sha256": "3bdcf6187bab53fc6e18b7f3e8ea4a666f06f545460189157c6f1ef1e5d85ebc",
+            "observation": "Initialvanillatable6703b8+143*116 fieldsfaction-1,level1."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "embedded water classification",
+            "preferredVa": "0x6737d4",
+            "endExclusiveVa": "0x6737dc",
+            "rva": "0x2737d4",
+            "fileOffset": "0x2737d4",
+            "size": 8,
+            "sha256": "e83d01b4bcb94ac72a546e0f694208305c168603f6c2fb8a97a5c0a844124b98",
+            "observation": "Initialvanillatable6703b8+115*116 fieldsfaction8,level2."
+          }
+        ],
+        "limits": [
+          "Allsameinitialreportlimitsretained. NooriginalexecutionorREA Evidence.",
+          "Formationarmyindicesproven;battlehexpositions,tactics,obstaclesandexternalplacementhooksexcluded.",
+          "GameMgr+1f698semanticname(format/version)notneededforbranchcontractandnotnewlyproved;reportkeepsrawoffsetcondition.",
+          "No finalglobalRNGrestorationclaim: formationseed/drawsproven,largercombat/eventlifecycleandotherRNGstreamsnotfullytraced.",
+          "Classificationandassignmentinitialrowsareembeddeddataobservations. FullWoGrelocation/initializationwriteauditnotrepeated.",
+          "Initialreporthashpreserved. Onlyformation-addendum.jsonwritteninignoredreportfolder."
+        ]
+      }
+    },
+    {
+      "name": "era-rogues127-battle/gating-addendum.json",
+      "originalReportSha256": "cab5527f28a6ff08092a8fc6eb204500c55340f200577f526e2287bef2b72400",
+      "report": {
+        "scope": "Ordinary targeted static gating addendum. No original execution, no REA Evidence; no tracked or container changes. Graphify query before targeted source/binary exploration.",
+        "preservedReports": [
+          {
+            "path": "work/downloads/era-rogues127-battle/report.json",
+            "sha256": "b76da1c0bc4300d9a515e3792416e43e7197fd256246cbd521986dafcded397c"
+          },
+          {
+            "path": "work/downloads/era-rogues127-battle/formation-addendum.json",
+            "sha256": "e9f4e79c19124a7258d4c698c32eb9f4929115214a3666f30187409cf89f22ad"
+          }
+        ],
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "size": 96807,
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+          }
+        ],
+        "findings": [
+          {
+            "status": "proved raw storage and assignment",
+            "question": "What is1F698 setfrom?",
+            "answer": "An effective per-game compatibility/content tier initializedby4bfb30, either explicitarg4 or default2, with a special-modeoverrideusinganotherGameMgrfield. It is not readfromtheH3Mformatword in thisassignmentblock."
+          },
+          {
+            "status": "strong semantic inference, not literal structure label",
+            "question": "Can tier0/1/2 be calledROE/AB/SOD?",
+            "answer": "Heroes.pas defines gameversion constantsROE0,AB1,SOD2. The inspected field gates expansioncontent, including127+artifacts at0,129+at1andcombinationassistanceonly>=2. This strongly supports effective expansion compatibility tier0=RoE,1=AB,2=SoD. TGameManager record is partial anddoesnotcontain a named1F698 field, so no sourcefieldname isclaimed."
+          },
+          {
+            "status": "proved distinction",
+            "question": "Can adapter derive this gate onlyfromrawH3Mformat?",
+            "answer": "Not justified. Rawmapheaderisloaded separatelyatGameMgr+1F86C.1F698 canbe suppliedexplicitlyorinitializedtodefault2. Exactrelationbetweenstartupselection/loadedgameandrawH3Mversionisnotfullytraced; thereisno proveduniversaliffROEfile→tier0. Keepthisper-gamevalue conceptuallydistinctfromrawmapfileformat."
+          },
+          {
+            "status": "proved exact branch",
+            "question": "WaterElemental115upgradeadmission?",
+            "answer": "For115,the4AC420gate permits47AA50/baseassignment/G>1/secondrollwhen1F698!=0. If1F698==0,no secondrollandno upgrade. It testsnonzero,notrecognizedenumvalues; negativecustomtierwouldalsopassthislocalgate. Remainingformationconstraintsunchanged."
+          }
+        ],
+        "assignmentPseudocode": "if(arg4 != -1 && byte[69779C] == 0) tier=arg4; else {tier=2; if(byte[69779C]!=0){if(GameMgr.field1F45C<7)tier=0;else if(field1F45C<13)tier=1;}}",
+        "sourceReferences": [
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "lineStart": 74,
+            "lineEnd": 78,
+            "meaning": "GameversionconstantsROE0,AB1,SOD2."
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "lineStart": 1088,
+            "lineEnd": 1107,
+            "meaning": "PartialTGameManager record doesnotnameoffset1F698."
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "lineStart": 175,
+            "lineEnd": 176,
+            "meaning": "SeparatelyexposedGameVersionglobal67F554isnotthisper-gamefield;do notequatethemwithoutadditionalproof."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "effective version assignment",
+            "preferredVa": "0x4bfba9",
+            "endExclusiveVa": "0x4bfc0a",
+            "rva": "0xbfba9",
+            "fileOffset": "0xbfba9",
+            "size": 97,
+            "sha256": "db4e8c18acea6d1b89dafe29d1ce8f55f70b8baa3309e154de853c3ec19b1dad",
+            "observation": "Ifarg4 EBP+14 !=-1 andglobal69779cbyte0,storearg4 intoGameMgr+1f698. Elsedefault2. Ifglobal69779c!=0:GameMgr+1f45c<7→0,7..12→1,>=13→2. NoH3Mheaderreadinthisassignmentblock."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "caller passes default minus one",
+            "preferredVa": "0x4880bd",
+            "endExclusiveVa": "0x4880d7",
+            "rva": "0x880bd",
+            "fileOffset": "0x880bd",
+            "size": 26,
+            "sha256": "c61cd466527e689afd74f23452530e99fee96dee670b1b2fc13d5e2d44979107",
+            "observation": "Pusharg4=-1 thenotherargs andcall4bfb30. Provesatleastonecallerrequestsdefault,doesnotdirectlypasstherawH3Mversion."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "caller forwards explicit version argument",
+            "preferredVa": "0x4c0291",
+            "endExclusiveVa": "0x4c02aa",
+            "rva": "0xc0291",
+            "fileOffset": "0xc0291",
+            "size": 25,
+            "sha256": "87f2dfe140c6fb5fb7fd275595378c33f9330282dd6e65fd02857cccdc7a4992",
+            "observation": "Outerarg4EBP+14 passedasarg4to4bfb30;fullUIoriginnottraced."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "separate raw map header load",
+            "preferredVa": "0x4c212c",
+            "endExclusiveVa": "0x4c214a",
+            "rva": "0xc212c",
+            "fileOffset": "0xc212c",
+            "size": 30,
+            "sha256": "541b750c7a9ef004f8a4a17ca59192f98cd41b17a194873c706bbaab1a5c58cc",
+            "observation": "GameMgr+1f86c passedasmapheaderdestination to4c4050,distinctfromeffective1f698."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "effective version controls artifact classes",
+            "preferredVa": "0x4c21c0",
+            "endExclusiveVa": "0x4c2200",
+            "rva": "0xc21c0",
+            "fileOffset": "0xc21c0",
+            "size": 64,
+            "sha256": "50d44c11b34575b8b4f6e5daa40e9012ef37911d866a4b3053cc5faee3d337e1",
+            "observation": "Effective1f698<2 banslaterartifactIDs:0starts127,1starts129,2skipslegacybanblock. Corroboratesexpansioncontenttier."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "effective version controls assembly assistance",
+            "preferredVa": "0x4e3316",
+            "endExclusiveVa": "0x4e3336",
+            "rva": "0xe3316",
+            "fileOffset": "0xe3316",
+            "size": 32,
+            "sha256": "e1942885a628a8dab4c42096a482907bdaa35382bcb2c15c488c92d23a0d1044",
+            "observation": "IfGameMgr+1f698<2 skipcombinationartifactassistance; >=2usesrecipefields. CorroboratesSoDcontentgate."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "value copied to persistent game header",
+            "preferredVa": "0x4bc063",
+            "endExclusiveVa": "0x4bc07e",
+            "rva": "0xbc063",
+            "fileOffset": "0xbc063",
+            "size": 27,
+            "sha256": "f8f6bbe1a7d3d13ac6ba66ef0da0c59d02447da9ced6f8f782b2fb769b0a347e",
+            "observation": "Globalgameheader+0c receivesGameMgr+1f698. Completefilewriter/readerlifecycleoutsideboundedpass."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "formation water gate",
+            "preferredVa": "0x4ac420",
+            "endExclusiveVa": "0x4ac443",
+            "rva": "0xac420",
+            "fileOffset": "0xac420",
+            "size": 35,
+            "sha256": "f4d8db260d88101331bd04aa2de53aa44b568fe84abd528891efad744af7cadc",
+            "observation": "Read1f698. Nonzero enterseligibilitypredicate47aa50. Zeroandtype112..115skipsupgrade;othercreaturescontinuepredicate. Exactgateusesnonzero,not>=1or>=2."
+          }
+        ],
+        "limits": [
+          "Fulloriginofexplicitarg4andmeaningofspecialmode69779Candfield1F45Cnotclosedhere;campaign interpretation remainsinferenceandisnotrequiredforprovenassignment.",
+          "No runtimevaluewasobserved. Default2inonebranchdoesnotproveeveryERA/WoGsessionalwaysuses2.",
+          "No exhaustivehook/writeauditofallpluginsorcampaign/savevariants. Mutableper-gamefield canchangeafterinitialization.",
+          "Adapterconfigurationmustpreserveorstateitsassumptionaboutcompatibilitytier;thisevidencedoesnotauthorizerawmapformatasexactsubstitute.",
+          "Allpriorreportsremainunchanged;onlynewgating-addendum.jsonwritten."
+        ]
+      }
+    },
+    {
+      "name": "era-rogues127-math/report.json",
+      "originalReportSha256": "638342285011a5d61da6d82f6391e25c759d0f3229be3bdeb60916e6e70c9478",
+      "report": {
+        "scope": "Analyse statique bornée de la règle127, RNG, mathématiques, variables locales ERA et drapeau875. Aucun runtime original exécuté ; aucune REA Evidence. Aucun fichier suivi ou conteneur modifié.",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm",
+            "size": 114009,
+            "sha256": "9cecab0bf658ad807b27cb9f783c220183dde8f580adb61e72044d6692de530f"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "size": 77129,
+            "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "size": 96807,
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+          }
+        ],
+        "conclusions": [
+          {
+            "question": "VR:S0 R15/R63 ?",
+            "status": "answered",
+            "answer": "R with one parameter adds RandomRange(0,upper) to the destination; preceding S0 therefore makes the result0..15 for human and0..63 forAI, inclusive. Source continues only result0: nominal1/16 and1/64. These are per eligible visit attempts; a missed roll does not update lastRogueDate."
+          },
+          {
+            "question": "timerWeek/owner/human dans OB ?",
+            "status": "answered from stdlib scope",
+            "answer": "timerWeek=floor((day-1)/7)+1 for ordinary positiveday, starting1 onday1. timerOwner and timerIsHuman are global i-variables set by OnEveryDay from currentplayer and its AIstatus. The OB handlers and ambush function read these globals without recomputing them from the visitinghero. Do not silently substitute currenthero owner/human at OB entry; normaldaily ordering makes them align, unusual scripts/reentrant context maynot."
+          },
+          {
+            "question": "Valeur mon pour IA ?",
+            "status": "answered for supplied ordinary invocation",
+            "answer": "ZVSE2 preprocessor allocates (mon:y) as a positive y local at compiletime even though its assignment is textually inside human conditional. Every ProcessErm invocation saves old y then clears all100positive y integers; nestedinvocations restore caller y. AI branch never assignsmon, so HE:T receives0 (MON_PIKEMAN), not Rogue143 or WaterElemental115 and not stale previoushuman value. Plugin/event callbacks or another same-function handler deliberately writing thatlocal remain outside bounded ordinaryproof."
+          },
+          {
+            "question": "Comptage/gold signés ?",
+            "status": "answered",
+            "answer": "N=wrap32(wrap32(timerWeek*10)+wrap32(storedHeroLevel*10)). Landgold=wrap32(wrap32(N*10)+300). IntegerVR uses ADD32/IMUL32 without saturation; storedherolevel is signed16. No minimum/maximum count or gold clamp appears in source127 math. Downstream HE:T battle parameter validation and OW:R balances are separateconsumers."
+          },
+          {
+            "question": "Un combat par jour et réentrance ?",
+            "status": "answered source timing; no runtime scheduling claim",
+            "answer": "Function guard rejects when timerDay equals date indexed by timerOwner. It writes date only after HE:T returns and reward/flag block. Thus at mostone normally completed ambush per timerOwner/day, regardlesswin/death, but not one attempt. During battle andnested events, date is still old and875 is not checked by thisfunction: no source-level in-progress guard prevents reentrance."
+          },
+          {
+            "question": "Lifecycle IF:V875 ?",
+            "status": "answered",
+            "answer": "For each eligible functionexecution, afterroll generation set875=0. Onroll0 set875=1 immediately before HE:T. After battle read heroowner; ifowner!=-1, award landgold and set875=0 (wateralso clearsit). Ifowner==-1 leave875=1, then stillwritelastdate. Flag875 is global: ProcessErm saves/restores only flags996..1000, not875. A futurefunction invocation blocked atheader does not resetit; a latereligiblemiss can resetit."
+          }
+        ],
+        "sourceSequence": [
+          "OB types12,17,29,32,39,47,51,53,55,57,58,60,61,79,82,88,94,100,101,102,104,105,107,109,112,113 call FU with owner GET then SN:Q only if returnedowner==-1.",
+          "FU header requiresrule16enabled and timerDay!=lastRogueDate[timerOwner]. Body initializes returnedowner=8; nonbattle path leaves8 toavoid falselysuppressing objectvisit.",
+          "Roll using timerIsHuman; resetflag875=0; onroll0 readcurrentterrain andhero.",
+          "Only humanbranch choosesmon143 onnonwaterterrain or115 onterrain8 and showsmessage. AI mon remainsinitialized0.",
+          "N=10*globalweek+10*storedsignedheroLevel usingwrap32 operations. Set875=1, call HE:T(v998,v999,v1000,mon,N).",
+          "Read survivingheroowner into returnowner. Ifnot-1: nonwater gives10*N+300gold andhumanmessage; bothwater/land clear875.",
+          "Write lastRogueDate[timerOwner]=timerDay. Returns toOB; owner-1 invokes SN:Q to suppress defaultobjectvisit."
+        ],
+        "quickLocalProof": {
+          "compiletime": "Erm.pas InitLocalVarsPools positivey1..100. At eachZVSE2 trigger, FinalizeLocalVarsPools thenInitLocalVarsPools. AllocLocalVar assigns physicalyindex immediately duringpreprocessing, not when execution reaches declarationtext.",
+          "derivedAliasOrder": "Within this handler: random:y→y1, terrain:y→y2, hero:y→y3, mon:y→y4, rogueNum:y→y5, lv:y→y6, gold:y→y7, assuming suppliedpreprocessor/source unchanged. Exactmonordinal is derived, while positive-yzeroinit doesnotdependonordinal.",
+          "binary": "era.dll494daE calls save,494db5 callsreset;494a50 clears400bytes via y pointer4b00d8=A48D80. Thus repeated calls/nestedhumanbattle do not import mon from priorframe.",
+          "scope": "HasEventHandlers eventcallbackscalled afterreset and before script; another handler sharing thesamefunctionevent could intentionallywrite y4. No such additionalhandler was establishedhere."
+        },
+        "timerSemantics": {
+          "source": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm",
+          "definitions": {
+            "timerDay": "day globalc",
+            "timerWeek": "(day-1) div7 +1",
+            "timerOwner": "OW:C currentplayer atdailyhandler",
+            "timerIsHuman": "1-OW:I(owner)",
+            "timerOnce": "lastdailyday differs currentday"
+          },
+          "OB127": "No timerOnce or day>1 condition inambushheader. Day1 attemptspossible; all eligible visits use lastdailyglobals."
+        },
+        "flagScope": {
+          "savedFlags": "ProcessErm localSavedF is booleanarray996..1000 only.875 survives normal/nestedreturn unlessanothercodewritesit.",
+          "otherSourceConsumers": [
+            {
+              "script": "49 wog - chest.erm",
+              "line": 66,
+              "guard": "OB101/1 & -875"
+            },
+            {
+              "script": "48 wog - adventure cave.erm",
+              "lines": [
+                1662,
+                1678
+              ],
+              "guard": "chest aftervisit guards -875"
+            },
+            {
+              "script": "55 wog - sorcery skill enhancement.erm",
+              "lines": [
+                591,
+                649
+              ],
+              "guard": "resource/chest enhancements guarded -875"
+            }
+          ],
+          "reentrance": "Flagshared acrossplayers/heroes and not ownerindexed. Nestedambush can overwriteouterflag and date; positiveyframes alone are protected, globali/f875 are not."
+        },
+        "derivedExamplesNotExecuted": {
+          "ordinary": [
+            {
+              "day": 1,
+              "timerWeek": 1,
+              "heroLevel": 1,
+              "rogueNum": 20,
+              "landGold": 500
+            },
+            {
+              "day": 8,
+              "timerWeek": 2,
+              "heroLevel": 5,
+              "rogueNum": 70,
+              "landGold": 1000
+            },
+            {
+              "day": 15,
+              "timerWeek": 3,
+              "heroLevel": 5,
+              "rogueNum": 80,
+              "landGold": 1100
+            }
+          ],
+          "signedOverflow": [
+            {
+              "timerWeek": 214748365,
+              "heroLevel": 1,
+              "rogueNum": -2147483636,
+              "landGold": 420
+            },
+            {
+              "timerWeek": 1,
+              "heroLevel": 32767,
+              "rogueNum": 327680,
+              "landGold": 3277100
+            }
+          ],
+          "creatureTypes": {
+            "humanLand": 143,
+            "humanWater": 115,
+            "AIeitherTerrain": 0
+          }
+        },
+        "sourceReferences": [
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "ranges": [
+              [
+                657,
+                765
+              ],
+              [
+                770,
+                838
+              ]
+            ],
+            "meaning": "OBentrylist, body/guard/date/math/flagconditions."
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm",
+            "ranges": [
+              [
+                228,
+                249
+              ]
+            ],
+            "meaning": "Dailytimerdefinitions and scope."
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "ranges": [
+              [
+                380,
+                380
+              ],
+              [
+                495,
+                495
+              ],
+              [
+                523,
+                523
+              ]
+            ],
+            "meaning": "Pikeman0,WaterElemental115,Rogue143."
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "ranges": [
+              [
+                2037,
+                2066
+              ],
+              [
+                2133,
+                2200
+              ],
+              [
+                2844,
+                2854
+              ],
+              [
+                5654,
+                5662
+              ],
+              [
+                5694,
+                5773
+              ],
+              [
+                5809,
+                5824
+              ],
+              [
+                8227,
+                8268
+              ],
+              [
+                7767,
+                7789
+              ],
+              [
+                7839,
+                7864
+              ],
+              [
+                9439,
+                9442
+              ]
+            ],
+            "meaning": "Compiletimealiases, save/reset/restore, integerarithmetic,RNG,newVRregistration."
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "ranges": [
+              [
+                2228,
+                2232
+              ]
+            ],
+            "meaning": "RandomRange delegatesnative50c7c0."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "y pointer binding",
+            "preferredVa": "0x4b00d8",
+            "endExclusiveVa": "0x4b00dc",
+            "rva": "0xb00d8",
+            "fileOffset": "0xaf0d8",
+            "size": 4,
+            "sha256": "563d3b1258c9dc4a56f31f825410863756db2911ec61f74683e52c5eafb0d68a",
+            "observation": "Contains native y-array addressA48D80."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "save100positive y variables",
+            "preferredVa": "0x4948e8",
+            "endExclusiveVa": "0x494905",
+            "rva": "0x948e8",
+            "fileOffset": "0x93ce8",
+            "size": 29,
+            "sha256": "ef217cec2c98a524c7721b9f0a760b9caf61dc5bcdb5ea8f7140856e58962458",
+            "observation": "Copies100dwords from y pointer to invocation stack."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "zero positive y variables",
+            "preferredVa": "0x494a50",
+            "endExclusiveVa": "0x494a75",
+            "rva": "0x94a50",
+            "fileOffset": "0x93e50",
+            "size": 37,
+            "sha256": "2ae300588be98a16ce125577d64c28d88973a561a4d92b501a746dfa8cd80f9c",
+            "observation": "Loads y pointer, count0x190bytes, fillbyte0, callsFillChar403ba4; then samefor e vars. No stale y on functionentry."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "entry save then reset",
+            "preferredVa": "0x494da0",
+            "endExclusiveVa": "0x494dbb",
+            "rva": "0x94da0",
+            "fileOffset": "0x941a0",
+            "size": 27,
+            "sha256": "b56692430b43f7a2d9a56d0efd81edcb2409481573c4775b9f2610a399a4723f",
+            "observation": "When eventhas handlers callsSaveVars4948e8 thenResetLocalVars494a50 before executing event/script handlers."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "restorepositive y variables",
+            "preferredVa": "0x494abc",
+            "endExclusiveVa": "0x494ada",
+            "rva": "0x94abc",
+            "fileOffset": "0x93ebc",
+            "size": 30,
+            "sha256": "0a8580af6006b9955adbc0e25a90f76a3ce2a4e8bfc6b30f12c3fa4a188191d6",
+            "observation": "Copies saved100dwords backto y pointer on eventrestore; nestedframes do not permanentlyclobber caller y."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "integer VR add",
+            "preferredVa": "0x498b36",
+            "endExclusiveVa": "0x498b41",
+            "rva": "0x98b36",
+            "fileOffset": "0x97f36",
+            "size": 11,
+            "sha256": "4675da4242f7f9060e584470953ba3f2a661437bb52c4d5b234b6205b9835c2e",
+            "observation": "ADD32 storedwithout overflowbranch or saturation."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "integer VR multiplication",
+            "preferredVa": "0x498b72",
+            "endExclusiveVa": "0x498b81",
+            "rva": "0x98b72",
+            "fileOffset": "0x97f72",
+            "size": 15,
+            "sha256": "f8729f7eb97c0255923153dd50e317b75cc1faba04560bbab7a776e5eec0047e",
+            "observation": "IMUL32 low32 result stored, no overflowbranch/clamp."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "singleargument VR R",
+            "preferredVa": "0x4999d0",
+            "endExclusiveVa": "0x499a19",
+            "rva": "0x999d0",
+            "fileOffset": "0x98dd0",
+            "size": 73,
+            "sha256": "1cab0e6ae941655ecf21f52b9549a03a3cf91a1b1524cc11d1736b4b814c76ca",
+            "observation": "OneparameterR reads currentinteger, calls4318d0(0,upper), adds result, setsintegerparam. Twoargs isseedpath, not usedhere."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "Heroes RandomRange wrapper",
+            "preferredVa": "0x4318d0",
+            "endExclusiveVa": "0x4318de",
+            "rva": "0x318d0",
+            "fileOffset": "0x30cd0",
+            "size": 14,
+            "sha256": "74f2ff78038da233cc166b1ed33758c1ce372e15c1a6487836c58949816467ad",
+            "observation": "Wrapper calls native50c7c0 with Min/Max."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native inclusive randomrange",
+            "preferredVa": "0x50c7c0",
+            "endExclusiveVa": "0x50c7e8",
+            "rva": "0x10c7c0",
+            "fileOffset": "0x10c7c0",
+            "size": 40,
+            "sha256": "5545fde25f7decf0e2b123fc1dc94d780476094a81f6fff506c2aa99cdac037f",
+            "observation": "Uses RNG61842c then signedmodulo(Max-Min+1)+Min; equalbounds returnsbound without RNGcall. Upper15 means16 outcomes; upper63 means64outcomes."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE E level read",
+            "preferredVa": "0x746209",
+            "endExclusiveVa": "0x746289",
+            "rva": "0x346209",
+            "fileOffset": "0x2e1209",
+            "size": 128,
+            "sha256": "fee9bcc146ad70e60ff351351a23d38f2f85ae9ef72b1e421d672c6b071a9949",
+            "observation": "HE:E d/?level/1 accesses signedint16level+55 and appliesADD0 toXP+51; GETlevelpresence exitsbeforelevelrecalculation. No newXPgain fromthislevelread."
+          }
+        ],
+        "limits": [
+          "No runtime original or fullpluginload observed. Additional eventhandlers/plugins may altertimerglobals, yframe or875. Claims bounded tosuppliedsource/kernel paths.",
+          "Singlefunctiontextualmonordinal is staticallocationreplay, notcapturedcompiledERMfile. Critical AIzero conclusion is independentlysupportedby wholepositiveyreset andmonassignmentabsenceinAIbranch.",
+          "HE:T nativebattle stackcount validation/splitting, combatresult handling and OW:R finalresourceoverflow/clamps notfullyauditedinthisquestion. Report gives exactsourcearguments/arithmetic without claiming downstreamacceptanceofpathologicalnegativecounts.",
+          "NominalRNGprobabilities reflect inclusive16/64ranges. ActualPRNGseed/state/multiplayerstream and observedfrequency notvalidatedruntime.",
+          "Lastdate barrier described for normalnonreentrantcompletion; nestedfunctions/plugins/abortexceptions can preventorinterleavepostbattlewrites. No inventedfinally-reset875.",
+          "No filesoutside newignoredreportfolder changed for thisquestion; previousreports retained."
+        ]
+      }
+    },
+    {
+      "name": "era-rogues127-math/return-addendum.json",
+      "originalReportSha256": "88afe097425931eec05893335f47dd2c3075007fb70a8c01bf836b73e84182b3",
+      "report": {
+        "scope": "Offline bounded ordinary PE static analysis of source127 return/reward; not original runtime and not REA Evidence. No tracked files, containers, prior reports or tools configuration changed.",
+        "preservedInitialReport": {
+          "path": "work/downloads/era-rogues127-math/report.json",
+          "sha256": "638342285011a5d61da6d82f6391e25c759d0f3229be3bdeb60916e6e70c9478"
+        },
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+            "usage": "Identity recorded; this pass did not exhaustively trace DLL hook installation."
+          }
+        ],
+        "source": {
+          "lines": "77 map rules.erm 817..838",
+          "contract": "HE:T synchronous; then HE:O reads resulting owner; land reward iff owner!=-1; no winnercode/flagcondition. Flag875clear inownerbranch, lastdatealwayswrittenafterward. Watergivesnogold."
+        },
+        "resultContract": {
+          "ordinaryBattle": "Attacker0,defender1,no winner-1. HE:T returnsrawcode toreceiver, whichsets flag1 onallnonzero. Scriptdoesnotreadflag.",
+          "owners": "Forregular defeatedattackerandno-winner, enabledcleanup removeshero owner=-1 evenifretreat/reddition reservesthehero forlaterpurchase. Victory retainsowner unlesscustomscriptschangeit.",
+          "conditionalReward": "Theactualscriptcriterionispostreturnowner!=-1,notvictory. ThereforeANYoutcome/customhookthatleavesanownedheroreturningtriggerslandgold. Do nottranslateconditionto battleWon unconditionally.",
+          "automatic": "4ad160 has a4270c0 successfulattackerautomaticresolution branchreturning0 directly;426ee0 applieswinnerXP and424880 zerostackcleanup. Fullquickbattlealgorithm andallhuman/UIawardsnotexpanded.",
+          "hookException": "Installed WoG 4AC5EA wrapper75ADD9 can skip combat and return0 after preparatory events, and invokes postbattle events on executed path. All native outcome/owner statements assume those events do not override state."
+        },
+        "gold": {
+          "formula": "N=rogueNum frominitialreport; bonus=wrap32(wrap32(N*10)+300); balance=wrap32(oldGold+bonus). OWR hasno0clamp orINTMAXcap ininspectedpositivepath.",
+          "identity": "Explicitownerreadfromheroafterbattle; OWRvalidates0..7. ThisneednotequaloriginaltimerOwner; timerOwnerstillindexeslastdate.",
+          "sentinel": "IfoldGoldDWORD==-1 OWRmistakesitforgetterinvalidsentinel andreturnsanerrorwithoutwriting. Othernegativebalancespass. Aresultbalance-1canbewrittenbutthenfutureOWRreadfails.",
+          "distinctHelper": "710030doesmax(0,wrap32(old+delta));notcalledbyOW:R. Do notreuseitsclampfor thisrule.",
+          "examplesDeducedNotExecuted": [
+            {
+              "N": 214748335,
+              "oldGold": 1000,
+              "bonus": -2147483646,
+              "newGold": -2147482646
+            },
+            {
+              "N": 20,
+              "oldGold": 2147483647,
+              "bonus": 500,
+              "newGold": -2147483149
+            },
+            {
+              "N": 20,
+              "oldGold": -1,
+              "effect": "OW:R error sentinel; unchanged"
+            }
+          ]
+        },
+        "experience": {
+          "source127": "NoextraHE:Eawardafterbattle;nativebattlehandlesXPbeforeHE:Treturns.",
+          "winnerCalculation": "NormalfinalizercomputesXPonlyfornonnegativewinnerwithhero. Ordinaryneutralencounterusesopponentcasualties*creatureHP afterexcludedstates,notN*AIValue/FightValue. Signed32sum/multiplication, Learningfloat32 multiplierandtrunc0; sourceMA/creatureeditscanchangeinputs.",
+          "learning": "Basic .05,advanced.10,expert.15 plus1. Learning-specialistkind0/skill21 scalesbonusby1+heroLevel*.05.",
+          "addition": "4E3620optionalmapmaxlevelcap precedesrawADD32/store; invokes4DA990forlevelups,whichhasdocumentedcommander/stackXP hook inpriorreports. No universalnonnegative/INTMAXXPcapproved.",
+          "loss": "NoexplicitXPawardtoloserininspectednormalfinalizer; defeat/removal doesnotimplyXPfieldreset. Otherpluginsandbattleeventsnotexcluded.",
+          "humanScope": "476DA0immediateawardbranchisnonhuman. HumanresultUIawardcallernotfullyclosedinthisaddendum; avoidclaimingallhumanXPtiming/arithmeticendtoendoriginalparity."
+        },
+        "hookAudit": {
+          "nativeWoGTableRange": [
+            "0x788fd8",
+            "0x78a07c"
+          ],
+          "matchedRowsInReportedRegions": [
+            {
+              "row": "0x7892b4",
+              "site": "0x4ac5ea",
+              "aux": "0x0",
+              "callback": "0x75add9"
+            }
+          ],
+          "limits": "Positive WoG hook 4AC5EA -> 75ADD9 found, expanded below. No other row matched the original reported regions. This bounded table scan is not an exhaustive era.dll/plugin computed-hook audit. Prior 4DA9B6 -> 76B41C lies outside these ranges and is reused.",
+          "neutralBattleWrapper": {
+            "row": "0x7892b4",
+            "site": "0x4ac5ea",
+            "callback": "0x75add9",
+            "before": "Copies army/hero/coords/player arguments to globals, enables stack-XP gate2861E14, invokes75ACDD and75A5EF. Preparation initializes28460F4=1 and dispatches event helpers. If28460F4==0, skips original battle and returns0; no native loser cleanup in this skip branch. If owner remains valid, source127 still awards land gold. The inspected global cancellation branch is positive evidence; actual cancellation scripts not enumerated.",
+            "normal": "Pushes stored/global potentially altered army/hero/player/coords arguments and original last flags to4AD160. Native EAX result is preserved by PUSHAD/POPAD around75ABB6, then returned. Therefore rawcode preservation applies to the executed native branch, not a guarantee that all encounters execute combat.",
+            "after": "75ABB6 invokes per-hero helpers and event dispatchers74CFA3,72774E before HE:T returns. Script modifications to owner/XP can occur; no blanket owner-after-result equivalence can be asserted."
+          }
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:T receiver and flag result",
+            "preferredVa": "0x746da5",
+            "endExclusiveVa": "0x746de5",
+            "rva": "0x346da5",
+            "fileOffset": "0x2e1da5",
+            "size": 64,
+            "sha256": "a76ba70e219633c72e59c7bcac5bf8bf6216ec98d5d65639b8dc40547e5cf330",
+            "observation": "Call714740; set flag1 iff EAX!=0 (so defeat1 and no-winner -1 both true); source127 never tests it."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:T bridge",
+            "preferredVa": "0x714740",
+            "endExclusiveVa": "0x71480d",
+            "rva": "0x314740",
+            "fileOffset": "0x2af740",
+            "size": 205,
+            "sha256": "2675a09749ce1b09be8a6a2841a2b8be26dd4bc77a68029dfbb3efa90ebd019b",
+            "observation": "Calls4ac270; saves its result inECX across711007 which leavesECX intact; returns samecode."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "ECX preserving helper",
+            "preferredVa": "0x711007",
+            "endExclusiveVa": "0x71103b",
+            "rva": "0x311007",
+            "fileOffset": "0x2ac007",
+            "size": 52,
+            "sha256": "43dcc60d8dd7a92c054cf69db72e7161eb9db68df788f9503817577676434575",
+            "observation": "Reads global6987cc; no ECX mutation."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Neutral battle invocation",
+            "preferredVa": "0x4ac5c1",
+            "endExclusiveVa": "0x4ac617",
+            "rva": "0xac5c1",
+            "fileOffset": "0xac5c1",
+            "size": 86,
+            "sha256": "06c0bf3370fe8c2a6b6728186b103fa86d5e68d3f64f108d8d8237802de1c177",
+            "observation": "Attackerhero+army, defenderplayer-1, defenderheroNULL, neutralarmy; arg9(+28)=1 enables postbattle hero cleanup. Save EAX→ESI, returnESI."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Battle owner snapshot",
+            "preferredVa": "0x4ad181",
+            "endExclusiveVa": "0x4ad199",
+            "rva": "0xad181",
+            "fileOffset": "0xad181",
+            "size": 24,
+            "sha256": "a67707720f9c4cf8ef2a0e74a7f7cc94e0834d15bb4c6c27f5048ee7103d0f2e",
+            "observation": "Attackerowner signextended fromhero+22; cached before combat."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Alternative automatic resolution",
+            "preferredVa": "0x4ad2d4",
+            "endExclusiveVa": "0x4ad38e",
+            "rva": "0xad2d4",
+            "fileOffset": "0xad2d4",
+            "size": 186,
+            "sha256": "aeee16132dc5dd57ecc8379dce5201f94187d947ff782130777f7bc86396a442",
+            "observation": "Calls4270c0; successful attacker automatic resolution returns0 early, other result routes regular path. Does not use ordinary BattleMgr result return in this early branch."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Quick resolution helper",
+            "preferredVa": "0x427178",
+            "endExclusiveVa": "0x427207",
+            "rva": "0x27178",
+            "fileOffset": "0x27178",
+            "size": 143,
+            "sha256": "5d6b3f4662262c9fc728fa0b473443588018bbaac957657a7774984aa812dc83",
+            "observation": "Calls426ee0 winnerfirst, chooses attacker returntrue on firstbranch; alternate branch false falls through fullbattle path."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Quick winner experience and cleanup",
+            "preferredVa": "0x426f50",
+            "endExclusiveVa": "0x4270b8",
+            "rva": "0x26f50",
+            "fileOffset": "0x26f50",
+            "size": 360,
+            "sha256": "ac6bfd78745e0f059ec090aecb66158d16e129916038f25f6e9f9933ff93eb44",
+            "observation": "Ifwinning hero alive:4ca070 thenLearning4e4ab0 andtrunc617f94→4e3620(gain,1,1); calls424880 onbotharmies. Several conditionals retained; not a full simulation replay."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Quick zeroarmy owner cleanup",
+            "preferredVa": "0x424880",
+            "endExclusiveVa": "0x4248d3",
+            "rva": "0x24880",
+            "fileOffset": "0x24880",
+            "size": 83,
+            "sha256": "6bcb6ba11876113d817a308150904c0afb5385b3f16192a6668e75a123836ba2",
+            "observation": "Zeroarmy clears slots then for nonnullhero andenabledremove flag invokes4ac620, which calls4da130(1,0)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Winner calculation",
+            "preferredVa": "0x475c51",
+            "endExclusiveVa": "0x475d16",
+            "rva": "0x75c51",
+            "fileOffset": "0x75c51",
+            "size": 197,
+            "sha256": "39eee5c4c475a93efb9b175d55e224c7fd49edae55dd5cc24ae9d46f43917b9e",
+            "observation": "Initialize result-1;465490 survivor predicate selects side0/1, bothsidesvalid results-1. Retreat/reddition per-side arrays132b0..3 project toglobals6985f3/697794; call476da0(result)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Postbattle XP gate and award",
+            "preferredVa": "0x47705f",
+            "endExclusiveVa": "0x4770f5",
+            "rva": "0x7705f",
+            "fileOffset": "0x7705f",
+            "size": 150,
+            "sha256": "678f46cc6574acf3c4a0d054718c134714819256c7220f8f0a058af710219d29",
+            "observation": "Only result!=-1 andwinnerhero nonnull calculates469f30. Forwinnerplayerhumanclassification54a6 false immediately4e3620(gain,1,1); human award may occur during result UI rather than this immediate branch. Do not infer absent human XP."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Battle XP arithmetic",
+            "preferredVa": "0x469f30",
+            "endExclusiveVa": "0x46a03c",
+            "rva": "0x69f30",
+            "fileOffset": "0x69f30",
+            "size": 268,
+            "sha256": "3781fc38e2511a7c53a3a42e953ed95eb0df0ae3ec08de92aa7d0987550f5b89",
+            "observation": "Opposing20slots, exclude statebits22/6, signed32(initialCount-currentCount)*creature+4c (HP) summedwrap32; +500 ifopposinghero exists; subtract500 forretreat/redditionglobal; special extra500 when53c8 andwinner0. ApplyLearning multiplier4e4ab0 viafloat32/trunc0; no script rogueNum*fixedXP shortcut."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Learning multiplier",
+            "preferredVa": "0x4e4ab0",
+            "endExclusiveVa": "0x4e4b16",
+            "rva": "0xe4ab0",
+            "fileOffset": "0xe4ab0",
+            "size": 102,
+            "sha256": "4acc4062e759afc25fd48edac0465d3d8d652f2a4a283b376c69edd23a65d2a6",
+            "observation": "Base table63ea58 indexedLearninghero+de:0,.05,.1,.15; add1. Learning specialistmetadata kind0 skill21 scales bonus by1+level*.05. Floats32."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Normal XP optional map cap",
+            "preferredVa": "0x4e3646",
+            "endExclusiveVa": "0x4e36f1",
+            "rva": "0xe3646",
+            "fileOffset": "0xe3646",
+            "size": 171,
+            "sha256": "f99d7856ac885a579cd1da6ee30e99a2021b92ebb5987095d3cfab065973fe05",
+            "observation": "Map+1f877 nonzero setsmaximumXPforconfiguredlevel; signed32 old+gain comparison; setscap andcalls4da990 ifrequested; no general INTMAX saturation."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Normal XP addition and levelups",
+            "preferredVa": "0x4e37ad",
+            "endExclusiveVa": "0x4e386a",
+            "rva": "0xe37ad",
+            "fileOffset": "0xe37ad",
+            "size": 189,
+            "sha256": "78d6ab3df7926f78eb21e278f7fae97601d1333eccaa90d6425e29b382d5d17e",
+            "observation": "ADD32 oldXP+gain/storehero+51; signedthresholdcalculation; call4da990 whenarg2=1. No explicit lowerclamp or checkedoverflow here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Winner loser cleanup decision",
+            "preferredVa": "0x4ae36c",
+            "endExclusiveVa": "0x4ae3ca",
+            "rva": "0xae36c",
+            "fileOffset": "0xae36c",
+            "size": 94,
+            "sha256": "6f8c701dfe85fd42730169ddbea40f097306d90d6d5e995f26f1751c408c1f67",
+            "observation": "Ifarg9 true: result1 removes attackerhero through4da130(1,0); result0 branches4ae424 (defender removal); result-1 branches4ae550 (both)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "No winner cleanup",
+            "preferredVa": "0x4ae550",
+            "endExclusiveVa": "0x4ae58d",
+            "rva": "0xae550",
+            "fileOffset": "0xae550",
+            "size": 61,
+            "sha256": "86c860b71377dfbbc0df3a98c55152ff42628f6dc9204900cef2f4060fccc600",
+            "observation": "Result-1 invokes4ac620(attacker,0), thenotherhero ifnonnull;4ac620 calls4da130(1,0)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Remove helper",
+            "preferredVa": "0x4ac645",
+            "endExclusiveVa": "0x4ac657",
+            "rva": "0xac645",
+            "fileOffset": "0xac645",
+            "size": 18,
+            "sha256": "996343af568e6725e1159640510dc57916c647c074237cbb7ee9fa20589cded5",
+            "observation": "Ownercachedthen4da130(1,0)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Reserve and owner removal",
+            "preferredVa": "0x4da406",
+            "endExclusiveVa": "0x4da536",
+            "rva": "0xda406",
+            "fileOffset": "0xda406",
+            "size": 304,
+            "sha256": "21e10ae38543399d26f62a466d5c60d2ab88c22559dc1d4126a52e5e52030059",
+            "observation": "Retreat/redditionglobals canreserveheroinpriorplayeroffer tables andsetflags20000; common4da525 alwayswritesheroowner+22=-1, alsoinvalidatesmovementcoords; retainedreserve identity isnotownerfield."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Battle result return",
+            "preferredVa": "0x4ae61b",
+            "endExclusiveVa": "0x4ae691",
+            "rva": "0xae61b",
+            "fileOffset": "0xae61b",
+            "size": 118,
+            "sha256": "0d60b9edc9c72dc10cfba07d093fd864c20062a319f9f69e1914e1dc5bd79a3e",
+            "observation": "ReadBattleMgr+13d48 intoESI at4ae62c; returnESI at4ae67f."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "OW:R getter Apply setter",
+            "preferredVa": "0x7375f1",
+            "endExclusiveVa": "0x7376e8",
+            "rva": "0x3375f1",
+            "fileOffset": "0x2d25f1",
+            "size": 247,
+            "sha256": "3f6a3a14c56d777c90c58c4d2769851f03ca98aa8a1f13445b038be9ecee63ee",
+            "observation": "Validateexplicitplayer0..7 (-1resolvescurrent); resource7separatemithrilbranch; gold6 read70ff79, rejectvalue-1 sentinel;74195d Apply then7100a3."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "OW resource address getter",
+            "preferredVa": "0x70ff0b",
+            "endExclusiveVa": "0x70ffcf",
+            "rva": "0x30ff0b",
+            "fileOffset": "0x2aaf0b",
+            "size": 196,
+            "sha256": "1c92bd99ccf2e3d7d02c778af6d52a77486ba416e08f994ff9c5bca822bd0a23",
+            "observation": "Resource0..6 DWORD addressGameMgr+20b6c+player*168+res*4; readrawsignedword32."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Generic d apply",
+            "preferredVa": "0x741747",
+            "endExclusiveVa": "0x74177c",
+            "rva": "0x341747",
+            "fileOffset": "0x2dc747",
+            "size": 53,
+            "sha256": "f932b439326279a98aeb3dc538468c9a87c28e1fe37c43020bc52382684cfb5f",
+            "observation": "DWORD newvalue=wrap32(old*parsercoefficient+parsedvalue); d usescoefficient1. No clamp/check."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "OW raw setter",
+            "preferredVa": "0x7100a3",
+            "endExclusiveVa": "0x7100f6",
+            "rva": "0x3100a3",
+            "fileOffset": "0x2ab0a3",
+            "size": 83,
+            "sha256": "1625e1074831f87a426108270bd5ab6872092e073ebe35fd3db48f92c2bfac31",
+            "observation": "Resolvepointer thenrawDWORDstore at7100e3;71274b refresh afterwrite. No lowerclamp."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Different clamped helper NOT OW:R",
+            "preferredVa": "0x710030",
+            "endExclusiveVa": "0x7100a3",
+            "rva": "0x310030",
+            "fileOffset": "0x2ab030",
+            "size": 115,
+            "sha256": "35104a069e521e026d9ad44902f1c68d1f018449829a5e6d3e506e1560614890",
+            "observation": "Separate addresourceshelperwrap32thenmax0 exists,but OW:Rpositivecaller7376db selectsrawsetter7100a3, notthishelper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Resource display refresh",
+            "preferredVa": "0x71274b",
+            "endExclusiveVa": "0x712783",
+            "rva": "0x31274b",
+            "fileOffset": "0x2ad74b",
+            "size": 56,
+            "sha256": "bbef51bf7b92d5bea39af5828f9e49b32f5c39fe2a9e7f3137f548ec6c7deb0e",
+            "observation": "CallsAdvMgr+44 method403f00(1,1) afterwrite; no arithmetic."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "x87 trunc conversion",
+            "preferredVa": "0x617f94",
+            "endExclusiveVa": "0x617fb9",
+            "rva": "0x217f94",
+            "fileOffset": "0x217f94",
+            "size": 37,
+            "sha256": "4f67698da951ed424459ed1a8d23c17ed8e0d8ad044cb2b7dc9e4adab51065c9",
+            "observation": "TemporarilyRC=truncate, FISTPqword thenlowEAX; FPoutofrange notexecutedhere."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "WoG neutral battle hook row",
+            "preferredVa": "0x7892b4",
+            "endExclusiveVa": "0x7892c0",
+            "rva": "0x3892b4",
+            "fileOffset": "0x3242b4",
+            "size": 12,
+            "sha256": "5aedf3c5fe488fd34c059dc29608314995ba274682fe46abd09a6e86032bd37d",
+            "observation": "Tuple site4AC5EA,aux0,callback75ADD9."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "WoG neutral battle wrapper",
+            "preferredVa": "0x75add9",
+            "endExclusiveVa": "0x75af06",
+            "rva": "0x35add9",
+            "fileOffset": "0x2f5dd9",
+            "size": 301,
+            "sha256": "d29684eb10f5f128a4ae250c1420684286a0a3d847da3f1fe9921a91f4c3683e",
+            "observation": "Preparation, explicit cancel path return0, global arguments passed to4AD160, PUSHAD-preserved result across afterhelper75ABB6."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Battle preparation gate and events",
+            "preferredVa": "0x75a60b",
+            "endExclusiveVa": "0x75a75c",
+            "rva": "0x35a60b",
+            "fileOffset": "0x2f560b",
+            "size": 337,
+            "sha256": "ef6a39013fa80264e5cdebde8bc267293d3de5a5d2ea89bbb5d82a263132981a",
+            "observation": "Set28460F4=1; preparation and74CFA3 event calls; tests gate again. Exact event identities and all nested effects not expanded."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Battle after events",
+            "preferredVa": "0x75abb6",
+            "endExclusiveVa": "0x75acdd",
+            "rva": "0x35abb6",
+            "fileOffset": "0x2f5bb6",
+            "size": 295,
+            "sha256": "90161cdf49ccb599e599cf5d0313bce11aa3338055e31d87d8f420d477c64d2b",
+            "observation": "Perhero helpers then74CFA3 events and72774E before wrapper returns. Can expose mutable state to scripts."
+          }
+        ],
+        "limitations": [
+          "NoWindows/originalERAexecution, battleUIinteraction, retreat/surrenderclickreplay orliveowner/XPobservation.",
+          "Resultcodealonecannotrepresentretreatvsdefeat:per-sideflagsareseparate. Exactuserbutton-to-132B0/132B2 namingnotclosed; bothgroupsactivatecommonreserveandowner-removalpath.",
+          "HumanresultUIgainbranch andallautomaticbattlecasualtyrounding notfullyexpanded; staticwinnerandownerbranchcontractisboundedaccordingly.",
+          "Custombattle/HE/OWreceivers, ERAhooks,AdvancedClasses/Rebornandotherscriptsoverridesnotexhaustivelyinspected.",
+          "Initialreportpreservedunchanged; onlythisignoredaddendumwritten.",
+          "Normal/human/native outcome findings must be composed with positively located WoG before/after hooks; skipped battle can report0 and source127 still rewards by owner. No claim that callback effects are absent."
+        ]
+      }
+    }
+  ]
+}

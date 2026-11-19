@@ -556,24 +556,24 @@
     "web/ui/components.css": "62a22e85bc8ab8a712a4557538103c15587be07a21fd41fa59ec22c2adbd074d",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "work/browser-tests/wog-options-components-e2e.mjs": "8af6981da9d84397eead91fcb6b78c21b205e6c96bfd605ecdcfc80a4547e816",
-    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
+    "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
     "tests/era-map-inverted-speeds.test.mjs": "06a4bf4c8b950ee63c10237df028a9511a0d0c1311d64cbb7248dc58a58a791e",
     "web/wog-options.mjs": "4f9bd044ff913e05d1ee0ac5e0d79bf889aac57541452805f9caed91168fc635",
     "web/ui/primitives.mjs": "640bad8efe65ba5d06784d895f1b14c6f17b24ca8f4b0bb1b324e6c996647c89",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "dd32577cd49c971f342ccd44229d302b3b1c8f7fc59762dbf43560a4e7d2bc2b",
     "tests/fixtures/era-gameplay/map-inverted-speeds-reference.json": "8cb7b93e3b022cca056e5f0c74562c9e87e1253aff45d4eed4bc163717a17ab0",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "46fc515e45ddf21c934d38f1bd3186492bff1cddc934a596ff5da66d4ba42df3",
     "web/ui/components.mjs": "df38a948629bbaa0252fb93246becd8a06578f1a4d077b1d4889386c455b131d",
     "work/vcmi-wasm/lib/era/EraCampaignCreatureAttributes.h": "cf3b5d726575d956f8a38611fe9352e126bdeebcd9692409e62f75b28550c794",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246",
     "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
     "work/browser-tests/wog-map-inverted-speeds-cases.mjs": "1b48b5af3576becac34793b24d1f9698a78c2bb33aca8bc70b25f985fafecb5b",
     "tests/native/EraMapInvertedSpeed.test.cpp": "fb67b3a2a30ed765eca50405204ed7dd87d77d2b33af5e4b9e355f11d25f60d1",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "dc79e34464d3b628bf82990b8f1515a8ffed4fefec81681c05cc648717ed4457",
     "scripts/era-bridge/gameplay/map-rules.json": "61df54e2d12c54aecf46ae9210b1dd4e4efb8b3e6a1f16b3d7111ab477702fdd",
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "0f0ceab5c9ffcf20117b03097fac56edb68ebe6f1aaa607a3e54128ee9a06d81",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0"
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2378447e7bd8ae58da3f443f0f8b0f04e50ae257281ddffed7135f60a7064039"
   },
   "mobileUI": {
     "passed": true,
@@ -1263,5 +1263,16 @@
       "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
+  },
+  "temporaryArmyRevalidation": {
+    "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
+    "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67"
+    },
+    "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   }
 }

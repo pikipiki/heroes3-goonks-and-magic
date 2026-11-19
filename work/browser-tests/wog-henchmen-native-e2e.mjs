@@ -472,6 +472,11 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='temporary-battle-army'){
+  const {runTemporaryBattleArmy}=await import('./wog-temporary-battle-army-cases.mjs');
+  await runTemporaryBattleArmy({boot,sheet,state,command,wait,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:952})});
+ }
  if(process.env.CASES==='artifact-native-assembly'){
   const {runNativeAssembly}=await import('./wog-source-artifact-native-assembly-cases.mjs');
   await runNativeAssembly({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});

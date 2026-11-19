@@ -14,6 +14,9 @@ export async function runHenchmanPrompts({boot,approachEnemy,state,command,wait,
  assert.equal((await state()).dialogPresentation.choices.filter(choice=>choice.selectable).length,7);
  for(const viewport of desktop?[{width:1440,height:900},{width:1280,height:720}]:[{width:390,height:844},{width:844,height:390},{width:568,height:320},{width:1024,height:768}]){
   await page().setViewportSize(viewport);
+  // Wait for the responsive layout before deciding whether a scroll gesture
+  // is needed; the previous viewport can report overflow for one render.
+  await page().waitForTimeout(350);
   const layout=await page().locator('.dialog-presentation').evaluate(panel=>({width:panel.clientWidth,scrollWidth:panel.scrollWidth,
    small:[...panel.querySelectorAll('button')].some(button=>button.getBoundingClientRect().height<44),
    cancels:panel.querySelectorAll('[data-dialog-cancel]').length}));
