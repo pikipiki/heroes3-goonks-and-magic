@@ -18,6 +18,8 @@ export const screenCases=[
  ['builder',{mode:'town',caveBuilder:{available:true,hero:1,town:2,remaining:10,canAct:true,buildings:Array.from({length:24},(_,i)=>({building:i,name:'Bâtiment '+i,gold:500,enabled:true,salvage:[1,0,2,0,0,0]}))}},'[data-builder-open]'],
 
  ...['army','worn','backpack','skills'].map(tab=>['hero-'+tab,{mode:'hero',heroWindow},`[data-hero-tab=${tab}]`]),
+ ['hero-worn-filled',{mode:'hero',heroWindow:{...heroWindow,slots:heroWindow.slots.map(slot=>[16,17].includes(slot.slot)?{...slot,name:slot.slot===16?'Catapult':'Spellbook',icon:0,movable:false,description:unit.description}:slot)}},'[data-hero-tab=worn]'],
+ ['hero-catapult',{mode:'hero',heroWindow:{...heroWindow,slots:heroWindow.slots.map(slot=>slot.slot===16?{...slot,name:'Catapult',icon:0,movable:false,description:'Catapult effects. '+unit.description.repeat(5)}:slot)}},'[data-hero-tab=worn]','[data-hero-slot="16"]'],
  ['hero-army-selected',{mode:'hero',troopEquipment:true,heroWindow},'[data-hero-tab=army]','[data-army-slot="0"]'],
  ['hero-army-split',{mode:'hero',troopEquipment:true,heroWindow},'[data-hero-tab=army]','[data-army-slot="0"]','#hero-army-split'],
  ['creature',{mode:'creature',creatureUnit:unit}],

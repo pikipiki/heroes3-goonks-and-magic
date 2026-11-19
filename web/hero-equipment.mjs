@@ -36,7 +36,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const heroArmy=(state.armies||[]).find(a=>(Number.isInteger(hero.id)&&a.id===hero.id)||a.name===hero.name)||(state.armies||[])[0];
   if(heroArmy)command?.(41, heroArmy.id, slot);
  }
- function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class="hero-artifact-slot${picked&&a.allowed?' can-receive':''}" data-hero-slot="${a.slot}" aria-pressed="${a.slot===selected}" ${picked&&!a.allowed?'disabled':''} aria-label="${esc(label+': '+(a.name||'Empty'))}" title="${esc(label+': '+(a.name||'Empty'))}"><small>${label}${a.locked?' · Locked':''}</small>${a.name?`<canvas width="64" height="64" data-artifact-icon="${a.icon}" aria-hidden="true"></canvas><strong>${esc(a.name)}</strong>`:'<span class="hero-empty" aria-hidden="true">＋</span><strong>Empty</strong>'}</button>`;}
+ function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18),caption=tab==='worn'&&a.slot===14&&getLanguage()==='fr'?'Munitions':label;return `<button class="hero-artifact-slot${picked&&a.allowed?' can-receive':''}" data-hero-slot="${a.slot}" aria-pressed="${a.slot===selected}" ${picked&&!a.allowed?'disabled':''} aria-label="${esc(label+': '+(a.name||'Empty'))}" title="${esc(label+': '+(a.name||'Empty'))}"><small>${caption}${a.locked?' · Locked':''}</small>${a.name?`<canvas width="64" height="64" data-artifact-icon="${a.icon}" aria-hidden="true"></canvas><strong>${esc(a.name)}</strong>`:'<span class="hero-empty" aria-hidden="true">＋</span><strong>Empty</strong>'}</button>`;}
  function renderSkills(hero){
   const description=text=>esc(text?.replace(/[{}]/g,''));
   const specialty=hero.specialty?.name?`<section class="hero-specialty">
@@ -116,6 +116,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   if(grid)scrollPositions[panel.dataset.inventory||tab]=grid.scrollTop;
   panel.dataset.inventory=tab;
   const hero=state.heroWindow||{},picked=hero.picked,items=slots(),item=items.find(a=>a.slot===selected);
+  panel.dataset.artifactSelected=String(!!item?.name||!!picked);
   const fr=getLanguage()==='fr';
   const backpack=tab==='backpack',skills=tab==='skills',isArmy=tab==='army',isHenchman=tab==='henchman';
   const bagCount=hero.backpack?.filter(a=>a.name).length||0;
@@ -136,7 +137,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     </div>
     <section class="hero-extra-equipment"><h3>Accessories &amp; war machines</h3><div>${extra}</div></section>
    </div>`;
-  const hint=hero.owned===false?'Select an item to read its effects.':backpack?'Select an item to read its effects or move it.':
+  const hint=!item?.name&&!picked?(fr?'Choisis un objet pour lire ses effets.':'Choose an item to read its effects.'):hero.owned===false?'Select an item to read its effects.':backpack?'Select an item to read its effects or move it.':
    'Five slots hold accessories. Ballista, ammo cart, first aid tent and catapult have one slot each. The spellbook has its own slot.';
   renderMarkup(panel,`<header class="hero-card-head">
    <canvas class="hero-face" width="58" height="64" aria-hidden="true"></canvas>

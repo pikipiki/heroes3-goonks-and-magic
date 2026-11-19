@@ -5,3 +5,5 @@ export {useScreenComponents,applyScreenComponents,refreshScreenComponents,instal
 export {createMaterialSelects} from '../material-select.mjs';
 export {useChoiceTile,useTabs,useQuantityStepper,useScreenControls,useNavigation} from './controls.mjs';
 export {resourceCostMarkup,statGridMarkup} from './data-display.mjs';
+
+export {useHeroSummary} from './hero-summary.mjs';
