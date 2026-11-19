@@ -85,8 +85,8 @@ export async function runDoubleArtifacts({boot,sheet,state,command,wait,approach
      }
      if(text.startsWith('DART POST '))return text;
      if(text.startsWith('DART PRE '))assert.equal(text,`DART PRE ${marker}/${row.before.join('/')}`);
-     else if(decline&&!refused&&await page().locator('[data-dialog-cancel]').isVisible()){
-      const before={text,query:s.dialogPresentation?.queryId};await page().locator('[data-dialog-cancel]')[press]();
+     else if(decline&&!refused&&s.dialogPresentation?.cancel&&await page().locator('[data-dialog-cancel]:visible, .dialog-presentation:not([hidden]) [data-ui-header-close=true]:visible').first().isVisible()){
+      const before={text,query:s.dialogPresentation?.queryId};await page().locator('[data-dialog-cancel]:visible, .dialog-presentation:not([hidden]) [data-ui-header-close=true]:visible').first()[press]();
       await wait(before=>goonkMobileState.mode!=='dialog'||goonkMobileState.dialogPresentation?.queryId!==before.query||(goonkMobileState.dialogPresentation?.lines?.join(' ')||'')!==before.text,before);refused=true;continue;
      }else messages.push(text);
      await ack();

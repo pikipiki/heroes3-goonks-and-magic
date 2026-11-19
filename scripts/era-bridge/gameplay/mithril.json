@@ -28,7 +28,8 @@
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
     "Source UN:P setters remain unadmitted; source149/170/171 reads and independent native choices have separate bounded validations.",
-    "Shared PO:N integration for upgraded windmills/waterwheels and universities, and complete corresponding source event lifecycles.",
+    "Aggregate owner-handicap rounding and complete income-hook scope parity require a native comparison and port.",
+    "Original low-level object-description hooks and complete cross-profile lifecycle integration remain under audit.",
     "Complete WoG option catalogue and full gameplay-profile activation."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
@@ -46,5 +47,8 @@
   "mineTileReference": "tests/fixtures/era-gameplay/mithril-mine-tiles-reference.json",
   "weeklySiteValidation": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
   "resourceReplacementValidation": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
-  "informationValidation": "scripts/era-bridge/gameplay/mithril-display-native-validation.json"
+  "informationValidation": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
+  "siteTileValidation": "scripts/era-bridge/gameplay/mithril-site-tiles-native-validation.json",
+  "siteTileReference": "tests/fixtures/era-gameplay/mithril-site-tiles-reference.json",
+  "incomeOrderReference": "tests/fixtures/era-gameplay/mithril-income-order-reference.json"
 }

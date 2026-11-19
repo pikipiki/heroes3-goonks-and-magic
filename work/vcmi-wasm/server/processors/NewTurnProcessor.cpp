@@ -819,7 +819,7 @@ NewTurn NewTurnProcessor::generateNewTurnPack()
 	era_compat::map_rules::removeInitialFortifications(*gameHandler,firstTurn);
 	era_compat::script_rules::initializeSettings(*gameHandler,firstTurn);
 	era_compat::mithril::initializeSeed(*gameHandler,firstTurn);
-	era_compat::mithril::initializeMineMarkers(*gameHandler);
+	era_compat::mithril::initializeSiteMarkers(*gameHandler);
 	bool newWeek = gameHandler->gameInfo().getDate(Date::DAY_OF_WEEK) == 7; //day numbers are confusing, as day was not yet switched
 	bool newMonth = gameHandler->gameInfo().getDate(Date::DAY_OF_MONTH) == 28;
 

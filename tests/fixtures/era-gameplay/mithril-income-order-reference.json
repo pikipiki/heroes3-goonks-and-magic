@@ -1,0 +1,417 @@
+{
+  "schema": 1,
+  "evidenceKind": "Bounded static original PE/Pascal/ERM inspection; no original ERA runtime validation.",
+  "reportSha256": "e2d77c9c4c946cffcb1e24d822baf8d576e473349ae3b46172fe9bc0af2e386f",
+  "original": {
+    "question": "What do WOG_OnCalculateMineIncome and WOG_OnCalculateMineIncome_Quit receive, and where do week, mithril, bonuses and handicap occur?",
+    "method": "Ordinary bounded offline static PE disassembly and supplied ERM/Pascal inspection. REA unavailable, diagnosed previously; no REA Evidence record and no runtime observations. No installation or configuration.",
+    "artifacts": [
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+      },
+      {
+        "file": "work/era-gameplay-reference/era.dll",
+        "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+      }
+    ],
+    "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+    "observations": [
+      {
+        "id": "O1",
+        "support": [
+          "resource_mine_loop",
+          "base_income_table",
+          "stdlib159-177"
+        ],
+        "finding": "Non-gold baseIncome is raw table amount, newIncome initially equal. Resource hook receives selected mine coordinates and amount before adding it to owner aggregate."
+      },
+      {
+        "id": "O2",
+        "support": [
+          "gold_mine_loop_and_hook",
+          "stdlib179-201"
+        ],
+        "finding": "Gold baseIncome is read from immediate at0x4c7647 (default1000); wrapper checks owner/type, runs events, adds newIncome to local total, forces return0x4c764b skipping original add."
+      },
+      {
+        "id": "O3",
+        "support": [
+          "stdlib159-201"
+        ],
+        "finding": "OnCalculateMineIncome runs first, then OnCalculateMineIncome_Quit with same coordinates and raw baseIncome plus the current mutable newIncome. Resource wrapper changes EAX if base differs; gold wrapper always manually adds final newIncome."
+      },
+      {
+        "id": "O4",
+        "support": [
+          "script42:412-419"
+        ],
+        "finding": "Mithril listener belongs to Quit, gated wog_36_enabled and map_rule_11_isEnabled=0. Any nonzero tile PO:N causes newIncome leftshift1. It does not double baseIncome or town/hero/artifact bonuses."
+      },
+      {
+        "id": "O5",
+        "support": [
+          "script58:120-151",
+          "script58:254-260"
+        ],
+        "finding": "Resource week listener also belongs to Quit. If wog_20_double_mine_income and mine resource equals wog_20_week_subtype, current newIncome leftshift1. Week doubling is not already included in native baseIncome."
+      },
+      {
+        "id": "O6",
+        "support": [
+          "resource_town_contributions",
+          "resource_artifact_hero_contributions",
+          "resource_AI_adjustments",
+          "resource_aggregate_handicap"
+        ],
+        "finding": "Non-gold pipeline: event-adjusted mine values summed, then other native resource contributions, then native AI resource adjustments, then owner handicap on each of six aggregated resource amounts."
+      },
+      {
+        "id": "O7",
+        "support": [
+          "gold_town_hero_contributions",
+          "gold_artifact_contributions",
+          "gold_hero_contributions",
+          "gold_AI_multiplier",
+          "gold_aggregate_handicap"
+        ],
+        "finding": "Gold pipeline: sum adjusted gold mines; add towns/hero/artifact income; AI difficulty multiplier with integer conversion; owner handicap multiplier with integer conversion. Caller adds returned gold to total."
+      },
+      {
+        "id": "O8",
+        "support": [
+          "truncation_helper"
+        ],
+        "finding": "Conversion helper explicitly sets rounding mode bits to truncation toward zero for FISTP, then restores control word."
+      }
+    ],
+    "inferences": [
+      {
+        "id": "I1",
+        "basis": [
+          "O3",
+          "O4",
+          "O5"
+        ],
+        "finding": "If both listeners execute once and their gates match, each leftshifts current newIncome; combined ordinary finite result is four times the input to these listeners. Their mutual registration order is unnecessary for this product and is not established."
+      },
+      {
+        "id": "I2",
+        "basis": [
+          "O4",
+          "O6",
+          "O7"
+        ],
+        "finding": "Applying mithril doubling before owner handicap follows native order. Applying the handicap independently to each mine can diverge from native aggregate conversion."
+      },
+      {
+        "id": "I3",
+        "basis": [
+          "O6",
+          "O8"
+        ],
+        "derivedExample": "Two upgraded rare-resource mines yield2+2=4; with15% aggregate reduction, trunc(4-4*.15)=3. Per-mine trunc(2-2*.15) summed yields2. This is a derived ordinary-value example, not a game execution."
+      },
+      {
+        "id": "I4",
+        "basis": [
+          "O7"
+        ],
+        "derivedExample": "For a human player, one upgraded gold mine and a separate500gold artifact bonus give2000+500=2500 before15% handicap, then2125; artifact bonus itself is not mithril-doubled. Derived, not executed."
+      }
+    ],
+    "unknowns": [
+      "Hook registration source is present and addresses match native instructions; erm_hooker.era was not found as a direct file under supplied reference tree. Hook installation/runtime success is not established.",
+      "Search of supplied ERM corpus found these two listeners plus stdlib callsites; not proof that every external mod, injected plugin or unprovided profile has no other income event handler.",
+      "Mutual event listener registration/execution order between42 and58 not reconstructed; earlier OnCalculate callbacks may change newIncome before both.",
+      "Complete native AI non-gold scheduling formula and semantic identities of all native town/hero contributions were not reconstructed; their later position is observed.",
+      "No execution and no full era.dll detour/injected plugin analysis; unexamined runtime patches could change native behavior.",
+      "No assertion about overflow, NaN, out-of-range x87 conversion, invalid owner handicap codes, or absent mine/resource records.",
+      "VCMI implementation not inspected here. Matching aggregate rounding and other packs requires separate engine checks."
+    ],
+    "regions": [
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "resource_mine_loop",
+        "preferredVa": "0x4b87f0",
+        "endExclusiveVa": "0x4b887e",
+        "rva": "0xb87f0",
+        "fileOffset": 755696,
+        "size": 142,
+        "sha256": "8110c45739e1bb8e3bd5d00bcfdb94c0f0b0f498bb83acbea793c4753a3eaf77",
+        "observation": "Owned non-gold mines: EAX loaded from resource base table at 0x4b8863; hook 0x4b886a precedes addition into owner resource aggregate. No pre-hook week multiplier."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "resource_town_contributions",
+        "preferredVa": "0x4b887e",
+        "endExclusiveVa": "0x4b89ed",
+        "rva": "0xb887e",
+        "fileOffset": 755838,
+        "size": 367,
+        "sha256": "11231f6abc338fbdfe886bf8391852476cd1e86643b3c294cd92505ae2cbcd8c",
+        "observation": "Town resource contributions follow mine loop."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "resource_artifact_hero_contributions",
+        "preferredVa": "0x4b89ed",
+        "endExclusiveVa": "0x4b8b4f",
+        "rva": "0xb89ed",
+        "fileOffset": 756205,
+        "size": 354,
+        "sha256": "d1d6cca12eca0c966d84646bf24b4abc860372caf7b312b836dfd63dbc815b27",
+        "observation": "Artifact and hero resource contributions follow mine aggregation; gold calculation called at 0x4b8a9f and added at 0x4b8aac."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "resource_AI_adjustments",
+        "preferredVa": "0x4b8b4f",
+        "endExclusiveVa": "0x4b8ce5",
+        "rva": "0xb8b4f",
+        "fileOffset": 756559,
+        "size": 406,
+        "sha256": "be6fa17ccbb084aec30bedc5354144d941f69a49ad02a20cdb93240650af64c4",
+        "observation": "Native AI resource adjustments follow income contributions and precede handicap. Full scheduling formula not reconstructed."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "resource_aggregate_handicap",
+        "preferredVa": "0x4b8ce5",
+        "endExclusiveVa": "0x4b8d63",
+        "rva": "0xb8ce5",
+        "fileOffset": 756965,
+        "size": 126,
+        "sha256": "ff7c606278584a8083ef09106a86e00da86221d9b5110618357f15fc79c3190b",
+        "observation": "Loops six non-gold resource totals for eligible players, obtains player code from GameMgr+0x1f6a8+player and coefficient table 0x677998; computes total-total*coefficient, calls truncation helper."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_mine_loop_and_hook",
+        "preferredVa": "0x4c75f0",
+        "endExclusiveVa": "0x4c7657",
+        "rva": "0xc75f0",
+        "fileOffset": 816624,
+        "size": 103,
+        "sha256": "61231068f3678a1923a7254f537fdcafd4a0bac6d5166ca6eceeded6d0e4c022",
+        "observation": "Initializes total, iterates mines. Hook 0x4c7637 before owner/type checks; native 0x4c7644 adds immediate1000 to local total. Next mine is0x4c764b."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_town_hero_contributions",
+        "preferredVa": "0x4c7657",
+        "endExclusiveVa": "0x4c76f7",
+        "rva": "0xc7657",
+        "fileOffset": 816727,
+        "size": 160,
+        "sha256": "cdd3c275de683bf5f3c6e077aa212ff3441af383729b7245538c7e7e602ed95d",
+        "observation": "Town income helper0x5bfa00 and visiting hero income helper0x4e4600 add after mine loop."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_artifact_contributions",
+        "preferredVa": "0x4c76f7",
+        "endExclusiveVa": "0x4c7745",
+        "rva": "0xc76f7",
+        "fileOffset": 816887,
+        "size": 78,
+        "sha256": "4e8e1d1d10904d87dc021b4ee4f7743259ea7de42c9c5a475a1a78b25febea4e",
+        "observation": "Counts owned hero artifacts115/116/117 via0x4ba890 and adds1000/750/500 gold respectively after mine loop."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_hero_contributions",
+        "preferredVa": "0x4c7745",
+        "endExclusiveVa": "0x4c779d",
+        "rva": "0xc7745",
+        "fileOffset": 816965,
+        "size": 88,
+        "sha256": "9d071c6efbc3f349df3be5c5814bc5cb395c47dfde85c5b8939067747dbc5dc5",
+        "observation": "Owned hero income helper0x4e4600 called and added after artifact income."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_AI_multiplier",
+        "preferredVa": "0x4c779d",
+        "endExclusiveVa": "0x4c7807",
+        "rva": "0xc779d",
+        "fileOffset": 817053,
+        "size": 106,
+        "sha256": "a2f577703418b1d5b46c49b7a6427290435ff3ee6ec9f56331714bc9d6167942",
+        "observation": "AI flag at player+0xe2; difficulty0/3/4 multiply accumulated gold by.75/1.25/1.50; other difficulty branches unchanged. Conversion helper truncates."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_aggregate_handicap",
+        "preferredVa": "0x4c7807",
+        "endExclusiveVa": "0x4c7856",
+        "rva": "0xc7807",
+        "fileOffset": 817159,
+        "size": 79,
+        "sha256": "c4b73ce1c6f05a745777f3795351a0b03f939c8efb987302d0f77693c4d43201",
+        "observation": "Player code at GameMgr+0x1f6a8+player:1 multiplies total by.85,2 by.70, otherwise unchanged; truncation helper then return."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "truncation_helper",
+        "preferredVa": "0x617f94",
+        "endExclusiveVa": "0x617fbb",
+        "rva": "0x217f94",
+        "fileOffset": 2195348,
+        "size": 39,
+        "sha256": "d0a2aca68648a0ae9d5cbfae1b276d4a64d4f797fc0c60f28b64096cdfa3148c",
+        "observation": "Saves x87 control word, ORs high byte with0x0c, loads changed word, FISTP qword, restores control word; returns integer low/high halves."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "base_income_table",
+        "preferredVa": "0x677978",
+        "endExclusiveVa": "0x677998",
+        "rva": "0x277978",
+        "fileOffset": 2587000,
+        "size": 32,
+        "sha256": "9bc518df1e292c42134c81d2c1204515f3497e1f9a8945d59c3b9d6c57ced6c7",
+        "observation": "Eight int32 values:2,1,2,1,1,1,1000,0."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "resource_handicap_coefficients",
+        "preferredVa": "0x677998",
+        "endExclusiveVa": "0x6779b0",
+        "rva": "0x277998",
+        "fileOffset": 2587032,
+        "size": 24,
+        "sha256": "74599f96851c34133e23d8c66c930ac84fee52f3a3c0e0ca1aacce0656c5b187",
+        "observation": "Three doubles:0,.15,.30."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "gold_handicap_coefficients",
+        "preferredVa": "0x63e688",
+        "endExclusiveVa": "0x63e6a0",
+        "rva": "0x23e688",
+        "fileOffset": 2352776,
+        "size": 24,
+        "sha256": "ada969bb3e137f70423409f42095043930c91f115387065bd5c9228ce7568771",
+        "observation": "Three doubles:.70,.85,1.25; last is AI difficulty coefficient."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "AI_easy_coefficient",
+        "preferredVa": "0x63ba08",
+        "endExclusiveVa": "0x63ba10",
+        "rva": "0x23ba08",
+        "fileOffset": 2341384,
+        "size": 8,
+        "sha256": "e4319a2d73934f7c5fcec97280687f50b66a4335ae57a4ae90f3920400c8f976",
+        "observation": "Double .75."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "AI_impossible_coefficient",
+        "preferredVa": "0x63b8d8",
+        "endExclusiveVa": "0x63b8e0",
+        "rva": "0x23b8d8",
+        "fileOffset": 2341080,
+        "size": 8,
+        "sha256": "e163f8cb0f7067a7fc78ca859a77f849aea3214f38fb75b884e4a16be725c905",
+        "observation": "Double1.50."
+      }
+    ],
+    "sources": [
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/9000 wog - stdlib.erm",
+        "sha256": "e5d38d2fd1ce92a73e34a61890e2dda1483a8e800913f22017cbeaec7ec2ac4c",
+        "ranges": [
+          {
+            "startLine": 46,
+            "endLine": 67,
+            "sha256": "cc0b4cb8ee353ab9abf397d50a103ec792281ae9d03dd3de15759e54347c33a2"
+          },
+          {
+            "startLine": 159,
+            "endLine": 201,
+            "sha256": "fe20da39003bca6f4f89acb53801c565738568a4ecbb05b62f5c395f42405ab0"
+          }
+        ]
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+        "ranges": [
+          {
+            "startLine": 412,
+            "endLine": 419,
+            "sha256": "a1d84fe8510253f902d572b06b0b99d7017c4f399e9bbe6033ec606c0f13ab11"
+          }
+        ]
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/58 wog - week of monsters.erm",
+        "sha256": "0ea6ae0550c61c6e79fc7a6d836a588fbdf3192e450eb4b7b1b98ca517413cad",
+        "ranges": [
+          {
+            "startLine": 72,
+            "endLine": 72,
+            "sha256": "eb8de405798a5d4604436451c54efbd8553b8be9cbfa925f5532c0ffc35e50b0"
+          },
+          {
+            "startLine": 120,
+            "endLine": 151,
+            "sha256": "69081f3b8bc6007bbbc7d55e0b9f40091954763ffdb6dcb08e10cf65f58635fe"
+          },
+          {
+            "startLine": 254,
+            "endLine": 260,
+            "sha256": "378712c85c205c20a0cf3423579090f030983fb7a379d18559f81a363a6fcd02"
+          },
+          {
+            "startLine": 454,
+            "endLine": 454,
+            "sha256": "032f524bc7f8852f35e8ae66c9d0d44dcdaa149e04bf889b831624c0b16d894e"
+          }
+        ]
+      },
+      {
+        "file": "work/downloads/era-kernel-source/Heroes.pas",
+        "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+        "ranges": [
+          {
+            "startLine": 366,
+            "endLine": 366,
+            "sha256": "14471fb60d0982bb6682f983ade4228d69d6dcf5e22bae6dab8af235ee9f7baa"
+          }
+        ]
+      },
+      {
+        "file": "work/downloads/era-kernel-source/HeroesConsts.pas",
+        "sha256": "1495c19d394b5251d5783422e68a22dd040c9e608214722c9586c5a5989cb764",
+        "ranges": [
+          {
+            "startLine": 362,
+            "endLine": 364,
+            "sha256": "6b0f89670ce2ab7855e65c40b5ef138a12cfcb099e30cc5a20864bbffa7b497c"
+          }
+        ]
+      }
+    ],
+    "reproduction": [
+      "python3 work/downloads/era-mine-income-order-oracle/write_report.py",
+      "/usr/bin/objdump -d --x86-asm-syntax=intel --start-address=<preferredVa> --stop-address=<endExclusiveVa> work/era-gameplay-reference/h3era.exe"
+    ],
+    "scope": "Only referenced mine-income wrappers, native income paths, their numeric conversion/data and the two supplied listeners. No global decompilation; no tracked file or container changes."
+  },
+  "nativeComparison": {
+    "evidenceKind": "Source inspection and arithmetic inference, not yet a native handicap scenario.",
+    "remaining": "VCMI currently applies owner income handicap separately to mine contributions; ERA aggregates modified mine income with other income before applying the handicap. Aggregate-rounding equivalence remains to port.",
+    "example": {
+      "improvedMineIncomes": [
+        2,
+        2
+      ],
+      "incomePercent": 85,
+      "aggregateResult": 3,
+      "separatelyRoundedResult": 2
+    }
+  }
+}

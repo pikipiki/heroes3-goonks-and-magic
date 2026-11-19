@@ -1,5 +1,6 @@
 #pragma once
 #include "../CGameHandler.h"
+#include "EraMithrilSiteTiles.h"
 #include "../../lib/era/EraMithrilModel.h"
 #include "../../lib/era/EraMithrilWeeklyRules.h"
 #include "../../lib/networkPacks/EraGameplayPacks.h"
@@ -11,6 +12,7 @@ namespace era_compat::mithril
 {
 inline void weeklySites(CGameHandler & gh)
 {
+    initializeSiteMarkers(gh);
     const auto & cb=gh.gameInfo();const int day=cb.getDate(Date::DAY);
     if(!era_bridge::mithril::weeklyDue(day,state(cb)["weeklyProcessedDay"].Integer(),weeklyEnabled(cb)))return;
     const auto mithril=resource();if(mithril==GameResID::NONE)return;
@@ -29,7 +31,7 @@ inline void weeklySites(CGameHandler & gh)
         for(const auto * site:sites)
         {
             const bool replace=type!=Obj::WATER_WHEEL&&era_bridge::mithril::weeklyMithril(gh.getRandomGenerator().nextInt(1,12));
-            const bool upgraded=entry(cb,site->id)["mill"].Bool();
+            const bool upgraded=millActive(cb,site->id);
             if(!replace&&!upgraded)continue;
             auto next=site->configuration;
             for(auto & visit:next.info)

@@ -14,6 +14,7 @@ ${Array.from({length:14},(_,i)=>{const day=i+2;return `!?GE${day};\n${read('!!')
 }
 export async function runMineTiles({boot,panel,buy,state,command,wait,page,output,report,readCompletedNativeSave}){
  const press=process.env.CASES.endsWith('-desktop')?'click':'tap';
+ const saveVersion=Number(process.env.GOONK_EXPECTED_SAVE_VERSION||930);
  const legacySave=process.env.MINE_TILES_LEGACY_SAVE,producer=process.env.MINE_TILES_LEGACY_PRODUCER==='1';
  const rows=legacySave||producer?[{name:'legacy-purchase',initial:0,purchase:true,weekly:process.env.MINE_TILES_LEGACY_WEEKLY==='1',setAt2:0,enabled:true}]:[
   {name:'daily-purchase',initial:0,purchase:true,weekly:false,setAt2:1,enabled:true},
@@ -45,7 +46,7 @@ export async function runMineTiles({boot,panel,buy,state,command,wait,page,outpu
   if(producer){const bytes=await readCompletedNativeSave(page(),command);assert.equal(bytes.readInt32LE(4),929);fs.writeFileSync(path.join(output,'legacy-mine.vsgm1'),bytes);report.scenarios.push({kind:'legacy-mine-producer',saveVersion:929,physicalPurchase:true,days:7});await page().close();continue;}
   const foreign=row.foreign??0,day2=row.weekly?row.initial||(row.purchase?7:0):row.purchase?6:Math.max(0,row.initial-1);
   await advance(2,day2,foreign);
-  const bytes=await readCompletedNativeSave(page(),command);assert.equal(bytes.readInt32LE(4),930);fs.writeFileSync(path.join(output,row.name+'-pending.vsgm1'),bytes);await page().close();
+  const bytes=await readCompletedNativeSave(page(),command);assert.equal(bytes.readInt32LE(4),saveVersion);fs.writeFileSync(path.join(output,row.name+'-pending.vsgm1'),bytes);await page().close();
   await boot({...options,enabled:!row.enabled,save:[...bytes],expectedDialog:'source-campaign'});await read(`MINE DAY 2 ${day2}/${foreign}/${foreign}`);await ack();await read(`MINE EDIT ${row.setAt2}/${foreign}/${foreign}`);await ack();await map();
   if(row.enabled){const current=await offer();assert.equal(current.active,row.setAt2!==0);if(!row.weekly)assert.equal(current.days,row.setAt2);}
   else assert.equal((await state()).mithrilEnabled,false);
@@ -56,6 +57,6 @@ export async function runMineTiles({boot,panel,buy,state,command,wait,page,outpu
    await advance(day,marker,other);daily.push({day,marker,foreign:other,resources:(await state()).resources});await ack();await map();
   }
   if(row.enabled){const current=await offer();assert.equal(current.active,false);assert(current.available);if(row.weekly&&row.setAt2)assert.equal(current.resource,initialResource);}
-  report.scenarios.push({name:row.name,weekly:row.weekly,enabled:row.enabled,physicalPurchase:!!row.purchase,initial:row.initial,day2Marker:day2,scriptEdit:row.setAt2,foreignMarkers:foreign,pendingNativeSaveReload:true,reversedGlobalDefault:true,sharedSourceAndUI:true,protectedResourcePreserved:row.weekly&&row.enabled&&!!row.setAt2,daily,legacyInput:legacySave?929:null,saveVersion:930,viewport:page().viewportSize(),input:press==='click'?'mouse':'touch'});await page().close();
+  report.scenarios.push({name:row.name,weekly:row.weekly,enabled:row.enabled,physicalPurchase:!!row.purchase,initial:row.initial,day2Marker:day2,scriptEdit:row.setAt2,foreignMarkers:foreign,pendingNativeSaveReload:true,reversedGlobalDefault:true,sharedSourceAndUI:true,protectedResourcePreserved:row.weekly&&row.enabled&&!!row.setAt2,daily,legacyInput:legacySave?929:null,saveVersion,viewport:page().viewportSize(),input:press==='click'?'mouse':'touch'});await page().close();
  }
 }

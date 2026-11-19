@@ -2,7 +2,7 @@
 #include "StdInc.h"
 #include "SourceCampaignProcessor.h"
 #include "EraCampaignWogOptions.h"
-#include "EraMithrilMineTiles.h"
+#include "EraMithrilSiteTiles.h"
 #include "../CGameHandler.h"
 #include "../processors/NewTurnProcessor.h"
 #include "../processors/TurnOrderProcessor.h"
@@ -2329,7 +2329,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   const auto raw=position(c);const auto decoded=era_bridge::tile_properties::coordinates(raw.x,raw.y,raw.z);
   const int3 pos(decoded[0],decoded[1],decoded[2]);
   require(gh.gameState().getMap().isInTheMap(pos),"source tile property outside map");
-  era_compat::mithril::initializeMineMarkers(gh);
+  era_compat::mithril::initializeSiteMarkers(gh);
   const auto changed=value(era_compat::tile_properties::number(gh.gameState(),pos),args[0]);
   if(!query(op))
   {

@@ -1,0 +1,450 @@
+{
+  "schema": 1,
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+    "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+  },
+  "contract": {
+    "purchaseRequiresMarker0": true,
+    "purchaseMarker": 2,
+    "millActiveOnAnyNonzeroMarker": true,
+    "universityLessonRequiresExactMarker2": true,
+    "source171ControlsWeeklyMillStock": true,
+    "source36ControlsPurchases": true,
+    "weeklyEffectDoesNotRequireSource36": true,
+    "universityPostVisitDoesNotRequireSource36": true,
+    "weeklyDoesNotClearMarkers": true,
+    "universityHumanPrice": 3000,
+    "maximumEligibleSkills": 2,
+    "lessonAdmissionCapturedBeforeDialogs": true,
+    "universityLessonSubtype": 0
+  },
+  "nativeCompatibility": {
+    "legacyMillAndUniversityFlagsImportAs2": true,
+    "existingNonzeroMarksTakePrecedence": true,
+    "migrationOncePerMap": true,
+    "explicitZeroCannotResurrectLegacyFlags": true,
+    "legacyImmediateMillAdapterRetained": true,
+    "newSaveVersion": 931,
+    "originalEraRuntimeValidated": false
+  },
+  "sourceRegions": [
+    {
+      "firstLine": 689,
+      "lastLine": 708,
+      "text": "!?FU(WOG_36_UpgradeObject);\n!#VA(dlgShown:x) (objType:x) (cost:x);\n\n!!VR(dlgShown):S(FALSE);\n!!POv4/v5/v6:N?(upgraded:y);                                                   [(Get PO number)]\n!!if&(upgraded:y)=0;\n  !!OW:R-1/(RES_MITHRIL)/?(number:y);                                          [(Get amount of mithril)]\n  !!if&(number)>=(cost);\n    !!VR(dlgShown):S(TRUE);\n    !!CM:R0;                                                                   [(disable standard popup)]\n\n    !!SN:T^wog.36.upgrade.%(objType)^/?(msg:z)/^number^/(number)/^cost^/(cost);\n    !!IF:Q1/(RES_MITHRIL)/(cost)/(MSG_TYPE_QUESTION)/(msg:z);\n\n    !!if&1;\n      !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-(cost);\n      !!POv4/v5/v6:N2;                                                         [(setup so it's upgraded)]\n    !!en;\n  !!en;\n!!en;\n",
+      "textSha256": "7eb8013ffab1aff0e325ab3c96fce2d97ce6a9e9074794bdb3563b7046382030"
+    },
+    {
+      "firstLine": 474,
+      "lastLine": 503,
+      "text": "    !!UN:U(OBJ_WATER_WHEEL)/(ANY_OBJ)/-1/(x)/(y:y)/(z:y);\n    !!br&(x)<0;\n    !!PO(x)/(y)/(z):N?(isUpgraded:y);                 [(Get PO number at position)]\n\n    !!if&(isUpgraded:y);\n      !!WM(x)/(y)/(z):Bd*2;                           [(Water Wheel now contains new value)]\n      *!PO(x)/(y)/(z):N0;                             [(reset upgrade)] - in WoG 3.58f it did not reset\n    !!en;\n  !!en;\n\n  !!VR(x:y):S-1;\n  !!re i;\n    !!UN:U(OBJ_WINDMILL)/(ANY_OBJ)/-1/(x)/(y:y)/(z:y);\n    !!br&(x)<0;\n    !!VRr:R0/1/(WOG_171_MILL_GARDEN_FREQUENCY);\n    !!if&r=(WOG_171_MILL_GARDEN_FREQUENCY);\n      !!ML(x)/(y)/(z):B(RES_MITHRIL)/d;               [(Water Wheel now contains new  mithril)]\n    !!en;\n\n    !!PO(x)/(y)/(z):N?(isUpgraded:y);                 [(Get PO number at position)]\n    !!if&(isUpgraded:y);\n      !!ML(x)/(y)/(z):Bd/d*2;                         [(Water Wheel now contains new value)]\n      *!PO(x)/(y)/(z):N0;                             [(reset upgrade)] - in WoG 3.58f it did not reset\n    !!en;\n  !!en;\n\n\n!?FU(WOG_OnIterateAllMapObjects)&i^wog_170_enabled^;\n!#VA(x:x) (y:x) (z:x);\n!#VA(objType:x);\n",
+      "textSha256": "28092351afd0b2153cc55af9981eaa4e06a6222ca096f9f5316cc02b004fbd69"
+    },
+    {
+      "firstLine": 784,
+      "lastLine": 835,
+      "text": "!!POv998/v999/v1000:N?y-5;   (check if Advanced University)\n!!FU&y-5<>2:E;               (exit trigger if not an Advanced University)\n\n!!VRy-1:S28;\n!!VRy-2:S28;                 (set skill variables out of range)\n!!VRy-3:S0;                  (init trigger-based var y-3)\n!!IF:V2/0;                   (init flag 2)\n!!OW:R-1/6/?y-4;             (get owner gold)\n!!UR(CURRENT_OBJ):S?y1/?y2/?y3/?y4;\n!!FU8188:Py1/y2/y3/y4;           (check for Basic skills on hero)\n\n!!IF&y-4<3000/1000/y-1<28:Q2/6/3000/1/z136062;\n!!IF&y-4>2999/1000/y-1<28:Q2/6/3000/2/z136063;\n!!FU8189&y-4>2999/1000/2:P; (function for human if enough gold)\n!!HE-1&y-1<28/-1000:Sy-1/2; (AI gets max 2 skills Advanced (doesn't pay gold))\n!!HE-1&y-2<28/-1000:Sy-2/2;\n\n!?FU8188;                    (check for Basic skills on hero)\n!!re i/1/4;(end_value);\n  !!HE-1:Sxi/?y1;             (get skill expertise)\n  !!if&y1=1;\n    !!if&y-1=28;\n      !!VRy-1:Sxi; (set first skill)\n    !!el;\n      !!VRy-2:Sxi;(set second skill)\n      !!br;\n    !!en;\n  !!en;\n!!en;\n \n\n!?FU8189;                    (human interaction for skills)\n!!IF:V2/0;                   (re-init flag 2)\n!!VRy1:Sy-1 *3 +4;           (calculate Pic for first skill)\n!!VRy2:Sy-2 *3 +4;           (calculate Pic for second skill)\n!!UN:N4/1/y-1; (Get skill name 1)\n!!UN:N4/2/y-2; (Get skill name 2)\n\n!!IF&y-1<28/y-2<28:Q2/20/y1/20/y2/7/z136064;  (2 skills)\n!!HE-1&2/y-1<28/y-2<28:Sy-1/2;  (left one chosen)\n!!HE-1&-2/y-1<28/y-2<28:Sy-2/2; (right one chosen)\n\n!!VRy1&-2/y-1<28/y-2<28:Sy2;\n!!VRz1&-2/y-1<28/y-2<28:Sz2;\n\n!!IF:Q2/20/y1/1/z136065;     (Learn message)\n!!HE-1&y-1<28/y-2=28:Sy-1/2; (only 1 skill, no choice)\n!!OW&y-1<28:R-1/6/d-3000;    (pay 3000 gold)\n\n!?FU(WOG_CreateERMHook)&i^wog_36_enabled^;\n*!SN:Ex1/1/4249128/(WOG_HOOK_GetMineDescription); [Archer30: This hook is disabled due to incompatile with Asian lang]\n\n",
+      "textSha256": "32ea53695077090f7c183efe0b6497f52058e2c64b924fa98f55a72682c25edd"
+    }
+  ],
+  "initialInstructionsOrder": {
+    "reportSha256": "7e18158a6659133290d9fb94af56f71abbd67d4bf073a1156922f768e059cf58",
+    "evidence": {
+      "schema": 1,
+      "evidenceKind": "Ordinary targeted static PE inspection and supplied Pascal/ERM source. No REA Evidence, runtime execution or Windows game observation.",
+      "targets": {
+        "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+        "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+        "preferredImageBase": "0x400000"
+      },
+      "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+      "sources": {
+        "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+        "work/downloads/era-kernel-source/GameExt.pas": "736a0c9e14b7431b1803d1ab538e2728a30c0a777f3fc0b576f4ddff1ce13228",
+        "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm": "9cecab0bf658ad807b27cb9f783c220183dde8f580adb61e72044d6692de530f",
+        "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+      },
+      "questions": [
+        {
+          "question": "Do ordinary !# instructions run before OnAfterErmInstructions in a new game?",
+          "status": "answered within identified normal new-game path",
+          "answer": "Yes. FindErm scans and executes immediate !# commands from all selected scripts while IsGameLoading0. The successful map-reader return invokes FindErm before the enclosing game initializer later reaches its PI hook. PI is trigger30370 and only fires when not loading."
+        },
+        {
+          "question": "Is a successful ordinary !#PO:N2 visible to the first script42 weekly cycle?",
+          "status": "answered with explicit conditions, no original runtime probe",
+          "answer": "It must precede that source cycle. The PI stdlib resets lastTimerDay to-1; first ordinary OnEveryDay at game day1 computes weekday1 and onceTRUE; source42 then calls the mill/garden routine if171 is enabled. Its wheel/mill checks read any nonzero PO:N. Thus a successful !#PO:N2 remains eligible on the first cycle unless an intervening script/plugin overwrites or clears it. Script42 itself does not clear these markers in initialization or in the shown weekly routine; its N0 resets are commented out."
+        },
+        {
+          "question": "Does loading rerun !#PO initialization or PI?",
+          "status": "answered for normal supplied ERA loader path, not every legacy/reload extension",
+          "answer": "Normal load sets IsGameLoading1. Supplied FindErm path skips ordinary initial instructions; PI wrapper also skips30370. ERA restores script/function state from saved sections and may recompile changed script arrays without replaying ordinary !# side effects. Exact restoration of each PO storage field was not re-audited here."
+        },
+        {
+          "question": "What is the exact first native weekly reward-generation order?",
+          "status": "partially answered",
+          "answer": "The source42 weekly mutation is placed after instructions/PI as above. The native base-reward generation/cache initialization for every mill/garden/wheel subclass was not completely traced in this bounded pass, and must not be conflated with source42 doubling/replacement. No claim that instructions necessarily precede every native object constructor/cache fill."
+        },
+        {
+          "question": "Is an exact physical script filename/mod order established?",
+          "status": "algorithm and phase ordering answered; concrete runtime mounted order unobserved",
+          "answer": "ERA LoadScriptsFromDisk first loads global libraries, internal map scripts, map-directory scripts, then selected global scripts and end libraries. GetOrderedPrioritizedFileList orders each directory group by descending numeric filename prefix after a case-insensitive name sort; earlier locations win duplicate names. A fixed script whitelist preserves its listed order. The actual VFS mounted file set, duplicate precedence and runtime config were not observed."
+        }
+      ],
+      "normalNewGameOrder": [
+        {
+          "stage": 1,
+          "action": "Game initializer4bfb30 calls4c2110 at4bfc79, which calls map-reader4fdce0 at4c2958."
+        },
+        {
+          "stage": 2,
+          "action": "Successful map-reader return4fdf8b is declared hooked to74c7b2, which sets loading0 and invokes FindErm749955. ERA BeforeMainLoop resets runtime symbols and loads selected scripts for a new game."
+        },
+        {
+          "stage": 3,
+          "action": "While scanning each selected script, !# commands execute immediately. Ordinary PO writes therefore complete during this stage."
+        },
+        {
+          "stage": 4,
+          "action": "FindErm returns; enclosing game initializer continues and eventually reaches4c01a2. Declared hook74cec4 invokes PI30370 through74ce75 with loading0."
+        },
+        {
+          "stage": 5,
+          "action": "PI stdlib handler resets era_everyDayTimerLastDay=-1. Source42 PI handlers reset only replacement interval counters, not wheel/mill PO:N markers."
+        },
+        {
+          "stage": 6,
+          "action": "Owner timer paths70543b or70551d call RunTimer74dc74. ERA splice Hook_RunTimer fires OnEveryDay77018 before original standard TM handlers."
+        },
+        {
+          "stage": 7,
+          "action": "First standard-library OnEveryDay obtains c=day1, weekday1, onceTRUE. Source42 first weekly routine runs when171 is active, reads PO:N for wheels/windmills and doubles if nonzero."
+        }
+      ],
+      "sourceReferences": {
+        "Erm.pas": {
+          "triggerIdsAndNames": [
+            191,
+            229,
+            3892,
+            3918
+          ],
+          "universalDailyDispatch": [
+            3446,
+            3449,
+            3450,
+            9567,
+            9568
+          ],
+          "newGameScriptSetup": [
+            6167,
+            6176,
+            6186,
+            6187,
+            6188,
+            6189
+          ],
+          "scriptIteration": [
+            6199,
+            6207,
+            6214,
+            6235,
+            6243,
+            6248,
+            6250,
+            6253
+          ],
+          "directoryPriorityAlgorithm": [
+            2898,
+            2918,
+            2921,
+            2926,
+            2930,
+            2947,
+            2952
+          ],
+          "scriptPhases": [
+            3078,
+            3099,
+            3104,
+            3109,
+            3114,
+            3142,
+            3147,
+            3150,
+            3159
+          ],
+          "savedScripts": [
+            1591,
+            1606,
+            3011,
+            3022,
+            3170,
+            3174
+          ],
+          "sameEventHandlerOrder": [
+            3516,
+            3525,
+            3530,
+            5843
+          ]
+        },
+        "GameExt.pas": {
+          "wogInitialization": [
+            132,
+            135,
+            137,
+            139,
+            141
+          ],
+          "beforeAfterPatchPhases": [
+            540,
+            541,
+            543,
+            545,
+            547
+          ]
+        },
+        "9999 era - stdlib.erm": {
+          "PIResetLastDay": [
+            214,
+            215
+          ],
+          "dailyDerivedValues": [
+            228,
+            231,
+            232,
+            233,
+            235,
+            238,
+            240,
+            241,
+            246
+          ]
+        },
+        "42 wog - mithril enhancements.erm": {
+          "initializerAndPI": [
+            91,
+            110,
+            112,
+            116
+          ],
+          "firstWeeklyGate": [
+            420,
+            456,
+            457
+          ],
+          "waterWheelMarkerAndDouble": [
+            475,
+            476,
+            478,
+            479,
+            480
+          ],
+          "windmillMarkerAndDouble": [
+            490,
+            493,
+            494,
+            495,
+            496
+          ]
+        }
+      },
+      "regions": [
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "FindErm distinguishes immediate instruction prefix",
+          "preferredVa": "0x74b611",
+          "endExclusiveVa": "0x74b65b",
+          "rva": "0x34b611",
+          "fileOffset": "0x2e6611",
+          "size": 74,
+          "sha256": "135be22c567685eec4d949b4e321638aea1860eae3e96ac9d36390003b8760b3",
+          "observation": "After first!, '#' marks the instruction byte atEBP-d; ordinary'!' clears it."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "FindErm executes instructions while parsing",
+          "preferredVa": "0x74c48f",
+          "endExclusiveVa": "0x74c503",
+          "rva": "0x34c48f",
+          "fileOffset": "0x2e748f",
+          "size": 116,
+          "sha256": "7030166b0df6ef7b641d5d19dafe3762c248c7290437bec3761beca1458e38fe",
+          "observation": "Marked instructions execute through741df0 immediately while scanning scripts when IsGameLoading=0; normal loading path skips them."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "New-game ERM wrapper",
+          "preferredVa": "0x74c7b2",
+          "endExclusiveVa": "0x74c7fa",
+          "rva": "0x34c7b2",
+          "fileOffset": "0x2e77b2",
+          "size": 72,
+          "sha256": "fa1c811f99518e53ce1f1a9f0d4325586c0b076bc20eef3ed6126e5d795bb85a",
+          "observation": "Set IsGameLoading0, initialize ERM, FindErm749955, then return."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Load-game ERM wrapper",
+          "preferredVa": "0x74c7fa",
+          "endExclusiveVa": "0x74c816",
+          "rva": "0x34c7fa",
+          "fileOffset": "0x2e77fa",
+          "size": 28,
+          "sha256": "824aab18d7f1f05e6659e417672c7d095d4d2012e1cd71d7e57e0fd2f284b026",
+          "observation": "Set IsGameLoading1 and initialize ERM; does not call FindErm here."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "PI dispatch new-game guard",
+          "preferredVa": "0x74ce75",
+          "endExclusiveVa": "0x74cec4",
+          "rva": "0x34ce75",
+          "fileOffset": "0x2e7e75",
+          "size": 79,
+          "sha256": "09d4768030f9573034478238f2dd16d1703444267e4009d6e03774600d819661",
+          "observation": "If not loading, set current trigger30370, ProcessErm, restore previous trigger; skip on loading."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "PI wrapper",
+          "preferredVa": "0x74cec4",
+          "endExclusiveVa": "0x74cedf",
+          "rva": "0x34cec4",
+          "fileOffset": "0x2e7ec4",
+          "size": 27,
+          "sha256": "5f63d3efb1f740ec3e2316a511439ae632dfcecd1860da2d1a6f21ac6000039a",
+          "observation": "Calls74ce75."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "WoG declared new-game hook table row",
+          "preferredVa": "0x788fd8",
+          "endExclusiveVa": "0x788fe4",
+          "rva": "0x388fd8",
+          "fileOffset": "0x323fd8",
+          "size": 12,
+          "sha256": "e5d68e35db721cbf8cac857a616c939d42672b1325ad0c4ad4cdd2da69fcbb3b",
+          "observation": "Native site4fdf8b, auxiliary0, callback74c7b2."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "WoG declared PI hook table row",
+          "preferredVa": "0x789b24",
+          "endExclusiveVa": "0x789b30",
+          "rva": "0x389b24",
+          "fileOffset": "0x324b24",
+          "size": 12,
+          "sha256": "92e07f5c5ae44f730c80d113063ff9761a07c24f71aea3d240e62167c340356a",
+          "observation": "Native site4c01a2, auxiliary0, callback74cec4."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "WoG hook relocation installer",
+          "preferredVa": "0x701354",
+          "endExclusiveVa": "0x7013ba",
+          "rva": "0x301354",
+          "fileOffset": "0x29c354",
+          "size": 102,
+          "sha256": "ffa3fd6582ab4e73e395f6e201250cf15510768dfbd38c8584dbc0d77905c4c6",
+          "observation": "Iterate12-byte rows starting788fd8; write callback-nativeSite-5 to nativeSite+1. This is a declared installed hook destination, not a direct original E8 xref."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Init game calls map loader before final PI site",
+          "preferredVa": "0x4bfc73",
+          "endExclusiveVa": "0x4bfc7e",
+          "rva": "0xbfc73",
+          "fileOffset": "0xbfc73",
+          "size": 11,
+          "sha256": "81a06394dfe3329dddda4b30318e338263b43c6b78c8e4bcc4b15c9252a8be58",
+          "observation": "Within4bfb30, calls4c2110; the same initializer reaches4c01a2 only later."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Map loader calls map read routine",
+          "preferredVa": "0x4c2939",
+          "endExclusiveVa": "0x4c295d",
+          "rva": "0xc2939",
+          "fileOffset": "0xc2939",
+          "size": 36,
+          "sha256": "1617f8bdedcef76a2d46a44c0123d925b4d588e07952a255f431de878922139c",
+          "observation": "4c2110 body calls4fdce0, whose successful return site4fdf8b is the ERM instruction hook above."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Successful map read returns through instruction site",
+          "preferredVa": "0x4fdf83",
+          "endExclusiveVa": "0x4fdf93",
+          "rva": "0xfdf83",
+          "fileOffset": "0xfdf83",
+          "size": 16,
+          "sha256": "9348483987c17cf095bbcedf27386b95e499a2e64c721bfcf655f00ef6f42eaf",
+          "observation": "Successful4fdce0 reaches4fdf8b after map-read helpers, before returning to4c2110."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Init-game final PI site",
+          "preferredVa": "0x4c019a",
+          "endExclusiveVa": "0x4c01b4",
+          "rva": "0xc019a",
+          "fileOffset": "0xc019a",
+          "size": 26,
+          "sha256": "2808626bce0adc43e8b456420510775df0d6a195768293bd32b6d144505b804f",
+          "observation": "The end of4bfb30 reaches4c01a2; declared WoG hook invokes PI wrapper."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Human/normal timer hook reaches RunTimer",
+          "preferredVa": "0x705423",
+          "endExclusiveVa": "0x705456",
+          "rva": "0x305423",
+          "fileOffset": "0x2a0423",
+          "size": 51,
+          "sha256": "0cc3c1091678174380503614233965057a220faaf93ab3efe14a85479798e1e8",
+          "observation": "Owner event prelude then RunTimer74dc74 at70543b; original continuation follows."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Second owner timer hook reaches RunTimer",
+          "preferredVa": "0x705505",
+          "endExclusiveVa": "0x705539",
+          "rva": "0x305505",
+          "fileOffset": "0x2a0505",
+          "size": 52,
+          "sha256": "cdf7daa6928e7e8741994f624a2abd7e48422131f999d7812fcaa6349ccf8bc6",
+          "observation": "Second owner path reaches74dc74 at70551d then original continuation."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "WoG owner timer hook table rows",
+          "preferredVa": "0x789110",
+          "endExclusiveVa": "0x789128",
+          "rva": "0x389110",
+          "fileOffset": "0x324110",
+          "size": 24,
+          "sha256": "e725384b55f921291ea1b4b2aa74b7ba41ace07318d045164a7cf82a64569ad1",
+          "observation": "Native4f04f6 callback705347; native4cc4af callback705457."
+        }
+      ],
+      "visibilityConditions": [
+        "New game initialization reaches the successful normal ERM path with ERM enabled and the PO write succeeds.",
+        "Source option171 must be enabled for the OnEveryDay call to the shown weekly routine; option36 alone is not the gate at line456.",
+        "No later instruction, PI handler, object iterator or plugin overwrites/clears the same PO:N before first daily read.",
+        "A script can explicitly invoke events/functions at arbitrary times; such reentrant or synthetic calls are outside the normal startup timeline."
+      ],
+      "limits": [
+        "No original executable, DLL, plugin or container was loaded, executed or modified. This report is static and does not prove complete runtime event ordering under all mods.",
+        "WoG hook table destinations and their relocation installer are identified; final process bytes and later plugin hooks were not observed.",
+        "Exact native base weekly reward/cache fill ordering for every object type remains incomplete; source42 weekly mutation ordering is the established conclusion.",
+        "Saved-game PO restoration, network/hotseat timing, campaign rollover, script reload and explicit manually fired events require separate runtime validation.",
+        "File-order claims concern the provided loader algorithm and phase sequence; no claim of exact current VFS-mounted order or all external user scripts.",
+        "No tracked project files, published data or containers were changed."
+      ]
+    }
+  }
+}

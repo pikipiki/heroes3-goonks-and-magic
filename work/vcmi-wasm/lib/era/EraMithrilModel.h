@@ -96,10 +96,25 @@ inline bool mineActive(const IGameInfoCallback & cb,ObjectInstanceID object)
 {return enabled(cb)&&!map_rules::weeklyMines(cb)&&mineMarker(cb,object)!=0;}
 inline bool mineProtected(const IGameInfoCallback & cb,ObjectInstanceID object)
 {return enabled(cb)&&map_rules::weeklyMines(cb)&&mineMarker(cb,object)!=0;}
-inline bool millActive(const IGameInfoCallback & cb,ObjectInstanceID object)
-{return enabled(cb)&&entry(cb,object)["mill"].Bool();}
-inline bool universityActive(const IGameInfoCallback & cb,ObjectInstanceID object)
-{return enabled(cb)&&entry(cb,object)["university"].Bool();}
+inline int siteMarker(const IGameInfoCallback & cb,ObjectInstanceID id)
+{
+    const auto * object=cb.getObj(id);
+    if(!object||(object->ID!=Obj::WINDMILL&&object->ID!=Obj::WATER_WHEEL&&object->ID!=Obj::UNIVERSITY))return 0;
+    const int marker=tile_properties::number(cb.gameState(),object->visitablePos());
+    if(marker||tile_properties::state(cb.gameState())["mithrilSiteVersion"].Integer()>=1)return marker;
+    const auto field=object->ID==Obj::UNIVERSITY?"university":"mill";
+    return entry(cb,id)[field].Bool()?2:0;
+}
+inline bool millActive(const IGameInfoCallback & cb,ObjectInstanceID id)
+{
+    const auto * object=cb.getObj(id);
+    return object&&(object->ID==Obj::WINDMILL||object->ID==Obj::WATER_WHEEL)&&siteMarker(cb,id)!=0;
+}
+inline bool universityActive(const IGameInfoCallback & cb,ObjectInstanceID id)
+{
+    const auto * object=cb.getObj(id);
+    return object&&object->ID==Obj::UNIVERSITY&&object->subID.getNum()==0&&siteMarker(cb,id)==2;
+}
 inline std::vector<SecondarySkill> universitySkills(const CGUniversity & university,const CGHeroInstance & hero)
 {
     std::vector<SecondarySkill> result;
@@ -194,7 +209,7 @@ inline Offer offer(const IGameInfoCallback & cb,const CGObjectInstance & object,
     if(!nearby(cb,object,player))return result;
     if((object.ID==Obj::WINDMILL||object.ID==Obj::WATER_WHEEL)&&!millActive(cb,object.id))
     {result.kind=MILL;result.cost=5;}
-    else if(object.ID==Obj::UNIVERSITY&&!universityActive(cb,object.id))
+    else if(object.ID==Obj::UNIVERSITY&&siteMarker(cb,object.id)==0)
     {result.kind=UNIVERSITY;result.cost=4;}
     else if(object.ID==Obj::MONOLITH_ONE_WAY_ENTRANCE||object.ID==Obj::MONOLITH_TWO_WAY)
     {result.kind=MONOLITH;result.cost=1;}

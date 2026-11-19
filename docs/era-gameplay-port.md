@@ -44,8 +44,20 @@ ennemies et neutres. Une ancienne sauvegarde importe une seule fois les
 périodes restantes ou la protection achetée ; un effacement ultérieur ne
 réactive pas les anciens champs. Les marqueurs partagés non nuls déjà présents
 sont prioritaires lors de cette migration. Le panneau ne calcule pas de revenu
-pour un propriétaire neutre inexistant. Les autres sites au mithril restent à
-rapprocher complètement de leurs marqueurs et événements source.
+pour un propriétaire neutre inexistant. Les moulins, roues à eau et universités utilisent aussi désormais ce stockage.
+Les achats écrivent `N2` et toute valeur non nulle interdit un nouvel achat.
+Le bonus hebdomadaire d'un moulin reconnaît toute valeur non nulle ; une
+université avancée exige exactement `N2` et le sous-type source `0`. Ces effets
+restent indépendants de la possibilité d'acheter avec l'option36. Les anciens
+achats sont importés une seule fois et ne reviennent pas après un effacement
+suivi d'une sauvegarde. Le premier cycle lit correctement un marqueur posé par
+une instruction initiale : le contrôle natif donne1000pièces d'or contre500
+avec l'ancien adaptateur. Les compétences et le paiement d'une leçon terminée
+survivent au rechargement.
+
+Le calcul du revenu sous handicap reste à rapprocher : ERA applique la
+réduction au total agrégé ; le moteur natif arrondit encore certaines
+contributions séparément. Ce point empêche de déclarer le mithril complet.
 
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle

@@ -2,7 +2,7 @@ import fs from 'node:fs';import crypto from 'node:crypto';import {execFileSync} 
 import {unpackBaseGame} from './base-game.mjs';
 import {copyPublicTree} from './copy-public-tree.mjs';
 const destination='work/vcmi-wasm/emscripten';fs.mkdirSync(destination,{recursive:true});
-const archive='outputs/vcmi-wasm-goonk-0.4.283-engine.tar.gz',marker=destination+'/.archive-sha256';
+const archive='outputs/vcmi-wasm-goonk-0.4.284-engine.tar.gz',marker=destination+'/.archive-sha256';
 const fingerprint=crypto.createHash('sha256').update(fs.readFileSync(archive)).digest('hex');
 if(!fs.existsSync(destination+'/html5/vcmiclient.wasm')||!fs.existsSync(marker)||fs.readFileSync(marker,'utf8')!==fingerprint){execFileSync('tar',['-xzf',archive,'-C',destination]);fs.writeFileSync(marker,fingerprint);}
 const data='work/game-data/homm3eng/home/web_user/.local/share/vcmi';

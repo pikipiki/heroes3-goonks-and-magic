@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import {revealNativeAction} from './native-ui-actions.mjs';
 export function verifyUniversityGrantOrder(forms,events,{two=false,repeat=false}={}){
  const checks=[];
  const check=(offset,choice)=>{
@@ -34,7 +35,7 @@ export async function verifyUniversityLesson({state,command,wait,walk,page,repor
   assert.equal(form.choices.length,1);assert.match(form.choices[0].label,/Advanced/);assert.equal((await state()).resources[6],balance,'Payment follows the lesson confirmation');
   await command(1);await wait(balance=>goonkMobileState.mode==='map'&&goonkMobileState.resources[6]===balance-3000,balance);
  }
- async function skills(){await page().locator('[data-ui=heroes]').tap();await wait(()=>goonkMobileState.heroWindow);return (await state()).heroWindow.skills;}
+ async function skills(){const action=await revealNativeAction(page(),'button[data-ui=heroes]');await action.tap();await wait(()=>goonkMobileState.heroWindow);return (await state()).heroWindow.skills;}
  const first=await price();
  if(poor||decline){
   if(poor)assert.equal(before,2999);await command(poor?1:0);await wait(()=>goonkMobileState.mode==='map');assert.equal((await state()).resources[6],before);

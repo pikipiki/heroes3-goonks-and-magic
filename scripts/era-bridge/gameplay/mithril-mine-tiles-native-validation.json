@@ -7,27 +7,27 @@
   "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
   "sourceBaseCommit": "c8e1b498035a0c3394a1734ee188fd386c7afe11",
   "sourceBindings": {
-    "docs/era-compatibility.md": "93083445c90492e3bb0a73cc0718f27864cc3787df3a8910910dfeafa0316edc",
-    "docs/era-gameplay-port.md": "0bc95ca43390186f8037ced857cc7c447ec87007a82600937f4f5db58eac5905",
+    "docs/era-compatibility.md": "9a627cbf8a066f0421cb331f5a4a5c7991e20f686209db6693798c39e6cb3315",
+    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
     "scripts/era-bridge/gameplay/map-rules.json": "f30b9949e5878f9aa3320faf51b449dfcc007db8ce1003b892986b7c3f673064",
-    "scripts/era-bridge/gameplay/mithril.json": "1b4c66f009bf78c3d6c6ebdc2e081cfabf2624435da0c236bcc82ff1952dfa84",
+    "scripts/era-bridge/gameplay/mithril.json": "99ca1737cef33635a17f07157bef8c0d0104f546adcba737f7af793771f70905",
     "tests/era-mithril-mine-rules-native.test.mjs": "761a3c0cb275226beb7d5e0d4952da94ae3df42e02637fccb5985884bc480a37",
     "tests/era-mithril-mine-tiles.test.mjs": "03c8f28d64de048021b374a3ddc8c95fda22ac078b1b4024bfc756d5873606a4",
     "tests/fixtures/era-gameplay/mithril-mine-tiles-reference.json": "4d1e51bf1b62024c189ac8eae38a1c81c0201ee2f2db23164e0c4c4ea6bd34b4",
     "tests/native/EraMithrilMineRules.test.cpp": "018d2ea0c0b294933c2be40ee2988b8ced0becf167996cc338f51d13b5e10013",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "e0d492a7c74e329322e51f60a8152ddfe10a608b9b70f09423103a5eca3186c3",
-    "work/browser-tests/wog-map-double-artifacts-cases.mjs": "89382a351503c4692c1c88f78faa455876f0e4aca41c5b0b41dcba136457c6bd",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "2ba92e307d5710dcdc617dec698ef3529c5d5435b9d807a8ebf29d926911f731",
-    "work/browser-tests/wog-mithril-mine-tiles-cases.mjs": "416a181fc2125fe58f695dd17bcafc29439255be415b3358e7ce121e17e69400",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "6cd298637d11de76766bee0d7243982862ee84d6658f504e00ea989cb9f957b5",
+    "work/browser-tests/wog-map-double-artifacts-cases.mjs": "f0fb6687e4f6ed29e144c0106cb771c32c90fa1ad4a3b024be1bd162887463db",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+    "work/browser-tests/wog-mithril-mine-tiles-cases.mjs": "a813f7e49026cb93b2eb28e30b039e87f107df4e2adac46927d17acf98d2ac7e",
     "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0",
     "work/vcmi-wasm/lib/era/EraMithrilMineRules.h": "a92a758bf1ea4788e52aa26c02e8f513e79809fb8a3d9af7d35f2dc3ca30234e",
-    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "fe0c6c6bcaa57016d86ea7f29e51284c82031169ff2c610d6250d6ee31e5a6f1",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "bc301dbc34694cd09adfbdf388b93c1c7a6954709d89821751e37144241d11b0",
     "work/vcmi-wasm/server/era/EraMithrilMineTiles.h": "9d7031177b303d85ead1a74927e485c43fe213b25281b2ef2f986ec5484ed722",
-    "work/vcmi-wasm/server/era/EraMithrilRuntime.h": "a200e7e7763bec4cbf855477292424463ac3ed396d4e65970af69a55ff524ea0",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded"
+    "work/vcmi-wasm/server/era/EraMithrilRuntime.h": "249f533b8a4c3781f079d336557d3ce0bd2cbfdfc3d379df5f9a8885b75e3a9c",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1533,5 +1533,24 @@
       "buildLogSha256": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
       "verifyLogSha256": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
     }
+  },
+  "mithrilSiteTilesRevalidation": {
+    "scope": "Historical reports retained; shared site markers, subtype admission, legacy imports, first-week and current regressions linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-site-tiles-native-validation.json",
+    "previousBindings": {
+      "docs/era-compatibility.md": "93083445c90492e3bb0a73cc0718f27864cc3787df3a8910910dfeafa0316edc",
+      "docs/era-gameplay-port.md": "0bc95ca43390186f8037ced857cc7c447ec87007a82600937f4f5db58eac5905",
+      "scripts/era-bridge/gameplay/mithril.json": "1b4c66f009bf78c3d6c6ebdc2e081cfabf2624435da0c236bcc82ff1952dfa84",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "e0d492a7c74e329322e51f60a8152ddfe10a608b9b70f09423103a5eca3186c3",
+      "work/browser-tests/wog-map-double-artifacts-cases.mjs": "89382a351503c4692c1c88f78faa455876f0e4aca41c5b0b41dcba136457c6bd",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "2ba92e307d5710dcdc617dec698ef3529c5d5435b9d807a8ebf29d926911f731",
+      "work/browser-tests/wog-mithril-mine-tiles-cases.mjs": "416a181fc2125fe58f695dd17bcafc29439255be415b3358e7ce121e17e69400",
+      "work/vcmi-wasm/lib/era/EraMithrilModel.h": "fe0c6c6bcaa57016d86ea7f29e51284c82031169ff2c610d6250d6ee31e5a6f1",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063",
+      "work/vcmi-wasm/server/era/EraMithrilRuntime.h": "a200e7e7763bec4cbf855477292424463ac3ed396d4e65970af69a55ff524ea0",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded"
+    },
+    "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
   }
 }

@@ -189,7 +189,8 @@ void CGUniversity::onUniversityWindowClosed(IGameEventCallback & events,const CG
 
 void CGUniversity::blockingDialogAnswered(IGameEventCallback & events,const CGHeroInstance * hero,int32_t answer) const
 {
-    if(!era_compat::mithril::universityActive(*cb,id))return;
+    // The source post-visit trigger captures admission before its dialogs.
+    // Continue that stored lesson even if another script edits the tile mark.
     auto query=era_compat::mithril::state(*cb)["universityQueries"][std::to_string(hero->id.getNum())];
     if(!query["object"].isNumber()||query["object"].Integer()!=id.getNum())return;
     const int stage=static_cast<int>(query["stage"].Integer());

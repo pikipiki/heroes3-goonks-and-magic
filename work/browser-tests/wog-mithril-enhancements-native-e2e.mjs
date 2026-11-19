@@ -31,7 +31,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({mineTilesFixture=false,fortlessFixture=false,replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({siteTilesSubtype=false,siteTilesFixture=false,mineTilesFixture=false,fortlessFixture=false,replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -74,7 +74,7 @@ if opts['reroll'] in ['shrine','rng']:
 elif opts['reroll'] in ['hut','hut-rng']:
  site('mithrilHut','witchHut','witchHut',10,11)
  objects[-1]['options']['rewardable']={'variables':{'preset':{'secondarySkill@gainedSkill':'core:offence'}}}
-elif opts['reroll']=='university': site('mithrilAdvancedUniversity','university','object',9,11)
+elif opts['reroll']=='university': site('mithrilAdvancedUniversity','university','privateUniversity' if opts['siteTilesSubtype'] else 'object',9,11)
 elif opts['reroll']=='weekly-garden': site('weeklyGarden','mysticalGarden','mysticalGarden',9,11)
 elif opts['reroll']=='weekly-windmill': site('weeklyWindmill','windmill','windmill',9,11)
 elif opts['reroll']=='payout': site('mithrilPayout','waterWheel','waterWheel',9,11)
@@ -215,7 +215,7 @@ if opts['sourceOptions']:
   {'name':'private mithril option source','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native mithril option query'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}},
   {'name':'private mithril option next day','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}
  ])
-if opts['mineTilesFixture']:
+if opts['mineTilesFixture'] or opts['siteTilesFixture']:
  for day in range(3,16):header.setdefault('events',[]).append({'name':'mine tile day '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['replacementFixture'] and opts['replacementFixture'].get('observeReady'):
  header.setdefault('events',[]).append({'name':'inspect initial source170 counters','firstOccurrence':0,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['1'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
@@ -231,7 +231,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({mineTilesFixture,fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({siteTilesSubtype,siteTilesFixture,mineTilesFixture,fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
 async function boot({fortlessChoice=null,preserveAiFortsChoice=null,fortlessConfigured=false,preserveAiFortsConfigured=false,displayMithrilChoice=null,resourceMithrilChoice=null,nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
@@ -254,7 +254,7 @@ async function boot({fortlessChoice=null,preserveAiFortsChoice=null,fortlessConf
  if(aiFunds!==null)for(const rule of Object.values(difficulty.ai))if(rule.resources)rule.resources.mithril=aiFunds;
  if(options.fortlessFixture)for(const rule of Object.values(difficulty.ai))if(rule.resources)rule.resources.gold=0;
  const markets=options.reroll==='university'?structuredClone(testMarkets):null;
- if(markets)markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};
+ if(markets){markets.university.types.object.offer={wisdom:1,airMagic:1,earthMagic:1,fireMagic:1};if(options.siteTilesSubtype)markets.university.lastReservedIndex=1;if(options.siteTilesSubtype)markets.university.types.privateUniversity={...structuredClone(markets.university.types.object),index:1,offer:['wisdom','airMagic','earthMagic','fireMagic'].map(skill=>({anyOf:[skill]})),templates:{private:{animation:'AVWpeas.def',mask:['A'],visitableFrom:['+++','+-+','+++']}}};}
  const shrines=preserveRewards||options.reroll==='rng'?structuredClone(testShrines):null;
  if(preserveRewards)shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.rewards[0].resources={gold:{min:1001,max:9999}};
  if(options.reroll==='rng')shrines.shrineOfMagicLevel1.types.shrineOfMagicLevel1.variables.spell.gainedSpell={anyOf:['bless']};
@@ -466,7 +466,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
- if(process.env.CASES?.startsWith('mine-tiles')){
+ if(process.env.CASES?.startsWith('site-tiles')){
+  const {runSiteTiles}=await import('./wog-mithril-site-tiles-cases.mjs');
+  await runSiteTiles({boot,panel,buy,state,command,wait,walk,page:()=>page,output,report,readCompletedNativeSave});
+ }else if(process.env.CASES?.startsWith('mine-tiles')){
   const {runMineTiles}=await import('./wog-mithril-mine-tiles-cases.mjs');
   await runMineTiles({boot,panel,buy,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
  }else if(process.env.CASES?.startsWith('fortless')){
