@@ -7,7 +7,7 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9",
     "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
@@ -16,9 +16,9 @@
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "733cb6c6036358b77e720fdc977b0a05b46b6ca7fe51d470b43d1e8a52f3c3ba",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "9bd7b0b5e619e6095aa8b093f139068d6f81f3deb02f4918626cc08a00e2324e",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a94dd1c5e8e77f544b31d36e864d319242982588ff04042d5bc28c27ceff42cf",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c023b0bc699d04870fbbb40a71b989c0cc8590d12d8c10fef28657b25d38d6d0",
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
     "web/wog-options.mjs": "97cf1e322c3c78cbb4afdc1eed583a41e21fcc02154ee0f7320e36fdfa9d3150",
     "mod/tum-era/content/config/wog-map-rules.json": "0b8a2df4397f3c05d56c466018d0035084a403f84b96213811cbbf321604ca69",
@@ -576,7 +576,7 @@
   "sourceCompatibility": {
     "scope": "Fresh active/disabled monthly-visit calendar controls after adding saved level/reward checkpoints and native artifact receipt presentation. Historical calendar reports remain unchanged.",
     "sourceBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
     },
     "nativeBuild": {
       "command": "ninja -j32 html5",
@@ -892,7 +892,7 @@
     {
       "scope": "Additive empty army-upgrade quote explanations in MobileBridge only. Original monthly proof and its engine remain historical; all monthly rule source bindings are unchanged.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -982,7 +982,7 @@
     {
       "scope": "Additive source149 information and separate display/purchase visibility in MobileBridge. Monthly rule implementation unchanged; both active and inactive month transitions, day28/29 save reload and no replay revalidated on the current engine. Historical compatibility report retained in sourceCompatibilityHistory.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1073,7 +1073,7 @@
     {
       "scope": "Mine PO:N information and neutral-mine income guard in MobileBridge. Both active/inactive monthly calendars, day28/29 saves and absence of reset replay revalidated on the current engine. Earlier compatibility reports retained in history.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1164,7 +1164,7 @@
     {
       "scope": "MobileBridge lobby handicap command and raw mine information. Both monthly calendars, day28/29 saves and no reset replay verified on the current engine.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1255,7 +1255,7 @@
     {
       "scope": "Map-local creature quotes in MobileBridge. Both monthly calendars, day28/29 saves and no reset replay verified on the current engine.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1345,7 +1345,7 @@
     {
       "scope": "World-local creature definitions in MobileBridge; active and inactive month changes, day28/29 reload and no replay verified on the current engine.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1654,5 +1654,22 @@
       "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "935444d72b1d47608b58ead966bf22694a7eedcfab97d922757929a41962b63f"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+      "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+      "sourceCompatibility/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceCompatibilityHistory/0/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceCompatibilityHistory/1/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceCompatibilityHistory/2/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceCompatibilityHistory/3/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceCompatibilityHistory/4/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceCompatibilityHistory/5/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

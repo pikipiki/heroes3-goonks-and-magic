@@ -495,6 +495,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='commander-battle-checkpoint'){
+  const {runCommanderBattleCheckpoint}=await import('./wog-commander-words-cases.mjs');
+  await runCommanderBattleCheckpoint({boot,state,command,wait,approachEnemy,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:955})});
+ }
  if(process.env.CASES==='commander-words'){
   const {runCommanderWords}=await import('./wog-commander-words-cases.mjs');
   await runCommanderWords({boot,state,command,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:954})});

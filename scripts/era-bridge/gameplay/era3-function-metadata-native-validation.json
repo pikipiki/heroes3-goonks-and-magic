@@ -15,7 +15,7 @@
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/browser-tests/wog-era3-function-metadata-cases.mjs": "50602bab31eb91a668bafd2d8ba19aa018287b7ff20320513b734c4ffc51bb7b"
   },
   "nativeBuild": {
@@ -465,5 +465,13 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

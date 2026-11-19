@@ -10,8 +10,8 @@
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "733cb6c6036358b77e720fdc977b0a05b46b6ca7fe51d470b43d1e8a52f3c3ba",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "9bd7b0b5e619e6095aa8b093f139068d6f81f3deb02f4918626cc08a00e2324e",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a94dd1c5e8e77f544b31d36e864d319242982588ff04042d5bc28c27ceff42cf",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c023b0bc699d04870fbbb40a71b989c0cc8590d12d8c10fef28657b25d38d6d0",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
     "web/wog-options.mjs": "97cf1e322c3c78cbb4afdc1eed583a41e21fcc02154ee0f7320e36fdfa9d3150",
     "mod/tum-era/content/config/wog-map-rules.json": "0b8a2df4397f3c05d56c466018d0035084a403f84b96213811cbbf321604ca69",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
@@ -1707,5 +1707,14 @@
       "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "935444d72b1d47608b58ead966bf22694a7eedcfab97d922757929a41962b63f"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+      "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

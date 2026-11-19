@@ -12,11 +12,11 @@
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
     "tests/era-creature-cost-alias.test.mjs": "4414b0611780703cc6cfa495b3b58d7fcce439319de7f1a2ff0b98eb68594044",
     "tests/fixtures/era-gameplay/creature-cost-alias-reference.json": "f0f00b25b86a4f599962f5ffe7652acd2f57fd5b7017d145a1452d5fb857856e",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
     "work/browser-tests/wog-creature-cost-alias-cases.mjs": "18f072f49bf9e9107060fb88e046c4d3c080a2205f30f76c6bb694758bf24632",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "work/browser-tests/wog-mithril-income-order-cases.mjs": "17919ab2555aa1e25297783c245f90b0e7ab64bb29887272184a601b56a97039",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c023b0bc699d04870fbbb40a71b989c0cc8590d12d8c10fef28657b25d38d6d0",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
   },
   "upstreamReference": "tests/fixtures/era-gameplay/creature-cost-alias-reference.json",
@@ -578,5 +578,14 @@
       "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

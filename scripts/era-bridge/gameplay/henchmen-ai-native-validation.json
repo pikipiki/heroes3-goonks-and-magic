@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "1c70a08c26e3121a2da97175c97a78a4f6dbf6ace53322e4673dd907f0e56fc6",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "work/vcmi-wasm/lib/era/EraHenchmanBannerSourceRows.h": "19239d75ad9b0fab41741c9f08cddc903730a7861dc6c86a06c218dc4013dc98",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -245,5 +245,13 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

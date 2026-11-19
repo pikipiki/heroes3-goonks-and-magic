@@ -125,5 +125,6 @@
   "townBannersReference": "tests/fixtures/era-gameplay/map-town-banners-reference.json",
   "rogueAmbushValidation": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
   "rogueAmbushReference": "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json",
-  "startingLevelCommanderValidation": "scripts/era-bridge/gameplay/commander-experience-native-validation.json"
+  "startingLevelCommanderValidation": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+  "startingLevelCommanderChoicesValidation": "scripts/era-bridge/gameplay/commander-choices-native-validation.json"
 }

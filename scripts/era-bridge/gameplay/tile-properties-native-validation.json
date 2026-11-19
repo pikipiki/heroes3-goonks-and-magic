@@ -9,10 +9,10 @@
   "sourceBindings": {
     "work/vcmi-wasm/lib/era/EraTileNumberRules.h": "79053fd607147d192ce5a1e2ba06ea41889a55086ce687992699b3f188e043ee",
     "work/vcmi-wasm/lib/era/EraTileProperties.h": "addf710be2469993ea858ad7017de45981e6b486bdaf2d076393d9b31be68ce3",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c023b0bc699d04870fbbb40a71b989c0cc8590d12d8c10fef28657b25d38d6d0",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/browser-tests/wog-era-tile-properties-cases.mjs": "1b3a76ffcb770eba75cc14bd525fff705a94be860c950401502a2f0079aa2b81",
     "tests/native/EraTileNumberRules.test.cpp": "5b14ab4b6a5e908cdf4f667e7fdff4a17fd97c35e7bb3643bdbcfd1689bfdf2f",
     "tests/era-tile-number-rules-native.test.mjs": "cf6b666e8fbb041e0d8488a9bea36d6ade1b6c865637a7f8580d9f4aaefc8b64",
@@ -472,5 +472,15 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

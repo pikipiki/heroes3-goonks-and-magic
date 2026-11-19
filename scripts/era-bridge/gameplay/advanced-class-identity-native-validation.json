@@ -13,7 +13,7 @@
     "scripts/era-bridge/gameplay/advanced-class-identity.mjs": "0282dda77d77588f612f6025444589858bc0a276a66d62891db2db181771b597",
     "tests/fixtures/era-gameplay/advanced-class-identity-1.1.erm": "534b93b5c019a48d978e18288d90897870a6738119084b496fd3fcb08f1adc94",
     "work/browser-tests/wog-advanced-class-identity-cases.mjs": "8fad7e30a7a8b5da211c054efb11e8695614ea719f559f151a8dcf9c2e402f20",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
@@ -937,5 +937,13 @@
       "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

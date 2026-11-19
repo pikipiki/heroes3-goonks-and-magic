@@ -10,6 +10,7 @@
 #include "StdInc.h"
 #include "../era/EraCampaignExperienceWord.h"
 #include "../era/EraStartingLevelRules.h"
+#include "../era/EraCommanderChoiceModel.h"
 #include "../era/EraEye278Native.h"
 #include "../era/EraFamiliarChannel43.h"
 #include "../era/EraBridgePolicies.h"
@@ -1262,7 +1263,7 @@ void GameStatePackVisitor::visitCommanderLevelUp(CommanderLevelUp & pack)
 	assert(hero);
 	const auto & commander = hero->getCommander();
 	assert(commander);
-	commander->levelUp();
+	if(!pack.alreadyApplied)commander->levelUp();
 }
 
 void GameStatePackVisitor::visitBattleStart(BattleStart & pack)
@@ -1729,13 +1730,14 @@ void GameStatePackVisitor::visitTemporaryBattleArmyChange(TemporaryBattleArmyCha
 
 void GameStatePackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
 {
-    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules"&&pack.system!="eraScripts"&&pack.system!="tileProperties"&&pack.system!="creaturePrices"&&pack.system!="artifactGrants")||!pack.state.isStruct())
+    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules"&&pack.system!="eraScripts"&&pack.system!="tileProperties"&&pack.system!="creaturePrices"&&pack.system!="artifactGrants"&&pack.system!="commanderChoices")||!pack.state.isStruct())
         throw std::runtime_error("Invalid ERA gameplay state packet");
     if(pack.system=="mapRules")era_compat::map_rules::applyCreatureRules(gs,pack.state);
     if(pack.system=="eraScripts")era_compat::script_rules::validate(pack.state);
     if(pack.system=="tileProperties")era_compat::tile_properties::validate(pack.state);
     if(pack.system=="creaturePrices")era_compat::creature_prices::validate(pack.state);
     if(pack.system=="artifactGrants")era_compat::source_artifacts::validate(pack.state);
+    if(pack.system=="commanderChoices")era_compat::commander_choices::validate(pack.state);
     gs.getMap().eraGameplayState[pack.system]=pack.state;
 }
 

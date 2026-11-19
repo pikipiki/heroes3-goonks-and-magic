@@ -15,7 +15,7 @@
     "work/vcmi-wasm/lib/era/EraLearningStoneModel.h": "b9ff104fba574ba893eb87e85b19d747803c02ca411cc4ebf16989980ea9f124",
     "work/vcmi-wasm/lib/era/EraScriptRulesModel.h": "cc0f328507e20b4c93c704403c6e3c7b29b0b8355b3a42f73f25ba69df2909a8",
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
@@ -270,5 +270,13 @@
       "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "3c8ad0efb7caa16ae08ded5fb16fcae43e0986007b17614d5f10ee2abfe4f6ee"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

@@ -1349,6 +1349,7 @@ struct DLL_LINKAGE HeroLevelUp : public Query
 
 struct DLL_LINKAGE CommanderLevelUp : public Query
 {
+    bool alreadyApplied = false;
 	PlayerColor player;
 	ObjectInstanceID heroId;
 
@@ -1362,6 +1363,7 @@ struct DLL_LINKAGE CommanderLevelUp : public Query
 		h & player;
 		h & heroId;
 		h & skills;
+        if(h.version >= ESerializationVersion::GOONK_ERA_COMMANDER_CHOICES)h & alreadyApplied;
 	}
 };
 

@@ -97,6 +97,7 @@
 #include "../lib/spells/CSpellHandler.h"
 #include "era/SourceCampaignProcessor.h"
 #include "era/EraLevelArtifactRuntime.h"
+#include "era/EraCommanderChoiceRuntime.h"
 #include "era/EraHenchmanPrompts.h"
 
 #include <vstd/RNG.h>
@@ -226,6 +227,7 @@ void CGameHandler::levelUpCommander (const CCommanderInstance * c, int skill)
 		return;
 	}
 
+    era_compat::commander_choices::forget(*this,*hero);
 	scp.accumulatedBonus.parameters = 0;
 	scp.accumulatedBonus.duration = BonusDuration::PERMANENT;
 	scp.accumulatedBonus.turnsRemain = 0;
@@ -349,6 +351,7 @@ void CGameHandler::levelUpCommander(const CCommanderInstance * c)
 	}
 	else if (skillAmount > 1) //apply and ask for secondary skill
 	{
+        era_compat::commander_choices::remember(*this,*hero,clu);
 		auto commanderLevelUp = std::make_shared<CCommanderLevelUpDialogQuery>(this, clu, hero);
 		queries->addQuery(commanderLevelUp);
 	}
@@ -356,6 +359,7 @@ void CGameHandler::levelUpCommander(const CCommanderInstance * c)
 
 void CGameHandler::expGiven(const CGHeroInstance *hero)
 {
+    if(era_compat::commander_choices::resume(*this,*hero))return;
 	if(era_compat::source_artifacts::resumeLevel(*this,*hero))return;
     if(const auto * commander=hero->getCommander();commander&&commander->eraExperienceWord&&commander->gainsLevel())
     {levelUpCommander(commander);return;}
@@ -699,6 +703,7 @@ void CGameHandler::onAdvInterfaceReady(PlayerColor player)
  // Restored source queries have already been shown. Kicking a new garrison
  // query here would treat readiness as its answer and discard unclaimed units.
  if(sourceCampaigns->onReady(player))return;
+ if(era_compat::commander_choices::resumePlayer(*this,player))return;
  if(era_compat::source_artifacts::resumePlayer(*this,player))return;
 
 	logGlobal->trace("AdvInterfaceReady received for player %s", player);

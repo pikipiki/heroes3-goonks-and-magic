@@ -11,16 +11,16 @@
   "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
   "sourceBaseCommit": "26632499ffd0b439fbc7142364f4321f5eadeb03",
   "sourceBindings": {
-    "package-lock.json": "717c8a2ae36362e0aad1d09a344189d26db553f569dfe32f651be31ae7f506ab",
-    "package.json": "9efc32130e7b5ecfbbfaf371695175b200d03f50a9874928f53bd7605144e0f6",
+    "package-lock.json": "6559dfd9a92aff9f851155e600686c0c3ccf506f997f8b5bfaa153a882afcf2c",
+    "package.json": "438bff3d7f28e47699b2ad10060ca62ae9e97f49fb72301f474655c5149fda0c",
     "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
-    "scripts/prepare-web.mjs": "5bf0a038c08041f249d86d5b1d292dcda606da04b9c7c755376a605706ecbab1",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
-    "work/browser-tests/wog-commander-words-cases.mjs": "0f7c2776afd11ec96f5beddb25b53211f6e54adc05cf27027c336a38de68850a",
+    "scripts/prepare-web.mjs": "416982069e725fe6cdd5db32eb60b7225c5a585db9d45bcb1b64054c7576dd53",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
+    "work/browser-tests/wog-commander-words-cases.mjs": "d79893bb43a45199034b527f730a67ea676dbe416431856cd6d686cc0872f5ab",
     "work/browser-tests/wog-creature-prices-cases.mjs": "fe98dcb45fe3f649d0165ce922f0a56c86cc9ec502dfc91e81a22ca7b8f9aafe",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "4985eb7be997c950f4f8777310367e6a339acaddf7c83d3207c985856e5caf5d",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h": "b952a9f2e8876d54fffa2bc220e111da29af7a9278ca756697f6dc768561bc72",
     "work/vcmi-wasm/lib/mapObjects/army/CCommanderInstance.cpp": "da8199e98221f083c50d81bbd9c917a5f47639170243b4469b86c4369fcb2e83",
     "work/vcmi-wasm/lib/mapObjects/army/CCommanderInstance.h": "50923c21608c1c6f44d5a2eedc98f053ef528cb1342aef31ed6c5f9dbc5a8df3",
@@ -29,13 +29,13 @@
     "work/vcmi-wasm/lib/networkPacks/EraGameplayPacks.h": "dfef11c0893fc6550b4e94e54515c5dbe985dd630edaef012339fcae19a37309",
     "work/vcmi-wasm/lib/networkPacks/NetPackVisitor.h": "aa0e0d18b0116069391641454ad6bea6e090c0ab314c4afc90cfe5106500b569",
     "work/vcmi-wasm/lib/networkPacks/NetPacksLib.cpp": "88050ffa296954cb6c5946470ec7412e3d7ae85e3a3b1f5c23160f0137a21234",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c023b0bc699d04870fbbb40a71b989c0cc8590d12d8c10fef28657b25d38d6d0",
     "work/vcmi-wasm/lib/serializer/RegisterTypes.h": "cfc334f3e259abc2211720bea2477042e919a1135fb4228ffa8b15f975c1473f",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "0bb74a7a6d81d9f0321f0501e33c035af0721da51465fec0c3aa95f6b79d4476",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
     "tests/era-commander-experience-native.test.mjs": "a93b0f35d61c18a18fd1913b6f93311d713668183e4593613e6d23c86d0275dc",
-    "scripts/era-bridge/gameplay/map-rules.json": "237409452c263dd5e1a4d5959d9eee812c26bef9456fa4d32f475c509483fe86",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+    "scripts/era-bridge/gameplay/map-rules.json": "a7946c8a311b8642a257f9d93f2192b9e7d22a0b361da870f56160f02423115e",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9",
     "work/browser-tests/native-ui-actions.mjs": "01d7ce13668520252cb39a7b5f76733517823cf72658c469ec8d3298a55f6ee6",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "268768b1eb9a35899af25e90b7590c52db9af9066a211a071d505507ab2d976e"
   },
@@ -1844,5 +1844,23 @@
       "Use the current Material hero section selector through visible mouse/touch controls."
     ],
     "initialMatrixStartupFailure": "Four initial cases started before server readiness; retained initial reports, then replayed all four successfully on the same binary."
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/package-lock.json": "717c8a2ae36362e0aad1d09a344189d26db553f569dfe32f651be31ae7f506ab",
+      "sourceBindings/package.json": "9efc32130e7b5ecfbbfaf371695175b200d03f50a9874928f53bd7605144e0f6",
+      "sourceBindings/scripts/prepare-web.mjs": "5bf0a038c08041f249d86d5b1d292dcda606da04b9c7c755376a605706ecbab1",
+      "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+      "sourceBindings/work/browser-tests/wog-commander-words-cases.mjs": "0f7c2776afd11ec96f5beddb25b53211f6e54adc05cf27027c336a38de68850a",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+      "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+      "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
+      "sourceBindings/scripts/era-bridge/gameplay/map-rules.json": "237409452c263dd5e1a4d5959d9eee812c26bef9456fa4d32f475c509483fe86",
+      "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

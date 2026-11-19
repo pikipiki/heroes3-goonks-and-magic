@@ -15,10 +15,10 @@
     "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
     "web/dialog-presentation.mjs": "6c16fa09b5492e8ad8dc647b564c4403078f0267dd02d95f4251a06e661b023b",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "0bb74a7a6d81d9f0321f0501e33c035af0721da51465fec0c3aa95f6b79d4476",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
@@ -472,5 +472,15 @@
       "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "750c68edb0ef67e28676492cb8796a6df0ab08729c4175f7f37de0f5e6504fd8"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+      "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+      "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

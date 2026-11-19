@@ -9,7 +9,7 @@
   "sourceBindings": {
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "ba55d7d45ebaf8592a713b148b223a958d6d02c17da995b0608860fe0fe68fa1",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -202,5 +202,13 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }

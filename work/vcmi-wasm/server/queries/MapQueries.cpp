@@ -15,6 +15,7 @@
 #include "../TurnTimerHandler.h"
 #include "../../lib/callback/IGameInfoCallback.h"
 #include "../../lib/mapObjects/CGHeroInstance.h"
+#include "../../lib/mapObjects/army/CCommanderInstance.h"
 #include "../../lib/mapObjects/CGMarket.h"
 #include "../../lib/mapObjects/MiscObjects.h"
 #include "../../lib/networkPacks/PacksForServer.h"
@@ -318,7 +319,8 @@ void CCommanderLevelUpDialogQuery::onExposure(QueryPtr topQuery)
 
 	for(const auto & color : players)
 	{
-		if(owner->topQuery(color).get() == this)
+		if(owner->topQuery(color).get() == this
+            && (!hero->getCommander()->eraExperienceWord || gh->uiReadyForDialogs.contains(color)))
 		{
 			prompted = true;
 			clu.queryID = queryID;
@@ -336,6 +338,7 @@ void CCommanderLevelUpDialogQuery::onAdded(PlayerColor color)
 	if(owner->topQuery(color).get() != this)
 		return;
 
+    if(hero->getCommander()->eraExperienceWord && !gh->uiReadyForDialogs.contains(color))return;
 	prompted = true;
 	clu.queryID = queryID;
 	gh->sendAndApply(clu);

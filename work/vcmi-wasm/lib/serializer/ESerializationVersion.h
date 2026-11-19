@@ -116,10 +116,11 @@ enum class ESerializationVersion : int32_t
 
 	GOONK_WOG_ROGUE_AMBUSH, // source127 visit lifecycle and thirty-two choices
     GOONK_ERA_COMMANDER_EXPERIENCE_WORD, // original commander XP and hero baseline
+    GOONK_ERA_COMMANDER_CHOICES, // saved commander choices without replaying the acquired level
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
 
-	CURRENT = GOONK_ERA_COMMANDER_EXPERIENCE_WORD,
+	CURRENT = GOONK_ERA_COMMANDER_CHOICES,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

@@ -11,17 +11,17 @@
     "docs/era-compatibility.md": "a4c3d2d4caa8d46720d676ce4cb91ebe26567c306c00436cd3170c47de7a531f",
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
     "mod/tum-era/content/config/wog-map-rules.json": "0b8a2df4397f3c05d56c466018d0035084a403f84b96213811cbbf321604ca69",
-    "scripts/era-bridge/gameplay/map-rules.json": "237409452c263dd5e1a4d5959d9eee812c26bef9456fa4d32f475c509483fe86",
+    "scripts/era-bridge/gameplay/map-rules.json": "a7946c8a311b8642a257f9d93f2192b9e7d22a0b361da870f56160f02423115e",
     "tests/era-creature-prices.test.mjs": "26184eb1cdd291917a2891be7f3d8a6baf0169e2d6a5cbdcff6234d672dea4c2",
     "tests/era-map-double-artifacts.test.mjs": "71c0a2691f7927a806fa5426f9a1a9256be7e3a7713e03e676a29e0a120d2e3f",
     "tests/era-map-eighth-upgrade-rules-native.test.mjs": "f7ee5445d9ee4be5073017dba973cf68747c18b2a112a072e9eae14fc1c7de51",
     "tests/era-map-eighth-upgrades.test.mjs": "7e1b798d255fc860659f05add11ceb030b1fd134238620f48924bfbd88dc92c4",
     "tests/fixtures/era-gameplay/map-eighth-upgrades-reference.json": "3f35a15b0c9473fac6d444cafcc8a3a96a044202422e87e05e9e62d9fbb6dc0d",
     "tests/native/EraMapEighthUpgradeRules.test.cpp": "9c5feebd8418bb7ccf32fb75e796263d1dc84f6bde385d9e0c596847271e3626",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
     "web/wog-options.mjs": "97cf1e322c3c78cbb4afdc1eed583a41e21fcc02154ee0f7320e36fdfa9d3150",
     "work/browser-tests/wog-creature-prices-cases.mjs": "fe98dcb45fe3f649d0165ce922f0a56c86cc9ec502dfc91e81a22ca7b8f9aafe",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/browser-tests/wog-map-eighth-upgrades-cases.mjs": "82415e0a6925b8c29af453b7cc8e7800aa6d9c9462a8c383f63a80534d3491ea",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a94dd1c5e8e77f544b31d36e864d319242982588ff04042d5bc28c27ceff42cf",
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "0f0ceab5c9ffcf20117b03097fac56edb68ebe6f1aaa607a3e54128ee9a06d81",
@@ -31,11 +31,11 @@
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "9bd7b0b5e619e6095aa8b093f139068d6f81f3deb02f4918626cc08a00e2324e",
     "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.cpp": "179c8cdcf283bcecad146ec0cb4d5aa50199f117727c72552733155eed0021a7",
     "work/vcmi-wasm/lib/mapObjects/army/CStackInstance.h": "88a79a74124666e31cd093cd44a07d49f78add867d11363af24f61fcdcbd0fee",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "c023b0bc699d04870fbbb40a71b989c0cc8590d12d8c10fef28657b25d38d6d0",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "733cb6c6036358b77e720fdc977b0a05b46b6ca7fe51d470b43d1e8a52f3c3ba",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "0bb74a7a6d81d9f0321f0501e33c035af0721da51465fec0c3aa95f6b79d4476",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
     "work/vcmi-wasm/lib/mapObjects/army/CCreatureSet.cpp": "2b154b7fcdceec4ded67a1f520a574d8b5f68c09c9673a4fc56ee9e9572aaaf8",
     "work/vcmi-wasm/lib/era/EraExperienceProgression.h": "58478ae67824e91e73394c6fe9bba7ae9fbaf045c033b97d8cc9fffce4906e86",
     "work/vcmi-wasm/lib/era/EraExperience.h": "026227f9b18227c7ddbf9ea917ef0b457c50e12e8863b37c5fe40c960c2d5451",
@@ -9097,5 +9097,18 @@
       "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "3c8ad0efb7caa16ae08ded5fb16fcae43e0986007b17614d5f10ee2abfe4f6ee"
     },
     "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
+  },
+  "commanderChoiceRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-choices-native-validation.json",
+    "scope": "Historical engines/reports retained. Current source bindings are revalidated by the linked942 proof:20 commander word regressions,6 pending choice reloads,34 native regressions and the completed native battle checkpoint boundary.",
+    "previousBindings": {
+      "sourceBindings/scripts/era-bridge/gameplay/map-rules.json": "237409452c263dd5e1a4d5959d9eee812c26bef9456fa4d32f475c509483fe86",
+      "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+      "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
+      "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26"
+    },
+    "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
   }
 }
