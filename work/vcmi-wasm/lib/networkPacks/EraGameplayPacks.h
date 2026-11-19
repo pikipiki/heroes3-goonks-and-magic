@@ -19,6 +19,16 @@ struct DLL_LINKAGE TemporaryBattleArmyChange : public CPackForClient
     void visitTyped(ICPackVisitor & visitor) override;
     template<class Handler> void serialize(Handler & h){h & army;h & removedArmy;}
 };
+// Original resource writes preserve their signed32 word. Native SetResources
+// applies a cap and positivity pass to the entire resource set instead.
+struct DLL_LINKAGE EraResourceWordChange : public CPackForClient
+{
+    PlayerColor player = PlayerColor::NEUTRAL;
+    GameResID resource = GameResID::GOLD;
+    int32_t amount = 0;
+    void visitTyped(ICPackVisitor & visitor) override;
+    template<class Handler> void serialize(Handler & h){h & player;h & resource;h & amount;}
+};
 struct DLL_LINKAGE MithrilAction : public CPackForServer
 {
     ObjectInstanceID object;

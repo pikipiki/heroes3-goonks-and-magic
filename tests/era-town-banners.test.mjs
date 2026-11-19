@@ -8,7 +8,7 @@ test('source239 pins the town entrance, placement, guardian record and signed co
  assert.deepEqual(r.reports.map(x=>x.originalReportSha256),['f4b542462d64408a0b39254faf1aa6647297fbc4f2625a57460588c60020ec68','054f7e3e4d3620e8e5b6637ae2bcab68af81f0d656ea58069cbb213b0f58381a','e04caf574ca12908f9bb06c47978a4e5cec96f923140e8977448a7b1ecd0b22f','83581ffc9768794da3ce94145a55addeb3a383bae13f7863fc48ba5feb3f5add','409526c2c0cf6d31caf156a0b72dfae8c25d51719a3cb30dede5032c99088290']);
  for(const report of r.reports)assert(report.report.regions.length>=2);
  const table=r.reports[0].report.difficultyGuardTable;assert.equal(table.length,5);for(const row of table)assert.equal(row.creatureByTownType.length,9);
- const rules=read('scripts/era-bridge/gameplay/map-rules.json');assert.equal(rules.completeRules,false);assert.equal(rules.implementedCodes.length,20);assert.equal(rules.source77ImplementedCodes.length,19);assert(rules.source77ImplementedCodes.includes(239));assert(!rules.source77ImplementedCodes.includes(131));
+ const rules=read('scripts/era-bridge/gameplay/map-rules.json');assert.equal(rules.completeRules,false);assert.equal(rules.implementedCodes.length,21);assert.equal(rules.source77ImplementedCodes.length,20);assert(rules.source77ImplementedCodes.includes(239));assert(!rules.source77ImplementedCodes.includes(131));
 });
 test('native town banners preserve placement, hidden guards, difficulty, calendar and old save boundaries',()=>{
  const p=read('scripts/era-bridge/gameplay/map-town-banners-native-validation.json');for(const key of ['activation','completeRules','profilesAdmitted','originalRuntimeObserved'])assert.equal(p[key],false);

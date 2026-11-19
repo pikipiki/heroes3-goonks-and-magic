@@ -48,6 +48,7 @@ public:
     virtual void visitHenchmanAction(HenchmanAction & pack) {}
     virtual void visitEraGameplayChange(EraGameplayChange & pack) {}
     virtual void visitTemporaryBattleArmyChange(TemporaryBattleArmyChange & pack) {}
+    virtual void visitEraResourceWordChange(EraResourceWordChange & pack) {}
     virtual void visitMithrilAction(MithrilAction & pack) {}
 	virtual void visitSetResources(SetResources & pack) {}
 	virtual void visitSetPrimarySkill(SetPrimarySkill & pack) {}

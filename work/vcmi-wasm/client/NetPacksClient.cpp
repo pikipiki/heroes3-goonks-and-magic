@@ -119,6 +119,11 @@ void callBattleInterfaceIfPresentForBothSides(CClient & cl, const BattleID & bat
 	}
 }
 
+void ApplyClientNetPackVisitor::visitEraResourceWordChange(EraResourceWordChange & pack)
+{
+    callInterfaceIfPresent(cl,pack.player,&IGameEventsReceiver::receivedResource);
+}
+
 void ApplyClientNetPackVisitor::visitSetResources(SetResources & pack)
 {
 	//todo: inform on actual resource set transferred

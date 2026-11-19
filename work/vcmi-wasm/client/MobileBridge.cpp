@@ -1,6 +1,7 @@
 /* Mobile presentation bridge for Heroes Goonk. Engine callbacks remain authoritative. */
 #include "StdInc.h"
 #include "../lib/era/EraCreaturePrices.h"
+#include "../lib/era/EraRogueAmbushState.h"
 #include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraCreatureSpecialists.h"
 #include "../lib/era/EraAtmaStateNative.h"
@@ -226,6 +227,13 @@ std::string mobileArtifactRewardPhase(const CPlayerInterface & player)
   if(item.second["owner"].Integer()==player.playerID.getNum()&&
      (item.second["phase"].String()=="assembly"||item.second["phase"].String()=="summary"))return item.second["phase"].String();
  return {};
+}
+bool mobileRogueCheckpoint(const CPlayerInterface & player)
+{
+ const auto info=ENGINE->windows().topWindow<CInfoWindow>();
+ if(!info||info->ID.getNum()<0)return false;
+ const auto & game=static_cast<const IGameInfoCallback &>(*player.cb).gameState();
+ return !game.getBattle(player.playerID)&&era_compat::rogues::checkpoint(game.getMap().eraGameplayState["mapRules"],player.playerID.getNum());
 }
 bool mobileArtifactRewardCheckpoint(const CPlayerInterface & player)
 {
@@ -1569,7 +1577,7 @@ void publishMobileState(){
   n["heroMoving"].Bool()=p->mobileHeroMoving()||(adventureInt&&GAME->map().hasOngoingAnimations());n["turn"].Bool()=p->makingTurn; const auto & server=GAME->server();n["onlineGame"].Bool()=server.inLobbyRoom();
   if(p->makingTurn&&p->cb->getStartInfo()->turnTimerInfo.turnTimer>0)
    n["turnRemainingMs"].Integer()=p->cb->getPlayerTurnTime(p->playerID).valueMs();
-  const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,garrisonWindow.get())||mobileArtifactRewardCheckpoint(*p);
+  const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,garrisonWindow.get())||mobileArtifactRewardCheckpoint(*p)||mobileRogueCheckpoint(*p);
   n["autosaveAllowed"].Bool()=!mobileCampaignBattleHook(*p)&&(!server.inLobbyRoom()||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
@@ -2614,7 +2622,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();if(town->getOwner()!=p->playerID)return;auto budget=p->cb->getResourceAmount();auto dest=town->getUpperArmy();std::set<CreatureID> types;int free=0;for(int i=0;i<7;i++){auto c=dest->getCreature(SlotID(i));if(c)types.insert(c->getId());else free++;}
  for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=era_compat::creature_prices::get(p->cb.get(),*creature)[resource];if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*era_compat::creature_prices::get(p->cb.get(),*creature)[resource];if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
  lastPublished=0;return;}
- if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get())||mobileArtifactRewardCheckpoint(*p);const bool allowed=!mobileCampaignBattleHook(*p)&&(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
+ if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get())||mobileArtifactRewardCheckpoint(*p)||mobileRogueCheckpoint(*p);const bool allowed=!mobileCampaignBattleHook(*p)&&(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
   static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
   if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;

@@ -9,7 +9,7 @@
   "sourceBindings": {
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "ba55d7d45ebaf8592a713b148b223a958d6d02c17da995b0608860fe0fe68fa1",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -186,5 +186,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
+  },
+  "rogueAmbushRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "scope": "Historical engines/reports retained. Bindings refreshed after the source127 integration; the linked proof lists the exact57 native regression scenarios rerun.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
+    },
+    "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
   }
 }

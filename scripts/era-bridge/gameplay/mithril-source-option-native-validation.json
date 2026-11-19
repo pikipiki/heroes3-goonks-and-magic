@@ -7,8 +7,8 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "9f71297e4ebd2272088e6b337c1ef693e87219f233b5a8df3366549c7cab3107",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
@@ -587,5 +587,14 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
+  },
+  "rogueAmbushRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "scope": "Historical engines/reports retained. Bindings refreshed after the source127 integration; the linked proof lists the exact57 native regression scenarios rerun.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "9f71297e4ebd2272088e6b337c1ef693e87219f233b5a8df3366549c7cab3107",
+      "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115"
+    },
+    "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
   }
 }

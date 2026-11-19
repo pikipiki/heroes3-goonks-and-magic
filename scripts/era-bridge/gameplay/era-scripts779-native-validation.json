@@ -15,9 +15,9 @@
     "work/vcmi-wasm/lib/era/EraLearningStoneModel.h": "b9ff104fba574ba893eb87e85b19d747803c02ca411cc4ebf16989980ea9f124",
     "work/vcmi-wasm/lib/era/EraScriptRulesModel.h": "cc0f328507e20b4c93c704403c6e3c7b29b0b8355b3a42f73f25ba69df2909a8",
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "2dc5c8070cabfaa9e2c9ff703a91ef307db32849ae13e3da4589f6bed2b9a3c2",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "3c8ad0efb7caa16ae08ded5fb16fcae43e0986007b17614d5f10ee2abfe4f6ee",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
     "tests/native/EraScriptRules.test.cpp": "96fa2b497b65fc1e34bafd72322aa632e24bdec926adb616b06c3853171aa985",
     "tests/fixtures/era-gameplay/era-native-learning-reference.json": "35176eddf2845a64eebc605289fbbf40e13a57b81ce537c406315c16cf62eb9a",
@@ -253,5 +253,14 @@
       "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "02854624d7c71697fd9f4d68b0335d665daf71934adcd0f72861474aa97fa559"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
+  },
+  "rogueAmbushRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "scope": "Historical engines/reports retained. Bindings refreshed after the source127 integration; the linked proof lists the exact57 native regression scenarios rerun.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "2dc5c8070cabfaa9e2c9ff703a91ef307db32849ae13e3da4589f6bed2b9a3c2",
+      "sourceBindings/work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
+    },
+    "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
   }
 }

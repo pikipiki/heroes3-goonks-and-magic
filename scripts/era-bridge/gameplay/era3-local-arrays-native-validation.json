@@ -8,12 +8,12 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "31cc1ce1a3202a8aa77a27c15ca738ef55da786ee0d0d26dd74277cbea60f52f",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
     "work/browser-tests/wog-era3-local-arrays-cases.mjs": "7da679f5a0d0d23e4da647d9cb3b6fc9f24859b88563a4d724e2178f2b43eb59",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
@@ -400,5 +400,14 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
+  },
+  "rogueAmbushRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "scope": "Historical engines/reports retained. Bindings refreshed after the source127 integration; the linked proof lists the exact57 native regression scenarios rerun.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
+    },
+    "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
   }
 }

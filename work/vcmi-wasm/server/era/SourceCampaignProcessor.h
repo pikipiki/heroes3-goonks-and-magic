@@ -33,6 +33,7 @@ public:
  bool preservesAuthoredObjects();
  int32_t namedInteger(const std::string & name);
  void setNamedInteger(const std::string & name,int32_t value);
+ void setCompatibilityFlag(int index,bool value);
  bool onReady(PlayerColor player);
  bool reply(QueryID query,int selection,const std::string & text,PlayerColor player);
  bool draft(QueryID query,int selection,const std::string & text,PlayerColor player);

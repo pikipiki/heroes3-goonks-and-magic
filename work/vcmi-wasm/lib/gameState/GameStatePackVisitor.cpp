@@ -22,6 +22,7 @@
 #include "../era/EraScriptRulesModel.h"
 #include "../era/EraTileProperties.h"
 #include "../era/EraCreaturePrices.h"
+#include "../entities/ResourceTypeHandler.h"
 
 #include "CGameState.h"
 #include "TavernHeroesPool.h"
@@ -1662,6 +1663,15 @@ void GameStatePackVisitor::visitEntitiesChanged(EntitiesChanged & pack)
 void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack)
 {
     era_compat::applySourceCampaignChange(gs,pack);
+}
+
+void GameStatePackVisitor::visitEraResourceWordChange(EraResourceWordChange & pack)
+{
+    const auto & resources=LIBRARY->resourceTypeHandler->getAllObjects();
+    if(!pack.player.isValidPlayer()||!gs.getPlayerState(pack.player,false)
+        ||std::find(resources.begin(),resources.end(),pack.resource)==resources.end())
+        throw std::runtime_error("Invalid original resource word change");
+    gs.getPlayerState(pack.player)->resources[pack.resource]=pack.amount;
 }
 
 void GameStatePackVisitor::visitTemporaryBattleArmyChange(TemporaryBattleArmyChange & pack)

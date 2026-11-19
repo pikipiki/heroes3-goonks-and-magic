@@ -12,6 +12,7 @@
 #include "../lib/gameState/ArmyBulkTransfer.h"
 #include "../lib/era/EraCampaignExperienceWord.h"
 #include "era/EraMapDarknessRuntime.h"
+#include "era/EraRogueAmbushRuntime.h"
 #include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraBankActors.h"
 #include "../lib/mapObjects/CGMysteriousCave.h"
@@ -3696,7 +3697,8 @@ void CGameHandler::objectVisited(const CGObjectInstance * obj, const CGHeroInsta
 
 		// A hero defending inside a town is a town visit. Use the same object
 		// as the native visit query so coordinate-based OB scripts run as well.
-		if(!sourceCampaigns->visit(visitedObject,h,actualEntry))nativeObjectVisit(obj,h,actualEntry);
+        if(!era_compat::rogues::visit(*this,visitedObject,h,actualEntry)
+            &&!sourceCampaigns->visit(visitedObject,h,actualEntry))nativeObjectVisit(obj,h,actualEntry);
 	};
 
 	ObjectVisitStarted::defaultExecute(serverEventBus.get(), startVisit, h->tempOwner, h->id, obj->id);

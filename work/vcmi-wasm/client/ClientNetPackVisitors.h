@@ -32,6 +32,7 @@ public:
 	}
 
 	void visitSetResources(SetResources & pack) override;
+    void visitEraResourceWordChange(EraResourceWordChange & pack) override;
 	void visitSourceCampaignChange(SourceCampaignChange & pack) override;
 	void visitHenchmanChange(HenchmanChange & pack) override;
 	void visitEraGameplayChange(EraGameplayChange & pack) override;

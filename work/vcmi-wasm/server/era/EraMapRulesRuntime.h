@@ -46,6 +46,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("120",era_bridge::WogOption::PerpetualDarkness);
     choice("126",era_bridge::WogOption::ArtifactsPerLevel);
     choice("239",era_bridge::WogOption::TownBanners);
+    choice("127",era_bridge::WogOption::RogueAmbushes);
     packet.state["sourceOptions"]["234"].Bool()=firstTurn&&configured["sourceOptions"]["234"].Bool();
     if(packet.state["sourceOptions"]["234"].Bool())packet.state["rules"]["239"].Bool()=false;
     choice("114",era_bridge::WogOption::DailyMagicPlains);

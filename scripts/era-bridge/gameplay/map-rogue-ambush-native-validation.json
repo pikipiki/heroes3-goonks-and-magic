@@ -1,0 +1,1187 @@
+{
+  "schema": 1,
+  "applicationVersion": "0.4.294",
+  "activation": true,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "scope": "Native source77 rule127: eligible-site visit chance, timer-player daily limit, human land/water and AI creature0, coordinate-seeded formation, temporary battle lifetime, warning/reward checkpoints, raw signed gold and original flag875/continuation timing. Overall four-priority port remains incomplete.",
+  "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+  "sourceBaseCommit": "880e1902c6d2ebac052a196771c0358ca315cabf",
+  "sourceBindings": {
+    "mod/tum-era/content/config/wog-map-rules.json": "0b8a2df4397f3c05d56c466018d0035084a403f84b96213811cbbf321604ca69",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
+    "package-lock.json": "dd8a9fbec46164b46ac3991108119e9149cc5faa057be4e350a604e8c7c87196",
+    "package.json": "d1d89e07131213232038acafb76293800cbae32e5194a97f4f03252e68b0190b",
+    "scripts/era-bridge/gameplay/map-rules.json": "14c423d4c07a9e3ffbb9dc309a07c549e948d5ae4cee5d4cca7aaf6fe747dee0",
+    "scripts/prepare-web.mjs": "9ce1ba593d0b95cfa3108b98e34503fc0196376c5619eebf874b53902694df7a",
+    "tests/era-map-darkness.test.mjs": "61b2412ef2281826ad17612fc0e0df8f6ab2371d496ab1caf4f7016eb92fd285",
+    "tests/era-map-double-artifacts.test.mjs": "71c0a2691f7927a806fa5426f9a1a9256be7e3a7713e03e676a29e0a120d2e3f",
+    "tests/era-map-eighth-upgrades.test.mjs": "7e1b798d255fc860659f05add11ceb030b1fd134238620f48924bfbd88dc92c4",
+    "tests/era-map-level-artifacts.test.mjs": "ae7b86beb431fd864714800890f51ecb20a09ac1f7671f02357973c465a508dc",
+    "tests/era-map-no-shooting.test.mjs": "0df1ad10252ad716f25f90a90e7fa8de1e4d2df867565bf889615303c8bcb9a5",
+    "tests/era-rogue-ambush-rules-native.test.mjs": "407f08c42075be2fc24de56005d9eb0990d56b5b989d093db64decd4c3109554",
+    "tests/era-town-banners.test.mjs": "5fea853f0fc17f1f76d265075e66e02f364a6d9f9545932ef30fe4eef4f7563f",
+    "tests/native/EraRogueAmbushRules.test.cpp": "de3c4eb77a987c0e7aba4c0f103ae275394dbf5fc747d814b8c66508db4eb31e",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "935444d72b1d47608b58ead966bf22694a7eedcfab97d922757929a41962b63f",
+    "web/wog-options.mjs": "97cf1e322c3c78cbb4afdc1eed583a41e21fcc02154ee0f7320e36fdfa9d3150",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
+    "work/browser-tests/wog-options-stability-e2e.mjs": "a695fbb7bfd9e9090e6125036e2e62e6ad05da25f545c3716141f93a3141285f",
+    "work/browser-tests/wog-rogue-ambush-cases.mjs": "2164a98ca6395a99531997a90f3010fcef432b4794b946f626f8e10fbe9a717a",
+    "work/browser-tests/wog-rogue-ambush-fixture.py": "84d9cdd7a03641f96d630c2d85bd8fcca7b3cac4af150dc4769b81c19c9c0f03",
+    "work/vcmi-wasm/client/ClientNetPackVisitors.h": "4ce771c0bd1c23dfeed2a89e32ed11efba0301da9b494f3913561e7644cd61b8",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "31cc1ce1a3202a8aa77a27c15ca738ef55da786ee0d0d26dd74277cbea60f52f",
+    "work/vcmi-wasm/client/NetPacksClient.cpp": "7ffbc375a5607b7d6a8dd92929eac85f64e5deabc0857460786276e5e0c88f50",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a94dd1c5e8e77f544b31d36e864d319242982588ff04042d5bc28c27ceff42cf",
+    "work/vcmi-wasm/lib/era/EraRogueAmbushRules.h": "b3752922fc91f9ff284fe64d728b79a465d5b10767e2aacf41f64700d3c2a4f9",
+    "work/vcmi-wasm/lib/era/EraRogueAmbushState.h": "49b50121fd87795cc665e0b5919064a7fddec256b7775a7fe13a0c763f8a4804",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "9bd7b0b5e619e6095aa8b093f139068d6f81f3deb02f4918626cc08a00e2324e",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "3c8ad0efb7caa16ae08ded5fb16fcae43e0986007b17614d5f10ee2abfe4f6ee",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.h": "4af32483ec6b198cad2de95b297fe138a74c17678bd32250f352f9894dbf788e",
+    "work/vcmi-wasm/lib/networkPacks/EraGameplayPacks.h": "a9a0405f068c9913271f06dfa99112c56aa703200005b01d2a6e8ccd8d8e9d70",
+    "work/vcmi-wasm/lib/networkPacks/NetPackVisitor.h": "ec2851f9c98676f18259aa26a6f1d73652e68c5ca92cebffc00aa2d8751eb07e",
+    "work/vcmi-wasm/lib/networkPacks/NetPacksLib.cpp": "3d8abe5116eac4bf1c2bd6ccf04fe775918394ea4f4ea5d5935f2025dad7208a",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "0790e29cd06b22d2feeaa604057231ac5716396e840e1bfe0a1c53f71a16a9ef",
+    "work/vcmi-wasm/lib/serializer/RegisterTypes.h": "4acc70fb02cba1da3e6c1435b6eef7c157d8ba286f5e974933ce86bad7a1c6c2",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "750c68edb0ef67e28676492cb8796a6df0ab08729c4175f7f37de0f5e6504fd8",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "733cb6c6036358b77e720fdc977b0a05b46b6ca7fe51d470b43d1e8a52f3c3ba",
+    "work/vcmi-wasm/server/era/EraRogueAmbushRuntime.h": "82e2f2bb639f886974fbf39bd57cc554c945a463e16d3742292221862645c3e9",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "e9a2aa4b12e90a864b376ac7dc2120ff68f59d69ee5d566f0b6a3716788c98ae",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a",
+    "tests/era-rogue-ambush-native.test.mjs": "d0e6a137c0a477df3f74102a0954330c718710d42632027eb1a4f0f34e241e77",
+    "tests/era-creature-prices.test.mjs": "26184eb1cdd291917a2891be7f3d8a6baf0169e2d6a5cbdcff6234d672dea4c2"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "logSha256": "2848a69a13d656de2c7fd18483c4bc8a5a4df78731d4a8be4dbdd7899dd91624"
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3043,
+    "mismatches": [],
+    "expectedManifestSha256": "e9079fd9f22785859e7fb1122a3b1c161a17000466e22af87f579bfdb3e30833",
+    "foreignChangesExcluded": true,
+    "gameHandlerOwnedBlobSha256": "750c68edb0ef67e28676492cb8796a6df0ab08729c4175f7f37de0f5e6504fd8"
+  },
+  "reports": {
+    "foundation-smoke": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "temporaryArmy": true,
+          "mapEventCreated": false,
+          "creationAndReleasePackets": 2,
+          "companionPrompt": false,
+          "progressionKinds": [],
+          "progressedHero": null,
+          "preBattleSaveReload": true,
+          "postBattleSaveReload": true,
+          "nativeTownVisitResumed": true,
+          "defeatedHeroSkipsNativeVisit": false,
+          "legacyInput": null,
+          "desktop": false
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "7791c0e4e176b709193bbd2214d24d88e824e9fc74b21065e732aa0ef212efe7"
+    },
+    "land-cooldown": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": true,
+          "water": false,
+          "defeat": false,
+          "desktop": false,
+          "seed": 1,
+          "posts": [
+            {
+              "x": 8,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            },
+            {
+              "x": 9,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            },
+            {
+              "x": 10,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            },
+            {
+              "x": 11,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            }
+          ],
+          "encounter": {
+            "index": 0,
+            "target": {
+              "x": 9,
+              "y": 12
+            },
+            "beforeGold": 20000,
+            "warning": {
+              "stage": "warning",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [],
+              "jobs": [
+                {
+                  "actualEntry": true,
+                  "controller": 0,
+                  "day": 1,
+                  "hero": 1,
+                  "heroName": "Christian",
+                  "human": true,
+                  "object": 3,
+                  "phase": "warning",
+                  "timerOwner": 0,
+                  "token": 1,
+                  "water": false,
+                  "week": 1,
+                  "x": 9,
+                  "y": 12,
+                  "z": 0
+                }
+              ],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "units": [
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 4,
+                "armySlot": 0
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 4,
+                "armySlot": 1
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 2
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 3
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 4
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 5
+              }
+            ],
+            "reward": {
+              "stage": "reward",
+              "flag875": true,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [],
+              "jobs": [
+                {
+                  "actualEntry": true,
+                  "army": 267,
+                  "controller": 0,
+                  "count": 20,
+                  "creature": 143,
+                  "day": 1,
+                  "gold": 500,
+                  "goldGranted": true,
+                  "hero": 1,
+                  "heroName": "Christian",
+                  "human": true,
+                  "object": 3,
+                  "phase": "reward",
+                  "timerOwner": 0,
+                  "token": 1,
+                  "water": false,
+                  "week": 1,
+                  "x": 9,
+                  "y": 12,
+                  "z": 0
+                }
+              ],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "completed": {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 636
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "cooldownVisits": [
+              {
+                "x": 10,
+                "y": 12
+              },
+              {
+                "x": 11,
+                "y": 12
+              },
+              {
+                "x": 12,
+                "y": 12
+              }
+            ],
+            "cooldown": {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 636
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "c7e4d207ca5ccce711df8ccc9eef9740c54c7f6e65f480254b78b11f5b077d8b"
+    },
+    "water-seed2": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": true,
+          "water": true,
+          "defeat": false,
+          "desktop": false,
+          "seed": 2,
+          "posts": [],
+          "encounter": {
+            "index": 2,
+            "target": {
+              "x": 11,
+              "y": 14
+            },
+            "beforeGold": 21000,
+            "warning": {
+              "stage": "warning",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [],
+              "jobs": [
+                {
+                  "actualEntry": true,
+                  "controller": 0,
+                  "day": 1,
+                  "hero": 1,
+                  "heroName": "Christian",
+                  "human": true,
+                  "object": 5,
+                  "phase": "warning",
+                  "timerOwner": 0,
+                  "token": 1,
+                  "water": true,
+                  "week": 1,
+                  "x": 11,
+                  "y": 14,
+                  "z": 0
+                }
+              ],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "units": [
+              {
+                "key": "core:waterElemental",
+                "id": 115,
+                "count": 4,
+                "armySlot": 0
+              },
+              {
+                "key": "core:waterElemental",
+                "id": 115,
+                "count": 4,
+                "armySlot": 1
+              },
+              {
+                "key": "core:waterElemental",
+                "id": 115,
+                "count": 3,
+                "armySlot": 2
+              },
+              {
+                "key": "core:iceElemental",
+                "id": 123,
+                "count": 3,
+                "armySlot": 3
+              },
+              {
+                "key": "core:waterElemental",
+                "id": 115,
+                "count": 3,
+                "armySlot": 4
+              },
+              {
+                "key": "core:waterElemental",
+                "id": 115,
+                "count": 3,
+                "armySlot": 5
+              }
+            ],
+            "completed": {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 637
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "cooldownVisits": [
+              {
+                "x": 12,
+                "y": 14
+              },
+              {
+                "x": 13,
+                "y": 14
+              },
+              {
+                "x": 14,
+                "y": 14
+              }
+            ],
+            "cooldown": {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 637
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "3c0f1b73e7412ad0b77a9aef4a4dd09c860361f01a12b1c74c546a2f4abcc920"
+    },
+    "defeat-first": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": true,
+          "water": false,
+          "defeat": true,
+          "desktop": false,
+          "seed": 1,
+          "posts": [],
+          "encounter": {
+            "index": 0,
+            "target": {
+              "x": 9,
+              "y": 12
+            },
+            "beforeGold": 20000,
+            "warning": {
+              "stage": "warning",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [],
+              "jobs": [
+                {
+                  "actualEntry": true,
+                  "controller": 0,
+                  "day": 1,
+                  "hero": 1,
+                  "heroName": "Christian",
+                  "human": true,
+                  "object": 3,
+                  "phase": "warning",
+                  "timerOwner": 0,
+                  "token": 1,
+                  "water": false,
+                  "week": 1,
+                  "x": 9,
+                  "y": 12,
+                  "z": 0
+                }
+              ],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "units": [
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 4,
+                "armySlot": 0
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 4,
+                "armySlot": 1
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 2
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 3
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 4
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 5
+              }
+            ],
+            "completed": {
+              "stage": "complete",
+              "flag875": true,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 635
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "4523a63472aa4dbad89300223c47ff29b0223ccd6a4ce13c7d3fe27e9bc9df0e"
+    },
+    "option-off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": false,
+          "water": false,
+          "defeat": false,
+          "desktop": true,
+          "seed": 1,
+          "posts": [
+            {
+              "x": 8,
+              "y": 11,
+              "date": 0,
+              "flag": 0
+            },
+            {
+              "x": 9,
+              "y": 11,
+              "date": 0,
+              "flag": 0
+            },
+            {
+              "x": 10,
+              "y": 11,
+              "date": 0,
+              "flag": 0
+            }
+          ],
+          "encounter": null
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "fc9813405deeb7e0ff0538625b1c1bffc02444f64409915e16d192b7e737912a"
+    },
+    "inherit-on": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": true,
+          "water": false,
+          "defeat": false,
+          "desktop": true,
+          "seed": 1,
+          "posts": [
+            {
+              "x": 8,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            },
+            {
+              "x": 9,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            },
+            {
+              "x": 10,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            },
+            {
+              "x": 11,
+              "y": 11,
+              "date": 1,
+              "flag": 0
+            }
+          ],
+          "encounter": {
+            "index": 0,
+            "target": {
+              "x": 9,
+              "y": 12
+            },
+            "beforeGold": 20000,
+            "warning": {
+              "stage": "warning",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [],
+              "jobs": [
+                {
+                  "actualEntry": true,
+                  "controller": 0,
+                  "day": 1,
+                  "hero": 1,
+                  "heroName": "Christian",
+                  "human": true,
+                  "object": 3,
+                  "phase": "warning",
+                  "timerOwner": 0,
+                  "token": 1,
+                  "water": false,
+                  "week": 1,
+                  "x": 9,
+                  "y": 12,
+                  "z": 0
+                }
+              ],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "units": [
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 4,
+                "armySlot": 0
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 4,
+                "armySlot": 1
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 2
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 3
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 4
+              },
+              {
+                "key": "core:rogue",
+                "id": 143,
+                "count": 3,
+                "armySlot": 5
+              }
+            ],
+            "reward": {
+              "stage": "reward",
+              "flag875": true,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [],
+              "jobs": [
+                {
+                  "actualEntry": true,
+                  "army": 267,
+                  "controller": 0,
+                  "count": 20,
+                  "creature": 143,
+                  "day": 1,
+                  "gold": 500,
+                  "goldGranted": true,
+                  "hero": 1,
+                  "heroName": "Christian",
+                  "human": true,
+                  "object": 3,
+                  "phase": "reward",
+                  "timerOwner": 0,
+                  "token": 1,
+                  "water": false,
+                  "week": 1,
+                  "x": 9,
+                  "y": 12,
+                  "z": 0
+                }
+              ],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "completed": {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 636
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            },
+            "cooldownVisits": [
+              {
+                "x": 10,
+                "y": 12
+              },
+              {
+                "x": 11,
+                "y": 12
+              },
+              {
+                "x": 12,
+                "y": 12
+              }
+            ],
+            "cooldown": {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 1,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 636
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "14946c96361ba0f62495573d3f3e89f1f37a980a9c71e691f40c3110fc2b6d16"
+    },
+    "old939-load": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": false,
+          "water": false,
+          "defeat": false,
+          "desktop": false,
+          "seed": 1,
+          "posts": [
+            {
+              "x": 8,
+              "y": 11,
+              "date": 0,
+              "flag": 0
+            },
+            {
+              "x": 9,
+              "y": 11,
+              "date": 0,
+              "flag": 0
+            },
+            {
+              "x": 10,
+              "y": 11,
+              "date": 0,
+              "flag": 0
+            }
+          ],
+          "encounter": null
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "fcf71e3b55c8c4a3d1d50203e805a415b524b2b26e82fff676d765cf2ff029e2"
+    },
+    "ai-witness3": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "scenarios": [
+        {
+          "active": true,
+          "ai": true,
+          "seed": 5,
+          "days": [
+            {
+              "stage": "complete",
+              "flag875": false,
+              "sequence": 1,
+              "timer": {
+                "day": 2,
+                "human": true,
+                "owner": 0,
+                "week": 1
+              },
+              "dates": [
+                {
+                  "ownerKey": {
+                    "externalStringReference": 639
+                  },
+                  "day": 1
+                }
+              ],
+              "jobs": [],
+              "externalStringsRemainOpaque": true,
+              "schemaOrderedFields": true
+            }
+          ],
+          "witness": {
+            "creature": 0,
+            "count": 20
+          }
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "e929e82bb5054f518189563f1da6a4c34bb71a8de3f8b8ef5211780ddd3d910d"
+    }
+  },
+  "historicalControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+    "scenarios": [
+      {
+        "legacyProducer": true,
+        "saveVersion": 939
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "0574ff8b01621073a0769c5350d1d28d254cba034590e2963c5e889eba177be1"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 940,
+        "readerVersion": 939,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "b2a7f55bbd74795461b2403748c48be2fc4f8bf3067d898e5ed36ac69fc179fc"
+  },
+  "regressions": {
+    "battle-outcomes": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "f00d1c7823228b73ce6fe64762b38abb94ddfec6028273e5dd2f1b01d47bae29",
+      "scenarioCount": 2
+    },
+    "battle-experience": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "b067a7468150e0d71982772432f16cb24ff0d49cecd80307cef8c1d6dc48e9c9",
+      "scenarioCount": 3
+    },
+    "town-script": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "3b393629841315ac226028879319478ad7f56c4c522c91b9714e58b3f0effed1",
+      "scenarioCount": 1
+    },
+    "prompt-touch": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "e8ba9a3e8e0fb8d2adb613557508c3078c9f15bcffb536ee77c1e37239e4a613",
+      "scenarioCount": 5
+    },
+    "on": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "5cf6d5d42ed4a2104cf59a8813f6579058d86642347d2be8174ec434004be307",
+      "scenarioCount": 1
+    },
+    "regression-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "fa68ea28e4918b26f1c943a39ea9f622dc1ac7fead1b3fe784e4e0a946f0f470",
+      "scenarioCount": 9
+    },
+    "regression-advanced-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "1b897af2536f1279d8c47b656a9f7452e08659a7082880e10a9664f5259ab36e",
+      "scenarioCount": 4
+    },
+    "regression-prices": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "986dc97a35af30cbd24030f804c07f8ad1e72d51dcc8eef73b10018da24f8021",
+      "scenarioCount": 9
+    },
+    "regression-sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "c5c6c3068c34ecf13b71c8ef5d676b7df4d349eeb927f276d65d99d70fd39e73",
+      "scenarioCount": 17
+    },
+    "regression-eighth-upgrades": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "3439028f12d1e1aaec499ed1e460e17298a94380d4f0a2587d3379fca744aaf9",
+      "scenarioCount": 1
+    },
+    "regression-no-shooting": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "14118107a246a5e98d44c0690a20f4d77e50e06478e13379b5204957c0fcf8dd",
+      "scenarioCount": 1
+    },
+    "regression-darkness": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "27300cf33071760a86a69563d119058bee5cc206bcc3cd114400c2c83823f669",
+      "scenarioCount": 1
+    },
+    "regression-quick-scope": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "71d8612836454de1467e39926bfdee418428860757b5613be885265822097e58",
+      "scenarioCount": 1
+    },
+    "regression-monthly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+      "errors": [],
+      "rawReportSha256": "002e4cd49c25a92eef87d2b22d48d40fbd72e24c07f0e0df57c0a0f7ced288d7",
+      "scenarioCount": 2
+    }
+  },
+  "regressionScenarioCount": 57,
+  "serialization": {
+    "saveVersion": 940,
+    "previousSaveVersion": 939,
+    "choiceCount": 32,
+    "optionIndex": 31,
+    "packetType": 278,
+    "legacyDefault": "Source127 disabled in old games, independently of the current installation default."
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.294-engine.tar.gz",
+    "sha256": "818bcc31b3f7270bf75d60ebdbb956b2e6e4b7694cb9607fbde9db67b785a5e2",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+        "bytes": 5613
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
+        "bytes": 62083
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
+        "bytes": 14311
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+        "bytes": 9804
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7",
+        "bytes": 18829
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc",
+        "bytes": 8879091
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1",
+        "bytes": 63064
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "f43f25c7826785bec107ea172fa7e970f5028255c62c787de6e2b961e6939fed",
+        "bytes": 277563
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "a8210beb024fb3b0c45fba1a66a65a656da340b9b3a3fe747590c957e4ddc21a",
+        "bytes": 7217670
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+        "bytes": 10492144
+      }
+    ]
+  },
+  "aiPacketWitness": {
+    "creationAndReleasePackets": 2,
+    "goldPackets": 1,
+    "logSha256": "d8a2ec1e709613363e570ff33929df85afd4c7b18b2a21676e63fae78452fea4"
+  },
+  "ui": {
+    "radio": {
+      "passed": true,
+      "reportSha256": "bd1e46028bc6efcb14b28955cf7f4c6cb6df496bfb0cb578e21b489fc4adb63b"
+    },
+    "stability": {
+      "passed": true,
+      "caseCount": 48,
+      "reportSha256": "493de682d226c2dcf352969e6bd89a7226c80f5738a5320c9e414edbbe875758"
+    }
+  },
+  "privateFixtureScope": {
+    "productionDiagnosticExportInstalled": false,
+    "description": "Memory-only maps, normal server seed, source BA:M/SN:W witnesses and native saves. No replacement random generator."
+  },
+  "remaining": [
+    "Source77 rule118 and six source101 selection modes.",
+    "General scripted HE:T still has its previously admitted single-stack scope; native rogue formation does not extend that receiver.",
+    "Full Henchmen, WoG, mithril and separate Advanced Classes/ERA Scripts/Reborn profiles remain in progress.",
+    "Direct original-executable random-stream comparison and replay are not established by these tests."
+  ],
+  "checks": {
+    "pendingPublicationChecks": false,
+    "node": {
+      "tests": 981,
+      "passed": 925,
+      "skipped": 56,
+      "failed": 0,
+      "logSha256": "dc9a0a25d6ddf9497cd0319af311d12df4c8b8351e225194c1ab9dab157d9a21"
+    },
+    "prepareWeb": {
+      "passed": true
+    },
+    "buildUi": {
+      "passed": true
+    },
+    "buildWeb": {
+      "passed": true
+    },
+    "verifyWeb": {
+      "passed": true,
+      "nativeFiles": 10464,
+      "transportBytes": 702299869,
+      "logSha256": "b96a2807b2d0ec368db57fd05dd94b476994b4b6ff016123831b8fa49298aa69"
+    },
+    "archiveReopenedAndAllTenFilesCompared": true
+  }
+}

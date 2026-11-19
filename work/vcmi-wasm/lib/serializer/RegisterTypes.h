@@ -324,6 +324,7 @@ void registerTypes(Serializer &s)
     s.template registerType<EraGameplayChange>(275);
     s.template registerType<MithrilAction>(276);
     s.template registerType<TemporaryBattleArmyChange>(277);
+    s.template registerType<EraResourceWordChange>(278);
 }
 
 VCMI_LIB_NAMESPACE_END

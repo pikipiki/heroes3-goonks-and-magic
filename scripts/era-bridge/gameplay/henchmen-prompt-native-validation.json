@@ -14,11 +14,11 @@
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "aab42bb560a9f179807d9ea9bc6adde7721f168b993d164c1498fca98733c036",
     "work/vcmi-wasm/server/battles/BattleProcessor.h": "5a6c7608997cee6907fa0348d458748b4dab9aa62cb34e9c829bbb4721bc4beb",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "31cc1ce1a3202a8aa77a27c15ca738ef55da786ee0d0d26dd74277cbea60f52f",
     "web/dialog-presentation.mjs": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
-    "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
-    "mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "30b5a7347be7e2c03f5388a0632dd66d9d38a670d7ffda5aa4c0f12738c4c6c4"
   },
   "nativeBuild": {
@@ -260,5 +260,16 @@
       "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
+  },
+  "rogueAmbushRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "scope": "Historical engines/reports retained. Bindings refreshed after the source127 integration; the linked proof lists the exact57 native regression scenarios rerun.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
+      "sourceBindings/mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
+      "sourceBindings/mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
+    },
+    "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
   }
 }

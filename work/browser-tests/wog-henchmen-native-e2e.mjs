@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({townBannerFixture=null,levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
+function fixture({rogueFixture=null,townBannerFixture=null,levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -183,6 +183,10 @@ if opts['fogFixture']:
  objects=[o for o in objects if o['instanceName']!='henchmenTrainingGuard']
  h=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'));h.update({'instanceName':'fogUndergroundHero','x':8,'y':10,'l':1});h['options']['type']='core:edric';objects.append(h)
  t=copy.deepcopy(next(o for o in objects if o['instanceName']=='enemyTown'));t.update({'instanceName':'fogTanTown','x':30,'y':20});t['options']['owner']='tan';objects.append(t)
+if opts['rogueFixture']:
+ spec=importlib.util.spec_from_file_location('rogue_fixture','work/browser-tests/wog-rogue-ambush-fixture.py')
+ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+ objects=module.apply(entries,objects,opts['rogueFixture'])
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';header['heroLevelLimit']=opts['heroLevelLimit']
 if opts['scriptTown'] or opts['scriptAI']:
@@ -232,10 +236,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({townBannerFixture,levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
+`,JSON.stringify({rogueFixture,townBannerFixture,levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
 }
 
-async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=null,levelArtifactsConfigured=false,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,viewport,rogueChoice=null,rogueConfigured=false,townBannerChoice=null,levelArtifactChoice=null,levelArtifactsConfigured=false,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
@@ -249,7 +253,7 @@ async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=nul
  const growthDifficulty=growthChoice===null?null:readJsonc('work/vcmi-wasm/config/difficulty.json');
  if(growthDifficulty)for(const rule of Object.values(growthDifficulty.ai))if(rule.resources)for(const key of Object.keys(rule.resources))rule.resources[key]=0;
  if(growthDifficulty&&options.eighthUpgradeFixture?.paid)for(const rule of Object.values(growthDifficulty.human))if(rule.resources)rule.resources.gold=1000000;
- await page.addInitScript(({townBannerFixture,levelArtifactVisitFixture,artifactPoolFixture,levelArtifactsConfigured,fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
+ await page.addInitScript(({rogueFixture,rogueConfigured,townBannerFixture,levelArtifactVisitFixture,artifactPoolFixture,levelArtifactsConfigured,fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -258,6 +262,17 @@ async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=nul
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
+    if(rogueFixture){
+     const config='/home/web_user/.config/vcmi/settings.json';value.FS.mkdirTree('/home/web_user/.config/vcmi');
+     let preferences={};try{preferences=JSON.parse(value.FS.readFile(config,{encoding:'utf8'}));}catch{}
+     preferences.server??={};preferences.server.seed=rogueFixture.seed??1;value.FS.writeFile(config,JSON.stringify(preferences));
+     const rules='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json';
+     const policy=JSON.parse(value.FS.readFile(rules,{encoding:'utf8'}));policy.mapRules??={};policy.mapRules['127']=rogueConfigured;value.FS.writeFile(rules,JSON.stringify(policy));
+     if(rogueFixture.weakArmy&&!rogueFixture.defeat){
+      const name='config/rogue-actor-private.json';manifest.creatures=[...(manifest.creatures||[]),name];
+      value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({'core:peasant':{hitPoints:100000,damage:{min:1000,max:1000},speed:20,abilities:{privateNoMorale:{type:'NO_MORALE'},privateNoLuck:{type:'LUCK',val:0,valueType:'INDEPENDENT_MIN'}}}}));
+     }
+    }
     if(artifactBackpackCap!==undefined){manifest.settings.heroes??={};manifest.settings.heroes.backpackSize=artifactBackpackCap;}
     if(artifactLanguage){const dir='/home/web_user/.config/vcmi';value.FS.mkdirTree(dir);value.FS.writeFile(dir+'/settings.json',JSON.stringify({general:{language:artifactLanguage==='fr'?'french':'english'}}));}
     if(doubleArtifactChoice!==null){
@@ -366,7 +381,7 @@ async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=nul
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{townBannerFixture:options.townBannerFixture,levelArtifactVisitFixture:options.levelArtifactVisitFixture,artifactPoolFixture:options.artifactPoolFixture,levelArtifactsConfigured,fogFixture:options.fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
+ },{rogueFixture:options.rogueFixture,rogueConfigured,townBannerFixture:options.townBannerFixture,levelArtifactVisitFixture:options.levelArtifactVisitFixture,artifactPoolFixture:options.artifactPoolFixture,levelArtifactsConfigured,fogFixture:options.fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -395,6 +410,11 @@ async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=nul
    await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
   }
   if(noShootingFixture?.experience===false){await command(109,1,0);await wait(()=>goonkMobileState.wogOptions[1]===0);}
+  if(rogueChoice!==null){
+   await openNativeAccordion(page,'.wog-options',{mouse:desktop});
+   const choice=page.locator(`input[data-wog-option="31"][value="${rogueChoice}"]`).locator('..');
+   await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[31]===value,rogueChoice);
+  }
   if(townBannerChoice!==null){
    const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="30"][value="${townBannerChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[30]===value,townBannerChoice);
@@ -472,6 +492,11 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='rogue-ambush'){
+  const {runRogueAmbush}=await import('./wog-rogue-ambush-cases.mjs');
+  await runRogueAmbush({boot,sheet,state,command,wait,page:()=>page,report,output,
+   save:()=>readCompletedNativeSave(page,command,{tag:953})});
+ }
  if(process.env.CASES==='temporary-battle-army'){
   const {runTemporaryBattleArmy}=await import('./wog-temporary-battle-army-cases.mjs');
   await runTemporaryBattleArmy({boot,sheet,state,command,wait,page:()=>page,report,output,

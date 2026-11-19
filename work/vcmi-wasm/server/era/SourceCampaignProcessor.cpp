@@ -2,6 +2,7 @@
 #include "StdInc.h"
 #include "SourceCampaignProcessor.h"
 #include "EraTemporaryBattleArmy.h"
+#include "EraRogueAmbushRuntime.h"
 #include "EraCampaignWogOptions.h"
 #include "EraMithrilSiteTiles.h"
 #include "EraSourceFogRuntime.h"
@@ -2685,7 +2686,17 @@ void SourceCampaignProcessor::setNamedInteger(const std::string & name,int32_t v
  impl->vm.associative[era_campaign::associativeName(name)].integer=value;
  impl->persist();
 }
-bool SourceCampaignProcessor::onReady(PlayerColor player){return impl->onReady(player);}
+void SourceCampaignProcessor::setCompatibilityFlag(int index,bool value)
+{
+ impl->bind();if(!impl->active)return;
+ require(index>=1&&index<1000,"invalid compatibility flag index");
+ writeFlag(index,impl->vm,value);impl->persist();
+}
+bool SourceCampaignProcessor::onReady(PlayerColor player)
+{
+ if(impl->onReady(player))return true;
+ return era_compat::rogues::ready(impl->gh,player);
+}
 bool SourceCampaignProcessor::draft(QueryID query,int selection,const std::string & text,PlayerColor player)
 {
  impl->bind();

@@ -104,6 +104,7 @@ public:
     void visitHenchmanChange(HenchmanChange & pack) override;
     void visitEraGameplayChange(EraGameplayChange & pack) override;
     void visitTemporaryBattleArmyChange(TemporaryBattleArmyChange & pack) override;
+    void visitEraResourceWordChange(EraResourceWordChange & pack) override;
 	void visitBattleSetStackProperty(BattleSetStackProperty & pack) override;
 	void visitBattleNextRound(BattleNextRound & pack) override;
 	void visitBattleCancelled(BattleCancelled & pack) override;
