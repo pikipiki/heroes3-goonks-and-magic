@@ -1,0 +1,327 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Source PO:N only: coordinate-backed unsigned nibble, signed relative operations, direct/generic indirect selectors and source packed-coordinate aliases. Frozen native state survives suspended/completed saves and defaults to zero in older games.",
+  "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+  "sourceBaseCommit": "c249327541b5bf35523b9b1b37f8e82a1513c2df",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraTileNumberRules.h": "79053fd607147d192ce5a1e2ba06ea41889a55086ce687992699b3f188e043ee",
+    "work/vcmi-wasm/lib/era/EraTileProperties.h": "50e31d4d3a1ea033231478f53667b1c79cbc5853d26cd7835883c417c79a35c3",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
+    "work/browser-tests/wog-era-tile-properties-cases.mjs": "1b3a76ffcb770eba75cc14bd525fff705a94be860c950401502a2f0079aa2b81",
+    "tests/native/EraTileNumberRules.test.cpp": "5b14ab4b6a5e908cdf4f667e7fdff4a17fd97c35e7bb3643bdbcfd1689bfdf2f",
+    "tests/era-tile-number-rules-native.test.mjs": "cf6b666e8fbb041e0d8488a9bea36d6ade1b6c865637a7f8580d9f4aaefc8b64",
+    "tests/era-tile-properties.test.mjs": "f0cfe93733cfa128e0dc06d8d427b08cf967675e028d47bd158c524f71a1c9df",
+    "tests/fixtures/era-gameplay/tile-number-reference.json": "0833ade475618f9ffa7cca3ed4e36b061be498aaf661e2a3d6bf2d7a3dec6c60",
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b"
+  },
+  "programSha256": "40444b7ec71ede2303bec0df2a65ca5314232858fb268e386406ac3c68e82832",
+  "programFileSha256": "fbb817e10fd9a88266552d40d61ed960c06a1a37c681a50539aa9b6cc2cd7785",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "finalNinjaTargets": 39,
+    "logSha256": "789f4f5b69327238c31dbf3d18c9ed5cc9a569ce166aa0433a867ac0ea1d8ba4",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sanitizers": [
+      "address",
+      "undefined"
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3014,
+    "mismatches": [],
+    "expectedManifestSha256": "91bda0ee32afc903e2c88d5cab47a0155327b0c38701f6a03d15605983c7bb95"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/tile-number-reference.json",
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "scenarios": [
+        {
+          "directCoordinates": true,
+          "indirectSelectors": [
+            2,
+            998
+          ],
+          "zeroDefault": true,
+          "nibbleWrap": true,
+          "signedOverflow": true,
+          "packedCoordinateAliases": true,
+          "independentSurfaceAndUnderground": true,
+          "independentNeighbours": true,
+          "pendingNativeSaveReload": true,
+          "dayTwoNativeSaveReload": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "80e35482388de3ad381c87c2ba35f8c32782e689ee223e2e9757581c87b528e0"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "scenarios": [
+        {
+          "directCoordinates": true,
+          "indirectSelectors": [
+            2,
+            998
+          ],
+          "zeroDefault": true,
+          "nibbleWrap": true,
+          "signedOverflow": true,
+          "packedCoordinateAliases": true,
+          "independentSurfaceAndUnderground": true,
+          "independentNeighbours": true,
+          "pendingNativeSaveReload": true,
+          "dayTwoNativeSaveReload": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "64af4f31d41ae6a763faf276d0bc38ee607bbaaa55f035183206f74b08c28733"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "scenarios": [
+        {
+          "directCoordinates": true,
+          "indirectSelectors": [
+            2,
+            998
+          ],
+          "zeroDefault": true,
+          "nibbleWrap": true,
+          "signedOverflow": true,
+          "packedCoordinateAliases": true,
+          "independentSurfaceAndUnderground": true,
+          "independentNeighbours": true,
+          "pendingNativeSaveReload": true,
+          "dayTwoNativeSaveReload": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "6d9d5db35a5ba49455e439772cbc56303cca31bcd24ad60139de3337f91c51e6"
+    }
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+    "scenarios": [
+      {
+        "kind": "tile-properties-legacy-producer",
+        "saveVersion": 927
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "b89db7a5bc6698b383c9362e4aa745e08be161c8f710431f3378d5a809737373"
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+    "scenarios": [
+      {
+        "kind": "tile-properties-legacy-consumer",
+        "saveVersion": 928,
+        "inputVersion": 927,
+        "zeroDefaultBothLevels": true,
+        "noRetroactiveTileNumbers": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "024b5e7accb211139d49c8d06c4d84a2165460d12164e49b5b8c01c804f37605"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 928,
+        "readerVersion": 927,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "9b9fa4b2e234068bd7b7348ff4447e65001b02306d2f02f22e668adba46fff72"
+  },
+  "regressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "errors": [],
+      "rawReportSha256": "b9f17dabd64fded2ac0ae367c0d3ab225a13e18571e7d9af9b448389651bad29",
+      "scenarioCount": 7
+    },
+    "outcomes": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "errors": [],
+      "rawReportSha256": "46c5054549c1c090f50d49df6566ad59db707954d4eb99764833ab923971eeac",
+      "scenarioCount": 2
+    },
+    "signed-henchmen": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "errors": [],
+      "rawReportSha256": "ec9166cc5c4e3ef57418e4e7dc5f0754c5421b9a12306f3892cd03967d21b15c",
+      "scenarioCount": 4
+    },
+    "source36": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "errors": [],
+      "rawReportSha256": "33ef5c5a47409c222c4c6416aca15a8f47a232a9993fbdd2eda27e642ed9572c",
+      "scenarioCount": 2
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "errors": [],
+      "rawReportSha256": "1f8e54eb160b671d0995d7fe330939a5150ffb3ad44a5ea042fc13cd981266a2",
+      "scenarioCount": 17
+    },
+    "weekly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+      "errors": [],
+      "rawReportSha256": "26ed6acafee770fb814254e97dde4074c02121447589adab94ec6411b7c56682",
+      "scenarioCount": 1
+    }
+  },
+  "serialization": {
+    "previousSaveVersion": 927,
+    "saveVersion": 928,
+    "choiceCount": 24,
+    "newSerializedCppFields": false,
+    "newJsonSystem": "tileProperties"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.281-engine.tar.gz",
+    "sha256": "0252b25b65fe0363920d2667f3bcf915092ac98b40155e27250b99a5b0c27e65",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6"
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42"
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425"
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6"
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc"
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1"
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "7daed63f1e9e2a87d9caaebe1fc91b00e83f6c30d50ddb2bf060ccbbe30adcca"
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "b38c1caaf966fde554be799adca13bbe793eeefe9960861631d5659abf2017cf"
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+      }
+    ]
+  },
+  "previousRelease": {
+    "version": "0.4.280",
+    "commit": "c249327541b5bf35523b9b1b37f8e82a1513c2df",
+    "pages": "https://github.com/pikipiki/heroes3-goonks-and-magic/actions/runs/44427364821",
+    "pagesConclusion": "success"
+  },
+  "remaining": [
+    "Source PO fields other than N remain unadmitted. Explicit invalid-command errors do not emulate the original unsafe post-error continuation.",
+    "Static artifact contracts plus native-port scenarios, not execution parity with the original full ERA game.",
+    "No original object-removal/drop lifecycle claim; no erase-on-object-removal is introduced.",
+    "Source rule119 artifact pickup and mithril protections are consumers to port separately; complete gameplay profiles remain unadmitted."
+  ],
+  "publication": {
+    "version": "0.4.281",
+    "checks": {
+      "node": {
+        "tests": 942,
+        "passed": 886,
+        "skipped": 56,
+        "failed": 0
+      },
+      "freshTUM": {
+        "tests": 18,
+        "passed": 18,
+        "failed": 0
+      },
+      "site": {
+        "nativeFilesByteVerified": 10464,
+        "transportBytes": 702298666
+      }
+    },
+    "logSha256": {
+      "node-tests": "7624c1576f0d2c907f8a5ca7267dc445860ec950783d8a666c43b4591e8a29ea",
+      "tum-tests": "686e3852e470a2881632e87c1972e73e4c756b0472a3bb7c31ba5dc713127e75",
+      "prepare-web": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
+      "verify-site": "d44e83d5b869590da34913e3d0f1c1a59e97b1e56114157ffb65d276251528f7"
+    }
+  }
+}

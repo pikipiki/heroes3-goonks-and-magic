@@ -18,7 +18,7 @@
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
     "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
     "work/vcmi-wasm/lib/era/EraMithrilDisplayRules.h": "fe510a53ab2a50a5d18ec6f7c788cb01183bf795445dc0763adbf22a55d1086a",
@@ -27,7 +27,7 @@
     "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
     "work/browser-tests/mithril-information-components-e2e.mjs": "9847cfa54d321e61b29127c4e9feab879842a3acec4e6a03765f23bf22b47569",
     "tests/fixtures/era-gameplay/mithril-display-reference.json": "6fbf6e269200a45d8db163b1562f7bc6c3d5ff888f45f970769984b89076a20d",
-    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
     "tests/era-mithril-display.test.mjs": "5e4fdd375f7f754fd6e65509608e79bb82741265724f8a559184930e88478378",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
     "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
@@ -1832,5 +1832,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

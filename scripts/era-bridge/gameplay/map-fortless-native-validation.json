@@ -14,7 +14,7 @@
     "work/vcmi-wasm/lib/era/EraMapFortlessTowns.h": "e1eaca193a391bcff531e36540b194a18008c5cb4f736c639a538735b1e1870c",
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "77b35c7e7d32dde12b3f08353f27baef146ba42130219a7112df40b19db96ca9",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "63906782f2c71adbfde6ebb50ec9f42b39f112c83b0ce52df9660151d603053b",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
@@ -24,7 +24,7 @@
     "work/browser-tests/wog-map-fortless-cases.mjs": "78639617fe6b4582424834e3be045c86547641e4094138be7c85d897fa05070f",
     "tests/fixtures/era-gameplay/map-fortless-reference.json": "f7d3ecab64b7db682e9a29bc6cb92e17dbb948c3f0d21d4c37cd33e9c63a4156",
     "scripts/era-bridge/gameplay/map-rules.json": "dae70d0e007f8d0d22af3400d3a001fa7ef54cfb738c9a01a540f08c1aa50c7e",
-    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
     "tests/era-map-fortless.test.mjs": "36c986217460602ee1f9226ecfbcd0dfcb46a46def2dd430e1b509d02ca2dabb",
     "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
   },
@@ -1764,5 +1764,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

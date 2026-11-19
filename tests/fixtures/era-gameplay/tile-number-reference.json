@@ -1,0 +1,275 @@
+{
+  "schema": 1,
+  "evidenceKind": "Ordinary targeted static PE inspection with supplied Pascal and ERM sources. No REA Evidence, no native execution or runtime verification.",
+  "targets": {
+    "work/era-gameplay-reference/h3era.exe": {
+      "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+      "preferredImageBase": 4194304
+    },
+    "work/era-gameplay-reference/era.dll": {
+      "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+      "preferredImageBase": 4194304
+    }
+  },
+  "sources": {
+    "work/downloads/era-kernel-source/PoTweak.pas": "b81f2d3bd8f5fdef0ba5f63bca9abeb17b29bed09ee5a20bc193a927b47090e8",
+    "work/downloads/era-kernel-source/Era.dpr": "bf7773bc7345a35bc811c7136d7d18ae28f634d8c35e672214c8957c1acb157c",
+    "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+    "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b"
+  },
+  "contract": {
+    "receiver": "PO:N",
+    "storage": "Unsigned 4-bit field in bits12..15 of a per-coordinate 32-bit Squares element",
+    "readRange": [
+      0,
+      15
+    ],
+    "writeRule": "temp signed32 through ZvsApply, then keep low4 bits; no clamp or negative rejection in PO:N handler",
+    "readFormula": "(uint32(square)>>12)&15",
+    "writeFormula": "(uint32(square)&0xffff0fff)|((uint32(temp)&15)<<12)",
+    "examples": [
+      {
+        "writtenInt32": -2147483648,
+        "subsequentRead": 0,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": -17,
+        "subsequentRead": 15,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": -16,
+        "subsequentRead": 0,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": -1,
+        "subsequentRead": 15,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 0,
+        "subsequentRead": 0,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 1,
+        "subsequentRead": 1,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 7,
+        "subsequentRead": 7,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 15,
+        "subsequentRead": 15,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 16,
+        "subsequentRead": 0,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 17,
+        "subsequentRead": 1,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 31,
+        "subsequentRead": 15,
+        "kind": "derived-from-static-mask-not-runtime"
+      },
+      {
+        "writtenInt32": 2147483647,
+        "subsequentRead": 15,
+        "kind": "derived-from-static-mask-not-runtime"
+      }
+    ],
+    "preservesOtherPOFields": true,
+    "location": "Coordinate x/y/z, independent of an object ID, object class or object lifetime; there is no object lookup between coordinate checks and field access.",
+    "addressFormulaInPatchedERA": "SquaresBase +4*((x*mapSize+y)*2+z)",
+    "levelsAllocated": 2,
+    "mapSizeLimitInSource": 256,
+    "ordinaryInitialization": "Reset loop clears bits12..15 for every coordinate; unrelated bits initialized separately.",
+    "persistence": "Whole independent Squares and Squares2 arrays saved/restored under Era.PO by ERA event callbacks; binary code agrees with supplied PoTweak.pas.",
+    "generalObjectRemovalOrDrop": "Not established dynamically or by tracing every object removal/drop hook. The PO handler and save format have no object-ID coupling. Do not add unconditional erase-on-removal semantics on this evidence alone."
+  },
+  "rule119Source": {
+    "initialMark": "WOG_101_SetDoubledArtifacts iterates map artifact locations and writes N15 once.",
+    "postVisit": "After artifact pickup, reads N;0 exits; checks artifact source ID>=7 and no remaining guardians; adds extra copy only when current carried+equipped count<2. Only if earlier N==15 it writes N0.",
+    "otherNonzeroValues": "Values1..14 also qualify for the post-trigger but are not cleared by its final condition.",
+    "dropComment": "Source notes N0 usually means a player-dropped artifact. This is a source expectation, not an executed lifecycle proof.",
+    "coordinateNotObjectKey": "A different object at the same coordinate shares the same PO cell unless some independent path clears it."
+  },
+  "mithrilSource": {
+    "examples": [
+      "Mine protection writes N7, map rule122 reads nonzero and resets N0 to skip one weekly reroll.",
+      "Windmill/waterwheel upgrades inspect nonzero N; commented reset lines explicitly preserve the upgrade state.",
+      "Other scripted N values share this coordinate nibble, rather than private subsystem namespaces."
+    ]
+  },
+  "selectors": {
+    "acceptedCounts": [
+      1,
+      3
+    ],
+    "oneSelector": "Evaluated index1..9998 into the integer v-array; coordinates come from v[index],v[index+1],v[index+2].",
+    "PO998": "Generic v998/v999/v1000 indirection, not intrinsically a current-object ID. Trigger context normally supplies those cells.",
+    "PO0": "Invalid index; no current-object alias.",
+    "noSelectors": "Invalid selector count; not a current-object alias.",
+    "invalidCommandLimit": "Resolver error paths return packed0, and PO caller does not explicitly test an error status. No claim of exact continuation/side effects after errors.",
+    "threeSelectors": "Coordinates go through32-bit packed-coordinate helper and decode before final map-bounds checks.",
+    "pack": "wrap32((y<<16)+x+(z!=0?0x04000000:0))",
+    "unpack": "x=packed&1023;y=(packed>>16)&1023;z=(uint32(packed)>=0x04000000?1:0)",
+    "getWriteback": "GET still runs final dword store, reinserting the same original nibble read before ZvsApply; maskffff0fff preserves every other bit. This assumes the argument is a normal GET with no independent side effects during evaluation."
+  },
+  "regions": [
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "PO selector resolver arity and variable triplet aliases",
+      "preferredVa": 7563157,
+      "endExclusiveVa": 7563481,
+      "rva": 3368853,
+      "fileOffset": 2955157,
+      "size": 324,
+      "sha256": "6d92a851abafded541d168bcf694d41ee193826663bdee3af6e2bd6835c01c63",
+      "observation": "Exactly1or3selectors. One selector evaluates integer index, guard1..9998, reads v[index..index+2]. No intrinsic current-object meaning for998. Zero/no selectors are syntax errors, not supported aliases."
+    },
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "Coordinates pack helper",
+      "preferredVa": 7413375,
+      "endExclusiveVa": 7413446,
+      "rva": 3219071,
+      "fileOffset": 2805375,
+      "size": 71,
+      "sha256": "4a7f6578cf7b74ac18b5d22e404ce5f6debc17c29e297c3a63a3e0f89350632b",
+      "observation": "32-bit packed=(y<<16)+x+(z!=0?0x04000000:0). Nonzero z normalized during packing."
+    },
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "Coordinates unpack helper",
+      "preferredVa": 7413577,
+      "endExclusiveVa": 7413672,
+      "rva": 3219273,
+      "fileOffset": 2805577,
+      "size": 95,
+      "sha256": "f25f7969f884f8188922844adf2535f531f2ce0f944623166b6d80a4049e78fe",
+      "observation": "x=packed&1023,y=(packed>>16)&1023,z=unsigned(packed)>=0x04000000. PO map bounds checked after this decode; arbitrary out-of-range arguments can normalize nontrivially."
+    },
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "PO receiver dispatch tables",
+      "preferredVa": 7585996,
+      "endExclusiveVa": 7586053,
+      "rva": 3391692,
+      "fileOffset": 2977996,
+      "size": 57,
+      "sha256": "24cc870f4fa4ac98d16e33d804037db70e2cdda8f802042f7435148c15d360c6",
+      "observation": "N maps to table index3 and handler0x73bc5b."
+    },
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "PO coordinate guards and original coordinate addressing",
+      "preferredVa": 7584409,
+      "endExclusiveVa": 7584608,
+      "rva": 3390105,
+      "fileOffset": 2976409,
+      "size": 199,
+      "sha256": "c59e568aba14324614694f0a8ef8ee8938216d530d79cba29e3f8c46fb03156c",
+      "observation": "x/y checked >=0 and < map size; z checked >=0 and <= level bound. Original first array uses x*0x480+y*8+z*4, patched by ERA to current map size stride."
+    },
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "PO:N parameter arity, unsigned nibble read, four-byte apply and nibble write",
+      "preferredVa": 7584859,
+      "endExclusiveVa": 7584964,
+      "rva": 3390555,
+      "fileOffset": 2976859,
+      "size": 105,
+      "sha256": "94bdc705e9434f4aa2dc3b8dd4b6ea480db9fcb49a3f9e4aeded8ceb45df81d2",
+      "observation": "Exactly one argument. GET temp=(square >>12)&15. ZvsApply(&temp,4,subcmd,0). Stored square=(square&0xffff0fff)|((temp&15)<<12). No saturation/range clamp."
+    },
+    {
+      "file": "work/era-gameplay-reference/h3era.exe",
+      "name": "Initial ERM square reset, including N clearing",
+      "preferredVa": 7678719,
+      "endExclusiveVa": 7679103,
+      "rva": 3484415,
+      "fileOffset": 3070719,
+      "size": 384,
+      "sha256": "a5297492c4fd094a887c7479ac481d6959deac57e66339a1f2e431287b9677b3",
+      "observation": "Nested x/y/z loops; owner/flag initialization and square&0xffff0fff clear N. ERA patches map bounds and square base refs."
+    },
+    {
+      "file": "work/era-gameplay-reference/era.dll",
+      "name": "PoTweak patched independent square base and dynamic strides",
+      "preferredVa": 4877512,
+      "endExclusiveVa": 4877843,
+      "rva": 683208,
+      "fileOffset": 680136,
+      "size": 331,
+      "sha256": "b27f6187ff44c74dc054c792b361d59c37e7b3d2bb34232869dc436cb36ce8a1",
+      "observation": "Allocations/base references match supplied PoTweak.pas; patches PO handler base immediate73bb32 and x stride73bb28. Squares address c3d784; Squares2 cbd784. Sizes mapSize^2*2*4 and mapSize^2*2*16."
+    },
+    {
+      "file": "work/era-gameplay-reference/era.dll",
+      "name": "PoTweak save callbacks and Era.PO section name",
+      "preferredVa": 4877908,
+      "endExclusiveVa": 4877971,
+      "rva": 683604,
+      "fileOffset": 680532,
+      "size": 63,
+      "sha256": "8f8d5e6eab728f436e87277c0a859bcf54c1125c91d1d24634967e30181af835",
+      "observation": "Both arrays written to section Era.PO; size globals and independent array bases passed to save helper."
+    },
+    {
+      "file": "work/era-gameplay-reference/era.dll",
+      "name": "PoTweak load callback and Era.PO section name",
+      "preferredVa": 4877972,
+      "endExclusiveVa": 4878039,
+      "rva": 683668,
+      "fileOffset": 680596,
+      "size": 67,
+      "sha256": "4878ed4251b135e1766c2fefd87202e76fc88d08b0e7e637e7af8e3a3124f993",
+      "observation": "Patch refs first, then restore both arrays from Era.PO."
+    },
+    {
+      "file": "work/era-gameplay-reference/era.dll",
+      "name": "PoTweak WoG initialization hook and old save path disabling",
+      "preferredVa": 4878052,
+      "endExclusiveVa": 4878156,
+      "rva": 683748,
+      "fileOffset": 680676,
+      "size": 104,
+      "sha256": "44dfbbfe25d29d57d339f5d79d701d299424905bc22429dc23305b864c356f89",
+      "observation": "Old squares/squares2 save/load code disabled; hook75259e fires before reset to patch array bases and strides."
+    }
+  ],
+  "answered": [
+    "Unsigned4-bit range and masked write, not saturating clamp.",
+    "Coordinate-based address, shared irrespective of object identity.",
+    "Independent ERA save/load section and reset path present in shipped DLL.",
+    "Generic one-selector v-triplet aliases, and invalid zero/no-selector syntax.",
+    "GET writeback preserves all other bits."
+  ],
+  "remaining": [
+    "Execution of boundary writes/relative modifiers in actual ERA process.",
+    "Complete native object pickup/removal/drop traces and any third-party plugin-specific resets.",
+    "Exact control flow after selector/parameter error reporting.",
+    "Third-party changes to selector resolver or dynamic ERM evaluator beyond this bounded scan.",
+    "All generic ZvsApply modifier overflow and floating-operand behavior."
+  ],
+  "searchBoundary": [
+    "Only PO receiver, its dispatch, coordinate guards, N field and ERM reset regions inspected in h3era.exe.",
+    "Only PoTweak patch/save/load/init region inspected in era.dll.",
+    "Supplied PoTweak.pas/Era.dpr, Hook_ZvsApply declaration/body, rules77 and42 targeted source reads. No global executable analysis."
+  ],
+  "privateReportSha256": "c7dab2dbd48f56f78b0c449b46d811408abeb0606cbafcc19672b568e3441269",
+  "runtimeValidated": false
+}

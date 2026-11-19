@@ -12,6 +12,14 @@ aux sauvegardes. Le réglage moteur `modules.henchmen` reste désactivé par dé
 Les étapes vérifiées sont intégrées progressivement aux binaires publiés.
 Les règles WoG validées disposent de choix indépendants par nouvelle partie.
 
+Le récepteur partagé `PO:N` conserve désormais le nombre personnalisé d'une
+case dans l'état de la partie. Il reproduit le stockage sur quatre bits,
+les coordonnées directes ou lues dans trois variables `v`, et le codage des
+coordonnées ERA sur les deux niveaux. Des scénarios natifs vérifient le
+débordement signé, les cases voisines, les sauvegardes suspendues et la reprise
+des anciennes parties. Ce mécanisme prépare le double ramassage d'artefacts
+et les protections au mithril ; ces deux usages ne sont pas activés par cet ajout.
+
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle
 d'admission distingue les sources disponibles des preuves de fonctionnement

@@ -13,14 +13,14 @@
     "distinctConfigurationVariable": "hench_battleExpAIPct"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
     "work/vcmi-wasm/client/CPlayerInterface.cpp": "1af7e27414aec46052a1babf112a4b6d6cd74fc7f51ad867e83477718bd4e27b",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
   },
@@ -328,5 +328,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

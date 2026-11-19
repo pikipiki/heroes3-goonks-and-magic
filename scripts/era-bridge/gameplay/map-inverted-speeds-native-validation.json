@@ -71,9 +71,9 @@
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "77b35c7e7d32dde12b3f08353f27baef146ba42130219a7112df40b19db96ca9",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "63906782f2c71adbfde6ebb50ec9f42b39f112c83b0ce52df9660151d603053b",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9",
     "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
     "mod/tum-era/content/config/wog-map-rules.json": "9152c6ef91a6081dcb87beb97b9f7ea713576338ec3a5db859502240374a14a9",
@@ -89,7 +89,7 @@
     "tests/era-map-inverted-speeds.test.mjs": "06a4bf4c8b950ee63c10237df028a9511a0d0c1311d64cbb7248dc58a58a791e",
     "tests/fixtures/era-gameplay/map-inverted-speeds-reference.json": "8cb7b93e3b022cca056e5f0c74562c9e87e1253aff45d4eed4bc163717a17ab0",
     "scripts/era-bridge/gameplay/map-rules.json": "dae70d0e007f8d0d22af3400d3a001fa7ef54cfb738c9a01a540f08c1aa50c7e",
-    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1071,5 +1071,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

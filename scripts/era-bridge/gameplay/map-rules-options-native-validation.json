@@ -19,7 +19,7 @@
   "engineSha256": "44f89a596b2d400ce5d82afd9a793bd1bb02058cb991eebf181d9037d30e0296",
   "parentEngineSha256": "8a045a77916f46ff11bb8b6ef1c5864ac3de69a6f6d9ed96d3731799cbdb40b6",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
     "scripts/era-bridge/gameplay/map-rules.json": "dae70d0e007f8d0d22af3400d3a001fa7ef54cfb738c9a01a540f08c1aa50c7e",
     "tests/native/EraWogOptions.test.cpp": "8196052417a569c094bcf2cd1527e010de05b2f3ff82142e129d65d8ea57fa1e",
     "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
@@ -29,7 +29,7 @@
     "work/browser-tests/wog-options-layout-e2e.mjs": "3262c9001a3c70bef09fd04673fd348df04a863e36f8045d14edc5d8c5bd183a",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "63906782f2c71adbfde6ebb50ec9f42b39f112c83b0ce52df9660151d603053b"
   },
   "nativeBuild": {
@@ -651,5 +651,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

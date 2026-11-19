@@ -9,7 +9,7 @@
   "sourceBindings": {
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "39ed6a5e372308e195f10830a8d87883a1395bb34b7f648304d0ea866053b9c6",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -106,5 +106,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

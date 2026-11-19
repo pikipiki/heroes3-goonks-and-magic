@@ -12,10 +12,10 @@
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
     "scripts/era-bridge/gameplay/advanced-class-skill-levels.mjs": "ffd721a061c4f4df87ad03b712989d80c2a26a2341ead41ce28c7817d2a6ee45",
     "tests/fixtures/era-gameplay/advanced-class-skill-levels-1.1.erm": "93fd9124497fa6524bd189b296ae0ab5256a5cd73852e43f1f71d0d5284d9557",
     "tests/native/EraCampaignExecutor.test.cpp": "7a3cf2adc7c591a1f22f85e92082e8ded6adb71fae0a55ed0efd889f3ad93f32",
@@ -1604,5 +1604,14 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

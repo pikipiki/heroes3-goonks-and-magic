@@ -18,7 +18,7 @@
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
   },
   "nativeBuild": {
@@ -162,5 +162,13 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

@@ -18,6 +18,7 @@
 #include "../../lib/era/EraCampaignSlotCurseRule.h"
 #include "../../lib/era/EraCampaignEventTemplate.h"
 #include "../../lib/era/EraCampaignHints.h"
+#include "../../lib/era/EraTileProperties.h"
 #include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignArtifactRule.h"
 #include "../../lib/era/EraCampaignChestRule.h"
@@ -282,7 +283,7 @@ struct SourceCampaignProcessor::Impl final:Host
  }
  int3 position(const Command & c)const
  {
-  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH"||c.receiver=="DW"||c.receiver=="GR";
+  const bool indirect=c.receiver=="OB"||c.receiver=="TR"||c.receiver=="MO"||c.receiver=="LE"||c.receiver=="CH"||c.receiver=="DW"||c.receiver=="GR"||c.receiver=="PO";
   // WoG 3.58f's MO parser (0x747f9e) retains only x/y/z when
   // accepting a fourth selector. Both /0 and /1 occur in original maps.
   const bool dynamicMonster=c.receiver=="MO"&&c.selectors.size()==4;
@@ -2315,6 +2316,21 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   else throw std::runtime_error("Original campaign: unsupported Cave hero operation "+op.code);
   return Step::Continue;
+ }
+ if(c.receiver=="PO")
+ {
+  require(op.code=="N","source tile property operation is not admitted");arity(op,1);
+  const auto raw=position(c);const auto decoded=era_bridge::tile_properties::coordinates(raw.x,raw.y,raw.z);
+  const int3 pos(decoded[0],decoded[1],decoded[2]);
+  require(gh.gameState().getMap().isInTheMap(pos),"source tile property outside map");
+  const auto changed=value(era_compat::tile_properties::number(gh.gameState(),pos),args[0]);
+  if(!query(op))
+  {
+   EraGameplayChange packet;packet.system="tileProperties";
+   packet.state=era_compat::tile_properties::state(gh.gameState());
+   era_compat::tile_properties::setNumber(packet.state,pos,changed);gh.sendAndApply(packet);
+  }
+  persist();return Step::Continue;
  }
  if(c.receiver=="TR")
  {

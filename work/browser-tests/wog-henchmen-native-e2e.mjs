@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null}={}){
+function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -123,6 +123,10 @@ if opts['scriptTown'] or opts['scriptAI']:
 if opts['growthFixture']:
  header['heroLevelLimit']=1
  for day in [2,3]:header['events'].append({'name':'private growth pool witness '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+if opts['tilePropertiesFixture']:
+ header['mapLevels']['underground']={'width':36,'height':36,'index':1,'layer':'core:underground'}
+ entries['underground_terrain.json']=entries['surface_terrain.json']
+ header['events'].append({'name':'tile property day-two witness','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Henchmen native validation';entries[name]=json.dumps(text).encode()
@@ -131,7 +135,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor})]);
+`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture})]);
 }
 
 async function boot({save,viewport,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
@@ -289,6 +293,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='tile-properties'){
+  const {runTileProperties}=await import('./wog-era-tile-properties-cases.mjs');
+  await runTileProperties({boot,state,command,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:960})});
+ }
  if(process.env.CASES==='random-ranges'){
   const {runRandomRanges}=await import('./wog-era3-random-ranges-cases.mjs');
   await runRandomRanges({boot,state,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:951})});

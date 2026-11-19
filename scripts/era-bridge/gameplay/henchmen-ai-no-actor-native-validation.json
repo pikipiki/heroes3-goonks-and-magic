@@ -10,7 +10,7 @@
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "tests/native/EraHenchmanRules.test.cpp": "457f76e0d348bfe88a83bbf54ca30b9dbf5d79c68b80a5cd4dc43cd737f73dc6",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
     "work/browser-tests/wog-henchmen-ai-no-actor-cases.mjs": "8f855197e9d00a04b08c41d03db4856fbdcc97c4290fe0a614d3c956eb50b0a3",
     "tests/era-henchmen-ai-no-actor.test.mjs": "18070ef820362aaca8b08a8fc6184ea718589c35b1d073fac0aae7e9824a8507"
   },
@@ -455,5 +455,13 @@
       "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
       "verify-site": "d44e83d5b869590da34913e3d0f1c1a59e97b1e56114157ffb65d276251528f7"
     }
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }

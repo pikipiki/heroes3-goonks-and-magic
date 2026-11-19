@@ -11,14 +11,14 @@
     "work/vcmi-wasm/lib/era/EraCreatureLevelRules.h": "79f195c22928d6ca8f97b172b8da6f1cceabc2b16b5a4884daad0048e789db31",
     "work/vcmi-wasm/lib/era/EraCampaignCreatureAttributes.h": "cf3b5d726575d956f8a38611fe9352e126bdeebcd9692409e62f75b28550c794",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd",
     "tests/native/EraCreatureLevelRules.test.cpp": "0fd7bf0fde20dd5b44d1692d47912bf820b24b366e26cc71b5c6548250e0222d",
     "work/browser-tests/wog-mithril-live-levels-cases.mjs": "82bf3d03b8500acc9a570c2f5755a547d127122446f2bdaba8a763f3ff543e84",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
     "tests/fixtures/era-gameplay/creature-levels-reference.json": "2a343ef13d6489c27c6a3363af5b77061d834797cd0cfcb9355439e0a8ec9cec",
     "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
-    "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea",
+    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
     "tests/era-mithril-live-levels.test.mjs": "65f99d638347c1e3c445a680dc727bb39e4750321ed375ee314a5fade509323a",
     "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
   },
@@ -1049,5 +1049,15 @@
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   }
 }
