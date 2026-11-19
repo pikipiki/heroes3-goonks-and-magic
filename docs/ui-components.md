@@ -103,3 +103,13 @@ Les contrats de modale déclarent `modal: true` ; un contenu alternatif déclare
 `useHeroSummary` compose la carte d’identité et les caractéristiques du héros. En paysage, il expose l’onglet courant et la fermeture dans le bandeau commun, et le commandant dans la carte d’identité. Les actions de ces contrôles MUI délèguent aux contrôles natifs actuels, sans déplacer leurs gestionnaires. `hero-layout.css` porte la géométrie de l’inventaire : silhouette et cases partagent le même cadre, les libellés réservent leur hauteur avant les images, et les descriptions sélectionnées défilent dans l’espace restant.
 
 Les choix exclusifs de préparation (difficulté, taille et revenu) utilisent `RadioGroup`/`Radio` MUI, avec groupes et champs conservés pendant l’acquittement natif. Les filtres de construction conservent également leurs nœuds : seul le résultat change, dans un défilement distinct des filtres fixes. Les composants de fenêtre respectent toujours l’attribut `hidden`, même si un habillage déclare `display:grid`.
+
+### Mobile phone compositions and native command ownership
+
+`useRailChrome` keeps one close action beside the resource strip in landscape. It delegates to the current native screen action; the source remains connected and is hidden only visually. `useHeroNavigation` uses a real MUI Select for mutually exclusive hero sections and retains the native tab buttons as command bridges. `phone-composition.css` aligns these compositions with the shared typography and spacing tokens.
+
+Recruitment batch confirmation and receipts use `createRecruitmentBatch`, a separately owned MUI footer. Do not lift React-owned children out of a rendered body and then remove their host: refresh the body and footer independently. Cancel both completion timers when a batch settles or closes; keep only small receipt fields in pending state.
+
+Map generation is a final setup action after WoG settings. The explicit “Generate and start” action configures the native lobby, waits for acknowledged preferences and then starts the real generation. The loading-state composition disables irrelevant canvas controls and preserves the native loading illustration.
+
+Button adapters must use `decorateButton` or `useChoiceTile` when adding presentation classes. `NativeButton` retains these classes as MUI props so focus and ripple updates cannot move a touch target during a gesture.

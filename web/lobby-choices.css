@@ -21,7 +21,6 @@
 #mobile-app .lobby-counter output{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#f7df9e}
 #mobile-app .lobby-counter output strong{font-size:var(--ui-type-icon);line-height:1.1}
 #mobile-app .lobby-counter output span{font-size:var(--ui-type-micro);color:#cdbc94}
-#mobile-app [data-custom-generate]{border:3px ridge #ecc87b;background:linear-gradient(#7b2c1c,#40170d);font-weight:bold}
 :is(#mobile-app,#game-menu) .lobby-picker{position:fixed;inset:8px;margin:auto;width:min(760px,calc(100% - 16px));max-width:none;height:min(760px,calc(100dvh - 16px));max-height:calc(100dvh - 16px);box-sizing:border-box;padding:0;border:4px ridge #d5b773;background:#25190e url('./h3-theme/stone.png');color:#ffedbe;box-shadow:0 15px 60px #000a;font-family:Georgia,serif}
 :is(#mobile-app,#game-menu) .lobby-picker[open]{display:flex;flex-direction:column}
 :is(#mobile-app,#game-menu) .lobby-picker::backdrop{background:#080604cc}
@@ -153,3 +152,11 @@
 :is(#mobile-app,#game-menu) .lobby-picker[data-kind=map] .lobby-picker-grid button img{box-sizing:border-box;width:clamp(96px,26vw,128px);height:auto;aspect-ratio:1;flex:0 0 auto;border:1px solid #bca26a;background:#0b1117;object-fit:contain;image-rendering:pixelated}
 
 .lobby-choice-copy[data-preview-error]::after{content:attr(data-preview-error);display:block;color:#d7be8c;font:12px/1.3 Georgia,serif}
+
+/* Whole words and full titles are part of the shared choice-card contract. */
+:is(#mobile-app,#game-menu) .lobby-choice-card strong,
+:is(#mobile-app,#game-menu) .lobby-picker-grid button>span,
+:is(#mobile-app,#game-menu) .lobby-choice-name{white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none;text-overflow:clip;overflow:visible;max-height:none;-webkit-line-clamp:unset}
+:is(#mobile-app,#game-menu) .lobby-picker[data-kind=map] .lobby-picker-grid button{height:auto;align-items:center}
+#mobile-app .lobby-setting[data-setting=mobile-difficulty] .ui-radio-label{display:flex;flex-direction:column;align-items:center;gap:var(--ui-space-1)}
+#mobile-app .lobby-difficulty-icon{object-fit:contain;max-width:100%;height:20px;flex:none}

@@ -42,7 +42,7 @@ for(const kind of (process.env.BATTLE_BROWSERS||'chromium,webkit').split(',')){
   await before.page.screenshot({path:path.join(out,`${kind}-${lang}-${width}x${height}-before.png`)});await before.context.close();
   const{page,context,errors}=await mount(browser,lang,viewport),scene=await box(page,'.mobile-play'),header=await box(page,'.mobile-top'),nav=await box(page,'.mobile-nav');
   assert.equal(header.height,56);assert.equal(nav.height,56);
-  assert.equal(await page.locator('.mobile-nav>button:visible').count(),3);
+  assert.equal(await page.locator('.mobile-nav>button:visible').count(),3);assert(await page.locator('.mobile-nav>[data-ui=defend]').isVisible(),'Defend is a primary action');assert.equal(await page.locator('.mobile-nav>[data-ui=battle-magic]').count(),0,'Magic is in More');
   assert.equal(await page.locator('.battle-team-actions>button:visible').count(),2);
   assert(await page.locator('[data-ui=battle-auto]').evaluate(e=>e.classList.contains('MuiIconButton-root')),'Auto uses MUI IconButton');
   for(const selector of ['#game-menu-toggle','.battle-view','.battle-team-actions>button:visible','.mobile-nav>button:visible','.battle-unit-inspect'])for(const button of await page.locator(selector).all()){
@@ -55,17 +55,17 @@ for(const kind of (process.env.BATTLE_BROWSERS||'chromium,webkit').split(',')){
   if(width===320){
    const tapCell=async()=>{const point=await page.evaluate(async()=>{const {fitNativeBattle}=await import('/web/battle-scene.mjs'),canvas=document.querySelector('#battle-strategic-scene'),r=canvas.getBoundingClientRect(),l=fitNativeBattle(r.width,r.height,null,'whole');return{x:r.x+l.dx+234*l.scale,y:r.y+l.dy+280*l.scale};});await page.touchscreen.tap(point.x,point.y);};
    await page.evaluate(()=>calls.length=0);await tapCell();assert.equal(await page.evaluate(()=>calls.filter(a=>a[0]==='command'&&a[1]===14).length),0,'First movement tap only previews');await tapCell();assert.equal(await page.evaluate(()=>calls.filter(a=>a[0]==='command'&&a[1]===14&&a[2]===4).length),1,'Second movement tap confirms once');await page.waitForTimeout(650);
-   await send(page,{spellTargeting:true,selectedSpell:'Magic Arrow'});await command(page,'.mobile-nav>[data-ui=battle-magic]',14);assert.equal(await page.evaluate(()=>calls.find(a=>a[0]==='command'&&a[1]===14)[2]),2,'Magic cancels the selected spell');assert(await page.locator('.mobile-nav>[data-ui=battle-magic]').isDisabled());await send(page,{spellTargeting:false});
+   await send(page,{spellTargeting:true,selectedSpell:'Magic Arrow'});await openMore(page);await command(page,'.MuiMenu-root [data-ui=battle-magic]',14);assert.equal(await page.evaluate(()=>calls.find(a=>a[0]==='command'&&a[1]===14)[2]),2,'Magic cancels the selected spell');assert(await page.locator('.MuiMenu-root [data-ui=battle-magic]').isDisabled());await send(page,{spellTargeting:false});
    await send(page,{spellTargeting:true,battleCells:state.battleCells.map(c=>({...c,spellTarget:true}))});await page.evaluate(()=>calls.length=0);await tapCell();assert.equal(await page.evaluate(()=>calls.filter(a=>a[0]==='command'&&a[1]===14&&a[2]===3).length),1,'Spell target casts once');await send(page,{spellTargeting:false,battleCells:state.battleCells});await page.waitForTimeout(650);
   }
   await openMore(page);assert(await page.locator('.MuiMenu-root [data-ui=wait]').isVisible());await command(page,'[data-ui=wait]',12);
   await send(page,{canWait:false});await openMore(page);assert(await page.locator('[data-ui=wait]').isDisabled());await page.keyboard.press('Escape');assert(await page.locator('.mobile-nav>button[aria-haspopup=menu]').evaluate(e=>e===document.activeElement));for(let i=0;i<3;i++)await send(page,{});assert.equal(await page.locator('.mobile-nav>button[aria-haspopup=menu]').count(),1,'Repeated native snapshots preserve the More trigger');
-  await openMore(page);await command(page,'[data-ui=defend]',13);
+  await command(page,'.mobile-nav>[data-ui=defend]',13);
   await openMore(page);await page.locator('[data-ui=targets]').tap();assert(await page.locator('.target-picker-head').isVisible());const targetList=await box(page,'.target-picker-list');assert(targetList.height>=71,'Targets retain their scrolling area '+JSON.stringify(targetList));await page.locator('.target-picker-list [data-battle-target]').first().tap();assert(!(await page.locator('.target-picker-head').count()));
   await openMore(page,true);await command(page,'[data-ui=battle-retreat]',38);
   await command(page,'[data-ui=battle-auto]',44);assert.equal(await page.locator('[data-ui=battle-auto]').getAttribute('aria-busy'),'true');assert(await page.locator('[data-ui=battle-auto]').isDisabled());
   await send(page,{autoCombat:true});assert.equal(await page.locator('[data-ui=battle-auto]').getAttribute('aria-pressed'),'true');assert.equal(await page.locator('[data-ui=battle-auto]').getAttribute('aria-busy'),'false');await command(page,'[data-ui=battle-auto]',44);await send(page,{autoCombat:false});
-  await command(page,'.mobile-nav>[data-ui=battle-magic]',14);await page.waitForTimeout(2050);
+  await openMore(page);await command(page,'.MuiMenu-root [data-ui=battle-magic]',14);await page.waitForTimeout(2050);
   await send(page,{tacticsMode:true,round:0,canEndTactics:true});assert.equal(await page.locator('.mobile-nav>button:visible').count(),3);await command(page,'.mobile-nav>[data-ui=end-tactics]',35);
   assert.deepEqual(errors,[]);report.push({kind,lang,width,height,before:oldScene,after:scene,gainedHeight:scene.height-oldScene.height});await context.close();
  }}finally{await browser.close();}

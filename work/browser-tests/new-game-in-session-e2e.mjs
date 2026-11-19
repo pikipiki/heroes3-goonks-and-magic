@@ -79,23 +79,16 @@ try {
  console.log('PASS', factions.length, 'castle choices, difficulty, map search, back and both orientations');
 
  const randomMap = page.locator('.custom-game-options');
- if (await randomMap.getAttribute('open') === null) await randomMap.locator('summary').tap();
+ if (await randomMap.locator('[data-ui-accordion-summary]').getAttribute('aria-expanded') !== 'true') await randomMap.locator('[data-ui-accordion-summary]').tap();
  await setting('players').locator('[data-counter="1"]').tap();
  await setting('size').locator('label:has([data-setup-choice][value="72"])').tap();
  await page.locator('[data-custom-underground]').check();
  await page.locator('[data-custom-generate]').tap();
  await wait(() => goonkMobileState.customMap && goonkMobileState.customMapOptions?.players === 3 && goonkMobileState.customMapOptions?.size === 72 && goonkMobileState.customMapOptions?.levels === 2);
- const player = await page.evaluate(() => goonkMobileState.players.find(player => player.color !== 0 && player.factions.some(faction => faction.id !== player.faction)));
- assert(player);
- const faction = player.factions.find(faction => faction.id !== player.faction);
- await chooseCastle(`player-${player.color}`, faction.id);
- await wait(({color,id}) => goonkMobileState.players.some(player => player.color === color && player.faction === id), {color:player.color,id:faction.id});
- await sameSession();
- await start.tap();
  await wait(() => goonkMobileState.mode === 'map' && goonkMobileState.turn);
  await sameSession();
  assert.deepEqual(errors, []);
- console.log('PASS random map controls, opponent castle, second game and no page reloads');
+ console.log('PASS random map controls, automatic generated adventure, second game and no page reloads');
 } finally {
  await browser.close();
 }

@@ -1,12 +1,13 @@
 import {useScreenComponents,renderMarkup,setClickHandler,radioChoicesMarkup} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {getLanguage} from './i18n.mjs';
+import {difficultyIcon,warmSetupChoiceIcons} from './setup-choice-icons.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 import {scenarioDetails} from './scenario-details.mjs';
 import {mountScenarioFilters} from './scenario-filters.mjs';
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const difficulty=['A relaxed adventure','The classic challenge','Plan every move','For experienced heroes','Every resource matters'];
+const difficulty={en:['A relaxed adventure','The classic challenge','Plan every move','For experienced heroes','Every resource matters'],fr:['Une aventure tranquille','Le défi classique','Planifie chaque mouvement','Pour les héros expérimentés','Chaque ressource compte']};
 function soloMapMetadata(map, state) {
  const humans=Math.min(state.lobbyHumanCount??1,map.humanSeats??1);
  const castleChoices=humans===1?Number(map.castleChoice):Math.min(humans,map.humanCastleChoices??0);
@@ -14,7 +15,7 @@ function soloMapMetadata(map, state) {
 }
 
 export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
- const controls=new Map(),artwork=new Map();
+ const controls=new Map(),artwork=new Map();void warmSetupChoiceIcons();
  let dialog=null,filters=null,source=null,pendingOpen=null;
  const options=s=>[...s.options].map(o=>({value:o.value,label:o.textContent,disabled:o.disabled}));
  const factionKey=(s,value)=>{
@@ -137,7 +138,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
     const busy=s.dataset.updating==='true',load=state.mode==='load',label=state.customMap?state.selectedMap:s.selectedOptions[0]?.textContent;
     const map=state.maps?.find(item=>String(item.index)===s.value);
     const selected=state.customMap?state.customMapOptions:map;
-    showScenarioPreview(c.querySelector('.lobby-map-emblem'),map?.path);
+    showScenarioPreview(c.querySelector('.lobby-map-emblem'),state.customMap?undefined:map?.path);
     const fr=getLanguage()==='fr';
     const summary=selected?scenarioDetails(state.customMap?{...selected,width:selected.size,height:selected.size}:soloMapMetadata(selected,state),fr):'';
     for(const [selector,text] of [['h3',title(s)],['small',load?'Saved adventure':summary||'Selected scenario'],['strong',busy?(label?'Selecting scenario…':'Loading scenarios…'):label||'Choose a scenario'],['em',busy?'Please wait…':load?'Choose save ›':'Browse maps ›']]){
@@ -158,7 +159,8 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
     const heading=`<h3>${esc(title(s))}</h3>`;
     if(isRadio){
      c.dataset.control='radios';
-     const choices=radioChoicesMarkup({name:'setup-'+c.dataset.setting,className:'lobby-choice-radios',choices:list.map(o=>({...o,checked:s.value===o.value,disabled:s.disabled||o.disabled,attributes:'data-setup-choice'}))});
+     let choices=radioChoicesMarkup({name:'setup-'+c.dataset.setting,className:'lobby-choice-radios',choices:list.map(o=>({...o,checked:s.value===o.value,disabled:s.disabled||o.disabled,attributes:'data-setup-choice'}))});
+     if(s.id==='mobile-difficulty'){let index=0;choices=choices.replace(/<span class="ui-radio-label">/g,()=>`<span class="ui-radio-label"><img class="lobby-difficulty-icon" src="${difficultyIcon(index++)}" alt="" aria-hidden="true" width="60" height="20">`);}
      renderMarkup(c,heading+choices.replace('<div ',`<div data-ui-radio-group aria-label="${esc(title(s))}" `)+(s.id==='mobile-difficulty'?'<p class="lobby-choice-help"></p>':''));
      if(!c._choiceChange){c._choiceChange=event=>{const input=event.target.closest('[data-setup-choice]');if(input?.checked)change(s,input.value);};c.addEventListener('change',c._choiceChange);}
     }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){
@@ -175,10 +177,11 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
     input.checked=s.value===input.value;
     input.disabled=s.disabled||!!list.find(o=>o.value===input.value)?.disabled;
    }
-   const help=c.querySelector('.lobby-choice-help'),helpText=difficulty[Number(s.value)]||'';
+   const help=c.querySelector('.lobby-choice-help'),helpText=difficulty[getLanguage()==='fr'?'fr':'en'][Number(s.value)]||'';
    if(help&&help._sourceText!==helpText){help._sourceText=helpText;help.textContent=helpText;}
    const index=list.findIndex(o=>o.value===s.value);
    for(const button of c.querySelectorAll('[data-counter]'))button.disabled=s.disabled||(Number(button.dataset.counter)<0?index<=0:index>=list.length-1);
+   const counterLabel=c.querySelector('output span');if(counterLabel)counterLabel.textContent=s.hasAttribute('data-custom-humans')?(getLanguage()==='fr'?'Joueurs humains':'Human players'):(getLanguage()==='fr'?'Joueurs sur la nouvelle carte':'New map players');
    const count=c.querySelector('output strong');
    if(count&&count.textContent!==s.value)count.textContent=s.value;
   }

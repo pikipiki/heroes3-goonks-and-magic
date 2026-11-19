@@ -7,7 +7,6 @@ import {townBuildingCardImage} from './town-portrait.mjs';
 const escapeText = value => plainGameText(value).replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[char]));
-const pageSize = 6;
 
 export function createMageGuild({root, command, pointer, resetView, asset}) {
   const panel = document.createElement('section');
@@ -15,15 +14,13 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
   panel.hidden = true;
   root.querySelector('.mobile-play').append(panel);
 
-  let guild, level = 1, page = 0, selectedId, signature = '', classic = false;
+  let guild, level = 1, selectedId, signature = '', classic = false;
   function render() {
     const fr = getLanguage() === 'fr';
     const t = (french, english) => fr ? french : english;
     const title = t('Tour de magie', 'Mage Guild');
     const spells = (guild.spells || []).filter(spell => spell.level === level);
-    const pages = Math.max(1, Math.ceil(spells.length / pageSize));
-    page = Math.min(page, pages - 1);
-    const visible = spells.slice(page * pageSize, (page + 1) * pageSize);
+    const visible = spells;
     const selected = visible.find(spell => spell.id === selectedId) || visible[0];
     const floorCount = Math.max(1, Number(guild.levels)||1);
     const built = Number(guild.built) || 0;
@@ -44,14 +41,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
       t('Aucun sort à ce niveau.', 'No spells at this level.');
     renderMarkup(panel,`${header}
       <div class="mage-guild-library">
-        <nav aria-label="${t('Étages de la tour', 'Guild floors')}">
-          ${Array.from({length: floorCount}, (_, i) => {
-            const number = i + 1, state = status(number);
-            return `<button type="button" data-guild-level="${number}" data-floor-status="${state}" aria-pressed="${number === level}"
-              aria-label="${levelLabel} ${number} · ${statusLabel[state]}"><span>${t('Niv.', 'Lv.')} ${number}</span>
-              <span class="mage-guild-seal" aria-hidden="true">${state === 'open' ? '✦' : '◆'}</span></button>`;
-          }).join('')}
-        </nav>
+        <label class="mage-guild-level-field"><span>${levelLabel}</span><select data-guild-level-select aria-label="${t('Niveau de magie','Spell level')}">${Array.from({length:floorCount},(_,i)=>{const number=i+1;return `<option value="${number}" ${number===level?'selected':''}>${levelLabel} ${number} · ${statusLabel[status(number)]}</option>`;}).join('')}</select></label>
         <section class="mage-guild-shelf" aria-label="${t('Rayon', 'Shelf')} ${level}">
           <div class="mage-guild-shelf-head"><h3>${t('Rayon', 'Shelf')} ${level} <small>${statusLabel[shelf]}</small></h3>
             ${illustration ? `<img src="${escapeText(illustration)}" alt="">` : ''}</div>
@@ -67,12 +57,15 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
                   ${guild.canResearch ? t('Rechercher', 'Research') : t('Voir le sort', 'View spell')}</button>` : ''}
               </div>
             </div>` : `<p class="mage-guild-empty">${emptyText}</p>`}
-          ${pages > 1 ? `<footer><button type="button" data-guild-page="-1" aria-label="${t('Page précédente', 'Previous page')}" ${page === 0 ? 'disabled' : ''}>←</button>
-            <span>${page + 1} / ${pages}</span><button type="button" data-guild-page="1" aria-label="${t('Page suivante', 'Next page')}" ${page + 1 === pages ? 'disabled' : ''}>→</button></footer>` : ''}
+
         </section>
       </div>`);
   }
 
+  panel.addEventListener('change',event=>{
+    if(!event.target.matches('[data-guild-level-select]'))return;
+    level=Number(event.target.value);selectedId=undefined;render();
+  });
   panel.addEventListener('error', event => {
     if (event.target instanceof HTMLImageElement) event.target.hidden = true;
   }, true);
@@ -86,17 +79,6 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
       resetView();
       render();
       panel.querySelector('[data-guild-view]').focus({preventScroll: true});
-    }
-    if (button.dataset.guildLevel) {
-      level = Number(button.dataset.guildLevel);
-      page = 0;
-      selectedId = undefined;
-      render();
-      panel.querySelector('[data-guild-level][aria-pressed=true]').focus({preventScroll: true});
-    }
-    if (button.dataset.guildPage) {
-      page += Number(button.dataset.guildPage);
-      render();
     }
     if (button.hasAttribute('data-guild-all')) pointer(guild.allSpells, 1);
     if (button.dataset.guildSpell !== undefined) {
@@ -123,7 +105,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
       }
       root.dataset.mageGuildView = classic ? 'classic' : 'mobile';
       const next = state.mageGuild;
-      if (next.town !== guild?.town || level > Math.max(1, next.levels)) { level = 1; page = 0; selectedId = undefined; }
+      if (next.town !== guild?.town || level > Math.max(1, next.levels)) { level = 1; selectedId = undefined; }
       guild = next;
       const key = JSON.stringify(guild);
       if (key === signature) return;

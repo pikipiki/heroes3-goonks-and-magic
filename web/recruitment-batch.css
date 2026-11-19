@@ -1,0 +1,27 @@
+/* The same transaction content works for confirmation and receipt sheets. */
+@layer ui-composition {
+ #mobile-app .recruit-batch-content{display:flex!important;flex-direction:column!important;gap:16px!important;min-width:0!important;padding:4px!important}
+ #mobile-app .recruit-batch-content>.recruit-batch-note{font:var(--ui-font-body-medium)!important;margin:0!important;max-width:none!important}
+ #mobile-app .recruit-batch-content>.ui-action-dock{gap:8px!important;padding:8px 0!important;flex-direction:row!important;flex-wrap:wrap!important;background:transparent!important;border:0!important}
+ #mobile-app .recruit-all-roster{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))!important;gap:8px!important;min-width:0!important}
+ #mobile-app .recruit-all-roster article{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;align-items:center!important;gap:8px!important;padding:12px!important;border:1px solid var(--ui-outline)!important;box-shadow:var(--ui-shadow-control)!important;background:var(--ui-surface-container)!important;min-width:0!important}
+ #mobile-app .recruit-all-roster article>:first-child{grid-area:1/1!important;width:56px!important;height:64px!important;object-fit:contain!important}
+ #mobile-app .recruit-all-roster .recruit-batch-facts{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important}
+ #mobile-app .recruit-all-roster h3{font:var(--ui-font-title-compact)!important;margin:0!important;word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}
+ #mobile-app .recruit-all-roster p{font:var(--ui-font-body-small)!important;margin:0!important}
+ @container goonk-viewport (orientation:portrait) and (max-width:430px){
+  #mobile-app .recruit-all-roster{grid-template-columns:minmax(0,1fr)!important}
+ }
+}
+@layer ui-composition {
+ #mobile-app:is([data-sheet=recruit-all],[data-sheet=recruitment-summary]) .mobile-sheet>footer:not(.recruit-batch-actions){display:none!important}
+ #mobile-app .mobile-sheet>.recruit-batch-actions{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:8px!important;padding:12px!important;border:0!important;background:var(--ui-surface-container)!important;box-sizing:border-box!important;min-width:0!important}
+ #mobile-app .recruit-batch-actions>button{flex:1 1 0!important;width:auto!important;min-width:0!important;min-height:48px!important}
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .mobile-sheet>.recruit-batch-actions{grid-column:1!important;grid-row:3!important}
+ }
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .mobile-sheet>.recruit-batch-actions{grid-column:2!important;grid-row:3!important;flex-direction:column!important}
+  #mobile-app .recruit-batch-actions>button{flex:0 0 auto!important;width:100%!important}
+ }
+}

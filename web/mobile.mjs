@@ -1,4 +1,6 @@
+import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
 import {createUIElement} from './ui/material-components.mjs';
+import {createLoadingState} from './loading-state.mjs';
 import {useNavigation,useKingdomChrome,renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
 import {canInspectBattle,inspectionUnits,battleInspectionMarkup} from './battle-inspection.mjs';
@@ -43,6 +45,7 @@ import {renderArmyPanel} from './army-panel.mjs';
 import {canViewWeeklyRecruits,createGameCalendar} from './game-calendar.mjs';
 import {createWeeklyRecruits} from './weekly-recruits.mjs';
 import {recruitmentSummaryMarkup} from './recruitment-summary.mjs';
+import {createRecruitmentBatch} from './recruitment-batch.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {createNativeFort} from './town-recruitment.mjs';
 import {protectBattleControls} from './battle-controls.mjs';
@@ -133,6 +136,7 @@ function mount(){
  let navHTML='',state={mode:'menu'},mode='',zoom=1,focus=null,layout,paintedGeometry=null,region,lastFrame=0,selectedPoint=null,gesture=null,initialDistance=0,sheetKind='',armySelection=null,armySignature='',armyPending=false,armyTimer=null,armyFocus=null,splitAmount=0,pointers=new Map(),previousFocus,pendingRecruit=null,townArmy=[],recruitChoices=[],activeRecruitLevel=0,recruitLoading=false,expectedRecruitId=null,battleTab='enemies',battleTargetPicker=false,battleMove=false,battleView='whole',battleCamera=null,requestedMapName=null,lobbyDefaultRequested=false,pendingFaction=null,pendingDifficulty=null,townWhole=false,townPortraitEnabled=true,detailReturn='',pendingCreatureSpellHex=null;
  const effectiveBattle=()=>pendingAuto===true?{...state,autoCombat:true}:state;
  const feedback=createActionFeedback(root);
+ const loadingState=createLoadingState(root);
  const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelector('.mobile-play').append(launchStatus);
  function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(button.dataset.action)===value.action)button.setAttribute('aria-busy','true');else button.removeAttribute('aria-busy');}if(!value){launchStatus.hidden=true;delete launchStatus.dataset.phase;return;}launchStatus.hidden=false;const phase=value.action+':'+value.failed;if(launchStatus.dataset.phase===phase)return;launchStatus.dataset.phase=phase;renderMarkup(launchStatus,value.failed?'<h2>Game options did not open</h2><p>The game is not responding. Restart to try again. Your local saves and downloaded game files will be kept.</p><button data-ui="restart-launch">Restart and try again</button>':'<p>Opening game options…</p><progress aria-label="Opening game options"></progress>');}
  const launch=createMenuLaunch({onChange:value=>{if(value?.failed)feedback.clear();renderLaunch(value);}});setInterval(()=>{if(!document.hidden)launch.tick();},500);
@@ -250,7 +254,9 @@ function mount(){
  const marketplace=createMarketplace({root,command,refresh:controls});
  function update(next,refresh=false){
   wogOptions.observe(next);
-  if(!refresh&&lobbyOptions.observe(next))return;
+  const lobbyHeld=!refresh&&lobbyOptions.observe(next);
+  loadingState.update(next,{starting:feedback.starting||lobbyOptions.starting});
+  if(lobbyHeld)return;
   if(feedback.starting&&next.mode==='menu')return;feedback.observe(next);launch.observe(next);
   if(heroExchange.hold(next))return;
   if(!['battle','dialog'].includes(next.mode)&&!(next.mode==='spellbook'&&next.spellbook?.inCombat)&&!(next.mode==='creature'&&next.creatureUnit?.inCombat))battleSession=false;
@@ -302,7 +308,7 @@ function mount(){
    }
    if(requestedMapName===state.selectedMap)requestedMapName=null;factionSelect.disabled ||= !!requestedMapName;select.disabled=deletingSoloAutosave||(lobbyOptions.pending||wogOptions.pending)||!!requestedMapName||pendingFaction!==null||!state.lobbyReady;select.dataset.updating=String(!!requestedMapName||!state.lobbyReady||(!state.selectedMap&&state.mapsLoading));menu.querySelector('[data-ui=begin]').disabled=deletingSoloAutosave||(lobbyOptions.pending||wogOptions.pending)||!state.lobbyReady||!state.selectedMap||hiddenSelection||!!requestedMapName||pendingFaction!==null||pendingDifficulty!==null;const start=menu.querySelector('[data-ui=begin]');start.textContent=state.mode==='load'?'Load game':'Start adventure';const status=menu.querySelector('.lobby-status'),statusText=(lobbyOptions.pending||wogOptions.pending)?'Preparing custom map…':lobbyOptions.error||(!state.lobbyReady||state.mapsLoading&&!state.selectedMap?'Loading scenarios…':requestedMapName?'Selecting your scenario…':!state.selectedMap?'Choose a scenario above to start.':start.disabled?'Applying game settings…':mapLabel+' · Ready to play');if(status._sourceText!==statusText){status._sourceText=statusText;status.textContent=statusText;}menu.querySelector('.lobby-footer [data-ui=back]').disabled=deletingSoloAutosave||(lobbyOptions.pending||wogOptions.pending);const adventureTitle=translate(state.mode==='load'?'Saved game':'Adventure settings');if(menu.querySelector('.lobby-adventure h2').textContent!==adventureTitle)menu.querySelector('.lobby-adventure h2').textContent=adventureTitle;}
   if(state.mode==='campaign'){if(menu.dataset.kind!=='campaign'){menu.dataset.kind='campaign';renderMarkup(menu,'<header class=campaign-catalogue-controls><h1>Campagnes</h1><p>Choisis une campagne.</p><button data-action="0" aria-label="Retour au menu">← Retour</button></header><div class=campaign-list aria-label="Campagnes disponibles"></div>');}const list=menu.querySelector('.campaign-list'),key=JSON.stringify(state.campaigns||[]);if(list._key!==key){list._key=key;renderMarkup(list,(state.campaigns||[]).map(c=>`<button data-campaign="${c.index}">${escape(c.name)}</button>`).join('')||'<p>No compatible campaigns are installed.</p>');}}
-  lobbyOptions.update(state,!!requestedMapName||pendingFaction!==null);wogOptions.update(state,!!requestedMapName||pendingFaction!==null||lobbyOptions.pending);lobbyChoices.update(state);renderLaunch(launch.pending);
+  wogOptions.update(state,!!requestedMapName||pendingFaction!==null||lobbyOptions.pending);lobbyOptions.update(state,!!requestedMapName||pendingFaction!==null);lobbyChoices.update(state);renderLaunch(launch.pending);
   if(state.mode==='menu'&&!['menu','multiplayer'].includes(menu.dataset.kind))showHomeMenu();
   if(state.mode==='menu'&&menu.dataset.kind==='menu'){
    menu.querySelector('[data-open-multiplayer]').hidden=!(window.goonkOnlineConfigured||window.goonkHostedAlerts);
@@ -333,7 +339,7 @@ function mount(){
   const seconds=Math.ceil(Math.max(0,state.turnRemainingMs||0)/1000);
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
-  if(pendingRecruitAll&&state.mode==='fort'){const changed=pendingRecruitAll.some(old=>(state.fortFamilies||[]).find(f=>f.level===old.level)?.count!==old.count);if(changed||performance.now()-pendingRecruitAll.started>2000){const rows=pendingRecruitAll;pendingRecruitAll=null;openSheet('recruitment-summary','Recruited creatures');renderMarkup(body,'<div class="recruit-all-roster">'+rows.filter(r=>r.unit).map(r=>{const left=(state.fortFamilies||[]).find(f=>f.level===r.level)?.count??r.count;return '<article>'+portrait(r.unit)+'<strong>'+escape(r.unit.name)+'</strong><span>'+Math.max(0,r.count-left)+' recruited · '+left+' available</span></article>';}).join('')+'</div>');}}
+  recruitmentBatch.update(state);
   root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);if(sheetKind==='weekly-recruits')weeklyRecruits.update(state);
   if(pendingTownConstruction&&Date.now()>pendingTownConstruction.until)pendingTownConstruction=null;
   if(newTownBuilding&&state.mode==='town'&&newTownBuilding.town!==state.armyTownId)clearNewBuilding();
@@ -361,6 +367,7 @@ function mount(){
  function syncBattleView(){syncVertical();dualBattle.sync();const fr=getLanguage()==='fr',button=root.querySelector('.battle-view'),text=root.clientWidth<root.clientHeight?(verticalActive()?(fr?'Vue classique':'Classic view'):(fr?'Vue verticale':'Vertical view')):nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?(fr?'Vue entière':'Full view'):(fr?'Rapprocher':'Zoom in');if(button.textContent!==text)button.textContent=text;const pressed=String(root.clientWidth<root.clientHeight?verticalActive():battleView==='whole');if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed);if(root.dataset.battleCamera!==battleView)root.dataset.battleCamera=battleView;}
  bindPress(root.querySelector('.battle-view'),()=>{if(state.mode!=='battle')return;const chosen=selectedPoint;if(root.clientWidth<root.clientHeight){portraitVertical=!portraitVertical;}else battleView=nativeBattleClose(scene.clientWidth,scene.clientHeight,battleView)?'whole':'close';resetGestures();selectedPoint=chosen;syncBattleView();renderBattlePanel();controls();});
  function closeSheet(){
+  recruitmentBatch.close();
   const weekly=sheetKind==='weekly-recruits';
   const route=sheetKind==='build'?townBuildings.cancel():null;
   clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;
@@ -386,9 +393,7 @@ function mount(){
   body.replaceChildren();showList('army',true);body.scrollTop=scroll;
   if(army!==undefined&&slot!==undefined)body.querySelector('[data-army="'+army+'"][data-slot="'+slot+'"]')?.focus({preventScroll:true});
  }
- let pendingRecruitAll=null;
- const recruitAllRoster=()=>'<div class="recruit-all-roster">'+(state.fortFamilies||[]).map(f=>{const u=f.variants.filter(u=>u.built).at(-1);return u?'<article>'+portrait(u)+'<strong>'+escape(u.name)+'</strong><span>'+f.count+' available</span></article>':'';}).join('')+'</div>';
- root.addEventListener('goonk-recruit-all',()=>{if(!state.turn)return;openSheet('recruit-all','Recruit all creatures');renderMarkup(body,recruitAllRoster()+'<p>Recruit all available creatures you can afford, using the highest available upgrades? They will join the garrison. Army space and resource costs still apply.</p>'+btn('Recruit all','confirm-recruit-all',true)+btn('Cancel','close-sheet'));});
+ const recruitmentBatch=createRecruitmentBatch({root,body,getState:()=>state,openSheet,command,portrait});
 
  function showList(kind,refresh=false){
   if(kind==='towns'&&state.towns?.length===1){command(5,state.towns[0].index);return;}
@@ -424,11 +429,11 @@ function mount(){
   const spd=unitData?.speed??shown?.speed;
   const curHp=unitData?.currentHealth??unitData?.health;
   const maxHp=unitData?.maximumHealth??unitData?.health??curHp;
-  const hpStr=curHp?`${curHp}/${maxHp} PV`:(unitData?.health?`${unitData.health} PV`:'');
+  const hpLabel=fr?'PV':'HP',hpStr=curHp?`${curHp}/${maxHp} ${hpLabel}`:(unitData?.health?`${unitData.health} ${hpLabel}`:'');
   const countStr=shown?.count?`× ${shown.count}`:'';
   const subEl=panel.querySelector('.battle-unit-sub');
   if(subEl){
-   const subText=state.autoCombat?'':cap.tactics?(hpStr||''):shown?(countStr+(hpStr?(countStr?' · ':'')+hpStr:'')):'' ;
+   const subText=cap.tactics?(hpStr||''):shown?(countStr+(hpStr?(countStr?' · ':'')+hpStr:'')):'' ;
    subEl.textContent=subText;
    subEl.hidden=!subText;
   }
@@ -437,9 +442,9 @@ function mount(){
   panel.querySelector('.battle-turn').textContent=state.autoCombat?(fr?'Autocombat':'Auto combat'):cap.tactics?(shown?(fr?'À placer · ':'To place · ')+displayName:(fr?'Placement des troupes':'Placing army')):displayName||((state.round??0)>0?(fr?'Combat en cours':'Battle in progress'):(fr?'Préparation du combat':'Combat preparation'));
   const statsContainer=panel.querySelector('.battle-unit-stats');
   if(statsContainer){
-   if(shown&&atk!==undefined&&def!==undefined&&!state.autoCombat){
+   if(shown&&atk!==undefined&&def!==undefined){
     statsContainer.hidden=false;
-    const statsHtml=`<span class="battle-stat-pill" title="Attaque">⚔️ ${atk}</span><span class="battle-stat-pill" title="Défense">🛡️ ${def}</span><span class="battle-stat-pill" title="Dégâts">💥 ${dmg??'—'}</span><span class="battle-stat-pill" title="Vitesse">💨 ${spd??'—'}</span>`;
+    const statsHtml=`<span class="battle-stat-pill" title="${fr?'Attaque':'Attack'}">⚔️ ${atk}</span><span class="battle-stat-pill" title="${fr?'Défense':'Defense'}">🛡️ ${def}</span><span class="battle-stat-pill" title="${fr?'Dégâts':'Damage'}">💥 ${dmg??'—'}</span><span class="battle-stat-pill" title="${fr?'Vitesse':'Speed'}">💨 ${spd??'—'}</span>`;
     if(statsContainer._sourceMarkup!==statsHtml){statsContainer._sourceMarkup=statsHtml;renderMarkup(statsContainer,statsHtml);}
    }else{statsContainer.hidden=true;}
   }
@@ -462,7 +467,7 @@ function mount(){
   const isCreatureTargeting=state.creatureSpellTargeting===true;
   const isHeroTargeting=state.spellTargeting===true&&!isCreatureTargeting;
   const magicButton=panel.querySelector('[data-ui=battle-magic]');const magicCancel=state.spellTargeting===true;magicButton.textContent='Magic';magicButton.setAttribute('aria-label',state.spellTargeting?'Cancel selected spell':'Magic');
-  const description=guidance.ready?`Créature active : ${guidance.actor.name} × ${guidance.actor.count}. ${guidance.cells.length} cases accessibles. ${shotHint}${meleeHint}${healHint}`.trim():state.spellTargeting?spellHint:'Champ de bataille';if(scene.getAttribute('aria-label')!==description)scene.setAttribute('aria-label',description);
+  const description=guidance.ready?`Créature active : ${guidance.actor.name} × ${guidance.actor.count}. ${guidance.cells.length} cases accessibles. ${shotHint}${meleeHint}${healHint}`.trim():state.spellTargeting?spellHint:'Champ de bataille';const accessibleDescription=[description,enemyLossDescription(effectiveBattle())].filter(Boolean).join('. ');if(scene.getAttribute('aria-label')!==accessibleDescription)scene.setAttribute('aria-label',accessibleDescription);
   const creatureSpell=panel.querySelector('[data-ui=creature-spell]');
   creatureSpell.hidden=true;
   creatureSpell.textContent=state.activeUnit?.commander?(getLanguage()==='fr'?'Sort du commandant':'Commander spell'):(getLanguage()==='fr'?'Sort de la créature':'Creature spell');
@@ -491,6 +496,8 @@ function mount(){
   const key=JSON.stringify([getLanguage(),canInspectBattle(state),inspectionUnits(state)]);
   if(body._inspectionKey!==key||!refresh){body._inspectionKey=key;renderMarkup(body,battleInspectionMarkup(state,portrait));}
  }
+ window.addEventListener('goonk-battle-loss-preference',()=>{if(state.mode==='battle')renderBattlePanel();});
+ window.addEventListener('storage',event=>{if(event.key==='heroes-goonk.battle-loss-estimates'&&state.mode==='battle')renderBattlePanel();});
  function paintBattlePreviews(){const map=body.querySelector('.battle-target-map');if(map&&sheetKind==='battle-targets'){const w=map.clientWidth,h=map.clientHeight;if(w>0&&h>0){if(map.width!==Math.round(w*2))map.width=Math.round(w*2);if(map.height!==Math.round(h*2))map.height=Math.round(h*2);const mc=map.getContext('2d'),l=fitNativeBattle(w,h,null,'whole');mc.setTransform(2,0,0,2,0,0);mc.clearRect(0,0,w,h);mc.drawImage(original,0,0,original.width,original.height*555/600,l.dx,l.dy,l.w*l.scale,l.h*l.scale);const ids=[...body.querySelectorAll('[data-battle-target]')].map(b=>b.dataset.battleTarget);for(const u of state.battleUnits||[])if(ids.includes(u.x+','+u.y)){const x=l.dx+(u.x-l.x)*l.scale,y=l.dy+(u.y-l.y)*l.scale;mc.strokeStyle=u.enemy?'#ff6954':'#71eaff';mc.lineWidth=2;mc.beginPath();mc.ellipse(x,y,18*l.scale,8*l.scale,0,0,Math.PI*2);mc.stroke();}}}const active=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16)||(state.battleUnits||[]).find(u=>u.stackId===state.activeStack)||(state.battleUnits||[]).find(u=>u.id===state.activeUnit?.id)||(state.battleUnits||[]).find(u=>!u.enemy),detail=root.querySelector('#battle-creature-detail'),dc=detail.getContext('2d');dc.clearRect(0,0,128,128);if(active)drawUnit(dc,active,window.goonkBattleAtlas,window.goonkBattleAtlasIds,64,64,124);const atlas=window.goonkBattleAtlas,ids=window.goonkBattleAtlasIds;for(const canvas of root.querySelectorAll('[data-unit-preview]')){const [x,y]=canvas.dataset.unitPreview.split(',').map(Number),unit=(state.battleUnits||[]).find(u=>u.x===x&&u.y===y),c=canvas.getContext('2d');c.clearRect(0,0,90,90);if(unit)drawUnit(c,unit,atlas,ids,45,45,88);}if(selectedPoint){const unit=(state.battleUnits||[]).find(u=>Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),canvas=root.querySelector('#battle-detail'),c=canvas.getContext('2d');c.clearRect(0,0,264,264);if(unit)drawUnit(c,unit,atlas,ids,132,132,250);}}
  root.addEventListener('click',event=>{const button=event.target.closest('button');if(!button||button.disabled)return;if(button.dataset.heroIndex!==undefined){if(state.mode==='map'&&state.turn){selectedPoint=null;focus=null;resetGestures();command(4,Number(button.dataset.heroIndex));}return;}if(button.dataset.heroScroll!==undefined){const list=nav.querySelector('.hero-movement-list');list?.scrollBy({left:Number(button.dataset.heroScroll)*list.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return;}if(button.dataset.campaign!==undefined){command(52,Number(button.dataset.campaign));return;}if(button.dataset.action){command(Number(button.dataset.action));return;}if(button.dataset.battleTarget){if(battleTargetPicker)closeBattleTargets();if(sheetKind==='battle-targets')closeSheet();const [x,y]=button.dataset.battleTarget.split(',').map(Number);if(state.tacticsMode){selectedPoint=null;focus={x,y};pointer({x,y},1);return;}selectBattlePoint({x,y});return;}if(button.dataset.battleStep){const [x,y]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300};selectedPoint=battleHex({x:base.x+x,y:base.y+y});focus=selectedPoint;pointer(selectedPoint,0);renderBattlePanel();controls();return;}if(button.dataset.recruitLevel!==undefined){openRecruit(Number(button.dataset.recruitLevel));return;}const ui=button.dataset.ui;if(ui==='target-picker-back'){closeBattleTargets();return;}if(ui==='restart-launch'&&launch.pending?.failed){button.disabled=true;location.assign(restartLaunchURL(location.href,launch.pending.action));return;}
 
@@ -515,7 +522,7 @@ function mount(){
    body.append(description);
    return;
   }
-  if(ui==='confirm-recruit-all'){if(!state.turn)return;pendingRecruitAll=(state.fortFamilies||[]).map(f=>({level:f.level,count:f.count,unit:f.variants.filter(u=>u.built).at(-1)}));pendingRecruitAll.started=performance.now();body.querySelector('[data-ui=confirm-recruit-all]').disabled=true;command(53);return;}
+  if(ui==='confirm-recruit-all'){recruitmentBatch.confirm();return;}
   if(ui==='weekly-recruits'){
    if(sheetKind||!canViewWeeklyRecruits(state))return;
    openSheet('weekly-recruits','Weekly recruits');command(88,1);weeklyRecruits.open(state);
@@ -641,7 +648,7 @@ function mount(){
   if(state.mode==='map'){overview.hidden=!state.mapOverview;if(!overview.hidden){if(overview.width!==240||overview.height!==240){overview.width=240;overview.height=240;}paintMapOverview(overviewCtx,original,state.mapOverview,layout);}}
   if(state.mode==='town'){overview.hidden=false;if(overview.width!==240||overview.height!==112){overview.width=240;overview.height=112;}overviewCtx.drawImage(original,0,0,800*sx,374*sy,0,0,240,112);overviewCtx.strokeStyle='#ffec9e';overviewCtx.lineWidth=3;overviewCtx.strokeRect(layout.x/800*240,layout.y/374*112,layout.w/800*240,layout.h/374*112);const view=root.querySelector('.town-view');view.textContent=supportsTownPortrait(state)&&root.clientWidth<root.clientHeight?'Vue portrait':townWhole?'Vue rapprochée':'Vue entière';view.setAttribute('aria-pressed',String(townWhole));}
   paintedGeometry=touchGeometry(scene);
-  if(state.mode==='battle'){if(!dualBattle.active){paintBattleFloor(ctx,state,layout);paintSiegeTargets(ctx,state,p=>({x:layout.dx+(p.x-layout.x)*layout.scale,y:layout.dy+(p.y-layout.y)*layout.scale}));const guidance=battleGuidance(effectiveBattle());paintShotTargets(ctx,guidance.shotTargets,layout);paintMeleeTargets(ctx,guidance.meleeTargets,layout);paintActiveCreature(ctx,guidance,layout);if(!tracking.preview)paintBattleAction(ctx,tracking,layout);const activeSpellOrBuffTargets=[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])];paintSpellTargets(ctx,activeSpellOrBuffTargets,layout);paintSpellTargets(ctx,guidance.invalidSpellTargets,layout,true);paintSelectedTile(ctx,selectedPoint,layout,state,battleMove);}syncBattleView();dualBattle.paint(original,layout,selectedPoint,tracking,battleMove);paintBattlePreviews();}
+  if(state.mode==='battle'){if(!dualBattle.active){paintBattleFloor(ctx,state,layout);paintSiegeTargets(ctx,state,p=>({x:layout.dx+(p.x-layout.x)*layout.scale,y:layout.dy+(p.y-layout.y)*layout.scale}));const guidance=battleGuidance(effectiveBattle());paintShotTargets(ctx,guidance.shotTargets,layout);paintMeleeTargets(ctx,guidance.meleeTargets,layout);paintActiveCreature(ctx,guidance,layout);if(!tracking.preview)paintBattleAction(ctx,tracking,layout);const activeSpellOrBuffTargets=[...new Set([...guidance.spellTargets,...(guidance.beneficialTargets||[])])];paintSpellTargets(ctx,activeSpellOrBuffTargets,layout);paintSpellTargets(ctx,guidance.invalidSpellTargets,layout,true);paintSelectedTile(ctx,selectedPoint,layout,state,battleMove);}paintEnemyLosses(ctx,effectiveBattle(),layout);syncBattleView();dualBattle.paint(original,layout,selectedPoint,tracking,battleMove);paintBattlePreviews();}
  }
  requestAnimationFrame(frame);
  const resize=coalesceViewportResize(()=>({width:root.clientWidth,height:root.clientHeight,sceneWidth:scene.clientWidth,sceneHeight:scene.clientHeight,top:Math.ceil((root.querySelector('.mobile-top').getBoundingClientRect().bottom-root.getBoundingClientRect().top)/4)*4}),size=>{const selected=state.mode==='battle'?selectedPoint:null;const panel=root.querySelector('.battle-panel'),viewportKey=size.width+':'+size.height;if(panel._viewportKey!==viewportKey){panel._viewportKey=viewportKey;panel.scrollTop=0;panel.scrollLeft=0;}resetGestures();selectedPoint=selected;focus=state.mode==='battle'?(selected||battleCamera):null;root.style.setProperty('--mobile-top-height',size.top+'px');});

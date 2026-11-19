@@ -35,7 +35,7 @@ html.goonk-mobile #mobile-app[data-market-view=mobile] {
  text-align:center;line-height:1.1;padding:2px;
 }
 .market-grid img {width:clamp(20px,5.6vw,36px);height:clamp(18px,5vw,32px);object-fit:contain}
-.market-grid span {max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.market-grid .market-resource-name {max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .market-grid small {color:#e5c788;font-size:var(--ui-type-caption)}
 #mobile-app .market-grid button[aria-pressed=true] {
  border:2px solid #ffe5a1;box-shadow:inset 0 0 0 1px #c59549;background:linear-gradient(#853421,#502014);
@@ -72,7 +72,7 @@ html.goonk-mobile #mobile-app[data-market-view=mobile] {
    auto rows when the landscape viewport is short. */
 #mobile-app .market-grid[data-side=give] button{grid-template-columns:24px minmax(0,1fr);grid-template-rows:14px 12px;column-gap:4px;row-gap:1px;align-content:center;align-items:center;font-size:clamp(10px,1.7cqw,12px)}
 #mobile-app .market-grid[data-side=give] img{grid-column:1;grid-row:1/3;width:24px;height:21px}
-#mobile-app .market-grid[data-side=give] span{grid-column:2;grid-row:1;line-height:14px;min-height:14px;max-width:100%;overflow:visible;text-overflow:clip;white-space:nowrap}
+#mobile-app .market-grid[data-side=give] .market-resource-name{grid-column:2;grid-row:1;line-height:14px;min-height:14px;max-width:100%;overflow:visible;text-overflow:clip;white-space:nowrap}
 #mobile-app .market-grid[data-side=give] small{grid-column:2;grid-row:2;font-size:var(--ui-type-resource);line-height:12px;white-space:nowrap}
 @container goonk-viewport (orientation:portrait){
  html.goonk-mobile #mobile-viewport #mobile-app[data-market-view=mobile]{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr)!important}

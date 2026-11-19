@@ -981,38 +981,38 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "265bc0c69ad82f1c8191713d6c723f9a88b5fcafe666d982256ecca1de5185e3",
+      "sourceSHA256": "925e543c94eac6f5fd7f4d30f5de3f755717cc4c5735a8f8c89f5b83ef36aa00",
       "evidence": [
         {
-          "line": 69,
+          "line": 72,
           "excerpt": "const homeMenu = '<h1>Le royaume des Goonks</h1><p>Une aventure au bout des doigts.<br>Explore, construis et mène tes peluches au combat.</p><button class=\"primary\" data-action=\"20"
         },
         {
-          "line": 75,
+          "line": 78,
           "excerpt": "const root=document.createElement('section');root.id='mobile-app';root.dataset.mode='menu';root.setAttribute('aria-label','Heroes Goonk tactile');renderMarkup(root,`<header class=\""
         },
         {
-          "line": 77,
+          "line": 80,
           "excerpt": "const viewportFrame=document.createElement('div');viewportFrame.id='mobile-viewport';root.before(viewportFrame);viewportFrame.append(root);"
         },
         {
-          "line": 111,
+          "line": 114,
           "excerpt": "renderMarkup(menu,homeMenu+'<button type=\"button\" data-open-multiplayer>Multijoueur</button>');"
         },
         {
-          "line": 119,
+          "line": 122,
           "excerpt": "renderMarkup(menu,'<h1 tabindex=\"-1\">Multijoueur</h1><button type=\"button\" data-action=\"75\">Appareil de l’hôte</button><button type=\"button\" data-open-hosted-match>Serveur dédié</b"
         },
         {
-          "line": 136,
+          "line": 140,
           "excerpt": "const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelec"
         },
         {
-          "line": 137,
+          "line": 141,
           "excerpt": "function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(b"
         },
         {
-          "line": 185,
+          "line": 189,
           "excerpt": "root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');renderMarkup(holder,crea"
         }
       ],
@@ -1054,7 +1054,7 @@
         "storage",
         "confirm"
       ],
-      "sourceSHA256": "054afefb8265f4fe896dcb83d9152bbc56ee71a726f3da39eacda679b8b5f458",
+      "sourceSHA256": "5f1644db858702d7efef8ef84c9070db49e0f29325603575cabe718733174c62",
       "evidence": [
         {
           "line": 27,
@@ -1077,12 +1077,12 @@
           "excerpt": "content.dataset.view='settings';renderMarkup(content,'<label class=\"language-setting setting-select\">Language<select data-language><option value=en>English</option><option value=fr"
         },
         {
-          "line": 114,
+          "line": 118,
           "excerpt": "return '<article class=\"game-cheat\"><h3>'+cheat.title+'</h3><p>'+cheat.description+'</p><code>'+cheat.code+'</code><button data-cheat=\"'+cheat.id+'\" '+(reason?'disabled':'')+' aria"
         },
         {
-          "line": 166,
-          "excerpt": "if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';renderMarkup(content,'<h3>Retourner au menu principal ?</h3><p>The current session will end. Your ex"
+          "line": 170,
+          "excerpt": "if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';renderMarkup(content,'<section class=\"ui-form-stack\"><h3>Retourner au menu principal ?</h3><p>The cu"
         }
       ],
       "review": "source-reviewed"
@@ -1292,38 +1292,38 @@
         "players",
         "choice"
       ],
-      "sourceSHA256": "4f639c78ee71f11ce4f45ef89a04f4e8a2dac2ff6cd92f9ca0fe607d7a6c8001",
+      "sourceSHA256": "76eb148537739e6d2b9af4f1f9e6292335adfbc1a45d91d69b929d3a5de65fab",
       "evidence": [
         {
-          "line": 16,
+          "line": 17,
           "excerpt": "export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){"
         },
         {
-          "line": 40,
+          "line": 41,
           "excerpt": "renderMarkup(c,'<h3></h3><button type=\"button\" class=\"lobby-choice-card\" aria-haspopup=\"dialog\"><figure class=\"lobby-faction-art\"></figure><span><small>Starting faction</small><str"
         },
         {
-          "line": 48,
+          "line": 49,
           "excerpt": "const colour=document.createElement('i');"
         },
         {
-          "line": 66,
+          "line": 67,
           "excerpt": "const illustration=document.createElement('div');"
         },
         {
-          "line": 97,
+          "line": 98,
           "excerpt": "if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','lobby-picker-tit"
         },
         {
-          "line": 112,
+          "line": 113,
           "excerpt": "return `<button type=\"button\" data-choice-value=\"${esc(o.value)}\" aria-pressed=\"${o.value===s.value}\" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src=\"./web/h3-the"
         },
         {
-          "line": 129,
+          "line": 130,
           "excerpt": "for(const s of menu.querySelectorAll('select:not(.lobby-picker select)')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1"
         },
         {
-          "line": 134,
+          "line": 135,
           "excerpt": "renderMarkup(c,'<h3></h3><button type=\"button\" class=\"lobby-choice-card\" aria-haspopup=\"dialog\"><img class=\"lobby-map-emblem\" src=\"./web/h3-theme/adventure-map.svg\" alt=\"\"><span><s"
         }
       ],
@@ -1406,7 +1406,7 @@
         "details",
         "transfer"
       ],
-      "sourceSHA256": "070c00bd5f5d10619d0fb72f28835abbc45f694d1885f99d93b9cdb3786b1018",
+      "sourceSHA256": "667e7f27fddc3ceb23885fbd61eb3b464fa803e52e1b3ddc1a6638658ecdf4ce",
       "evidence": [
         {
           "line": 10,
@@ -1532,26 +1532,26 @@
         "resources",
         "actions"
       ],
-      "sourceSHA256": "494515486137076181abf5b98ba0d07f2ad146e595e206e701b6c1970d379e9e",
+      "sourceSHA256": "8faf45c9543e37ce0db08ee5b3cd1582254a5bd32583e5bab741605a682d3655",
       "evidence": [
         {
-          "line": 17,
+          "line": 26,
           "excerpt": "export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){"
         },
         {
-          "line": 41,
+          "line": 50,
           "excerpt": "if(key!==signature){if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root.querySelector('.mobile-play').append(choices,amount);const "
         },
         {
-          "line": 50,
+          "line": 59,
           "excerpt": "const featured=createUIElement('div');featured.classList.add('featured-creature');renderMarkup(featured,`<div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" ari"
         },
         {
-          "line": 57,
+          "line": 66,
           "excerpt": "renderMarkup(variants,choices.map(({u,index})=>`<button data-variant=\"${index}\" aria-pressed=\"${u.id===unit?.id}\">${creaturePortrait(u)}<span class=\"variant-name\">${esc(u.name)}</s"
         },
         {
-          "line": 65,
+          "line": 74,
           "excerpt": "else if(upgrades.length){const upgradePanel=createUIElement('section');upgradePanel.classList.add('creature-upgrades');upgradePanel.setAttribute('aria-label','Creature upgrades');r"
         }
       ],
@@ -1626,7 +1626,7 @@
         "hero",
         "feedback"
       ],
-      "sourceSHA256": "6ddada8d4e46649bde1a623118c38ba560e34addba10cf6dc9126c5ab4a4ab0e",
+      "sourceSHA256": "e2138a6fe55f13b84589ec1d4c51af6224eb514d3c3f230ba9ec0882078c1220",
       "evidence": [
         {
           "line": 9,
@@ -1637,11 +1637,11 @@
           "excerpt": "export function createThievesGuildView(panel){"
         },
         {
-          "line": 44,
+          "line": 45,
           "excerpt": "const playerField=(compare=false)=>`<label class=\"guild-player-field\"><span class=\"guild-field-label\">${compare?t('Compare with','Comparer avec'):t('Kingdom to inspect','Royaume à "
         },
         {
-          "line": 48,
+          "line": 49,
           "excerpt": "renderMarkup(panel,screenHeaderMarkup({title:t('Thieves’ Guild','Guilde des voleurs'),closeAttributes:'data-service-back',closeLabel:t('Close','Fermer')})+`<nav class=\"guild-view-t"
         }
       ],
@@ -2049,7 +2049,7 @@
         "skills",
         "result"
       ],
-      "sourceSHA256": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
+      "sourceSHA256": "6c16fa09b5492e8ad8dc647b564c4403078f0267dd02d95f4251a06e661b023b",
       "evidence": [
         {
           "line": 13,
@@ -2269,38 +2269,38 @@
         "card",
         "feedback"
       ],
-      "sourceSHA256": "33b7ec0b63d9d20ac1f21360d175f9f6d80d86f37c5d0587fd86986b480949dd",
+      "sourceSHA256": "b4f22d620905fddb214475ff198d5e8bc51094368540fb15f7ab53f6d42e5e73",
       "evidence": [
         {
-          "line": 12,
+          "line": 11,
           "excerpt": "export function createMageGuild({root, command, pointer, resetView, asset}) {"
         },
         {
-          "line": 13,
+          "line": 12,
           "excerpt": "const panel = document.createElement('section');"
         },
         {
-          "line": 33,
+          "line": 30,
           "excerpt": "const header = `<header><h2>${title}</h2><button type=\"button\" data-guild-view>${viewLabel}</button>"
         },
         {
-          "line": 34,
+          "line": 31,
           "excerpt": "<button type=\"button\" data-guild-close aria-label=\"${t('Fermer', 'Close')}\">✕</button></header>`;"
         },
         {
-          "line": 50,
-          "excerpt": "return `<button type=\"button\" data-guild-level=\"${number}\" data-floor-status=\"${state}\" aria-pressed=\"${number === level}\""
+          "line": 44,
+          "excerpt": "<label class=\"mage-guild-level-field\"><span>${levelLabel}</span><select data-guild-level-select aria-label=\"${t('Niveau de magie','Spell level')}\">${Array.from({length:floorCount},"
         },
         {
-          "line": 58,
+          "line": 48,
           "excerpt": "${guild.allSpells ? `<div class=\"mage-guild-empty\"><button type=\"button\" data-guild-all>${t('Tous les sorts', 'All spells')}</button></div>` :"
         },
         {
-          "line": 61,
+          "line": 51,
           "excerpt": "${visible.map(spell => `<button type=\"button\" data-guild-spell=\"${spell.id}\" aria-pressed=\"${spell.id === selected.id}\">"
         },
         {
-          "line": 66,
+          "line": 56,
           "excerpt": "${guild.canResearch || !selected.description ? `<button type=\"button\" data-guild-inspect=\"${selected.id}\">"
         }
       ],
@@ -2330,7 +2330,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "ab9f6e20cd4c0a0698e0e7cce8f6867b3d6e96ad4214c4271a9065c61839d0a6",
+      "sourceSHA256": "02d8f42d6cf80b114f2fb6a4912576baf5eed1bc04e97bf3730274e77bce65e3",
       "evidence": [
         {
           "line": 12,
@@ -2354,7 +2354,7 @@
         },
         {
           "line": 62,
-          "excerpt": "button.append(document.createElement('span'),document.createElement('small'));"
+          "excerpt": "const name=document.createElement('span');name.className='market-resource-name';const amount=document.createElement('small');amount.className='market-resource-amount';button.append"
         },
         {
           "line": 114,
@@ -2557,7 +2557,7 @@
         "details",
         "resources"
       ],
-      "sourceSHA256": "99f98fdeac019a0164fcceca8c8ca960a39c6d2601f95721493d28038f0f39f0",
+      "sourceSHA256": "c51135325ab7b59ec787a0236f99d2f92db74291d4e02b3fb7fc7bcea3645665",
       "evidence": [
         {
           "line": 5,
@@ -2576,12 +2576,8 @@
           "excerpt": "detail.dataset.unit=u.id;renderMarkup(detail,`<div class=\"hall-feature\"><div><div class=\"hall-feature-title\"><h3 title=\"${esc(u.name)}\">${esc(u.name)}</h3><span class=\"hall-unit-pr"
         },
         {
-          "line": 60,
-          "excerpt": "const context=document.createElement('div');context.className='hall-purchase-context';context.append(detail.querySelector('.hall-feature'),detail.querySelector('.hall-quantity'));d"
-        },
-        {
           "line": 84,
-          "excerpt": "if(!old)savedScroll=null;if(old){restoreMovedActions(old);for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}const layout=document.cr"
+          "excerpt": "if(!old)savedScroll=null;if(old){restoreMovedActions(old);for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}const layout=createUIEle"
         }
       ],
       "review": "source-reviewed"
@@ -2953,14 +2949,14 @@
         "choice",
         "feedback"
       ],
-      "sourceSHA256": "4f9bd044ff913e05d1ee0ac5e0d79bf889aac57541452805f9caed91168fc635",
+      "sourceSHA256": "97cf1e322c3c78cbb4afdc1eed583a41e21fcc02154ee0f7320e36fdfa9d3150",
       "evidence": [
         {
-          "line": 40,
+          "line": 41,
           "excerpt": "export function createWogOptions({menu, command, onChange}) {"
         },
         {
-          "line": 53,
+          "line": 54,
           "excerpt": "const field = document.createElement('fieldset');"
         }
       ],
@@ -2984,22 +2980,22 @@
         "choice",
         "select"
       ],
-      "sourceSHA256": "8ad987533b19b0831d51088bc9e915920b6c0e3ccb0c3a1034fabbc8b8dc86da",
+      "sourceSHA256": "91cb0416379fc992e68d26efa5a7ab662ae5335e20a217cd4e46a99d909462ad",
       "evidence": [
         {
           "line": 4,
           "excerpt": "export function createLobbyOptions({menu,getState,command,onChange}){"
         },
         {
-          "line": 49,
-          "excerpt": "return{observe,get pending(){return !!request;},get error(){return error;},update(state,changingScenario=false){if(state.mode!=='lobby'){form=null;return;}if(!form?.isConnected){fo"
+          "line": 70,
+          "excerpt": "return{observe,get pending(){return !!request;},get starting(){return request?.phase==='starting';},get error(){return error;},update(state,changingScenario=false){if(state.mode!=="
         },
         {
-          "line": 63,
+          "line": 89,
           "excerpt": "renderMarkup(towns,(state.players||[]).map(p=>`<label><span class=\"lobby-player-label\"><i class=\"lobby-player-colour\" data-player-colour=\"${Number(p.color)}\" aria-hidden=\"true\"></i"
         },
         {
-          "line": 77,
+          "line": 103,
           "excerpt": "if(![...income.options].some(option=>option.value===value)){const option=document.createElement('option');option.value=value;option.textContent=value+' %';income.append(option);}"
         }
       ],
@@ -3265,38 +3261,38 @@
         "tactical",
         "minimap"
       ],
-      "sourceSHA256": "9ae5b6d848cd8e34b36e50f809fa4bbff4a0bd392b16e2f6386a135ec6fd2d2d",
+      "sourceSHA256": "aa0b03664fd8bf104412e7484a9fe6a52ea04bbc0277fe9948fbe24fab6d694b",
       "evidence": [
         {
-          "line": 12,
+          "line": 14,
           "excerpt": "export function fitBattleDetail(width,height,focus,points=[],scaleOverride=null){"
         },
         {
-          "line": 27,
+          "line": 29,
           "excerpt": "export function battleOverviewPoint(x,y,width,height,clampToField=false){"
         },
         {
-          "line": 35,
+          "line": 37,
           "excerpt": "export function overviewCreature(point,units,scale){"
         },
         {
-          "line": 42,
+          "line": 44,
           "excerpt": "export function portraitBattleSplit(width,height){"
         },
         {
-          "line": 47,
+          "line": 49,
           "excerpt": "export function createBattleDualView({root,scene,getState,getView=()=>'whole',onFocus}){"
         },
         {
-          "line": 48,
+          "line": 50,
           "excerpt": "const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href=new URL('./battle-dual-view.css',import.meta.url).href;document.head.append(stylesheet);"
         },
         {
-          "line": 49,
+          "line": 51,
           "excerpt": "const strategic=document.createElement('section');strategic.className='battle-strategic-view';strategic.setAttribute('aria-label','Vue stratégique du combat');strategic.hidden=true"
         },
         {
-          "line": 50,
+          "line": 52,
           "excerpt": "const canvas=document.createElement('canvas');canvas.id='battle-strategic-scene';canvas.setAttribute('aria-label','Écran d’action. Touchez une case ou une cible pour préparer une a"
         }
       ],
@@ -3346,30 +3342,30 @@
         "animation",
         "tactical"
       ],
-      "sourceSHA256": "fdb3f67560cb2cb48d1fabb6e95d6ad94c9b91ffa860df63dc33f3897d1c499e",
+      "sourceSHA256": "0284332337e464611b6ec461b3169661c7b26a0314ea72b77ea0908c17f68782",
       "evidence": [
         {
-          "line": 7,
+          "line": 8,
           "excerpt": "export function verticalBattleGeometry(width,height){"
         },
         {
-          "line": 16,
+          "line": 17,
           "excerpt": "export function animatedBattlePosition(previous,next,elapsed,duration=50){"
         },
         {
-          "line": 21,
+          "line": 22,
           "excerpt": "export function resetVerticalBattle(){previousBounds=null;poses.clear();lastTime=0;gridLayer=null;gridCells=null;gridUnits=null;}"
         },
         {
-          "line": 38,
+          "line": 39,
           "excerpt": "const canvas=gridLayer?.canvas||doc.createElement('canvas');if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;"
         },
         {
-          "line": 45,
+          "line": 46,
           "excerpt": "export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas,ids,bounds,tracking){"
         },
         {
-          "line": 102,
+          "line": 110,
           "excerpt": "export function pickVerticalUnit(point,units,markers=[]){"
         }
       ],

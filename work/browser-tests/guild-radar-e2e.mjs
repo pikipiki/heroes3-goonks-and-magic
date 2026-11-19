@@ -35,7 +35,7 @@ for(const engine of [chromium,webkit]){
   }
   await p.evaluate(()=>service.update({mode:'dialog',dialogKind:'thieves-guild',thievesGuild:{players:[{color:0},{color:1}],rows:[{label:'Gold',ranks:{0:1}},{label:'Heroes',ranks:{0:2}},{label:'Towns',ranks:{0:1}}]}}));
   await p.locator('[data-guild-view="radar"]').click();await p.locator('[data-guild-compare]').evaluate(e=>{e.value='1';e.dispatchEvent(new Event('change',{bubbles:true}));});
-  assert(await p.locator('.guild-radar-chart').isHidden());assert.equal(await p.locator('.guild-radar-summary li').count(),0);
+  assert(await p.locator('.guild-radar-chart').isHidden());assert.equal(await p.locator('.guild-radar-known-facts li').count(),3,'Limited intelligence retains all available facts without inventing a radar');
   assert.deepEqual(errors,[]);console.log(`PASS ${engine.name()}: guild radar/table/details, 8 players, unknown ranks, portrait/landscape, close visibility`);
  }finally{await browser.close();}
 }

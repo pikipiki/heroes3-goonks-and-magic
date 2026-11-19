@@ -9,3 +9,7 @@ export function setBattleOneClick(value,storage){movementFallback=!!value;try{(s
 const spellKey='heroes-goonk.spell-one-click';let spellFallback=false;
 export function spellOneClick(storage){try{return (storage??globalThis.localStorage)?.getItem(spellKey)==='true';}catch{return spellFallback;}}
 export function setSpellOneClick(value,storage){spellFallback=!!value;try{(storage??globalThis.localStorage)?.setItem(spellKey,String(spellFallback));}catch{}return spellFallback;}
+
+const lossesKey='heroes-goonk.battle-loss-estimates';let lossesFallback=true;
+export function battleLossEstimates(storage){try{const target=storage??globalThis.localStorage;return target?target.getItem(lossesKey)!=='false':lossesFallback;}catch{return lossesFallback;}}
+export function setBattleLossEstimates(value,storage){lossesFallback=!!value;try{(storage??globalThis.localStorage)?.setItem(lossesKey,String(lossesFallback));}catch{}globalThis.dispatchEvent?.(new Event('goonk-battle-loss-preference'));return lossesFallback;}

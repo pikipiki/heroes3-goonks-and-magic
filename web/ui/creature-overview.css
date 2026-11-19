@@ -17,3 +17,8 @@
   #mobile-app[data-mode=creature]>.mobile-nav{display:none!important}
  }
 }
+@layer ui-composition {
+ #mobile-app[data-mode=creature] .ui-creature-overview .featured-price{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:8px 12px!important;border:1px solid var(--ui-outline)!important;font:var(--ui-font-body-medium)!important;background:var(--ui-surface-container)!important;box-shadow:none!important}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-stack-count{white-space:nowrap!important;font:var(--ui-font-title-compact)!important}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-description{margin:0 0 12px!important;font:var(--ui-font-body-medium)!important}
+}
