@@ -1182,5 +1182,356 @@
       "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
       "verify-site": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
     }
+  },
+  "mergedUIValidation": {
+    "remoteCommit": "e3275ddd",
+    "scope": "Same engine; merged shared modal rail validated on native mine source checkpoints, purchases, saved continuations and Monday handling.",
+    "reports": {
+      "landscape": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+        "scenarios": [
+          {
+            "name": "daily-purchase",
+            "weekly": false,
+            "enabled": true,
+            "physicalPurchase": true,
+            "initial": 0,
+            "day2Marker": 6,
+            "scriptEdit": 1,
+            "foreignMarkers": 0,
+            "pendingNativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "protectedResourcePreserved": false,
+            "daily": [
+              {
+                "day": 3,
+                "marker": 0,
+                "foreign": 0,
+                "resources": [
+                  20,
+                  10,
+                  24,
+                  10,
+                  10,
+                  10,
+                  25800,
+                  93
+                ]
+              }
+            ],
+            "legacyInput": null,
+            "saveVersion": 930,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch"
+          },
+          {
+            "name": "weekly-script-marker",
+            "weekly": true,
+            "enabled": true,
+            "physicalPurchase": false,
+            "initial": 15,
+            "day2Marker": 15,
+            "scriptEdit": 15,
+            "foreignMarkers": 7,
+            "pendingNativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "protectedResourcePreserved": true,
+            "daily": [
+              {
+                "day": 3,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  30,
+                  10,
+                  34,
+                  10,
+                  10,
+                  10,
+                  23000,
+                  100
+                ]
+              },
+              {
+                "day": 4,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  30,
+                  10,
+                  36,
+                  10,
+                  10,
+                  10,
+                  24500,
+                  100
+                ]
+              },
+              {
+                "day": 5,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  30,
+                  10,
+                  38,
+                  10,
+                  10,
+                  10,
+                  26000,
+                  100
+                ]
+              },
+              {
+                "day": 6,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  30,
+                  10,
+                  40,
+                  10,
+                  10,
+                  10,
+                  27500,
+                  100
+                ]
+              },
+              {
+                "day": 7,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  30,
+                  10,
+                  42,
+                  10,
+                  10,
+                  10,
+                  29000,
+                  100
+                ]
+              },
+              {
+                "day": 8,
+                "marker": 0,
+                "foreign": 0,
+                "resources": [
+                  30,
+                  10,
+                  44,
+                  10,
+                  10,
+                  10,
+                  30500,
+                  100
+                ]
+              }
+            ],
+            "legacyInput": null,
+            "saveVersion": 930,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "ed0dc849d12bbc1a893f57bac9df634f96fe5cd8b67f84c2169ab0648109797f"
+      },
+      "portrait": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+        "scenarios": [
+          {
+            "name": "weekly-script-marker",
+            "weekly": true,
+            "enabled": true,
+            "physicalPurchase": false,
+            "initial": 15,
+            "day2Marker": 15,
+            "scriptEdit": 15,
+            "foreignMarkers": 7,
+            "pendingNativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "protectedResourcePreserved": true,
+            "daily": [
+              {
+                "day": 3,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  29,
+                  10,
+                  33,
+                  10,
+                  10,
+                  10,
+                  23000,
+                  100
+                ]
+              },
+              {
+                "day": 4,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  29,
+                  10,
+                  35,
+                  10,
+                  10,
+                  10,
+                  24500,
+                  100
+                ]
+              },
+              {
+                "day": 5,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  29,
+                  10,
+                  37,
+                  10,
+                  10,
+                  10,
+                  26000,
+                  100
+                ]
+              },
+              {
+                "day": 6,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  29,
+                  10,
+                  39,
+                  10,
+                  10,
+                  10,
+                  27500,
+                  100
+                ]
+              },
+              {
+                "day": 7,
+                "marker": 15,
+                "foreign": 7,
+                "resources": [
+                  29,
+                  10,
+                  41,
+                  10,
+                  10,
+                  10,
+                  29000,
+                  100
+                ]
+              },
+              {
+                "day": 8,
+                "marker": 0,
+                "foreign": 0,
+                "resources": [
+                  29,
+                  10,
+                  43,
+                  10,
+                  10,
+                  10,
+                  30500,
+                  100
+                ]
+              }
+            ],
+            "legacyInput": null,
+            "saveVersion": 930,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "9ffedb0b2ee476cb249a3fdb4f13aeef898dd0d44f25f37bbd344d587435eaf4"
+      },
+      "desktop": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+        "scenarios": [
+          {
+            "name": "daily-purchase",
+            "weekly": false,
+            "enabled": true,
+            "physicalPurchase": true,
+            "initial": 0,
+            "day2Marker": 6,
+            "scriptEdit": 1,
+            "foreignMarkers": 0,
+            "pendingNativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "protectedResourcePreserved": false,
+            "daily": [
+              {
+                "day": 3,
+                "marker": 0,
+                "foreign": 0,
+                "resources": [
+                  26,
+                  10,
+                  30,
+                  10,
+                  10,
+                  10,
+                  25000,
+                  93
+                ]
+              }
+            ],
+            "legacyInput": null,
+            "saveVersion": 930,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "aecff56a611f4f33981faa30dd68cd3189980c3380da2f65ed4e1e8508608b2c"
+      }
+    },
+    "node": {
+      "tests": 949,
+      "passed": 893,
+      "skipped": 56,
+      "failed": 0
+    },
+    "nodeLogSha256": "44508bfebca6909f5028369fb279a30288cd93c38ea2401e36bee59a8fe3b241",
+    "site": {
+      "nativeFilesByteVerified": 10464,
+      "transportBytes": 702299043,
+      "buildLogSha256": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
+      "verifyLogSha256": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
+    }
   }
 }
