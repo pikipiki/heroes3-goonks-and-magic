@@ -284,7 +284,7 @@ std::shared_ptr<IImage> BattleStacksController::getStackAmountBox(const CStack *
 	return amountEffNeutral;
 }
 
-void BattleStacksController::showStackAmountBox(Canvas & canvas, const CStack * stack)
+Rect BattleStacksController::mobileAmountBoxBounds(const CStack * stack)
 {
 	auto amountBG = getStackAmountBox(stack);
 
@@ -317,6 +317,14 @@ void BattleStacksController::showStackAmountBox(Canvas & canvas, const CStack * 
 		else
 			boxPosition = owner.fieldController->hexPositionLocal(frontPos).center() + Point(-8, -14);
 	}
+
+	return Rect(boxPosition, amountBG->dimensions());
+}
+
+void BattleStacksController::showStackAmountBox(Canvas & canvas, const CStack * stack)
+{
+	auto amountBG = getStackAmountBox(stack);
+	const auto boxPosition = mobileAmountBoxBounds(stack).topLeft();
 
 	Point textPosition = Point(amountBG->dimensions().x/2 + boxPosition.x, boxPosition.y + amountBG->dimensions().y/2);
 

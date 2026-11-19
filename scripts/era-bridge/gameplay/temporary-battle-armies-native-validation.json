@@ -10,9 +10,9 @@
   "sourceBaseCommit": "c449be89dcfda668edad13c72d453db9c79ffc56",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
-    "package-lock.json": "b8c6237cdca14e60af86609fe8f2d8569761e1e2026783e8c157c2858732247f",
-    "package.json": "4b19c0d5870ed9e487edeb537345f6902f0ba54da9aa6da803ce0f1099a6184b",
-    "scripts/prepare-web.mjs": "33d913c4bea63727eb64794787e2cbc8bb3f7f61c53fd4d24240d2f8baab6460",
+    "package-lock.json": "717c8a2ae36362e0aad1d09a344189d26db553f569dfe32f651be31ae7f506ab",
+    "package.json": "9efc32130e7b5ecfbbfaf371695175b200d03f50a9874928f53bd7605144e0f6",
+    "scripts/prepare-web.mjs": "5bf0a038c08041f249d86d5b1d292dcda606da04b9c7c755376a605706ecbab1",
     "tests/era-temporary-battle-armies.test.mjs": "ad5f36eb5d24b205573d849bcdda0709f262ea5168159b9682220054d00ae098",
     "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
     "tests/native/EraWogOptionsSerialization.test.cpp": "935444d72b1d47608b58ead966bf22694a7eedcfab97d922757929a41962b63f",

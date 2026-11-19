@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {enemyLossEstimates,formatEnemyLosses,layoutEnemyLosses,overlaps,paintEnemyLosses,visibleLeaderSegments} from '../web/ui/battle-losses.mjs';
+import {enemyLossEstimates,formatEnemyLosses,overlaps,paintEnemyLosses,layoutCounterLosses} from '../web/ui/battle-losses.mjs';
 import {battleLossEstimates,setBattleLossEstimates} from '../web/battle-preferences.mjs';
 import {verticalBattleGeometry} from '../web/battle-vertical.mjs';
 const actor={stackId:1,x:300,y:280,count:20};
-const enemy={stackId:2,x:344,y:280,name:'Dragon',count:12,enemy:true,canMeleeAt:true,attackLosses:{actor:1,min:2,max:5}};
+const enemy={countBounds:{x:360,y:290,w:30,h:13},stackId:2,x:344,y:280,name:'Dragon',count:12,enemy:true,canMeleeAt:true,attackLosses:{actor:1,min:2,max:5}};
 const state={mode:'battle',round:1,canAct:true,activeStack:1,battleUnits:[actor,enemy]};
 test('casualties come exclusively from current actor native estimates and legality',()=>{
  assert.equal(enemyLossEstimates(state,true)[0].label,'−2–5');
@@ -19,33 +19,27 @@ test('loss preference defaults on, persists, and tolerates unavailable storage',
  assert.equal(battleLossEstimates(storage),true);setBattleLossEstimates(false,storage);assert.equal(battleLossEstimates(storage),false);setBattleLossEstimates(true,storage);assert.equal(battleLossEstimates(storage),true);
  const blocked={getItem(){throw Error('private')},setItem(){throw Error('private')}};setBattleLossEstimates(false,blocked);assert.equal(battleLossEstimates(blocked),false);setBattleLossEstimates(true,blocked);assert.equal(battleLossEstimates(blocked),true);
 });
-const field=Array.from({length:11},(_,i)=>({stackId:i+1,x:312+(i%5)*44+(Math.floor(i/5)%2)*22,y:230+Math.floor(i/5)*42,count:i===4?1:20,enemy:i%2===1||i===4,armySlot:i===4?-2:i}));
-const views=[...[[320,260],[320,350],[360,400],[568,280],[640,360]].map(([w,h])=>({w,h,project:p=>{const s=Math.min(w/800,h/555);return{x:p.x*s,y:p.y*s}},scale:Math.min(w/800,h/555)})),...[[320,260],[320,350],[360,400]].map(([w,h])=>({w,h,...verticalBattleGeometry(w,h)}))];
-test('mixed adjacent armies and commander: every forecast fits without covering sprites or counters',()=>{
- for(const view of views){
-  const points=field.map(u=>({unit:u,...view.project(u)}));
-  const blocked=points.map(p=>({x:p.x-44*view.scale,y:p.y-88*view.scale,w:114*view.scale,h:118*view.scale}));
-  const entries=points.filter(p=>p.unit.enemy).map(p=>({unit:p.unit,anchor:p,w:46,h:18,label:'−2–5'}));
-  const bounds={x:2,y:2,w:view.w-4,h:view.h-4};
-  const {placed,hidden}=layoutEnemyLosses(entries,bounds,blocked);
-  assert.equal(hidden.length,0,`${view.w}x${view.h}: every enemy has its own forecast`);
-  for(let i=0;i<placed.length;i++){const a=placed[i];assert(a.x>=2&&a.y>=2&&a.x+a.w<=view.w-2&&a.y+a.h<=view.h-2);assert(!blocked.some(b=>overlaps(a,b)));for(let j=0;j<i;j++)assert(!overlaps(a,placed[j]));}
-  assert.deepEqual(layoutEnemyLosses(entries,bounds,blocked).placed,placed,'stable positions on unchanged frames');
- }
-});
-test('overflow never paints an estimate over an army or truncates a number',()=>{
- const e={unit:enemy,anchor:{x:10,y:10},w:60,h:18,label:'−2–5'};
- const result=layoutEnemyLosses([e],{x:0,y:0,w:20,h:20},[]);assert.equal(result.placed.length,0);assert.equal(result.hidden.length,1);
-});
 test('drawing does not consume native pointer commands and honours setting changes immediately',()=>{
  let text=[];const ctx={font:'400 12px Georgia',canvas:{},save(){},restore(){},measureText:t=>({width:t.length*7}),beginPath(){},rect(){},clip(){},moveTo(){},lineTo(){},stroke(){},fillRect(){},strokeRect(){},fillText:t=>text.push(t)};
  const l={x:0,y:0,w:800,h:555,dx:0,dy:0,scale:.4};
- assert.equal(paintEnemyLosses(ctx,state,l).length,1);assert.deepEqual(text,['−2–5']);
+ assert.equal(paintEnemyLosses(ctx,state,l).length,1);assert.deepEqual(text,['(−2–5)']);
 });
 
-test('leader lines never cross overlapping allied silhouettes or count badges',()=>{
- const blocked=[{x:0,y:0,w:20,h:20},{x:15,y:0,w:20,h:20},{x:50,y:0,w:8,h:20}];
- const segments=visibleLeaderSegments({x:10,y:10},{x:90,y:10},blocked);
- assert.deepEqual(segments,[[{x:36,y:10},{x:49,y:10}],[{x:59,y:10},{x:90,y:10}]]);
- for(const [a,b] of segments)for(const box of blocked)assert(!((a.x+b.x)/2>=box.x&&(a.x+b.x)/2<=box.x+box.w));
+test('parenthesized forecasts stay attached to the same count through facing, animation, and turn changes',()=>{
+ const counters=Array.from({length:16},(_,i)=>({stackId:i+1,x:40+(i%4)*66,y:30+Math.floor(i/4)*44,w:20,h:13}));
+ const entries=counters.filter(c=>c.stackId%2===0).map(c=>({unit:{stackId:c.stackId},label:'(−1)',w:27,h:14}));
+ const bounds={x:0,y:0,w:320,h:260};let previous=[];
+ for(let frame=0;frame<30;frame++){
+  const shuffled=frame%2?[...counters].reverse():counters;
+  const result=layoutCounterLosses(entries,bounds,shuffled,previous);
+  assert.equal(result.placed.length,entries.length);
+  for(const r of result.placed){const old=previous.find(o=>o.unit.stackId===r.unit.stackId);if(old){assert.equal(r.side,old.side);assert.equal(r.x,old.x);assert.equal(r.y,old.y);}assert.equal(r.badge.stackId,r.unit.stackId);assert(!counters.some(c=>overlaps(r,c,0)));assert(Math.min(Math.abs(r.x-r.badge.x-r.badge.w),Math.abs(r.x+r.w-r.badge.x),Math.abs(r.y-r.badge.y-r.badge.h),Math.abs(r.y+r.h-r.badge.y))<=1);}
+  previous=result.placed;
+ }
+});
+
+test('loss text remains left-to-right and upright when a sprite left a mirrored transform',()=>{
+ let text,transform;const ctx={font:'400 12px Georgia',canvas:{width:640,height:520,clientWidth:320,clientHeight:260},save(){},restore(){},getTransform:()=>({a:-2,b:0,c:0,d:2}),setTransform:(...v)=>{transform=v},measureText:t=>({width:t.length*7}),beginPath(){},rect(){},clip(){},fillRect(){},fillText:t=>{text=t}};
+ paintEnemyLosses(ctx,state,{x:0,y:0,w:800,h:555,dx:0,dy:0,scale:.4});
+ assert.deepEqual(transform,[2,0,0,2,0,0]);assert.equal(ctx.direction,'ltr');assert.equal(text,'(−2–5)');
 });

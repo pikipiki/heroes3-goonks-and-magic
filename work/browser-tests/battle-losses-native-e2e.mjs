@@ -10,8 +10,10 @@ const p=await browser.newPage({viewport:{width:390,height:844},hasTouch:true,byp
 p.on('pageerror',e=>errors.push(e.message));p.on('crash',()=>errors.push('page process crashed'));
 const wait=(f,arg)=>p.waitForFunction(f,arg,{timeout:180000}),cmd=(...a)=>p.evaluate(a=>Module._vcmiMobileCommand(...a),[...a,...Array(6-a.length).fill(0)]);
 try{
- await silenceTestAudio(p);await p.addInitScript(()=>{sessionStorage.setItem('heroes-goonk.storage-failed','true');localStorage.setItem('heroes-goonk.language','fr');window.lossPaint=[];const paint=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){if(/^−\d+(?:–\d+)?$/.test(text)&&['mobile-scene','battle-strategic-scene'].includes(this.canvas.id)){if(lossPaint.length<200)lossPaint.push({text,canvas:this.canvas.id,args});}return paint.call(this,text,...args);};});
- await p.goto((process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8997')+'/game.html?mobile=1');
+ await silenceTestAudio(p);await p.addInitScript(()=>{sessionStorage.setItem('heroes-goonk.storage-failed','true');localStorage.setItem('heroes-goonk.language','fr');window.lossPaint=[];const paint=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){if(/^\(−\d+(?:–\d+)?\)$/.test(text)&&['mobile-scene','battle-strategic-scene'].includes(this.canvas.id)){if(lossPaint.length<200)lossPaint.push({text,canvas:this.canvas.id,args,color:this.fillStyle,direction:this.direction,transform:[this.getTransform().a,this.getTransform().d]});}return paint.call(this,text,...args);};});
+ const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8997';
+ const engine=(await (await p.request.get(origin+'/asset-manifest.json')).json()).engine;assert(!engine.sha256.startsWith('cdc206'),'New count-bounds engine is served');
+ await p.goto(origin+'/game.html?mobile=1');
  await wait(()=>window.goonkMobileState?.mode==='menu'&&window.goonkSessionRecovery?.phase==='done');
  const fixture=execFileSync('python3',['-c',`import zipfile,json,io,sys
 out=io.BytesIO()
@@ -32,17 +34,18 @@ sys.stdout.buffer.write(out.getvalue())`]);
  await cmd(6);await p.waitForTimeout(250);await p.evaluate(()=>Module._vcmiMobilePointer(433,281,4));await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle');await cmd(15);await p.waitForTimeout(250);if(await p.evaluate(()=>goonkMobileState.canEndTactics))await cmd(35);
  await wait(()=>goonkMobileState.canAct&&goonkMobileState.battleLossEstimatesVersion===1&&goonkMobileState.battleUnits.some(u=>u.attackLosses));
  const first=await p.evaluate(()=>structuredClone(goonkMobileState));
- const enemies=first.battleUnits.filter(u=>u.enemy&&(u.canShootAt||u.canMeleeAt));assert(enemies.length>0);
+ const enemies=first.battleUnits.filter(u=>u.enemy&&(u.canShootAt||u.canMeleeAt));assert(enemies.length>0);assert(enemies.every(u=>u.countBounds&&u.countBounds.w>0&&u.countBounds.h>0),'Native count rectangles are exported for exact attachment');
  for(const u of enemies){assert(u.attackLosses,'Every legal native enemy receives a forecast');assert.equal(u.attackLosses.actor,first.activeStack);assert(Number.isInteger(u.attackLosses.min)&&u.attackLosses.min>=0&&u.attackLosses.max>=u.attackLosses.min&&u.attackLosses.max<=u.count);}
  assert(first.battleUnits.filter(u=>!u.enemy).every(u=>!u.attackLosses),'No friendly casualty label');
  const stable=JSON.stringify(enemies.map(u=>[u.stackId,u.count,u.currentHealth,u.attackLosses]));await p.waitForTimeout(1500);assert.equal(await p.evaluate(()=>JSON.stringify(goonkMobileState.battleUnits.filter(u=>u.enemy&&(u.canShootAt||u.canMeleeAt)).map(u=>[u.stackId,u.count,u.currentHealth,u.attackLosses]))),stable,'Idle forecasts do not attack, advance state or consume randomness');
  const captures=[];
  for(const viewport of [{width:390,height:844},{width:844,height:390},{width:320,height:568}]){
   await p.setViewportSize(viewport);await p.waitForTimeout(200);
-  if(viewport.height>viewport.width){await p.locator('.battle-view').tap();await p.waitForTimeout(250);}
+  if(viewport.height>viewport.width&&(await p.locator('.battle-view').getAttribute('aria-pressed'))!=='true'){await p.locator('.battle-view').tap();await p.waitForTimeout(250);}
   await p.evaluate(()=>lossPaint=[]);await p.waitForTimeout(350);
-  const painted=await p.evaluate(()=>lossPaint);assert(painted.length>0,'Forecasts paint without a hover or target selection');
+  const painted=await p.evaluate(()=>lossPaint);assert(painted.length>0,'Forecasts paint without a hover or target selection');assert(painted.every(x=>x.color==='#ffb4ab'&&x.direction==='ltr'&&x.transform.every(v=>v>0)),'Native annotations are themed red, LTR and never mirrored');
   const file=`${out}/${name}-${viewport.width}x${viewport.height}.png`;await p.screenshot({path:file});captures.push({viewport,file,painted:[...new Set(painted.map(x=>x.text))]});
+  if(viewport.height>viewport.width){await p.locator('.battle-view').tap();await p.waitForTimeout(400);await p.evaluate(()=>lossPaint=[]);await p.waitForTimeout(350);const classic=await p.evaluate(()=>lossPaint);assert(classic.length>0,'Classic portrait estimates remain visible');const file=`${out}/${name}-${viewport.width}x${viewport.height}-classic.png`;await p.screenshot({path:file});captures.push({viewport,view:'classic',file,painted:[...new Set(classic.map(x=>x.text))]});await p.locator('.battle-view').tap();await p.waitForTimeout(200);}
  }
  await p.evaluate(async()=>{const {setBattleLossEstimates}=await import('/web/battle-preferences.mjs');setBattleLossEstimates(false);lossPaint=[];});await p.waitForTimeout(350);assert.equal(await p.evaluate(()=>lossPaint.length),0,'Setting immediately hides native forecasts');
  await p.evaluate(async()=>{const {setBattleLossEstimates}=await import('/web/battle-preferences.mjs');setBattleLossEstimates(true);lossPaint=[];});await p.waitForTimeout(350);assert(await p.evaluate(()=>lossPaint.length>0));
@@ -55,6 +58,6 @@ sys.stdout.buffer.write(out.getvalue())`]);
  await p.locator('.mobile-nav>[data-ui=defend]').tap();await wait(actor=>goonkMobileState.mode==='battle'&&goonkMobileState.canAct&&goonkMobileState.activeStack!==actor,first.activeStack);
  const next=await p.evaluate(()=>structuredClone(goonkMobileState));assert(next.battleUnits.every(u=>!u.attackLosses||u.attackLosses.actor===next.activeStack),'Forecasts follow the next native actor after Defend');
  assert.deepEqual(errors,[]);
- fs.writeFileSync(out+'/result.json',JSON.stringify({browser:name,capability:first.battleLossEstimatesVersion,actor:first.activeStack,forecasts:enemies.map(u=>({id:u.id,name:u.name,count:u.count,canShoot:u.canShootAt,canMelee:u.canMeleeAt,losses:u.attackLosses})),captures},null,2));
+ fs.writeFileSync(out+'/result.json',JSON.stringify({browser:name,engine,capability:first.battleLossEstimatesVersion,actor:first.activeStack,forecasts:enemies.map(u=>({id:u.id,name:u.name,count:u.count,canShoot:u.canShootAt,canMelee:u.canMeleeAt,losses:u.attackLosses})),captures},null,2));
  console.log('PASS',name,'real native legal casualty ranges, unchanged idle armies, automatic Classic/Vertical annotations, rotations, instant preference and Defend/Magic navigation');
 }catch(e){await p.screenshot({path:out+'/'+name+'-failed.png'});fs.writeFileSync(out+'/'+name+'-failed-state.json',JSON.stringify(await p.evaluate(()=>window.goonkMobileState||{}),null,2));throw e;}finally{await browser.close();}
