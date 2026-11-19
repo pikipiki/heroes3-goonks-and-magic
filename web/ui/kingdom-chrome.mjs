@@ -1,3 +1,4 @@
+import {useHeroSummary} from './hero-summary.mjs';
 import {createMaterialElement} from './mui-runtime.mjs';
 import {createPopupMenu} from './menu.mjs';
 import {decorateButton,uiText} from './primitives.mjs';
@@ -16,5 +17,6 @@ export function useKingdomChrome(root){
  button.textContent=uiText('Resources','Ressources');button.setAttribute('aria-label',uiText('Resources and calendar','Ressources et calendrier'));
  header.classList.toggle('ui-compact-chrome',compact);button.hidden=!compact;
  if(compact!==record.compact){popup.close(false);record.compact=compact;}
+ const hero=root.querySelector('.hero-equipment-page:not([hidden])');if(hero)useHeroSummary(hero,hero.querySelector('.hero-card-head'));
  for(const node of [...header.querySelectorAll('.mobile-resources,.mobile-calendar')]){const parent=compact?popup.list:header;if(node.parentElement!==parent)parent.append(node);}
 }

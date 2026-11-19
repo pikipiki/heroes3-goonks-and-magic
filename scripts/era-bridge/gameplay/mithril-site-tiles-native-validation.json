@@ -1095,5 +1095,192 @@
       "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
       "verify-site": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
     }
+  },
+  "mergedUIValidation": {
+    "remoteCommit": "71e91b21",
+    "scope": "Same engine; merged hero summary/inventory and spellbook controls. Native site purchases, completed lesson saves and physical hero skill inspection revalidated with touch landscape/portrait and mouse.",
+    "reports": {
+      "landscape": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f",
+        "scenarios": [
+          {
+            "name": "wheel-purchase-custom",
+            "site": "wheel",
+            "subtype": 0,
+            "source36": true,
+            "source171": true,
+            "initial": 0,
+            "purchase": true,
+            "markerAfterPurchase": 2,
+            "scriptEdit": 5,
+            "pendingNativeSaveReload": true,
+            "editSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "blockedPurchaseRejected": false,
+            "universityLesson": false,
+            "completedLessonSaveReload": false,
+            "skills": [],
+            "rewards": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2000,
+              0
+            ],
+            "legacyInput": null,
+            "saveVersion": 931,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch"
+          },
+          {
+            "name": "university-purchase",
+            "site": "university",
+            "subtype": 0,
+            "source36": true,
+            "source171": true,
+            "initial": 0,
+            "purchase": true,
+            "markerAfterPurchase": 2,
+            "scriptEdit": 2,
+            "pendingNativeSaveReload": true,
+            "editSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "blockedPurchaseRejected": false,
+            "universityLesson": true,
+            "completedLessonSaveReload": true,
+            "skills": [
+              {
+                "description": "{Advanced Wisdom}\n\nAdvanced Wisdom allows your hero to learn fourth level spells.",
+                "icon": 9,
+                "mastery": "Advanced",
+                "name": "Wisdom"
+              }
+            ],
+            "rewards": [],
+            "legacyInput": null,
+            "saveVersion": 931,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "2b01c226d35a5738d2f963feaddbdcb690e06288095cba8d9d4f6508dc4e9d2b"
+      },
+      "portrait": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f",
+        "scenarios": [
+          {
+            "name": "university-source36-off",
+            "site": "university",
+            "subtype": 0,
+            "source36": false,
+            "source171": false,
+            "initial": 2,
+            "purchase": false,
+            "markerAfterPurchase": 2,
+            "scriptEdit": 2,
+            "pendingNativeSaveReload": true,
+            "editSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "blockedPurchaseRejected": false,
+            "universityLesson": true,
+            "completedLessonSaveReload": true,
+            "skills": [
+              {
+                "description": "{Disciple en Sagesse}\n\nLe Héros peut apprendre des sorts de niveau 4.",
+                "icon": 9,
+                "mastery": "Disciple",
+                "name": "Sagesse"
+              }
+            ],
+            "rewards": [],
+            "legacyInput": null,
+            "saveVersion": 931,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "9793e6fd764ba0306cdbf0572469d2a457e4ad2ea0b79e3e1d2b88a018c3c4d4"
+      },
+      "desktop": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f",
+        "scenarios": [
+          {
+            "name": "university-purchase",
+            "site": "university",
+            "subtype": 0,
+            "source36": true,
+            "source171": true,
+            "initial": 0,
+            "purchase": true,
+            "markerAfterPurchase": 2,
+            "scriptEdit": 2,
+            "pendingNativeSaveReload": true,
+            "editSaveReload": true,
+            "reversedGlobalDefault": true,
+            "sharedSourceAndUI": true,
+            "blockedPurchaseRejected": false,
+            "universityLesson": true,
+            "completedLessonSaveReload": true,
+            "skills": [
+              {
+                "description": "{Advanced Wisdom}\n\nAdvanced Wisdom allows your hero to learn fourth level spells.",
+                "icon": 9,
+                "mastery": "Advanced",
+                "name": "Wisdom"
+              }
+            ],
+            "rewards": [],
+            "legacyInput": null,
+            "saveVersion": 931,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "a085783078c02a8c9c91be27f08192ecb6c028e2d09da4b4f5a8d2af561dd75d"
+      }
+    },
+    "node": {
+      "tests": 953,
+      "passed": 897,
+      "skipped": 56,
+      "failed": 0
+    },
+    "nodeLogSha256": "14852d52eef4a4607ca65aa8e43d7adb84ecc80859390c4e0aaffd1ab143ef98",
+    "site": {
+      "nativeFilesByteVerified": 10464,
+      "transportBytes": 702299043,
+      "buildLogSha256": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
+      "verifyLogSha256": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
+    }
   }
 }

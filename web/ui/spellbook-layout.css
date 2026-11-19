@@ -1,0 +1,46 @@
+/* Filters stay in the landscape command rail; the book keeps its reference area. */
+@layer ui-composition {
+ #mobile-app .mobile-spellbook[hidden],#mobile-app .mobile-spellbook>footer[hidden]{display:none!important}
+ #mobile-app .mobile-spellbook{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:56px auto 48px minmax(0,1fr) 48px!important;grid-template-areas:"title" "contexts" "schools" "book" "footer"!important;gap:4px!important;padding:4px!important}
+ #mobile-app .mobile-spellbook>.spell-workspace{display:contents!important}
+ #mobile-app .mobile-spellbook>header.ui-screen-header{grid-area:title!important;box-sizing:border-box!important;min-height:56px!important;padding:4px 8px!important;gap:8px!important}
+ #mobile-app .mobile-spellbook h2{font:var(--ui-font-title-compact)!important;margin:0!important;min-width:0!important}
+ #mobile-app .mobile-spellbook h2 small{font:var(--ui-font-body-small)!important}
+ #mobile-app .mobile-spellbook .spell-contexts{grid-area:contexts!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;align-self:center!important}
+ #mobile-app .mobile-spellbook [data-spell-context]{height:48px!important;min-height:48px!important;font:var(--ui-font-body-small)!important;padding:4px!important}
+ #mobile-app .mobile-spellbook .spell-school-picker{grid-area:schools!important;display:block!important;min-width:0!important;height:48px!important;margin:0!important;align-self:center!important}
+ #mobile-app .mobile-spellbook .spell-school-picker .material-select-host{display:block!important;width:100%!important;height:48px!important}
+ #mobile-app .mobile-spellbook .spell-school-picker .material-select-trigger{height:48px!important;min-height:48px!important;font:var(--ui-font-label)!important}
+ #mobile-app .mobile-spellbook .spell-school-picker .MuiSelect-select{padding:12px 32px 12px 12px!important;min-height:0!important;box-sizing:border-box!important}
+ #mobile-app .mobile-spellbook .spell-content{grid-area:book!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) minmax(96px,28%)!important;min-height:0!important;min-width:0!important;gap:4px!important;padding:4px!important;border:1px solid var(--ui-primary)!important;border-radius:0!important;box-shadow:none!important}
+ #mobile-app .mobile-spellbook :is(.spell-list,.spell-selection){min-height:0!important;min-width:0!important;overflow:auto!important;touch-action:pan-y!important;border-radius:0!important;border:1px solid var(--ui-outline)!important;box-shadow:none!important}
+ #mobile-app .mobile-spellbook .spell-list{gap:4px!important;padding:4px!important}
+ #mobile-app .mobile-spellbook .spell-selection{padding:8px!important}
+ #mobile-app .mobile-spellbook .spell-selection h3{font:var(--ui-font-title-compact)!important}
+ #mobile-app .mobile-spellbook .spell-selection p{font:var(--ui-font-body-small)!important}
+ #mobile-app .mobile-spellbook .spell-row{padding:4px!important;gap:4px!important}
+ #mobile-app .mobile-spellbook .spell-row strong{font:var(--ui-font-body-small)!important}
+ #mobile-app .mobile-spellbook .spell-row small{font:var(--ui-font-resource)!important}
+ #mobile-app .mobile-spellbook>footer.ui-action-dock{grid-area:footer!important;display:block!important;min-height:48px!important;height:48px!important;padding:0!important;border:0!important}
+ #mobile-app .mobile-spellbook>footer>button{width:100%!important;height:48px!important;min-height:48px!important;padding:4px!important;font:var(--ui-font-label)!important}
+ #mobile-app .mobile-spellbook>.spell-top-actions{grid-area:footer!important;justify-self:end!important;align-self:stretch!important;width:calc(50% - 2px)!important;min-height:48px!important;height:48px!important;margin:0!important;padding:0!important}
+ #mobile-app .mobile-spellbook[data-has-reuse=true]>footer{width:calc(50% - 2px)!important;justify-self:start!important}
+ #mobile-app .mobile-spellbook[data-has-reuse=false]:not([data-read-only=true])>.spell-top-actions{display:none!important}
+ #mobile-app .mobile-spellbook [data-reuse]{height:48px!important;min-height:48px!important;gap:4px!important;padding:4px!important;font:var(--ui-font-body-small)!important}
+ #mobile-app .mobile-spellbook [data-reuse]>.spell-reuse-detail{display:none!important}
+ #mobile-app .mobile-spellbook .spell-reuse-short{display:inline!important;font:var(--ui-font-body-small)!important}
+ #mobile-app .mobile-spellbook .last-spell-icon{width:24px!important;height:24px!important;flex:0 0 24px!important}
+ #mobile-app .mobile-spellbook[data-read-only=true]>.spell-inspection-note{width:100%!important;font:var(--ui-font-body-small)!important;padding:4px 8px!important;box-sizing:border-box!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-mode=spellbook]{--spell-control-rail:248px}
+  #mobile-app[data-mode=spellbook]>.mobile-top{display:contents!important}
+  #mobile-app[data-mode=spellbook]>.mobile-top>#game-menu-toggle{position:absolute!important;left:auto!important;bottom:auto!important;top:8px!important;right:calc(var(--spell-control-rail) - 52px)!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important;z-index:30!important}
+  #mobile-app[data-mode=spellbook]>.mobile-top>.ui-kingdom-trigger{display:none!important}
+  #mobile-app .mobile-spellbook{grid-template-columns:minmax(0,1fr) var(--spell-control-rail)!important;grid-template-rows:56px minmax(0,1fr) minmax(48px,1fr) 48px!important;grid-template-areas:"book title" "book contexts" "book schools" "book footer"!important}
+  #mobile-app .mobile-spellbook>header.ui-screen-header{padding:4px 8px 4px 72px!important;gap:16px!important}
+  #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:56px minmax(48px,1fr) 48px!important;grid-template-areas:"book title" "book schools" "book footer"!important}
+  #mobile-app .mobile-spellbook h2{display:flex!important;flex-direction:column!important;gap:0!important;align-items:flex-start!important}
+  #mobile-app .mobile-spellbook .spell-content{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:minmax(0,1fr)!important}
+  #mobile-app .mobile-spellbook .spell-list{grid-template-columns:minmax(0,1fr)!important;align-content:start!important}
+ }
+}

@@ -1,4 +1,4 @@
-@layer screen-layouts,mui,heroes-material;
+@layer ui-composition,screen-layouts,mui,heroes-material;
 @import url('./thieves-guild.css');
 @import url('./ui/material-components.css');
 @import url('./material-select.css');

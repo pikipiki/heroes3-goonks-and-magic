@@ -5,6 +5,7 @@ import {screenContract,screenSelector} from './contracts.mjs';
 import {decorateButton,uiText} from './primitives.mjs';
 import {useActionDock} from './action-dock.mjs';
 import {closeDetachedMenu} from './menu.mjs';
+import {useHeroSummary} from './hero-summary.mjs';
 import {useModalBoundary} from './modal-boundary.mjs';
 const back=/^(?:[←↩↵↶⬅🔙]\s*)?(?:Back|Retour)$/iu;
 const cross=/^[✕×✖]$/u;
@@ -26,6 +27,7 @@ export function applyScreenComponents(root){
  if(contract.body){for(const body of root.querySelectorAll(contract.body))body.classList.add('ui-screen-content');}
  const header=find(root,contract.header);if(!header){useScreenControls(root);return;}
  if(contract.liftHeader&&header.parentElement!==root)root.prepend(header);
+ if(contract.name==='hero')useHeroSummary(root,header);
  header.classList.add('ui-screen-header');
  const buttons=[...header.querySelectorAll('button')];
  let close=buttons.find(button=>cross.test(button.textContent.trim())||button.dataset.uiHeaderClose==='true');
