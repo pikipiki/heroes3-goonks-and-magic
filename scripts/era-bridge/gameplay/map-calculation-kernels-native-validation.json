@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "system": "Source77 calculation kernels118/239",
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "scope": "Isolated native C++ calculations only; no new playable rule, frozen flag, commander lifecycle or town-banner adapter. Existing native engine stays at0.4.291.",
+  "reference": "tests/fixtures/era-gameplay/map-starting-level-and-banner-kernels-reference.json",
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/era/EraStartingLevelRules.h": "e145b1c70cc8608028df47d150157275f9e80383d0f7d65515ef54a44b798fb0",
+    "work/vcmi-wasm/lib/era/EraTownBannerRules.h": "7030f7c080e853b0a23c61a03a746eb9765d7ce77f740c185392c7700fa6e71b",
+    "tests/native/EraStartingLevelRules.test.cpp": "97ed8347eca42db0b3ff087d6f883f4d0fcddb024d0070aeb382249bcca64655",
+    "tests/native/EraTownBannerRules.test.cpp": "36a10d08c70fa8955f3fafac6616f2d211af8660a2db552b51314ba1714e786c",
+    "tests/era-starting-level-rules-native.test.mjs": "17b9d135bab494939db7b92d2c834e0d2e63f7a38d4c06202cc1c414725d0217",
+    "tests/era-town-banner-rules-native.test.mjs": "4cd564f9056a9f6c3f22b246e168dd394ec69103322d1b3a615c9c817d73562d",
+    "tests/fixtures/era-gameplay/map-starting-level-and-banner-kernels-reference.json": "5e6fd2eacd70d869987f6bc7092aec208761ef3947e4ad2921d6e4da5e717f5f"
+  },
+  "checks": {
+    "nodeTests": 975,
+    "passed": 919,
+    "skipped": 56,
+    "failed": 0,
+    "macUndefinedBehaviorSanitizer": true,
+    "linuxAddressAndUndefinedBehaviorSanitizers": true,
+    "wasmTarget": "ninja -j32 html5",
+    "wasmTargetPassed": true,
+    "unchangedPublishedWasmSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
+  },
+  "remaining": [
+    "Connect source118 to the ordered day-one owned/tavern hero queue, persisted hero/commander decisions and commander purchase lifecycle.",
+    "Connect source239 to audited map coordinates, access/placement, owner/guard records, difficulty and save/load.",
+    "Both rules remain outside implementedCodes until their full native paths are admitted."
+  ]
+}
