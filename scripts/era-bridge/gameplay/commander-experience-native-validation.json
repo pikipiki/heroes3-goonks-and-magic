@@ -8,7 +8,7 @@
   "originalRuntimeObserved": false,
   "reaEvidence": false,
   "scope": "Native CO:T read; signed CO:X0 baseline and CO:X1 experience get/set; acquired level CO:X2 read. Explicit X0/X1 writes activate original commander word semantics for subsequent HE:E and native hero XP changes. Preserve raw XP versus acquired level, independent baseline, Paladin truncation, level75 cap, commander-before-hero gains, ownerless/AI continuation, and direct HE:E writes that suppress recalculation. Source118 and full commander lifecycle remain unactivated.",
-  "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+  "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
   "sourceBaseCommit": "26632499ffd0b439fbc7142364f4321f5eadeb03",
   "sourceBindings": {
     "package-lock.json": "717c8a2ae36362e0aad1d09a344189d26db553f569dfe32f651be31ae7f506ab",
@@ -34,72 +34,30 @@
     "work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
     "tests/era-commander-experience-native.test.mjs": "a93b0f35d61c18a18fd1913b6f93311d713668183e4593613e6d23c86d0275dc",
-    "scripts/era-bridge/gameplay/map-rules.json": "237409452c263dd5e1a4d5959d9eee812c26bef9456fa4d32f475c509483fe86"
+    "scripts/era-bridge/gameplay/map-rules.json": "237409452c263dd5e1a4d5959d9eee812c26bef9456fa4d32f475c509483fe86",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5",
+    "work/browser-tests/native-ui-actions.mjs": "01d7ce13668520252cb39a7b5f76733517823cf72658c469ec8d3298a55f6ee6",
+    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "268768b1eb9a35899af25e90b7590c52db9af9066a211a071d505507ab2d976e"
   },
   "reference": "tests/fixtures/era-gameplay/map-starting-level-and-banner-kernels-reference.json",
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "logSha256": "ee76accb14e10b87f816eb0c9cbde5c9a66645f88a068ae9bc0b5cb10b5d899f"
+    "logSha256": "58d12c544d127ea185d17a0b62417d762df4fc5db9729ee3fade81d6e9bdc341"
   },
   "sourceAudit": {
     "trackedFilesChecked": 3043,
     "mismatches": [],
-    "expectedManifestSha256": "88566b4e27474bbe11ce06d49353fb4b8d16c71009a383d6e303a2e68ea2b5eb",
+    "expectedManifestSha256": "02c4b0cc70e46cd2cb29bb38382f2ee950849dbff699ade6bef0e09a9ff1c83c",
     "foreignChangesExcluded": true,
     "gameHandlerOwnedBlobSha256": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba"
   },
   "reports": {
-    "reserve": {
-      "passed": true,
-      "scope": "native-core-only",
-      "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "scenarios": [
-        {
-          "hero": 21,
-          "type": 1,
-          "nonPaladin": true,
-          "desktop": false,
-          "negative": false,
-          "wrap": false,
-          "zeroRecalculation": false,
-          "baseline": false,
-          "suppressed": false,
-          "reference": false,
-          "heroNegative": false,
-          "ai": false,
-          "cap": false,
-          "reserve": true,
-          "initialBaseline": 65,
-          "legacy": false,
-          "raw": 0,
-          "experience": 5000,
-          "order": [],
-          "commanderLevels": [],
-          "packetOrder": [
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp"
-          ],
-          "checkpointReload": true,
-          "rawWriteDoesNotLevel": true,
-          "completedText": "COMMANDER_DONE 4935/5000/5 CLEVEL 5 REF 5000"
-        }
-      ],
-      "errors": [],
-      "rawReportSha256": "3384c25018457f5096450059d15d8744cb2b1cabbb1de3e38ecd0a638ac8fdc6"
-    },
     "suppressed": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -158,13 +116,117 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "c98e9112ffb68bb049a0a32f0edd37a4944b0059fc9f02f5015ff7fd41d4e59f"
+      "rawReportSha256": "844f5dc98ec7aba8da3cb7418bfbcd1c89a8249313d5fff2acc50070831e3f6f"
+    },
+    "reserve": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "scenarios": [
+        {
+          "hero": 21,
+          "type": 1,
+          "nonPaladin": true,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": true,
+          "initialBaseline": 88,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [],
+          "commanderLevels": [],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 4912/5000/5 CLEVEL 5 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "5faa5abdd8b7a59b34763f1542fa367d4bb5899c709f2405cde12b24281c29a6"
+    },
+    "reference": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "scenarios": [
+        {
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": true,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 6000/5000/5 CLEVEL 5 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "680f696e07fd802d9c35c9486dbadd3054a94c327d86190d328a2fd52628651e"
     },
     "cap": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 21,
@@ -269,72 +331,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "8ffb8c5a0a259fc46d579de6820769171400e66ee9477d52402a14eb3ae4ff58"
-    },
-    "reference": {
-      "passed": true,
-      "scope": "native-core-only",
-      "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "scenarios": [
-        {
-          "hero": 6,
-          "type": 0,
-          "nonPaladin": false,
-          "desktop": false,
-          "negative": false,
-          "wrap": false,
-          "zeroRecalculation": false,
-          "baseline": false,
-          "suppressed": false,
-          "reference": true,
-          "heroNegative": false,
-          "ai": false,
-          "cap": false,
-          "reserve": false,
-          "initialBaseline": 0,
-          "legacy": false,
-          "raw": 0,
-          "experience": 5000,
-          "order": [
-            "commander",
-            "commander",
-            "commander",
-            "commander",
-            "hero",
-            "hero",
-            "hero",
-            "hero"
-          ],
-          "commanderLevels": [
-            2,
-            3,
-            4,
-            5
-          ],
-          "packetOrder": [
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp"
-          ],
-          "checkpointReload": true,
-          "rawWriteDoesNotLevel": true,
-          "completedText": "COMMANDER_DONE 6000/5000/5 CLEVEL 5 REF 5000"
-        }
-      ],
-      "errors": [],
-      "rawReportSha256": "be764291de8ccc7ccbbbd97792f99c44fed6040e1ff5d9248ba132e0817d2179"
+      "rawReportSha256": "e80f19749e063d1a111f262d820e44788508cbd405cddba1903e750f20d9e52f"
     },
     "ai": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -374,13 +377,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "3839c512d9041cffd6313195175ac215e378688ff9744a53741e62c818e67e22"
+      "rawReportSha256": "e319a0e070679b6aa6f86af0dc2e8448486a31fbee07db400c0f62c1d19cd04c"
     },
     "hero-negative": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -410,13 +413,72 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "793d93b22541530537299a390241cd003dba49ad6230107765c332179e07dc57"
+      "rawReportSha256": "0d255690d4f2d62e79bc569112b1c34d122b5bad04aa858836d95bce030c7af2"
+    },
+    "faction-1": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "scenarios": [
+        {
+          "hero": 21,
+          "type": 1,
+          "nonPaladin": true,
+          "desktop": true,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 5000/5000/5 CLEVEL 5 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9a15909b01a7e68e2bf108e0e83ca894466beafd3ce85c4dbcf7e7c73b2b7533"
     },
     "faction-0": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -472,13 +534,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "22ff803c8dd24d7b8d12132b517e83b544984a331f2e5f5f22c2a76e9152ec37"
+      "rawReportSha256": "bbb4da9825536dcd619ca692860090ca6c339f5fb156a56c9b9b0d813454d672"
     },
     "faction-2": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 45,
@@ -531,13 +593,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "d4fb635a4518aa239d386bd365c29bc0d5b5d7527d925c088d6f5681617f2d43"
+      "rawReportSha256": "555bfb414272bfcdd5f91033e1f7fe0cecae5cbb31c3df2a83c4a0bbad88b0b1"
     },
     "faction-3": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 50,
@@ -590,72 +652,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "c5f5a56db40eb3c692eb7840231fe38d8fb248953c597c87b36dc2080f2db1d2"
-    },
-    "faction-1": {
-      "passed": true,
-      "scope": "native-core-only",
-      "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "scenarios": [
-        {
-          "hero": 21,
-          "type": 1,
-          "nonPaladin": true,
-          "desktop": true,
-          "negative": false,
-          "wrap": false,
-          "zeroRecalculation": false,
-          "baseline": false,
-          "suppressed": false,
-          "reference": false,
-          "heroNegative": false,
-          "ai": false,
-          "cap": false,
-          "reserve": false,
-          "initialBaseline": 0,
-          "legacy": false,
-          "raw": 0,
-          "experience": 5000,
-          "order": [
-            "commander",
-            "commander",
-            "commander",
-            "commander",
-            "hero",
-            "hero",
-            "hero",
-            "hero"
-          ],
-          "commanderLevels": [
-            2,
-            3,
-            4,
-            5
-          ],
-          "packetOrder": [
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp"
-          ],
-          "checkpointReload": true,
-          "rawWriteDoesNotLevel": true,
-          "completedText": "COMMANDER_DONE 5000/5000/5 CLEVEL 5 REF 5000"
-        }
-      ],
-      "errors": [],
-      "rawReportSha256": "93565b443d751127f51e4a4d7c228d479f3ef43cbeb543efa05b3171660d954f"
+      "rawReportSha256": "ecb13f5118658d9ba0d72e38baa345eb34791a9d5476ffd56c6bbfc9bbf46cf4"
     },
     "faction-4": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 74,
@@ -708,13 +711,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "6bdc2a78924800ad6989c527e22b8e3143962ed0f157d5dd27e7a024e2bf342a"
+      "rawReportSha256": "df0e7269cffca2d9aa93b88562bc9c17e490429a8c8fddbc8b68a432f24868b2"
     },
     "faction-5": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 151,
@@ -767,13 +770,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "d2f641f0728500773e238cdbc2fe02498fafa8d6c0fe5d3b6b2908d545d13587"
+      "rawReportSha256": "7d0bb8713fcc8781ff8f6a67ddb59c389a7fb1e790ea6608bc454a7a6760dc19"
     },
     "faction-6": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 102,
@@ -801,6 +804,7 @@
             "commander",
             "hero",
             "hero",
+            "hero",
             "hero"
           ],
           "commanderLevels": [
@@ -825,13 +829,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "72a1949e328cdaa9ce3e0c1fda792202ef09ef4922857c16cfb331a40c561036"
+      "rawReportSha256": "ea796d35653f8714da86d343cb6d9ba4d770696841c90cfb32e94df1f5ccb671"
     },
     "faction-7": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 115,
@@ -884,13 +888,49 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "dc952bc990cd4f8493adb568e7e4d4b32825f035b4e7aacbaf68d904862526ba"
+      "rawReportSha256": "6f9e08be2354f440c1a60ac5729531f85ff25ecfd4d75780749625b25cc97379"
+    },
+    "negative": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "scenarios": [
+        {
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": true,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": -1,
+          "experience": 0,
+          "order": [],
+          "commanderLevels": [],
+          "packetOrder": [],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE -1/0/1 CLEVEL 1 REF 0"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "793ea5972c68a0fcf2518b444faadcfc0aea02e196bb242279001c440caaa8c8"
     },
     "faction-8": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 136,
@@ -943,49 +983,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "6733ae48505ad4a8360fa533522f65325db8a6200471f3fdd629939758794d46"
-    },
-    "negative": {
-      "passed": true,
-      "scope": "native-core-only",
-      "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "scenarios": [
-        {
-          "hero": 6,
-          "type": 0,
-          "nonPaladin": false,
-          "desktop": false,
-          "negative": true,
-          "wrap": false,
-          "zeroRecalculation": false,
-          "baseline": false,
-          "suppressed": false,
-          "reference": false,
-          "heroNegative": false,
-          "ai": false,
-          "cap": false,
-          "reserve": false,
-          "initialBaseline": 0,
-          "legacy": false,
-          "raw": -1,
-          "experience": 0,
-          "order": [],
-          "commanderLevels": [],
-          "packetOrder": [],
-          "checkpointReload": true,
-          "rawWriteDoesNotLevel": true,
-          "completedText": "COMMANDER_DONE -1/0/1 CLEVEL 1 REF 0"
-        }
-      ],
-      "errors": [],
-      "rawReportSha256": "3019d03785590a3a75d6341846a0288ae2cc9cacee54a943a987a08be52e794b"
+      "rawReportSha256": "9a832cf2d41a6f1249dfd0d9135d4f7a073257620244e24d7596f46bf326fe7e"
     },
     "wrap": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -1015,13 +1019,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "863cda1c3786519bebfcd60144bf055199eb4ac85d3392aac8525be28e356d1c"
+      "rawReportSha256": "11daea42ab51caa82b709a97d663debd27b236fd9c0c75fc6e004d68affedcbb"
     },
     "zero-recalculation": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -1066,13 +1070,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "d549c8e12ad8a7ef33c7d96b897cee34335aa50895810708cfc5c228e4ac3dde"
+      "rawReportSha256": "5530f4da1c112d2bd18c6454ec38b5ca94e1446801f4d385016819922dcc73e3"
     },
     "baseline": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -1125,13 +1129,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "3748404a01705ab732269ab188ce9ced1134e64afb97e6e9001ad5a520776ef0"
+      "rawReportSha256": "3d7a96a5c26ebcf3f01275164d1356fe1c2c6604a27fbb9cdf3eafa08bcde73a"
     },
     "legacy940": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "scenarios": [
         {
           "hero": 6,
@@ -1155,6 +1159,7 @@
           "order": [
             "hero",
             "hero",
+            "hero",
             "hero"
           ],
           "commanderLevels": [],
@@ -1170,128 +1175,128 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "8b3893257c42e7099de95207b7796fd72968dac41c384ad61f9b8a7071e9088d"
+      "rawReportSha256": "54fe1245b3e05604aa235aa5147577a4a2b0a9b3e6d063be9835178c9a2ee3a2"
     }
   },
   "regressions": {
     "battle-outcomes": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "67b94f49da874efe8c614519d045d8cd8c4489fc6c4ec6ad4631a08dcf799b65",
+      "rawReportSha256": "63b1d2d2dff20aca6e23e1e77ef43752d6d9c94c2e761292700178d10dd42b65",
       "scenarioCount": 2
     },
     "battle-experience": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "ffd1be39321527081d972826793f395ba6b23af32e590b14608d9112034cdaac",
+      "rawReportSha256": "9f495bfb33f4086499262c96069c80f85a7f300bc23cc255cb25155878dc19e2",
       "scenarioCount": 3
-    },
-    "town-script": {
-      "passed": true,
-      "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "errors": [],
-      "rawReportSha256": "13790a2ce04664cade715b93d6e096b063fa37d31da978d5ebf3756fe30424f8",
-      "scenarioCount": 1
     },
     "prompt-touch": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "7379e7bed40a72a3bd4d6c5782be0f905bfcf58b5180cff002d1cb26bf170adb",
+      "rawReportSha256": "3c9ae167dc77681155e95d10b89b07f63862c94ff6f7955e5eba3eaa422dcf2e",
       "scenarioCount": 5
+    },
+    "town-script": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "errors": [],
+      "rawReportSha256": "6a303687cdf39e7d924bcca9ed2d23da223a226560d17b17dc88ce99b346d49c",
+      "scenarioCount": 1
     },
     "on": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "b8e91d283b3496fb1d8ff521d572296760093930927f0262a7f1181e31c277d2",
+      "rawReportSha256": "25b346d0d1989614a4059d423b61f315efe38c028b522cd703fce19ac7cdec24",
       "scenarioCount": 1
     },
     "regression-core": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "d907ad752136d60117ae337c991c25ed8e67e1d9d97e7df210c98e1a333d32ba",
+      "rawReportSha256": "2091c67178f14a495fc056062fb1e336ae06a73e126d06975504e55092cc7637",
       "scenarioCount": 9
     },
     "regression-advanced-core": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "1fb1cacd8e487c7fb202562852b76b1ac3a14142622c4154e80d526674e3b956",
+      "rawReportSha256": "30c17c5847dea2f65a0cf774a338f1ff0c8a212adf78308edd000049aae21430",
       "scenarioCount": 4
     },
     "regression-sites": {
       "passed": true,
       "scope": "mithril-sites",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "eb90c3b0a70f04b312905b85dc2ec5a344b35e81366ed46e4df6254e8bcc5eeb",
+      "rawReportSha256": "1229175fc8dceedc6ac655e0979279a4622dfd304006a7ec5b3d54eb4b91ba74",
       "scenarioCount": 17
     },
     "regression-prices": {
       "passed": true,
       "scope": "mithril-sites",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "4ac370b0627cee999d5a616170b4b07bdbee48d0d760c85100bce8489c7059db",
+      "rawReportSha256": "4a6cd8ab20a39f58d0e5cba92ea03555e985a8e21ece6e7b60cadd902abf06e6",
       "scenarioCount": 9
-    },
-    "regression-eighth-upgrades": {
-      "passed": true,
-      "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "errors": [],
-      "rawReportSha256": "70301ce9f91a2f897d9a61983b7cf0b92505064e5ffc47a344ff98b8b1871b4c",
-      "scenarioCount": 1
     },
     "regression-no-shooting": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "940e00dea6261a89629717ccd2b9e5b2b776da5af87922a0e11f40cefa0d202f",
+      "rawReportSha256": "37656acb6ebc92de0b2e6d7047570d4ae8d85d08975acbdb9fa108252e57a12c",
+      "scenarioCount": 1
+    },
+    "regression-eighth-upgrades": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "errors": [],
+      "rawReportSha256": "ce2656086cfd402fcf162fcc83e1fdc7d304470f43875a392729558c8bb15ef7",
       "scenarioCount": 1
     },
     "regression-darkness": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "00ecddcb5c3a949089e1b41481053c26acc9d2d018543765e0b1acb017d2b576",
-      "scenarioCount": 1
-    },
-    "regression-quick-scope": {
-      "passed": true,
-      "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-      "errors": [],
-      "rawReportSha256": "115278e9b6a0031952c8d18933186f2b423eb5f6d2ffbe8bd6866cd2695f3886",
+      "rawReportSha256": "62cb53f89ca6aa1c0065a77c355d1e4fbbb2f16da6c4332aa9a339c44fe21310",
       "scenarioCount": 1
     },
     "regression-monthly": {
       "passed": true,
       "scope": "mithril-sites",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "ada31c35d6b9daaf6f311b082863bea9073a366e4040d47e70a46d571335a1d4",
+      "rawReportSha256": "7f75e7899c9904e7c6ad25ea51b111e587591e696a367ab1508514e396575b5a",
       "scenarioCount": 2
+    },
+    "regression-quick-scope": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
+      "errors": [],
+      "rawReportSha256": "63b3211db84aa5eccdca49f692ca1507089176b0e0debfe24824b1c81441ca5c",
+      "scenarioCount": 1
     },
     "signed-hero-experience": {
       "passed": true,
       "scope": "native-core-only",
-      "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+      "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
       "errors": [],
-      "rawReportSha256": "b0592238fbad022161195b49ccfe4f4c05de90653b8ad7d0cf2ac88143d42393",
+      "rawReportSha256": "27fb2a4e6bed19d2ab8c89ce7b0bda3753bb8bfcb5ae9786aa6d1ff6d5a71107",
       "scenarioCount": 4
     }
   },
@@ -1716,57 +1721,47 @@
   },
   "archive": {
     "file": "outputs/vcmi-wasm-goonk-0.4.296-engine.tar.gz",
-    "sha256": "ce73f4b75a3fd37ce2b18b0a866004105a168750ef0ba9db9b741cd4b9d5fdf2",
+    "sha256": "f98e03d421930c0fc43618b10fae0a71bd181306fe400ddee5c274407927ffc6",
     "runtimeFiles": [
       {
         "file": "dialogs.js",
-        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
-        "bytes": 5613
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6"
       },
       {
         "file": "dosvcmi.png",
-        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
-        "bytes": 62083
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42"
       },
       {
         "file": "game.html",
-        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
-        "bytes": 14311
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425"
       },
       {
         "file": "mini-lz4.js",
-        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
-        "bytes": 9804
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6"
       },
       {
         "file": "opfs-worker.js",
-        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7",
-        "bytes": 18829
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
       },
       {
         "file": "vcmiclient.data",
-        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc",
-        "bytes": 8879091
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc"
       },
       {
         "file": "vcmiclient.data.js",
-        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1",
-        "bytes": 63064
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1"
       },
       {
         "file": "vcmiclient.js",
-        "sha256": "f8ab311c39e1689762787f80507810f035241836010e64c941be51ffba9673b0",
-        "bytes": 277563
+        "sha256": "b6cec4c25ea7d9c08f3182ee12472cb666ed250bb410070b66f0b737ee9f72c7"
       },
       {
         "file": "vcmiclient.js.symbols",
-        "sha256": "5f5eddb99ca8e39877e06138247c637ccb4d07de99b3f9959e30c65cf62a32f7",
-        "bytes": 7218344
+        "sha256": "3e5d7824cb44432b5371d9b57cda9b0cb47f4124b2c5df9b594541e503a240b6"
       },
       {
         "file": "vcmiclient.wasm",
-        "sha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
-        "bytes": 10495364
+        "sha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6"
       }
     ]
   },
@@ -1792,10 +1787,6 @@
     "productionDiagnosticExportInstalled": false,
     "description": "Memory-only source programs/maps, original CO/HE receivers, real UI buttons and completed native saves."
   },
-  "testCorrection": {
-    "description": "Wait for selection acknowledgement and the observed dialog; scope confirm buttons by dialog kind so a mouse retry cannot acknowledge the next source message.",
-    "settledDesktopReportSha256": "93565b443d751127f51e4a4d7c228d479f3ef43cbeb543efa05b3171660d954f"
-  },
   "remaining": [
     "Source118 ordered day-one owned/current-tavern queue and its frozen per-game choice.",
     "Original first-hire/reset, resurrection, activation and replacement lifecycle; CO2/CO3 hooks are not connected.",
@@ -1805,19 +1796,53 @@
     "No direct original-executable runtime or random-stream comparison is established here."
   ],
   "checks": {
-    "pendingPublicationChecks": true,
-    "node": {
-      "tests": 984,
-      "passed": 928,
-      "skipped": 56,
-      "failed": 0,
-      "logSha256": "7d3502e3850514aae2b9c6eb98fac84dc5e6e5f45ceb175e8511990a235cd74e"
-    },
-    "prepareWeb": {
-      "passed": true
-    },
-    "buildUi": {
-      "passed": true
+    "nodeTests": 990,
+    "nodePassed": 934,
+    "nodeSkipped": 56,
+    "nodeFailed": 0,
+    "prepareWeb": true,
+    "buildUI": true,
+    "pendingPublicationChecks": false,
+    "buildSite": true,
+    "verifySite": true,
+    "nativeCatalogueFiles": 10464,
+    "transportBytes": 702299869,
+    "fullNodeLogSha256": "5cab71479156aed48467f9df5b879401422037d507621f05bf2527e41ecbc0a8",
+    "siteVerificationLogSha256": "b96a2807b2d0ec368db57fd05dd94b476994b4b6ff016123831b8fa49298aa69"
+  },
+  "previousNativeCoreValidation": {
+    "engineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f",
+    "reportsSha256": "57220d4612db07ceb1be01baee34a393fa8db27405afd2c503b9a99250370a08",
+    "regressionsSha256": "fb29522a66d79177442d84b45e4aecce0db7eae71765031d525d8314d6e1bac9",
+    "scope": "Original941 commander core before integration of the separately published native casualty preview.",
+    "testCorrection": {
+      "description": "Wait for selection acknowledgement and the observed dialog; scope confirm buttons by dialog kind so a mouse retry cannot acknowledge the next source message.",
+      "settledDesktopReportSha256": "93565b443d751127f51e4a4d7c228d479f3ef43cbeb543efa05b3171660d954f"
     }
+  },
+  "combinedInterfaceValidation": {
+    "mergedPublishedCommit": "f195a366",
+    "casualtyPreview": {
+      "passed": true,
+      "reportSha256": "f8b57a23ca545a7da2fa701aca447e6c07f3e6c018e8c9b589d9a624036322d8"
+    },
+    "commanderLayout": {
+      "passed": true,
+      "cases": 16,
+      "browsers": [
+        "chromium",
+        "webkit"
+      ],
+      "languages": [
+        "fr",
+        "en"
+      ],
+      "logSha256": "e6a35ddf15d1a2f5d2713e51fec191966300df59f8094543afd635c130c110c1"
+    },
+    "testAdaptations": [
+      "Ignore the hidden duplicate-close button when measuring visible touch targets.",
+      "Use the current Material hero section selector through visible mouse/touch controls."
+    ],
+    "initialMatrixStartupFailure": "Four initial cases started before server readiness; retained initial reports, then replayed all four successfully on the same binary."
   }
 }

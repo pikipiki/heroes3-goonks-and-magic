@@ -6,7 +6,7 @@ import {decorateButton,uiText} from './primitives.mjs';
 const choiceSelector='[data-choice-value],[data-hero-slot],[data-campaign-bonus],[data-variant],[data-dialog-choice],[data-dialog-info],[data-family-select],[data-tile-value],[data-spell],[data-guild-spell],[data-progression-choice],.army-troop,.hero-army-slot,.hall-form,.market-grid button,.building-card,.lobby-choice-card,.spell-tile,.progression-offer';
 const tabSelector='[data-hero-tab],[data-school],[data-building-tab],[data-guild-level]';
 const tabGroups=new WeakSet(),fields=new WeakMap();
-export function useChoiceTile(button){button.classList.add('ui-choice-tile');return button;}
+export function useChoiceTile(button){button.classList.add('ui-choice-tile');button.className=button.className;return button;}
 export function useTabs(container,selector=tabSelector){
  if(container.closest('.MuiTabs-root'))return;
  const buttons=[...container.querySelectorAll(selector)];if(!buttons.length)return;
@@ -38,7 +38,7 @@ export function useNavigation(nav){
  const root=nav.closest('#mobile-app'),compact=root?.dataset.mode==='map'&&root.clientWidth>root.clientHeight&&root.clientHeight<400;
  nav.classList.toggle('ui-map-compact',compact);
  if(root?.dataset.mode==='battle'){useBattleControls(root);return;}
- if(root?.dataset.mode==='town')useActionDock(nav,{overflow:true,limit:3});
+ if(root?.dataset.mode==='town')useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>button.dataset.ui==='build')});
  else if(compact)useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>['move','endturn'].includes(button.dataset.ui))});
  else if(root?.dataset.mode==='map'&&[...nav.children].filter(node=>node.tagName==='BUTTON'&&!node.hidden&&!node.classList.contains('ui-overflow-trigger')).length>4)useActionDock(nav,{overflow:true,limit:4,keepButtons:buttons=>buttons.filter(button=>['move','heroes','endturn'].includes(button.dataset.ui))});
  else if(nav.classList.contains('ui-action-dock')){useActionDock(nav,{overflow:false});nav.classList.remove('ui-action-dock');}

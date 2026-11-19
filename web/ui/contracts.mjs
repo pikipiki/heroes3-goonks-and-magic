@@ -7,7 +7,7 @@ export const screenContracts=[
  {selector:'.session-recovery',name:'session-recovery',body:'.session-recovery-content',header:':scope>header',dock:':scope>footer'},
  {selector:'.mobile-menu:is([data-kind=lobby],[data-kind=load])',name:'adventure-setup',body:'.lobby-scroll',header:'.lobby-intro',dock:'.lobby-footer',close:'[data-ui=back]',liftHeader:true},
  {selector:'.mobile-menu',name:'home',header:':scope>header'},
- {selector:'.mobile-sheet',name:'sheet',header:':scope>.sheet-head',dock:'.army-dock,.building-actions,:scope>.ui-action-dock',return:'[data-ui=sheet-back]',close:'[data-ui=close-sheet]'},
+ {selector:'.mobile-sheet',name:'sheet',header:':scope>.sheet-head',dock:'.army-dock,.building-actions,.recruit-batch-actions,:scope>.ui-action-dock',liftDock:'.recruit-batch-actions',return:'[data-ui=sheet-back]',close:'[data-ui=close-sheet]'},
  {selector:'.lobby-picker',name:'scenario-picker',header:':scope>header',dock:':scope>footer',close:'[data-picker-close]',return:'[data-picker-back]'},
  {selector:'#game-menu',name:'game-menu',header:':scope>header',dock:':scope>.game-menu-return',close:'[data-menu=close]',return:'.game-menu-return [data-menu=back]'},
  {selector:'.progression-page',name:'progression',header:':scope>header',dock:':scope>footer',close:'[data-army-upgrade-cancel],[data-progression-cancel],[data-troop-action=back],[data-deployment-cancel],[data-troop-close]'},

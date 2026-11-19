@@ -1,3 +1,4 @@
+import {useRailChrome} from './rail-chrome.mjs';
 import {createMaterialElement} from './mui-runtime.mjs';
 import {useScreenControls} from './controls.mjs';
 import {bindPress} from '../mobile-press.mjs';
@@ -7,6 +8,7 @@ import {useActionDock} from './action-dock.mjs';
 import {closeDetachedMenu} from './menu.mjs';
 import {usePurchaseContext} from './purchase-context.mjs';
 import {useHeroSummary} from './hero-summary.mjs';
+import {useHeroNavigation} from './hero-navigation.mjs';
 import {useModalBoundary} from './modal-boundary.mjs';
 const back=/^(?:[←↩↵↶⬅🔙]\s*)?(?:Back|Retour)$/iu;
 const cross=/^[✕×✖]$/u;
@@ -52,13 +54,13 @@ export function applyScreenComponents(root){
  for(const selector of [contract.headerActions,contract.extraActions].filter(Boolean))for(const button of root.querySelectorAll(selector)){if(button!==close){const dock=ensureDock(root,contract),actions=dock.querySelector(':scope>.ui-action-group')||dock;if(!actions.contains(button))actions.append(button);}}
  if(root.matches('.online-lobby')&&close&&source&&source!==close&&!source.hidden)source.hidden=true;
  const dock=find(root,contract.dock)||root.querySelector(':scope>footer.ui-action-dock');
- if(contract.liftDock&&dock&&dock.parentElement!==root)root.append(dock);
+ if(dock&&contract.liftDock&&(contract.liftDock===true||dock.matches(contract.liftDock))&&dock.parentElement!==root)root.append(dock);
  if(contract.status&&dock)for(const status of root.querySelectorAll(contract.status))if(status.parentElement!==dock)dock.prepend(status);
  if(dock)useActionDock(dock,{overflow:!root.matches('#game-menu'),limit:dock.matches('.hero-army-dock-tools')?1:contract.dockLimit??3,...(dock.matches('.hero-army-dock-tools')?{keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-hero-army-details'))}:{})});
  for(const button of root.querySelectorAll('button'))if(back.test(button.textContent.trim())){const label=uiText('Back','Retour');if(button.textContent!==label)button.textContent=label;button.classList.add('back-button');}
  useScreenControls(root);
- const tabs=root.querySelector('.hero-bag-tabs');if(tabs){const compact=matchMedia('(orientation:landscape) and (max-height:420px), (orientation:portrait) and (max-height:740px)').matches;const selected=tabs.querySelector('[data-hero-tab][aria-pressed=true]');useActionDock(tabs,{overflow:compact,limit:1,keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-hero-commander')),moreLabel:(selected?.textContent.trim()||uiText('Inventory','Inventaire'))+' ▾'});tabs.classList.toggle('ui-compact-navigation',compact);if(!compact)tabs.classList.remove('ui-action-dock');}
- const app=root.closest('#mobile-app');if(app)usePurchaseContext(app);
+ const tabs=root.querySelector('.hero-bag-tabs');if(tabs)useHeroNavigation(tabs);
+ const app=root.closest('#mobile-app');if(app){usePurchaseContext(app);useRailChrome(app);}
  managed.set(root,{header,dock});
 }
 export function refreshScreenComponents(scope=document.body){

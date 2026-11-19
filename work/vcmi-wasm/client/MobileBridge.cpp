@@ -126,6 +126,48 @@
 extern "C" void vcmiMobileCommand(int,int,int,int,int,int);
 namespace {
 bool mobileMithrilPanel=false;
+// Read-only estimate, identical to the native attack tooltip. Melee envelopes
+// cover all legal directions/occupied target hexes before a direction is chosen.
+JsonNode mobileAttackLosses(const CPlayerBattleCallback & battle, const CStack * actor,
+ const CStack * target, const BattleHexArray & reachable, const ReachabilityInfo::TDistances & distances)
+{
+ JsonNode result;
+ if(!actor || !target || !battle.battleCanAttackUnit(actor, target))return result;
+ bool found=false;
+ int64_t minimum=0, maximum=0;
+ const auto include=[&](const BattleAttackInfo & attack)
+ {
+  const auto estimate=battle.battleEstimateDamage(attack);
+  const auto low=std::clamp<int64_t>(estimate.kills.min,0,target->getCount());
+  const auto high=std::clamp<int64_t>(estimate.kills.max,low,target->getCount());
+  minimum=found?std::min(minimum,low):low;
+  maximum=found?std::max(maximum,high):high;
+  found=true;
+ };
+ if(battle.battleCanShoot(actor,target->getPosition()))
+  include(BattleAttackInfo(actor,target,0,true));
+ else
+ {
+  for(const auto hex:target->getHexes())
+   for(int direction=BattleHex::TOP_LEFT;direction<=BattleHex::BOTTOM;++direction)
+   {
+    const auto dir=static_cast<BattleHex::EDir>(direction);
+    if(!battle.battleCanAttackHex(reachable,actor,hex,dir))continue;
+    const auto from=battle.fromWhichHexAttack(actor,hex,dir);
+    if(!from.isValid())continue;
+    BattleAttackInfo attack(actor,target,distances[from.toInt()],false);
+    attack.attackerPos=from;
+    include(attack);
+   }
+ }
+ if(found)
+ {
+  result["actor"].Integer()=actor->unitId();
+  result["min"].Integer()=minimum;
+  result["max"].Integer()=maximum;
+ }
+ return result;
+}
 JsonNode mobileHeroSpellPower(const CBattleInfoCallback & battle,const CGHeroInstance * caster)
 {
  JsonNode value;if(!caster)return value;
@@ -1925,7 +1967,7 @@ void publishMobileState(){
    }
    for(size_t level=0;level<town->creatures.size();level++)for(size_t variant=0;variant<town->creatures[level].second.size();variant++){auto c=town->creatures[level].second[variant].toCreature();JsonNode item=creature(c,town->creatures[level].first);item["level"].Integer()=level;item["variant"].Integer()=variant;n["recruits"].Vector().push_back(item);}
   }
-  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleCamera"]=b->mobileCameraSnapshot();const bool targeting=b->actionsController->heroSpellcastingModeActive()||b->actionsController->creatureSpellcastingModeActive();n["spellTargeting"].Bool()=targeting;n["creatureSpellTargeting"].Bool()=b->actionsController->creatureSpellcastingModeActive();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
+  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleLossEstimatesVersion"].Integer()=1;n["battleCamera"]=b->mobileCameraSnapshot();const bool targeting=b->actionsController->heroSpellcastingModeActive()||b->actionsController->creatureSpellcastingModeActive();n["spellTargeting"].Bool()=targeting;n["creatureSpellTargeting"].Bool()=b->actionsController->creatureSpellcastingModeActive();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
    const bool ownsTactics=b->getBattle()->battleTacticDist()>0&&b->getBattle()->sideToPlayer(b->getBattle()->battleGetTacticsSide())==p->playerID;
    n["tacticsMode"].Bool()=tactics;n["canEndTactics"].Bool()=b->tacticsMode&&ownsTactics&&!b->openingPlaying()&&!b->hasAnimations();
    const bool autoOn=b->curInt&&b->curInt->isAutoFightOn;
@@ -1950,7 +1992,16 @@ void publishMobileState(){
      n["selectedSpell"].String()=spell->getNameTranslated();
    }
    for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);if(b->siegeController){const auto part=b->getBattle()->battleHexToWallPart(hex);if(part!=EWallPart::INVALID){cell["siegeWall"].Bool()=true;cell["wallPart"].Integer()=int(part);cell["wallState"].Integer()=int(part)<0?2:int(b->getBattle()->battleGetWallState(part));}}if(active&&active->hasBonusOfType(BonusType::CATAPULT)&&b->siegeController&&b->siegeController->isAttackableByCatapult(hex)){cell["siegeTarget"].Bool()=true;}cell["reachable"].Bool()=active&&reachable.contains(hex);if(previewSpellTargets)cell["spellTarget"].Bool()=b->actionsController->canTargetSpellHex(hex);if(manualControl&&!tactics&&!targeting&&b->makingTurn()&&!b->hasAnimations())cell["actionLabel"].String()=b->actionsController->mobileActionLabel(hex);n["battleCells"].Vector().push_back(cell);}
-   const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=b->getBattle()->battleCanAttackHex(reachable,active,position);}}
+   const bool forecastReady=n["canAct"].Bool()&&!tactics&&!targeting;
+   const auto forecastDistances=forecastReady&&active?b->getBattle()->battleGetDistances(active,active->getPosition()):ReachabilityInfo::TDistances{};
+   const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=std::any_of(unit["occupied"].Vector().begin(),unit["occupied"].Vector().end(),[&](const JsonNode & hex){return b->getBattle()->battleCanAttackHex(reachable,active,BattleHex(hex.Integer()));});
+    if(forecastReady&&unit["enemy"].Bool())
+    {
+     const auto * target=b->getBattle()->battleGetStackByID(unit["stackId"].Integer());
+     const auto estimate=mobileAttackLosses(*b->getBattle(),active,target,reachable,forecastDistances);
+     if(!estimate.isNull())unit["attackLosses"]=estimate;
+    }
+   }}
  }
  publishPortraits();publishArtifactIcons();const auto text=n.toCompactString();
  if(!openTownHall&&text==lastSnapshot&&SDL_GetTicks()-lastSent<1000)return;

@@ -17,7 +17,7 @@
     "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
     "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
-    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "30b5a7347be7e2c03f5388a0632dd66d9d38a670d7ffda5aa4c0f12738c4c6c4",
+    "work/browser-tests/wog-henchmen-prompt-cases.mjs": "268768b1eb9a35899af25e90b7590c52db9af9066a211a071d505507ab2d976e",
     "work/browser-tests/wog-temporary-battle-army-cases.mjs": "067a07c20d60157bf8ec3c87d4cd63e2594f6e79f85722d707e96e0677d05e1e",
     "work/vcmi-wasm/lib/gameState/CGameState.cpp": "11a706b79dc60dcf22a1d7afc4f0b909cbd581098ce378e793405110c35f34ab",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
@@ -825,7 +825,7 @@
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+      "src/ui/theme.mjs": "2f403cf57929c9f5953f34f6d1580ff0af8a9f8048efb34c4d5d33b2e03bfdfd",
       "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
     },
     "stability": {
@@ -892,7 +892,7 @@
         "tracked": false
       },
       "sourceBindings": {
-        "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+        "src/ui/theme.mjs": "2f403cf57929c9f5953f34f6d1580ff0af8a9f8048efb34c4d5d33b2e03bfdfd",
         "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
       },
       "stability": {
@@ -958,13 +958,13 @@
     "upstreamCommit": "d3733a98",
     "engineUnchanged": true,
     "sourceBindings": {
-      "src/ui/runtime.mjs": "c1b3cee9db90ea2d893b172a96431f827da22eeeff8b9d1798e8be10432a09c8",
-      "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+      "src/ui/runtime.mjs": "dc650b91f7fd2886db59acdf755f1f898e480d4256b0333cf458acb9cda70600",
+      "src/ui/theme.mjs": "2f403cf57929c9f5953f34f6d1580ff0af8a9f8048efb34c4d5d33b2e03bfdfd",
       "web/town-building-menu.mjs": "dd2ccade08ae7aac36480a3b54c66290422c09bd0cf2987238ac8ebfb401f1b7",
       "web/ui/action-dock.mjs": "a372506b7602b431747bc80d8c2163c3e5c87f34bae475aba7ff29f318ec7a35",
       "web/ui/construction-layout.css": "97030f2a35f173d77a81af1a8ad3ddf8fb5bf623450188011408a1f741ddd489",
-      "web/ui/controls.mjs": "4009db489346891918b5c96bb432c4c039cf1dde6b340347a56307bac2b758f2",
-      "web/ui/material-components.css": "fe94f26ce187b1e9d32591e8e109d7b0aa2edbd2f2aa3ad6c39c884e74ffdc2f",
+      "web/ui/controls.mjs": "bb4ae0f43aab398018b1bd7f047b66d82ca46b6840736c6114285d5e3c940f08",
+      "web/ui/material-components.css": "2e99f38550ab9c001d5a1417a978aa8e5a132975e450565f4b7ef24f54d568dd",
       "web/ui/surfaces.css": "85209d269f81cf00e7ebba9416ae9a5321c48f81cdcdaded4ed1240ee670b875",
       "work/browser-tests/construction-catalogue.mjs": "3581fdd88e0cf7d8e902d4772d6c14f9b1699c7e886b38777b5d91ee78b16967",
       "work/browser-tests/construction-flow-e2e.mjs": "b3917944b9a6b362f2f17782afa9dd9aa7ad00296b27dc35e07762102e414966"

@@ -1,3 +1,4 @@
+import {paintEnemyLosses} from './ui/battle-losses.mjs';
 import {paintSiegeTargets,paintVerticalFortifications} from './battle-siege.mjs';
 import {BATTLE_HEX_VERTICES} from './battle-scene.mjs';
 import {paintBattleAction} from './battle-director.mjs';
@@ -90,11 +91,18 @@ export function paintVerticalBattle(ctx,width,height,state,selected,planes,atlas
  for(const unit of guidance.invalidSpellTargets)marker(unit,'invalid','#c5c5c5');
  paintSiegeTargets(ctx,state,project);
  // Counters are the final overlay: sprites and spell effects cannot cover them.
+ const counters=[];
  for(const {b,p} of records){const unit=units.get(b.stackId);if(!unit)continue;
   const label=String(unit.count??unit.amount??1),bw=Math.max(20,label.length*7+8),by=Math.max(2,Math.min(height-16,p.y+9));
   const bx=Math.max(1,Math.min(width-bw-1,p.x-bw/2));
+  counters.push({x:bx,y:by,w:bw,h:13});
   ctx.fillStyle=unit.enemy?'#671b26':'#3b2675';ctx.fillRect(bx,by,bw,13);ctx.strokeStyle='#ebd993';ctx.lineWidth=.8;ctx.strokeRect(bx,by,bw,13);ctx.font='bold 11px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff4cd';ctx.fillText(label,bx+bw/2,by+6.5);
  }
+ paintEnemyLosses(ctx,state,{project,scale,dx:0,dy:0,w:width/scale,h:height/scale},{
+  occlusion:[...geometry.units.map(u=>({x:u.left,y:u.top,w:u.right-u.left,h:u.bottom-u.top})),...counters,
+   ...geometry.markers.map(m=>({x:m.x-m.r,y:m.y-m.r,w:2*m.r,h:2*m.r}))],
+  positions:new Map(records.map(({b,p})=>[b.stackId,geometry.unproject(p)]))
+ });
  geometry.pick=point=>pickVerticalUnit(point,geometry.units,geometry.markers);
  ctx.restore();return geometry;
 }

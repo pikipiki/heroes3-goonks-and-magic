@@ -71,3 +71,46 @@
 #mobile-app .tree-skill-copy{width:100%;text-align:center}
 #mobile-app .tree-skill-copy strong{white-space:nowrap;word-break:normal;overflow-wrap:normal}
 #mobile-app .tree-ranks{width:100%}
+
+/* Commander uses the same three-region window in both modes. The tree is the
+   content, not a second header row; the live commander remains in the rail. */
+@layer ui-composition {
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up]){gap:4px!important;min-width:0!important;min-height:0!important}
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-screen-header{margin-top:0!important}
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-copy{display:block!important;min-height:0!important;min-width:0!important;max-height:none!important;overflow-y:auto!important;touch-action:pan-y!important;align-self:stretch!important;padding:4px!important}
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-copy[hidden]{display:none!important}
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-choices{min-height:0!important;overflow-y:auto!important;touch-action:pan-y!important;align-content:start!important}
+ #mobile-app .dialog-presentation[data-tree=true]>.dialog-choices{display:none!important}
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-action-dock{gap:8px!important;padding:8px!important}
+ #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up]) [data-commander-tree]{width:100%!important;max-width:none!important;min-height:48px!important;flex:none!important;font:var(--ui-font-label)!important}
+ #mobile-app .commander-summary{grid-template-columns:minmax(64px,.75fr) minmax(0,1fr)!important;gap:4px 8px!important;align-items:start!important}
+ #mobile-app .commander-summary .commander-preview{width:100%!important;height:clamp(96px,22cqh,150px)!important;min-height:0!important;grid-area:1/1/3/2!important;object-fit:contain!important}
+ #mobile-app .commander-summary h3{font:var(--ui-font-label)!important;margin:0!important}
+ #mobile-app .commander-summary .commander-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important;margin:0!important}
+ #mobile-app .commander-summary .commander-facts div{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;padding:2px 4px!important}
+ #mobile-app .commander-summary .commander-facts :is(dt,dd){font:var(--ui-font-resource)!important;margin:0!important}
+ #mobile-app .commander-tree{padding:4px 8px 12px!important;overflow-y:auto!important;touch-action:pan-y!important}
+ #mobile-app .commander-tree :is(.tree-ability,.tree-parents span,.tree-overview,.tree-filter-description){border:1px solid var(--ui-outline)!important;border-radius:0!important}
+ #mobile-app .commander-tree .tree-skill-copy strong{white-space:normal!important}
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .dialog-presentation[data-tree=true]{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+  #mobile-app .dialog-presentation[data-tree=true]>.ui-screen-header{grid-area:1/1!important}
+  #mobile-app .dialog-presentation[data-tree=true]>.commander-tree{grid-area:2/1!important}
+  #mobile-app .dialog-presentation[data-tree=true]>.dialog-copy{display:none!important}
+  #mobile-app .dialog-presentation[data-tree=true]>.ui-action-dock{grid-area:3/1!important;display:flex!important;flex-direction:row!important}
+ }
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up]){grid-template-columns:minmax(0,1fr) var(--control-rail,244px)!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-screen-header{grid-area:1/2!important;min-height:48px!important;padding:4px 8px!important}
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-copy{grid-area:2/2!important}
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-action-dock{grid-area:3/2!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-action-dock>button{flex:none!important;width:100%!important}
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-choices{grid-area:1/1/4/2!important}
+  #mobile-app .dialog-presentation[data-tree=true]>.commander-tree{grid-area:1/1/4/2!important}
+  #mobile-app .dialog-presentation[data-tree=true]>.dialog-copy:not([hidden]){display:block!important}
+  #mobile-app .commander-summary{grid-template-columns:64px minmax(0,1fr)!important}
+  #mobile-app .commander-summary .commander-preview{height:clamp(64px,22cqh,112px)!important}
+  #mobile-app .commander-tree .tree-skills{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  #mobile-app .commander-tree .tree-abilities{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))!important}
+ }
+}

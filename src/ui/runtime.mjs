@@ -82,6 +82,20 @@ function NativeProgress({input}){
  const {value:ignored,max,...props}=input;
  return h(LinearProgress,{...props,ref,variant:value===null?'indeterminate':'determinate',value:value===null?undefined:Math.max(0,Math.min(100,value/Number(max||1)*100))});
 }
+const adapterClasses=value=>[...new Set(String(value||'').split(/\s+/).filter(name=>name&&!name.startsWith('Mui')&&!name.startsWith('css-')))].join(' ');
+// Legacy adapters decorate buttons after mounting. Keep those classes in the
+// React props too: a MUI focus/ripple update must not remove their layout and
+// move the touch target between pointerdown and pointerup.
+function NativeButton({component:Component,props,children}){
+ const [classes,setClasses]=useState(adapterClasses(props.className)),current=useRef(classes),nodeRef=useRef(null),base=useRef(adapterClasses(props.className));
+ const ref=useCallback(node=>{nodeRef.current=node;if(!node)return;
+  Object.defineProperty(node,'className',{configurable:true,get:()=>node.getAttribute('class')||'',set:value=>{const next=adapterClasses(value);if(next===current.current)return;current.current=next;flushSync(()=>setClasses(next));}});
+ },[]);
+ useLayoutEffect(()=>{const next=adapterClasses(props.className);if(next!==base.current){const old=new Set(base.current.split(' ')),extras=current.current.split(' ').filter(value=>value&&!old.has(value));base.current=next;const combined=adapterClasses(next+' '+extras.join(' '));current.current=combined;setClasses(combined);}},[props.className]);
+ useLayoutEffect(()=>{if(nodeRef.current){nodeRef.current.disabled=!!props.disabled;nodeRef.current.classList.toggle('Mui-disabled',!!props.disabled);}},[props.disabled]);
+ const {disabled,...attributes}=props;
+ return h(Component,{...attributes,className:classes,ref},...children);
+}
 // Shared navigation primitives retain native game click commands.
 function NativeTabs({props,items}){
  const landscape=useMediaQuery('(orientation: landscape)'),vertical=props['data-ui-tabs-landscape']!==undefined&&landscape;
@@ -118,7 +132,8 @@ function element(node,index){if(node.nodeType===3)return node.textContent;if(nod
  if(node.hasAttribute('data-ui-stepper'))return h(NativeStepper,{key:props.key,props,items:[...node.children]});
  if(node.tagName==='DETAILS'){const summary=node.querySelector(':scope>summary');return h(NativeAccordion,{key:props.key,props,summary,content:[...node.childNodes].filter(child=>child!==summary)});}
  const choice=node.tagName==='LABEL'&&node.querySelector(':scope>input[type=radio],:scope>input[type=checkbox]');if(choice)return h(ChoiceField,{key:props.key,input:propsFor(choice),labelProps:props,label:[...node.childNodes].filter(child=>child!==choice).map(element)});
- const children=[...node.childNodes].map(element);if(node.tagName==='BUTTON'){const initiallyDisabled=Boolean(props.disabled);delete props.disabled;props.ref=button=>{if(button){button.disabled=initiallyDisabled;button.classList.toggle('Mui-disabled',initiallyDisabled);}};const endTurn=node.dataset.ui==='endturn'&&matchMedia('(orientation:landscape) and (max-height:400px)').matches;if(endTurn){props['aria-label']=node.textContent.replace(/^☀\s*/,'');props.title=props['aria-label'];}const icon=endTurn||/^[✕×✖−+☰▶■]$/u.test(node.textContent.trim())&&!!node.getAttribute('aria-label');props['data-mui-component']=icon?'IconButton':'Button';props.variant=node.classList.contains('primary')||node.dataset.uiVariant==='filled'?'contained':'outlined';if(icon)delete props.variant;const control=h(icon?IconButton:Button,props,...(endTurn?[h(Box,{component:'span','aria-hidden':true},'☀')]:children));return node.matches('[data-exchange-slot]')?h(Tooltip,{key:props.key,title:props['aria-label']||node.textContent.trim(),describeChild:true},control):control;}
+ const children=[...node.childNodes].map(element);if(node.tagName==='BUTTON'){const endTurn=node.dataset.ui==='endturn'&&matchMedia('(orientation:landscape) and (max-height:400px)').matches;if(endTurn){props['aria-label']=node.textContent.replace(/^☀\s*/,'');props.title=props['aria-label'];}const icon=endTurn||/^[✕×✖−+☰▶■]$/u.test(node.textContent.trim())&&!!node.getAttribute('aria-label');props['data-mui-component']=icon?'IconButton':'Button';props.variant=node.classList.contains('primary')||node.dataset.uiVariant==='filled'?'contained':'outlined';if(icon)delete props.variant;const control=h(NativeButton,{key:props.key,component:icon?IconButton:Button,props,children:endTurn?[h(Box,{component:'span','aria-hidden':true},'☀')]:children});return node.matches('[data-exchange-slot]')?h(Tooltip,{key:props.key,title:props['aria-label']||node.textContent.trim(),describeChild:true},control):control;}
+ if(node.matches('.ui-form-stack'))return h(Stack,{...props,component:node.localName,spacing:2,useFlexGap:true},...children);
  if(node.matches('.map-movement-settings,.battle-view-setting'))return h(Stack,{...props,component:node.localName,spacing:1,useFlexGap:true,className:((props.className||'')+' ui-form-section')},...children);
  if(node.tagName==='HEADER')return h(Toolbar,{...props,component:'header',disableGutters:true,variant:'dense'},...children);
  if(node.tagName==='FOOTER')return h(Stack,{...props,component:'footer',direction:'row',spacing:1,useFlexGap:true},...children);

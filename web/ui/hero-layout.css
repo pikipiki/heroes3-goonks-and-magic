@@ -149,3 +149,32 @@
  #mobile-app[data-mode=hero] .hero-equipment-page[data-inventory=worn] .hero-body-layout .hero-artifact-slot>canvas{grid-area:2/1!important;display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;aspect-ratio:1!important;flex:none!important}
  #mobile-app .hero-equipment-page[data-inventory=worn] .hero-body-layout .hero-artifact-slot:has(>canvas)>small{grid-area:1/1!important;min-width:0!important;max-width:100%!important}
 }
+
+/* The section selector replaces the legacy swipe-only tabs. Their old blanket
+   pointer-events rule must not swallow touches intended for the MUI Select. */
+@layer ui-composition {
+ #mobile-viewport #mobile-app .ui-hero-navigation .ui-hero-section-field,
+ #mobile-viewport #mobile-app .ui-hero-navigation .ui-hero-section-field :is(.material-select-host,.MuiInputBase-root,[role=combobox]){pointer-events:auto!important;touch-action:manipulation!important}
+ @container goonk-viewport (orientation:portrait) and (max-width:380px){
+  #mobile-viewport #mobile-app .hero-primary .hero-stat-label-full{display:none!important}
+  #mobile-viewport #mobile-app .hero-primary .hero-stat-label-short{display:inline!important}
+ }
+}
+@layer ui-composition {
+ #mobile-viewport #mobile-app .hero-equipment-page>.ui-hero-navigation{min-height:64px!important;height:64px!important;max-height:64px!important;box-sizing:border-box!important}
+ #mobile-viewport #mobile-app .ui-hero-navigation .material-select-trigger{padding:0!important;box-sizing:border-box!important;min-height:48px!important;height:48px!important}
+ #mobile-viewport #mobile-app .ui-hero-navigation .MuiSelect-select{display:flex!important;align-items:center!important;box-sizing:border-box!important;min-height:0!important;height:100%!important;padding:0 28px 0 12px!important;font:var(--ui-font-label)!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-viewport #mobile-app .hero-equipment-page{grid-template-rows:108px 32px 56px minmax(0,1fr) 64px!important;gap:4px!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head{grid-area:1/2!important;display:grid!important;grid-template-columns:40px minmax(0,1fr)!important;grid-template-rows:auto!important;height:52px!important;min-height:52px!important;max-height:52px!important;margin-top:56px!important;padding:4px 8px!important;align-items:center!important;box-sizing:border-box!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head>.hero-face{grid-area:1/1!important;width:40px!important;height:44px!important;margin:0!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head>div{grid-area:1/2!important;margin:0!important;min-width:0!important;align-self:center!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head h2{font:var(--ui-font-label)!important;margin:0!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head>div>p{display:block!important;font:var(--ui-font-resource)!important;margin:0!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head .hero-vitals{font:var(--ui-font-resource)!important;gap:2px 8px!important;margin:2px 0 0!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head .hero-vitals .hero-icon{width:12px!important;height:12px!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-primary{grid-area:2/2!important;height:32px!important;min-height:32px!important;max-height:32px!important;padding:0 8px!important;margin:0!important;box-sizing:border-box!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.ui-hero-navigation{grid-area:3/2!important;height:56px!important;min-height:56px!important;max-height:56px!important;padding:4px 8px!important}
+  #mobile-viewport #mobile-app .hero-equipment-page>.hero-army-dock-tools{min-height:64px!important;max-height:64px!important;height:64px!important;box-sizing:border-box!important}
+ }
+}

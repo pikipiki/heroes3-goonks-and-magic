@@ -141,7 +141,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    'Five slots hold accessories. Ballista, ammo cart, first aid tent and catapult have one slot each. The spellbook has its own slot.';
   renderMarkup(panel,`<header class="hero-card-head">
    <canvas class="hero-face" width="58" height="64" aria-hidden="true"></canvas>
-   <div><h2>${esc(hero.name)}</h2><p>Level ${hero.level??1} ${esc(hero.className)}</p>
+   <div><h2>${esc(hero.name)}</h2><p>${fr?'Niveau':'Level'} ${hero.level??1} ${esc(hero.className)}</p>
     <div class="hero-vitals"><span>${heroIcon(hero.manaIcon)}${hero.mana??0} / ${hero.manaLimit??0} mana</span>
      ${hero.experience===undefined?'':`<span>${heroIcon(hero.experienceIcon)}${hero.experience.toLocaleString()} XP</span>`}</div></div>
    <button data-hero-close aria-label="${hero.owned===false?'Back':'Back to map'}">✕</button>

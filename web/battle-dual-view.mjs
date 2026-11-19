@@ -1,3 +1,5 @@
+import {uiText} from './ui/primitives.mjs';
+import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
 import {siegeTargets,paintSiegeTargets} from './battle-siege.mjs';
 import {createCanvasSizer} from './mobile-render.mjs';
 import {paintBattleFloor} from './battle-floor.mjs';
@@ -97,6 +99,8 @@ export function createBattleDualView({root,scene,getState,getView=()=>'whole',on
   if(selected){
    paintSelectedTile(ctx,selected,l,state,isMove);
   }
+  paintEnemyLosses(ctx,state,l);
+  canvas.setAttribute('aria-label',[uiText('Action view. Tap a hex or a target to prepare an action.','Écran d’action. Touchez une case ou une cible pour préparer une action.'),enemyLossDescription(state)].filter(Boolean).join(' '));
   if(detail){lastDetail=detail;}
  }
  return {sync,paint,get active(){return active;}};

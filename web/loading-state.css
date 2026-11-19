@@ -1,0 +1,8 @@
+@layer ui-composition{
+#mobile-app[data-ui-loading=true]{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important}
+#mobile-app[data-ui-loading=true]>.mobile-play{grid-column:1/-1!important;grid-row:1/-1!important}
+#mobile-app[data-ui-loading=true] :is(.mobile-top,.mobile-nav,.scene-tools,.scene-hint,.mobile-menu,.mobile-overview,.mobile-battle-panel,.menu-launch-status){display:none!important}
+#mobile-app .mobile-loading-status{position:absolute;inset:auto var(--ui-space-2) calc(var(--ui-space-2) + env(safe-area-inset-bottom));padding:var(--ui-space-2);background:var(--ui-surface,#21180e);border:1px solid var(--ui-outline,#bc995b);z-index:20;pointer-events:none}
+#mobile-app .mobile-loading-status[hidden]{display:none!important}
+#mobile-app .mobile-loading-status p{font:var(--ui-font-body);margin:0 0 var(--ui-space-1);color:var(--ui-on-surface,#ffedbe)}
+}

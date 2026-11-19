@@ -20,7 +20,7 @@
     "work/vcmi-wasm/lib/battle/BattleInfo.h": "302fb3a34732998f98b12f6b52e2e154e6e601166edf38fa6c06594773f829b9",
     "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "e5dd27973eb93be808a3b4ddd360989e25cf15e32c7ed5215503cdbd8fecef44",
-    "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "5c74948eaa8db1a565eb0f3ae8e2dc3243afe3fda289d96ec4dab3bc20684660"
+    "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "13f85e01f99fc90f810abb44939d831ffda0af8a5d519e3df31bfdcf99728b2a"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",

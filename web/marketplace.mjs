@@ -59,7 +59,7 @@ export function createMarketplace({root, command, refresh}) {
      const icon = document.createElement('img');icon.src=url;icon.alt='';
      button.append(icon);
     }
-    button.append(document.createElement('span'),document.createElement('small'));
+    const name=document.createElement('span');name.className='market-resource-name';const amount=document.createElement('small');amount.className='market-resource-amount';button.append(name,amount);
     return button;
    }));
   }
@@ -94,9 +94,9 @@ export function createMarketplace({root, command, refresh}) {
     const resource=rows[index], name=resourceName(resource);
     button.disabled=Boolean(pending)||(selling?resource.id===receive:resource.id===give);
     button.setAttribute('aria-pressed',String(resource.id===(selling?give:receive)));
-    button.lastElementChild.textContent=selling?(resource.key==='gold'?new Intl.NumberFormat('fr-FR').format(resource.value).replace(/[\u00a0\u202f]/g,' '):compactResource(resource.value)):'';
-    button.lastElementChild.hidden=!selling;
-    button.querySelector('span').textContent=name;
+    button.querySelector('.market-resource-amount').textContent=selling?(resource.key==='gold'?new Intl.NumberFormat('fr-FR').format(resource.value).replace(/[\u00a0\u202f]/g,' '):compactResource(resource.value)):'';
+    button.querySelector('.market-resource-amount').hidden=!selling;
+    button.querySelector('.market-resource-name').textContent=name;
     button.title=selling?`${name} · ${resource.value}`:name;
     button.setAttribute('aria-label',button.title);
    }

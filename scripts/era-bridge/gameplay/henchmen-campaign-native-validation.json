@@ -6,11 +6,11 @@
   "engineSha256": "f152ee1584795dcd8c3922e76cb7d72eeb69e51906cbc7be6b6455fd59eaf008",
   "parentEngineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
   "sourceBindings": {
-    "work/vcmi-wasm/lib/campaign/CampaignState.cpp": "c8a02ddfd3895d40cc68db6b4ab4a2a656b7e663091b5118b09e081ae2377f18",
-    "work/vcmi-wasm/lib/era/EraHenchmanCampaign.h": "345f10da6cf772ecbf09a425176ed18028bf8d00fdbe04b3b410e04fd799748e",
-    "tests/native/EraHenchmanCampaign.test.cpp": "1a36d0a3bca2e377d30a6adb61097b926b1f7fac821bf7ae38c3b2250bfb59e6",
+    "work/vcmi-wasm/lib/campaign/CampaignState.cpp": "5183373c89539e74f72565cb0773586c0e36dc7aed5b01e387fca4941c5b6f2e",
+    "work/vcmi-wasm/lib/era/EraHenchmanCampaign.h": "96976e8b0dc933a3c36834ed5309b62506f390952c3d7d713fc380e91bd1fc18",
+    "tests/native/EraHenchmanCampaign.test.cpp": "29b1235b0e8f0aea739d4fcb8ec380322b5dcbe6ecfc94cca629d041fb32ed1a",
     "tests/era-henchmen-campaign.test.mjs": "8dd9f88c496eb7982abc531070e70cc3132217469e7750cdbdc7a9a0766d226e",
-    "work/browser-tests/wog-henchmen-campaign-native-e2e.mjs": "1a7ce4fa6f14a89349faae1c48b34668f627cba6f2a56ba89b83106bb152049e",
+    "work/browser-tests/wog-henchmen-campaign-native-e2e.mjs": "8459d3a41024f43246ad6b58c6cb035cdfb3be1416dba87dd3d140d3bf9744a4",
     "work/browser-tests/henchmen-campaign-fixture.py": "26397d69d0fa07d29205ae8f8797f139d126ba4c3ad94be3f42cd7a262268821"
   },
   "upstream": {
