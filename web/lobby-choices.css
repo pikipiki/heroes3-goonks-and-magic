@@ -67,12 +67,12 @@
 }
 :is(#mobile-app,#game-menu) .lobby-picker-search input{touch-action:auto}
 :is(#mobile-app,#game-menu) .scenario-filters{padding:0 12px}
-:is(#mobile-app,#game-menu) .scenario-filters summary{
+:is(#mobile-app,#game-menu) .scenario-filters [data-ui-accordion-summary]{
   box-sizing:border-box;min-height:48px;padding:12px;cursor:pointer;
   border:1px solid #b99a60;background:#21160d;color:#ffe6aa;font-size:1rem;
   -webkit-tap-highlight-color:transparent;
 }
-:is(#mobile-app,#game-menu) .scenario-filters summary:active{background:#392613}
+:is(#mobile-app,#game-menu) .scenario-filters [data-ui-accordion-summary]:active{background:#392613}
 :is(#mobile-app,#game-menu) .scenario-filter-fields{
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px 3px 4px;
 }
