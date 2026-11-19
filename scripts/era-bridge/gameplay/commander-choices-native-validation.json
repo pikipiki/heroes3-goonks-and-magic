@@ -8,11 +8,11 @@
   "reaEvidence": false,
   "rule118Activated": false,
   "scope": "Persist pending skill choices for explicitly initialized original commander word mode. Preserve acquired level and offered skills across native save/reload; replay the choice without another level increment. Preserve source visit context and wait for the owning interface before prompting. Unfinished native battle saves remain outside the admitted boundary. No new gameplay option. Preparation for source118.",
-  "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
-  "sourceBaseCommit": "0d288d058986cc9162139fa57173ffcd2642465d",
+  "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
+  "sourceBaseCommit": "32565baaa908e35da7428490365a53428aed139e",
   "sourceBindings": {
     "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "d6ffd03c39ace69eb0f973168e485571e2dfae49a46f2cc0d20b5950b6f450f9",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
     "work/vcmi-wasm/lib/era/EraCommanderChoiceModel.h": "57d4e6fcbc21cc67418acaf95afa26c12b03ddbd10d48e1f2f62777aa18c49d1",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
     "work/vcmi-wasm/lib/networkPacks/PacksForClient.h": "8401da068388679e84f67f893dcba59a76df69dfbc563ded2401012cba095864",
@@ -25,8 +25,10 @@
     "scripts/prepare-web.mjs": "416982069e725fe6cdd5db32eb60b7225c5a585db9d45bcb1b64054c7576dd53",
     "work/browser-tests/wog-commander-words-cases.mjs": "d79893bb43a45199034b527f730a67ea676dbe416431856cd6d686cc0872f5ab",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-    "tests/era-commander-choice-native.test.mjs": "77e8f95d78a465e08129965b6fa0d38ddcc08476b87fbe53003916236b4aafbf",
-    "scripts/era-bridge/gameplay/map-rules.json": "a7946c8a311b8642a257f9d93f2192b9e7d22a0b361da870f56160f02423115e"
+    "tests/era-commander-choice-native.test.mjs": "ad046efafbf20ac1d96add44da70389bece0c2b8034cc53e185e065f702bf3d3",
+    "scripts/era-bridge/gameplay/map-rules.json": "a7946c8a311b8642a257f9d93f2192b9e7d22a0b361da870f56160f02423115e",
+    "work/vcmi-wasm/client/battle/BattleStacksController.cpp": "f8f903a4bf022e92e107db76c57ea7f0a7e3b8511f47ee774595de29cdf3aefb",
+    "work/vcmi-wasm/client/battle/BattleStacksController.h": "c66c1e0b1d840f8734415faefa2638369c81ab8e0e3aec3f75b33fbc726e9f10"
   },
   "reference": "tests/fixtures/era-gameplay/map-starting-level-and-banner-kernels-reference.json",
   "serialization": {
@@ -40,21 +42,86 @@
   "nativeBuild": {
     "command": "ninja -j32 html5",
     "exitCode": 0,
-    "fullCompileLogSha256": "950e1a6d9d6d914f0ae930ab98b953c10e204d6295a5bb6f346a600af898c200",
-    "logSha256": "bf9038d7b1b78bba5185a1468f2ccf26729bf3ef8831784b61cf1a66906f98bb"
+    "logSha256": "a429d5122109065b47cd958bf0d485466df8b26794942e0574451c27ed54e333"
   },
   "sourceAudit": {
     "trackedFilesChecked": 3045,
-    "expectedManifestSha256": "4ab073379e37664529c9a989ed6cde64f40e5ecad98886971e35ad4df90e7876",
     "mismatches": [],
+    "expectedManifestSha256": "fdc648e79a8382b812538634071e330ce169bd0fa4c53c4114925c952463533f",
     "foreignWorkingChangesExcluded": true
   },
   "checkpoints": {
+    "middle": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 3,
+          "previousWordSave": false,
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "fe7dc293f6c06691cea192ac8385b68d61c0773dfc3d463d747e368cd365d34c"
+    },
     "first": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
       "scenarios": [
         {
           "choiceReloads": 1,
@@ -114,79 +181,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "c8c3c63c3ab5636e109dc44d2cba31c75eaac8b2d0699b90dd22c7cd3a992eef"
-    },
-    "middle": {
-      "passed": true,
-      "scope": "native-core-only",
-      "completeRules": false,
-      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
-      "scenarios": [
-        {
-          "choiceReloads": 1,
-          "checkpointLevel": 3,
-          "previousWordSave": false,
-          "hero": 6,
-          "type": 0,
-          "nonPaladin": false,
-          "desktop": false,
-          "negative": false,
-          "wrap": false,
-          "zeroRecalculation": false,
-          "baseline": false,
-          "suppressed": false,
-          "reference": false,
-          "heroNegative": false,
-          "ai": false,
-          "cap": false,
-          "reserve": false,
-          "initialBaseline": 0,
-          "legacy": false,
-          "raw": 0,
-          "experience": 5000,
-          "order": [
-            "commander",
-            "commander",
-            "commander",
-            "commander",
-            "commander",
-            "hero",
-            "hero",
-            "hero",
-            "hero"
-          ],
-          "commanderLevels": [
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "packetOrder": [
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp"
-          ],
-          "checkpointReload": true,
-          "rawWriteDoesNotLevel": true,
-          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
-        }
-      ],
-      "errors": [],
-      "rawReportSha256": "18aad0434a496abb87b2c9cb021edeb3e74e0816cb263f0636594a1c90b52ece"
+      "rawReportSha256": "d5bdcb51ec74ae88d79f6f9db2a868bc7906b932c9f2425086c02da6900be297"
     },
     "desktop": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
       "scenarios": [
         {
           "choiceReloads": 1,
@@ -246,13 +247,13 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "d69465629db31940ba153ed630abb2231da23878874bca98f40041962ec762e5"
+      "rawReportSha256": "76de41fcd9b8cad4693f935ab21685b63f34e3879aae281ef3b9c86590f18c7b"
     },
     "last": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
       "scenarios": [
         {
           "choiceReloads": 1,
@@ -312,13 +313,76 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "f99c0af01a7d8b47826af62f9cf04e4f8c0db5b47b3b3e64ba376d10834c6cbf"
+      "rawReportSha256": "310120fa3cd00c170df41b3eb7a4a89788e2b14622f69c7e4aef953b272e17ba"
+    },
+    "rampart-last": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 5,
+          "previousWordSave": false,
+          "hero": 21,
+          "type": 1,
+          "nonPaladin": true,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 5000/5000/5 CLEVEL 5 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "306968c069d95dee0208d5ea54d656bca369daffb0f79208d6460810941bfba5"
     },
     "legacy941": {
       "passed": true,
       "scope": "native-core-only",
       "completeRules": false,
-      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
       "scenarios": [
         {
           "choiceReloads": 1,
@@ -378,70 +442,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "5dadb74039660bbccd780fbbb31b189662be47148da5e6258ff8619585bcba27"
-    },
-    "rampart-last": {
-      "passed": true,
-      "scope": "native-core-only",
-      "completeRules": false,
-      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
-      "scenarios": [
-        {
-          "choiceReloads": 1,
-          "checkpointLevel": 5,
-          "previousWordSave": false,
-          "hero": 21,
-          "type": 1,
-          "nonPaladin": true,
-          "desktop": false,
-          "negative": false,
-          "wrap": false,
-          "zeroRecalculation": false,
-          "baseline": false,
-          "suppressed": false,
-          "reference": false,
-          "heroNegative": false,
-          "ai": false,
-          "cap": false,
-          "reserve": false,
-          "initialBaseline": 0,
-          "legacy": false,
-          "raw": 0,
-          "experience": 5000,
-          "order": [
-            "commander",
-            "commander",
-            "commander",
-            "commander",
-            "hero",
-            "hero",
-            "hero",
-            "hero"
-          ],
-          "commanderLevels": [
-            2,
-            3,
-            4,
-            5
-          ],
-          "packetOrder": [
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "CommanderLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp",
-            "HeroLevelUp"
-          ],
-          "checkpointReload": true,
-          "rawWriteDoesNotLevel": true,
-          "completedText": "COMMANDER_DONE 5000/5000/5 CLEVEL 5 REF 5000"
-        }
-      ],
-      "errors": [],
-      "rawReportSha256": "2d689e7b396e4b62a99b4e67f67569dbefa837f8579d3b877ffa78660813a9af"
+      "rawReportSha256": "c1127b6e3b0b92a7a111112b233ae218bb2f67fee8bb676e64d1734df206f568"
     }
   },
   "wordRegressions": {
@@ -1677,7 +1678,7 @@
     "passed": true,
     "scope": "native-core-only",
     "completeRules": false,
-    "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+    "engineSha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a",
     "scenarios": [
       {
         "nativeBattle": true,
@@ -1702,7 +1703,7 @@
       }
     ],
     "errors": [],
-    "rawReportSha256": "22a3780ede621f911a67117688b23ae8bffc6e462c1e69193b83ead946306029"
+    "rawReportSha256": "7225d4f3ec3cffed30c76df6d90d8aedef7a9f881fc9b7dd6dad999dab748590"
   },
   "oldReaderControl": {
     "passed": true,
@@ -1722,7 +1723,7 @@
   },
   "archive": {
     "file": "outputs/vcmi-wasm-goonk-0.4.298-engine.tar.gz",
-    "sha256": "65c1cb83f9af927d88e23e155c4576b3a728dd7a2182e45730a03496a4037f8d",
+    "sha256": "e85fcdcdba5f335116caf7c1bcdb17658a97d88d45d990e0cdaf7b31b8d659ff",
     "runtimeFiles": [
       {
         "file": "dialogs.js",
@@ -1758,11 +1759,11 @@
       },
       {
         "file": "vcmiclient.js.symbols",
-        "sha256": "d5c7375597b6d92b169c0c5b3826f8b4666b4b2d327df070ce1dab0cc7a6017b"
+        "sha256": "f0faa0318b897b97ccd142d1899e5c6615afb11a04a265a5a2f01721274091ea"
       },
       {
         "file": "vcmiclient.wasm",
-        "sha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+        "sha256": "bace47ea7a856c684b5482077456fa89640544ba2a12f6a11920e7b30ea54d6a"
       }
     ]
   },
@@ -1795,6 +1796,464 @@
     "No direct original-executable runtime comparison is established here."
   ],
   "checks": {
-    "pendingPublicationChecks": true
+    "pendingPublicationChecks": false,
+    "nodeTests": 990,
+    "nodePassed": 934,
+    "nodeSkipped": 56,
+    "nodeFailed": 0,
+    "prepareWeb": true,
+    "buildUI": true,
+    "buildSite": true,
+    "verifySite": true,
+    "nativeCatalogueFiles": 10464,
+    "transportBytes": 702299869,
+    "fullNodeLogSha256": "21e86c3aa47e6e9a03abd5fc0143f43c6aa9898305721c9acc64ca6446f85600",
+    "siteVerificationLogSha256": "b96a2807b2d0ec368db57fd05dd94b476994b4b6ff016123831b8fa49298aa69"
+  },
+  "coreEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+  "coreSourceAudit": {
+    "trackedFilesChecked": 3045,
+    "expectedManifestSha256": "4ab073379e37664529c9a989ed6cde64f40e5ecad98886971e35ad4df90e7876",
+    "mismatches": [],
+    "foreignWorkingChangesExcluded": true
+  },
+  "coreNativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "fullCompileLogSha256": "950e1a6d9d6d914f0ae930ab98b953c10e204d6295a5bb6f346a600af898c200",
+    "logSha256": "bf9038d7b1b78bba5185a1468f2ccf26729bf3ef8831784b61cf1a66906f98bb"
+  },
+  "coreCheckpoints": {
+    "first": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 2,
+          "previousWordSave": false,
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "c8c3c63c3ab5636e109dc44d2cba31c75eaac8b2d0699b90dd22c7cd3a992eef"
+    },
+    "middle": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 3,
+          "previousWordSave": false,
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "18aad0434a496abb87b2c9cb021edeb3e74e0816cb263f0636594a1c90b52ece"
+    },
+    "desktop": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 3,
+          "previousWordSave": false,
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": true,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "d69465629db31940ba153ed630abb2231da23878874bca98f40041962ec762e5"
+    },
+    "last": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 6,
+          "previousWordSave": false,
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "f99c0af01a7d8b47826af62f9cf04e4f8c0db5b47b3b3e64ba376d10834c6cbf"
+    },
+    "legacy941": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 3,
+          "previousWordSave": true,
+          "hero": 6,
+          "type": 0,
+          "nonPaladin": false,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 7500/5000/5 CLEVEL 6 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "5dadb74039660bbccd780fbbb31b189662be47148da5e6258ff8619585bcba27"
+    },
+    "rampart-last": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0",
+      "scenarios": [
+        {
+          "choiceReloads": 1,
+          "checkpointLevel": 5,
+          "previousWordSave": false,
+          "hero": 21,
+          "type": 1,
+          "nonPaladin": true,
+          "desktop": false,
+          "negative": false,
+          "wrap": false,
+          "zeroRecalculation": false,
+          "baseline": false,
+          "suppressed": false,
+          "reference": false,
+          "heroNegative": false,
+          "ai": false,
+          "cap": false,
+          "reserve": false,
+          "initialBaseline": 0,
+          "legacy": false,
+          "raw": 0,
+          "experience": 5000,
+          "order": [
+            "commander",
+            "commander",
+            "commander",
+            "commander",
+            "hero",
+            "hero",
+            "hero",
+            "hero"
+          ],
+          "commanderLevels": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "packetOrder": [
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "CommanderLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp",
+            "HeroLevelUp"
+          ],
+          "checkpointReload": true,
+          "rawWriteDoesNotLevel": true,
+          "completedText": "COMMANDER_DONE 5000/5000/5 CLEVEL 5 REF 5000"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2d689e7b396e4b62a99b4e67f67569dbefa837f8579d3b877ffa78660813a9af"
+    }
+  },
+  "coreSourceBaseCommit": "0d288d058986cc9162139fa57173ffcd2642465d",
+  "integratedInterfaceValidation": {
+    "publishedCommit": "32565baaa908e35da7428490365a53428aed139e",
+    "changedNativeFiles": [
+      "client/MobileBridge.cpp",
+      "client/battle/BattleStacksController.cpp",
+      "client/battle/BattleStacksController.h"
+    ],
+    "nativeLossesReportSha256": "6a3f26372654eae79b5da6ac22c3e4762758de09e04f02d39ed6bfcf21339f6e",
+    "nativeLossesPassed": true,
+    "commanderLayoutCases": 16,
+    "commanderLayoutLogSha256": "e6a35ddf15d1a2f5d2713e51fec191966300df59f8094543afd635c130c110c1",
+    "suites": [
+      {
+        "name": "setup-choice-fields",
+        "passed": true,
+        "exitCode": 0,
+        "log": "work/downloads/commander298-ui-setup-choice-fields.log",
+        "logSha256": "618d9262db6c13cd4da1a5ec4252cc31f0577eb3b767d882c97440c2ba79a159"
+      },
+      {
+        "name": "setup-header-layout",
+        "passed": true,
+        "exitCode": 0,
+        "log": "work/downloads/commander298-header-retry.log",
+        "note": "Initial execution context navigation race; isolated replay passed Chromium and WebKit.",
+        "logSha256": "098e7188b65014d14f4fade3361404a4ab31b49165532064b7f2e636a15b710f"
+      },
+      {
+        "name": "battle-losses",
+        "passed": true,
+        "exitCode": 0,
+        "log": "work/downloads/commander298-ui-battle-losses.log",
+        "logSha256": "94963c3b7bd78bdf4da54fcf2a6e6a615716547d62c0ec487805cb4122a88d3f"
+      }
+    ],
+    "evidenceBoundary": "The20 word regressions and34 gameplay regressions retain their exact core7f engine. The6 choice reloads, native battle boundary and native loss preview were replayed on the integrated published binary."
   }
 }

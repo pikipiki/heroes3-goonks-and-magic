@@ -1,0 +1,26 @@
+import{chromium,webkit}from'playwright-core';import assert from'node:assert/strict';import fs from'node:fs';import path from'node:path';import{execFileSync}from'node:child_process';import{silenceTestAudio}from'./silent-audio.mjs';
+const out=process.env.REVIEW_OUTPUT||'/tmp/goonk-setup-header';fs.mkdirSync(out,{recursive:true});
+for(const[name,engine]of Object.entries({chromium,webkit})){
+ const browser=await engine.launch({headless:true});try{
+ const p=await browser.newPage({hasTouch:true,serviceWorkers:'block'}),errors=[];p.on('pageerror',e=>errors.push(e.message));if(process.env.SETUP_TRACE)p.on('framenavigated',f=>{if(f===p.mainFrame())console.log('NAV',f.url());});await silenceTestAudio(p);
+ await p.route('**/web/**',r=>{const relative='web/'+new URL(r.request().url()).pathname.split('/web/')[1],file=path.resolve(relative);if(process.env.UI_COMPARE_BASELINE==='1'&&['web/ui/contracts.mjs','web/ui/phone-composition.css'].includes(relative))return r.fulfill({body:execFileSync('git',['show','HEAD:'+relative]),contentType:relative.endsWith('.css')?'text/css':'text/javascript'});return fs.existsSync(file)?r.fulfill({path:file}):r.abort();});
+ await p.route('**/opfs-worker.js',r=>r.fulfill({contentType:'text/javascript',body:'export const opfsList=async()=>({}),opfsUnlink=async()=>{},opfsFlush=async()=>{};'}));
+ await p.route('**/accordions?mobile=1',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><link rel=stylesheet href=/web/game-menu.css><link rel=stylesheet href=/web/h3-theme.css><link rel=stylesheet href=/web/mobile-upgrade.css><canvas id=canvas width=800 height=600></canvas><script>window.calls=[];Module={_vcmiMobileEnable(){},_vcmiMobileCommand(...args){calls.push(args)}};</script><script type=module src=/web/mobile.mjs></script><script type=module src=/web/game-menu.mjs></script>'}));
+ await p.goto('http://127.0.0.1:8782/accordions?mobile=1');await p.waitForSelector('#game-menu-toggle');
+ await p.evaluate(()=>{window.model={mode:'lobby',lobbyReady:true,lobbyHumanCount:1,selectedMap:'The King and Queen',selectedFaction:-1,difficulty:1,maps:[{index:0,name:'The King and Queen',width:144,height:144,players:2,castleChoice:true,humanSeats:1},{index:1,name:'Another map',width:72,height:72,players:4,humanSeats:1}],players:[{color:0,name:"Player one",incomePercent:80,faction:-1,factions:[]}],factions:[],wogOptionsEditable:true,wogOptions:Array(30).fill(-1)};window.send=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(model)}));send();});
+
+ for(const mode of['lobby','load'])for(const language of['fr','en'])for(const viewport of[{width:320,height:568},{width:390,height:844},{width:716,height:279},{width:752,height:284},{width:844,height:390}]){
+ await p.setViewportSize(viewport);await p.evaluate(async({language,mode})=>{(await import('/web/i18n.mjs')).setLanguage(language);model.mode=mode;send();},{language,mode});await p.waitForTimeout(150);
+ const geometry=await p.evaluate(()=>{const rect=n=>n.getBoundingClientRect().toJSON(),shown=n=>n.checkVisibility();return{chrome:rect(document.querySelector('.mobile-top')),header:rect(document.querySelector('.lobby-intro')),title:rect(document.querySelector('.lobby-intro h1')),scroll:rect(document.querySelector('.lobby-scroll')),dock:rect(document.querySelector('.lobby-footer')),close:[...document.querySelectorAll('[data-ui-header-close],[data-ui-rail-close]')].filter(shown).map(rect),menu:rect(document.querySelector('#game-menu-toggle')),topTitle:rect(document.querySelector('.mobile-title'))};});
+ const label=`${name}-${mode}-${language}-${viewport.width}x${viewport.height}`;fs.writeFileSync(path.join(out,label+'.json'),JSON.stringify(geometry,null,2));await p.screenshot({path:path.join(out,label+'.png')});
+ if(process.env.UI_COMPARE_BASELINE==='1')continue;
+ assert.equal(geometry.close.length,1,'One visible close');
+ for(const key of['header','dock','title','menu']){const r=geometry[key];assert(r.x>=0&&r.y>=0&&r.right<=viewport.width+1&&r.bottom<=viewport.height+1,`${label}: ${key} inside viewport ${JSON.stringify(r)}`);}
+ if(viewport.width>viewport.height){assert(geometry.header.y>=geometry.chrome.bottom,'Setup title follows the shared command band');assert(geometry.dock.y>=geometry.header.bottom,'Start actions follow the header');assert(geometry.title.x>=geometry.chrome.x,'Setup title stays in right rail');}
+ const close=geometry.close[0];assert(close.x>=0&&close.y>=0&&close.right<=viewport.width+1&&close.bottom<=viewport.height+1,'Close inside viewport');
+ await p.evaluate(()=>window.beforeCalls=calls.length);await p.locator('[data-ui-header-close]:visible,[data-ui-rail-close]:visible').tap();assert.equal(await p.evaluate(()=>calls.length-beforeCalls),1,'Shared close delegates exactly once');
+ await p.evaluate(()=>send());await p.locator('#game-menu-toggle').tap();assert(await p.locator('#game-menu').isVisible(),'Menu remains reachable');await p.locator('[data-menu=close]').tap();
+ }
+ assert.deepEqual(errors,[]);console.log('PASS',name,'setup header/close/menu without overlap FR/EN portrait/landscape');
+ }finally{await browser.close();}
+}

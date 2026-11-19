@@ -20,6 +20,7 @@ class CStack;
 class CSpell;
 class SpellID;
 class Point;
+class Rect;
 
 VCMI_LIB_NAMESPACE_END
 
@@ -146,6 +147,7 @@ public:
 
 	/// returns position of animation needed to place stack in specific hex
 	Point mobileAnimationOffset(const CStack * stack) const;
+	Rect mobileAmountBoxBounds(const CStack * stack);
 	Point getStackPositionAtHex(const BattleHex & hexNum, const CStack * creature) const;
 
 	friend class BattleAnimation; // for exposing pendingAnims/creAnims/creDir to animations

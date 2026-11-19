@@ -18,9 +18,9 @@ test('pending original commander choices survive native reload without awarding 
  }
  assert.equal(p.checkpoints.first.scenarios[0].checkpointLevel,2);assert.equal(p.checkpoints.last.scenarios[0].checkpointLevel,6);
  assert.equal(Object.keys(p.wordRegressions).length,20);
- for(const r of Object.values(p.wordRegressions)){assert(r.passed);assert.equal(r.engineSha256,p.engineSha256);assert.deepEqual(r.errors,[]);}
+ for(const r of Object.values(p.wordRegressions)){assert(r.passed);assert.equal(r.engineSha256,p.coreEngineSha256);assert.deepEqual(r.errors,[]);}
  assert.equal(p.regressionScenarioCount,34);
- for(const r of Object.values(p.regressions)){assert(r.passed);assert.equal(r.engineSha256,p.engineSha256);}
+ for(const r of Object.values(p.regressions)){assert(r.passed);assert.equal(r.engineSha256,p.coreEngineSha256);}
  const battle=p.nativeBattleBoundary;assert(battle.passed);assert.equal(battle.engineSha256,p.engineSha256);assert.equal(battle.scenarios[0].pendingBattleSaveAllowed,false);assert.equal(battle.scenarios[0].reloadPhase,'completed-native-battle');assert(battle.scenarios[0].returnedToMap);
  assert(p.oldReaderControl.passed);assert.equal(p.oldReaderControl.scenarios[0].readerVersion,941);assert.equal(p.oldReaderControl.scenarios[0].futureVersion,942);
  assert.equal(p.archive.runtimeFiles.length,10);

@@ -22,26 +22,27 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
     const layout={...geometry,x:0,y:0,dx:0,dy:0,w:width/geometry.scale,h:height/geometry.scale};
     const units=Array.from({length:16},(_,i)=>({stackId:i+1,id:i,count:42,name:i===7?'Commander':(language==='fr'?'Créature':'Creature')+' '+i,x:268+(i%4)*44+(Math.floor(i/4)%2)*22,y:205+Math.floor(i/4)*42,enemy:i%2===1||i===14,canMeleeAt:true,attackLosses:{actor:1,min:i,max:i+2}}));
     const state={mode:'battle',round:1,canAct:true,activeStack:1,activeUnit:{...units[0],controlled:true},battleUnits:units};
-    const blocked=units.map(unit=>{const p=layout.project(unit),s=layout.scale;return{x:p.x-28*s,y:p.y-62*s,w:65*s,h:85*s};});
-    const counters=units.map(unit=>{const p=layout.project(unit);return{x:p.x-10,y:p.y+10,w:20,h:13};});
+    const blocked=units.map(unit=>{const p=layout.project(unit),s=layout.scale;return{stackId:unit.stackId,kind:'sprite',x:p.x-28*s,y:p.y-62*s,w:65*s,h:85*s};});
+    const counters=units.map(unit=>{const p=layout.project(unit);return{stackId:unit.stackId,kind:'count',x:p.x-15*layout.scale,y:p.y+layout.scale,w:30*layout.scale,h:13*layout.scale};});
     ctx.fillStyle='#33452a';ctx.fillRect(0,0,width,height);
     blocked.forEach((box,i)=>{ctx.fillStyle=units[i].enemy?'#772b24':'#294d67';ctx.fillRect(box.x,box.y,box.w,box.h);});
     counters.forEach(box=>{ctx.fillStyle='#1b1826';ctx.fillRect(box.x,box.y,box.w,box.h);});
     const placed=paintEnemyLosses(ctx,state,layout,{occlusion:[...blocked,...counters]});
     const expected=units.filter(unit=>unit.enemy).length;
-    const covered=placed.some(box=>[...blocked,...counters].some(obstacle=>overlaps(box,obstacle)));
+    const covered=placed.some(box=>counters.some(obstacle=>overlaps(box,obstacle,0)));
+    const temporal=Array.from({length:8},(_,frame)=>paintEnemyLosses(ctx,state,layout,{occlusion:[...blocked.map(b=>({...b,x:b.x+(frame%3),w:b.w+(frame%2)})),...counters].reverse(),counters})).every(frame=>frame.every(r=>{const old=placed.find(o=>o.unit.stackId===r.unit.stackId);return old&&old.x===r.x&&old.y===r.y&&old.side===r.side;}));
     const stable=JSON.stringify(paintEnemyLosses(ctx,state,layout,{occlusion:[...blocked,...counters]}))===JSON.stringify(placed);
     const begin=performance.now();for(let i=0;i<100;i++)paintEnemyLosses(ctx,state,layout,{occlusion:[...blocked,...counters]});const cachedFrameMs=(performance.now()-begin)/100;
     const description=enemyLossDescription(state);
     setBattleLossEstimates(false);const disabled=paintEnemyLosses(ctx,state,layout,{occlusion:[...blocked,...counters]}).length;
     setBattleLossEstimates(true);
-    return{expected,painted:placed.length,covered,stable,disabled,cachedFrameMs,description};
+    return{expected,painted:placed.length,covered,stable,temporal,disabled,cachedFrameMs,description};
    },{width,height,language,vertical});
    assert.equal(result.painted,result.expected,'Every adjacent enemy has its own label '+JSON.stringify({name,width,height,vertical,result}));
-   assert.equal(result.covered,false);assert(result.stable);assert.equal(result.disabled,0);assert(result.cachedFrameMs<10,'Cached annotations remain inexpensive');
+   assert.equal(result.covered,false);assert(result.stable);assert(result.temporal);assert.equal(result.disabled,0);assert(result.cachedFrameMs<10,'Cached annotations remain inexpensive');
    assert.match(result.description,language==='fr'?/Pertes ennemies/:/Estimated enemy/);
    await page.screenshot({path:`${out}/${name}-${language}-${width}x${height}-${vertical?'vertical':'classic'}.png`});
   }
-  assert.deepEqual(errors,[]);console.log('PASS',name,'32 dense mixed-army cases, all enemy labels visible, no creature/counter overlap, stable cached placement and instant preference toggle');
+  assert.deepEqual(errors,[]);console.log('PASS',name,'32 dense mixed-army cases, all enemy labels visible, no counter/estimate overlap, animation-stable attachment and instant preference toggle');
  }finally{await browser.close();}
 }

@@ -57,7 +57,7 @@ Utiliser `renderMarkup` pour rafraîchir une fabrique. Lorsqu’une galerie nati
 | Menus | `createPopupMenu` : `Menu` MUI, mêmes boutons de commande |
 | Sélecteurs | `createMaterialSelects` : `Select` / `MenuItem` MUI, champ natif conservé comme pont de commande |
 | Gestionnaire impératif existant | `setClickHandler` / `bindPress` ; éviter `.onclick`, que React peut réaffecter |
-| Choix natifs WoG dans un groupe nommé | `radioChoicesMarkup` dans un `fieldset` avec sa légende ; pont natif conservé |
+| Choix natifs WoG dans un groupe nommé | `radioChoicesMarkup` crée toujours un vrai `RadioGroup` MUI ; `labelledBy` relie sa légende et `iconSrc` ajoute le média associé dans une taille commune du thème ; pont natif conservé |
 | Contexte d’achat | `usePurchaseContext` : ressources préchargées visibles, sans bouton à ouvrir ; le bandeau de modale réserve titre/fermeture puis ressources |
 | Fiche et recrutement de créature | `useCreatureOverview` : mêmes zones animation, statistiques et description, avec variante achat ou consultation |
 | Commandes de combat | `useBattleControls` : commandes principales et menu MUI des actions secondaires, mêmes gestionnaires natifs |

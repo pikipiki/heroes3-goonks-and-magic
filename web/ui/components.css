@@ -185,3 +185,8 @@ html.goonk-mobile #mobile-viewport #mobile-app .mobile-menu.ui-screen-layout:not
   #mobile-app .mobile-menu.ui-screen-layout>.lobby-intro.ui-screen-header{grid-template-columns:minmax(0,1fr) 48px!important}
  }
 }
+
+/* One reserved media frame keeps radio options aligned before image decode. */
+#mobile-app .ui-radio-choices .ui-radio-choice-icon{display:block;max-width:100%;object-fit:contain;flex:none}
+#mobile-app .ui-radio-choices .ui-radio-label:has(.ui-radio-choice-icon){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--ui-space-1);min-width:0}
+#mobile-app .ui-radio-choices .MuiFormControlLabel-label{min-width:0}

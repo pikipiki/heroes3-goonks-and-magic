@@ -18,6 +18,6 @@ export function decorateButton(button,{icon=false,variant}={}){
  return button;
 }
 
-export function radioChoicesMarkup({name,choices=[],className=''}){
- return `<div class="ui-radio-choices ${escapeUI(className)}" style="--ui-choice-count:${Math.max(1,choices.length)}">${choices.map(({value,label='',attributes='',disabled=false,checked=false})=>`<label><input type="radio" name="${escapeUI(name)}" value="${escapeUI(value)}" ${attributes} ${disabled?'disabled':''} ${checked?'checked':''}><span class="ui-radio-label">${escapeUI(label)}</span></label>`).join('')}</div>`;
+export function radioChoicesMarkup({name,label='',labelledBy='',choices=[],className=''}){
+ return `<div data-ui-radio-group role="radiogroup" ${labelledBy?`aria-labelledby="${escapeUI(labelledBy)}"`:`aria-label="${escapeUI(label||name)}"`} class="ui-radio-choices ${escapeUI(className)}" style="--ui-choice-count:${Math.max(1,choices.length)}">${choices.map(({value,label='',iconSrc='',attributes='',disabled=false,checked=false})=>`<label><input type="radio" name="${escapeUI(name)}" value="${escapeUI(value)}" ${attributes} ${disabled?'disabled':''} ${checked?'checked':''}><span class="ui-radio-label">${iconSrc?`<img class="ui-radio-choice-icon" src="${escapeUI(iconSrc)}" alt="" aria-hidden="true" width="60" height="24">`:''}<span>${escapeUI(label)}</span></span></label>`).join('')}</div>`;
 }

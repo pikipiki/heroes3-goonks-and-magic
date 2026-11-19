@@ -5,7 +5,7 @@ export const screenContracts=[
  {selector:'#storage-manager',name:'storage',body:'.storage-content',header:':scope>header',dock:':scope>footer'},
  {selector:'.campaign-media-viewer',name:'campaign-media',body:'.campaign-media-scroll',header:':scope>header',close:'[data-close]'},
  {selector:'.session-recovery',name:'session-recovery',body:'.session-recovery-content',header:':scope>header',dock:':scope>footer'},
- {selector:'.mobile-menu:is([data-kind=lobby],[data-kind=load])',name:'adventure-setup',body:'.lobby-scroll',header:'.lobby-intro',dock:'.lobby-footer',close:'[data-ui=back]',liftHeader:true},
+ {selector:'.mobile-menu:is([data-kind=lobby],[data-kind=load])',name:'adventure-setup',railHeader:true,body:'.lobby-scroll',header:'.lobby-intro',dock:'.lobby-footer',close:'[data-ui=back]',liftHeader:true},
  {selector:'.mobile-menu',name:'home',header:':scope>header'},
  {selector:'.mobile-sheet',name:'sheet',header:':scope>.sheet-head',dock:'.army-dock,.building-actions,.recruit-batch-actions,:scope>.ui-action-dock',liftDock:'.recruit-batch-actions',return:'[data-ui=sheet-back]',close:'[data-ui=close-sheet]'},
  {selector:'.lobby-picker',name:'scenario-picker',header:':scope>header',dock:':scope>footer',close:'[data-picker-close]',return:'[data-picker-back]'},
