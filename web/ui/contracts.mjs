@@ -15,8 +15,8 @@ export const screenContracts=[
  {selector:'.mobile-spellbook',name:'spellbook',header:':scope>header',dock:':scope>footer',close:'[data-close-book]'},
  {selector:'.mobile-mage-guild',name:'mage-guild',body:'.mage-guild-library',header:':scope>header',dock:':scope>.ui-action-dock',close:'[data-guild-close]',headerActions:'[data-guild-view]'},
  {selector:'.town-service',name:'town-service',header:':scope>header',dock:':scope>footer',close:'[data-service-back]'},
- {selector:'.dialog-presentation[data-kind=commander]',name:'commander',header:':scope>header',dock:':scope>footer',close:'[data-dialog-confirm]',headerActions:'[data-commander-tree]'},
- {selector:'.dialog-presentation',name:'message',requiredChoice:true,header:':scope>header',dock:':scope>footer',close:'[data-dialog-cancel]',headerActions:'[data-commander-tree]'},
+ {selector:'.dialog-presentation[data-kind=commander]',name:'commander',modal:true,modalContent:'.commander-tree',header:':scope>header',dock:':scope>footer',close:'[data-dialog-confirm]',headerActions:'[data-commander-tree]'},
+ {selector:'.dialog-presentation',name:'message',modal:true,requiredChoice:true,header:':scope>header',dock:':scope>footer',close:'[data-dialog-cancel]',headerActions:'[data-commander-tree]'},
  {selector:'.market-page',name:'marketplace',header:':scope>.market-header',dock:'.market-view-actions',close:'[data-market=close]',extraActions:'[data-market=trade]'},
  {selector:'.hero-equipment-page',name:'hero',liftDock:true,header:':scope>.hero-card-head',dock:'.hero-army-dock-tools,.hero-artifact-actions',close:'[data-hero-close]'},
  {selector:'.hero-exchange-page',name:'hero-exchange',header:':scope>.exchange-toolbar',dock:'.exchange-actions',close:'[data-exchange-close]'},
@@ -27,7 +27,7 @@ export const screenContracts=[
  {selector:'.battle-result',name:'battle-result',body:'.result-content',header:':scope>header',dock:':scope>.ui-action-dock',extraActions:':scope>[data-result-confirm]'},
  {selector:'.mithril-panel',name:'mithril',header:':scope>header',dock:':scope>.ui-action-dock',close:'[data-mithril-close]'},
  {selector:'.cave-builder>section',name:'cave-builder',header:':scope>header',dock:':scope>footer',close:'[data-builder-close]'},
- {selector:'dialog:not(.lobby-picker):not(#game-menu)',name:'dialog',header:':scope>header',dock:':scope>footer',close:'[data-close],[data-back],[data-cancel]'}
+ {selector:'dialog:not(.lobby-picker):not(#game-menu)',name:'dialog',modal:true,header:':scope>header',dock:':scope>footer',close:'[data-close],[data-back],[data-cancel]'}
 ];
 export const screenSelector=screenContracts.map(contract=>contract.selector).join(',');
 export const screenContract=element=>screenContracts.find(contract=>element.matches(contract.selector));

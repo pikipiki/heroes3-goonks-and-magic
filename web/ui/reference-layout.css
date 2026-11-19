@@ -244,3 +244,40 @@
   #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{display:block!important;min-width:0!important;width:100%!important;line-height:16px!important;text-align:center!important}
  }
 }
+@layer screen-layouts {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-columns:minmax(0,1fr) clamp(288px,44cqw,300px)!important;grid-template-rows:48px minmax(122px,1fr) 64px!important;gap:8px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header{grid-area:1/2!important;padding:0!important;min-height:48px!important;gap:8px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header button{height:48px!important;min-height:48px!important;width:48px!important;padding:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{grid-area:1/1/4/2!important;display:grid!important;grid-template-columns:minmax(96px,.8fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important;overflow:hidden!important;min-height:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:32px minmax(0,1fr) 56px!important;gap:8px!important;height:100%!important;min-height:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary>h3{grid-area:1/1!important;font:var(--ui-font-body-small)!important;margin:0!important;overflow-wrap:normal!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-preview{grid-area:2/1!important;height:100%!important;width:100%!important;min-height:0!important;object-fit:contain!important;margin:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts{grid-area:3/1!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,24px)!important;gap:4px!important;margin:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts>div{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;padding:0 4px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts :is(dt,dd){font:var(--ui-font-body-small)!important;margin:0!important;white-space:nowrap!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice-description{grid-area:1/2!important;min-height:0!important;overflow:auto!important;touch-action:pan-y!important;margin:0!important;padding:0!important;border:0!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-choices{grid-area:2/2!important;box-sizing:border-box!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;gap:8px!important;padding:8px!important;align-content:stretch!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice{padding:0!important;gap:0!important;min-height:48px!important;justify-content:center!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice canvas{width:32px!important;height:32px!important;flex:0 0 32px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice strong{font:var(--ui-font-body-small)!important;min-width:0!important;line-height:16px!important;word-break:normal!important;overflow-wrap:normal!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>footer.ui-action-dock{grid-area:3/2!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important}
+ }
+}
+/* Shared modal composition owns landscape title/close placement, including
+   alternate content such as a commander tree. Native handlers stay attached. */
+@layer screen-layouts {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .ui-modal-layout{grid-template-columns:minmax(0,1fr) var(--ui-modal-rail,var(--control-rail,244px))!important}
+  #mobile-app .ui-modal-layout>.ui-screen-header{grid-column:2!important;grid-row:1!important;min-width:0!important}
+  #mobile-app .ui-modal-layout>.ui-modal-content{grid-column:1!important;grid-row:1/-1!important;min-height:0!important;min-width:0!important;overflow:auto!important;touch-action:pan-y!important}
+  #mobile-app .ui-modal-layout>footer.ui-action-dock{grid-column:2!important}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]{--ui-modal-rail:168px;grid-template-rows:56px minmax(0,1fr) auto!important}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:8px!important;padding:4px!important;height:56px!important;min-height:56px!important}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header h2{font:var(--ui-font-title-compact)!important;white-space:nowrap!important;flex:1!important;min-width:0!important;margin:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header button{flex:0 0 48px!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer.ui-action-dock{grid-row:3!important;gap:8px!important;padding:8px!important}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer>[data-commander-tree]{height:64px!important;min-height:64px!important;flex-basis:64px!important}
+ }
+ #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}

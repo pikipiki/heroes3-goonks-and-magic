@@ -10,7 +10,7 @@ for(const[kind,engine]of Object.entries({chromium,webkit})){
  for(const language of(process.env.UI_LANGUAGE?[process.env.UI_LANGUAGE]:['fr','en']))for(const viewport of[{width:320,height:568},{width:360,height:640},{width:430,height:932},{width:568,height:280},{width:716,height:279},{width:844,height:390}]){
  if(process.env.UI_SIZE&&Number(process.env.UI_SIZE)!==viewport.width)continue;await p.setViewportSize(viewport);await p.evaluate(async language=>(await import('/web/i18n.mjs')).setLanguage(language),language);
  for(const entry of screenCases.filter(entry=>!process.env.UI_CASES||process.env.UI_CASES.split(',').includes(entry[0]))){
-  await p.evaluate(state=>{for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();dispatchEvent(new CustomEvent('goonk-state',{detail:state}));},stateFor(entry));await p.waitForTimeout(120);
+  await p.evaluate(state=>{for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();if(state.dialogKind==='commander')dispatchEvent(new CustomEvent('goonk-state',{detail:{mode:'map'}}));dispatchEvent(new CustomEvent('goonk-state',{detail:state}));},stateFor(entry));await p.waitForTimeout(120);
   for(const selector of entry.slice(2)){const target=p.locator(selector);if(await target.count()&&!await target.isVisible()&&selector.startsWith('[data-hero-tab'))await p.locator('.hero-bag-tabs>.ui-overflow-trigger').tap();if(await target.count()&&await target.isVisible()){await target.tap({timeout:3000});await p.evaluate(state=>dispatchEvent(new CustomEvent('goonk-state',{detail:state})),stateFor(entry));await p.waitForTimeout(50);}}
   if(!before&&entry[0].startsWith('hero-army-')){
    assert(await p.locator('.mobile-calendar').isDisabled(),'Hero calendar is visible but never opens another modal');if(viewport.width<viewport.height)assert(await p.locator('.mobile-calendar').isVisible(),'Hero calendar stays visible');
@@ -23,15 +23,19 @@ for(const[kind,engine]of Object.entries({chromium,webkit})){
    assert.equal(bounds.commander.height,bounds.tabs.height,'Commander and army navigation share a height');
    assert(bounds.labels.every(n=>n.width<=n.cell),'Primary stat labels fit their cells');
   }
-  if(!before&&entry[0]==='commander'&&viewport.width<viewport.height){
+  if(!before&&entry[0]==='commander'){
    const panel=p.locator('.dialog-presentation[data-kind=commander]'),preview=panel.locator('.commander-preview'),image=await preview.boundingBox(),copy=await panel.locator('.dialog-copy').boundingBox();
    assert(image.y>=copy.y&&image.y+image.height<=copy.y+copy.height,'Commander artwork stays entirely visible');
    const skills=await panel.locator('.dialog-choice').evaluateAll(nodes=>nodes.map(n=>{const b=n.getBoundingClientRect(),i=n.querySelector('canvas').getBoundingClientRect(),t=n.querySelector('strong').getBoundingClientRect();return {height:b.height,icon:i.width,fits:t.left>=b.left&&t.right<=b.right+1&&t.top>=b.top&&t.bottom<=b.bottom+1};}));
-   assert(skills.every(s=>s.height<=60&&s.icon===32&&s.fits),'Larger skill icons preserve compact cases and fully contained labels');
-   const actions=await Promise.all(['[data-dialog-confirm]','[data-commander-tree]','[data-dialog-classic]'].map(selector=>panel.locator('footer>'+selector).boundingBox()));
-   assert(actions.every(b=>b.y===actions[0].y&&b.height===actions[0].height),'Three commander actions occupy one aligned row');assert(actions[0].x<actions[1].x&&actions[1].x<actions[2].x,'Return, tree, classic action order');
+   assert(skills.every(s=>(viewport.width>viewport.height||s.height<=60)&&s.icon===32&&s.fits),'Larger skill icons preserve compact cases and fully contained labels');
+   const actions=await Promise.all(['[data-commander-tree]','[data-dialog-classic]'].map(selector=>panel.locator('footer>'+selector).boundingBox()));
+   assert(actions.every(b=>b.y===actions[0].y&&b.height===actions[0].height),'Commander actions occupy one aligned row');assert(actions[0].x<actions[1].x,'Tree then classic action order');assert(await panel.locator('[data-dialog-confirm]').isHidden(),'Cross is the only visible exit');
    await panel.locator('.dialog-choice-description').evaluate(n=>n.scrollTop=n.scrollHeight);assert.equal((await preview.boundingBox()).y,image.y,'Reading long skill text never hides the commander');
    await panel.locator('[data-dialog-info="1"]').tap();assert.equal(await panel.locator('[data-dialog-info="1"]').getAttribute('aria-pressed'),'true');assert(/^(Defense|Défense)/.test(await panel.locator('.dialog-choice-description').innerText()),'Skill selector changes the visible description');
+  }
+  if(!before&&entry[0]==='commander-tree'){
+   const panel=p.locator('.dialog-presentation[data-tree=true]');assert(await panel.isVisible());assert(await panel.locator('[data-dialog-confirm]').isHidden(),'Tree has no duplicate Return');
+   if(viewport.width>viewport.height){const header=await panel.locator('header').boundingBox(),tree=await panel.locator('.commander-tree').boundingBox();assert(header.x>=tree.x+tree.width,'Shared modal title and cross occupy the right rail');assert(header.width<=170,'Tree rail gives width back to the content');const title=await panel.locator('header h2').boundingBox(),close=await panel.locator('header button').boundingBox();assert(title.x+title.width<=close.x+1,'Compact title and close never overlap');assert.equal(close.height,48,'Close retains its full touch target');}
   }
   const geometry=await p.evaluate(()=>[...document.querySelectorAll('#mobile-app canvas,#mobile-app .creature-stage,#mobile-app .featured-visual,#mobile-app .hall-form img,#mobile-app .hero-portrait')].filter(n=>n.getBoundingClientRect().width&&n.getBoundingClientRect().height&&!n.closest('[hidden]')).map(n=>{const r=n.getBoundingClientRect();return {tag:n.tagName,key:n.className?.baseVal??n.className,x:r.x,y:r.y,width:r.width,height:r.height};}));const sample=before?{}:await inspectMaterialPage(p);sample.visualGeometry=geometry;report.samples.push({engine:kind,language,viewport,case:entry[0],...sample});
   if(process.env.UI_CAPTURE_ALL==='1'||language==='fr'&&[320,568,716].includes(viewport.width)){const dir=process.env.UI_CAPTURE_DIR||'/tmp';fs.mkdirSync(dir,{recursive:true});await p.screenshot({path:`${dir}/matrix-${before?'before':'after'}-${kind}-${entry[0]}-${language}-${viewport.width}.png`});}
