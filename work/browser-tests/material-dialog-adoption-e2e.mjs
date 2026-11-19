@@ -33,10 +33,12 @@ for(const[name,engine]of Object.entries({chromium,webkit})){
   assert(await page.locator('#first').evaluate(node=>!!node.closest('.MuiDialog-root')),'Rapid close/reopen keeps the original paper adopted');
   await page.evaluate(()=>boundaries.first.dispose());assert(await page.locator('#first').evaluate(node=>node.parentElement.classList.contains('mobile-play')),'Dispose restores native DOM before React unmount');
   await page.evaluate(()=>{window.confirmResult=null;confirmMaterial({title:'Confirm action',message:'Existing native wording',confirmLabel:'Confirm',cancelLabel:'Cancel'}).then(value=>window.confirmResult=value);});
+  await page.mouse.click(4,4);await page.waitForTimeout(250);assert.equal(await page.evaluate(()=>confirmResult),null,'Confirmation ignores compatibility clicks on its backdrop');
   await page.getByRole('button',{name:'Cancel',exact:true}).click();await page.waitForFunction(()=>window.confirmResult===false);
   await page.evaluate(()=>{window.confirmResult=null;confirmMaterial({title:'Confirm action',message:'Existing native wording',confirmLabel:'Confirm',cancelLabel:'Cancel'}).then(value=>window.confirmResult=value);});
   await page.getByRole('button',{name:'Confirm',exact:true}).click();await page.waitForFunction(()=>window.confirmResult===true);
   await page.evaluate(()=>{window.noticeResult=false;noticeMaterial({title:'Information',message:'Existing notice wording',closeLabel:'Close'}).then(()=>window.noticeResult=true);});
+  await page.mouse.click(4,4);await page.waitForTimeout(250);assert.equal(await page.evaluate(()=>noticeResult),false,'Notice ignores outside compatibility clicks');
   await page.getByRole('button',{name:'Close',exact:true}).click();await page.waitForFunction(()=>window.noticeResult);
   await page.evaluate(()=>Object.values(boundaries).forEach(boundary=>boundary.dispose()));assert.equal(await page.locator('[data-ui-dialog-boundary]').count(),0);assert.deepEqual(errors,[]);console.log('PASS',name,'real Dialog adoption, native identities, commands, geometry, stack, Escape/backdrop, restoration');
  }finally{await browser.close();}

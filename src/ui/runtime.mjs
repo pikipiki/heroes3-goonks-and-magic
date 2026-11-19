@@ -253,7 +253,7 @@ function requestMaterialPrompt({title,message,confirmLabel,cancelLabel,closeLabe
   const close=answer=>{if(settled)return;settled=true;value=answer;open=false;update();};
   const finish=()=>queueMicrotask(()=>{react.unmount();host.remove();resolve(confirmation?value:undefined);});
   const update=()=>flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Dialog,{
-   open,container,maxWidth:'sm',fullWidth:true,disableScrollLock:true,closeAfterTransition:false,onClose:()=>close(false),onTransitionExited:finish,
+   open,container,maxWidth:'sm',fullWidth:true,disableScrollLock:true,closeAfterTransition:false,onClose:(event,reason)=>{if(reason==='escapeKeyDown')close(false);},onTransitionExited:finish,
    slotProps:{root:{style:{position:'absolute',inset:0,pointerEvents:open?'auto':'none'}},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
   },h(DialogTitle,null,title),h(DialogContent,null,h(DialogContentText,{sx:{whiteSpace:'pre-line'}},message)),h(DialogActions,null,
    confirmation?h(Button,{onClick:()=>close(false)},cancelLabel):null,

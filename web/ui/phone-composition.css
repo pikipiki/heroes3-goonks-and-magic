@@ -119,3 +119,13 @@
   #mobile-app .market-page .market-view-actions>button{grid-column:auto!important;grid-row:auto!important;width:100%!important;height:48px!important;min-width:0!important;min-height:48px!important;margin:0!important;padding:4px!important;font:var(--ui-font-label)!important}
  }
 }
+
+@layer ui-composition {
+ #mobile-app .ui-modal-rail-chrome{display:none!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .ui-modal-rail-chrome:not([hidden]){position:absolute!important;inset:0 0 auto auto!important;z-index:40;display:grid!important;grid-template-columns:48px minmax(0,1fr) 48px!important;align-items:center!important;gap:4px!important;width:var(--control-rail,244px)!important;height:56px!important;min-height:56px!important;padding:4px!important;box-sizing:border-box!important;background:var(--ui-surface,#2b1d11);border-bottom:1px solid var(--ui-outline)!important}
+  #mobile-app .ui-modal-rail-chrome>button{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;padding:0!important;margin:0!important}
+  #mobile-app .ui-modal-rail-chrome>.ui-purchase-resources{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:12px!important;align-content:center!important;gap:0 2px!important}
+  #mobile-app .ui-modal-rail-chrome>.ui-purchase-resources .mobile-resource{font:var(--ui-font-resource)!important}
+ }
+}
