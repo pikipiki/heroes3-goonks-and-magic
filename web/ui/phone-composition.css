@@ -192,3 +192,14 @@
   #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact:not(:has(>.hero-movement-summary)){grid-template-rows:minmax(48px,1fr)!important}
  }
 }
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-viewport #mobile-app[data-ui-town-rail=true]{grid-template-rows:56px minmax(56px,1fr) auto!important}
+  #mobile-viewport #mobile-app[data-ui-town-rail=true]>.mobile-nav.ui-action-dock{grid-area:3/2/4/3!important;padding:4px!important;gap:4px!important}
+  #mobile-viewport #mobile-app[data-ui-town-rail=true]>.ui-rail-calendar:not([hidden]){display:flex!important;position:static!important;grid-column:2!important;grid-row:2!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;align-self:stretch!important;width:calc(100% - 8px)!important;height:calc(100% - 8px)!important;min-height:48px!important;max-height:none!important;margin:4px!important;padding:4px!important;gap:4px!important;box-sizing:border-box!important}
+  #mobile-app>.ui-rail-calendar>:is(.calendar-compact,.calendar-next-week,.calendar-location){display:none!important}
+  #mobile-app>.ui-rail-calendar .calendar-recruit-cue{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:nowrap!important;gap:4px!important;width:100%!important;min-height:20px!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;font:var(--ui-font-label)!important}
+  #mobile-app>.ui-rail-calendar .calendar-recruit-cue>*{font:inherit!important;line-height:inherit!important}
+  #mobile-app>.ui-rail-calendar>span:first-child{display:block!important;order:1!important;width:100%!important;text-align:center!important;font:var(--ui-font-resource)!important;line-height:14px!important;min-height:14px!important}
+ }
+}

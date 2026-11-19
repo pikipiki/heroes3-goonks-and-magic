@@ -25,6 +25,8 @@ export function useKingdomChrome(root){
  for(const node of [...header.querySelectorAll('.mobile-resources,.mobile-calendar')]){const parent=compact?popup.list:header;if(node.parentElement!==parent)parent.append(node);}
  const mapRail=root.dataset.mode==='map'&&root.clientWidth>root.clientHeight&&root.clientHeight<400;
  root.dataset.uiMapRail=String(mapRail);
- const calendar=root.querySelector('.mobile-calendar'),calendarParent=mapRail?root:header;
+ const townRail=root.dataset.mode==='town'&&root.clientWidth>root.clientHeight&&root.clientHeight<400;root.dataset.uiTownRail=String(townRail);
+ const calendar=root.querySelector('.mobile-calendar'),calendarParent=mapRail||townRail?root:header;
+ calendar?.classList.toggle('ui-rail-calendar',mapRail||townRail);
  if(calendar&&calendar.parentElement!==calendarParent)calendarParent.append(calendar);
 }

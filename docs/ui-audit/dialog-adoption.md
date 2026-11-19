@@ -114,3 +114,7 @@ Validation : Chromium et WebKit, FR/EN, 716×279 et 844×390 ; changement de hé
 ## Ajustement des hauteurs 0.4.306
 
 Sur la carte en paysage court, le calendrier est placé dans la même rangée de grille que la minimap, avec 4 px de respiration en haut et en bas. La ligne du héros reste à 48 px ; Marcher, Fin tour et Plus remplissent à égalité la hauteur restante de la rangée d’actions, avec un minimum de 48 px. Le composant commun replace le calendrier dans le bandeau lors du retour en portrait ou du changement d’écran. Les tests vérifient ces géométries en FR/EN sur Chromium et WebKit, ainsi que la carte sans héros et les rafraîchissements d’Échanger.
+
+## Calendrier du château 0.4.307
+
+En paysage court, le même calendrier MUI occupe désormais la rangée libre de la colonne du château, entre ressources et commandes. La date est centrée ; le cadre garde 4 px de respiration et n’ajoute aucune colonne. Construire, Retour et Plus conservent leurs cibles de 48 px. Le composant commun assure aussi le retour du calendrier dans le bandeau en portrait. Validation sur Huawei réel et sur Chromium/WebKit en FR/EN, avec transitions carte/château/portrait.
