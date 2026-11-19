@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "1c70a08c26e3121a2da97175c97a78a4f6dbf6ace53322e4673dd907f0e56fc6",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "work/vcmi-wasm/lib/era/EraHenchmanBannerSourceRows.h": "19239d75ad9b0fab41741c9f08cddc903730a7861dc6c86a06c218dc4013dc98",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -213,5 +213,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
+  },
+  "townBannersRevalidation": {
+    "scope": "Historical native reports and engines retained. Current source239 and 63 previously admitted native scenarios revalidated on938.",
+    "proof": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978"
+    },
+    "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }
 }

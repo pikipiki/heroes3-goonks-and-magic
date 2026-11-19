@@ -1,0 +1,1271 @@
+{
+  "schema": 1,
+  "system": "WoG source77 rule239 town banners",
+  "sourceScriptSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "reports": [
+    {
+      "name": "guards",
+      "originalReportSha256": "f4b542462d64408a0b39254faf1aa6647297fbc4f2625a57460588c60020ec68",
+      "report": {
+        "scope": "Analyse statique ordinaire bornée des coordonnées CA, dimensions UN:X, affectations UN:T et rythme source77 pour règle239. Aucune exécution originale, aucune REA Evidence, aucun fichier suivi ou conteneur modifié.",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "size": 77129,
+            "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm",
+            "size": 114009,
+            "sha256": "9cecab0bf658ad807b27cb9f783c220183dde8f580adb61e72044d6692de530f"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "size": 96807,
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+          }
+        ],
+        "conclusions": [
+          {
+            "question": "CA0/i et CA:P origine?",
+            "status": "raw native contract answered; semantic anchor mapping bounded",
+            "answer": "CA0/i selects the i-th native town vector record (stride0x168), i0..count-1, without owner filtering or coordinate sorting. CA:P returns stored TTown.x/y/l at+5/+6/+7 unchanged, not an explicit object-visual-position offset. This pass proves raw native coordinate origin and no receiver translation; exact mapping from visual object anchor to this stored town entrance/visit position was not independently re-traced in maploader."
+          },
+          {
+            "question": "UN:X taille et limites?",
+            "status": "answered",
+            "answer": "Returns square map dimensionN and undergroundflag, not highestlegalindex. Valid ordinarytileindices0..N-1; source checks y<N before incrementing y by1, so a town atstoredy=N-1 passes that check and producescandidatey=N. There is no explicit x-bound clamp around x±1 in source; later UN:E/UN:I behavior determines invalidcoordinateoutcomes and is outside this question."
+          },
+          {
+            "question": "UN:T exact et difficulté?",
+            "status": "answered",
+            "answer": "Current mutable town-creature assignment table:9towns*2upgradegroups*7tiers, zero-basedtown0..8/tier0..6/upgrade0..1. UN:J2 reads globaldifficulty6834a4 directly. For normaldifficulty0..4 source chooses tier5upgrade1, tier5upgrade0, tier6upgrade1, then type150+townType for3and4. No randomtier or UN:T lookup at3/4."
+          },
+          {
+            "question": "Suprême Archangel164?",
+            "status": "answered",
+            "answer": "Bundled constant MON_SUPREME_ARCHANGEL=150. Highest difficulty uses150+townType, giving150..158.164 is not this constant."
+          },
+          {
+            "question": "Croissance multiplication/semaines/propriétaire?",
+            "status": "source contract answered; native AR countcap outside scope",
+            "answer": "Growth source uses G0/d/d1: preserve creaturetype and add1 guardian, not multiply. Called only timerDay>1, timerOnce, weekday1 and rule20enabled. Internal parity selectsmonthweek1/3; week3 skipsdifficulty1and3, executes0/2/4. Growth guard checks PO:O>-2 and OB:C<0, not currenttownowner or timercurrentplayer; scans allbannerartifacts. Thus neutral/owned distinction is encoded through marker/configstate, not a newowner comparison inthisgrowthloop."
+          }
+        ],
+        "difficultyGuardTable": [
+          {
+            "difficulty": 0,
+            "tier": 5,
+            "upgrade": 1,
+            "creatureByTownType": [
+              11,
+              25,
+              39,
+              53,
+              67,
+              81,
+              95,
+              109,
+              121
+            ],
+            "week1GrowthAfterDay1": true,
+            "week3Growth": true
+          },
+          {
+            "difficulty": 1,
+            "tier": 5,
+            "upgrade": 0,
+            "creatureByTownType": [
+              10,
+              24,
+              38,
+              52,
+              66,
+              80,
+              94,
+              108,
+              120
+            ],
+            "week1GrowthAfterDay1": true,
+            "week3Growth": false
+          },
+          {
+            "difficulty": 2,
+            "tier": 6,
+            "upgrade": 1,
+            "creatureByTownType": [
+              13,
+              27,
+              41,
+              55,
+              69,
+              83,
+              97,
+              111,
+              131
+            ],
+            "week1GrowthAfterDay1": true,
+            "week3Growth": true
+          },
+          {
+            "difficulty": 3,
+            "tier": null,
+            "upgrade": null,
+            "creatureByTownType": [
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158
+            ],
+            "week1GrowthAfterDay1": true,
+            "week3Growth": false
+          },
+          {
+            "difficulty": 4,
+            "tier": null,
+            "upgrade": null,
+            "creatureByTownType": [
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158
+            ],
+            "week1GrowthAfterDay1": true,
+            "week3Growth": true
+          }
+        ],
+        "sourcePlacement": {
+          "enumeration": "UN:U towncount, then CA0/i fori0..towncount-1. Count comesfromobjectenumeration whereasCA uses townvector; equality inordinarymaps is expected but corrupt/custommismatch not provenhere.",
+          "candidates": "Start rawtown(x,y,z). Ify<N, incrementy once; test(x,y+1). If flag1 fromUN:E, try(x+1,y+1); ifstillflag1 then(x-1,y+1); ifthirdflag1 skipcurrenttown. No additionalyfallback. NativeUN:E flagsemantics not re-establishedinthisreport.",
+          "spawn": "Place artifact ART_WARLORDS_BANNER throughUN:I(...,FALSE), no redraw requested. Ownedtown(owner!=-1): AR:X0/G0(type,1), PO:O=townowner. Neutraltown: AR:X1/G0(type,1), no explicitPO:O write inthatbranch. Comment says0guardians but literal countis1; X distinguishesguardactivation. Markerdefault isnotinferredhere."
+        },
+        "sourceGrowth": {
+          "outerGate": "Source77 OnEveryDay timerDay>1; timerOnce block; timerWeekDay==1; rule20enabled.",
+          "innerGate": "Handleralso weekday1. W=timerMonthWeek &1; ifW==0 no work. Ifweek==3 && difficulty!=0: W=(difficulty+1)&1; ifW==0 earlyreturn. difficulty0 preservesW1.",
+          "normalDays": "Monthday1: growthonlyaftermonth1becauseglobalday>1; monthday15: growthonlydifficulty0,2,4. Forfirstmonth earliestgrowthday15. Days8/22 excluded. Subsequentmonthdays1/15 follow parity.",
+          "mutationPredicate": "For each currentbanner, read PO:O and OB:C. Only ifsignedmarker>-2 AND signedconfig<0, AR:X1 G0/d/d1. No ownershipchange, no comparisonmarkertocurrentowner inthisloop.",
+          "noMultiplication": "d1 is ADD1 in third G parameter. Native guardcount storage/caps and marker/config encoding are separate artifact questions; no source-leveluppercap includedhere."
+        },
+        "sourceReferences": [
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "ranges": [
+              [
+                73,
+                78
+              ],
+              [
+                88,
+                103
+              ],
+              [
+                893,
+                949
+              ]
+            ],
+            "meaning": "Initialization, outerdailygate, townplacement andguardianchange."
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "ranges": [
+              [
+                525,
+                538
+              ]
+            ],
+            "meaning": "Supreme150 andtown8thlevelsequence."
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm",
+            "ranges": [
+              [
+                219,
+                246
+              ]
+            ],
+            "meaning": "timerWeekDay1..7, monthweek1..4, monthweek=floor(((day-1)%28)/7)+1 andonceflag."
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "ranges": [
+              [
+                985,
+                1000
+              ],
+              [
+                1028,
+                1032
+              ],
+              [
+                1402,
+                1403
+              ],
+              [
+                1446,
+                1446
+              ]
+            ],
+            "meaning": "Native town coordinate layout, helperaddresses andtowncreaturetable."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CA indexed selection",
+            "preferredVa": "0x70ddd8",
+            "endExclusiveVa": "0x70de98",
+            "rva": "0x30ddd8",
+            "fileOffset": "0x2a8dd8",
+            "size": 192,
+            "sha256": "186d5df153f95a2e7d19d5f5cf0d1943cd787eec1195f4b91f82ca7785a931db",
+            "observation": "Two-selector form CA0/i: first argument must0, second i must0<=i<townCount; select townsVectorBegin+i*0x168. No coordinate sort or owner filter."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CA town vector helpers",
+            "preferredVa": "0x711bd4",
+            "endExclusiveVa": "0x711c62",
+            "rva": "0x311bd4",
+            "fileOffset": "0x2acbd4",
+            "size": 142,
+            "sha256": "44dd9014b6d7c37d485d5ae87f1ba0b2843b2dfbc2bb2d1775530fb4afe9f257",
+            "observation": "Resolve GameMgr+21614 vectorbegin, count=(end-begin)/0x168."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CA P raw stored coordinates",
+            "preferredVa": "0x70e28e",
+            "endExclusiveVa": "0x70e2d8",
+            "rva": "0x30e28e",
+            "fileOffset": "0x2a928e",
+            "size": 74,
+            "sha256": "330400da88dabedbe39ad34838a55bdbdb5e06315d9f7eff34f6cdcd0c78559e",
+            "observation": "GenericApply sizes-1,-1,+1 on town+5,+6,+7 returns unsigned x,y and signedbytelevel. No subtract/add translation in CA:P."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CA O and T fields",
+            "preferredVa": "0x70e31a",
+            "endExclusiveVa": "0x70e356",
+            "rva": "0x30e31a",
+            "fileOffset": "0x2a931a",
+            "size": 60,
+            "sha256": "40bc8dd6ee65707b761d04d523bb9364435823b0fbd4c91ebd5aeb333c2db260",
+            "observation": "Owner read from signedbyte town+1; town type from town+4. Setterpaths nottargethere."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN X read-only receiver",
+            "preferredVa": "0x732117",
+            "endExclusiveVa": "0x7321e0",
+            "rva": "0x332117",
+            "fileOffset": "0x2cd117",
+            "size": 201,
+            "sha256": "3e04aaf46a17fc6f6c29c6f0d600a18f081aa67ebd6377f71cf419ef985bb5a2",
+            "observation": "Exactly2params, GET form required; returns711387() mapSize and7113c0() hasUnderground. No size-minus-one transform."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "map size and underground getters",
+            "preferredVa": "0x711387",
+            "endExclusiveVa": "0x7113f9",
+            "rva": "0x311387",
+            "fileOffset": "0x2ac387",
+            "size": 114,
+            "sha256": "46fd7ecb4ea2288554123b46ded911f4d2269457cc17a39fc06b17aa875f2853",
+            "observation": "Read GameMgr+1fc44 int32 and+1fc48 signedbyte. These are actual dimensionN and undergroundflag, notmaxcoordinate."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN T table receiver",
+            "preferredVa": "0x732b67",
+            "endExclusiveVa": "0x732ce6",
+            "rva": "0x332b67",
+            "fileOffset": "0x2cdb67",
+            "size": 383,
+            "sha256": "f31dfd73f7a41fe9a5ef75ecb791936c24c426c89261cb3e15dc428e06267c87",
+            "observation": "Atleast4params. townType0..8, dwellingIndex0..6, upgradeIndex0..1. Address715067(town)+(upgrade*7+dwelling)*4. GenericApply GET outputs currenttablecell. No randomchoice. SET monster0..196 guard applies onlyafter successfulSET."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town creature assignment table getter",
+            "preferredVa": "0x715067",
+            "endExclusiveVa": "0x715097",
+            "rva": "0x315067",
+            "fileOffset": "0x2b0067",
+            "size": 48,
+            "sha256": "fd93b6af96d9fbd9e66c8828eb0e08f636c2e8ffeaef09162c7db1dcddaab09b",
+            "observation": "Returns address6747b4 + townType*14*4."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town creature assignment table",
+            "preferredVa": "0x6747b4",
+            "endExclusiveVa": "0x6749ac",
+            "rva": "0x2747b4",
+            "fileOffset": "0x2747b4",
+            "size": 504,
+            "sha256": "1d108ea4c8ce872f61905ffa2cbd74685edd278566692bc211e758b04ad79388",
+            "observation": "On-disk9*2*7 int32assignmentrows. Mutable global used byUN:T, not necessarily vanilla afterscripts/plugins."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN J2 difficulty",
+            "preferredVa": "0x73390e",
+            "endExclusiveVa": "0x73396a",
+            "rva": "0x33390e",
+            "fileOffset": "0x2ce90e",
+            "size": 92,
+            "sha256": "1d8418119289a4191a3a162457c0b7fe7870fb0e9ec6dd54f50bdb05e44e10e3",
+            "observation": "Reads7166a0; genericApply GET returnsdifficulty directly. SET dispatch7166d4 separate."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "difficulty global getter",
+            "preferredVa": "0x7166a0",
+            "endExclusiveVa": "0x7166d4",
+            "rva": "0x3166a0",
+            "fileOffset": "0x2b16a0",
+            "size": 52,
+            "sha256": "f18e336318ddfc6c276e321b1b9adcc533e3e7501558a0d34ac23db4cd610c2b",
+            "observation": "Reads globalint32 at6834a4; no adjustment or player/AI-specific substitution inthisgetter."
+          }
+        ],
+        "limits": [
+          "No originalruntime or processpatchbytes observed. Mutabletowncreaturetable, actualmaptownordering, difficulty andmarkers may be changed byscripts/plugins.",
+          "CA:P rawfields are proven; fullH3M-object-anchor→TTown storedcoordinate constructor path not traced. Do not add a guessedoffset basedonlyonvisualtownsprite.",
+          "UN:E flagmeaning, invalidcoordinate behavior, placementcollision policy, AR:X/G lifecycle and PO:O/OB:C nativeencoding are outside thisboundedreport. Exactsourceconditions are preservedratherthan inferred.",
+          "No newfullpluginhookaudit; externalAdvancedClasses/Reborn/Amethyst patches maychangeguardtables, mapdimensions orreceivers. BaseEXE regions andPascal/source corroboration only.",
+          "Sourcecomment andliteralguardcount differ on ownedtown placement; report deliberately recordsliteral1 andX0, not inferredzero.",
+          "All reports generatedonlyinthisnewignoredfolder; no trackedcode orcontainer mutated."
+        ]
+      }
+    },
+    {
+      "name": "placement",
+      "originalReportSha256": "054f7e3e4d3620e8e5b6637ae2bcab68af81f0d656ea58069cbb213b0f58381a",
+      "report": {
+        "scope": "Ordinary bounded static PE/Pascal/ERM artifact inspection only. No original runtime execution, no REA Evidence, no tracked file or container changes. Graphify query executed before artifact/source exploration.",
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Tweaks.pas",
+            "size": 98819,
+            "sha256": "1f46a1bc5b3392a7598792c5a832916927d8d996e3b3b0d8ac61da085bf2391d"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/PoTweak.pas",
+            "size": 4443,
+            "sha256": "b81f2d3bd8f5fdef0ba5f63bca9abeb17b29bed09ee5a20bc193a927b47090e8"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/78 wog - wogify.erm",
+            "size": 83098,
+            "sha256": "a86e8e993c2ae07414094969f4d74bd5a1f7e6b67997f88debebcf01f5db3d57"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "size": 77129,
+            "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+          }
+        ],
+        "contract": {
+          "UN_E": {
+            "flag1": "f1 true means candidate fails the inspected accessibility predicate. f1 false means predicate true. This is not a placement operation or proof that later UN:I succeeds. Erm.pas721 maps f[1] to91f2e0.",
+            "predicate": "word(tile+0x0c)&0x1000 == 0 AND word(tile+0x0c)&0x40 != 0 AND byte(tile+4) not in {8,9} AND dword(tile+0x1e) !=26. Full dword comparison26, not only low16 object type.",
+            "coordinates": "711209 clamps x/y to map edges and z to0..1. Script arithmetic variables are not rewritten by this tile helper. Thus probing x+1 past the edge can inspect the edge tile while subsequent script coordinates remain out of range.",
+            "derivedRule239Sequence": "Probe town x,y+1,z; on f1 try x+1, same y; on f1 then x-1 relative original x; if third f1 continue next town. It does not search further. Outer script condition is townY<mapSize before y+1, not strict candidate-coordinate validation."
+          },
+          "UN_I": {
+            "constants": "Bundled constants give OBJ_ARTIFACT=5, ART_WARLORDS_BANNER=156, OBJ_TOWN=98.",
+            "sixArguments": "Source77 line911 uses x/y/z/5/156/0. Native receiver interprets sixth0 as Terrain selector; actual and visual object type/subtype both5/156. Redraw defaults1 and helper7126ea is called. The source comment no redraw does not match inspected parameter mapping. In contrast source78 line1725 uses nine arguments x/y/z/5/156/5/156/-1/0 to suppress redraw.",
+            "record": "Artifact path appends a76-byte extended record, initializes7 types to-1 and7counts0, packs index into config bits19..30 and sets bit31. No flag1 assignment or success-test follows helper return in this UN:I receiver. Source77 also does not test creation result before AR/PO.",
+            "TerrainMeaningBound": "Passed to native object-definition/placement selector via temporary immediate at4c95df; this bridge does not write the map tile terrain type. Full DEF selection/failure/overlap behavior of506570 not traced."
+          },
+          "AR_X_G": {
+            "recordLayout": "Extended artifact/resource record stride76. +0x10 byte guardianEnabled; +0x14..0x2b seven signed32 creature types; +0x30..0x47 seven signed32 counts.",
+            "X0": "Set guardianEnabled0; preserve all creature types/counts.",
+            "X1": "Set guardianEnabled1; preserve all creature types/counts.",
+            "G0_type_1": "Write slot0 creature type and count1. This is done by both owned and neutral source branches. Owned uses X0; neutral X1. Comment owned set0 guardians describes disabled combat effect, not stored quantity.",
+            "G0_d_d1": "Bare d adds0 to existing type; d1 adds1 to existing count with32-bit arithmetic; no range clamp visible in these generic field stores. Other six slots unchanged.",
+            "nativeConsumer": "49ece0 consults enabled byte before checking army contents. Disabled record bypasses guardians even if count1 remains. Enabled nonempty army enters guardian path. Full message, combat and defeat behavior not re-audited.",
+            "derivedExample": "With source-only unmodified initial count1, an owned banner remains disabled with count1 until growth calls X1 G0/d/d1, then enabled with count2. This is a deduction from the writes, not a runtime observation."
+          },
+          "OB_C": {
+            "meaning": "Raw signed32 tile configuration at offset0. config<0 means bit31 set, which selects extended record format for inspected artifacts. It does not test enabled state, guardian count, visit status, town ownership or object still being present by itself.",
+            "recordIndex": "(uint32(config)>>19)&0xfff, validated against current extended record count by AR before record access."
+          },
+          "PO_O": {
+            "representation": "Shared per-coordinate terrain property signed nibble bits8..11. Getter sign extends4bits, setter keeps low4bits, so range-8..7. Independent of object IDs and native object owner.",
+            "default": "Native reset writes nibble0xf -> -1. Source77 writes town owner0..7 for banners beside owned towns; neutral branch does not write PO:O, ordinarily retaining-1 at untouched coordinate.",
+            "minus2": "Not universal default. Source78 line1726 explicitly writes PO:O=-2 after replacing minor artifacts with map banners. This marks that inspected replacement population. No universal assertion for every map-created or plugin-created banner.",
+            "growthPredicate": "Source77 reads all remaining artifact5/156 objects and requires PO:O > -2 AND signed config<0. Default-1 and stored owners0..7 pass; marker-2 and nibble-8..-3 fail. No requirement that stored owner still equals town/current owner.",
+            "persistence": "PoTweak.pas saves shared Squares in Era.PO; property survives independently of object IDs. Native placement bridge inspected here does not reset this PO owner nibble. No complete deletion/new-placement lifecycle audit repeated in this scope."
+          }
+        },
+        "sourceReferences": [
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "lines": [
+              891,
+              892,
+              895,
+              896,
+              897,
+              898,
+              900,
+              903,
+              905,
+              911,
+              919,
+              920,
+              921,
+              923,
+              924,
+              931,
+              933,
+              935,
+              936,
+              937,
+              938,
+              941,
+              944,
+              945,
+              946,
+              948,
+              949
+            ],
+            "meaning": "Exact source239 placement and growth logic; comments distinguished from byte contracts."
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/78 wog - wogify.erm",
+            "lines": [
+              1723,
+              1724,
+              1725,
+              1726
+            ],
+            "meaning": "WoG banner replacement uses9-argument UN:I with redraw0 and explicitly marks PO:O=-2."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "lines": [
+              557,
+              558,
+              669,
+              721,
+              822
+            ],
+            "meaning": "f1 address and placement function signature."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Tweaks.pas",
+            "lines": [
+              863,
+              864,
+              869,
+              880,
+              884,
+              2640
+            ],
+            "meaning": "ERA hook at71299e serializes all8 unchanged arguments for network event then calls original; no parameter remap or placement predicate in this inspected wrapper."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/PoTweak.pas",
+            "lines": [
+              59,
+              64,
+              66,
+              67,
+              80,
+              86,
+              88,
+              89,
+              119,
+              120,
+              123,
+              124,
+              125
+            ],
+            "meaning": "PO tile base/size patching and save/load section. Exact line values available in supplied hashed source."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN:E receiver",
+            "preferredVa": "0x7315d1",
+            "endExclusiveVa": "0x73166b",
+            "rva": "0x3315d1",
+            "fileOffset": "0x2cc5d1",
+            "size": 154,
+            "sha256": "e1ceff00881459a3fccf63724a4a3c8d5b6b7af3b772656cbc37f33e0f2adf8e",
+            "observation": "Three coordinates ->711209 clamping tile lookup;7115c5 returns accessibility predicate. Store f1=1 if predicate0, else f1=0. Syntax/pointer errors return before setting f1."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "tile lookup coordinate clamp",
+            "preferredVa": "0x711209",
+            "endExclusiveVa": "0x7112c3",
+            "rva": "0x311209",
+            "fileOffset": "0x2ac209",
+            "size": 186,
+            "sha256": "c83bb3a8a30a7dd42e4bae76613aa4230197abb3b9020a7c0bebdc49432fa6e2",
+            "observation": "Clamp signed x/y to0..mapSize-1, z to0..1; tile pointer=base+38*(x+size*(y+z*size)). No usual out-of-bounds reject."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "tile accessibility predicate",
+            "preferredVa": "0x711431",
+            "endExclusiveVa": "0x7114bd",
+            "rva": "0x311431",
+            "fileOffset": "0x2ac431",
+            "size": 140,
+            "sha256": "f23b613fa6067dfe22ea213708e117216f20f012f4f251bb00be0cf71ccc21b4",
+            "observation": "True iff tile word+0c bit1000 absent, bit40 present, terrain byte+4 not8/9, and dword+1e !=26. Otherwise0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "accessibility forwarding helper",
+            "preferredVa": "0x7115c5",
+            "endExclusiveVa": "0x711606",
+            "rva": "0x3115c5",
+            "fileOffset": "0x2ac5c5",
+            "size": 65,
+            "sha256": "eb41d196591ec8c27b8f220bcccb63c987d93394295fdd770900c86aa2fa7431",
+            "observation": "Calls711431 and returns boolean0/1."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN:I argument mapping",
+            "preferredVa": "0x73166b",
+            "endExclusiveVa": "0x7317de",
+            "rva": "0x33166b",
+            "fileOffset": "0x2cc66b",
+            "size": 371,
+            "sha256": "ea858b460af28015ef343de7f745a7fc9bd4d26714cf66a3308144afd5552720",
+            "observation": "Defaults redraw local e4=1. Six arguments x,y,z,type,subtype,Terrain. Five defaults Terrain-1. Seven/eight specify visual type/subtype and optional Terrain. Nine reads redraw. Calls71299e then optional7126ea; does not assign flag1 or branch on placement return."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "placement wrapper",
+            "preferredVa": "0x71299e",
+            "endExclusiveVa": "0x712a47",
+            "rva": "0x31299e",
+            "fileOffset": "0x2ad99e",
+            "size": 169,
+            "sha256": "9c2feec091085594aa9ffd3ed3b8baf6fd847ec247ae3db7635c6bed4489a3f5",
+            "observation": "Passes x,y,z,type,subtype,visualtype,visualsubtype,Terrain through7133e2. Different visual type/subtype adds bounded patch loop; return native configuration value. Rule239 same visual/actual type pair bypasses extra loop."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "placement type dispatch",
+            "preferredVa": "0x7133e2",
+            "endExclusiveVa": "0x71343d",
+            "rva": "0x3133e2",
+            "fileOffset": "0x2ae3e2",
+            "size": 91,
+            "sha256": "271ad3a9633c9739828b6fc5d3be1d60b017d17e63376972522f6c4ab1fd44d2",
+            "observation": "Dispatch actual type minus5 via byte table714583 and pointer table714543. Artifact5 dispatches7135c2."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "placement dispatch tables",
+            "preferredVa": "0x714543",
+            "endExclusiveVa": "0x71465a",
+            "rva": "0x314543",
+            "fileOffset": "0x2af543",
+            "size": 279,
+            "sha256": "a30ad6304627e09b26d4230b61874a8a184a8dc7900678f2a4f5d47a62c88ffa",
+            "observation": "For actual type5 the selector byte is0 and pointer table entry0 is7135c2."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "new artifact resource extended record",
+            "preferredVa": "0x7135c2",
+            "endExclusiveVa": "0x713777",
+            "rva": "0x3135c2",
+            "fileOffset": "0x2ae5c2",
+            "size": 437,
+            "sha256": "90a2d77015e0d30f3a767c0a56e0abfa78f043edf34ee485422050b1d87420b9",
+            "observation": "Clear seven types to-1 and seven counts0; append76-byte extended record through507020; obtain count-1 index; configuration packs index in bits19..30 and sets bit31. Call712943 to install actual object with configuration; no slot-space or f1 handling in this receiver path."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native placement bridge Terrain selector",
+            "preferredVa": "0x712943",
+            "endExclusiveVa": "0x71299e",
+            "rva": "0x312943",
+            "fileOffset": "0x2ad943",
+            "size": 91,
+            "sha256": "338b6f1a3f8d4611e2344b18823e6b3ec240c72ace08d986f26ecf1a33ac144f",
+            "observation": "Writes Terrain low byte to4c95df, calls4c9550 with x,y,z,visualtype,visualsubtype,configuration, restores byteff. This is a selector argument for placement, not a tile terrain write in this bridge."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native placement selector push",
+            "preferredVa": "0x4c95d8",
+            "endExclusiveVa": "0x4c95ed",
+            "rva": "0xc95d8",
+            "fileOffset": "0xc95d8",
+            "size": 21,
+            "sha256": "7a76cc56b93676723df0386cf0bb058f77345b8db5c60bb04085ee530d30fbd0",
+            "observation": "Normally pushes-1,visual subtype,visual type to506570. Bridge changes immediate at4c95df to Terrain. For UN:I six-argument form with final0 this becomes push0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "AR resolve and extended record",
+            "preferredVa": "0x7436b3",
+            "endExclusiveVa": "0x7437b0",
+            "rva": "0x3436b3",
+            "fileOffset": "0x2de6b3",
+            "size": 253,
+            "sha256": "f71d62f0404341d3971939ed1faaceb2bb9e265dad6abf1857f7fa9295bc088f",
+            "observation": "Tile actual type must79,5,93. Read configuration at tile+0; bit31 enables index=(config>>19)&fff, index<count, record=base+76*index."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "AR:G and AR:X",
+            "preferredVa": "0x743908",
+            "endExclusiveVa": "0x74399e",
+            "rva": "0x343908",
+            "fileOffset": "0x2de908",
+            "size": 150,
+            "sha256": "c9bc90ee5c6d56b13628dd7c9d57dd491a678b7c04e8804d51b0cd3e6d78f333",
+            "observation": "G requires at least3 args and slot0..6; genericApply32 type at record+14+4*slot using parameter1, count at+30+4*slot using parameter2. X nonzero sets byte+10=1, zero sets0. Does not clear type/count."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native guarded pickup gate",
+            "preferredVa": "0x49ece0",
+            "endExclusiveVa": "0x49ed47",
+            "rva": "0x9ece0",
+            "fileOffset": "0x9ece0",
+            "size": 103,
+            "sha256": "bc320b731a7d2388f2fb8ff3e74977c42c482b4a8b4569840529d84150007be8",
+            "observation": "Index=(config>>19)&fff, stride76. record+10 byte0 jumps49f2a0 (unguarded give branch). If enabled, test army at+14; only nonempty army continues guard handling."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "OB:C",
+            "preferredVa": "0x736f0b",
+            "endExclusiveVa": "0x736fb0",
+            "rva": "0x336f0b",
+            "fileOffset": "0x2d1f0b",
+            "size": 165,
+            "sha256": "f40d45c1ca6d665338fbbfd0097eef179fcb1e33bb6848e3f202d4a6652bc200",
+            "observation": "Resolve coordinate tile; C dispatch at736f97 applies signed-width4 genericApply to tile+0 configuration. A negative GET result means bit31 set."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "PO:O signed nibble",
+            "preferredVa": "0x73bbf3",
+            "endExclusiveVa": "0x73bc5b",
+            "rva": "0x33bbf3",
+            "fileOffset": "0x2d6bf3",
+            "size": 104,
+            "sha256": "c1fb4bd5cb9f99b3b573b4dd97d01a710060aa3431749493c099b1a232f42561",
+            "observation": "Read signed nibble bits8..11 bySHL20/SAR28; genericApply signed32; store low4bits usingmaskfffff0ff. GET also writes same nibble back. Range-8..7, no clamp."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "PO reset owner default",
+            "preferredVa": "0x752b59",
+            "endExclusiveVa": "0x752c00",
+            "rva": "0x352b59",
+            "fileOffset": "0x2edb59",
+            "size": 167,
+            "sha256": "925dbb153047f91e98a6ef8e4747090f774252f36d6a040da8bb7f4b8b6b3c1f",
+            "observation": "Reset loop ORff lowbyte, ORf00 owner nibble, clearf000 number nibble. Owner nibble f reads-1; not-2. PoTweak patches size/base for the same loop."
+          }
+        ],
+        "observationsVersusInferences": "Region contracts are direct instruction observations. Script path composition, first-growth count2, and marker predicate are deductions explicitly described above. No runtime verification supplied.",
+        "limits": [
+          "No original executable or plugin execution. Effective runtime hook ordering, live DEF resources, object placement collisions and allocation failures were not observed.",
+          "The ERA Pascal wrapper at71299e was inspected; its matching compiled function address in era.dll was not independently reconstructed. Artifact hashes identify the supplied pair, not proof that every source line maps to this exact build. No claim computed hooks/plugins absent.",
+          "UN:I calls into native4c9550/506570; complete final creation success, overlap policy, mutation atomicity and failure recovery are outside bounded pass. No invented flag1 success contract for creation.",
+          "Negative/overflow guard counts are possible through generic signed32 stores, but their full battle interpretation is outside scope. No generalized all-plugin behavior.",
+          "Raw PO nibble behavior is proved, but a complete campaign/save/plugin lifecycle is not. Source78 marker is one exact producer, not global provenance.",
+          "Native UN:E clamps coordinate probes; choosing stricter bounds in an adapter is an explicit adaptation, not exact invalid-coordinate parity."
+        ]
+      }
+    },
+    {
+      "name": "coordinates",
+      "originalReportSha256": "e04caf574ca12908f9bb06c47978a4e5cec96f923140e8977448a7b1ecd0b22f",
+      "report": {
+        "scope": "Bounded ordinary static PE/Pascal inspection. No original execution, no REA Evidence, no tracked file or container modification. Graphify query executed first.",
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "size": 96807,
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          }
+        ],
+        "conclusions": [
+          {
+            "status": "proved for inspected native reconstruction pass",
+            "question": "CA:P town coordinate is anchor or interactive tile?",
+            "answer": "It is the interactive tile coordinate. Native pass4ca8c3..4ca93c scans the actual map tiles, requires town98 or randomtown77 plus tile+0d bit10, and writes the exact loop x/y/z into TTown+5/+6/+7. CA:P simply reads these fields unchanged. No guessed town sprite offset is involved."
+          },
+          {
+            "status": "proved bridge to separate object anchor representation",
+            "question": "Relation to12-byte object record coordinates+4/+5/+6?",
+            "answer": "The same selected interactive tile is passed to4c9650 at4caa7b. This routine uses tile+24 to select GameMgr[+1fb84]+12*objectIndex. It subsequently iterates that record footprint using record+4/+5/+6 as anchorX/anchorY/layer, subtracting column/row offsets. TTown stores the selected interactive member of this footprint; the12-byte record supplies its footprint anchor. These are separate coordinate roles and need not coincide."
+          },
+          {
+            "status": "proved compatible predicate and raw return",
+            "question": "Relation to UN:U town enumeration?",
+            "answer": "UN:U predicate72f394 accepts town98 only on the same interactive bit10 of tile+0d. Selected scan coordinates are returned raw. Thus both town-record construction and UN:U select interactive tiles; CA:P origin is not an unadjusted DEF anchor."
+          },
+          {
+            "status": "deduced implementation consequence",
+            "question": "Rule239 candidate origin?",
+            "answer": "For ordinary towns reconstructed by this inspected native pass, begin with the town interactive/visitable position, then source77 increments y by1 and tries x,x+1,x-1. An adapter exposing only a visual object anchor must first resolve its interactive tile from actual template data; using the visual anchor directly would not reproduce CA:P."
+          }
+        ],
+        "keyInstructions": [
+          {
+            "va": "0x4ca8fc",
+            "instruction": "test byte ptr [esi+0x0d],0x10",
+            "meaning": "Only interactive town tiles enter coordinate assignment."
+          },
+          {
+            "va": "0x4ca930",
+            "instruction": "mov byte ptr [ebx+5],dl",
+            "meaning": "Store scan x (EDX) into TTown.x."
+          },
+          {
+            "va": "0x4ca933",
+            "instruction": "mov dl,byte ptr [ebp-0x18]",
+            "meaning": "Load scan y."
+          },
+          {
+            "va": "0x4ca936",
+            "instruction": "mov byte ptr [ebx+6],dl",
+            "meaning": "Store TTown.y."
+          },
+          {
+            "va": "0x4ca939",
+            "instruction": "mov byte ptr [ebx+7],cl",
+            "meaning": "Store scan z previously loadedat4ca92a."
+          },
+          {
+            "va": "0x4c9661",
+            "instruction": "movsx eax,word ptr [edi+0x24]",
+            "meaning": "Selected tile obtains associated visual-object record index."
+          },
+          {
+            "va": "0x4c967a",
+            "instruction": "lea ecx,[ecx+4*eax]",
+            "meaning": "EAX was index*3; stride12 over visual objects."
+          },
+          {
+            "va": "0x4c98ee",
+            "instruction": "mov al,byte ptr [ecx+5]",
+            "meaning": "AnchorY subsequently minusj."
+          },
+          {
+            "va": "0x4c991a",
+            "instruction": "mov dl,byte ptr [eax+4]",
+            "meaning": "AnchorX subsequently minusi."
+          },
+          {
+            "va": "0x4c9943",
+            "instruction": "mov al,byte ptr [edx+6]",
+            "meaning": "Object layer used unchanged."
+          }
+        ],
+        "sourceReferences": [
+          {
+            "file": "work/downloads/era-kernel-source/Heroes.pas",
+            "lineStart": 985,
+            "lineEnd": 1002,
+            "meaning": "TTown packed layout and x/y/l fields+5/+6/+7."
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "lineStart": 895,
+            "lineEnd": 911,
+            "meaning": "Rule239 uses CA0/i:P then candidate y+1 and fallbackx shifts."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native town array allocation",
+            "preferredVa": "0x4ca791",
+            "endExclusiveVa": "0x4ca868",
+            "rva": "0xca791",
+            "fileOffset": "0xca791",
+            "size": 215,
+            "sha256": "1a7456fe13b7e7685a3cbe1dabdec8c4a1f26de8d81c29234db86fa706e39292",
+            "observation": "Construct TTown template5be280; native vector at GameMgr+21610 with begin at+21614; resize to count using element-size arithmetic0x168. Subsequent interactive-tile pass writes these records."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native town scan coordinate initialization",
+            "preferredVa": "0x4ca86d",
+            "endExclusiveVa": "0x4ca8eb",
+            "rva": "0xca86d",
+            "fileOffset": "0xca86d",
+            "size": 126,
+            "sha256": "fbb42a9171f380bc77013d091bfd1ed299720478b3f81806c44e2d710c0636fb",
+            "observation": "Loop z starts0 and runs1 or2 layers from underground flag; y starts0; x starts0; tile pointer =MapTiles+38*(x+N*(y+N*z)). x in EDX, y local-18,z local-10."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "interactive town tile into TTown coordinates",
+            "preferredVa": "0x4ca8eb",
+            "endExclusiveVa": "0x4ca960",
+            "rva": "0xca8eb",
+            "fileOffset": "0xca8eb",
+            "size": 117,
+            "sha256": "9c88bd76c61ddf6fd613d50562da13a4483802d5a45139437a6568c8eff5271e",
+            "observation": "Accept dword tile+1e ==98 or77, then require tile byte+0d bit10. townId=tile config; town=townsBegin+0x168*townId. Write town+5=x (4ca930), town+6=y (4ca936), town+7=z (4ca939), town+0=id. Random-town77 converted98 at4ca949."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town scan continuation and same-tile visual refresh",
+            "preferredVa": "0x4caa64",
+            "endExclusiveVa": "0x4caabb",
+            "rva": "0xcaa64",
+            "fileOffset": "0xcaa64",
+            "size": 87,
+            "sha256": "e14036f214fc449dcdec0801680dc3817ffa99274c42dd38fbf31fadc53892eb",
+            "observation": "After metadata update5c0a70, call4c9650 with original selected tileESI at4caa7b. Increment x,y,z locals and repeat; no offset between scan coordinates and town fields at assignment."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CA P field reads",
+            "preferredVa": "0x70e28e",
+            "endExclusiveVa": "0x70e2d8",
+            "rva": "0x30e28e",
+            "fileOffset": "0x2a928e",
+            "size": 74,
+            "sha256": "330400da88dabedbe39ad34838a55bdbdb5e06315d9f7eff34f6cdcd0c78559e",
+            "observation": "CA:P uses GenericApply on town+5 (unsignedbyte),+6(unsignedbyte),+7(signedbyte), without coordinate addition/subtraction."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "CA coordinate selector",
+            "preferredVa": "0x70dec4",
+            "endExclusiveVa": "0x70df62",
+            "rva": "0x30dec4",
+            "fileOffset": "0x2a8ec4",
+            "size": 158,
+            "sha256": "34a51dc3ece065f14476a3778492b32a8503291c146b9dee3e014d8fa64e70f7",
+            "observation": "Resolve requested coord→tile;72f328 gets object type/index with footprint handling; requiretown98, then townsBegin+0x168*resolvedTownIndex. This selector alone does not prove the raw town coordinate origin; native loader does."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN U town predicate",
+            "preferredVa": "0x72f394",
+            "endExclusiveVa": "0x72f468",
+            "rva": "0x32f394",
+            "fileOffset": "0x2ca394",
+            "size": 212,
+            "sha256": "0cfbe30139e2d43cd8979b6968dbc5b738397b4b1d9e43b43e48944e2bb4c6a5",
+            "observation": "Type compare; town98 requires byte(tile+0d)&10; optional subtype filter. Exception permitting noninteractive tile only for type26, nottown98."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN U scan and raw coordinate output",
+            "preferredVa": "0x72f5e8",
+            "endExclusiveVa": "0x72f65d",
+            "rva": "0x32f5e8",
+            "fileOffset": "0x2ca5e8",
+            "size": 117,
+            "sha256": "57dc6fbc5403952fa39920d5eb7c27c6c2894cac9cfa0841231fb7a5288a9639",
+            "observation": "711209(x,y,z)→72f394 predicate; on selected match output loopx,loopy,loopz directly at72f63c..72f652."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "same interactive tile selects 12-byte object record",
+            "preferredVa": "0x4c9650",
+            "endExclusiveVa": "0x4c9696",
+            "rva": "0xc9650",
+            "fileOffset": "0xc9650",
+            "size": 70,
+            "sha256": "10159b1a53a9933cad6ee6f28430eacc71189de273080ff670d7c3c72d4fcb78",
+            "observation": "4c9650 receives original tile pointer. Signedword tile+24 yields object-record index; record=GameMgr[+1fb84]+12*index; record+8 selects visual template at GameMgr[+1fb74]+68*index."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "12-byte anchor footprint iteration",
+            "preferredVa": "0x4c98d9",
+            "endExclusiveVa": "0x4c996b",
+            "rva": "0xc98d9",
+            "fileOffset": "0xc98d9",
+            "size": 146,
+            "sha256": "7d461c05bd1163b07d4b14fad7f164c1eef95de05de291cf9d11e282a1add3c2",
+            "observation": "Template height+11 andwidth+10 drivej/i. Record byte+5 givesanchorY, byte+4anchorX, byte+6layer. Tile address=MapTiles+38*((anchorX-i)+N*((anchorY-j)+N*z)). Thus these record coordinates are a footprint anchor distinct in role from the interactive tile saved into TTown."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native hero destination from town coordinates",
+            "preferredVa": "0x5be9ad",
+            "endExclusiveVa": "0x5be9f6",
+            "rva": "0x1be9ad",
+            "fileOffset": "0x1be9ad",
+            "size": 73,
+            "sha256": "e326adf8f0e02a3d75878fe9aeb1fb07c4e96e28bbc953d9a76a2202dccf8ca9",
+            "observation": "Packs unsignedtown+5 into low10x,town+6 into10y,town+7 into4level; calls4d7b70 on a resolvedhero pointer. Corroboration only, not needed for primary loader proof."
+          }
+        ],
+        "limits": [
+          "No actual town DEF resource masks inspected in this scope. This proves coordinate roles and exact tile-to-town assignment, not one universal fixed anchor→visitable delta such as-2 for every faction/template/plugin.",
+          "Not a claim every town record remains synchronized after arbitrary CA:P SET, save corruption, custom scripting or plugin relocation. The contract is the inspected native reconstruction plus raw receiver.",
+          "The native visual-refresh link uses tile+24 and12-byte records; overlapping multi-object edge cases and custom multi-entrance town templates were not exhaustively characterized.",
+          "No new compiled-era.dll hook census; hash identifies supplied artifact, and sourcecorroboration does not prove all runtime patches or external plugins.",
+          "The corroborating hero destination call was not re-audited through its full behavior; primary proof does not depend on its semantic label.",
+          "All output confined to new ignored report.json; earlier report hashes preserved."
+        ]
+      }
+    },
+    {
+      "name": "guardCount",
+      "originalReportSha256": "83581ffc9768794da3ce94145a55addeb3a383bae13f7863fc48ba5feb3f5add",
+      "report": {
+        "scope": "Ordinary bounded static PE/Pascal/ERM addendum only; no original runtime or REA Evidence. No tracked files or containers changed. Graphify query executed first.",
+        "preservedOriginalReport": {
+          "path": "work/downloads/era-town-banners239-placement/report.json",
+          "sha256": "054f7e3e4d3620e8e5b6637ae2bcab68af81f0d656ea58069cbb213b0f58381a"
+        },
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          }
+        ],
+        "contract": {
+          "countWidthAndInterpretation": "Signed32-bit field at extended artifact record+0x30+4*slot, full width. GenericApply called with ValueSize+4, which uses integer, not unsigned or16/19-bit packed count.",
+          "operation": "For AR:G0/d/d1: typeAfter=wrapInt32(typeBefore+0); countAfter=wrapInt32(countBefore+1). Both writes occur even for typeBefore=-1. No count ceiling, minimum0/1, saturation, overflow exception or empty-slot repair in these inspected receiver/PutVal branches.",
+          "formula": "countAfter = int32(uint32(countBefore) + uint32(1)); typeAfter = typeBefore.",
+          "emptySlot": "With type=-1,count=0, G0/d/d1 leaves type=-1 and storescount1. It does not infer a creaturetype, construct a new valid stack or replace-1 with0. Existing other-slot values unchanged. If type=-1 with any othercount, the same formula applies.",
+          "upperOverflow": "INT32_MAX2147483647 +1 becomes INT32_MIN-2147483648, stored as bits80000000. No large-count cap in inspected field mutation.",
+          "writeOrder": "Type modified first, count second; successcontinuation does not validate the pair. The descriptor requires an existing extended object record from the prior lookup. No record allocation occurs inside thisG branch.",
+          "consumerBoundary": "This is storage/mutation contract. Later battle initiation, army validity, strength estimates, display and additionalscripts/plugins can interpret or modify unusual counts; no universal battlemeaning of negativecount or type-1/count1 inferred."
+        },
+        "derivedExamplesNotExecuted": [
+          {
+            "typeBefore": 150,
+            "countBefore": 2147483646,
+            "typeAfter": 150,
+            "countAfter": 2147483647
+          },
+          {
+            "typeBefore": 150,
+            "countBefore": 2147483647,
+            "typeAfter": 150,
+            "countAfter": -2147483648
+          },
+          {
+            "typeBefore": 150,
+            "countBefore": -1,
+            "typeAfter": 150,
+            "countAfter": 0
+          },
+          {
+            "typeBefore": -1,
+            "countBefore": 0,
+            "typeAfter": -1,
+            "countAfter": 1
+          }
+        ],
+        "sourceReferences": [
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "lineStart": 5094,
+            "lineEnd": 5107,
+            "meaning": "d selects PARAM_MODIFIER_ADD; bare d useszero numeric value as in prior report."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "lineStart": 5409,
+            "lineEnd": 5471,
+            "meaning": "PutVal ValueSize4 usespinteger OrigValue; ADD OrigValue+Value; storepinteger FinalValue, no clamp."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "lineStart": 5525,
+            "lineEnd": 5551,
+            "meaning": "Hook_ZvsApply ordinary SET calls PutVal, GET separate."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "lineStart": 9611,
+            "lineEnd": 9611,
+            "meaning": "ZvsApply replacement registration."
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "lineStart": 949,
+            "lineEnd": 949,
+            "meaning": "Rule239 literalAR2:X1 G0/d/d1."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "AR:G exact direct32-bit stores",
+            "preferredVa": "0x743908",
+            "endExclusiveVa": "0x743974",
+            "rva": "0x343908",
+            "fileOffset": "0x2de908",
+            "size": 108,
+            "sha256": "09051b61c2ddef4f5828a802445087cf9f67dd8bf5dc91f0fca83d75bc7ddcea",
+            "observation": "Requires3params andslot0..6. Type field+14+4*slot andcount+30+4*slot passed directly to74195d size+4, parameterindices1and2. Type call first, countcall second. No local copy, signedness rejection, clamp, empty-slot specialcase or followup army normalize."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "AR G exit",
+            "preferredVa": "0x7439cf",
+            "endExclusiveVa": "0x7439d4",
+            "rva": "0x3439cf",
+            "fileOffset": "0x2de9cf",
+            "size": 5,
+            "sha256": "26d96985735f2c6e06bc096e4ba491ca025852d1aaea09d2db3a0dadd9cb2969",
+            "observation": "Jump74943b parsercontinuation, no type/count cleanup."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "receiver continuation",
+            "preferredVa": "0x74943b",
+            "endExclusiveVa": "0x74946f",
+            "rva": "0x34943b",
+            "fileOffset": "0x2e443b",
+            "size": 52,
+            "sha256": "6dc53cf06a4cedbc8675cc18f91de1cffb5bec964276adc8bc37aaea331bc5fb",
+            "observation": "Reads next command text/end delimiter and continues parser; no guardian normalization."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "PutVal32 original field load",
+            "preferredVa": "0x4942d9",
+            "endExclusiveVa": "0x4942e3",
+            "rva": "0x942d9",
+            "fileOffset": "0x936d9",
+            "size": 10,
+            "sha256": "96429665ce77936532be1921ee3fb213ba7220616f84834276985691877ce6af",
+            "observation": "Read whole32-bit field tointegerlocal, no mask."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "PutVal ADD32",
+            "preferredVa": "0x49435a",
+            "endExclusiveVa": "0x494365",
+            "rva": "0x9435a",
+            "fileOffset": "0x9375a",
+            "size": 11,
+            "sha256": "8e76416d64d888468ee1219c440012595a0f632641f14d70285aead437c46ef3",
+            "observation": "mov esi,[ebp-c];add esi,[ebp-8];jmp4943ff. No JO overflow trap/saturation.32-bit wrapping arithmetic."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "PutVal sized result store",
+            "preferredVa": "0x4943ff",
+            "endExclusiveVa": "0x49442c",
+            "rva": "0x943ff",
+            "fileOffset": "0x937ff",
+            "size": 45,
+            "sha256": "cbee135585037f9bb367fe2313178c2b662a0ea92e597dc1eef36d65d945f1cb",
+            "observation": "Normalize absolute width; size4 writes complete ESI to dword[ValuePtr] at494413. No cap or nonnegative clamp."
+          }
+        ],
+        "limits": [
+          "Static only. Effective live hooks and external plugin modifications not observed. Compiled DLL PutVal matches inspected Pascal arithmetic; no assertion all runtime consumers are unchanged.",
+          "Bare d numeric0 semantics reuse prior parser analysis; no new global receiver audit.",
+          "No branch examining slot type/count exists within inspectedG setter and its continuation, but arbitrary later ERM commands or callbacks are outside this mutation contract.",
+          "Original placement/report.json remains byte-identical with its initial SHA. Only newguard-count-addendum.json written in ignored reportfolder."
+        ]
+      }
+    },
+    {
+      "name": "townOrder",
+      "originalReportSha256": "409526c2c0cf6d31caf156a0b72dfae8c25d51719a3cb30dede5032c99088290",
+      "report": {
+        "scope": "Bounded ordinary static addendum based on previously inspected hashed native regions only. No original execution or REA Evidence; no tracked file or container changed. No indexed project source exploration needed.",
+        "preservedReport": {
+          "path": "work/downloads/era-town-banners239-town-coordinates/report.json",
+          "sha256": "e04caf574ca12908f9bb06c47978a4e5cec96f923140e8977448a7b1ecd0b22f"
+        },
+        "conclusions": [
+          {
+            "status": "proved",
+            "question": "Does scan allocate towns in coordinate order?",
+            "answer": "No. The inspected scan fills a town vector that is resized before the scan begins. For each matching interactive tile it reads townIndex from tile configuration, then selects townsBegin + 0x168*townIndex. It writes coordinates and Id into that selected record. The target index does not come from a scan counter or a vector append. Scan traversal x/y/z does not itself establish CA0/i order."
+          },
+          {
+            "status": "proved",
+            "question": "Which exact instructions select record index?",
+            "answer": "At4CA906 EAX=[ESI] reads tile configuration.4CA921/924 compute EAX*45;4CA927 LEA EBX,[townsBegin+8*ECX] gives townIndex*360. EAX is still the same index at4CA93C MOV[EBX],AL. Thus both target vector offset and stored townId derive from config, not discovery ordinal."
+          },
+          {
+            "status": "proved from prior CA selector",
+            "question": "CA0/i relation?",
+            "answer": "CA0/i selects existing native town vector record i directly. The town reconstruction pass does not reorder this vector according to coordinates. Consequently a coordinate sort added by an adapter is not justified by this scan."
+          },
+          {
+            "status": "not established in this bounded pass",
+            "question": "Does native town vector order equal global H3M object-file order?",
+            "answer": "Not independently proved. The selected regions show a prior metadata count and tile-config indexes, but do not trace how H3M object parser assigned those town indexes. Do not equate raw global object ordinal, town-specific serialized ordinal and CA town vector index without a separate parser proof. No sort is inferred."
+          }
+        ],
+        "preallocationEvidence": "4CA79F reads metadata vector begin atGameMgr+98.4CA7B4..7CF calculates metadata count using stride136.4CA7CF..4CA859 compares/resizes TTown vector with stride360 using5BE280 template before entering scan4CA86D. No allocation or append occurs in the inspected scan body4CA8C3..4CAABB.",
+        "implementationBoundary": "Use explicit native/source town ordering when available. If only input object-file order is available, preserving its town subsequence is an implementation assumption pending parser-order proof; this evidence provides no basis for sorting coordinates.",
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native town array allocation",
+            "preferredVa": "0x4ca791",
+            "endExclusiveVa": "0x4ca868",
+            "rva": "0xca791",
+            "fileOffset": "0xca791",
+            "size": 215,
+            "sha256": "1a7456fe13b7e7685a3cbe1dabdec8c4a1f26de8d81c29234db86fa706e39292",
+            "observation": "Construct TTown template5be280; native vector at GameMgr+21610 with begin at+21614; resize to count using element-size arithmetic0x168. Subsequent interactive-tile pass writes these records."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native town scan coordinate initialization",
+            "preferredVa": "0x4ca86d",
+            "endExclusiveVa": "0x4ca8eb",
+            "rva": "0xca86d",
+            "fileOffset": "0xca86d",
+            "size": 126,
+            "sha256": "fbb42a9171f380bc77013d091bfd1ed299720478b3f81806c44e2d710c0636fb",
+            "observation": "Loop z starts0 and runs1 or2 layers from underground flag; y starts0; x starts0; tile pointer =MapTiles+38*(x+N*(y+N*z)). x in EDX, y local-18,z local-10."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "interactive town tile into TTown coordinates",
+            "preferredVa": "0x4ca8eb",
+            "endExclusiveVa": "0x4ca960",
+            "rva": "0xca8eb",
+            "fileOffset": "0xca8eb",
+            "size": 117,
+            "sha256": "9c88bd76c61ddf6fd613d50562da13a4483802d5a45139437a6568c8eff5271e",
+            "observation": "Accept dword tile+1e ==98 or77, then require tile byte+0d bit10. townId=tile config; town=townsBegin+0x168*townId. Write town+5=x (4ca930), town+6=y (4ca936), town+7=z (4ca939), town+0=id. Random-town77 converted98 at4ca949."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town scan continuation and same-tile visual refresh",
+            "preferredVa": "0x4caa64",
+            "endExclusiveVa": "0x4caabb",
+            "rva": "0xcaa64",
+            "fileOffset": "0xcaa64",
+            "size": 87,
+            "sha256": "e14036f214fc449dcdec0801680dc3817ffa99274c42dd38fbf31fadc53892eb",
+            "observation": "After metadata update5c0a70, call4c9650 with original selected tileESI at4caa7b. Increment x,y,z locals and repeat; no offset between scan coordinates and town fields at assignment."
+          }
+        ],
+        "limits": [
+          "Initial H3M townIndex assignment, alternate constructors and plugin reorderings remain outside this closure.",
+          "Duplicate/corrupt tile configs could target the same record or invalid indexes; no behavior guarantee for corrupted maps.",
+          "Earlier report and hashes remain unchanged. Only this new ignored addendum is written."
+        ]
+      }
+    }
+  ],
+  "nativeScope": [
+    "Nine original town factions in native map object order. CA:P is the town visitable position; candidates are centre, right and left one row below.",
+    "UN:I sixth operand0 selects a dirt-compatible original banner template. No fabricated universal town DEF offset.",
+    "Owned towns store one inactive guardian; neutral towns start with one active guardian. Native empty owned guard armies use persisted count/type to restore the original hidden record.",
+    "Grow all supported typed banner guard records by one on the original week schedule, once per global day. No current-owner comparison.",
+    "Source option234 disables rule239. The per-game choice and effective ban are frozen for new games; older saves retain their missing/disabled baseline.",
+    "Stable creature keys survive native registry remapping. PO:O shares native tile properties, defaults to-1, and stores a signed nibble."
+  ],
+  "limits": [
+    "Original UN:E clamps invalid probe coordinates but insertion uses the original coordinates. Native out-of-map candidates remain unavailable; no unsafe original insertion is claimed.",
+    "Authored source extended records with empty creature types, negative or overflowing guardian counts cannot be represented by a native army and stay unchanged. The original int32 G arithmetic is separately documented.",
+    "Foreign town factions are unchanged. Current native faction troop rows implement the source mutable UN:T table; arbitrary external ERA plugins and their table changes remain unadmitted.",
+    "Source78 replacement PO:O=-2 and the general PO:O receiver are not admitted by this rule. Native tile owner metadata supports the exclusion predicate, but this does not activate source78.",
+    "No original executable runtime or original random-stream equivalence was observed. Complete WoG and Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted.",
+    "The original coordinate scan fills pre-existing town indices and does not sort by coordinates. Their exact relation to global H3M object order is not established by the bounded audit; the native adapter retains its file/object order."
+  ]
+}

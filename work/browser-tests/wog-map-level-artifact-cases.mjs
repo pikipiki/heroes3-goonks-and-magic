@@ -18,7 +18,7 @@ export async function runLevelArtifacts({boot,sheet,state,command,wait,page,repo
   await wait(()=>goonkMobileState.dialogPresentation?.title==='Level up');await page().locator('[data-dialog-choice="0"]')[press]();await page().locator('[data-dialog-confirm]')[press]();
   await wait(()=>goonkMobileState.dialogPresentation?.lines?.some(l=>l.startsWith('LEVEL DAY3 ')));
   const message=(await state()).dialogPresentation.lines.join(' '),old=JSON.parse(fs.readFileSync(path.join(path.dirname(legacy),'result.json')));const expected=old.scenarios[0].message.match(/-?\d+/g).map(Number).slice(5,8).reduce((s,n)=>s+n,0);assert.equal(message.match(/\d+/g).slice(1).map(Number).reduce((s,n)=>s+n,0),expected);
-  const saved=await readCompletedNativeSave(page(),command);assert.equal(saved.readInt32LE(4),937);fs.writeFileSync(path.join(output,'legacy-resaved.vsgm1'),saved);
+  const saved=await readCompletedNativeSave(page(),command);assert.equal(saved.readInt32LE(4),currentVersion);fs.writeFileSync(path.join(output,'legacy-resaved.vsgm1'),saved);
   await page().locator('[data-dialog-confirm]')[press]();await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);const hero=await sheet();assert.equal(hero.level,5);
   report.scenarios.push({legacyInput:936,saveVersion:currentVersion,configured:true,oldMapRuleRemainsDisabled:true,message,level:hero.level});await page().close();return;
  }

@@ -1,0 +1,2600 @@
+{
+  "schema": 1,
+  "applicationVersion": "0.4.292",
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "scope": "Bounded native source77 rule239: original town entrances and candidate order, frozen239/234, hidden/active typed guardians, difficulty table, original fortnight schedule and save migration. No complete ERA profile or original runtime equivalence.",
+  "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+  "sourceBaseCommit": "2f49927237b5b6c5e2ae2a2c384cd8739d9113c1",
+  "sourceBindings": {
+    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea",
+    "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
+    "package-lock.json": "02579445f10f8ec433d909c54f714bdb72c5874aec4dcf1f9e2d30252eac4845",
+    "package.json": "ad1c7df24ff9d53896116b31ac835b7356a2d71197e5c2bcb68062ab48e899f8",
+    "scripts/era-bridge/gameplay/map-rules.json": "61df54e2d12c54aecf46ae9210b1dd4e4efb8b3e6a1f16b3d7111ab477702fdd",
+    "scripts/prepare-web.mjs": "693d7a286afa0d522006e56379f30475299d116cd6dc81b330bfc15d4638a72e",
+    "tests/era-creature-prices.test.mjs": "4abe50392f8ffeb61fbd66e6d706f1c5112ec61bcbcc6d723e08c5ad14a38188",
+    "tests/era-map-darkness.test.mjs": "8b5e10ab64f946013e587b5acc1a03da4b56256d36069330f04b599fa76c299f",
+    "tests/era-map-double-artifacts.test.mjs": "039da5934ca956bd2d4e23c57be9aa91e64a45389ababb51d77fce5a1afa5e87",
+    "tests/era-map-eighth-upgrades.test.mjs": "d9948865abf13f741b3d0c5a3b901c0f9b4e3207f670c06ea5e6d418a0094dc9",
+    "tests/era-map-level-artifacts.test.mjs": "7d9465a52c5811d4e23256b4751d90594263bb0aa2403456765d18e3de7727b4",
+    "tests/era-map-no-shooting.test.mjs": "37f5a9ab3195d4684ed647da399fe37819de0728001367e0040d2100a9f22965",
+    "tests/era-town-banners.test.mjs": "8441a1aaddaae5684e5f31a66cc70ea2d626442a419475f35d8174c656122ada",
+    "tests/fixtures/era-gameplay/map-town-banners-reference.json": "edfaa5e1dfd975924d976b3db130ca07e583ff625b148f6513ebdbbb5c278154",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+    "web/wog-options.mjs": "facd663b712cdb17e72cd5b4f8d1f5f8f8f54c44dfe09b03a9cf7cb52a933b12",
+    "work/browser-tests/native-save-json-proof.mjs": "9af43a86a9917fa29f7d68190bcd2e7026c861d9208fa40d543a01c4022601a5",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
+    "work/browser-tests/wog-map-level-artifact-cases.mjs": "a58f4a0941334d07259b9d6eeb998a145b2d9fbfcab9592fe0ae27b2dcf6c9bf",
+    "work/browser-tests/wog-source-artifact-capacity-cases.mjs": "d778756bc39fc61d487622c1c855c76fce8c3d79d710ab32d14bb5914b57c0ec",
+    "work/browser-tests/wog-source-artifact-grant-cases.mjs": "9528735866161c3fb29b30200f1106fc8928a27f67781e2588091576f48fb760",
+    "work/browser-tests/wog-source-artifact-pool-cases.mjs": "10d2e23a00cdfcf96948c3f05c757011af94519f87d3ab223ba3ceba3d2da270",
+    "work/browser-tests/wog-town-banner-cases.mjs": "49ca30f4dbd8eab75b91136580670cccf941eab6ded33894929e5c2edeacc06c",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "dd32577cd49c971f342ccd44229d302b3b1c8f7fc59762dbf43560a4e7d2bc2b",
+    "work/vcmi-wasm/lib/era/EraTileProperties.h": "addf710be2469993ea858ad7017de45981e6b486bdaf2d076393d9b31be68ce3",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "dc79e34464d3b628bf82990b8f1515a8ffed4fefec81681c05cc648717ed4457",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "9f71297e4ebd2272088e6b337c1ef693e87219f233b5a8df3366549c7cab3107",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "8bc15a33d0617c2cf5745e8f13d8840e5616b255873353beabccbcb66b514c46",
+    "work/vcmi-wasm/server/era/EraTownBannerRuntime.h": "7b312ae1dc119ce6cca76a131972297a581dead45049dfe7a1edc8915caf145e"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/map-town-banners-reference.json",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "logSha256": "0f289cc9a1074b37e84e021b7bd3507afc8ec578fde22049e6de512c5975a1f3",
+    "sourceCopyPolicy": "Compare hashes and touch completed copies between builds; never copy while a build is active.",
+    "warMachinesAdmitted": false
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3039,
+    "mismatches": [],
+    "expectedManifestSha256": "608e741fd350b5146dce4c8c08cf83274c2b67fd135c4e1a3e2e8f0c5d8bbcf8"
+  },
+  "calculationKernelValidation": "scripts/era-bridge/gameplay/map-calculation-kernels-native-validation.json",
+  "reports": {
+    "off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": false,
+          "choice": 0,
+          "configured": true,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "records": [],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "d1ce9f47855245ea0a39ade170e52b4478281eecc9a4054ca46e10b52d37b3fe"
+    },
+    "inheritOn": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": -1,
+          "configured": true,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "records": [
+            {
+              "id": "155",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "156",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "596b96ee9b7b6357eee4b896ee2228130e2dbcfebc2f42bafdfe54e551b14ca5"
+    },
+    "inheritOff": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": false,
+          "choice": -1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "records": [],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "3f2091529f970cb7cde5a4b3f9d4c9b8e6c3f74c1c8bfe8e9d1297d5ec1d1418"
+    },
+    "banned": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": false,
+          "choice": 1,
+          "configured": false,
+          "banned": true,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "records": [],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2d8a40e13b464657d7c973e0fafb69553c7791e6219b35649e8de1b036c651ab"
+    },
+    "catalog0": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": true,
+          "blocked": 0,
+          "growth": false,
+          "records": [
+            {
+              "id": "163",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "164",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "165",
+              "count": 1,
+              "creature": "core:warUnicorn",
+              "enabled": true
+            },
+            {
+              "id": "166",
+              "count": 1,
+              "creature": "core:nagaQueen",
+              "enabled": false
+            },
+            {
+              "id": "167",
+              "count": 1,
+              "creature": "core:efreetSultan",
+              "enabled": true
+            },
+            {
+              "id": "168",
+              "count": 1,
+              "creature": "core:dreadKnight",
+              "enabled": false
+            },
+            {
+              "id": "169",
+              "count": 1,
+              "creature": "core:scorpicore",
+              "enabled": true
+            },
+            {
+              "id": "170",
+              "count": 1,
+              "creature": "core:cyclopKing",
+              "enabled": false
+            },
+            {
+              "id": "171",
+              "count": 1,
+              "creature": "core:wyvernMonarch",
+              "enabled": true
+            },
+            {
+              "id": "172",
+              "count": 1,
+              "creature": "core:magicElemental",
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "c5674bbe765119c700fbf77fcb81072fd85dd2fe1ead5db49f46dc91ef6927a3"
+    },
+    "growth0": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": true,
+          "records": [
+            {
+              "id": "156",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "157",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "158",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": true
+            }
+          ],
+          "days": [
+            {
+              "day": 8,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 15,
+              "count": 2,
+              "enabled": 3
+            },
+            {
+              "day": 22,
+              "count": 2,
+              "enabled": 3
+            },
+            {
+              "day": 29,
+              "count": 3,
+              "enabled": 3
+            }
+          ],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "57a1dfd960cf987dd488f1bbe9a46967e12926fa06f06e0fc33aff699146a3be"
+    },
+    "catalog1": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 1,
+          "catalog": true,
+          "blocked": 0,
+          "growth": false,
+          "records": [
+            {
+              "id": "163",
+              "count": 1,
+              "creature": "core:cavalier",
+              "enabled": false
+            },
+            {
+              "id": "164",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "165",
+              "count": 1,
+              "creature": "core:unicorn",
+              "enabled": true
+            },
+            {
+              "id": "166",
+              "count": 1,
+              "creature": "core:naga",
+              "enabled": false
+            },
+            {
+              "id": "167",
+              "count": 1,
+              "creature": "core:efreet",
+              "enabled": true
+            },
+            {
+              "id": "168",
+              "count": 1,
+              "creature": "core:blackKnight",
+              "enabled": false
+            },
+            {
+              "id": "169",
+              "count": 1,
+              "creature": "core:manticore",
+              "enabled": true
+            },
+            {
+              "id": "170",
+              "count": 1,
+              "creature": "core:cyclop",
+              "enabled": false
+            },
+            {
+              "id": "171",
+              "count": 1,
+              "creature": "core:wyvern",
+              "enabled": true
+            },
+            {
+              "id": "172",
+              "count": 1,
+              "creature": "core:psychicElemental",
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2a10bb6efac96dc34b8e020ff5125c55b6d29e7e9f89033c866196a9a98f12e7"
+    },
+    "growth1": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 1,
+          "catalog": false,
+          "blocked": 0,
+          "growth": true,
+          "records": [
+            {
+              "id": "156",
+              "count": 1,
+              "creature": "core:cavalier",
+              "enabled": false
+            },
+            {
+              "id": "157",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "158",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": true
+            }
+          ],
+          "days": [
+            {
+              "day": 8,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 15,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 22,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 29,
+              "count": 2,
+              "enabled": 3
+            }
+          ],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "101a38a19656133df4c7f41e44d7bf8c749a2ab6ab0b535fc8de53da20938319"
+    },
+    "catalog2": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 2,
+          "catalog": true,
+          "blocked": 0,
+          "growth": false,
+          "records": [
+            {
+              "id": "163",
+              "count": 1,
+              "creature": "core:archangel",
+              "enabled": false
+            },
+            {
+              "id": "164",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "165",
+              "count": 1,
+              "creature": "core:goldDragon",
+              "enabled": true
+            },
+            {
+              "id": "166",
+              "count": 1,
+              "creature": "core:titan",
+              "enabled": false
+            },
+            {
+              "id": "167",
+              "count": 1,
+              "creature": "core:archDevil",
+              "enabled": true
+            },
+            {
+              "id": "168",
+              "count": 1,
+              "creature": "core:ghostDragon",
+              "enabled": false
+            },
+            {
+              "id": "169",
+              "count": 1,
+              "creature": "core:blackDragon",
+              "enabled": true
+            },
+            {
+              "id": "170",
+              "count": 1,
+              "creature": "core:ancientBehemoth",
+              "enabled": false
+            },
+            {
+              "id": "171",
+              "count": 1,
+              "creature": "core:chaosHydra",
+              "enabled": true
+            },
+            {
+              "id": "172",
+              "count": 1,
+              "creature": "core:phoenix",
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "a9a71422c3c3594bc1a44f92a13da3d7b1957b95651e3b5b7f667b5a5fa5878f"
+    },
+    "growth2": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 2,
+          "catalog": false,
+          "blocked": 0,
+          "growth": true,
+          "records": [
+            {
+              "id": "156",
+              "count": 1,
+              "creature": "core:archangel",
+              "enabled": false
+            },
+            {
+              "id": "157",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "158",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": true
+            }
+          ],
+          "days": [
+            {
+              "day": 8,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 15,
+              "count": 2,
+              "enabled": 3
+            },
+            {
+              "day": 22,
+              "count": 2,
+              "enabled": 3
+            },
+            {
+              "day": 29,
+              "count": 3,
+              "enabled": 3
+            }
+          ],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "7614959da5d6f5e1e670ded48a4179b732c76bdb8cf5df0f780cc8b34379c707"
+    },
+    "catalog3": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 3,
+          "catalog": true,
+          "blocked": 0,
+          "growth": false,
+          "records": [
+            {
+              "id": "163",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:supremeArchangel",
+              "enabled": false
+            },
+            {
+              "id": "164",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "165",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:diamondDragon",
+              "enabled": true
+            },
+            {
+              "id": "166",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:lordOfThunder",
+              "enabled": false
+            },
+            {
+              "id": "167",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:hellBaron",
+              "enabled": true
+            },
+            {
+              "id": "168",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:bloodDragon",
+              "enabled": false
+            },
+            {
+              "id": "169",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:darknessDragon",
+              "enabled": true
+            },
+            {
+              "id": "170",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:ghostBehemoth",
+              "enabled": false
+            },
+            {
+              "id": "171",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:hellHydra",
+              "enabled": true
+            },
+            {
+              "id": "172",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:sacredPhoenix",
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "70c437a7578875c429c9efe904f60c98a5ecf2cfe9201c09a9f25f5a9eb36867"
+    },
+    "growth3": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 3,
+          "catalog": false,
+          "blocked": 0,
+          "growth": true,
+          "records": [
+            {
+              "id": "156",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:supremeArchangel",
+              "enabled": false
+            },
+            {
+              "id": "157",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "158",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": true
+            }
+          ],
+          "days": [
+            {
+              "day": 8,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 15,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 22,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 29,
+              "count": 2,
+              "enabled": 3
+            }
+          ],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "b2315ea02c1754be05e5c94935b65f82a025326326aaa9496421c2427c6b3ea9"
+    },
+    "catalog4": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 4,
+          "catalog": true,
+          "blocked": 0,
+          "growth": false,
+          "records": [
+            {
+              "id": "163",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:supremeArchangel",
+              "enabled": false
+            },
+            {
+              "id": "164",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "165",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:diamondDragon",
+              "enabled": true
+            },
+            {
+              "id": "166",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:lordOfThunder",
+              "enabled": false
+            },
+            {
+              "id": "167",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:hellBaron",
+              "enabled": true
+            },
+            {
+              "id": "168",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:bloodDragon",
+              "enabled": false
+            },
+            {
+              "id": "169",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:darknessDragon",
+              "enabled": true
+            },
+            {
+              "id": "170",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:ghostBehemoth",
+              "enabled": false
+            },
+            {
+              "id": "171",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:hellHydra",
+              "enabled": true
+            },
+            {
+              "id": "172",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:sacredPhoenix",
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "113a97d191ba85dc5adaeb9eae96942386376374b773eeffdb97ee12b19f55ca"
+    },
+    "growth4": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 4,
+          "catalog": false,
+          "blocked": 0,
+          "growth": true,
+          "records": [
+            {
+              "id": "156",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:supremeArchangel",
+              "enabled": false
+            },
+            {
+              "id": "157",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            },
+            {
+              "id": "158",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": true
+            }
+          ],
+          "days": [
+            {
+              "day": 8,
+              "count": 1,
+              "enabled": 1
+            },
+            {
+              "day": 15,
+              "count": 2,
+              "enabled": 3
+            },
+            {
+              "day": 22,
+              "count": 2,
+              "enabled": 3
+            },
+            {
+              "day": 29,
+              "count": 3,
+              "enabled": 3
+            }
+          ],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "90142ce531433fb0a25137d2cba43ff6ea9ae411f4f8426cbd2ee5ceabaf0de7"
+    },
+    "blocked1": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 1,
+          "growth": false,
+          "records": [
+            {
+              "id": "156",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "157",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "029829c72d45a3d17028654b4e741a96f0cdc721ce1c5927479ddb38d4e693e2"
+    },
+    "blocked2": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 2,
+          "growth": false,
+          "records": [
+            {
+              "id": "157",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "158",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9bc254a979e378b6c5bf2a8a35bb693e5fc41bf71f02219e9f22599554b5bfa7"
+    },
+    "blocked3": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 3,
+          "growth": false,
+          "records": [
+            {
+              "id": "158",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "8fcfbed2b0807be5c811d306aca15cea3f01137f2b843e29b9bebcf2de2f55c4"
+    },
+    "pickup": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "fight": false,
+          "sourceOptions": false,
+          "records": [
+            {
+              "id": "155",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "156",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": {
+            "targetX": 8,
+            "artifacts": [
+              {
+                "allowed": false,
+                "canAssemble": false,
+                "canDisassemble": false,
+                "description": "{Warlord’s Banner — Vitality}\n\nAdds 2 health, then +10% total health (native rounding). One worn item per troop.",
+                "icon": 187,
+                "locked": false,
+                "movable": true,
+                "name": "Warlord’s Banner — Vitality",
+                "slot": 19
+              }
+            ],
+            "input": "touch",
+            "inactiveGuardDidNotFight": true,
+            "battle": null
+          },
+          "saveVersion": 938,
+          "legacyInput": null,
+          "historicalNativeControl": false,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "279da26049edeae61948df42220e7a1fc81d6eff999f142acff4094b2fc1d009"
+    },
+    "fightTouch": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "fight": true,
+          "records": [
+            {
+              "id": "155",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": true
+            },
+            {
+              "id": "156",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": {
+            "targetX": 8,
+            "artifacts": [
+              {
+                "allowed": false,
+                "canAssemble": false,
+                "canDisassemble": false,
+                "description": "{Warlord’s Banner — Vitality}\n\nAdds 2 health, then +10% total health (native rounding). One worn item per troop.",
+                "icon": 187,
+                "locked": false,
+                "movable": true,
+                "name": "Warlord’s Banner — Vitality",
+                "slot": 19
+              }
+            ],
+            "input": "touch",
+            "inactiveGuardDidNotFight": false,
+            "battle": {
+              "guardian": "core:champion",
+              "count": 1
+            }
+          },
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "5db383e5bda145201dd7a367820dd871301bbdd356a939468afff3b03f533c82"
+    },
+    "fightDesktop": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 4,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "fight": true,
+          "records": [
+            {
+              "id": "155",
+              "count": 1,
+              "creature": "wake-of-gods.level8units:supremeArchangel",
+              "enabled": true
+            },
+            {
+              "id": "156",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 628
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": {
+            "targetX": 8,
+            "artifacts": [
+              {
+                "allowed": false,
+                "canAssemble": false,
+                "canDisassemble": false,
+                "description": "{Warlord’s Banner — Vitality}\n\nAdds 2 health, then +10% total health (native rounding). One worn item per troop.",
+                "icon": 187,
+                "locked": false,
+                "movable": true,
+                "name": "Warlord’s Banner — Vitality",
+                "slot": 19
+              }
+            ],
+            "input": "mouse",
+            "inactiveGuardDidNotFight": false,
+            "battle": {
+              "guardian": "wake-of-gods.level8units:supremeArchangel",
+              "count": 1
+            }
+          },
+          "saveVersion": 938,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "f047695c248a15839ef0984d07bfd8c0f172e7d9385d29934178b6c774588fcb"
+    },
+    "legacy": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": false,
+          "choice": 1,
+          "configured": true,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "fight": false,
+          "records": [],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "legacyInput": 937,
+          "historicalNativeControl": false,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "35bec43f0cd9add8c2b876ec4943771fde1a9c04926696eca21230a5afc5738b"
+    },
+    "sourceOptions": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": true,
+          "choice": 1,
+          "configured": false,
+          "banned": false,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "fight": false,
+          "sourceOptions": true,
+          "records": [
+            {
+              "id": "155",
+              "count": 1,
+              "creature": "core:champion",
+              "enabled": false
+            },
+            {
+              "id": "156",
+              "count": 1,
+              "creature": {
+                "externalStringReference": 687
+              },
+              "enabled": false
+            }
+          ],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "legacyInput": null,
+          "historicalNativeControl": false,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2c7da100d664dc7bba735286fbefb4951cff5c4bd71f0ddd5823ecf78d9206b6"
+    },
+    "sourceBan": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "scenarios": [
+        {
+          "active": false,
+          "choice": 1,
+          "configured": false,
+          "banned": true,
+          "difficulty": 0,
+          "catalog": false,
+          "blocked": 0,
+          "growth": false,
+          "fight": false,
+          "sourceOptions": true,
+          "records": [],
+          "days": [],
+          "pickup": null,
+          "saveVersion": 938,
+          "legacyInput": null,
+          "historicalNativeControl": false,
+          "day1SaveReload": true,
+          "frozenRuleSurvivesReversedDefaults": true,
+          "externalStringReferencesRemainOpaque": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "2e8e8671ff94100560975a87ba9e1ca054b52f4de1a1ef4a2a25cb9ac213514f"
+    }
+  },
+  "prototypeComparison": [
+    {
+      "difficulty": 0,
+      "sourceIds": [
+        11,
+        25,
+        39,
+        53,
+        67,
+        81,
+        95,
+        109,
+        121
+      ],
+      "expectedKeys": [
+        "core:champion",
+        "core:warUnicorn",
+        "core:nagaQueen",
+        "core:efreetSultan",
+        "core:dreadKnight",
+        "core:scorpicore",
+        "core:cyclopKing",
+        "core:wyvernMonarch",
+        "core:magicElemental"
+      ],
+      "observedLiteralKeys": [
+        "core:champion",
+        "core:warUnicorn",
+        "core:nagaQueen",
+        "core:efreetSultan",
+        "core:dreadKnight",
+        "core:scorpicore",
+        "core:cyclopKing",
+        "core:wyvernMonarch",
+        "core:magicElemental"
+      ],
+      "rawReportSha256": "c5674bbe765119c700fbf77fcb81072fd85dd2fe1ead5db49f46dc91ef6927a3"
+    },
+    {
+      "difficulty": 1,
+      "sourceIds": [
+        10,
+        24,
+        38,
+        52,
+        66,
+        80,
+        94,
+        108,
+        120
+      ],
+      "expectedKeys": [
+        "core:cavalier",
+        "core:unicorn",
+        "core:naga",
+        "core:efreet",
+        "core:blackKnight",
+        "core:manticore",
+        "core:cyclop",
+        "core:wyvern",
+        "core:psychicElemental"
+      ],
+      "observedLiteralKeys": [
+        "core:cavalier",
+        "core:unicorn",
+        "core:naga",
+        "core:efreet",
+        "core:blackKnight",
+        "core:manticore",
+        "core:cyclop",
+        "core:wyvern",
+        "core:psychicElemental"
+      ],
+      "rawReportSha256": "2a10bb6efac96dc34b8e020ff5125c55b6d29e7e9f89033c866196a9a98f12e7"
+    },
+    {
+      "difficulty": 2,
+      "sourceIds": [
+        13,
+        27,
+        41,
+        55,
+        69,
+        83,
+        97,
+        111,
+        131
+      ],
+      "expectedKeys": [
+        "core:archangel",
+        "core:goldDragon",
+        "core:titan",
+        "core:archDevil",
+        "core:ghostDragon",
+        "core:blackDragon",
+        "core:ancientBehemoth",
+        "core:chaosHydra",
+        "core:phoenix"
+      ],
+      "observedLiteralKeys": [
+        "core:archangel",
+        "core:goldDragon",
+        "core:titan",
+        "core:archDevil",
+        "core:ghostDragon",
+        "core:blackDragon",
+        "core:ancientBehemoth",
+        "core:chaosHydra",
+        "core:phoenix"
+      ],
+      "rawReportSha256": "a9a71422c3c3594bc1a44f92a13da3d7b1957b95651e3b5b7f667b5a5fa5878f"
+    },
+    {
+      "difficulty": 3,
+      "sourceIds": [
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158
+      ],
+      "expectedKeys": [
+        "wake-of-gods.level8units:supremeArchangel",
+        "wake-of-gods.level8units:diamondDragon",
+        "wake-of-gods.level8units:lordOfThunder",
+        "wake-of-gods.level8units:hellBaron",
+        "wake-of-gods.level8units:bloodDragon",
+        "wake-of-gods.level8units:darknessDragon",
+        "wake-of-gods.level8units:ghostBehemoth",
+        "wake-of-gods.level8units:hellHydra",
+        "wake-of-gods.level8units:sacredPhoenix"
+      ],
+      "observedLiteralKeys": [
+        "wake-of-gods.level8units:supremeArchangel",
+        "wake-of-gods.level8units:diamondDragon",
+        "wake-of-gods.level8units:lordOfThunder",
+        "wake-of-gods.level8units:hellBaron",
+        "wake-of-gods.level8units:bloodDragon",
+        "wake-of-gods.level8units:darknessDragon",
+        "wake-of-gods.level8units:ghostBehemoth",
+        "wake-of-gods.level8units:hellHydra",
+        "wake-of-gods.level8units:sacredPhoenix"
+      ],
+      "rawReportSha256": "70c437a7578875c429c9efe904f60c98a5ecf2cfe9201c09a9f25f5a9eb36867"
+    },
+    {
+      "difficulty": 4,
+      "sourceIds": [
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158
+      ],
+      "expectedKeys": [
+        "wake-of-gods.level8units:supremeArchangel",
+        "wake-of-gods.level8units:diamondDragon",
+        "wake-of-gods.level8units:lordOfThunder",
+        "wake-of-gods.level8units:hellBaron",
+        "wake-of-gods.level8units:bloodDragon",
+        "wake-of-gods.level8units:darknessDragon",
+        "wake-of-gods.level8units:ghostBehemoth",
+        "wake-of-gods.level8units:hellHydra",
+        "wake-of-gods.level8units:sacredPhoenix"
+      ],
+      "observedLiteralKeys": [
+        "wake-of-gods.level8units:supremeArchangel",
+        "wake-of-gods.level8units:diamondDragon",
+        "wake-of-gods.level8units:lordOfThunder",
+        "wake-of-gods.level8units:hellBaron",
+        "wake-of-gods.level8units:bloodDragon",
+        "wake-of-gods.level8units:darknessDragon",
+        "wake-of-gods.level8units:ghostBehemoth",
+        "wake-of-gods.level8units:hellHydra",
+        "wake-of-gods.level8units:sacredPhoenix"
+      ],
+      "rawReportSha256": "113a97d191ba85dc5adaeb9eae96942386376374b773eeffdb97ee12b19f55ca"
+    }
+  ],
+  "historicalControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7",
+    "scenarios": [
+      {
+        "active": false,
+        "choice": 1,
+        "configured": true,
+        "banned": false,
+        "difficulty": 0,
+        "catalog": false,
+        "blocked": 0,
+        "growth": false,
+        "fight": false,
+        "records": [],
+        "days": [],
+        "pickup": null,
+        "saveVersion": 937,
+        "legacyInput": null,
+        "historicalNativeControl": true,
+        "day1SaveReload": true,
+        "frozenRuleSurvivesReversedDefaults": true,
+        "externalStringReferencesRemainOpaque": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "2d130c7b9f67faf09f4acc58cd61a04d758a1edd20123b3d4d7566c83cf077d4"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 938,
+        "readerVersion": 937,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "fc64e64da9c69371dbc76502bfabce70b73587ced1e7cb9423cb52d324be7855"
+  },
+  "radio": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": []
+  },
+  "regressions": {
+    "off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "bb3a419601f6142edd4cc78bb4b2c1c28d56c2141bf79e52aa328a47299b8112",
+      "scenarioCount": 1
+    },
+    "on": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "5f31a8362bc2c382da326fda39465cf60781ad0e71b3583f62dc492e130a6530",
+      "scenarioCount": 1
+    },
+    "inherit-on": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "3288d0a2a4263d8717c1262d837c0b0d54dd80c15e305ff880d1d8de0ccc2349",
+      "scenarioCount": 1
+    },
+    "inherit-off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "02e2d8825555efdb3ef436a5c27f00839492fa517a0243291043a4ce1635a71c",
+      "scenarioCount": 1
+    },
+    "pages-desktop": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "e49e3c59d6b3a11b90d3950ce697fdb04998871d8c0dd18b66b17303c87a84fc",
+      "scenarioCount": 1
+    },
+    "pages-touch": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "3ab6cbe28967764bcaa25a22dfc7bcb448c84e80b1acee0fe2a46960f85bb44d",
+      "scenarioCount": 1
+    },
+    "pool": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "27140f0b1c96c0eb266578490fa80aa6103ebfaabcec2ce6b97c7c053df12972",
+      "scenarioCount": 1
+    },
+    "pool-combo": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "8dc2fc7426b0e6233354c44c0771907572bfba9d59211e15f7b1fb35b97abb0a",
+      "scenarioCount": 1
+    },
+    "pages-landscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "fca0e2dc46035f25711c3bb9ad5d0860b6f60eea2de223e1ea33c2424b854e2e",
+      "scenarioCount": 1
+    },
+    "grant-accept": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "bdf50db37d0fb8ee010031191ace47e023cf7502b15cab565d627714fa6ea565",
+      "scenarioCount": 1
+    },
+    "grant-ai": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "9d09a83ba94b14b89a01f4a19b28342d2c801abaa33fbf840981132b44cead05",
+      "scenarioCount": 1
+    },
+    "grant-reject": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "897699298701d9aa3f3baab65ff86d30247ef314e17795b7a02ac48b50001f95",
+      "scenarioCount": 1
+    },
+    "grant-reserve": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "83ad5bdea6f2e61e16963f1e763fc9b0d6e6cf24a4088ceafce97b71bca55542",
+      "scenarioCount": 1
+    },
+    "grant-full": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "35b47d2fd551a0fa133802ac5b0e9bcb4813790ea140d904b1e0ea46a3a11437",
+      "scenarioCount": 1
+    },
+    "native-assembly": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "b9c8e0c25da9a2b3bb2097f712b9a09b62cda681fabf09e16ebd98c4b8bb8e89",
+      "scenarioCount": 1
+    },
+    "town": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "6cf09f52a6b1b505628d6b718c08b089c01b4421793cfcec5e9bd78635863359",
+      "scenarioCount": 1
+    },
+    "legacy": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "5f1537a4721af9b8c0c1ae047238e97e74e572ef0f8a39c377dfc780ec76c122",
+      "scenarioCount": 1
+    },
+    "object": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "3001382bd84cdf4f4ef570b12b5a0cfd9c9cc88c2990129c1cc907bf91a2da48",
+      "scenarioCount": 1
+    },
+    "regression-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "f552e8de8422675c9918ffc000d9245167c73253c4d926e066a297cb9ca5488e",
+      "scenarioCount": 9
+    },
+    "regression-advanced-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "18ba6014fe88301e0ca435b78ea2c976b19f59329584470cafce35af47f55c52",
+      "scenarioCount": 4
+    },
+    "regression-prices": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "5a9aa761cbc59a86f9da8e72a3c3db91e082b206767d58b5ff0f095be1eaa240",
+      "scenarioCount": 9
+    },
+    "regression-sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "8f921810034a12b7dfcf9b786fa8841cdeb12c39d9b53269eba7c92c189d9af8",
+      "scenarioCount": 17
+    },
+    "regression-eighth-upgrades": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "8d81efc64e92aa62ec685073c4eda0729d781a7b9d6ce17c275091583843001f",
+      "scenarioCount": 1
+    },
+    "regression-no-shooting": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "7d2038fcbddf53cd903888ab8e758417e87e5286c53638ac66eae1fb2a2e9030",
+      "scenarioCount": 1
+    },
+    "regression-darkness": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "82fc2579daf86e239f7c152fb9831ea683855931cb4caff6abe144373edb449b",
+      "scenarioCount": 1
+    },
+    "regression-quick-scope": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "6fb11e11e3586f311fbfb55cfdc2bb9b61902a7a0d879dfb3e6a35aaafcfb478",
+      "scenarioCount": 1
+    },
+    "regression-monthly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+      "errors": [],
+      "rawReportSha256": "44a56c20701d0760574843dad0946fa8103860677fd9fe306db26829c9bd5c2b",
+      "scenarioCount": 2
+    }
+  },
+  "nativeMatrix": [
+    {
+      "name": "off",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-off/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "inherit-on",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-inherit-on/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "inherit-off",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-inherit-off/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "banned",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-banned/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "catalog-0",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-catalog-0/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "growth-0",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-growth-0/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "catalog-1",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-catalog-1/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "growth-1",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-growth-1/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "catalog-2",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-catalog-2/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "growth-2",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-growth-2/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "catalog-3",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-catalog-3/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "growth-3",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-growth-3/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "catalog-4",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-catalog-4/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "growth-4",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-growth-4/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "blocked-1",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-blocked-1/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "blocked-2",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-blocked-2/result.json",
+      "scenarios": 1,
+      "errors": []
+    },
+    {
+      "name": "blocked-3",
+      "exitCode": 0,
+      "report": "work/downloads/town-banners292-final-matrix-blocked-3/result.json",
+      "scenarios": 1,
+      "errors": []
+    }
+  ],
+  "regressionMatrix": [
+    {
+      "label": "off",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-off.log",
+      "report": "work/downloads/town-banners292-regression-off/result.json"
+    },
+    {
+      "label": "on",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-on.log",
+      "report": "work/downloads/town-banners292-regression-on/result.json"
+    },
+    {
+      "label": "inherit-on",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-inherit-on.log",
+      "report": "work/downloads/town-banners292-regression-inherit-on/result.json"
+    },
+    {
+      "label": "inherit-off",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-inherit-off.log",
+      "report": "work/downloads/town-banners292-regression-inherit-off/result.json"
+    },
+    {
+      "label": "pages-desktop",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-pages-desktop.log",
+      "report": "work/downloads/town-banners292-regression-pages-desktop/result.json"
+    },
+    {
+      "label": "pages-touch",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-pages-touch.log",
+      "report": "work/downloads/town-banners292-regression-pages-touch/result.json"
+    },
+    {
+      "label": "pool",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-pool.log",
+      "report": "work/downloads/town-banners292-regression-pool/result.json"
+    },
+    {
+      "label": "pool-combo",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-pool-combo.log",
+      "report": "work/downloads/town-banners292-regression-pool-combo/result.json"
+    },
+    {
+      "label": "pages-landscape",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-pages-landscape.log",
+      "report": "work/downloads/town-banners292-regression-pages-landscape/result.json"
+    },
+    {
+      "label": "grant-accept",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-grant-accept.log",
+      "report": "work/downloads/town-banners292-regression-grant-accept/result.json"
+    },
+    {
+      "label": "grant-ai",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-grant-ai.log",
+      "report": "work/downloads/town-banners292-regression-grant-ai/result.json"
+    },
+    {
+      "label": "grant-reject",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-grant-reject.log",
+      "report": "work/downloads/town-banners292-regression-grant-reject/result.json"
+    },
+    {
+      "label": "grant-reserve",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-grant-reserve.log",
+      "report": "work/downloads/town-banners292-regression-grant-reserve/result.json"
+    },
+    {
+      "label": "grant-full",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-grant-full.log",
+      "report": "work/downloads/town-banners292-regression-grant-full/result.json"
+    },
+    {
+      "label": "native-assembly",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-native-assembly.log",
+      "report": "work/downloads/town-banners292-regression-native-assembly/result.json"
+    },
+    {
+      "label": "town",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-town.log",
+      "report": "work/downloads/town-banners292-regression-town/result.json"
+    },
+    {
+      "label": "legacy",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-legacy.log",
+      "report": "work/downloads/town-banners292-regression-legacy/result.json"
+    },
+    {
+      "label": "object",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-object.log",
+      "report": "work/downloads/town-banners292-regression-object/result.json"
+    },
+    {
+      "label": "regression-core",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 9,
+      "log": "work/downloads/town-banners292-regression-regression-core.log",
+      "report": "work/downloads/town-banners292-regression-regression-core/result.json"
+    },
+    {
+      "label": "regression-advanced-core",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 4,
+      "log": "work/downloads/town-banners292-regression-regression-advanced-core.log",
+      "report": "work/downloads/town-banners292-regression-regression-advanced-core/result.json"
+    },
+    {
+      "label": "regression-prices",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 9,
+      "log": "work/downloads/town-banners292-regression-regression-prices.log",
+      "report": "work/downloads/town-banners292-regression-regression-prices/result.json"
+    },
+    {
+      "label": "regression-sites",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 17,
+      "log": "work/downloads/town-banners292-regression-regression-sites.log",
+      "report": "work/downloads/town-banners292-regression-regression-sites/result.json"
+    },
+    {
+      "label": "regression-eighth-upgrades",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-regression-eighth-upgrades.log",
+      "report": "work/downloads/town-banners292-regression-regression-eighth-upgrades/result.json"
+    },
+    {
+      "label": "regression-no-shooting",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-regression-no-shooting.log",
+      "report": "work/downloads/town-banners292-regression-regression-no-shooting/result.json"
+    },
+    {
+      "label": "regression-darkness",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-regression-darkness.log",
+      "report": "work/downloads/town-banners292-regression-regression-darkness/result.json"
+    },
+    {
+      "label": "regression-quick-scope",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/town-banners292-regression-regression-quick-scope.log",
+      "report": "work/downloads/town-banners292-regression-regression-quick-scope/result.json"
+    },
+    {
+      "label": "regression-monthly",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 2,
+      "log": "work/downloads/town-banners292-regression-regression-monthly.log",
+      "report": "work/downloads/town-banners292-regression-regression-monthly/result.json"
+    }
+  ],
+  "serialization": {
+    "previousSaveVersion": 937,
+    "saveVersion": 938,
+    "choiceCount": 31,
+    "newSerializedCppFields": [],
+    "newFrozenFlags": [
+      239,
+      234
+    ],
+    "hiddenGuardState": "mapRules.bannerGuards stores stable CreatureID keys, quantity and activation; inactive native armies are empty.",
+    "tileOwner": "tileProperties.owners, signed nibble, absent=-1; general PO:O receiver remains unadmitted.",
+    "oldMapRuleMissingRemainsDisabled": true
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.292-engine.tar.gz",
+    "sha256": "4f2e0838317d74e87e41185e27cd242527924805d27c24bc61ba603845299ff5",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+        "bytes": 5613
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
+        "bytes": 62083
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
+        "bytes": 14311
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+        "bytes": 9804
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7",
+        "bytes": 18829
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc",
+        "bytes": 8879091
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1",
+        "bytes": 63064
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "ae7540e5ab5cf6f5fb92336dfdc06860aa625b166c8a55798303d4f310c66c64",
+        "bytes": 277562
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "dbc06d78bb4d5a6033c5eb2db6d54f7506a3cb6af627a9ddc393f5f816682f48",
+        "bytes": 7205352
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+        "bytes": 10462973
+      }
+    ]
+  },
+  "catalogue": {
+    "source77Rules": 21,
+    "source77ImplementedCodes": [
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      128,
+      129,
+      130,
+      239
+    ],
+    "separateImplementedRules": [
+      131
+    ]
+  },
+  "privateFixtureScope": "Memory-only private towns/obstacles/programs and native saves; no production map is edited or temporary gameplay diagnostic export installed. External interned strings in read-only save proof remain opaque.",
+  "previousRelease": {
+    "version": "0.4.291",
+    "commit": "94bd591ed0b894bfc1802064d3eb3b524d621701",
+    "pages": "https://github.com/pikipiki/heroes3-goonks-and-magic/actions/runs/44511425312",
+    "pagesConclusion": "success"
+  },
+  "checks": {
+    "pendingPublicationChecks": false,
+    "nodeTests": 977,
+    "passed": 921,
+    "skipped": 56,
+    "failed": 0,
+    "nativeScenarios": 86,
+    "historicalControls": 2,
+    "radioCases": 16,
+    "prepareWeb": true,
+    "buildWeb": true,
+    "verifyWeb": true,
+    "nativeFiles": 10464,
+    "transportBytes": 702299247,
+    "uiComponents": true,
+    "visualReview": [
+      "Settled portrait artifact receipt shows the banner and reward icon with one48px confirmation.",
+      "Desktop maximum-difficulty guardian battle keeps the command column on the right."
+    ]
+  },
+  "remaining": [
+    "Source77 rules118/127 and six selection modes of101.",
+    "Source78 replacement markers, general PO:O and unrepresentable/foreign guard records remain outside this bounded rule; see reference limits.",
+    "Full Henchmen/WoG/mithril and separate Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted."
+  ]
+}

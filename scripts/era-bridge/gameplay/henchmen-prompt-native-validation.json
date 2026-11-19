@@ -18,7 +18,7 @@
     "web/dialog-presentation.mjs": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
   },
   "nativeBuild": {
@@ -243,5 +243,13 @@
       "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
+  },
+  "townBannersRevalidation": {
+    "scope": "Historical native reports and engines retained. Current source239 and 63 previously admitted native scenarios revalidated on938.",
+    "proof": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978"
+    },
+    "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }
 }

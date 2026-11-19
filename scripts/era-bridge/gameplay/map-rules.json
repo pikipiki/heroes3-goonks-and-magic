@@ -28,13 +28,14 @@
     128,
     129,
     130,
-    131
+    131,
+    239
   ],
   "configuration": "mod/tum-era/content/config/wog-map-rules.json",
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "Source77 still needs118/127/239 and six selection modes of101. Rule131 is implemented from its separate script and is not counted among source77’s21 rules.",
+    "Source77 still needs118/127 and six selection modes of101. Rule131 is implemented from its separate script and is not counted among source77’s21 rules.",
     "Complete source random-stream comparison with the shipped ERA executable.",
     "Rule117 uses bound source creature identities and their audited initial MA:L levels. Unported/foreign dwelling creatures are unchanged; source option67 is frozen metadata and does not activate the separate Neutral Town gameplay pack."
   ],
@@ -111,10 +112,13 @@
     126,
     128,
     129,
-    130
+    130,
+    239
   ],
   "perpetualDarknessValidation": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
   "perpetualDarknessReference": "tests/fixtures/era-gameplay/map-darkness-reference.json",
   "levelArtifactsValidation": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
-  "levelArtifactsReference": "tests/fixtures/era-gameplay/map-level-artifacts-reference.json"
+  "levelArtifactsReference": "tests/fixtures/era-gameplay/map-level-artifacts-reference.json",
+  "townBannersValidation": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
+  "townBannersReference": "tests/fixtures/era-gameplay/map-town-banners-reference.json"
 }

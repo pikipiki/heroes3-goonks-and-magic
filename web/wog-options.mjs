@@ -32,6 +32,7 @@ const rules = [
   ['Melee shooters with more health', 'Tireurs de mêlée plus résistants', 'Natural shooters lose shooting and gain 50% base health. Shooting abilities from troop experience are removed when troop experience is enabled.', 'Les tireurs naturels perdent le tir et gagnent 50 % de points de vie de base. Leurs capacités de tir acquises par expérience sont retirées si l’expérience des troupes est activée.'],
   ['Perpetual darkness', 'Obscurité permanente', 'Explored ground returns to fog after a human hero moves. Owned locations keep their sight.', 'Les zones explorées retournent dans le brouillard après le déplacement d’un héros humain. Les possessions gardent leur champ de vision.'],
   ['Artifacts at each level', 'Artefacts à chaque niveau', 'Heroes receive artifacts for gained levels, using the original separate reward classes for humans and AI.', 'Les héros reçoivent des artefacts pour les niveaux gagnés, avec les classes de récompense d’origine distinctes pour les humains et l’IA.'],
+  ['Banners in front of towns', 'Bannières devant les villes', 'Place banners in front of towns of the nine original factions. Their guardians grow over the weeks.', 'Placer des bannières devant les villes des neuf factions d’origine. Leurs gardiens se renforcent au fil des semaines.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

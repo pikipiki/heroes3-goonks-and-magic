@@ -6,8 +6,8 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978",
+    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "b3a0f8b942e54f3e08ebf6d7dc4ffc95795cf309be2d0fa8be3a3c4dce02d68a",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
@@ -422,5 +422,14 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
+  },
+  "townBannersRevalidation": {
+    "scope": "Historical native reports and engines retained. Current source239 and 63 previously admitted native scenarios revalidated on938.",
+    "proof": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978"
+    },
+    "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }
 }

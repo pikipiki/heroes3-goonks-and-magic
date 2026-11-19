@@ -8,17 +8,17 @@
   "sourceBaseCommit": "c249327541b5bf35523b9b1b37f8e82a1513c2df",
   "sourceBindings": {
     "work/vcmi-wasm/lib/era/EraTileNumberRules.h": "79053fd607147d192ce5a1e2ba06ea41889a55086ce687992699b3f188e043ee",
-    "work/vcmi-wasm/lib/era/EraTileProperties.h": "50e31d4d3a1ea033231478f53667b1c79cbc5853d26cd7835883c417c79a35c3",
+    "work/vcmi-wasm/lib/era/EraTileProperties.h": "addf710be2469993ea858ad7017de45981e6b486bdaf2d076393d9b31be68ce3",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "02854624d7c71697fd9f4d68b0335d665daf71934adcd0f72861474aa97fa559",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "b7880d6b8374bb2b64c7bd59978842db721b3c338960b77f5f65427b3a5cd9e0",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-era-tile-properties-cases.mjs": "1b3a76ffcb770eba75cc14bd525fff705a94be860c950401502a2f0079aa2b81",
     "tests/native/EraTileNumberRules.test.cpp": "5b14ab4b6a5e908cdf4f667e7fdff4a17fd97c35e7bb3643bdbcfd1689bfdf2f",
     "tests/era-tile-number-rules-native.test.mjs": "cf6b666e8fbb041e0d8488a9bea36d6ade1b6c865637a7f8580d9f4aaefc8b64",
     "tests/era-tile-properties.test.mjs": "f0cfe93733cfa128e0dc06d8d427b08cf967675e028d47bd158c524f71a1c9df",
     "tests/fixtures/era-gameplay/tile-number-reference.json": "0833ade475618f9ffa7cca3ed4e36b061be498aaf661e2a3d6bf2d7a3dec6c60",
-    "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648"
+    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea"
   },
   "programSha256": "40444b7ec71ede2303bec0df2a65ca5314232858fb268e386406ac3c68e82832",
   "programFileSha256": "fbb817e10fd9a88266552d40d61ed960c06a1a37c681a50539aa9b6cc2cd7785",
@@ -427,5 +427,16 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
+  },
+  "townBannersRevalidation": {
+    "scope": "Historical native reports and engines retained. Current source239 and 63 previously admitted native scenarios revalidated on938.",
+    "proof": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978",
+      "work/vcmi-wasm/lib/era/EraTileProperties.h": "50e31d4d3a1ea033231478f53667b1c79cbc5853d26cd7835883c417c79a35c3",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a"
+    },
+    "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }
 }

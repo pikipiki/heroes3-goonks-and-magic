@@ -14,7 +14,7 @@ enum class WogOption : std::size_t
     DoubleMovement=9, WeeklyMineResources=10, MultipleCapitols=11, AllBreath=12, DailyArmyGrowth=13,
     TownGrails=14, MonthlyVisits=15, ExtraDwellingCreatures=16, GroundedFliers=17, InvertedCreatureSpeeds=18,
     MithrilWeeklySites=19, MithrilResourceReplacement=20, MithrilDisplay=21,
-    TownsWithoutForts=22, PreserveAiForts=23, DoubleArtifacts=24, HalfCreaturePrices=25, AutomaticEighthUpgrades=26, ShootersBecomeMelee=27, PerpetualDarkness=28, ArtifactsPerLevel=29
+    TownsWithoutForts=22, PreserveAiForts=23, DoubleArtifacts=24, HalfCreaturePrices=25, AutomaticEighthUpgrades=26, ShootersBecomeMelee=27, PerpetualDarkness=28, ArtifactsPerLevel=29, TownBanners=30
 };
 inline constexpr std::size_t wogLegacyOptionCount=6;
 inline constexpr std::size_t wogMithrilOptionCount=7;
@@ -34,7 +34,8 @@ inline constexpr std::size_t wogHalfPricesOptionCount=26;
 inline constexpr std::size_t wogEighthUpgradesOptionCount=27;
 inline constexpr std::size_t wogNoShootingOptionCount=28;
 inline constexpr std::size_t wogDarknessOptionCount=29;
-inline constexpr std::size_t wogOptionCount=30;
+inline constexpr std::size_t wogLevelArtifactsOptionCount=30;
+inline constexpr std::size_t wogOptionCount=31;
 inline std::array<int8_t,wogOptionCount> defaultWogChoices()
 {std::array<int8_t,wogOptionCount> result;result.fill(-1);return result;}
 inline constexpr bool validWogChoice(int value){return value>=-1&&value<=1;}

@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
+function fixture({townBannerFixture=null,levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -145,6 +145,22 @@ if opts['artifactFixture']:
  if f.get('ai'):
   h['options']['owner']='blue';h['options']['patrolRadius']=1;artifact['x']=9
  objects.append(artifact)
+if opts['townBannerFixture']:
+ objects=[o for o in objects if o['instanceName'] not in ['henchmenTrainingGuard','henchmenSecondGuard']]
+ enemy=next(o for o in objects if o['instanceName']=='enemyTown');enemy['options']['buildings']={'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']};enemy['options']['army']=[]
+ import copy
+ f=opts['townBannerFixture'];town=next(o for o in objects if o['instanceName']=='goonkTown');base=copy.deepcopy(next(o for o in objects if o['instanceName']=='enemyTown'))
+ town.update({'subtype':'core:castle','x':10,'y':9,'template':copy.deepcopy(base['template']),'options':{'owner':'red','name':'Banner test town','hasFort':True,'army':[],'buildings':{'allOf':['core:villageHall','core:fort'],'noneOf':['core:tavern']}}})
+ if f.get('fight'):town['options']['owner']='neutral'
+ if f.get('catalog'):
+  objects.remove(town)
+  for index,faction in enumerate(['castle','rampart','tower','inferno','necropolis','dungeon','stronghold','fortress','conflux']):
+   t=copy.deepcopy(town);t.update({'subtype':'core:'+faction,'instanceName':'bannerTown'+str(index),'x':6+10*(index%3),'y':5+10*(index//3)})
+   t['options']['owner']='neutral' if index%2 else 'red';objects.append(t)
+ if f.get('growth'):
+  t=copy.deepcopy(town);t.update({'instanceName':'neutralBannerTown','x':20,'y':20});t['options']['owner']='neutral';objects.append(t)
+ for dx in [0,1,-1][:f.get('blocked',0)]:
+  objects.append({'type':'core:monster','subtype':'core:peasant','instanceName':'bannerBlock'+str(dx),'x':8+dx,'y':10,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':1,'character':'savage','neverFlees':True}})
 if opts['levelArtifactVisitFixture']=='object':
  objects.append({'type':'tum-era:levelArtifactVisitReward','subtype':'tum-era:levelArtifactVisitReward','instanceName':'levelArtifactVisitReward','x':10,'y':11,'l':0,'template':{'animation':'AVTchst0.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}})
 elif opts['levelArtifactVisitFixture']:
@@ -216,10 +232,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
+`,JSON.stringify({townBannerFixture,levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
 }
 
-async function boot({save,viewport,levelArtifactChoice=null,levelArtifactsConfigured=false,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=null,levelArtifactsConfigured=false,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
@@ -233,7 +249,7 @@ async function boot({save,viewport,levelArtifactChoice=null,levelArtifactsConfig
  const growthDifficulty=growthChoice===null?null:readJsonc('work/vcmi-wasm/config/difficulty.json');
  if(growthDifficulty)for(const rule of Object.values(growthDifficulty.ai))if(rule.resources)for(const key of Object.keys(rule.resources))rule.resources[key]=0;
  if(growthDifficulty&&options.eighthUpgradeFixture?.paid)for(const rule of Object.values(growthDifficulty.human))if(rule.resources)rule.resources.gold=1000000;
- await page.addInitScript(({levelArtifactVisitFixture,artifactPoolFixture,levelArtifactsConfigured,fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
+ await page.addInitScript(({townBannerFixture,levelArtifactVisitFixture,artifactPoolFixture,levelArtifactsConfigured,fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -294,6 +310,7 @@ async function boot({save,viewport,levelArtifactChoice=null,levelArtifactsConfig
      const attacker=[19,36,53,70,87,104,121],defender=[155,138,121,104,87,70,53];
      manifest.settings.combat.layouts.default={tacticsAllowed:false,obstaclesAllowed:false,attackerCommander:137,defenderCommander:149,attackerUnits:attacker,defenderUnits:defender,attackerUnitsLoose:Array.from({length:7},()=>attacker),attackerUnitsTight:Array.from({length:7},()=>attacker),defenderUnitsLoose:Array.from({length:7},()=>defender),defenderUnitsTight:Array.from({length:7},()=>defender)};
     }
+    if(townBannerFixture)value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json',JSON.stringify({mapRules:{239:!!townBannerFixture.configured,sourceOptions:{234:!!townBannerFixture.banned}}}));
     if(fogFixture){value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json',JSON.stringify({mapRules:{120:fogConfigured}}));}
     if(levelArtifactVisitFixture==='object'){
      const root='/home/web_user/.local/share/vcmi/Mods/tum-era/content/';const name='config/level-artifact-object-private.json';manifest.objects=[...(manifest.objects||[]),name];
@@ -349,7 +366,7 @@ async function boot({save,viewport,levelArtifactChoice=null,levelArtifactsConfig
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{levelArtifactVisitFixture:options.levelArtifactVisitFixture,artifactPoolFixture:options.artifactPoolFixture,levelArtifactsConfigured,fogFixture:options.fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
+ },{townBannerFixture:options.townBannerFixture,levelArtifactVisitFixture:options.levelArtifactVisitFixture,artifactPoolFixture:options.artifactPoolFixture,levelArtifactsConfigured,fogFixture:options.fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -378,6 +395,10 @@ async function boot({save,viewport,levelArtifactChoice=null,levelArtifactsConfig
    await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
   }
   if(noShootingFixture?.experience===false){await command(109,1,0);await wait(()=>goonkMobileState.wogOptions[1]===0);}
+  if(townBannerChoice!==null){
+   const form=page.locator('.wog-options');if(!await form.evaluate(n=>n.open))await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="30"][value="${townBannerChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[30]===value,townBannerChoice);
+  }
   if(levelArtifactChoice!==null){
    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
    const choice=form.locator(`input[data-wog-option="29"][value="${levelArtifactChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[29]===value,levelArtifactChoice);
@@ -462,6 +483,10 @@ try{
  if(process.env.CASES==='level-artifact-visit'){
   const {runLevelArtifactVisit}=await import('./wog-map-level-artifact-visit-cases.mjs');
   await runLevelArtifactVisit({boot,sheet,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
+ if(process.env.CASES==='town-banners'){
+  const {runTownBanners}=await import('./wog-town-banner-cases.mjs');
+  await runTownBanners({boot,sheet,state,command,wait,resolve,page:()=>page,report,output,readCompletedNativeSave});
  }
  if(process.env.CASES==='level-artifacts'){
   const {runLevelArtifacts}=await import('./wog-map-level-artifact-cases.mjs');

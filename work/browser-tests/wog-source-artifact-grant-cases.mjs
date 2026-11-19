@@ -12,10 +12,10 @@ export async function runArtifactGrants({boot,sheet,state,command,wait,page,repo
  const assembly=async()=>wait(()=>goonkMobileState.mode==='dialog'&&goonkMobileState.dialogPresentation?.cancel&&goonkMobileState.dialogPresentation?.lines?.some(line=>/Angelic|Alliance/i.test(line)));
  const ack=async()=>page().locator('[data-dialog-confirm]')[press]();
  await boot(opts);await command(3);
- if(!ai){await assembly();const pending=await readCompletedNativeSave(page(),command);assert.equal(pending.readInt32LE(4),937);fs.writeFileSync(path.join(output,'pending-assembly.vsgm1'),pending);await page().close();await boot({...opts,save:[...pending],expectedDialog:'source-campaign'});await assembly();await page().locator(reject?'[data-dialog-cancel]':'[data-dialog-confirm]')[press]();}
+ if(!ai){await assembly();const pending=await readCompletedNativeSave(page(),command);assert.equal(pending.readInt32LE(4),Number(process.env.GOONK_EXPECTED_SAVE_VERSION||937));fs.writeFileSync(path.join(output,'pending-assembly.vsgm1'),pending);await page().close();await boot({...opts,save:[...pending],expectedDialog:'source-campaign'});await assembly();await page().locator(reject?'[data-dialog-cancel]':'[data-dialog-confirm]')[press]();}
  const first=await result();assert.equal(first,ai||!reject?'GRANT RESULT 1 1 0 0':'GRANT RESULT 0 0 1 1');
  const after=await readCompletedNativeSave(page(),command);fs.writeFileSync(path.join(output,'result-pending.vsgm1'),after);await page().close();await boot({...opts,save:[...after],expectedDialog:'source-campaign'});assert.equal(await result(),first);await ack();
  if(reject){assert.equal(await result(),'GRANT RESULT 0 0 1 1');await ack();}
  await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);if(ai)await command(4,1);const window=await sheet();const slots=window.slots;assert(slots.some(s=>/Angelic Alliance/i.test(s.name||''))===!reject);assert(slots.some(s=>/Sword of Judgement/i.test(s.name||''))===reject);
- report.scenarios.push({reject,ai,first,pendingAssemblySaveReload:!ai,resultSaveReload:true,alreadySeenDoesNotAskAgain:reject,independentNativeEquipment:slots,saveVersion:937,input:press==='click'?'mouse':'touch'});await page().close();
+ report.scenarios.push({reject,ai,first,pendingAssemblySaveReload:!ai,resultSaveReload:true,alreadySeenDoesNotAskAgain:reject,independentNativeEquipment:slots,saveVersion:Number(process.env.GOONK_EXPECTED_SAVE_VERSION||937),input:press==='click'?'mouse':'touch'});await page().close();
 }

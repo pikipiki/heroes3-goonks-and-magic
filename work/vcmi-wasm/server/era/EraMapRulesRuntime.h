@@ -1,5 +1,6 @@
 #pragma once
 #include "../CGameHandler.h"
+#include "EraTownBannerRuntime.h"
 #include "EraMithrilMineTiles.h"
 #include "../../lib/era/EraWogOptions.h"
 #include "../../lib/era/EraMapArmyGrowth.h"
@@ -44,6 +45,9 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("129",era_bridge::WogOption::ShootersBecomeMelee);
     choice("120",era_bridge::WogOption::PerpetualDarkness);
     choice("126",era_bridge::WogOption::ArtifactsPerLevel);
+    choice("239",era_bridge::WogOption::TownBanners);
+    packet.state["sourceOptions"]["234"].Bool()=firstTurn&&configured["sourceOptions"]["234"].Bool();
+    if(packet.state["sourceOptions"]["234"].Bool())packet.state["rules"]["239"].Bool()=false;
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);
@@ -295,5 +299,5 @@ inline void invertCreatureSpeeds(CGameHandler & gh)
     EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)
-{buildTownGrails(gh);mithril::decrementMineMarkers(gh);changeWeeklyMines(gh);upgradeHeroArmiesToEighth(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
+{buildTownGrails(gh);town_banners::onNewDay(gh);mithril::decrementMineMarkers(gh);changeWeeklyMines(gh);upgradeHeroArmiesToEighth(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
 }
