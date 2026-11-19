@@ -20,6 +20,7 @@ export function useScreenControls(root){
  for(const input of root.querySelectorAll('input,textarea')){if(input.matches('[type=hidden],[data-mui-field],[aria-hidden=true]')||input.closest('.MuiInputBase-root'))continue;if(input.matches('[type=checkbox],[type=radio]')){input.classList.add('ui-check-input');input.closest('label')?.classList.add('ui-check-field');}else if(input.type==='range')input.classList.add('ui-slider');else input.classList.add(input.closest('.hall-quantity,.market-stepper,.deployment-quantity-tools,.amount-row,.army-transfer-tools,.exchange-quantity,.mobile-recruit-amount')?'ui-compact-input':'ui-text-field');}
  for(const summary of root.querySelectorAll('summary'))summary.classList.add('ui-disclosure');
  for(const button of root.querySelectorAll('button')){
+  if(button.classList.contains('MuiAccordionSummary-root'))continue;
   if(button.classList.contains('ui-icon-button')||button.closest('.ui-popup'))continue;
   const label=button.hasAttribute('data-hero-cancel')?uiText('Cancel','Annuler'):button.hasAttribute('data-hero-move')?uiText('Move','Déplacer'):null;if(label&&button.textContent!==label)button.textContent=label;
   if(button.matches('.army-upgrade-all')){button.classList.add('ui-action-tile');useChoiceTile(button);}

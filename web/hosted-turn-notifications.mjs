@@ -1,4 +1,4 @@
-import {createUIElement} from './ui/material-components.mjs';
+import {createUIElement,createAccordion} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
@@ -166,23 +166,18 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     ? 'Ton code personnel permet de retrouver la partie après avoir retiré ce raccourci.'
     : 'Your personal code lets you recover this game after removing this shortcut.';
   forget.setAttribute('aria-describedby', savedCodeHelp.id);
-  const extras = document.createElement('details');
-  extras.className = 'hosted-game-options';
-  const extraSummary = document.createElement('summary');
-  extraSummary.textContent = fr ? 'Code personnel et alertes' : 'Personal code and alerts';
-  extras.append(extraSummary, personalCode.element);
-  const management = document.createElement('details');
-  management.className = 'hosted-game-options';
-  const manageSummary = document.createElement('summary');
-  manageSummary.textContent = fr ? 'Gérer cette partie' : 'Manage this game';
+  const extras=createAccordion({parent:savedActions,className:'hosted-game-options',markup:`<summary>${fr?'Code personnel et alertes':'Personal code and alerts'}</summary>`});
+  const extraContent=extras.querySelector('[data-ui-accordion-content]');
+  extraContent.append(personalCode.element);
+  const management=createAccordion({parent:savedActions,className:'hosted-game-options',markup:`<summary>${fr?'Gérer cette partie':'Manage this game'}</summary>`});
   const remove = createUIElement('button');
   remove.type = 'button';
   remove.dataset.nativeClick = '';
   remove.className = 'hosted-delete';
   remove.textContent = fr ? 'Supprimer la partie du serveur' : 'Delete game from server';
   const removeHelp = document.createElement('p');
-  management.append(manageSummary, remove, removeHelp, forget, savedCodeHelp);
-  savedActions.append(savedTitle, occupancy, resume, extras, management);
+  management.querySelector('[data-ui-accordion-content]').append(remove, removeHelp, forget, savedCodeHelp);
+  savedActions.prepend(savedTitle, occupancy, resume);
   const deleteDialog = document.createElement('dialog');
   deleteDialog.className = 'hosted-delete-dialog';
   deleteDialog.setAttribute('aria-labelledby', 'hosted-delete-title');
@@ -216,7 +211,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const alertsHelp = document.createElement('p');
   alertsHelp.id = 'hosted-turn-alerts-help';
   alerts.setAttribute('aria-describedby', alertsStatus.id + ' ' + alertsHelp.id);
-  extras.append(alerts, alertsStatus, alertsHelp);
+  extraContent.append(alerts, alertsStatus, alertsHelp);
   const codeKinds = document.createElement('div');
   codeKinds.className = 'hosted-match-actions hosted-code-kinds';
   codeKinds.setAttribute('role', 'group');

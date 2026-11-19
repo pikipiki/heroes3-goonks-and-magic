@@ -14,6 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Radio from '@mui/material/Radio';
 import Checkbox from '@mui/material/Checkbox';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import SvgIcon from '@mui/material/SvgIcon';
 import Toolbar from '@mui/material/Toolbar';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -28,7 +32,7 @@ function remember(root){snapshots.set(root,[root,...root.querySelectorAll('*')].
 function restore(root){for(const {parent,children}of snapshots.get(root)||[])for(const child of children)parent.append(child);}
 function watch(){if(cleanup)return;cleanup=new MutationObserver(records=>{for(const change of records)if(change.type==='attributes'&&change.target.matches('button[data-mui-component]'))change.target.classList.toggle('Mui-disabled',change.target.disabled);for(const root of roots.keys())if(!root.isConnected)disposeMaterialRoot(root);});cleanup.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});}
 function render(root,element){watch();let react=roots.get(root);if(!react){react=createRoot(root);roots.set(root,react);}flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},element)));remember(root);}
-function propsFor(node){const props={};for(const attr of node.attributes){if(attr.name==='style'){const style={};for(const key of node.style)style[key.startsWith('--')?key:key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=node.style.getPropertyValue(key);props.style=style;}else{const key=({class:'className',for:'htmlFor',tabindex:'tabIndex',readonly:'readOnly',maxlength:'maxLength',colspan:'colSpan',rowspan:'rowSpan',autofocus:'autoFocus'})[attr.name]||attr.name;if(['disabled','hidden','multiple','required','checked','selected'].includes(key))props[key]=true;else props[key]=attr.value;}}
+function propsFor(node){const props={};for(const attr of node.attributes){if(attr.name==='style'){const style={};for(const key of node.style)style[key.startsWith('--')?key:key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=node.style.getPropertyValue(key);props.style=style;}else{const key=({class:'className',for:'htmlFor',tabindex:'tabIndex',readonly:'readOnly',maxlength:'maxLength',colspan:'colSpan',rowspan:'rowSpan',autofocus:'autoFocus'})[attr.name]||attr.name;if(['disabled','hidden','multiple','required','checked','selected','open'].includes(key))props[key]=true;else props[key]=attr.value;}}
  if(node.tagName==='INPUT'){if('value'in props){props.defaultValue=props.value;delete props.value;}if('checked'in props){props.defaultChecked=props.checked;delete props.checked;}}
  return props;}
 const fields=new WeakMap();
@@ -65,7 +69,19 @@ function NativeProgress({input}){
  const {value:ignored,max,...props}=input;
  return h(LinearProgress,{...props,ref,variant:value===null?'indeterminate':'determinate',value:value===null?undefined:Math.max(0,Math.min(100,value/Number(max||1)*100))});
 }
+// Shared disclosure adapter: actual MUI Accordion/Summary/Details and Collapse.
+// Keep a small `open` compatibility accessor for imperative game controllers.
+function NativeAccordion({props,summary,content}){
+ const [expanded,setExpanded]=useState(Boolean(props.open)),id=React.useId(),native=useRef(null);
+ const update=value=>{const next=Boolean(value);if(native.current?.open===next)return;flushSync(()=>setExpanded(next));native.current?.dispatchEvent(new Event('toggle'));};
+ const ref=useCallback(node=>{native.current=node;if(node)Object.defineProperty(node,'open',{configurable:true,get:()=>node.dataset.expanded==='true',set:update});},[]);
+ const {open,...attrs}=props;
+ return h(Accordion,{...attrs,ref,expanded,'data-ui-accordion':'','data-expanded':String(expanded),onChange:(_,value)=>update(value)},
+  h(AccordionSummary,{...propsFor(summary),id:summary.id||id+'-summary','aria-controls':id+'-content','data-ui-accordion-summary':'', 'data-mui-component':'AccordionSummary',expandIcon:h(SvgIcon,{'aria-hidden':true},h('path',{d:'M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z'}))},h(Box,{component:'span','data-ui-accordion-label':''},...[...summary.childNodes].map(element))),
+  h(AccordionDetails,{'data-ui-accordion-content':''},...content.map(element)));
+}
 function element(node,index){if(node.nodeType===3)return node.textContent;if(node.nodeType!==1)return null;const props=propsFor(node);props.key=props.id||Object.entries(props).find(([key])=>key.startsWith('data-')&&!key.startsWith('data-ui-'))?.join(':')||index;
+ if(node.tagName==='DETAILS'){const summary=node.querySelector(':scope>summary');return h(NativeAccordion,{key:props.key,props,summary,content:[...node.childNodes].filter(child=>child!==summary)});}
  const choice=node.tagName==='LABEL'&&node.querySelector(':scope>input[type=radio],:scope>input[type=checkbox]');if(choice)return h(ChoiceField,{key:props.key,input:propsFor(choice),labelProps:props,label:[...node.childNodes].filter(child=>child!==choice).map(element)});
  const children=[...node.childNodes].map(element);if(node.tagName==='BUTTON'){const initiallyDisabled=Boolean(props.disabled);delete props.disabled;props.ref=button=>{if(button){button.disabled=initiallyDisabled;button.classList.toggle('Mui-disabled',initiallyDisabled);}};const endTurn=node.dataset.ui==='endturn'&&matchMedia('(orientation:landscape) and (max-height:400px)').matches;if(endTurn){props['aria-label']=node.textContent.replace(/^☀\s*/,'');props.title=props['aria-label'];}const icon=endTurn||/^[✕×✖−+☰]$/u.test(node.textContent.trim())&&!!node.getAttribute('aria-label');props['data-mui-component']=icon?'IconButton':'Button';props.variant=node.classList.contains('primary')||node.dataset.uiVariant==='filled'?'contained':'outlined';if(icon)delete props.variant;const control=h(icon?IconButton:Button,props,...(endTurn?[h(Box,{component:'span','aria-hidden':true},'☀')]:children));return node.matches('[data-exchange-slot]')?h(Tooltip,{key:props.key,title:props['aria-label']||node.textContent.trim(),describeChild:true},control):control;}
  if(node.matches('.map-movement-settings,.battle-view-setting'))return h(Stack,{...props,component:node.localName,spacing:1,useFlexGap:true,className:((props.className||'')+' ui-form-section')},...children);
