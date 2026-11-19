@@ -10,7 +10,7 @@ export function eighthUpgradeProgram({historical=false}={}){
 }
 export async function runEighthUpgrades({boot,sheet,state,command,wait,approachEnemy,resolve,page,report,output,readCompletedNativeSave}){
  const historical=process.env.EIGHTH_OLD_CONTROL==='1',legacy=process.env.EIGHTH_LEGACY_SAVE;
- const expectedVersion=historical?933:934;
+ const expectedVersion=historical?933:Number(process.env.GOONK_EXPECTED_SAVE_VERSION||934);
  const portrait=process.env.EIGHTH_PORTRAIT==='1',press=process.env.GROWTH_DESKTOP==='1'?'click':'tap';
  const row=process.env.EIGHTH_ROW||'first',battle=process.env.EIGHTH_BATTLE==='1';
  const choice=historical?null:Number(process.env.EIGHTH_CHOICE??1),configured=process.env.EIGHTH_CONFIGURED==='1',active=!historical&&!legacy&&(choice<0?configured:choice===1);

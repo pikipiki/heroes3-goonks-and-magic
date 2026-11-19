@@ -8,7 +8,7 @@
   "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "servedEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
+    "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
     "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2bf30d28cf5c688e4215910013361dc0756006f54568c453771c96110a609b89",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
     "scripts/era-bridge/gameplay/math-source.json": "6a136d022eebeb315d861905371e6531c988d3e2bb3ac28656b34b6460973117",
@@ -18,7 +18,7 @@
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.js": "90465b0fd12c96281e352dc0e8d827b683b311b0544584795faeadd67a5d23cc",
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.wasm": "e4e646a6b9b7996bf8ed95d15a2396c2fc432c93d93388c76a6ccde430467121",
     "tests/native/EraHenchmanRules.test.cpp": "457f76e0d348bfe88a83bbf54ca30b9dbf5d79c68b80a5cd4dc43cd737f73dc6",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "0419705343e94ee3cf57be35c5328936661ca6c8cfcd467c75858d7cbd273d84",
     "tests/fixtures/era-gameplay/henchmen-math/loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817",
@@ -531,5 +531,14 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+  },
+  "darknessRevalidation": {
+    "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
+    "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a"
+    },
+    "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   }
 }

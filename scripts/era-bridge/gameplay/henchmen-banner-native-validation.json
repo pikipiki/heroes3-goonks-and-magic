@@ -19,7 +19,7 @@
     "tests/henchman-sheet.test.mjs": "d9e9cfae49d4e6bca83e00874e0238f7579ae5ee3dbec3ee7f0f783b7410b255",
     "scripts/era-bridge/gameplay/import-henchmen-banner-table.mjs": "7a2c1fe82efa636c595553ed4defe070befbbac2105fdae6b3acb8178e6de16c",
     "work/vcmi-wasm/test/era/EraHenchmanBannerRulesStandalone.cpp": "7dfee22cde596e84c5f44ca4e3790ca3d2125f1decd31e21fd323c435cf38746",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "1ca13f214cdc79c48ae7c7ec0b113d6ad9b973f9d9a7e0aa01306c6e3ccec55f",
     "work/vcmi-wasm/client/windows/CHeroWindow.h": "bec062c6cdc86c569f20a424e082ade8a0cf5715704cac5c59e5925a386aa2fc",
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "ba55d7d45ebaf8592a713b148b223a958d6d02c17da995b0608860fe0fe68fa1",
@@ -350,5 +350,13 @@
       "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+  },
+  "darknessRevalidation": {
+    "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
+    "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a"
+    },
+    "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   }
 }

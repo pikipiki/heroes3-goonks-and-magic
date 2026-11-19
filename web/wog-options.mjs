@@ -30,6 +30,7 @@ const rules = [
   ['Half-price creatures on Sundays', 'Créatures à moitié prix le dimanche', 'From day two, gold prices are halved on human Sundays and every AI turn. War machines keep their price.', 'À partir du deuxième jour, les prix en or sont divisés par deux le dimanche des joueurs humains et à chaque tour de l’IA. Les machines de guerre conservent leur prix.'],
   ['Automatic level-eight upgrades', 'Évolution automatique au niveau huit', 'From day two, original heroes automatically convert their improved level-seven creatures to the corresponding level-eight creatures.', 'À partir du deuxième jour, les héros d’origine transforment automatiquement leurs créatures de niveau sept améliorées en créatures de niveau huit correspondantes.'],
   ['Melee shooters with more health', 'Tireurs de mêlée plus résistants', 'Natural shooters lose shooting and gain 50% base health. Shooting abilities from troop experience are removed when troop experience is enabled.', 'Les tireurs naturels perdent le tir et gagnent 50 % de points de vie de base. Leurs capacités de tir acquises par expérience sont retirées si l’expérience des troupes est activée.'],
+  ['Perpetual darkness', 'Obscurité permanente', 'Explored ground returns to fog after a human hero moves. Owned locations keep their sight.', 'Les zones explorées retournent dans le brouillard après le déplacement d’un héros humain. Les possessions gardent leur champ de vision.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

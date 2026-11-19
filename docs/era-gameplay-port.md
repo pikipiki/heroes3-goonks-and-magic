@@ -32,7 +32,7 @@ avertissement localisé apparaît. Si le premier ramassage échoue, le marqueur
 source. Une seconde visite après avoir libéré une place ne redonne pas ce bonus. Le choix reste propre à la partie ; les anciennes
 sauvegardes conservent leur comportement. Les tests couvrent le toucher, le
 clic, un véritable tour IA et la reprise après ramassage. Le catalogue atteint
-dix-sept règles sur vingt et une, avec vingt-huit choix indépendants disponibles.
+dix-sept des vingt et une règles du script77, plus la règle131 de son script séparé, avec vingt-neuf choix indépendants disponibles.
 
 Les achats de mines écrivent désormais `N7`. Hors de la règle de changement
 hebdomadaire, tout nombre non nul double le revenu et diminue chaque jour,
@@ -1008,3 +1008,13 @@ Le choix28 transforme les tireurs de base éligibles en combattants de mêlée a
 Les aperçus de recrutement utilisent désormais les caractéristiques et capacités propres à la carte. Leur cache se renouvelle lorsque les bonus du monde changent et ne conserve pas de référence vers une ancienne partie. La fenêtre native de créature sans pile reçoit le même contexte de carte. Les statistiques d’une véritable pile gardent leurs bonus individuels.
 
 La version935 protège les28 choix et les nouveaux marqueurs. Les profils complets restent désactivés. Les écritures génériques EA ultérieures et les valeurs de santé signées devenant non positives restent hors du domaine natif admis ; la lecture statique du binaire ne constitue pas une exécution du moteur ERA d’origine.
+
+### Obscurité permanente et récepteur de brouillard — règle120, version0.4.290
+
+Le choix29 masque les zones explorées après le déplacement standard d’un joueur humain, sur les deux niveaux, tout en conservant la vue des possessions. Le début de tour prépare le joueur et son équipe sans masquer la carte : une révélation scriptée reste visible jusqu’au prochain déplacement. Les choix, le brouillard et les événements suspendus sont conservés dans les sauvegardes.
+
+Le quatrième argument de `UN:H` est l’index du joueur dont l’équipe doit être préservée. Le script77 lui transmet néanmoins un masque de joueurs ; cette composition inhabituelle est conservée. Par exemple, le rouge seul transmet1, ce qui préserve le bleu et masque les autres équipes. Un index hors0..7, y compris-1, ne préserve personne. Le cercle inclut les cases à une distance au plus égale au rayon+0,5 ; après masquage, les champs de vision des possessions sont rétablis pour tous les propriétaires et niveaux. La borne native admise du rayon est0..4096.
+
+L’inspection statique du binaire rattache `OnHeroMove` à un site précis après révélation. Elle distingue les révélations de téléportation et les visites qui court-circuitent ce site. Le moteur natif conserve son ordre de mise à jour des positions et ses requêtes d’objets ; les effets locaux propres aux clients ERA, les callbacks d’objets et les chaînes de téléportation ou de plugins restent hors comparaison complète. Les cartes natives rectangulaires, les niveaux supplémentaires et leurs objets possédés constituent des extensions du domaine d’origine.
+
+Le décompte distingue désormais les21 choix du script77 (`111..130` et`239`) de la règle131 d’un script séparé. Les règles118,126,127 et239 ainsi que les six modes de sélection101 restent à porter. La version936 protège les29 choix et la nouvelle interprétation du brouillard. Les profils complets restent désactivés.

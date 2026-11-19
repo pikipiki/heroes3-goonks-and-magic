@@ -6,12 +6,12 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+    "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "fb27b73c3da308d1de0fab3d2e4e7cd4affcdd40ea2447d22b3ba59b530c3cb2",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "b4eaed1d860d0fa04dd546f5a6279afa130271e11cbf3c2166736134ab36d5ae",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b"
   },
   "nativeBuild": {
@@ -400,5 +400,16 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+  },
+  "darknessRevalidation": {
+    "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
+    "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+      "work/vcmi-wasm/server/CGameHandler.cpp": "fb27b73c3da308d1de0fab3d2e4e7cd4affcdd40ea2447d22b3ba59b530c3cb2",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44"
+    },
+    "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   }
 }

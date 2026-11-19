@@ -1,0 +1,2163 @@
+{
+  "schema": 1,
+  "applicationVersion": "0.4.290",
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "scope": "Source120 native human standard-movement adapter plus corrected original UN:H preserved-player decoder, circular area, all-owner sight restoration, source bitset composition, per-game activation and actual two-level minimap observations. Native position/query timing and original dynamic callback/client-local behavior remain separate.",
+  "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+  "sourceBaseCommit": "c2b038eeac5d9bdcde4fcdf79b809a595db7d4a8",
+  "sourceBindings": {
+    "docs/era-compatibility.md": "a8ceef89e80f0b2510b1f1a8abdc2fee77635c8f3920318ca562980108719c65",
+    "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
+    "scripts/era-bridge/gameplay/map-rules.json": "6b9dda83c190dcd6dcdeaba4abe4d840565724cb0fbe8eeb2cc2e4ba5a038f84",
+    "tests/era-creature-prices.test.mjs": "ba5e643904161bf65928c5418a90dd4424722ce13d41776483f460c4fa2603ae",
+    "tests/era-map-darkness.test.mjs": "f401ca86a5afa3d313a77828407a7da039b199bbfecb5cefba40636675508bbf",
+    "tests/era-map-double-artifacts.test.mjs": "1fb8a8178c45e00ab35eb5aa98122a74a2c3a4b33989304b76b693cbf3be95b1",
+    "tests/era-map-eighth-upgrades.test.mjs": "9a24ade35f18f39a76cdc2de865a408c2a25f9e5cf09d61ec2af24649dab809c",
+    "tests/era-map-no-shooting.test.mjs": "0ef191a88ff4a03925f5aef8f97265adec121b61db499316754d8ee7af783fc5",
+    "tests/era-source-fog-rules-native.test.mjs": "0f05cae488c7d3f70f600a67e4d14ad8e39008955710e2d57a9d07b71a986d90",
+    "tests/fixtures/era-gameplay/map-darkness-reference.json": "a96e3db3d97934dd5864482fd5b2ad82d00eb9e9b351ea6a9017b7f3602f6b23",
+    "tests/native/EraSourceFogRules.test.cpp": "ead4895183d45ce104b1ac57ddab0f9386ebdf705b7ae561ad8d4664b89c9217",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "9d314912167506327040cbadf8dba14f9af1f97f3e854c7da0bc0da1702f5627",
+    "web/wog-options.mjs": "9a32f93f09ff64c2b23362be3cfeeb6778e9c9c9cb1d795f5389248951292f38",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
+    "work/browser-tests/wog-map-darkness-cases.mjs": "907d0456c33f92ef370a1d7a28003c14be8eef710bac627db6ce99733ff2818d",
+    "work/browser-tests/wog-map-eighth-upgrades-cases.mjs": "82415e0a6925b8c29af453b7cc8e7800aa6d9c9462a8c383f63a80534d3491ea",
+    "work/browser-tests/wog-map-no-shooting-cases.mjs": "9f5be8d9ff8fd151d44a0c8203794272f2b6dce60946b185339be692f81327e4",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "93f8178f6d6b5e9b7039424d60f74815bda1e313796ac05496dfc8776500ba66",
+    "work/vcmi-wasm/lib/era/EraSourceFogRules.h": "38663ebd4437896ed4257c7513b18fcb08aff40b6d56f3f18c81e82defdf60ce",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "d7769006556fd913845b4a01c19b1efdc3a4cb197e746cc2afb57087ee367b80",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "99ebeb25d04dcbcb9166458f956e2141e80af0e3a2eef4a72b98ede2757f4d7b",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "b4eaed1d860d0fa04dd546f5a6279afa130271e11cbf3c2166736134ab36d5ae",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "b7f7e6686b8947b4233308a5b34ab16a8d20a7f318fc61c334dc0bba30d120c8",
+    "work/vcmi-wasm/server/era/EraMapDarknessRuntime.h": "ed139aee6d865c0ebc1aa5f067dbae0c79286dd64a75ab8a00b01299b343c654",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6f6b48c6c93a047fe2307e7805c2fb5dbf9ebb642aee9c459c2cd57f3253e1c3",
+    "work/vcmi-wasm/server/era/EraSourceFogRuntime.h": "ca0ffa2c2c1be71a89be3390cc090bd85faf2af46734a0eaf2c2c39aadbba2a4",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/map-darkness-reference.json",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "initialTargets": 69,
+    "finalTargets": 6,
+    "initialLogSha256": "d131d9377c85f22d0200bf53c34f963dd9877362a41bfec63eb25f9855edc63a",
+    "logSha256": "69919c9a9450654e85f202f2ff65e584e3198ba32cfbdaab4ab8ccfa000c875b",
+    "warMachinesAdmitted": false
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3031,
+    "mismatches": [],
+    "expectedManifestSha256": "6802e394ee16ce1dbf76f8b62f8ca22a8fad78774ff649ee13b6903f3f8f8bbe"
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "scope": "UN:H team index, source bitset composition, circle arithmetic and production choice serializer through936.",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "reports": {
+    "active": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 1,
+          "configured": false,
+          "active": true,
+          "allied": false,
+          "argument": null,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              0,
+              0,
+              255
+            ],
+            [
+              0,
+              0,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              0,
+              0,
+              255
+            ],
+            [
+              0,
+              0,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "touch",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "78eefa0fd94513457dea6d979b88b1a4b4d8da43326e208a45e93e79aa22f8e2"
+    },
+    "allied": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 1,
+          "configured": false,
+          "active": true,
+          "allied": true,
+          "argument": null,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              0,
+              0,
+              255
+            ],
+            [
+              0,
+              0,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              0,
+              0,
+              255
+            ],
+            [
+              0,
+              0,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "1b3b5cd8b771f3aa73f0636a4048212a92ef845d9ec62121753b89ab165047c5"
+    },
+    "off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 0,
+          "configured": true,
+          "active": false,
+          "allied": false,
+          "argument": null,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "touch",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9e546bf307b852e16f8fce30b869e905ba901e49080f489aa9335af005309d40"
+    },
+    "inheritOn": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": -1,
+          "configured": true,
+          "active": true,
+          "allied": false,
+          "argument": null,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              0,
+              0,
+              255
+            ],
+            [
+              0,
+              0,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              0,
+              0,
+              255
+            ],
+            [
+              0,
+              0,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "e6f8cb0ad8febba0320a7accb390d6ff69b8aa2d68c0a85afc86e8b162fb1ad1"
+    },
+    "inheritOff": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": -1,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": null,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "touch",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "63d9b045dfa42fee4d706e91efb51bf97641296b41a41d36e617cd8077623021"
+    },
+    "circle0": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 0,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": 0,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "1d38b2d080f9a435e1b22f37ed0f8580ebe6bc51a4c68f4826de285b804fd7a0"
+    },
+    "circle1": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 0,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": 1,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "885be459aab85de4bed0c4abd0ebad2cb1e646ea8e5ecc54df99c8d6e3227b1f"
+    },
+    "circleAll": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 0,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": -1,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "touch",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9f9344e27eabf764fed212170bf28b163c834305ea84a1e2d9802b53d8f97337"
+    },
+    "circle8": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 0,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": 8,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "36e9490269770c0ed0380ccfc128bd756a81059ad714fac920f476502b755bc2"
+    },
+    "circleAlliedPreserve": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "scenarios": [
+        {
+          "choice": 0,
+          "configured": false,
+          "active": false,
+          "allied": true,
+          "argument": 1,
+          "historicalNativeControl": false,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "touch",
+          "saveVersion": 936
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "940d74b9d6c920ed2b5d23ee1044ee92de84ba43631690a94aae5ad87a1a5ad3"
+    }
+  },
+  "historicalControls": {
+    "base": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "choice": null,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": null,
+          "historicalNativeControl": true,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 935
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "44b56c1d532c72d3d2811de17a1ffd1841c9475de4aadb8a9e54a704c023aefe"
+    },
+    "circle0": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "choice": null,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": 0,
+          "historicalNativeControl": true,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "mouse",
+          "saveVersion": 935
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "e91b8d766d618eb5e7256341e20d14cbeffc9e139cebf54f97906653ccd7d122"
+    },
+    "circle1": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "choice": null,
+          "configured": false,
+          "active": false,
+          "allied": false,
+          "argument": 1,
+          "historicalNativeControl": true,
+          "legacyInput": null,
+          "initial": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "circle": {
+            "center": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "diagonal": [
+              0,
+              65,
+              0,
+              255
+            ],
+            "outside": [
+              0,
+              65,
+              0,
+              255
+            ]
+          },
+          "afterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "ownSight": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "day2BeforeMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "day2AfterMove": [
+            [
+              0,
+              65,
+              0,
+              255
+            ],
+            [
+              0,
+              65,
+              0,
+              255
+            ]
+          ],
+          "bothMapLevels": true,
+          "ownedSightPreserved": true,
+          "noTurnStartClear": true,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "input": "touch",
+          "saveVersion": 935
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "24fe1d0ccb47dc40c16055d506c2f42495d9f74b3e8b03f51d0a4061c073912b"
+    }
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+    "scenarios": [
+      {
+        "choice": -1,
+        "configured": true,
+        "active": false,
+        "allied": false,
+        "argument": null,
+        "historicalNativeControl": false,
+        "legacyInput": 935,
+        "initial": [
+          [
+            0,
+            65,
+            0,
+            255
+          ],
+          [
+            0,
+            65,
+            0,
+            255
+          ]
+        ],
+        "circle": {
+          "center": [
+            0,
+            65,
+            0,
+            255
+          ],
+          "diagonal": [
+            0,
+            65,
+            0,
+            255
+          ],
+          "outside": [
+            0,
+            65,
+            0,
+            255
+          ]
+        },
+        "afterMove": [
+          [
+            0,
+            65,
+            0,
+            255
+          ],
+          [
+            0,
+            65,
+            0,
+            255
+          ]
+        ],
+        "ownSight": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "day2BeforeMove": [
+          [
+            0,
+            65,
+            0,
+            255
+          ],
+          [
+            0,
+            65,
+            0,
+            255
+          ]
+        ],
+        "day2AfterMove": [
+          [
+            0,
+            65,
+            0,
+            255
+          ],
+          [
+            0,
+            65,
+            0,
+            255
+          ]
+        ],
+        "bothMapLevels": true,
+        "ownedSightPreserved": true,
+        "noTurnStartClear": true,
+        "pendingSaveReload": true,
+        "reversedGlobalDefault": true,
+        "input": "mouse",
+        "saveVersion": 936
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "2a4cac66ea65f2825174ab4e637c09aadbc8a5da714504bf23c02021f16ec798"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 936,
+        "readerVersion": 935,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "9fe07ab9fdfce0cf3c66dcc84305d72264a76b4ef96d530b3921626114877177"
+  },
+  "regressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "errors": [],
+      "rawReportSha256": "6e71ceed0fc7d39de79229f9bd213e2f5e185dceb1e20d2fc8676878d3091bd8",
+      "scenarioCount": 9
+    },
+    "advanced-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "errors": [],
+      "rawReportSha256": "9be3a0e807fe63e12e26af2686077ff20736e662972a52cad6ba0018b0dcd3c5",
+      "scenarioCount": 4
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "errors": [],
+      "rawReportSha256": "808d2ead6617fa055539e7abd7ad4ccd2052244b59d67b9beaa509046c3e0f9a",
+      "scenarioCount": 17
+    },
+    "prices": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "errors": [],
+      "rawReportSha256": "b39024d33242c5883a2df5fc6127339e08a6e00fe15adf33dc658ded943dc279",
+      "scenarioCount": 9
+    },
+    "no-shooting": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "errors": [],
+      "rawReportSha256": "dac949ec1f5a3fae0421034f661f94758376b24b61897f441e52481cb7c06efe",
+      "scenarioCount": 1
+    },
+    "eighth-upgrades": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5",
+      "errors": [],
+      "rawReportSha256": "f2b13d0b39bb06ecff0bf3ec00cc0ae79081ba813fbfff6e99739c0aeba55eb3",
+      "scenarioCount": 1
+    }
+  },
+  "radio": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": []
+  },
+  "nativeMatrix": [
+    {
+      "label": "final-active",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-active.log"
+    },
+    {
+      "label": "final-circle1",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-circle1.log"
+    },
+    {
+      "label": "final-allied",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-allied.log"
+    },
+    {
+      "label": "final-off",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-off.log"
+    },
+    {
+      "label": "final-inherit-on",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-inherit-on.log"
+    },
+    {
+      "label": "final-inherit-off",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-inherit-off.log"
+    },
+    {
+      "label": "final-circle0",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-circle0.log"
+    },
+    {
+      "label": "final-circle-all",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-circle-all.log"
+    },
+    {
+      "label": "final-circle8",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-circle8.log"
+    },
+    {
+      "label": "final-circle-allied-preserve",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-circle-allied-preserve.log"
+    },
+    {
+      "label": "final-regression-core",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 9,
+      "log": "work/downloads/darkness290-final-regression-core.log"
+    },
+    {
+      "label": "final-regression-advanced-core",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 4,
+      "log": "work/downloads/darkness290-final-regression-advanced-core.log"
+    },
+    {
+      "label": "final-regression-sites",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 17,
+      "log": "work/downloads/darkness290-final-regression-sites.log"
+    },
+    {
+      "label": "final-regression-prices",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 9,
+      "log": "work/downloads/darkness290-final-regression-prices.log"
+    },
+    {
+      "label": "final-regression-no-shooting",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-regression-no-shooting.log"
+    },
+    {
+      "label": "final-regression-eighth-upgrades",
+      "exitCode": 0,
+      "passed": true,
+      "scenarioCount": 1,
+      "log": "work/downloads/darkness290-final-regression-eighth-upgrades.log"
+    }
+  ],
+  "serialization": {
+    "previousSaveVersion": 935,
+    "saveVersion": 936,
+    "choiceCount": 29,
+    "newSerializedCppFields": false,
+    "newJsonSystem": false,
+    "newMapFields": [
+      "rules.120"
+    ],
+    "guardReason": "Previous engines misinterpret UN:H and do not apply the new darkness choice."
+  },
+  "privateFixtureScope": "Memory-only source program reveals both levels, optional circular UN:H, a second owned underground hero and a third town to keep allied games running. Pixel assertions read the existing native minimap atlas; there is no diagnostic production export.",
+  "nativeExtensions": [
+    "Authoritative native human standard movement, including its accepted embark/disembark path; native object query and position-update timing are retained.",
+    "Source dynamic object callbacks, client-local network side effects and chained teleportation/plugin routes remain outside the admitted original route comparison.",
+    "Native owned-object sight and rectangle/multilayer maps are extensions of the fixed original object tables and square two-level maps.",
+    "Native fog has per-team visibility booleans; the original unrelated upper visibility-word bits are not represented."
+  ],
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.290-engine.tar.gz",
+    "sha256": "32684ede948e2d16f8d7008d51fe72d2750a08c07758a8ccddfc55118964cd44",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6"
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42"
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425"
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6"
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc"
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1"
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "1b12097224b6d6a524d281d14817363989aef88a1a97423f97d6c2e2fc3ab2b2"
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "5bca91bc07bd92df900e1b5a57a2f70c75f291644baf450aa872d7dd6d3f2d78"
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
+      }
+    ]
+  },
+  "previousRelease": {
+    "version": "0.4.289",
+    "commit": "c2b038eeac5d9bdcde4fcdf79b809a595db7d4a8",
+    "pages": "https://github.com/pikipiki/heroes3-goonks-and-magic/actions/runs/44483631435",
+    "pagesConclusion": "success"
+  },
+  "catalogue": {
+    "source77Rules": 21,
+    "source77ImplementedCodes": [
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      128,
+      129,
+      130
+    ],
+    "separateImplementedRules": [
+      131
+    ]
+  },
+  "remaining": [
+    "Source77 rules118/126/127/239 and six selection modes of101.",
+    "Original object callback timing, client-local network effects and chained teleportation/plugin routes require further original-engine comparison.",
+    "Full WoG catalogue, Mithril lifecycle and separate Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted."
+  ],
+  "checks": {
+    "node": {
+      "tests": 970,
+      "passed": 914,
+      "skipped": 56,
+      "failed": 0,
+      "logSha256": "2ae3509861b24196505f06daa2fd6593d0e2d7d0f17a6c1ebd30e8cb3cd6faf5"
+    },
+    "tum": {
+      "passed": 18,
+      "failed": 0,
+      "includedInFullNodeSuite": true
+    },
+    "site": {
+      "files": 10464,
+      "transportBytes": 702299079,
+      "prepareBuildVerifyExitCode": 0
+    },
+    "currentNativeCases": 10,
+    "historicalNativeControls": 3,
+    "legacyConsumer": 1,
+    "oldReader": 1,
+    "regressionCases": 41,
+    "radioCases": 16
+  }
+}

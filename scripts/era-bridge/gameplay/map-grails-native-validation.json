@@ -7,12 +7,12 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f6b07d3bee2ffe017d34bdf483de60fdc82a241fc09f19f5bfa34d6889d97469",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "66f569a9614811dc526c3be0256ed2a376d4771356d00aca4fe644b867c0c6f4",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "e2c15c64031af3a6a56d072640928a0cd810a77ed1a197c3ae753e2cd4cc18a7",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "f7ed956a1d22d93f1b8de50d51afbcf4e775f9335dab7010c01b82846be4b722",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "d022873dda12d0496bffb5b2ecb27be9f4ec618748254a17bfe16970b7fb1e05",
-    "web/wog-options.mjs": "3418871b1dd1206ae9db6247b5a578acbcbdb6d7675e4bf580fe05e0daa3aae9",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6f6b48c6c93a047fe2307e7805c2fb5dbf9ebb642aee9c459c2cd57f3253e1c3",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "d7769006556fd913845b4a01c19b1efdc3a4cb197e746cc2afb57087ee367b80",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "93f8178f6d6b5e9b7039424d60f74815bda1e313796ac05496dfc8776500ba66",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "99ebeb25d04dcbcb9166458f956e2141e80af0e3a2eef4a72b98ede2757f4d7b",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "9d314912167506327040cbadf8dba14f9af1f97f3e854c7da0bc0da1702f5627",
+    "web/wog-options.mjs": "9a32f93f09ff64c2b23362be3cfeeb6778e9c9c9cb1d795f5389248951292f38",
     "mod/tum-era/content/config/wog-map-rules.json": "affc9e92566f857095e9087acbe112defa4f888c6709ccac1bcb8ef8c7590f44",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-map-grails-cases.mjs": "2544794e94a9a79da9e4615c73dadecbbcc86f11ffecee333e139d27e3f34fe8",
@@ -1634,5 +1634,18 @@
       "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "b0624c9968224edd1264f1aa55c7d5dfb9794b34bab4530836ebb01303f922d0"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+  },
+  "darknessRevalidation": {
+    "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
+    "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "d022873dda12d0496bffb5b2ecb27be9f4ec618748254a17bfe16970b7fb1e05",
+      "web/wog-options.mjs": "3418871b1dd1206ae9db6247b5a578acbcbdb6d7675e4bf580fe05e0daa3aae9",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "e2c15c64031af3a6a56d072640928a0cd810a77ed1a197c3ae753e2cd4cc18a7",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "66f569a9614811dc526c3be0256ed2a376d4771356d00aca4fe644b867c0c6f4",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "f7ed956a1d22d93f1b8de50d51afbcf4e775f9335dab7010c01b82846be4b722",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f6b07d3bee2ffe017d34bdf483de60fdc82a241fc09f19f5bfa34d6889d97469"
+    },
+    "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   }
 }

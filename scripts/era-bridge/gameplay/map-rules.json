@@ -18,6 +18,7 @@
     116,
     117,
     119,
+    120,
     121,
     122,
     123,
@@ -32,7 +33,7 @@
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "The other4 map rules and the six original selection modes of option101; seventeen rules have independent native per-game choices.",
+    "Source77 still needs118/126/127/239 and six selection modes of101. Rule131 is implemented from its separate script and is not counted among source77’s21 rules.",
     "Complete source random-stream comparison with the shipped ERA executable.",
     "Rule117 uses bound source creature identities and their audited initial MA:L levels. Unported/foreign dwelling creatures are unchanged; source option67 is frozen metadata and does not activate the separate Neutral Town gameplay pack."
   ],
@@ -64,5 +65,52 @@
   "automaticEighthUpgradesValidation": "scripts/era-bridge/gameplay/map-eighth-upgrades-native-validation.json",
   "automaticEighthUpgradesReference": "tests/fixtures/era-gameplay/map-eighth-upgrades-reference.json",
   "noShootingValidation": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
-  "noShootingReference": "tests/fixtures/era-gameplay/map-no-shooting-reference.json"
+  "noShootingReference": "tests/fixtures/era-gameplay/map-no-shooting-reference.json",
+  "source77CatalogueCodes": [
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    239
+  ],
+  "additionalImplementedCodes": [
+    131
+  ],
+  "source77ImplementedCodes": [
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    128,
+    129,
+    130
+  ],
+  "perpetualDarknessValidation": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+  "perpetualDarknessReference": "tests/fixtures/era-gameplay/map-darkness-reference.json"
 }

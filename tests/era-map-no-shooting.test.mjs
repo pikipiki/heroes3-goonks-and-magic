@@ -6,7 +6,7 @@ test('source129 preserves the six erased row families and signed HP arithmetic w
  const r=JSON.parse(fs.readFileSync('tests/fixtures/era-gameplay/map-no-shooting-reference.json'));
  assert.equal(r.originalRuntimeObserved,false);assert.equal(r.reaEvidence,false);assert.equal(r.source.sha256,'94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63');assert.equal(r.staticReport.sha256,'f91ad12485a1a47bb2b604f75c66348d89cbf3010bf05025b7a4c742511366bb');
  assert.deepEqual(r.contract.experienceRows,[[102,69],[102,83],[102,115],[79,null],[105,null],[111,null]]);assert(r.contract.baseShooterOnly&&r.contract.baseShotCountRetained&&r.contract.artifactSourcePreserved);assert.equal(r.contract.laterGenericEaWritesAdmitted,false);
- const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));assert(rules.implementedCodes.includes(129));assert.equal(rules.implementedCodes.length,17);assert.equal(rules.completeRules,false);
+ const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));assert(rules.implementedCodes.includes(129));assert.equal(rules.implementedCodes.length,18);assert.equal(rules.completeRules,false);
 });
 test('native source129 distinguishes innate, experience and artifact shooting, freezes saves and refreshes world previews',()=>{
  const p=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-no-shooting-native-validation.json'));

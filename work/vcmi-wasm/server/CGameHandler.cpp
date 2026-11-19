@@ -11,6 +11,7 @@
 #include "../lib/era/EraCreaturePrices.h"
 #include "../lib/gameState/ArmyBulkTransfer.h"
 #include "../lib/era/EraCampaignExperienceWord.h"
+#include "era/EraMapDarknessRuntime.h"
 #include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraBankActors.h"
 #include "../lib/mapObjects/CGMysteriousCave.h"
@@ -1078,6 +1079,8 @@ bool CGameHandler::moveHeroImpl(ObjectInstanceID hid, int3 dst, EMovementMode mo
 		sendAndApply(tmh);
         if(result!=TryMoveHero::FAILED&&leavingTile==LEAVING_TILE)
             CGMysteriousCave::onHeroMoved(*this,h);
+        if(result!=TryMoveHero::FAILED&&leavingTile==LEAVING_TILE&&movementMode==EMovementMode::STANDARD)
+            era_compat::map_rules::afterHeroReveal(*this,asker);
 
 		if (visitDest == VISIT_DEST && objectToVisit && objectToVisit->id == h->id)
 		{ // Hero should be always able to visit any object he is staying on even if there are guards around

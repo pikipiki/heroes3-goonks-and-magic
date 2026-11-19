@@ -18,7 +18,7 @@
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
   },
   "nativeBuild": {
@@ -223,5 +223,13 @@
       "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+  },
+  "darknessRevalidation": {
+    "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
+    "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a"
+    },
+    "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   }
 }

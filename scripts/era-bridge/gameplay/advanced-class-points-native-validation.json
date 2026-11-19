@@ -15,9 +15,9 @@
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
@@ -25,7 +25,7 @@
     "scripts/era-bridge/campaigns/program-merger.mjs": "d7de3b2f40e1dee86cbb3195413d3e4cfa217177f3f0cdd92af691ade1c0f6d6",
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/browser-tests/wog-era3-numeric-calls-fixture.mjs": "4e72a89f3dd7b628f42174730eab30f3c64103ca2e73abb68d55edcb1380d013",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "a9fd7c85ccd2a7ec6aa5c5e65624879c1baff695b178cb6522f44aee128ce323"
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "b7f7e6686b8947b4233308a5b34ab16a8d20a7f318fc61c334dc0bba30d120c8"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -574,5 +574,15 @@
       "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5e52ec79f7e5367ce70ae6b47ed7f96125be52515559dfdc0f58d32ed97825cc"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+  },
+  "darknessRevalidation": {
+    "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
+    "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "a9fd7c85ccd2a7ec6aa5c5e65624879c1baff695b178cb6522f44aee128ce323",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44"
+    },
+    "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   }
 }

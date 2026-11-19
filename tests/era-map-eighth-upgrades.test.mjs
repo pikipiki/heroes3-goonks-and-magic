@@ -7,7 +7,7 @@ test('source125 pins global timing, nine pairs and signed experience consumers w
  assert.equal(r.source.sha256,'94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63');assert.equal(r.originalRuntimeObserved,false);assert.equal(r.reaEvidence,false);
  assert.deepEqual(r.contract.sourceTypes,[13,27,41,55,69,83,97,111,131]);assert.deepEqual(r.contract.targetTypes,[150,151,152,153,154,155,156,157,158]);assert.deepEqual(r.contract.heroIds,[0,155]);assert(r.contract.oncePerGlobalDay&&r.contract.beforeRule116&&r.contract.negativeExperienceRetained);assert.equal(r.contract.mergeSlots,false);assert.equal(r.contract.genericHeC1SixArgumentsAdmitted,false);
  assert.deepEqual(Object.values(r.staticReports).map(x=>x.sha256),['f1e8e3ffed1a81c9c070b4e1a14f26cef79e139939e7fd46d8fcf9c8095721d1','012d3bd6151642c84b291f201fde5dcab41df676ad2ce9bcd217848bf4db7a7c','a40e42b8658cfc2c4117c0c1118076e11b0d6eee6297c0610a6fec8a25838267','0a145b38d2bf1a798cdaf8b85880f1e148300869d7a5250925a7520efb1c9cee']);
- const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));assert.equal(rules.completeRules,false);assert.equal(rules.implementedCodes.length,17);assert(rules.implementedCodes.includes(125));
+ const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));assert.equal(rules.completeRules,false);assert.equal(rules.implementedCodes.length,18);assert(rules.implementedCodes.includes(125));
 });
 test('native eighth upgrades retain slots, signed words, payments and saved choices on touch and mouse',()=>{
  const p=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-eighth-upgrades-native-validation.json'));

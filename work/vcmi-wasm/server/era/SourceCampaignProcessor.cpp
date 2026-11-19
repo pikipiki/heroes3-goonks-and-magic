@@ -3,6 +3,7 @@
 #include "SourceCampaignProcessor.h"
 #include "EraCampaignWogOptions.h"
 #include "EraMithrilSiteTiles.h"
+#include "EraSourceFogRuntime.h"
 #include "../CGameHandler.h"
 #include "../processors/NewTurnProcessor.h"
 #include "../processors/TurnOrderProcessor.h"
@@ -1685,22 +1686,13 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
   }
   if(op.code=="S"||op.code=="H")
   {
-   arity(op,5);require(!query(op),"fog arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const PlayerColor owner(number(args[3]));const int radius=number(args[4]);
-   require(gh.gameState().getMap().isInTheMap(center)&&owner.isValidPlayer()&&radius>=0,"invalid source reveal area");
-   // Original fog has a mask for every color, including unused player slots.
-   // An absent native player has no team/observer whose visibility can change.
-   if(!gh.gameInfo().getPlayerState(owner,false))return Step::Continue;
-   if(op.code=="S")gh.changeFogOfWar(center,radius,owner,ETileVisibility::REVEALED);
+   arity(op,5);require(!query(op),"fog arguments must be values");const int3 center(number(args[0]),number(args[1]),number(args[2]));const int target=number(args[3]),radius=number(args[4]);
+   require(gh.gameState().getMap().isInTheMap(center)&&radius>=0,"invalid source fog area");
+   if(op.code=="H")era_compat::source_fog::hide(gh,center,radius,target);
    else
    {
-    // The original hides the owner's whole allied mask, then reopens sight
-    // around owned objects. Exclude those cells before sending one mutation.
-    FowTilesType hidden,observed;gh.gameInfo().getTilesInRange(hidden,center,radius,ETileVisibility::REVEALED,owner);
-    const auto * affected=gh.gameInfo().getPlayerState(owner);
-    for(int color=0;color<8;++color)if(const auto * ally=gh.gameInfo().getPlayerState(PlayerColor(color),false))if(ally->team==affected->team)
-     for(const auto * object:ally->getOwnedObjects())gh.gameInfo().getTilesInRange(observed,object->getSightCenter(),object->getSightRadius(),ETileVisibility::REVEALED,object->getOwner());
-    for(const auto & tile:observed)hidden.erase(tile);
-    gh.changeFogOfWar(hidden,owner,ETileVisibility::HIDDEN);
+    const PlayerColor owner(target);require(owner.isValidPlayer(),"invalid source reveal player");
+    if(gh.gameInfo().getPlayerState(owner,false))gh.changeFogOfWar(center,radius,owner,ETileVisibility::REVEALED);
    }
    return Step::Continue;
   }

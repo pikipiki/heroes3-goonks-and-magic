@@ -1,0 +1,1051 @@
+{
+  "schema": 1,
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "source": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "lines": [
+      [
+        512,
+        536
+      ],
+      [
+        87,
+        95
+      ]
+    ]
+  },
+  "staticReports": {
+    "unh": {
+      "sha256": "805cad71c61be08dd638b276485e8d108698fdb0966cd79d86ec813a0ee093dd",
+      "report": {
+        "scope": "Bounded ordinary static PE/Pascal/ERM analysis. No original-runtime execution, no REA Evidence. Only ignored report/disassembly files generated; no tracked files or containers modified.",
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          }
+        ],
+        "sourceReferences": [
+          {
+            "file": "77 wog - map rules.erm",
+            "lines": [
+              518,
+              520,
+              521,
+              522,
+              523,
+              524,
+              525,
+              526,
+              527,
+              528,
+              529,
+              533,
+              534,
+              535,
+              536
+            ],
+            "meaning": "Compute own/allied player BITSET then pass it as fourth UN:H argument on every hero movement; iterate eachlevel."
+          }
+        ],
+        "conclusion": "The provided native UN:H fourth parameter is a PLAYER INDEX to preserve (with all equal-team players), NOT a bitmask. Source77 passes its precomputed bitset into this index decoder, and that composition must be preserved for strict source fidelity. UN:H clears fog player bits outside the decoded preserved team within a circular radius, then immediately re-reveals sight from owned heroes/towns/other structures for ALL owners and both levels before returning. Screen paint timing is not established.",
+        "nativeContract": {
+          "signature": "UN:H(x,y,z,p,r); p is preservedPlayerIndex, despite source77 variable being named playersBitSet.",
+          "decode": "uint16 keep=0x0100; if0<=signedp<8: forj0..7, if signedbyte(team[j])==signedbyte(team[p]): keep|=1<<j. Ifp==-1 or any other out-of-range value, keep=0x0100. Equality is literal: native loop does not exclude negative/unassigned team labels.",
+          "mutation": "For each included(xi,yi,z): oldFogWord replaced by oldFogWord & keep. Thus low8 bits of all players outside preserved equal-team set are cleared; selected team old bits are preserved, not newly revealed. Exact operation also preserves bit8 and clears other upper bits. Meaning of upper bits was not re-proven.",
+          "radius": "Normal nonnegative radius and valid coordinates: xi\u2208[max(0,x-r),min(width-1,x+r)], yi similarly height; include iff sqrt((xi-x)^2+(yi-y)^2)<=r+0.5. Squaring/sum use int32 IMUL/ADD then x87 sqrt. Ordinarymap dimensions avoidoverflow. r=0 includes center; r=1 includes diagonals because sqrt2<=1.5.",
+          "level": "Hide49d040 only selected z. Subsequent4c7910 owned-sight pass processes all heroes/structures, including otherlevels; source77 calls UN:H separately for eachmaplevel.",
+          "refreshOrder": "Visibility words are updated synchronously during49d040; changedtile old/new deltas are queued through GameMgr+4e7ac. The UN bridge then calls4c7910 immediately, which OR-reveals equal-team sight of every eligible owned object. This is visibility recomputation, not proof of synchronous screen rendering or network consumption timing."
+        },
+        "sourceCompositionExamplesNotExecuted": [
+          {
+            "scenario": "Red player0 solo; distinct teams for all8players",
+            "sourceBitSet": 1,
+            "nativePreservedPlayerIndex": 1,
+            "nativeKeepWord": 258,
+            "preservesExploredPlayer": "Blue player1; red old explored tiles outside renewed owned sight are cleared."
+          },
+          {
+            "scenario": "Blue player1 solo; distinct teams",
+            "sourceBitSet": 2,
+            "nativePreservedPlayerIndex": 2,
+            "nativeKeepWord": 260,
+            "preservesExploredPlayer": "Tan player2, not blue."
+          },
+          {
+            "scenario": "Red0+Blue1 allies; players2..7 distinct",
+            "sourceBitSet": 3,
+            "nativePreservedPlayerIndex": 3,
+            "nativeKeepWord": 264,
+            "preservesExploredPlayer": "Green player3 team, not red/blue team. Owned red/blue sight subsequently re-reveals normally."
+          },
+          {
+            "scenario": "Solo player3 (Green)",
+            "sourceBitSet": 8,
+            "nativePreservedPlayerIndex": 8,
+            "nativeKeepWord": 256,
+            "preservesExploredPlayer": "None; all8player bits cleared withincircle before owned-sight reveal."
+          },
+          {
+            "scenario": "Sourcealliance bitset255",
+            "sourceBitSet": 255,
+            "nativePreservedPlayerIndex": 255,
+            "nativeKeepWord": 256,
+            "preservesExploredPlayer": "None before owned-sight reveal."
+          }
+        ],
+        "ownedSightRestoration": [
+          {
+            "objects": "156hero records",
+            "eligibility": "owner!=-1; no explicit on-map/position guard in4c7910 before calling helper/reveal",
+            "radius": "4e42e0(hero,0), not traced further here",
+            "scope": "allowners; bothlevels according to eachhero coordinates"
+          },
+          {
+            "objects": "town vector+21614..21618,stride168",
+            "eligibility": "owner!=-1",
+            "radius": "5normally;20with specialbuilt-bitmask; specialfirstdate structure path can reveal wholelevels",
+            "scope": "allowners"
+          },
+          {
+            "objects": "ownedstructure vectors GameMgr+4e38c,+4e39c,+4e3ac",
+            "eligibility": "storedowner!=-1",
+            "radius": 3,
+            "scope": "allowners; concrete class names not claimed"
+          },
+          {
+            "objects": "fullmap specialobject pass (type0x57 with specifiedtileflag)",
+            "eligibility": "ownerbyte!=-1",
+            "radius": 3,
+            "scope": "alllevels"
+          }
+        ],
+        "hookAudit": {
+          "WoGTable": "Installer-terminated table788fd8..78a07c,355rows examined for native sites in UN:H731327..73138c, bridge712589..7125db, hide49d040..49d29e, restore4c7910..4c7c99. Zero matching declared native sites.",
+          "EraDll": "Targeted literal32bit scan in code-range sections yielded8coincident addresses in hide-range that are HIGHLOW relocated DLL-local pointers (49ca21,49ca43,49cb4c,49cbd9,49cc27,49ccdc,49cda6,4a98da); remaining4c7b83 at461831 is overlapping opcode bytes. No actual direct native patch target identified for inspected path.",
+          "Pascal": "Targeted searches UN_H/UN:H/shroud/fog/hideMap and exact49d040/4c7910etc in supplied *.pas found no UN:H rewrite. Other UN hooks exist and are unrelated (C,J,U,P).",
+          "limit": "Bounded negative evidence only. Computed-address hooks, initialization failures, generic ERM parser overrides, dynamicallyloaded external plugins and process patchbytes remain unobserved. No claim that all possible hooks are absent."
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN dispatcher",
+            "preferredVa": "0x73118d",
+            "endExclusiveVa": "0x7311c0",
+            "rva": "0x33118d",
+            "fileOffset": "0x2cc18d",
+            "size": 51,
+            "sha256": "dc268fad1c073c3c49395a44dd117fcc267048d6bf0a6a268420f2ae85bf3efd",
+            "observation": "Letter H=7 indexes733f5e+28\u2192731327."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN H branch",
+            "preferredVa": "0x731327",
+            "endExclusiveVa": "0x73138c",
+            "rva": "0x331327",
+            "fileOffset": "0x2cc327",
+            "size": 101,
+            "sha256": "bca495c0592aaea6001c0ec2c13ab0b958520a4d32241ba0a9638a01450c6779",
+            "observation": "Requires>=5args, forwards resolved int32 parameters x,y,z,p,r unchanged to712589; no bitset decoder, no lower/upper value clamps in this branch."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN H bridge",
+            "preferredVa": "0x712589",
+            "endExclusiveVa": "0x7125db",
+            "rva": "0x312589",
+            "fileOffset": "0x2ad589",
+            "size": 82,
+            "sha256": "67249192e983ca78c2070df4500b78e85cc458145e17bd0f0343ed19da58de43",
+            "observation": "Push all5args unchanged; GameMgr=this; call49d040; then unconditional4c7910; return. No redraw-screen call in this wrapper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native preserved player selector",
+            "preferredVa": "0x49d040",
+            "endExclusiveVa": "0x49d09b",
+            "rva": "0x9d040",
+            "fileOffset": "0x9d040",
+            "size": 91,
+            "sha256": "065518d0e2f7adbed90d2cbbc79019dd311bb51d9e0d360b36cee0716957edc2",
+            "observation": "Default keep0x100. p==-1 retains default; otherwise if0<=p<8, compute low8bit keep from equality of GameMgr team[p] and team[j] at+1f879. Out-of-range keeps no player bits. keep=0x100|teamBits."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native area bounds",
+            "preferredVa": "0x49d09b",
+            "endExclusiveVa": "0x49d168",
+            "rva": "0x9d09b",
+            "fileOffset": "0x9d09b",
+            "size": 205,
+            "sha256": "e261a476ce9d65b44f1ac2b569dbd35ee9d4a180bd4742dcda7b59173e018aa0",
+            "observation": "Threshold double(radius)+0.5; clipped inclusive square x\u00b1r,y\u00b1r; builds delta-change container."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native radius and AND write",
+            "preferredVa": "0x49d168",
+            "endExclusiveVa": "0x49d255",
+            "rva": "0x9d168",
+            "fileOffset": "0x9d168",
+            "size": 237,
+            "sha256": "b3da8b5c867cfea8354fa772109ff352c31589f49fddf7507d92923d407bf725",
+            "observation": "dx,dy squared using IMUL32, sum32, convert to double, sqrt618154; include distance<=radius+0.5; tile fog word=oldWord&keep; append old/new delta and store synchronously."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native delta scheduling",
+            "preferredVa": "0x49d255",
+            "endExclusiveVa": "0x49d29e",
+            "rva": "0x9d255",
+            "fileOffset": "0x9d255",
+            "size": 73,
+            "sha256": "420918549ad3fdc27bcb5c88a4edc2789a43da31e89c2097d6bc2d301720f0b3",
+            "observation": "If delta container nonempty enough, append to GameMgr+4e7ac queue, else destroy. No explicit ownership-sight reveal until caller subsequently4c7910."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "owned heroes reveal",
+            "preferredVa": "0x4c7910",
+            "endExclusiveVa": "0x4c7960",
+            "rva": "0xc7910",
+            "fileOffset": "0xc7910",
+            "size": 80,
+            "sha256": "d7c6ed2b52600738e343ff5c282c28c670f6704f29cb713831f28a874c64c13d",
+            "observation": "Iterate156 hero records; owner!=-1; radius via4e42e0(hero,0); call49cdd0(x,y,z,owner,radius,0)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "owned towns reveal",
+            "preferredVa": "0x4c7960",
+            "endExclusiveVa": "0x4c7ad4",
+            "rva": "0xc7960",
+            "fileOffset": "0xc7960",
+            "size": 372,
+            "sha256": "d85383a575d5ea90ab8daf190813e237c8127ad2fbc3400e22cbdf8d397331b0",
+            "observation": "Iterate town records stride168; owner!=-1; ordinary radius5, special built-bitmask makes20; additional first-date special structure branch may reveal whole levels."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "other owned structures reveal",
+            "preferredVa": "0x4c7ad4",
+            "endExclusiveVa": "0x4c7bd9",
+            "rva": "0xc7ad4",
+            "fileOffset": "0xc7ad4",
+            "size": 261,
+            "sha256": "a8051fd239731dc6989da8358269e8fb0a3db37ad16ed23c6278815d88f9ef84",
+            "observation": "Iterate vectors+4e38c(stride40),+4e39c(stride5c),+4e3ac(stride40). Owner!=-1 calls49cdd0 radius3. Semantic class names not re-proven here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "map object ownership reveal",
+            "preferredVa": "0x4c7bd9",
+            "endExclusiveVa": "0x4c7c99",
+            "rva": "0xc7bd9",
+            "fileOffset": "0xc7bd9",
+            "size": 192,
+            "sha256": "e1fc701952d289f923bd8d50956b100552670a27c24d4b68fdc3f2a394867ed7",
+            "observation": "Full-map pass checks tile flags+0d bit10 and object type0x57; if ownerbyte!=-1, reveals radius3 for owner. Function then returns."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "reveal team decoder",
+            "preferredVa": "0x49cdd0",
+            "endExclusiveVa": "0x49ce35",
+            "rva": "0x9cdd0",
+            "fileOffset": "0x9cdd0",
+            "size": 101,
+            "sha256": "590dfae31b6fc73ec291ac542d46d672de13ad2e8fee2aa2047765ca59ea8531",
+            "observation": "Reveal routine rejects p outside0..7; computes equal-team low8 mask using same GameMgr team array. Circular radius+0.5."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "reveal OR write",
+            "preferredVa": "0x49cf3a",
+            "endExclusiveVa": "0x49cfac",
+            "rva": "0x9cf3a",
+            "fileOffset": "0x9cf3a",
+            "size": 114,
+            "sha256": "5d3b74a90764bfceda820adbd9b573231ebb452f5bc91687b2727e42431e325e",
+            "observation": "Visibilityword new=old|teamBits, writes synchronous; delta scheduling separate. No dependence on UN:H selectedp."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "distance sqrt",
+            "preferredVa": "0x618154",
+            "endExclusiveVa": "0x61817e",
+            "rva": "0x218154",
+            "fileOffset": "0x218154",
+            "size": 42,
+            "sha256": "86f24f0a67ab113ef17b44227b31bb0d9f202848174402a28db95120bca78fcf",
+            "observation": "Ordinary finite positive path uses x87 FSQRT."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "radius tolerance constant",
+            "preferredVa": "0x63ac70",
+            "endExclusiveVa": "0x63ac78",
+            "rva": "0x23ac70",
+            "fileOffset": "0x23ac70",
+            "size": 8,
+            "sha256": "4cfa5b42ca669328764e67cd9a34bb8f90b16ed7ca8d85e8443783d7ccce15ed",
+            "observation": "IEEE double0.5."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "WoG hook relocation installer",
+            "preferredVa": "0x701354",
+            "endExclusiveVa": "0x7013ba",
+            "rva": "0x301354",
+            "fileOffset": "0x29c354",
+            "size": 102,
+            "sha256": "ffa3fd6582ab4e73e395f6e201250cf15510768dfbd38c8584dbc0d77905c4c6",
+            "observation": "Iterate12byte hookrows788fd8 until nativeSite0, install callback relative displacements."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "DLL coincident pointer operands",
+            "preferredVa": "0x49ca1e",
+            "endExclusiveVa": "0x49ca62",
+            "rva": "0x9ca1e",
+            "fileOffset": "0x9be1e",
+            "size": 68,
+            "sha256": "5f1a63423f80f3a63d840e144a69163e9f9ab991419b7acd31a9e5958baa10b6",
+            "observation": "Operands equal49d040 are HIGHLOW relocated DLL-local addresses in structured registration parameters, not absolute native49d040 patch targets."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "DLL false literal overlap",
+            "preferredVa": "0x461831",
+            "endExclusiveVa": "0x461849",
+            "rva": "0x61831",
+            "fileOffset": "0x60c31",
+            "size": 24,
+            "sha256": "ed8df02580f1e2e391aedc87ecf07e09125f5d2c45d150bcdef1f6f949319511",
+            "observation": "Bytes83 7b 4c 00 overlap a literal4c7b83, but decode as CMP [EBX+4c],0; not an absolute reference."
+          }
+        ],
+        "limits": [
+          "Native geometric bounds assume validz/map and ordinarynonnegative radius. Negative/overflowing coordinates/radii and extremeint32 arithmetic are not fully characterized; branch has no parameter clamp.",
+          "Ownedhero radius helper4e42e0 and exactspecialbuilding bitmaps/globalfirst-date reveal flags not fully traced. This establishes restoration andscope, not full scoutingparity for all bonuses.",
+          "UI paint/minimap/cache refresh and deltaqueue/network consumption were not followed to completion. Synchronousvisibility data changes and immediateowned-sight call are established, frame timing is not.",
+          "Uninspectedplugins may change arg semantics or visibility behavior. No originalruntime used; no source intent silently substituted for providednativecontract.",
+          "Source77 alliance-bitset computation depends on actual team data and CURRENTplayer earlier in event flow; concrete runtime team labels not observed. Derivedexamples explicitly supplyteams."
+        ]
+      }
+    },
+    "movement": {
+      "sha256": "048d69c41ccf069e7a23422c409e27e49d21fbfb3c720a0e37e0af28beb7ea16",
+      "report": {
+        "schema": 1,
+        "question": "Source120 OnHeroMove timing, ERMflag999 and normal visibility order",
+        "status": "Proven hook/event/filter contract; partial classification of all failed moves, embarkation and teleport variants.",
+        "method": "Ordinary bounded offline PE and supplied Pascal/ERM inspection. Graphify query performed first for project navigation; relevant Pascal/ERM are unindexed. REA unavailable previously diagnosed; no installation or runtime. No REA Evidence record.",
+        "artifacts": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          }
+        ],
+        "sources": [
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+            "ranges": [
+              {
+                "startLine": 513,
+                "endLine": 538,
+                "sha256": "359eddeb0927ab3634da36a3c86ec40effaca46e8473dad63bcf0a912700add2"
+              }
+            ]
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+            "ranges": [
+              {
+                "startLine": 193,
+                "endLine": 195,
+                "sha256": "d5446dd077cc9c54cce673150ec7ce80a7534a851936726947fae2b88adcc970"
+              },
+              {
+                "startLine": 287,
+                "endLine": 288,
+                "sha256": "cbd225619ee95b227e83b0e226600c7ff931c8c90fb9fb1f0f1ec50092a31e73"
+              },
+              {
+                "startLine": 3894,
+                "endLine": 3894,
+                "sha256": "e8e4a47000a30e3110a5865f4a6871a23f32ae51d7fd897ae99f640400579a79"
+              },
+              {
+                "startLine": 5678,
+                "endLine": 5692,
+                "sha256": "5fa2823d90ffcab1c087d307d9afab1593ad5e9126527ee22bd9c38564c18482"
+              },
+              {
+                "startLine": 5785,
+                "endLine": 5848,
+                "sha256": "a8d607edcf6b82c2a32cc931986c268e1511c7bfda73af7c5c660387e38b722a"
+              },
+              {
+                "startLine": 6477,
+                "endLine": 6515,
+                "sha256": "2e7a9a0eecbc7e016d2fa1d2d7e60c89b588cf5fbef022fb74a914ce2506e4a7"
+              },
+              {
+                "startLine": 9379,
+                "endLine": 9380,
+                "sha256": "a38381c9b8676414def020948204ac5914613ec4118bbee776b61f4a7d3e5202"
+              },
+              {
+                "startLine": 9396,
+                "endLine": 9397,
+                "sha256": "e2259d4bfa0ff261e3a841e2c75a2ba9d806ff340072208953232cf515f818ce"
+              }
+            ]
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Heroes.pas",
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+            "ranges": [
+              {
+                "startLine": 359,
+                "endLine": 367,
+                "sha256": "881fef794ef32de437cb98ca08d8d64f1932b46a91a9f5603c1a09810a89c7b6"
+              },
+              {
+                "startLine": 1493,
+                "endLine": 1496,
+                "sha256": "ce618137c7216d13a45e0ffe0388696591ff0fdffdbb789ab2aa5dcd3b72115f"
+              },
+              {
+                "startLine": 2492,
+                "endLine": 2495,
+                "sha256": "8c79703996401e6ca085d1ba9142df4fc45f74007bbd0bd9f0a200ecacfc4770"
+              },
+              {
+                "startLine": 2674,
+                "endLine": 2685,
+                "sha256": "b0c16fa30c69b5fbcfe9219d0376cb582aec8481f9f923cdbd89c9d44f08aec2"
+              }
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "id": "O1",
+            "support": [
+              "movement visibility hook row",
+              "HM wrapper native call and post event"
+            ],
+            "finding": "Original declared HM instrumentation replaces only the call at48098b to visibilityreveal49cdd0 with754584. It does not replace visibilityfunction49cdd0globally, nor generic movemententry47ff00."
+          },
+          {
+            "id": "O2",
+            "support": [
+              "HM wrapper native call and post event",
+              "native visibility reveal OR",
+              "native visibility returns"
+            ],
+            "finding": "Order at hookedsite: native circularvisibilityreveal completes (includingteammaskORstores and itsqueuedupdatehandling), then genericHM event30400, then hero-specificHM30401+ID. Source120 OnHeroMove therefore executes AFTER these normalvisibilitywrites and can hide them again."
+          },
+          {
+            "id": "O3",
+            "support": [
+              "HM wrapper native call and post event",
+              "HM emitter"
+            ],
+            "finding": "Postevent is not gated by native successreturn, changedhero coordinates, spentmovementpoints or newlyrevealedtiles. If WoG enabled and hooksitecalledwithnonnullhero, eventemitsafterordinarynative return, even if revealchangednothing. This doesnot mean every failedUI movementattemptreachesthehook."
+          },
+          {
+            "id": "O4",
+            "support": [
+              "Erm.pas:287-288",
+              "Erm.pas:5678-5692",
+              "Heroes.pas:2492-2495"
+            ],
+            "finding": "At ProcessErm evententry f999=IsValidPlayerId(CurrentPlayerId) AND player(CurrentPlayerId).IsThisPcHumanPlayer. Field+E1, notIsHuman+E2. It tests the current TURN player localhumanflag, noteventheroOwner, eventsuccessorcurrentbattlevisitor."
+          },
+          {
+            "id": "O5",
+            "support": [
+              "Erm.pas:5785-5848",
+              "Erm.pas:9379-9380",
+              "Erm.pas:3894",
+              "source77:533-536"
+            ],
+            "finding": "SuppliedERA replacesProcessErm at74c816. Itsnamedreadabletrigger OnHeroMove corresponds30400. After settingentryflags, itfireshandlers andevaluatesscripttriggerconditions. Source120 requires rule9enabled ANDf999true, then UN:H for surfaceandoptionalunderground withprecomputedplayerbitset/fullmapsize."
+          },
+          {
+            "id": "O6",
+            "support": [
+              "teleport direct reveal call",
+              "HE:P animated teleport helper",
+              "Erm.pas:6477-6515"
+            ],
+            "finding": "ERA HE:P has alternate routes: same-owneranimated helper712008(...,1) calls41dab0, whose direct revealcall41dd67 is notthe HMhooksite. OtherHE:Pbranch hideshero,writesxyz,showshero. NoexplicitHMcallintheseinspectedhelpers. Thus applying source120 toALLteleport/reveal operations isnotjustified."
+          }
+        ],
+        "filterContract": {
+          "entryPredicate": "valid(CurrentPlayerId) && players[CurrentPlayerId].IsThisPcHumanPlayer(+0xE1)",
+          "localHuman": "True iff currentturnplayer haslocalhumanflag. Otherplayers humanstatus doesnot suffice.",
+          "AI": "If currentturnplayerlocalhumanflagfalse, source120 listenerisskipped evenifhumanplayersarepresent. ItdoesnotuseGetThisPcHumanPlayerId fallbacktolastlocalhuman.",
+          "hotseat": "No gametypebranchinpredicate: eachturnusesthatturnplayer+E1. Localhumanturnswhoseflagtrueexecute; AIturnswhoseflagfalse donot. ExactinitializationofE1forallgamesetupsnottraced.",
+          "remoteHuman": "A remotehuman withIsHumantrue butlocalhumanflagfalse doesnotpass.",
+          "foreignHero": "Ownerofmovedhero isnotcheckedby999; forcedforeignheromotionduringalocalhumanturn canpasstheselectedfilterifitreacheshook.",
+          "mutationCaveat": "999isERMmutable. PredicateisestablishedatProcessErmentry; earlierhandlerscanchangetheflagbeforelaterlistenerconditions. Noimmutabilityclaim."
+        },
+        "movementCases": [
+          {
+            "case": "Ordinary step reaching48098b",
+            "answer": "Nativevisibilityfirst, thenHM; source120runsifrule9/f999passes.",
+            "status": "proven"
+          },
+          {
+            "case": "Reveal with no newlyvisible tiles",
+            "answer": "StillHMifhooksitewasreached; no reveal-deltaguard.",
+            "status": "proven"
+          },
+          {
+            "case": "Failed move or cancelled UI attempt before48098b",
+            "answer": "This hookcannotemitunlessreached. Selectedearlyreturnbranch bypasseshook. No universalclaimthatallfailedmovesemitorallfailuresskip.",
+            "status": "partially answered"
+          },
+          {
+            "case": "Embark/disembark",
+            "answer": "Boat-relatedbranchpresentinside47ff00; fullbranchclassificationandreachabilityofrevealhookforalloutcomesunresolved.",
+            "status": "unresolved complete route"
+          },
+          {
+            "case": "HE:P / teleport",
+            "answer": "Differentexplicitteleport/revealpathsidentified; correspondingdirectrevealcallisnotHMhooked. No blanketHMforallteleportvariants. Full downstreamcallbacks/spells/objectsnottraced.",
+            "status": "partially answered"
+          },
+          {
+            "case": "AI/human/hotseat",
+            "answer": "Eventemitteritselfisnotfilteredbyhumantype; source120filterusescurrentturnlocalhumanflagE1asabove.",
+            "status": "predicate proven; setupflaginitialization bounded"
+          }
+        ],
+        "implementableBoundary": "Attach rule120 after the ordinary visibility update represented by the original hooked movement reveal call, then apply current-turn localhumanpredicate. Do not infer a global after-every-reveal/teleport or after-every-attempt event. Exactnativeengineeventmappingneedsseparateverificationwhereembark/fail/teleport pathsdiffer.",
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "movement visibility hook row",
+            "preferredVa": "0x789008",
+            "endExclusiveVa": "0x789014",
+            "rva": "0x389008",
+            "fileOffset": 3293192,
+            "size": 12,
+            "sha256": "05fbdd618d6d55ff8e051d19e313ef6a831b95e4fea8b57779e98d014e03d2ff",
+            "observation": "Static hook row{site48098b,original49cdd0,replacement754584}."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HM wrapper native call and post event",
+            "preferredVa": "0x754584",
+            "endExclusiveVa": "0x754646",
+            "rva": "0x354584",
+            "fileOffset": 3077508,
+            "size": 194,
+            "sha256": "3542c3072079813c559ac058f3cf81fadb6ca80e2dc84285d3f6ca1e6d85add8",
+            "observation": "PreserveECX/ESI; optionalWoGchecks; call savednative49cdd0withsixarguments, then ifWoGenabled803288 call74d79a(heroESI,x,y,z). No test ofnativeEAX, coordinatechange ornewlyvisiblecount."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HM emitter",
+            "preferredVa": "0x74d79a",
+            "endExclusiveVa": "0x74d879",
+            "rva": "0x34d79a",
+            "fileOffset": 3049370,
+            "size": 223,
+            "sha256": "4c6a2b3b662fd7cdadf7845ca98ebb2ccd640a7732f22ae9ad7b4e3fbb49853a",
+            "observation": "Requiresnonnullhero; setscurrenthero,eventxyz; emits30400generic then30401+heroId; restoreseventxyzandpriortriggerID. Noowner/human/movement-success gatehere."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native movement reveal callsite",
+            "preferredVa": "0x48093f",
+            "endExclusiveVa": "0x480990",
+            "rva": "0x8093f",
+            "fileOffset": 526655,
+            "size": 81,
+            "sha256": "a58b52e5a2bef2cd713c34da816b093f1beb57d2993d93e9473f1783c57ad2d0",
+            "observation": "Inside47ff00route: optional49c9c0mapupdate; derive radius4e42e0, ownerhero+22 and currentpositionplusdirectionoffset; call49cdd0 at48098b. This single callsite is hooked."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native visibility team mask and bounds",
+            "preferredVa": "0x49cdd0",
+            "endExclusiveVa": "0x49ce41",
+            "rva": "0x9cdd0",
+            "fileOffset": 642512,
+            "size": 113,
+            "sha256": "36265f54167e04306be05b02336e6fe65a326ee15028e80f48576e56527be422",
+            "observation": "Owneroutside0..7 jumpsordinaryreturn49d030. Otherwise builds teammatebitmask byGameMgr+1f879, initializes circular reveal bounds. Not a movementcommit routine."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native visibility reveal OR",
+            "preferredVa": "0x49cf3a",
+            "endExclusiveVa": "0x49cfac",
+            "rva": "0x9cf3a",
+            "fileOffset": 642874,
+            "size": 114,
+            "sha256": "5d3b74a90764bfceda820adbd9b573231ebb452f5bc91687b2727e42431e325e",
+            "observation": "Gettilevisibility4f8070; ORteammaskwitholdvisibilityword; onlyifchanged queueupdaterecord andstoreword at49cfa9. No movementattemptresult."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native visibility returns",
+            "preferredVa": "0x49cfdb",
+            "endExclusiveVa": "0x49d03b",
+            "rva": "0x9cfdb",
+            "fileOffset": 643035,
+            "size": 96,
+            "sha256": "712bd3aea91b6d8aeb4ab172377007b49fc4734673298ffa6e75601ad0b28a6f",
+            "observation": "Visibilityroutine finishesqueuedupdates/returnsbeforepostHMwrapper resumes. No-reveal/invalidowner exits do not preventpostHMifcallsitewas reached."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "movement early branch bypass",
+            "preferredVa": "0x4805d5",
+            "endExclusiveVa": "0x480625",
+            "rva": "0x805d5",
+            "fileOffset": 525781,
+            "size": 80,
+            "sha256": "575b8233e4cb7d37cad6721fcf64f5e7b1f1b2683b8ca2e734feafa44d940ee7",
+            "observation": "One selected47ff00 branch calls481500; returnnonzero goes4808b1towardrevealcallsite, zero canrestore/call47f9b0andreturn480622without48098b. Semanticclassificationofallfailurebranchesnotadmitted."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "boat-related movement branch",
+            "preferredVa": "0x480269",
+            "endExclusiveVa": "0x4803ac",
+            "rva": "0x80269",
+            "fileOffset": 524905,
+            "size": 323,
+            "sha256": "4876c2ea78edf8f9d2fdc054b84823d6400dcd75545b108df3f2a764bded7bcd",
+            "observation": "Movementroute testsheroTempModbit0x40000andobjecttype3; callsboatlookup4ce5c0, changesboatandheromaprecords. Fullpathfromeveryembark/disembarkoutcometo48098bnotreconstructed."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:P animated teleport helper",
+            "preferredVa": "0x712008",
+            "endExclusiveVa": "0x71212a",
+            "rva": "0x312008",
+            "fileOffset": 2805768,
+            "size": 290,
+            "sha256": "aa9e727dde7494fc1cbafbada339695821a5ac15e9ea63490bc6511bd921d2b0",
+            "observation": "Severalteleportmodes. Flag1branch callsnative41dab0; noexplicitHMcallinhelper. Silentmodesdirectlywritecoordinatesandshow/hide."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "teleport direct reveal call",
+            "preferredVa": "0x41dd3e",
+            "endExclusiveVa": "0x41dd6c",
+            "rva": "0x1dd3e",
+            "fileOffset": 122174,
+            "size": 46,
+            "sha256": "9e2f4f1a5a6eee9ba16e1f13221ae2a0503c0030672485d06963a11da22a1747",
+            "observation": "41dab0teleportpath revealswithdirect49cdd0callat41dd67, a DIFFERENT callsitefromhooked48098b. Revealitselfisnotgloballyhooked."
+          }
+        ],
+        "unknowns": [
+          "No originalexecution, finalpatchedprocessmemory, REA Evidence orruntimepluginloadorder. Declared on-disk bootstrap hooking andmatchingERA sourceonly.",
+          "Complete48xxxxmovementfunctioncontrolflow wasnot reconstructed. No generic success/failure interpretation ofallflags, cancellations, objectvisits, combatrefusalsorboardingpaths.",
+          "Allteleportspells, portals, scriptedmoves, boattransitions, network replayandlaterpluginhooks remainoutsideproof. Differentdirect49cdd0callerswereidentified, butnotgloballydecompiled.",
+          "NormalrevealwritesprecedeHM; exactscreenrender/animationpresentationtiming andall deferrednetworkupdatesarenotobserved.",
+          "CurrentplayerlocalhumanfieldE1 initializationforallhotseat/networksetupsnottraced. TruthpredicateisprovenwithoutassumingIsHuman==IsThisPcHumanPlayer.",
+          "ProcessErm flagsetting/sourcebindingprovedfromPascalanddeclaredhook; noexactcompiledDLLregionforf999assignmentisolated. DLLwholefiledigestretained.",
+          "Otherhandlersmaychangef999orvisibilityduringthesameevent; thisreportdoesnotproveglobalhandlerorderorabsenceofregrant."
+        ],
+        "filesModified": "Ignoredreportdirectoryonly; no trackedfile, prototype, foreign dirtyfile orcontainer changed."
+      }
+    },
+    "movementRoutes": {
+      "sha256": "9fc230b5b2cc3c6d647779ef8268ca933168e591b07e8f7b5365f53106bbc49a",
+      "report": {
+        "schema": 1,
+        "question": "Which native movement routes reach the unique HM visibility callsite48098b?",
+        "status": "Preciseintraproceduralgate andincomingdirectcalls established; some semanticobject/plugin/callee outcomes remainbounded.",
+        "method": "OrdinarytargetedofflinePEanalysis. Priorgraphifyqueryused; thispassonlybinaryregions andpriorreport. NoREAtools/runtime/installations. NoREA Evidence.",
+        "artifacts": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          }
+        ],
+        "priorReport": {
+          "file": "work/downloads/era-darkness120-movement/report.json",
+          "sha256": "048d69c41ccf069e7a23422c409e27e49d21fbfb3c720a0e37e0af28beb7ea16",
+          "unchanged": true
+        },
+        "directE8CallersOf47ff00": [
+          "0x407e3e",
+          "0x408fb6",
+          "0x42fe0e",
+          "0x4818bd"
+        ],
+        "directCallSearchLimit": "Byte-alignedE8relativecandidates mappedfromPEsections, then inspectedatfourreturnedaddresses; noindirect/computedcallgraphcompletenessclaim.",
+        "observations": [
+          {
+            "id": "O1",
+            "support": [
+              "step entry and selected hero",
+              "direct incoming caller407e3e",
+              "direct incoming caller408fb6",
+              "direct incoming caller42fe0e",
+              "direct incoming caller4818bd"
+            ],
+            "finding": "48098b belongs to47ff00, which usescurrentplayerselectedhero, notanexplicitheroargument. Fourvalidateddirectcallers; firstthreepassarg7=0, 4818bdpasses1. Earlierapparentrecursionfrom481500wasfalse:481500ends4817ea;4818bdisindifferent4817f0wrapper."
+          },
+          {
+            "id": "O2",
+            "support": [
+              "boarding object8 branch",
+              "arg7 nonzero loopback and later coordinates",
+              "common visibility construction"
+            ],
+            "finding": "Exactcommonroute:reach4805d5; ifarg7!=0, branch480a72\u2192480942\u219248098b. Ifarg7==0,481500returnnonzero\u21924808b1\u219248098b; zero\u219247f9b0\u2192return480622withoutlocalhook. Noresult/newvisibility/XYdeltafilterafterthehookedcall."
+          },
+          {
+            "id": "O3",
+            "support": [
+              "movement gate bounds and fly exemptions",
+              "movement gate terrain and disembark checks",
+              "movement gate corner and hero checks"
+            ],
+            "finding": "Concreteblockedcasesreturn0from481500: out-of-mapneighbor bounds andselectedterrain/corner/opponentheroconditions. Forarg7=0theseexitbefore48098b. Thus ordinaryrejectedmovementatthisgate doesnotemitlocalHM."
+          },
+          {
+            "id": "O4",
+            "support": [
+              "boarding object8 branch",
+              "object jump tables",
+              "boat removal and placement route",
+              "destination object identification gates"
+            ],
+            "finding": "Boardingwitness:object8 andTempMod0x40000notset proceedsboatassociation/mapupdates andcommonroute; TempModbitsetotherboatbranchreturns480569beforelocalhook. Disembarkwitness:TempModbitset+object3 dropsboatobject8atoldposition,queuesherodestination,thenfallsdestination/commongates. Neithersemanticlabelaloneoverridesthoselatergates."
+          },
+          {
+            "id": "O5",
+            "support": [
+              "metadata visit branch",
+              "visit wrapper47fb60",
+              "visit return helper tail"
+            ],
+            "finding": "Objectinteractionroutescan call47fb60/47f9b0 andreturnbeforelocalHM. Somecheckobjectmetadata byte0 orspecialhero/objectconditions. Theycaninvokeobjectcallback481220; thosecallbacks canchangegame state. No blanketHMaftereveryvisit or failedpickupfollows."
+          },
+          {
+            "id": "O6",
+            "support": [
+              "common visibility construction",
+              "arg7 nonzero loopback and later coordinates"
+            ],
+            "finding": "Visibilitycenterisold/currentheroXY plusdirectiondelta. Nativecoordinateincrements480a45/480a48areAFTERHMonsomeselectedroutes. Thereforetheidentifiedeventmustnotbeassumeduniversallyaftereverypositioncommit,even thoughit isafterthevisibilityORstores. Othercallee-sidepositionchangesnotgloballyexcluded."
+          },
+          {
+            "id": "O7",
+            "support": [
+              "native teleport destination reveal"
+            ],
+            "finding": "Native41dab0teleportrevealuses41dd67, not48098b. Itisnotamong47ff00directcallers. ThusnormalteleportdestinationrevelationdoesnotinherittheidentifiedHMhook merelybyusing49cdd0."
+          }
+        ],
+        "routeContract": {
+          "commonGate": "If47ff00 reaches4805d5: arg7!=0 OR movementGate481500(...)!=0 reachesvisibility/HM. Otherwiseexitbeforelocalhook.",
+          "normalAcceptedStep": "Normalordinaryarg7=0,andgateaccepted\u2192reveal/HM. NoactualXYdeltacheck.",
+          "blockedStep": "Gate-rejectedarg7=0\u2192nolocalHM; failsbeforeentryorotherearlyreturnsalsodonotdirectlyreachthissite.",
+          "visitWithoutMoving": "Someobjectvisitreturnroutesbypasslocalhook; noadmissionforeveryvisit. Avisitwhosepathreachesthecommongatedoesnotneedaseparatepositiondelta.",
+          "embark": "Identifiedordinaryboatassociationroutejoinsthecommongate. Areattemptfrombitsetboatstatehasanearlyreturn.",
+          "disembark": "Identifiedboat-drop/object3routejoinsdestination/commonprocessing; acceptedcommonpathcanemitHM. Do notunconditionallyfireformodealone.",
+          "teleport": "41dab0directdestinationreveal isdifferentandnotgloballyHMhooked; allteleportplugins/spellsandchainedvisitsnotadmitted.",
+          "filter999": "Unchangedpriorcontract:currentTURNplayer localhumanflag+E1, notheroowner orIsHuman+E2. Eventmaybefiredforanyactortype; source120conditionfilterslater."
+        },
+        "boundedNegativeSearches": [
+          {
+            "question": "Do directcallsfrom47ff00/47fb60/47f9b0 showa secondHMsite?",
+            "answer": "Onlypreviouslyidentified48098b within47ff00;47fb60andselected47f9b0tailhavenodirectHM. Notproofagainstcallbacks.",
+            "scope": "Selectedfunctionregionsinreport; notwholegame orplugins."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "step entry and selected hero",
+            "preferredVa": "0x47ff00",
+            "endExclusiveVa": "0x47ffa7",
+            "rva": "0x7ff00",
+            "fileOffset": 524032,
+            "size": 167,
+            "sha256": "74b8406e23d466d4d1c33a711689a655406f6d12eaca63f6de62e548d0077998",
+            "observation": "Native47ff00 has7stackarguments; ESI selectedhero fromcurrentplayer+4. Arg1direction; capturesoldheroXY anddirectiondelta."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "boarding object8 branch",
+            "preferredVa": "0x480518",
+            "endExclusiveVa": "0x480625",
+            "rva": "0x80518",
+            "fileOffset": 525592,
+            "size": 269,
+            "sha256": "abd1b17e05a763e22ec63fa37aaab3b10fa1a3d48c1eedb278dc421e541d0ed5",
+            "observation": "Objecttype8 dispatches480539. IfheroTempMod0x40000set, call47f9b0andreturn480569withoutlocalHMsite; otherwiseboatassociationnativecalls49c390/49c1d0/49c790, thencommon4805d5. Common gate:arg7!=0\u2192480a72;arg7==0\u2192481500;returntrue\u21924808b1;false\u219247f9b0andreturn480622."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "object jump tables",
+            "preferredVa": "0x481074",
+            "endExclusiveVa": "0x481155",
+            "rva": "0x81074",
+            "fileOffset": 528500,
+            "size": 225,
+            "sha256": "1cdc3f668d2724bf4377d08d786ea92a3dcc4e2020bb87442ef7fe842053e227",
+            "observation": "Objecttype\u22128 byteindex at481088 selects5entrytable481074. Type8\u2192480539,34\u21924806a9,212\u2192480802; default480847."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "boat removal and placement route",
+            "preferredVa": "0x480269",
+            "endExclusiveVa": "0x48042f",
+            "rva": "0x80269",
+            "fileOffset": 524905,
+            "size": 454,
+            "sha256": "6b56e040359dad0a6f51145b1644f02493348a72dafcd548c60a1e8a90e6bd32",
+            "observation": "HeroTempMod0x40000 andtargetobjecttype3 branch: lookupboat4ce5c0; removeheromaprecord, showboatobjecttype8 atoldheroposition, queueheroatdestination, resetvisualpath; falls48042f. This is staticdisembarkationwitness, withlatergatesstillrequired."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "destination object identification gates",
+            "preferredVa": "0x48042f",
+            "endExclusiveVa": "0x480539",
+            "rva": "0x8042f",
+            "fileOffset": 525359,
+            "size": 266,
+            "sha256": "c02cc6a54c814113bf86e950f5566ee408fc5f775de37d747286f9f54e69dcc6",
+            "observation": "Querydestination object4b?; compareintendedheropathdestination coordinates andtileflag; ifnotactionable usescommon4805d5; otherwiseobjecttypejumpdispatch. This block doesnotrequire a completed heroXYwrite."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hero encounter early return",
+            "preferredVa": "0x4806a9",
+            "endExclusiveVa": "0x48070c",
+            "rva": "0x806a9",
+            "fileOffset": 525993,
+            "size": 99,
+            "sha256": "6aa54deb5408bebc10a5d0bb45fbbc1d31f92d6c633cbe8da309e78c2a8dda0c",
+            "observation": "Object34branch rejects incompatibleTempModconditions via47f9b0 andreturns480709, withoutlocalvisibilitysite."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "metadata visit branch",
+            "preferredVa": "0x480847",
+            "endExclusiveVa": "0x4808b1",
+            "rva": "0x80847",
+            "fileOffset": 526407,
+            "size": 106,
+            "sha256": "006ed5c7aa05d3c97d2a9e93bcd033145b2448d42ed957023a55719668952756",
+            "observation": "Reads currentobjectmetadatatable pointer660428 and16byteobjecttype row. Byte0==0\u2192common4805d5. Otherwise flight-relatedgatesmayalsousecommon; otherbranchcalls47fb60 thenreturns4808ae, skippinglocalHMsite."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "common visibility construction",
+            "preferredVa": "0x4808b1",
+            "endExclusiveVa": "0x480990",
+            "rva": "0x808b1",
+            "fileOffset": 526513,
+            "size": 223,
+            "sha256": "9166c4502bc1c2ccd7adc53a82654ef65b9b9efe4c41e6f56d741182208d0d42",
+            "observation": "Onlyselectedtruegate reachesconstruction; optionalmapupdate49c9c0, radius4e42e0; center=heroXY+directiondelta, z=heroZ; hookedcall48098b thenresumes."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "arg7 nonzero loopback and later coordinates",
+            "preferredVa": "0x480a27",
+            "endExclusiveVa": "0x480a8b",
+            "rva": "0x80a27",
+            "fileOffset": 526887,
+            "size": 100,
+            "sha256": "a86ee86739abc2dadc5961bde8b391fcc380e5b1fd05a9ac8530aa47ff448105",
+            "observation": "At480a72 optionalhidehero thenjump480942, whichreaches48098b. Thus arg7!=0 doesNOTbypassHM. Somebranchesadddirectiondelta toheroXY at480a45/480a48 AFTERvisibility/HM."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "movement gate bounds and fly exemptions",
+            "preferredVa": "0x481500",
+            "endExclusiveVa": "0x48159b",
+            "rva": "0x81500",
+            "fileOffset": 529664,
+            "size": 155,
+            "sha256": "25a943a6d6370782bdc37da6cc828af76838715fbacb947a6c615802d19358cf",
+            "observation": "481500 computesneighborcoordinates; outsidebounds returns0at481708. Flight-likeconditionscanreturn1at48158f. Callerat4805eb passesarg3=0,arg4=0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "movement gate terrain and disembark checks",
+            "preferredVa": "0x48159b",
+            "endExclusiveVa": "0x48173b",
+            "rva": "0x8159b",
+            "fileOffset": 529819,
+            "size": 416,
+            "sha256": "6a41efb1923d448f3f456f8a95cc868b8a144b1e3f4d1c268678b02b0b27b894",
+            "observation": "Terrain8/water checks, heroTempMod0x40000, destinationboat/anchor tests, cornerchecks; return0at481708 forrejectedconditions,1forsomeacceptedanchorcases."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "movement gate corner and hero checks",
+            "preferredVa": "0x48173b",
+            "endExclusiveVa": "0x4817ed",
+            "rva": "0x8173b",
+            "fileOffset": 530235,
+            "size": 178,
+            "sha256": "3b34f9060d4b003097cdcc4350717ac221f5ae33269f018d7f3ea54953c7915d",
+            "observation": "Directional/cornermetadata predicates; opponenthero guard; normalacceptedreturn1at4817e1, rejectedreturn0at481708."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "direct incoming caller407e3e",
+            "preferredVa": "0x407e16",
+            "endExclusiveVa": "0x407e65",
+            "rva": "0x7e16",
+            "fileOffset": 32278,
+            "size": 79,
+            "sha256": "794c39908ec336cec955df043d0ce3c4b797f37bf7c79854cf9fce252faea0fe",
+            "observation": "Pathvectorloop suppliesarg7=0; directionfromnode, otherargumentslocals. Notclassifiedbyhuman/AIfromthiswindow."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "direct incoming caller408fb6",
+            "preferredVa": "0x408f78",
+            "endExclusiveVa": "0x408fbb",
+            "rva": "0x8f78",
+            "fileOffset": 36728,
+            "size": 67,
+            "sha256": "8c7d71afdca6d3fa17a8d10763188b755ff0d91ffd9434287a4870d638a790e3",
+            "observation": "Suppliesarg7=0; setshero plannedXYZ fields35/39/3d before47ff00."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "direct incoming caller42fe0e",
+            "preferredVa": "0x42fdca",
+            "endExclusiveVa": "0x42fe2d",
+            "rva": "0x2fdca",
+            "fileOffset": 196042,
+            "size": 99,
+            "sha256": "1ad729d2bda920ff15930a66aee02279094c21c79251ee16d13ad2ca98e11340",
+            "observation": "Suppliesarg7=0 andarg5=1; setsplannedXYZ, mayrestoreaftercall. Human/AIlabelnotproved."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "direct incoming caller4818bd",
+            "preferredVa": "0x4817f0",
+            "endExclusiveVa": "0x4818e9",
+            "rva": "0x817f0",
+            "fileOffset": 530416,
+            "size": 249,
+            "sha256": "25df6e61910c2714b4f812d4a8c8d6303032693f36d8fa5c94a59a992cd58a60",
+            "observation": "Separatefunction4817f0 calls47ff00witharg7=1; ifreturnedobjecttype3or8, calls4ac990. This isNOTinside481500 (whichends4817ea)."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "visit wrapper47fb60",
+            "preferredVa": "0x47fb60",
+            "endExclusiveVa": "0x47fc8f",
+            "rva": "0x7fb60",
+            "fileOffset": 523104,
+            "size": 303,
+            "sha256": "f11905a7f0652e0df9366e6422d469acb25a1c562747a932d4bb13e5f950db31",
+            "observation": "Adjustshero movementpoints then calls47f9b0 andreturns. No direct49cdd0or74d79a callinthisbody."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "visit return helper tail",
+            "preferredVa": "0x47fae3",
+            "endExclusiveVa": "0x47fb52",
+            "rva": "0x7fae3",
+            "fileOffset": 522979,
+            "size": 111,
+            "sha256": "cc10c99e9e71ef9cb95cd4b7341436ee3416309ffa0159189ff817f41a22cb91",
+            "observation": "47f9b0caninvoke481220onselectedflags/pathconditions, thenreturnsobjectpointer or0. No directHMcallhere; calleeobjectcallbacksnotexhaustivelytraced."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native teleport destination reveal",
+            "preferredVa": "0x41dd36",
+            "endExclusiveVa": "0x41dd6c",
+            "rva": "0x1dd36",
+            "fileOffset": 122166,
+            "size": 54,
+            "sha256": "3cf21074e3e02b554e9e04f85c54d91792c76d2c30d7c9bd9180df51031e59cb",
+            "observation": "Native41dab0 writesdestinationZandcalls49cdd0at41dd67, distinctfrom48098b."
+          }
+        ],
+        "unknowns": [
+          "Objectmetadata table660428pointsatruntimeinitializedstorage. On-diskzeroentriesarenotvalidper-objectruntimeclassification; nohardcodedartifact/mine/etcvisitroutelistclaimed.",
+          "Intraproceduralbranchreachabilitydoesnotproveeverycallee returnsnormallyorhasnosideeffects. 481220/4ac990 objectcallbacks, combat/prompts andscriptcancellations mayalterstate; notallcallbacktreestraced.",
+          "Boatsemanticlabelsareinferredfromobject8,mapboatlookup4ce5c0,association/depositcallsandboatplacement. ExactallTempModbit0x40000setters andUIoutcomesnotreconstructed.",
+          "No completeAI/humanUI identitylabel forfourcallers; onlyargumentandrouteproof. Prior999predicateprovidesfactualfilterwithoutthoseassumptions.",
+          "Noindirectcalls, finalruntimepatches, externalpluginteleportsorloadedERMbehaviorvalidated. Native41dab0directrevealdoesnotbyitselfproveallchainedHMabsence.",
+          "NooriginalgameexecutionorREA Evidence. Noexactrender/animation/deferrednetworkorderingclaimbeyondobservedinstructionorder."
+        ],
+        "filesModified": "Newignoredreportdirectoryonly. PriorreportSHApreserved. No trackedfile,prototype orcontainerchanged."
+      }
+    }
+  },
+  "contract": {
+    "option": 120,
+    "unhFourthArgument": "preserved player index, not player mask",
+    "keepBit8": true,
+    "source120Argument": "bitset of current turn player and equal-team players, then interpreted as a player index",
+    "source120InitializesAtStartAndEachTurn": true,
+    "turnStartHidesMap": false,
+    "humanPredicate": "current turn player is local human, not moving hero owner",
+    "hideAfter": "instrumented reveal callsite48098b only",
+    "bothMapLevels": true,
+    "ownedSightRestoration": "all owners and all levels immediately after each hide",
+    "circle": "bounded square radius with distance <= radius+.5",
+    "genericHeTeleportTriggersMoveHook": false,
+    "nativeSupportedRadius": [
+      0,
+      4096
+    ]
+  },
+  "nativeScope": [
+    "Authoritative native human standard movement, including its accepted embark/disembark path; native object query and position-update timing are retained.",
+    "Source dynamic object callbacks, client-local network side effects and chained teleportation/plugin routes remain outside the admitted original route comparison.",
+    "Native owned-object sight and rectangle/multilayer maps are extensions of the fixed original object tables and square two-level maps.",
+    "Native fog has per-team visibility booleans; the original unrelated upper visibility-word bits are not represented."
+  ]
+}
