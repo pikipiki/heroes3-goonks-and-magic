@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({rogueFixture=null,townBannerFixture=null,levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
+function fixture({commanderWordFixture=null,rogueFixture=null,townBannerFixture=null,levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -183,6 +183,9 @@ if opts['fogFixture']:
  objects=[o for o in objects if o['instanceName']!='henchmenTrainingGuard']
  h=copy.deepcopy(next(o for o in objects if o['instanceName']=='goonkHero'));h.update({'instanceName':'fogUndergroundHero','x':8,'y':10,'l':1});h['options']['type']='core:edric';objects.append(h)
  t=copy.deepcopy(next(o for o in objects if o['instanceName']=='enemyTown'));t.update({'instanceName':'fogTanTown','x':30,'y':20});t['options']['owner']='tan';objects.append(t)
+if opts['commanderWordFixture']:
+ hero=next(o for o in objects if o['instanceName']=='goonkHero')
+ hero['options']['type']=opts['commanderWordFixture']['hero']
 if opts['rogueFixture']:
  spec=importlib.util.spec_from_file_location('rogue_fixture','work/browser-tests/wog-rogue-ambush-fixture.py')
  module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
@@ -236,7 +239,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({rogueFixture,townBannerFixture,levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
+`,JSON.stringify({commanderWordFixture,rogueFixture,townBannerFixture,levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
 }
 
 async function boot({save,viewport,rogueChoice=null,rogueConfigured=false,townBannerChoice=null,levelArtifactChoice=null,levelArtifactsConfigured=false,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
@@ -492,6 +495,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='commander-words'){
+  const {runCommanderWords}=await import('./wog-commander-words-cases.mjs');
+  await runCommanderWords({boot,state,command,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:954})});
+ }
  if(process.env.CASES==='rogue-ambush'){
   const {runRogueAmbush}=await import('./wog-rogue-ambush-cases.mjs');
   await runRogueAmbush({boot,sheet,state,command,wait,page:()=>page,report,output,

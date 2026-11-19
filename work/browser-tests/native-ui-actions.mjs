@@ -22,6 +22,10 @@ export async function selectNativeOption(page,selector,value,{mouse=false}={}){
 export async function selectHeroTab(page,tab,{mouse=false}={}){
  const press=mouse?'click':'tap',selector=`[data-hero-tab="${tab}"]`,source=page.locator(selector);
  if(await source.isVisible()){await source[press]();return;}
+ const section=page.locator('[data-ui-hero-section]');
+ if(await section.count()){
+  await selectNativeOption(page,'[data-ui-hero-section]',tab,{mouse});return;
+ }
  const rail=page.locator('[data-ui-hero-tabs]:visible');
  if(await rail.count()){
   await rail[press]();await page.locator(`[data-ui-hero-tab="${tab}"]:visible`)[press]();return;

@@ -202,6 +202,11 @@ inline void applySourceCampaignChange(CGameState & gs, const SourceCampaignChang
    auto * hero=dynamic_cast<CGHeroInstance *>(object);if(!hero)throw std::runtime_error("Original movement target is not a hero");
    hero->setSourceCampaignMovementWord(static_cast<std::uint32_t>(campaignInteger(change["amount"])));
   }
+  else if(kind=="heroExperienceWord")
+  {
+   auto * hero=dynamic_cast<CGHeroInstance *>(object);if(!hero)throw std::runtime_error("Original experience target is not a hero");
+   hero->setExperience(static_cast<uint32_t>(campaignInteger(change["experience"])),ChangeValueMode::ABSOLUTE);
+  }
   else if(kind=="heroLevel")
   {
    auto * hero=dynamic_cast<CGHeroInstance *>(object);const int level=campaignInteger(change["level"]);

@@ -7,11 +7,11 @@
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "750c68edb0ef67e28676492cb8796a6df0ab08729c4175f7f37de0f5e6504fd8",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "e9a2aa4b12e90a864b376ac7dc2120ff68f59d69ee5d566f0b6a3716788c98ae"
   },
   "nativeBuild": {
@@ -452,5 +452,15 @@
       "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "commanderWordRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+    "scope": "Historical engines/reports retained. Source bindings refreshed; the linked proof lists the exact61 native regressions and source127 save/battle revalidations on941.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
+      "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "750c68edb0ef67e28676492cb8796a6df0ab08729c4175f7f37de0f5e6504fd8",
+      "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e"
+    },
+    "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
   }
 }

@@ -9,10 +9,10 @@
   "sourceBindings": {
     "work/vcmi-wasm/lib/era/EraTileNumberRules.h": "79053fd607147d192ce5a1e2ba06ea41889a55086ce687992699b3f188e043ee",
     "work/vcmi-wasm/lib/era/EraTileProperties.h": "addf710be2469993ea858ad7017de45981e6b486bdaf2d076393d9b31be68ce3",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "3c8ad0efb7caa16ae08ded5fb16fcae43e0986007b17614d5f10ee2abfe4f6ee",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "27f12cc89f2a9284e95c6bb61cbd8c7a814e122607ad1e6fec48f59d81c0d836",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "0a94c1f9803017c79a853df7273f0da41e8c22af142c132d2f8b74a661cbfd26",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795",
     "work/browser-tests/wog-era-tile-properties-cases.mjs": "1b3a76ffcb770eba75cc14bd525fff705a94be860c950401502a2f0079aa2b81",
     "tests/native/EraTileNumberRules.test.cpp": "5b14ab4b6a5e908cdf4f667e7fdff4a17fd97c35e7bb3643bdbcfd1689bfdf2f",
     "tests/era-tile-number-rules-native.test.mjs": "cf6b666e8fbb041e0d8488a9bea36d6ade1b6c865637a7f8580d9f4aaefc8b64",
@@ -461,5 +461,16 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "commanderWordRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+    "scope": "Historical engines/reports retained. Source bindings refreshed; the linked proof lists the exact61 native regressions and source127 save/battle revalidations on941.",
+    "previousBindings": {
+      "sourceBindings/work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "3c8ad0efb7caa16ae08ded5fb16fcae43e0986007b17614d5f10ee2abfe4f6ee",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "0790e29cd06b22d2feeaa604057231ac5716396e840e1bfe0a1c53f71a16a9ef",
+      "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "61b43f7e6736efe1617f7c9dff3e8a50ba3885760196c501e5409c5797b32b0e",
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
+    },
+    "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
   }
 }

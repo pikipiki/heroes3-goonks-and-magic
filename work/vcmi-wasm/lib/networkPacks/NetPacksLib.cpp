@@ -130,6 +130,7 @@ void HenchmanAction::visitTyped(ICPackVisitor & visitor){visitor.visitHenchmanAc
 void EraGameplayChange::visitTyped(ICPackVisitor & visitor){visitor.visitEraGameplayChange(*this);}
 void TemporaryBattleArmyChange::visitTyped(ICPackVisitor & visitor){visitor.visitTemporaryBattleArmyChange(*this);}
 void EraResourceWordChange::visitTyped(ICPackVisitor & visitor){visitor.visitEraResourceWordChange(*this);}
+void EraCommanderWordChange::visitTyped(ICPackVisitor & visitor){visitor.visitEraCommanderWordChange(*this);}
 void MithrilAction::visitTyped(ICPackVisitor & visitor){visitor.visitMithrilAction(*this);}
 
 void SetRewardableConfiguration::visitTyped(ICPackVisitor & visitor)

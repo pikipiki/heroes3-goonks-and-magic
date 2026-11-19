@@ -9,7 +9,7 @@
   "sourceBindings": {
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "ba55d7d45ebaf8592a713b148b223a958d6d02c17da995b0608860fe0fe68fa1",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -194,5 +194,13 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "f403352a65c181de7f9480ce74ba791406832e1732d75951ba4596bfd8eea7d9"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "commanderWordRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+    "scope": "Historical engines/reports retained. Source bindings refreshed; the linked proof lists the exact61 native regressions and source127 save/battle revalidations on941.",
+    "previousBindings": {
+      "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "c7c1557c2fad371ba36b8989385899810f047077617d1cfb222354b0925daceb"
+    },
+    "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
   }
 }

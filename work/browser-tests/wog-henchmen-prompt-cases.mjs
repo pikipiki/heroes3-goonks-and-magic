@@ -18,7 +18,7 @@ export async function runHenchmanPrompts({boot,approachEnemy,state,command,wait,
   // is needed; the previous viewport can report overflow for one render.
   await page().waitForTimeout(350);
   const layout=await page().locator('.dialog-presentation').evaluate(panel=>({width:panel.clientWidth,scrollWidth:panel.scrollWidth,
-   small:[...panel.querySelectorAll('button')].some(button=>button.getBoundingClientRect().height<44),
+   small:[...panel.querySelectorAll('button')].some(button=>{const box=button.getBoundingClientRect();return box.width>0&&box.height>0&&box.height<44;}),
    cancels:panel.querySelectorAll('[data-dialog-cancel]').length}));
   assert(layout.scrollWidth<=layout.width+1&&!layout.small&&layout.cancels===1,JSON.stringify(layout));
   if(!desktop){

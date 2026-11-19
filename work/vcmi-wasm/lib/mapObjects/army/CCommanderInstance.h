@@ -21,10 +21,9 @@ public:
 	//commander class is determined by its base creature
 	ui8 alive; //maybe change to bool when breaking save compatibility?
 	ui8 level; //required only to count callbacks
-	// Preserve commander metadata already written by deployed format 941.
-	bool eraExperienceWord = false;
-	int32_t eraHeroExperienceReference = 0;
-	int8_t eraCommanderType = -1;
+    bool eraExperienceWord = false;
+    int32_t eraHeroExperienceReference = 0;
+    int8_t eraCommanderType = -1;
 	std::string name; // each Commander has different name
 	std::vector<ui8> secondarySkills; //ID -> level
 	std::set<ui8> specialSkills;
@@ -53,18 +52,12 @@ public:
 		h & name;
 		h & secondarySkills;
 		h & specialSkills;
-		if(h.hasFeature(Handler::Version::GOONK_ERA_COMMANDER_EXPERIENCE_WORD))
-		{
-			h & eraExperienceWord;
-			h & eraHeroExperienceReference;
-			h & eraCommanderType;
-		}
-		else
-		{
-			eraExperienceWord = false;
-			eraHeroExperienceReference = 0;
-			eraCommanderType = -1;
-		}
+        if(h.hasFeature(Handler::Version::GOONK_ERA_COMMANDER_EXPERIENCE_WORD))
+        {
+            h & eraExperienceWord;
+            h & eraHeroExperienceReference;
+            h & eraCommanderType;
+        }
 	}
 };
 

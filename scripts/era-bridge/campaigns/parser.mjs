@@ -3,7 +3,7 @@ import crypto from 'node:crypto';
 import {createLocalBindings} from './local-bindings.mjs';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const fail=(message,source)=>{throw new Error(`${source??'ERM'}: ${message}`);};
-export const campaignReceivers=new Set('IF VR UN HE OW OB HO TR TM FU LE MO CD CH DW CA DO GR MC MA WG HT BA BF BU BM BG QW PO MW MT BH CE SN'.split(' '));
+export const campaignReceivers=new Set('IF VR UN HE OW OB HO TR TM FU LE MO CD CH DW CA DO GR MC MA WG HT BA BF BU BM BG QW PO MW MT BH CE SN CO'.split(' '));
 export function splitOutside(text,separator='/'){
  const result=[];let start=0,quote='';
  for(let i=0;i<text.length;i++){const c=text[i];if(quote){if(c===quote)quote='';continue;}if(c==='^'||c==='@'||c==='$'){quote=c;continue;}if(c===separator){result.push(text.slice(start,i));start=i+1;}}

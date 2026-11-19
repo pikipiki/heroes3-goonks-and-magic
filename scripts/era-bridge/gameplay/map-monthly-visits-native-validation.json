@@ -8,7 +8,7 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
     "work/vcmi-wasm/client/MobileBridge.cpp": "9a2cfa8e05c39f891001c3a4555807db924b0581e4b2b3b60e5445000bdd7c0e",
-    "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+    "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
@@ -16,9 +16,9 @@
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "733cb6c6036358b77e720fdc977b0a05b46b6ca7fe51d470b43d1e8a52f3c3ba",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "9bd7b0b5e619e6095aa8b093f139068d6f81f3deb02f4918626cc08a00e2324e",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a94dd1c5e8e77f544b31d36e864d319242982588ff04042d5bc28c27ceff42cf",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "27f12cc89f2a9284e95c6bb61cbd8c7a814e122607ad1e6fec48f59d81c0d836",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29",
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "0ca268ab185ee5aa86c17dbe5c395436f48076626c50df0b356e90ea91c9fbb9",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "894c5f8fa8d51cd0728f7c0219979da3add568ff1014646a1668f2887dce1ebf",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
     "web/wog-options.mjs": "2744605bec0f77d5fbc4c229108b9b5c5bb3f6c4a54a6676089d6644dc629ff5",
     "mod/tum-era/content/config/wog-map-rules.json": "0b8a2df4397f3c05d56c466018d0035084a403f84b96213811cbbf321604ca69",
@@ -1644,5 +1644,15 @@
       "sourceCompatibilityHistory/5/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "commanderWordRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/commander-experience-native-validation.json",
+    "scope": "Historical engines/reports retained. Source bindings refreshed; the linked proof lists the exact61 native regressions and source127 save/battle revalidations on941.",
+    "previousBindings": {
+      "sourceBindings/scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
+      "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "0790e29cd06b22d2feeaa604057231ac5716396e840e1bfe0a1c53f71a16a9ef",
+      "sourceBindings/tests/native/EraWogOptionsSerialization.test.cpp": "935444d72b1d47608b58ead966bf22694a7eedcfab97d922757929a41962b63f"
+    },
+    "currentEngineSha256": "335ad8b8dd530f92ad2917b690d41e4959e9397cf8bad3c7162daf045febcd8f"
   }
 }

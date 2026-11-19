@@ -340,9 +340,9 @@ void CGameHandler::levelUpCommander(const CCommanderInstance * c)
 	if (!skillAmount)
 	{
 		sendAndApply(clu);
-		levelUpCommander(c);
+        if(c->eraExperienceWord)expGiven(hero);else levelUpCommander(c);
 	}
-	else if (skillAmount == 1  ||  hero->tempOwner == PlayerColor::NEUTRAL) //choose skill automatically
+	else if (skillAmount == 1 || !hero->getOwner().isValidPlayer()) //choose skill automatically
 	{
 		sendAndApply(clu);
 		levelUpCommander(c, *RandomGeneratorUtil::nextItem(clu.skills, getRandomGenerator()));
@@ -357,6 +357,8 @@ void CGameHandler::levelUpCommander(const CCommanderInstance * c)
 void CGameHandler::expGiven(const CGHeroInstance *hero)
 {
 	if(era_compat::source_artifacts::resumeLevel(*this,*hero))return;
+    if(const auto * commander=hero->getCommander();commander&&commander->eraExperienceWord&&commander->gainsLevel())
+    {levelUpCommander(commander);return;}
 	if (hero->gainsLevel())
 		levelUpHero(hero);
 	else if (hero->getCommander() && hero->getCommander()->gainsLevel())
@@ -432,7 +434,7 @@ void CGameHandler::giveExperience(const CGHeroInstance * hero, TExpType amountTo
 	sendAndApply(she);
 
 	//hero may level up
-	if (hero->getCommander() && hero->getCommander()->alive)
+	if (hero->getCommander() && hero->getCommander()->alive && !hero->getCommander()->eraExperienceWord)
 	{
 		TExpType canGainCommanderExp = 0;
 		TExpType currCommanderExp = hero->getCommander()->getTotalExperience();

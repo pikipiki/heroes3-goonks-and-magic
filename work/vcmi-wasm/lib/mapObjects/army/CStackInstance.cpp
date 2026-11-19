@@ -102,6 +102,13 @@ void CStackInstance::restoreSourceExperience(int32_t average)
     nodeHasChanged();
 }
 
+void CStackInstance::restoreCommanderExperienceWord(int32_t value)
+{
+    assert(bearerType()==ArtBearer::COMMANDER);
+    totalExperience=static_cast<uint32_t>(value);
+    nodeHasChanged();
+}
+
 void CStackInstance::giveAverageStackExperience(TExpType desiredAmountPerUnit)
 {
 	if(!canGainExperience())
