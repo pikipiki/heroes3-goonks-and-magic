@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {revealNativeAction,selectNativeOption,selectHeroTab,selectLobbyIncome} from './native-ui-actions.mjs';
+import {openNativeAccordion,revealNativeAction,selectNativeOption,selectHeroTab,selectLobbyIncome} from './native-ui-actions.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -371,7 +371,7 @@ async function boot({halfPricesChoice=null,incomeAiPercent=null,incomePercent=nu
   if(wogChoice!==null&&classic){await command(109,6,wogChoice);await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);}
   if(wogChoice!==null&&!classic){
    assert((await state()).wogOptions.length>=7,'Extended option advertised by native engine');
-   const form=page.locator('.wog-options');await form.locator('summary')[desktop?'click':'tap']();
+   const form=await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="6"][value="${wogChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
@@ -379,14 +379,14 @@ async function boot({halfPricesChoice=null,incomeAiPercent=null,incomePercent=nu
   }
   for(const [index,value]of [[22,fortlessChoice],[23,preserveAiFortsChoice],[25,halfPricesChoice]])if(value!==null){
    assert((await state()).wogOptions.length>=24,'Fortification options advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="${index}"][value="${value}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(({index,value})=>goonkMobileState.wogOptions[index]===value,{index,value});
   }
   if(displayMithrilChoice!==null){
    assert((await state()).wogOptions.length>=22,'Mithril display choice advertised by native engine');
    if(classic){await command(109,21,displayMithrilChoice);await wait(value=>goonkMobileState.wogOptions[21]===value,displayMithrilChoice);}
    else{
-    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+    const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
     const choice=form.locator(`input[data-wog-option="21"][value="${displayMithrilChoice}"]`).locator('..');
     await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
     await wait(value=>goonkMobileState.wogOptions[21]===value,displayMithrilChoice);
@@ -395,7 +395,7 @@ async function boot({halfPricesChoice=null,incomeAiPercent=null,incomePercent=nu
   if(resourceMithrilChoice!==null&&classic){await command(109,20,resourceMithrilChoice);await wait(value=>goonkMobileState.wogOptions[20]===value,resourceMithrilChoice);}
   if(resourceMithrilChoice!==null&&!classic){
    assert((await state()).wogOptions.length>=21,'Resource mithril option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="20"][value="${resourceMithrilChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[20]===value,resourceMithrilChoice);
@@ -403,42 +403,42 @@ async function boot({halfPricesChoice=null,incomeAiPercent=null,incomePercent=nu
   if(weeklyMithrilChoice!==null&&classic){await command(109,19,weeklyMithrilChoice);await wait(value=>goonkMobileState.wogOptions[19]===value,weeklyMithrilChoice);}
   if(weeklyMithrilChoice!==null&&!classic){
    assert((await state()).wogOptions.length>=20,'Weekly mithril option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="19"][value="${weeklyMithrilChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[19]===value,weeklyMithrilChoice);
   }
   if(invertedSpeedsChoice!==null){
    assert((await state()).wogOptions.length>=19,'Inverted speed option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="18"][value="${invertedSpeedsChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[18]===value,invertedSpeedsChoice);
   }
   if(groundedFliersChoice!==null){
    assert((await state()).wogOptions.length>=18,'Grounded flier option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="17"][value="${groundedFliersChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[17]===value,groundedFliersChoice);
   }
   if(extraDwellingChoice!==null){
    assert((await state()).wogOptions.length>=17,'Extra dwelling option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="16"][value="${extraDwellingChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[16]===value,extraDwellingChoice);
   }
   if(monthlyChoice!==null){
    assert((await state()).wogOptions.length>=16,'Monthly visit option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="15"][value="${monthlyChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[15]===value,monthlyChoice);
   }
   if(grailChoice!==null){
    assert((await state()).wogOptions.length>=15,'Grail option advertised by native engine');
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="14"][value="${grailChoice}"]`).locator('..');
    await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[14]===value,grailChoice);

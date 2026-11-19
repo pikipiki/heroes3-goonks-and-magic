@@ -10,7 +10,7 @@ export function mountScenarioFilters(root) {
   const panel = document.createElement('div');
   panel.className = 'scenario-filters';
   renderMarkup(panel,`
-    <details>
+    <details data-ui-accordion class="scenario-filter-disclosure">
       <summary data-filter-summary></summary>
       <div class="scenario-filter-fields">
         <label><span></span><select data-filter="humans"></select></label>
@@ -22,8 +22,8 @@ export function mountScenarioFilters(root) {
     </details>
     <div class="scenario-filter-status"><span role="status"></span><button type="button" data-filter-reset hidden></button></div>`);
   search.closest('label').after(panel);
-  const disclosure = panel.querySelector('details');
-  const summary = panel.querySelector('summary');
+  const disclosure = panel.querySelector('[data-ui-accordion]');
+  const summary = panel.querySelector('[data-ui-accordion-summary]');
   const count = panel.querySelector('[role=status]');
   const reset = panel.querySelector('[data-filter-reset]');
   const size = panel.querySelector('[data-filter=size]');
@@ -55,7 +55,7 @@ export function mountScenarioFilters(root) {
       }
     }
     const active = fields.filter(select => select.value).length;
-    summary.textContent = t('Filters', 'Filtres') + (active ? ` (${active})` : '');
+    summary.querySelector('[data-ui-accordion-label]').textContent = t('Filters', 'Filtres') + (active ? ` (${active})` : '');
     count.textContent = fr ? `${visible} ${visible === 1 ? 'carte' : 'cartes'}` : `${visible} ${visible === 1 ? 'map' : 'maps'}`;
     empty.hidden = visible > 0;
     reset.hidden = !active && !query;

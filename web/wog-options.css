@@ -1,5 +1,5 @@
 #mobile-app .wog-options{min-width:0}
-#mobile-app .wog-options summary{min-height:var(--ui-touch);box-sizing:border-box;cursor:pointer;padding:var(--ui-space-2) var(--ui-space-3);font:var(--ui-font-label)}
+#mobile-app .wog-options [data-ui-accordion-summary]{min-height:var(--ui-touch);box-sizing:border-box;cursor:pointer;padding:var(--ui-space-2) var(--ui-space-3);font:var(--ui-font-label)}
 #mobile-app .wog-rules{display:grid;gap:var(--ui-space-3);min-width:0}
 #mobile-app .wog-rules fieldset{min-width:0;margin:0;padding:var(--ui-space-2);border:1px solid var(--ui-outline);border-radius:var(--ui-radius-panel)}
 #mobile-app .wog-rules legend{max-width:100%;box-sizing:border-box;padding:0 var(--ui-space-1);font:var(--ui-font-label);overflow-wrap:normal;word-break:normal}

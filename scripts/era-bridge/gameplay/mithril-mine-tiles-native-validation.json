@@ -17,7 +17,7 @@
     "tests/native/EraMithrilMineRules.test.cpp": "018d2ea0c0b294933c2be40ee2988b8ced0becf167996cc338f51d13b5e10013",
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
     "work/browser-tests/wog-map-double-artifacts-cases.mjs": "f0fb6687e4f6ed29e144c0106cb771c32c90fa1ad4a3b024be1bd162887463db",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "work/browser-tests/wog-mithril-mine-tiles-cases.mjs": "a813f7e49026cb93b2eb28e30b039e87f107df4e2adac46927d17acf98d2ac7e",
     "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
     "work/vcmi-wasm/lib/era/EraMithrilMineRules.h": "a92a758bf1ea4788e52aa26c02e8f513e79809fb8a3d9af7d35f2dc3ca30234e",
@@ -1662,7 +1662,8 @@
       "tests/native/EraWogOptionsSerialization.test.cpp": "a5e38ccf2ddb993b861520d718df1698dfe55d19eae1e6d61a0f5da2fb79495a",
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
       "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "68d8e06164439f81e429162628c474071d5df1f59fd3e1f039b8c0b5aa4e1d44",
-      "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9"
+      "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }

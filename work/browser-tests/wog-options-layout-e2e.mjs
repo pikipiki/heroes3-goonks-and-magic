@@ -31,7 +31,7 @@ try {
     window.sendState = () => dispatchEvent(new CustomEvent('goonk-state', {detail: structuredClone(testState)}));
     sendState();
   });
-  await page.locator('.wog-options summary').tap();
+  await page.locator('.wog-options [data-ui-accordion-summary]').tap();await page.locator('.wog-options .MuiCollapse-entered').waitFor();
   assert.equal(await page.locator('.wog-options fieldset:visible').count(), 6, 'Published six-option engines retain their controls');
   assert(await page.locator('input[data-wog-option="6"]').first().isDisabled());
   await page.evaluate(() => { testState.wogOptions.push(-1); sendState(); });

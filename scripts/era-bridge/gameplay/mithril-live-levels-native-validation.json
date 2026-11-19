@@ -15,7 +15,7 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
     "tests/native/EraCreatureLevelRules.test.cpp": "0fd7bf0fde20dd5b44d1692d47912bf820b24b366e26cc71b5c6548250e0222d",
     "work/browser-tests/wog-mithril-live-levels-cases.mjs": "82bf3d03b8500acc9a570c2f5755a547d127122446f2bdaba8a763f3ff543e84",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "tests/fixtures/era-gameplay/creature-levels-reference.json": "2a343ef13d6489c27c6a3363af5b77061d834797cd0cfcb9355439e0a8ec9cec",
     "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
     "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
@@ -1189,7 +1189,8 @@
       "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648",
       "tests/native/EraWogOptionsSerialization.test.cpp": "a5e38ccf2ddb993b861520d718df1698dfe55d19eae1e6d61a0f5da2fb79495a",
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
-      "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9"
+      "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }

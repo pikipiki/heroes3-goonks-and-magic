@@ -9,7 +9,7 @@
   "sourceBindings": {
     "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "ba55d7d45ebaf8592a713b148b223a958d6d02c17da995b0608860fe0fe68fa1",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",

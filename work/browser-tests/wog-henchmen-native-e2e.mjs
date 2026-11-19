@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {chromium} from 'playwright-core';
 import {silenceTestAudio} from './silent-audio.mjs';
 import {readCompletedNativeSave} from './native-save-completed.mjs';
-import {revealNativeAction,selectHeroTab} from './native-ui-actions.mjs';
+import {openNativeAccordion,revealNativeAction,selectHeroTab} from './native-ui-actions.mjs';
 import {readJsonc} from '../../scripts/era-bridge/objects/production-resolvers.mjs';
 
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8797';
@@ -390,35 +390,35 @@ async function boot({save,viewport,townBannerChoice=null,levelArtifactChoice=nul
   if(growthChoice!==null){
    assert((await state()).wogOptions.length>=14);
    const input=page.locator(`input[data-wog-option="13"][value="${growthChoice}"]`);
-   await page.locator('.wog-options summary')[desktop?'click':'tap']();await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
+   await openNativeAccordion(page,'.wog-options',{mouse:desktop});await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[13]===value,growthChoice);
    await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
   }
   if(noShootingFixture?.experience===false){await command(109,1,0);await wait(()=>goonkMobileState.wogOptions[1]===0);}
   if(townBannerChoice!==null){
-   const form=page.locator('.wog-options');if(!await form.evaluate(n=>n.open))await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="30"][value="${townBannerChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[30]===value,townBannerChoice);
   }
   if(levelArtifactChoice!==null){
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="29"][value="${levelArtifactChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[29]===value,levelArtifactChoice);
   }
   if(fogChoice!==null){
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="28"][value="${fogChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[28]===value,fogChoice);
   }
   if(noShootingChoice!==null){
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="27"][value="${noShootingChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[27]===value,noShootingChoice);
   }
   if(eighthUpgradeChoice!==null){
-   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const form=page.locator('.wog-options');await openNativeAccordion(page,'.wog-options',{mouse:desktop});
    const choice=form.locator(`input[data-wog-option="26"][value="${eighthUpgradeChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[26]===value,eighthUpgradeChoice);
   }
   if(doubleArtifactChoice!==null){
    assert((await state()).wogOptions.length>=25);
    const input=page.locator(`input[data-wog-option="24"][value="${doubleArtifactChoice}"]`);
-   await page.locator('.wog-options summary')[desktop?'click':'tap']();await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
+   await openNativeAccordion(page,'.wog-options',{mouse:desktop});await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[24]===value,doubleArtifactChoice);
   }
   if(difficulty!==undefined){await command(25,difficulty);await wait(value=>goonkMobileState.difficulty===value,difficulty);}

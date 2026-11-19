@@ -24,7 +24,7 @@ export function createMobileTavern({root, command, pointer}) {
     const reason = !state.turn ? t('Recrutement disponible à ton tour.', 'You can recruit on your turn.') :
       !canRecruit && heroes.length ? tavern.recruitReason || t('Recrutement indisponible.', 'Recruitment unavailable.') : '';
     const amount = Number.isFinite(tavern.cost) ? new Intl.NumberFormat(fr ? 'fr-FR' : 'en-US').format(tavern.cost) : '';
-    const rumorOpen = panel.querySelector('details')?.open;
+    const rumorOpen = panel.querySelector('[data-ui-accordion]')?.open;
     renderMarkup(panel,`<header class="tavern-header"><h2 id="mobile-tavern-title">${t('Taverne', 'Tavern')}</h2>
       ${amount ? `<span class="tavern-cost"><img src="./web/h3-theme/resource-gold.png" alt="">${amount} ${t('or par héros', 'gold per hero')}</span>` : ''}
       <button type="button" data-tavern-close aria-label="${t('Fermer la taverne', 'Close tavern')}">✕</button></header>

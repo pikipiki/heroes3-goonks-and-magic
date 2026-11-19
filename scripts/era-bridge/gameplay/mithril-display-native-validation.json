@@ -1156,12 +1156,12 @@
   "schema": 1,
   "sourceBindings": {
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
     "web/mithril-enhancements.mjs": "a15fdf22d5ad74b550769602529dbc40ba4e7727ed8cb4e702c7cf4051112e80",
     "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
     "work/vcmi-wasm/lib/era/EraMithrilDisplayRules.h": "fe510a53ab2a50a5d18ec6f7c788cb01183bf795445dc0763adbf22a55d1086a",
-    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
+    "web/wog-options.mjs": "4f9bd044ff913e05d1ee0ac5e0d79bf889aac57541452805f9caed91168fc635",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "dd32577cd49c971f342ccd44229d302b3b1c8f7fc59762dbf43560a4e7d2bc2b",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
     "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
@@ -2014,7 +2014,8 @@
       "work/vcmi-wasm/lib/era/EraWogOptions.h": "029cc2309d0049a4971b99530ca3bd168f95e6b0e0fe953511a3e451c3fd4e74",
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
       "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "3166968f244cc72f6cc76b49e3db87950ed2e8fd181dc8102f0483b31513210f",
-      "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9"
+      "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }

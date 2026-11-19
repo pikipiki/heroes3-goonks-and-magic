@@ -33,3 +33,11 @@ export async function selectLobbyIncome(page,color,value,{mouse=false}={}){
  await page.locator(`[data-setting="income-${color}"] [data-tile-value="${value}"]`)[mouse?'click':'tap']();
  await page.waitForFunction(({color,value})=>document.querySelector(`[data-player-income="${color}"]`)?.value===String(value),{color,value});
 }
+
+// Shared MUI disclosures retain an open property; old native details still work.
+export async function openNativeAccordion(page,selector,{mouse=false}={}){
+ const form=page.locator(selector);await form.waitFor({state:'attached'});
+ if(!await form.evaluate(node=>node.open))await form.locator('[data-ui-accordion-summary],summary').first()[mouse?'click':'tap']();
+ if(await form.locator('.MuiCollapse-root').count())await form.locator('.MuiCollapse-entered').first().waitFor({state:'visible'});
+ return form;
+}

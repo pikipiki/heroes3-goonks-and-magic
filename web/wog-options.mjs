@@ -1,5 +1,5 @@
 import {getLanguage} from './i18n.mjs';
-import {radioChoicesMarkup,renderMarkup} from './ui/material-components.mjs';
+import {radioChoicesMarkup,renderMarkup,createAccordion} from './ui/material-components.mjs';
 import {createScrollAnchor} from './ui/scroll-anchor.mjs';
 import {syncMaterialFields} from './ui/mui-runtime.mjs';
 
@@ -47,9 +47,7 @@ export function createWogOptions({menu, command, onChange}) {
     error = message;
   }
   function mount() {
-    form = document.createElement('details');
-    form.className = 'wog-options lobby-panel';
-    renderMarkup(form, '<summary></summary><div class="lobby-panel-body"><p class="lobby-help"></p><div class="wog-rules"></div><p class="wog-options-status" role="status"></p></div>');
+    form = createAccordion({parent:menu.querySelector('.lobby-extra-options'),className:'wog-options lobby-panel',markup:'<summary></summary><div class="lobby-panel-body"><p class="lobby-help"></p><div class="wog-rules"></div><p class="wog-options-status" role="status"></p></div>'});
     fields.length = 0;
     for (let index = 0; index < rules.length; index++) {
       const field = document.createElement('fieldset');
@@ -70,7 +68,6 @@ export function createWogOptions({menu, command, onChange}) {
       onChange();
       command(109, request.index, request.value);
     });
-    menu.querySelector('.lobby-extra-options').append(form);
     scrollAnchor=createScrollAnchor(form);
     language = null;
   }
@@ -90,7 +87,7 @@ export function createWogOptions({menu, command, onChange}) {
       const fr = getLanguage() === 'fr';
       if (language !== fr) {
         language = fr;
-        form.querySelector('summary').textContent = 'Options WoG';
+        form.querySelector('[data-ui-accordion-label]').textContent = 'Options WoG';
         form.querySelector('.lobby-panel-body > p').textContent = fr
           ? '« Carte » conserve les règles de son auteur. Ces choix concernent uniquement la nouvelle partie et sont enregistrés avec sa sauvegarde.'
           : '“Map” keeps the author’s rules. These choices apply only to the new game and are stored in its save.';

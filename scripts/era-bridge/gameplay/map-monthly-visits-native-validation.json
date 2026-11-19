@@ -20,9 +20,9 @@
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
-    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
+    "web/wog-options.mjs": "4f9bd044ff913e05d1ee0ac5e0d79bf889aac57541452805f9caed91168fc635",
     "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
     "tests/fixtures/era-gameplay/map-monthly-visits-reference.json": "270b82d4388d72f3fb75d3879b7715892b1a1fe3265fde663935961e9c77e17f"
   },
@@ -1609,7 +1609,8 @@
       "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ccb161f89717ff749fb15dcb0d9f56c0eb16b7d680cf830170e9ec6f5796f2f1",
       "work/vcmi-wasm/lib/era/EraWogOptions.h": "029cc2309d0049a4971b99530ca3bd168f95e6b0e0fe953511a3e451c3fd4e74",
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
-      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "68d8e06164439f81e429162628c474071d5df1f59fd3e1f039b8c0b5aa4e1d44"
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "68d8e06164439f81e429162628c474071d5df1f59fd3e1f039b8c0b5aa4e1d44",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   }

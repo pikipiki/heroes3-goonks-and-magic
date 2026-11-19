@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "1c70a08c26e3121a2da97175c97a78a4f6dbf6ace53322e4673dd907f0e56fc6",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "work/vcmi-wasm/lib/era/EraHenchmanBannerSourceRows.h": "19239d75ad9b0fab41741c9f08cddc903730a7861dc6c86a06c218dc4013dc98",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f"
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
