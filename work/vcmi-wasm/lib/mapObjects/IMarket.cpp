@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraCreaturePrices.h"
 #include "IMarket.h"
 
 #include "CCreatureHandler.h"
@@ -53,7 +54,8 @@ bool IMarket::getOffer(int id1, int id2, int &val1, int &val2, EMarketMode mode)
 			const double effectivenessArray[] = {0.0, 0.3, 0.45, 0.50, 0.65, 0.7, 0.85, 0.9, 1.0};
 			double effectiveness = effectivenessArray[std::min(getMarketEfficiency(), 8)];
 
-			double r = LIBRARY->creatures()->getByIndex(id1)->getRecruitCost(EGameResID::GOLD); //value of given creature in gold
+			const auto * object=dynamic_cast<const CGObjectInstance *>(this);
+			double r = era_compat::creature_prices::gold(object?object->cb:nullptr,*LIBRARY->creatures()->getByIndex(id1)); //value of given creature in gold
 			double g = GameResID(id2).toResource()->getPrice() / effectiveness; //value of wanted resource
 
 			if(r>g) //if given resource is more expensive than wanted

@@ -6,12 +6,12 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+    "docs/era-gameplay-port.md": "29d6af16abc37b345449d97d8af6373b02f88629e4c0a67e36ed8243cb66278a",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "fb27b73c3da308d1de0fab3d2e4e7cd4affcdd40ea2447d22b3ba59b530c3cb2",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b"
   },
   "nativeBuild": {
@@ -372,5 +372,15 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56"
     },
     "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
+      "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

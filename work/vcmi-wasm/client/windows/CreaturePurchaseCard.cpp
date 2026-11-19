@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraCreaturePrices.h"
 #include "CreaturePurchaseCard.h"
 
 #include "CHeroWindow.h"
@@ -15,6 +16,9 @@
 #include "CCreatureWindow.h"
 
 #include "../GameEngine.h"
+#include "../GameInstance.h"
+#include "../CPlayerInterface.h"
+#include "../../lib/callback/CCallback.h"
 #include "../gui/Shortcut.h"
 #include "../gui/TextAlignment.h"
 #include "../gui/WindowHandler.h"
@@ -56,7 +60,7 @@ void CreaturePurchaseCard::switchCreatureLevel()
 	picture = std::make_shared<CCreaturePic>(picture->pos.x - pos.x, picture->pos.y - pos.y, creatureOnTheCard);
 	creatureClickArea = std::make_shared<CCreatureClickArea>(Point(picture->pos.x - pos.x, picture->pos.y - pos.y), picture, creatureOnTheCard);
 	parent->updateAllSliders();
-	cost->set(creatureOnTheCard->getFullRecruitCost() * slider->getValue());
+	cost->set(era_compat::creature_prices::get(GAME->interface()->cb.get(),*creatureOnTheCard) * slider->getValue());
 }
 
 void CreaturePurchaseCard::initAmountInfo()
@@ -80,13 +84,13 @@ void CreaturePurchaseCard::initSlider()
 void CreaturePurchaseCard::initCostBox()
 {
 	cost = std::make_shared<CreatureCostBox>(Rect(pos.x+2, pos.y + 194, 97, 74), "");
-	cost->createItems(creatureOnTheCard->getFullRecruitCost());
+	cost->createItems(era_compat::creature_prices::get(GAME->interface()->cb.get(),*creatureOnTheCard));
 }
 
 void CreaturePurchaseCard::sliderMoved(int to)
 {
 	updateAmountInfo(to);
-	cost->set(creatureOnTheCard->getFullRecruitCost() * to);
+	cost->set(era_compat::creature_prices::get(GAME->interface()->cb.get(),*creatureOnTheCard) * to);
 	parent->updateAllSliders();
 }
 

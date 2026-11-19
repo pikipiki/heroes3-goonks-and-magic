@@ -94,6 +94,7 @@ public:
 
 	bool unitHasAmmoCart(const battle::Unit * unit) const override;
 	PlayerColor unitEffectiveOwner(const battle::Unit * unit) const override;
+	std::optional<int32_t> unitCreatureCost(const battle::Unit * unit) const override;
 
 	void spendMana(ServerCallback * server, const int spellCost) const override;
 

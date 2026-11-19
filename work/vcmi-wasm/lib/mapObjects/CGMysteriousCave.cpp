@@ -1,4 +1,5 @@
 #include "StdInc.h"
+#include "../era/EraCreaturePrices.h"
 #include "CGMysteriousCave.h"
 #include "CGHeroInstance.h"
 #include "CGTownInstance.h"
@@ -686,7 +687,7 @@ JsonNode CGMysteriousCave::builderSnapshot(const CGHeroInstance * hero,const CGT
   if(creature)for(int count=1;count<=ghosts;++count)
   {
    JsonNode choice;choice["count"].Integer()=count;TResources cost;
-   for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){cost[resource]=creature->getRecruitCost(resource)*count;choice["cost"].Vector().push_back(JsonNode(int(cost[resource])));}
+   for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){cost[resource]=era_compat::creature_prices::get(town->cb,*creature)[resource]*count;choice["cost"].Vector().push_back(JsonNode(int(cost[resource])));}
    choice["enabled"].Bool()=ghostsReady&&slot.validSlot()&&hero->cb->getPlayerState(hero->getOwner())->resources.canAfford(cost);
    result["ghostRecruitment"].Vector().push_back(choice);
   }
@@ -824,7 +825,7 @@ bool CGMysteriousCave::builderRecruitGhosts(IGameEventCallback & events,const CG
  if(!hero||!town||!sourceTownRuin(town)||!canDemolish(hero)||!builderPresent(hero,town)||town->cb->getDate(Date::DAY)<sourceTownEntranceDay(town,hero))return false;
  const int remaining=demolitionRead(*town->cb,townKey(town,"ghosts"),5);if(count<1||count>remaining)return false;
  const auto * ghost=demolitionGhost();if(!ghost)return false;const auto slot=hero->getSlotFor(ghost);if(!slot.validSlot())return false;
- TResources cost;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())cost[resource]=ghost->getRecruitCost(resource)*count;
+ TResources cost;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())cost[resource]=era_compat::creature_prices::get(town->cb,*ghost)[resource]*count;
  if(!hero->cb->getPlayerState(hero->getOwner())->resources.canAfford(cost))return false;
  if(!events.addToSlot({hero->id,slot},ghost,count))return false;
  events.giveResources(hero->getOwner(),-cost);demolitionWrite(events,*town->cb,{{townKey(town,"ghosts"),remaining-count}});return true;

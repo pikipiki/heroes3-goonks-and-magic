@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraCreaturePrices.h"
 #include "CCastleInterface.h"
 
 #include "CHeroWindow.h"
@@ -311,10 +312,10 @@ CDwellingInfoBox::CDwellingInfoBox(int centerX, int centerY, const CGTownInstanc
 	for (auto & i : LIBRARY->resourceTypeHandler->getAllObjects())
 	{
 		auto res = static_cast<EGameResID>(i);
-		if(creature->getRecruitCost(res))
+		if(era_compat::creature_prices::get(GAME->interface()->cb.get(),*creature)[res])
 		{
 			resPicture.push_back(std::make_shared<CAnimImage>(AnimationPath::builtin("RESOURCE"), i, 0, 0, 0));
-			resAmount.push_back(std::make_shared<CLabel>(0,0, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, std::to_string(creature->getRecruitCost(res))));
+			resAmount.push_back(std::make_shared<CLabel>(0,0, FONT_SMALL, ETextAlignment::CENTER, Colors::WHITE, std::to_string(era_compat::creature_prices::get(GAME->interface()->cb.get(),*creature)[res])));
 		}
 	}
 
@@ -380,7 +381,7 @@ auto CHeroGSlot::getUpgradableSlots(const CArmedInstance *obj) const
 	std::vector<SlotID> slotInfosToDelete;
 	for(const auto & upgradeInfo : upgradeInfos)
 	{
-		TResources upgradeCosts = upgradeInfo.second.getUpgradeCosts() * obj->Slots().at(upgradeInfo.first)->getCount();
+		TResources upgradeCosts = upgradeInfo.second.getUpgradeTotalCosts(obj->Slots().at(upgradeInfo.first)->getCount());
 		if(GAME->interface()->cb->getResourceAmount().canAfford(costs + upgradeCosts))
 			costs += upgradeCosts;
 		else
@@ -1414,7 +1415,7 @@ void CCreaInfo::clickPressed(const Point & cursorPosition)
 			si32 amount = town->creatures[i].first;
 			auto creatureId = ENGINE->isKeyboardCtrlDown() ? town->creatures[i].second.back() : town->creatures[i].second.front();
 			auto creature = creatureId.toCreature();
-			si32 maxAmount = creature->maxAmount(GAME->interface()->cb->getResourceAmount());
+			si32 maxAmount = era_compat::creature_prices::maxAmount(GAME->interface()->cb.get(),*creature,GAME->interface()->cb->getResourceAmount());
 			vstd::amin(maxAmount, amount);
 
 			if(maxAmount > 0)

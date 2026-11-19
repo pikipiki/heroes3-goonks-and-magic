@@ -15,9 +15,9 @@
     "work/vcmi-wasm/lib/era/EraLearningStoneModel.h": "b9ff104fba574ba893eb87e85b19d747803c02ca411cc4ebf16989980ea9f124",
     "work/vcmi-wasm/lib/era/EraScriptRulesModel.h": "cc0f328507e20b4c93c704403c6e3c7b29b0b8355b3a42f73f25ba69df2909a8",
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
-    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
+    "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "a2c7d59dc5be056078559343e70565894b3c562c908eeaa3fbc1a3d4c12932e8",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
     "tests/native/EraScriptRules.test.cpp": "96fa2b497b65fc1e34bafd72322aa632e24bdec926adb616b06c3853171aa985",
     "tests/fixtures/era-gameplay/era-native-learning-reference.json": "35176eddf2845a64eebc605289fbbf40e13a57b81ce537c406315c16cf62eb9a",
@@ -220,5 +220,14 @@
       "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

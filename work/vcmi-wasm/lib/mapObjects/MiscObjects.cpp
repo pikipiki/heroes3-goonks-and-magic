@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraMapRulesModel.h"
 #include "../era/EraIncomeRuntime.h"
 #include "../era/EraDwellingArtifactMimic.h"
 #include "../era/EraMithrilModel.h"
@@ -1317,7 +1318,7 @@ void HillFort::fillUpgradeInfo(UpgradeInfo & info, const CStackInstance &stack) 
 
 	for(const auto & nid : stack.getCreature()->upgrades)
 	{
-		info.addUpgrade(nid, stack.getType(), costModifier);
+		info.addUpgrade(nid, stack.getType(), costModifier, cb, era_compat::map_rules::state(*cb)["rules"]["113"].Bool());
 	}
 }
 

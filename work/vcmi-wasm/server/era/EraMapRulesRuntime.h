@@ -39,6 +39,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     };
     choice("111",era_bridge::WogOption::GroundedFliers);
     choice("112",era_bridge::WogOption::InvertedCreatureSpeeds);
+    choice("113",era_bridge::WogOption::HalfCreaturePrices);
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);

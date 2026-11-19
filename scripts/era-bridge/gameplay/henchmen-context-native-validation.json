@@ -7,7 +7,7 @@
   "parentEngineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "uiAdaptation": "Uses the same explicit action menu as left-click; does not reproduce the original automatic right-click prompt sequence. All mutations use existing canonical server actions.",
   "sourceBindings": {
-    "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "39ed6a5e372308e195f10830a8d87883a1395bb34b7f648304d0ea866053b9c6",
+    "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "ba55d7d45ebaf8592a713b148b223a958d6d02c17da995b0608860fe0fe68fa1",
     "work/vcmi-wasm/client/windows/CHeroWindow.cpp": "ef2c5d3208850f4a301f953b233fd3d174e6547801c94a53827fc152d13cf22d",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80"
   },
@@ -130,5 +130,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/client/windows/EraHenchmanWindow.h": "39ed6a5e372308e195f10830a8d87883a1395bb34b7f648304d0ea866053b9c6"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

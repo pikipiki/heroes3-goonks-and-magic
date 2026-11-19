@@ -49,6 +49,10 @@ def site(name,kind,subtype,x,y,owner=None):
  o={'type':'core:'+kind,'subtype':'core:'+subtype,'instanceName':name,'x':x,'y':y,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}}
  if owner:o['options']['owner']=owner
  objects.append(o)
+if opts['creatureCostFixture'] and opts['creatureCostFixture'].get('purchase'):
+ town=next(o for o in objects if o['instanceName']=='goonkTown')
+ town['subtype']='core:castle'
+ town['options']['buildings']={'allOf':['core:villageHall','core:tavern','core:fort','core:dwellingLvl1','core:dwellingUpLvl1']}
 if opts['capitolFixture']:
  import copy
  original=next(o for o in objects if o['instanceName']=='goonkTown')
@@ -231,6 +235,11 @@ if opts['mineTilesFixture'] or opts['siteTilesFixture'] or opts['incomeFixture']
  for day in range(3,16):header.setdefault('events',[]).append({'name':'mine tile day '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['replacementFixture'] and opts['replacementFixture'].get('observeReady'):
  header.setdefault('events',[]).append({'name':'inspect initial source170 counters','firstOccurrence':0,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['1'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+if opts['creatureCostFixture'] and opts['creatureCostFixture'].get('priceCalendar'):
+ header['events']=[e for e in header.get('events',[]) if 'ZVSE' in str(e.get('message',{}))]
+ for day in range(1,10):
+  for color,offset in [('red',0),('blue',100)]:
+   header['events'].append({'name':'private price '+color+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1 if color=='red' else 0,'computerAffected':1 if color=='blue' else 0,'players':[color],'message':{'exactStrings':[str(day+offset)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['universityAi']:header['allowedArtifacts']={'anyOf':['core:speculum']}
 if opts['reroll']=='rng':header['allowedSpells']={'anyOf':['core:bless','core:haste','core:slow']}
 if opts['reroll']=='hut-rng':header['allowedAbilities']={'noneOf':['core:eagleEye']}
@@ -246,7 +255,7 @@ sys.stdout.buffer.write(out.getvalue())
 `,JSON.stringify({creatureCostFixture,incomeAiFixture,incomeAiGoose,incomeFixture,incomeGoose,siteTilesSubtype,siteTilesFixture,mineTilesFixture,fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
-async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null,preserveAiFortsChoice=null,fortlessConfigured=false,preserveAiFortsConfigured=false,displayMithrilChoice=null,resourceMithrilChoice=null,nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
+async function boot({halfPricesChoice=null,incomeAiPercent=null,incomePercent=null,fortlessChoice=null,preserveAiFortsChoice=null,fortlessConfigured=false,preserveAiFortsConfigured=false,displayMithrilChoice=null,resourceMithrilChoice=null,nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
  let mapChoices=null;
  if(process.env.WOG_MAP_RULE_OPTIONS==='1'&&!save){
   mapChoices=[dailyPlains,allDoubleAttack,doubleMovement,weeklyMines,multipleCapitols,allBreath].map(value=>value?1:0);
@@ -295,10 +304,14 @@ async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null
     if(moddables)value.FS.writeFile('/config/objects/moddables.json',JSON.stringify(moddables));
     if(extraDwellingFixture){value.FS.writeFile('/config/objects/dwellings.json',JSON.stringify(extraDwellingDefinitions));}
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
-    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{111:groundedFliersConfigured,112:invertedSpeedsConfigured,114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,131:fortlessConfigured,sourceOptions:{67:neutralTown,144:preserveAiFortsConfigured}}}));
+    value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{113:!!creatureCostFixture?.halfPrices,111:groundedFliersConfigured,112:invertedSpeedsConfigured,114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,131:fortlessConfigured,sourceOptions:{67:neutralTown,144:preserveAiFortsConfigured}}}));
     if(creatureCostFixture){
      manifest.creatures??=[];manifest.creatures.push('config/source-cost-alias-test.json');
-     value.FS.writeFile(directory+'/source-cost-alias-test.json',JSON.stringify({'core:pikeman':{fightValue:creatureCostFixture.fightValue,cost:{wood:1,mercury:2,ore:3,sulfur:4,crystal:5,gems:6,gold:127,'wake-of-gods.mithril:mithril':37}}}));
+     value.FS.writeFile(directory+'/source-cost-alias-test.json',JSON.stringify({'core:pikeman':{fightValue:creatureCostFixture.fightValue,cost:{wood:1,mercury:2,ore:3,sulfur:4,crystal:5,gems:6,gold:creatureCostFixture.gold??127,'wake-of-gods.mithril:mithril':37}}}));
+    }
+    if(creatureCostFixture?.purchase){
+     manifest.creatures.push('config/source-price-upgrade-test.json');
+     value.FS.writeFile(directory+'/source-price-upgrade-test.json',JSON.stringify({'core:halberdier':{cost:{wood:1,mercury:2,ore:3,sulfur:4,crystal:5,gems:6,gold:141,'wake-of-gods.mithril:mithril':37}}}));
     }
     if(dwellingLevelFixture){manifest.creatures??=[];manifest.creatures.push('config/mithril-dwelling-levels-test.json');value.FS.writeFile(directory+'/mithril-dwelling-levels-test.json',JSON.stringify({'core:vampireLord':{upgrades:['core:ogreMage']}}));}
     if(creatureRules){
@@ -364,7 +377,7 @@ async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null
    await wait(value=>goonkMobileState.wogOptions[6]===value,wogChoice);
    assert.equal(await form.locator('input[data-wog-option="6"]:checked').inputValue(),String(wogChoice));
   }
-  for(const [index,value]of [[22,fortlessChoice],[23,preserveAiFortsChoice]])if(value!==null){
+  for(const [index,value]of [[22,fortlessChoice],[23,preserveAiFortsChoice],[25,halfPricesChoice]])if(value!==null){
    assert((await state()).wogOptions.length>=24,'Fortification options advertised by native engine');
    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
    const choice=form.locator(`input[data-wog-option="${index}"][value="${value}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(({index,value})=>goonkMobileState.wogOptions[index]===value,{index,value});
@@ -507,7 +520,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
- if(process.env.CASES?.startsWith('creature-cost-alias')){
+ if(process.env.CASES?.startsWith('creature-prices')){
+  const {runCreaturePrices}=await import('./wog-creature-prices-cases.mjs');
+  await runCreaturePrices({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }else if(process.env.CASES?.startsWith('creature-cost-alias')){
   const {runCreatureCostAlias}=await import('./wog-creature-cost-alias-cases.mjs');
   await runCreatureCostAlias({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
  }else if(process.env.CASES==='income-ai'){

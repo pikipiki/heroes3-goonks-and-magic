@@ -11,10 +11,10 @@
     "lines": "226-227,610-634"
   },
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "4d57d85ca0f9b48e793a969326a52dee7de947439d330c5009c1a864f67aa79e",
+    "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "aab42bb560a9f179807d9ea9bc6adde7721f168b993d164c1498fca98733c036",
     "work/vcmi-wasm/server/battles/BattleProcessor.h": "5a6c7608997cee6907fa0348d458748b4dab9aa62cb34e9c829bbb4721bc4beb",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760",
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
@@ -197,5 +197,14 @@
       "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
+      "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "4d57d85ca0f9b48e793a969326a52dee7de947439d330c5009c1a864f67aa79e"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

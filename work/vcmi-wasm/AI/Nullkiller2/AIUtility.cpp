@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraCreaturePrices.h"
 #include "AIUtility.h"
 #include "AIGateway.h"
 #include "Goals/Goals.h"
@@ -649,7 +650,7 @@ bool shouldVisit(const Nullkiller * aiNk, const CGHeroInstance * hero, const CGO
 			{
 				if(level.first
 					&& (hero->getSlotFor(CreatureID(c)) != SlotID() || duplicatingSlotsCount > 0)
-					&& aiNk->cc->getResourceAmount().canAfford(c.toCreature()->getFullRecruitCost()))
+					&& aiNk->cc->getResourceAmount().canAfford(era_compat::creature_prices::get(aiNk->cc.get(),*c.toCreature())))
 				{
 					return true;
 				}

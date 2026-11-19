@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraCreaturePrices.h"
 #include "../era/EraIncomeRuntime.h"
 #include "../era/EraCampaignExperienceWord.h"
 #include "../era/EraDwellingArtifactMimic.h"
@@ -1024,10 +1025,10 @@ CStackBasicDescriptor CGHeroInstance::calculateNecromancy (const BattleResult &b
 		}
 		else
 		{
-			auto quality = [](CreatureID pick) -> std::tuple<int, int>
+			auto quality = [this](CreatureID pick) -> std::tuple<int, int>
 			{
 				const auto * c = pick.toCreature();
-				return std::tuple<int, int> {c->getLevel(), static_cast<int>(c->getFullRecruitCost().marketValue())};
+				return std::tuple<int, int> {c->getLevel(), static_cast<int>(era_compat::creature_prices::get(cb,*c).marketValue())};
 			};
 			if(quality(bestCreature) < quality(newCreature))
 				bestCreature = newCreature;
@@ -1810,7 +1811,7 @@ void CGHeroInstance::fillUpgradeInfo(UpgradeInfo & info, const CStackInstance & 
 		{
 			auto nid = it->parameters->toCreature();
 			if (nid != stack.getId()) //in very specific case the upgrade is available by default (?)
-				info.addUpgrade(nid, stack.getType());
+				info.addUpgrade(nid, stack.getType(), 100, cb);
 		}
 	}
 }

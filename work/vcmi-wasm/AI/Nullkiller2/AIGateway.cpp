@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraCreaturePrices.h"
 
 #include "../../lib/AsyncRunner.h"
 #include "../../lib/UnlockGuard.h"
@@ -746,7 +747,7 @@ bool AIGateway::makePossibleUpgrades(const CArmedInstance * obj)
 					int oldValue = s->getCreature()->getAIValue();
 					int newValue = upgID.toCreature()->getAIValue();
 
-					if(newValue > oldValue && nullkiller->getFreeResources().canAfford(upgradeInfo.getUpgradeCostsFor(upgID) * s->getCount()))
+					if(newValue > oldValue && nullkiller->getFreeResources().canAfford(upgradeInfo.getUpgradeTotalCostsFor(upgID, s->getCount())))
 					{
 						cc->upgradeCreature(obj, SlotID(i), upgID);
 						upgraded = true;
@@ -972,7 +973,7 @@ void AIGateway::recruitCreatures(const CGDwelling * d, const CArmedInstance * re
 			}
 		}
 
-		vstd::amin(count, cc->getResourceAmount() / creID.toCreature()->getFullRecruitCost());
+		vstd::amin(count, cc->getResourceAmount() / era_compat::creature_prices::get(cc.get(),*creID.toCreature()));
 		if(count > 0)
 			cc->recruitCreatures(d, recruiter, creID, count, i);
 	}

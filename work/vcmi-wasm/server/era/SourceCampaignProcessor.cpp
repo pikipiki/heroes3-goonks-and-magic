@@ -33,6 +33,7 @@
 #include "../../lib/era/EraCampaignRemovalBatch.h"
 #include "../../lib/era/EraCampaignWanderingRule.h"
 #include "../../lib/era/EraCampaignCreatureAttributes.h"
+#include "../../lib/era/EraCreaturePrices.h"
 #include "../../lib/entities/artifact/CArtifact.h"
 #include "../../lib/entities/artifact/CArtifactInstance.h"
 #include "../../lib/era/EraCampaignMedia.h"
@@ -1304,7 +1305,7 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    const auto selected=creature(number(args[0]));const int resource=number(args[1]);require(resource>=0&&resource<=7,"source creature cost resource outside0..7");
    // Original MA:C indexes seven resource words; index7 aliases the next
    // signed word (MA:F / FightValue), independently of native Mithril costs.
-   value(resource==7?selected.toCreature()->getFightValue():selected.toCreature()->getRecruitCost(GameResID(resource)),args[2]);return Step::Continue;
+   value(resource==7?selected.toCreature()->getFightValue():era_compat::creature_prices::get(gh.gameInfo(),*selected.toCreature())[GameResID(resource)],args[2]);return Step::Continue;
   }
   if(op.code=="F")
   {

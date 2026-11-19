@@ -6,8 +6,8 @@
   "engineSha256": "e91f82ec7f7e390c1d9be46f4b6c2e4d0391f95fcb2e1f74e6c83339bfa81e0a",
   "parentEngineSha256": "273b49ce4f483104f38085021eea39e4be610486b2d4ec5a546e9b4af94ccc9e",
   "sourceBindings": {
-    "work/vcmi-wasm/lib/CStack.h": "f4efd27b547a97e808e69023f90592d425030dcc8946357aaa5ceba0e5ef2a6d",
-    "work/vcmi-wasm/lib/CStack.cpp": "6c274f0aca1f67f147af2c9da064a8cbc322abf2d69715c3b01044302c2c1b72",
+    "work/vcmi-wasm/lib/CStack.h": "cdae404e49db014be35f81f52c0367864fbfee4623d83df90ee38b933161e654",
+    "work/vcmi-wasm/lib/CStack.cpp": "87a013358a9d9f5ae47c182c97279eaa28edf21f5d590ddb49f1bf215de60d42",
     "work/vcmi-wasm/lib/era/EraHenchmanBattleExperience.h": "d74603ff85509c1d7091c4f7f6af56c162f2248e9629b9e003c947aae4954896",
     "work/vcmi-wasm/lib/era/EraHenchmanModel.h": "1c70a08c26e3121a2da97175c97a78a4f6dbf6ace53322e4673dd907f0e56fc6",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
@@ -172,5 +172,14 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/CStack.cpp": "6c274f0aca1f67f147af2c9da064a8cbc322abf2d69715c3b01044302c2c1b72",
+      "work/vcmi-wasm/lib/CStack.h": "f4efd27b547a97e808e69023f90592d425030dcc8946357aaa5ceba0e5ef2a6d"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

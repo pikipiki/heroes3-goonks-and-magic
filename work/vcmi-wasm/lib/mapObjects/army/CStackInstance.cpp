@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../era/EraCreaturePrices.h"
 #include "CStackInstance.h"
 #include "../../era/EraExperienceProgression.h"
 
@@ -386,7 +387,7 @@ ui64 CStackInstance::getPower() const
 ui64 CStackInstance::getMarketValue() const
 {
 	assert(getType());
-	return getType()->getFullRecruitCost().marketValue() * getCount();
+	return era_compat::creature_prices::get(cb,*getType()).marketValue() * getCount();
 }
 
 ArtBearer CStackInstance::bearerType() const

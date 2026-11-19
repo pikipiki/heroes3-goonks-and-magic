@@ -9,6 +9,7 @@
 */
 
 #include "StdInc.h"
+#include "../../../lib/era/EraCreaturePrices.h"
 #include "ArmyManager.h"
 #include "../Engine/Nullkiller.h"
 #include "../../../lib/mapObjects/MapObjects.h"
@@ -28,22 +29,22 @@ public:
 	int count;
 	uint64_t upgradeValue;
 
-	StackUpgradeInfo(CreatureID initial, CreatureID upgraded, int count)
+	StackUpgradeInfo(CreatureID initial, CreatureID upgraded, int count,const IGameInfoCallback * context)
 		:initialCreature(initial), upgradedCreature(upgraded), count(count)
 	{
-		cost = (upgradedCreature.toCreature()->getFullRecruitCost() - initialCreature.toCreature()->getFullRecruitCost()) * count;
+		cost = (era_compat::creature_prices::get(context,*upgradedCreature.toCreature()) - era_compat::creature_prices::get(context,*initialCreature.toCreature())) * count;
 		upgradeValue = (upgradedCreature.toCreature()->getAIValue() - initialCreature.toCreature()->getAIValue()) * count;
 	}
 };
 
-void ArmyUpgradeInfo::addArmyToBuy(std::vector<SlotInfo> army)
+void ArmyUpgradeInfo::addArmyToBuy(std::vector<SlotInfo> army,const IGameInfoCallback * context)
 {
 	for(auto slot : army)
 	{
 		resultingArmy.push_back(slot);
 
 		upgradeValue += slot.power;
-		upgradeCost += slot.creature->getFullRecruitCost() * slot.count;
+		upgradeCost += era_compat::creature_prices::get(context,*slot.creature) * slot.count;
 	}
 }
 
@@ -300,7 +301,7 @@ std::shared_ptr<CCreatureSet> ArmyManager::getArmyAvailableToBuyAsCCreatureSet(
 		if(!ci.count || ci.creID == CreatureID::NONE)
 			continue;
 
-		vstd::amin(ci.count, availableRes / ci.creID.toCreature()->getFullRecruitCost()); //max count we can afford
+		vstd::amin(ci.count, availableRes / era_compat::creature_prices::get(cb,*ci.creID.toCreature())); //max count we can afford
 
 		if(!ci.count)
 			continue;
@@ -311,7 +312,7 @@ std::shared_ptr<CCreatureSet> ArmyManager::getArmyAvailableToBuyAsCCreatureSet(
 			break;
 
 		army->setCreature(dst, ci.creID, ci.count);
-		availableRes -= ci.creID.toCreature()->getFullRecruitCost() * ci.count;
+		availableRes -= era_compat::creature_prices::get(cb,*ci.creID.toCreature()) * ci.count;
 	}
 
 	return army;
@@ -369,7 +370,7 @@ std::vector<creInfo> ArmyManager::getArmyAvailableToBuy(
 		if(!ci.count) continue;
 
 		// Calculate the market value of the new stack
-		TResources newStackValue = ci.creID.toCreature()->getFullRecruitCost() * ci.count;
+		TResources newStackValue = era_compat::creature_prices::get(cb,*ci.creID.toCreature()) * ci.count;
 
 		SlotID dst = hero->getSlotFor(ci.creID);
 
@@ -390,7 +391,7 @@ std::vector<creInfo> ArmyManager::getArmyAvailableToBuy(
 
 					if(slot.second->getCreatureID() != CreatureID::NONE)
 					{
-						TResources currentStackValue = slot.second->getCreatureID().toCreature()->getFullRecruitCost() * slot.second->getCount();
+						TResources currentStackValue = era_compat::creature_prices::get(cb,*slot.second->getCreatureID().toCreature()) * slot.second->getCount();
 
 						if (town && slot.second->getCreatureID().toCreature()->getFactionID() == town->getFactionID())
 							continue;
@@ -419,13 +420,13 @@ std::vector<creInfo> ArmyManager::getArmyAvailableToBuy(
 			}
 		}
 
-		vstd::amin(ci.count, availableRes / ci.creID.toCreature()->getFullRecruitCost()); //max count we can afford
+		vstd::amin(ci.count, availableRes / era_compat::creature_prices::get(cb,*ci.creID.toCreature())); //max count we can afford
 
 		int disbandMalus = 0;
 		
 		if (shouldDisband)
 		{
-			disbandMalus = leastValuableStackValue / ci.creID.toCreature()->getFullRecruitCost();
+			disbandMalus = leastValuableStackValue / era_compat::creature_prices::get(cb,*ci.creID.toCreature());
 			alreadyDisbanded.insert(leastValuableSlot);
 		}
 
@@ -436,7 +437,7 @@ std::vector<creInfo> ArmyManager::getArmyAvailableToBuy(
 
 		ci.level = i; //this is important for Dungeon Summoning Portal
 		creaturesInDwellings.push_back(ci);
-		availableRes -= ci.creID.toCreature()->getFullRecruitCost() * ci.count;
+		availableRes -= era_compat::creature_prices::get(cb,*ci.creID.toCreature()) * ci.count;
 	}
 
 	return creaturesInDwellings;
@@ -536,7 +537,7 @@ std::vector<StackUpgradeInfo> ArmyManager::getHillFortUpgrades(const CCreatureSe
 			return cre.toCreature()->getAIValue();
 		});
 
-		StackUpgradeInfo upgrade = StackUpgradeInfo(initial, strongestUpgrade, creature.second->getCount());
+		StackUpgradeInfo upgrade = StackUpgradeInfo(initial, strongestUpgrade, creature.second->getCount(),cb);
 
 		if(initial.toCreature()->getLevel() == 1)
 			upgrade.cost = TResources();
@@ -575,7 +576,7 @@ std::vector<StackUpgradeInfo> ArmyManager::getDwellingUpgrades(const CCreatureSe
 			return cre.toCreature()->getAIValue();
 		});
 
-		StackUpgradeInfo upgrade = StackUpgradeInfo(initial, strongestUpgrade, creature.second->getCount());
+		StackUpgradeInfo upgrade = StackUpgradeInfo(initial, strongestUpgrade, creature.second->getCount(),cb);
 
 		upgrades.push_back(upgrade);
 	}

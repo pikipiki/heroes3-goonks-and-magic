@@ -1,4 +1,5 @@
 #pragma once
+#include "../../lib/era/EraCreaturePrices.h"
 #include "InfoWindows.h"
 #include "GUIClasses.h"
 #include "../CPlayerInterface.h"
@@ -113,7 +114,7 @@ inline void openClassicHenchman(const CGHeroInstance & hero)
     {
         const auto * town=hero.getVisitedTown();
         const auto cost=era_bridge::henchmen::resurrectionCost(
-            hero.henchman.stack->getType()->getRecruitCost(GameResID::GOLD),
+            era_compat::creature_prices::gold(hero.cb,*hero.henchman.stack->getType()),
             progress(hero,player->cb->getDate(Date::DAY)).level);
         if(!hero.henchman.alive&&(rules.reviveAnywhere||(town&&town->getOwner()==hero.getOwner()))
             &&cost>=0&&player->cb->getResource(hero.getOwner(),GameResID::GOLD)>=cost)

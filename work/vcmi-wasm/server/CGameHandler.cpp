@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../lib/era/EraCreaturePrices.h"
 #include "../lib/gameState/ArmyBulkTransfer.h"
 #include "../lib/era/EraCampaignExperienceWord.h"
 #include "../lib/era/EraEye278Native.h"
@@ -2537,7 +2538,7 @@ bool CGameHandler::recruitCreatures(ObjectInstanceID objid, ObjectInstanceID dst
 	SlotID slot = army->getSlotFor(crid);
 
 	if((!found && complain("Cannot recruit: no such creatures!"))
-		|| (cram > LIBRARY->creh->objects.at(crid)->maxAmount(gameInfo().getPlayerState(army->tempOwner)->resources) && complain("Cannot recruit: lack of resources!"))
+		|| (cram > era_compat::creature_prices::maxAmount(&gameInfo(),*c,gameInfo().getPlayerState(army->tempOwner)->resources) && complain("Cannot recruit: lack of resources!"))
 		|| (cram <= 0 && complain("Cannot recruit: cram <= 0!"))
 		|| (!slot.validSlot() && !warMachine && complain("Cannot recruit: no available slot!")))
 	{
@@ -2545,7 +2546,7 @@ bool CGameHandler::recruitCreatures(ObjectInstanceID objid, ObjectInstanceID dst
 	}
 
 	//recruit
-	TResources cost = (c->getFullRecruitCost() * cram);
+	TResources cost = (era_compat::creature_prices::get(gameInfo(),*c) * cram);
 	giveResources(army->tempOwner, -cost);
 	statistics->getPlayerAccumulator(army->tempOwner).spentResourcesForArmy += cost;
 
@@ -2602,7 +2603,7 @@ bool CGameHandler::upgradeCreature(ObjectInstanceID objid, SlotID pos, CreatureI
 	{
 		return false;
 	}
-	TResources totalCost = upgradeInfo.getUpgradeCostsFor(upgID) * crQuantity;
+	TResources totalCost = upgradeInfo.getUpgradeTotalCostsFor(upgID, crQuantity);
 
 	//check if player has enough resources
 	if (!p->resources.canAfford(totalCost))

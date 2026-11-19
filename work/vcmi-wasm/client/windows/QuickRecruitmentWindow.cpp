@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraCreaturePrices.h"
 #include "QuickRecruitmentWindow.h"
 #include "../../lib/mapObjects/CGTownInstance.h"
 #include "../CPlayerInterface.h"
@@ -84,7 +85,7 @@ void QuickRecruitmentWindow::maxAllCards(std::vector<std::shared_ptr<CreaturePur
 	auto allAvailableResources = GAME->interface()->cb->getResourceAmount();
 	for(auto i : boost::adaptors::reverse(cards))
 	{
-		si32 maxAmount = i->creatureOnTheCard->maxAmount(allAvailableResources);
+		si32 maxAmount = era_compat::creature_prices::maxAmount(GAME->interface()->cb.get(),*i->creatureOnTheCard,allAvailableResources);
 		vstd::amin(maxAmount, i->maxAmount);
 
 		i->slider->setAmount(maxAmount);
@@ -95,7 +96,7 @@ void QuickRecruitmentWindow::maxAllCards(std::vector<std::shared_ptr<CreaturePur
 			i->sliderMoved(maxAmount);
 
 		i->slider->scrollToMax();
-		allAvailableResources -= (i->creatureOnTheCard->getFullRecruitCost() * maxAmount);
+		allAvailableResources -= (era_compat::creature_prices::get(GAME->interface()->cb.get(),*i->creatureOnTheCard) * maxAmount);
 	}
 	maxButton->block(allAvailableResources == GAME->interface()->cb->getResourceAmount());
 }
@@ -149,10 +150,10 @@ void QuickRecruitmentWindow::updateAllSliders()
 {
 	auto allAvailableResources = GAME->interface()->cb->getResourceAmount();
 	for(auto i : boost::adaptors::reverse(cards))
-		allAvailableResources -= (i->creatureOnTheCard->getFullRecruitCost() * i->slider->getValue());
+		allAvailableResources -= (era_compat::creature_prices::get(GAME->interface()->cb.get(),*i->creatureOnTheCard) * i->slider->getValue());
 	for(auto i : cards)
 	{
-		si32 maxAmount = i->creatureOnTheCard->maxAmount(allAvailableResources);
+		si32 maxAmount = era_compat::creature_prices::maxAmount(GAME->interface()->cb.get(),*i->creatureOnTheCard,allAvailableResources);
 		vstd::amin(maxAmount, i->maxAmount);
 		if(maxAmount < 0)
 			continue;

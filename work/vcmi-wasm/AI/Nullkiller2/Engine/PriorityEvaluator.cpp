@@ -8,6 +8,7 @@
 *
 */
 #include "StdInc.h"
+#include "../../../lib/era/EraCreaturePrices.h"
 #include <limits>
 
 #include "Nullkiller.h"
@@ -156,7 +157,7 @@ uint64_t getDwellingArmyValue(CCallback * cb, const CGObjectInstance * target, b
 		{
 			auto creature = creLevel.second.back().toCreature();
 			auto creaturesAreFree = creature->getLevel() == 1;
-			if(!creaturesAreFree && checkGold && !cb->getResourceAmount().canAfford(creature->getFullRecruitCost() * creLevel.first))
+			if(!creaturesAreFree && checkGold && !cb->getResourceAmount().canAfford(era_compat::creature_prices::get(cb,*creature) * creLevel.first))
 				continue;
 
 			score += creature->getAIValue() * creLevel.first;
@@ -205,7 +206,7 @@ int getDwellingArmyCost(const CGObjectInstance * target)
 			auto creature = creLevel.second.back().toCreature();
 			auto creaturesAreFree = creature->getLevel() == 1;
 			if(!creaturesAreFree)
-				cost += creature->getFullRecruitCost().marketValue() * creLevel.first;
+				cost += era_compat::creature_prices::get(target->cb,*creature).marketValue() * creLevel.first;
 		}
 	}
 
@@ -702,7 +703,7 @@ int32_t getArmyCost(const CArmedInstance * army)
 
 	for(const auto & stack : army->Slots())
 	{
-		value += stack.second->getCreatureID().toCreature()->getFullRecruitCost().marketValue() * stack.second->getCount();
+		value += era_compat::creature_prices::get(army->cb,*stack.second->getCreatureID().toCreature()).marketValue() * stack.second->getCount();
 	}
 
 	return value;

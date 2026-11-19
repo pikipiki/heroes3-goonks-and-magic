@@ -33,7 +33,7 @@ struct ArmyUpgradeInfo
 	int64_t upgradeValue = 0;
 	TResources upgradeCost;
 
-	void addArmyToBuy(std::vector<SlotInfo> army);
+	void addArmyToBuy(std::vector<SlotInfo> army,const IGameInfoCallback * context=nullptr);
 	void addArmyToGet(std::vector<SlotInfo> army);
 };
 

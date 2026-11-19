@@ -11,17 +11,17 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+    "docs/era-gameplay-port.md": "29d6af16abc37b345449d97d8af6373b02f88629e4c0a67e36ed8243cb66278a",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "fb27b73c3da308d1de0fab3d2e4e7cd4affcdd40ea2447d22b3ba59b530c3cb2",
     "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
-    "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636"
+    "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -376,5 +376,17 @@
       "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913"
     },
     "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
+      "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
+      "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

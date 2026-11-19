@@ -29,12 +29,12 @@ export async function runCreatureCostAlias({boot,state,command,wait,page,report,
   if(legacy){await boot({...options,save:[...fs.readFileSync(legacy)],expectedDialog:'source-campaign'});await read(initial);}
   else{
    await boot({...options,expectedDialog:'source-campaign'});await read(initial);
-   const bytes=await readCompletedNativeSave(page(),command);assert.equal(bytes.readInt32LE(4),historical?931:932);fs.writeFileSync(path.join(output,row.name+'-pending.vsgm1'),bytes);await page().close();
+   const bytes=await readCompletedNativeSave(page(),command);assert.equal(bytes.readInt32LE(4),historical?931:Number(process.env.GOONK_EXPECTED_SAVE_VERSION||932));fs.writeFileSync(path.join(output,row.name+'-pending.vsgm1'),bytes);await page().close();
    await boot({...options,save:[...bytes],expectedDialog:'source-campaign'});await read(initial);
   }
   await ack();await map();const independent=(await state()).armies.flatMap(a=>a.slots||[]).find(u=>u?.key==='core:pikeman');assert(independent);assert.equal(independent.fightValue,signed);assert.deepEqual(independent.cost,[1,2,3,4,5,6,127,37]);
   await command(3);const next=`COST NEXT ${historical?37:signed} ${oldProgram?'OLD':'F'+signed}`;await read(next);await ack();await map();
-  const complete=await readCompletedNativeSave(page(),command);assert.equal(complete.readInt32LE(4),historical?931:932);fs.writeFileSync(path.join(output,row.name+'-complete.vsgm1'),complete);await page().close();
+  const complete=await readCompletedNativeSave(page(),command);assert.equal(complete.readInt32LE(4),historical?931:Number(process.env.GOONK_EXPECTED_SAVE_VERSION||932));fs.writeFileSync(path.join(output,row.name+'-complete.vsgm1'),complete);await page().close();
   await boot({...options,save:[...complete]});assert.equal((await state()).mode,'map');
   report.scenarios.push({...row,signedFightValue:signed,sourceC7:historical?37:signed,sourceF:oldProgram?null:signed,sourceResourceCosts:[1,2,3,4,5,6,127],independentNativeFightValue:independent.fightValue,independentNativeMithrilCost:37,pendingNativeSaveReload:true,completedNativeSaveReload:true,legacyInput:legacy?931:null,legacyStoredQueryPreserved:!!legacy,historicalEngineControl:historical,saveVersion:complete.readInt32LE(4),viewport:page().viewportSize(),input:mouse?'mouse':'touch'});await page().close();console.log('PASS native creature cost alias',row.name,historical?'old Mithril control':signed);
  }

@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraCreaturePrices.h"
 #include "CGCreature.h"
 #include "CGHeroInstance.h"
 #include "../CPlayerState.h"
@@ -398,7 +399,7 @@ int CGCreature::takenAction(const CGHeroInstance *h, bool allowJoin) const
 
 		if(diplomacy * 2 + sympathy + 1 >= agression)
 		{
-			int32_t recruitCost = getCreature()->getRecruitCost(EGameResID::GOLD);
+			int32_t recruitCost = era_compat::creature_prices::gold(cb,*getCreature());
 			int32_t stackCount = getStackCount(SlotID(0));
 			return recruitCost * stackCount; //join for gold
 		}

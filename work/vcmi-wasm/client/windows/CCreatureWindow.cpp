@@ -392,7 +392,7 @@ CStackWindow::ButtonsSection::ButtonsSection(CStackWindow * owner, int yOffset)
 
 		for(size_t buttonIndex = 0; buttonIndex < buttonsToCreate; buttonIndex++)
 		{
-			TResources totalCost = upgradeInfo.info.getAvailableUpgradeCosts().at(buttonIndex) * parent->info->creatureCount;
+			TResources totalCost = upgradeInfo.info.getUpgradeTotalCostsFor(upgradeInfo.info.getAvailableUpgrades().at(buttonIndex), parent->info->creatureCount);
 
 			auto onUpgrade = [this, upgradeInfo, buttonIndex]()
 			{

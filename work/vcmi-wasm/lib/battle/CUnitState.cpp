@@ -428,6 +428,7 @@ bool CUnitState::doubleWide() const
 
 int32_t CUnitState::creatureCost() const
 {
+	if(env)if(const auto price=env->unitCreatureCost(this))return *price;
 	return unitType()->getRecruitCost(EGameResID::GOLD);
 }
 

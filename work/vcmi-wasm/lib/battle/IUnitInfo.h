@@ -12,6 +12,7 @@
 
 #include "../GameConstants.h"
 #include "BattleSide.h"
+#include <optional>
 
 VCMI_LIB_NAMESPACE_BEGIN
 
@@ -28,6 +29,9 @@ public:
 	virtual bool unitHasAmmoCart(const Unit * unit) const = 0; //todo: handle ammo cart with bonus system
 
 	virtual PlayerColor unitEffectiveOwner(const Unit * unit) const = 0;
+
+	// Detached environments retain base prices until attached to a game.
+	virtual std::optional<int32_t> unitCreatureCost(const Unit *) const { return std::nullopt; }
 };
 
 class DLL_LINKAGE IUnitInfo

@@ -8,6 +8,7 @@
 *
 */
 #include "../StdInc.h"
+#include "../../../lib/era/EraCreaturePrices.h"
 #include "BuyArmy.h"
 #include "../../../lib/mapObjects/CGTownInstance.h"
 #include "../AIGateway.h"
@@ -54,7 +55,7 @@ void BuyArmy::accept(AIGateway * ai)
 		if(objid != CreatureID::NONE && ci.creID.getNum() != objid)
 			continue;
 
-		vstd::amin(ci.count, res / ci.creID.toCreature()->getFullRecruitCost());
+		vstd::amin(ci.count, res / era_compat::creature_prices::get(cb,*ci.creID.toCreature()));
 
 		if(ci.count)
 		{
@@ -67,7 +68,7 @@ void BuyArmy::accept(AIGateway * ai)
 					if (slot.second->getCreatureID() != CreatureID::NONE)
 					{
 						int currentStackMarketValue =
-							slot.second->getCreatureID().toCreature()->getFullRecruitCost().marketValue() * slot.second->getCount();
+							era_compat::creature_prices::get(cb,*slot.second->getCreatureID().toCreature()).marketValue() * slot.second->getCount();
 
 						if (slot.second->getCreatureID().toCreature()->getFactionID() == town->getFactionID())
 							continue;

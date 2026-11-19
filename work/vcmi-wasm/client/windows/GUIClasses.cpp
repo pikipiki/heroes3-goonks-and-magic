@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraCreaturePrices.h"
 #include "../../lib/era/EraSkeletonTransformations.h"
 #include "../../lib/era/EraTransformerPreview.h"
 #include "GUIClasses.h"
@@ -124,7 +125,7 @@ void CRecruitmentWindow::select(std::shared_ptr<CCreatureCard> card)
 
 	if(card)
 	{
-		si32 maxAmount = card->creature->maxAmount(GAME->interface()->cb->getResourceAmount());
+		si32 maxAmount = era_compat::creature_prices::maxAmount(GAME->interface()->cb.get(),*card->creature,GAME->interface()->cb->getResourceAmount());
 
 		vstd::amin(maxAmount, card->amount);
 
@@ -135,11 +136,11 @@ void CRecruitmentWindow::select(std::shared_ptr<CCreatureCard> card)
 		else // if slider already at 0 - emulate call to sliderMoved()
 			sliderMoved(maxAmount);
 
-		costPerTroopValue->createItems(card->creature->getFullRecruitCost());
-		totalCostValue->createItems(card->creature->getFullRecruitCost());
+		costPerTroopValue->createItems(era_compat::creature_prices::get(GAME->interface()->cb.get(),*card->creature));
+		totalCostValue->createItems(era_compat::creature_prices::get(GAME->interface()->cb.get(),*card->creature));
 
-		costPerTroopValue->set(card->creature->getFullRecruitCost());
-		totalCostValue->set(card->creature->getFullRecruitCost() * maxAmount);
+		costPerTroopValue->set(era_compat::creature_prices::get(GAME->interface()->cb.get(),*card->creature));
+		totalCostValue->set(era_compat::creature_prices::get(GAME->interface()->cb.get(),*card->creature) * maxAmount);
 
 		//Recruit %s
 		MetaString recruitText;
@@ -332,7 +333,7 @@ void CRecruitmentWindow::sliderMoved(int to)
 	availableValue->setText(std::to_string(selected->amount - to));
 	toRecruitValue->setText(std::to_string(to));
 
-	totalCostValue->set(selected->creature->getFullRecruitCost() * to);
+	totalCostValue->set(era_compat::creature_prices::get(GAME->interface()->cb.get(),*selected->creature) * to);
 }
 
 CSplitWindow::CSplitWindow(const CCreature * creature, std::function<void(int, int)> callback_, int leftMin_, int rightMin_, int leftAmount_, int rightAmount_)
@@ -1329,7 +1330,7 @@ void CHillFortWindow::updateGarrisons()
 				GAME->interface()->cb->fillUpgradeInfo(hero, SlotID(i), info);
 				if(info.canUpgrade())	//we have upgrades here - update costs
 				{
-					costs[i] = info.getUpgradeCosts() * hero->getStackCount(SlotID(i));
+					costs[i] = info.getUpgradeTotalCosts(hero->getStackCount(SlotID(i)));
 					totalSum += costs[i];
 				}
 			}
@@ -1479,7 +1480,7 @@ CHillFortWindow::State CHillFortWindow::getState(SlotID slot)
 	if(!info.hasUpgrades())
 		return State::ALREADY_UPGRADED;
 
-	if(!(info.getUpgradeCosts() * hero->getStackCount(slot)).canBeAfforded(myRes))
+	if(!(info.getUpgradeTotalCosts(hero->getStackCount(slot))).canBeAfforded(myRes))
 		return State::UNAFFORDABLE;
 
 	return State::MAKE_UPGRADE;

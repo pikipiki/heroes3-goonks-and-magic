@@ -8,6 +8,7 @@
 *
 */
 #include "../StdInc.h"
+#include "../../../lib/era/EraCreaturePrices.h"
 #include "../Engine/Nullkiller.h"
 #include "../Engine/Nullkiller.h"
 #include "../../../lib/entities/building/CBuilding.h"
@@ -419,7 +420,7 @@ BuildingInfo::BuildingInfo(
 	{
 		creatureGrows = creature->getGrowth();
 		creatureID = creature->getId();
-		creatureCost = creature->getFullRecruitCost();
+		creatureCost = era_compat::creature_prices::get(town->cb,*creature);
 		creatureLevel = creature->getLevel();
 		baseCreatureID = baseCreature;
 

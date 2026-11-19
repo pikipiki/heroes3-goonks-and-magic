@@ -12,6 +12,7 @@
   "implementedCodes": [
     111,
     112,
+    113,
     114,
     115,
     116,
@@ -29,7 +30,7 @@
   "validation": "outputs/era-gameplay/mithril-native-weekly-mines.json",
   "receiverReference": "https://www.h3wog.com/erm_help/receivers/receivers_objects_right.htm",
   "remaining": [
-    "The other7 map rules and the six original selection modes of option101; the fourteen implemented rules have independent native per-game choices.",
+    "The other6 map rules and the six original selection modes of option101; the fifteen implemented rules have independent native per-game choices.",
     "Complete source random-stream comparison with the shipped ERA executable.",
     "Prototype-only recruitment previews for map-wide creature abilities.",
     "Rule117 uses bound source creature identities and their audited initial MA:L levels. Unported/foreign dwelling creatures are unchanged; source option67 is frozen metadata and does not activate the separate Neutral Town gameplay pack."
@@ -56,5 +57,7 @@
   },
   "doubleArtifactsValidation": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
   "doubleArtifactsReference": "tests/fixtures/era-gameplay/map-double-artifacts-reference.json",
-  "mineProtectionValidation": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json"
+  "mineProtectionValidation": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+  "halfCreaturePricesValidation": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+  "halfCreaturePricesReference": "tests/fixtures/era-gameplay/creature-prices-reference.json"
 }

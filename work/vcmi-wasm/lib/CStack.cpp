@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "era/EraGooseReflectionRuntime.h"
+#include "era/EraCreaturePrices.h"
 #include "era/EraCreatureSpecialists.h"
 #include "era/EraStatusHealthRuntime.h"
 #include "era/EraHydraQueen259Runtime.h"
@@ -387,6 +388,14 @@ bool CStack::unitHasAmmoCart(const battle::Unit * unit) const
 PlayerColor CStack::unitEffectiveOwner(const battle::Unit * unit) const
 {
 	return battle->battleGetOwner(unit);
+}
+
+std::optional<int32_t> CStack::unitCreatureCost(const battle::Unit * unit) const
+{
+	const auto * army=battle?battle->getSideArmy(BattleSide::ATTACKER):nullptr;
+	if(!army&&base)army=base->getArmy();
+	if(!army||!army->cb)return std::nullopt;
+	return era_compat::creature_prices::gold(army->cb,*unit->unitType());
 }
 
 uint32_t CStack::unitId() const

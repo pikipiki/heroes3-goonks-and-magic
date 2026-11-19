@@ -8,7 +8,7 @@
   "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "servedEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+    "docs/era-gameplay-port.md": "29d6af16abc37b345449d97d8af6373b02f88629e4c0a67e36ed8243cb66278a",
     "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2bf30d28cf5c688e4215910013361dc0756006f54568c453771c96110a609b89",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
     "scripts/era-bridge/gameplay/math-source.json": "6a136d022eebeb315d861905371e6531c988d3e2bb3ac28656b34b6460973117",
@@ -20,7 +20,7 @@
     "tests/native/EraHenchmanRules.test.cpp": "457f76e0d348bfe88a83bbf54ca30b9dbf5d79c68b80a5cd4dc43cd737f73dc6",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
-    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
+    "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "0419705343e94ee3cf57be35c5328936661ca6c8cfcd467c75858d7cbd273d84",
     "tests/fixtures/era-gameplay/henchmen-math/loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817",
     "work/browser-tests/wog-henchmen-signed-experience-cases.mjs": "aab841d8efc3c4198ef756c4c9483da5e26fc8137d0592690aa26f460052d13a",
     "tests/era-henchmen-signed-experience.test.mjs": "b73f1ccdeed1713246d360951a52224625d2efbc74baa8d224819c25ede1326a",
@@ -504,5 +504,14 @@
       "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913"
     },
     "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

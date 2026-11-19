@@ -8,6 +8,7 @@
 *
 */
 #include "StdInc.h"
+#include "../../../lib/era/EraCreaturePrices.h"
 #include "Actors.h"
 #include "../AIGateway.h"
 #include "../Engine/Nullkiller.h"
@@ -375,7 +376,7 @@ HeroExchangeArmy * HeroExchangeMap::tryUpgrade(
 			if (targetSlot.validSlot())
 			{
 				target->addToSlot(targetSlot, creatureToBuy.creID, creatureToBuy.count);
-				target->armyCost += creatureToBuy.creID.toCreature()->getFullRecruitCost() * creatureToBuy.count;
+				target->armyCost += era_compat::creature_prices::get(aiNk->cc.get(),*creatureToBuy.creID.toCreature()) * creatureToBuy.count;
 				target->requireBuyArmy = true;
 			}
 		}
@@ -421,7 +422,7 @@ DwellingActor::DwellingActor(const CGDwelling * dwelling, uint64_t chainMask, bo
 {
 	for(auto & slot : creatureSet->Slots())
 	{
-		armyCost += slot.second->getCreatureID().toCreature()->getFullRecruitCost() * slot.second->getCount();
+		armyCost += era_compat::creature_prices::get(dwelling->cb,*slot.second->getCreatureID().toCreature()) * slot.second->getCount();
 	}
 }
 

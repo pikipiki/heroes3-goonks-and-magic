@@ -8,19 +8,19 @@
   "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
   "servedEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "ec69e58bf98ee6d3fad33bcb0318b910c9645595832e7f728db3764203a2de89",
-    "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8e8fb608e913f456b4a977343afd565dad2d0e6939a1a533145e61b6c6c6ad24",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
+    "docs/era-gameplay-port.md": "29d6af16abc37b345449d97d8af6373b02f88629e4c0a67e36ed8243cb66278a",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "2d3c08d5df3299d62df07c6a8b26c1243f2f4a367286b2b108bec16266a2d953",
+    "web/wog-options.mjs": "a9fd92bf93354c0aabd3afd4c48e06725f7424bf2bab08f894073917d2a6c843",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "357a28b2170cf23fb493d6df3fb8dd44d9def975cee0ad1b5b2fe8d1cae155b4",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ae18dc97c3f3312283d74fb3e8decf9c918d8c71c6b4421c5f2ac27f27efc63d",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "2c5718cdf676f7932f0c4052093bebd0e756368618b420b750d599fb1761e561",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "db05f84dcd7c284191ee9863f5878a6b76cd67e3af5d3b2f84d73d1e075b7e2f",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "f62fca39e23c712048a181857131ad5645a7dea0dbb6979014d387059e66554a",
     "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d",
     "work/vcmi-wasm/lib/era/EraMithrilReplacementRules.h": "e36e812bc4f368245cdb89bf40400a3f7648e14bfe966c337cfe81f386a52f83",
     "work/vcmi-wasm/server/era/EraMithrilResourceReplacement.h": "87ad6cfc59ef502162ae0d71091b00fe239c9e6d32bd5c66c1fdbe4517739eff",
     "tests/native/EraMithrilReplacementRules.test.cpp": "e6a06c29f5eaac9545d7799db6563645f35a985c45dcc1d2021fd9e4eb46de6d",
@@ -1506,5 +1506,22 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56"
     },
     "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "ec69e58bf98ee6d3fad33bcb0318b910c9645595832e7f728db3764203a2de89",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8e8fb608e913f456b4a977343afd565dad2d0e6939a1a533145e61b6c6c6ad24",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ae18dc97c3f3312283d74fb3e8decf9c918d8c71c6b4421c5f2ac27f27efc63d",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
+      "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

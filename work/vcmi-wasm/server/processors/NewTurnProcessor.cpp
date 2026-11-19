@@ -12,6 +12,7 @@
 #include "../../lib/era/EraMithrilModel.h"
 #include "../era/EraHenchmanRuntime.h"
 #include "../era/EraMapRulesRuntime.h"
+#include "../era/EraCreaturePricesRuntime.h"
 #include "../era/EraScriptRulesRuntime.h"
 #include "../era/EraMithrilRandomSeed.h"
 #include "../era/EraMithrilWeeklySites.h"
@@ -181,6 +182,7 @@ void NewTurnProcessor::onPlayerTurnStarted(PlayerColor which)
 
 void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
 {
+    era_compat::creature_prices::playerTurn(*gameHandler,which);
     // Global object newTurn has regenerated weekly stocks before players run.
     era_compat::mithril::replaceResources(*gameHandler);
     era_compat::mithril::weeklySites(*gameHandler);

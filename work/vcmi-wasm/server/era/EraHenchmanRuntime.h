@@ -1,4 +1,5 @@
 #pragma once
+#include "../../lib/era/EraCreaturePrices.h"
 #include "../CGameHandler.h"
 #include "SourceCampaignProcessor.h"
 #include "../../lib/era/EraHenchmanModel.h"
@@ -76,7 +77,7 @@ inline bool action(CGameHandler & gh,const HenchmanAction & request)
         if(!hero->henchman.stack||hero->henchman.alive
             ||(!rules.reviveAnywhere&&(!town||town->getOwner()!=hero->getOwner())))return false;
         const auto cost=era_bridge::henchmen::resurrectionCost(
-            hero->henchman.stack->getType()->getRecruitCost(GameResID::GOLD),progress(*hero,gh.gameState().day).level);
+            era_compat::creature_prices::gold(&gh.gameInfo(),*hero->henchman.stack->getType()),progress(*hero,gh.gameState().day).level);
         if(cost<0||gh.gameInfo().getPlayerState(request.player)->resources[GameResID::GOLD]<cost)return false;
         gh.giveResource(request.player,GameResID::GOLD,-cost);update.alive=true;
     }

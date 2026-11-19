@@ -7,12 +7,12 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "f62fca39e23c712048a181857131ad5645a7dea0dbb6979014d387059e66554a",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
     "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8e8fb608e913f456b4a977343afd565dad2d0e6939a1a533145e61b6c6c6ad24",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790"
   },
   "nativeBuild": {
@@ -526,5 +526,15 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56"
     },
     "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
+  },
+  "creaturePricesRevalidation": {
+    "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8e8fb608e913f456b4a977343afd565dad2d0e6939a1a533145e61b6c6c6ad24",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c"
+    },
+    "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
 }

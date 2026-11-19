@@ -1,0 +1,1871 @@
+{
+  "schema": 1,
+  "source": {
+    "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "sections": [
+      {
+        "start": 88,
+        "text": "!?FU(OnEveryDay)&i^timerDay^>1;\n\n  !!FU(WOG_101_SetMonstersHalfPrice)&i^wog_101_map_rule_2_isEnabled^:P D;\n  !!FU(WOG_101_PlaceMagicPlains)&i^wog_101_map_rule_3_isEnabled^:Pi^timerOwner^ Di^timerOwner^;"
+      },
+      {
+        "start": 954,
+        "text": "!?FU(WOG_101_SetMonstersHalfPrice);\n  !!VR(shouldBeHalfPriced:y):S(FALSE); [assume creatures should be normal price]\n  !!if&-1000;\n    !!VR(shouldBeHalfPriced):S(TRUE); [for AI with this rule they're always half price]\n  !!el&i^timerWeekday^=7;\n    !!VR(shouldBeHalfPriced):S(TRUE); [for humans just half price on sunday]\n  !!en;\n  !!if&(shouldBeHalfPriced)<>i^wog_113_isHalfPriced^;\n    !!FU(GetMaxMonsterId):P?(lastMon:y);   [fix max mon id - Archer]\n\n    !!if&(shouldBeHalfPriced);\n      !!DO(WOG_101_DecreaseMonPrice)/0/(lastMon)/1:P; [make creatures half price when needed]\n    !!el;\n      !!DO(WOG_101_IncreaseMonPrice)/0/(lastMon)/1:P; [make creatures double price when needed]\n    !!en;\n    !!VRi^wog_113_isHalfPriced^:S(shouldBeHalfPriced); [remember whether creatures currently are normal or half price]\n  !!en;\n\n!?FU(WOG_101_DecreaseMonPrice);\n\n!!MA&x16<145|x16>149:Cx16/6/d>>1; [save gold cost, except for war machines]\n\n** end of function\n\n\n** function to make monster x16 cost twice as much\n!?FU(WOG_101_IncreaseMonPrice);\n\n!!if&x16<145|x16>149;\n  !!MA:Cx16/6/?y1; [get gold cost]\n  !!VRy1:*2;       [double price]\n  !!VRy2:Sy1 %10;  [check low digit of price]\n  !!VRy1&y2=4:+1;  [turn 4's to 5's]\n  !!MA:Cx16/6/y1;  [save gold cost, except for war machines]\n!!en;\n"
+      }
+    ]
+  },
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "staticReports": {
+    "era-creature-gold-cost-oracle": {
+      "sha256": "a7508fc8672281eb2e821b3ed685e8443b743249f58dd2d119d6ab633e6f6092",
+      "report": {
+        "schema": 1,
+        "evidenceKind": "Ordinary targeted static PE inspection and supplied Pascal/ERM source reads; no REA native Evidence, no dynamic execution.",
+        "targets": {
+          "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+          "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+          "preferredImageBase": 4194304
+        },
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "sourceSha256": {
+          "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+          "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+          "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+        },
+        "contract": {
+          "receiver": "MA:C creature/resource/value",
+          "handlerVa": 7693251,
+          "costBranchVa": 7693615,
+          "minimumParameters": 3,
+          "creatureIdGuard": "On-disk0<=id<197; no145..149 exclusion in receiver. Expanded roster patches not validated here.",
+          "resourceGuard": "Signed index0..7 accepted on disk. Resource6 is gold. Resource7 aliases another descriptor field; it must not be generalized as a mithril-cost slot.",
+          "fieldAddress": "MonInfoBase + 0x74*creatureId + 0x20 + 4*resourceIndex",
+          "goldFieldOffset": 56,
+          "goldFieldPreferredAddressForCreature0": 8195272,
+          "type": "signed int32,4bytes",
+          "get": "Raw signed32-bit value through ZvsApply, no clamp, normalization or resource-specific scaling. Nonzero GET return skips modification marker.",
+          "set": "PutVal directly writes int32 using requested modifier, then calls7504d6(creatureId) to mark current day. No price clamp or nonnegative validation occurs after the write.",
+          "rightShift1": "SHR32 logical: unsigned32 view of previous value shifted right1. Nonnegative prices round down. Negative values are zero-filled, not arithmetic-halved or truncated toward zero.",
+          "leftShift1": "SHL32: low32bits of previous value times2, interpreted signed. Overflow wraps; no saturation or post-clamp.",
+          "rounding": "Integer bit operations only. No floating arithmetic or banker rounding. For the requested shift count1, generic shift-count bounding is irrelevant.",
+          "resource7": "Address with index7 isMonInfo+0x3c, the exact MA:F FightValue field. Matching Heroes.pas CostRes array has slots0..6 only."
+        },
+        "regions": [
+          {
+            "file": "h3era.exe",
+            "name": "MA:C subcommand table",
+            "rva": 3500331,
+            "preferredVa": 7694635,
+            "endExclusiveVa": 7694639,
+            "fileOffset": 3086635,
+            "size": 4,
+            "sha256": "b4f18dc331b7fb041c5586fa568c8cca740b74497bd461007f4d80f49de31f10",
+            "observation": "Entry C selects75652f."
+          },
+          {
+            "file": "h3era.exe",
+            "name": "MA:F subcommand table",
+            "rva": 3500343,
+            "preferredVa": 7694647,
+            "endExclusiveVa": 7694651,
+            "fileOffset": 3086647,
+            "size": 4,
+            "sha256": "73432f641aba110b9a94d9ceb05f86f94cf17a3657dd8d01ea90e0d413331276",
+            "observation": "Entry F selects7565a0."
+          },
+          {
+            "file": "h3era.exe",
+            "name": "MA creature guard",
+            "rva": 3498985,
+            "preferredVa": 7693289,
+            "endExclusiveVa": 7693346,
+            "fileOffset": 3085289,
+            "size": 57,
+            "sha256": "fcbcbe572441bfa356ad8ca7b9cb09f2b527ce8a98419bb56aaab40ab1cf8af7",
+            "observation": "Common minimum2parameters and signed creature ID0..196 guard on disk; C then requires3parameters."
+          },
+          {
+            "file": "h3era.exe",
+            "name": "MA:C complete cost branch",
+            "rva": 3499311,
+            "preferredVa": 7693615,
+            "endExclusiveVa": 7693728,
+            "fileOffset": 3085615,
+            "size": 113,
+            "sha256": "1d2c23a9c6197447b89109cd5bbae60bd8e1878ff1aa9197fba72f13f1feba25",
+            "observation": "C requires3parameters; resource index0..7; passes base7d0cb0+0x74*id+4*resource with size4 and value parameter2 to ZvsApply74195d. GET skips; SET marks7504d6. No cost clamp follows."
+          },
+          {
+            "file": "h3era.exe",
+            "name": "MA:F alias witness",
+            "rva": 3499424,
+            "preferredVa": 7693728,
+            "endExclusiveVa": 7693782,
+            "fileOffset": 3085728,
+            "size": 54,
+            "sha256": "8af47517cbd21df4424552e1ddfed9c7ef1d51952ffbcadcc5d5b42fb41e7807",
+            "observation": "F passes base7d0ccc+0x74*id with size4 to ZvsApply. This equals C index7 exactly."
+          },
+          {
+            "file": "era.dll",
+            "name": "PutVal left shift",
+            "rva": 607118,
+            "preferredVa": 4801422,
+            "endExclusiveVa": 4801448,
+            "fileOffset": 604046,
+            "size": 26,
+            "sha256": "d6780ef2fb0fae407431fadd974180404f153928a918ae93d69442afe9f6af68",
+            "observation": "Generic count bounding then32-bit SHL into ESI, jump to final store. No overflow handler or clamp."
+          },
+          {
+            "file": "era.dll",
+            "name": "PutVal right shift",
+            "rva": 607144,
+            "preferredVa": 4801448,
+            "endExclusiveVa": 4801474,
+            "fileOffset": 604072,
+            "size": 26,
+            "sha256": "27eb398b25672c687492f997170de1e77d129403a6ae823db2900bad6bd9a6c8",
+            "observation": "Generic count bounding then32-bit logical SHR into ESI, jump to final store; not SAR or signed division."
+          },
+          {
+            "file": "era.dll",
+            "name": "PutVal size4 final store",
+            "rva": 607231,
+            "preferredVa": 4801535,
+            "endExclusiveVa": 4801559,
+            "fileOffset": 604159,
+            "size": 24,
+            "sha256": "9278dd1a46e20030cd5d423b3d5f40bf3413e3e58e443070ad2974ccea80956b",
+            "observation": "Writes computed32-bit ESI to destination when size4."
+          },
+          {
+            "file": "era.dll",
+            "name": "Generic ZvsApply hook",
+            "rva": 607664,
+            "preferredVa": 4801968,
+            "endExclusiveVa": 4802135,
+            "fileOffset": 604592,
+            "size": 167,
+            "sha256": "99c91839e205ac866d64e4b691e65131571329b00d00a262fb215fad0849f6b4",
+            "observation": "SET calls PutVal; GET reads the supplied field and writes the ERM output parameter. Common hook already identified in prior option149/creature-level reports."
+          },
+          {
+            "file": "h3era.exe",
+            "name": "Modification day marker",
+            "rva": 3474646,
+            "preferredVa": 7668950,
+            "endExclusiveVa": 7669042,
+            "fileOffset": 3060950,
+            "size": 92,
+            "sha256": "ad5012e5ca92f2864951f0da490aa60bad0861a1e343b314324f4bed8f519293",
+            "observation": "Calls current-day helper7103d2 and stores day at8a3210[id]. No bonus or price recalculation in this function."
+          }
+        ],
+        "sourceCrossChecks": {
+          "Heroes.pas": [
+            734,
+            755,
+            757,
+            770
+          ],
+          "Erm.pas": [
+            104,
+            113,
+            5408,
+            5470,
+            5516,
+            5557,
+            9611
+          ],
+          "boundedHookSearch": "No MA:C receiver replacement or explicit patch of75652f/756553/756576/75657e found in supplied Erm/AdvErm/Tweaks/Heroes Pascal. Arbitrary runtime plugins or roster relocation remain unvalidated."
+        },
+        "rule113Source": {
+          "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+          "lines": [
+            953,
+            987
+          ],
+          "switching": "AI always half-price while enabled; humans half-price on weekday7 according to source comments and conditions. Changes occur only if desired half-price state differs from wog_113_isHalfPriced.",
+          "excludedCreatureIds": [
+            145,
+            146,
+            147,
+            148,
+            149
+          ],
+          "exclusionOrigin": "The source functions explicitly restrict to id<145 OR id>149. This is not a MA:C receiver restriction.",
+          "decrease": "MA:C(id)/6/d>>1, reads and mutates current gold cost only.",
+          "increase": "GET current gold cost; VR:*2 (int32), compute signed remainder%10, add1 if remainder==4, then plain MA:C SET. This is not a bare d<<1 and does not restore from an original-price snapshot.",
+          "roundTripExamples": "125→62→124→125;105→52→104→105;129→64→128. Thus restoration repairs doubled costs ending4 to5, but is not lossless for every odd cost.",
+          "scope": "Other resource costs are untouched by the gold6 operation."
+        },
+        "derivedExamples": {
+          "kind": "Static arithmetic/source replay, not executed observations",
+          "cases": [
+            {
+              "initialGoldCost": 0,
+              "afterLogicalRightShift1": 0,
+              "afterSource113Restore": 0,
+              "afterPlainLeftShift1OfInitial": 0
+            },
+            {
+              "initialGoldCost": 1,
+              "afterLogicalRightShift1": 0,
+              "afterSource113Restore": 0,
+              "afterPlainLeftShift1OfInitial": 2
+            },
+            {
+              "initialGoldCost": 2,
+              "afterLogicalRightShift1": 1,
+              "afterSource113Restore": 2,
+              "afterPlainLeftShift1OfInitial": 4
+            },
+            {
+              "initialGoldCost": 3,
+              "afterLogicalRightShift1": 1,
+              "afterSource113Restore": 2,
+              "afterPlainLeftShift1OfInitial": 6
+            },
+            {
+              "initialGoldCost": 5,
+              "afterLogicalRightShift1": 2,
+              "afterSource113Restore": 5,
+              "afterPlainLeftShift1OfInitial": 10
+            },
+            {
+              "initialGoldCost": 7,
+              "afterLogicalRightShift1": 3,
+              "afterSource113Restore": 6,
+              "afterPlainLeftShift1OfInitial": 14
+            },
+            {
+              "initialGoldCost": 9,
+              "afterLogicalRightShift1": 4,
+              "afterSource113Restore": 8,
+              "afterPlainLeftShift1OfInitial": 18
+            },
+            {
+              "initialGoldCost": 100,
+              "afterLogicalRightShift1": 50,
+              "afterSource113Restore": 100,
+              "afterPlainLeftShift1OfInitial": 200
+            },
+            {
+              "initialGoldCost": 101,
+              "afterLogicalRightShift1": 50,
+              "afterSource113Restore": 100,
+              "afterPlainLeftShift1OfInitial": 202
+            },
+            {
+              "initialGoldCost": 105,
+              "afterLogicalRightShift1": 52,
+              "afterSource113Restore": 105,
+              "afterPlainLeftShift1OfInitial": 210
+            },
+            {
+              "initialGoldCost": 115,
+              "afterLogicalRightShift1": 57,
+              "afterSource113Restore": 115,
+              "afterPlainLeftShift1OfInitial": 230
+            },
+            {
+              "initialGoldCost": 125,
+              "afterLogicalRightShift1": 62,
+              "afterSource113Restore": 125,
+              "afterPlainLeftShift1OfInitial": 250
+            },
+            {
+              "initialGoldCost": 129,
+              "afterLogicalRightShift1": 64,
+              "afterSource113Restore": 128,
+              "afterPlainLeftShift1OfInitial": 258
+            },
+            {
+              "initialGoldCost": 150,
+              "afterLogicalRightShift1": 75,
+              "afterSource113Restore": 150,
+              "afterPlainLeftShift1OfInitial": 300
+            },
+            {
+              "initialGoldCost": 2147483647,
+              "afterLogicalRightShift1": 1073741823,
+              "afterSource113Restore": 2147483646,
+              "afterPlainLeftShift1OfInitial": -2
+            },
+            {
+              "initialGoldCost": -1,
+              "afterLogicalRightShift1": 2147483647,
+              "afterSource113Restore": -2,
+              "afterPlainLeftShift1OfInitial": -2
+            },
+            {
+              "initialGoldCost": -2,
+              "afterLogicalRightShift1": 2147483647,
+              "afterSource113Restore": -2,
+              "afterPlainLeftShift1OfInitial": -4
+            },
+            {
+              "initialGoldCost": -2147483648,
+              "afterLogicalRightShift1": 1073741824,
+              "afterSource113Restore": -2147483648,
+              "afterPlainLeftShift1OfInitial": 0
+            }
+          ]
+        },
+        "limits": [
+          "No binary execution, game instance, container mutation or tracked-source change.",
+          "Static on-disk handler and matching supplied ERA hook source/binary are established; effective third-party runtime hooks and expanded creature IDs are not.",
+          "Only resource6 gold is needed for113. Index7 is an observed alias in the on-disk handler, not validation of any intended mithril price API.",
+          "No floating argument parsing/coercion, arbitrary shift counts, invalid syntax/error recovery or full option113 event lifecycle was executed.",
+          "The current-day marker and same descriptor write are identified; downstream cached recruitment-price refresh, multiplayer synchronization and persistence are not fully traced.",
+          "This report contains hashes, offsets and descriptive observations only, without original Windows bytes or disassembly."
+        ]
+      }
+    },
+    "era-creature-cost7-hooks": {
+      "sha256": "ee2e044b15ecd2e3f62cad6e36743f32db57ae0ab9385a126d97558e54886d83",
+      "report": {
+        "schema": 1,
+        "evidenceKind": "Ordinary targeted static PE inspection and supplied Pascal source; no REA Evidence, no runtime execution.",
+        "question": "Does supplied ERA/TUM plugin code redirect MA:C resource7 into a separate Mithril recruitment cost?",
+        "status": "Partially answered: positive static witness preserves FightValue alias through the relevant Amethyst relocation; arbitrary later hooks/load order remain unvalidated.",
+        "priorReport": {
+          "file": "work/downloads/era-creature-gold-cost-oracle/report.json",
+          "sha256": "a7508fc8672281eb2e821b3ed685e8443b743249f58dd2d119d6ab633e6f6092"
+        },
+        "targets": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+            "preferredImageBase": "0x400000"
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+            "preferredImageBase": "0x10000000"
+          }
+        ],
+        "pluginInventory": [
+          {
+            "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/Combat_BallisticsIncreasesShootingRange.dll",
+            "bytes": 87552,
+            "sha256": "f980c930e4b3db043a61484311e1d71dc0cd221e22823d90bff74ab6a0837656",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0xdeb8",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/Combat_LeadershipDecreasesFactionsNum.dll",
+            "bytes": 87552,
+            "sha256": "75383ccc0a060ea67b59d3c6e469bd06b252a59d848ff08368cd28b3328b9476",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0xdeb8",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/NewSpells.dll",
+            "bytes": 8704,
+            "sha256": "6c5c85fd0afc7a2a7b52cb87661b4ce786cb6d08254fa3ea7b79c33db863f5ce",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/heroesStartingParameters.era",
+            "bytes": 106496,
+            "sha256": "e7a3831b50def173bcfebfb1ff0f9ad3d4672bf3b2b2ec5c8433eab37d27da7f",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0x12020",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/remove theoretical battle ai vs ai.dll",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": true
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/AfterWoG/accumulate_8lv_creatures.bin",
+            "bytes": 14,
+            "sha256": "3a3f255b4bfd66f041fbb563c947cbdd4f544cea4f8e7b70b04fdd2e95cdb4a7",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/AfterWoG/accumulate_santagremlins_creatures.bin",
+            "bytes": 18,
+            "sha256": "e5fe49d09d0035b649d6846b5a6cbcc501f18fa89dec5e582136f33a0d45bf82",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/BattleAIvsAIFix.dll",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": true
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/Battle_AI.dll",
+            "bytes": 8704,
+            "sha256": "87e2d9a5d3811a4e30065035a2a0102191a0b853d575d5307e7847fcf9c700e4",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/BeforeWoG/amethyst_fix2_mop.bin",
+            "bytes": 606,
+            "sha256": "b1a6da439321f09625a1ed9b9b6bd48fe39df6df780f55a3622b584e8e48bc86",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/BeforeWoG/crexpfix.bin",
+            "bytes": 606,
+            "sha256": "b1a6da439321f09625a1ed9b9b6bd48fe39df6df780f55a3622b584e8e48bc86",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/Dwellings.dll",
+            "bytes": 5632,
+            "sha256": "2ee3ff4913be93ddcab4d261adbe76ae54e7407fe28ba077383727c7b6f96acf",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/H3FasterAI.dll",
+            "bytes": 73728,
+            "sha256": "a1bae947acd780da09c07459acbae3522c9031ccf4d576517ae965743c90e133",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0xbd20",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/Heropedia.era",
+            "bytes": 120832,
+            "sha256": "d4c8415c42f39eaa77c8dfc0255823bf1f656d8fd3b5027dc6759e10181d5c76",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0x15918",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/InstantAnim.dll",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": true
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "bytes": 329216,
+            "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0x126af",
+                "literal": "0x7568f4"
+              },
+              {
+                "fileOffset": "0x1bf7a",
+                "literal": "0x756912"
+              },
+              {
+                "fileOffset": "0x41284",
+                "literal": "0x756854"
+              },
+              {
+                "fileOffset": "0x47204",
+                "literal": "0x7564ca"
+              },
+              {
+                "fileOffset": "0x47208",
+                "literal": "0x7568c5"
+              },
+              {
+                "fileOffset": "0x4723c",
+                "literal": "0x756579"
+              },
+              {
+                "fileOffset": "0x47280",
+                "literal": "0x7565af"
+              },
+              {
+                "fileOffset": "0x47294",
+                "literal": "0x7565e5"
+              },
+              {
+                "fileOffset": "0x472a8",
+                "literal": "0x75661b"
+              },
+              {
+                "fileOffset": "0x472bc",
+                "literal": "0x756651"
+              },
+              {
+                "fileOffset": "0x472d0",
+                "literal": "0x756687"
+              },
+              {
+                "fileOffset": "0x472e4",
+                "literal": "0x7566bd"
+              },
+              {
+                "fileOffset": "0x472f0",
+                "literal": "0x7566db"
+              },
+              {
+                "fileOffset": "0x472f4",
+                "literal": "0x7566ea"
+              },
+              {
+                "fileOffset": "0x47300",
+                "literal": "0x756713"
+              },
+              {
+                "fileOffset": "0x47314",
+                "literal": "0x75674a"
+              },
+              {
+                "fileOffset": "0x47328",
+                "literal": "0x756781"
+              },
+              {
+                "fileOffset": "0x4733c",
+                "literal": "0x7567b8"
+              },
+              {
+                "fileOffset": "0x47350",
+                "literal": "0x7567ef"
+              },
+              {
+                "fileOffset": "0x47364",
+                "literal": "0x756826"
+              },
+              {
+                "fileOffset": "0x47378",
+                "literal": "0x75685d"
+              },
+              {
+                "fileOffset": "0x4738c",
+                "literal": "0x756894"
+              },
+              {
+                "fileOffset": "0x47410",
+                "literal": "0x7564e8"
+              },
+              {
+                "fileOffset": "0x47414",
+                "literal": "0x7564f7"
+              },
+              {
+                "fileOffset": "0x47418",
+                "literal": "0x756507"
+              },
+              {
+                "fileOffset": "0x4741c",
+                "literal": "0x756516"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/emerald3_3.era",
+            "bytes": 351744,
+            "sha256": "3102fc09554a07619a19462f420c821cdf20b32d846ec8b4802c0f4415b60911",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0x44aa4",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/more_anims.era",
+            "bytes": 95232,
+            "sha256": "29b8c944d01a947a91fb8656ab0b9d59e339001186113ab822f8413b474e5791",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0xfe28",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/new_advmap_objects.era",
+            "bytes": 12288,
+            "sha256": "ba9f20507cff95b140680d386541c4947d1ff45bf0933d6c7214eb7656f5c469",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/new_towns.era",
+            "bytes": 592384,
+            "sha256": "4f5b3fbba77a018b3373f1ee5cfe89f20016f6f7e38b4155e7cca98add3c1b17",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0x64c6c",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/patcher.dll",
+            "bytes": 203264,
+            "sha256": "0ef8bf50be68b57663a84f403b9d9bac38f4a665ec30b51511432e6adb2f42da",
+            "literalHitsInMaHandlerRange": [
+              {
+                "fileOffset": "0x2235c",
+                "literal": "0x756854"
+              }
+            ],
+            "emptyPlaceholder": false
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/remove theoretical battle ai vs ai.dll",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "literalHitsInMaHandlerRange": [],
+            "emptyPlaceholder": true
+          }
+        ],
+        "findings": [
+          {
+            "id": "static-amethyst-C7-F-alias",
+            "confidence": "High for identified relocation path, conditional on this code executing without later overriding hooks.",
+            "conclusion": "Amethyst2_4 relocates the entire 0x74-byte creature descriptor table while preserving C cost base+0x20 and F FightValue base+0x3c. MA:C index7 therefore still addresses FightValue, not a new Mithril slot.",
+            "patchLoop": {
+              "preferredVa": "0x10004b1c",
+              "endExclusiveVa": "0x10004b55",
+              "entries": 154,
+              "destinationAddressArrayVa": "0x10048400",
+              "relativeFieldOffsetArrayVa": "0x10048668",
+              "newCreatureTableBaseVa": "0x10082ed8"
+            },
+            "matchingPatchRows": [
+              {
+                "index": 15,
+                "targetOperandVa": "0x756579",
+                "relativeFieldOffset": "0x20",
+                "relocatedValue": "0x10082ef8"
+              },
+              {
+                "index": 32,
+                "targetOperandVa": "0x7565af",
+                "relativeFieldOffset": "0x3c",
+                "relocatedValue": "0x10082f14"
+              }
+            ],
+            "derivedEquality": "0x10082ed8+0x20+4*7 = 0x10082ed8+0x3c = 0x10082f14; both add the unchanged 0x74*creatureId stride."
+          },
+          {
+            "id": "static-cost-array-source",
+            "confidence": "High for supplied Pascal declaration.",
+            "conclusion": "Heroes.pas declares CostRes[0..6] at+0x20 immediately followed by FightValue at+0x3c. RES_MITHRIL=7 is a resource ID, not a descriptor slot declaration.",
+            "source": "work/downloads/era-kernel-source/Heroes.pas",
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+            "lines": [
+              202,
+              755,
+              756
+            ]
+          },
+          {
+            "id": "bounded-plugin-negative-search",
+            "confidence": "Bounded negative only.",
+            "conclusion": "Among inventoried binaries/patches, direct literals inside the specific MA:C branch and F operand are found in Amethyst relocation data. No separate C7 redirection is established by this search. Other repeated MA-region literals (e.g.0x756854) do not establish a hook or C7 semantics.",
+            "search": "Every byte-aligned little-endian u32 literal in0x7564c3..0x756a00 in the inventoried files; manually inspected matched C/F relocation entries and loop. This does not detect computed addresses, compressed data or broad scanners."
+          },
+          {
+            "id": "mithril-string-not-cost-evidence",
+            "confidence": "High that the specific occurrence is a name lookup, no conclusion about other paths.",
+            "conclusion": "The Amethyst Mithril string is returned by a resource-name switch accepting0..7. Its presence does not establish an eighth recruitment-cost field.",
+            "nameSwitchVa": "0x100020f0",
+            "endExclusiveVa": "0x1000214b",
+            "stringVa": "0x1003ca00"
+          }
+        ],
+        "regions": [
+          {
+            "name": "Creature descriptor relocation loop",
+            "artifact": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "preferredVa": "0x10004b1c",
+            "endExclusiveVa": "0x10004b55",
+            "rva": "0x4b1c",
+            "fileOffset": "0x3f1c",
+            "size": 57,
+            "sha256": "df473cea13ec5422386a150d9c760576bd1f8288955f254e800bbba46a6bf33c",
+            "observation": "Iterate154 entries, write new descriptor base+field-offset into listed destinations."
+          },
+          {
+            "name": "MA:C relocated operand table row",
+            "artifact": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "preferredVa": "0x1004843c",
+            "endExclusiveVa": "0x10048440",
+            "rva": "0x4843c",
+            "fileOffset": "0x4723c",
+            "size": 4,
+            "sha256": "fee7833121d1def471d47f1434e4ad8f9af6e7c10d03836ad58e2291dc35759c",
+            "observation": "Patch destination0x756579, cost-base displacement inside MA:C LEA."
+          },
+          {
+            "name": "MA:C relative field-offset row",
+            "artifact": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "preferredVa": "0x100486a4",
+            "endExclusiveVa": "0x100486a8",
+            "rva": "0x486a4",
+            "fileOffset": "0x474a4",
+            "size": 4,
+            "sha256": "8d71b3faab8201459ad37ef499beb336ba88bdcfa0f51ee6f0a46ec3192d750a",
+            "observation": "Offset0x20."
+          },
+          {
+            "name": "MA:F relocated operand table row",
+            "artifact": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "preferredVa": "0x10048480",
+            "endExclusiveVa": "0x10048484",
+            "rva": "0x48480",
+            "fileOffset": "0x47280",
+            "size": 4,
+            "sha256": "9f770b2b7bed0636b23d1f151d8b93513b0c5fab56c5ff79b9c990db700db441",
+            "observation": "Patch destination0x7565af, FightValue displacement inside MA:F ADD."
+          },
+          {
+            "name": "MA:F relative field-offset row",
+            "artifact": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "preferredVa": "0x100486e8",
+            "endExclusiveVa": "0x100486ec",
+            "rva": "0x486e8",
+            "fileOffset": "0x474e8",
+            "size": 4,
+            "sha256": "621293836cafba765c105b23559d2564fbca2932bc13ebfebe9a63b7f393c3cd",
+            "observation": "Offset0x3c."
+          },
+          {
+            "name": "Resource name selector",
+            "artifact": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "preferredVa": "0x100020f0",
+            "endExclusiveVa": "0x1000214b",
+            "rva": "0x20f0",
+            "fileOffset": "0x14f0",
+            "size": 91,
+            "sha256": "7aa747b33fd11ca89c637952cb3c5478a97c6aec06110992a975cdb8b8edcf1f",
+            "observation": "Resource ID7 selects Mithril name, not a cost write."
+          },
+          {
+            "name": "Original MA:C and MA:F field calculations",
+            "artifact": "work/era-gameplay-reference/h3era.exe",
+            "preferredVa": "0x756565",
+            "endExclusiveVa": "0x7565b9",
+            "rva": "0x356565",
+            "fileOffset": "0x2f1565",
+            "size": 84,
+            "sha256": "fa26252939e89f213a1b15fa2159f4ae6a39ae278e626179580fa416b12f002a",
+            "observation": "C computes descriptor+0x20+resource*4; F computes descriptor+0x3c. Stride0x74 in both."
+          }
+        ],
+        "limits": [
+          "No game, DLL or plugin was loaded or executed. No REA tools were available; these are ordinary static observations, not REA Evidence IDs.",
+          "No complete ERA plugin load order or final patched process memory was observed. The ERA reference directory contains only the inventoried Advanced Classes EraPlugins; TUM plugins come from the separate local Third-Upgrade-Mod-Full tree.",
+          "The binary inventory is scoped to the two explicit EraPlugins directories and their nested .bin patches. Root HD compatibility DLLs, arbitrary external mods and dynamically loaded plugins were not globally analyzed.",
+          "Literal negative searches cannot exclude computed patch targets, scanners, packed/encrypted code, runtime ERM UN:C/SN writes or later configuration changes.",
+          "Amethyst also patches roster bounds and other receiver fields; this report validates only the specific C/F relocation relationship. It does not admit all expanded-ID, recruitment-cache, persistence or arbitrary MA behavior.",
+          "The current VCMI native port was not modified. Mapping MA:C7 to Mithril cannot be justified by the identified original/Amethyst path; a compatibility change should be tested separately before publication."
+        ],
+        "filesModified": "Ignored work/downloads report artifacts only; no tracked source, container or published data changes."
+      }
+    },
+    "era-creature-recruit-cost-consumers": {
+      "sha256": "0a27beb045bc455b5d8f6af6457999f63f55fc733d366bd57aa0669d80b51aa9",
+      "report": {
+        "schema": 1,
+        "evidenceKind": "Ordinary targeted static PE inspection plus supplied Pascal source. No REA Evidence, original runtime execution or dynamic cost observations.",
+        "scope": "Human/native recruitment-dialog consumer only. Not AI, arbitrary plugins, upgrades, all alternate purchase routes or complete rule113 parity.",
+        "targets": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+            "preferredImageBase": "0x400000"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+            "preferredImageBase": "0x400000"
+          }
+        ],
+        "priorReports": {
+          "work/downloads/era-creature-gold-cost-oracle/report.json": "a7508fc8672281eb2e821b3ed685e8443b743249f58dd2d119d6ab633e6f6092",
+          "work/downloads/era-creature-cost7-hooks/report.json": "ee2e044b15ecd2e3f62cad6e36743f32db57ae0ab9385a126d97558e54886d83"
+        },
+        "sourceSha256": {
+          "work/downloads/era-kernel-source/Dwellings.pas": "3bc70c6ef232e6ffb7e1d45dc29cbc350ab0b45bc3b70d9546e0709dd6a5271b",
+          "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+        },
+        "contract": {
+          "tableRead": "At recalculation5507a0, copy current7 int32 costs0..6 from MonInfo+0x20. No cost7 read; this is consistent with C7/F alias report.",
+          "humanProjection": "Gold cost6 and ONLY first NONZERO cost among0..5 are retained in dialog fields. This is not a seven-resource affordability/billing loop. Negative extra costs count as nonzero. Multiple additional nonzero costs are not all charged in the identified path.",
+          "dialogFields": {
+            "goldCost": "0x84",
+            "extraResource": "0x88",
+            "extraCost": "0x8c",
+            "stockPointer": "0x54",
+            "targetArmy": "0x98",
+            "maxQuantity": "0xac",
+            "displayGoldTotal": "0xb0",
+            "displayExtraTotal": "0xb4",
+            "selectedQuantity": "0xb8"
+          },
+          "maximum": "Signed quotient goldBalance/goldCost, optionally signed quotient extraBalance/extraCost; signed minimum of quotients capped by stock (sign-extended16-bit) is stored in MaxQuantity. Existing selected quantity is then separately clamped down to that maximum. A zero divisor is replaced byINTMAX by the supplied ERA hooks. Negative costs are not clamped, ignored or automatically treated as free.",
+          "zeroCosts": "ERA hooks test equality with0 only, set saved EAX=INTMAX, returnfalse to skip native IDIV. Stock remains limiting, including all-zero cost. On-disk h3era without these hooks would divide by0; do not infer that unpatched behavior is safe.",
+          "negativeCosts": "Original signed IDIV and signed comparisons remain. Positive funds divided by negative cost gives a nonpositive maximum and ordinary Buy is disabled. Negative funds/negative cost can yield a positive maximum; the payment subtraction of negative products then increases that resource. No nonnegative normalization identified in this path.",
+          "extremeDivision": "For INTMIN balance and cost-1, original IDIV would overflow its signed quotient. This is a static CPU-semantics boundary, not an executed observation. No saturation or special handling found in the identified zero-only hooks.",
+          "bill": "Use cached dialog gold and optional extra cost. IMUL32 low32-bit product, SUB32 wrapped deduction. No upper/lower clamp or all7-vector revalidation appears in this bounded transaction branch.",
+          "display": "Displayed totals also use IMUL32 cachedCost*quantity, matching identified bill arithmetic.",
+          "purchaseGuards": "Normal non-war-machine branch verifies army room before charging. Ordinary buy requires selected quantity nonzero and maximum>0. Source stock debit is16-bit. War-machine/artifact branch and invalid forged selections are outside admission.",
+          "payer": "Active player pointer at*0x69ccfc, positively tied to current player ID*0x69ccf4 by native setters GameManager+0x20ad0+playerId*0x168. The quoted target army may be town/hero/custom; this payment branch does not rederive payer from target army/town owner.",
+          "cache": "Table values are refetched at recalculation and after buying. Billing consumes cached fields, not a fresh descriptor lookup. A table write during an already open dialog is not established to invalidate/recalculate the cache automatically.",
+          "eraOverrides": "OnRecruitDlgRecalc77028 can return goldCost/resource/resourceCost. ERA clamps resource index to0..6 but leaves both returned cost integers signed/unclamped. No event handlers or later plugins were executed here; custom overrides can change the projection.",
+          "multipleCosts": "The human dialog path is natively limited to gold plus one extra resource; this report must not be used to generalize all7 costs to AI or other consumers."
+        },
+        "sourceReferences": {
+          "Dwellings.pas": {
+            "dialogLayout": [
+              58,
+              76,
+              77,
+              78,
+              84,
+              85,
+              86,
+              87
+            ],
+            "GetMonCostAndSelection": [
+              198,
+              203,
+              207,
+              208,
+              209,
+              210,
+              211,
+              216,
+              222
+            ],
+            "recalcHook": [
+              673,
+              687,
+              688,
+              689,
+              690,
+              691
+            ],
+            "zeroHooks": [
+              703,
+              705,
+              708,
+              712,
+              714,
+              717
+            ],
+            "registration": [
+              1178,
+              1190,
+              1191,
+              1192,
+              1193
+            ],
+            "targetIdentification": [
+              410,
+              421,
+              431,
+              437,
+              440
+            ]
+          },
+          "Heroes.pas": {
+            "costArray": [
+              755,
+              756
+            ],
+            "currentPlayerId": [
+              1388
+            ],
+            "playerStructAndLookup": [
+              350,
+              351,
+              2448,
+              2453
+            ]
+          }
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Recruit recalculation: read seven costs and project two fields",
+            "preferredVa": "0x5507d3",
+            "endExclusiveVa": "0x550860",
+            "rva": "0x1507d3",
+            "fileOffset": "0x1507d3",
+            "size": 141,
+            "sha256": "f7058a67ed221f86bc30720784e3536ad188246252e91d6699f15730bc6c20c5",
+            "observation": "Read selected MonInfo via6747b0, stride0x74, offset0x20. Copy7 dwords. Gold index6 goesDlg+84; scan0..5 for first NONZERO cost and save index/value atDlg+88/+8c; no extra non-gold costs projected."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Recruit maximum affordable and stock clamp",
+            "preferredVa": "0x55097c",
+            "endExclusiveVa": "0x5509f6",
+            "rva": "0x15097c",
+            "fileOffset": "0x15097c",
+            "size": 122,
+            "sha256": "96931a707d949dcd19c3723ce55f89e67f880d604341aea169bd1ace7664402b",
+            "observation": "Read active player pointer69ccfc; signed IDIV gold balance+0xb4 by cachedCost; optional selected resource balance+0x9c+4*r by cachedResourceCost; signed min of quotients, sign-extended16-bit stock and selected quantity. ERA zero-divisor hooks alter only cost0 cases."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Buy-enable check",
+            "preferredVa": "0x550a3d",
+            "endExclusiveVa": "0x550a61",
+            "rva": "0x150a3d",
+            "fileOffset": "0x150a3d",
+            "size": 36,
+            "sha256": "8875c6b6465a86200646815e434a44bde588b1ee71f49013ce38a46c89089a4b",
+            "observation": "Ordinary buy enabled only when selected quantity is nonzero, computed max strictly positive and dialog readonly byte false. Negative max does not become free/unbounded."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Normal army placement before charging",
+            "preferredVa": "0x550fff",
+            "endExclusiveVa": "0x55102b",
+            "rva": "0x150fff",
+            "fileOffset": "0x150fff",
+            "size": 44,
+            "sha256": "be842310b3aa4eac9bedcc62fe489368dd7735e4b01d2fef32e0577b28db93d5",
+            "observation": "Check target army room via44a920 then add selected creature/count via44a9b0; failed room check branches away before billing."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Native bill uses cached gold and one resource",
+            "preferredVa": "0x55102b",
+            "endExclusiveVa": "0x551070",
+            "rva": "0x15102b",
+            "fileOffset": "0x15102b",
+            "size": 69,
+            "sha256": "836487934facb52a4fc598cfb3905aa3fd096b568abded68986fca622c7e930f",
+            "observation": "GoldCost*selectedQuantity via IMUL32, subtract from active player gold with SUB32. If Resource!=-1, ResourceCost*quantity via IMUL32, subtract from selected resource. Does not reload all7 costs or clamp products/balances."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Source stock debit",
+            "preferredVa": "0x551070",
+            "endExclusiveVa": "0x551089",
+            "rva": "0x151070",
+            "fileOffset": "0x151070",
+            "size": 25,
+            "sha256": "0373e571033d218e81085f9a9794b4faaf3a6cb988c43542d636a86fc7be0f0e",
+            "observation": "Subtract low16 quantity from source stock word and reset selected quantity0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Post-purchase recalculation",
+            "preferredVa": "0x5510c5",
+            "endExclusiveVa": "0x5510d2",
+            "rva": "0x1510c5",
+            "fileOffset": "0x1510c5",
+            "size": 13,
+            "sha256": "b7f8f2dd5e424729056edcb0a00cd6941a1e1bae3dc49a7c106dc704da513d35",
+            "observation": "Call5507a0 again after buy; refetch costs on this admitted path."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Gold display total",
+            "preferredVa": "0x550b30",
+            "endExclusiveVa": "0x550b4a",
+            "rva": "0x150b30",
+            "fileOffset": "0x150b30",
+            "size": 26,
+            "sha256": "b5a9859d11b816f38f10d9aae523070c4aea270fd258f7923685b6313e2fa920",
+            "observation": "Gold total uses IMUL32 cachedGoldCost*selectedQuantity, savesTotalPrice+0xb0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Resource display total",
+            "preferredVa": "0x550bbc",
+            "endExclusiveVa": "0x550bd6",
+            "rva": "0x150bbc",
+            "fileOffset": "0x150bbc",
+            "size": 26,
+            "sha256": "b520a137fed390a4a0361ab179f0062cc03f20b46070cb1e92bc1585f656d8ac",
+            "observation": "Selected resource total uses IMUL32 cachedResourceCost*selectedQuantity, saves+0xb4."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Current player pointer assignment",
+            "preferredVa": "0x49d63e",
+            "endExclusiveVa": "0x49d65f",
+            "rva": "0x9d63e",
+            "fileOffset": "0x9d63e",
+            "size": 33,
+            "sha256": "c0043948c7c351d8e3137b9dd2b1b20560ae62d9b59d183daaae6bf430d1f8ba",
+            "observation": "Store current player idESI at69ccf4; derive GameManager+0x20ad0+0x168*ESI; store pointer69ccfc."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Initial current player pointer assignment",
+            "preferredVa": "0x4c031a",
+            "endExclusiveVa": "0x4c0336",
+            "rva": "0xc031a",
+            "fileOffset": "0xc031a",
+            "size": 28,
+            "sha256": "7002eff8b3e1118f7cb23419812e3e78d545f1f662be5f4d3c461c408c70c070",
+            "observation": "Another positive witness binds69ccfc to current player array entry, independent of recruitment target owner."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "Recruit recalculation event hook",
+            "preferredVa": "0x49e424",
+            "endExclusiveVa": "0x49e4ab",
+            "rva": "0x9e424",
+            "fileOffset": "0x9d824",
+            "size": 135,
+            "sha256": "f1746d41ac7d48aa6c5c1e78b032ccf1705ebbddf5a2d54a6a1ecdcfb2fe77f5",
+            "observation": "Pass cached gold/resource/resourceCost to event77028; read returns, clamp resource index0..6 only, store costs unchanged."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "Zero gold cost hook",
+            "preferredVa": "0x49e4e0",
+            "endExclusiveVa": "0x49e504",
+            "rva": "0x9e4e0",
+            "fileOffset": "0x9d8e0",
+            "size": 36,
+            "sha256": "a2a464bb08541ee8bbd6cea0b75550b9705304a822254fccedc1a8d5404b4bba",
+            "observation": "If cached gold cost==0, set HookContext.EAX=INTMAX and returnfalse to skip original division. Any nonzero cost returns true."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "Zero resource cost hook",
+            "preferredVa": "0x49e508",
+            "endExclusiveVa": "0x49e52c",
+            "rva": "0x9e508",
+            "fileOffset": "0x9d908",
+            "size": 36,
+            "sha256": "32ab5242b4556ecc408eb65a7585d4d4e724d94acb67a904ca036bb6892f5ccc",
+            "observation": "Same only-zero bypass for cachedResourceCost; negatives remain nonzero and continue original signed IDIV."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "ERA recruitment hooks registration",
+            "preferredVa": "0x49faa6",
+            "endExclusiveVa": "0x49fafa",
+            "rva": "0x9faa6",
+            "fileOffset": "0x9eea6",
+            "size": 84,
+            "sha256": "fb6fbb8c7dd718bb518f6d7ca9b166dba60151250529b6fa8257f300b5187727",
+            "observation": "Register recalc550860→49e424, action551089→49e4b0, zero gold550989→49e4e0, zero resource5509a4→49e508."
+          }
+        ],
+        "derivedExamples": [
+          {
+            "name": "ordinary125gold",
+            "kind": "Static arithmetic replay; not executed original-game observation. ERA zero hooks assumed, no event override.",
+            "costs": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              125
+            ],
+            "resourcesBefore": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000
+            ],
+            "stock": 20,
+            "projectedGold": 125,
+            "projectedExtraResource": -1,
+            "projectedExtraCost": 0,
+            "computedMaximum": 8,
+            "ordinaryBuyEnabled": true,
+            "modeledSelectedQuantity": 8,
+            "modeledBill": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000
+            ],
+            "resourcesAfter": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "rule113halved62gold",
+            "kind": "Static arithmetic replay; not executed original-game observation. ERA zero hooks assumed, no event override.",
+            "costs": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              62
+            ],
+            "resourcesBefore": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000
+            ],
+            "stock": 20,
+            "projectedGold": 62,
+            "projectedExtraResource": -1,
+            "projectedExtraCost": 0,
+            "computedMaximum": 16,
+            "ordinaryBuyEnabled": true,
+            "modeledSelectedQuantity": 16,
+            "modeledBill": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              992
+            ],
+            "resourcesAfter": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              8
+            ]
+          },
+          {
+            "name": "zeroGoldIsFreeButStockBounded",
+            "kind": "Static arithmetic replay; not executed original-game observation. ERA zero hooks assumed, no event override.",
+            "costs": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "resourcesBefore": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "stock": 20,
+            "projectedGold": 0,
+            "projectedExtraResource": -1,
+            "projectedExtraCost": 0,
+            "computedMaximum": 20,
+            "ordinaryBuyEnabled": true,
+            "modeledSelectedQuantity": 20,
+            "modeledBill": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "resourcesAfter": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "negativeGoldWithPositiveBalanceDisables",
+            "kind": "Static arithmetic replay; not executed original-game observation. ERA zero hooks assumed, no event override.",
+            "costs": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -5
+            ],
+            "resourcesBefore": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000
+            ],
+            "stock": 20,
+            "projectedGold": -5,
+            "projectedExtraResource": -1,
+            "projectedExtraCost": 0,
+            "computedMaximum": -200,
+            "ordinaryBuyEnabled": false,
+            "modeledSelectedQuantity": -200,
+            "modeledBill": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "resourcesAfter": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000
+            ]
+          },
+          {
+            "name": "negativeBalanceAndNegativeCostCanProducePositiveMax",
+            "kind": "Static arithmetic replay; not executed original-game observation. ERA zero hooks assumed, no event override.",
+            "costs": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -5
+            ],
+            "resourcesBefore": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -1000
+            ],
+            "stock": 20,
+            "projectedGold": -5,
+            "projectedExtraResource": -1,
+            "projectedExtraCost": 0,
+            "computedMaximum": 20,
+            "ordinaryBuyEnabled": true,
+            "modeledSelectedQuantity": 20,
+            "modeledBill": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -100
+            ],
+            "resourcesAfter": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -900
+            ]
+          },
+          {
+            "name": "onlyFirstNonzeroExtraCostIsProjected",
+            "kind": "Static arithmetic replay; not executed original-game observation. ERA zero hooks assumed, no event override.",
+            "costs": [
+              2,
+              0,
+              3,
+              0,
+              0,
+              0,
+              100
+            ],
+            "resourcesBefore": [
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1000
+            ],
+            "stock": 100,
+            "projectedGold": 100,
+            "projectedExtraResource": 0,
+            "projectedExtraCost": 2,
+            "computedMaximum": 5,
+            "ordinaryBuyEnabled": true,
+            "modeledSelectedQuantity": 5,
+            "modeledBill": [
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500
+            ],
+            "resourcesAfter": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              500
+            ]
+          }
+        ],
+        "overflowExample": {
+          "kind": "Static arithmetic-only boundary, NOT reachable through ordinary positive-cost/funds affordability in this example.",
+          "goldCost": 2147483647,
+          "forcedQuantity": 2,
+          "productLow32Signed": -2,
+          "hypotheticalOldBalance": 1000,
+          "hypotheticalWrappedNewBalance": 1002,
+          "limit": "For ordinary positive cost, nonnegative int32 funds and a valid computed quantity, product<=available funds; this specific overflowing quantity would normally be rejected by the affordability bound."
+        },
+        "portImplications": [
+          {
+            "kind": "Inference from identified consumers, not a proved engine implementation requirement.",
+            "text": "A per-game effective cost table must feed both MA:C and admitted recruitment recalculation consistently. Updating metadata alone cannot affect this native path."
+          },
+          {
+            "kind": "Inference with scope boundary.",
+            "text": "If preserving this source human path, freeze/project effective gold plus first nonzero extra into the dialog quote, use the active recruiter player, and distinguish table refresh from cached billing. Do not assume AI or alternate purchase paths use the same projection."
+          },
+          {
+            "kind": "Scope boundary.",
+            "text": "A modern engine may deliberately support all7 resource charges, but that is a documented compatibility decision beyond this exact human source behavior. Rule113 only changes gold6 and therefore does not itself require multiple-extra-resource semantics."
+          }
+        ],
+        "limits": [
+          "No original game, DLL, plugin, container, tracked source or published data was executed/modified.",
+          "The supplied ERA DLL hooks match the Pascal zero/recalc implementation statically; final plugin order, arbitrary OnRecruitDlgRecalc handlers and other runtime overrides remain unobserved.",
+          "Only the explicit native human dialog recalc/buy path was traced. AI recruitment, quick-buy shortcuts, alternate town/kingdom routes that bypass this dialog, upgrades, external plugins and desynchronization checks are not admitted.",
+          "Large counts, negative resources, overflow, invalid selections, divide exceptions and custom RD modifications are derived from instructions, not golden runtime outputs.",
+          "The normal dialog reads stock as signed16-bit. Whether other sources/patches permit broader stock ranges is outside this report.",
+          "A per-game VCMI cost table, serialization, UI refresh, networking and actual purchase integration require independent implementation tests."
+        ]
+      }
+    },
+    "era-creature-upgrade-cost-consumers": {
+      "sha256": "256e389273b1cc9f0bbfff38239b0b8c63f030792029400aa630ae496a933c71",
+      "report": {
+        "schema": 1,
+        "question": "Original town and Hill Fort creature upgrade cost consumers, dynamic MA:C relationship and rounding",
+        "evidenceKind": "Ordinary bounded offline static PE disassembly and supplied Pascal cross-check. REA unavailable previously diagnosed. No REA Evidence record or runtime execution.",
+        "artifacts": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+            "preferredImageBase": "0x400000"
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+            "preferredImageBase": "0x10000000"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          }
+        ],
+        "priorReports": [
+          {
+            "file": "work/downloads/era-creature-gold-cost-oracle/report.json",
+            "sha256": "a7508fc8672281eb2e821b3ed685e8443b743249f58dd2d119d6ab633e6f6092"
+          },
+          {
+            "file": "work/downloads/era-creature-cost7-hooks/report.json",
+            "sha256": "ee2e044b15ecd2e3f62cad6e36743f32db57ae0ab9385a126d97558e54886d83"
+          }
+        ],
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "sources": [
+          {
+            "file": "work/downloads/era-kernel-source/Heroes.pas",
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+            "ranges": [
+              {
+                "startLine": 734,
+                "endLine": 757,
+                "sha256": "b1da9e50847e34c6f7a8e75711e85e545a4ad054dfdece0a4d691a16f9c5cb12"
+              },
+              {
+                "startLine": 2849,
+                "endLine": 2849,
+                "sha256": "bd28a619ff3745a7aaa01bfe9de40f6a23a742799acdb2b987d84f7de123f37f"
+              },
+              {
+                "startLine": 2884,
+                "endLine": 2893,
+                "sha256": "edd0c2d9b559fdea44328915156b6b8cb4ae7e5404e4abead7bc0873e4c6dbd3"
+              }
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "id": "O1",
+            "regions": [
+              "common_upgrade_cost"
+            ],
+            "finding": "Town and fort share helper54eb50. Each resource uses signed comparison targetCost>sourceCost. Positive difference is multiplied by supplied quantity using32-bit SUB/IMUL; otherwise output0. No refund for equal or cheaper target. Clamping happens on compared input costs BEFORE quantity multiplication, not after."
+          },
+          {
+            "id": "O2",
+            "regions": [
+              "common_upgrade_cost",
+              "WoG_pointer_patch_row",
+              "WoG_literal_patch_loop"
+            ],
+            "finding": "Seven resources0..6 only (gold6). Each call reads current table pointer6747b0 then current source and target descriptors. WoG bootstrap row redirects pointer to7d0c90, making costs exactly MA:C base7d0cb0+id*0x74+resource*4. No independent upgrade-price table/cache in helper."
+          },
+          {
+            "id": "O3",
+            "regions": [
+              "town_upgrade_selection",
+              "town_confirmed_upgrade_payment",
+              "creature_dialog_upgrade_availability",
+              "creature_dialog_upgrade_prompt"
+            ],
+            "finding": "Identified town upgrade payment and creature upgrade dialog use common helper without extra percentage/rabate. Payment recalculates costs before subtracting seven resources; source creature ID changes to target. Ordinary positive quantity therefore pays full positive price difference times stack size."
+          },
+          {
+            "id": "O4",
+            "regions": [
+              "hill_fort_initialize_cost_and_level",
+              "hill_fort_free_level_zero"
+            ],
+            "finding": "Human fort dialog reads source creature descriptor level+4. Level0 takes explicit free branch after upgrade existence test; zero-initialized entire cost vector is retained, including non-gold resources even with custom prices."
+          },
+          {
+            "id": "O5",
+            "regions": [
+              "hill_fort_stack_calculate_and_discount",
+              "hill_fort_coefficients",
+              "truncation_helper"
+            ],
+            "finding": "For source levels1..6, fort calculates complete stack difference first. Only gold is then stored as float32, loaded and multiplied by float32 coefficient indexed by source level:level1=.25,2=.50,3=.75,4/5/6=1.0. Final conversion uses truncation toward zero; non-gold resources retain full helper results."
+          },
+          {
+            "id": "O6",
+            "regions": [
+              "hill_fort_stack_calculate_and_discount",
+              "hill_fort_pay_cached_stack_cost"
+            ],
+            "finding": "Fort sums each stack cost into seven-resource total; successful payment uses cached per-stack costs and subtracts seven entries. Gold discount and truncation happen per stack, before summing fort total."
+          },
+          {
+            "id": "O7",
+            "regions": [
+              "Amethyst_pointer_patch_loop",
+              "Amethyst_pointer_patch_row",
+              "Amethyst_MA_field_patch_loop"
+            ],
+            "finding": "Identified Amethyst relocation writes expanded descriptor base10082ed8 to6747b0 and relocates MA:C cost base to that base+0x20. Thus this relocation preserves shared dynamic cost memory. Not a proof against later or different plugins."
+          },
+          {
+            "id": "O8",
+            "regions": [
+              "additional_upgrade_consumer_A",
+              "additional_upgrade_consumer_B"
+            ],
+            "finding": "Two additional direct callers528105/529336 use common helper then source-level gold multiplier. Selected regions do not bypass all resource costs forlevel0. Their full caller purpose and control flow are not reconstructed, so they must not be generalized as identical to human fort free branch."
+          }
+        ],
+        "inferences": [
+          {
+            "basis": [
+              "O1",
+              "O2",
+              "O3",
+              "O7"
+            ],
+            "finding": "MA:C modifications affect recalculated town/fort upgrade costs through current source AND target prices. Applying rule113 only to recruitment display or scaling a precomputed upgrade-price difference can diverge when odd costs are halved separately."
+          },
+          {
+            "basis": [
+              "O5",
+              "O6"
+            ],
+            "finding": "For ordinary values exactly representable in float32, fort gold is trunc(max(targetGold-sourceGold,0)*quantity*levelCoefficient). Quantity multiplication precedes discount; do not truncate discounted unit price first. This formula omits intentionalint32/float32 edge behavior beyond ordinary values."
+          },
+          {
+            "basis": [
+              "O6"
+            ],
+            "finding": "Fort-wide gold affordability totals sum already-truncated per-stack discounted costs; a single final discount/rounding over all stacks can diverge."
+          }
+        ],
+        "derivedExamples": {
+          "kind": "Arithmetic derived from instructions, not game executions",
+          "cases": [
+            {
+              "sourceGold": 100,
+              "targetGold": 105,
+              "quantity": 3,
+              "sourceLevel": 1,
+              "townGold": 15,
+              "fortGold": 3,
+              "explanation": "Fort truncates15*.25, not3*trunc5*.25."
+            },
+            {
+              "sourceGold": 105,
+              "targetGold": 110,
+              "quantity": 1,
+              "sourceLevel": 4,
+              "normalTownGold": 5,
+              "afterRule113SourceAndTargetHalvedTownGold": 3,
+              "explanation": "Rule113 mutates separately:105>>1=52,110>>1=55. Half of old upgrade difference truncates to2, which differs."
+            },
+            {
+              "sourceGold": 100,
+              "targetGold": 100,
+              "quantity": 7,
+              "townGold": 0
+            },
+            {
+              "sourceGold": 100,
+              "targetGold": 90,
+              "quantity": 7,
+              "townGold": 0
+            },
+            {
+              "sourceResource0": 0,
+              "targetResource0": 1,
+              "quantity": 3,
+              "sourceLevel": 1,
+              "townResource0": 3,
+              "fortResource0": 3,
+              "explanation": "Fort rebates gold only."
+            },
+            {
+              "sourceResource0": 0,
+              "targetResource0": 1,
+              "quantity": 3,
+              "sourceLevel": 0,
+              "humanFortResource0": 0,
+              "explanation": "Explicit human dialog free branch bypasses all seven resource differences."
+            },
+            {
+              "twoStackGoldDifferences": [
+                3,
+                3
+              ],
+              "quantityEach": 1,
+              "sourceLevelEach": 1,
+              "fortTotalGold": 0,
+              "explanation": "trunc3*.25+trunc3*.25=0; trunc6*.25=1 would differ."
+            }
+          ]
+        },
+        "unknowns": [
+          "No game/DLL/plugin execution or final patched process memory. Bootstrap and Amethyst patch relationship established statically, conditional on identified paths executing without later override.",
+          "No proof of full plugin load order, absent hooks, all TUM upgrade variants or expanded roster validity. TUM evidence here is only the named Amethyst relocation path reused from prior report.",
+          "Native int32 differences/products may wrap. Signed comparison precedes subtraction; unusual negative costs can still produce a strict target-greater-than-source branch or overflow. No gameplay guarantee or saturation is admitted for pathological values.",
+          "Fort integer-to-float32 store obeys current x87 rounding control at that store; final conversion is explicit truncation. No general exact rational-floor claim for amounts beyond float32 integer precision or out-of-range conversions.",
+          "Invalid sourcelevels/IDs and negative quantities are not guarded by shared helper; accepted UI ranges, malformed-data error behavior and FPU exceptions were not exhaustively traced.",
+          "Native fort payment uses cached costs. Refresh after an arbitrary mid-dialog MA:C mutation is not established; helper recalculation itself always reads current table.",
+          "Additional callers528105/529336 were bounded witnesses only; AI-level0 custom non-gold prices require broader caller analysis if an exact AI parity claim is needed.",
+          "No VCMI code reviewed or modified. UI formatting, all affordability gates and multiplayer/persistence behavior outside the selected paths not reconstructed."
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "common_upgrade_cost",
+            "preferredVa": "0x54eb50",
+            "endExclusiveVa": "0x54ebb4",
+            "rva": "0x14eb50",
+            "fileOffset": 1370960,
+            "size": 100,
+            "sha256": "9aa7ddd5675e677d0895fa72ea314777d243efdfcbf7103c03c4ce2f685aed40",
+            "observation": "Fastcall:ECX sourceID,EDX targetID,stack arg1 quantity,arg2 output[7]. Dereference6747b0 each call, stride0x74,costs+0x20. For seven signed costs, if target>source write low32((target-source)*quantity), otherwise0. No extra percentage in this helper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_upgrade_selection",
+            "preferredVa": "0x4c6910",
+            "endExclusiveVa": "0x4c6a1b",
+            "rva": "0xc6910",
+            "fileOffset": 813328,
+            "size": 267,
+            "sha256": "941afbe41daeaee79190ec2539a4b860c519daa240253afb3be60a3b3bbcd18a",
+            "observation": "Town faction and built upgraded dwelling checks identify target; source ID and count read from army slot. Establishes town path independently of dialog label."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_confirmed_upgrade_payment",
+            "preferredVa": "0x4c6b0f",
+            "endExclusiveVa": "0x4c6bdc",
+            "rva": "0xc6b0f",
+            "fileOffset": 813839,
+            "size": 205,
+            "sha256": "46c4a11f389f0c34084c99c20f12a75762d13fe2439cb85644bf8b4feaad9f7b",
+            "observation": "Opens creature dialog5f3ef0; on accepted result300 calculates via54eb50 with sourceID,targetID and stack count; subtracts all seven results then replaces source creatureID. No discount between common calculation and debit."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "creature_dialog_upgrade_availability",
+            "preferredVa": "0x5f4541",
+            "endExclusiveVa": "0x5f458d",
+            "rva": "0x1f4541",
+            "fileOffset": 2049345,
+            "size": 76,
+            "sha256": "5c2a8981af1894be25a8e1cafb08ee2ab28bf3e09956b2eac9082d55ec1f5654",
+            "observation": "Creature dialog calls same54eb50, checks player resources across seven entries; no post-calculation multiplier."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "creature_dialog_upgrade_prompt",
+            "preferredVa": "0x5f512f",
+            "endExclusiveVa": "0x5f5198",
+            "rva": "0x1f512f",
+            "fileOffset": 2052399,
+            "size": 105,
+            "sha256": "b866eebacd5eb6fdbef1ea0b35db880535762c6e8fcbe73101f9a90ddccb09e3",
+            "observation": "Upgrade action300 calculates same54eb50 to construct confirmation display. Gold index6 and non-gold display selected; no post-calculation multiplier."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hill_fort_initialize_cost_and_level",
+            "preferredVa": "0x4e7fbc",
+            "endExclusiveVa": "0x4e8053",
+            "rva": "0xe7fbc",
+            "fileOffset": 950204,
+            "size": 151,
+            "sha256": "50569bf8d3f38bd086f1a8c72ce810de8c5b926d4736279d5feff569dd8b0323",
+            "observation": "Initializes total[7] and per-stack cost[7] tozero, stores source descriptor+4 level atstack record+4 using runtime6747b0 pointer."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hill_fort_free_level_zero",
+            "preferredVa": "0x4e807b",
+            "endExclusiveVa": "0x4e80e0",
+            "rva": "0xe807b",
+            "fileOffset": 950395,
+            "size": 101,
+            "sha256": "38313efd1a3c743a045f2d174abb80284c670417a53f0d53cc51399f5f36e948",
+            "observation": "After has-upgrade47aa50 succeeds, sourcelevel0 takes string/free branch without54eb50; per-stack cost vector remains allzero."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hill_fort_stack_calculate_and_discount",
+            "preferredVa": "0x4e80e0",
+            "endExclusiveVa": "0x4e8169",
+            "rva": "0xe80e0",
+            "fileOffset": 950496,
+            "size": 137,
+            "sha256": "3f93b5acd54e73317dfdc913cc6dd226d33511670fcaa56730993d2eebe4b053",
+            "observation": "Resolve target via47aad0, call54eb50 with stack count and seven-cost output. Convert gold output int to float32, multiply by float table63eb4c[sourcelevel], truncate via617f94; only gold replaced. Add gold plus six other resources to fort total."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hill_fort_pay_cached_stack_cost",
+            "preferredVa": "0x4e85c0",
+            "endExclusiveVa": "0x4e8716",
+            "rva": "0xe85c0",
+            "fileOffset": 951744,
+            "size": 342,
+            "sha256": "5e2a606460bda39f7e1dcb6591d375da48b9952d8532b73a0b2a77ab3d9345c8",
+            "observation": "Successful stack upgrade branch replaces creatureID then subtracts seven costs from cached per-stack vector atrecord+0x6c; no separate discount in payment loop."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "additional_upgrade_consumer_A",
+            "preferredVa": "0x5280a9",
+            "endExclusiveVa": "0x52815b",
+            "rva": "0x1280a9",
+            "fileOffset": 1212585,
+            "size": 178,
+            "sha256": "5d5b5a3571a9b74b4107808c8e84005350653481355b602bbffd09e8729b1379",
+            "observation": "Caller54eb50 at528105; afterward gold is converted via float32 and multiplied by source descriptor+4 coefficient63eb4c, then resource affordability checked. No entire-vector level0 bypass in this selected call region."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "additional_upgrade_consumer_B",
+            "preferredVa": "0x529302",
+            "endExclusiveVa": "0x529386",
+            "rva": "0x129302",
+            "fileOffset": 1217282,
+            "size": 132,
+            "sha256": "75a7d22a01f390c3e849630454a9ce41ff0c2baa64e646761f284dcfb169eb98",
+            "observation": "Caller54eb50 at529336; afterward same source-level gold coefficient and float32 conversion, then seven-resource affordability check. Overall AI semantics not fully reconstructed."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "hill_fort_coefficients",
+            "preferredVa": "0x63eb4c",
+            "endExclusiveVa": "0x63eb68",
+            "rva": "0x23eb4c",
+            "fileOffset": 2353996,
+            "size": 28,
+            "sha256": "3f187f57f587ee52ce5a88833fb59642f28d01f62fbb92d7c7621b72eab0bde5",
+            "observation": "Seven float32 coefficients:0,.25,.5,.75,1,1,1. Source level is0-based."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "truncation_helper",
+            "preferredVa": "0x617f94",
+            "endExclusiveVa": "0x617fbb",
+            "rva": "0x217f94",
+            "fileOffset": 2195348,
+            "size": 39,
+            "sha256": "d0a2aca68648a0ae9d5cbfae1b276d4a64d4f797fc0c60f28b64096cdfa3148c",
+            "observation": "Sets x87 rounding mode totruncate for FISTP qword, restores original control word, returns low32inEAX."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "on_disk_creature_pointer",
+            "preferredVa": "0x6747b0",
+            "endExclusiveVa": "0x6747b4",
+            "rva": "0x2747b0",
+            "fileOffset": 2574256,
+            "size": 4,
+            "sha256": "f5ac107de9396cd65171b88de82e733a9508deb7b9bacba7c590d3c80058167d",
+            "observation": "On-disk pointer value6703b8; bootstrap patches change it, so initial data is not final runtime descriptor location."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "WoG_pointer_patch_row",
+            "preferredVa": "0x78a358",
+            "endExclusiveVa": "0x78a364",
+            "rva": "0x38a358",
+            "fileOffset": 3298136,
+            "size": 12,
+            "sha256": "4e5b16afc4c4dd7b62597237ffc5c292125dd1802f9da900033a30d9bbf2a4d4",
+            "observation": "Patch row {destination6747b0,value7d0c90,size4}; same base used by original MA:C cost field7d0cb0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "WoG_literal_patch_loop",
+            "preferredVa": "0x701238",
+            "endExclusiveVa": "0x7012bc",
+            "rva": "0x301238",
+            "fileOffset": 2736696,
+            "size": 132,
+            "sha256": "b91ceb2587c1cf52dc4454bb2a794efa69de43b9e94185d353c6969cae8174ed",
+            "observation": "Copies each size-bounded immediate patch payload at78a08c+12*i into destination78a088+12*i. Positive witness for descriptor-pointer row, conditional on bootstrap execution."
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "name": "Amethyst_pointer_patch_loop",
+            "preferredVa": "0x10004ac8",
+            "endExclusiveVa": "0x10004af2",
+            "rva": "0x4ac8",
+            "fileOffset": 16072,
+            "size": 42,
+            "sha256": "8c2d9965dc88a2a47f7d7490a57afc181ab1c9e45147e1190132a594628f9799",
+            "observation": "Iterates21 pointer patch destinations from10048058, writes expanded descriptor base10082ed8; second entry is6747b0."
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "name": "Amethyst_pointer_patch_row",
+            "preferredVa": "0x1004805c",
+            "endExclusiveVa": "0x10048060",
+            "rva": "0x4805c",
+            "fileOffset": 290396,
+            "size": 4,
+            "sha256": "c802438cab44f369bce68e1f814a9c3253f4645659b37f6a363d727115e330da",
+            "observation": "Direct data entry6747b0 in the pointer relocation list."
+          },
+          {
+            "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+            "name": "Amethyst_MA_field_patch_loop",
+            "preferredVa": "0x10004b1c",
+            "endExclusiveVa": "0x10004b55",
+            "rva": "0x4b1c",
+            "fileOffset": 16156,
+            "size": 57,
+            "sha256": "df473cea13ec5422386a150d9c760576bd1f8288955f254e800bbba46a6bf33c",
+            "observation": "Prior report establishes154 operand patches to expanded descriptor base+fieldoffset, including MA:C base+20. Shared cost memory relationship survives this identified relocation."
+          }
+        ],
+        "reproduction": [
+          "python3 work/downloads/era-creature-upgrade-cost-consumers/write_report.py",
+          "/usr/bin/objdump -d --x86-asm-syntax=intel --start-address=<preferredVa> --stop-address=<endExclusiveVa> <artifact>"
+        ],
+        "filesModified": "Ignored report directory only. No tracked source, foreign dirty file, prototype or container changed."
+      }
+    }
+  },
+  "contract": {
+    "rule": 113,
+    "dayOneUnchanged": true,
+    "globalTable": true,
+    "humanSundayOnly": true,
+    "aiEveryTurnAfterDayOne": true,
+    "restoreRememberedBase": false,
+    "resourcesTransformed": [
+      6
+    ],
+    "excludedSourceCreatures": [
+      145,
+      146,
+      147,
+      148,
+      149
+    ],
+    "nativeMithrilIndependent": true,
+    "nativeRosterExtension": "Registered native creatures participate; native-only war machines are excluded. Native multi-resource recruitment and Mithril remain native extensions, rather than the original two-field recruitment projection.",
+    "genericCostWritesAdmitted": false,
+    "genericFightValueWritesAdmitted": false
+  }
+}

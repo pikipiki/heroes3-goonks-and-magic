@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reference": {
     "label": "TUM3.5 supplied source + installed VCMI WoG",
-    "release": "0.4.286",
+    "release": "0.4.287",
     "tumMetadata": {
       "caption": {
         "en_US": "Third Upgrade Mod",
@@ -138172,7 +138172,7 @@
         },
         {
           "file": "work/vcmi-wasm/lib/mapObjects/CGMysteriousCave.cpp",
-          "sha256": "c9ca8a879fd86e1306359135e18a4a313fb6b0d27d1cfc12f0b728b272f750c2"
+          "sha256": "d8aa4dbbba5c46dc56aed22e152bb4b70d24b20393c16689feb341502c03ba9e"
         },
         {
           "file": "work/vcmi-wasm/lib/era/EraSourceBankXpAdmission.h",
@@ -138198,15 +138198,15 @@
       "implementation": [
         {
           "file": "work/vcmi-wasm/lib/ExtraOptionsInfo.h",
-          "sha256": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66"
+          "sha256": "357a28b2170cf23fb493d6df3fb8dd44d9def975cee0ad1b5b2fe8d1cae155b4"
         },
         {
           "file": "work/vcmi-wasm/lib/era/EraWogOptions.h",
-          "sha256": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a"
+          "sha256": "2c5718cdf676f7932f0c4052093bebd0e756368618b420b750d599fb1761e561"
         },
         {
           "file": "web/wog-options.mjs",
-          "sha256": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3"
+          "sha256": "a9fd92bf93354c0aabd3afd4c48e06725f7424bf2bab08f894073917d2a6c843"
         }
       ],
       "evidence": [

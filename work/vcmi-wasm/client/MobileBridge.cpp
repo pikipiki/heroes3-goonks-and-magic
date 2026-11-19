@@ -1,5 +1,6 @@
 /* Mobile presentation bridge for Heroes Goonk. Engine callbacks remain authoritative. */
 #include "StdInc.h"
+#include "../lib/era/EraCreaturePrices.h"
 #include "../lib/era/EraEye278Native.h"
 #include "../lib/era/EraCreatureSpecialists.h"
 #include "../lib/era/EraAtmaStateNative.h"
@@ -281,7 +282,7 @@ const std::vector<std::string> & mobileCreatureAbilities(const CCreature * creat
  }
  return entry.descriptions;
 }
-JsonNode creature(const CCreature * c,int count){portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();for(const auto & ability:mobileCreatureAbilities(c))n["abilities"].Vector().emplace_back(ability);n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(c->getRecruitCost(resource))));return n;}
+JsonNode creature(const CCreature * c,int count){const auto player=GAME?GAME->interface():nullptr;const auto prices=era_compat::creature_prices::get(player?player->cb.get():nullptr,*c);portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();for(const auto & ability:mobileCreatureAbilities(c))n["abilities"].Vector().emplace_back(ability);n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(prices[resource])));return n;}
 
 void mobileSpellEffects(JsonNode & result,const CStack & stack)
 {
@@ -548,13 +549,13 @@ MobileArmyUpgradePlan mobilePlanArmyUpgrades(CPlayerInterface * player,const CAr
    if(id==actual.getCreature()->getId().getNum())player->cb->fillUpgradeInfo(object,SlotID(slot),info);
    else{proposed.setType(CreatureID(id));player->cb->fillUpgradeInfo(object,proposed,info);}
    std::vector<mobile_army_upgrade::Edge> result;
-   for(const auto target:info.getAvailableUpgrades()){std::vector<int64_t> cost;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())cost.push_back(info.getUpgradeCostsFor(target)[resource]);result.push_back({target.getNum(),cost});}
+   for(const auto target:info.getAvailableUpgrades()){std::vector<int64_t> cost;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())cost.push_back(info.getUpgradeTotalCostsFor(target, actual.getCount())[resource]);result.push_back({target.getNum(),cost});}
    return result;
   },[](int id){return int64_t(CreatureID(id).toCreature()->getFightValue());});
   if(path.empty())continue;
   auto unit=creature(CreatureID(path.back().upgrade.target).toCreature(),actual.getCount());unit["slot"].Integer()=slot;unit["fromName"].String()=actual.getCreature()->getNameSingularTranslated();unit["fromId"].Integer()=actual.getCreature()->getId().getNum();
   for(const auto & step:path){ResourceSet cost;size_t at=0;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){
-   const int64_t value=step.upgrade.cost[at++]*actual.getCount();
+   const int64_t value=step.upgrade.cost[at++];
    if(value<0||value>std::numeric_limits<TResource>::max()-int64_t(plan.cost[resource])){plan.steps.clear();plan.view["units"].Vector().clear();plan.view["error"].String()="costTooLarge";return plan;}
    cost[resource]=value;
   }plan.cost+=cost;plan.steps.push_back({SlotID(slot),CreatureID(step.source),CreatureID(step.upgrade.target),actual.getCount(),cost});}
@@ -598,7 +599,7 @@ void mobileAdvanceArmyUpgrades(CPlayerInterface * player)
  UpgradeInfo available(current);player->cb->fillUpgradeInfo(object,step.slot,available);
  ResourceSet remaining;for(size_t i=mobileArmyUpgradeNext;i<plan.steps.size();++i)remaining+=plan.steps[i].cost;
  const auto & ids=available.getAvailableUpgrades();
- if(std::find(ids.begin(),ids.end(),step.target)==ids.end()||available.getUpgradeCostsFor(step.target)*step.count!=step.cost||!player->cb->getResourceAmount().canAfford(remaining)){finish("failed");return;}
+ if(std::find(ids.begin(),ids.end(),step.target)==ids.end()||available.getUpgradeTotalCostsFor(step.target,step.count)!=step.cost||!player->cb->getResourceAmount().canAfford(remaining)){finish("failed");return;}
  player->cb->upgradeCreature(object,step.slot,step.target);mobileArmyUpgradeWaiting=true;mobileArmyUpgradeSent=SDL_GetTicks();
 }
 JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c){item["canDismiss"].Bool()=(!a->needsLastStack()||a->stacksCount()>1)&&era_bridge::sourceCreatureIdForLevel(c->getJsonKey()).value_or(-1)!=340;mobileStackExperience(item,&a->getStack(SlotID(i)));item["nativeFlags"]["flying"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::FLYING);}n["slots"].Vector().push_back(item);}return n;}
@@ -1289,7 +1290,7 @@ void publishMobileState(){
   if(n["mode"].String()=="creature"&&p&&p->cb&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
    const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);
    for(const auto id:upgrades.getAvailableUpgrades()){
-    auto upgrade=creature(id.toCreature(),stack->getCount());const auto total=upgrades.getUpgradeCostsFor(id)*stack->getCount();upgrade["cost"].Vector().clear();
+    auto upgrade=creature(id.toCreature(),stack->getCount());const auto total=upgrades.getUpgradeTotalCostsFor(id,stack->getCount());upgrade["cost"].Vector().clear();
     for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())upgrade["cost"].Vector().push_back(JsonNode(double(total[resource])));
     upgrade["affordable"].Bool()=p->makingTurn&&p->cb->getResourceAmount().canAfford(total);n["creatureUpgrades"].Vector().push_back(upgrade);
    }
@@ -1764,7 +1765,7 @@ void publishMobileState(){
      unit["attack"].Integer()+=extra.attack;unit["defense"].Integer()+=extra.defence;
      unit["damageMin"].Integer()+=extra.minimumDamage;unit["damageMax"].Integer()+=extra.maximumDamage;
      unit["health"].Integer()+=extra.health;unit["speed"].Integer()+=extra.speed;
-     const auto cost=era_bridge::henchmen::resurrectionCost(hero->henchman.stack->getType()->getRecruitCost(GameResID::GOLD),growth.level);
+     const auto cost=era_bridge::henchmen::resurrectionCost(era_compat::creature_prices::gold(p->cb.get(),*hero->henchman.stack->getType()),growth.level);
      companion["resurrectionCost"].Integer()=cost;
      const auto * town=hero->getVisitedTown();
      companion["canResurrect"].Bool()=!hero->henchman.alive&&(rules.reviveAnywhere||(town&&town->getOwner()==hero->getOwner()))
@@ -2561,7 +2562,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==56&&ENGINE->windows().topWindow<AdventureMapInterface>()&&a>=0&&a<int(p->localState->getOwnedTowns().size())){adventureInt->centerOnObject(p->localState->getOwnedTown(a));return;}
  if(action==53&&p->makingTurn&&(townWindow||ENGINE->windows().topWindow<CFortScreen>())){
  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();if(town->getOwner()!=p->playerID)return;auto budget=p->cb->getResourceAmount();auto dest=town->getUpperArmy();std::set<CreatureID> types;int free=0;for(int i=0;i<7;i++){auto c=dest->getCreature(SlotID(i));if(c)types.insert(c->getId());else free++;}
- for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=creature->getRecruitCost(resource);if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*creature->getRecruitCost(resource);if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
+ for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=era_compat::creature_prices::get(p->cb.get(),*creature)[resource];if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*era_compat::creature_prices::get(p->cb.get(),*creature)[resource];if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
  lastPublished=0;return;}
  if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get());const bool allowed=!mobileCampaignBattleHook(*p)&&(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
@@ -2591,7 +2592,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  if(action==59&&p->makingTurn&&!CPlayerInterface::battleInt){
   if(const auto window=ENGINE->windows().topWindow<CStackWindow>())if(const auto stack=window->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
    const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);const CreatureID target(a);
-   const auto & available=upgrades.getAvailableUpgrades();if(std::find(available.begin(),available.end(),target)!=available.end()&&p->cb->getResourceAmount().canAfford(upgrades.getUpgradeCostsFor(target)*stack->getCount())){p->cb->upgradeCreature(armyObject,slot,target);}
+   const auto & available=upgrades.getAvailableUpgrades();if(std::find(available.begin(),available.end(),target)!=available.end()&&p->cb->getResourceAmount().canAfford(upgrades.getUpgradeTotalCostsFor(target,stack->getCount()))){p->cb->upgradeCreature(armyObject,slot,target);}
   }
   lastPublished=0;return;
  }

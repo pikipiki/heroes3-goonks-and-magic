@@ -1333,7 +1333,7 @@ void CGTownInstance::fillUpgradeInfo(UpgradeInfo & info, const CStackInstance &s
 			{
 				if(vstd::contains(stack.getCreature()->upgrades, upgrID)) //possible upgrade
 				{
-					info.addUpgrade(upgrID, stack.getType());
+					info.addUpgrade(upgrID, stack.getType(), 100, cb);
 				}
 			}
 		}

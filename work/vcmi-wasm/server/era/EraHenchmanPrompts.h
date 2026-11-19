@@ -1,4 +1,5 @@
 #pragma once
+#include "../../lib/era/EraCreaturePrices.h"
 #include "EraHenchmanRuntime.h"
 #include "../queries/CQuery.h"
 #include "../queries/QueriesProcessor.h"
@@ -25,7 +26,7 @@ inline bool offerTownResurrection(CGameHandler & gh,const CGObjectInstance * obj
     const auto id=hero->id;const auto townID=town->id;const auto owner=hero->getOwner();
     const auto revision=hero->henchman.revision;
     const auto cost=era_bridge::henchmen::resurrectionCost(
-        hero->henchman.stack->getType()->getRecruitCost(GameResID::GOLD),progress(*hero,gh.gameState().day).level);
+        era_compat::creature_prices::gold(&gh.gameInfo(),*hero->henchman.stack->getType()),progress(*hero,gh.gameState().day).level);
     if(cost<0)return false;
     auto query=std::make_shared<CGenericQuery>(&gh,owner,
         [&gh,id,townID,owner,revision,cost,resume=std::move(resume)](std::optional<int32_t> reply)

@@ -15,6 +15,8 @@
 
 VCMI_LIB_NAMESPACE_BEGIN
 
+class IGameInfoCallback;
+
 class DLL_LINKAGE UpgradeInfo
 {
 public:
@@ -70,7 +72,10 @@ public:
 	}
 
 	// Adds a new upgrade and ensures alignment and sorted order
-	void addUpgrade(const CreatureID & upgradeID, const Creature * creature, int costPercentageModifier = 100);
+	void addUpgrade(const CreatureID & upgradeID, const Creature * creature, int costPercentageModifier = 100, const IGameInfoCallback * cb = nullptr, bool sourceFort = false);
+
+	ResourceSet getUpgradeTotalCostsFor(CreatureID id, int count) const;
+	ResourceSet getUpgradeTotalCosts(int count) const { return getUpgradeTotalCostsFor(getUpgrade(), count); }
 
 	auto size() const
 	{
@@ -80,6 +85,8 @@ public:
 private:
 	boost::container::small_vector<CreatureID, 4> upgradesIDs; //possible upgrades
 	boost::container::small_vector<ResourceSet, 4> upgradesCosts; // cost[upgrade_serial] -> set of pairs<resource_ID,resource_amount>; cost is for single unit (not entire stack)
+	boost::container::small_vector<ResourceSet, 4> originalDeltas;
+	boost::container::small_vector<int, 4> originalFortPercent;
 	bool isAvailable;		// flag for unavailableUpgrades like in miniHillFort from HoTA
 };
 

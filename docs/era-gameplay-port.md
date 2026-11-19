@@ -984,3 +984,11 @@ et conserve exactement les limites des anciens formats. Les deux contrôles
 utilisent les composants communs, au toucher et à la souris, en français et en
 anglais. Les profils complets restent désactivés. Preuve :
 `scripts/era-bridge/gameplay/map-fortless-native-validation.json`.
+
+### Créatures à moitié prix — règle 113, version 0.4.287
+
+La règle possède un choix indépendant par partie, hérité/désactivé/activé, utilisable au toucher ou à la souris. Le jour 1 reste inchangé. À partir du jour 2, chaque tour IA demande la table à moitié prix ; les tours humains la demandent uniquement le dimanche. La table est globale à la partie : elle change seulement quand cet état bascule. La division utilise un décalage logique sur 32 bits ; la restauration suit la multiplication avec débordement et la correction des unités du script original, sans mémoriser un prix initial ; 129 devient ainsi 64 puis 128. Les créatures source 145 à 149 sont exclues.
+
+Les prix sont enregistrés dans la carte et diffusés aux clients, sans modifier les définitions partagées des créatures. Le recrutement, les améliorations, l'affichage, les évaluations des IA, les échanges et la résurrection des compagnons consultent ce contexte. Le Fort calcule sa réduction d'or sur le total de chaque pile avant de sommer les piles. Le mithril natif et MA:C7/MA:F restent indépendants de l'or. Les sauvegardes antérieures gardent leur règle désactivée ; la version 933 protège le nouveau système et les 26 choix de partie.
+
+La table étendue de créatures natives et le recrutement à plusieurs ressources, dont le mithril, sont des extensions natives explicites. Le recrutement original audité ne projette que l'or et une autre ressource. Les rapports d'analyse statique de l'exécutable ne constituent pas une observation d'ERA en exécution. Les écritures génériques MA:C/MA:F et l'admission des profils complets Advanced Classes, ERA Scripts et Reborn restent distinctes de cette règle.

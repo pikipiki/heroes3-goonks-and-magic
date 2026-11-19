@@ -8,6 +8,7 @@
 *
 */
 #include "../StdInc.h"
+#include "../../../lib/era/EraCreaturePrices.h"
 #include <boost/range/algorithm/sort.hpp>
 
 #include "../Engine/Nullkiller.h"
@@ -170,7 +171,7 @@ BuildingInfo::BuildingInfo(
 		creatureGrowth = creature->getGrowth();
 		creatureID = creature->getId();
 		baseCreatureID = baseCreature;
-		creatureUnitCost = creature->getFullRecruitCost();
+		creatureUnitCost = era_compat::creature_prices::get(town->cb,*creature);
 		creatureLevel = creature->getLevel();
 
 		if(isBuilt)
