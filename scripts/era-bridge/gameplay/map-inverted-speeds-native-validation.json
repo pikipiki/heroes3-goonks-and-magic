@@ -550,30 +550,30 @@
   },
   "schema": 1,
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "b0624c9968224edd1264f1aa55c7d5dfb9794b34bab4530836ebb01303f922d0",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f6b07d3bee2ffe017d34bdf483de60fdc82a241fc09f19f5bfa34d6889d97469",
     "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
     "work/vcmi-wasm/lib/era/EraMapInvertedSpeed.h": "ab98bcd943cedcec24160b8fd5162524f142086b65f42c4b371f260007445f7c",
     "web/ui/components.css": "ccee848991f5a9ae51d2683dd512cf42773f2d9e4ef23cf0df785704011be7d7",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
-    "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
     "tests/era-map-inverted-speeds.test.mjs": "06a4bf4c8b950ee63c10237df028a9511a0d0c1311d64cbb7248dc58a58a791e",
-    "web/wog-options.mjs": "6b11665d49e155e636d5c7cd815e3ca891fa72dd63cd5493c9750fa457c13a0f",
+    "web/wog-options.mjs": "3418871b1dd1206ae9db6247b5a578acbcbdb6d7675e4bf580fe05e0daa3aae9",
     "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "931230077d10d210943e0081614af19540e67ba43a7160da172420e64497b1f4",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "e2c15c64031af3a6a56d072640928a0cd810a77ed1a197c3ae753e2cd4cc18a7",
     "tests/fixtures/era-gameplay/map-inverted-speeds-reference.json": "8cb7b93e3b022cca056e5f0c74562c9e87e1253aff45d4eed4bc163717a17ab0",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "02deea0b5991e3fb258a10996591d6d3ce7687b7f69aeb118122ad78d13b497e",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d022873dda12d0496bffb5b2ecb27be9f4ec618748254a17bfe16970b7fb1e05",
     "web/ui/components.mjs": "df38a948629bbaa0252fb93246becd8a06578f1a4d077b1d4889386c455b131d",
     "work/vcmi-wasm/lib/era/EraCampaignCreatureAttributes.h": "cf3b5d726575d956f8a38611fe9352e126bdeebcd9692409e62f75b28550c794",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246",
     "mod/tum-era/content/config/wog-map-rules.json": "affc9e92566f857095e9087acbe112defa4f888c6709ccac1bcb8ef8c7590f44",
     "work/browser-tests/wog-map-inverted-speeds-cases.mjs": "1b48b5af3576becac34793b24d1f9698a78c2bb33aca8bc70b25f985fafecb5b",
     "tests/native/EraMapInvertedSpeed.test.cpp": "fb67b3a2a30ed765eca50405204ed7dd87d77d2b33af5e4b9e355f11d25f60d1",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "9efe2d5ac7daac83f1212c180b36dbed8de6233cb7883799703676baa7e2058f",
-    "scripts/era-bridge/gameplay/map-rules.json": "9e67db4e26a624b9745035b3292ab17ed764880380935f6b336bde9e7529ca50",
-    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "72d417ee195cc2099c8917ca1cfe376d2967be81a6e1084f27193dab96a315cb",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9"
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "66f569a9614811dc526c3be0256ed2a376d4771356d00aca4fe644b867c0c6f4",
+    "scripts/era-bridge/gameplay/map-rules.json": "6bce7d13cfeb2ac83cde28fd5223ad6c70f45054cb0aa9f5fcfc752f27f11f27",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "0f0ceab5c9ffcf20117b03097fac56edb68ebe6f1aaa607a3e54128ee9a06d81",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "f7ed956a1d22d93f1b8de50d51afbcf4e775f9335dab7010c01b82846be4b722"
   },
   "mobileUI": {
     "passed": true,
@@ -1197,5 +1197,22 @@
       "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6bf4b682e62d6b2352b3b5f1d4089e83906af87c9fe0a972b6983abf737e3a84"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
+  },
+  "noShootingRevalidation": {
+    "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
+    "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+      "scripts/era-bridge/gameplay/map-rules.json": "9e67db4e26a624b9745035b3292ab17ed764880380935f6b336bde9e7529ca50",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "02deea0b5991e3fb258a10996591d6d3ce7687b7f69aeb118122ad78d13b497e",
+      "web/wog-options.mjs": "6b11665d49e155e636d5c7cd815e3ca891fa72dd63cd5493c9750fa457c13a0f",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "931230077d10d210943e0081614af19540e67ba43a7160da172420e64497b1f4",
+      "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "72d417ee195cc2099c8917ca1cfe376d2967be81a6e1084f27193dab96a315cb",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "9efe2d5ac7daac83f1212c180b36dbed8de6233cb7883799703676baa7e2058f",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "b0624c9968224edd1264f1aa55c7d5dfb9794b34bab4530836ebb01303f922d0",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d"
+    },
+    "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   }
 }

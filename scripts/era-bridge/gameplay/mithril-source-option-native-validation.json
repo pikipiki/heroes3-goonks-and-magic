@@ -7,7 +7,7 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5e52ec79f7e5367ce70ae6b47ed7f96125be52515559dfdc0f58d32ed97825cc",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "a9fd7c85ccd2a7ec6aa5c5e65624879c1baff695b178cb6522f44aee128ce323",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
     "work/vcmi-wasm/lib/era/EraMithrilRules.h": "c1b6ad1148c4ced02ef3f68a7d7f709a1f07aeb8259f315c0eec200c50fabec4",
@@ -544,5 +544,13 @@
       "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "f62fca39e23c712048a181857131ad5645a7dea0dbb6979014d387059e66554a"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
+  },
+  "noShootingRevalidation": {
+    "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
+    "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5e52ec79f7e5367ce70ae6b47ed7f96125be52515559dfdc0f58d32ed97825cc"
+    },
+    "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   }
 }

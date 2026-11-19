@@ -13,23 +13,23 @@
     "heroConstantSha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
     "mod/tum-era/content/config/wog-map-rules.json": "affc9e92566f857095e9087acbe112defa4f888c6709ccac1bcb8ef8c7590f44",
-    "scripts/era-bridge/gameplay/map-rules.json": "9e67db4e26a624b9745035b3292ab17ed764880380935f6b336bde9e7529ca50",
+    "scripts/era-bridge/gameplay/map-rules.json": "6bce7d13cfeb2ac83cde28fd5223ad6c70f45054cb0aa9f5fcfc752f27f11f27",
     "tests/era-map-army-growth-native.test.mjs": "30a390c57f31cc827a338c3a01ff83ba3a48b74bce87b449a3259d0921271dca",
     "tests/native/EraMapArmyGrowthRules.test.cpp": "1128fe385e0c5e9244f431b54156bbb146be25ebc22722f7732b558038d7c40c",
-    "web/wog-options.mjs": "6b11665d49e155e636d5c7cd815e3ca891fa72dd63cd5493c9750fa457c13a0f",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+    "web/wog-options.mjs": "3418871b1dd1206ae9db6247b5a578acbcbdb6d7675e4bf580fe05e0daa3aae9",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-mithril-options-cases.mjs": "2f04d0e99f5eed70bab70378331a898d88e7f806079e8472ff8429c0774c7383",
     "work/browser-tests/wog-options-layout-e2e.mjs": "b79d0087f35c98ea60b1d0a5c0eb0eabb3d7444db2b3939874dc46f7dff464ce",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowthRules.h": "e09515a3fb5c8a0910d6d36dea88fccef782004d7bc021b0ea74f2664b30d411",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
-    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "72d417ee195cc2099c8917ca1cfe376d2967be81a6e1084f27193dab96a315cb",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "9efe2d5ac7daac83f1212c180b36dbed8de6233cb7883799703676baa7e2058f",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "b0624c9968224edd1264f1aa55c7d5dfb9794b34bab4530836ebb01303f922d0"
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "0f0ceab5c9ffcf20117b03097fac56edb68ebe6f1aaa607a3e54128ee9a06d81",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "66f569a9614811dc526c3be0256ed2a376d4771356d00aca4fe644b867c0c6f4",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "f7ed956a1d22d93f1b8de50d51afbcf4e775f9335dab7010c01b82846be4b722",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f6b07d3bee2ffe017d34bdf483de60fdc82a241fc09f19f5bfa34d6889d97469"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1301,5 +1301,20 @@
       "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6bf4b682e62d6b2352b3b5f1d4089e83906af87c9fe0a972b6983abf737e3a84"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
+  },
+  "noShootingRevalidation": {
+    "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
+    "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+      "scripts/era-bridge/gameplay/map-rules.json": "9e67db4e26a624b9745035b3292ab17ed764880380935f6b336bde9e7529ca50",
+      "web/wog-options.mjs": "6b11665d49e155e636d5c7cd815e3ca891fa72dd63cd5493c9750fa457c13a0f",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+      "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "72d417ee195cc2099c8917ca1cfe376d2967be81a6e1084f27193dab96a315cb",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "9efe2d5ac7daac83f1212c180b36dbed8de6233cb7883799703676baa7e2058f",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "b0624c9968224edd1264f1aa55c7d5dfb9794b34bab4530836ebb01303f922d0"
+    },
+    "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   }
 }

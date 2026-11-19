@@ -11,14 +11,14 @@
     "lines": "250-271,746-778"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "02deea0b5991e3fb258a10996591d6d3ce7687b7f69aeb118122ad78d13b497e",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d022873dda12d0496bffb5b2ecb27be9f4ec618748254a17bfe16970b7fb1e05",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
     "work/browser-tests/wog-henchmen-battle-experience-cases.mjs": "c8e12a19af45b9d4bfdc22814cfa805d336d6a942f210ed36a92e605ed422152",
     "work/vcmi-wasm/lib/battle/BattleInfo.h": "302fb3a34732998f98b12f6b52e2e154e6e601166edf38fa6c06594773f829b9",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "f7ed956a1d22d93f1b8de50d51afbcf4e775f9335dab7010c01b82846be4b722",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "e5dd27973eb93be808a3b4ddd360989e25cf15e32c7ed5215503cdbd8fecef44",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "5c74948eaa8db1a565eb0f3ae8e2dc3243afe3fda289d96ec4dab3bc20684660"
   },
@@ -419,5 +419,16 @@
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "db05f84dcd7c284191ee9863f5878a6b76cd67e3af5d3b2f84d73d1e075b7e2f"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
+  },
+  "noShootingRevalidation": {
+    "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
+    "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "02deea0b5991e3fb258a10996591d6d3ce7687b7f69aeb118122ad78d13b497e",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9"
+    },
+    "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   }
 }

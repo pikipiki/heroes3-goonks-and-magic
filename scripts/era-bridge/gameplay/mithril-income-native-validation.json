@@ -8,8 +8,8 @@
   "engineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3",
   "sourceBaseCommit": "2a4860cf471738212e09b7a4bc28808d7fcfe207",
   "sourceBindings": {
-    "docs/era-compatibility.md": "259626f43a3c68202e11cf71ea38542c2a2a686c742954642d06e67655ca5c51",
-    "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+    "docs/era-compatibility.md": "ecc7c834fb3ba4f8b93cf016b1af58e9f6f45f779ba12dca8df0dbf016c5e932",
+    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
     "scripts/era-bridge/gameplay/mithril.json": "a5471a115a6c8a16a96e7c4b5996c47d076ed9cba3e1570171e2d3508fdc7f08",
     "tests/era-income-rules-native.test.mjs": "967bb5fafb900c234783d83f4189d2cd42f279e7065f81205c29e4aa43a94b3c",
     "tests/era-mithril-income.test.mjs": "cb3eaaff5812f47a589a83fff438e16efea108bdbc6cb6dafe983b5e964ea9f6",
@@ -21,12 +21,12 @@
     "work/browser-tests/lobby-income-e2e.mjs": "d58b705d1e1a6bc59af77b5f288679a5873f987a935b47a200b38dcfce1b9a25",
     "work/browser-tests/lobby-visual-e2e.mjs": "53032207292e587c65adea9c19e67c99e883232421a5a3e20098b8714965b8cf",
     "work/browser-tests/native-ui-actions.mjs": "05c9ac326f0ecd83e1ae9ec8db1fb327cd02ef2d7933cf665338d66d8acaf19b",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
     "work/browser-tests/wog-income-ai-cases.mjs": "03ad16bed359d8a07ca4b36d96d02c924b7ae9dd2aebdcab447f27251da3b16c",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-mithril-income-order-cases.mjs": "17919ab2555aa1e25297783c245f90b0e7ab64bb29887272184a601b56a97039",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
     "work/vcmi-wasm/lib/era/EraIncomeRules.h": "29488329bbbf739b10038ca23a89b89a36cdd189ffd951e8981ee841f5811a12",
     "work/vcmi-wasm/lib/era/EraIncomeRuntime.h": "d701113b4524c4ed50a872ce1994613bcadee8693d4882997ce8ba85dc912efa",
     "work/vcmi-wasm/lib/mapObjects/CGHeroInstance.cpp": "fabb9b5ee97b2e26d6dd57fdb30bc26d3b4f27f14e98435d87f36175cc54cd1e",
@@ -36,7 +36,7 @@
     "work/vcmi-wasm/lib/mapObjects/IOwnableObject.h": "46489b0312ed9ef2b9eb5ff02454bb269a176771a7d9b61648a99ac9497442b8",
     "work/vcmi-wasm/lib/mapObjects/MiscObjects.cpp": "ebde12e45ebddc7b0afca6e777dafeae308d8cc22528fec0241240d5a7b26496",
     "work/vcmi-wasm/lib/mapObjects/MiscObjects.h": "f40bc023a290408d26408f8fd7c24af6299e67c3874f418dedcc37c622d70e3a",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
   },
   "upstreamReference": "tests/fixtures/era-gameplay/mithril-income-order-reference.json",
   "nativeBuild": {
@@ -1194,5 +1194,17 @@
       "docs/era-compatibility.md": "7787877a248f2bd8b3753fd3e8d101d0d06bb0a625d534c5b2d4e1e0bc6ebf99"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
+  },
+  "noShootingRevalidation": {
+    "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
+    "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
+    "previousBindings": {
+      "docs/era-compatibility.md": "259626f43a3c68202e11cf71ea38542c2a2a686c742954642d06e67655ca5c51",
+      "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d"
+    },
+    "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   }
 }

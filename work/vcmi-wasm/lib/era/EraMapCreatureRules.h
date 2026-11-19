@@ -2,6 +2,7 @@
 #include "EraSourceCreatureLevels.h"
 #include "EraMapArmyGrowth.h"
 #include "EraMapEighthUpgrades.h"
+#include "EraMapNoShootingRules.h"
 #include "EraMapMonthlyVisits.h"
 #include "EraMapFortlessTowns.h"
 #include "EraCampaignCreatureAttributes.h"
@@ -65,6 +66,42 @@ inline void applyGroundedFliers(CGameState & gs,const JsonNode & next,const Json
         gs.globalEffects.addNewBonus(noRetaliation);
     }
 }
+inline BonusSourceID noShootingSource(CreatureID id)
+{return BonusSourceID(BonusCustomSource(0x57500000+id.getNum()));}
+inline void applyNoShooting(CGameState & gs,const JsonNode & next,const JsonNode & previous)
+{
+    if(!next["noShootingApplied"].Bool()||previous["noShootingApplied"].Bool())return;
+    if(!next["rules"]["129"].Bool()||!next["noShooting"].isVector()||!next["noShootingExperience"].isBool())
+        throw std::runtime_error("Invalid WoG no-shooting state");
+    struct Change {CreatureID id;int32_t health;};
+    std::vector<Change> changes;std::set<int> seen;
+    for(const auto & row:next["noShooting"].Vector())
+    {
+        const CreatureID id(row["creature"].Integer());const auto * creature=id.toCreature();
+        const auto before=row["before"].Integer(),health=row["health"].Integer();
+        if(!creature||excludedCreature(creature->getJsonKey())||!seen.insert(id.getNum()).second
+            ||!creature->hasBonus(Selector::type()(BonusType::SHOOTER).And(Selector::sourceTypeSel(BonusSource::CREATURE_ABILITY)))
+            ||before<INT32_MIN||before>INT32_MAX||health<1||health>INT32_MAX
+            ||era_campaign_creature_attributes::current(gs,id,'P')!=before
+            ||era_bridge::map_rules::noShootingHealth(before)!=health)
+            throw std::runtime_error("Invalid WoG no-shooting creature");
+        changes.push_back({id,static_cast<int32_t>(health)});
+    }
+    for(const auto & change:changes)
+    {
+        era_campaign_creature_attributes::apply(gs,change.id,'P',change.health);
+        const auto add=[&](const char * name)
+        {
+            auto marker=std::make_shared<Bonus>(BonusDuration::PERMANENT,BonusType::NONE,
+                BonusSource::OTHER,1,noShootingSource(change.id));
+            marker->stacking=name;marker->hidden=true;
+            marker->limiter=std::make_shared<CCreatureTypeLimiter>(*change.id.toCreature(),false);
+            gs.globalEffects.addNewBonus(marker);
+        };
+        add(era_bridge::map_rules::noShootingBaseMarker);
+        if(next["noShootingExperience"].Bool())add(era_bridge::map_rules::noShootingExperienceMarker);
+    }
+}
 inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
 {
     applyInitialFortifications(gs,next);
@@ -73,6 +110,7 @@ inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
     applyMonthlyVisits(gs,next);
     const auto & previous=gs.getMap().eraGameplayState["mapRules"];
     applyGroundedFliers(gs,next,previous);
+    applyNoShooting(gs,next,previous);
     if(next["invertedSpeedsApplied"].Bool()&&!previous["invertedSpeedsApplied"].Bool())
         for(const auto & row:next["invertedSpeeds"].Vector())
             era_campaign_creature_attributes::apply(gs,CreatureID(row["creature"].Integer()),'S',row["speed"].Integer());

@@ -1,0 +1,549 @@
+{
+  "schema": 1,
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "source": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "lines": [
+      338,
+      368
+    ]
+  },
+  "staticReport": {
+    "sha256": "f91ad12485a1a47bb2b604f75c66348d89cbf3010bf05025b7a4c742511366bb",
+    "report": {
+      "schema": 1,
+      "question": "Source129 no-shooters flag, HP and EA:B records",
+      "method": "Ordinary bounded offline PE/Pascal/ERM inspection. REA previously unavailable; no installation or runtime execution. No REA Evidence claims.",
+      "artifacts": [
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+          "preferredImageBase": "0x400000"
+        },
+        {
+          "file": "work/era-gameplay-reference/era.dll",
+          "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+          "preferredImageBase": "0x400000"
+        }
+      ],
+      "sources": [
+        {
+          "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+          "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+          "ranges": [
+            {
+              "startLine": 338,
+              "endLine": 365,
+              "sha256": "7b4a352e72a2c1696ee45710f57f27b8cf8c072177fe29421c378e7beb839f58"
+            }
+          ]
+        },
+        {
+          "file": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+          "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b",
+          "ranges": [
+            {
+              "startLine": 104,
+              "endLine": 104,
+              "sha256": "1e4ed3d6ac7970e545b32f7d5144200524fec0cceb51b5ca688ce4d5c34a475f"
+            },
+            {
+              "startLine": 114,
+              "endLine": 114,
+              "sha256": "843271b370df2cca54c48e2118760b14d5259b97912aea7ebf1f687005ee76f2"
+            }
+          ]
+        },
+        {
+          "file": "work/downloads/era-kernel-source/Heroes.pas",
+          "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+          "ranges": [
+            {
+              "startLine": 734,
+              "endLine": 775,
+              "sha256": "ce75c65c41e5230be81a9934b13831b378261767601c3705fc1352481f7bd64a"
+            }
+          ]
+        },
+        {
+          "file": "work/downloads/era-kernel-source/HeroesConsts.pas",
+          "sha256": "1495c19d394b5251d5783422e68a22dd040c9e608214722c9586c5a5989cb764",
+          "ranges": [
+            {
+              "startLine": 212,
+              "endLine": 222,
+              "sha256": "9755075fcb47a0a621b4d65c86648ce96e9ad8cf797c583f6687c13f4228f996"
+            }
+          ]
+        },
+        {
+          "file": "work/downloads/era-kernel-source/Erm.pas",
+          "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+          "ranges": [
+            {
+              "startLine": 5094,
+              "endLine": 5105,
+              "sha256": "e1d5c2c1df3e1bd17d2d53659d2542f4d8de6a01f0f60a221ae93d436af1d073"
+            },
+            {
+              "startLine": 7767,
+              "endLine": 7795,
+              "sha256": "8cbfb5040e90b93767d3bce4e99b758997754d2f4b8efd25006aae881fc5717b"
+            },
+            {
+              "startLine": 7857,
+              "endLine": 7880,
+              "sha256": "64e81815a5d291c874806ad5667ad9a6aeca2385945d24e2f980fb0088a8da8b"
+            },
+            {
+              "startLine": 7890,
+              "endLine": 7903,
+              "sha256": "09f2f13f6fbffc504a6bde007b528080993b371d7275dd16fa01cd1bbc39e887"
+            },
+            {
+              "startLine": 8459,
+              "endLine": 8472,
+              "sha256": "f2ea6f147833ab4537c914d22879fdffab6541c8a9aba392ba0fab3affe43b25"
+            },
+            {
+              "startLine": 9441,
+              "endLine": 9441,
+              "sha256": "9f5cfced07596822c4a7d85d4f8e8788a248dc8d35fd1fadad6ae9f30d10f29b"
+            },
+            {
+              "startLine": 9554,
+              "endLine": 9555,
+              "sha256": "4f16f0a48b6a13715d67c4bbb198aab0f0ffdc8ad932210ceb70104418b25fd9"
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "id": "O1",
+          "support": [
+            "source77:338-365",
+            "MA:X descriptor flag operation",
+            "Erm.pas:5094-5105"
+          ],
+          "finding": "Only affected creatures whose base descriptor shooter mask0x4 is present enter this branch. MA:X d-4 subtracts4 arithmetically; because mask0x4 was tested set, this equals clearing that shooter bit and preserves every other bit. Does not zero NumShots or clear all ranged-related descriptor flags."
+        },
+        {
+          "id": "O2",
+          "support": [
+            "source77:348-352",
+            "Heroes.pas:734-775",
+            "VR integer multiply",
+            "VR integer division"
+          ],
+          "finding": "creatureInfoTablePtr +116*id+76 is descriptor HitPoints (+0x4c), signed32. Read/write size4. NewHP=truncTowardZero_signed(wrap32(oldHP*3)/2). No min1, maxHP clamp, float rounding or widened multiply in this path."
+        },
+        {
+          "id": "O3",
+          "support": [
+            "EA:B complete row setter",
+            "EA:B complete row getter",
+            "EA:B creature table address"
+          ],
+          "finding": "Exactly20 rows per creature; each17bytes:metadata uint32rawbits at0, ability signed8 at4, modifier unsigned8 at5, rank0..10 unsigned8 at6..16. The fourteen fields after rowindex cover all17bytes. Byte SETs truncate to low8 bits; GET signedness differs for ability versus modifier/ranks."
+        },
+        {
+          "id": "O4",
+          "support": [
+            "EA:B GET and SET branch",
+            "EA:B complete row setter",
+            "XP numeric bonus active row check"
+          ],
+          "finding": "Bk/0/.../0 replaces every stored field of that one row with0, leaving row in place. Metadata bit0 becomes0; consumers skip inactive row before ability dispatch. GET query with bare-d placeholders and ?ability/?modifier does not rewrite row."
+        },
+        {
+          "id": "O5",
+          "support": [
+            "EA:B GET and SET branch"
+          ],
+          "finding": "For source129 creature selectors>=0, EA:B SET performs the direct table update and exits. No callback/regrant or immediate combat refresh is called by this selected branch. Negative EA selectors have additional refresh paths; they are outside this source loop."
+        },
+        {
+          "id": "O6",
+          "support": [
+            "Working XP table preparation",
+            "XP numeric bonus active row check",
+            "XP distance ability consumer",
+            "XP obstacle ability consumer",
+            "XP close shooting ability consumer"
+          ],
+          "finding": "Subsequent table preparation copies the edited creature rows, so those cleared rows cannot grant their old abilities at a later rank through these consumers. An alternate per-stack table can replace creature table; existing combat state is not immediately reset by the setter. No global ban on every possible ability source follows."
+        }
+      ],
+      "abilities": [
+        {
+          "ability": 102,
+          "ascii": "f",
+          "modifier": 69,
+          "modifierAscii": "E",
+          "sourceLabel": "no melee penalty",
+          "positivePEEffect": "Maps to flag0x1000, matching MON_FLAG_NO_MELEE_PENALTY. Rankvalue1 sets flag,2 leaves unchanged,other values clear mapped flag.",
+          "support": [
+            "XP flag ability consumer",
+            "XP flag modifier jump tables",
+            "HeroesConsts.pas:222"
+          ]
+        },
+        {
+          "ability": 102,
+          "ascii": "f",
+          "modifier": 83,
+          "modifierAscii": "S",
+          "sourceLabel": "shooter",
+          "positivePEEffect": "Maps to flag4, matching MON_FLAG_SHOOTER. Same1/set,2/skip,other/clear behavior.",
+          "support": [
+            "XP flag ability consumer",
+            "XP flag modifier jump tables",
+            "HeroesConsts.pas:212"
+          ]
+        },
+        {
+          "ability": 102,
+          "ascii": "f",
+          "modifier": 115,
+          "modifierAscii": "s",
+          "sourceLabel": "close shooting",
+          "positivePEEffect": "Separate boolean consumer71ed4b, active rows0..13, returns1 exactly when last matching rankvalue1. Two callback wrappers use it as fallback when prior check fails.",
+          "support": [
+            "XP close shooting ability consumer",
+            "XP close shooting callback wrappers"
+          ]
+        },
+        {
+          "ability": 79,
+          "ascii": "O",
+          "sourceLabel": "shots",
+          "positivePEEffect": "Numeric current-rank bonus writes combatstack+0xd8 after modifier arithmetic; not a shooter flag.",
+          "support": [
+            "XP shots ability consumer",
+            "XP numeric ability dispatch"
+          ]
+        },
+        {
+          "ability": 105,
+          "ascii": "i",
+          "sourceLabel": "no distance penalty",
+          "positivePEEffect": "Numeric aggregate over active rows0..13; >0.5 returns0 to shooting-penalty wrapper, otherwise1.",
+          "support": [
+            "XP distance ability consumer",
+            "XP distance callback wrapper"
+          ]
+        },
+        {
+          "ability": 111,
+          "ascii": "o",
+          "sourceLabel": "no obstacle penalty",
+          "positivePEEffect": "Numeric aggregate over active rows0..13 returned as signed integer, used by obstacle callback wrapper when prior result0.",
+          "support": [
+            "XP obstacle ability consumer",
+            "XP obstacle callback wrapper"
+          ]
+        }
+      ],
+      "sourceSelection": "The exact six record predicates deleted are f/E,f/S,f/s,O,i,o. All matching rows0..19 are zeroed, including rows currently granting nothing, provided stack-experience option is enabled and the creature entered the shooter branch. Other abilities stay as stored.",
+      "derivedExamples": {
+        "kind": "Instruction/source arithmetic only, not original game executions",
+        "hitPoints": [
+          {
+            "before": 5,
+            "after": 7
+          },
+          {
+            "before": -5,
+            "after": -7
+          },
+          {
+            "before": 0,
+            "after": 0
+          },
+          {
+            "before": 2147483647,
+            "wrappedMultiply": 2147483645,
+            "after": 1073741822
+          }
+        ],
+        "rowClearing": "An active f/S row with arbitrary rankbytes becomes17zero bytes and cannot later regrant through that row, regardless of prior rank threshold."
+      },
+      "regions": [
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "MA:X descriptor flag operation",
+          "preferredVa": "0x7568b5",
+          "endExclusiveVa": "0x7568e6",
+          "rva": "0x3568b5",
+          "fileOffset": 3086517,
+          "size": 49,
+          "sha256": "fbf0c997285c65deff5e9a22e7952680312c4d349e0b56fc7de009f0fa97bdbd",
+          "observation": "Generic ZvsApply size4 at7d0ca0+0x74*id, descriptor+0x10. SET calls7504d6 modification-day marker; GET skips marker."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "EA:B dispatch entry",
+          "preferredVa": "0x7270ca",
+          "endExclusiveVa": "0x7270ce",
+          "rva": "0x3270ca",
+          "fileOffset": 2891978,
+          "size": 4,
+          "sha256": "dbbe5b24fec279466c93cd3264b2e9b9961339f3d45532e44586c145d95f6b3b",
+          "observation": "B dispatch selects726822."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "EA:B GET and SET branch",
+          "preferredVa": "0x726822",
+          "endExclusiveVa": "0x7269b0",
+          "rva": "0x326822",
+          "fileOffset": 2889762,
+          "size": 398,
+          "sha256": "81d6700c4ba448dc6d317e13ba88cb84e0e6e211a60f9f27b5faba5ce08d76d9",
+          "observation": "Requires15parameters. Parse lineindex, get existing row, apply remaining14parameters to temporaries. Any GET/check suppresses final write. Plain SET invokes71b52f; later refresh callbacks only on negative EA selector, not creature IDs>=0."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "EA:B complete row setter",
+          "preferredVa": "0x71b52f",
+          "endExclusiveVa": "0x71b5eb",
+          "rva": "0x31b52f",
+          "fileOffset": 2843951,
+          "size": 188,
+          "sha256": "505ffade9cc7eca277e50ef8951578544a27d48cbaa0240f7e76a7b1c814d291",
+          "observation": "Creature selector\u221242..255 and line0..19. Rowstride17; writesmeta32,+4abilitybyte,+5modifierbyte,+6..16 rankbytes. No normalization/callback or compaction in helper."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "EA:B complete row getter",
+          "preferredVa": "0x71b5eb",
+          "endExclusiveVa": "0x71b6b3",
+          "rva": "0x31b5eb",
+          "fileOffset": 2844139,
+          "size": 200,
+          "sha256": "66d3309930ed0d5f42f334222ea57719b9b53128df30047c5de0ef677dc5062d",
+          "observation": "Returnsmeta32, signextends abilitybyte, zeroextends modifier and11rankbytes."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "EA:B creature table address",
+          "preferredVa": "0x728090",
+          "endExclusiveVa": "0x728104",
+          "rva": "0x328090",
+          "fileOffset": 2896016,
+          "size": 116,
+          "sha256": "aa83108beaea18c52ba83dadc7512c720c92b2f50667beabd1a40c98f77892d4",
+          "observation": "For ordinary creature IDs0..255 table847f08+340*id. Negative selectors use distinct stack/level tables; special1000 working table847d98."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP numeric bonus active row check",
+          "preferredVa": "0x71b7b4",
+          "endExclusiveVa": "0x71b808",
+          "rva": "0x31b7b4",
+          "fileOffset": 2844596,
+          "size": 84,
+          "sha256": "db3d16894cbedd52f4f97081d217a607b1cda7b44cfada9f040dbe50f928fb84",
+          "observation": "Loops20 current working rows, skips unless metadata bit0 set, dispatches signedabilitybyte via tables."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP numeric ability dispatch",
+          "preferredVa": "0x71bfeb",
+          "endExclusiveVa": "0x71c044",
+          "rva": "0x31bfeb",
+          "fileOffset": 2846699,
+          "size": 89,
+          "sha256": "b336ed1e5e75c96cd48ecaa29e6b3f7267a2fb02e66bc5e224e2475cfc86cc6b",
+          "observation": "Jump/address tables: O79\u219271bc96, f102\u219271be1a."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP shots ability consumer",
+          "preferredVa": "0x71bc96",
+          "endExclusiveVa": "0x71bcf7",
+          "rva": "0x31bc96",
+          "fileOffset": 2845846,
+          "size": 97,
+          "sha256": "6b430e9c4fbd07ac3964f1f6150169a1583761b3548ee920874a8c32d240dcc7",
+          "observation": "O79 computes numeric bonus from current rank and modifier through71c0ad, writes combatstack+0xd8. Source labels this shots."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP flag ability consumer",
+          "preferredVa": "0x71be1a",
+          "endExclusiveVa": "0x71bf39",
+          "rva": "0x31be1a",
+          "fileOffset": 2846234,
+          "size": 287,
+          "sha256": "3e7bd71955ae16b7dde783da06e58c22bf787d5a05206412d11647b7595f75fa",
+          "observation": "f102: rankvalue2 skips; value1 ORs mapped flag into combatstack+0x84, otherwise ANDNOT clears mapped flag. Modifier E69 maps0x1000; S83 maps4."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP flag modifier jump tables",
+          "preferredVa": "0x71c044",
+          "endExclusiveVa": "0x71c0ad",
+          "rva": "0x31c044",
+          "fileOffset": 2846788,
+          "size": 105,
+          "sha256": "99a7011cc0a55546e2207cb621792dd1f22e7fe290f3e37705748aa040c41442",
+          "observation": "ASCII E69\u219271beb1 mask0x1000, S83\u219271be72 mask4. Lowercase s115 is outside this flag switch and is handled separately."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP distance ability consumer",
+          "preferredVa": "0x71d257",
+          "endExclusiveVa": "0x71d333",
+          "rva": "0x31d257",
+          "fileOffset": 2851415,
+          "size": 220,
+          "sha256": "360794dc23cd7609d952cfad03236fdc78b56e9d2307825d399010ad35afc570",
+          "observation": "i105: scans active working rows0..13, applies rank/modifier to float0. Returns0 if result>0.5, else1; default1 when unavailable. Source labels no-distance penalty."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP obstacle ability consumer",
+          "preferredVa": "0x71d333",
+          "endExclusiveVa": "0x71d403",
+          "rva": "0x31d333",
+          "fileOffset": 2851635,
+          "size": 208,
+          "sha256": "413eec0882f017226ba3a0292041afd3cc5a1b3937a2f0024d65bf148d6fe087",
+          "observation": "o111: scans active working rows0..13, applies rank/modifier to float0, returns integer conversion. Source labels no-obstacle penalty."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP close shooting ability consumer",
+          "preferredVa": "0x71ed4b",
+          "endExclusiveVa": "0x71ee1d",
+          "rva": "0x31ed4b",
+          "fileOffset": 2858315,
+          "size": 210,
+          "sha256": "49b5c2b99e4831ae0025aead14ea01115b3108b53c335f73dd7c32f83c68f893",
+          "observation": "f102/s115: scans active working rows0..13. Latest matching rankvalue wins; returns true exactly when value1. Not the ordinary descriptor flag switch."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP distance callback wrapper",
+          "preferredVa": "0x75dd85",
+          "endExclusiveVa": "0x75ddd9",
+          "rva": "0x35dd85",
+          "fileOffset": 3116421,
+          "size": 84,
+          "sha256": "fe0637a99b9e9940786fc4da4922220a13fea615e03e9fe2aeb1b04e484a9937",
+          "observation": "Existing shooting penalty result1 is passed through71d257; returned0 can remove penalty. Other surrounding behavior not fully reconstructed."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP obstacle callback wrapper",
+          "preferredVa": "0x7605de",
+          "endExclusiveVa": "0x760627",
+          "rva": "0x3605de",
+          "fileOffset": 3126750,
+          "size": 73,
+          "sha256": "268b0c9cf3e504989c94e4c0f96996d703982d81cbe7b9e94c2c6b887994673b",
+          "observation": "When prior result0, calls71d333; no generalized proof about other penalty sources."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "XP close shooting callback wrappers",
+          "preferredVa": "0x76718f",
+          "endExclusiveVa": "0x76721f",
+          "rva": "0x36718f",
+          "fileOffset": 3154319,
+          "size": 144,
+          "sha256": "fa36cb5cbe4f14a9ad05f2b5e5006a96a655daaf17422cb3865475c13d4e25e2",
+          "observation": "Two wrappers call71ed4b only if existing boolean check failed. This establishes additive fallback use, not a global policy against artifacts."
+        },
+        {
+          "file": "work/era-gameplay-reference/h3era.exe",
+          "name": "Working XP table preparation",
+          "preferredVa": "0x728120",
+          "endExclusiveVa": "0x7281f5",
+          "rva": "0x328120",
+          "fileOffset": 2896160,
+          "size": 213,
+          "sha256": "e53aeaf5ea5e3a8337dc09ec24b90018929945e99a06b5a1f4a37a582897056b",
+          "observation": "Copies340bytes either from creature table or alternate per-stack table to working847d98 based on selector/override flag. Does not synthesize grants from cleared creature rows."
+        },
+        {
+          "file": "work/era-gameplay-reference/era.dll",
+          "name": "VR integer multiply",
+          "preferredVa": "0x498b5f",
+          "endExclusiveVa": "0x498b81",
+          "rva": "0x98b5f",
+          "fileOffset": 622431,
+          "size": 34,
+          "sha256": "18387009da617d66305665d27da65a02d62f8880d9cd039c6ab21bf33a858fe1",
+          "observation": "Integer branch uses two-operandIMUL, stores low32 result; no saturation."
+        },
+        {
+          "file": "work/era-gameplay-reference/era.dll",
+          "name": "VR integer division",
+          "preferredVa": "0x498bae",
+          "endExclusiveVa": "0x498bd8",
+          "rva": "0x98bae",
+          "fileOffset": 622510,
+          "size": 42,
+          "sha256": "7912dd252b9419295b32e9b87a0cae152501c56231094ed6e82e8f2e1dece029",
+          "observation": "Colon integer branch CDQ/IDIV signed, stores quotient. Source129 divides by2, thus no divide-byzero/INT_MIN\u00f7\u22121 issue."
+        }
+      ],
+      "unknowns": [
+        "No runtime, final plugin load order, computed patches, external mods or actual working battle state observed. Static on-disk consumers and matching supplied source are bounded evidence.",
+        "Close/distance/obstacle semantic labels originate in the supplied source129 comments and are corroborated by the specific consumers/wrappers described; native geometry tests and every callback caller are not fully reconstructed.",
+        "No conclusion on artifact bonuses, hero bonuses, spells or uninspected plugins. Clearing per-creature XP rows is not proof all independent shooter grants are suppressed.",
+        "Alternate per-stack XP records and later ERM EA:B writes, reloads or table reinitialization can supply different data. Exact lifetime, persistence, save/reload and callback timing are not established.",
+        "Immediate removal from an already active combat stack is not established: positive EA:B writes no refresh here, and MA:X changes descriptor rather than every existing stack.",
+        "On-disk EA creature selector accepts0..255 and row0..19; expanded rosters/relocation not admitted. Raw descriptor table pointer is supplied by source; no broad relocation audit.",
+        "Metadata bits besides activebit0 and every numeric modifier meaning were not fully reconstructed. Clearing all bytes is established without needing their names.",
+        "Generic flags/VR error handling and invalid syntax are not admitted. Source129 uses integer quick variableh and literal3/2, avoiding arbitrary mixed float arguments."
+      ],
+      "filesModified": "Ignored report directory only. No tracked file, prototype or container changed."
+    }
+  },
+  "contract": {
+    "option": 129,
+    "baseShooterOnly": true,
+    "health": "signed32(previous*3)/2, truncation toward zero",
+    "baseShotCountRetained": true,
+    "experienceRows": [
+      [
+        102,
+        69
+      ],
+      [
+        102,
+        83
+      ],
+      [
+        102,
+        115
+      ],
+      [
+        79,
+        null
+      ],
+      [
+        105,
+        null
+      ],
+      [
+        111,
+        null
+      ]
+    ],
+    "experienceConditionalOnSavedOption": true,
+    "preserveOtherExperienceAbilities": true,
+    "nativeWorldLocal": true,
+    "nativePositiveHealthDomainOnly": true,
+    "laterGenericEaWritesAdmitted": false,
+    "artifactSourcePreserved": true
+  }
+}

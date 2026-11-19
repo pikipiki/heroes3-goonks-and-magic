@@ -41,6 +41,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("112",era_bridge::WogOption::InvertedCreatureSpeeds);
     choice("113",era_bridge::WogOption::HalfCreaturePrices);
     choice("125",era_bridge::WogOption::AutomaticEighthUpgrades);
+    choice("129",era_bridge::WogOption::ShootersBecomeMelee);
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);
@@ -246,6 +247,28 @@ inline void groundFliers(CGameHandler & gh)
         saved["groundedFliers"].Vector().push_back(std::move(row));
     });
     saved["groundedFliersApplied"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
+}
+inline void disableBaseShooting(CGameHandler & gh)
+{
+    auto saved=state(gh.gameInfo());
+    if(!saved["rules"]["129"].Bool()||saved["noShootingApplied"].Bool())return;
+    saved["noShooting"].Vector().clear();
+    saved["noShootingExperience"].Bool()=era_bridge::wogOptionEnabled(gh.gameInfo(),
+        era_bridge::WogOption::StackExperience,gh.gameInfo().getSettings().getBoolean(EGameSettings::MODULE_STACK_EXPERIENCE));
+    LIBRARY->creatures()->forEach([&](const Creature * entry,bool &)
+    {
+        const auto * creature=entry->getId().toCreature();
+        if(excludedCreature(creature->getJsonKey())
+            ||!creature->hasBonus(Selector::type()(BonusType::SHOOTER).And(Selector::sourceTypeSel(BonusSource::CREATURE_ABILITY))))return;
+        const auto before=era_campaign_creature_attributes::current(gh.gameState(),creature->getId(),'P');
+        const auto health=era_bridge::map_rules::noShootingHealth(before);
+        if(health<1)throw std::runtime_error("WoG no-shooting HP outside native positive health");
+        JsonNode row;row["creature"].Integer()=creature->getId().getNum();
+        row["before"].Integer()=before;row["health"].Integer()=health;
+        saved["noShooting"].Vector().push_back(std::move(row));
+    });
+    saved["noShootingApplied"].Bool()=true;
     EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void invertCreatureSpeeds(CGameHandler & gh)

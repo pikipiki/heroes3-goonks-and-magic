@@ -12,12 +12,13 @@
 
 #include "IBonusBearer.h"
 #include "BonusList.h"
+#include "../era/EraMapNoShootingRules.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
 
 int IBonusBearer::valOfBonuses(const CSelector &selector, const std::string &cachingStr, int baseValue) const
 {
-	TConstBonusListPtr hlp = getAllBonuses(selector, cachingStr);
+	TConstBonusListPtr hlp = getBonuses(selector, cachingStr);
 	return hlp->totalValue(baseValue);
 }
 
@@ -29,11 +30,38 @@ bool IBonusBearer::hasBonus(const CSelector &selector, const std::string &cachin
 
 TConstBonusListPtr IBonusBearer::getBonuses(const CSelector &selector, const std::string &cachingStr) const
 {
-	const auto bonuses=getAllBonuses(selector,cachingStr);
-	if(std::none_of(bonuses->begin(),bonuses->end(),[](const auto & b){return b->type==BonusType::FLYING&&b->source==BonusSource::CREATURE_ABILITY;}))return bonuses;
-	const auto markers=getAllBonuses(Selector::type()(BonusType::NONE),"eraCampaignFlightRules");
-	if(std::none_of(markers->begin(),markers->end(),[](const auto & b){return b->stacking=="eraCampaign:flightDisabled:v1"&&b->source==BonusSource::OTHER&&b->hidden&&b->val==1;}))return bonuses;
-	auto filtered=std::make_shared<BonusList>();for(const auto & b:*bonuses)if(b->type!=BonusType::FLYING||b->source!=BonusSource::CREATURE_ABILITY)filtered->push_back(b);return filtered;
+    const auto bonuses=getAllBonuses(selector,cachingStr);
+    const auto experienceShooting=[](const Bonus & bonus)
+    {
+        if(bonus.source!=BonusSource::STACK_EXPERIENCE)return false;
+        switch(bonus.type)
+        {
+            case BonusType::SHOOTER:case BonusType::FREE_SHOOTING:case BonusType::SHOTS:
+            case BonusType::NO_MELEE_PENALTY:case BonusType::NO_DISTANCE_PENALTY:
+            case BonusType::NO_WALL_PENALTY:return true;
+            default:return false;
+        }
+    };
+    const auto baseAbility=[](const Bonus & bonus,BonusType type)
+    {return bonus.type==type&&bonus.source==BonusSource::CREATURE_ABILITY;};
+    if(std::none_of(bonuses->begin(),bonuses->end(),[&](const auto & bonus)
+        {return baseAbility(*bonus,BonusType::FLYING)||baseAbility(*bonus,BonusType::SHOOTER)||experienceShooting(*bonus);}))return bonuses;
+    const auto markers=getAllBonuses(Selector::type()(BonusType::NONE),"eraMapCreatureRuleMarkers");
+    bool flight=false,shooting=false,experience=false;
+    for(const auto & marker:*markers)
+    {
+        if(marker->source!=BonusSource::OTHER||!marker->hidden||marker->val!=1)continue;
+        flight|=marker->stacking=="eraCampaign:flightDisabled:v1";
+        shooting|=marker->stacking==era_bridge::map_rules::noShootingBaseMarker;
+        experience|=marker->stacking==era_bridge::map_rules::noShootingExperienceMarker;
+    }
+    if(!flight&&!shooting&&!experience)return bonuses;
+    auto filtered=std::make_shared<BonusList>();
+    for(const auto & bonus:*bonuses)
+        if(!(flight&&baseAbility(*bonus,BonusType::FLYING))
+            &&!(shooting&&baseAbility(*bonus,BonusType::SHOOTER))
+            &&!(experience&&experienceShooting(*bonus)))filtered->push_back(bonus);
+    return filtered;
 }
 
 TConstBonusListPtr IBonusBearer::getBonusesFrom(BonusSource source) const

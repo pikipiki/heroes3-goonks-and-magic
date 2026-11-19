@@ -13,7 +13,7 @@ test('source119 uses original tile marks and direct artifact records, excluding 
  assert.equal(d.contract.failedPrimaryStillConsumesMarker15,true);
  assert.equal(d.contract.implicitAssemblyPartsCounted,false);assert.equal(d.contract.independentLocksDoNotExcludeRealRecords,true);
  const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));
- assert.equal(rules.enabled,false);assert.equal(rules.completeRules,false);assert(rules.implementedCodes.includes(119));assert.equal(rules.implementedCodes.length,16);
+ assert.equal(rules.enabled,false);assert.equal(rules.completeRules,false);assert(rules.implementedCodes.includes(119));assert.equal(rules.implementedCodes.length,17);
 });
 test('native artifact pickups preserve duplicates, guards, combinations, full bags, AI turns and old saves',()=>{
  const p=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json'));

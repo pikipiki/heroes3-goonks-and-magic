@@ -32,7 +32,7 @@ avertissement localisé apparaît. Si le premier ramassage échoue, le marqueur
 source. Une seconde visite après avoir libéré une place ne redonne pas ce bonus. Le choix reste propre à la partie ; les anciennes
 sauvegardes conservent leur comportement. Les tests couvrent le toucher, le
 clic, un véritable tour IA et la reprise après ramassage. Le catalogue atteint
-quatorze règles sur vingt et une, avec vingt-cinq choix indépendants disponibles.
+dix-sept règles sur vingt et une, avec vingt-huit choix indépendants disponibles.
 
 Les achats de mines écrivent désormais `N7`. Hors de la règle de changement
 hebdomadaire, tout nombre non nul double le revenu et diminue chaque jour,
@@ -1000,3 +1000,11 @@ Un choix indépendant par partie active les neuf conversions du script77 à part
 L'expérience est lue avec le plafond de l'ancien type, puis recalculée par multiplication sur32bits et division signée avant d'appliquer le plafond du nouveau type. La conversion ne paie pas la pénalité ordinaire d'une amélioration achetée. Un résultat négatif reste stocké et sauvegardé. Les améliorations payantes conservent également le signe après application du coefficient du type précédent et troncature vers zéro. Les transferts concernés conservent ce signe dans leur moyenne pondérée ; le gain de combat du mode0 déjà admis répare l'ancien résultat négatif à0 avant addition, même pour un gain nul.
 
 Les sources statiques distinguent les autres modes de distribution et le bonus conditionnel après plafond de bataille ; ils ne sont pas admis par cette règle. Le stockage natif par pile constitue aussi une extension : il ne reproduit pas le quota global de10000 enregistrements de l'exécutable d'origine. La version934 protège les27 choix et l'expérience signée ; une sauvegarde antérieure ne gagne pas automatiquement cette nouvelle règle. Les profils complets restent hors admission.
+
+### Tireurs transformés en mêlée — règle 129, version 0.4.289
+
+Le choix28 transforme les tireurs de base éligibles en combattants de mêlée au premier tour, avec une santé de base multipliée par3 puis divisée par2 avec troncature signée. Le nombre de tirs de base reste conservé. Quand l’expérience de pile est active pour cette partie, les six familles de lignes EA concernées ne rétablissent plus les tirs ni les suppressions de pénalités. Les autres capacités d’expérience et les capacités apportées par un artefact restent indépendantes. Le choix est figé dans la sauvegarde ; un changement ultérieur de santé remplace la valeur déjà améliorée, sans nouvelle multiplication quotidienne.
+
+Les aperçus de recrutement utilisent désormais les caractéristiques et capacités propres à la carte. Leur cache se renouvelle lorsque les bonus du monde changent et ne conserve pas de référence vers une ancienne partie. La fenêtre native de créature sans pile reçoit le même contexte de carte. Les statistiques d’une véritable pile gardent leurs bonus individuels.
+
+La version935 protège les28 choix et les nouveaux marqueurs. Les profils complets restent désactivés. Les écritures génériques EA ultérieures et les valeurs de santé signées devenant non positives restent hors du domaine natif admis ; la lecture statique du binaire ne constitue pas une exécution du moteur ERA d’origine.

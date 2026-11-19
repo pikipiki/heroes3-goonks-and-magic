@@ -1,0 +1,2847 @@
+{
+  "schema": 1,
+  "applicationVersion": "0.4.289",
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "originalRuntimeObserved": false,
+  "scope": "Source129 eligible innate shooters, signed HP scaling once, conditional filtering of six stack-XP row families, artifact independence, world-local creature previews and native save compatibility.",
+  "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+  "sourceBaseCommit": "41a6491514e9da042d44e61bd276495862d348a7",
+  "sourceBindings": {
+    "docs/era-compatibility.md": "ecc7c834fb3ba4f8b93cf016b1af58e9f6f45f779ba12dca8df0dbf016c5e932",
+    "docs/era-gameplay-port.md": "73ac9b820e11647493a4e2db417ffc665ac88e22f29e56ffc6aa7bc1c63c8d84",
+    "scripts/era-bridge/gameplay/map-rules.json": "6bce7d13cfeb2ac83cde28fd5223ad6c70f45054cb0aa9f5fcfc752f27f11f27",
+    "tests/era-creature-prices.test.mjs": "2e2b509883b6e7d412a4aa84d756521fc7f5579757550896c1af93103d80a054",
+    "tests/era-map-double-artifacts.test.mjs": "44f9dd9d1802331edeefbfa3eac5edda74ebc0b67f49e6246e2e12321ef185cd",
+    "tests/era-map-eighth-upgrades.test.mjs": "0fdc57cdf7df33369eaa6410f8f8c18dc7556c2cb84120e271223a518a4a8fca",
+    "tests/era-map-no-shooting-rules-native.test.mjs": "1603d9d7734435fef481383b049b157fbc8e07f7a486a6416bea0c83a4192e16",
+    "tests/era-map-no-shooting.test.mjs": "fa45737068b6635da324f17d8287e3a3208fd42be334e0ccb7805fdeab5471ae",
+    "tests/fixtures/era-gameplay/map-no-shooting-reference.json": "7e11ee0768f7162d6340ad568b3b88713009b57c9e3de8fc73eca71c5b5f00fb",
+    "tests/native/EraMapNoShootingRules.test.cpp": "0ccc0fe2344de3ff5fd93306dbbdb0cf9f4647e2a7c48b6aabb3a0bc3a2629d7",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "d022873dda12d0496bffb5b2ecb27be9f4ec618748254a17bfe16970b7fb1e05",
+    "web/wog-options.mjs": "3418871b1dd1206ae9db6247b5a578acbcbdb6d7675e4bf580fe05e0daa3aae9",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+    "work/browser-tests/wog-map-no-shooting-cases.mjs": "8c035a3040e281d4e732300eb66d175b5e91a5fb3e93ac333cf8177b4675096b",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
+    "work/vcmi-wasm/client/windows/CCreatureWindow.cpp": "a8462b9b70be149e7dac16f3d773ef3c38f284ccc8629f0df95df44c60747e3a",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "e2c15c64031af3a6a56d072640928a0cd810a77ed1a197c3ae753e2cd4cc18a7",
+    "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "7793a00a74c22e261db38d0b910aaccc742e3f3106c3751ac850dc0cecce0cf0",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "0f0ceab5c9ffcf20117b03097fac56edb68ebe6f1aaa607a3e54128ee9a06d81",
+    "work/vcmi-wasm/lib/era/EraMapNoShootingRules.h": "48752bbb5ee088f4b17998e8f9c673a3a887d3404124a6649636b6f85187217f",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "66f569a9614811dc526c3be0256ed2a376d4771356d00aca4fe644b867c0c6f4",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "f7ed956a1d22d93f1b8de50d51afbcf4e775f9335dab7010c01b82846be4b722",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "a9fd7c85ccd2a7ec6aa5c5e65624879c1baff695b178cb6522f44aee128ce323",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f6b07d3bee2ffe017d34bdf483de60fdc82a241fc09f19f5bfa34d6889d97469",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/map-no-shooting-reference.json",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "finalTargets": 54,
+    "logSha256": "80caf301da149bb5a2b036b71abd6aa631332336cdc1f726792849102be64957",
+    "warMachinesAdmitted": false
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3028,
+    "mismatches": [],
+    "expectedManifestSha256": "b2d9966a673055fcd033ec68c641aa7a167bf882e14e69026c14c189025c7934"
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "scope": "Source129 HP and row predicates; production serializer through935.",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "reports": {
+    "active": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "historicalNativeControl": false,
+          "preview": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 1,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "preview": {
+              "h": 130,
+              "w": 100,
+              "x": 350,
+              "y": 81
+            },
+            "previewAtlas": true,
+            "previewKey": 91328980,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "details": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 3,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "choice": 1,
+          "configured": false,
+          "active": true,
+          "artifact": false,
+          "experience": true,
+          "initial": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "experienced": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "firstBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": false,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "secondBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": false,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "edited": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 327000,
+            "experiencePerUnit": 16350,
+            "experienceRank": 6,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 11,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "saveVersion": 935,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "onceOnlyHealth": true,
+          "absoluteHealthEdit": true,
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "5162200fa605df797fb1df8d5f113742a0f4aecbf0fac3a4b35a83dda0fde0d4"
+    },
+    "artifact": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "historicalNativeControl": false,
+          "preview": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 1,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "preview": {
+              "h": 130,
+              "w": 100,
+              "x": 350,
+              "y": 81
+            },
+            "previewAtlas": true,
+            "previewKey": 91326036,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "details": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 3,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 15,
+            "speed": 20
+          },
+          "choice": 1,
+          "configured": false,
+          "active": true,
+          "artifact": true,
+          "experience": true,
+          "initial": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 15,
+            "speed": 20
+          },
+          "experienced": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 15,
+            "speed": 20
+          },
+          "firstBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": true,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 15,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "secondBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": true,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 15,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "edited": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 327000,
+            "experiencePerUnit": 16350,
+            "experienceRank": 6,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 11,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 15,
+            "speed": 20
+          },
+          "saveVersion": 935,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "onceOnlyHealth": true,
+          "absoluteHealthEdit": true,
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ff8a3a08dd7e5b10366ce7014bbb23f5724076937f0d8b348d2a464abaaed544"
+    },
+    "off": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "historicalNativeControl": false,
+          "preview": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 1,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 5,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "preview": {
+              "h": 130,
+              "w": 100,
+              "x": 350,
+              "y": 81
+            },
+            "previewAtlas": true,
+            "previewKey": 90869020,
+            "shooter": true,
+            "shots": 12,
+            "speed": 20
+          },
+          "details": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks",
+              "{No Distance Penalty}\nRanged attacks always deal full damage, regardless of distance",
+              "{No Melee Penalty}\nThis ranged unit deals full damage in melee",
+              "{No Wall Penalty}\nRanged attacks deal full damage to units behind walls",
+              "{Point-Blank Shot}\nAdjacent enemies do not block this unit's ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 3,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 5,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 20,
+            "speed": 20
+          },
+          "choice": 0,
+          "configured": true,
+          "active": false,
+          "artifact": false,
+          "experience": true,
+          "initial": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 5,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 12,
+            "speed": 20
+          },
+          "experienced": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 5,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 20,
+            "speed": 20
+          },
+          "firstBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": true,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 5,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 12,
+            "shooter": true,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "secondBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": true,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 5,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 20,
+            "shooter": true,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "edited": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects",
+              "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 327000,
+            "experiencePerUnit": 16350,
+            "experienceRank": 6,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 11,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": true,
+            "shots": 20,
+            "speed": 20
+          },
+          "saveVersion": 935,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "onceOnlyHealth": true,
+          "absoluteHealthEdit": true,
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "e50f314f99266888e73de9e5ed3fe44101e19c98a822745d07ef0b95b0f81b9a"
+    },
+    "noExperience": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "historicalNativeControl": false,
+          "preview": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 1,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "preview": {
+              "h": 130,
+              "w": 100,
+              "x": 350,
+              "y": 81
+            },
+            "previewAtlas": true,
+            "previewKey": 91275380,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "details": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "choice": 1,
+          "configured": false,
+          "active": true,
+          "artifact": false,
+          "experience": false,
+          "initial": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "experienced": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "firstBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": false,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "secondBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": false,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "edited": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 11,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "saveVersion": 935,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "onceOnlyHealth": true,
+          "absoluteHealthEdit": true,
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "12a8ef50694c0dce81cadd8447bb31a81a4f70009e16277bad3d7b15999b478b"
+    },
+    "preview": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "scenarios": [
+        {
+          "historicalNativeControl": false,
+          "preview": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 1,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "preview": {
+              "h": 130,
+              "w": 100,
+              "x": 350,
+              "y": 81
+            },
+            "previewAtlas": true,
+            "previewKey": 91247572,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "details": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 3,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "choice": 1,
+          "configured": false,
+          "active": true,
+          "artifact": false,
+          "experience": true,
+          "initial": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 0,
+            "experiencePerUnit": 0,
+            "experienceRank": 0,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "experienced": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 315000,
+            "experiencePerUnit": 15750,
+            "experienceRank": 5,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "firstBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": false,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "secondBattle": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canShoot": false,
+            "commander": false,
+            "controlled": true,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "fightValue": 115,
+            "growth": 9,
+            "health": 7,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "remainingShots": 0,
+            "shooter": false,
+            "shots": 12,
+            "speed": 20,
+            "stackId": 0
+          },
+          "edited": {
+            "abilities": [
+              "{Neutral Morale}\nThis creature is immune to morale effects"
+            ],
+            "aiValue": 126,
+            "attack": 0,
+            "canDismiss": false,
+            "cost": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              100,
+              0
+            ],
+            "count": 20,
+            "damageMax": 100000,
+            "damageMin": 100000,
+            "defense": 0,
+            "description": "",
+            "experience": 327000,
+            "experiencePerUnit": 16350,
+            "experienceRank": 6,
+            "fightValue": 115,
+            "growth": 9,
+            "health": 11,
+            "icon": "",
+            "id": 2,
+            "key": "core:archer",
+            "name": "Archer",
+            "nativeFlags": {
+              "attacksAllAdjacent": false,
+              "blocksRetaliation": false,
+              "chargeImmune": false,
+              "flying": false,
+              "living": true,
+              "mindImmune": false,
+              "noMorale": true,
+              "nonLiving": false,
+              "undead": false
+            },
+            "shooter": false,
+            "shots": 12,
+            "speed": 20
+          },
+          "saveVersion": 935,
+          "pendingSaveReload": true,
+          "reversedGlobalDefault": true,
+          "onceOnlyHealth": true,
+          "absoluteHealthEdit": true,
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "recruitmentCreaturePreview": [
+        {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 0,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "fightValue": 115,
+          "growth": 9,
+          "health": 7,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 12,
+          "speed": 20
+        },
+        {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 0,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "fightValue": 115,
+          "growth": 9,
+          "health": 11,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": false,
+          "shots": 12,
+          "speed": 20
+        }
+      ],
+      "rawReportSha256": "68ba1cbc70b02e35bfa536e5177b6d02f72f502df9e792ee18db5589bf072423"
+    }
+  },
+  "historicalNativeControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455",
+    "scenarios": [
+      {
+        "historicalNativeControl": true,
+        "preview": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 1,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "preview": {
+            "h": 130,
+            "w": 100,
+            "x": 350,
+            "y": 81
+          },
+          "previewAtlas": true,
+          "previewKey": 91078564,
+          "shooter": true,
+          "shots": 12,
+          "speed": 20
+        },
+        "details": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks",
+            "{No Distance Penalty}\nRanged attacks always deal full damage, regardless of distance",
+            "{No Melee Penalty}\nThis ranged unit deals full damage in melee",
+            "{No Wall Penalty}\nRanged attacks deal full damage to units behind walls",
+            "{Point-Blank Shot}\nAdjacent enemies do not block this unit's ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 3,
+          "description": "",
+          "experience": 315000,
+          "experiencePerUnit": 15750,
+          "experienceRank": 5,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": true,
+          "shots": 12,
+          "speed": 20
+        },
+        "choice": 1,
+        "configured": false,
+        "active": false,
+        "artifact": false,
+        "experience": true,
+        "initial": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "canDismiss": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "experience": 0,
+          "experiencePerUnit": 0,
+          "experienceRank": 0,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": true,
+          "shots": 12,
+          "speed": 20
+        },
+        "experienced": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "canDismiss": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "experience": 315000,
+          "experiencePerUnit": 15750,
+          "experienceRank": 5,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": true,
+          "shots": 12,
+          "speed": 20
+        },
+        "firstBattle": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "canShoot": true,
+          "commander": false,
+          "controlled": true,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 12,
+          "shooter": true,
+          "shots": 12,
+          "speed": 20,
+          "stackId": 0
+        },
+        "secondBattle": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "canShoot": true,
+          "commander": false,
+          "controlled": true,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "remainingShots": 20,
+          "shooter": true,
+          "shots": 12,
+          "speed": 20,
+          "stackId": 0
+        },
+        "edited": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "canDismiss": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "experience": 327000,
+          "experiencePerUnit": 16350,
+          "experienceRank": 6,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": true,
+          "shots": 12,
+          "speed": 20
+        },
+        "saveVersion": 934,
+        "pendingSaveReload": true,
+        "reversedGlobalDefault": true,
+        "onceOnlyHealth": true,
+        "absoluteHealthEdit": true,
+        "input": "mouse"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "5cc4835739ffa5113d68e09d05fadea3835a4a137fa38709aaea4a8bb50ed285"
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+    "scenarios": [
+      {
+        "legacyInput": 934,
+        "saveVersion": 935,
+        "active": false,
+        "configured": true,
+        "before": {
+          "abilities": [
+            "{Neutral Morale}\nThis creature is immune to morale effects",
+            "{Shooter}\nThis unit can use ammunition to perform ranged attacks"
+          ],
+          "aiValue": 126,
+          "attack": 0,
+          "canDismiss": false,
+          "cost": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "count": 20,
+          "damageMax": 100000,
+          "damageMin": 100000,
+          "defense": 0,
+          "description": "",
+          "experience": 315000,
+          "experiencePerUnit": 15750,
+          "experienceRank": 5,
+          "fightValue": 115,
+          "growth": 9,
+          "health": 5,
+          "icon": "",
+          "id": 2,
+          "key": "core:archer",
+          "name": "Archer",
+          "nativeFlags": {
+            "attacksAllAdjacent": false,
+            "blocksRetaliation": false,
+            "chargeImmune": false,
+            "flying": false,
+            "living": true,
+            "mindImmune": false,
+            "noMorale": true,
+            "nonLiving": false,
+            "undead": false
+          },
+          "shooter": true,
+          "shots": 20,
+          "speed": 20
+        },
+        "legacyDoesNotEnableRule": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "82544284d4ba36f7b3951c76b6f40b62741483d5c1548112121553e8429c7238"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 935,
+        "readerVersion": 934,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "9ca539f222cf6734d380dcd2448bc957d0280d9239a40d485c0dd35ddb0620e3"
+  },
+  "regressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "370ace464c1f03bfbd85b2b3049571c5b08731cb916a87f79474c6e34927efe1",
+      "scenarioCount": 9
+    },
+    "advanced-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "c93200df3303ece9fef20e1b2c157469bc84eb585cd454768336533f1157c2da",
+      "scenarioCount": 4
+    },
+    "army-growth": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "ee0ee07ff62d395efd3d4ae029b694d3ff98f59d5b3056d11702851dbebded55",
+      "scenarioCount": 1
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "84e6b3aa0a4a47790e417d598c9cc49ac41424eeeab1adb3568f2251cc49aa51",
+      "scenarioCount": 17
+    },
+    "prices": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "90e6fe354fca6c3cf5883f1aae748c37048369190ab8566ac8892b3aa1048030",
+      "scenarioCount": 9
+    },
+    "grounded": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "2aa64b3020a1727440b4f1872be42b1663b44c725a2ce7bc97a7ba8aa4de592b",
+      "scenarioCount": 10
+    },
+    "speeds": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "2ccf6dc7b49f35a5e743a0acb6f04b517bf0a417debb726ecc09f94c80746714",
+      "scenarioCount": 6
+    },
+    "monthly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "errors": [],
+      "rawReportSha256": "d9992437b297a6619a5c8f98d70b515b6edc31440f24e5555530af2d032aca39",
+      "scenarioCount": 2
+    }
+  },
+  "radio": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": []
+  },
+  "serialization": {
+    "previousSaveVersion": 934,
+    "saveVersion": 935,
+    "choiceCount": 28,
+    "newSerializedCppFields": false,
+    "newJsonSystem": false,
+    "newMapFields": [
+      "noShooting",
+      "noShootingApplied",
+      "noShootingExperience"
+    ],
+    "guardReason": "Previous engines do not apply the new creature markers and independent choice."
+  },
+  "privateFixtureScope": "Private archer HP5, six native XP bonus families and defense perk, zero-stat peasant target, optional spellbook artifact and source messages. All modifications occur in browser memory and are absent from production. Rank5 is obtained through actual combat.",
+  "nativeExtensions": [
+    "Native health must stay positive; overflow to nonpositive health is tested arithmetically but rejected by the runtime.",
+    "Arbitrary later generic EA writes and original binary/plugin callbacks remain unadmitted.",
+    "Native creature types follow the existing eligible source-identity exclusions; foreign native types are an extension."
+  ],
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.289-engine.tar.gz",
+    "sha256": "709442f0711b2ceb67a6fceb7d11118b8cd20c1bc368d90a9478a3d73998af3a",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6"
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42"
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425"
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6"
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc"
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1"
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "7fb4f2a771a2f3f8c5cb117f102bc7090871594081edf2e2ea475b28f82e9ceb"
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "00c3f54ba680ae64afd3b8805dc31b241a74f4b2e522a85d725bc6df752c238d"
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
+      }
+    ]
+  },
+  "previousRelease": {
+    "version": "0.4.288",
+    "commit": "41a6491514e9da042d44e61bd276495862d348a7",
+    "pages": "https://github.com/pikipiki/heroes3-goonks-and-magic/actions/runs/44477232419",
+    "pagesConclusion": "success"
+  },
+  "remaining": [
+    "Map rules118/120/126/127 and six selection modes of101.",
+    "Full WoG catalogue, Mithril lifecycle and separate Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted."
+  ],
+  "checks": {
+    "node": {
+      "tests": 967,
+      "passed": 911,
+      "skipped": 56,
+      "failed": 0,
+      "logSha256": "b802bd5a06e9f9edebd53e15e9f1a982cc20c9d8a174a2db7f15354c45ac4b80"
+    },
+    "tum": {
+      "passed": 18,
+      "failed": 0,
+      "logSha256": "cd044697a3fbf96e83dfc85e13061526cb0ec4aef7868afe9c1ac6bf2ad8b9aa"
+    },
+    "site": {
+      "files": 10464,
+      "transportBytes": 702299079,
+      "prepareBuildVerifyExitCode": 0
+    },
+    "nativeFixtureMatrix": {
+      "currentFullCases": 5,
+      "historicalControl": 1,
+      "legacyConsumer": 1,
+      "oldReader": 1,
+      "regressionCases": 58,
+      "radioCases": 16
+    }
+  }
+}

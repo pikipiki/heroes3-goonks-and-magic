@@ -262,27 +262,54 @@ bool mobileCampaignRewardExchange(const CPlayerInterface & player,const CGarriso
  // events through the same tactile troop exchange as scripted army gifts.
  return state["contract"].String()=="source-campaign-state-v1"&&state["creatureRewards"][std::to_string(event->id.getNum())].isVector();
 }
-// Recruitment previews need the same bonus descriptions as the classic creature
-// window, including propagated auras. Cache until bonuses or native language change.
-const std::vector<std::string> & mobileCreatureAbilities(const CCreature * creature)
+// Cache an ownerless, rank-zero world view. Attach map bonuses only while
+// refreshing it, so cached previews never retain a destroyed game's node.
+const JsonNode & mobileCreatureDefinition(const CCreature * creature)
 {
- struct Entry { int version = -1; std::string language; std::vector<std::string> descriptions; std::unique_ptr<CStackInstance> preview; };
- static std::map<const CCreature *, Entry> cache;
- auto & entry = cache[creature];
- // Reuse one unattached army preview per creature. Constructing it every frame
- // would invalidate native bonus caches across the game.
+ struct Entry {
+  int version=-1,worldVersion=-1;const CGameState * game=nullptr;
+  std::string language;JsonNode view;std::unique_ptr<CStackInstance> preview;
+ };
+ static std::map<const CCreature *,Entry> cache;
+ auto & entry=cache[creature];
  if(!entry.preview)entry.preview=std::make_unique<CStackInstance>(nullptr,creature->getId(),1,true);
- const auto language = LIBRARY->generaltexth->getPreferredLanguage();
- const auto version = creature->getTreeVersion();
- if(entry.version != version || entry.language != language)
- {
-  entry.descriptions = CStackWindow::getMobileCreatureAbilities(entry.preview.get());
-  entry.version = version;
-  entry.language = language;
- }
- return entry.descriptions;
+ const auto player=GAME?GAME->interface():nullptr;
+ auto * callback=player?player->cb.get():nullptr;
+ const auto * game=callback?&static_cast<IGameInfoCallback *>(callback)->gameState():nullptr;
+ const auto worldVersion=game?game->globalEffects.getTreeVersion():-1;
+ const auto language=LIBRARY->generaltexth->getPreferredLanguage();
+ const auto version=creature->getTreeVersion();
+ if(entry.version==version&&entry.worldVersion==worldVersion&&entry.game==game&&entry.language==language)return entry.view;
+ struct Scope {
+  CStackInstance & preview;const CBonusSystemNode * world;
+  Scope(CStackInstance & value,IGameInfoCallback * cb,const CGameState * game):preview(value),world(game?&game->globalEffects:nullptr)
+  {preview.cb=cb;if(world)preview.attachToSource(*world);}
+  ~Scope(){if(world)preview.detachFromSource(*world);preview.cb=nullptr;}
+ } scope(*entry.preview,callback,game);
+ const auto & view=*entry.preview;JsonNode n;
+ n["shooter"].Bool()=view.hasBonusOfType(BonusType::SHOOTER);
+ n["name"].String()=creature->getNameSingularTranslated();n["id"].Integer()=creature->getId().getNum();
+ n["icon"].String()=creature->largeIconName;n["key"].String()=creature->getJsonKey();n["description"].String()=creature->getDescriptionTranslated();
+ for(const auto & ability:CStackWindow::getMobileCreatureAbilities(&view))n["abilities"].Vector().emplace_back(ability);
+ n["attack"].Integer()=view.getAttack(false);n["defense"].Integer()=view.getDefense(false);
+ n["health"].Integer()=view.getMaxHealth();n["speed"].Integer()=view.getMovementRange();
+ n["damageMin"].Integer()=view.getMinDamage(false);n["damageMax"].Integer()=view.getMaxDamage(false);
+ n["growth"].Integer()=creature->getGrowth();n["aiValue"].Integer()=creature->getAIValue();n["fightValue"].Integer()=creature->getFightValue();
+ n["shots"].Integer()=view.valOfBonuses(BonusType::SHOTS);
+ const auto flag=[&](const char * name,BonusType type){n["nativeFlags"][name].Bool()=view.hasBonusOfType(type);};
+ flag("living",BonusType::LIVING);flag("undead",BonusType::UNDEAD);flag("nonLiving",BonusType::NON_LIVING);
+ flag("mindImmune",BonusType::MIND_IMMUNITY);flag("noMorale",BonusType::NO_MORALE);flag("flying",BonusType::FLYING);
+ flag("blocksRetaliation",BonusType::BLOCKS_RETALIATION);flag("attacksAllAdjacent",BonusType::ATTACKS_ALL_ADJACENT);flag("chargeImmune",BonusType::CHARGE_IMMUNITY);
+ entry.view=std::move(n);entry.version=version;entry.worldVersion=worldVersion;entry.game=game;entry.language=language;return entry.view;
 }
-JsonNode creature(const CCreature * c,int count){const auto player=GAME?GAME->interface():nullptr;const auto prices=era_compat::creature_prices::get(player?player->cb.get():nullptr,*c);portraitIds.insert(c->getId().getNum());JsonNode n;n["shooter"].Bool()=c->hasBonusOfType(BonusType::SHOOTER);n["name"].String()=c->getNameSingularTranslated();n["id"].Integer()=c->getId().getNum();n["icon"].String()=c->largeIconName;n["key"].String()=c->getJsonKey();n["description"].String()=c->getDescriptionTranslated();for(const auto & ability:mobileCreatureAbilities(c))n["abilities"].Vector().emplace_back(ability);n["count"].Integer()=count;n["attack"].Integer()=c->getAttack(false);n["defense"].Integer()=c->getDefense(false);n["health"].Integer()=c->getMaxHealth();n["speed"].Integer()=c->getMovementRange();n["damageMin"].Integer()=c->getMinDamage(false);n["damageMax"].Integer()=c->getMaxDamage(false);n["growth"].Integer()=c->getGrowth();n["aiValue"].Integer()=c->getAIValue();n["fightValue"].Integer()=c->getFightValue();n["shots"].Integer()=c->getBaseShots();n["nativeFlags"]["living"].Bool()=c->hasBonusOfType(BonusType::LIVING);n["nativeFlags"]["undead"].Bool()=c->hasBonusOfType(BonusType::UNDEAD);n["nativeFlags"]["nonLiving"].Bool()=c->hasBonusOfType(BonusType::NON_LIVING);n["nativeFlags"]["mindImmune"].Bool()=c->hasBonusOfType(BonusType::MIND_IMMUNITY);n["nativeFlags"]["noMorale"].Bool()=c->hasBonusOfType(BonusType::NO_MORALE);n["nativeFlags"]["flying"].Bool()=c->hasBonusOfType(BonusType::FLYING);n["nativeFlags"]["blocksRetaliation"].Bool()=c->hasBonusOfType(BonusType::BLOCKS_RETALIATION);n["nativeFlags"]["attacksAllAdjacent"].Bool()=c->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["nativeFlags"]["chargeImmune"].Bool()=c->hasBonusOfType(BonusType::CHARGE_IMMUNITY);for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(prices[resource])));return n;}
+JsonNode creature(const CCreature * c,int count)
+{
+ const auto player=GAME?GAME->interface():nullptr;
+ const auto prices=era_compat::creature_prices::get(player?player->cb.get():nullptr,*c);
+ portraitIds.insert(c->getId().getNum());auto n=mobileCreatureDefinition(c);n["count"].Integer()=count;
+ for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())n["cost"].Vector().push_back(JsonNode(double(prices[resource])));
+ return n;
+}
 
 void mobileSpellEffects(JsonNode & result,const CStack & stack)
 {
@@ -602,7 +629,7 @@ void mobileAdvanceArmyUpgrades(CPlayerInterface * player)
  if(std::find(ids.begin(),ids.end(),step.target)==ids.end()||available.getUpgradeTotalCostsFor(step.target,step.count)!=step.cost||!player->cb->getResourceAmount().canAfford(remaining)){finish("failed");return;}
  player->cb->upgradeCreature(object,step.slot,step.target);mobileArmyUpgradeWaiting=true;mobileArmyUpgradeSent=SDL_GetTicks();
 }
-JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c){item["canDismiss"].Bool()=(!a->needsLastStack()||a->stacksCount()>1)&&era_bridge::sourceCreatureIdForLevel(c->getJsonKey()).value_or(-1)!=340;mobileStackExperience(item,&a->getStack(SlotID(i)));item["nativeFlags"]["flying"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::FLYING);}n["slots"].Vector().push_back(item);}return n;}
+JsonNode army(const CArmedInstance * a,const std::string & name){JsonNode n;n["id"].Integer()=a->id.getNum();n["name"].String()=name;n["needsLastStack"].Bool()=a->needsLastStack();for(int i=0;i<7;i++){auto c=a->getCreature(SlotID(i));auto item=c?creature(c,a->getStackCount(SlotID(i))):JsonNode();if(c){item["canDismiss"].Bool()=(!a->needsLastStack()||a->stacksCount()>1)&&era_bridge::sourceCreatureIdForLevel(c->getJsonKey()).value_or(-1)!=340;mobileStackExperience(item,&a->getStack(SlotID(i)));item["shooter"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::SHOOTER);item["shots"].Integer()=a->getStack(SlotID(i)).valOfBonuses(BonusType::SHOTS);item["nativeFlags"]["flying"].Bool()=a->getStack(SlotID(i)).hasBonusOfType(BonusType::FLYING);}n["slots"].Vector().push_back(item);}return n;}
 // Resolve army exchange from the persisted town/hero relationship, not from
 // whether the castle window has been opened since loading the saved game.
 const CGTownInstance * mobileResidentTown(const CGHeroInstance * hero){
@@ -1286,7 +1313,7 @@ void publishMobileState(){
   item["abilities"].Vector().clear();
   for(const auto & description : creatureWindow->getMobileAbilities())
    item["abilities"].Vector().emplace_back(description);
-  if(auto stack=creatureWindow->getMobileStack()){mobileStackExperience(item,stack);const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
+  if(auto stack=creatureWindow->getMobileStack()){mobileStackExperience(item,stack);const bool shooter=stack->hasBonusOfType(BonusType::SHOOTER);item["shooter"].Bool()=shooter;item["shots"].Integer()=stack->valOfBonuses(BonusType::SHOTS);item["attack"].Integer()=stack->getAttack(shooter);item["defense"].Integer()=stack->getDefense(shooter);item["health"].Integer()=stack->getMaxHealth();item["speed"].Integer()=stack->getMovementRange();item["damageMin"].Integer()=stack->getMinDamage(shooter);item["damageMax"].Integer()=stack->getMaxDamage(shooter);}
   if(n["mode"].String()=="creature"&&p&&p->cb&&!CPlayerInterface::battleInt)if(const auto stack=creatureWindow->getMobileStack())if(const auto armyObject=stack->getArmy())if(armyObject->getOwner()==p->playerID){
    const auto slot=armyObject->findStack(stack);UpgradeInfo upgrades(stack->getCreature()->getId());p->cb->fillUpgradeInfo(armyObject,slot,upgrades);
    for(const auto id:upgrades.getAvailableUpgrades()){

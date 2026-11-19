@@ -866,9 +866,11 @@ void CStackWindow::init()
 
 	if(!info->stackNode)
 	{
-		//does not contain any propagated bonuses
-		fakeNode = std::make_unique<CStackInstance>(nullptr, info->creature->getId(), 1, true);
-		info->stackNode = fakeNode.get();
+        const auto player=GAME?GAME->interface():nullptr;
+        auto * callback=player?player->cb.get():nullptr;
+        fakeNode = std::make_unique<CStackInstance>(callback, info->creature->getId(), 1, true);
+        if(callback)fakeNode->attachToSource(static_cast<IGameInfoCallback *>(callback)->gameState().globalEffects);
+        info->stackNode = fakeNode.get();
 	}
 
 	selectedIcon = nullptr;

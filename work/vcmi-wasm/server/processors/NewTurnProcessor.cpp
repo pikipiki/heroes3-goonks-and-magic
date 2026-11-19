@@ -190,6 +190,7 @@ void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
 	era_compat::map_rules::addExtraDwellingCreatures(*gameHandler);
 	era_compat::map_rules::markInitialArtifacts(*gameHandler);
 	era_compat::map_rules::groundFliers(*gameHandler);
+	era_compat::map_rules::disableBaseShooting(*gameHandler);
 	era_compat::map_rules::invertCreatureSpeeds(*gameHandler);
 	era_compat::map_rules::placeDailyPlains(*gameHandler,which);
 	const auto * playerState = gameHandler->gameState().getPlayerState(which);
