@@ -9,24 +9,24 @@
   "sourceBindings": {
     "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
     "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "6cd298637d11de76766bee0d7243982862ee84d6658f504e00ea989cb9f957b5",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ec69e58bf98ee6d3fad33bcb0318b910c9645595832e7f728db3764203a2de89",
     "work/vcmi-wasm/lib/era/EraMapFortlessRules.h": "b1fb5406d9b103ac7656ac6ea15dd59f68c58d1a590b4eabb83731576f33f246",
     "work/vcmi-wasm/lib/era/EraMapFortlessTowns.h": "e1eaca193a391bcff531e36540b194a18008c5cb4f736c639a538735b1e1870c",
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "77b35c7e7d32dde12b3f08353f27baef146ba42130219a7112df40b19db96ca9",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ae18dc97c3f3312283d74fb3e8decf9c918d8c71c6b4421c5f2ac27f27efc63d",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "bc301dbc34694cd09adfbdf388b93c1c7a6954709d89821751e37144241d11b0",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
     "tests/native/EraMapFortlessRules.test.cpp": "bb89011115365288ca289d8b71b67cc635d489c30c019ba31771a90268dbc17e",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8e8fb608e913f456b4a977343afd565dad2d0e6939a1a533145e61b6c6c6ad24",
     "work/browser-tests/wog-map-fortless-cases.mjs": "78639617fe6b4582424834e3be045c86547641e4094138be7c85d897fa05070f",
     "tests/fixtures/era-gameplay/map-fortless-reference.json": "f7d3ecab64b7db682e9a29bc6cb92e17dbb948c3f0d21d4c37cd33e9c63a4156",
     "scripts/era-bridge/gameplay/map-rules.json": "f30b9949e5878f9aa3320faf51b449dfcc007db8ce1003b892986b7c3f673064",
-    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
+    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
     "tests/era-map-fortless.test.mjs": "36c986217460602ee1f9226ecfbcd0dfcb46a46def2dd430e1b509d02ca2dabb",
-    "docs/era-compatibility.md": "a3c3923d497cabbac140b82b478fdf83225bb3fd07a841f9828b09df502e408c"
+    "docs/era-compatibility.md": "f98dbbe651e73787c8454b1c7c58bc7b5c5f631785bd10729b49dc64ad7915bc"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1831,5 +1831,17 @@
       "docs/era-compatibility.md": "9a627cbf8a066f0421cb331f5a4a5c7991e20f686209db6693798c39e6cb3315"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creatureCostAliasRevalidation": {
+    "scope": "Historical reports retained; read-only C7/F mapping, signed words, continuation compatibility and selected current regressions separately validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "6cd298637d11de76766bee0d7243982862ee84d6658f504e00ea989cb9f957b5",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
+      "docs/era-compatibility.md": "a3c3923d497cabbac140b82b478fdf83225bb3fd07a841f9828b09df502e408c"
+    },
+    "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
   }
 }

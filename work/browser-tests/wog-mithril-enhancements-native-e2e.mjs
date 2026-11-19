@@ -31,7 +31,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({incomeAiFixture=false,incomeAiGoose=false,incomeFixture=false,incomeGoose=false,siteTilesSubtype=false,siteTilesFixture=false,mineTilesFixture=false,fortlessFixture=false,replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({creatureCostFixture=null,incomeAiFixture=false,incomeAiGoose=false,incomeFixture=false,incomeGoose=false,siteTilesSubtype=false,siteTilesFixture=false,mineTilesFixture=false,fortlessFixture=false,replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -41,6 +41,7 @@ for o in objects:
  if o['instanceName']=='goonkHero':
   o['options'].update({'type':'core:christian','experience':0,'army':[{'type':'core:archangel','amount':10}],'artifacts':{'spellbook':'core:spellBook'}})
   if opts['heroOnMine']:o.update({'x':13,'y':11})
+  if opts['creatureCostFixture']:o['options']['army']=[{'type':'core:pikeman','amount':10}]
   if opts['reroll']=='university': o['options']['secondarySkills']={'core:wisdom':'basic',**({'core:airMagic':'basic'} if opts['universityTwo'] else {})}
   if opts['reroll']=='hut-rng': o['options']['secondarySkills']={'core:armorer':'basic'}
   if opts['plainsFight']:o['options'].update({'primarySkills':{'attack':0,'defence':0,'spellpower':1,'knowledge':10},'secondarySkills':{'core:leadership':'basic'},'spellBook':['core:bless','core:bloodlust','core:haste','core:slow']})
@@ -242,7 +243,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({incomeAiFixture,incomeAiGoose,incomeFixture,incomeGoose,siteTilesSubtype,siteTilesFixture,mineTilesFixture,fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({creatureCostFixture,incomeAiFixture,incomeAiGoose,incomeFixture,incomeGoose,siteTilesSubtype,siteTilesFixture,mineTilesFixture,fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
 async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null,preserveAiFortsChoice=null,fortlessConfigured=false,preserveAiFortsConfigured=false,displayMithrilChoice=null,resourceMithrilChoice=null,nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
@@ -276,13 +277,13 @@ async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null
  const creatureRules=options.creatureRuleFixture?{actor:options.ruleActor||'core:goblin',ai:!!options.ruleAiFight,grantedFlight:!!options.ruleGrantedFlight,excludedFlyer:!!options.ruleExcludedFlyer}:null;
  const moddables=options.changingMine?structuredClone(testModdables):null;
  if(moddables)moddables.mine.types.crystalCavern.defaultQuantity=123;
- await page.addInitScript(({incomeAiFixture,fortlessConfigured,preserveAiFortsConfigured,reviewLanguage,nativeSeed,enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
+ await page.addInitScript(({creatureCostFixture,incomeAiFixture,fortlessConfigured,preserveAiFortsConfigured,reviewLanguage,nativeSeed,enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture,extraDwellingFixture,extraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
    module=value;let callMain;
    Object.defineProperty(value,'callMain',{configurable:true,set:fn=>{callMain=fn;},get:()=>function(...args){
-    if(nativeSeed||reviewLanguage||incomeAiFixture){const dir='/home/web_user/.config/vcmi';value.FS.mkdirTree(dir);value.FS.writeFile(dir+'/settings.json',JSON.stringify({...nativeSeed?{server:{seed:nativeSeed}}:{},...reviewLanguage?{general:{language:reviewLanguage==='fr'?'french':'english'}}:{},...incomeAiFixture?{ai:{adventureEnemyAI:'EmptyAI',adventureAlliedAI:'EmptyAI'}}:{}}));}
+    if(nativeSeed||reviewLanguage||incomeAiFixture||creatureCostFixture){const dir='/home/web_user/.config/vcmi';value.FS.mkdirTree(dir);value.FS.writeFile(dir+'/settings.json',JSON.stringify({...nativeSeed?{server:{seed:nativeSeed}}:{},...reviewLanguage?{general:{language:reviewLanguage==='fr'?'french':'english'}}:{},...(incomeAiFixture||creatureCostFixture)?{ai:{adventureEnemyAI:'EmptyAI',adventureAlliedAI:'EmptyAI'}}:{}}));}
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.mithrilEnhancements=enabled;
@@ -295,6 +296,10 @@ async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null
     if(extraDwellingFixture){value.FS.writeFile('/config/objects/dwellings.json',JSON.stringify(extraDwellingDefinitions));}
     const directory='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config';
     value.FS.mkdirTree(directory);value.FS.writeFile(directory+'/wog-map-rules.json',JSON.stringify({mapRules:{111:groundedFliersConfigured,112:invertedSpeedsConfigured,114:dailyPlains,115:allDoubleAttack,128:allBreath,121:doubleMovement,122:weeklyMines,124:multipleCapitols,130:grailsConfigured,123:monthlyConfigured,117:extraDwellingsConfigured,131:fortlessConfigured,sourceOptions:{67:neutralTown,144:preserveAiFortsConfigured}}}));
+    if(creatureCostFixture){
+     manifest.creatures??=[];manifest.creatures.push('config/source-cost-alias-test.json');
+     value.FS.writeFile(directory+'/source-cost-alias-test.json',JSON.stringify({'core:pikeman':{fightValue:creatureCostFixture.fightValue,cost:{wood:1,mercury:2,ore:3,sulfur:4,crystal:5,gems:6,gold:127,'wake-of-gods.mithril:mithril':37}}}));
+    }
     if(dwellingLevelFixture){manifest.creatures??=[];manifest.creatures.push('config/mithril-dwelling-levels-test.json');value.FS.writeFile(directory+'/mithril-dwelling-levels-test.json',JSON.stringify({'core:vampireLord':{upgrades:['core:ogreMage']}}));}
     if(creatureRules){
      manifest.settings.modules.commanders=false;
@@ -321,7 +326,7 @@ async function boot({incomeAiPercent=null,incomePercent=null,fortlessChoice=null
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{incomeAiFixture:!!options.incomeAiFixture,fortlessConfigured,preserveAiFortsConfigured,reviewLanguage:process.env.MITHRIL_DISPLAY_LANGUAGE,nativeSeed,enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture:!!options.dwellingLevelFixture,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
+ },{creatureCostFixture:options.creatureCostFixture??null,incomeAiFixture:!!options.incomeAiFixture,fortlessConfigured,preserveAiFortsConfigured,reviewLanguage:process.env.MITHRIL_DISPLAY_LANGUAGE,nativeSeed,enabled,henchmen,difficulty,markets,shrines,huts,moddables,weeklyMines,dailyPlains,multipleCapitols,doubleMovement,allDoubleAttack,allBreath,grailsConfigured,monthlyConfigured,extraDwellingsConfigured,groundedFliersConfigured,invertedSpeedsConfigured,neutralTown,dwellingLevelFixture:!!options.dwellingLevelFixture,extraDwellingFixture:!!options.extraDwellingFixture,extraDwellingDefinitions:testExtraDwellingDefinitions,creatureRules,translations,cleanManifest,scriptProgram});
  await page.goto(origin+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||window.goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -502,7 +507,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
- if(process.env.CASES==='income-ai'){
+ if(process.env.CASES?.startsWith('creature-cost-alias')){
+  const {runCreatureCostAlias}=await import('./wog-creature-cost-alias-cases.mjs');
+  await runCreatureCostAlias({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }else if(process.env.CASES==='income-ai'){
   const {runIncomeAi}=await import('./wog-income-ai-cases.mjs');
   await runIncomeAi({boot,state,command,wait,page:()=>page,report,output});
  }else if(process.env.CASES?.startsWith('income-order')){

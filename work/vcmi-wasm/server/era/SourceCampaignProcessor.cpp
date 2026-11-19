@@ -1302,9 +1302,16 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    require(args[0].access==Access::Read&&args[1].access==Access::Read,"source creature cost needs fixed indices");require(number(args[0])>=0,"negative source creature cost index");
    require(query(op),"source creature cost writes are not admitted");
    const auto selected=creature(number(args[0]));const int resource=number(args[1]);require(resource>=0&&resource<=7,"source creature cost resource outside0..7");
-   GameResID mapped(resource);
-   if(resource==7){const auto id=LIBRARY->identifiers()->getIdentifier(ModScope::scopeGame(),"resource","wake-of-gods.mithril:mithril",true);require(id.has_value(),"source mithril unavailable");mapped=GameResID(*id);}
-   value(selected.toCreature()->getRecruitCost(mapped),args[2]);return Step::Continue;
+   // Original MA:C indexes seven resource words; index7 aliases the next
+   // signed word (MA:F / FightValue), independently of native Mithril costs.
+   value(resource==7?selected.toCreature()->getFightValue():selected.toCreature()->getRecruitCost(GameResID(resource)),args[2]);return Step::Continue;
+  }
+  if(op.code=="F")
+  {
+   require(c.selectors.empty(),"source creature fight value takes no selector");arity(op,2);
+   require(args[0].access==Access::Read&&number(args[0])>=0,"source creature fight value needs a fixed identity");
+   require(query(op),"source creature fight value writes are not admitted");
+   value(creature(number(args[0])).toCreature()->getFightValue(),args[1]);return Step::Continue;
   }
   require(c.selectors.empty()&&op.code.size()==1,"source creature attribute takes no selector");arity(op,2);
   require(args[0].access==Access::Read&&number(args[0])>=0,"source creature attribute needs a nonnegative creature value");

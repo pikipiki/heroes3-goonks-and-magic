@@ -10,15 +10,15 @@
     "work/vcmi-wasm/lib/era/EraTileNumberRules.h": "79053fd607147d192ce5a1e2ba06ea41889a55086ce687992699b3f188e043ee",
     "work/vcmi-wasm/lib/era/EraTileProperties.h": "50e31d4d3a1ea033231478f53667b1c79cbc5853d26cd7835883c417c79a35c3",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ae18dc97c3f3312283d74fb3e8decf9c918d8c71c6b4421c5f2ac27f27efc63d",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "work/browser-tests/wog-era-tile-properties-cases.mjs": "1b3a76ffcb770eba75cc14bd525fff705a94be860c950401502a2f0079aa2b81",
     "tests/native/EraTileNumberRules.test.cpp": "5b14ab4b6a5e908cdf4f667e7fdff4a17fd97c35e7bb3643bdbcfd1689bfdf2f",
     "tests/era-tile-number-rules-native.test.mjs": "cf6b666e8fbb041e0d8488a9bea36d6ade1b6c865637a7f8580d9f4aaefc8b64",
     "tests/era-tile-properties.test.mjs": "f0cfe93733cfa128e0dc06d8d427b08cf967675e028d47bd158c524f71a1c9df",
     "tests/fixtures/era-gameplay/tile-number-reference.json": "0833ade475618f9ffa7cca3ed4e36b061be498aaf661e2a3d6bf2d7a3dec6c60",
-    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913"
+    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01"
   },
   "programSha256": "40444b7ec71ede2303bec0df2a65ca5314232858fb268e386406ac3c68e82832",
   "programFileSha256": "fbb817e10fd9a88266552d40d61ed960c06a1a37c681a50539aa9b6cc2cd7785",
@@ -363,5 +363,15 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creatureCostAliasRevalidation": {
+    "scope": "Historical reports retained; read-only C7/F mapping, signed words, continuation compatibility and selected current regressions separately validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56"
+    },
+    "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
   }
 }

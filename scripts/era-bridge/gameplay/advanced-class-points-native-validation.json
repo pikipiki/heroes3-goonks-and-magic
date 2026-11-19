@@ -15,7 +15,7 @@
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
@@ -539,5 +539,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creatureCostAliasRevalidation": {
+    "scope": "Historical reports retained; read-only C7/F mapping, signed words, continuation compatibility and selected current regressions separately validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56"
+    },
+    "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
   }
 }

@@ -15,7 +15,7 @@
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
-    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913"
+    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -335,5 +335,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creatureCostAliasRevalidation": {
+    "scope": "Historical reports retained; read-only C7/F mapping, signed words, continuation compatibility and selected current regressions separately validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913"
+    },
+    "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
   }
 }

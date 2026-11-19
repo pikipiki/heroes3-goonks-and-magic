@@ -20,10 +20,10 @@
     "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ae18dc97c3f3312283d74fb3e8decf9c918d8c71c6b4421c5f2ac27f27efc63d",
     "tests/native/Era3QuickVars.test.cpp": "e82f6b920e1a6186019341538543a46f79bee57914c988dd74ffbca330832d11",
     "tests/native/Era3QuickVarsCodec.test.cpp": "8fa869aa21d30396674dfe6cb5aa2d1a2908e89d7345e7e68ecc9404862a0058",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "6cd298637d11de76766bee0d7243982862ee84d6658f504e00ea989cb9f957b5",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ec69e58bf98ee6d3fad33bcb0318b910c9645595832e7f728db3764203a2de89",
     "work/browser-tests/wog-era3-quick-scope-cases.mjs": "41e00e1c172fec7552e9449f2c45176df6a94210804318921b1d8a04376099fa",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
@@ -698,5 +698,14 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
+  },
+  "creatureCostAliasRevalidation": {
+    "scope": "Historical reports retained; read-only C7/F mapping, signed words, continuation compatibility and selected current regressions separately validated.",
+    "proof": "scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "6cd298637d11de76766bee0d7243982862ee84d6658f504e00ea989cb9f957b5",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f"
+    },
+    "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
   }
 }

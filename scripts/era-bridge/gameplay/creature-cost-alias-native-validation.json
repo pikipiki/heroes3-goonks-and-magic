@@ -1,0 +1,478 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "applicationVersion": "0.4.286",
+  "scope": "Read-only MA:C resources0..6, MA:C7 alias of signed MA:F FightValue, independent native Mithril cost, pending/completed continuations, legacy931 input and older-reader rejection. Cost/F writes and actual price mutation remain unadmitted.",
+  "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+  "sourceBaseCommit": "7540a6b6a6637557dc55aa48bdf9291a94a0fc27",
+  "sourceBindings": {
+    "docs/era-compatibility.md": "f98dbbe651e73787c8454b1c7c58bc7b5c5f631785bd10729b49dc64ad7915bc",
+    "docs/era-gameplay-port.md": "7090035e9f583d9988abdf2d50ec618d43f73fd210c25a357a067d55c6e11b01",
+    "tests/era-creature-cost-alias.test.mjs": "4414b0611780703cc6cfa495b3b58d7fcce439319de7f1a2ff0b98eb68594044",
+    "tests/fixtures/era-gameplay/creature-cost-alias-reference.json": "f0f00b25b86a4f599962f5ffe7652acd2f57fd5b7017d145a1452d5fb857856e",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ec69e58bf98ee6d3fad33bcb0318b910c9645595832e7f728db3764203a2de89",
+    "work/browser-tests/wog-creature-cost-alias-cases.mjs": "94e0e175230f7863bc325ad0c857322b1d6b89b3e90ba66080511787fb891519",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8e8fb608e913f456b4a977343afd565dad2d0e6939a1a533145e61b6c6c6ad24",
+    "work/browser-tests/wog-mithril-income-order-cases.mjs": "17919ab2555aa1e25297783c245f90b0e7ab64bb29887272184a601b56a97039",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ae18dc97c3f3312283d74fb3e8decf9c918d8c71c6b4421c5f2ac27f27efc63d",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/creature-cost-alias-reference.json",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "finalTargets": 38,
+    "logSha256": "9b01290dd57434c289df906dd4e98ab0140ba4675a0a69ca4dc8c41a5c713bca",
+    "initialLogSha256": "90829023d48dabd87d068e6dff7acb870df48a2be0aa93ff3b7ea8b4da1a7524",
+    "warMachinesAdmitted": false
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3021,
+    "mismatches": [],
+    "expectedManifestSha256": "ff7e2b76cf1fb1ab168aab0c51d43b399eda0fb29d4c30f4a9ebcd2fb03de5fc"
+  },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "scope": "Historical25-choice boundaries including explicit931 and current932.",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "reports": {
+    "matrix": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "scenarios": [
+        {
+          "name": "zero",
+          "fightValue": 0,
+          "signedFightValue": 0,
+          "sourceC7": 0,
+          "sourceF": 0,
+          "sourceResourceCosts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            127
+          ],
+          "independentNativeFightValue": 0,
+          "independentNativeMithrilCost": 37,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "legacyInput": null,
+          "legacyStoredQueryPreserved": false,
+          "historicalEngineControl": false,
+          "saveVersion": 932,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "positive",
+          "fightValue": 123456,
+          "signedFightValue": 123456,
+          "sourceC7": 123456,
+          "sourceF": 123456,
+          "sourceResourceCosts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            127
+          ],
+          "independentNativeFightValue": 123456,
+          "independentNativeMithrilCost": 37,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "legacyInput": null,
+          "legacyStoredQueryPreserved": false,
+          "historicalEngineControl": false,
+          "saveVersion": 932,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "sign-bit",
+          "fightValue": 2147483648,
+          "signedFightValue": -2147483648,
+          "sourceC7": -2147483648,
+          "sourceF": -2147483648,
+          "sourceResourceCosts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            127
+          ],
+          "independentNativeFightValue": -2147483648,
+          "independentNativeMithrilCost": 37,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "legacyInput": null,
+          "legacyStoredQueryPreserved": false,
+          "historicalEngineControl": false,
+          "saveVersion": 932,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        },
+        {
+          "name": "all-bits",
+          "fightValue": 4294967295,
+          "signedFightValue": -1,
+          "sourceC7": -1,
+          "sourceF": -1,
+          "sourceResourceCosts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            127
+          ],
+          "independentNativeFightValue": -1,
+          "independentNativeMithrilCost": 37,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "legacyInput": null,
+          "legacyStoredQueryPreserved": false,
+          "historicalEngineControl": false,
+          "saveVersion": 932,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "64efc23fb2fe697f864cf1eb80daa898f3f9fc332c7827ae9ca32837ea089ad8"
+    },
+    "portrait": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "scenarios": [
+        {
+          "name": "positive",
+          "fightValue": 123456,
+          "signedFightValue": 123456,
+          "sourceC7": 123456,
+          "sourceF": 123456,
+          "sourceResourceCosts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            127
+          ],
+          "independentNativeFightValue": 123456,
+          "independentNativeMithrilCost": 37,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "legacyInput": null,
+          "legacyStoredQueryPreserved": false,
+          "historicalEngineControl": false,
+          "saveVersion": 932,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "151996e7a823e2d58912274ba050177653f42b29296e965df01c4734c29e49af"
+    },
+    "desktop": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "completeRules": false,
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "scenarios": [
+        {
+          "name": "sign-bit",
+          "fightValue": 2147483648,
+          "signedFightValue": -2147483648,
+          "sourceC7": -2147483648,
+          "sourceF": -2147483648,
+          "sourceResourceCosts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            127
+          ],
+          "independentNativeFightValue": -2147483648,
+          "independentNativeMithrilCost": 37,
+          "pendingNativeSaveReload": true,
+          "completedNativeSaveReload": true,
+          "legacyInput": null,
+          "legacyStoredQueryPreserved": false,
+          "historicalEngineControl": false,
+          "saveVersion": 932,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse"
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "ecf22d50c9b0376a3fdbe180e3199b0fb6c2f375759092804e67d12f6975ff0f"
+    }
+  },
+  "historicalNativeControl": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3",
+    "scenarios": [
+      {
+        "name": "positive",
+        "fightValue": 123456,
+        "signedFightValue": 123456,
+        "sourceC7": 37,
+        "sourceF": null,
+        "sourceResourceCosts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          127
+        ],
+        "independentNativeFightValue": 123456,
+        "independentNativeMithrilCost": 37,
+        "pendingNativeSaveReload": true,
+        "completedNativeSaveReload": true,
+        "legacyInput": null,
+        "legacyStoredQueryPreserved": false,
+        "historicalEngineControl": true,
+        "saveVersion": 931,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "6f7ee2d9626e1e75a8a0a6a1b9480191432095711442e45125cb89bc97ea324c"
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+    "scenarios": [
+      {
+        "name": "positive",
+        "fightValue": 123456,
+        "signedFightValue": 123456,
+        "sourceC7": 123456,
+        "sourceF": null,
+        "sourceResourceCosts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          127
+        ],
+        "independentNativeFightValue": 123456,
+        "independentNativeMithrilCost": 37,
+        "pendingNativeSaveReload": true,
+        "completedNativeSaveReload": true,
+        "legacyInput": 931,
+        "legacyStoredQueryPreserved": true,
+        "historicalEngineControl": false,
+        "saveVersion": 932,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "e952aca82eb7126d551bdc1453086aa4ee16e60fadb1b15d465eba8652819645"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 932,
+        "readerVersion": 931,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "b9ea95f76350fc141669577d64e333b2500c045250bb2ceb54cc2af7242b078a"
+  },
+  "regressions": {
+    "advanced-core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "errors": [],
+      "rawReportSha256": "22f710cbfec1670217d7468d8c3beee8857821e2b9fef407944bc80854f418f9",
+      "scenarioCount": 4
+    },
+    "signed-hero-experience": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "errors": [],
+      "rawReportSha256": "7dc7f7db205178d12c032a208180919f213e75d33fbe795f10c99c31e140bdf0",
+      "scenarioCount": 4
+    },
+    "tile-properties": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "errors": [],
+      "rawReportSha256": "9a7a69adc43ad5184a916dc4c0eef605e439da7a3aac6eaf79fcdf93e37573c8",
+      "scenarioCount": 1
+    },
+    "income": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "errors": [],
+      "rawReportSha256": "c3a880bf606705b85ded4a9dbfd5c4e0bca8148f511c1319cf6bc10be8f90d0a",
+      "scenarioCount": 2
+    }
+  },
+  "serialization": {
+    "previousSaveVersion": 931,
+    "saveVersion": 932,
+    "choiceCount": 25,
+    "newSerializedCppFields": false,
+    "newJsonSystem": false,
+    "guardReason": "Older runtimes do not admit MA:F query continuations; reject before interpretation."
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.286-engine.tar.gz",
+    "sha256": "6384e34125d06da8285ab5286ca34a84029c205485b075cbb1c1a8775d9b2386",
+    "runtimeFiles": [
+      {
+        "file": "html5/dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6",
+        "equal": true
+      },
+      {
+        "file": "html5/dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42",
+        "equal": true
+      },
+      {
+        "file": "html5/game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425",
+        "equal": true
+      },
+      {
+        "file": "html5/mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6",
+        "equal": true
+      },
+      {
+        "file": "html5/opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7",
+        "equal": true
+      },
+      {
+        "file": "html5/vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc",
+        "equal": true
+      },
+      {
+        "file": "html5/vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1",
+        "equal": true
+      },
+      {
+        "file": "html5/vcmiclient.js",
+        "sha256": "b3b45248be32e549a38c9cc7d5a6e483079826512bf03be44f86cdce883c1177",
+        "equal": true
+      },
+      {
+        "file": "html5/vcmiclient.js.symbols",
+        "sha256": "a02e616f5adc8214b90d3cda3a5d2260c6474b83f6ce9a594b35cabd74c6b913",
+        "equal": true
+      },
+      {
+        "file": "html5/vcmiclient.wasm",
+        "sha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+        "equal": true
+      }
+    ]
+  },
+  "previousRelease": {
+    "version": "0.4.285",
+    "commit": "7540a6b6a6637557dc55aa48bdf9291a94a0fc27",
+    "pages": "https://github.com/pikipiki/heroes3-goonks-and-magic/actions/runs/44458009836",
+    "pagesConclusion": "success"
+  },
+  "remaining": [
+    "MA:C and MA:F writes, mutable per-game prices, complete recruitment and upgrade consumers and rule113 remain unadmitted.",
+    "Static original evidence establishes the identified executable/Amethyst layout; arbitrary later hooks, load order and original runtime behavior are not attested.",
+    "Full WoG catalogue, Mithril lifecycle and Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted."
+  ],
+  "validation": {
+    "node": {
+      "tests": 958,
+      "passed": 902,
+      "skipped": 56,
+      "failed": 0,
+      "logSha256": "c3226f523a0aeff3dec10ca1215161bbcea399365ffe5b7a1099bd086359fe7e"
+    },
+    "freshTum": {
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "logSha256": "123001042d7aac00247d154fbf91386251f35f307f47f2701cea3857c060e91e"
+    },
+    "site": {
+      "verified": true,
+      "nativeFiles": 10464,
+      "transportBytes": 702299043,
+      "engineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b",
+      "prepareLogSha256": "7491aac082a660cbf3cdb7b26310ff204ec5e2f05c1085f5d32442fe4eef5b88",
+      "buildLogSha256": "689a9b4939501c7dcc68aa1258519a1f8ac58101c0f3ceb5626a67a840ac0f29",
+      "verifyLogSha256": "43f835cbb062fd9546bad96b2b3d48f93db4e013ab0e294236a0da611d08d15c"
+    }
+  }
+}

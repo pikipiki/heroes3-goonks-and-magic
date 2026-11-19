@@ -68,6 +68,15 @@ Référence : `scripts/era-bridge/gameplay/mithril-income-native-validation.json
 Les hooks de revenu complets, les semaines de ressources et les interactions
 entre profils restent à rapprocher ; le mithril complet n'est pas encore admis.
 
+Les lectures de coûts `MA:C` respectent les sept ressources source 0..6.
+L'indice 7 lit le même mot signé que `MA:F` (`FightValue`) ; le coût natif en
+mithril reste une donnée distincte. Les contrôles confrontent ces lectures aux
+statistiques natives indépendantes, jusqu’à 0x80000000 et 0xffffffff, en portrait
+français et à la souris. Les sauvegardes 932 protègent les anciens lecteurs ;
+les valeurs déjà lues d'une sauvegarde 931 sont conservées. Les écritures et
+la mutation des prix de recrutement restent à porter.
+Référence : `scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json`.
+
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle
 d'admission distingue les sources disponibles des preuves de fonctionnement

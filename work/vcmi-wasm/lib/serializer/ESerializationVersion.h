@@ -99,9 +99,10 @@ enum class ESerializationVersion : int32_t
 	GOONK_WOG_DOUBLE_ARTIFACTS, // source119 pickup, tile marks and twenty-five choices
 	GOONK_MITHRIL_MINE_TILES, // source42/77 mine upgrades share PO:N and migrate older saves
 	GOONK_MITHRIL_SITE_TILES, // source42 mill and university upgrades share PO:N
+	GOONK_ERA_CREATURE_COST_ALIAS, // original MA:C7 / MA:F fight-value queries
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_MITHRIL_SITE_TILES,
+	CURRENT = GOONK_ERA_CREATURE_COST_ALIAS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");
