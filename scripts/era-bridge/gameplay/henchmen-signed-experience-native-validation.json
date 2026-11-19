@@ -8,7 +8,7 @@
   "engineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "servedEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
+    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
     "scripts/era-bridge/gameplay/henchmen-math-binary-validation.json": "2bf30d28cf5c688e4215910013361dc0756006f54568c453771c96110a609b89",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
     "scripts/era-bridge/gameplay/math-source.json": "6a136d022eebeb315d861905371e6531c988d3e2bb3ac28656b34b6460973117",
@@ -18,7 +18,7 @@
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.js": "90465b0fd12c96281e352dc0e8d827b683b311b0544584795faeadd67a5d23cc",
     "tests/fixtures/era-gameplay/henchmen-math/wasm-model.wasm": "e4e646a6b9b7996bf8ed95d15a2396c2fc432c93d93388c76a6ccde430467121",
     "tests/native/EraHenchmanRules.test.cpp": "457f76e0d348bfe88a83bbf54ca30b9dbf5d79c68b80a5cd4dc43cd737f73dc6",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
     "work/vcmi-wasm/lib/era/EraHenchmanRules.h": "e4616e788b8a0e8cc73c3125b5d34c90ca86c90995b4116f63d04e1864bf42c9",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
     "tests/fixtures/era-gameplay/henchmen-math/loaded-era-observations.json": "ed77b1ed4c7b07c5101f35289ec2cef8635f95d3c57c84dcbebe37ace0c4c817",
@@ -462,5 +462,14 @@
       "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "doubleArtifactsRevalidation": {
+    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
+    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26"
+    },
+    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
   }
 }

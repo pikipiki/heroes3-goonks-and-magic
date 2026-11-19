@@ -1,0 +1,1270 @@
+{
+  "schema": 1,
+  "activation": false,
+  "completeRules": false,
+  "profilesAdmitted": false,
+  "scope": "Source77 rule119: initial artifact tile marking, owner/guard/direct-record conditions, source64-slot bonus placement and post-visit cleanup after successful or failed primary placement. Native baseline primary placement/capacity is retained. Separate shared per-game radio choice, save compatibility and AI turns.",
+  "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+  "sourceBaseCommit": "28c844896e88d9fd54d2332b87bf2e702d070a7e",
+  "sourceBindings": {
+    "docs/era-compatibility.md": "cbbaaa77da38400a79f55ea7d93b6fec3c614ba7a2aea0d9420259733054d5fa",
+    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
+    "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
+    "scripts/era-bridge/gameplay/map-rules.json": "52f96c6519503b12c2d03660ec863fe7d681ee490bb926a76a53469bc779d28a",
+    "tests/era-map-double-artifact-rules-native.test.mjs": "71ee0e901736f71bb8d8ecc402912934c7be9361e85517599fbb51fda4d70438",
+    "tests/era-map-double-artifacts.test.mjs": "463dba84f47f2a2ee1390599bc527c017547ce6bbbffab0c4e65b2854439ecb2",
+    "tests/fixtures/era-gameplay/map-double-artifacts-reference.json": "2e8f1e481cdb813fae1bf78251f112fd7699d54fd878fd4d7f8fb988c8143292",
+    "tests/native/EraMapDoubleArtifactRules.test.cpp": "69fa827354f9779d3a3a1dd6ee9e297d4ca846a0646f8b611a275b9b3e245cb2",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
+    "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+    "work/browser-tests/wog-map-double-artifacts-ai-cases.mjs": "209144880506de9ceeb19122da87c04bfff8ea7da62e4a0259d95b8ee4c97962",
+    "work/browser-tests/wog-map-double-artifacts-cases.mjs": "6155c90ce2607493bc91ad7dcb776b9b4912565f50df4c6b1d591a5d7dda140e",
+    "work/browser-tests/wog-map-double-artifacts-compatibility-cases.mjs": "c04062102bff2d58b6c5f1b72434ae12a3e29e966a79a50f163bb94d6a5046da",
+    "work/browser-tests/wog-map-double-artifacts-failed-primary-cases.mjs": "03a4d96302d3c6cb1466f721d68858c011125c70919d3740d656f06930b992cf",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
+    "work/vcmi-wasm/lib/era/EraDirectArtifactCount.h": "53c29f3e35476aeaa280e20c9439a50bc3be059da9e418cc548e462f3ed20706",
+    "work/vcmi-wasm/lib/era/EraMapDoubleArtifactRules.h": "59f07afcc72e536c21d80226e85b47ee958ab01583abb9ad2b86c396b3f1bd5d",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
+    "work/vcmi-wasm/lib/mapObjects/MiscObjects.cpp": "d2d565b6748eed05c29b8484a662d4ea6dfa806ea283a802c673d5b729086e4f",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "53f63e9a296cdf7e08eadf364b85df3ecb41f16d506bd7bf884b0172b91e9a21",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b"
+  },
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "finalNinjaTargets": 5,
+    "initialNinjaTargets": 109,
+    "logSha256": "e29a0dfbdcd37e0c02d23807d03cec5f9d932d5a59a6b59b6fddc9b7dcb64889",
+    "initialLogSha256": "32d386e8872fa7befb22eb2b7f783c219733f2738502109598c3eff3013fbb69",
+    "warMachinesAdmitted": false
+  },
+  "linuxSanitizers": {
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "tests": [
+      {
+        "name": "rule",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "options",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3016,
+    "mismatches": [],
+    "expectedManifestSha256": "078eb01f84bb2042adf1c1cb8758f49940e9137d18f7f90eeece7e57bac22cfc"
+  },
+  "upstreamReference": "tests/fixtures/era-gameplay/map-double-artifacts-reference.json",
+  "reports": {
+    "touchLandscape": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "scenarios": [
+        {
+          "name": "first-copy",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+            "You find an additional Centaurs Axe."
+          ]
+        },
+        {
+          "name": "forced-off",
+          "active": false,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 15,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "inherited-on",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+            "You find an additional Centaurs Axe."
+          ]
+        },
+        {
+          "name": "inherited-off",
+          "active": false,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 0,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "existing-backpack",
+          "active": true,
+          "before": [
+            1,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "existing-equipped",
+          "active": true,
+          "before": [
+            1,
+            1
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "two-existing",
+          "active": true,
+          "before": [
+            2,
+            1
+          ],
+          "after": [
+            3,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "equipped-combination",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            0
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "While pausing to rest, you notice a bobcat climbing a short tree to get at a crow's nest.  On impulse, you climb the tree yourself and scare off the cat.  When you look in the nest, you find a collection of shiny stones and a ring.",
+            "You find an additional Ring of Life."
+          ]
+        },
+        {
+          "name": "backpack-combination",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "While pausing to rest, you notice a bobcat climbing a short tree to get at a crow's nest.  On impulse, you climb the tree yourself and scare off the cat.  When you look in the nest, you find a collection of shiny stones and a ring.",
+            "You find an additional Ring of Life."
+          ]
+        },
+        {
+          "name": "full-backpack",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+            "You cannot carry an additional Centaurs Axe."
+          ]
+        },
+        {
+          "name": "zero-marker",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 0,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "custom-marker",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 7,
+          "markerAfter": 7,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+            "You find an additional Centaurs Axe."
+          ]
+        },
+        {
+          "name": "guard-decline-and-win",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": true,
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "input": "touch",
+          "messages": [
+            "{Artifact}\n\nThrough a clearing you observe an ancient artifact.  Unfortunately, it's guarded by  several Goblins.  Do you want to fight the creatures for the artifact?",
+            "You find an additional Centaurs Axe."
+          ]
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "fca50084d3ea7b73ac50d5e883acbe3fc4d4ccb540f05f52380abea54a0584ea"
+    },
+    "touchPortrait": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "scenarios": [
+        {
+          "name": "first-copy",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "messages": [
+            "Vous apercevez une lourde hache plantée dans le sol. Après que tous les membres de votre armée aient essayé de l'extraire, vous agrippez fermement le manche de la hache et vous la récupérez sans effort.",
+            "Vous trouvez un exemplaire supplémentaire de Hache du Centaure."
+          ]
+        },
+        {
+          "name": "forced-off",
+          "active": false,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 15,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "messages": [
+            "Vous apercevez une lourde hache plantée dans le sol. Après que tous les membres de votre armée aient essayé de l'extraire, vous agrippez fermement le manche de la hache et vous la récupérez sans effort."
+          ]
+        },
+        {
+          "name": "equipped-combination",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            0
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "messages": [
+            "Au cours d'une pause, vous remarquez un lynx en train de grimper à un arbre pour atteindre le nid d'une pie. Vous vous précipitez pour effrayer le félin. Lorsque vous regardez dans le nid, vous découvrez une collection de pierres brillantes et une bague.",
+            "Vous trouvez un exemplaire supplémentaire de Anneau de Vie."
+          ]
+        },
+        {
+          "name": "full-backpack",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "messages": [
+            "Vous apercevez une lourde hache plantée dans le sol. Après que tous les membres de votre armée aient essayé de l'extraire, vous agrippez fermement le manche de la hache et vous la récupérez sans effort.",
+            "Vous ne pouvez pas emporter un exemplaire supplémentaire de Hache du Centaure."
+          ]
+        },
+        {
+          "name": "guard-decline-and-win",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "input": "touch",
+          "messages": [
+            "{Objet magique}\n\nA quelques distances, vous discernez un objet magique ancien. Malheureusement il est gardé par  plusieurs Gobelins. Souhaitez-vous combattre les créatures afin de récupérer l'objet ?",
+            "Vous trouvez un exemplaire supplémentaire de Hache du Centaure."
+          ]
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "8a2283de65f021cff915c54f509e6130c0690869d55cd804ae19b77fd6db26e1"
+    },
+    "desktopMouse": {
+      "passed": true,
+      "scope": "native-core-only",
+      "completeRules": false,
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "scenarios": [
+        {
+          "name": "first-copy",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+            "You find an additional Centaurs Axe."
+          ]
+        },
+        {
+          "name": "forced-off",
+          "active": false,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 15,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free."
+          ]
+        },
+        {
+          "name": "equipped-combination",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            0
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "messages": [
+            "While pausing to rest, you notice a bobcat climbing a short tree to get at a crow's nest.  On impulse, you climb the tree yourself and scare off the cat.  When you look in the nest, you find a collection of shiny stones and a ring.",
+            "You find an additional Ring of Life."
+          ]
+        },
+        {
+          "name": "full-backpack",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            1,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": false,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "messages": [
+            "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+            "You cannot carry an additional Centaurs Axe."
+          ]
+        },
+        {
+          "name": "guard-decline-and-win",
+          "active": true,
+          "before": [
+            0,
+            0
+          ],
+          "after": [
+            2,
+            1
+          ],
+          "markerBefore": 15,
+          "markerAfter": 0,
+          "nativePostVisitWitness": true,
+          "pendingNativeSaveReload": true,
+          "frozenChoiceAfterGlobalReversal": true,
+          "independentInventoryCheck": true,
+          "guardDeclinePreserved": true,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "input": "mouse",
+          "messages": [
+            "{Artifact}\n\nThrough a clearing you observe an ancient artifact.  Unfortunately, it's guarded by  several Goblins.  Do you want to fight the creatures for the artifact?",
+            "You find an additional Centaurs Axe."
+          ]
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "97ddd3d63306ec7bc6bcd93b674dac8fea911a9c2c62082ca7a1bc91b3281ae7"
+    }
+  },
+  "failedPrimary": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+    "scenarios": [
+      {
+        "kind": "failed-primary-artifact",
+        "privateBackpackCapacity": 64,
+        "occupiedWeaponSlot": true,
+        "first": {
+          "marker": 0,
+          "copies": 0,
+          "groundObjects": 1
+        },
+        "retry": {
+          "marker": 0,
+          "copies": 1,
+          "groundObjects": 0
+        },
+        "pendingNativeSaveReload": true,
+        "independentInventoryCheck": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "7142586e5eaff63e7d99458b862fd4920ddce2b97b4353dcfa63b714af176cad"
+  },
+  "ai": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+    "scenarios": [
+      {
+        "kind": "AI-artifact-pickup",
+        "active": true,
+        "copies": 2,
+        "markerAfter": 0,
+        "actualAIAdventureTurn": true,
+        "ownerTransferredForInspection": true,
+        "pendingNativeSaveReload": true,
+        "globalReversalPreserved": true
+      },
+      {
+        "kind": "AI-artifact-pickup",
+        "active": false,
+        "copies": 1,
+        "markerAfter": 0,
+        "actualAIAdventureTurn": true,
+        "ownerTransferredForInspection": true,
+        "pendingNativeSaveReload": true,
+        "globalReversalPreserved": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "c005b3ef1d701c744b549ea8a51348d01bc1f4c18e6e4f4d833a08b6aa06774c"
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+    "scenarios": [
+      {
+        "kind": "double-artifact-legacy-producer",
+        "saveVersion": 928,
+        "pendingBeforeFutureOptionRead": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "03c908b7f61e907fec0ccd59f0e7f96c11636ecf6b579c90214f15284e3344e9"
+  },
+  "legacyConsumer": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+    "scenarios": [
+      {
+        "kind": "double-artifact-legacy-consumer",
+        "inputVersion": 928,
+        "saveVersion": 929,
+        "noRetroactiveDoublePickup": true,
+        "noRetroactiveMarking": true,
+        "globalEnableIgnored": true,
+        "pendingAndPostNativeSaveReload": true,
+        "physicalCopies": 1
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "a8a878213e726b7b810499116a24fcca8f57645fc6e7aac4b764e3dc8ee80510"
+  },
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 929,
+        "readerVersion": 928,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "707c95c7540c82c28a2d446096be9cd1427b0d0392f4ca9f8f0eeedd5bc7095c"
+  },
+  "radio": {
+    "passed": true,
+    "cases": [
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "chromium",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "fr",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "geometry": {
+          "w": 90,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 430,
+          "height": 932
+        },
+        "geometry": {
+          "w": 126.671875,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 568,
+          "height": 280
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      },
+      {
+        "kind": "webkit",
+        "language": "en",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "geometry": {
+          "w": 162,
+          "h": 48,
+          "radius": "0px"
+        },
+        "singleActivation": true,
+        "legacySixteenChoices": true,
+        "loadingAndDisabled": true,
+        "longLabelsFit": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "9b849a010afe6dab01f712a56b95c19ce26afd7f8e258a1b52609f04c1f45f33"
+  },
+  "regressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "errors": [],
+      "rawReportSha256": "0473c6166ab05b3984382d02031fbc86842daf37092bf5187468d118a07ac1e4",
+      "scenarioCount": 7
+    },
+    "outcomes": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "errors": [],
+      "rawReportSha256": "88c08be3f86ff0305ff60cff90e8d5e60bdf00dd782ad6ffdf74346cfc6c5bc4",
+      "scenarioCount": 2
+    },
+    "signed-henchmen": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "errors": [],
+      "rawReportSha256": "72d50a58d1b41c9a308a0e54f12236dfc2d2bc321f769a12098965faeace6e4a",
+      "scenarioCount": 4
+    },
+    "source36": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "errors": [],
+      "rawReportSha256": "d5f19b8542f32cc66ca182f7d2ba81bc77044d71b2817a32c735c40302c6b7da",
+      "scenarioCount": 2
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "errors": [],
+      "rawReportSha256": "6e44995156f5adb1b2bb8ad93517e585794dbaf36f8841c82158b60eed34a3fb",
+      "scenarioCount": 17
+    },
+    "weekly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+      "errors": [],
+      "rawReportSha256": "a50087576036b40eb60bb64e212040d0260868ac8c5dbe3e5c774aac3fe124a9",
+      "scenarioCount": 1
+    }
+  },
+  "serialization": {
+    "previousSaveVersion": 928,
+    "saveVersion": 929,
+    "choiceCount": 25,
+    "newSerializedCppFields": false,
+    "newJsonSystem": false,
+    "newMapRulesField": "119",
+    "newInitializationMarker": "artifactsMarked"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.282-engine.tar.gz",
+    "sha256": "cb26903ca339f761f93cd1e39010b5e38f111f4cca582316340fcf5201d6e309",
+    "runtimeFiles": [
+      {
+        "file": "dialogs.js",
+        "sha256": "8e01abeec7194acfdef0eedeaed67bab7bccc1cf9df22a1fa0a77306d03586d6"
+      },
+      {
+        "file": "dosvcmi.png",
+        "sha256": "472ae168f2b622ca6c01f1740a90b3bac545b45923cd57bc141f88d6f8cb3a42"
+      },
+      {
+        "file": "game.html",
+        "sha256": "9f9d689629f40e19b3e35ca625232f0c204eacda7f2dad02063094b5503a0425"
+      },
+      {
+        "file": "mini-lz4.js",
+        "sha256": "1efee24544e11330a986718249326e2ea5c3f4ee77e0496d6ca71646061393c6"
+      },
+      {
+        "file": "opfs-worker.js",
+        "sha256": "e65c86be545c0c1ae06912c9536a9779e91fb7412de6143045bccd280c90dff7"
+      },
+      {
+        "file": "vcmiclient.data",
+        "sha256": "aaea30808cd59bfc5eb8c44ebfbd1911be3f3960010c29d19dc54be4d4f8cafc"
+      },
+      {
+        "file": "vcmiclient.data.js",
+        "sha256": "f7d08603c9cc09ec004567812413ecef266217830b933b0fcd3c40c5221070a1"
+      },
+      {
+        "file": "vcmiclient.js",
+        "sha256": "b50d42a6ce5a685333860264ecc38ff8c18fcb243ff03f6bb3df6d97fc0f3bc7"
+      },
+      {
+        "file": "vcmiclient.js.symbols",
+        "sha256": "d6644ae7e229ff1f2c2ffb43336bfc6216cf1c5211fa71372c6588b17f04a146"
+      },
+      {
+        "file": "vcmiclient.wasm",
+        "sha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+      }
+    ]
+  },
+  "previousRelease": {
+    "version": "0.4.281",
+    "commit": "28c844896e88d9fd54d2332b87bf2e702d070a7e",
+    "pages": "https://github.com/pikipiki/heroes3-goonks-and-magic/actions/runs/44430480070",
+    "pagesConclusion": "success"
+  },
+  "remaining": [
+    "Original ERA artifact findings are bounded static inspection, not runtime parity with every third-party plugin.",
+    "Primary native inventory capacity/auto-equipment is retained; only the scripted bonus has the source64-slot limit.",
+    "Seven other source77 rules and original option101 selection modes remain incomplete.",
+    "Mithril protection must consume the shared PO:N store separately. Complete Henchmen/ERA Scripts/Advanced Classes/Reborn profiles remain unadmitted."
+  ],
+  "publication": {
+    "version": "0.4.282",
+    "checks": {
+      "node": {
+        "tests": 945,
+        "passed": 889,
+        "skipped": 56,
+        "failed": 0
+      },
+      "freshTUM": {
+        "tests": 18,
+        "passed": 18,
+        "failed": 0
+      },
+      "site": {
+        "nativeFilesByteVerified": 10464,
+        "transportBytes": 702299043
+      }
+    },
+    "logSha256": {
+      "node-tests": "0dcab5e5d2fb73d2ffa3b8b853c6c2daced44ff5a7e53a624d2f98189c7ed2cb",
+      "tum-tests": "e312e413c902390f0dfbb773dd5907c0d5a76533fa4bc8633fca09c41c2c65a6",
+      "prepare-web": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
+      "verify-site": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
+    }
+  }
+}

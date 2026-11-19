@@ -17,8 +17,21 @@ case dans l'état de la partie. Il reproduit le stockage sur quatre bits,
 les coordonnées directes ou lues dans trois variables `v`, et le codage des
 coordonnées ERA sur les deux niveaux. Des scénarios natifs vérifient le
 débordement signé, les cases voisines, les sauvegardes suspendues et la reprise
-des anciennes parties. Ce mécanisme prépare le double ramassage d'artefacts
-et les protections au mithril ; ces deux usages ne sont pas activés par cet ajout.
+des anciennes parties. Le double ramassage d'artefacts utilise maintenant ce
+même stockage ; le raccordement des protections au mithril reste à terminer.
+
+La règle 119 marque les artefacts présents au départ, puis donne une seconde
+copie dans le sac si le héros n'en possédait pas déjà une. Elle respecte les
+gardes, les combinaisons et les marqueurs personnalisés. La copie ajoutée
+respecte la limite de 64 places du sac d’origine ; le ramassage principal
+conserve les règles de placement et la capacité du moteur natif. Si seule la
+copie supplémentaire ne tient pas, le premier ramassage reste acquis et un
+avertissement localisé apparaît. Si le premier ramassage échoue, le marqueur
+15 est néanmoins effacé et l’objet reste au sol, comme dans le post-trigger
+source. Une seconde visite après avoir libéré une place ne redonne pas ce bonus. Le choix reste propre à la partie ; les anciennes
+sauvegardes conservent leur comportement. Les tests couvrent le toucher, le
+clic, un véritable tour IA et la reprise après ramassage. Le catalogue atteint
+quatorze règles sur vingt et une, avec vingt-cinq choix indépendants disponibles.
 
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle

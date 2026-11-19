@@ -26,6 +26,7 @@ const rules = [
   ['Mithril information', 'Informations sur le mithril', 'Show your mithril total. Enhancements also enable the price list.', 'Afficher votre réserve de mithril. Les améliorations donnent aussi accès aux tarifs.'],
   ['Towns start without fortifications', 'Villes sans fortifications au départ', 'Remove Castles, Citadels and Forts once at the start of the adventure.', 'Retirer les Châteaux, Citadelles et Forts une seule fois au départ de l’aventure.'],
   ['Preserve AI fortifications', 'Préserver les fortifications de l’IA', 'Keep AI towns fortified when starting without forts. Neutral towns still lose their fortifications.', 'Conserver les fortifications des villes de l’IA avec la règle précédente. Les villes neutres les perdent.'],
+  ['Double artifact pickups', 'Double ramassage d’artefacts', 'Find a second copy of artifacts present at the start when you do not already own one.', 'Trouver un second exemplaire des artefacts présents au départ si vous n’en possédez pas déjà un.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

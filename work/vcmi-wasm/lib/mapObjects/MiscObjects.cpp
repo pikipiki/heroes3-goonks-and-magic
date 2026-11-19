@@ -11,6 +11,11 @@
 #include "StdInc.h"
 #include "../era/EraDwellingArtifactMimic.h"
 #include "../era/EraMithrilModel.h"
+#include "../era/EraMapRulesModel.h"
+#include "../era/EraMapDoubleArtifactRules.h"
+#include "../era/EraDirectArtifactCount.h"
+#include "../era/EraTileProperties.h"
+#include "../networkPacks/EraGameplayPacks.h"
 #include "MiscObjects.h"
 
 #include "../bonuses/Propagators.h"
@@ -825,7 +830,42 @@ void CGArtifact::onHeroVisit(IGameEventCallback & gameEvents, const CGHeroInstan
 
 void CGArtifact::pick(IGameEventCallback & gameEvents, const CGHeroInstance * h) const
 {
-	if(gameEvents.putArtifact(ArtifactLocation(h->id, ArtifactPosition::FIRST_AVAILABLE), getArtifactInstance()->getId()))
+	const bool picked = gameEvents.putArtifact(ArtifactLocation(h->id, ArtifactPosition::FIRST_AVAILABLE), getArtifactInstance()->getId());
+	// ERA emits post-visit effects even when normal artifact placement fails.
+	const bool enabled = era_compat::map_rules::state(*cb)["rules"]["119"].Bool();
+	const bool validOwner = h->getOwner().isValidPlayer();
+	const auto type = getArtifactType();
+	// Core artifact IDs0..6 are the spellbook, scroll, Grail and machines.
+	const bool ordinary = ID == Obj::ARTIFACT && type.getNum() >= 7;
+	if(enabled && validOwner && ordinary)
+	{
+		const auto position = visitablePos();
+		const auto marker = era_compat::tile_properties::number(cb->gameState(), position);
+		if(era_bridge::map_rules::doubleArtifact(enabled, validOwner, ordinary, marker,
+			era_compat::artifacts::directCount(*h, type)))
+		{
+			const ArtifactPosition slot(int(ArtifactPosition::BACKPACK_START) + h->artifactsInBackpack.size());
+			const bool added = h->artifactsInBackpack.size() < 64 && gameEvents.giveHeroNewArtifact(h, type, slot);
+			if(added || picked)
+			{
+				InfoWindow info;
+				info.player = h->getOwner();
+				info.components.emplace_back(ComponentType::ARTIFACT, type);
+				info.text.appendTextID(added ? "tum-era.mapRules.doubleArtifact.found" : "tum-era.mapRules.doubleArtifact.full");
+				info.text.replaceName(type);
+				gameEvents.showInfoDialog(&info);
+			}
+		}
+		if(era_bridge::map_rules::clearArtifactMarker(enabled, validOwner, ordinary, marker))
+		{
+			EraGameplayChange tiles;
+			tiles.system = "tileProperties";
+			tiles.state = era_compat::tile_properties::state(cb->gameState());
+			era_compat::tile_properties::setNumber(tiles.state, position, 0);
+			gameEvents.sendAndApply(tiles);
+		}
+	}
+	if(picked)
 		gameEvents.removeObject(this, h->getOwner());
 }
 

@@ -5,6 +5,8 @@
 #include "../../lib/era/EraMapCreatureRules.h"
 #include "../../lib/era/EraMapInvertedSpeed.h"
 #include "../../lib/era/EraMapFortlessRules.h"
+#include "../../lib/era/EraTileProperties.h"
+#include "../../lib/mapObjects/MiscObjects.h"
 #include "../../lib/era/EraMapMonthlyVisitRules.h"
 #include "../../lib/era/EraMapExtraDwellingRules.h"
 #include "../../lib/era/EraSourceCreatureLevels.h"
@@ -47,6 +49,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("123",era_bridge::WogOption::MonthlyVisits);
     choice("117",era_bridge::WogOption::ExtraDwellingCreatures);
     choice("131",era_bridge::WogOption::TownsWithoutForts);
+    choice("119",era_bridge::WogOption::DoubleArtifacts);
     packet.state["sourceOptions"]["144"].Bool()=firstTurn&&era_bridge::wogOptionEnabled(
         gh.gameInfo(),era_bridge::WogOption::PreserveAiForts,configured["sourceOptions"]["144"].Bool());
     packet.state["sourceOptions"]["67"].Bool()=firstTurn&&configured["sourceOptions"]["67"].Bool();
@@ -56,6 +59,21 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
         if(town->getFactionID()==FactionID::CONFLUX)
             packet.state["rules"]["130"].Bool()=false;
     gh.sendAndApply(packet);
+}
+inline void markInitialArtifacts(CGameHandler & gh)
+{
+    auto saved=state(gh.gameInfo());
+    if(!saved["rules"]["119"].Bool()||saved["artifactsMarked"].Bool())return;
+    EraGameplayChange tiles;tiles.system="tileProperties";
+    tiles.state=tile_properties::state(gh.gameState());
+    // N15 is a coordinate marker, including guarded original artifacts.
+    // Scrolls and artifacts created after this one-time pass are not marked.
+    for(const auto * artifact:gh.gameState().getMap().getObjects<CGArtifact>())
+        if(artifact->ID==Obj::ARTIFACT)
+            tile_properties::setNumber(tiles.state,artifact->visitablePos(),15);
+    if(tiles.state.isStruct())gh.sendAndApply(tiles);
+    saved["artifactsMarked"].Bool()=true;
+    EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void removeInitialFortifications(CGameHandler & gh,bool firstTurn)
 {

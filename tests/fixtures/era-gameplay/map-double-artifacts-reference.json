@@ -1,0 +1,565 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "script": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "initialFunction": "WOG_101_SetDoubledArtifacts",
+    "postTrigger": "!$OB(OBJ_ARTIFACT)&i^wog_101_map_rule_8_isEnabled^;"
+  },
+  "contract": {
+    "oncePerNewMap": true,
+    "initialMarker": 15,
+    "minimumArtifactId": 7,
+    "validOwnerRequired": true,
+    "anyNonzeroMarkerQualifies": true,
+    "countAfterOriginalPickup": true,
+    "extraCopyOnlyBelowTotal": 2,
+    "extraCopyDestination": "backpack",
+    "originalBackpackLimit": 64,
+    "clearOnlyMarker": 15,
+    "otherNonzeroMarkersRemain": true,
+    "counterWornRecords": 19,
+    "counterBackpackRecords": 64,
+    "implicitAssemblyPartsCounted": false,
+    "independentLocksDoNotExcludeRealRecords": true,
+    "unguardedOrWonGuardPickupAttemptRequired": true,
+    "failedPrimaryStillConsumesMarker15": true
+  },
+  "artifactCounter": {
+    "schema": 1,
+    "evidenceKind": "Ordinary targeted static PE inspection and supplied Pascal/ERM source reads. No REA Evidence, no dynamic execution or runtime validation.",
+    "targets": {
+      "work/era-gameplay-reference/h3era.exe": {
+        "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+        "preferredImageBase": 4194304
+      },
+      "work/era-gameplay-reference/era.dll": {
+        "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+        "preferredImageBase": 4194304
+      }
+    },
+    "sources": {
+      "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+      "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+      "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+    },
+    "contract": {
+      "receiver": "HEhero:A2/artifact/?total/?equipped",
+      "total": "Direct equipped-record matches plus direct backpack-record matches. Not backpack-only.",
+      "equipped": "Only direct equipped-record matches.",
+      "normalMatch": "Both artifact type and subtype must match; ordinary requested artifacts have subtype-1.",
+      "equippedRecordCount": 19,
+      "backpackRecordCount": 64,
+      "recordSizeBytes": 8,
+      "equippedOffset": 301,
+      "backpackOffset": 468,
+      "backpackLengthFieldUsed": false,
+      "lockedSlotFieldUsed": false,
+      "implicitCombinationComponentsCounted": false,
+      "componentQualification": "No decomposition, component-table walk, recursive ownership helper or implicit part expansion. A physically present direct record matching type/subtype is counted even if some independent lock metadata is set. Whether a particular native assembly operation physically leaves part records in any locked slot is not established by the count loop alone.",
+      "whatNotToSubstitute": "Do not use a owns-artifact-or-containing-combination predicate such as native HasArtOnDoll; A2 is a raw direct-record count.",
+      "scrollAndExtendedIdLimit": "Arguments1000 and>1000 have special encoding. Rule119 rejects artifact source IDs<7; no claim here about plugin-specific artifacts beyond that original encoding.",
+      "maxCountForNormalNativeLayout": 83
+    },
+    "rule119": {
+      "sourceLines": [
+        480,
+        509
+      ],
+      "postPickupQuery": true,
+      "condition": "total direct count<2",
+      "resultExamplesDerivedNotExecuted": [
+        {
+          "beforePickupEquipped": 0,
+          "beforePickupBackpack": 0,
+          "afterPickupTotal": 1,
+          "extraAllowed": true
+        },
+        {
+          "beforePickupEquipped": 1,
+          "beforePickupBackpack": 0,
+          "afterPickupTotal": 2,
+          "extraAllowed": false
+        },
+        {
+          "beforePickupEquipped": 0,
+          "beforePickupBackpack": 1,
+          "afterPickupTotal": 2,
+          "extraAllowed": false
+        },
+        {
+          "beforePickupEquipped": 1,
+          "beforePickupBackpack": 1,
+          "afterPickupTotal": 3,
+          "extraAllowed": false
+        }
+      ],
+      "assemblyExample": "If the direct records contain only a combination artifact and no matching part record, A2 does not infer/count that part. A new direct pickup of the part is counted normally."
+    },
+    "regions": [
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "HE:A selected artifact normalization",
+        "preferredVa": 7621395,
+        "endExclusiveVa": 7621509,
+        "rva": 3427091,
+        "fileOffset": 3013395,
+        "size": 114,
+        "sha256": "a2a2b27003a17c8763753d4e2c30d412365dc9e6cd16152bf302a0ddd2720b30",
+        "observation": "Normal artifact requested by second argument; subtype initialized-1.1000 maps to0;>1000 encodes artifact1 and spell subtype=arg-1001. Negative ID errors. Rule119 ordinary artifact IDs>=7 use subtype-1."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "HE:A mode dispatch",
+        "preferredVa": 7621509,
+        "endExclusiveVa": 7621559,
+        "rva": 3427205,
+        "fileOffset": 3013509,
+        "size": 50,
+        "sha256": "8653f81ee8a99fa7e8276d1fad4c7a0b3c7d681847791ee2d413c2aff40ee404",
+        "observation": "Mode firstArg-1 dispatches through table749719. Mode2 selects744e28."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "HE:A dispatch table",
+        "preferredVa": 7640857,
+        "endExclusiveVa": 7640873,
+        "rva": 3446553,
+        "fileOffset": 3032857,
+        "size": 16,
+        "sha256": "c63a58c103652a6a368b9931a5e8ed06e1798b052581ab61c451bcfba24bcb07",
+        "observation": "Four mode targets:744bb7,744e28,744f5c,745300."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "HE:A2 zeroing and equipped scan",
+        "preferredVa": 7622184,
+        "endExclusiveVa": 7622328,
+        "rva": 3427880,
+        "fileOffset": 3014184,
+        "size": 144,
+        "sha256": "4d781b32f8ea46bc45cd1eb7640d512961985cc1e6f392a42e4790b643474a32",
+        "observation": "Two counters initialized0.19records, hero+12d+slot*8; compare type and subtype. Each match increments both total and equipped counters."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "HE:A2 backpack scan",
+        "preferredVa": 7622328,
+        "endExclusiveVa": 7622435,
+        "rva": 3428024,
+        "fileOffset": 3014328,
+        "size": 107,
+        "sha256": "9d752ac24b9838fad390334f0c0da1735a59aa0acd0d8e2411f55a2397b80b15",
+        "observation": "64records, hero+1d4+slot*8; compare type and subtype. Each match increments total only. OANum backpack length byte is not consulted."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "HE:A2 return parameters",
+        "preferredVa": 7622435,
+        "endExclusiveVa": 7622492,
+        "rva": 3428131,
+        "fileOffset": 3014435,
+        "size": 57,
+        "sha256": "fb11c319a04eff04337588facd4bb76a1a19cd7b37cb4de14d671c0f84d66cac",
+        "observation": "ZvsApply total temp to paramIndex2, then equipped temp to paramIndex3, both4bytes."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Native HasArtOnDoll contrasts with direct HE:A2 scan",
+        "preferredVa": 5084256,
+        "endExclusiveVa": 5084366,
+        "rva": 889952,
+        "fileOffset": 889952,
+        "size": 110,
+        "sha256": "cd02b8fd7602e4ac10bd790f3d579d857dbdf7129089fc7fa7496e2649d25ba6",
+        "observation": "Direct19-slot search, then ArtInfo+18 lookup and recursive call to look for containing combination artifact. HE:A2 does not call this helper or perform its recursive combination lookup."
+      }
+    ],
+    "searchBoundary": [
+      "HE:A normalization, mode table, complete A2 count loops and return parameter assignments in supplied h3era.exe.",
+      "Comparison only with native HasArtOnDoll0x4d9460 showing explicit recursive combination lookup absent from A2.",
+      "Pascal THero equipped/backpack/LockedSlot field declarations, artifact descriptor combo fields, and rule77 lines480-509.",
+      "Bounded exact-address/HE:A2 search in supplied kernel Pascal files found no referenced patch for the scanned A2 region. This is not proof against dynamic third-party hooks."
+    ],
+    "remaining": [
+      "No complete native assembly/disassembly/drop execution trace proving physical contents of locked slots in every assembly configuration.",
+      "VCMI nested combination-part/locked-placeholder representation must be translated to native direct-record semantics separately.",
+      "Runtime plugin patches, expanded backpack layouts and subtype edge cases outside the ordinary rule119 artifact path.",
+      "Exact generic ZvsApply behavior for malformed parameters or side-effectful argument evaluation."
+    ],
+    "answerStatus": {
+      "totalVsBackpackOnly": "answered static",
+      "implicitPartsAndLockChecks": "answered static: no part expansion, no lock checks; match raw direct records",
+      "physicalContentsAfterEveryAssemblyOperation": "unresolved without additional bounded assembly-operation trace"
+    }
+  },
+  "assemblyRecords": {
+    "schema": 1,
+    "evidenceKind": "Ordinary targeted static PE inspection and supplied Pascal struct reads. No REA Evidence, no native execution or runtime proof.",
+    "targets": {
+      "work/era-gameplay-reference/h3era.exe": {
+        "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+        "preferredImageBase": 4194304
+      },
+      "work/era-gameplay-reference/era.dll": {
+        "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+        "preferredImageBase": 4194304
+      }
+    },
+    "sources": {
+      "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+      "work/downloads/era-hero-artifact-count-oracle/report.json": "522f9dcc120cadeedfa742b727dcb158ed674306b05c5fb659e233bc20692f7b"
+    },
+    "answer": {
+      "nativeEquippedRepresentation": "Combination root is the only directly stored combination artifact. Component records are removed, with type=-1 and subtype=-1. Secondary reserved slots are represented by separate reservation counts, not component artifact IDs.",
+      "negativeMarker": {
+        "type": -1,
+        "subtype": -1
+      },
+      "rootRecord": {
+        "type": "combination artifact ID",
+        "subtype": -1
+      },
+      "reservedMetadata": "Byte counters at hero+1c5+slotCategory, as addressed by equip/unequip loops; these are independent of19equipped artifact type/subtype records.",
+      "assemblySequence": [
+        "Copy combination component mask.",
+        "Unequip selected original component if an explicit slot was supplied.",
+        "Unequip remaining mask-matched components from equipped records.",
+        "Equip new combinationID/-1 root through ordinary equip helper.",
+        "Ordinary combination equip updates stats/reservation counts from component metadata without installing component IDs."
+      ],
+      "disassemblySequence": [
+        "Unequip combo root and decrement associated reservation counters.",
+        "Create each componentID/-1 as an ordinary equipped record through the same equip helper."
+      ],
+      "initialEquippingOfPreassembledCombo": "Ordinary equip helper also establishes reservation counts directly from combo metadata. It does not synthesize physical component-ID records in secondary slots. This covers a root passed through this helper, not every possible external map loader or plugin path.",
+      "effectOnHEA2": "Previously established HE:A2 scans raw direct type/subtype records. Hidden/implicit combo parts are not counted while assembled; components count again once disassembled into direct records.",
+      "vcmiTranslation": "Ignore locked=true slots used as assembly-part placeholders, and do not recurse into parts of root artifacts in equipped inventory or backpack. Count the combination root itself if its own type is queried. Independently locked real direct artifacts must still count: original HE:A2 checks no lock flag."
+    },
+    "regions": [
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Assembly loads component bitset",
+        "preferredVa": 5095840,
+        "endExclusiveVa": 5095886,
+        "rva": 901536,
+        "fileOffset": 901536,
+        "size": 46,
+        "sha256": "2dcd18e9f4665cd207078b40a80aec56e1f9750d40b1de814a46564cdee4c1e1",
+        "observation": "Loads combination record from pointer660b6c, record stride24, copies component bitset into local words. Second argument is the optional initial equipped slot."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Assembly removes initially selected part",
+        "preferredVa": 5095886,
+        "endExclusiveVa": 5095951,
+        "rva": 901582,
+        "fileOffset": 901582,
+        "size": 65,
+        "sha256": "30dfcf8739ddb5d997953ef228d76a103883b46ae25c8aef322e8adc18f80d27",
+        "observation": "If selected slot!=-1, reads its artifact type, clears corresponding component-mask bit and calls4e2e40(selectedSlot)."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Assembly removes remaining direct component records",
+        "preferredVa": 5095951,
+        "endExclusiveVa": 5096103,
+        "rva": 901647,
+        "fileOffset": 901647,
+        "size": 152,
+        "sha256": "d64acf69958b56834261506d8afc570ace666817af7fc9323019f0ed8d0fef0b",
+        "observation": "Reverse scan over19equipped slots; for each artifact still required in component mask, clears its bit and calls4e2e40(slot). Repeats until bitset empty."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Assembly installs only combination root",
+        "preferredVa": 5096103,
+        "endExclusiveVa": 5096145,
+        "rva": 901799,
+        "fileOffset": 901799,
+        "size": 42,
+        "sha256": "e796cb1ffd718d265bec8dec4307e9b20618cf020b382166d803f8a7f45643cd",
+        "observation": "Loads combination root ID from record660b6c+index*24, constructs rootID/-1 record and calls4e2c70(record,-1) for normal equipped placement."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Unequip helper clears physical type and subtype",
+        "preferredVa": 5123930,
+        "endExclusiveVa": 5123950,
+        "rva": 929626,
+        "fileOffset": 929626,
+        "size": 20,
+        "sha256": "5bd936a8e98119a93be62f5bc481679e22083e6a07fd3753da638aca6efffb0c",
+        "observation": "Both EAX and ECX set-1, then stored to hero+slot*8+12d and+131. No component ID remains in that physical record."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Equip helper writes one physical record",
+        "preferredVa": 5123263,
+        "endExclusiveVa": 5123282,
+        "rva": 928959,
+        "fileOffset": 928959,
+        "size": 19,
+        "sha256": "a5fe78b03de1bd558d4cb745dff885d49d170bfa55f93bcdfe5b9a4e6f06672a",
+        "observation": "Copies passed record type and subtype only into the selected main equipped slot."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Combination equip reserves categories separately",
+        "preferredVa": 5123327,
+        "endExclusiveVa": 5123562,
+        "rva": 929023,
+        "fileOffset": 929023,
+        "size": 235,
+        "sha256": "23a7713f13b148b8dc341d08d06559263e1299921a106ac11641f0d1ffb85080",
+        "observation": "Reads root ArtInfo+14 combination index, iterates component bitset to update stats and increments reservation count byte hero+1c5+componentSlotCategory for required secondary categories. No equipped component-type record is written in this loop."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Combination unequip clears category reservations",
+        "preferredVa": 5123691,
+        "endExclusiveVa": 5123930,
+        "rva": 929387,
+        "fileOffset": 929387,
+        "size": 239,
+        "sha256": "91c6e3fd773a6f42364f051fa5660b366f51782113ad024ed82c5b85c945aa1d",
+        "observation": "Inverse component-bitset walk removes stats and decrements reserved category counts before physical root record is cleared by common helper."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Disassembly removes combo and reinstalls component records",
+        "preferredVa": 5096160,
+        "endExclusiveVa": 5096293,
+        "rva": 901856,
+        "fileOffset": 901856,
+        "size": 133,
+        "sha256": "facd87956d51c6c108ec4b6b6af86a30b6183f0eca0800af5d7da02f5ccdbf13",
+        "observation": "Reads combo index from equipped root, unequips it via4e2e40. Iterates component bitset and creates each partID/-1 record through4e2c70(record,-1)."
+      }
+    ],
+    "searchBoundary": [
+      "Literal xrefs to artifact and combination descriptor pointers660b68/660b6c were inventoried for locating the artifact subsystem only; no global decompilation.",
+      "Detailed instruction inspection limited to assembly4dc1a0..4dc365 and equip/unequip4e2c70..4e2f6e relevant regions.",
+      "Previously established HE:A2 count report reused; no re-investigation of generic receiver semantics."
+    ],
+    "limits": [
+      "No dynamic assembly/disassembly session was run.",
+      "No guarantee that third-party plugins never replace these functions or use a different layout.",
+      "Not every save/map loader initialization path traced; ordinary preassembled-root equip helper behavior is established.",
+      "Category reservation allocation and all combinations when inventory is invalid/full are not exhaustively proved here."
+    ]
+  },
+  "runtimeOriginalEraValidated": false,
+  "uiAdaptation": "Primary placement retains the native engine inventory capacity and auto-equipment rules. The scripted additional copy uses the original64-slot backpack limit. A failed primary attempt still consumes marker15 and leaves the ground object; suppress a duplicate failure notice when the native engine already reports that failure.",
+  "failedPrimaryPickup": {
+    "schema": 1,
+    "evidenceKind": "Ordinary targeted static PE control-flow inspection with supplied Pascal/ERM source reads. No REA Evidence, no game execution or runtime validation.",
+    "targets": {
+      "work/era-gameplay-reference/h3era.exe": {
+        "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+        "preferredImageBase": 4194304
+      },
+      "work/era-gameplay-reference/era.dll": {
+        "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+        "preferredImageBase": 4194304
+      }
+    },
+    "sources": {
+      "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+      "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+      "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+      "work/downloads/era-po-number-oracle/report.json": "c7dab2dbd48f56f78b0c449b46d811408abeb0606cbafcc19672b568e3441269",
+      "work/downloads/era-hero-artifact-count-oracle/report.json": "522f9dcc120cadeedfa742b727dcb158ed674306b05c5fb659e233bc20692f7b"
+    },
+    "answer": {
+      "afterObjectTriggerOnPrimaryFullBagFailure": true,
+      "conditions": "Ordinary object type5 visit reaches native handler, no before-trigger cancellation, hero remains owned, no guardians blocking rule119. Primary native handler returns normally on full backpack.",
+      "reason": "WoG wrapper emits stage1 object after-trigger after ordinary vanilla visit returns, independently of pickup success/result.",
+      "primaryCapacityGuard": "Before guards and auto-equipping,49f450 calls4d9330(hero,true), reads signed OANum byte+3d4, and proceeds only if signed count<64. Count64refuses even with an otherwise free compatible equipped slot.",
+      "primaryFailureKeepsObject": true,
+      "normalPrimaryPlacement": "When bagcount<64, native pickup eventually calls4e32e0 which first attempts automatic equipped placement then fallback backpack. Thus ordinary pickup is not always backpack-only.",
+      "extraCopyScriptPlacement": "Rule119 one-argument positive HE:A is a different receiver path: it writes only a free backpack record, no automatic equipped placement.",
+      "rule119EffectWithFull64BagAndFreeHand": "Native primary pickup fails; post-trigger executes; A2 may report0or1existing direct copies; attempted HE:A extra also fails because backpack has no free record; final source condition clears N15. Map object remains; no new artifact is given.",
+      "rule119EffectWithFull64BagAndOccupiedHand": "Same primary failure, after-trigger and N15 clearing, assuming the other source119 gates pass.",
+      "guardedException": "Rule119 checks remaining guardians before attempted copy/final marker clear; a still-guarded artifact takes its explicit early exit, not this unguarded failure continuation.",
+      "non15Marker": "Source final reset only when prior N==15. Other nonzero numbers retain their cell value.",
+      "currentAdapterRisk": "A post-effect invoked only after successful putArtifact misses native source marker clearing on initial capacity failure. FIRST_AVAILABLE may also succeed at auto-equip when native initial bag64guard would refuse."
+    },
+    "controlFlow": [
+      "Patched visit callsite invokes705979.",
+      "Before stage0 callback may cancel; exclude that path.",
+      "705fe2 calls original4a8160.",
+      "Type5 dispatch4a82cf calls49f450.",
+      "49f450 capacity failure returns normally at49f4a6 (human path) without object removal.",
+      "Original dispatcher returns to705fe4.",
+      "Wrapper ignores EAX pickup result and reaches706129.",
+      "706146 calls74d56d with stage1; stage builds after-trigger bit08000000.",
+      "Rule119 runs its own owner/N/type/guardian/count/add/reset checks."
+    ],
+    "regions": [
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "WoG callsite patch records for visit wrapper",
+        "preferredVa": 7901612,
+        "endExclusiveVa": 7901636,
+        "rva": 3707308,
+        "fileOffset": 3293612,
+        "size": 24,
+        "sha256": "de02e9012304cce1f20f2dc44e281778943f151c8dcf9017ccdd674bb0dbc3ee",
+        "observation": "Triples(callsite,unusedOld,replacement):4aa766/0/705979 and4aca04/0/705979."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "WoG call patch table walker",
+        "preferredVa": 7344980,
+        "endExclusiveVa": 7345082,
+        "rva": 3150676,
+        "fileOffset": 2736980,
+        "size": 102,
+        "sha256": "ffa3fd6582ab4e73e395f6e201250cf15510768dfbd38c8584dbc0d77905c4c6",
+        "observation": "12-byte records at788fd8. If replacement nonzero, write replacement-callsite-5 to callsite+1; skips entries with replacement0, stops at callsite0."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Vanilla visit artifact dispatch table entry",
+        "preferredVa": 4892111,
+        "endExclusiveVa": 4892112,
+        "rva": 697807,
+        "fileOffset": 697807,
+        "size": 1,
+        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+        "observation": "Object type5 minus2 gives byte index3."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Vanilla visit artifact dispatch target entry",
+        "preferredVa": 4891744,
+        "endExclusiveVa": 4891748,
+        "rva": 697440,
+        "fileOffset": 697440,
+        "size": 4,
+        "sha256": "82dfdd3f9a6e3ac1522585a09012a2eecbf5159f19b5e99e274d04ee0e6d7d51",
+        "observation": "Table index3 is4a82cf."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Vanilla dispatcher artifact branch",
+        "preferredVa": 4883151,
+        "endExclusiveVa": 4883190,
+        "rva": 688847,
+        "fileOffset": 688847,
+        "size": 39,
+        "sha256": "16b0adddeb21fbe1eae80c0fdda5f076c28d1128d166fb3a208cd8e1dd2f68ed",
+        "observation": "Passes hero/object/position/human arguments to49f450 and returns normally to its caller."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Artifact visit primary full-backpack gate and early normal return",
+        "preferredVa": 4846672,
+        "endExclusiveVa": 4846761,
+        "rva": 652368,
+        "fileOffset": 652368,
+        "size": 89,
+        "sha256": "748dff7ebf09533700f21213bf0ae3f075e4db9a65e1aa67dac48877fd6cd780",
+        "observation": "Calls4d9330(hero,true), signed compare result64. Only <64 proceeds. >=64 returns normally after human no-space notification; no object removal or auto-equip attempted on this branch."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Backpack count helper fast path",
+        "preferredVa": 5083952,
+        "endExclusiveVa": 5083975,
+        "rva": 889648,
+        "fileOffset": 889648,
+        "size": 23,
+        "sha256": "5a55a7c04f7727f69277c37e05179b228ff625bf2629838f47af54c97e6c767a",
+        "observation": "Argument nonzero: signed-extension of hero byte+3d4(OANum), immediate return. No equipped-slot scan."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "WoG wrapper before-trigger cancellation branch",
+        "preferredVa": 7363104,
+        "endExclusiveVa": 7363185,
+        "rva": 3168800,
+        "fileOffset": 2755104,
+        "size": 81,
+        "sha256": "38eb0cf400e1895b47856c2198b925d6e9f34cee3d15430dd88081fcfd62310b",
+        "observation": "Calls74d56d(stage0). Nonzero result jumps to wrapper epilogue706189, outside the ordinary post path."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "WoG wrapper calls vanilla visit and ignores return status",
+        "preferredVa": 7364561,
+        "endExclusiveVa": 7364626,
+        "rva": 3170257,
+        "fileOffset": 2756561,
+        "size": 65,
+        "sha256": "300e62bc5314332e563ba5674f46235fd5157c5379874bfa1f6b9cca6087b952",
+        "observation": "Calls4a8160 with native arguments. No test of EAX pickup result; saves registers then branches only on preexisting visit-case state."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "WoG wrapper common after-visit dispatch",
+        "preferredVa": 7364803,
+        "endExclusiveVa": 7364942,
+        "rva": 3170499,
+        "fileOffset": 2756803,
+        "size": 139,
+        "sha256": "bdd6bfcfe6453fb77a6125b04b4ef28ccf471a7a9fb2dce1789f1403aa53c80a",
+        "observation": "Common continuation reaches706129 and calls74d56d with stage1 at706146, including failed normal-return pickup path."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Object after-trigger flag construction",
+        "preferredVa": 7656924,
+        "endExclusiveVa": 7657041,
+        "rva": 3462620,
+        "fileOffset": 3048924,
+        "size": 117,
+        "sha256": "2d484f47e89657aae730145781a5d096330ffeddbba59ed04067a34b3b7c52c5",
+        "observation": "For ordinary object types, type/subtype trigger IDs created with40000000 and, if stage!=0,08000000, then74c816 called. Artifact type5 follows this branch."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Normal successful-capacity artifact pickup can auto-equip",
+        "preferredVa": 4846907,
+        "endExclusiveVa": 4846951,
+        "rva": 652603,
+        "fileOffset": 652603,
+        "size": 44,
+        "sha256": "24bb496c8f50a3911e09fd1e369f107b880d76bdbb6cfc82ec8a5798cf7d5453",
+        "observation": "Builds artifact source subtype/-1 and calls4e32e0 with both flags1. This is reached only after initial full-bag guard passed."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "Normal give-artifact helper attempts auto-equip first",
+        "preferredVa": 5124832,
+        "endExclusiveVa": 5124886,
+        "rva": 930528,
+        "fileOffset": 930528,
+        "size": 54,
+        "sha256": "1c29ce75c961dc21d2be2dacc2a2e4d3b838e4ca0dca78dbd109c8d78632830c",
+        "observation": "Calls4e2c70(record,-1); failure branches to sack fallback4e35a9. Therefore initial pickup full-bag rejection is distinct from FIRST_AVAILABLE capacity."
+      },
+      {
+        "file": "work/era-gameplay-reference/h3era.exe",
+        "name": "One-argument positive HE:A gives only backpack record",
+        "preferredVa": 7623858,
+        "endExclusiveVa": 7624003,
+        "rva": 3429554,
+        "fileOffset": 3015858,
+        "size": 145,
+        "sha256": "915eed73460310f5694518427440cf3facfabd783d96a7243083987a260b4541",
+        "observation": "Scans64backpack records for type=-1, writes requested type/subtype and increments OANum. Full scan without empty record returns without auto-equip or artifact addition."
+      }
+    ],
+    "limits": [
+      "No actual ERA process/gameplay was run; this is a static branch proof.",
+      "Not every alternate object visit, battlefield loss, before-trigger cancellation or third-party plugin hook path is admitted.",
+      "Primary guard relies on ordinary sane OANum64 layout; malformed negative/overflowed backpack counts are outside the gameplay scenario.",
+      "Displayed no-space and source extra-artifact messages were not visually observed or localized here.",
+      "Hypothesis that native guard should be applied globally versus only within a feature-gated119 adaptation is an implementation decision, not answered by this artifact proof."
+    ]
+  }
+}

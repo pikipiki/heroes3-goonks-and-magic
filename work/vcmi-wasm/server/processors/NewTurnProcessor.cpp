@@ -185,6 +185,7 @@ void NewTurnProcessor::preparePlayerTurnStarted(PlayerColor which)
     era_compat::mithril::weeklySites(*gameHandler);
 	// Source rule117 runs after the initial dwelling stocks have been generated.
 	era_compat::map_rules::addExtraDwellingCreatures(*gameHandler);
+	era_compat::map_rules::markInitialArtifacts(*gameHandler);
 	era_compat::map_rules::groundFliers(*gameHandler);
 	era_compat::map_rules::invertCreatureSpeeds(*gameHandler);
 	era_compat::map_rules::placeDailyPlains(*gameHandler,which);

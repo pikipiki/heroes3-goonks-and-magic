@@ -18,16 +18,19 @@ inline std::optional<int> read(const IGameInfoCallback & callback,int option)
     if(option==171)return mithril::weeklyEnabled(callback)?1:0;
     if(option==170)return mithril::resourceReplacementEnabled(callback)?1:0;
     if(option==149)return mithril::displaySourceOption(callback)?1:0;
-    if(option==131||option==144)
+    if(option==119||option==131||option==144)
     {
         const auto & saved=map_rules::state(callback);
-        const auto & choice=option==131?saved["rules"]["131"]:saved["sourceOptions"]["144"];
+        const auto code=std::to_string(option);
+        const auto & choice=option==144?saved["sourceOptions"][code]:saved["rules"][code];
         if(saved.isStruct())return choice.Bool()?1:0;
         if(callback.getDate(Date::DAY)!=0)return 0;
         const auto path=JsonPath::builtin("config/wog-map-rules");
         const JsonNode configured=CResourceHandler::get()->existsResource(path)?JsonNode(path)["mapRules"]:JsonNode();
-        const bool inherited=option==131?configured["131"].Bool():configured["sourceOptions"]["144"].Bool();
-        return era_bridge::wogOptionEnabled(callback,option==131?era_bridge::WogOption::TownsWithoutForts:era_bridge::WogOption::PreserveAiForts,inherited)?1:0;
+        const bool inherited=option==144?configured["sourceOptions"][code].Bool():configured[code].Bool();
+        const auto setting=option==119?era_bridge::WogOption::DoubleArtifacts:
+            option==131?era_bridge::WogOption::TownsWithoutForts:era_bridge::WogOption::PreserveAiForts;
+        return era_bridge::wogOptionEnabled(callback,setting,inherited)?1:0;
     }
     // Source option67 selects the extra dwelling species. The separate
     // Neutral Town gameplay pack is not enabled by exposing this frozen flag.

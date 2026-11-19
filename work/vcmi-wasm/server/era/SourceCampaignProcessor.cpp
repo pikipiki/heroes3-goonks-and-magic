@@ -19,6 +19,7 @@
 #include "../../lib/era/EraCampaignEventTemplate.h"
 #include "../../lib/era/EraCampaignHints.h"
 #include "../../lib/era/EraTileProperties.h"
+#include "../../lib/era/EraDirectArtifactCount.h"
 #include "../../lib/era/EraCampaignDeployment.h"
 #include "../../lib/era/EraCampaignArtifactRule.h"
 #include "../../lib/era/EraCampaignChestRule.h"
@@ -2234,10 +2235,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    }
    require(args[1].access==Access::Read,"artifact identity must be a value");const auto spec=era_campaign_artifact::decode(number(args[1]));require(spec.has_value(),"unbound original artifact encoding");const auto id=mapping.remap(ArtifactID(spec->artifact));
    const auto matches=[&](const CArtifactInstance * art){return art&&art->getTypeId()==id&&(spec->artifact!=1||art->getScrollSpellID().getNum()==spec->spell);};
+   if(mode==2)
+   {
+    const auto counts=era_compat::artifacts::directCounts(*h,matches);
+    value(counts.first,args[2]);value(counts.second,args[3]);return Step::Continue;
+   }
    std::vector<ArtifactInstanceID> worn,backpack;
    for(const auto & item:h->artifactsWorn)if(!item.second.locked&&matches(item.second.getArt()))worn.push_back(item.second.getID());
    for(const auto & item:h->artifactsInBackpack)if(!item.locked&&matches(item.getArt()))backpack.push_back(item.getID());
-   if(mode==2){value(worn.size()+backpack.size(),args[2]);value(worn.size(),args[3]);return Step::Continue;}
    require(args[2].access==Access::Read&&args[3].access==Access::Read,"artifact removal requires values");const int count=number(args[2]),wearFirst=number(args[3]);require(count>=0&&(wearFirst==0||wearFirst==1),"invalid artifact removal selection");
    std::vector<ArtifactInstanceID> order=wearFirst?worn:backpack;const auto & later=wearFirst?backpack:worn;order.insert(order.end(),later.begin(),later.end());
    int remaining=count;for(const auto instance:order){if(remaining==0)break;const auto * art=h->getArtByInstanceId(instance);require(art!=nullptr,"selected artifact disappeared");const auto slot=h->getArtPos(art);require(slot!=ArtifactPosition::PRE_FIRST,"selected artifact position missing");gh.removeArtifact(ArtifactLocation(h->id,slot));--remaining;}

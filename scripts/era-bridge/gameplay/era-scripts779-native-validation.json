@@ -17,7 +17,7 @@
     "work/vcmi-wasm/server/era/EraScriptRulesRuntime.h": "e99470649121af592c34133be729ee74884f8844a87803f2ff8e0cd31d944c3a",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
     "work/vcmi-wasm/lib/rewardable/Interface.cpp": "e26b2e12cfa0ab7b28352b5796e36047d5d355daa87889e7e6f3969700ce8561",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b",
     "tests/era-learning-stone.test.mjs": "8fc2952892b374925dbcd75965d226da17e58a62daefbc3fdf1a1bbcb080539a",
     "tests/native/EraScriptRules.test.cpp": "96fa2b497b65fc1e34bafd72322aa632e24bdec926adb616b06c3853171aa985",
     "tests/fixtures/era-gameplay/era-native-learning-reference.json": "35176eddf2845a64eebc605289fbbf40e13a57b81ce537c406315c16cf62eb9a",
@@ -188,5 +188,13 @@
       "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "4becc4fe9f23efbc7d5a9af89ae08a6c3b2326cf7530f79ebd61ca252a51d3e1"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "doubleArtifactsRevalidation": {
+    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
+    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
+    },
+    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
   }
 }

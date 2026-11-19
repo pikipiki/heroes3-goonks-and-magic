@@ -11,14 +11,14 @@
     "lines": "250-271,746-778"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
+    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
     "scripts/era-bridge/gameplay/henchmen.mjs": "055337ded4774c3f0f9f3b9efb9ebdc0ace135a5de04abcbd551742bae4f9d8a",
     "scripts/era-bridge/gameplay/henchmen.json": "62ea5fdd94a2970963be2e6cf455644b6a767d0f7ac41fb1679a8b744bebc191",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
     "work/browser-tests/wog-henchmen-battle-experience-cases.mjs": "c8e12a19af45b9d4bfdc22814cfa805d336d6a942f210ed36a92e605ed422152",
     "work/vcmi-wasm/lib/battle/BattleInfo.h": "302fb3a34732998f98b12f6b52e2e154e6e601166edf38fa6c06594773f829b9",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "e5dd27973eb93be808a3b4ddd360989e25cf15e32c7ed5215503cdbd8fecef44",
     "work/vcmi-wasm/server/battles/BattleResultProcessor.cpp": "5c74948eaa8db1a565eb0f3ae8e2dc3243afe3fda289d96ec4dab3bc20684660"
   },
@@ -348,5 +348,16 @@
       "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "doubleArtifactsRevalidation": {
+    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
+    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b"
+    },
+    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
   }
 }

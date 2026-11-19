@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false}={}){
+function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -108,6 +108,23 @@ if opts['growthFixture']:
  training.update({'instanceName':'growthTrainingHero','x':10,'y':11})
  training['options'].update({'type':'core:edric','army':[{'type':'core:peasant','amount':6500}],'artifacts':{},'spellBook':[],'secondarySkills':{}})
  objects.append(training)
+if opts['artifactFixture']:
+ f=opts['artifactFixture'];objects=[o for o in objects if o['instanceName']!='henchmenTrainingGuard']
+ h=next(o for o in objects if o['instanceName']=='goonkHero');h['options']['type']='core:orrin'
+ h['options']['artifacts']={'spellbook':'core:spellBook'}
+ kind=f.get('type','core:centaurAxe');existing=f.get('existing','none')
+ if existing in ['bag','two']:h['options']['artifacts']['backpack']=[kind]
+ if existing in ['worn','two']:h['options']['artifacts']['rightHand']=kind
+ if existing=='combo':h['options']['artifacts']['misc1']='core:elixirOfLife'
+ if existing=='combo-bag':h['options']['artifacts']['backpack']=['core:elixirOfLife']
+ if existing in ['full','blocked-full']:h['options']['artifacts']['backpack']=['core:quietEyeOfTheDragon']*64
+ if existing=='blocked-full':h['options']['artifacts']['rightHand']='core:blackshardOfTheDeadKnight'
+ artifact={'instanceName':'doubleArtifactTarget','type':'core:artifact','subtype':kind,'x':10,'y':11,'l':0,
+  'template':{'animation':f.get('animation','AVA0007.def'),'mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}}
+ if f.get('guarded'):artifact['options']['guards']=[{'type':'core:goblin','amount':1}]
+ if f.get('ai'):
+  h['options']['owner']='blue';h['options']['patrolRadius']=1;artifact['x']=9
+ objects.append(artifact)
 entries['objects.json']=json.dumps(objects).encode()
 header=json.loads(entries['header.json']);header['name']='000 - Henchmen native validation';header['heroLevelLimit']=opts['heroLevelLimit']
 if opts['scriptTown'] or opts['scriptAI']:
@@ -123,6 +140,15 @@ if opts['scriptTown'] or opts['scriptAI']:
 if opts['growthFixture']:
  header['heroLevelLimit']=1
  for day in [2,3]:header['events'].append({'name':'private growth pool witness '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+if opts['artifactFixture']:
+ header['players']['red']['mainHero']='goonkHero'
+ header['players']['red']['heroes']={'goonkHero':{'type':'core:orrin'}}
+ if opts['artifactFixture'].get('ai'):
+  header['players']['red']['mainHero']='henchmenReserveHero'
+  header['players']['red']['heroes']={'henchmenReserveHero':{'type':'core:edric'}}
+  header['players']['blue']['mainHero']='goonkHero'
+  header['players']['blue']['heroes']={'goonkHero':{'type':'core:orrin'}}
+  header['events'].append({'name':'AI artifact ownership witness','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['tilePropertiesFixture']:
  header['mapLevels']['underground']={'width':36,'height':36,'index':1,'layer':'core:underground'}
  entries['underground_terrain.json']=entries['surface_terrain.json']
@@ -135,22 +161,23 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture})]);
+`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
 }
 
-async function boot({save,viewport,growthChoice=null,growthConfigured=false,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,viewport,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
  page=await browser.newPage({viewport:viewport||(classic?{width:1024,height:768}:desktop?{width:1440,height:900}:{width:844,height:390}),hasTouch:!desktop,bypassCSP:true});
  if(classic)await page.addInitScript(()=>window.addEventListener('goonk-state',event=>{window.goonkMobileState=event.detail;}));
+ if(artifactLanguage)await page.addInitScript(language=>localStorage.setItem('heroes-goonk.language',language),artifactLanguage);
  await silenceTestAudio(page);
  page.on('pageerror',error=>report.errors.push(error.message));
  page.on('console',message=>{fs.appendFileSync(path.join(output,'console.log'),message.text().slice(0,2000)+'\n');if(message.text().includes('Temporary game startup failed'))page._startupFailed=true;});
  const cleanManifest=process.env.GOONK_CLEAN_MANIFEST==='1'?JSON.parse(execFileSync('git',['show','HEAD:mod/tum-era/mod.json'],{encoding:'utf8'})):null;
  const growthDifficulty=growthChoice===null?null:readJsonc('work/vcmi-wasm/config/difficulty.json');
  if(growthDifficulty)for(const rule of Object.values(growthDifficulty.ai))if(rule.resources)for(const key of Object.keys(rule.resources))rule.resources[key]=0;
- await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest})=>{
+ await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -159,6 +186,13 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,enab
     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/mod.json';
     const manifest=cleanManifest?structuredClone(cleanManifest):JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));
     manifest.settings??={};manifest.settings.modules??={};manifest.settings.modules.henchmen=enabled;
+    if(artifactBackpackCap!==undefined){manifest.settings.heroes??={};manifest.settings.heroes.backpackSize=artifactBackpackCap;}
+    if(artifactLanguage){const dir='/home/web_user/.config/vcmi';value.FS.mkdirTree(dir);value.FS.writeFile(dir+'/settings.json',JSON.stringify({general:{language:artifactLanguage==='fr'?'french':'english'}}));}
+    if(doubleArtifactChoice!==null){
+     const file='/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json';
+     const policy=JSON.parse(value.FS.readFile(file,{encoding:'utf8'}));policy.mapRules??={};policy.mapRules['119']=doubleArtifactsConfigured;
+     value.FS.writeFile(file,JSON.stringify(policy));
+    }
     if(growthChoice!==null){
      // Starting artifacts are random. Keep unrelated daily army conversions
      // from changing the seven authored growth/experience witnesses.
@@ -214,7 +248,7 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,enab
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
+ },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -241,6 +275,12 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,enab
    await page.locator('.wog-options summary')[desktop?'click':'tap']();await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[13]===value,growthChoice);
    await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
+  }
+  if(doubleArtifactChoice!==null){
+   assert.equal((await state()).wogOptions.length,25);
+   const input=page.locator(`input[data-wog-option="24"][value="${doubleArtifactChoice}"]`);
+   await page.locator('.wog-options summary')[desktop?'click':'tap']();await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
+   await wait(value=>goonkMobileState.wogOptions[24]===value,doubleArtifactChoice);
   }
   if(difficulty!==undefined){await command(25,difficulty);await wait(value=>goonkMobileState.difficulty===value,difficulty);}
   if(classic)await command(22);
@@ -293,6 +333,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='double-artifacts'){
+  const {runDoubleArtifacts}=await import('./wog-map-double-artifacts-cases.mjs');
+  await runDoubleArtifacts({boot,sheet,state,command,wait,approachEnemy,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:961})});
+ }
  if(process.env.CASES==='tile-properties'){
   const {runTileProperties}=await import('./wog-era-tile-properties-cases.mjs');
   await runTileProperties({boot,state,command,wait,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:960})});
