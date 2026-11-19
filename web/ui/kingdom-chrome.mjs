@@ -23,4 +23,8 @@ export function useKingdomChrome(root){
  const hero=root.querySelector('.hero-equipment-page:not([hidden])');if(hero)useHeroSummary(hero,hero.querySelector('.hero-card-head'));
  const chromeHeight=Math.ceil(header.getBoundingClientRect().height);if(chromeHeight&&root.style.getPropertyValue('--ui-kingdom-chrome-height')!==chromeHeight+'px')root.style.setProperty('--ui-kingdom-chrome-height',chromeHeight+'px');
  for(const node of [...header.querySelectorAll('.mobile-resources,.mobile-calendar')]){const parent=compact?popup.list:header;if(node.parentElement!==parent)parent.append(node);}
+ const mapRail=root.dataset.mode==='map'&&root.clientWidth>root.clientHeight&&root.clientHeight<400;
+ root.dataset.uiMapRail=String(mapRail);
+ const calendar=root.querySelector('.mobile-calendar'),calendarParent=mapRail?root:header;
+ if(calendar&&calendar.parentElement!==calendarParent)calendarParent.append(calendar);
 }

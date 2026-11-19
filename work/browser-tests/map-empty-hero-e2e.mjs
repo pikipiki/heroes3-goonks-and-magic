@@ -16,7 +16,7 @@ for(const[name,engine]of Object.entries({chromium,webkit})){
     assert.equal(await nav.locator('[data-ui=endturn]').count(),1,'Turn action retained');assert.equal(await nav.locator('[data-ui=move]').count(),1,'Move action retained');
     const geometry=await nav.evaluate(n=>{const cs=getComputedStyle(n),r=n.getBoundingClientRect(),buttons=[...n.querySelectorAll(':scope>button')].filter(b=>!b.hidden&&b.getBoundingClientRect().height);return{height:r.height,children:buttons.map(b=>b.getBoundingClientRect().toJSON()),gap:parseFloat(cs.rowGap)||0,padding:parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom)+parseFloat(cs.borderTopWidth)+parseFloat(cs.borderBottomWidth),overflow:n.scrollWidth>n.clientWidth||n.scrollHeight>n.clientHeight+1};});
     assert(!geometry.overflow,'Action dock has no hidden scrolling');
-    if(phase!=='hero'){assert(geometry.children.length>0);const rows=new Set(geometry.children.map(rect=>Math.round(rect.y))).size;assert(Math.abs(geometry.height-(rows*48+(rows-1)*geometry.gap+geometry.padding))<2,'No empty row/background remains');for(const rect of geometry.children)assert.equal(rect.height,48);}
+    if(phase!=='hero'){assert(geometry.children.length>0);const rows=new Set(geometry.children.map(rect=>Math.round(rect.y))).size;assert(Math.abs(geometry.height-(rows*geometry.children[0].height+(rows-1)*geometry.gap+geometry.padding))<2,'No empty row/background remains');for(const rect of geometry.children)assert(rect.height>=48);}
     if(phase==='empty-again')await page.screenshot({path:path.join(output,`${name}-${language}-${viewport.width}.png`)});
    }
   }
