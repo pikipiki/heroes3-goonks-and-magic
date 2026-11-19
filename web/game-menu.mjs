@@ -198,7 +198,7 @@ function mountGameMenu(){
     content.replaceChildren();
     delete content.dataset.view;
   });
-  dialog.addEventListener('keydown',event=>event.stopPropagation());
+  dialog.addEventListener('keydown',event=>{if(event.key!=='Escape')event.stopPropagation();});
 }
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mountGameMenu);else mountGameMenu();

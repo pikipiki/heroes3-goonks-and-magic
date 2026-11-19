@@ -36,9 +36,5 @@ export function createTroopActions({root,command,portrait=()=>'',onLeave=()=>{}}
    case 'confirm':if(cap.dismiss){pending=true;command(113,selection.army,selection.slot,cap.unit.id,cap.unit.count);timer=setTimeout(()=>{pending=false;message=tr('Dismissal not confirmed. Check the troop and try again.','Renvoi non confirmé. Vérifie la troupe puis réessaie.');render();},5000);render();}break;
   }
  });
- panel.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&!pending){e.preventDefault();if(confirming){confirming=false;render();panel.querySelector('[data-troop-action=back]')?.focus();}else close();}
-  if(e.key==='Tab'){const buttons=[...panel.querySelectorAll('button:not(:disabled)')];if(!buttons.length){e.preventDefault();return;}const first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
- });
  return{show(army,slot){const cap=troopActionCapabilities(state,army,slot);if(!cap.unit)return;opener=document.activeElement;selection={army,slot,id:cap.unit.id,count:cap.unit.count,mode:state.mode};confirming=false;pending=false;message='';render();panel.querySelector('button:not(:disabled)')?.focus();},update(next){state=next;if(!selection)return;const current=troopActionCapabilities(state,selection.army,selection.slot).unit;if(state.mode!==selection.mode||!current||current.id!==selection.id||current.count!==selection.count||!state.turn){close();return;}render();},close};
 }

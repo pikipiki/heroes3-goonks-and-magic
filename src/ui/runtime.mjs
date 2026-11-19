@@ -12,6 +12,11 @@ import IconButton from '@mui/material/IconButton';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Table from '@mui/material/Table';
@@ -155,7 +160,7 @@ function element(node,index){if(node.nodeType===3)return node.textContent;if(nod
 // The existing bridge and canvas nodes remain owned by their original modules.
 export function renderMarkup(root,markup,{stable=false}={}){if(root.tagName==='TEMPLATE'){root.innerHTML=markup;return;}if(['SELECT','OPTION','OPTGROUP'].includes(root.tagName)){root.innerHTML=markup;return;}
  if(!stable)disposeMaterialRoot(root);const template=document.createElement('template');template.innerHTML=markup;render(root,root.matches('.game-menu-body[data-view=settings]')?h(Stack,{spacing:2,useFlexGap:true,className:'ui-form-stack'},...[...template.content.childNodes].map(element)):h(React.Fragment,null,...[...template.content.childNodes].map(element)));}
-export function renderMaterialSelect(host,{select,label,options,value,disabled,onChange}){render(host,h(Select,{value,disabled,displayEmpty:true,fullWidth:true,className:'material-select-trigger',inputProps:{'aria-label':label},MenuProps:{container:host.closest('dialog')||document.body,transitionDuration:0},onChange:event=>onChange(event.target.value)},options.map(option=>h(MenuItem,{key:option.value,value:option.value,disabled:option.disabled},option.label))));}
+export function renderMaterialSelect(host,{select,label,options,value,disabled,onChange}){render(host,h(Select,{value,disabled,displayEmpty:true,fullWidth:true,className:'material-select-trigger',inputProps:{'aria-label':label},MenuProps:{transitionDuration:0},onChange:event=>onChange(event.target.value)},options.map(option=>h(MenuItem,{key:option.value,value:option.value,disabled:option.disabled},option.label))));}
 export function disposeMaterialRoot(host,restoreDom=true){const root=roots.get(host);if(root){for(const child of [...roots.keys()])if(child!==host&&host.contains(child))disposeMaterialRoot(child);if(restoreDom)restore(host);root.unmount();roots.delete(host);snapshots.delete(host);}}
 export {heroesTheme};
 
@@ -164,6 +169,101 @@ export function createMaterialMenu(host,{anchor,container,role,label,className,o
  const update=()=>render(host,h(Menu,{open,'data-ui-menu-open':String(open),anchorEl:anchor,container,className,keepMounted:true,transitionDuration:0,onClose,slotProps:{list:{ref,role,'aria-label':typeof label==='function'?label():label,className:'ui-popup-list'},paper:{className:'ui-material-menu',sx:{minWidth:208,maxWidth:'calc(100vw - 16px)',maxHeight:'min(320px,calc(100dvh - 16px))'}}}}));
  update();return{get list(){return list;},show(){open=true;update();},close(){open=false;update();},dispose(){disposeMaterialRoot(host,false);}};
 }
+
+// Native factories retain ownership of their exact DOM, canvas and listeners.
+// MUI owns the actual Dialog/Modal, backdrop, focus trap, stacking and Fade.
+export function createMaterialDialogBoundary(nativeRoot,initialOptions={}){
+ let options={...initialOptions},react=null,host=null,anchor=null,open=false,disposed=false,paperHost=null,modalRoot=null;
+ const originalAttributes=new Map(),appliedAttributes=new Map(),addedClasses=new Set();
+ const originalStyles=new Map(['opacity','visibility','transition'].map(key=>[key,[nativeRoot.style.getPropertyValue(key),nativeRoot.style.getPropertyPriority(key)]]));
+ const assignRef=(ref,node)=>{if(typeof ref==='function')ref(node);else if(ref)ref.current=node;};
+ const container=()=>options.container||(anchor?.parentElement?.matches('.mobile-play,#mobile-app')?anchor.parentElement:nativeRoot.closest('#mobile-app'))||anchor?.parentElement||nativeRoot.ownerDocument.body;
+ const applyAttribute=(key,value)=>{
+  if(value===undefined||value===null)return;
+  if(!originalAttributes.has(key))originalAttributes.set(key,nativeRoot.getAttribute(key));
+  const text=String(value);appliedAttributes.set(key,text);if(nativeRoot.getAttribute(key)!==text)nativeRoot.setAttribute(key,text);
+ };
+ const restoreNode=(finish=false)=>{
+  if(anchor?.parentNode&&nativeRoot.parentNode!==anchor.parentNode)anchor.parentNode.insertBefore(nativeRoot,anchor.nextSibling);
+  if(!finish)return;
+  for(const name of addedClasses)nativeRoot.classList.remove(name);addedClasses.clear();
+  for(const[key,value]of originalAttributes){if(nativeRoot.getAttribute(key)!==appliedAttributes.get(key))continue;if(value===null)nativeRoot.removeAttribute(key);else nativeRoot.setAttribute(key,value);}
+  originalAttributes.clear();appliedAttributes.clear();
+  for(const[key,[value,priority]]of originalStyles){if(value)nativeRoot.style.setProperty(key,value,priority);else nativeRoot.style.removeProperty(key);}
+ };
+ const adopt=()=>{if(open&&paperHost&&nativeRoot.parentNode!==paperHost)paperHost.append(nativeRoot);};
+ const NativePaper=React.forwardRef(function NativeDialogPaper(props,ref){
+  const {children,ownerState,as,elevation,className,role,tabIndex,...other}=props;
+  useLayoutEffect(()=>{adopt();return()=>restoreNode(true);},[]);
+  useLayoutEffect(()=>{
+   adopt();
+   // A lower Modal may have aria-hidden the source before it was adopted.
+   // The real Modal wrapper now owns isolation; its active paper must be read.
+   applyAttribute('aria-hidden','false');
+   for(const name of String(className||'').split(/\s+/).filter(Boolean))if(!nativeRoot.classList.contains(name)){nativeRoot.classList.add(name);addedClasses.add(name);}
+   applyAttribute('role',role);applyAttribute('tabindex',tabIndex);
+   for(const[key,value]of Object.entries(other))if(key.startsWith('aria-')||key.startsWith('data-'))applyAttribute(key,value);
+  });
+  return h('div',{'data-ui-dialog-paper-host':'',style:{display:'contents'},ref:node=>{paperHost=node;assignRef(ref,node?nativeRoot:null);}});
+ });
+ const NativeContainer=React.forwardRef(function NativeDialogContainer(props,ref){
+  const {children,ownerState,style,onFocus,tabIndex,...other}=props;
+  useLayoutEffect(()=>{for(const key of ['opacity','visibility'])if(style?.[key]!==undefined)nativeRoot.style[key]=style[key];});
+  useLayoutEffect(()=>{if(!onFocus)return;nativeRoot.addEventListener('focusin',onFocus);return()=>nativeRoot.removeEventListener('focusin',onFocus);},[onFocus]);
+  // Adopted children keep their original React owner. Forward Escape into the
+  // real Modal event tree, whose manager alone decides which dialog may close.
+  useLayoutEffect(()=>{const escape=event=>{if(event.key!=='Escape'||!modalRoot)return;const owner=event.target.closest?.('.MuiModal-root');if(owner&&owner!==modalRoot)return;event.stopPropagation();event.preventDefault();modalRoot.dispatchEvent(new KeyboardEvent('keydown',{key:event.key,code:event.code,bubbles:true,cancelable:true,shiftKey:event.shiftKey,ctrlKey:event.ctrlKey,altKey:event.altKey,metaKey:event.metaKey}));};nativeRoot.addEventListener('keydown',escape,true);return()=>nativeRoot.removeEventListener('keydown',escape,true);},[]);
+  return h('div',{...other,style:{display:'contents'},ref:node=>assignRef(ref,node?nativeRoot:null)},children);
+ });
+ const renderDialog=()=>{
+  if(!react)return;
+  flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Dialog,{
+   open,container:container(),
+   maxWidth:false,disableScrollLock:true,closeAfterTransition:false,
+   'aria-labelledby':options.ariaLabelledby||nativeRoot.getAttribute('aria-labelledby')||undefined,
+   'aria-describedby':options.ariaDescribedby||nativeRoot.getAttribute('aria-describedby')||undefined,
+   'aria-label':options.ariaLabel||nativeRoot.getAttribute('aria-label')||undefined,
+   onClose:(event,reason)=>options.onClose?.(event,reason),
+   transitionDuration:options.transitionDuration,
+   slots:{paper:NativePaper,container:NativeContainer},
+   slotProps:{root:{ref:node=>{modalRoot=node;},style:{position:'absolute',inset:0,pointerEvents:open?'auto':'none'}},paper:{'aria-label':options.ariaLabel},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
+  }))));
+ };
+ return{
+  get anchor(){return anchor;},get dialogRoot(){return modalRoot;},get open(){return open;},
+  setOpen(value){
+   if(disposed)return;
+   const next=Boolean(value);if(next===open)return;
+   if(next){
+    if(!anchor?.isConnected||nativeRoot.parentNode!==paperHost&&nativeRoot.parentNode!==anchor.parentNode){anchor?.remove();anchor=nativeRoot.ownerDocument.createComment('mui-dialog-anchor');nativeRoot.before(anchor);}
+    if(!react){host=nativeRoot.ownerDocument.createElement('div');host.dataset.uiDialogBoundary='';host.style.display='contents';container().append(host);react=createRoot(host);}
+   }
+   open=next;if(!open)restoreNode();renderDialog();
+  },
+  update(next={}){options={...options,...next};renderDialog();},
+  dispose(){if(disposed)return;disposed=true;open=false;restoreNode();if(react)flushSync(()=>react.unmount());restoreNode(true);host?.remove();anchor?.remove();react=null;host=null;},
+ };
+}
+
+function requestMaterialPrompt({title,message,confirmLabel,cancelLabel,closeLabel,container:target},confirmation){
+ const container=target||document.querySelector('#mobile-app')||document.body;
+ const host=document.createElement('div');host.dataset.uiMaterialPrompt='';host.style.display='contents';container.append(host);
+ const react=createRoot(host);let open=true,settled=false,value=false;
+ return new Promise(resolve=>{
+  const close=answer=>{if(settled)return;settled=true;value=answer;open=false;update();};
+  const finish=()=>queueMicrotask(()=>{react.unmount();host.remove();resolve(confirmation?value:undefined);});
+  const update=()=>flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Dialog,{
+   open,container,maxWidth:'sm',fullWidth:true,disableScrollLock:true,closeAfterTransition:false,onClose:()=>close(false),onTransitionExited:finish,
+   slotProps:{root:{style:{position:'absolute',inset:0,pointerEvents:open?'auto':'none'}},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
+  },h(DialogTitle,null,title),h(DialogContent,null,h(DialogContentText,{sx:{whiteSpace:'pre-line'}},message)),h(DialogActions,null,
+   confirmation?h(Button,{onClick:()=>close(false)},cancelLabel):null,
+   h(Button,{variant:'contained',onClick:()=>close(true),autoFocus:true},confirmation?confirmLabel:closeLabel),
+  )))));
+  update();
+ });
+}
+export function requestMaterialConfirmation(options){return requestMaterialPrompt(options,true);}
+export function requestMaterialNotice(options){return requestMaterialPrompt(options,false);}
 
 const isolated=new Map();let isolatedObserver;
 export function createMaterialElement(tag='div'){

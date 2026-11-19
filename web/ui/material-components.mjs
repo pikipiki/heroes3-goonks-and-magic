@@ -7,6 +7,7 @@ export {setClickHandler} from './controls.mjs';
 
 export {createMaterialElement as createUIElement} from './mui-runtime.mjs';
 export {createMaterialField as createUIField} from './mui-runtime.mjs';
+export {requestMaterialConfirmation,requestMaterialNotice} from './mui-runtime.mjs';
 
 export {createAccordion} from './accordion.mjs';
 

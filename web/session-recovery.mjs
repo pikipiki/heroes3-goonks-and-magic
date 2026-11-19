@@ -98,7 +98,7 @@ export function installSessionRecovery({win=window,doc=document}={}){
   message.textContent=info.error||(info.phase==='returning'?'Retour au menu principal…':null)||(['custom-opening','custom-configuring'].includes(info.phase)?'Preparing game options…':null)||(info.phase==='starting'?'Chargement de la dernière sauvegarde…':info.phase==='ready'?(info.scenario?scenarioTitle(info.scenario):'Reprise de la dernière sauvegarde…'):'Recherche de la dernière sauvegarde enregistrée sur cet appareil…');
   if(show&&!dialog.open)dialog.showModal();else if(!show&&dialog.open)dialog.close();
  }});
- setClickHandler(button,()=>recovery.dismiss());dialog.addEventListener('cancel',event=>{event.preventDefault();recovery.dismiss();});dialog.addEventListener('keydown',event=>event.stopPropagation());
+ setClickHandler(button,()=>recovery.dismiss());dialog.addEventListener('cancel',event=>{event.preventDefault();recovery.dismiss();});dialog.addEventListener('keydown',event=>{if(event.key!=='Escape')event.stopPropagation();});
  // Run before the mobile lobby's default selection; it must not race the resume choice.
  win.addEventListener('goonk-state',event=>{recovery.update(event.detail);if(recovery.intercept)event.stopImmediatePropagation();},true);
  const timer=win.setInterval(()=>{if(!doc.hidden)recovery.tick();},1000);

@@ -1,5 +1,5 @@
 import {createUIElement} from './ui/material-components.mjs';
-import {renderMarkup} from './ui/material-components.mjs';
+import {renderMarkup,useScreenComponents} from './ui/material-components.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 
 export function mountHostedCastles(root, fr, onRosterChange) {
@@ -18,6 +18,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
   picker.querySelector('header button').setAttribute('aria-label', t('Close castle picker', 'Fermer le choix du château'));
   picker.querySelector('footer button').textContent = t('← Back', '← Retour');
   root.replaceChildren(list, picker);
+  useScreenComponents(picker);
   let records = [], activeSeat;
   const artwork = new Map();
 

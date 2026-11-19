@@ -1,6 +1,6 @@
 import {createUIField} from './ui/material-components.mjs';
 import {createUIElement} from './ui/material-components.mjs';
-import {renderMarkup} from './ui/material-components.mjs';
+import {renderMarkup,useScreenComponents} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedCastles} from './hosted-castles.mjs';
@@ -93,6 +93,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   timer.nextElementSibling.textContent = t('Pauses during battles between players.', 'En pause pendant les combats entre joueurs.');
   players.replaceChildren(...Array.from({length: 7}, (_, index) => new Option(index + 2, index + 2)));
   root.prepend(section);
+  useScreenComponents(picker);
   let scenarios = [], selected, pending = false, previousRequest, requestBody;
   function render() {
     players.disabled = pending;

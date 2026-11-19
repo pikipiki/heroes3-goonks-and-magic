@@ -981,7 +981,7 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "628d22a77026f43dc5193d85e40cbda6323dff9a39aa10af7e98d4a0e115e70d",
+      "sourceSHA256": "871502d7017d330d47343b6df8d85ebb890d3916820098fa640864c7e4ce9efb",
       "evidence": [
         {
           "line": 72,
@@ -1054,7 +1054,7 @@
         "storage",
         "confirm"
       ],
-      "sourceSHA256": "5f1644db858702d7efef8ef84c9070db49e0f29325603575cabe718733174c62",
+      "sourceSHA256": "570a1c2df3480518f50ab3230edc69c8da932f791fdf9db152a5bafd89218d1d",
       "evidence": [
         {
           "line": 27,
@@ -1115,7 +1115,7 @@
         "copy",
         "feedback"
       ],
-      "sourceSHA256": "47c289d48cd8e09b677af5e0a343d1dd9c99389301b2cd8429c89a762b7e9152",
+      "sourceSHA256": "78af1bf52e5ac5b718cf349f1d2c877170cf85bb8dc467b4a8ad164588080ebe",
       "evidence": [
         {
           "line": 12,
@@ -1735,7 +1735,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "afbedd18c835876b157a5b25a0f9e0c06904ea21a89aff95057e18920fd20d1e",
+      "sourceSHA256": "c8a46830b3a3b815169dbf893e9e695ac8bdf81244e3e6d3d66ca328dc62958b",
       "evidence": [
         {
           "line": 6,
@@ -1842,7 +1842,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "0d4e6a806003169d12e28d786f6ef116f1f2a1a666b7d08ade1edb978d4223b3",
+      "sourceSHA256": "bdd9d20e8825e5a88b44276bb4dff684aca6e9f4f1acd5115229f2b0c4c96930",
       "evidence": [
         {
           "line": 6,
@@ -2683,7 +2683,7 @@
         "feedback",
         "actions"
       ],
-      "sourceSHA256": "c811090c6a2236fccc812ab36a48db81ac7979749fef69b51ae4980497806556",
+      "sourceSHA256": "bcb715cf9b8f40256759e55bd47d6484a65446e2794e7da65380cb80005b0ab1",
       "evidence": [
         {
           "line": 7,
@@ -2895,7 +2895,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "a6537c622aa28d96c610a7df39ad6c6eb7a092a2463056956ce033a8ed4b6545",
+      "sourceSHA256": "2ad008cb6bf7a76de9f88f708f8937ee288cfcee4e9de00c8ace14af66f33ffa",
       "evidence": [
         {
           "line": 19,
@@ -3073,7 +3073,7 @@
         "players",
         "select"
       ],
-      "sourceSHA256": "3c2abefdd2285a2ae9ec27e079d3dd4cb5bc4c997d3ba01979248b0acaf44cfd",
+      "sourceSHA256": "801f2d1e21f1706495b939fbfa72cbbfbf028f89dbedec0a9e62e15ca9f2c505",
       "evidence": [
         {
           "line": 5,
@@ -3092,19 +3092,19 @@
           "excerpt": "renderMarkup(picker,'<header><h2 id=\"hosted-castle-title\" tabindex=\"-1\" autofocus></h2><button type=\"button\" data-castle-close data-native-click>✕</button></header><div class=\"lobb"
         },
         {
-          "line": 86,
+          "line": 87,
           "excerpt": "const container = document.createElement('section');"
         },
         {
-          "line": 87,
+          "line": 88,
           "excerpt": "const header = document.createElement('div');"
         },
         {
-          "line": 89,
+          "line": 90,
           "excerpt": "const heading = document.createElement('h3');"
         },
         {
-          "line": 90,
+          "line": 91,
           "excerpt": "const color = document.createElement('i');"
         }
       ],

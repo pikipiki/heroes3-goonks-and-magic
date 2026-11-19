@@ -1,5 +1,5 @@
 import {createUIElement,createAccordion} from './ui/material-components.mjs';
-import {renderMarkup} from './ui/material-components.mjs';
+import {renderMarkup,useScreenComponents} from './ui/material-components.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
 import {createHostedCodeCopy} from './hosted-code-copy.mjs';
@@ -228,6 +228,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   const {serviceWorker} = navigator;
   layout.append(modes, intro, loader, createPanel, library, savedPanel, field, status, deleteDialog);
   container.append(layout);
+  useScreenComponents(deleteDialog);
 
   function rememberedSeats() {
     try {

@@ -16,7 +16,13 @@ export function usePurchaseContext(root){
  if(root.dataset.uiPurchase!==String(purchase))root.dataset.uiPurchase=String(purchase);
  let record=records.get(root);
  const candidates=purchase?[...root.querySelectorAll('.mobile-sheet:not([hidden])>.sheet-head,.progression-page:not([hidden])>header')]:[];
- const header=candidates.filter(node=>!node.closest('[hidden],[inert]')&&getComputedStyle(node).visibility!=='hidden'&&node.getBoundingClientRect().height>0).at(-1);
+ const header=candidates.filter(node=>{
+  const dialog=node.closest('.MuiDialog-root'),hidden=node.closest('[aria-hidden="true"]');
+  // A Select/Menu may temporarily hide the entire app from accessibility.
+  // Keep its owning purchase layout stable; only a hidden Dialog in this
+  // app's own stack makes a purchase header inactive.
+  return !node.closest('[hidden],[inert]')&&(!hidden||dialog&&!dialog.contains(hidden))&&getComputedStyle(node).visibility!=='hidden'&&node.getBoundingClientRect().height>0;
+ }).at(-1);
  if(!header){if(record?.host.isConnected)record.host.remove();record?.header?.classList.remove('ui-purchase-header');records.delete(root);return purchase;}
  if(!record){const host=createMaterialElement('div');host.classList.add('ui-purchase-resources');host.setAttribute('role','list');record={host,header:null,markup:null};records.set(root,record);}
  if(record.header!==header){record.header?.classList.remove('ui-purchase-header');record.header=header;}

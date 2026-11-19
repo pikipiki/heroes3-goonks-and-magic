@@ -22,8 +22,8 @@ function ensureDock(root,contract){
 }
 export function applyScreenComponents(root){
  const contract=screenContract(root);if(!contract)return;
- useModalBoundary(root);
- root.classList.toggle('ui-modal-layout',!!contract.modal);
+ useModalBoundary(root,contract);
+ root.classList.toggle('ui-modal-layout',['commander','message','dialog'].includes(contract.name));
  if(contract.modalContent)for(const content of root.querySelectorAll(contract.modalContent))content.classList.add('ui-modal-content');
  root.dataset.uiScreen=contract.name;root.dataset.uiApp='heroes';
  root.classList.toggle('ui-screen-layout',!!contract.body);

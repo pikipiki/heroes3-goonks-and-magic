@@ -10,7 +10,7 @@
  #mobile-app .ui-purchase-header h2{font:var(--ui-font-title-compact)!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important}
  #mobile-app .ui-purchase-header>button{grid-area:1/2!important}
  #mobile-app .ui-purchase-header>.ui-purchase-resources{grid-area:2/1/3/-1!important}
- #mobile-app>.mobile-sheet:has(>.ui-purchase-header){--ui-screen-head-height:88px;padding:4px!important}
+ #mobile-app .mobile-sheet:has(>.ui-purchase-header){--ui-screen-head-height:88px;padding:4px!important}
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-ui-purchase=true]>.mobile-top{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:48px!important;gap:4px!important;padding:4px!important;height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important}
   #mobile-app[data-ui-purchase=true]>.mobile-top>#game-menu-toggle{grid-area:1/1!important;width:48px!important;height:48px!important;padding:0!important;margin:0!important}

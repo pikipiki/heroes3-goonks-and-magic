@@ -1,5 +1,5 @@
 import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
-import {createUIElement} from './ui/material-components.mjs';
+import {createUIElement,requestMaterialConfirmation,requestMaterialNotice} from './ui/material-components.mjs';
 import {createLoadingState} from './loading-state.mjs';
 import {useNavigation,useKingdomChrome,renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
@@ -287,16 +287,20 @@ function mount(){
    deleteSave.hidden=state.mode!=='load'||!/^saves[\\/]goonk-auto(?:\.vsgm1)?$/i.test(selected?.file||'');
    deleteSave.disabled=deletingSoloAutosave;
    setClickHandler(deleteSave,async()=>{
-    if(deletingSoloAutosave||!window.confirm(getLanguage()==='fr'?'Supprimer cette sauvegarde automatique ?':'Delete this autosave?'))return;
+    if(deletingSoloAutosave)return;
     deletingSoloAutosave=true;
     update(state,true);
     try{
+     const fr=getLanguage()==='fr';
+     const confirmed=await requestMaterialConfirmation({container:root,title:fr?'Sauvegarde automatique':'Autosave',message:fr?'Supprimer cette sauvegarde automatique ?':'Delete this autosave?',confirmLabel:fr?'Supprimer':'Delete',cancelLabel:fr?'Annuler':'Cancel'});
+     if(!confirmed){deletingSoloAutosave=false;update(state,true);if(deleteSave.isConnected&&!deleteSave.hidden)deleteSave.focus({preventScroll:true});return;}
      await deleteSoloAutosave(window.Module);
      location.replace(restartLaunchURL(location.href,23));
     }catch{
      deletingSoloAutosave=false;
      update(state,true);
-     window.alert(getLanguage()==='fr'?'Impossible de supprimer cette sauvegarde.':'Could not delete this autosave.');
+     const fr=getLanguage()==='fr';
+     await requestMaterialNotice({container:root,title:fr?'Sauvegarde automatique':'Autosave',message:fr?'Impossible de supprimer cette sauvegarde.':'Could not delete this autosave.',closeLabel:fr?'Fermer':'Close'});
     }
    });
    const choice=menu.querySelector('#lobby-choice'),mapLabel=state.mode==='load'?(savedGameTitle(selected)||state.selectedMap):scenarioTitle(state.selectedMap),choiceText=mapLabel||'Choisis la carte et la difficulté.';
@@ -606,7 +610,6 @@ function mount(){
   if(ui==='commander-mobile'){dialogPresentation.show();return;}if(ui==='town-view'){townWhole=!townWhole;focus=null;resetGestures();townZoom.textContent=townWhole?'＋ Zoom in':'− Zoom out';controls();return;}if(ui==='center'){if(state.mode==='map'&&state.worldView){zoom=1;focus=null;resetGestures();command(87);return;}zoom=1;focus=null;resetGestures();command(6);if(sheetKind)closeSheet();}if(ui==='center-town'){if(state.mode==='map'&&state.towns?.length){zoom=1;focus=null;resetGestures();if(state.towns.length===1)command(56,state.towns[0].index);else{openSheet('town-focus','Choose a castle');for(const town of state.towns){const b=createUIElement('button');b.className='mobile-card';b.textContent=town.name;setClickHandler(b,()=>{command(56,town.index);closeSheet();});body.append(b);}}}return;}if(ui==='save'&&state.mode==='map'&&state.turn){command(7);closeSheet();notify('Sauvegarde demandée : Goonk-mobile');}if(ui==='endturn'&&state.mode==='map'&&state.turn){command(3);return;}
  });
  root.addEventListener('goonk-open-army',()=>{command(63);showList('army');});
- sheet.addEventListener('keydown',event=>{if(event.key==='Escape'){closeSheet();event.stopPropagation();}if(event.key==='Tab'){const buttons=[...sheet.querySelectorAll('button:not(:disabled),input:not(:disabled)')];if(event.shiftKey&&document.activeElement===buttons[0]){buttons.at(-1)?.focus();event.preventDefault();}else if(!event.shiftKey&&document.activeElement===buttons.at(-1)){buttons[0]?.focus();event.preventDefault();}}});
  function getRegion(){if(state.mode==='map')return state.mapOverview?.view||{x:6,y:6,w:598,h:550};if(state.mode==='town')return {x:0,y:0,w:800,h:374};if(state.mode==='battle')return NATIVE_BATTLE_REGION;return state.rect&&state.rect.w>0?state.rect:{x:0,y:0,w:800,h:600};}
  let quickOrderUntil=0,pendingMapMove=null;
  window.addEventListener('goonk-battle-click-preference',()=>{if(state.mode==='battle'){selectedPoint=null;controls();renderBattlePanel();}});
