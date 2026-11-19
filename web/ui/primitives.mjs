@@ -19,5 +19,5 @@ export function decorateButton(button,{icon=false,variant}={}){
 }
 
 export function radioChoicesMarkup({name,choices=[],className=''}){
- return `<div class="ui-radio-choices ${escapeUI(className)}" style="--ui-choice-count:${Math.max(1,choices.length)}">${choices.map(({value,label='',attributes='',disabled=false,checked=false})=>`<label><input type="radio" name="${escapeUI(name)}" value="${escapeUI(value)}" ${attributes} ${disabled?'disabled':''} ${checked?'checked':''}><span>${escapeUI(label)}</span></label>`).join('')}</div>`;
+ return `<div class="ui-radio-choices ${escapeUI(className)}" style="--ui-choice-count:${Math.max(1,choices.length)}">${choices.map(({value,label='',attributes='',disabled=false,checked=false})=>`<label><input type="radio" name="${escapeUI(name)}" value="${escapeUI(value)}" ${attributes} ${disabled?'disabled':''} ${checked?'checked':''}><span class="ui-radio-label">${escapeUI(label)}</span></label>`).join('')}</div>`;
 }
