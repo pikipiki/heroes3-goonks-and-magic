@@ -1,3 +1,4 @@
+import {createMaterialElement} from './mui-runtime.mjs';
 import {createPopupMenu} from './menu.mjs';
 import {decorateButton,uiText} from './primitives.mjs';
 const records=new WeakMap();
@@ -6,7 +7,7 @@ const records=new WeakMap();
 export function useKingdomChrome(root){
  let record=records.get(root);
  if(!record){const header=root.querySelector('.mobile-top');if(!header)return;
-  const button=document.createElement('button');button.type='button';button.className='ui-kingdom-trigger';decorateButton(button);button.hidden=true;header.append(button);
+  const button=createMaterialElement('button');button.type='button';button.className='ui-kingdom-trigger';decorateButton(button);button.hidden=true;header.append(button);
   const popup=createPopupMenu({anchor:button,container:header,role:'region',className:'ui-kingdom-popup',label:()=>uiText('Kingdom resources and calendar','Ressources et calendrier du royaume')});
   record={header,button,popup,compact:false};records.set(root,record);
   const observer=new ResizeObserver(()=>useKingdomChrome(root));observer.observe(root);

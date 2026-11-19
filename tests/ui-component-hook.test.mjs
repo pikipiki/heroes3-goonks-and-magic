@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {execFileSync,spawnSync} from 'node:child_process';
-import {requiresUiLibrary,importsUiLibrary,violations,muiOnlyViolations} from '../scripts/check-ui-components.mjs';
+import {requiresUiLibrary,importsUiLibrary,nativeActionViolations,violations,muiOnlyViolations} from '../scripts/check-ui-components.mjs';
 const markup="const panel=document.createElement('section');panel.innerHTML='<header>Title</header><button>OK</button>';";
 test('UI guard covers new screens and leaves logic and library internals alone',()=>{
  assert.deepEqual(violations(['outputs/large-catalogue.json','game-data/binary.bin'],()=>{throw Error('Unrelated data must never be read');}),[]);
@@ -42,4 +42,9 @@ test('semantic text colours meet Material contrast requirements',()=>{
  const css=fs.readFileSync('web/ui/tokens.css','utf8'),tokens=Object.fromEntries([...css.matchAll(/--ui-([\w-]+):\s*(#[0-9a-f]{6})/gi)].map(m=>[m[1],m[2]]));
  const luminance=hex=>hex.slice(1).match(/../g).map(v=>parseInt(v,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
  for(const [foreground,background]of [['on-surface','surface'],['on-surface-variant','surface-high'],['on-primary','primary'],['on-primary-container','primary-container'],['on-secondary','secondary-container'],['on-error','error']]){const values=[luminance(tokens[foreground]),luminance(tokens[background])].sort((a,b)=>b-a);assert((values[0]+.05)/(values[1]+.05)>=4.5,foreground+'/'+background);}
+});
+
+test('native action factories must use real MUI controls',()=>{
+ assert.deepEqual(nativeActionViolations(['web/example.mjs'],()=>"document.createElement('button')"),['web/example.mjs']);
+ assert.deepEqual(nativeActionViolations(['web/example.mjs'],()=>"createUIElement('button')"),[]);
 });

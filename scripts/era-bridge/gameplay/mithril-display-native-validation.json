@@ -1,654 +1,6 @@
 {
-  "schema": 1,
-  "activation": false,
-  "completeRules": false,
-  "profilesAdmitted": false,
-  "scope": "Source149 sequential option snapshot, final UN:P149 value, frozen information-only access and localized text price list on touch, mouse and classic overview right-click. Text list intentionally replaces fixed mithPric.pcx. Existing resources remain visible independently.",
   "sourceBaseCommit": "cc77c1279cec1557fc27429cbff15811229a816b",
-  "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-  "sourceBindings": {
-    "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
-    "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
-    "web/mithril-enhancements.mjs": "48ac8021d45e327fff8fbf8832dfd7a5c226834c18e50cdf28383103590b37fa",
-    "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
-    "work/vcmi-wasm/client/adventureMap/AdventureMapWidget.cpp": "e217057948f462497dad18b8177a167474c6bf213414d64c7926168502b1a610",
-    "work/vcmi-wasm/client/windows/EraMithrilWindow.h": "93cbe63a106e76225b62bb11f5b3f75eda393249eb3bc7390e782c803615154a",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
-    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
-    "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
-    "work/vcmi-wasm/lib/era/EraMithrilDisplayRules.h": "fe510a53ab2a50a5d18ec6f7c788cb01183bf795445dc0763adbf22a55d1086a",
-    "tests/native/EraMithrilDisplayRules.test.cpp": "d4340a468c67a115d4048e7a4d79b359ac04271f0718d90c71f58044ddd3f2f8",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
-    "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
-    "work/browser-tests/mithril-information-components-e2e.mjs": "9847cfa54d321e61b29127c4e9feab879842a3acec4e6a03765f23bf22b47569",
-    "tests/fixtures/era-gameplay/mithril-display-reference.json": "6fbf6e269200a45d8db163b1562f7bc6c3d5ff888f45f970769984b89076a20d",
-    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
-    "tests/era-mithril-display.test.mjs": "5e4fdd375f7f754fd6e65509608e79bb82741265724f8a559184930e88478378",
-    "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
-    "docs/era-compatibility.md": "cbbaaa77da38400a79f55ea7d93b6fec3c614ba7a2aea0d9420259733054d5fa"
-  },
-  "nativeBuild": {
-    "command": "ninja -j32 html5",
-    "exitCode": 0,
-    "targets": 109,
-    "logSha256": "5015e514a6157a97090ab3b08fcd51a8e1ade336580a695f643cf8f0d4238198",
-    "warMachinesAdmitted": false
-  },
-  "linuxSanitizers": {
-    "exitCode": 0,
-    "tests": [
-      {
-        "name": "EraMithrilDisplayRules",
-        "exitCode": 0,
-        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "name": "EraWogOptionsSerialization",
-        "exitCode": 0,
-        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      }
-    ]
-  },
-  "sourceAudit": {
-    "trackedFilesChecked": 3009,
-    "mismatches": [],
-    "expectedManifestSha256": "d80d41fb9a434d4d7363d90c1cd2aaa58a3cc14ac386f54cc43feee3cb24c355"
-  },
-  "upstreamReference": {
-    "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
-    "sourceFragments": [
-      {
-        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
-        "lines": [
-          94,
-          103
-        ],
-        "text": "!!VR(options[0]):C36/149/170/171;\n\n!!re i/0/(options[SIZE])/1/-1;\n  !!UN:P(options[i])/?(isEnabled:y);\n  !!VRi^wog_%(options[i])_enabled^:S(isEnabled:y);\n  !!if&(isEnabled:y);\n    !!UN:B0/1;   (Enable Mithril)\n    !!UN&i<3:P149/1;[Enable Mithril Display if Mithril script or Mithril Replacement is enabled][Check if Mithril in Windmills and Gardens is enabled: v4]\n  !!en;\n!!en;\n",
-        "sha256": "adc9dbfea2417cb370950414eac259e9870ec8fde63a8b3457b827f7cec4bcd2"
-      },
-      {
-        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
-        "lines": [
-          120,
-          147
-        ],
-        "text": "!?FU(OnAdventureMapRightMouseClick)&i^mouse_item^=(ITEM_ADVMAP_KINGDOM_OVERVIEW_BTN)/i^wog_149_enabled^;\n!!CM:R0;\n!!FU(WOG_149_DisplayMithril):P;\n\n!?FU(WOG_149_DisplayMithril);\n!!OW:C?(player:y)/?(interactPlayer:y); [Store number of current player in y4]\n!!OW:R(interactPlayer)/(RES_MITHRIL)/?(number:y); [Store current player's Mithril in y-5]\n\n!!VRn:S(number) -1 F0/1;\n\n!!SN:T^wog.36.description.%n^/?(name:z) T^wog.36.description.msg^/?(msg:z)/^number^/(number)/^name^/(name);\n!!if&i^wog_36_enabled^;\n\n  !!IF:Q2/(PIC_TYPE_RES_MITHRIL)/(number:y)/(MSG_TYPE_QUESTION)/^%(msg:z)%T(wog.36.description.question)^; [Display Mithril and offer to display price list: Flag 2]\n\n  !!if&2;\n    !!VRz1:S^mithPric.pcx^;  [File and path name for Mithril Price List image: z1]\n    !!SN:F^PcxPngExists^/z1; [Check if Mithril Price List image is there: v1=True if yes]\n    !!if&v1;\n      !!IF:B1/1/0 P1; [Display Mithril price list]\n    !!el;\n      !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/0/(MSG_TYPE_MES)/^%T(wog.36.description.std)^; [Display standard dialogue price list if image file missing]\n    !!en;\n  !!en;\n!!el;\n  !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/(number:y)/(MSG_TYPE_MES)/(msg:z); [Just display total Mithril if Mithril script is disabled]\n!!en;\n\n",
-        "sha256": "dd91e93f0e6237b60385c588b73c27d92671c410627283ccf85c62ef13832147"
-      }
-    ],
-    "staticOptionDispatch": {
-      "schema": 1,
-      "evidenceKind": "Bounded ordinary PE static inspection and matching Pascal/ERM source reads; not REA native Evidence. No execution of game binaries or port code.",
-      "target": {
-        "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
-        "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
-        "preferredImageBase": 4194304
-      },
-      "source42": {
-        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
-        "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
-        "lines": [
-          94,
-          103
-        ],
-        "order": [
-          36,
-          149,
-          170,
-          171
-        ],
-        "sequence": "Each iteration immediately reads UN:P(option)/?enabled, assigns that snapshot to wog_option_enabled, then if enabled calls UN:B0/1 and (only when loop index<3) UN:P149/1."
-      },
-      "regions": [
-        {
-          "file": "h3era.exe",
-          "name": "UN:P scalar/low-option dispatch",
-          "rva": 3354059,
-          "preferredVa": 7548363,
-          "endExclusiveVa": 7548436,
-          "fileOffset": 2940363,
-          "size": 73,
-          "sha256": "baeb5989e4c32cb108b2e37bcedee8335bb58459b7d9c909a4bb047a1e05301c",
-          "observation": "With at least2 parameters, first parameter is used as option index. Only indices0..4 use the nearby special jump table;149 goes to generic branch."
-        },
-        {
-          "file": "h3era.exe",
-          "name": "UN:P generic range check and same-address get/set",
-          "rva": 3354361,
-          "preferredVa": 7548665,
-          "endExclusiveVa": 7548804,
-          "fileOffset": 2940665,
-          "size": 139,
-          "sha256": "2427c609d383095c7fbd9790f1b832500a27cd577d957a59cb7883effd345346",
-          "observation": "Accept index0..999. Extra flag updates exist for5 and900, not149. Compute0x02771920+4*index, then pass that address, size4, SubCmd and parameter index1 to ZvsApply0x74195d. GET and SET use the identical address."
-        },
-        {
-          "file": "era.dll",
-          "name": "Installed ZvsApply target pointer",
-          "rva": 721384,
-          "preferredVa": 4915688,
-          "endExclusiveVa": 4915692,
-          "fileOffset": 717288,
-          "size": 4,
-          "sha256": "d2ebc26f7959c44dd7544d7bf3593117bb0520cd1ab5342caa464b51a7ba204b",
-          "observation": "Stored original function address is0x74195d."
-        },
-        {
-          "file": "era.dll",
-          "name": "ZvsApply hook installation",
-          "rva": 642383,
-          "preferredVa": 4836687,
-          "endExclusiveVa": 4836708,
-          "fileOffset": 639311,
-          "size": 21,
-          "sha256": "56bfd3852b2030e01c075c6d5933b433db271bc84adf059678526d41495f09c9",
-          "observation": "Install hook4945b0 over the target held at4b01e8. Matching source identifies this as Hook_ZvsApply."
-        },
-        {
-          "file": "era.dll",
-          "name": "Hook_ZvsApply set/get implementation",
-          "rva": 607664,
-          "preferredVa": 4801968,
-          "endExclusiveVa": 4802298,
-          "fileOffset": 604592,
-          "size": 330,
-          "sha256": "511a5bff601271c93e71a4147f960b9206b60fe0028bfb6441bf9ef7166587e0",
-          "observation": "SET(check typeNONE) synchronously calls PutVal494290 with the supplied pointer/size/value/modifier. GET loads from that pointer and passes the loaded value to SetErmParamValue4925a0. No special option149 or deferred configuration transaction is present."
-        }
-      ],
-      "matchingSource": {
-        "file": "work/downloads/era-kernel-source/Erm.pas",
-        "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
-        "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
-        "locations": {
-          "optionCountAndBanks": [
-            291,
-            293
-          ],
-          "TWoGOptions": 584,
-          "currentBase": 746,
-          "PutVal": [
-            5408,
-            5470
-          ],
-          "Hook_ZvsApply": [
-            5516,
-            5557
-          ],
-          "hookInstallation": 9611,
-          "UN_P3SpecialHook": [
-            6419,
-            6429,
-            9475
-          ]
-        },
-        "facts": [
-          "NUM_WOG_OPTIONS=1000, CURRENT_WOG_OPTIONS=0, GLOBAL_WOG_OPTIONS=1. Current bank is based at0x02771920.",
-          "PutVal plain SET uses FinalValue=Value and writes int32 to the supplied pointer immediately.",
-          "Hook_UN_P3 concerns option3(commanders), not149. Other source freeze hooks concern option5."
-        ]
-      },
-      "conclusion": {
-        "sameCell": true,
-        "optionIndex": 149,
-        "currentCellPreferredAddress": 41360244,
-        "currentCellHex": "0x02771b74",
-        "meaning": "UN:P149/1 immediately stores1 in the same current option integer that an immediately following UN:P149/? reads. It is not a display-only shadow value, delayed UI setting or a snapshot of the global bank.",
-        "sequentialEffect": "Option36 active forces current149=1 before149 is read, so wog_149_enabled becomes1 even when initial149=0. Option170 active forces149 only after its earlier snapshot, so170 alone leaves wog_149_enabled=0 while final current149=1. Option171 has loop index3, so it never forces149.",
-        "booleanFormula": {
-          "captured36": "initial36",
-          "captured149": "initial149 OR initial36",
-          "captured170": "initial170",
-          "captured171": "initial171",
-          "final149": "initial149 OR initial36 OR initial170"
-        }
-      },
-      "derivedReplay": {
-        "kind": "Independent sequential replay of source42, not runtime observation",
-        "booleanInputCombinations": 16,
-        "cases": [
-          {
-            "initial": {
-              "36": 0,
-              "149": 0,
-              "170": 0,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 0,
-              "170": 0,
-              "171": 0
-            },
-            "writes149": [],
-            "finalOption149": 0,
-            "enableMithrilCalled": false
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 0,
-              "170": 0,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 0,
-              "170": 0,
-              "171": 1
-            },
-            "writes149": [],
-            "finalOption149": 0,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 0,
-              "170": 1,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 0,
-              "170": 1,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 0,
-              "170": 1,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 0,
-              "170": 1,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 1,
-              "170": 0,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 1,
-              "170": 0,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 1,
-              "170": 0,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 1,
-              "170": 0,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 1,
-              "170": 1,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 1,
-              "170": 1,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 0,
-              "149": 1,
-              "170": 1,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 0,
-              "149": 1,
-              "170": 1,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 0,
-              "170": 0,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 0,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 0,
-              "170": 0,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 0,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 0,
-              "170": 1,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 1,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 0,
-              "170": 1,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 1,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 1,
-              "170": 0,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 0,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 1,
-              "170": 0,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 0,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 1,
-              "170": 1,
-              "171": 0
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 1,
-              "171": 0
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          },
-          {
-            "initial": {
-              "36": 1,
-              "149": 1,
-              "170": 1,
-              "171": 1
-            },
-            "capturedWogEnabled": {
-              "36": 1,
-              "149": 1,
-              "170": 1,
-              "171": 1
-            },
-            "writes149": [
-              {
-                "afterCapture": 36,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 149,
-                "writeOption": 149,
-                "value": 1
-              },
-              {
-                "afterCapture": 170,
-                "writeOption": 149,
-                "value": 1
-              }
-            ],
-            "finalOption149": 1,
-            "enableMithrilCalled": true
-          }
-        ]
-      },
-      "limits": [
-        "No game, Wine process or container was started for this question. Conclusions combine on-disk native dispatch, matching ERA hook implementation and explicit source-script order.",
-        "Arbitrary third-party runtime patches, asynchronous external writes or other scripts changing the same option between these commands are outside the inspected scope.",
-        "This establishes the option149 set/get storage semantics and the captured variables in this initialization loop; it does not establish every consumer or GUI rendering rule of149.",
-        "Only plain UN:P149/1 and GET are needed here. Modified operators and unrelated low-option special cases were not exhaustively studied.",
-        "Report includes hashes/offsets/descriptive observations only, with no original Windows executable bytes or disassembly text."
-      ]
-    }
-  },
+  "profilesAdmitted": false,
   "reports": {
     "touchLandscape": {
       "passed": true,
@@ -1015,117 +367,6 @@
       "errors": [],
       "rawReportSha256": "1032e07daf96a03da39fd9b42fff80dd17717022c71aca367b4b8aeaa0049fcd"
     }
-  },
-  "legacySave": {
-    "passed": true,
-    "scope": "mithril-sites",
-    "completeRules": false,
-    "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-    "scenarios": [
-      {
-        "kind": "mithril-display-legacy-save",
-        "inputVersion": 924,
-        "outputVersion": 925,
-        "noRetroactiveDisplay": true,
-        "resourcesPreserved": true
-      }
-    ],
-    "errors": [],
-    "rawReportSha256": "4a7883bf76257c8d98c7f0ed06c993dadfa9731ebe391ae93bce97119aef45a0"
-  },
-  "oldReaderControl": {
-    "passed": true,
-    "scope": "native-core-only",
-    "completeRules": false,
-    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
-    "scenarios": [
-      {
-        "kind": "era3-quick-scope-old-reader",
-        "futureVersion": 925,
-        "readerVersion": 924,
-        "rejectedBeforeScriptExecution": true
-      }
-    ],
-    "errors": [],
-    "rawReportSha256": "317738555dbf24fe58dc6820ed26d5c116bfb6a35af8833923ca1e7794d27f42"
-  },
-  "nativeRegressions": {
-    "core": {
-      "passed": true,
-      "scope": "native-core-only",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "79d8fa3e9f0fe6609cc06fe47d8054c3ba5313fae03927ec10590f53750011eb",
-      "scenarioCount": 7
-    },
-    "metadata": {
-      "passed": true,
-      "scope": "native-core-only",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "aa9a5299288b8150ea029394c64af0442d7dc752682772180af5f1358e1d1270",
-      "scenarioCount": 1
-    },
-    "signed-henchmen": {
-      "passed": true,
-      "scope": "native-core-only",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "27bc8862f1d62b85ee9e73e250e75acb11d635e49a768158143fd7f4cdb9c9cc",
-      "scenarioCount": 4
-    },
-    "source36": {
-      "passed": true,
-      "scope": "mithril-sites",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "500c498decfff40d3ad3ca8c39824e71c4d6651ddacc0e8a71425f08962dd2de",
-      "scenarioCount": 2
-    },
-    "sites": {
-      "passed": true,
-      "scope": "mithril-sites",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "34184c743886611c04faf426c8f465a107160ec5cd57a692c175cdfcf31d9e05",
-      "scenarioCount": 17
-    },
-    "weekly": {
-      "passed": true,
-      "scope": "mithril-sites",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "e6361a867f57b68027baa965162cb304ac7ab3979e128e454caec00310b9d79b",
-      "scenarioCount": 1
-    },
-    "monthly": {
-      "passed": true,
-      "scope": "mithril-sites",
-      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
-      "errors": [],
-      "rawReportSha256": "f3e2bae6f5db51f934d2f430022d989fa0f33b0987f8384b7208e6d3fe2edf1c",
-      "scenarioCount": 2
-    }
-  },
-  "serialization": {
-    "previousSaveVersion": 924,
-    "saveVersion": 925,
-    "choiceCount": 22,
-    "legacyChoiceCounts": [
-      6,
-      7,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21
-    ],
-    "newDisplayPolicy": 1,
-    "legacyDisplayPolicy": 0
   },
   "ui": {
     "radio": {
@@ -1735,6 +976,801 @@
       "rawReportSha256": "473bfd59e7dd4e2c772a305f02dee1a1690fe4b6bcb27a61a6402f0e34935eeb"
     }
   },
+  "fortlessTownsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "docs/era-compatibility.md": "87a0998fae45abd89f293bb08de6ee996c8931f1e86be371f06d7949b6862a22"
+    },
+    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
+    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  },
+  "doubleArtifactsRevalidation": {
+    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
+    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
+      "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
+      "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
+    },
+    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "legacySave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+    "scenarios": [
+      {
+        "kind": "mithril-display-legacy-save",
+        "inputVersion": 924,
+        "outputVersion": 925,
+        "noRetroactiveDisplay": true,
+        "resourcesPreserved": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "4a7883bf76257c8d98c7f0ed06c993dadfa9731ebe391ae93bce97119aef45a0"
+  },
+  "nativeRegressions": {
+    "core": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "79d8fa3e9f0fe6609cc06fe47d8054c3ba5313fae03927ec10590f53750011eb",
+      "scenarioCount": 7
+    },
+    "metadata": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "aa9a5299288b8150ea029394c64af0442d7dc752682772180af5f1358e1d1270",
+      "scenarioCount": 1
+    },
+    "signed-henchmen": {
+      "passed": true,
+      "scope": "native-core-only",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "27bc8862f1d62b85ee9e73e250e75acb11d635e49a768158143fd7f4cdb9c9cc",
+      "scenarioCount": 4
+    },
+    "source36": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "500c498decfff40d3ad3ca8c39824e71c4d6651ddacc0e8a71425f08962dd2de",
+      "scenarioCount": 2
+    },
+    "sites": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "34184c743886611c04faf426c8f465a107160ec5cd57a692c175cdfcf31d9e05",
+      "scenarioCount": 17
+    },
+    "weekly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "e6361a867f57b68027baa965162cb304ac7ab3979e128e454caec00310b9d79b",
+      "scenarioCount": 1
+    },
+    "monthly": {
+      "passed": true,
+      "scope": "mithril-sites",
+      "engineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e",
+      "errors": [],
+      "rawReportSha256": "f3e2bae6f5db51f934d2f430022d989fa0f33b0987f8384b7208e6d3fe2edf1c",
+      "scenarioCount": 2
+    }
+  },
+  "serialization": {
+    "previousSaveVersion": 924,
+    "saveVersion": 925,
+    "choiceCount": 22,
+    "legacyChoiceCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "newDisplayPolicy": 1,
+    "legacyDisplayPolicy": 0
+  },
+  "completeRules": false,
+  "uiPresentationRefresh": {
+    "referenceBeforeComponents": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "scope": "MUI presentation adapters and shared typography only; engine validation and gameplay admission flags are unchanged.",
+    "files": [
+      "web/mithril-enhancements.mjs"
+    ],
+    "checks": [
+      "work/browser-tests/material-screen-matrix-e2e.mjs",
+      "work/browser-tests/ui-native-controls-e2e.mjs",
+      "work/browser-tests/material-real-prototypes-e2e.mjs"
+    ]
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3009,
+    "mismatches": [],
+    "expectedManifestSha256": "d80d41fb9a434d4d7363d90c1cd2aaa58a3cc14ac386f54cc43feee3cb24c355"
+  },
+  "remaining": [
+    "External MA:L changes in dwelling eligibility and enhancement prices.",
+    "Arbitrary AR/FR/GD/ML/WM setters and late external replacement maximum-step overrides.",
+    "Complete gameplay profiles and exact ERA RNG sequence remain unadmitted."
+  ],
+  "oldReaderControl": {
+    "passed": true,
+    "scope": "native-core-only",
+    "completeRules": false,
+    "engineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5",
+    "scenarios": [
+      {
+        "kind": "era3-quick-scope-old-reader",
+        "futureVersion": 925,
+        "readerVersion": 924,
+        "rejectedBeforeScriptExecution": true
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "317738555dbf24fe58dc6820ed26d5c116bfb6a35af8833923ca1e7794d27f42"
+  },
+  "schema": 1,
+  "sourceBindings": {
+    "work/browser-tests/wog-mithril-source-option-cases.mjs": "f8fa15fe86fdd81fcd8b5ab7feb1003b3c7586a3653a12b9b9f4a6ad3b6ffb16",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
+    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
+    "web/mithril-enhancements.mjs": "167a22dcc038b3f9640d17ff2cf9a86c4c336540dae61f800ca3890b4b1d994f",
+    "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
+    "work/vcmi-wasm/lib/era/EraMithrilDisplayRules.h": "fe510a53ab2a50a5d18ec6f7c788cb01183bf795445dc0763adbf22a55d1086a",
+    "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
+    "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
+    "work/vcmi-wasm/client/adventureMap/AdventureMapWidget.cpp": "e217057948f462497dad18b8177a167474c6bf213414d64c7926168502b1a610",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
+    "work/vcmi-wasm/client/windows/EraMithrilWindow.h": "93cbe63a106e76225b62bb11f5b3f75eda393249eb3bc7390e782c803615154a",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
+    "docs/era-compatibility.md": "cbbaaa77da38400a79f55ea7d93b6fec3c614ba7a2aea0d9420259733054d5fa",
+    "tests/era-mithril-display.test.mjs": "5e4fdd375f7f754fd6e65509608e79bb82741265724f8a559184930e88478378",
+    "work/browser-tests/mithril-information-components-e2e.mjs": "9847cfa54d321e61b29127c4e9feab879842a3acec4e6a03765f23bf22b47569",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
+    "tests/native/EraMithrilDisplayRules.test.cpp": "d4340a468c67a115d4048e7a4d79b359ac04271f0718d90c71f58044ddd3f2f8",
+    "tests/fixtures/era-gameplay/mithril-display-reference.json": "6fbf6e269200a45d8db163b1562f7bc6c3d5ff888f45f970769984b89076a20d",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf"
+  },
+  "activation": false,
+  "upstreamReference": {
+    "sourceSha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+    "sourceFragments": [
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "lines": [
+          94,
+          103
+        ],
+        "text": "!!VR(options[0]):C36/149/170/171;\n\n!!re i/0/(options[SIZE])/1/-1;\n  !!UN:P(options[i])/?(isEnabled:y);\n  !!VRi^wog_%(options[i])_enabled^:S(isEnabled:y);\n  !!if&(isEnabled:y);\n    !!UN:B0/1;   (Enable Mithril)\n    !!UN&i<3:P149/1;[Enable Mithril Display if Mithril script or Mithril Replacement is enabled][Check if Mithril in Windmills and Gardens is enabled: v4]\n  !!en;\n!!en;\n",
+        "sha256": "adc9dbfea2417cb370950414eac259e9870ec8fde63a8b3457b827f7cec4bcd2"
+      },
+      {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "lines": [
+          120,
+          147
+        ],
+        "text": "!?FU(OnAdventureMapRightMouseClick)&i^mouse_item^=(ITEM_ADVMAP_KINGDOM_OVERVIEW_BTN)/i^wog_149_enabled^;\n!!CM:R0;\n!!FU(WOG_149_DisplayMithril):P;\n\n!?FU(WOG_149_DisplayMithril);\n!!OW:C?(player:y)/?(interactPlayer:y); [Store number of current player in y4]\n!!OW:R(interactPlayer)/(RES_MITHRIL)/?(number:y); [Store current player's Mithril in y-5]\n\n!!VRn:S(number) -1 F0/1;\n\n!!SN:T^wog.36.description.%n^/?(name:z) T^wog.36.description.msg^/?(msg:z)/^number^/(number)/^name^/(name);\n!!if&i^wog_36_enabled^;\n\n  !!IF:Q2/(PIC_TYPE_RES_MITHRIL)/(number:y)/(MSG_TYPE_QUESTION)/^%(msg:z)%T(wog.36.description.question)^; [Display Mithril and offer to display price list: Flag 2]\n\n  !!if&2;\n    !!VRz1:S^mithPric.pcx^;  [File and path name for Mithril Price List image: z1]\n    !!SN:F^PcxPngExists^/z1; [Check if Mithril Price List image is there: v1=True if yes]\n    !!if&v1;\n      !!IF:B1/1/0 P1; [Display Mithril price list]\n    !!el;\n      !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/0/(MSG_TYPE_MES)/^%T(wog.36.description.std)^; [Display standard dialogue price list if image file missing]\n    !!en;\n  !!en;\n!!el;\n  !!IF:Q1/(PIC_TYPE_RES_MITHRIL)/(number:y)/(MSG_TYPE_MES)/(msg:z); [Just display total Mithril if Mithril script is disabled]\n!!en;\n\n",
+        "sha256": "dd91e93f0e6237b60385c588b73c27d92671c410627283ccf85c62ef13832147"
+      }
+    ],
+    "staticOptionDispatch": {
+      "schema": 1,
+      "evidenceKind": "Bounded ordinary PE static inspection and matching Pascal/ERM source reads; not REA native Evidence. No execution of game binaries or port code.",
+      "target": {
+        "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+        "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+        "preferredImageBase": 4194304
+      },
+      "source42": {
+        "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+        "sha256": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+        "lines": [
+          94,
+          103
+        ],
+        "order": [
+          36,
+          149,
+          170,
+          171
+        ],
+        "sequence": "Each iteration immediately reads UN:P(option)/?enabled, assigns that snapshot to wog_option_enabled, then if enabled calls UN:B0/1 and (only when loop index<3) UN:P149/1."
+      },
+      "regions": [
+        {
+          "file": "h3era.exe",
+          "name": "UN:P scalar/low-option dispatch",
+          "rva": 3354059,
+          "preferredVa": 7548363,
+          "endExclusiveVa": 7548436,
+          "fileOffset": 2940363,
+          "size": 73,
+          "sha256": "baeb5989e4c32cb108b2e37bcedee8335bb58459b7d9c909a4bb047a1e05301c",
+          "observation": "With at least2 parameters, first parameter is used as option index. Only indices0..4 use the nearby special jump table;149 goes to generic branch."
+        },
+        {
+          "file": "h3era.exe",
+          "name": "UN:P generic range check and same-address get/set",
+          "rva": 3354361,
+          "preferredVa": 7548665,
+          "endExclusiveVa": 7548804,
+          "fileOffset": 2940665,
+          "size": 139,
+          "sha256": "2427c609d383095c7fbd9790f1b832500a27cd577d957a59cb7883effd345346",
+          "observation": "Accept index0..999. Extra flag updates exist for5 and900, not149. Compute0x02771920+4*index, then pass that address, size4, SubCmd and parameter index1 to ZvsApply0x74195d. GET and SET use the identical address."
+        },
+        {
+          "file": "era.dll",
+          "name": "Installed ZvsApply target pointer",
+          "rva": 721384,
+          "preferredVa": 4915688,
+          "endExclusiveVa": 4915692,
+          "fileOffset": 717288,
+          "size": 4,
+          "sha256": "d2ebc26f7959c44dd7544d7bf3593117bb0520cd1ab5342caa464b51a7ba204b",
+          "observation": "Stored original function address is0x74195d."
+        },
+        {
+          "file": "era.dll",
+          "name": "ZvsApply hook installation",
+          "rva": 642383,
+          "preferredVa": 4836687,
+          "endExclusiveVa": 4836708,
+          "fileOffset": 639311,
+          "size": 21,
+          "sha256": "56bfd3852b2030e01c075c6d5933b433db271bc84adf059678526d41495f09c9",
+          "observation": "Install hook4945b0 over the target held at4b01e8. Matching source identifies this as Hook_ZvsApply."
+        },
+        {
+          "file": "era.dll",
+          "name": "Hook_ZvsApply set/get implementation",
+          "rva": 607664,
+          "preferredVa": 4801968,
+          "endExclusiveVa": 4802298,
+          "fileOffset": 604592,
+          "size": 330,
+          "sha256": "511a5bff601271c93e71a4147f960b9206b60fe0028bfb6441bf9ef7166587e0",
+          "observation": "SET(check typeNONE) synchronously calls PutVal494290 with the supplied pointer/size/value/modifier. GET loads from that pointer and passes the loaded value to SetErmParamValue4925a0. No special option149 or deferred configuration transaction is present."
+        }
+      ],
+      "matchingSource": {
+        "file": "work/downloads/era-kernel-source/Erm.pas",
+        "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+        "commit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "locations": {
+          "optionCountAndBanks": [
+            291,
+            293
+          ],
+          "TWoGOptions": 584,
+          "currentBase": 746,
+          "PutVal": [
+            5408,
+            5470
+          ],
+          "Hook_ZvsApply": [
+            5516,
+            5557
+          ],
+          "hookInstallation": 9611,
+          "UN_P3SpecialHook": [
+            6419,
+            6429,
+            9475
+          ]
+        },
+        "facts": [
+          "NUM_WOG_OPTIONS=1000, CURRENT_WOG_OPTIONS=0, GLOBAL_WOG_OPTIONS=1. Current bank is based at0x02771920.",
+          "PutVal plain SET uses FinalValue=Value and writes int32 to the supplied pointer immediately.",
+          "Hook_UN_P3 concerns option3(commanders), not149. Other source freeze hooks concern option5."
+        ]
+      },
+      "conclusion": {
+        "sameCell": true,
+        "optionIndex": 149,
+        "currentCellPreferredAddress": 41360244,
+        "currentCellHex": "0x02771b74",
+        "meaning": "UN:P149/1 immediately stores1 in the same current option integer that an immediately following UN:P149/? reads. It is not a display-only shadow value, delayed UI setting or a snapshot of the global bank.",
+        "sequentialEffect": "Option36 active forces current149=1 before149 is read, so wog_149_enabled becomes1 even when initial149=0. Option170 active forces149 only after its earlier snapshot, so170 alone leaves wog_149_enabled=0 while final current149=1. Option171 has loop index3, so it never forces149.",
+        "booleanFormula": {
+          "captured36": "initial36",
+          "captured149": "initial149 OR initial36",
+          "captured170": "initial170",
+          "captured171": "initial171",
+          "final149": "initial149 OR initial36 OR initial170"
+        }
+      },
+      "derivedReplay": {
+        "kind": "Independent sequential replay of source42, not runtime observation",
+        "booleanInputCombinations": 16,
+        "cases": [
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [],
+            "finalOption149": 0,
+            "enableMithrilCalled": false
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [],
+            "finalOption149": 0,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 0,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 0,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 0,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 0,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 0
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          },
+          {
+            "initial": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "capturedWogEnabled": {
+              "36": 1,
+              "149": 1,
+              "170": 1,
+              "171": 1
+            },
+            "writes149": [
+              {
+                "afterCapture": 36,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 149,
+                "writeOption": 149,
+                "value": 1
+              },
+              {
+                "afterCapture": 170,
+                "writeOption": 149,
+                "value": 1
+              }
+            ],
+            "finalOption149": 1,
+            "enableMithrilCalled": true
+          }
+        ]
+      },
+      "limits": [
+        "No game, Wine process or container was started for this question. Conclusions combine on-disk native dispatch, matching ERA hook implementation and explicit source-script order.",
+        "Arbitrary third-party runtime patches, asynchronous external writes or other scripts changing the same option between these commands are outside the inspected scope.",
+        "This establishes the option149 set/get storage semantics and the captured variables in this initialization loop; it does not establish every consumer or GUI rendering rule of149.",
+        "Only plain UN:P149/1 and GET are needed here. Modified operators and unrelated low-option special cases were not exhaustively studied.",
+        "Report includes hashes/offsets/descriptive observations only, with no original Windows executable bytes or disassembly text."
+      ]
+    }
+  },
   "archive": {
     "file": "outputs/vcmi-wasm-goonk-0.4.277-engine.tar.gz",
     "sha256": "2eae2c92be4c1b85cf29700a44d6b230b244143688350e2d6be6df168fd60ce6",
@@ -1781,11 +1817,6 @@
       }
     ]
   },
-  "remaining": [
-    "External MA:L changes in dwelling eligibility and enhancement prices.",
-    "Arbitrary AR/FR/GD/ML/WM setters and late external replacement maximum-step overrides.",
-    "Complete gameplay profiles and exact ERA RNG sequence remain unadmitted."
-  ],
   "publicationVerification": {
     "release": "0.4.277",
     "nodeTests": {
@@ -1809,6 +1840,21 @@
       "commit": "443362e8c809a0f8d824a55edb0d0ee35829f8a0"
     }
   },
+  "linuxSanitizers": {
+    "exitCode": 0,
+    "tests": [
+      {
+        "name": "EraMithrilDisplayRules",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "EraWogOptionsSerialization",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
   "liveCreatureLevelsRevalidation": {
     "scope": "Historical native reports retained; current-engine regression, dynamic-price and legacy-save evidence linked separately.",
     "previousBindings": {
@@ -1817,46 +1863,12 @@
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
   },
-  "fortlessTownsRevalidation": {
-    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
-    "previousBindings": {
-      "docs/era-compatibility.md": "87a0998fae45abd89f293bb08de6ee996c8931f1e86be371f06d7949b6862a22"
-    },
-    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
-    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
-  },
-  "noActorRewardRevalidation": {
-    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
-    "previousBindings": {
-      "docs/era-gameplay-port.md": "a79e87957d1523d48dbe2cb5675954bebe7c789ff65c6142b9ae4d77e5d46183"
-    },
-    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
-    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
-  },
-  "tilePropertiesRevalidation": {
-    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
-    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
-    "previousBindings": {
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
-      "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
-    },
-    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
-  },
-  "doubleArtifactsRevalidation": {
-    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
-    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
-    "previousBindings": {
-      "docs/era-gameplay-port.md": "7ba103745052882e1207522200ce339d33f55b821fcfecfb707c3e4bc07b909b",
-      "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
-      "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
-      "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
-      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
-      "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
-      "docs/era-compatibility.md": "dd98f9dc7d7f6f54ec82264e094da0f8772c065f123426fbac990919739c60b0"
-    },
-    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  "scope": "Source149 sequential option snapshot, final UN:P149 value, frozen information-only access and localized text price list on touch, mouse and classic overview right-click. Text list intentionally replaces fixed mithPric.pcx. Existing resources remain visible independently.",
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "targets": 109,
+    "logSha256": "5015e514a6157a97090ab3b08fcd51a8e1ade336580a695f643cf8f0d4238198",
+    "warMachinesAdmitted": false
   }
 }

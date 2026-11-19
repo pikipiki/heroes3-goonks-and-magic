@@ -1,10 +1,11 @@
+import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
 if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./commander-tree.css',import.meta.url).href;document.head.append(link);}
 const tr=(en,fr)=>getLanguage()==='fr'?fr:en;
 const art=['attack','defense','health','damage','speed','magic'];
-const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
+const el=(tag,cls,text)=>{const node=tag==='button'?createUIElement(tag):document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
 function icon(id){const image=el('img','tree-skill-icon');image.src=new URL('./h3-theme/commander/'+(art[id]||'magic')+'.svg',import.meta.url).href;image.alt='';image.width=32;image.height=32;return image;}
 export function commanderAbilityState(ability,tree){
  if(ability.learned)return 'learned';

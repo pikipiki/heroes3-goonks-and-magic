@@ -1,110 +1,5 @@
 {
-  "schema": 1,
-  "activation": false,
-  "completeRules": false,
   "profilesAdmitted": false,
-  "scope": "Source117 for bound creature identities and audited MA:L levels: overwrite only stock slot1 after initial growth, preserve other rows, respect zero level and four exclusions, freeze rule and source67 metadata. Neutral Town gameplay, foreign/unported identities and full packs remain unadmitted.",
-  "sourceBaseCommit": "6cc03ac83279ccd46e29509da898eaef558cb160",
-  "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
-  "upstreamReference": {
-    "schema": 1,
-    "repository": "https://github.com/ERA-Projects/era-project-eng",
-    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
-    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
-    "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
-    "rule": 117,
-    "sourceObjectType": 17,
-    "excludedCreatures": [
-      140,
-      142,
-      112,
-      127
-    ],
-    "excludedZeroBasedLevel": 0,
-    "stockSlot": 1,
-    "initialStock": 12,
-    "sourceOption": 67,
-    "ordinaryCreature": 140,
-    "neutralTownCreature": 112,
-    "fragments": [
-      {
-        "startLine": 70,
-        "endLine": 84,
-        "text": "** function to only take effect at start ALL of them works for all players - function call is :P :D;\n; Daily events now starts from the second day only - same mechanism as the original H3\n!?FU(WOG_101_RunMapRulesOnce);\n  !!FU(WOG_101_BuildGrailsInTowns)&i^wog_101_map_rule_19_isEnabled^:P;           [build grails in towns - executed once]\n\n  !!FU(WOG_101_SetDoubledHeroesMovements)&i^wog_101_map_rule_10_isEnabled^:P;    [executed once - needed for the first player turn]\n  !!FU(WOG_101_PlaceWarlordsBanner)&i^wog_101_map_rule_20_isEnabled^:P;          [executed once]\n\n  !!FU(WOG_101_AllowMultiplyCapitols)&i^wog_101_map_rule_13_isEnabled^:P;        [executed once]\n  !!FU(WOG_101_AddBoarsOrAirElemsToDwells)&i^wog_101_map_rule_6_isEnabled^:P;    [executed once]\n  !!FU(WOG_101_SetDoubledArtifacts)&i^wog_101_map_rule_8_isEnabled^:P;           [executed once]\n\n  !!FU(WOG_101_SetUpMonsters):P;                                                 [executed once]\n  !!FU(WOG_101_HideMapInitPlayer)&i^wog_101_map_rule_9_isEnabled^:P;\n\n",
-        "sha256": "55b48e343faf732aeb5b2e9af6d48d3f0903fdc815dad810dcb25f7540230f7c"
-      },
-      {
-        "startLine": 454,
-        "endLine": 472,
-        "text": "!?FU(WOG_101_AddBoarsOrAirElemsToDwells);\n  !!UN:U(OBJ_CREATURE_GENERATOR_1)/-1/?(dwellings:y);                                                 [count dwellings]\n\n  !!VRv2:S-1;\n  !!VR(addedMon:y):S(MON_BOAR);\n  !!UN:P67/?(neutralTown:y);                                                       [check if Neutral town is active (flag1)]\n  !!VR(addedMon:y)&(neutralTown:y):S(MON_AIR_ELEMENTAL);\n\n  !!re i/0/(dwellings)/1/-1;\n    !!UN:U(OBJ_CREATURE_GENERATOR_1)/-1/-1/2; [get dwelling location into v600-v602]\n    !!DW2:M0/?t/?q; [get y1 type y2 qty in slot 0]\n    !!MA:Lt/?l; // get monster Level\n    !!if&l/t<>(MON_BOAR)/t<>(MON_NOMAD)/t<>(MON_AIR_ELEMENTAL)/t<>(MON_STORM_ELEMENTAL);\n      !!DW2:M1/(addedMon:y)/12; [12 boars / Air Elementals in slot 1]\n    !!en;\n  !!en;\n\n** end of function\n\n",
-        "sha256": "7b35507ea71214692634af6628e873f50e350c2fe27ea8d55f59dde8fdfe958d"
-      }
-    ]
-  },
-  "sourceBindings": {
-    "work/vcmi-wasm/lib/era/EraMapExtraDwellingRules.h": "2b5106610c9c0d85fa8652c506abffc1d7a37a6ca9a3d126cb0625fe03ba653e",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
-    "work/vcmi-wasm/lib/mapObjects/CGDwelling.cpp": "e2b6c02df3d4e518d90977d506c77ffba23195404885cdcb042c56b4a0e8c676",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "53f63e9a296cdf7e08eadf364b85df3ecb41f16d506bd7bf884b0172b91e9a21",
-    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b",
-    "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
-    "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
-    "work/browser-tests/wog-map-extra-dwellings-cases.mjs": "0cbd422a9184ebf3963f2b4150c549a5de0b13f3dfbc7e11a71529ff3d5b63b1",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
-    "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838",
-    "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
-    "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
-    "tests/native/EraMapExtraDwellingRules.test.cpp": "108d462f593ca399ecf4d15bd984881716b08122786d67b2a67ef14a371d909d",
-    "tests/era-map-extra-dwellings.test.mjs": "32283b22e5a17ae21edc2be7a473cea2dd274234fbb017bafd135df5e4a93ae8",
-    "tests/fixtures/era-gameplay/map-extra-dwellings-reference.json": "d809c94a65121bfc163a0763043889e3868acab618d9eb9e4adf38a3d36e3465",
-    "web/wog-options.css": "6c15be5d347895160bd6d3a68a4a72796470ae67d38bb8ee74cf854c50b80411",
-    "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
-    "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
-    "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
-    "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
-    "work/browser-tests/ui-screen-adapters-e2e.mjs": "d276f8be2fb2023764595173b7124375c2f92fdf62573822ab2fbf1e4d4af2b7"
-  },
-  "nativeBuild": {
-    "command": "ninja -j32 html5",
-    "exitCode": 0,
-    "incrementalTargetCounts": [
-      109,
-      5,
-      5,
-      6
-    ],
-    "logs": {
-      "map-extra-dwellings-wasm-build.log": "ee1dfb09d9b546e0039c0a0fcfb93b67651de869e662aa84d254470195166156",
-      "map-extra-dwellings-stock-build.log": "ea2bf78ebdb1d4c2623b9a81fd6b46f55da24d399969f1ec4f9c23767198033b",
-      "map-extra-dwellings-timing-build.log": "e3ada7f252e63fb7771917291fbfb8c6063d4f82db11d68c99baeb1d50a9890a",
-      "map-extra-dwellings-frozen-option-build.log": "17077f348809dd808f8835c3aed3261751a5fc68677b44a1b2cc78d2188058f0"
-    },
-    "warMachinesAdmitted": false
-  },
-  "linuxSanitizers": {
-    "command": "Linux C++17 -fsanitize=address,undefined: production option serializer and extra dwelling rules",
-    "exitCode": 0,
-    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  },
-  "serialization": {
-    "catalogueCounts": [
-      6,
-      7,
-      13,
-      14,
-      15,
-      16,
-      17
-    ],
-    "previousSaveVersion": 915,
-    "newSaveVersion": 916,
-    "oldPeerChoiceBoundsEnforced": true
-  },
   "reports": {
     "touchLandscape": {
       "passed": true,
@@ -806,6 +701,152 @@
       "programFileSha256": "b063325526a91abaa771050635f086ef1f3521201e9251cb5ef0f6866c07a747"
     }
   },
+  "groundedFliersCatalogueRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
+    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f03da5ec957f186d517569b2865fe1ffe406cc551505cdaea6ce4864933c510",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "74771c62276e7d40fc3cea56f8b4d5330861887ebd00d0dd8e824fb46e2595b1",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "93e21d186c354638349c3c7e10510fa1970a0b5e2a51c7719f9e20c4f446867b",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33",
+      "mod/tum-era/content/config/wog-map-rules.json": "846faa1044da6fac42aba7958e3029b6efb3a3003e6072f926c7d89f3fb79145",
+      "web/wog-options.mjs": "af2bb3e8779bf12d6c4773698da9520ed35213d87511a865f552e2c4870eb7b1",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
+      "work/browser-tests/wog-options-components-e2e.mjs": "810f92f89e896a2034ac33fa46dfd0d8f7057651bb8eca234d86ec3e31c1684b"
+    },
+    "historicalReportsRetained": true,
+    "existingFeatureSemanticsUnchanged": true,
+    "newRule": 111,
+    "newChoiceIndex": 17,
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward"
+    ],
+    "linuxHistoricalWireSanitizersExitCode": 0,
+    "sharedRadioUIFormatsPassed": 16
+  },
+  "weeklyMithrilRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "04ac0f1df0decd57ca33255f57f8f63265e09acec0d838906c359711a2fb8c31",
+      "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "084d6b48b0564b79ed05d12c949fd98de00e3ee1246d238375c0c081fcedd03f",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182"
+    },
+    "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
+    "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
+  },
+  "fortlessTownsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
+      "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "f2bbf322c1977a2f90d17550a9c2f8ffe1857e5cc1551834a01731abab5a87e7",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a4d9f197089ecd0e8994fbd4b6d4b39965074ff55ff7b79326522a630cefdc64",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9ea9dbfff5f16b631c6faafce4f1b2675a5a3bb9f30d171d65e878e4ead3d438"
+    },
+    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
+    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  },
+  "doubleArtifactsRevalidation": {
+    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
+    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
+    "previousBindings": {
+      "mod/tum-era/content/config/wog-map-rules.json": "9152c6ef91a6081dcb87beb97b9f7ea713576338ec3a5db859502240374a14a9",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
+      "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "63906782f2c71adbfde6ebb50ec9f42b39f112c83b0ce52df9660151d603053b",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
+    },
+    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+  "legacySave": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
+    "scenarios": [
+      {
+        "configured": false,
+        "choice": null,
+        "active": false,
+        "neutralTown": false,
+        "legacySixteenChoiceSave": true,
+        "first": {
+          "core:archer": 9
+        },
+        "messages": [
+          "DW 2/9 0/14 88/7 option 0",
+          "EXCLUDE 1 0/14 -1/0 option 0",
+          "EXCLUDE 2 140/8 -1/0 option 0",
+          "EXCLUDE 3 142/7 -1/0 option 0",
+          "EXCLUDE 4 112/6 -1/0 option 0",
+          "EXCLUDE 5 127/6 -1/0 option 0",
+          "EXCLUDE 6 32/6 33/6 option 0"
+        ],
+        "restored": {
+          "core:archer": 9
+        },
+        "restoredMessages": [
+          "DW 2/9 0/14 88/7 option 0",
+          "EXCLUDE 1 0/14 -1/0 option 0",
+          "EXCLUDE 2 140/8 -1/0 option 0",
+          "EXCLUDE 3 142/7 -1/0 option 0",
+          "EXCLUDE 4 112/6 -1/0 option 0",
+          "EXCLUDE 5 127/6 -1/0 option 0",
+          "EXCLUDE 6 32/6 33/6 option 0"
+        ],
+        "exclusions": [
+          "EXCLUDE 1 0/14 -1/0 option 0",
+          "EXCLUDE 2 140/8 -1/0 option 0",
+          "EXCLUDE 3 142/7 -1/0 option 0",
+          "EXCLUDE 4 112/6 -1/0 option 0",
+          "EXCLUDE 5 127/6 -1/0 option 0",
+          "EXCLUDE 6 32/6 33/6 option 0"
+        ],
+        "dayTwo": {
+          "core:archer": 9
+        },
+        "nativeSaveReload": true,
+        "reversedGlobalDefault": true,
+        "oneCreatureRecruitedBySlider": false,
+        "noInitialStockReplay": true,
+        "nativeSaveVersion": 916,
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "input": "touch"
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "42dd71fdf5e75a994149c386220f6c2c027084dd6b4f10b7525956794b46f74a",
+    "programFileSha256": "b063325526a91abaa771050635f086ef1f3521201e9251cb5ef0f6866c07a747"
+  },
   "nativeRegressions": {
     "core": {
       "passed": true,
@@ -914,88 +955,32 @@
       ]
     }
   },
-  "remaining": [
-    "Complete WoG catalogue, its six selection modes and complete external profiles.",
-    "Unported/foreign dwelling identities are not changed.",
-    "Source67 is frozen metadata for this species branch; it does not activate Neutral Town gameplay or admit UN:P setters."
-  ],
-  "legacySave": {
-    "passed": true,
-    "scope": "mithril-sites",
-    "completeRules": false,
-    "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
-    "scenarios": [
-      {
-        "configured": false,
-        "choice": null,
-        "active": false,
-        "neutralTown": false,
-        "legacySixteenChoiceSave": true,
-        "first": {
-          "core:archer": 9
-        },
-        "messages": [
-          "DW 2/9 0/14 88/7 option 0",
-          "EXCLUDE 1 0/14 -1/0 option 0",
-          "EXCLUDE 2 140/8 -1/0 option 0",
-          "EXCLUDE 3 142/7 -1/0 option 0",
-          "EXCLUDE 4 112/6 -1/0 option 0",
-          "EXCLUDE 5 127/6 -1/0 option 0",
-          "EXCLUDE 6 32/6 33/6 option 0"
-        ],
-        "restored": {
-          "core:archer": 9
-        },
-        "restoredMessages": [
-          "DW 2/9 0/14 88/7 option 0",
-          "EXCLUDE 1 0/14 -1/0 option 0",
-          "EXCLUDE 2 140/8 -1/0 option 0",
-          "EXCLUDE 3 142/7 -1/0 option 0",
-          "EXCLUDE 4 112/6 -1/0 option 0",
-          "EXCLUDE 5 127/6 -1/0 option 0",
-          "EXCLUDE 6 32/6 33/6 option 0"
-        ],
-        "exclusions": [
-          "EXCLUDE 1 0/14 -1/0 option 0",
-          "EXCLUDE 2 140/8 -1/0 option 0",
-          "EXCLUDE 3 142/7 -1/0 option 0",
-          "EXCLUDE 4 112/6 -1/0 option 0",
-          "EXCLUDE 5 127/6 -1/0 option 0",
-          "EXCLUDE 6 32/6 33/6 option 0"
-        ],
-        "dayTwo": {
-          "core:archer": 9
-        },
-        "nativeSaveReload": true,
-        "reversedGlobalDefault": true,
-        "oneCreatureRecruitedBySlider": false,
-        "noInitialStockReplay": true,
-        "nativeSaveVersion": 916,
-        "viewport": {
-          "width": 844,
-          "height": 390
-        },
-        "input": "touch"
-      }
+  "uiPresentationRefresh": {
+    "referenceBeforeComponents": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "scope": "MUI presentation adapters and shared typography only; engine validation and gameplay admission flags are unchanged.",
+    "files": [
+      "web/ui/components.css"
     ],
-    "errors": [],
-    "rawReportSha256": "42dd71fdf5e75a994149c386220f6c2c027084dd6b4f10b7525956794b46f74a",
-    "programFileSha256": "b063325526a91abaa771050635f086ef1f3521201e9251cb5ef0f6866c07a747"
+    "checks": [
+      "work/browser-tests/material-screen-matrix-e2e.mjs",
+      "work/browser-tests/ui-native-controls-e2e.mjs",
+      "work/browser-tests/material-real-prototypes-e2e.mjs"
+    ]
   },
-  "legacyProducer": {
-    "passed": true,
-    "scope": "mithril-sites",
-    "completeRules": false,
-    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
-    "scenarios": [
-      {
-        "legacyProducer": true,
-        "nativeSaveVersion": 915
-      }
-    ],
-    "errors": [],
-    "rawReportSha256": "38ffb9486e23e56a66f07535df91d4fa493152066e32175a35c355a3720763f9",
-    "programFileSha256": "b063325526a91abaa771050635f086ef1f3521201e9251cb5ef0f6866c07a747"
+  "completeRules": false,
+  "signedHenchmenExperienceRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
+    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
+  },
+  "sourceAudit": {
+    "trackedFilesChecked": 3003,
+    "mismatches": [],
+    "expectedManifestSha256": "6c3e26322cd93517922c0079a22c596bf2b0cb58d29b0cf6167d19fa9b2c43e4",
+    "unverifiedPrototypeSourcesExcluded": true
   },
   "oldReaderControl": {
     "passed": true,
@@ -1013,41 +998,51 @@
     "errors": [],
     "rawReportSha256": "f12c6bcb41bf62d97abd98af87b871242ea0e84f93cc4faab43ad274170e986d"
   },
-  "negativeTimingControl": {
-    "engineSha256": "66e769ea2e7660203a6bb085224ef3aaf25619d4c06e056b332f5ea05537bbc8",
-    "initialStock": 8,
-    "expectedStock": 12,
-    "privatePrototypeNotPublished": true,
-    "cause": "Rule ran before the native object newTurn pass; stock reverted to ordinary weekly growth.",
-    "rawStockReportSha256": "f8dd8e937c5b8cbf274486f21418202716713ff908f5060b54def31c3bb78941"
+  "schema": 1,
+  "sourceBindings": {
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "53f63e9a296cdf7e08eadf364b85df3ecb41f16d506bd7bf884b0172b91e9a21",
+    "web/ui/components.css": "ccee848991f5a9ae51d2683dd512cf42773f2d9e4ef23cf0df785704011be7d7",
+    "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+    "work/browser-tests/wog-map-extra-dwellings-cases.mjs": "0cbd422a9184ebf3963f2b4150c549a5de0b13f3dfbc7e11a71529ff3d5b63b1",
+    "tests/era-map-extra-dwellings.test.mjs": "32283b22e5a17ae21edc2be7a473cea2dd274234fbb017bafd135df5e4a93ae8",
+    "work/vcmi-wasm/lib/era/EraMapExtraDwellingRules.h": "2b5106610c9c0d85fa8652c506abffc1d7a37a6ca9a3d126cb0625fe03ba653e",
+    "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
+    "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
+    "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
+    "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
+    "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
+    "work/browser-tests/wog-henchmen-ai-reward-cases.mjs": "9d084308beb2ef3543e14c485845ffc791b3c1fb124799ad325829211a64498e",
+    "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b",
+    "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
+    "tests/fixtures/era-gameplay/map-extra-dwellings-reference.json": "d809c94a65121bfc163a0763043889e3868acab618d9eb9e4adf38a3d36e3465",
+    "tests/native/EraMapExtraDwellingRules.test.cpp": "108d462f593ca399ecf4d15bd984881716b08122786d67b2a67ef14a371d909d",
+    "web/wog-options.css": "6c15be5d347895160bd6d3a68a4a72796470ae67d38bb8ee74cf854c50b80411",
+    "work/vcmi-wasm/lib/mapObjects/CGDwelling.cpp": "e2b6c02df3d4e518d90977d506c77ffba23195404885cdcb042c56b4a0e8c676",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
+    "work/browser-tests/ui-screen-adapters-e2e.mjs": "d276f8be2fb2023764595173b7124375c2f92fdf62573822ab2fbf1e4d4af2b7"
   },
-  "sourceAudit": {
-    "trackedFilesChecked": 3003,
-    "mismatches": [],
-    "expectedManifestSha256": "6c3e26322cd93517922c0079a22c596bf2b0cb58d29b0cf6167d19fa9b2c43e4",
-    "unverifiedPrototypeSourcesExcluded": true
+  "stringReceiverCellsRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
+    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
   },
-  "regressionNegativeControl": {
-    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
-    "sourceArtifact": 223,
-    "equippedSlot": "MISC2",
-    "expectedUncontrolledFixtureFailureObserved": true,
-    "logSha256": "1acb6ffdbd65b1c740f8086e83d1ba80b0d45c5f053ae51065305d23dc87dfa8",
-    "unforcedPublishedEngineControlsPassed": {
-      "armyGrowth": true,
-      "sharedReward": true
-    }
+  "linuxSanitizers": {
+    "command": "Linux C++17 -fsanitize=address,undefined: production option serializer and extra dwelling rules",
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "regressionFixtureIsolation": {
-    "armyGrowth": "Random starting artifacts may convert Monks to Liches before combat; private growth fixtures suppress only daily artifact conversions to preserve all seven witnesses.",
-    "sharedReward": "The private AI actor uses patrolRadius0 so capturing the human town does not defeat the observer during owner-transition checks."
-  },
-  "publication": {
-    "version": "0.4.263",
-    "archive": "outputs/vcmi-wasm-goonk-0.4.261-engine.tar.gz",
-    "archiveSha256": "ac3a0e0c5503e5dd408e50502860ca1c1122b0baf683b2ffaef0447deb1dab4f",
-    "runtimeByteIdenticalToTestedEngine": true
-  },
+  "scope": "Source117 for bound creature identities and audited MA:L levels: overwrite only stock slot1 after initial growth, preserve other rows, respect zero level and four exclusions, freeze rule and source67 metadata. Neutral Town gameplay, foreign/unported identities and full packs remain unadmitted.",
   "uiMergeRevalidation": {
     "applicationVersion": "0.4.263",
     "mergedUiCommit": "e610eee9",
@@ -1110,76 +1105,6 @@
       "finalAdapterTestLogSha256": "9c95e1e995ec8243a8e2bb99f0f2da8f346a393ae4aff6e3482b2e9f8ece71dd"
     }
   },
-  "preMergeVerification": {
-    "release": "0.4.261",
-    "cleanTrackedModManifestSha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
-    "unverifiedFieldCatapultExcluded": true,
-    "nativeTransportFiles": 10464,
-    "transportBytes": 702295375,
-    "siteVerificationExitCode": 0,
-    "siteVerificationLogSha256": "f1fe6e69eff564e9cf2873ad8822454a84b67685ea32494cf4aaf29757c322ed",
-    "fullSuite": {
-      "tests": 902,
-      "passed": 848,
-      "skipped": 54,
-      "failed": 0
-    },
-    "sourceLinksMaterialized": true,
-    "rule117DisabledByDefault": true,
-    "sourceOption67DisabledByDefault": true
-  },
-  "publicationVerification": {
-    "release": "0.4.263",
-    "cleanTrackedModManifestSha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
-    "unverifiedFieldCatapultExcluded": true,
-    "nativeTransportFiles": 10464,
-    "transportBytes": 702295375,
-    "siteVerificationExitCode": 0,
-    "siteVerificationLogSha256": "f1fe6e69eff564e9cf2873ad8822454a84b67685ea32494cf4aaf29757c322ed",
-    "fullSuite": {
-      "tests": 906,
-      "passed": 852,
-      "skipped": 54,
-      "failed": 0
-    },
-    "sourceLinksMaterialized": true,
-    "recursiveUiModulesAndStylesVersioned": true,
-    "rule117DisabledByDefault": true,
-    "sourceOption67DisabledByDefault": true
-  },
-  "groundedFliersCatalogueRevalidation": {
-    "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
-    "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
-    "previousSourceBindings": {
-      "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f03da5ec957f186d517569b2865fe1ffe406cc551505cdaea6ce4864933c510",
-      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "74771c62276e7d40fc3cea56f8b4d5330861887ebd00d0dd8e824fb46e2595b1",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "767cdbd145f94bcfaebb57751d7d0ca836c83c802c3b589d84a83e7dddaef91d",
-      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "93e21d186c354638349c3c7e10510fa1970a0b5e2a51c7719f9e20c4f446867b",
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33",
-      "mod/tum-era/content/config/wog-map-rules.json": "846faa1044da6fac42aba7958e3029b6efb3a3003e6072f926c7d89f3fb79145",
-      "web/wog-options.mjs": "af2bb3e8779bf12d6c4773698da9520ed35213d87511a865f552e2c4870eb7b1",
-      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "b2199149cdf6d7dc7f5daf6db2e1b4b40660c606e6c9f12f2142691c605cbefb",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "401217a68f7e793011625d4d155c3f7212ef95dba12dc39ee642ba8244fbb620",
-      "work/browser-tests/wog-options-components-e2e.mjs": "810f92f89e896a2034ac33fa46dfd0d8f7057651bb8eca234d86ec3e31c1684b"
-    },
-    "historicalReportsRetained": true,
-    "existingFeatureSemanticsUnchanged": true,
-    "newRule": 111,
-    "newChoiceIndex": 17,
-    "nativeRegressionsPassed": [
-      "core",
-      "mithril",
-      "dwellings",
-      "monthly",
-      "grails",
-      "learning",
-      "hench-town",
-      "army-growth",
-      "shared-reward"
-    ],
-    "linuxHistoricalWireSanitizersExitCode": 0,
-    "sharedRadioUIFormatsPassed": 16
-  },
   "invertedSpeedsCatalogueRevalidation": {
     "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
     "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
@@ -1214,34 +1139,127 @@
     "linuxHistoricalWireAndArithmeticSanitizersExitCode": 0,
     "sharedRadioUIFormatsPassed": 16
   },
-  "mithrilDwellingLevelsRevalidation": {
-    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
-    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
-    "previousSourceBindings": {
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4",
-      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4"
+  "mithrilReplacementRevalidation": {
+    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "dd072b4fc139a906abb84595d48088e42df2e52d1ab398bebebeb3c6affbab39",
+      "web/wog-options.mjs": "90eccd5b0de2f40c5fe3cc9f7ec7a4c1cd2471bb36ef54f391a03bf79b41d876",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7d39a3c07f099edfdcf726f9836092d06db00e99d59b9a00cbfed77d7088ba69",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "cf2de1cabf3e389b1d71570e1f12c38f26daa6075ee3be5e772483db9ab375c5",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "3bfb83968e3c075f231bb8a577384c65516599fc177dd77bdb9e9c956e4e2736",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6dbe595cbbecf412e19d50bdf8db6e7060b30da6a34ba60011595325aa4adb4b",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "230ec23a4fa35e838958563bb96e2c6f77499b6c210562200b2fcc329e3c9b23",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291"
     },
-    "historicalReportsRetained": true,
-    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
-    "nativeRegressionsPassed": [
-      "core",
-      "mithril",
-      "dwellings",
-      "grounded-fliers",
-      "inverted-speeds",
-      "monthly",
-      "grails",
-      "learning",
-      "hench-town",
-      "army-growth",
-      "shared-reward",
-      "sites",
-      "conflux"
-    ],
-    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
-    "choiceCountUnchanged": 19
+    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
   },
+  "preMergeVerification": {
+    "release": "0.4.261",
+    "cleanTrackedModManifestSha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+    "unverifiedFieldCatapultExcluded": true,
+    "nativeTransportFiles": 10464,
+    "transportBytes": 702295375,
+    "siteVerificationExitCode": 0,
+    "siteVerificationLogSha256": "f1fe6e69eff564e9cf2873ad8822454a84b67685ea32494cf4aaf29757c322ed",
+    "fullSuite": {
+      "tests": 902,
+      "passed": 848,
+      "skipped": 54,
+      "failed": 0
+    },
+    "sourceLinksMaterialized": true,
+    "rule117DisabledByDefault": true,
+    "sourceOption67DisabledByDefault": true
+  },
+  "legacyProducer": {
+    "passed": true,
+    "scope": "mithril-sites",
+    "completeRules": false,
+    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+    "scenarios": [
+      {
+        "legacyProducer": true,
+        "nativeSaveVersion": 915
+      }
+    ],
+    "errors": [],
+    "rawReportSha256": "38ffb9486e23e56a66f07535df91d4fa493152066e32175a35c355a3720763f9",
+    "programFileSha256": "b063325526a91abaa771050635f086ef1f3521201e9251cb5ef0f6866c07a747"
+  },
+  "randomRangesRevalidation": {
+    "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
+    "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
+  },
+  "sourceBaseCommit": "6cc03ac83279ccd46e29509da898eaef558cb160",
+  "regressionNegativeControl": {
+    "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
+    "sourceArtifact": 223,
+    "equippedSlot": "MISC2",
+    "expectedUncontrolledFixtureFailureObserved": true,
+    "logSha256": "1acb6ffdbd65b1c740f8086e83d1ba80b0d45c5f053ae51065305d23dc87dfa8",
+    "unforcedPublishedEngineControlsPassed": {
+      "armyGrowth": true,
+      "sharedReward": true
+    }
+  },
+  "regressionFixtureIsolation": {
+    "armyGrowth": "Random starting artifacts may convert Monks to Liches before combat; private growth fixtures suppress only daily artifact conversions to preserve all seven witnesses.",
+    "sharedReward": "The private AI actor uses patrolRadius0 so capturing the human town does not defeat the observer during owner-transition checks."
+  },
+  "noActorRewardRevalidation": {
+    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
+    "previousBindings": {
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6"
+    },
+    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
+    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+  },
+  "tilePropertiesRevalidation": {
+    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
+    },
+    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "serialization": {
+    "catalogueCounts": [
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "previousSaveVersion": 915,
+    "newSaveVersion": 916,
+    "oldPeerChoiceBoundsEnforced": true
+  },
+  "stringLocalsRevalidation": {
+    "scope": "Legacy contracts remain unchanged; historical native reports retained. New local-z scope and current-engine regressions are documented separately.",
+    "previousBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6ad22e6b30a158d3493ee0e28506bc8964411faff3452bcc184dcf51808555a2",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "cc9570eedcda605c7ce45a0ce7c1cb9869d5860f0eee43a78d5c1f6d072d8faf",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde"
+    },
+    "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
+    "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  },
+  "remaining": [
+    "Complete WoG catalogue, its six selection modes and complete external profiles.",
+    "Unported/foreign dwelling identities are not changed.",
+    "Source67 is frozen metadata for this species branch; it does not activate Neutral Town gameplay or admit UN:P setters."
+  ],
   "materialUiFactoryRevalidation": {
     "applicationVersion": "0.4.267",
     "scope": "UI factory fixture updated and rerun. This UI release reuses the current upstream engine archive; historical native simulation reports are retained. No new native gameplay validation is claimed.",
@@ -1281,74 +1299,60 @@
     "reportSha256": "0b42f19fdc8e6cdcbd7270c61a9734eb9382766af17873134e45178b4f6577dd",
     "upstreamEngineArchive": "outputs/vcmi-wasm-goonk-0.4.266-engine.tar.gz"
   },
-  "stringLocalsRevalidation": {
-    "scope": "Legacy contracts remain unchanged; historical native reports retained. New local-z scope and current-engine regressions are documented separately.",
-    "previousBindings": {
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6ad22e6b30a158d3493ee0e28506bc8964411faff3452bcc184dcf51808555a2",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
-      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "cc9570eedcda605c7ce45a0ce7c1cb9869d5860f0eee43a78d5c1f6d072d8faf",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "d8f3ca2e43b7566b740fc5e0bfd96227bb756fb09e1c83782ec58f1a6f562fde"
-    },
-    "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
-    "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
+  "activation": false,
+  "upstreamReference": {
+    "schema": 1,
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "fileSha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "rule": 117,
+    "sourceObjectType": 17,
+    "excludedCreatures": [
+      140,
+      142,
+      112,
+      127
+    ],
+    "excludedZeroBasedLevel": 0,
+    "stockSlot": 1,
+    "initialStock": 12,
+    "sourceOption": 67,
+    "ordinaryCreature": 140,
+    "neutralTownCreature": 112,
+    "fragments": [
+      {
+        "startLine": 70,
+        "endLine": 84,
+        "text": "** function to only take effect at start ALL of them works for all players - function call is :P :D;\n; Daily events now starts from the second day only - same mechanism as the original H3\n!?FU(WOG_101_RunMapRulesOnce);\n  !!FU(WOG_101_BuildGrailsInTowns)&i^wog_101_map_rule_19_isEnabled^:P;           [build grails in towns - executed once]\n\n  !!FU(WOG_101_SetDoubledHeroesMovements)&i^wog_101_map_rule_10_isEnabled^:P;    [executed once - needed for the first player turn]\n  !!FU(WOG_101_PlaceWarlordsBanner)&i^wog_101_map_rule_20_isEnabled^:P;          [executed once]\n\n  !!FU(WOG_101_AllowMultiplyCapitols)&i^wog_101_map_rule_13_isEnabled^:P;        [executed once]\n  !!FU(WOG_101_AddBoarsOrAirElemsToDwells)&i^wog_101_map_rule_6_isEnabled^:P;    [executed once]\n  !!FU(WOG_101_SetDoubledArtifacts)&i^wog_101_map_rule_8_isEnabled^:P;           [executed once]\n\n  !!FU(WOG_101_SetUpMonsters):P;                                                 [executed once]\n  !!FU(WOG_101_HideMapInitPlayer)&i^wog_101_map_rule_9_isEnabled^:P;\n\n",
+        "sha256": "55b48e343faf732aeb5b2e9af6d48d3f0903fdc815dad810dcb25f7540230f7c"
+      },
+      {
+        "startLine": 454,
+        "endLine": 472,
+        "text": "!?FU(WOG_101_AddBoarsOrAirElemsToDwells);\n  !!UN:U(OBJ_CREATURE_GENERATOR_1)/-1/?(dwellings:y);                                                 [count dwellings]\n\n  !!VRv2:S-1;\n  !!VR(addedMon:y):S(MON_BOAR);\n  !!UN:P67/?(neutralTown:y);                                                       [check if Neutral town is active (flag1)]\n  !!VR(addedMon:y)&(neutralTown:y):S(MON_AIR_ELEMENTAL);\n\n  !!re i/0/(dwellings)/1/-1;\n    !!UN:U(OBJ_CREATURE_GENERATOR_1)/-1/-1/2; [get dwelling location into v600-v602]\n    !!DW2:M0/?t/?q; [get y1 type y2 qty in slot 0]\n    !!MA:Lt/?l; // get monster Level\n    !!if&l/t<>(MON_BOAR)/t<>(MON_NOMAD)/t<>(MON_AIR_ELEMENTAL)/t<>(MON_STORM_ELEMENTAL);\n      !!DW2:M1/(addedMon:y)/12; [12 boars / Air Elementals in slot 1]\n    !!en;\n  !!en;\n\n** end of function\n\n",
+        "sha256": "7b35507ea71214692634af6628e873f50e350c2fe27ea8d55f59dde8fdfe958d"
+      }
+    ]
   },
-  "stringReceiverCellsRevalidation": {
-    "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
-    "previousBindings": {
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "ee556974baa5ef2bb8181adfe6d26adbb8592de1ac0429ed87b5349dba2eb2a5",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "0d51fe9771120e38c8f587511b84248ca51e0bd872f9b75ec5891f8abf7e580b",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
+  "publicationVerification": {
+    "release": "0.4.263",
+    "cleanTrackedModManifestSha256": "16871587e146f76ec8e568277fd26aecc6bf47147c62d14b381c3f2189b5fa78",
+    "unverifiedFieldCatapultExcluded": true,
+    "nativeTransportFiles": 10464,
+    "transportBytes": 702295375,
+    "siteVerificationExitCode": 0,
+    "siteVerificationLogSha256": "f1fe6e69eff564e9cf2873ad8822454a84b67685ea32494cf4aaf29757c322ed",
+    "fullSuite": {
+      "tests": 906,
+      "passed": 852,
+      "skipped": 54,
+      "failed": 0
     },
-    "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
-    "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
-  },
-  "randomRangesRevalidation": {
-    "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
-    "previousBindings": {
-      "tests/native/EraWogOptionsSerialization.test.cpp": "a0682ba0b1c5512f5943cc1595f215e34f6951c620ef5590106f95a439c91bd6",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d84c671fc960831394c80f9b71aa3af6668a25ce40ded6b11034fcb842529eaa"
-    },
-    "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
-    "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
-  },
-  "signedHenchmenExperienceRevalidation": {
-    "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
-    "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
-    },
-    "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
-    "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
-  },
-  "weeklyMithrilRevalidation": {
-    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
-    "previousBindings": {
-      "tests/native/EraWogOptionsSerialization.test.cpp": "04ac0f1df0decd57ca33255f57f8f63265e09acec0d838906c359711a2fb8c31",
-      "web/wog-options.mjs": "b5a10d40b87673c6fa7e3740a348f80f5a6b12350847f8c5a4cdb7d4f766ea03",
-      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9f8ee6f551b4e6a5e4474c9db6e9a25ed3415bbdaeabf9203500d84480f854c5",
-      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "6c17d5654a2bd1b4a2cbae89cf35b0428761e09c88903de40a03213c5e877fc5",
-      "work/vcmi-wasm/lib/era/EraWogOptions.h": "28bd8c2cd4bedf7f8ef23e84cc4e30a95db699e2e86d606d96f19191e6238771",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "084d6b48b0564b79ed05d12c949fd98de00e3ee1246d238375c0c081fcedd03f",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a",
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182"
-    },
-    "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
-    "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
-  },
-  "mithrilReplacementRevalidation": {
-    "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
-    "previousBindings": {
-      "tests/native/EraWogOptionsSerialization.test.cpp": "dd072b4fc139a906abb84595d48088e42df2e52d1ab398bebebeb3c6affbab39",
-      "web/wog-options.mjs": "90eccd5b0de2f40c5fe3cc9f7ec7a4c1cd2471bb36ef54f391a03bf79b41d876",
-      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7d39a3c07f099edfdcf726f9836092d06db00e99d59b9a00cbfed77d7088ba69",
-      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "cf2de1cabf3e389b1d71570e1f12c38f26daa6075ee3be5e772483db9ab375c5",
-      "work/vcmi-wasm/lib/era/EraWogOptions.h": "3bfb83968e3c075f231bb8a577384c65516599fc177dd77bdb9e9c956e4e2736",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "6dbe595cbbecf412e19d50bdf8db6e7060b30da6a34ba60011595325aa4adb4b",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "230ec23a4fa35e838958563bb96e2c6f77499b6c210562200b2fcc329e3c9b23",
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291"
-    },
-    "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
-    "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
+    "sourceLinksMaterialized": true,
+    "recursiveUiModulesAndStylesVersioned": true,
+    "rule117DisabledByDefault": true,
+    "sourceOption67DisabledByDefault": true
   },
   "mithrilDisplayRevalidation": {
     "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
@@ -1374,55 +1378,63 @@
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
   },
-  "fortlessTownsRevalidation": {
-    "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
-    "previousBindings": {
-      "mod/tum-era/content/config/wog-map-rules.json": "dfe0eedf337cf9cd5caf88626dbc43c2a1a3624e08bc1b980e0ee59129841490",
-      "web/wog-options.mjs": "9cdf20c2bc51e5b79cf557ee32b92306f161a900b57d2b4ac22424e664a4d75a",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "f2bbf322c1977a2f90d17550a9c2f8ffe1857e5cc1551834a01731abab5a87e7",
-      "work/vcmi-wasm/lib/era/EraWogOptions.h": "f87295293615645dfcd034a56bf26d36c773f951efe253e06103f9ddca2b38af",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "a4d9f197089ecd0e8994fbd4b6d4b39965074ff55ff7b79326522a630cefdc64",
-      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "65722e2819d70bc09eb3692527bdbf323d1c720c1dab783314f9bcf6c6eda00e",
-      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "c18275e28439044c7688931df06a56fcf2a17158807fdd5069b17b72035a293e",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227",
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4",
-      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "9ea9dbfff5f16b631c6faafce4f1b2675a5a3bb9f30d171d65e878e4ead3d438"
-    },
-    "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
-    "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
+  "negativeTimingControl": {
+    "engineSha256": "66e769ea2e7660203a6bb085224ef3aaf25619d4c06e056b332f5ea05537bbc8",
+    "initialStock": 8,
+    "expectedStock": 12,
+    "privatePrototypeNotPublished": true,
+    "cause": "Rule ran before the native object newTurn pass; stock reverted to ordinary weekly growth.",
+    "rawStockReportSha256": "f8dd8e937c5b8cbf274486f21418202716713ff908f5060b54def31c3bb78941"
   },
-  "noActorRewardRevalidation": {
-    "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
-    "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6"
+  "nativeBuild": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "incrementalTargetCounts": [
+      109,
+      5,
+      5,
+      6
+    ],
+    "logs": {
+      "map-extra-dwellings-wasm-build.log": "ee1dfb09d9b546e0039c0a0fcfb93b67651de869e662aa84d254470195166156",
+      "map-extra-dwellings-stock-build.log": "ea2bf78ebdb1d4c2623b9a81fd6b46f55da24d399969f1ec4f9c23767198033b",
+      "map-extra-dwellings-timing-build.log": "e3ada7f252e63fb7771917291fbfb8c6063d4f82db11d68c99baeb1d50a9890a",
+      "map-extra-dwellings-frozen-option-build.log": "17077f348809dd808f8835c3aed3261751a5fc68677b44a1b2cc78d2188058f0"
     },
-    "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
-    "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
+    "warMachinesAdmitted": false
   },
-  "tilePropertiesRevalidation": {
-    "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
-    "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
-    "previousBindings": {
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "50193739f3004287483ac2a05d495d9499021309378f420db776e34c0f5ba011",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
-    },
-    "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  "publication": {
+    "version": "0.4.263",
+    "archive": "outputs/vcmi-wasm-goonk-0.4.261-engine.tar.gz",
+    "archiveSha256": "ac3a0e0c5503e5dd408e50502860ca1c1122b0baf683b2ffaef0447deb1dab4f",
+    "runtimeByteIdenticalToTestedEngine": true
   },
-  "doubleArtifactsRevalidation": {
-    "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
-    "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
-    "previousBindings": {
-      "mod/tum-era/content/config/wog-map-rules.json": "9152c6ef91a6081dcb87beb97b9f7ea713576338ec3a5db859502240374a14a9",
-      "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
-      "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
-      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "022f060d1177906c1d1fe80bdf4490877539c901d4c7c694be651b8b993fa873",
-      "work/vcmi-wasm/lib/era/EraWogOptions.h": "5e4791ec2adc9d154f4ade61563498761504c8c7e5a67673869fe22ad7026473",
-      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "81c00863edf1a27ef331b7cd91e187680b664f2baf4e2361c33800f4c13a841b",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
-      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "63906782f2c71adbfde6ebb50ec9f42b39f112c83b0ce52df9660151d603053b",
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
+  "mithrilDwellingLevelsRevalidation": {
+    "proof": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+    "engineSha256": "f7a67a31132627e88a852e2c9b81ae9a667b89efb8c97b8efd9ee82653f28a5e",
+    "previousSourceBindings": {
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "5de19633ac89634068d119eb5d9d5844c977e8ae6d51a7dec2f2dfab16ea51a4",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "46aba9c0ec51cbbb6b473f0149022de956b2c880254a2d3164efe05d6db4203e",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "9077e819d029ad1b66cae4e2f606a88c7b94404c4822ea09c01214e410ec8ab4"
     },
-    "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+    "historicalReportsRetained": true,
+    "scope": "Only dwelling source-level eligibility/pricing changed intentionally; the prior native-price baseline and corrected stocks are recorded. Other site rules and activation semantics are unchanged.",
+    "nativeRegressionsPassed": [
+      "core",
+      "mithril",
+      "dwellings",
+      "grounded-fliers",
+      "inverted-speeds",
+      "monthly",
+      "grails",
+      "learning",
+      "hench-town",
+      "army-growth",
+      "shared-reward",
+      "sites",
+      "conflux"
+    ],
+    "linuxHistoricalWireAndPriceSanitizersExitCode": 0,
+    "choiceCountUnchanged": 19
   }
 }

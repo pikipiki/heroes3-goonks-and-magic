@@ -1,0 +1,180 @@
+/* Preserve the pre-component composition. MUI controls share paint and type;
+   the game's existing responsive art boxes still own animation geometry. */
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top:not(.ui-compact-chrome){min-height:48px!important;padding:4px!important;gap:4px!important}
+  #mobile-app[data-creature-view=fort] .creature-presentation{gap:4px!important;padding:4px!important;grid-template-rows:56px minmax(0,1fr)!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head{--ui-header-min:48px;--ui-header-padding:4px 8px;min-height:48px!important;padding:4px 8px!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head h2{font:var(--ui-font-title-compact)!important}
+  #mobile-app[data-creature-view=fort] .hall-layout{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) 168px!important;gap:4px!important}
+ }
+ #mobile-app[data-creature-view=fort] .hall-detail{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:56px 48px 48px!important;gap:4px!important;padding:4px!important;min-height:0!important;overflow:hidden!important}
+ #mobile-app .hall-detail>.hall-purchase-context{display:contents!important}
+ #mobile-app .hall-purchase-context>.hall-feature{grid-area:1/1!important;height:56px!important;min-height:0!important;overflow:hidden!important;padding:0!important}
+ #mobile-app .hall-purchase-context>.hall-quantity{grid-area:2/1!important;height:48px!important;min-height:48px!important}
+ #mobile-app .hall-detail>.hall-actions.ui-action-dock{grid-area:3/1!important;height:48px!important;min-height:48px!important;max-height:48px!important;padding:0!important;gap:8px!important;align-items:stretch!important}
+ #mobile-app .hall-detail>.hall-actions>button{height:48px!important;min-height:48px!important;padding:4px!important}
+ #mobile-app .hall-detail :is(.hall-stock,.hall-total){display:none!important}
+ #mobile-app .hall-feature>div{display:grid!important;grid-template-rows:24px 32px!important;gap:0!important}
+ #mobile-app .hall-feature .creature-stats{margin:0!important}
+ #mobile-app .hall-feature-title h3{font:var(--ui-font-title-compact)!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:minmax(56px,1fr) 48px 48px!important;min-height:0!important}
+ }
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){display:grid!important;grid-template-columns:48px minmax(0,1fr) 68px!important;grid-template-rows:48px!important;gap:4px!important;padding:4px!important;height:56px!important;min-height:56px!important}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none!important}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>#game-menu-toggle{grid-area:1/1!important;width:48px!important;height:48px!important;padding:0!important}
+  #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:1/2!important;display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;width:100%!important;min-width:0!important;gap:0!important;padding:0 4px 0 0!important;box-sizing:border-box!important}
+  #mobile-app>.mobile-top .mobile-resource{min-width:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:0!important;padding:0!important}
+  #mobile-app>.mobile-top .mobile-resource[data-resource=gold]{grid-column:span 2!important}
+  #mobile-app>.mobile-top .mobile-resource img{width:20px!important;height:20px!important;object-fit:contain!important}
+  #mobile-app>.mobile-top .resource-quantity{font:var(--ui-font-resource)!important;white-space:nowrap!important}
+  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){grid-area:1/3!important;display:flex!important;flex-direction:column!important;gap:0!important;min-width:0!important;min-height:0!important;height:48px!important;padding:0!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue{display:grid!important;grid-template-columns:minmax(0,1fr) 8px!important;grid-template-rows:14px 14px!important;min-width:0!important;min-height:28px!important;height:32px!important;width:100%!important;padding:0 4px!important;gap:0!important;border:1px solid var(--ui-outline)!important;box-shadow:none!important;font:var(--ui-font-resource)!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-label]{grid-area:1/1!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-days]{grid-area:2/1!important;font:var(--ui-font-resource)!important}
+  #mobile-app>.mobile-top .mobile-calendar>span:first-child{font:var(--ui-font-resource)!important;line-height:12px!important}
+  #mobile-app>.mobile-top .mobile-calendar>:is(.calendar-compact,.calendar-next-week,.calendar-location){display:none!important}
+ }
+}
+@layer screen-layouts {
+ /* A troop card is an art slot, not an action button. Its banner and caption
+    keep the original geometry; the upgrade occupies only the banner area. */
+ #mobile-app[data-sheet=army] .army-grid .army-troop{padding:2px 3px 3px!important;border:1px solid transparent!important;background:transparent!important;box-shadow:none!important;min-height:48px!important}
+ #mobile-app[data-sheet=army] .army-upgrade-cell{padding:2px 3px 3px!important;border:1px solid transparent!important;gap:2px!important}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:min(100%,100px)!important;min-height:0!important;padding:3px!important;border-width:2px!important;flex:1!important}
+ @container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%!important}}
+}
+@layer screen-layouts {
+ #mobile-app[data-sheet=army] .army-rosters{overflow:auto!important;touch-action:pan-y!important;align-content:start!important;grid-auto-rows:minmax(220px,auto)!important}
+ #mobile-app[data-sheet=army] .army-grid .army-troop{height:90px!important;min-height:90px!important;justify-content:flex-start!important}
+ #mobile-app[data-sheet=army] .army-grid .army-slot-art{box-sizing:border-box!important;flex:1!important;min-height:0!important;width:min(100%,100px)!important;max-height:none!important}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{max-height:none!important;min-height:0!important;align-self:stretch!important}
+}
+@layer screen-layouts {
+ #mobile-app[data-sheet=army] .army-grid{flex:none!important;height:auto!important;min-height:0!important;max-height:none!important;grid-template-rows:none!important;grid-auto-rows:90px!important}
+ #mobile-app[data-sheet=army] .army-upgrade-cell>.army-slot-name{display:block!important;flex:0 0 14px!important;height:14px!important;line-height:14px!important}
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app[data-creature-view=fort] .creature-view-head{display:flex!important;justify-content:space-between!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head h2{flex:1!important;width:auto!important;max-width:none!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head>.ui-icon-button{margin-left:auto!important}
+ }
+}
+@layer screen-layouts {
+ #mobile-app[data-battle-result]>.mobile-top.mobile-top,
+ #mobile-app[data-dialog-presentation]>.mobile-top.mobile-top,
+ #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile]>.mobile-top.mobile-top{display:none!important}
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){flex-wrap:nowrap!important;border:0!important;box-shadow:none!important;background:transparent!important;align-items:stretch!important}
+  #mobile-app>.mobile-top .mobile-calendar>span:first-child{width:100%!important;height:12px!important;min-height:12px!important;flex:0 0 12px!important;text-align:center!important}
+ }
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-creature-view=fort] .hall-detail{height:100%!important;box-sizing:border-box!important;grid-template-rows:minmax(0,1fr) 48px 48px!important}
+  #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{height:auto!important;max-height:100%!important;overflow:auto!important;touch-action:pan-y!important}
+ }
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app[data-creature-view=fort] .creature-presentation{padding:0!important}
+ }
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 156px!important}
+  #mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:48px 48px 48px!important;padding:2px!important}
+  #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{height:48px!important}
+  #mobile-app[data-creature-view=fort] .hall-feature>div{grid-template-rows:20px 28px!important}
+  #mobile-app[data-creature-view=fort] .hall-feature-title h3{font:var(--ui-font-label)!important}
+  #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dd{font:var(--ui-font-body-small)!important}
+ }
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){#mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 158px!important}}
+}
+@layer screen-layouts {
+ /* Invisible scene hit targets retain the native building bounds. MUI owns
+    interaction/focus; the actual picture and subtitle belong to the scene. */
+ #mobile-app .town-building-hit.MuiButton-root{padding:0!important;border:0!important;border-image:none!important;background:transparent!important;box-shadow:none!important}
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){box-sizing:border-box!important}
+  #mobile-app[data-mode=map]>.mobile-nav:not(.ui-map-compact){display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:48px 48px!important;grid-auto-rows:48px!important;gap:4px!important;padding:4px!important;align-items:stretch!important}
+  #mobile-app[data-mode=map]>.mobile-nav>.hero-movement-summary{grid-column:1/-1!important;grid-row:1!important;min-height:48px!important;height:48px!important;max-height:48px!important;gap:4px!important}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-list{min-height:48px!important;height:48px!important;max-height:48px!important}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{min-height:48px!important;height:48px!important;max-height:48px!important;padding:0 4px!important}
+  #mobile-app[data-mode=map]>.mobile-nav>button{min-width:48px!important;height:48px!important;min-height:48px!important;padding:4px!important;border-width:2px!important;font:var(--ui-font-body-small)!important;gap:4px!important;align-self:stretch!important}
+  #mobile-app[data-mode=map]>.mobile-nav .troops-nav-icon{width:20px!important;height:20px!important}
+ }
+ #mobile-app[data-mode=map] .hero-movement-item>button{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;color:inherit!important}
+}
+@layer screen-layouts {
+ /* One thin outline for controls and cards; no inner bevel or selected ring. */
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile){border:1px solid var(--ui-primary)!important;border-image:none!important;box-shadow:var(--ui-control-shadow)!important;outline:none!important;font-weight:400!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile):hover{border-color:#ffe9a8!important;box-shadow:var(--ui-control-shadow-hover)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile)[aria-pressed=true]{border-color:#ffe9a8!important;outline:none!important;box-shadow:var(--ui-control-shadow)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .town-building-hit.MuiButton-root,
+ :is(#mobile-app,#game-menu,[data-ui-app]) .hero-movement-item>button{border:0!important;box-shadow:none!important;background:transparent!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .army-grid .army-troop{border:1px solid transparent!important;box-shadow:none!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButtonBase-root,
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButtonBase-root *{font-weight:400!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button):focus-visible{outline:1px solid #fff0b1!important;outline-offset:2px!important}
+}
+@layer screen-layouts {
+ #mobile-app .army-grid .army-upgrade-all{border-width:1px!important}
+ #mobile-app .hero-movement-item.is-active[data-movement-band]{border:1px solid var(--ui-primary)!important;box-shadow:none!important}
+ #mobile-app .army-slot-art{border:1px solid var(--ui-primary)!important;background:#21180f!important;clip-path:none!important;box-shadow:none!important}
+ #mobile-app .army-slot-art::before{display:none!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary,
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-list,
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{box-sizing:border-box!important;min-height:50px!important;height:50px!important;max-height:50px!important;padding:0!important}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item>button{height:48px!important;min-height:48px!important;max-height:48px!important;box-sizing:border-box!important}
+ }
+}
+
+/* Short landscape hero rail: reserve chrome, then use one row per task. */
+@layer screen-layouts {
+ #mobile-app .hero-stat-label-short{display:none}
+ @container goonk-viewport (orientation:landscape) and (max-height:420px){
+  #mobile-app[data-mode=hero]>.mobile-top{height:56px!important;min-height:56px!important;padding:4px 8px!important;box-sizing:border-box!important}
+  #mobile-app .hero-equipment-page{grid-template-rows:104px 38px 56px minmax(0,1fr) 64px!important;row-gap:4px!important}
+  #mobile-app .hero-equipment-page>.hero-card-head{box-sizing:border-box!important;min-height:0!important;height:100%!important;padding:56px 8px 0!important;gap:8px!important;flex-wrap:nowrap!important}
+  #mobile-app .hero-card-head>.hero-face{display:none!important}
+  #mobile-app .hero-card-head>div{min-width:0!important;flex:1!important}
+  #mobile-app .hero-card-head h2{font:var(--ui-font-title-compact)!important;margin:0!important}
+  #mobile-app .hero-card-head p{display:none!important}
+  #mobile-app .hero-card-head .hero-vitals{font:var(--ui-font-body-small)!important;gap:4px!important;flex-wrap:nowrap!important}
+  #mobile-app .hero-card-head>button{flex:0 0 48px!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important}
+  #mobile-app .hero-primary dt{font:var(--ui-font-body-small)!important;white-space:nowrap!important}
+  #mobile-app .hero-primary .hero-stat-label-full{display:none!important}
+  #mobile-app .hero-primary .hero-stat-label-short{display:inline!important;text-decoration:none!important}
+  #mobile-app .hero-equipment-page>.hero-bag-tabs.ui-compact-navigation{box-sizing:border-box!important;min-height:0!important;height:56px!important;padding:4px 8px!important;gap:8px!important;align-items:stretch!important}
+  #mobile-app .hero-bag-tabs.ui-compact-navigation>button{height:48px!important;min-height:48px!important;padding:4px!important}
+  #mobile-app .hero-equipment-page[data-inventory=army]>.hero-artifact-detail{display:none!important}
+  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important;height:64px!important;min-height:64px!important}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-toggle{width:auto!important;min-width:0!important;flex:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:0!important;height:48px!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .hero-army-split-toggle>.MuiCheckbox-root{width:24px!important;height:24px!important;min-height:24px!important;min-width:24px!important;padding:0!important}
+  #mobile-app .hero-army-split-toggle>.MuiTypography-root{font:var(--ui-font-body-small)!important}
+  /* Reserve a local editor below the scrollable troop workspace so split
+     controls never cover cards or displace the fixed command rail. */
+  #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){position:absolute!important;left:8px!important;right:calc(var(--control-rail,244px) + 8px)!important;bottom:8px!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 48px!important;gap:8px!important;height:48px!important;padding:4px!important;background:var(--ui-surface-container)!important;z-index:2!important}
+  #mobile-app .hero-army-split-amount :is(button,input){width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
+  #mobile-app .hero-equipment-page:has(.hero-army-split-amount:not([hidden]))>.hero-equipment-grid{height:calc(100% - 64px)!important;max-height:calc(100% - 64px)!important;padding-bottom:8px!important}
+  #mobile-app .hero-army-dock-tools>button{width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;padding:4px!important;font:var(--ui-font-body-small)!important;align-self:stretch!important}
+ }
+}
+
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock:has(.hero-army-split-amount:not([hidden])){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important}
+  #mobile-app .hero-army-dock-tools:has(.hero-army-split-amount:not([hidden]))>.hero-army-split-toggle{grid-column:1/-1!important;justify-self:start!important}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){grid-column:1/-1!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 48px!important;gap:8px!important;min-width:0!important}
+  #mobile-app .hero-army-split-amount :is(button,input){width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
+ }
+}

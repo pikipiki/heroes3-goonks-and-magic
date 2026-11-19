@@ -1,7 +1,9 @@
+import {createUIField} from './ui/material-components.mjs';
+import {createUIElement} from './ui/material-components.mjs';
 export function createHostedCodeCopy(fr) {
   const element = document.createElement('div');
   element.className = 'hosted-personal-code';
-  const button = document.createElement('button');
+  const button = createUIElement('button');
   button.type = 'button';
   button.dataset.nativeClick = '';
   button.textContent = fr ? 'Copier mon code personnel' : 'Copy my personal code';
@@ -10,7 +12,7 @@ export function createHostedCodeCopy(fr) {
   help.textContent = fr ? 'Pour reprendre ta place sur un autre appareil. Garde ce code pour toi.' :
     'Use this to resume your seat on another device. Keep this code private.';
 
-  const input = document.createElement('input');
+  const field = createUIField({type:'text'}), input = field.input;
   input.type = 'text';
   input.readOnly = true;
   input.hidden = true;
@@ -21,7 +23,7 @@ export function createHostedCodeCopy(fr) {
 
   const status = document.createElement('small');
   status.setAttribute('role', 'status');
-  element.append(button, help, input, status);
+  element.append(button, help, field.element, status);
 
   let code = '', revision = 0;
   function setCode(value = '') {

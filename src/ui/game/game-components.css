@@ -107,7 +107,7 @@
   }
   .gx-army-cell.MuiButton-root {
     height: 88px;
-    font-size: 12px;
+    font-size: var(--ui-type-caption);
     line-height: 16px;
   }
   .gx-creature-art {
@@ -144,7 +144,7 @@
   justify-content: center;
 }
 .gx-chrome .hk-cost-item {
-  font-size: 10px;
+  font-size: var(--ui-type-resource);
 }
 .gx-chrome .hk-resource-gold {
   flex: 2.2;
@@ -171,7 +171,7 @@
   min-width: 0;
   padding: 4px;
   gap: 4px;
-  font-size: 11px;
+  font-size: var(--ui-type-micro);
   line-height: 14px;
 }
 .gx-roster-forms .hk-art {
@@ -179,7 +179,7 @@
   height: 100%;
 }
 .gx-roster-forms .hk-cost {
-  font-size: 11px;
+  font-size: var(--ui-type-micro);
   gap: 4px;
 }
 .gx-roster-forms .hk-cost img {
@@ -191,7 +191,7 @@
 }
 @media (max-width: 420px) {
   .gx-army-cell.MuiButton-root {
-    font-size: 10px;
+    font-size: var(--ui-type-resource);
     line-height: 14px;
   }
 }

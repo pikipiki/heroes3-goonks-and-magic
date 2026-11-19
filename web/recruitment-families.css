@@ -2,35 +2,35 @@
 #mobile-app .hall-layout{display:grid;grid-template-rows:minmax(0,1fr) auto;flex:1;min-height:0;overflow:hidden}
 #mobile-app .hall-families{min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:8px;display:flex;flex-direction:column;gap:8px}
 #mobile-app .hall-family{flex:0 0 auto;min-width:0;padding:5px;border:1px solid #ac8b4c;background:#1b120ac2}
-#mobile-app .hall-family-label{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:0 2px 4px;color:#e9cf8b;font-size:12px}
-#mobile-app .hall-family-label h3{font-size:14px;margin:0}
+#mobile-app .hall-family-label{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:0 2px 4px;color:#e9cf8b;font-size:var(--ui-type-caption)}
+#mobile-app .hall-family-label h3{font-size:var(--ui-type-body2);margin:0}
 #mobile-app .hall-forms{display:grid;grid-template-columns:repeat(var(--forms),minmax(0,1fr));gap:6px}
 #mobile-app .hall-form{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0;min-height:88px;padding:3px;border:2px ridge #927644;gap:2px;touch-action:pan-y}
 #mobile-app .hall-form[aria-pressed=true]{border-color:#ffe78a;box-shadow:inset 0 0 0 1px #ffe78a,0 0 5px #e6b34c}
-#mobile-app .hall-form[aria-pressed=true]:after{content:'✓';position:absolute;right:3px;top:2px;color:#ffe78a;font-size:16px}
-#mobile-app .hall-rank{font-size:11px;color:#ffdf9b}
+#mobile-app .hall-form[aria-pressed=true]:after{content:'✓';position:absolute;right:3px;top:2px;color:#ffe78a;font-size:var(--ui-type-body1)}
+#mobile-app .hall-rank{font-size:var(--ui-type-micro);color:#ffdf9b}
 #mobile-app .hall-form canvas{width:64px;max-width:100%;height:56px;object-fit:contain;pointer-events:none}
-#mobile-app .hall-form-name{font-size:12px;line-height:1.15;overflow-wrap:anywhere;text-align:center}
-#mobile-app .hall-form-price{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;font-size:11px}
+#mobile-app .hall-form-name{font-size:var(--ui-type-caption);line-height:1.15;overflow-wrap:anywhere;text-align:center}
+#mobile-app .hall-form-price{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;font-size:var(--ui-type-micro)}
 #mobile-app .hall-form-price .creature-price img{width:16px;height:16px}
 #mobile-app .hall-detail{min-width:0;min-height:0;border-top:2px ridge #bc984b;padding:7px 10px;background:#24170ee6;display:grid;gap:5px}
 #mobile-app .hall-feature{display:grid;grid-template-columns:100px minmax(0,1fr);gap:10px;min-height:0;align-items:center}
 #mobile-app .hall-feature>canvas{width:100%;height:100px;max-height:100%;border:1px solid #ad8947}
-#mobile-app .hall-feature h3{font-size:17px;margin:0 0 4px;color:#ffe49a}
+#mobile-app .hall-feature h3{font-size:var(--ui-type-titleSmall);margin:0 0 4px;color:#ffe49a}
 #mobile-app .hall-feature .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
 #mobile-app .hall-feature .creature-stats>div{display:block}
-#mobile-app .hall-feature .creature-stats dt{font-size:11px}
-#mobile-app .hall-feature .creature-stats dd{font-size:14px}
-#mobile-app .hall-stock{font-size:12px;margin:0;color:#edd8a2}
+#mobile-app .hall-feature .creature-stats dt{font-size:var(--ui-type-micro)}
+#mobile-app .hall-feature .creature-stats dd{font-size:var(--ui-type-body2)}
+#mobile-app .hall-stock{font-size:var(--ui-type-caption);margin:0;color:#edd8a2}
 #mobile-app .hall-quantity{display:grid;grid-template-columns:48px minmax(64px,1fr) 48px 64px;gap:6px;align-items:center}
-#mobile-app .hall-quantity button,#mobile-app .hall-quantity input{min-height:44px;height:44px;padding:4px;font-size:17px;width:100%;box-sizing:border-box;text-align:center}
-#mobile-app .hall-total{display:flex;align-items:center;justify-content:flex-end;gap:8px;font-size:14px}
+#mobile-app .hall-quantity button,#mobile-app .hall-quantity input{min-height:44px;height:44px;padding:4px;font-size:var(--ui-type-titleSmall);width:100%;box-sizing:border-box;text-align:center}
+#mobile-app .hall-total{display:flex;align-items:center;justify-content:flex-end;gap:8px;font-size:var(--ui-type-body2)}
 #mobile-app .hall-actions{display:grid;grid-template-columns:2fr 1fr;gap:7px}
-#mobile-app .hall-actions button{min-height:46px;padding:6px;font-size:17px}
+#mobile-app .hall-actions button{min-height:46px;padding:6px;font-size:var(--ui-type-titleSmall)}
 #mobile-app[data-creature-view=fort] .creature-view-head{gap:6px;padding-inline:8px}
 #mobile-app[data-creature-view=fort] .creature-view-head h2{font-size:clamp(16px,5vw,20px);line-height:1.15}
 #mobile-app[data-creature-view=fort] .creature-view-head button{width:44px;flex:none}
-#mobile-app[data-creature-view=fort] .creature-view-head button[data-recruit-all]{width:auto;min-width:80px;font-size:14px;padding:4px 8px}
+#mobile-app[data-creature-view=fort] .creature-view-head button[data-recruit-all]{width:auto;min-width:80px;font-size:var(--ui-type-body2);padding:4px 8px}
 #mobile-app[data-creature-view=fort] .mobile-nav{display:none}
 @container goonk-viewport (orientation:landscape){
  #mobile-app .hall-layout{grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr);grid-template-rows:minmax(0,1fr)}
@@ -41,7 +41,7 @@
  #mobile-app .hall-family-label{margin-bottom:2px}
  #mobile-app .hall-form{min-height:90px}
 }
-@media(max-width:360px){#mobile-app .hall-feature{grid-template-columns:76px minmax(0,1fr);gap:6px}#mobile-app .hall-feature>canvas{height:76px}#mobile-app .hall-feature .creature-stats{gap:2px}#mobile-app .hall-feature h3{font-size:15px}}
+@media(max-width:360px){#mobile-app .hall-feature{grid-template-columns:76px minmax(0,1fr);gap:6px}#mobile-app .hall-feature>canvas{height:76px}#mobile-app .hall-feature .creature-stats{gap:2px}#mobile-app .hall-feature h3{font-size:var(--ui-type-body1)}}
 @container goonk-viewport (orientation:landscape) and (max-height:600px){#mobile-app[data-creature-view=fort] .mobile-play{grid-column:1/-1}}
 @media(max-width:360px){#mobile-app .hall-forms{gap:3px}}
 
@@ -52,24 +52,24 @@
 @container goonk-viewport (orientation:landscape) and (max-height:380px){
  #mobile-app .hall-feature{grid-template-columns:64px minmax(0,1fr);gap:6px;min-height:78px}
  #mobile-app .hall-feature>canvas{height:76px}
- #mobile-app .hall-feature h3{font-size:14px;margin-bottom:3px}
+ #mobile-app .hall-feature h3{font-size:var(--ui-type-body2);margin-bottom:3px}
  #mobile-app .hall-feature .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:2px}
- #mobile-app .hall-feature .creature-stats dt{font-size:10px}
- #mobile-app .hall-feature .creature-stats dd{font-size:12px}
- #mobile-app .hall-stock{font-size:11px;line-height:1.2}
+ #mobile-app .hall-feature .creature-stats dt{font-size:var(--ui-type-resource)}
+ #mobile-app .hall-feature .creature-stats dd{font-size:var(--ui-type-caption)}
+ #mobile-app .hall-stock{font-size:var(--ui-type-micro);line-height:1.2}
  #mobile-app .hall-detail{padding:4px 8px;gap:3px}
- #mobile-app .hall-total{font-size:12px;line-height:16px}
- #mobile-app .hall-actions button{font-size:15px;min-height:44px}
+ #mobile-app .hall-total{font-size:var(--ui-type-caption);line-height:16px}
+ #mobile-app .hall-actions button{font-size:var(--ui-type-body1);min-height:44px}
 }
 
 
-@container goonk-viewport (orientation:landscape) and (max-height:380px){#mobile-app .hall-feature{min-height:70px}#mobile-app .hall-feature>canvas{height:68px}#mobile-app .hall-feature h3{line-height:1.2}#mobile-app .hall-feature .creature-stats dt{font-size:11px}}
+@container goonk-viewport (orientation:landscape) and (max-height:380px){#mobile-app .hall-feature{min-height:70px}#mobile-app .hall-feature>canvas{height:68px}#mobile-app .hall-feature h3{line-height:1.2}#mobile-app .hall-feature .creature-stats dt{font-size:var(--ui-type-micro)}}
 
 /* The selected tile is the only animated creature; no duplicate preview. */
 #mobile-app .hall-feature{display:block;min-height:0;grid-template-columns:minmax(0,1fr)}
 #mobile-app .hall-feature h3{margin:0 0 3px}
 #mobile-app .hall-feature .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr))}
-#mobile-app .hall-feature .creature-stats dd{font-size:13px}
+#mobile-app .hall-feature .creature-stats dd{font-size:var(--ui-type-body2)}
 #mobile-app .hall-actions{align-self:end;height:48px}
 #mobile-app .hall-form canvas{height:64px}
 
@@ -106,7 +106,7 @@
 #mobile-app .hall-form[aria-pressed=true]:after{z-index:1;background:#24180dea;padding:0 2px;line-height:17px}
 #mobile-app .hall-form[data-locked] canvas{filter:saturate(.7) brightness(.83)}
 #mobile-app .hall-form[aria-pressed=true] canvas{filter:none}
-#mobile-app .hall-quick-info,#mobile-app .hall-unit-price{display:flex;align-items:center;justify-content:center;gap:4px;font-size:11px}
+#mobile-app .hall-quick-info,#mobile-app .hall-unit-price{display:flex;align-items:center;justify-content:center;gap:4px;font-size:var(--ui-type-micro)}
 #mobile-app .hall-open-mark{color:#cee6a4;font-weight:bold}
 #mobile-app .hall-lock-mark{color:#efcb8b}
 #mobile-app .hall-form-price .creature-price img{width:13px;height:13px}

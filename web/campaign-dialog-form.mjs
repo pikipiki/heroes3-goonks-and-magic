@@ -1,3 +1,4 @@
+import {createUIField} from './ui/material-components.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './i18n.mjs';
 import {campaignMediaPicture} from './campaign-media.mjs';
@@ -6,9 +7,9 @@ export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>
  const form=document.createElement('form');form.className='campaign-dialog-form';form.dataset.kind=model.kind;
  form.addEventListener('submit',event=>{event.preventDefault();confirm();});
  if(model.inputLabel){
-  const label=document.createElement('label'),caption=document.createElement('span'),input=document.createElement('input');
+  const label=document.createElement('label'),caption=document.createElement('span'),field=createUIField({type:'text'}),input=field.input;
   caption.textContent=plainGameText(model.inputLabel);input.type='text';input.dataset.campaignInput='';input.autocomplete='off';input.autocapitalize='none';input.setAttribute('autocorrect','off');input.enterKeyHint='done';input.spellcheck=false;input.maxLength=511;input.value=draft.text;
-  input.addEventListener('input',()=>{draft.text=input.value;onDraft({...draft});});label.append(caption,input);form.append(label);
+  input.addEventListener('input',()=>{draft.text=input.value;onDraft({...draft});});label.append(caption,field.element);form.append(label);
  }
  const pictures=document.createElement('div');pictures.className='campaign-dialog-pictures';
  for(const [index,picture]of (model.pictures||[]).entries())if(picture.rect&&(model.kind!=='pictures'||index>=model.choices.length)){
@@ -19,12 +20,12 @@ export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>
   const fieldset=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent=plainGameText(model.choiceLabel)||(getLanguage()==='fr'?'Choix':'Choices');fieldset.append(legend);
   const multiple=model.kind==='checklist'&&model.multiple;
   for(const [index,choice]of model.choices.entries()){
-   const label=document.createElement('label'),input=document.createElement('input'),copy=document.createElement('span'),title=document.createElement('strong');
+   const label=document.createElement('label'),field=createUIField({type:multiple?'checkbox':'radio',name:'campaign-choice-'+model.queryId,value:String(choice.value),defaultChecked:multiple?(draft.selection&choice.value)!==0:draft.selection===choice.value}),input=field.input,copy=document.createElement('span'),title=document.createElement('strong');
    input.type=multiple?'checkbox':'radio';input.name='campaign-choice-'+model.queryId;input.value=String(choice.value);input.dataset.campaignChoice=String(choice.value);
    input.checked=multiple?(draft.selection&choice.value)!==0:draft.selection===choice.value;title.textContent=plainGameText(choice.label);copy.append(title);
    if(choice.hint){const hint=document.createElement('small');hint.textContent=plainGameText(choice.hint);copy.append(hint);}
    input.addEventListener('change',()=>{draft.selection=multiple?(input.checked?draft.selection|choice.value:draft.selection&~choice.value):choice.value;onDraft({...draft});});
-   label.append(input,copy);
+   label.append(field.element,copy);
    if(model.kind==='pictures'&&model.pictures?.[index]?.rect){const canvas=document.createElement('canvas');canvas.width=96;canvas.height=96;canvas.setAttribute('aria-hidden','true');label.append(canvas);icons.push({canvas,rect:model.pictures[index].rect});}
    fieldset.append(label);
   }

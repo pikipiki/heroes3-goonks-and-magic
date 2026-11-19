@@ -1,3 +1,4 @@
+import {createUIElement} from './ui/material-components.mjs';
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 import {compactResource, resourceDescriptors, resourceIconURL} from './resources.mjs';
@@ -49,7 +50,7 @@ export function createMarketplace({root, command, refresh}) {
  function renderResources(rows) {
   for(const grid of panel.querySelectorAll('.market-grid')) {
    grid.replaceChildren(...rows.map(resource=>{
-    const button = document.createElement('button');
+    const button = createUIElement('button');
     button.type = 'button';
     button.dataset.resourceId = resource.id;
     const url = resourceIconURL(resource,window.goonkAssetURLs);

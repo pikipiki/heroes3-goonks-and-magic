@@ -17,6 +17,8 @@ export const screenCases=[
  ['builder',{mode:'town',caveBuilder:{available:true,hero:1,town:2,remaining:10,canAct:true,buildings:Array.from({length:24},(_,i)=>({building:i,name:'Bâtiment '+i,gold:500,enabled:true,salvage:[1,0,2,0,0,0]}))}},'[data-builder-open]'],
 
  ...['army','worn','backpack','skills'].map(tab=>['hero-'+tab,{mode:'hero',heroWindow},`[data-hero-tab=${tab}]`]),
+ ['hero-army-selected',{mode:'hero',troopEquipment:true,heroWindow},'[data-hero-tab=army]','[data-army-slot="0"]'],
+ ['hero-army-split',{mode:'hero',troopEquipment:true,heroWindow},'[data-hero-tab=army]','[data-army-slot="0"]','#hero-army-split'],
  ['creature',{mode:'creature',creatureUnit:unit}],
  ['creature-upgrades',{mode:'creature',creatureUnit:unit,creatureUpgrades:[{...unit,id:1,name:'Halberdier',affordable:true}]}],
  ['hall',{mode:'fort',fortRows:[],fortFamilies:families,previewUnits:[]}],

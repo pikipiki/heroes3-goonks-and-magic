@@ -10,7 +10,7 @@ export async function inspectMaterialPage(page,evaluate=page.evaluate.bind(page)
   const hitTargets=[];
   for(const node of document.querySelectorAll('button,input,select,textarea,summary,a.storage-return')){
    if(!visible(node)||node.type==='hidden'||node.matches('.material-select-source'))continue;
-   const target=node.matches('[type=checkbox],[type=radio]')?node.closest('label')||node:node,r=target.getBoundingClientRect();
+   const target=node.matches('[data-mui-field=range]')?node.closest('.MuiSlider-root')||node:node.matches('[type=checkbox],[type=radio]')?node.closest('label')||node:node,r=target.getBoundingClientRect();
    if(r.width<47.9||r.height<47.9)add(node,'target-48',{width:+r.width.toFixed(1),height:+r.height.toFixed(1)});
    if(node.closest('.ui-action-dock,.ui-screen-header')&&!node.closest('.ui-popup,.ui-popup-list,.MuiModal-root')&&(r.left<-.5||r.top<-.5||r.right>innerWidth+.5||r.bottom>innerHeight+.5))add(node,'fixed-action-bounds',{x:r.x,y:r.y,width:r.width,height:r.height});
    let exposed=r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight;for(let parent=target.parentElement;parent&&exposed;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowX+' '+style.overflowY)){const clip=parent.getBoundingClientRect();if(r.left<clip.left-1||r.right>clip.right+1||r.top<clip.top-1||r.bottom>clip.bottom+1)exposed=false;}}

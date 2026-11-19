@@ -1,3 +1,4 @@
+import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
 
@@ -55,7 +56,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
     activeSeat = seat;
     picker.querySelector('h2').textContent = t('Choose castle', 'Choisir le château') + ' · ' + colors[record.color];
     const buttons = [random, ...record.choices].map(faction => {
-      const button = document.createElement('button');
+      const button = createUIElement('button');
       button.type = 'button';
       button.dataset.castleChoice = faction.id === -1 ? '' : faction.id;
       button.dataset.nativeClick = '';
@@ -99,7 +100,7 @@ export function mountHostedCastles(root, fr, onRosterChange) {
           role.setAttribute('role', 'group');
           role.setAttribute('aria-label', t('Player type', 'Type de joueur') + ' · ' + colors[colorId]);
           for (const [value, label] of [['human', t('Human', 'Humain')], ['computer', t('Computer', 'Ordinateur')]]) {
-            const button = document.createElement('button');
+            const button = createUIElement('button');
             button.type = 'button';
             button.dataset.castleRole = value;
             button.dataset.nativeClick = '';

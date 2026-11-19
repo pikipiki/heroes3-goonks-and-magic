@@ -26,6 +26,6 @@ try {
   }
 } catch (error) {
   status.textContent = error.message;
-  document.querySelector('#hosting-retry').hidden = false;
+  const {createUIElement}=await import('./web/ui/material-components.mjs');
+  const retry=createUIElement('button');retry.id='hosting-retry';retry.textContent='Réessayer';retry.addEventListener('click',()=>{sessionStorage.removeItem(retryKey);location.reload();});document.querySelector('.spinner-content').append(retry);
 }
-document.querySelector('#hosting-retry').addEventListener('click', () => { sessionStorage.removeItem(retryKey); location.reload(); });

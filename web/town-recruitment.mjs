@@ -1,3 +1,4 @@
+import {createUIElement} from './ui/material-components.mjs';
 export const isNativeFort=state=>state.mode==='dialog'&&state.dialogKind==='fort'&&state.fortAreas?.length>0;
 // Native hit areas remain authoritative, including extra modded recruitment rows.
 // Copy each live panel separately so mobile layouts can reflow without stretching.
@@ -11,7 +12,7 @@ export function createNativeFort({root,getState,pointer}){
   if(!active){delete root.dataset.nativeFort;if(canvases.length){for(const canvas of canvases){canvas.width=0;canvas.height=0;}grid.replaceChildren();canvases=[];signature='';}return false;}root.dataset.nativeFort='true';
   const areas=state.fortAreas,key=JSON.stringify(areas);
   if(key!==signature){signature=key;grid.replaceChildren();canvases=areas.map((r,index)=>{
-   const button=document.createElement('button');button.className='native-fort-card';button.setAttribute('aria-label','Recruter les créatures du niveau '+(index+1));
+   const button=createUIElement('button');button.className='native-fort-card';button.setAttribute('aria-label','Recruter les créatures du niveau '+(index+1));
    const canvas=document.createElement('canvas');canvas.setAttribute('aria-hidden','true');button.append(canvas);grid.append(button);
    button.addEventListener('click',event=>{event.stopPropagation();const latest=getState();if(!isNativeFort(latest)||!latest.turn)return;const area=latest.fortAreas[index];if(area)pointer({x:area.x+area.w/2,y:area.y+area.h/2},1);});return canvas;
   });}

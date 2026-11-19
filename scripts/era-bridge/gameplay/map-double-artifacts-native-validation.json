@@ -1266,5 +1266,529 @@
       "build-site": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
       "verify-site": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
     }
+  },
+  "mergedUIValidation": {
+    "remoteCommit": "d404df43",
+    "scope": "Same engine; merged MUI presentation validated separately from the earlier full native matrix.",
+    "reports": {
+      "landscape": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+        "scenarios": [
+          {
+            "name": "first-copy",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              2,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": false,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch",
+            "messages": [
+              "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+              "You find an additional Centaurs Axe."
+            ]
+          },
+          {
+            "name": "full-backpack",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              1,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": false,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch",
+            "messages": [
+              "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+              "You cannot carry an additional Centaurs Axe."
+            ]
+          },
+          {
+            "name": "guard-decline-and-win",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              2,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": true,
+            "viewport": {
+              "width": 844,
+              "height": 390
+            },
+            "input": "touch",
+            "messages": [
+              "{Artifact}\n\nThrough a clearing you observe an ancient artifact.  Unfortunately, it's guarded by  several Goblins.  Do you want to fight the creatures for the artifact?",
+              "You find an additional Centaurs Axe."
+            ]
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "f991b15c94cbad362d2e75bf35223e29d32970dfe9fe2663413bc2fed90a52dc"
+      },
+      "portrait": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+        "scenarios": [
+          {
+            "name": "first-copy",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              2,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": false,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch",
+            "messages": [
+              "Vous apercevez une lourde hache plantée dans le sol. Après que tous les membres de votre armée aient essayé de l'extraire, vous agrippez fermement le manche de la hache et vous la récupérez sans effort.",
+              "Vous trouvez un exemplaire supplémentaire de Hache du Centaure."
+            ]
+          },
+          {
+            "name": "guard-decline-and-win",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              2,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": true,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch",
+            "messages": [
+              "{Objet magique}\n\nA quelques distances, vous discernez un objet magique ancien. Malheureusement il est gardé par  plusieurs Gobelins. Souhaitez-vous combattre les créatures afin de récupérer l'objet ?",
+              "Vous trouvez un exemplaire supplémentaire de Hache du Centaure."
+            ]
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "e1554b68b855e1bf84ad8cae76f310f60e2e5de17d776c66a70b17d9cd5f8018"
+      },
+      "desktop": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319",
+        "scenarios": [
+          {
+            "name": "first-copy",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              2,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": false,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse",
+            "messages": [
+              "You see a heavy axe embedded deeply in the ground.  After several unsuccessful attempts by your army to remove it, you tightly grip the handle of the axe and effortlessly pull it free.",
+              "You find an additional Centaurs Axe."
+            ]
+          },
+          {
+            "name": "guard-decline-and-win",
+            "active": true,
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              2,
+              1
+            ],
+            "markerBefore": 15,
+            "markerAfter": 0,
+            "nativePostVisitWitness": true,
+            "pendingNativeSaveReload": true,
+            "frozenChoiceAfterGlobalReversal": true,
+            "independentInventoryCheck": true,
+            "guardDeclinePreserved": true,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse",
+            "messages": [
+              "{Artifact}\n\nThrough a clearing you observe an ancient artifact.  Unfortunately, it's guarded by  several Goblins.  Do you want to fight the creatures for the artifact?",
+              "You find an additional Centaurs Axe."
+            ]
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "1d29054d1198edac364caedadf3efb31e27ef5cd00dcb11f963ff97fc0addf38"
+      }
+    },
+    "radio": {
+      "passed": true,
+      "cases": [
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "chromium",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "fr",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "geometry": {
+            "w": 90,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "geometry": {
+            "w": 126.671875,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 568,
+            "height": 280
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        },
+        {
+          "kind": "webkit",
+          "language": "en",
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "geometry": {
+            "w": 162,
+            "h": 48,
+            "radius": "0px"
+          },
+          "singleActivation": true,
+          "legacySixteenChoices": true,
+          "loadingAndDisabled": true,
+          "longLabelsFit": true
+        }
+      ],
+      "errors": [],
+      "rawReportSha256": "9b849a010afe6dab01f712a56b95c19ce26afd7f8e258a1b52609f04c1f45f33"
+    },
+    "node": {
+      "tests": 946,
+      "passed": 890,
+      "failed": 0,
+      "skipped": 56
+    },
+    "nodeLogSha256": "d622026a3245eab6aaaf763b83e21d606f5a3a8439d9fa6391f2c8c5347a8f35",
+    "site": {
+      "nativeFilesByteVerified": 10464,
+      "transportBytes": 702299043,
+      "buildLogSha256": "4b929dbdbfddbada4e6c643d047c10c3945e7e72c301536ea33bbbf780758c49",
+      "verifyLogSha256": "93570bc59f0f19741e5a1c54b762da367cff0f8fe317f25faec598e993c26251"
+    }
   }
 }

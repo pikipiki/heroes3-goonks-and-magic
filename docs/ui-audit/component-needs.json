@@ -981,39 +981,39 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "b3e7f4f728acfbce24a53624ce80a7e3492ac52bc97b4ca44387f1bd20d5cc78",
+      "sourceSHA256": "b6d38fb4f3fbf0e229c1ffb209347eb7b9e8ad472262f5efcde6baf429f0c6ad",
       "evidence": [
         {
-          "line": 68,
+          "line": 69,
           "excerpt": "const homeMenu = '<h1>Le royaume des Goonks</h1><p>Une aventure au bout des doigts.<br>Explore, construis et mène tes peluches au combat.</p><button class=\"primary\" data-action=\"20"
         },
         {
-          "line": 74,
+          "line": 75,
           "excerpt": "const root=document.createElement('section');root.id='mobile-app';root.dataset.mode='menu';root.setAttribute('aria-label','Heroes Goonk tactile');renderMarkup(root,`<header class=\""
         },
         {
-          "line": 76,
+          "line": 77,
           "excerpt": "const viewportFrame=document.createElement('div');viewportFrame.id='mobile-viewport';root.before(viewportFrame);viewportFrame.append(root);"
         },
         {
-          "line": 78,
-          "excerpt": "const townZoom=document.createElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-"
-        },
-        {
-          "line": 110,
+          "line": 111,
           "excerpt": "renderMarkup(menu,homeMenu+'<button type=\"button\" data-open-multiplayer>Multijoueur</button>');"
         },
         {
-          "line": 118,
+          "line": 119,
           "excerpt": "renderMarkup(menu,'<h1 tabindex=\"-1\">Multijoueur</h1><button type=\"button\" data-action=\"75\">Appareil de l’hôte</button><button type=\"button\" data-open-hosted-match>Serveur dédié</b"
         },
         {
-          "line": 135,
+          "line": 136,
           "excerpt": "const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelec"
         },
         {
-          "line": 136,
+          "line": 137,
           "excerpt": "function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(b"
+        },
+        {
+          "line": 185,
+          "excerpt": "root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');renderMarkup(holder,crea"
         }
       ],
       "review": "source-reviewed"
@@ -1054,38 +1054,34 @@
         "storage",
         "confirm"
       ],
-      "sourceSHA256": "a769ac850fe87301042a178e94aaf843c363373dba0ec316161cde918d2cebdb",
+      "sourceSHA256": "054afefb8265f4fe896dcb83d9152bbc56ee71a726f3da39eacda679b8b5f458",
       "evidence": [
         {
-          "line": 24,
-          "excerpt": "const toggle=document.createElement('button');toggle.id='game-menu-toggle';toggle.textContent='☰';toggle.setAttribute('aria-label','Menu du jeu');"
-        },
-        {
-          "line": 26,
+          "line": 27,
           "excerpt": "const dialog=document.createElement('dialog');dialog.id='game-menu';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','game-menu-title');"
         },
         {
-          "line": 27,
+          "line": 28,
           "excerpt": "renderMarkup(dialog,'<header><button data-menu=\"back\" hidden>← Back</button><h2 id=\"game-menu-title\">Heroes Goonk</h2><button data-menu=\"close\" data-native-click aria-label=\"Fermer"
         },
         {
-          "line": 29,
+          "line": 30,
           "excerpt": "const onlineTurn=document.createElement('p');"
         },
         {
-          "line": 78,
+          "line": 79,
           "excerpt": "if(content.dataset.storage!=='ready'){content.dataset.storage='ready';renderMarkup(content,storageGuide(location.hostname)+'<dl class=\"storage-sizes\"><div><dt>Fichiers du jeu</dt><"
         },
         {
-          "line": 84,
+          "line": 85,
           "excerpt": "content.dataset.view='settings';renderMarkup(content,'<label class=\"language-setting setting-select\">Language<select data-language><option value=en>English</option><option value=fr"
         },
         {
-          "line": 113,
+          "line": 114,
           "excerpt": "return '<article class=\"game-cheat\"><h3>'+cheat.title+'</h3><p>'+cheat.description+'</p><code>'+cheat.code+'</code><button data-cheat=\"'+cheat.id+'\" '+(reason?'disabled':'')+' aria"
         },
         {
-          "line": 165,
+          "line": 166,
           "excerpt": "if(action==='new-game'){tab='new-game';render();content.dataset.view='new-game';renderMarkup(content,'<h3>Retourner au menu principal ?</h3><p>The current session will end. Your ex"
         }
       ],
@@ -1119,38 +1115,38 @@
         "copy",
         "feedback"
       ],
-      "sourceSHA256": "40528fa785dd1e8278681a1230271eba6b7553a9773cdac76db58fde132bfe69",
+      "sourceSHA256": "47c289d48cd8e09b677af5e0a343d1dd9c99389301b2cd8429c89a762b7e9152",
       "evidence": [
         {
-          "line": 10,
+          "line": 12,
           "excerpt": "export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, onLaunch) {"
         },
         {
-          "line": 13,
+          "line": 15,
           "excerpt": "const section = document.createElement('section');"
         },
         {
-          "line": 18,
+          "line": 20,
           "excerpt": "<label><span></span><select data-create-players></select><small data-player-help></small></label>"
         },
         {
-          "line": 19,
+          "line": 21,
           "excerpt": "<button type=\"button\" class=\"hosted-scenario-choice\" data-create-map data-native-click aria-haspopup=\"dialog\" aria-controls=\"hosted-map-picker\">"
         },
         {
-          "line": 23,
+          "line": 25,
           "excerpt": "<label data-create-timer-field hidden><span></span><select data-create-timer aria-describedby=\"hosted-timer-help\"></select><small id=\"hosted-timer-help\"></small></label>"
         },
         {
-          "line": 24,
+          "line": 26,
           "excerpt": "<label class=\"online-cheats-option\"><input type=\"checkbox\" data-create-cheats><span data-create-cheats-label></span></label>"
         },
         {
-          "line": 29,
+          "line": 31,
           "excerpt": "<button type=\"button\" class=\"primary\" data-create-match=\"submit\"></button>"
         },
         {
-          "line": 32,
+          "line": 34,
           "excerpt": "<dialog id=\"hosted-map-picker\" class=\"lobby-picker\" data-kind=\"map\" aria-labelledby=\"hosted-map-title\">"
         }
       ],
@@ -1795,39 +1791,39 @@
         "transfer",
         "upgrade"
       ],
-      "sourceSHA256": "34657db3963b4723b461ad54c3545a28726cff569d698fd51df176332152d158",
+      "sourceSHA256": "705b6d2e88b1ad8ff77a4c9f307c80e1dd227222f9cdc54c91cd946d17c79a9b",
       "evidence": [
         {
-          "line": 7,
+          "line": 9,
           "excerpt": "export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransferAll,onInfo,onManage,onUpgradeAll,onBack,showVisitorPlaceholder=false,readOnly=false,onMessage=()=>{"
         },
         {
-          "line": 9,
+          "line": 11,
           "excerpt": "const panel=document.createElement('div');panel.className='army-panel';panel.dataset.armyCount=String(showVisitorPlaceholder?Math.max(2,armies.length):armies.length);"
         },
         {
-          "line": 10,
+          "line": 12,
           "excerpt": "const rosters=document.createElement('div');rosters.className='army-rosters';"
         },
         {
-          "line": 11,
+          "line": 13,
           "excerpt": "const dock=document.createElement('footer');dock.id='army-options';dock.className='army-dock';"
         },
         {
-          "line": 12,
+          "line": 14,
           "excerpt": "const status=document.createElement('p');status.className='army-selection';status.setAttribute('role','status');status.textContent=readOnly?(fr?'Disponible à ton tour':'Available o"
         },
         {
-          "line": 13,
+          "line": 15,
           "excerpt": "const tools=document.createElement('div');tools.className='army-transfer-tools';"
         },
         {
-          "line": 14,
+          "line": 16,
           "excerpt": "const splitLabel=document.createElement('label');splitLabel.className='army-split-toggle';"
         },
         {
-          "line": 15,
-          "excerpt": "const split=document.createElement('input');split.id='army-split';split.type='checkbox';split.disabled=true;splitLabel.append(split,fr?'Scinder':'Split');"
+          "line": 32,
+          "excerpt": "const section=document.createElement('section');section.className='army-roster';section.setAttribute('aria-label',army.name);"
         }
       ],
       "review": "source-reviewed"
@@ -1948,31 +1944,31 @@
         "select",
         "confirm"
       ],
-      "sourceSHA256": "68b309532b478e7c4cb82f4a15eda271d93969682edfd4c7a64cbd5538c9b3fd",
+      "sourceSHA256": "db2c6cca81aec9f25b1098c4edb2086a76ae4544975fdfb44e0b4e36113038e6",
       "evidence": [
         {
-          "line": 7,
+          "line": 8,
           "excerpt": "export function createTroopEquipment({root,command}){"
         },
         {
-          "line": 8,
+          "line": 9,
           "excerpt": "const panel=document.createElement('section');panel.className='progression-page troop-equipment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria"
         },
         {
-          "line": 9,
+          "line": 10,
           "excerpt": "renderMarkup(panel,'<header><h2 id=\"troop-equipment-title\"></h2></header><div class=\"progression-scroll\"><label class=\"progression-family\"><span data-troop-label></span><select dat"
         },
         {
-          "line": 18,
+          "line": 19,
           "excerpt": "const selector=panel.querySelector('[data-troop-select]'),troopKey=JSON.stringify(data.troops.map(t=>[t.slot,t.name,t.count]));if(selector._key!==troopKey){selector._key=troopKey;s"
         },
         {
-          "line": 19,
+          "line": 20,
           "excerpt": "const current=panel.querySelector('.troop-current'),key=JSON.stringify([slot,t.equipped,getLanguage()]);if(current._key!==key){current._key=key;renderMarkup(current,`<h3>${esc(t.na"
         },
         {
-          "line": 22,
-          "excerpt": "for(const item of items){let b=inventory.querySelector(`[data-troop-item=\"${item.id}\"]`);if(!b){b=document.createElement('button');b.className='progression-offer';b.dataset.troopIt"
+          "line": 23,
+          "excerpt": "for(const item of items){let b=inventory.querySelector(`[data-troop-item=\"${item.id}\"]`);if(!b){b=createUIElement('button');b.className='progression-offer';b.dataset.troopItem=item"
         }
       ],
       "review": "source-reviewed"
@@ -1997,38 +1993,34 @@
         "feedback",
         "accordion"
       ],
-      "sourceSHA256": "48ac8021d45e327fff8fbf8832dfd7a5c226834c18e50cdf28383103590b37fa",
+      "sourceSHA256": "167a22dcc038b3f9640d17ff2cf9a86c4c336540dae61f800ca3890b4b1d994f",
       "evidence": [
         {
-          "line": 5,
+          "line": 6,
           "excerpt": "export function renderMithrilOffers(data,{pending=false,canAct=false,selectedTerrains={}}={}){"
         },
         {
-          "line": 22,
+          "line": 23,
           "excerpt": "${offer.terrainChoices?`<label>${fr?'Terrain de siège':'Siege terrain'}<select data-mithril-terrain=\"${offer.id}\" ${pending||!canAct?'disabled':''}>${offer.terrainChoices.map(row=>"
         },
         {
-          "line": 23,
+          "line": 24,
           "excerpt": "${offer.active?`<p>${offer.days?`${offer.days} ${fr?'jours restants':'days remaining'}`:(fr?'Amélioré':'Enhanced')}</p>`:`<button data-mithril-buy=\"${offer.id}\" data-mithril-choice"
         },
         {
-          "line": 26,
+          "line": 27,
           "excerpt": "export function createMithrilEnhancements({root,command}){"
         },
         {
-          "line": 27,
-          "excerpt": "const button=document.createElement('button');button.dataset.mithrilOpen='';button.textContent='Mithril';button.hidden=true;"
-        },
-        {
-          "line": 29,
+          "line": 30,
           "excerpt": "const panel=document.createElement('section');panel.className='mithril-panel';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('a"
         },
         {
-          "line": 30,
+          "line": 31,
           "excerpt": "renderMarkup(panel,'<header><h2 id=\"mithril-title\">Mithril</h2><button data-mithril-close aria-label=\"Fermer\">✕</button></header><div class=\"mithril-content\"></div>');"
         },
         {
-          "line": 55,
+          "line": 56,
           "excerpt": "const information=info?`<section class=\"mithril-information\"><p>${esc(info.total)}</p>${info.prices?.length?`<button data-mithril-prices aria-expanded=\"${pricesOpen}\" aria-controls"
         }
       ],
@@ -2065,39 +2057,39 @@
         "skills",
         "result"
       ],
-      "sourceSHA256": "d96723bfeac72cebd1ca38ba5f0977b699496b41697e1726b60529a6c639a8d6",
+      "sourceSHA256": "dd17309e8ea78a74eb89219557ee8ae2f6ee7831f825c5c322827f4700efeede",
       "evidence": [
         {
-          "line": 12,
+          "line": 13,
           "excerpt": "export function createDialogPresentation({root,command,pointer,refresh=()=>{},scriptReply=sendCampaignDialogReply,scriptDraft=sendCampaignDialogDraft}){"
         },
         {
-          "line": 14,
+          "line": 15,
           "excerpt": "const panel=document.createElement('section');panel.className='dialog-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presen"
         },
         {
-          "line": 57,
+          "line": 58,
           "excerpt": "const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map"
         },
         {
-          "line": 59,
-          "excerpt": "if(data.commanderTree){const toggle=document.createElement('button');toggle.type='button';toggle.dataset.commanderTree='';toggle.textContent=getLanguage()==='fr'?(treeOpen?'Compéte"
-        },
-        {
-          "line": 60,
+          "line": 61,
           "excerpt": "const content=document.createElement('div');content.className='dialog-copy';"
         },
         {
-          "line": 61,
+          "line": 62,
           "excerpt": "if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image."
         },
         {
-          "line": 63,
+          "line": 64,
           "excerpt": "for(const line of lines){const p=document.createElement('p');p.textContent=line;content.append(p);}"
         },
         {
-          "line": 64,
+          "line": 65,
           "excerpt": "if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit."
+        },
+        {
+          "line": 67,
+          "excerpt": "if(selected?.description){const description=document.createElement('p');description.className='dialog-choice-description';description.textContent=text(selected.description);content"
         }
       ],
       "review": "source-reviewed"
@@ -2172,22 +2164,22 @@
         "card",
         "feedback"
       ],
-      "sourceSHA256": "f9faad3895c46bddb0bc61917f58c9719a900bad0fa7197d7695ee5b6a047f8a",
+      "sourceSHA256": "59aec629778da1f8c7718342b15dd381c1f929981d83f74bedc506c68a1cd2aa",
       "evidence": [
         {
-          "line": 4,
+          "line": 5,
           "excerpt": "if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./commander-tree.css',import.meta.url).href;document.head.appen"
         },
         {
-          "line": 7,
-          "excerpt": "const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};"
+          "line": 8,
+          "excerpt": "const el=(tag,cls,text)=>{const node=tag==='button'?createUIElement(tag):document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node"
         },
         {
-          "line": 9,
+          "line": 10,
           "excerpt": "export function commanderAbilityState(ability,tree){"
         },
         {
-          "line": 15,
+          "line": 16,
           "excerpt": "export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},onSelect=()=>{}}={}){"
         }
       ],
@@ -2346,39 +2338,39 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "92d6cec1f0bdd4c4656009cbc63c876973dc37576a6663766d7693f84da4ce65",
+      "sourceSHA256": "ab9f6e20cd4c0a0698e0e7cce8f6867b3d6e96ad4214c4271a9065c61839d0a6",
       "evidence": [
         {
-          "line": 11,
+          "line": 12,
           "excerpt": "export function createMarketplace({root, command, refresh}) {"
         },
         {
-          "line": 12,
+          "line": 13,
           "excerpt": "const panel = document.createElement('section');"
         },
         {
-          "line": 20,
+          "line": 21,
           "excerpt": "<button type=\"button\" data-market=\"minus\">−</button><input type=\"number\" inputmode=\"numeric\" min=\"1\" step=\"1\"><button type=\"button\" data-market=\"plus\">+</button><button type=\"butto"
         },
         {
-          "line": 21,
+          "line": 22,
           "excerpt": "</div><button class=\"primary\" type=\"button\" data-market=\"trade\"></button></div><footer class=\"market-view-actions\"><button type=\"button\" data-market=\"classic\"></button><button clas"
         },
         {
-          "line": 52,
-          "excerpt": "const button = document.createElement('button');"
-        },
-        {
-          "line": 58,
+          "line": 59,
           "excerpt": "const icon = document.createElement('img');icon.src=url;icon.alt='';"
         },
         {
-          "line": 61,
+          "line": 62,
           "excerpt": "button.append(document.createElement('span'),document.createElement('small'));"
         },
         {
-          "line": 113,
+          "line": 114,
           "excerpt": "if(index){const arrow=document.createElement('span');arrow.textContent='→';arrow.setAttribute('aria-hidden','true');total.append(arrow);}"
+        },
+        {
+          "line": 115,
+          "excerpt": "const item=document.createElement('span');item.className='market-total-resource';"
         }
       ],
       "review": "source-reviewed"
@@ -2468,38 +2460,38 @@
         "calendar",
         "actions"
       ],
-      "sourceSHA256": "af60d8b2477bc6af7b337af456043175c97d9eedde25fda6e06296106188e170",
+      "sourceSHA256": "c6e1682ef04fc54f30be4ca700eb7821ace6ca837aafbfff4dc1dec3eab692da",
       "evidence": [
         {
-          "line": 32,
+          "line": 33,
           "excerpt": "export function isGoonkTown(state){return state.townFaction==='goonk:goonk'||(state.buildings||[]).some(b=>String(b.key).startsWith('goonk:'));}"
         },
         {
-          "line": 33,
+          "line": 34,
           "excerpt": "export function townPortraitBuildings(width,height,buildings=[]){const result=[];for(const [site,variants,x,y,maxW,maxH]of TOWN_SITES){const building=[...variants].reverse().map(ke"
         },
         {
-          "line": 34,
+          "line": 35,
           "excerpt": "export function portraitTownFaction(state){if(isGoonkTown(state))return 'goonk';const key=String(state.townFaction||'').split(':').at(-1);return townBuildingArt[key]?key:null;}"
         },
         {
-          "line": 37,
+          "line": 38,
           "excerpt": "export function townBuildingCardImage(state,building,asset){"
         },
         {
-          "line": 43,
+          "line": 44,
           "excerpt": "export function eighthTownRecruitment(state){"
         },
         {
-          "line": 51,
+          "line": 52,
           "excerpt": "export function eighthTownViewport(width,height){return {x:0,y:0,width,height,badgeWidth:0};}"
         },
         {
-          "line": 52,
+          "line": 53,
           "excerpt": "export function factionPortraitBuildings(width,height,buildings,faction,{minimumRowHeight=0}={}){"
         },
         {
-          "line": 71,
+          "line": 72,
           "excerpt": "export function createTownPortrait({root,scene,asset,command,getState,openBuildings}){"
         }
       ],
@@ -2523,30 +2515,26 @@
         "resources",
         "details"
       ],
-      "sourceSHA256": "586e7ae3c53dc592805bc4b720b6d03272becbb43eaaa804d40347bf4eeaf528",
+      "sourceSHA256": "0d9c244e0aa06dc3f48e548d6eeedb8981ee1741eb12681ae7bd11700a020be6",
       "evidence": [
         {
-          "line": 4,
+          "line": 5,
           "excerpt": "export function createNativeFort({root,getState,pointer}){"
         },
         {
-          "line": 5,
+          "line": 6,
           "excerpt": "const panel=document.createElement('section');panel.className='native-fort';panel.hidden=true;panel.setAttribute('aria-label','Créatures du château');"
         },
         {
-          "line": 6,
+          "line": 7,
           "excerpt": "const help=document.createElement('p');help.className='native-fort-help';help.textContent='Choisis une créature pour recruter tes troupes.';"
         },
         {
-          "line": 7,
+          "line": 8,
           "excerpt": "const grid=document.createElement('div');grid.className='native-fort-grid';panel.append(help,grid);root.querySelector('.mobile-play').append(panel);"
         },
         {
-          "line": 14,
-          "excerpt": "const button=document.createElement('button');button.className='native-fort-card';button.setAttribute('aria-label','Recruter les créatures du niveau '+(index+1));"
-        },
-        {
-          "line": 15,
+          "line": 16,
           "excerpt": "const canvas=document.createElement('canvas');canvas.setAttribute('aria-hidden','true');button.append(canvas);grid.append(button);"
         }
       ],
@@ -2577,7 +2565,7 @@
         "details",
         "resources"
       ],
-      "sourceSHA256": "dc23041844787c9ae88038cd2ef242d101f26ebb840b1bef20016003e9882310",
+      "sourceSHA256": "99f98fdeac019a0164fcceca8c8ca960a39c6d2601f95721493d28038f0f39f0",
       "evidence": [
         {
           "line": 5,
@@ -2601,7 +2589,7 @@
         },
         {
           "line": 84,
-          "excerpt": "if(!old)savedScroll=null;if(old){restoreMovedActions(old);for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}panel.insertAdjacentHTML"
+          "excerpt": "if(!old)savedScroll=null;if(old){restoreMovedActions(old);for(const canvas of old.querySelectorAll('canvas')){canvas.width=0;canvas.height=0;}old.remove();}const layout=document.cr"
         }
       ],
       "review": "source-reviewed"
@@ -2752,39 +2740,23 @@
         "storage",
         "actions"
       ],
-      "sourceSHA256": "9830256498ced4031fc83f09f3c20c9b0eeb94316adf093e20a63e8e3503c5f3",
+      "sourceSHA256": "24b6f94e3962ed9d293c8d8ae934039740da16d725363ae48526d021bcf6ec70",
       "evidence": [
         {
-          "line": 6,
+          "line": 7,
           "excerpt": "export function createTemporaryBoot(status){"
         },
         {
-          "line": 8,
-          "excerpt": "const readyStatus=document.createElement('div');"
+          "line": 19,
+          "excerpt": "renderMarkup(status,`<small class=\"temporary-boot-step\">Étape ${step} sur 2</small><p>${escapeUI(label)}</p><progress aria-label=\"${escapeUI(label)}\" ${determinate?'max=\"100\" value"
         },
         {
-          "line": 18,
-          "excerpt": "const progress=document.createElement('progress');"
+          "line": 65,
+          "excerpt": "renderMarkup(status,'<p>The engine could not finish loading. Check your connection, then retry.</p><button type=\"button\">Réessayer</button>');"
         },
         {
-          "line": 21,
-          "excerpt": "const stage=document.createElement('small');"
-        },
-        {
-          "line": 24,
-          "excerpt": "const title=document.createElement('p');"
-        },
-        {
-          "line": 26,
-          "excerpt": "const info=document.createElement('p');"
-        },
-        {
-          "line": 29,
-          "excerpt": "const note=document.createElement('small');"
-        },
-        {
-          "line": 77,
-          "excerpt": "const message=document.createElement('p');"
+          "line": 75,
+          "excerpt": "export function createBootHandoff({finish,schedule=callback=>requestAnimationFrame(callback)}){let queued=false,done=false;return{"
         }
       ],
       "review": "source-reviewed"
@@ -2807,23 +2779,19 @@
         "storage",
         "actions"
       ],
-      "sourceSHA256": "ee7678483e5e538c1826d952bc1fcf083aebc50e401af844d4b8fa31193fbab8",
+      "sourceSHA256": "1e7191ffc2ff7f7beee317eef2f660ec3c8fc0b52188fd5a22826672585b452e",
       "evidence": [
         {
-          "line": 2,
+          "line": 3,
           "excerpt": "export function createLoadingView(status){"
         },
         {
-          "line": 3,
+          "line": 4,
           "excerpt": "const view=document.createElement('section');view.id='asset-loading';view.setAttribute('aria-label','Chargement du jeu');"
         },
         {
-          "line": 4,
-          "excerpt": "const title=document.createElement('h2'),summary=document.createElement('p'),bar=document.createElement('progress'),details=document.createElement('p'),list=document.createElement("
-        },
-        {
-          "line": 6,
-          "excerpt": "const render=()=>{frame=0;const p=latest;title.textContent=p.phase==='ready'?'Données prêtes':p.phase==='save'?'Enregistrement sur cet appareil':'Téléchargement du jeu';summary.tex"
+          "line": 5,
+          "excerpt": "renderMarkup(view,'<h2></h2><p data-loading-summary></p><progress max=\"100\" value=\"0\" aria-label=\"Progression totale\"></progress><p data-loading-detail></p><ul></ul>');const title="
         }
       ],
       "review": "source-reviewed"
@@ -2846,34 +2814,30 @@
         "media",
         "actions"
       ],
-      "sourceSHA256": "59f6a42a0809de7520d4905c86bf43e949c6495ea09645741957d950df1313bd",
+      "sourceSHA256": "e1240a233d72970b4b58cef25dc428c7f7d8701d9af1edd1204cd0f6beb2dd1a",
       "evidence": [
         {
-          "line": 6,
+          "line": 7,
           "excerpt": "export function closeCampaignMediaViewer(){if(viewer){const current=viewer;viewer=null;current.close();current.remove();}}"
         },
         {
-          "line": 7,
+          "line": 8,
           "excerpt": "export function campaignMediaPicture(picture){"
         },
         {
-          "line": 9,
-          "excerpt": "const button=document.createElement('button');button.type='button';button.className='campaign-media-thumbnail';"
-        },
-        {
-          "line": 10,
+          "line": 11,
           "excerpt": "const image=document.createElement('img');image.src=new URL(media.url,import.meta.url).href;image.width=media.width;image.height=media.height;image.alt=picture.hint||picture.label|"
         },
         {
-          "line": 13,
+          "line": 14,
           "excerpt": "closeCampaignMediaViewer();const dialog=document.createElement('dialog');viewer=dialog;dialog.className='campaign-media-viewer';"
         },
         {
-          "line": 14,
-          "excerpt": "const controls=document.createElement('header'),title=document.createElement('h2'),close=document.createElement('button');"
+          "line": 15,
+          "excerpt": "const controls=document.createElement('header'),title=document.createElement('h2'),close=createUIElement('button');"
         },
         {
-          "line": 17,
+          "line": 18,
           "excerpt": "const scroll=document.createElement('div');scroll.className='campaign-media-scroll';scroll.tabIndex=0;"
         }
       ],
@@ -2898,30 +2862,26 @@
         "calendar",
         "resources"
       ],
-      "sourceSHA256": "69ce25862a596998a67d840106a7f9a01a47d3fa421ff1387360c4a683faeedd",
+      "sourceSHA256": "35c1b72ac8759e831955ba202b8aadd95dd44c7637fc1f9f31a05dda4f20eb4b",
       "evidence": [
         {
-          "line": 3,
+          "line": 4,
           "excerpt": "export function gameDate(day){"
         },
         {
-          "line": 9,
+          "line": 10,
           "excerpt": "export function createGameCalendar(root){"
         },
         {
-          "line": 10,
-          "excerpt": "const calendar=document.createElement('button');calendar.type='button';calendar.className='mobile-calendar';calendar.dataset.ui='weekly-recruits';calendar.hidden=true;"
-        },
-        {
-          "line": 11,
+          "line": 12,
           "excerpt": "const date=document.createElement('span'),next=document.createElement('span');"
         },
         {
-          "line": 12,
+          "line": 13,
           "excerpt": "const compactDate=document.createElement('span'),cue=document.createElement('span');"
         },
         {
-          "line": 17,
+          "line": 18,
           "excerpt": "const location=document.createElement('span');location.className='calendar-location';"
         }
       ],
@@ -2947,39 +2907,39 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "bd15a9dceb4fcc7d350ed03da824be471130241183620c9b2596f2b5dd3a2125",
+      "sourceSHA256": "3c50fe1295309837a7181ce16368d507b5e6a11ebfeb186ea29333aa3477eef2",
       "evidence": [
         {
-          "line": 18,
+          "line": 19,
           "excerpt": "export function requestedHostedMatch(search = location.search) {"
         },
         {
-          "line": 79,
+          "line": 80,
           "excerpt": "export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint, publicKey}, language, onJoining, requested = null) {"
         },
         {
-          "line": 83,
+          "line": 84,
           "excerpt": "const layout = document.createElement('div');"
         },
         {
-          "line": 85,
+          "line": 86,
           "excerpt": "const modes = document.createElement('div');"
         },
         {
-          "line": 87,
-          "excerpt": "const createMode = document.createElement('button');"
-        },
-        {
-          "line": 88,
-          "excerpt": "const joinMode = document.createElement('button');"
-        },
-        {
-          "line": 89,
-          "excerpt": "const libraryMode = document.createElement('button');"
-        },
-        {
-          "line": 99,
+          "line": 100,
           "excerpt": "const createPanel = document.createElement('div');"
+        },
+        {
+          "line": 102,
+          "excerpt": "const library = document.createElement('section');"
+        },
+        {
+          "line": 109,
+          "excerpt": "const savedPanel = document.createElement('section');"
+        },
+        {
+          "line": 112,
+          "excerpt": "const field = document.createElement('section');"
         }
       ],
       "review": "source-reviewed"
@@ -3125,39 +3085,39 @@
         "players",
         "select"
       ],
-      "sourceSHA256": "f2ae1f43ba056efd14a354a07d263e58b0d62fdbacbfd79247047af57bfe444e",
+      "sourceSHA256": "3c2abefdd2285a2ae9ec27e079d3dd4cb5bc4c997d3ba01979248b0acaf44cfd",
       "evidence": [
         {
-          "line": 4,
+          "line": 5,
           "excerpt": "export function mountHostedCastles(root, fr, onRosterChange) {"
         },
         {
-          "line": 9,
+          "line": 10,
           "excerpt": "const list = document.createElement('div');"
         },
         {
-          "line": 11,
+          "line": 12,
           "excerpt": "const picker = document.createElement('dialog');"
         },
         {
-          "line": 16,
+          "line": 17,
           "excerpt": "renderMarkup(picker,'<header><h2 id=\"hosted-castle-title\" tabindex=\"-1\" autofocus></h2><button type=\"button\" data-castle-close data-native-click>✕</button></header><div class=\"lobb"
         },
         {
-          "line": 58,
-          "excerpt": "const button = document.createElement('button');"
-        },
-        {
-          "line": 85,
+          "line": 86,
           "excerpt": "const container = document.createElement('section');"
         },
         {
-          "line": 86,
+          "line": 87,
           "excerpt": "const header = document.createElement('div');"
         },
         {
-          "line": 88,
+          "line": 89,
           "excerpt": "const heading = document.createElement('h3');"
+        },
+        {
+          "line": 90,
+          "excerpt": "const color = document.createElement('i');"
         }
       ],
       "review": "source-reviewed"
@@ -3179,30 +3139,22 @@
         "copy",
         "feedback"
       ],
-      "sourceSHA256": "4771db1ce1b679d145b090f9c3d4eddbf6884054e14a85330ab09f293e71006f",
+      "sourceSHA256": "5d188343144f4358b9e04f4defc025633090145cc308d4cb57e911b90ada1eac",
       "evidence": [
         {
-          "line": 1,
+          "line": 3,
           "excerpt": "export function createHostedCodeCopy(fr) {"
         },
         {
-          "line": 2,
+          "line": 4,
           "excerpt": "const element = document.createElement('div');"
         },
         {
-          "line": 4,
-          "excerpt": "const button = document.createElement('button');"
-        },
-        {
-          "line": 9,
+          "line": 11,
           "excerpt": "const help = document.createElement('small');"
         },
         {
-          "line": 13,
-          "excerpt": "const input = document.createElement('input');"
-        },
-        {
-          "line": 22,
+          "line": 24,
           "excerpt": "const status = document.createElement('small');"
         }
       ],
@@ -3265,39 +3217,39 @@
         "card",
         "confirm"
       ],
-      "sourceSHA256": "28326377eaab0d267012f3a07587db50fb3a2b8f0cba2c73e6f0ee6b099e0418",
+      "sourceSHA256": "177a541090b9ac0cb41599b3202bd8de230607fb7dd324aa476ddab2348616bb",
       "evidence": [
         {
-          "line": 4,
+          "line": 5,
           "excerpt": "export function campaignDialogDraft(model){return{queryId:model.queryId,selection:model.draft?.selection??model.selection??model.initial??model.choices?.[0]?.value??0,text:model.dr"
         },
         {
-          "line": 5,
+          "line": 6,
           "excerpt": "export function renderCampaignDialogForm(model,draft,{confirm,icons,onDraft=()=>{}}){"
         },
         {
-          "line": 6,
+          "line": 7,
           "excerpt": "const form=document.createElement('form');form.className='campaign-dialog-form';form.dataset.kind=model.kind;"
         },
         {
-          "line": 9,
-          "excerpt": "const label=document.createElement('label'),caption=document.createElement('span'),input=document.createElement('input');"
+          "line": 10,
+          "excerpt": "const label=document.createElement('label'),caption=document.createElement('span'),field=createUIField({type:'text'}),input=field.input;"
         },
         {
-          "line": 13,
+          "line": 14,
           "excerpt": "const pictures=document.createElement('div');pictures.className='campaign-dialog-pictures';"
         },
         {
-          "line": 15,
+          "line": 16,
           "excerpt": "const frame=document.createElement('figure'),original=campaignMediaPicture(picture);if(original)frame.append(original);else{const canvas=document.createElement('canvas');canvas.wid"
         },
         {
-          "line": 19,
+          "line": 20,
           "excerpt": "const fieldset=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent=plainGameText(model.choiceLabel)||(getLanguage()==='fr'?'Choix':'Choice"
         },
         {
-          "line": 22,
-          "excerpt": "const label=document.createElement('label'),input=document.createElement('input'),copy=document.createElement('span'),title=document.createElement('strong');"
+          "line": 23,
+          "excerpt": "const label=document.createElement('label'),field=createUIField({type:multiple?'checkbox':'radio',name:'campaign-choice-'+model.queryId,value:String(choice.value),defaultChecked:mu"
         }
       ],
       "review": "source-reviewed"
@@ -3715,13 +3667,8 @@
         "feedback",
         "storage"
       ],
-      "sourceSHA256": "c02715783ec601612af158524a29dc2a416716705a52d8af1165ed83cd393632",
-      "evidence": [
-        {
-          "line": 4,
-          "excerpt": "<body><figure id=\"spinner\"><div class=\"spinner-content\"><img src=\"./dosvcmi.png\" class=\"spinner-logo\" width=\"256\" height=\"256\" alt=\"Heroes Goonk\"><div id=\"status\"><p id=\"hosting-st"
-        }
-      ],
+      "sourceSHA256": "305d577be56d4d44eb0718e50a29d0e443c5dfa7f1cbb27db25f3a547a4302c1",
+      "evidence": [],
       "review": "source-reviewed"
     },
     {

@@ -1,3 +1,5 @@
+import {createUIField} from './ui/material-components.mjs';
+import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
@@ -71,12 +73,12 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
   const codes = section.querySelector('[data-create-codes]');
   const personalCode = createHostedCodeCopy(fr);
   const status = section.querySelector('[data-create-status]');
-  const retry = document.createElement('button');
+  const retry = createUIElement('button');
   retry.type = 'button';
   retry.textContent = t('Retry loading scenarios', 'Réessayer de charger les scénarios');
   retry.hidden = true;
   status.after(retry);
-  const launch = document.createElement('button');
+  const launch = createUIElement('button');
   launch.type = 'button';
   launch.textContent = t('Launch game', 'Lancer la partie');
   launch.className = 'primary';
@@ -127,7 +129,7 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
     const items = [...catalogues.values()].flatMap(catalogue => catalogue.scenarios);
     items.sort((left, right) => scenarioTitle(left.name).localeCompare(scenarioTitle(right.name)));
     const rows = items.map(item => {
-      const row = document.createElement('button');
+      const row = createUIElement('button');
       row.type = 'button';
       row.dataset.choiceValue = item.id;
       row.dataset.totalPlayers = item.players;
@@ -260,15 +262,15 @@ export function mountHostedMatchCreation(root, open, endpoint, fr, onCreated, on
       personalCode.setCode(hostToken);
       codes.replaceChildren(...invited.filter(({code}) => code !== hostToken).map(({seat, code}) => {
         const row = document.createElement('label');
-        const value = document.createElement('input');
-        const copy = document.createElement('button');
+        const field = createUIField({type:'text'}), value = field.input;
+        const copy = createUIElement('button');
         value.type = 'text';
         value.readOnly = true;
         value.value = code;
         copy.type = 'button';
         copy.dataset.createMatch = 'copy';
         copy.textContent = t('Copy code', 'Copier le code');
-        row.append(seat === undefined ? t('Invitation code', 'Code d’invitation') : colors[seat], value, copy);
+        row.append(seat === undefined ? t('Invitation code', 'Code d’invitation') : colors[seat], field.element, copy);
         return row;
       }), launch, personalCode.element);
       form.hidden = true;

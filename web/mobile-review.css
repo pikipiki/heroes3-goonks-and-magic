@@ -5,7 +5,7 @@
  /* Construction, rosters and other information pages need the complete surface. */
  html.goonk-mobile #mobile-app[data-sheet] .mobile-sheet{inset:0!important;width:100%!important;max-width:none;max-height:100%;border-radius:0;z-index:30;display:grid;grid-template-rows:52px minmax(0,1fr);box-sizing:border-box;padding:0}
  #mobile-app[data-sheet] .sheet-head{padding:3px 8px;min-width:0;gap:8px}
- #mobile-app[data-sheet] .sheet-head h2{font-size:20px;line-height:1.1;min-width:0}
+ #mobile-app[data-sheet] .sheet-head h2{font-size:var(--ui-type-statLarge);line-height:1.1;min-width:0}
  #mobile-app[data-sheet] .sheet-head button{min-width:44px;min-height:44px;padding:3px 9px}
  #mobile-app[data-sheet] .sheet-body{padding:8px;min-height:0;overflow:auto;box-sizing:border-box}
  #mobile-app[data-sheet=build] .building-menu:has(.building-detail){display:grid;grid-template-columns:minmax(180px,.6fr) minmax(0,1.4fr);gap:10px;align-content:start}
@@ -16,7 +16,7 @@
  #mobile-app[data-sheet=build] .building-menu:has(.building-detail):not(:has(.building-project)){grid-template-columns:1fr}
  #mobile-app[data-sheet=build] .building-menu:not(:has(.building-project)) .building-detail{grid-column:1;grid-template-columns:minmax(150px,.6fr) minmax(0,1.4fr)}
  #mobile-app[data-sheet=build] .building-detail .building-card-image{height:clamp(100px,42dvh,260px)}
- #mobile-app[data-sheet=build] .building-detail h3{font-size:22px;overflow-wrap:anywhere}
+ #mobile-app[data-sheet=build] .building-detail h3{font-size:var(--ui-type-h2);overflow-wrap:anywhere}
  #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
  #mobile-app[data-sheet=weekly-recruits] .weekly-roster{max-width:1100px;margin:0 auto;width:100%;box-sizing:border-box}
  #mobile-app[data-sheet=weekly-recruits] .weekly-roster table{table-layout:auto}
@@ -26,15 +26,15 @@
  html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-top{position:absolute!important;top:4px;left:4px;right:auto;z-index:12;width:44px!important}
  html.goonk-mobile #mobile-app[data-mode=creature] .creature-presentation:not([hidden]){inset:0;display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);grid-template-rows:52px minmax(0,1fr) auto;padding:0;box-sizing:border-box}
  html.goonk-mobile #mobile-app[data-mode=creature] .creature-view-head{grid-column:1/-1;grid-row:1;padding:3px 8px 3px 56px;min-height:0;gap:8px;border-bottom:2px ridge #b99b57}
- #mobile-app[data-mode=creature] .creature-view-head h2{flex:1;font-size:22px;min-width:0;overflow-wrap:anywhere}
+ #mobile-app[data-mode=creature] .creature-view-head h2{flex:1;font-size:var(--ui-type-h2);min-width:0;overflow-wrap:anywhere}
  #mobile-app[data-mode=creature] .creature-view-head button{min-width:44px;min-height:44px}
  #mobile-app[data-mode=creature] .creature-stage{grid-column:1;grid-row:2/-1;padding:8px;min-height:0;display:grid;place-items:center}
  #mobile-app[data-mode=creature] .creature-stage canvas{width:min(100%,320px);height:100%;max-height:100%;aspect-ratio:auto;object-fit:contain}
  #mobile-app[data-mode=creature] .creature-details{grid-column:2;grid-row:2;padding:10px;min-width:0;min-height:0;overflow:auto;box-sizing:border-box}
  #mobile-app[data-mode=creature] .creature-stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
- #mobile-app[data-mode=creature] .creature-stats dt{font-size:12px}
- #mobile-app[data-mode=creature] .creature-stats dd{font-size:20px}
- #mobile-app[data-mode=creature] .creature-abilities{font-size:14px;line-height:1.35}
+ #mobile-app[data-mode=creature] .creature-stats dt{font-size:var(--ui-type-caption)}
+ #mobile-app[data-mode=creature] .creature-stats dd{font-size:var(--ui-type-statLarge)}
+ #mobile-app[data-mode=creature] .creature-abilities{font-size:var(--ui-type-body2);line-height:1.35}
  #mobile-app[data-mode=creature] .creature-upgrades{grid-column:2;grid-row:3;max-height:40dvh;padding:6px 10px;overflow:auto}
  html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-nav{display:none!important}
  /* Native hero controls are a compact toolbar; Back changes the presentation. */
@@ -56,16 +56,16 @@
  #mobile-app[data-mode=map] .scene-hint{display:none}
  #mobile-app[data-mode=map] .hero-movement-summary{border:0!important;padding:0!important;margin:0!important}
  #mobile-app[data-mode=map] .hero-movement-list{margin:0;padding:0}
- #mobile-app[data-mode=map] .hero-movement-item>button{min-height:44px;height:auto;font-size:12px;padding:3px 5px}
+ #mobile-app[data-mode=map] .hero-movement-item>button{min-height:44px;height:auto;font-size:var(--ui-type-caption);padding:3px 5px}
  #mobile-app[data-mode=map] .hero-movement-item.is-active{box-shadow:none;border:1px solid #d7b363!important}
  /* Guild floors are tabs, never full-height pillars. */
  #mobile-app .mage-guild-library>nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:44px 44px!important;grid-auto-rows:44px!important;grid-auto-flow:row!important;align-content:start!important;padding:6px;gap:4px}
- #mobile-app .mobile-mage-guild [data-guild-level]{min-height:44px!important;height:44px!important;min-width:0;font-size:12px}
+ #mobile-app .mobile-mage-guild [data-guild-level]{min-height:44px!important;height:44px!important;min-width:0;font-size:var(--ui-type-caption)}
  #mobile-app .mobile-mage-guild>header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:4px;padding:4px 6px 4px 48px}
- #mobile-app .mobile-mage-guild>header h2{grid-column:1/-1;font-size:20px;line-height:1.1}
+ #mobile-app .mobile-mage-guild>header h2{grid-column:1/-1;font-size:var(--ui-type-statLarge);line-height:1.1}
  #mobile-app .mage-guild-library>nav button:nth-child(4){grid-column:1}
  #mobile-app .mage-guild-library>nav button:nth-child(5){grid-column:2}
- #mobile-app .mobile-mage-guild .mage-guild-detail p{font-size:14px;line-height:1.4}
+ #mobile-app .mobile-mage-guild .mage-guild-detail p{font-size:var(--ui-type-body2);line-height:1.4}
  /* Combat: regular command rows, with a single clear primary action. */
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:minmax(44px,auto)!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav>[data-ui]{grid-column:span 3!important;min-height:44px!important;height:auto!important;grid-row:auto!important}
@@ -76,7 +76,7 @@
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-unit-info{grid-column:2;grid-row:1/3;min-width:0}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-turn{white-space:normal!important;max-height:none!important;line-height:1.2!important;font-size:clamp(12px,1.6vw,18px)!important}
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-unit-stats{grid-column:1/-1!important;grid-row:3!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;margin:0!important;gap:3px!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-stat-pill{padding:3px!important;font-size:11px!important;min-width:0}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-stat-pill{padding:3px!important;font-size:var(--ui-type-micro)!important;min-width:0}
 }
 @container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=creature]>.mobile-top{grid-column:1/-1!important;grid-row:1/-1!important}
@@ -94,7 +94,7 @@
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>.town-action{grid-column:span 3!important}
  html.goonk-mobile #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]){grid-column:span 2!important}
- #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]) span{font-size:11px;overflow-wrap:anywhere}
+ #mobile-app[data-mode=town]>.mobile-nav>:is([data-ui=town-fort],[data-ui=town-guild],[data-ui=town-market]) span{font-size:var(--ui-type-micro);overflow-wrap:anywhere}
 }
 @container goonk-viewport (orientation:landscape){
  #mobile-app[data-mode=town] #mobile-overview{display:none!important}
@@ -117,14 +117,14 @@ html.goonk-mobile #mobile-viewport #mobile-app:is([data-mode]){position:relative
 #mobile-app .lobby-setting[aria-busy=true] .lobby-choice-card:disabled{opacity:1}
 #mobile-app .dialog-presentation{position:absolute;inset:0;z-index:9;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:12px;padding:12px;box-sizing:border-box;overflow:hidden;background:#291d13 url('./h3-theme/stone.png');color:#ffebbb}
 #mobile-app .dialog-presentation[hidden]{display:none}
-#mobile-app .dialog-presentation h2{margin:0;font-size:24px}
+#mobile-app .dialog-presentation h2{margin:0;font-size:var(--ui-type-icon)}
 #mobile-app .dialog-copy{min-height:0;overflow:auto}
 #mobile-app .dialog-copy p{margin:0 0 8px;line-height:1.4}
 #mobile-app .dialog-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;min-height:0;overflow:auto;align-content:center}
 #mobile-app .dialog-choice{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;padding:10px!important;border:2px ridge #947643;background:#21160d;white-space:normal!important;color:#ffeabb;text-align:center}
 #mobile-app .dialog-choice canvas{width:clamp(52px,12vh,96px);height:clamp(52px,12vh,96px);object-fit:contain}
 #mobile-app .dialog-choice[aria-pressed=true]{border:3px solid #ffe89a;box-shadow:inset 0 0 12px #b9954255;background:#553413}
-#mobile-app .dialog-choice p{font-size:14px;line-height:1.35;margin:0;max-width:36ch}
+#mobile-app .dialog-choice p{font-size:var(--ui-type-body2);line-height:1.35;margin:0;max-width:36ch}
 #mobile-app .dialog-presentation footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
 #mobile-app .dialog-presentation footer button{min-height:48px}
 html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-top),#mobile-app[data-dialog-presentation] :is(.scene-tools,.scene-hint){display:none!important}
@@ -135,7 +135,7 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
  #mobile-app .hero-card-head{padding-left:52px!important}
  #mobile-app .mobile-mage-guild>header,#mobile-app .tavern-header{min-height:96px;padding:4px 6px 6px 52px!important;border-bottom:2px ridge #b99b57;align-content:start}
  #mobile-app .mobile-spellbook>header{min-height:44px;padding:4px 6px 6px 52px!important;border-bottom:2px ridge #b99b57}
- #mobile-app .mobile-mage-guild>header h2,#mobile-app .tavern-header h2{font-size:20px;line-height:1.2;margin:0;min-height:40px;display:flex;align-items:center}
+ #mobile-app .mobile-mage-guild>header h2,#mobile-app .tavern-header h2{font-size:var(--ui-type-statLarge);line-height:1.2;margin:0;min-height:40px;display:flex;align-items:center}
  #mobile-app .mobile-mage-guild>header{grid-template-columns:minmax(0,1fr) 44px}
  #mobile-app .mobile-mage-guild>header h2{grid-column:1/-1}
  #mobile-app .mobile-mage-guild>header button{min-width:44px;min-height:44px;padding:4px}
@@ -144,20 +144,20 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
  #mobile-app .mobile-tavern>*{max-width:none;width:auto;margin:0}
  #mobile-app .tavern-header{grid-column:2;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) 44px}
  #mobile-app .tavern-header h2{grid-column:1/-1}
- #mobile-app .tavern-cost{font-size:12px;white-space:normal}
+ #mobile-app .tavern-cost{font-size:var(--ui-type-caption);white-space:normal}
  #mobile-app .tavern-heroes{display:grid!important;grid-column:1;grid-row:1/-1;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:10px;padding:10px;box-sizing:border-box;min-height:0}
  #mobile-app .tavern-hero{display:flex!important;flex-direction:column;justify-content:center;gap:14px;min-width:0;min-height:0;padding:12px;border:2px ridge #b99b57;background:#21160dcc;box-sizing:border-box}
  #mobile-app .tavern-hero .tavern-identity{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;min-height:0;flex:1}
  #mobile-app .tavern-identity canvas{width:auto;max-width:100%;height:clamp(70px,26vh,150px);object-fit:contain}
  #mobile-app .tavern-identity h3{font-size:clamp(18px,2.4vw,30px);margin:0}
- #mobile-app .tavern-identity p{font-size:13px;margin:4px 0}
+ #mobile-app .tavern-identity p{font-size:var(--ui-type-body2);margin:4px 0}
  #mobile-app .tavern-hero .tavern-actions{display:grid;grid-template-columns:1fr;gap:6px;flex:none}
- #mobile-app .tavern-actions button{min-height:44px;font-size:14px}
- #mobile-app .tavern-status{grid-column:2;grid-row:2;align-self:center;padding:12px;font-size:14px;line-height:1.5}
+ #mobile-app .tavern-actions button{min-height:44px;font-size:var(--ui-type-body2)}
+ #mobile-app .tavern-status{grid-column:2;grid-row:2;align-self:center;padding:12px;font-size:var(--ui-type-body2);line-height:1.5}
  #mobile-app .tavern-extras{grid-column:2;grid-row:3;display:grid;gap:6px;padding:8px;max-height:40vh;overflow:auto;box-sizing:border-box}
  #mobile-app .dialog-presentation{grid-template-columns:minmax(0,1fr) var(--control-rail);grid-template-rows:auto minmax(0,1fr) auto;gap:0;padding:0}
  #mobile-app .dialog-presentation>header{grid-column:2;grid-row:1;padding:12px;border-bottom:2px ridge #b99b57}
- #mobile-app .dialog-presentation .dialog-copy{grid-column:2;grid-row:2;padding:12px;font-size:14px}
+ #mobile-app .dialog-presentation .dialog-copy{grid-column:2;grid-row:2;padding:12px;font-size:var(--ui-type-body2)}
  #mobile-app .dialog-presentation .dialog-choices{grid-column:1;grid-row:1/-1;padding:12px;align-content:stretch;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
  #mobile-app .dialog-presentation footer{grid-column:2;grid-row:3;padding:8px}
  #mobile-app[data-mode=dialog]:not([data-mobile-tavern]) .scene-tools,#mobile-app[data-mode=dialog] .scene-hint{display:none!important}
@@ -167,7 +167,7 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
 }
 
 #mobile-app .dialog-choice-description{padding-top:10px;border-top:1px solid #9e824a}
-#mobile-app .dialog-choice strong{font-size:16px;line-height:1.2}
+#mobile-app .dialog-choice strong{font-size:var(--ui-type-body1);line-height:1.2}
 #mobile-app .dialog-choices{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);align-content:stretch}
 #mobile-app .dialog-presentation:is([data-choices="3"],[data-choices="4"],[data-choices="5"],[data-choices="6"],[data-choices="7"],[data-choices="8"]) .dialog-choices{grid-template-columns:repeat(3,minmax(0,1fr))}
 #mobile-app .dialog-presentation[data-choices="1"] .dialog-choices{grid-template-columns:minmax(0,1fr)}
@@ -190,8 +190,8 @@ html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-
 /* Read-only battle inspection shares the normal creature sheet. */
 #mobile-app .battle-unit-inspect{position:relative;flex:0 0 60px;width:60px;height:60px;min-height:44px;padding:0!important;border:2px ridge #b99a56;border-radius:0;background:#24170d}
 #mobile-app .battle-unit-inspect canvas{display:block;width:100%!important;height:100%!important;object-fit:contain}
-#mobile-app .battle-unit-inspect>span{position:absolute;right:0;bottom:0;background:#24170d;color:#ffe6af;font-size:18px;line-height:20px}
-#mobile-app .battle-inspection-help{font-size:14px;line-height:1.45}
+#mobile-app .battle-unit-inspect>span{position:absolute;right:0;bottom:0;background:#24170d;color:#ffe6af;font-size:var(--ui-type-titleSmall);line-height:20px}
+#mobile-app .battle-inspection-help{font-size:var(--ui-type-body2);line-height:1.45}
 #mobile-app .battle-inspection-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px}
 #mobile-app .battle-inspection-roster button{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 8px;align-items:center;text-align:left;min-height:76px;padding:8px}
 #mobile-app .battle-inspection-roster button>:is(img,canvas,span:first-child){grid-row:span 3;width:48px;height:56px;object-fit:contain}

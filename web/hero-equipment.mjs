@@ -145,7 +145,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
      ${hero.experience===undefined?'':`<span>${heroIcon(hero.experienceIcon)}${hero.experience.toLocaleString()} XP</span>`}</div></div>
    <button data-hero-close aria-label="${hero.owned===false?'Back':'Back to map'}">✕</button>
   </header>
-  <dl class="hero-primary" translate="no" aria-label="Primary stats">${(getLanguage()==='fr'?['Attaque','Défense','Puissance','Connaissance']:['Attack','Defense','Power','Knowledge']).map((name,i)=>`<div><dt>${name}</dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
+  <dl class="hero-primary" translate="no" aria-label="Primary stats">${(getLanguage()==='fr'?['Attaque','Défense','Puissance','Connaissance']:['Attack','Defense','Power','Knowledge']).map((name,i)=>`<div><dt><span class="hero-stat-label-full">${name}</span><abbr class="hero-stat-label-short" title="${name}">${(getLanguage()==='fr'?['ATQ','DÉF','PUI','CON']:['ATK','DEF','PWR','KNW'])[i]}</abbr></dt><dd>${heroIcon(hero.primaryIcons?.[i])}${hero.primarySkills?.[i]??0}</dd></div>`).join('')}</dl>
   <nav class="hero-bag-tabs" aria-label="Hero sheet">
    <button data-hero-tab="army" aria-pressed="${isArmy}" ${picked?'disabled':''}>${fr?'Armée':'Army'} · ${armyCount}</button>
    <button data-hero-tab="worn" aria-pressed="${tab==='worn'}">${fr?'Équipement':'Equipment'}</button>
@@ -173,7 +173,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
       <input type="number" id="hero-army-split-num" min="1" max="${selectedUnit?selectedUnit.count-1:1}" value="${splitAmount}">
       <button type="button" data-hero-split-delta="1">+</button>
      </div>
-     <button type="button" class="hero-army-details-btn" data-hero-army-details ${!selectedUnit?'disabled':''} title="${fr?'Voir la fiche détaillée de la créature':'View creature details'}">${fr?'🔍 Fiche / Détails':'🔍 Details'}</button>
+     <button type="button" class="hero-army-details-btn" data-hero-army-details ${!selectedUnit?'disabled':''} title="${fr?'Voir la fiche détaillée de la créature':'View creature details'}">${fr?'🔍 Fiche':'🔍 Details'}</button>
     </div>
    `:`
     <h3>${esc(picked?'Moving: '+picked.name:item?.name||'Choose an artefact')}</h3>

@@ -154,7 +154,7 @@ html.goonk-mobile #mobile-viewport #mobile-app .mobile-menu.ui-screen-layout:not
 #mobile-app .hero-equipment-page>:is(.hero-artifact-actions,.hero-army-dock-tools).ui-action-dock>button{overflow-wrap:normal;word-break:normal}
 #mobile-viewport #mobile-app .hero-bag-tabs.ui-compact-navigation>[data-hero-commander]{box-sizing:border-box;min-width:48px!important;max-width:48px!important}
 @container goonk-viewport (orientation:landscape){
- #mobile-viewport #mobile-app .ui-screen-header :is(h1,h2){font-size:18px!important;line-height:1.2!important}
+ #mobile-viewport #mobile-app .ui-screen-header :is(h1,h2){font-size:var(--ui-type-titleSmall)!important;line-height:1.2!important}
  /* Guild floors are contextual navigation in the rail, leaving full height to spells. */
  #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto minmax(0,1fr) auto!important}
  #mobile-app .mobile-mage-guild.ui-screen-layout>.mage-guild-library.ui-screen-content{display:contents!important}
