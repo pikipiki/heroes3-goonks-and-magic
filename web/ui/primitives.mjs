@@ -1,8 +1,9 @@
 import {getLanguage} from '../locale-state.mjs';
 export const uiText=(en,fr)=>getLanguage()==='fr'?fr:en;
 export const escapeUI=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+export function buttonContentMarkup({label,icon=''}){return `${icon?`<span class="ui-button-icon" aria-hidden="true">${escapeUI(icon)}</span>`:''}<span>${escapeUI(label)}</span>`;}
 export function buttonMarkup({label,attributes='',variant='tonal',icon='',disabled=false}){
- return `<button type="button" class="ui-button" data-ui-variant="${escapeUI(variant)}" ${attributes} ${disabled?'disabled':''}>${icon?`<span class="ui-button-icon" aria-hidden="true">${icon}</span>`:''}<span>${escapeUI(label)}</span></button>`;
+ return `<button type="button" class="ui-button" data-ui-variant="${escapeUI(variant)}" ${attributes} ${disabled?'disabled':''}>${buttonContentMarkup({label,icon})}</button>`;
 }
 export function iconButtonMarkup({label,attributes='',icon='✕',disabled=false}){
  return `<button type="button" class="ui-icon-button" aria-label="${escapeUI(label)}" ${attributes} ${disabled?'disabled':''}><span aria-hidden="true">${icon}</span></button>`;

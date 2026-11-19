@@ -12,6 +12,10 @@
 #include "../CThreadHelper.h"
 #include "../CConsoleHandler.h"
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten/console.h>
+#endif
+
 #ifdef VCMI_ANDROID
 #include <android/log.h>
 
@@ -180,7 +184,16 @@ ELogLevel::ELogLevel CLogger::getEffectiveLevel() const
 {
 	for(const CLogger * logger = this; logger != nullptr; logger = logger->parent)
 		if(logger->getLevel() != ELogLevel::NOT_SET)
+		{
+#if defined(__EMSCRIPTEN__) && defined(NDEBUG)
+			// Browser releases must not format every AI candidate as a trace.
+			// Keep informational messages, warnings and errors; desktop/debug
+			// builds retain their configurable verbose logging.
+			return std::max(logger->getLevel(), ELogLevel::INFO);
+#else
 			return logger->getLevel();
+#endif
+		}
 
 	// This shouldn't be reached, as the root logger must have set a log level
 	return ELogLevel::INFO;
@@ -357,6 +370,15 @@ void CLogConsoleTarget::write(const LogRecord & record)
 
 #ifdef VCMI_ANDROID
 	__android_log_write(ELogLevel::toAndroid(record.level), ("VCMI-" + record.domain.getName()).c_str(), message.c_str());
+#elif defined(__EMSCRIPTEN__)
+	// Run in the calling worker: stdio/fflush proxies synchronously to the
+	// browser thread and can stall AI decisions behind animation rendering.
+	if(record.level >= ELogLevel::ERROR)
+		emscripten_console_error(message.c_str());
+	else if(record.level >= ELogLevel::WARN)
+		emscripten_console_warn(message.c_str());
+	else
+		emscripten_console_log(message.c_str());
 #elif defined(VCMI_IOS)
 	os_log_type_t type;
 	switch (record.level)

@@ -23,7 +23,7 @@
     "web/wog-options.mjs": "7deabbd674668834a99c58564aa7cd3a2d6441a86a1537cdcf996fe9cc1991c0",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/browser-tests/wog-map-no-shooting-cases.mjs": "9f5be8d9ff8fd151d44a0c8203794272f2b6dce60946b185339be692f81327e4",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "work/vcmi-wasm/client/windows/CCreatureWindow.cpp": "a8462b9b70be149e7dac16f3d773ef3c38f284ccc8629f0df95df44c60747e3a",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "a94dd1c5e8e77f544b31d36e864d319242982588ff04042d5bc28c27ceff42cf",
     "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "7793a00a74c22e261db38d0b910aaccc742e3f3106c3751ac850dc0cecce0cf0",
@@ -2967,5 +2967,10 @@
       "sourceBindings/work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "239a4535c790ac393c2ed1fe6b48793711d323b2684eaf006582ee2c7ffd5a29"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

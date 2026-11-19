@@ -1,3 +1,4 @@
+import {buttonContentMarkup} from './ui/primitives.mjs';
 import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
 import {createUIElement,requestMaterialConfirmation,requestMaterialNotice} from './ui/material-components.mjs';
 import {createLoadingState} from './loading-state.mjs';
@@ -201,7 +202,7 @@ function mount(){
   const m=state.mode,cap=battleCapabilities(effectiveBattle()),target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),blocked=!state.spellTargeting&&target?.enemy&&target.canShootAt===false&&target.canMeleeAt===false;let items;
   const fr=getLanguage()==='fr';
   if(state.dialogKind==='battle-result'&&state.battleResult)items=[];
-  else if(m==='map')items=[heroMovementSummary(state,getLanguage()),btn(fr?'➤ Marcher':'➤ Move','move',true,!state.hasPath||!state.turn),btn('<img class="troops-nav-icon" src="./web/h3-theme/troops.svg" alt="" aria-hidden="true">'+(fr?'Troupes':'Troops'),'heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(fr?'☀ Fin tour':'☀ End turn','endturn',false,!state.turn)];
+  else if(m==='map')items=[heroMovementSummary(state,getLanguage(),{compact:root.clientWidth>root.clientHeight&&root.clientHeight<400}),btn(buttonContentMarkup({label:fr?'Marcher':'Move',icon:'➤'}),'move',true,!state.hasPath||!state.turn),btn('<img class="troops-nav-icon" src="./web/h3-theme/troops.svg" alt="" aria-hidden="true">'+(fr?'Troupes':'Troops'),'heroes',false,!state.heroName&&!state.heroes?.length),btn(fr?'♜ Villes':'♜ Towns','towns'),...(state.turn&&state.exchangePartners?.length?[btn(fr?'<span aria-hidden="true">⇄ </span>Échanger':'<span aria-hidden="true">⇄ </span>Exchange','hero-exchange',true)]:[]),btn(buttonContentMarkup({label:fr?'Fin tour':'End turn',icon:'☀'}),'endturn',false,!state.turn)];
   else if(m==='online-lobby'&&(state.onlineCanCreate||state.onlineInvitation)){
    items=[...(state.onlineCanCreate?[btn(fr?'Créer une partie':'Create game','online-create',!state.onlineInvitation)]:[]),
     ...(state.onlineInvitation?[btn((fr?'Invitation de ':'Invitation from ')+escape(state.onlineInvitation),'online-invitation',true)]:[]),

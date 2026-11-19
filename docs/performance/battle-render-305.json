@@ -1,0 +1,52 @@
+{
+  "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+  "build": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "buildType": "MinSizeRel",
+    "wasmSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.305-engine.tar.gz",
+    "sha256": "dd7155f1f6f92906c534bd81aa1dd08e02acfb2c1acd1aca7d1495e458413ebb"
+  },
+  "raster": {
+    "test": "work/browser-tests/mobile-battle-raster-sdl.cpp",
+    "sdlPixelComparisons": 30,
+    "pixelMismatches": 0,
+    "tested": "crop, upscale/downscale, alpha, red/blue channel ordering, transparent padding, source/target stride",
+    "microbenchmark": {
+      "iterations": 40,
+      "legacyMs": 85.551,
+      "directMs": 5.272,
+      "scope": "Standalone WebAssembly local benchmark; not Huawei FPS"
+    }
+  },
+  "nativeCombat": {
+    "privateCheckpointImported": true,
+    "samePreCombatStateAsProfiledControl": true,
+    "enemies": 22,
+    "victory": true,
+    "experience": 292,
+    "losses": 3,
+    "matchesPreviousOutcome": true,
+    "platform": "Local Chromium; not a new Huawei performance measurement",
+    "activeFps": 60,
+    "p95FrameMs": 16.67,
+    "privateSaveAndTraceNotPublished": true
+  },
+  "logging": {
+    "releaseLevelFloor": "INFO",
+    "debugBuildsAndDesktopUnchanged": true,
+    "console": "emscripten_console_log/warn/error called on original worker; no stdio/proxy",
+    "browserFileTarget": false,
+    "warningsAndErrorsRetained": true
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/client/MobileBattleRaster.h": "ed3d432f3558e6a7a44ebc81f6413b1ef1a65b143c3047c64cc9e0b814a789ff",
+    "work/vcmi-wasm/lib/logging/CLogger.cpp": "5c55d54ce62481c0fbe9e8e75bfe6023a170df49e756acf6cb7152944df4785f",
+    "work/vcmi-wasm/lib/logging/CBasicLogConfigurator.cpp": "232183887b7d45c4852fa2afbb9397106b8592e8ed5f65440cf22f7253f0db02",
+    "work/browser-tests/mobile-battle-raster-sdl.cpp": "160b0de0f05a6298ab065eb41d262e0beed37e553d85265fd4ae8d0adf467613",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
+  }
+}

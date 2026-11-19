@@ -981,38 +981,38 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "871502d7017d330d47343b6df8d85ebb890d3916820098fa640864c7e4ce9efb",
+      "sourceSHA256": "a2d1ad21d7953122692e13b8ccac12608e3eacd9b46523c7bffefaeabe9ee48b",
       "evidence": [
         {
-          "line": 72,
+          "line": 73,
           "excerpt": "const homeMenu = '<h1>Le royaume des Goonks</h1><p>Une aventure au bout des doigts.<br>Explore, construis et mène tes peluches au combat.</p><button class=\"primary\" data-action=\"20"
         },
         {
-          "line": 78,
+          "line": 79,
           "excerpt": "const root=document.createElement('section');root.id='mobile-app';root.dataset.mode='menu';root.setAttribute('aria-label','Heroes Goonk tactile');renderMarkup(root,`<header class=\""
         },
         {
-          "line": 80,
+          "line": 81,
           "excerpt": "const viewportFrame=document.createElement('div');viewportFrame.id='mobile-viewport';root.before(viewportFrame);viewportFrame.append(root);"
         },
         {
-          "line": 114,
+          "line": 115,
           "excerpt": "renderMarkup(menu,homeMenu+'<button type=\"button\" data-open-multiplayer>Multijoueur</button>');"
         },
         {
-          "line": 122,
+          "line": 123,
           "excerpt": "renderMarkup(menu,'<h1 tabindex=\"-1\">Multijoueur</h1><button type=\"button\" data-action=\"75\">Appareil de l’hôte</button><button type=\"button\" data-open-hosted-match>Serveur dédié</b"
         },
         {
-          "line": 140,
+          "line": 141,
           "excerpt": "const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelec"
         },
         {
-          "line": 141,
+          "line": 142,
           "excerpt": "function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(b"
         },
         {
-          "line": 189,
+          "line": 190,
           "excerpt": "root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');renderMarkup(holder,crea"
         }
       ],

@@ -17,7 +17,7 @@
     "web/dialog-presentation.mjs": "48c4ce915f4c55c9abae288431a63b4dd407ef4412c9fcc53977752ff94959d2",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "work/vcmi-wasm/server/CGameHandler.cpp": "0bb74a7a6d81d9f0321f0501e33c035af0721da51465fec0c3aa95f6b79d4476",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73",
@@ -482,5 +482,10 @@
       "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

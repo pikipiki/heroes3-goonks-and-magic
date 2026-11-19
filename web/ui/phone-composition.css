@@ -138,7 +138,7 @@
 
 /* A shared menu row keeps its icon beside its label on Safari and Android. */
 @layer ui-composition {
- .ui-material-menu{display:flex!important;flex-direction:column!important;box-sizing:border-box!important;max-height:min(320px,calc(100dvh - 32px))!important;overflow:hidden!important}
+ .ui-material-menu{display:flex!important;flex-direction:column!important;box-sizing:border-box!important;max-height:min(320px,var(--ui-menu-available-height,calc(100dvh - 32px)))!important;overflow:hidden!important}
  .ui-material-menu .ui-popup-list{flex:1 1 auto!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
  .ui-material-menu .ui-popup-list>button{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;min-height:48px!important;height:auto!important;padding:8px 12px!important;font:var(--ui-font-label)!important;white-space:normal!important}
  .ui-material-menu .ui-popup-list>button>img{width:24px!important;height:24px!important;flex:0 0 24px!important;object-fit:contain!important;margin:0!important}
@@ -152,5 +152,33 @@
  @container goonk-viewport (orientation:portrait) and (max-width:360px){
   #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock>button:not([hidden]){padding:4px!important}
   #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock>button>.town-action-icon{width:20px!important;height:20px!important;flex:0 0 20px!important}
+ }
+}
+
+/* The short landscape kingdom rail has separate calendar, hero and action rows. */
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-mode=map]>.mobile-top>.mobile-calendar:not([hidden]){top:60px!important;height:56px!important;min-height:56px!important;max-height:56px!important;gap:4px!important;justify-content:center!important}
+  #mobile-app[data-mode=map] .mobile-calendar .calendar-recruit-cue{flex-wrap:nowrap!important;min-height:24px!important;height:24px!important;border:0!important;white-space:nowrap!important;font:var(--ui-font-resource)!important}
+  #mobile-app[data-mode=map] .mobile-calendar>span:first-child{order:1!important;min-height:14px!important;height:14px!important;line-height:14px!important;white-space:nowrap!important;width:100%!important;text-align:center!important;align-self:center!important}
+  #mobile-app[data-mode=map] .mobile-calendar .calendar-recruit-cue>*{font:inherit!important;line-height:inherit!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:auto 48px!important;height:max-content!important;min-height:0!important;align-self:end!important;align-content:end!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact:not(:has(>.hero-movement-summary)){grid-template-rows:48px!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary{height:auto!important;min-height:72px!important;max-height:none!important;align-items:stretch!important;margin:0!important;gap:4px!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact>button:not([hidden]){display:flex!important;flex-direction:column!important;justify-content:center!important;gap:2px!important;padding:4px!important;font:var(--ui-font-label)!important;white-space:nowrap!important;overflow:visible!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact>button>span{font:inherit!important;line-height:inherit!important;margin:0!important}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-mode=map] .mobile-calendar .calendar-recruit-cue{background:transparent!important;box-shadow:none!important;border:0!important;outline:0!important;border-radius:0!important;margin:0!important;width:100%!important;box-sizing:border-box!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-compact{height:48px!important;min-height:48px!important;max-height:48px!important;display:block!important}
+  #mobile-app[data-mode=map] .hero-picker{display:grid!important;grid-template-columns:minmax(0,1fr) auto 16px!important;grid-template-rows:18px 16px!important;gap:2px 8px!important;width:100%!important;height:48px!important;min-height:48px!important;padding:4px 8px!important;box-sizing:border-box!important;text-align:left!important;align-content:center!important;font:var(--ui-font-resource)!important;white-space:nowrap!important}
+  #mobile-app[data-mode=map] .hero-picker-name{grid-area:1/1/2/3!important;font:var(--ui-font-label)!important;min-width:0!important}
+  #mobile-app[data-mode=map] .hero-picker-points{grid-area:2/1!important;font:var(--ui-font-resource)!important}
+  #mobile-app[data-mode=map] .hero-picker-mana{grid-area:2/2!important;font:var(--ui-font-resource)!important;color:#c3ddff}
+  #mobile-app[data-mode=map] .hero-picker-chevron{grid-area:1/3/3/4!important;align-self:center!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact>.ui-overflow-trigger::before{margin:0!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact>button>.ui-button-icon{font-size:16px!important;line-height:16px!important}
  }
 }

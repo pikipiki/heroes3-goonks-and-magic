@@ -26,7 +26,7 @@
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
     "work/browser-tests/wog-mithril-income-order-cases.mjs": "17919ab2555aa1e25297783c245f90b0e7ab64bb29887272184a601b56a97039",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "work/vcmi-wasm/lib/era/EraIncomeRules.h": "29488329bbbf739b10038ca23a89b89a36cdd189ffd951e8981ee841f5811a12",
     "work/vcmi-wasm/lib/era/EraIncomeRuntime.h": "d701113b4524c4ed50a872ce1994613bcadee8693d4882997ce8ba85dc912efa",
     "work/vcmi-wasm/lib/mapObjects/CGHeroInstance.cpp": "fabb9b5ee97b2e26d6dd57fdb30bc26d3b4f27f14e98435d87f36175cc54cd1e",
@@ -1277,5 +1277,10 @@
       "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

@@ -12,10 +12,10 @@ function installEvents(){
  document.addEventListener('close',event=>{if(session.active&&event.target.contains(session.active.anchor))session.active.close(false);},true);
  window.addEventListener('resize',()=>session.active?.close());window.visualViewport?.addEventListener('resize',()=>session.active?.close());
 }
-export function createPopupMenu({anchor,container=anchor.parentElement,role='menu',className='',label=()=>anchor.getAttribute('aria-label')||anchor.textContent,bindAnchor=true}){
+export function createPopupMenu({anchor,container=anchor.parentElement,role='menu',className='',label=()=>anchor.getAttribute('aria-label')||anchor.textContent,bindAnchor=true,placement}){
  installEvents();
  const host=document.createElement('span');host.className='ui-menu-mount '+className;host.style.display='contents';container.append(host);
- const material=createMaterialMenu(host,{anchor,container,role,label,className,onClose:()=>close()});
+ const material=createMaterialMenu(host,{anchor,container,role,label,className,placement,onClose:()=>close()});
  const list=material.list;list.id='ui-menu-'+(++session.serial);anchor.setAttribute('aria-controls',list.id);
  let open=false,focusFrame;
  const options=()=>[...list.querySelectorAll('button:not(:disabled),[role=option]:not([aria-disabled=true])')];

@@ -12,7 +12,7 @@
   "sourceBaseCommit": "32565baaa908e35da7428490365a53428aed139e",
   "sourceBindings": {
     "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "work/vcmi-wasm/lib/era/EraCommanderChoiceModel.h": "57d4e6fcbc21cc67418acaf95afa26c12b03ddbd10d48e1f2f62777aa18c49d1",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
     "work/vcmi-wasm/lib/networkPacks/PacksForClient.h": "8401da068388679e84f67f893dcba59a76df69dfbc563ded2401012cba095864",
@@ -20,9 +20,9 @@
     "work/vcmi-wasm/server/CGameHandler.cpp": "0bb74a7a6d81d9f0321f0501e33c035af0721da51465fec0c3aa95f6b79d4476",
     "work/vcmi-wasm/server/era/EraCommanderChoiceRuntime.h": "b7c5348a8f2adb1c3711994ec59591c1e2219a23b4c3ae427849c30be18e0ebf",
     "work/vcmi-wasm/server/queries/MapQueries.cpp": "9e2b968e51ddb00bf7335c3a5f18e616cbbedce0d41e717563037efed29432e9",
-    "package.json": "6cfe8d0e121e24853c0c7f709a950024953c496b0eda55feb111c7df210bb128",
-    "package-lock.json": "ceedb5306925cf826cd92778140d99f09dccb9da7f7dcff949c7c94ecc024eeb",
-    "scripts/prepare-web.mjs": "416982069e725fe6cdd5db32eb60b7225c5a585db9d45bcb1b64054c7576dd53",
+    "package.json": "d490385f0ce465542f1817214b091806bf11f7cdba9cc47fc6a70061142afe05",
+    "package-lock.json": "10874a30a1f67c53f49cd4e8883dfbadb38f72e0395e28aef1d32770bf368c03",
+    "scripts/prepare-web.mjs": "07cb3de579e44de90912dab5cd5f025f4e8a6dda5653aed466c620f1f9d358d2",
     "work/browser-tests/wog-commander-words-cases.mjs": "d79893bb43a45199034b527f730a67ea676dbe416431856cd6d686cc0872f5ab",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
     "tests/era-commander-choice-native.test.mjs": "ad046efafbf20ac1d96add44da70389bece0c2b8034cc53e185e065f702bf3d3",
@@ -2255,5 +2255,10 @@
       }
     ],
     "evidenceBoundary": "The20 word regressions and34 gameplay regressions retain their exact core7f engine. The6 choice reloads, native battle boundary and native loss preview were replayed on the integrated published binary."
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

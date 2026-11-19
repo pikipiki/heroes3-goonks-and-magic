@@ -22,7 +22,9 @@ CBasicLogConfigurator::CBasicLogConfigurator(boost::filesystem::path filePath, C
 void CBasicLogConfigurator::configureDefault()
 {
 	CLogger::getGlobalLogger()->addTarget(std::make_unique<CLogConsoleTarget>(console));
+#ifndef __EMSCRIPTEN__
 	CLogger::getGlobalLogger()->addTarget(std::make_unique<CLogFileTarget>(filePath, appendToLogFile));
+#endif
 	appendToLogFile = true;
 }
 
@@ -81,6 +83,7 @@ void CBasicLogConfigurator::configure()
 		CLogger::getGlobalLogger()->addTarget(std::move(consoleTarget));
 
 		// Add file target
+#ifndef __EMSCRIPTEN__
 		auto fileTarget = std::make_unique<CLogFileTarget>(filePath, appendToLogFile);
 		const JsonNode & fileNode = loggingNode["file"];
 		if(!fileNode.isNull())
@@ -89,6 +92,7 @@ void CBasicLogConfigurator::configure()
 			if(!fileFormatNode.isNull()) fileTarget->setFormatter(CLogFormatter(fileFormatNode.String()));
 		}
 		CLogger::getGlobalLogger()->addTarget(std::move(fileTarget));
+#endif
 		appendToLogFile = true;
 	}
 	catch(const std::exception & e)

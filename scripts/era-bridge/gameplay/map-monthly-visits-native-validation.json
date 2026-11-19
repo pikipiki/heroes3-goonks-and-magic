@@ -7,7 +7,7 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
@@ -576,7 +576,7 @@
   "sourceCompatibility": {
     "scope": "Fresh active/disabled monthly-visit calendar controls after adding saved level/reward checkpoints and native artifact receipt presentation. Historical calendar reports remain unchanged.",
     "sourceBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
     },
     "nativeBuild": {
       "command": "ninja -j32 html5",
@@ -892,7 +892,7 @@
     {
       "scope": "Additive empty army-upgrade quote explanations in MobileBridge only. Original monthly proof and its engine remain historical; all monthly rule source bindings are unchanged.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -982,7 +982,7 @@
     {
       "scope": "Additive source149 information and separate display/purchase visibility in MobileBridge. Monthly rule implementation unchanged; both active and inactive month transitions, day28/29 save reload and no replay revalidated on the current engine. Historical compatibility report retained in sourceCompatibilityHistory.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1073,7 +1073,7 @@
     {
       "scope": "Mine PO:N information and neutral-mine income guard in MobileBridge. Both active/inactive monthly calendars, day28/29 saves and absence of reset replay revalidated on the current engine. Earlier compatibility reports retained in history.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1164,7 +1164,7 @@
     {
       "scope": "MobileBridge lobby handicap command and raw mine information. Both monthly calendars, day28/29 saves and no reset replay verified on the current engine.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1255,7 +1255,7 @@
     {
       "scope": "Map-local creature quotes in MobileBridge. Both monthly calendars, day28/29 saves and no reset replay verified on the current engine.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1345,7 +1345,7 @@
     {
       "scope": "World-local creature definitions in MobileBridge; active and inactive month changes, day28/29 reload and no replay verified on the current engine.",
       "sourceBindings": {
-        "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790"
+        "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d"
       },
       "nativeBuild": {
         "command": "ninja -j32 html5",
@@ -1671,5 +1671,10 @@
       "sourceCompatibilityHistory/5/sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

@@ -24,7 +24,7 @@ export function useActionDock(dock,{overflow=true,limit=3,keepButtons,moreLabel,
   if(record.more&&!record.more.hidden)record.more.hidden=true;
   return;
  }
- if(!record.more){record.more=createMaterialElement('button');record.more.type='button';record.more.className='ui-overflow-trigger';decorateButton(record.more);dock.append(record.more);record.menu=createPopupMenu({anchor:record.more,container:dock,label:()=>uiText('More actions','Autres actions')});}
+ if(!record.more){record.more=createMaterialElement('button');record.more.type='button';record.more.className='ui-overflow-trigger';decorateButton(record.more);dock.append(record.more);record.menu=createPopupMenu({anchor:record.more,container:dock,placement:'top-end',label:()=>uiText('More actions','Autres actions')});}
  const label=moreLabel||uiText('More','Plus');if(record.more.textContent!==label)record.more.textContent=label;record.more.setAttribute('aria-label',uiText('More actions','Autres actions'));if(record.more.hidden)record.more.hidden=false;
  const keep=new Set(keepButtons?keepButtons(shown):[primary||shown[0],exit].filter(Boolean));
  for(const button of record.buttons){const destination=keep.has(button)||button.hidden?dock:record.menu.list;if(button.parentElement!==destination){if(destination===dock)dock.insertBefore(button,record.more);else destination.append(button);}if(destination===record.menu.list)button.setAttribute('role','menuitem');else if(button.getAttribute('role')==='menuitem')button.removeAttribute('role');}

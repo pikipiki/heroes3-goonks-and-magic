@@ -8,7 +8,7 @@
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "compilerOnlyChangeReusesVerifiedNativeEngine": false,
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
     "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
     "work/browser-tests/wog-era3-local-arrays-cases.mjs": "7da679f5a0d0d23e4da647d9cb3b6fc9f24859b88563a4d724e2178f2b43eb59",
@@ -427,5 +427,10 @@
       "sourceBindings/work/browser-tests/wog-henchmen-native-e2e.mjs": "66f2d3e75e495a516443cce39b2c6772ad8445a103aed59d1ee133d358f4a795"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

@@ -11,10 +11,10 @@
   "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
   "sourceBaseCommit": "26632499ffd0b439fbc7142364f4321f5eadeb03",
   "sourceBindings": {
-    "package-lock.json": "ceedb5306925cf826cd92778140d99f09dccb9da7f7dcff949c7c94ecc024eeb",
-    "package.json": "6cfe8d0e121e24853c0c7f709a950024953c496b0eda55feb111c7df210bb128",
+    "package-lock.json": "10874a30a1f67c53f49cd4e8883dfbadb38f72e0395e28aef1d32770bf368c03",
+    "package.json": "d490385f0ce465542f1817214b091806bf11f7cdba9cc47fc6a70061142afe05",
     "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
-    "scripts/prepare-web.mjs": "416982069e725fe6cdd5db32eb60b7225c5a585db9d45bcb1b64054c7576dd53",
+    "scripts/prepare-web.mjs": "07cb3de579e44de90912dab5cd5f025f4e8a6dda5653aed466c620f1f9d358d2",
     "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
     "work/browser-tests/wog-commander-words-cases.mjs": "d79893bb43a45199034b527f730a67ea676dbe416431856cd6d686cc0872f5ab",
     "work/browser-tests/wog-creature-prices-cases.mjs": "fe98dcb45fe3f649d0165ce922f0a56c86cc9ec502dfc91e81a22ca7b8f9aafe",
@@ -35,7 +35,7 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
     "tests/era-commander-experience-native.test.mjs": "a93b0f35d61c18a18fd1913b6f93311d713668183e4593613e6d23c86d0275dc",
     "scripts/era-bridge/gameplay/map-rules.json": "a7946c8a311b8642a257f9d93f2192b9e7d22a0b361da870f56160f02423115e",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "work/browser-tests/native-ui-actions.mjs": "01d7ce13668520252cb39a7b5f76733517823cf72658c469ec8d3298a55f6ee6",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "268768b1eb9a35899af25e90b7590c52db9af9066a211a071d505507ab2d976e"
   },
@@ -1862,5 +1862,10 @@
       "sourceBindings/work/vcmi-wasm/client/MobileBridge.cpp": "bddd56cec34a02dbcea93f6f0929a3c24b47b9b874433107755753c16d1773f5"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }

@@ -38,7 +38,7 @@
     "work/vcmi-wasm/AI/Nullkiller2/Engine/PriorityEvaluator.cpp": "dad9c9d95d13b90274beb4819d1349393ea412c85bd7cd641e4c3ee8de0281fe",
     "work/vcmi-wasm/AI/Nullkiller2/Goals/BuyArmy.cpp": "d10ce851cb5224c62d6fb390036513205406b5db64f0d775e77f1c2e0f4d1267",
     "work/vcmi-wasm/AI/Nullkiller2/Pathfinding/Actors.cpp": "cffb723f38e5a23f5d3c84360e95eb0a0e062f3d48727d950b6ad8b8bf0712d6",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "da385dd174d5b7156ef93d753f6ba4c079cb8b2dda6bf4636a20ee394fe64790",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
     "work/vcmi-wasm/client/windows/CCastleInterface.cpp": "35c067b21dc66c637bdc763e3341bfaba0580df329b5a943f9096355b655648d",
     "work/vcmi-wasm/client/windows/CCreatureWindow.cpp": "a8462b9b70be149e7dac16f3d773ef3c38f284ccc8629f0df95df44c60747e3a",
     "work/vcmi-wasm/client/windows/CreaturePurchaseCard.cpp": "9a0912c49dec37796d5bb3d8d90da1781264a9182339133c5c27d09ab30d2939",
@@ -1504,5 +1504,10 @@
       "sourceBindings/work/vcmi-wasm/server/CGameHandler.cpp": "c4928c5641368b9a5b894c2eb54262742808cba41895ac9bdc446fd3453686ba"
     },
     "currentEngineSha256": "7f03180618970cbdb87e6f9e7a55dc8fb8de21587600dece3afb5f65a2dda7b0"
+  },
+  "battlePerformanceRevalidation": {
+    "proof": "docs/performance/battle-render-305.json",
+    "scope": "Browser presentation and logging only; no combat rules, animation cadence, geometry, serialized fields, saved preferences or game data changed. Historical gameplay reports remain historical; only current source bindings are refreshed.",
+    "currentEngineSha256": "fe1b351d67826547ec1f46b9975b80c10738825e8637c45b13934d575b0ae866"
   }
 }
