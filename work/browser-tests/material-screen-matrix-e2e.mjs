@@ -12,6 +12,15 @@ for(const[kind,engine]of Object.entries({chromium,webkit})){
  for(const entry of screenCases.filter(entry=>!process.env.UI_CASES||process.env.UI_CASES.split(',').includes(entry[0]))){
   await p.evaluate(state=>{for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();dispatchEvent(new CustomEvent('goonk-state',{detail:state}));},stateFor(entry));await p.waitForTimeout(120);
   for(const selector of entry.slice(2)){const target=p.locator(selector);if(await target.count()&&!await target.isVisible()&&selector.startsWith('[data-hero-tab'))await p.locator('.hero-bag-tabs>.ui-overflow-trigger').tap();if(await target.count()&&await target.isVisible()){await target.tap({timeout:3000});await p.evaluate(state=>dispatchEvent(new CustomEvent('goonk-state',{detail:state})),stateFor(entry));await p.waitForTimeout(50);}}
+  if(!before&&entry[0].startsWith('hero-army-')&&viewport.width>viewport.height){
+   const bounds=await p.evaluate(()=>{
+    const rect=n=>n.getBoundingClientRect().toJSON(),panel=document.querySelector('.hero-equipment-page');
+    return {details:rect(panel.querySelector('[data-hero-army-details]')),more:rect(panel.querySelector('.hero-army-dock-tools>.ui-overflow-trigger')),split:rect(panel.querySelector('.hero-army-split-toggle')),head:rect(panel.querySelector('.hero-card-head')),chrome:rect(document.querySelector('.mobile-top')),labels:[...panel.querySelectorAll('.hero-primary dt')].map(n=>({width:n.getBoundingClientRect().width,cell:n.parentElement.getBoundingClientRect().width}))};
+   });
+   assert.equal(bounds.details.height,bounds.more.height,'Details and More share a height');assert(Math.abs(bounds.details.width-bounds.more.width)<1,'Details and More share a width');
+   assert(bounds.split.right<=bounds.details.left,'Split label never overlaps Details');assert(bounds.head.top<=bounds.chrome.top&&bounds.head.bottom>bounds.chrome.bottom,'Hero header reserves kingdom chrome');
+   assert(bounds.labels.every(n=>n.width<=n.cell),'Primary stat labels fit their cells');
+  }
   const geometry=await p.evaluate(()=>[...document.querySelectorAll('#mobile-app canvas,#mobile-app .creature-stage,#mobile-app .featured-visual,#mobile-app .hall-form img,#mobile-app .hero-portrait')].filter(n=>n.getBoundingClientRect().width&&n.getBoundingClientRect().height&&!n.closest('[hidden]')).map(n=>{const r=n.getBoundingClientRect();return {tag:n.tagName,key:n.className?.baseVal??n.className,x:r.x,y:r.y,width:r.width,height:r.height};}));const sample=before?{}:await inspectMaterialPage(p);sample.visualGeometry=geometry;report.samples.push({engine:kind,language,viewport,case:entry[0],...sample});
   if(process.env.UI_CAPTURE_ALL==='1'||language==='fr'&&[320,568,716].includes(viewport.width)){const dir=process.env.UI_CAPTURE_DIR||'/tmp';fs.mkdirSync(dir,{recursive:true});await p.screenshot({path:`${dir}/matrix-${before?'before':'after'}-${kind}-${entry[0]}-${language}-${viewport.width}.png`});}
   assert.deepEqual(errors,[],entry[0]+' console errors');if(entry[0]==='mithril')await p.locator('[data-mithril-close]').tap();if(entry[0]==='builder')await p.locator('[data-builder-close]').tap();
