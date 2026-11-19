@@ -11,6 +11,14 @@
 #include "GameRandomizer.h"
 
 #include "IGameInfoCallback.h"
+#include "../era/EraSourceArtifactPoolRules.h"
+#include "../era/EraWogOptions.h"
+#include "../gameState/CGameState.h"
+#include "../mapping/CMap.h"
+#include "../StartInfo.h"
+#include "../filesystem/Filesystem.h"
+#include "../mapping/MapIdentifiersH3M.h"
+#include "../mapping/MapFormatSettings.h"
 
 #include "../../lib/CRandomGenerator.h"
 #include "../../lib/GameLibrary.h"
@@ -23,6 +31,18 @@
 #include "../../lib/mapObjects/CGHeroInstance.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
+
+namespace
+{
+struct SourceArtifactUsedView
+{
+    std::set<ArtifactID> & values;
+    explicit SourceArtifactUsedView(std::set<ArtifactID> & saved):values(saved){}
+    bool count(int id) const{return values.count(ArtifactID(id))!=0;}
+    void insert(int id){values.insert(ArtifactID(id));}
+    void erase(int id){values.erase(ArtifactID(id));}
+};
+}
 
 bool RandomizationBias::roll(vstd::RNG & generator, int successChance, int totalWeight, int biasValue)
 {
@@ -151,6 +171,7 @@ CreatureID GameRandomizer::rollCreature(int tier)
 
 ArtifactID GameRandomizer::rollArtifact()
 {
+    if(usesSourceArtifactPool())return rollArtifactPoolClass(30);
 	std::set<ArtifactID> potentialPicks;
 
 	for(const auto & artifactID : LIBRARY->arth->getDefaultAllowed())
@@ -166,6 +187,7 @@ ArtifactID GameRandomizer::rollArtifact()
 
 ArtifactID GameRandomizer::rollArtifact(EArtifactClass type)
 {
+    if(usesSourceArtifactPool())return rollArtifactPoolClass(static_cast<int>(type));
 	std::set<ArtifactID> potentialPicks;
 
 	for(const auto & artifactID : LIBRARY->arth->getDefaultAllowed())
@@ -189,6 +211,14 @@ ArtifactID GameRandomizer::rollArtifact(EArtifactClass type)
 
 ArtifactID GameRandomizer::rollArtifact(std::set<ArtifactID> potentialPicks)
 {
+    if(usesSourceArtifactPool()&&!potentialPicks.empty())
+    {
+        std::vector<era_bridge::source_artifact_pool::Entry> rows;
+        for(const auto id:potentialPicks)rows.push_back({id.getNum(),static_cast<int>(id.toArtifact()->aClass),true,false});
+        SourceArtifactUsedView used(sourceArtifactUsed);
+    const auto selected=era_bridge::source_artifact_pool::pick(rows,used,31,[&](std::size_t count){return getDefault().nextInt(0,static_cast<int>(count)-1);});
+        if(selected){const ArtifactID id(*selected);allocatedArtifacts[id]+=1;return id;}
+    }
 	// No allowed artifacts at all - give Grail - this can't be banned (hopefully)
 	// FIXME: investigate how such cases are handled by H3 - some heavily customized user-made maps likely rely on H3 behavior
 	if(potentialPicks.empty())
@@ -213,7 +243,54 @@ ArtifactID GameRandomizer::rollArtifact(std::set<ArtifactID> potentialPicks)
 
 	ArtifactID artID = *RandomGeneratorUtil::nextItem(preferredPicks, getDefault());
 	allocatedArtifacts[artID] += 1; // record +1 more usage
+    sourceArtifactUsed.insert(artID);
 	return artID;
+}
+
+bool GameRandomizer::usesSourceArtifactPool() const
+{
+    const auto & saved=gameInfo.gameState().getMap().eraGameplayState["mapRules"];
+    if(saved.isStruct())return saved["rules"]["126"].Bool();
+    if(gameInfo.getDate(Date::DAY)!=0)return false;
+    const auto path=JsonPath::builtin("config/wog-map-rules");
+    const bool inherited=CResourceHandler::get()->existsResource(path)&&JsonNode(path)["mapRules"]["126"].Bool();
+    return era_bridge::wogOptionEnabled(gameInfo,era_bridge::WogOption::ArtifactsPerLevel,inherited);
+}
+
+ArtifactID GameRandomizer::rollArtifactPoolClass(int classes)
+{
+    const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+    std::vector<era_bridge::source_artifact_pool::Entry> rows;
+    std::set<int> original;for(int source=0;source<144;++source)original.insert(mapping.remap(ArtifactID(source)).getNum());
+    for(const auto & artifact:LIBRARY->arth->objects)
+    {
+        const auto id=artifact->getId();if(!original.count(id.getNum())&&!LIBRARY->arth->legalArtifact(id))continue;
+        bool disabled=false;
+        for(int source=141;source<=143;++source)disabled|=mapping.remap(ArtifactID(source))==id;
+        rows.push_back({id.getNum(),static_cast<int>(artifact->aClass),gameInfo.isAllowed(id),disabled});
+    }
+    SourceArtifactUsedView used(sourceArtifactUsed);
+    const auto selected=era_bridge::source_artifact_pool::pick(rows,used,classes,[&](std::size_t count){return getDefault().nextInt(0,static_cast<int>(count)-1);});
+    if(!selected)throw std::runtime_error("No allowed artifact in original class pool");
+    const ArtifactID id(*selected);allocatedArtifacts[id]+=1;return id;
+}
+
+std::optional<int> GameRandomizer::rollOriginalArtifact(int classes)
+{
+    const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+    std::vector<era_bridge::source_artifact_pool::Entry> rows;
+    for(int source=0;source<144;++source)
+    {
+        const auto id=mapping.remap(ArtifactID(source));const auto * artifact=id.toArtifact();
+        if(!artifact)throw std::runtime_error("Missing original artifact prototype");
+        rows.push_back({id.getNum(),static_cast<int>(artifact->aClass),gameInfo.isAllowed(id),era_bridge::source_artifact_pool::initiallyDisabled(source)});
+    }
+    SourceArtifactUsedView used(sourceArtifactUsed);
+    const auto selected=era_bridge::source_artifact_pool::pick(rows,used,classes,[&](std::size_t count){return getDefault().nextInt(0,static_cast<int>(count)-1);});
+    if(!selected)return std::nullopt;
+    const ArtifactID id(*selected);allocatedArtifacts[id]+=1;
+    for(int source=0;source<144;++source)if(mapping.remap(ArtifactID(source))==id)return source;
+    throw std::runtime_error("Unbound original artifact pool result");
 }
 
 std::vector<ArtifactID> GameRandomizer::rollMarketArtifactSet()

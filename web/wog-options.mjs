@@ -31,6 +31,7 @@ const rules = [
   ['Automatic level-eight upgrades', 'Évolution automatique au niveau huit', 'From day two, original heroes automatically convert their improved level-seven creatures to the corresponding level-eight creatures.', 'À partir du deuxième jour, les héros d’origine transforment automatiquement leurs créatures de niveau sept améliorées en créatures de niveau huit correspondantes.'],
   ['Melee shooters with more health', 'Tireurs de mêlée plus résistants', 'Natural shooters lose shooting and gain 50% base health. Shooting abilities from troop experience are removed when troop experience is enabled.', 'Les tireurs naturels perdent le tir et gagnent 50 % de points de vie de base. Leurs capacités de tir acquises par expérience sont retirées si l’expérience des troupes est activée.'],
   ['Perpetual darkness', 'Obscurité permanente', 'Explored ground returns to fog after a human hero moves. Owned locations keep their sight.', 'Les zones explorées retournent dans le brouillard après le déplacement d’un héros humain. Les possessions gardent leur champ de vision.'],
+  ['Artifacts at each level', 'Artefacts à chaque niveau', 'Heroes receive artifacts for gained levels, using the original separate reward classes for humans and AI.', 'Les héros reçoivent des artefacts pour les niveaux gagnés, avec les classes de récompense d’origine distinctes pour les humains et l’IA.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

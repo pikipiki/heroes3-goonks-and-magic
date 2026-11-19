@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reference": {
     "label": "TUM3.5 supplied source + installed VCMI WoG",
-    "release": "0.4.290",
+    "release": "0.4.291",
     "tumMetadata": {
       "caption": {
         "en_US": "Third Upgrade Mod",
@@ -138198,15 +138198,15 @@
       "implementation": [
         {
           "file": "work/vcmi-wasm/lib/ExtraOptionsInfo.h",
-          "sha256": "93f8178f6d6b5e9b7039424d60f74815bda1e313796ac05496dfc8776500ba66"
+          "sha256": "ccb161f89717ff749fb15dcb0d9f56c0eb16b7d680cf830170e9ec6f5796f2f1"
         },
         {
           "file": "work/vcmi-wasm/lib/era/EraWogOptions.h",
-          "sha256": "d7769006556fd913845b4a01c19b1efdc3a4cb197e746cc2afb57087ee367b80"
+          "sha256": "029cc2309d0049a4971b99530ca3bd168f95e6b0e0fe953511a3e451c3fd4e74"
         },
         {
           "file": "web/wog-options.mjs",
-          "sha256": "9a32f93f09ff64c2b23362be3cfeeb6778e9c9c9cb1d795f5389248951292f38"
+          "sha256": "ff90298bc1e2e6fadadd8f101d11308b10a11a69caad0964e3a88217f390ca5f"
         }
       ],
       "evidence": [

@@ -108,9 +108,11 @@ enum class ESerializationVersion : int32_t
 
 	GOONK_WOG_PERPETUAL_DARKNESS, // source120 fog and twenty-nine choices
 
+	GOONK_WOG_LEVEL_ARTIFACTS, // source126 rewards and shared artifact pool
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
 
-	CURRENT = GOONK_WOG_PERPETUAL_DARKNESS,
+	CURRENT = GOONK_WOG_LEVEL_ARTIFACTS,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

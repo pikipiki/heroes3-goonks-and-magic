@@ -77,21 +77,56 @@ void TownBuildingVisitQuery::onExposure(QueryPtr topQuery)
 	auto object = gh->gameState().getObjInstance(visitedObject);
 	auto hero = gh->gameState().getHero(visitingHero);
 
-	topQuery->notifyObjectAboutRemoval(object, hero);
+	if(topQuery->completesHeroLevelUp() && activeBuilding.getNum() >= 0)
+		visitedTown->rewardableBuildings.at(activeBuilding)->heroLevelUpDone(*gh,hero);
+	else
+		topQuery->notifyObjectAboutRemoval(object, hero);
 
 	onAdded(players.front());
 }
 
 void TownBuildingVisitQuery::onAdded(PlayerColor color)
 {
+	if(restored){restored=false;return;}
 	while (!visitedBuilding.empty() && owner->topQuery(color).get() == this)
 	{
 		visitingHero = visitedBuilding.back().hero->id;
+		activeBuilding = visitedBuilding.back().building;
 		const auto & building = visitedTown->rewardableBuildings.at(visitedBuilding.back().building);
+		processingBuilding = true;
 		building->onHeroVisit(*gh, visitedBuilding.back().hero);
+		processingBuilding = false;
 		visitedBuilding.pop_back();
 	}
 
 	if (visitedBuilding.empty() && owner->topQuery(color).get() == this)
 		owner->popIfTop(*this);
+}
+
+JsonNode TownBuildingVisitQuery::checkpoint() const
+{
+	JsonNode value;value["kind"].String()="town";
+	value["object"].Integer()=visitedObject.getNum();value["hero"].Integer()=visitingHero.getNum();
+	value["activeBuilding"].Integer()=activeBuilding.getNum();
+	const size_t count=visitedBuilding.size()-(processingBuilding?1:0);
+	for(size_t i=0;i<count;++i)
+	{
+		JsonNode entry;entry["hero"].Integer()=visitedBuilding[i].hero->id.getNum();entry["building"].Integer()=visitedBuilding[i].building.getNum();
+		value["remaining"].Vector().push_back(entry);
+	}
+	return value;
+}
+
+TownBuildingVisitQuery::TownBuildingVisitQuery(CGameHandler * owner,const JsonNode & saved)
+	:VisitQuery(owner,owner->gameInfo().getObjInstance(ObjectInstanceID(saved["object"].Integer())),owner->gameInfo().getHero(ObjectInstanceID(saved["hero"].Integer())))
+	,visitedTown(dynamic_cast<const CGTownInstance *>(owner->gameInfo().getObjInstance(visitedObject)))
+	,activeBuilding(saved["activeBuilding"].Integer()),restored(true)
+{
+	if(!visitedTown)throw std::runtime_error("Saved level reward town no longer exists");
+	for(const auto & value:saved["remaining"].Vector())
+	{
+		const auto * hero=owner->gameInfo().getHero(ObjectInstanceID(value["hero"].Integer()));
+		if(!hero)throw std::runtime_error("Saved town building visitor no longer exists");
+		visitedBuilding.push_back({hero,BuildingID(value["building"].Integer())});
+	}
 }

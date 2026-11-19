@@ -95,6 +95,7 @@ public:
 class CHeroLevelUpDialogQuery : public CDialogQuery
 {
 public:
+	bool completesHeroLevelUp() const override { return true; }
 	CHeroLevelUpDialogQuery(CGameHandler * owner, const HeroLevelUp &Hlu, const CGHeroInstance * Hero);
 
 	void onRemoval(PlayerColor color) override;
@@ -110,6 +111,7 @@ public:
 class CCommanderLevelUpDialogQuery : public CDialogQuery
 {
 public:
+	bool completesHeroLevelUp() const override { return true; }
 	CCommanderLevelUpDialogQuery(CGameHandler * owner, const CommanderLevelUp &Clu, const CGHeroInstance * Hero);
 
 	void onRemoval(PlayerColor color) override;

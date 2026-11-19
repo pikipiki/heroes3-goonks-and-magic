@@ -11,14 +11,14 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
-    "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
-    "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
-    "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
+    "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648",
+    "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
+    "mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
+    "web/dialog-presentation.mjs": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
-    "work/vcmi-wasm/server/CGameHandler.cpp": "b4eaed1d860d0fa04dd546f5a6279afa130271e11cbf3c2166736134ab36d5ae",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
+    "work/vcmi-wasm/server/CGameHandler.cpp": "b3a0f8b942e54f3e08ebf6d7dc4ffc95795cf309be2d0fa8be3a3c4dce02d68a",
     "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
@@ -418,5 +418,19 @@
       "work/vcmi-wasm/server/CGameHandler.cpp": "fb27b73c3da308d1de0fab3d2e4e7cd4affcdd40ea2447d22b3ba59b530c3cb2"
     },
     "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
+  },
+  "levelArtifactsRevalidation": {
+    "scope": "Historical native reports retained. Source126 shared rewards and saved choices/pages/visits, stable assembly memory and selected companions/classes/mithril/prices/map-rule regressions verified on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
+      "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
+      "work/vcmi-wasm/server/CGameHandler.cpp": "b4eaed1d860d0fa04dd546f5a6279afa130271e11cbf3c2166736134ab36d5ae"
+    },
+    "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
   }
 }

@@ -7,7 +7,7 @@ test('rule113 is pinned to original table transitions and explicitly scoped nati
  assert.equal(r.source.sha256,'94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63');assert.equal(r.originalRuntimeObserved,false);assert.equal(r.reaEvidence,false);
  assert.deepEqual(r.contract.resourcesTransformed,[6]);assert.deepEqual(r.contract.excludedSourceCreatures,[145,146,147,148,149]);assert.equal(r.contract.restoreRememberedBase,false);assert.equal(r.contract.genericCostWritesAdmitted,false);
  assert.deepEqual(Object.values(r.staticReports).map(e=>e.sha256),['a7508fc8672281eb2e821b3ed685e8443b743249f58dd2d119d6ab633e6f6092','ee2e044b15ecd2e3f62cad6e36743f32db57ae0ab9385a126d97558e54886d83','0a27beb045bc455b5d8f6af6457999f63f55fc733d366bd57aa0669d80b51aa9','256e389273b1cc9f0bbfff38239b0b8c63f030792029400aa630ae496a933c71']);
- const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));assert.equal(rules.completeRules,false);assert.equal(rules.implementedCodes.length,18);assert(rules.implementedCodes.includes(113));
+ const rules=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/map-rules.json'));assert.equal(rules.completeRules,false);assert.equal(rules.implementedCodes.length,19);assert(rules.implementedCodes.includes(113));
 });
 test('native map-local prices survive player turns, payments, saves and explicit choices',()=>{
  const p=JSON.parse(fs.readFileSync('scripts/era-bridge/gameplay/creature-prices-native-validation.json'));

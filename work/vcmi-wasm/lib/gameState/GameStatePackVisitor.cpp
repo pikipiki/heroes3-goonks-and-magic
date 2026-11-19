@@ -18,6 +18,7 @@
 #include "../era/EraCampaignAdmission.h"
 #include "GameStatePackVisitor.h"
 #include "../era/EraMapCreatureRules.h"
+#include "../era/EraSourceArtifactGrantModel.h"
 #include "../era/EraScriptRulesModel.h"
 #include "../era/EraTileProperties.h"
 #include "../era/EraCreaturePrices.h"
@@ -1242,7 +1243,7 @@ void GameStatePackVisitor::visitHeroLevelUp(HeroLevelUp & pack)
 {
 	auto * hero = gs.getHero(pack.heroId);
 	assert(hero);
-	hero->levelUp();
+	if(!pack.alreadyApplied)hero->levelUp();
 }
 
 void GameStatePackVisitor::visitCommanderLevelUp(CommanderLevelUp & pack)
@@ -1665,12 +1666,13 @@ void GameStatePackVisitor::visitSourceCampaignChange(SourceCampaignChange & pack
 
 void GameStatePackVisitor::visitEraGameplayChange(EraGameplayChange & pack)
 {
-    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules"&&pack.system!="eraScripts"&&pack.system!="tileProperties"&&pack.system!="creaturePrices")||!pack.state.isStruct())
+    if((pack.system!="mithril"&&pack.system!="henchmen"&&pack.system!="mapRules"&&pack.system!="eraScripts"&&pack.system!="tileProperties"&&pack.system!="creaturePrices"&&pack.system!="artifactGrants")||!pack.state.isStruct())
         throw std::runtime_error("Invalid ERA gameplay state packet");
     if(pack.system=="mapRules")era_compat::map_rules::applyCreatureRules(gs,pack.state);
     if(pack.system=="eraScripts")era_compat::script_rules::validate(pack.state);
     if(pack.system=="tileProperties")era_compat::tile_properties::validate(pack.state);
     if(pack.system=="creaturePrices")era_compat::creature_prices::validate(pack.state);
+    if(pack.system=="artifactGrants")era_compat::source_artifacts::validate(pack.state);
     gs.getMap().eraGameplayState[pack.system]=pack.state;
 }
 

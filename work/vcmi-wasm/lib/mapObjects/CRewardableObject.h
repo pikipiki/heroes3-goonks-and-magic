@@ -8,6 +8,7 @@
  *
  */
 #pragma once
+#include "../serializer/ESerializationVersion.h"
 
 #include "army/CArmedInstance.h"
 
@@ -23,7 +24,7 @@ protected:
 
 	bool onceVisitableObjectCleared = false;
 	
-	/// reward selected by player, no serialize
+	/// Reward selected by player, including a suspended level-up continuation.
 	ui16 selectedReward = 0;
 	
 	void doStartBattle(IGameEventCallback & gameEvents, const CGHeroInstance * hero) const;
@@ -95,6 +96,7 @@ public:
 		h & static_cast<CArmedInstance&>(*this);
 		h & static_cast<Rewardable::Interface&>(*this);
 		h & onceVisitableObjectCleared;
+		if(h.version >= ESerializationVersion::GOONK_WOG_LEVEL_ARTIFACTS)h & selectedReward;
 	}
 };
 

@@ -43,6 +43,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("125",era_bridge::WogOption::AutomaticEighthUpgrades);
     choice("129",era_bridge::WogOption::ShootersBecomeMelee);
     choice("120",era_bridge::WogOption::PerpetualDarkness);
+    choice("126",era_bridge::WogOption::ArtifactsPerLevel);
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);

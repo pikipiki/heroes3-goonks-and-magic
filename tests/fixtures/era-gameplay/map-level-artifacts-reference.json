@@ -1,0 +1,1289 @@
+{
+  "schema": 1,
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "source": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "lines": [
+      [
+        567,
+        641
+      ]
+    ]
+  },
+  "staticReports": {
+    "selection": {
+      "sha256": "3d9d0f153166efe77854d208e333723de18fa061f26c987671cc0d685da04a37",
+      "report": {
+        "scope": "Bounded ordinary static PE/Pascal/ERM analysis; no original-runtime execution, no REA Evidence, no tracked files or containers modified.",
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Erm.pas",
+            "size": 323847,
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "size": 96807,
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "size": 36250,
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "size": 77129,
+            "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+          }
+        ],
+        "conclusions": [
+          {
+            "question": "Classes2/4/8/16?",
+            "status": "answered",
+            "answer": "Bundled constants:2treasure,4minor,8major,16relic;1special. Selector bit-tests classmask against ArtInfo.ArtType, so multiplebits accepted. Source126 uses exactlyonebit from clampedvLvl1..4."
+          },
+          {
+            "question": "Selection and retries?",
+            "status": "answered for inspected on-disk selector",
+            "answer": "Global shared mutable pool perGameMgr, not independentwithreplacement. IDs0..143, IsDisabledfalse, matchingclassmask, temporaryUsedfalse. Pickrandom eligible rank inascendingIDorder, markused immediately. Onclass exhaustion reset matchingclass temporaryflags from persistentBan; if noneunbanned setmask30(allfour ordinaryclasses) andrestart. No bounded retry or explicit noartifact return; if allordinaryclasses inadmissible this loop has no proven terminatingexit."
+          },
+          {
+            "question": "Map/bans/combination exclusions?",
+            "status": "core answered; concrete runtime list partial",
+            "answer": "Uses actualmutable ArtInfo.IsDisabled, ArtType, temporaryUsed and persistentBan. Persistent bans initializedfrom IsDisabled, formatgates and mapconstraintlogic; poolinit copiesbans and marksmapplacedtype5 artifactsused. No separatecombination/war-machine/scroll/book predicate in selector. Those are excluded only by class, disabledflag, ban/usedstate, IDrange. Do not invent a universalcomboexclusion. Exactloaded144rows andeverymapflag notobserved."
+          },
+          {
+            "question": "HE:A4 equipment/backpack?",
+            "status": "answered core",
+            "answer": "Attempts firstfitting empty equipment slot0..18, invoking nativefit/combination logic; fallback insertsintofirstfree backpack slot, capacity64. Existing equipment is not replaced to make room. Fullbackpack stillallows directequip if fittingempty slotexists. If equipfails andbagfull, insertionfails; HE:A4 ignoresreturnand scriptcontinues. No retry/redraw ofclassselection and no poolrefund onplacementfailure."
+          },
+          {
+            "question": "Combining and flags?",
+            "status": "partially answered",
+            "answer": "Nativegive4e32e0 receivesflags1/1 and may offer/performassembly ifnewartifact completescombination basedonactualequippedstate, owner andmapformat; dynamichelpers4e6730/4dc1a0 not fullyexpanded. Selectionitselfdoesnotassemble. HE:A4 direct branch doesnotprovide explicitplacementresult tosource77, which builds rewardpopup from selectedIDs regardlessofplacementsuccess."
+          }
+        ],
+        "selectorPseudoCode": [
+          "mask=requestedMask; forever:",
+          "  candidates=[i in0..143 if !ArtInfo[i].IsDisabled && (ArtInfo[i].ArtType & mask)!=0 && !temporaryUsed[i]]",
+          "  if candidates notempty: rank=randomRange(0,size-1); i=candidates[rank]; temporaryUsed[i]=1; returni",
+          "  restored=0; fori in0..143 matching !disabled && classmask: temporaryUsed[i]=persistentBan[i]; iftemporaryUsed[i]==0: restored++",
+          "  ifrestored==0: mask=30",
+          "  repeat; no stock noartifact/fail branch inthisroutine"
+        ],
+        "nativeState": {
+          "temporaryUsed": "GameMgr+0x4e224,144bytes; selectedIDsmarked1 beforeplacement. Shared withotherconsumersthatusesameGameMgrselector.",
+          "persistentBan": "GameMgr+0x4e2b4,144bytes; canbemodified viaERMhelpers714eed/714f67 andmaploading.",
+          "artifactTable": "pointer*0x660b68; stride32. Heroes.pas declares ArtType+0c,ComboArtId+14,ComboArtPartId+18,IsDisabled+1c. Pointerinitially pointsBSS693a58; actualloadedtablevalues notpresentasinitialPErawdata."
+        },
+        "derivedExamplesNotExecuted": [
+          {
+            "scenario": "Treasureclasshas2eligibleIDs17,19",
+            "draw1": "rank0→17, mark17used",
+            "draw2": "only19→19; count1 therefore no RNGcall",
+            "draw3": "classresetfrompersistentbans,17and19eligibleagain; no independentduplicatebeforeexhaustion."
+          },
+          {
+            "scenario": "requestedrelicclass has no unbanned IDs, otherordinaryclass haseligibleIDs",
+            "result": "fallsback mask30 ratherthan returns-1 or forcingrelic."
+          },
+          {
+            "scenario": "bag64full, emptycompatible equipment slot",
+            "result": "equipcan succeed; bagcapacitynotprechecked."
+          },
+          {
+            "scenario": "bag64full, no compatibleempty equipment slot",
+            "result": "givefails; drawalreadyconsumed andsource rewardlist stillcontainsselectedID; no refundininspectedpath."
+          }
+        ],
+        "sourceReferences": [
+          {
+            "file": "77 wog - map rules.erm",
+            "lines": [
+              576,
+              577,
+              578,
+              579,
+              580,
+              581,
+              582,
+              606,
+              607,
+              608,
+              609,
+              610,
+              611,
+              612
+            ],
+            "meaning": "One-bitclass selection,UN:J6,HE:A4; source storesselectedIDs unconditionally forpopup."
+          },
+          {
+            "file": "9999 era - consts.erm",
+            "lines": [
+              733,
+              734,
+              735,
+              736,
+              737,
+              738
+            ],
+            "meaning": "Nativeartifactclassbitvalues."
+          },
+          {
+            "file": "Heroes.pas",
+            "lines": [
+              1048,
+              1052,
+              1054,
+              1055,
+              1056,
+              1448,
+              2892
+            ],
+            "meaning": "Artifactrecordlayout andloadedpointer."
+          },
+          {
+            "file": "Erm.pas",
+            "lines": [
+              9386,
+              9387,
+              9389,
+              9390,
+              9392,
+              9393,
+              9394
+            ],
+            "meaning": "ERAHE:A GET/free-slot/deletefixes; thesespecificsitesareoutside A4nativegivebranch."
+          }
+        ],
+        "hookAudit": {
+          "WoG": "355declaredrows examined against selectedUNJ6,bridge,nativeselector,HEA4/give/bagranges; zero matching nativesites.",
+          "EraDll": "Targetedliteral32bit scaninlowcode-rangesections, excludingHIGHLOWrelocatedDLLlocalpointers, foundno directfixedreferencesintothesespecificranges. Thisdoesnotprovenocomputedtargethooks.",
+          "scope": "NoAmethyst/AdvancedClasses/Rebornplugininspectionforthispass; do notgeneralize144-IDcountorrewardbehavior underuninspectedplugins."
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "UN J6 dispatch",
+            "preferredVa": "0x733b5d",
+            "endExclusiveVa": "0x733be3",
+            "rva": "0x333b5d",
+            "fileOffset": "0x2ceb5d",
+            "size": 134,
+            "sha256": "992000bdee037d23e5a657828bd1a748b000b3afba9a12fa625fc5eef5b07402",
+            "observation": "Requires3arguments J6/classMask/output. GenericApply reads param1(classMask), calls716b30, writes returnedint32 through param2, no local retry or filter."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "selector bridge",
+            "preferredVa": "0x716b30",
+            "endExclusiveVa": "0x716b6f",
+            "rva": "0x316b30",
+            "fileOffset": "0x2b1b30",
+            "size": 63,
+            "sha256": "af072da442604254c7145fa335211d41cd54a895fbd922129462e646abd07805",
+            "observation": "Call GameMgr4c9190(classMask), returnartifactID."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "selection count",
+            "preferredVa": "0x4c9190",
+            "endExclusiveVa": "0x4c91ce",
+            "rva": "0xc9190",
+            "fileOffset": "0xc9190",
+            "size": 62,
+            "sha256": "5883292cf0d74b178c775944550854c0c4262253ba4af8d827ef3873d30af7e6",
+            "observation": "Scan IDs0..143; ArtInfo stride32 via pointer660b68; require IsDisabled+1c==0, (ArtType+0c & mask)!=0, temporaryUsed GameMgr+4e224[id]==0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "selection reset and fallback",
+            "preferredVa": "0x4c91ce",
+            "endExclusiveVa": "0x4c9212",
+            "rva": "0xc91ce",
+            "fileOffset": "0xc91ce",
+            "size": 68,
+            "sha256": "569343a07117de2799498bb69c7311307e5caa6c084ad5ee2daf76f88b679e08",
+            "observation": "If no currenteligible entries: for each non-disabled matchingclass, temporaryUsed[id]=persistentBan+4e2b4[id]; count ones restored0. If>0 restartcount. Else setmask0x1e and restartcount, with no boundedretry or failureexit."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "selection randomrank and consume",
+            "preferredVa": "0x4c9212",
+            "endExclusiveVa": "0x4c925b",
+            "rva": "0xc9212",
+            "fileOffset": "0xc9212",
+            "size": 73,
+            "sha256": "2fb449c88967f2852766dc115f19ad3b17b40b30109df8d9df9225610f2b7483",
+            "observation": "Randomrank in[0,count-1] using50c7c0; scan samecriteria ascendingid; markselected temporaryUsed[id]=1 before returningid. No testingactualplacement."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "random range",
+            "preferredVa": "0x50c7c0",
+            "endExclusiveVa": "0x50c7e8",
+            "rva": "0x10c7c0",
+            "fileOffset": "0x10c7c0",
+            "size": 40,
+            "sha256": "5545fde25f7decf0e2b123fc1dc94d780476094a81f6fff506c2aa99cdac037f",
+            "observation": "If boundsdiffer, calls61842c then signed modulo(span),+lower; one call for count>1, no RNGcall count1. Uniformrank intent; modulo bias possible."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "persistent ban initialization",
+            "preferredVa": "0x4c21a0",
+            "endExclusiveVa": "0x4c2200",
+            "rva": "0xc21a0",
+            "fileOffset": "0xc21a0",
+            "size": 96,
+            "sha256": "5823ab903340136dfc7217839a05a8c9e9ab1918d2592820fce5e140d2f03a00",
+            "observation": "Copies IsDisabled of144ArtInfo into persistentBan. Older map-format branches ban IDs127..143 or129..143. Later mapconstraintcode can updatepersistentBan."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "map constraint update",
+            "preferredVa": "0x4c22ad",
+            "endExclusiveVa": "0x4c22dd",
+            "rva": "0xc22ad",
+            "fileOffset": "0xc22ad",
+            "size": 48,
+            "sha256": "c54064641987b5f03bae4ec00b0647aaf1520fc670ca04301a5b7029798bf46a",
+            "observation": "Within mapreader, result from maskhelper44d1a0 is OR-like combined with oldpersistentBan; newvalue storedlater. Precise every map-format bit meaning not fully traced."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "pool initialization",
+            "preferredVa": "0x4c0760",
+            "endExclusiveVa": "0x4c0819",
+            "rva": "0xc0760",
+            "fileOffset": "0xc0760",
+            "size": 185,
+            "sha256": "8a7c67baf0a7358cc0c15d1b6af68c94c63a72f56ad26d5f8c12c54cc2ef813e",
+            "observation": "Copies persistentBan144bytes to temporaryUsed; mapscan objecttype5 with tileflag10 sets temporaryUsed[artifactSubid]=1. Map-placed artifacts thus enterusedpool before draws; resetlater may returnthem if persistentBanallows."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE A4 native call",
+            "preferredVa": "0x745300",
+            "endExclusiveVa": "0x74531f",
+            "rva": "0x345300",
+            "fileOffset": "0x2e0300",
+            "size": 31,
+            "sha256": "4ba1e9950ecb4a28c5be2662c543ca2237f7df4e523bf3d522b8c6216131c075",
+            "observation": "Pass hero/artifactID/auxiliaryspell to7163fc, ignoresreturnvalue, no retry/substitute chosenartifact."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE A4 bridge",
+            "preferredVa": "0x7163fc",
+            "endExclusiveVa": "0x716445",
+            "rva": "0x3163fc",
+            "fileOffset": "0x2b13fc",
+            "size": 73,
+            "sha256": "99fbe6abf4a96fd24d15876f889bca334afd25dd3bcf9915c4656b10d5cbe916",
+            "observation": "Builds8byteartifact(id,aux), callshero4e32e0(artifact*,1,1). Both flags1; receiverdoesnotexpose placementsuccess here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native equip first",
+            "preferredVa": "0x4e32e0",
+            "endExclusiveVa": "0x4e33a6",
+            "rva": "0xe32e0",
+            "fileOffset": "0xe32e0",
+            "size": 198,
+            "sha256": "bf13b30cb8e15f0329a5ab982f93bf581ca7267208083bebd4de05ae6ad704b3",
+            "observation": "Firstcalls4e2c70(artifact,-1); on success canentercomboassembly path when format>=2, ComboArtPartId+18!=-1,owner0..7 and assemblyrequirementsmet. On equipfailure branches4e35a9 baginsertion."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "equipment scan and store",
+            "preferredVa": "0x4e2c70",
+            "endExclusiveVa": "0x4e2d1b",
+            "rva": "0xe2c70",
+            "fileOffset": "0xe2c70",
+            "size": 171,
+            "sha256": "09a103c3c3b2b612f265d81be45c14bbd1a2aec44d58c4ed72ed4f88ca832afd",
+            "observation": "position-1 scansslots0..18ascending, calls4e27c0 fitcheck; firstsuccess writesartifactpairtoequipped. No fullbagcheckbeforeequip. Fitfailure returns0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "equipment fit core",
+            "preferredVa": "0x4e27c0",
+            "endExclusiveVa": "0x4e28a0",
+            "rva": "0xe27c0",
+            "fileOffset": "0xe27c0",
+            "size": 224,
+            "sha256": "cd08a86aa2631339d3b1efd4580a3f584195351e870fbd91833554c0f90ea962",
+            "observation": "Requires empty slot, artifactpositionmask allows slot, version/otherlockedslotchecks; continuation handlescombination occupancy. Not everyfitcondition fully re-audited."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "combination owner prompt",
+            "preferredVa": "0x4e33a6",
+            "endExclusiveVa": "0x4e34b1",
+            "rva": "0xe33a6",
+            "fileOffset": "0xe33a6",
+            "size": 267,
+            "sha256": "b256a68604d5004263f675419fa407b93fc850e14c39cdc5357b7621d122b1fe",
+            "observation": "Usesowner,controlmode andflag1 to potentiallyshowassemblydialog; helper4dc1a0 called foraccepted/AIconditions. Not implicit assemblyby classselector."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "combo/reward completion and bagfallback",
+            "preferredVa": "0x4e350f",
+            "endExclusiveVa": "0x4e3619",
+            "rva": "0xe350f",
+            "fileOffset": "0xe350f",
+            "size": 266,
+            "sha256": "de8638e0ae8dbec0dade25d7ff61eaab909c3b0641958b43863145a37a5cab84",
+            "observation": "On normal/equipped success handles ComboArtId discovery and finalflag refresh; bagfallbackcalls4e3200(artifact,-1), onfailure exitswithAL0; successfulbag insertion loopsintofinalbookkeeping. Completecombohelpers notexpanded."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "backpack insert",
+            "preferredVa": "0x4e3200",
+            "endExclusiveVa": "0x4e32d1",
+            "rva": "0xe3200",
+            "fileOffset": "0xe3200",
+            "size": 209,
+            "sha256": "01a36dcc38191a3f2126378deb518757667d757620d5df3fef9600878971c96d",
+            "observation": "Rejects signedbytebagcount>=64 and artifactIDs3,4,5,6; negativeposition scans firstempty0..63, inserts8bytepair, incrementscount, returns1. Fullbag returns0. Equipattempt occursbeforethischeck."
+          }
+        ],
+        "limits": [
+          "No runtime actualartifacttable/mapbans/usedpool captured. Fixed144on-diskiterationbound isnotproofofcurrentloadedpluginbound.",
+          "Concretecombo/scroll/war-machineIDexclusions shouldcomefromloadedArtType/IsDisabled/persistentbans. InitialPEpointer tableisBSS; no definitiveenabledIDlist claimed.",
+          "Mapreaderbanbitset construction wasbounded, noteveryformat/campaign/questspellrestrictiontraced. Establishedthat persistentstate ishonoredand resetretainsit.",
+          "Fullcombinationassemblyrules,blockedslotchecks,artifactbonuses,UI/ownerpromptpolicies anddownstreamrefreshhelpers remainpartiallytraced; corereceiverandcapacitybehavior established.",
+          "Allbannedordinaryclasses yieldno explicitfailureexit inselector; runtimepluginsmayavoidthecondition. Do notsilentlyclaimnative-1return.",
+          "Originalrandomgeneratorstate/seedcompatibility andmodulobias notvalidatedruntime. Uniformrankmechanism describedasstaticmath, notobserveddistribution.",
+          "No files outside thisnewignoreddirectory generatedbythistask; previousreportskept."
+        ]
+      }
+    },
+    "levels": {
+      "sha256": "ec8a043d5a9e84ea2c175a6bf5d99e40ad3fad127bb711fe82ae5dd00c1773e5",
+      "report": {
+        "schema": 1,
+        "question": "Source126 level numbering, before/after hooks, multi-level artifact count, owner handling and104bound",
+        "method": "OrdinaryboundedofflinePEandPascal/ERMinspection. NoREAtools/runtime orinstallation; noREA Evidence. Pascal/ERMunindexedtargetedreads.",
+        "artifacts": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          }
+        ],
+        "sources": [
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+            "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+            "ranges": [
+              {
+                "startLine": 567,
+                "endLine": 637,
+                "sha256": "64690926f08f91476e86e17aefcef23ed19c9057a7ce4c2d7ad929ad3621b035"
+              }
+            ]
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/9000 wog - stdlib.erm",
+            "sha256": "e5d38d2fd1ce92a73e34a61890e2dda1483a8e800913f22017cbeaec7ec2ac4c",
+            "ranges": [
+              {
+                "startLine": 1698,
+                "endLine": 1710,
+                "sha256": "e023e1f7d33c1e0c1929c66ad1cb011d7ec2381f2e0806d429d230e110ba5ab3"
+              }
+            ]
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Triggers.pas",
+            "sha256": "94ed0bde8b8a9459e2a31af549ca987bc07e77780399b964cee438981417b5cd",
+            "ranges": [
+              {
+                "startLine": 1254,
+                "endLine": 1270,
+                "sha256": "a01b47a5edf3c5ef800a30b5492cb37de16e00fbc06a612cf36d4dd758a9e8bf"
+              },
+              {
+                "startLine": 1383,
+                "endLine": 1384,
+                "sha256": "50365d75b6904b35e709add4e152b554b049b9bdd9b24ba45ebc7ff25be43c6b"
+              }
+            ]
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+            "ranges": [
+              {
+                "startLine": 196,
+                "endLine": 198,
+                "sha256": "90d4ee39cbf7bc99c21fad75e1a8f6037612a84b059b6c9ee277db971a86c4c3"
+              },
+              {
+                "startLine": 261,
+                "endLine": 261,
+                "sha256": "7cdd1c3afe72794465d8cce4901e20881a06023e0c4bdbf62e1d752925ed104b"
+              },
+              {
+                "startLine": 3895,
+                "endLine": 3895,
+                "sha256": "6483aea80f71c46d0a54bf17b4b930922a81a7be568deb1b4717cd396a230400"
+              },
+              {
+                "startLine": 3950,
+                "endLine": 3950,
+                "sha256": "a71013ab8d94cf37b2eea9b3d9e6328fa618adf21dba611bc2d35a1bde795801"
+              },
+              {
+                "startLine": 5930,
+                "endLine": 5969,
+                "sha256": "b5337374e8f5a9cb4191f94995f4b6b0832dd73322f224a7f900af6d23543494"
+              }
+            ]
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Heroes.pas",
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+            "ranges": [
+              {
+                "startLine": 869,
+                "endLine": 873,
+                "sha256": "0449ea7c63a5fc18a1d39d4d63e3a072db69d2c1054558107969f29dbee0fef8"
+              }
+            ]
+          },
+          {
+            "file": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b",
+            "ranges": [
+              {
+                "startLine": 56,
+                "endLine": 56,
+                "sha256": "44c771a31db537593f7b55d2641eec0e6856c79587196ce71d03e8ac2b5e1d5e"
+              }
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "id": "O1",
+            "support": [
+              "HE:E complete branch",
+              "Initial thresholds"
+            ],
+            "finding": "HE:E?exp/?lvl/1 GETreturnsstoredsigned32XPandstoredsigned16levelwithout+1/−1conversion. Levelisbase1:T1=0,T2=1000. Literal third1isnotconsultedonthisGETpath; itdoesnotrequestzero-basedlevel."
+          },
+          {
+            "id": "O2",
+            "support": [
+              "Increment level before HL",
+              "HL hook row",
+              "HL event wrapper",
+              "Primary skill gain and secondary candidates"
+            ],
+            "finding": "Forordinarynativelevel-up, storedlevelalreadyincremented BEFORE OnHeroGainLevel. Hookisatprimarygainstage, beforeprimaryincrementperformedbywrapper andbeforesecondaryskillselection. Thusfirstevent1→2sees2, not1."
+          },
+          {
+            "id": "O3",
+            "support": [
+              "Secondary selection and common After join",
+              "Triggers.pas:1254-1270",
+              "Triggers.pas:1383-1384"
+            ],
+            "finding": "DeclaredERAAfterhook4daf06 firesonceatendofeachleveliteration, aftersecondarylearningcallifanyandafterdialog/autoselection. It setsCURRENT_HEROtoEBX, fires77050withheroId, restorespreviouscurrenthero. It isbeforecomparison/nextiteration4daf12, notoneeventafterentireXPbatch."
+          },
+          {
+            "id": "O4",
+            "support": [
+              "source77:567-637",
+              "Threshold function",
+              "stdlib:1698-1710"
+            ],
+            "finding": "HumanfirstHL, ifnumberOfArtsLeft==0:readnewcurrentlevelL andtotalXP; counti=L..104inclusivewhileXP>=T(i), stopatfirstfailedthreshold. ThisincludescurrentlevelandfuturelevelsbutneveroldlevelL−1. Savecount,startLvl=L,left=count. SubsequentHLwhileleft>0skipinitialization."
+          },
+          {
+            "id": "O5",
+            "support": [
+              "source77:597-637"
+            ],
+            "finding": "EachAftereventwhileglobalnumberOfArts!=0decrementsleft. Onlywhenleftreaches0grantcountartifacts, usingoddarrayindices1,3,... soindex>>1=0,1,... andartifactlevels startLvl+offset. ResetnumberOfArts/startLvlatend. Batchingdoesnotaddanotherartifactforoldlevel."
+          },
+          {
+            "id": "O6",
+            "support": [
+              "source77:567-595",
+              "AI owner classifier",
+              "Native owner dialogue gate"
+            ],
+            "finding": "AIowner orNO_OWNER−1 takesimmediateoneartifactperHL, usingcurrentnewlevel. Validhumanownerusesbatchregardlesslocal/remoteownership; no999/localplayerfilterinsource126. Nativeowner<0andautosecondaryroutesstilljoinAfterhook. NumericownerAIhelper711828alsoaccepts−1asAI."
+          },
+          {
+            "id": "O7",
+            "support": [
+              "source77:585-587",
+              "Erm.pas:5930-5969",
+              "Native target level calculation"
+            ],
+            "finding": "104isexplicitupperboundofHUMANartifactpredictionloop, notproofofglobalenginelevelcap. REdefaultstep+1andemptyrangeifstart>stop. HumanHL L>104predicts0. AI/no-ownerimmediatebranchhasno104check."
+          }
+        ],
+        "implementableContract": {
+          "levelBasis": 1,
+          "beforeHookName": "OnHeroGainLevel",
+          "beforeHookSees": "ALREADYincrementedcurrentlevelL",
+          "afterHookName": "OnAfterHeroGainLevel",
+          "afterHookOccurs": "Aftereachcompletedlevelstepandsecondarychoice, beforethenextstep",
+          "humanCount": "C=numberofconsecutivei fromL through104 withXP>=T(i), stoppingatfirstXP<T(i). NoL−1term.",
+          "humanGrant": "AfterC matchingAfterevents, grantC artifacts forlevelsL,L+1,...,L+C−1. ForordinaryXPbatchendingatK<=104,C=K−L+1. IfoldlevelO,L=O+1,C=K−O.",
+          "AIGrant": "OneartifactimmediatelyperHL, usingnewL; nohumanpredictionbatchor104cutoffinthisbranch.",
+          "artifactClassExpressions": {
+            "AI": "clamp1..4(trunc0(SHR32(newLevel,1)/6)+1)",
+            "human": "clamp1..4(trunc0((startLvl+offset)/6)+1)",
+            "scope": "Literal source expressions; not identical grade progression. Positive ordinary AI levels change grade every12 levels; human every6. Mask then1<<grade."
+          },
+          "ownerScope": "Ownerhumanclassification, notcurrentlocalturnpredicate. No-ownerincludedinimmediatebranch.",
+          "sourceState": "Countersarescriptglobals, notkeyedbyhero. OnAfterguardchecksnumberOfArts, notheroId; reentrantinterleavedherolevel-upsareoutsideordinarybatchproof."
+        },
+        "derivedExamples": {
+          "kind": "Source/instructionreplay, notexecutedoriginaloutputs. Ordinarylow-levelthresholds.",
+          "cases": [
+            {
+              "oldLevel": 1,
+              "totalXP": 1000,
+              "HLReadsLevel": 2,
+              "predictedCount": 1,
+              "AfterEvents": 1,
+              "artifactLevels": [
+                2
+              ]
+            },
+            {
+              "oldLevel": 1,
+              "totalXP": 3200,
+              "HLReadsLevel": 2,
+              "predictedCount": 3,
+              "HLLevels": [
+                2,
+                3,
+                4
+              ],
+              "AfterEvents": 3,
+              "grantAfterLevel": 4,
+              "artifactLevels": [
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "oldLevel": 3,
+              "totalXP": 4600,
+              "HLReadsLevel": 4,
+              "predictedCount": 2,
+              "artifactLevels": [
+                4,
+                5
+              ]
+            },
+            {
+              "humanHLReadsLevel": 105,
+              "predictedCount": 0,
+              "reason": "EmptyL..104range;doesnotestablishenginecap."
+            },
+            {
+              "AIHLReadsLevel": 105,
+              "immediateCount": 1,
+              "reason": "SourceAIbranchhasno104guard;hypotheticalhookinput,nativeattainabilitynotproven."
+            }
+          ]
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:E complete branch",
+            "preferredVa": "0x746209",
+            "endExclusiveVa": "0x7462a8",
+            "rva": "0x346209",
+            "fileOffset": 3019273,
+            "size": 159,
+            "sha256": "8c46ef052a0b01d68e661daaf2d88c9f0efdc424812c8cd78eaa5f65b51257cb",
+            "observation": "GETlevel usesZvsApplysize2hero+55; GETexperience size4hero+51. Secondparameterpresence orGETsetexitmarker. GETreturns74943bbeforeSETrecalculation712906 andthirdparameterlogic. Noindexadjustment."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Threshold function",
+            "preferredVa": "0x4da610",
+            "endExclusiveVa": "0x4da686",
+            "rva": "0xda610",
+            "fileOffset": 894480,
+            "size": 118,
+            "sha256": "4597866f34f35668dd41f70ca951a6f6b071f0582308ee420cda632b2aab1df4",
+            "observation": "ECXone-basedlevelindex. Levels<=12 readsigned16table679c86+2*level. HigherthresholdsderivefromT11/T12 andtrunc(previousdelta*double1.2), int32sum."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Initial thresholds",
+            "preferredVa": "0x679c86",
+            "endExclusiveVa": "0x679ca0",
+            "rva": "0x279c86",
+            "fileOffset": 2595974,
+            "size": 26,
+            "sha256": "425c915f86a84316f60da766cffec056216e7323de1988aeee4adaf5237285df",
+            "observation": "Signed16table entry0=105(notadmittedaslevelcap),T1=0,T2=1000,T3=2000,T4=3200,T5=4600,T6=6200,T7=8000,T8=10000,T9=12200,T10=14700,T11=17500,T12=20600."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Threshold growth coefficient",
+            "preferredVa": "0x63ac20",
+            "endExclusiveVa": "0x63ac28",
+            "rva": "0x23ac20",
+            "fileOffset": 2337824,
+            "size": 8,
+            "sha256": "9fbabc0d08aa3515342ef4669b29ff3d6a8ae8ef8ad05a606e81c43d383fc723",
+            "observation": "Double1.2; notfloat32."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Native target level calculation",
+            "preferredVa": "0x4da990",
+            "endExclusiveVa": "0x4daa4f",
+            "rva": "0xda990",
+            "fileOffset": 895376,
+            "size": 191,
+            "sha256": "bb887fcc8b97631fe030cbc432c6fc3cf8e0eb27378e7edc363c4374f1a7bef5",
+            "observation": "DerivesdesiredlevelfromstoredXP; comparesstoredlevelandtarget. No104testinthisselectedcalculation."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Increment level before HL",
+            "preferredVa": "0x4daa4f",
+            "endExclusiveVa": "0x4daab4",
+            "rva": "0xdaa4f",
+            "fileOffset": 895567,
+            "size": 101,
+            "sha256": "18673d629f2f7e72d2235ea918ef97f9663fab77c2ab47e903e7fbfb8e53b714",
+            "observation": "INC EAX thenwritehero+55at4daa53 beforeprimaryskillrandomselection andHLhooksite."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HL hook row",
+            "preferredVa": "0x789584",
+            "endExclusiveVa": "0x789590",
+            "rva": "0x389584",
+            "fileOffset": 3294596,
+            "size": 12,
+            "sha256": "9a3013a9dc2b6d2313ccf085c2f16b5edea3a01ad0df4fa4a5d12b66db142654",
+            "observation": "On-diskcallpatchrecord{site4dab55,0,target74d879}."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HL event wrapper",
+            "preferredVa": "0x74d879",
+            "endExclusiveVa": "0x74d960",
+            "rva": "0x34d879",
+            "fileOffset": 3049593,
+            "size": 231,
+            "sha256": "32dcd3925cdc586fb19472a79f2487d921f5d2bb4f19f9b51994c85bf9021c2a",
+            "observation": "SetcurrentheroEBX, determineAIflagvia711828(owner); emitgeneric30600then30601+heroId,restoretriggerid; thenincrementsprimarybytehero+476+selectedprimary."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Primary skill gain and secondary candidates",
+            "preferredVa": "0x4dab43",
+            "endExclusiveVa": "0x4dac20",
+            "rva": "0xdab43",
+            "fileOffset": 895811,
+            "size": 221,
+            "sha256": "ab156253274c7dd7216ba6b146823df05f734c0831d0b82c86cda9c6560021d3",
+            "observation": "HLsite4dab55precedesprimaryincrement andsecondarycandidatehelper4daf70; payload/retentionpatchrelationshipsnotfullyauditedhere."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Native owner dialogue gate",
+            "preferredVa": "0x4dac62",
+            "endExclusiveVa": "0x4dac91",
+            "rva": "0xdac62",
+            "fileOffset": 896098,
+            "size": 47,
+            "sha256": "838544009b28917a2975e968bb16783941db048135dbabe7a091c31ac1881e86",
+            "observation": "Owner<0 orautomatedcontextgoto4daf2d; otherwise4ce630(owner) controlsdialogroute. Afterhookcommonjoinstill4daf06."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Secondary selection and common After join",
+            "preferredVa": "0x4daea3",
+            "endExclusiveVa": "0x4daf2d",
+            "rva": "0xdaea3",
+            "fileOffset": 896675,
+            "size": 138,
+            "sha256": "cc0dce25d5ff64d9a75729a222778d78d99dc291a92fcef36db1aafe97f2efb1",
+            "observation": "Dialog/autoselectionbrancheslearnsecondaryvia4e2540at4daf01, orjumpdirect4daf06ifnone. ERAAfterhooksite4daf06precedesloopcomparison4daf12andfinallevelstore4daf18."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "AI owner classifier",
+            "preferredVa": "0x711828",
+            "endExclusiveVa": "0x7118a3",
+            "rva": "0x311828",
+            "fileOffset": 2803752,
+            "size": 123,
+            "sha256": "ad17f102f2d3ab58b950136837c34786ff832cb56cd97dabb3f2782e869c978e",
+            "observation": "Invalidowneroutside0..7 returnsAItrue. ValidownerusesIsHumanbyteplayer+E2, notlocalhumanE1. Human=>false."
+          }
+        ],
+        "limits": [
+          "Staticon-disknativepathsanddeclaredERAAfterhookonly; nooriginalexecution, finalruntimepatchstate orpluginloadorder.",
+          "104mustnotbeintroducedasageneralenginelevelcapfromthisevidence. High-levelthresholdsuseint32accumulation andbinaryfloatinggrowth; overflow/nonmonotonicrangesandactualattainabilitynear104notfullyvalidated.",
+          "Header tableentry0=105isobserveddata, butitsotherconsumers/meaningnotreconstructed; notusedasproofofa105cap.",
+          "NativeHLbootstrapcallpatchandwrapperidentified; allpayloadsaroundprimarybyteincrementnotfullyaudited. Timingoflevelincrementandsecondarychoiceboundariesispositiveinstructionevidence.",
+          "AfterhookcompiledDLLbodywasnotisolated; matchingPascalfunction/address/declarationandDLLwholefiledigestretained. NoREA Evidence record.",
+          "Globalcounterbatchrequiresordinarynoninterleavedcallbacksandthresholdpredictionconsistentwithactualleveliterations. Script/pluginXPchangesduringdialogs,nestedotherherogainsorcancelledcustomlevelUIcanbreakthatassumption; notadmitted.",
+          "OW:I−1receivererrorbehaviorwasnotfullyreconstructed; sourceexplicitlyselectsNO_OWNERbranchandnativeZvsIsAiacceptsinvalidowners. Customownervaluesoutsideordinary−1/0..7notadmitted.",
+          "Randomartifactpool,classmaskandinventoryinsertionHE:A4notrevalidatedhere; count/timingcontractdoesnotproveeverygrantfindsroom."
+        ],
+        "filesModified": "Ignorednewreportdirectoryonly; no trackedfile,prototype,foreigndirtyfileorcontainerchanged."
+      }
+    },
+    "placement": {
+      "sha256": "0e38f2730024d0315be054b26bd852726b680e7132182df78c9cb85a8092162a",
+      "report": {
+        "scope": "Complément statique borné du contrat HE:A4 et de la provenance des champs du sélecteur UN:J6. Aucun original exécuté, aucune REA Evidence, aucune mutation suivie ou conteneur.",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Heroes.pas",
+            "size": 96807,
+            "sha256": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5"
+          },
+          {
+            "path": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "size": 77129,
+            "sha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+          },
+          {
+            "path": "work/downloads/era-level-artifacts126-selection/report.json",
+            "size": 17160,
+            "sha256": "3d9d0f153166efe77854d208e333723de18fa061f26c987671cc0d685da04a37"
+          }
+        ],
+        "findings": [
+          {
+            "question": "Flags1/1 : placement simple ou assemblage silencieux ?",
+            "status": "answered with explicit owner branches",
+            "answer": "A4 calls native give with assembly assistance enabled and completion/update flag enabled. It equips first. If the new equipped component completes a recipe using equipped items, AI owners auto-assemble silently. A controlled human may receive an assembly prompt if the recipe discovery bit was not previously set; only affirmative message result0x7805 invokes assembly. Humans with that bit already set are not silently auto-combined by this path. Therefore blanket silent auto-combine is incorrect."
+          },
+          {
+            "question": "Que fait le helper assemblage ?",
+            "status": "answered",
+            "answer": "It removes matching recipe components from equipped slots in descending slot order18..0 and equips the resulting combination artifact via normal equip helper. Backpack components are not considered by completion test or assembly helper. This is real inventory mutation, not only a notification or compatibility query."
+          },
+          {
+            "question": "Ordre équipement et sac plein ?",
+            "status": "answered",
+            "answer": "First compatible empty equipped slot0..18, then backpack fallback. Full backpack does not prevent equipping. If no compatible equipped slot and64bag entries, placement fails and A4 caller ignores the return. Selection pool remains consumed; no source retry/refund. No existing equipment replaced to make room."
+          },
+          {
+            "question": "Provenance ArtType/IsDisabled ?",
+            "status": "answered for initial native loader",
+            "answer": "Native44ca20 reads ARTRAITS.TXT through resource loader. It derives ArtType from column21 first-character code R/J/N/T/other, initializes IsDisabled=false for all144rows, then binary list marks exactly141,142,143 disabled. Recipe metadata is added later without changing ArtType or IsDisabled. These fields remain mutable afterwards."
+          },
+          {
+            "question": "Exclure tous les combinés par legalArtifact ?",
+            "status": "not justified as universal selector predicate",
+            "answer": "The selector itself has no combined-artifact test. Initial loader does not disable every combined artifact: only141..143 are fixed-disabled. Some map-version/default-ban paths restrict recipe results, especially legacy version0x15 and older format gates. A universal combined-artifact exclusion cannot replace actual IsDisabled, ArtType and persistent map-ban state, which can be changed by scripts/mods. For modern144bit restriction input, the full supplied restriction state matters."
+          },
+          {
+            "question": "Liste effective des classes pour les144IDs ?",
+            "status": "unresolved concrete resource rows",
+            "answer": "The authoritative ARTRAITS resource was not present as a loose file or named entry in the four supplied reference mod PAC indices inspected. The provided EXE artifact rows are initialized in BSS, not fully embedded class data. Actual resource override order and full rarity row values were not captured, so no guessed initial class list is supplied."
+          }
+        ],
+        "slotOrder": [
+          {
+            "slot": 0,
+            "name": "head"
+          },
+          {
+            "slot": 1,
+            "name": "shoulders"
+          },
+          {
+            "slot": 2,
+            "name": "neck"
+          },
+          {
+            "slot": 3,
+            "name": "right hand"
+          },
+          {
+            "slot": 4,
+            "name": "left hand"
+          },
+          {
+            "slot": 5,
+            "name": "torso"
+          },
+          {
+            "slot": 6,
+            "name": "right ring"
+          },
+          {
+            "slot": 7,
+            "name": "left ring"
+          },
+          {
+            "slot": 8,
+            "name": "feet"
+          },
+          {
+            "slot": 9,
+            "name": "misc1"
+          },
+          {
+            "slot": 10,
+            "name": "misc2"
+          },
+          {
+            "slot": 11,
+            "name": "misc3"
+          },
+          {
+            "slot": 12,
+            "name": "misc4"
+          },
+          {
+            "slot": 13,
+            "name": "ballista"
+          },
+          {
+            "slot": 14,
+            "name": "ammo cart"
+          },
+          {
+            "slot": 15,
+            "name": "first aid tent"
+          },
+          {
+            "slot": 16,
+            "name": "catapult"
+          },
+          {
+            "slot": 17,
+            "name": "spell book"
+          },
+          {
+            "slot": 18,
+            "name": "misc5"
+          }
+        ],
+        "flags": {
+          "argument2_firstFlag": "1 activates assembly assistance block. 0 bypasses that block, does not mean always auto-assemble.",
+          "argument3_secondFlag": "1 calls helper5f19b0 on GameMgr+1f89c after successful placement; iftrue invokes4f3370(0). No claim of exact frame/network repaint timing.",
+          "humanVsAi": "Heroes.pas TPlayer.IsHuman at+E2 corroborates branch. Controlledplayer helper4ce6e0 accounts for currenthuman/hotseat mode; concrete session state not observed.",
+          "discovery": "Owner bitset at+e8, indexed recipe; set after assemblyoffer path even on decline. Already-set skips fresh offer; AI fallback remains conditional IsHumanfalse."
+        },
+        "initialTables": {
+          "classDecode": {
+            "R": 16,
+            "J": 8,
+            "N": 4,
+            "T": 2,
+            "other": 1
+          },
+          "disabledIds": [
+            141,
+            142,
+            143
+          ],
+          "spellGivingIds": [
+            1,
+            128,
+            123,
+            124,
+            86,
+            87,
+            88,
+            89,
+            135
+          ],
+          "recipeUpdate": "ComboArtId on result, ComboArtPartId on components; no blanketdisabledwrite. Combos named129..140 in bundled constants, but actual recipe table loaded intoBSS is not suppliedasrawinitialrows."
+        },
+        "resourceSearchBoundary": {
+          "looseFiles": "Targeted reference tree filename query found no ARTRAITS loose file. A broader ignored work search was stopped without results; not treated as negative evidence.",
+          "pacIndices": [
+            {
+              "path": "Mods/WoG Scripts/Data/wog scripts.pac",
+              "entries": 2
+            },
+            {
+              "path": "Mods/Advanced Classes Mod/Data/advanced classes mod.pac",
+              "entries": 77
+            },
+            {
+              "path": "Mods/Advanced Classes Mod/Data/warmachines.pac",
+              "entries": 40
+            },
+            {
+              "path": "Mods/ERA Scripts/Data/ERA Scripts.pac",
+              "entries": 93
+            }
+          ],
+          "finding": "No ARTRAITS name in these four indices. Base-gameLOD and otheruninspectedmods not claimed absent."
+        },
+        "sourceReferences": [
+          {
+            "file": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm",
+            "lines": [
+              700,
+              704,
+              705,
+              706,
+              707,
+              708,
+              709,
+              710,
+              711,
+              712,
+              713,
+              714,
+              715,
+              716,
+              719,
+              720,
+              721,
+              722,
+              723,
+              724,
+              875,
+              886,
+              887,
+              888,
+              889
+            ],
+            "meaning": "19equipment slot identities and combo/exceptionartifact names."
+          },
+          {
+            "file": "work/downloads/era-kernel-source/Heroes.pas",
+            "lines": [
+              351,
+              365,
+              366,
+              1048,
+              1052,
+              1054,
+              1055,
+              1056
+            ],
+            "meaning": "Playerhumanflag andartifactlayout."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "A4 bridge flags",
+            "preferredVa": "0x716415",
+            "endExclusiveVa": "0x716445",
+            "rva": "0x316415",
+            "fileOffset": "0x2b1415",
+            "size": 48,
+            "sha256": "f97c38ed639973081b3b71a24042899db3a1a8cafc67e6c9943bd7be910ce0a4",
+            "observation": "Build artifact pair; push secondflag1, firstflag1, artifact pointer; call4e32e0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "give equip and completion test",
+            "preferredVa": "0x4e32fd",
+            "endExclusiveVa": "0x4e33a6",
+            "rva": "0xe32fd",
+            "fileOffset": "0xe32fd",
+            "size": 169,
+            "sha256": "973fcc773a7be95b96e0651e0b4fb65f01646aed658a33f4b9af370fd2a879ef",
+            "observation": "Equip4e2c70 first. For format>=2, new artifact ComboArtPartId!=-1 and owner0..7, copy required-component mask, subtract all19equipped IDs, test residualmask4e6730. Only equipped artifacts contribute; backpack not scanned."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "assembly prompt or automatic path",
+            "preferredVa": "0x4e33a6",
+            "endExclusiveVa": "0x4e34b1",
+            "rva": "0xe33a6",
+            "fileOffset": "0xe33a6",
+            "size": 267,
+            "sha256": "b256a68604d5004263f675419fa407b93fc850e14c39cdc5357b7621d122b1fe",
+            "observation": "Firstflag atEBP+c:0 skips assembly block. If1, controlledplayer equals owner and discoverybit absent, show dialog4f6c00; assemble4dc1a0 only if global6992d0+38==0x7805. Otherwise or afterbranch, AI owner IsHuman+e2==0 assembles silently; human with already-set discoverybit does not automatically assemble here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "discovery marking",
+            "preferredVa": "0x4e34b1",
+            "endExclusiveVa": "0x4e350f",
+            "rva": "0xe34b1",
+            "fileOffset": "0xe34b1",
+            "size": 94,
+            "sha256": "d75a12c88914aa072172a87f6c0777e1db3a5ef9c21bd55dfa3900184e44acc8",
+            "observation": "After offer/AI path, mark combination bit in owner+e8 even when human declined. Does not repeat offer for already-discovered combination on later acquisition."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "residual component mask test",
+            "preferredVa": "0x4e6730",
+            "endExclusiveVa": "0x4e674b",
+            "rva": "0xe6730",
+            "fileOffset": "0xe6730",
+            "size": 27,
+            "sha256": "821a09eb995f8d4c4b617f99285b9db853dcc6f5afc6b8cc2ab9f36e578d2e3f",
+            "observation": "Returns true if any of5maskdwords nonzero. No residual means complete equipped component set."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "assemble equipped components",
+            "preferredVa": "0x4dc1a0",
+            "endExclusiveVa": "0x4dc2d3",
+            "rva": "0xdc1a0",
+            "fileOffset": "0xdc1a0",
+            "size": 307,
+            "sha256": "2b314b297909d6d0165c80764d6e26a94b6d6a1fa367f75db8cf15af01b3e525",
+            "observation": "Copy recipe requiredmask; for position-1 scan equipped slots18..0, remove each matching component through4e2e40, clear itsmaskbit; then equip recipe resulting artifact via4e2c70(result,-1). No bag scan, no backpackspace requirement in this helper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "fit slot order and write",
+            "preferredVa": "0x4e2c70",
+            "endExclusiveVa": "0x4e2cd2",
+            "rva": "0xe2c70",
+            "fileOffset": "0xe2c70",
+            "size": 98,
+            "sha256": "13497acf7c579bdf2c82bde8362678e17533c0912912c9e6510f30c440159808",
+            "observation": "position-1 searches0..18ascending via4e27c0; firstsuccess writes artifactpair. Does not replace existing equipment."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "bag fallback and secondflag",
+            "preferredVa": "0x4e35a9",
+            "endExclusiveVa": "0x4e3619",
+            "rva": "0xe35a9",
+            "fileOffset": "0xe35a9",
+            "size": 112,
+            "sha256": "65513ba0cd6703beece5f8f139ddceecdbaf4747ca870c0bc7802eb826432420",
+            "observation": "Failed equip invokes bag insertion4e3200(-1); failure returns without success-tail. After success, secondflagEBP+10 when1 invokes5f19b0(GameMgr+1f89c), and iftrue4f3370(0); returnsAL1. Exact downstream display/network effect not named here."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "bag capacity",
+            "preferredVa": "0x4e3200",
+            "endExclusiveVa": "0x4e32d1",
+            "rva": "0xe3200",
+            "fileOffset": "0xe3200",
+            "size": 209,
+            "sha256": "01a36dcc38191a3f2126378deb518757667d757620d5df3fef9600878971c96d",
+            "observation": "Reject count>=64 and IDs3..6; otherwise locate firstfreebag entry and storepair+increment count. Signedcorruptcount behavior not assessed."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "ARTRAITS resource lookup",
+            "preferredVa": "0x44ca20",
+            "endExclusiveVa": "0x44ca65",
+            "rva": "0x4ca20",
+            "fileOffset": "0x4ca20",
+            "size": 69,
+            "sha256": "dc999b843fed6d0f152c93c9aa2e23d9dea0bd97f2b1096581894bfcc000b773",
+            "observation": "Load stringartraits.txt at660b80 through55c2b0; failure exits. Resource table parser, not hard-coded rarity rows."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "ARTRAITS class decode and defaults",
+            "preferredVa": "0x44cc41",
+            "endExclusiveVa": "0x44ccb5",
+            "rva": "0x4cc41",
+            "fileOffset": "0x4cc41",
+            "size": 116,
+            "sha256": "fd9eea605c465b4589eae43975b83f447b39878a3a7640bc21b01dd9e42476b8",
+            "observation": "Table row col21ptr(+54) firstchar: R16,J8,N4,T2,other1; initialize IsDisabled0,ComboArtId-1,ComboArtPartId-1,GivesSpell0 for144rows."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "fixed disabled and spell lists",
+            "preferredVa": "0x44cccb",
+            "endExclusiveVa": "0x44cd01",
+            "rva": "0x4cccb",
+            "fileOffset": "0x4cccb",
+            "size": 54,
+            "sha256": "b008fb4f8b6b10db96733091bfd897a10f9ead20fa8866fbeb648657d2b07e93",
+            "observation": "Set IsDisabled1 for IDs in63b98c..63b998; separately GivesSpell1 for63b998..63b9bc. Lists are different predicates."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "binary exception lists",
+            "preferredVa": "0x63b98c",
+            "endExclusiveVa": "0x63b9bc",
+            "rva": "0x23b98c",
+            "fileOffset": "0x23b98c",
+            "size": 48,
+            "sha256": "b0dea1e391bde98cd3bea5448008041ee370c7272f2361502f7a9fdc8c86ac83",
+            "observation": "Disabled=[141,142,143]. GivesSpell=[1,128,123,124,86,87,88,89,135]."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "recipe metadata load",
+            "preferredVa": "0x44cd01",
+            "endExclusiveVa": "0x44cd9c",
+            "rva": "0x4cd01",
+            "fileOffset": "0x4cd01",
+            "size": 155,
+            "sha256": "f8555909372ce0b933e0f015e0afe3908b85fc75a9e206fc6258f1b51208dc02",
+            "observation": "For12recipe records, write resulting artifact ComboArtId, calculate combined cost fromcomponents; set eachcomponent ComboArtPartId. Does not change IsDisabled or ArtType in this loop."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "map format defaults",
+            "preferredVa": "0x4c21a0",
+            "endExclusiveVa": "0x4c2200",
+            "rva": "0xc21a0",
+            "fileOffset": "0xc21a0",
+            "size": 96,
+            "sha256": "5823ab903340136dfc7217839a05a8c9e9ab1918d2592820fce5e140d2f03a00",
+            "observation": "Persistentbans initialized from IsDisabled. Format<2 bans127..143 ifformat0,129..143 ifformat1. Thisformatfield is distinct from mapfileversion+1f86c."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "map version restriction dispatch",
+            "preferredVa": "0x4c2200",
+            "endExclusiveVa": "0x4c22dd",
+            "rva": "0xc2200",
+            "fileOffset": "0xc2200",
+            "size": 221,
+            "sha256": "2dac4f2a7ec265e7a94867da6896f2d985ecda2f80d72ecb4aba14331b522036",
+            "observation": "Mapfileversion0x0e skips thisallowed-artifactreadingblock. Version0x15 takes17byte legacyallowedbitset path; others take18bytes covering144artifactbits. Existingban combined OR-wise with resultingrestrictionpredicate."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "legacy combination restrictions",
+            "preferredVa": "0x4c22dd",
+            "endExclusiveVa": "0x4c23e9",
+            "rva": "0xc22dd",
+            "fileOffset": "0xc22dd",
+            "size": 268,
+            "sha256": "eca2f3fba00ed94e00ec18ca65d7fd9b691fdb1aa889b96e5e5f5dbb0eedf6e3",
+            "observation": "For mapversion0x15, initialrestrictionbitset[i]=(ComboArtId!=-1), then overrides indices0..128 with17byte mapbitset entries. Assembled recipeIDs beyond128 retain restrictiontrue. Modernfull144bit branch uses providedbits for all144. Fullsourceflag polarity not renamed beyond testedrestrictionpredicate."
+          }
+        ],
+        "limits": [
+          "Static reconstruction only; actual resource contents, plugin load order and original live inventory/consent not observed.",
+          "Full equip compatibility helper4e27c0 has locked-slot/combination constraints beyond basic empty-slot/allowedposition test. Earlier report preserved those limits; this complement establishes ordering and assembly behavior, not every occupancy edge case.",
+          "Resource parsing establishes exact initial class decoding and fixed-disabled exception list, not the effective final flags after ERA scripts or plugins mutate the table.",
+          "Modern144bit map restriction polarity/application was inspected through tested stored predicate; complete map writer/campaign/quest interaction remains outside this pass. Do not derive a universal per-ID ban list for all maps.",
+          "Previous reports and all tracked files left untouched. Direct hook audit of selection/give path is retained from prior report; no new external plugins analyzed."
+        ]
+      }
+    }
+  },
+  "contract": {
+    "sourceArtifactIds": [
+      0,
+      143
+    ],
+    "sharedMutablePool": true,
+    "fixedDisabled": [
+      141,
+      142,
+      143
+    ],
+    "ordinaryClassMask": 30,
+    "emptyRequestedClass": [
+      "reset matching used entries from persistent map bans",
+      "retry requested class",
+      "fallback to ordinary mask30"
+    ],
+    "allOrdinaryArtifactsBanned": "Original retries without a bounded result",
+    "humanFirstGainedLevelInclusive": true,
+    "humanLastCountedLevel": 104,
+    "humanClassFormula": "1 << clamp(gainedLevel / 6 + 1, 1, 4)",
+    "aiAndNoOwnerClassFormula": "1 << clamp((gainedLevel >> 1) / 6 + 1, 1, 4)",
+    "humanLevel1To4RewardCount": 3,
+    "humanGrantTiming": "after final secondary skill decision in the counted batch",
+    "aiGrantTiming": "inside gained-level hook, before primary application",
+    "equipmentSlotOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "backpackCapacity": 64,
+    "summaryIconsPerPage": 8,
+    "assemblySourceIds": [
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140
+    ],
+    "humanAssemblyOncePerOwnerAndCombination": true,
+    "aiAndNoOwnerAssembleAutomatically": true,
+    "failedPlacement": "draw remains consumed and its source identity is still included in the human summary"
+  },
+  "nativeScope": [
+    "No original executable run and no REA Evidence. These reports are bounded static PE/Pascal/ERM observations.",
+    "Native prototype classes and map allowance are used. Effective per-ID ARTRAITS bytes were not recovered from the inspected four archives; complete original class-table comparison remains open.",
+    "The Native random stream is retained. Source pool ordering, depletion, class reset, fixed bans and original IDs are adapted; exact original random-stream comparison remains open.",
+    "UN:J6 admits positive ordinary masks within30. Special class1 and the original all-banned infinite retry are not admitted.",
+    "Native placement keeps native compatibility/assembly checks, original slot order and the source64 backpack limit. Failed placement remains consumed. Native foreign artifacts and hard-filtered consumers retain explicit native extensions.",
+    "Native source combinations129..140 use equipped components; human decisions are persisted per owner/combination. Ordinary native assembly decisions share stable artifact keys.",
+    "Source human counters are replaced by per-hero journals for simultaneous players, saved skill choices, assembly prompts, summary pages and visit/movement continuations. Chained original HL/AfterHL scripts are not admitted by this adapter.",
+    "Primary application precedes the Native HeroLevelUp packet. Restored choices replay the packet without applying the already saved level a second time.",
+    "Signed experience overflow, wrapped original experience thresholds, intertwined callbacks and extreme-level behavior remain outside the normal-domain oracle.",
+    "Native foreign heroes/artifacts are extensions; cross-registry behavior of the new pool uses the existing ArtifactID serializer, but a foreign-registry runtime comparison has not been claimed.",
+    "Full Henchmen, WoG, mithril and separate Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted."
+  ]
+}

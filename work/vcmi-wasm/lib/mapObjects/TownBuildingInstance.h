@@ -9,6 +9,7 @@
  */
 
 #pragma once
+#include "../serializer/ESerializationVersion.h"
 
 #include "IObjectInterface.h"
 #include "../rewardable/Interface.h"
@@ -51,7 +52,7 @@ private:
 
 class DLL_LINKAGE TownRewardableBuildingInstance : public TownBuildingInstance, public Rewardable::Interface
 {
-	/// reward selected by player, no serialize
+	/// Reward selected by player, including a suspended level-up continuation.
 	ui16 selectedReward = 0;
 	std::set<ObjectInstanceID> visitors;
 
@@ -86,6 +87,7 @@ public:
 		h & static_cast<TownBuildingInstance&>(*this);
 		h & static_cast<Rewardable::Interface&>(*this);
 		h & visitors;
+		if(h.version >= ESerializationVersion::GOONK_WOG_LEVEL_ARTIFACTS)h & selectedReward;
 	}
 };
 

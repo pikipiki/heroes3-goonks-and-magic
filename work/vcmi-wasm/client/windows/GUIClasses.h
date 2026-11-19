@@ -172,6 +172,7 @@ class CLevelWindow : public CWindowObject
 public:
 	CLevelWindow(const CGHeroInstance *hero, PrimarySkill pskill, std::vector<SecondarySkill> &skills, std::function<void(ui32)> callback);
 
+	const CGHeroInstance * getMobileHero() const {return hero;}
 	void close() override;
 };
 

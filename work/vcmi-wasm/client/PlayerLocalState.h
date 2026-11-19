@@ -50,12 +50,15 @@ class PlayerLocalState
 	PlayerSpellbookSetting spellbookSettings;
 
 	SpellID currentSpell;
+	std::set<ArtifactID> ignoredArtifactAssemblies;
 
 	void synchronizeState();
 public:
 
 	explicit PlayerLocalState(CPlayerInterface & owner);
 
+	bool assemblyWasSeen(ArtifactID id) const {return ignoredArtifactAssemblies.count(id)!=0;}
+	void rememberAssembly(ArtifactID id){ignoredArtifactAssemblies.insert(id);synchronizeState();}
 	bool isHeroSleeping(const CGHeroInstance * hero) const;
 	void setHeroAsleep(const CGHeroInstance * hero);
 	void setHeroAwaken(const CGHeroInstance * hero);

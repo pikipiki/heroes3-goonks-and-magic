@@ -95,6 +95,7 @@
 
 #include "../lib/spells/CSpellHandler.h"
 #include "era/SourceCampaignProcessor.h"
+#include "era/EraLevelArtifactRuntime.h"
 #include "era/EraHenchmanPrompts.h"
 
 #include <vstd/RNG.h>
@@ -157,7 +158,9 @@ IGameServer & CGameHandler::gameServer() const
 
 void CGameHandler::levelUpHero(const CGHeroInstance * hero, SecondarySkill skill)
 {
+	era_compat::source_artifacts::forgetChoice(*this,*hero);
 	changeSecSkill(hero, skill, 1, ChangeValueMode::RELATIVE);
+	if(!era_compat::source_artifacts::afterLevel(*this,*hero))return;
 	expGiven(hero);
 }
 
@@ -171,6 +174,7 @@ void CGameHandler::levelUpHero(const CGHeroInstance * hero)
 		return;
 	}
 
+	era_compat::source_artifacts::beforeLevel(*this,*hero);
 	// give primary skill
 	logGlobal->trace("%s got level %d", hero->getNameTranslated(), hero->level);
 	auto primarySkill = randomizer->rollPrimarySkillForLevelup(hero);
@@ -191,6 +195,7 @@ void CGameHandler::levelUpHero(const CGHeroInstance * hero)
 	if (hlu.skills.size() == 0)
 	{
 		sendAndApply(hlu);
+		if(!era_compat::source_artifacts::afterLevel(*this,*hero))return;
 		levelUpHero(hero);
 	}
 	else if (hlu.skills.size() == 1 || !hero->getOwner().isValidPlayer())
@@ -200,6 +205,7 @@ void CGameHandler::levelUpHero(const CGHeroInstance * hero)
 	}
 	else if (hlu.skills.size() > 1)
 	{
+		era_compat::source_artifacts::rememberChoice(*this,*hero,hlu);
 		auto levelUpQuery = std::make_shared<CHeroLevelUpDialogQuery>(this, hlu, hero);
 		queries->addQuery(levelUpQuery);
 		//level up will be called on query reply
@@ -349,6 +355,7 @@ void CGameHandler::levelUpCommander(const CCommanderInstance * c)
 
 void CGameHandler::expGiven(const CGHeroInstance *hero)
 {
+	if(era_compat::source_artifacts::resumeLevel(*this,*hero))return;
 	if (hero->gainsLevel())
 		levelUpHero(hero);
 	else if (hero->getCommander() && hero->getCommander()->gainsLevel())
@@ -689,6 +696,7 @@ void CGameHandler::onAdvInterfaceReady(PlayerColor player)
  // Restored source queries have already been shown. Kicking a new garrison
  // query here would treat readiness as its answer and discard unclaimed units.
  if(sourceCampaigns->onReady(player))return;
+ if(era_compat::source_artifacts::resumePlayer(*this,player))return;
 
 	logGlobal->trace("AdvInterfaceReady received for player %s", player);
 

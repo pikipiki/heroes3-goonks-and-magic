@@ -155,6 +155,11 @@ void TownRewardableBuildingInstance::blockingDialogAnswered(IGameEventCallback &
 
 void TownRewardableBuildingInstance::grantReward(IGameEventCallback & gameEvents, ui32 rewardID, const CGHeroInstance * hero) const
 {
+    const int building=getBuildingType().getNum();
+    if(building<0||building>65535||rewardID>65535)throw std::runtime_error("Town reward selection exceeds saved property range");
+    const uint32_t selected=(uint32_t(building)<<16)|rewardID;
+    gameEvents.setObjPropertyValue(town->id,ObjProperty::REWARD_SELECT,static_cast<int32_t>(selected));
+
 	grantRewardBeforeLevelup(gameEvents, configuration.info.at(rewardID), hero);
 	
 	// hero is not blocked by levelup dialog - grant remainder immediately

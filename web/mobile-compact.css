@@ -127,12 +127,28 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 /* Native quest text remains scrollable while its reply is being processed. */
 #mobile-app .dialog-presentation[data-kind=source-campaign]{touch-action:pan-y;top:0;bottom:0;height:auto;max-height:none;transform:none;grid-template-rows:auto minmax(0,1fr) auto}
 #mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-copy{touch-action:pan-y;overscroll-behavior:contain;overflow-y:auto;max-height:none;justify-content:flex-start}
-#mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-choices{display:none}
+#mobile-app .dialog-presentation[data-kind=source-campaign]:not([data-native-rewards=true]) .dialog-choices{display:none}
 #mobile-app .dialog-presentation[data-kind=source-campaign] footer{grid-row:3}
 #mobile-app .dialog-presentation[data-kind=source-campaign][data-waiting] button:disabled{opacity:1;cursor:wait}
 @container goonk-viewport (orientation:landscape){
  #mobile-app .dialog-presentation[data-kind=source-campaign] .dialog-copy{grid-column:1;grid-row:1/-1;align-self:stretch;font-size:clamp(15px,2vw,20px)}
  #mobile-app .dialog-presentation[data-kind=source-campaign] footer{grid-column:2;grid-row:3}
+}
+
+/* Native artifact grants keep their real component icons and one reply action. */
+#mobile-app .dialog-presentation[data-native-rewards=true]{top:0;bottom:0;height:auto;max-height:none;transform:none;grid-template-rows:auto auto minmax(0,1fr) auto;touch-action:pan-y}
+#mobile-app .dialog-presentation[data-native-rewards=true]>.dialog-copy{grid-column:1;grid-row:2;max-height:25dvh;overflow-y:auto;touch-action:pan-y}
+#mobile-app .dialog-presentation[data-native-rewards=true]>.dialog-choices{display:grid;grid-column:1;grid-row:3;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(112px,auto);align-content:start;gap:8px;padding:8px;min-height:0;overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain}
+#mobile-app .dialog-presentation[data-native-rewards=true] .dialog-choice{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;padding:8px;gap:6px}
+#mobile-app .dialog-presentation[data-native-rewards=true] .dialog-choice canvas{width:64px;height:64px;flex:0 0 64px}
+#mobile-app .dialog-presentation[data-native-rewards=true] .dialog-choice strong{font-size:14px;line-height:1.25;overflow-wrap:anywhere}
+#mobile-app .dialog-presentation[data-native-rewards=true]>footer{grid-column:1;grid-row:4}
+@container goonk-viewport (orientation:landscape){
+ #mobile-app .dialog-presentation[data-native-rewards=true]{grid-template-columns:minmax(0,1fr) minmax(168px,26%);grid-template-rows:auto minmax(0,1fr) auto}
+ #mobile-app .dialog-presentation[data-native-rewards=true]>header{grid-column:2;grid-row:1}
+ #mobile-app .dialog-presentation[data-native-rewards=true]>.dialog-copy{grid-column:2;grid-row:2;max-height:none;align-self:stretch}
+ #mobile-app .dialog-presentation[data-native-rewards=true]>.dialog-choices{grid-column:1;grid-row:1/-1;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+ #mobile-app .dialog-presentation[data-native-rewards=true]>footer{grid-column:2;grid-row:3}
 }
 
 #mobile-app .campaign-dialog-form{display:grid;gap:16px;min-width:0;touch-action:pan-y}

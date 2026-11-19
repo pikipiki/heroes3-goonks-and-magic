@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
+function fixture({levelArtifactVisitFixture=false,artifactGrantFixture=null,artifactPoolFixture=null,fogFixture=null,eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -145,6 +145,23 @@ if opts['artifactFixture']:
  if f.get('ai'):
   h['options']['owner']='blue';h['options']['patrolRadius']=1;artifact['x']=9
  objects.append(artifact)
+if opts['levelArtifactVisitFixture']=='object':
+ objects.append({'type':'tum-era:levelArtifactVisitReward','subtype':'tum-era:levelArtifactVisitReward','instanceName':'levelArtifactVisitReward','x':10,'y':11,'l':0,'template':{'animation':'AVTchst0.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{}})
+elif opts['levelArtifactVisitFixture']:
+ town=next(o for o in objects if o['instanceName']=='goonkTown');town['options']['buildings']['allOf']+=['core:special1','core:special2']
+if opts['artifactGrantFixture']:
+ f=opts['artifactGrantFixture']
+ for o in objects:
+  if o['instanceName']=='goonkHero' or (o['instanceName']=='enemyHenchmanHero' and f.get('ai')):
+   if o['instanceName']=='enemyHenchmanHero':o.update({'x':30,'y':30});o['options']['patrolRadius']=0
+   if o['instanceName']=='goonkHero' and f.get('ai'):continue
+   if f.get('fullBackpack'):
+    o['options']['artifacts']['backpack']=['core:centaurAxe']*64
+    o['options']['artifacts']['rightHand']='core:centaurAxe'
+   o['options']['artifacts'].update({'head':'core:helmOfHeavenlyEnlightenment','neck':'core:celestialNecklaceOfBliss','torso':'core:armorOfWonder','feet':'core:sandalsOfTheSaint','leftHand':'core:lionsShieldOfCourage'})
+if opts['artifactGrantFixture'] and opts['artifactGrantFixture'].get('nativeAssembly'):
+ objects.append({'type':'core:artifact','subtype':'core:swordOfJudgement','instanceName':'nativeAssemblySword','x':10,'y':11,'l':0,'template':{'animation':'AVA0035.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'artifact':'core:swordOfJudgement'}})
+if opts['artifactPoolFixture']:objects=[o for o in objects if o['instanceName']!='henchmenTrainingGuard']
 if opts['fogFixture']:
  import copy
  objects=[o for o in objects if o['instanceName']!='henchmenTrainingGuard']
@@ -187,6 +204,10 @@ if opts['fogFixture']:
  header['players']['tan']=copy.deepcopy(header['players']['blue']);header['players']['tan']['mainTown'].update({'x':29,'y':19})
  if opts['fogFixture'].get('allied'):header['teams']=[['red','blue'],['tan']]
  for day in [2,3]:header['events'].append({'name':'private fog day '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+if opts['artifactPoolFixture']:
+ header['allowedArtifacts']={'anyOf':opts['artifactPoolFixture']['allowed']}
+ header['events'].append({'name':'private artifact pool fallback','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+ if opts['artifactPoolFixture'].get('levelDay3'):header['events'].append({'name':'private level reward legacy witness','firstOccurrence':2,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['3'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 entries['header.json']=json.dumps(header).encode()
 for name in ['english.json','french.json']:
  text=json.loads(entries[name]);text['mapName']='000 - Henchmen native validation';entries[name]=json.dumps(text).encode()
@@ -195,10 +216,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
+`,JSON.stringify({levelArtifactVisitFixture,artifactGrantFixture,artifactPoolFixture,fogFixture,eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
 }
 
-async function boot({save,viewport,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,viewport,levelArtifactChoice=null,levelArtifactsConfigured=false,fogChoice=null,fogConfigured=false,noShootingFixture=null,noShootingChoice=null,noShootingConfigured=false,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
@@ -212,7 +233,7 @@ async function boot({save,viewport,fogChoice=null,fogConfigured=false,noShooting
  const growthDifficulty=growthChoice===null?null:readJsonc('work/vcmi-wasm/config/difficulty.json');
  if(growthDifficulty)for(const rule of Object.values(growthDifficulty.ai))if(rule.resources)for(const key of Object.keys(rule.resources))rule.resources[key]=0;
  if(growthDifficulty&&options.eighthUpgradeFixture?.paid)for(const rule of Object.values(growthDifficulty.human))if(rule.resources)rule.resources.gold=1000000;
- await page.addInitScript(({fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
+ await page.addInitScript(({levelArtifactVisitFixture,artifactPoolFixture,levelArtifactsConfigured,fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -274,6 +295,23 @@ async function boot({save,viewport,fogChoice=null,fogConfigured=false,noShooting
      manifest.settings.combat.layouts.default={tacticsAllowed:false,obstaclesAllowed:false,attackerCommander:137,defenderCommander:149,attackerUnits:attacker,defenderUnits:defender,attackerUnitsLoose:Array.from({length:7},()=>attacker),attackerUnitsTight:Array.from({length:7},()=>attacker),defenderUnitsLoose:Array.from({length:7},()=>defender),defenderUnitsTight:Array.from({length:7},()=>defender)};
     }
     if(fogFixture){value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json',JSON.stringify({mapRules:{120:fogConfigured}}));}
+    if(levelArtifactVisitFixture==='object'){
+     const root='/home/web_user/.local/share/vcmi/Mods/tum-era/content/';const name='config/level-artifact-object-private.json';manifest.objects=[...(manifest.objects||[]),name];
+     value.FS.writeFile(root+name,JSON.stringify({levelArtifactVisitReward:{name:'Private level reward',handler:'configurable',types:{levelArtifactVisitReward:{name:'Private level reward',visitMode:'hero',selectMode:'selectFirst',showInInfobox:true,rewards:[{limiter:{heroLevel:99},manaPoints:99},{heroExperience:3200,manaPoints:7,removeObject:true}]}}}}));
+    }else if(levelArtifactVisitFixture){
+     const root='/home/web_user/.local/share/vcmi/Mods/tum-era/content/';const name='config/level-artifact-visit-private.json';manifest.factions=[...(manifest.factions||[]),name];
+     const configuration=rewards=>({visitMode:'hero',selectMode:'selectFirst',showInInfobox:true,rewards});
+     value.FS.writeFile(root+name,JSON.stringify({'core:castle':{town:{buildings:{special1:{configuration:configuration([{limiter:{heroLevel:99},manaPoints:99},{heroExperience:3200,manaPoints:7}])},special2:{configuration:configuration([{manaPoints:11}])}}}}}));
+    }
+    if(artifactPoolFixture){
+     const root='/home/web_user/.local/share/vcmi/Mods/tum-era/content/';
+     value.FS.writeFile(root+'config/wog-map-rules.json',JSON.stringify({mapRules:{126:levelArtifactsConfigured}}));
+     const name='config/artifact-pool-private.json';manifest.artifacts=[...(manifest.artifacts||[]),name];
+     const patches={};for(const id of ['core:centaurAxe','core:blackshardOfTheDeadKnight','core:greaterGnollsFlail'])patches[id]={class:'TREASURE'};
+     if(artifactPoolFixture.minor)patches['core:ogresClubOfHavoc']={class:'MINOR'};
+     patches['core:angelicAlliance']={class:'RELIC'};patches['wake-of-gods.level8units:magicWand']={class:'RELIC'};
+     value.FS.writeFile(root+name,JSON.stringify(patches));
+    }
     if(scriptProgram){
      const directory='/home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns/';
      const registry=JSON.parse(value.FS.readFile(directory+'registry.json',{encoding:'utf8'}));
@@ -311,7 +349,7 @@ async function boot({save,viewport,fogChoice=null,fogConfigured=false,noShooting
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{fogFixture:options.fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
+ },{levelArtifactVisitFixture:options.levelArtifactVisitFixture,artifactPoolFixture:options.artifactPoolFixture,levelArtifactsConfigured,fogFixture:options.fogFixture,fogChoice,fogConfigured,noShootingFixture,noShootingChoice,noShootingConfigured,eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -340,6 +378,10 @@ async function boot({save,viewport,fogChoice=null,fogConfigured=false,noShooting
    await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
   }
   if(noShootingFixture?.experience===false){await command(109,1,0);await wait(()=>goonkMobileState.wogOptions[1]===0);}
+  if(levelArtifactChoice!==null){
+   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="29"][value="${levelArtifactChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[29]===value,levelArtifactChoice);
+  }
   if(fogChoice!==null){
    const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
    const choice=form.locator(`input[data-wog-option="28"][value="${fogChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[28]===value,fogChoice);
@@ -363,7 +405,7 @@ async function boot({save,viewport,fogChoice=null,fogConfigured=false,noShooting
   else if(desktop)await page.locator('[data-ui=begin]').click();
   else await page.locator('[data-ui=begin]').tap();
  }
- await wait(kind=>goonkMobileState.mode==='map'&&goonkMobileState.turn||kind&&goonkMobileState.mode==='dialog'&&goonkMobileState.dialogKind===kind,expectedDialog);
+ await wait(kind=>goonkMobileState.mode==='map'&&goonkMobileState.turn||kind&&goonkMobileState.mode==='dialog'&&(kind==='any'||goonkMobileState.dialogKind===kind),expectedDialog);
 }
 
 async function sheet(){
@@ -409,6 +451,30 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='artifact-native-assembly'){
+  const {runNativeAssembly}=await import('./wog-source-artifact-native-assembly-cases.mjs');
+  await runNativeAssembly({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
+ if(process.env.CASES==='artifact-grant-capacity'){
+  const {runArtifactCapacity}=await import('./wog-source-artifact-capacity-cases.mjs');
+  await runArtifactCapacity({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
+ if(process.env.CASES==='level-artifact-visit'){
+  const {runLevelArtifactVisit}=await import('./wog-map-level-artifact-visit-cases.mjs');
+  await runLevelArtifactVisit({boot,sheet,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
+ if(process.env.CASES==='level-artifacts'){
+  const {runLevelArtifacts}=await import('./wog-map-level-artifact-cases.mjs');
+  await runLevelArtifacts({boot,sheet,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
+ if(process.env.CASES==='artifact-grants'){
+  const {runArtifactGrants}=await import('./wog-source-artifact-grant-cases.mjs');
+  await runArtifactGrants({boot,sheet,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
+ if(process.env.CASES==='artifact-pool'){
+  const {runArtifactPool}=await import('./wog-source-artifact-pool-cases.mjs');
+  await runArtifactPool({boot,state,command,wait,page:()=>page,report,output,readCompletedNativeSave});
+ }
  if(process.env.CASES==='darkness'){
   const {runDarkness}=await import('./wog-map-darkness-cases.mjs');
   await runDarkness({boot,state,command,wait,approachEnemy,page:()=>page,report,output,readCompletedNativeSave});

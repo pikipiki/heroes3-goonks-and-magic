@@ -7,26 +7,26 @@
   "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
   "sourceBaseCommit": "c8e1b498035a0c3394a1734ee188fd386c7afe11",
   "sourceBindings": {
-    "docs/era-compatibility.md": "a8ceef89e80f0b2510b1f1a8abdc2fee77635c8f3920318ca562980108719c65",
-    "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
-    "scripts/era-bridge/gameplay/map-rules.json": "6b9dda83c190dcd6dcdeaba4abe4d840565724cb0fbe8eeb2cc2e4ba5a038f84",
+    "docs/era-compatibility.md": "e1d587072c17c5f2bd63941cf647dd74db6310fd1fdb20f34c4229f333a5a0b9",
+    "docs/era-gameplay-port.md": "231e5587f9c3802b07abb25a23a2110443cd420405960279bb5f387459ebc648",
+    "scripts/era-bridge/gameplay/map-rules.json": "ff6fe237ba50d812352ef5643ad6c3384df71f9c98b09fa7c56f81bc44ff666a",
     "scripts/era-bridge/gameplay/mithril.json": "a5471a115a6c8a16a96e7c4b5996c47d076ed9cba3e1570171e2d3508fdc7f08",
     "tests/era-mithril-mine-rules-native.test.mjs": "761a3c0cb275226beb7d5e0d4952da94ae3df42e02637fccb5985884bc480a37",
     "tests/era-mithril-mine-tiles.test.mjs": "03c8f28d64de048021b374a3ddc8c95fda22ac078b1b4024bfc756d5873606a4",
     "tests/fixtures/era-gameplay/mithril-mine-tiles-reference.json": "4d1e51bf1b62024c189ac8eae38a1c81c0201ee2f2db23164e0c4c4ea6bd34b4",
     "tests/native/EraMithrilMineRules.test.cpp": "018d2ea0c0b294933c2be40ee2988b8ced0becf167996cc338f51d13b5e10013",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "9d314912167506327040cbadf8dba14f9af1f97f3e854c7da0bc0da1702f5627",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a5e38ccf2ddb993b861520d718df1698dfe55d19eae1e6d61a0f5da2fb79495a",
     "work/browser-tests/wog-map-double-artifacts-cases.mjs": "f0fb6687e4f6ed29e144c0106cb771c32c90fa1ad4a3b024be1bd162887463db",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-mithril-mine-tiles-cases.mjs": "a813f7e49026cb93b2eb28e30b039e87f107df4e2adac46927d17acf98d2ac7e",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
     "work/vcmi-wasm/lib/era/EraMithrilMineRules.h": "a92a758bf1ea4788e52aa26c02e8f513e79809fb8a3d9af7d35f2dc3ca30234e",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "99ebeb25d04dcbcb9166458f956e2141e80af0e3a2eef4a72b98ede2757f4d7b",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6f6b48c6c93a047fe2307e7805c2fb5dbf9ebb642aee9c459c2cd57f3253e1c3",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "68d8e06164439f81e429162628c474071d5df1f59fd3e1f039b8c0b5aa4e1d44",
     "work/vcmi-wasm/server/era/EraMithrilMineTiles.h": "9d7031177b303d85ead1a74927e485c43fe213b25281b2ef2f986ec5484ed722",
     "work/vcmi-wasm/server/era/EraMithrilRuntime.h": "249f533b8a4c3781f079d336557d3ce0bd2cbfdfc3d379df5f9a8885b75e3a9c",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d1c1d5e7173d4ae2d3efbe6588248563f359a4a27b628463205478acdaf17246"
   },
   "nativeBuild": {
@@ -1637,5 +1637,20 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44"
     },
     "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
+  },
+  "levelArtifactsRevalidation": {
+    "scope": "Historical native reports retained. Source126 shared rewards and saved choices/pages/visits, stable assembly memory and selected companions/classes/mithril/prices/map-rule regressions verified on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "6a2c4452442562a8c00cff58ad4ab7ee16d6bcca41a603eb591e6ed9c0db1647",
+      "scripts/era-bridge/gameplay/map-rules.json": "6b9dda83c190dcd6dcdeaba4abe4d840565724cb0fbe8eeb2cc2e4ba5a038f84",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "9d314912167506327040cbadf8dba14f9af1f97f3e854c7da0bc0da1702f5627",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "99ebeb25d04dcbcb9166458f956e2141e80af0e3a2eef4a72b98ede2757f4d7b",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6f6b48c6c93a047fe2307e7805c2fb5dbf9ebb642aee9c459c2cd57f3253e1c3",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4",
+      "docs/era-compatibility.md": "a8ceef89e80f0b2510b1f1a8abdc2fee77635c8f3920318ca562980108719c65"
+    },
+    "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
   }
 }

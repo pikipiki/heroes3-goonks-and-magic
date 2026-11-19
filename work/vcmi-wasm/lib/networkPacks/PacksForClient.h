@@ -8,6 +8,7 @@
  *
  */
 #pragma once
+#include "../serializer/ESerializationVersion.h"
 
 #include "ArtifactLocation.h"
 #include "Component.h"
@@ -1328,6 +1329,7 @@ struct DLL_LINKAGE HeroLevelUp : public Query
 	PlayerColor player;
 	ObjectInstanceID heroId;
 
+	bool alreadyApplied = false; // restored pending choice; never increment the level twice
 	PrimarySkill primskill = PrimarySkill::ATTACK;
 	std::vector<SecondarySkill> skills;
 
@@ -1340,6 +1342,8 @@ struct DLL_LINKAGE HeroLevelUp : public Query
 		h & heroId;
 		h & primskill;
 		h & skills;
+		if(h.version >= ESerializationVersion::GOONK_WOG_LEVEL_ARTIFACTS)
+			h & alreadyApplied;
 	}
 };
 

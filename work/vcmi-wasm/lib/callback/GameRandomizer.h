@@ -11,6 +11,7 @@
 
 #include "callback/IGameRandomizer.h"
 #include "CRandomGenerator.h"
+#include <optional>
 
 VCMI_LIB_NAMESPACE_BEGIN
 
@@ -87,6 +88,9 @@ class DLL_LINKAGE GameRandomizer final : public IGameRandomizer
 
 	/// Stores number of times each artifact was placed on map via randomization
 	std::map<ArtifactID, int> allocatedArtifacts;
+	std::set<ArtifactID> sourceArtifactUsed;
+	bool usesSourceArtifactPool() const;
+	ArtifactID rollArtifactPoolClass(int classes);
 
 	std::map<HeroTypeID, HeroSkillRandomizer> heroSkillSeed;
 
@@ -120,6 +124,7 @@ public:
 	ArtifactID rollArtifact(EArtifactClass type) override;
 	ArtifactID rollArtifact(std::set<ArtifactID> filtered) override;
 	std::vector<ArtifactID> rollMarketArtifactSet() override;
+	std::optional<int> rollOriginalArtifact(int classes);
 
 	vstd::RNG & getDefault() override;
 
@@ -140,6 +145,12 @@ public:
 			h & badLuckSeed;
 			h & combatAbilitySeed;
 		}
+        if(h.hasFeature(Handler::Version::GOONK_WOG_LEVEL_ARTIFACTS))h & sourceArtifactUsed;
+        else if(!h.saving)
+        {
+            sourceArtifactUsed.clear();
+            for(const auto & entry:allocatedArtifacts)if(entry.second>0)sourceArtifactUsed.insert(entry.first);
+        }
 	}
 };
 

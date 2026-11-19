@@ -10,6 +10,7 @@
 #pragma once
 
 #include "CQuery.h"
+#include "../../lib/json/JsonNode.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
 class CGTownInstance;
@@ -50,9 +51,14 @@ class TownBuildingVisitQuery final : public VisitQuery
 
 	const CGTownInstance * visitedTown;
 	std::vector<BuildingVisit> visitedBuilding;
+	BuildingID activeBuilding = BuildingID(-1);
+	bool processingBuilding = false;
+	bool restored = false;
 
 public:
 	TownBuildingVisitQuery(CGameHandler * owner, const CGTownInstance * Obj, std::vector<const CGHeroInstance *> heroes, std::vector<BuildingID> buildingToVisit);
+	TownBuildingVisitQuery(CGameHandler * owner, const JsonNode & saved);
+	JsonNode checkpoint() const;
 
 	void onAdded(PlayerColor color) final;
 	void onExposure(QueryPtr topQuery) final;

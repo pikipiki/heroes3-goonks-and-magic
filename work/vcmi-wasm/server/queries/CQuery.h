@@ -62,6 +62,7 @@ public:
 
 	/// called when this query is being removed and must report its result to currently visited object
 	virtual void notifyObjectAboutRemoval(const CGObjectInstance * visitedObject, const CGHeroInstance * visitingHero) const;
+	virtual bool completesHeroLevelUp() const { return false; }
 
 	virtual void setReply(std::optional<int32_t> reply);
 	virtual std::string toString() const;

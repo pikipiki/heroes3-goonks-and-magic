@@ -11,6 +11,8 @@
 #include "StdInc.h"
 #include "../lib/era/EraEye278Native.h"
 #include "ArtifactsUIController.h"
+#include "../lib/era/EraSourceArtifactGrantModel.h"
+#include "PlayerLocalState.h"
 #include "CPlayerInterface.h"
 
 #include "GameEngine.h"
@@ -69,6 +71,14 @@ bool ArtifactsUIController::askToAssemble(const CGHeroInstance * hero, const Art
 				{
 					if(checkIgnored)
 					{
+                        const IGameInfoCallback & cb=*GAME->interface()->cb;
+                        const bool originalRule=cb.gameState().getMap().eraGameplayState["mapRules"]["rules"]["126"].Bool();
+                        if(originalRule)
+                        {
+                            auto & local=*GAME->interface()->localState;
+                            if(local.assemblyWasSeen(combinedArt->getId())||era_compat::source_artifacts::seen(cb,hero->getOwner(),combinedArt->getId()))continue;
+                            local.rememberAssembly(combinedArt->getId());
+                        }
 						if(vstd::contains(ignoredArtifacts, combinedArt->getId()))
 							continue;
 						ignoredArtifacts.emplace(combinedArt->getId());

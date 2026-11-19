@@ -9,6 +9,7 @@
  */
 #include "StdInc.h"
 #include "PlayerLocalState.h"
+#include "../lib/CPlayerState.h"
 
 #include "../lib/callback/CCallback.h"
 #include "../lib/json/JsonNode.h"
@@ -326,6 +327,15 @@ void PlayerLocalState::synchronizeState()
 void PlayerLocalState::serialize(JsonNode & dest) const
 {
 	dest.clear();
+    // Startup rebuilds town/hero lists and synchronizes them before deserialize.
+    // Assembly refusals are game-long facts: preserve saved keys during that
+    // initialization instead of sending an empty replacement to the server.
+    std::set<std::string> assemblies;
+    for(const auto id:ignoredArtifactAssemblies)assemblies.insert(ArtifactID::encode(id.getNum()));
+    if(const auto * player=owner.cb->getPlayerState(owner.playerID,false);player&&player->playerLocalSettings)
+        for(const auto & value:(*player->playerLocalSettings)["ignoredArtifactAssemblies"].Vector())
+            if(value.isString())assemblies.insert(value.String());
+    for(const auto & key:assemblies){JsonNode value;value.String()=key;dest["ignoredArtifactAssemblies"].Vector().push_back(value);}
 
 	for (auto const * town : ownedTowns)
 	{
@@ -364,6 +374,10 @@ void PlayerLocalState::deserialize(const JsonNode & source)
 	assert(currentSelection != nullptr);
 	assert(!ownedTowns.empty() || !wanderingHeroes.empty());
 
+	ignoredArtifactAssemblies.clear();
+	for(const auto & value:source["ignoredArtifactAssemblies"].Vector())
+		if(value.isString()){const int id=ArtifactID::decode(value.String());if(id>=0)ignoredArtifactAssemblies.emplace(id);}
+		else if(value.isNumber()&&value.Integer()>=0)ignoredArtifactAssemblies.emplace(value.Integer());
 	auto oldHeroes = wanderingHeroes;
 	auto oldTowns = ownedTowns;
 

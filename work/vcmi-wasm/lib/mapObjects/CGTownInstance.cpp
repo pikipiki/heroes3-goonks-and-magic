@@ -92,6 +92,14 @@ void CGTownInstance::setPropertyDer(ObjProperty what, ObjPropertyID identifier)
 		case ObjProperty::ERA_CAVE_TOWN_DAMAGE:
 			updateAppearance();
 			break;
+        case ObjProperty::REWARD_SELECT:
+        {
+            const uint32_t selected=static_cast<uint32_t>(identifier.getNum());
+            const auto building=rewardableBuildings.find(BuildingID(selected>>16));
+            if(building==rewardableBuildings.end())throw std::runtime_error("Missing selected town reward building");
+            building->second->setProperty(ObjProperty::REWARD_SELECT,NumericID(selected&65535u));
+            break;
+        }
 		case ObjProperty::STRUCTURE_ADD_VISITING_HERO:
 			rewardableBuildings.at(identifier.getNum())->setProperty(ObjProperty::VISITORS, getVisitingHero()->id);
 			break;

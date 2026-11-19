@@ -4,6 +4,7 @@
 #include "EraCampaignWogOptions.h"
 #include "EraMithrilSiteTiles.h"
 #include "EraSourceFogRuntime.h"
+#include "EraSourceArtifactGrantRuntime.h"
 #include "../CGameHandler.h"
 #include "../processors/NewTurnProcessor.h"
 #include "../processors/TurnOrderProcessor.h"
@@ -931,6 +932,15 @@ struct SourceCampaignProcessor::Impl final:Host
  {
   require(pending.isStruct(),"suspension without a dialog");
   if(shown)return;
+  if(pending["kind"].String()=="artifact-grant")
+  {
+   const auto * h=hero(pending["heroType"].Integer());require(h!=nullptr,"artifact grant hero missing");
+   auto barrier=std::make_shared<CampaignExperienceQuery>(gh,h->getOwner(),[this](){shown.reset();pending=JsonNode();run();});
+   shown=barrier->queryID;gh.queries->addQuery(barrier);
+   era_compat::source_artifacts::give(gh,*h,pending["artifact"].Integer(),pending["spell"].Integer());
+   if(gh.queries->topQuery(h->getOwner())==barrier)gh.queries->popQuery(barrier);
+   return;
+  }
   if(pending["kind"].String()=="hero-experience")
   {
    const auto * h=gh.gameState().getHero(ObjectInstanceID(pending["hero"].Integer()));require(h!=nullptr,"experience hero missing");
@@ -1696,6 +1706,14 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
    }
    return Step::Continue;
   }
+  if(op.code=="J")
+  {
+   arity(op,3);require(args[0].access==Access::Read&&number(args[0])==6,"unadmitted source UN:J mode");
+   require(args[1].access==Access::Read&&args[2].access==Access::Write,"source artifact selection needs class flags and an output");
+   const int classes=number(args[1]);require(classes>0&&(classes&~30)==0,"unadmitted source random artifact class mask");
+   const auto selected=gh.randomizer->rollOriginalArtifact(classes);require(selected.has_value(),"no allowed original artifact remains");
+   value(*selected,args[2]);return Step::Continue;
+  }
   if(op.code=="K"||op.code=="M")
   {
    require(!args.empty()&&args[0].access==Access::Read,"calendar mode needs a value");
@@ -2217,8 +2235,19 @@ Step SourceCampaignProcessor::Impl::execute(const Command & c,const Operation & 
     return Step::Continue;
    }
    require(args[0].access==Access::Read,"artifact mode must be a value");const int mode=number(args[0]);
-   require(mode>=1&&mode<=3,"unsupported extended artifact mode");arity(op,mode==1?3:4);
+   require(mode>=1&&mode<=4,"unsupported extended artifact mode");arity(op,mode==1?3:mode==4?2:4);
    const auto & mapping=LIBRARY->mapFormat->getMapping(EMapFormat::WOG);
+   if(mode==4)
+   {
+    require(args[1].access==Access::Read,"automatic artifact grant needs an identity");
+    const auto spec=era_campaign_artifact::decode(number(args[1]));require(spec.has_value(),"unbound automatic artifact encoding");
+    if(era_compat::source_artifacts::human(gh,*h))
+    {
+     pending["kind"].String()="artifact-grant";pending["hero"].Integer()=h->id.getNum();pending["heroType"].Integer()=h->getHeroTypeID().getNum();
+     pending["artifact"].Integer()=spec->artifact;pending["spell"].Integer()=spec->spell;return Step::Suspend;
+    }
+    require(era_compat::source_artifacts::give(gh,*h,spec->artifact,spec->spell),"nonhuman artifact grant unexpectedly suspended");return Step::Continue;
+   }
    if(mode==1)
    {
     require(args[2].access==Access::Read,"artifact position must be a value");const int rawSlot=number(args[2]);

@@ -7,20 +7,20 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
     "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "0f0ceab5c9ffcf20117b03097fac56edb68ebe6f1aaa607a3e54128ee9a06d81",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6f6b48c6c93a047fe2307e7805c2fb5dbf9ebb642aee9c459c2cd57f3253e1c3",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "d7769006556fd913845b4a01c19b1efdc3a4cb197e746cc2afb57087ee367b80",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "93f8178f6d6b5e9b7039424d60f74815bda1e313796ac05496dfc8776500ba66",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "99ebeb25d04dcbcb9166458f956e2141e80af0e3a2eef4a72b98ede2757f4d7b",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "68d8e06164439f81e429162628c474071d5df1f59fd3e1f039b8c0b5aa4e1d44",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "029cc2309d0049a4971b99530ca3bd168f95e6b0e0fe953511a3e451c3fd4e74",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "ccb161f89717ff749fb15dcb0d9f56c0eb16b7d680cf830170e9ec6f5796f2f1",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "e0980937c9933a2ea55bab283bd751591afb7e4eb0861bf0b4781ec5aed6a38a",
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "9d314912167506327040cbadf8dba14f9af1f97f3e854c7da0bc0da1702f5627",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "a5e38ccf2ddb993b861520d718df1698dfe55d19eae1e6d61a0f5da2fb79495a",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
-    "web/wog-options.mjs": "9a32f93f09ff64c2b23362be3cfeeb6778e9c9c9cb1d795f5389248951292f38",
+    "web/wog-options.mjs": "ff90298bc1e2e6fadadd8f101d11308b10a11a69caad0964e3a88217f390ca5f",
     "mod/tum-era/content/config/wog-map-rules.json": "affc9e92566f857095e9087acbe112defa4f888c6709ccac1bcb8ef8c7590f44",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
@@ -574,23 +574,26 @@
     "Complete gameplay packs remain disabled."
   ],
   "sourceCompatibility": {
-    "scope": "World-local creature definitions in MobileBridge; active and inactive month changes, day28/29 reload and no replay verified on the current engine.",
+    "scope": "Fresh active/disabled monthly-visit calendar controls after adding saved level/reward checkpoints and native artifact receipt presentation. Historical calendar reports remain unchanged.",
     "sourceBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88"
     },
     "nativeBuild": {
       "command": "ninja -j32 html5",
       "exitCode": 0,
-      "finalTargets": 54,
-      "logSha256": "80caf301da149bb5a2b036b71abd6aa631332336cdc1f726792849102be64957",
+      "coherentFullTargets": 299,
+      "coherentFullLogSha256": "94742d6529ec6105d96a12cefdd44d08b57d6de727c1d8fbd07144891d9b6908",
+      "finalTargets": 5,
+      "logSha256": "3b6769fe5e0d49905e2c9731c7aac0c2ce6c5bcc890bb626b2cc32460c2db002",
+      "sourceCopyPolicy": "Compare content before copying; touch completed copies so Ninja cannot reuse older-header consumers.",
       "warMachinesAdmitted": false
     },
-    "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+    "engineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7",
     "report": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "engineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7",
       "scenarios": [
         {
           "configured": false,
@@ -662,7 +665,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "d9992437b297a6619a5c8f98d70b515b6edc31440f24e5555530af2d032aca39",
+      "rawReportSha256": "8eeac5404934b6be7dfed050219f8d45c4461da5bb10d4f14b210e13158276ba",
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
     }
   },
@@ -1338,6 +1341,99 @@
         "errors": [],
         "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
       }
+    },
+    {
+      "scope": "World-local creature definitions in MobileBridge; active and inactive month changes, day28/29 reload and no replay verified on the current engine.",
+      "sourceBindings": {
+        "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9"
+      },
+      "nativeBuild": {
+        "command": "ninja -j32 html5",
+        "exitCode": 0,
+        "finalTargets": 54,
+        "logSha256": "80caf301da149bb5a2b036b71abd6aa631332336cdc1f726792849102be64957",
+        "warMachinesAdmitted": false
+      },
+      "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+      "report": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953",
+        "scenarios": [
+          {
+            "configured": false,
+            "choice": 1,
+            "active": true,
+            "initial": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "first": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "second": [
+              12,
+              12,
+              10,
+              10
+            ],
+            "day28NoReset": true,
+            "day29Reset": true,
+            "day30NoReset": true,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "noResetReplay": true,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse"
+          },
+          {
+            "configured": true,
+            "choice": 0,
+            "active": false,
+            "initial": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "first": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "second": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "day28NoReset": true,
+            "day29Reset": false,
+            "day30NoReset": true,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "noResetReplay": true,
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "input": "mouse"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "d9992437b297a6619a5c8f98d70b515b6edc31440f24e5555530af2d032aca39",
+        "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
+      }
     }
   ],
   "liveCreatureLevelsRevalidation": {
@@ -1488,5 +1584,19 @@
       "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "f6b07d3bee2ffe017d34bdf483de60fdc82a241fc09f19f5bfa34d6889d97469"
     },
     "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
+  },
+  "levelArtifactsRevalidation": {
+    "scope": "Historical native reports retained. Source126 shared rewards and saved choices/pages/visits, stable assembly memory and selected companions/classes/mithril/prices/map-rule regressions verified on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
+    "previousBindings": {
+      "tests/native/EraWogOptionsSerialization.test.cpp": "9d314912167506327040cbadf8dba14f9af1f97f3e854c7da0bc0da1702f5627",
+      "web/wog-options.mjs": "9a32f93f09ff64c2b23362be3cfeeb6778e9c9c9cb1d795f5389248951292f38",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "93f8178f6d6b5e9b7039424d60f74815bda1e313796ac05496dfc8776500ba66",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "d7769006556fd913845b4a01c19b1efdc3a4cb197e746cc2afb57087ee367b80",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "99ebeb25d04dcbcb9166458f956e2141e80af0e3a2eef4a72b98ede2757f4d7b",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6f6b48c6c93a047fe2307e7805c2fb5dbf9ebb642aee9c459c2cd57f3253e1c3"
+    },
+    "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
   }
 }

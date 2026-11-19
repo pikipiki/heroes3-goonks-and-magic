@@ -218,6 +218,28 @@ bool mobileCampaignBattleHook(const CPlayerInterface & player)
  const auto & state=static_cast<const IGameInfoCallback &>(*player.cb).gameState().getMap().sourceCampaignState;
  return state["battleHook"].Bool();
 }
+std::string mobileArtifactRewardPhase(const CPlayerInterface & player)
+{
+ const auto info=ENGINE->windows().topWindow<CInfoWindow>();if(!info||info->ID.getNum()<0)return {};
+ const auto & journal=static_cast<const IGameInfoCallback &>(*player.cb).gameState().getMap().eraGameplayState["artifactGrants"];
+ for(const auto & item:journal["jobs"].Struct())
+  if(item.second["owner"].Integer()==player.playerID.getNum()&&
+     (item.second["phase"].String()=="assembly"||item.second["phase"].String()=="summary"))return item.second["phase"].String();
+ return {};
+}
+bool mobileArtifactRewardCheckpoint(const CPlayerInterface & player)
+{
+ const auto & game=static_cast<const IGameInfoCallback &>(*player.cb).gameState();
+ if(game.getBattle(player.playerID))return false;
+ const auto & journal=game.getMap().eraGameplayState["artifactGrants"];
+ if(const auto window=ENGINE->windows().topWindow<CLevelWindow>())
+ {
+  const auto * hero=window->getMobileHero();if(!hero||hero->getOwner()!=player.playerID)return false;
+  const auto & choice=journal["levels"][std::to_string(hero->getHeroTypeID().getNum())]["choice"];
+  return choice.isStruct()&&choice["level"].Integer()==hero->level;
+ }
+ return !mobileArtifactRewardPhase(player).empty();
+}
 bool mobileCampaignPrompt(const CPlayerInterface & player)
 {
  const auto info=ENGINE->windows().topWindow<CInfoWindow>();
@@ -1369,6 +1391,7 @@ void publishMobileState(){
   }
   presentation["title"].String()=n["dialogKind"].String()=="commander"?"Commander":level?"Level up":n["dialogKind"].String()=="commander-level-up"?"Commander level up":"Game message";
   if(auto info=ENGINE->windows().topWindow<CInfoWindow>()){
+   if(p&&p->cb){const auto phase=mobileArtifactRewardPhase(*p);if(!phase.empty())presentation["artifactGrantPhase"].String()=phase;}
    if(p&&p->cb&&mobileCampaignPrompt(*p))n["dialogKind"].String()="source-campaign";
    else if(info->text&&info->text->label)
    {
@@ -1546,7 +1569,7 @@ void publishMobileState(){
   n["heroMoving"].Bool()=p->mobileHeroMoving()||(adventureInt&&GAME->map().hasOngoingAnimations());n["turn"].Bool()=p->makingTurn; const auto & server=GAME->server();n["onlineGame"].Bool()=server.inLobbyRoom();
   if(p->makingTurn&&p->cb->getStartInfo()->turnTimerInfo.turnTimer>0)
    n["turnRemainingMs"].Integer()=p->cb->getPlayerTurnTime(p->playerID).valueMs();
-  const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,garrisonWindow.get());
+  const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,garrisonWindow.get())||mobileArtifactRewardCheckpoint(*p);
   n["autosaveAllowed"].Bool()=!mobileCampaignBattleHook(*p)&&(!server.inLobbyRoom()||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!n["heroMoving"].Bool()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);
   n["cheatsAllowed"].Bool()=p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed;
   n["cheatReady"].Bool()=p->makingTurn&&(n["mode"].String()=="map"||n["mode"].String()=="town");
@@ -2591,7 +2614,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<CFortScreen>()->getMobileTown();if(town->getOwner()!=p->playerID)return;auto budget=p->cb->getResourceAmount();auto dest=town->getUpperArmy();std::set<CreatureID> types;int free=0;for(int i=0;i<7;i++){auto c=dest->getCreature(SlotID(i));if(c)types.insert(c->getId());else free++;}
  for(size_t level=0;level<town->creatures.size();level++){const auto & row=town->creatures[level];if(row.second.empty()||row.first<=0)continue;const auto id=row.second.back();if(!types.count(id)&&free==0)continue;const auto creature=id.toCreature();int count=row.first;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects()){const auto cost=era_compat::creature_prices::get(p->cb.get(),*creature)[resource];if(cost>0)count=std::min(count,int(budget[resource]/cost));}if(count<=0)continue;for(const auto resource:LIBRARY->resourceTypeHandler->getAllObjects())budget[resource]-=count*era_compat::creature_prices::get(p->cb.get(),*creature)[resource];if(!types.count(id)){types.insert(id);free--;}p->cb->recruitCreatures(town,dest,id,count,level);}
  lastPublished=0;return;}
- if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get());const bool allowed=!mobileCampaignBattleHook(*p)&&(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
+ if(action==34){const auto & server=GAME->server();const bool online=server.inLobbyRoom();const bool sourceCheckpoint=mobileCampaignPrompt(*p)||mobileCampaignExchange(*p,ENGINE->windows().topWindow<CGarrisonWindow>().get())||mobileArtifactRewardCheckpoint(*p);const bool allowed=!mobileCampaignBattleHook(*p)&&(!online||server.isHost())&&(p->makingTurn||sourceCheckpoint)&&!p->mobileHeroMoving()&&(townWindow||ENGINE->windows().topWindow<AdventureMapInterface>()||sourceCheckpoint);if(allowed)p->cb->save(online?"Saves/Goonk-online-auto":"Saves/Goonk-auto",false);MAIN_THREAD_ASYNC_EM_ASM({window.dispatchEvent(new CustomEvent('goonk-autosave-accepted',{detail:{id:$0,accepted:!!$1}}));},a,allowed);return;}
  if(action==29){
   static const std::array<std::string,8> codes={"vcmiresources 100","vcmimove","vcmimap","vcmispells","vcmibuild","vcmilevel 1","vcmiluck","vcmimorale"};
   if(a<0||a>=int(codes.size())||!p->makingTurn||!p->cb->getStartInfo()->extraOptionsInfo.cheatsAllowed)return;
