@@ -15,12 +15,12 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56",
     "tests/native/EraCreatureLevelRules.test.cpp": "0fd7bf0fde20dd5b44d1692d47912bf820b24b366e26cc71b5c6548250e0222d",
     "work/browser-tests/wog-mithril-live-levels-cases.mjs": "82bf3d03b8500acc9a570c2f5755a547d127122446f2bdaba8a763f3ff543e84",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
     "tests/fixtures/era-gameplay/creature-levels-reference.json": "2a343ef13d6489c27c6a3363af5b77061d834797cd0cfcb9355439e0a8ec9cec",
     "work/browser-tests/wog-mithril-display-cases.mjs": "18ae9b965c9f5dffc8b039b3bd06fe16e6c7ba30ef53f23af9ade0d1a1442afa",
-    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
     "tests/era-mithril-live-levels.test.mjs": "65f99d638347c1e3c445a680dc727bb39e4750321ed375ee314a5fade509323a",
-    "docs/era-compatibility.md": "9a627cbf8a066f0421cb331f5a4a5c7991e20f686209db6693798c39e6cb3315"
+    "docs/era-compatibility.md": "a3c3923d497cabbac140b82b478fdf83225bb3fd07a841f9828b09df502e408c"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1099,5 +1099,15 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+      "docs/era-compatibility.md": "9a627cbf8a066f0421cb331f5a4a5c7991e20f686209db6693798c39e6cb3315"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }

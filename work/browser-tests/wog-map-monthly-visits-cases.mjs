@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {revealNativeAction} from './native-ui-actions.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {compileErm} from '../../scripts/era-bridge/campaigns/parser.mjs';
@@ -18,7 +19,7 @@ export async function runMonthlyVisits({boot,state,command,wait,walk,nextDay,pag
  const matrix=control?[[true,null,false]]:desktop||portrait?[[false,1,true],[true,0,false]]:
   [[false,-1,false],[true,-1,true],[false,1,true],[true,0,false],[false,0,false],[true,1,true]];
  const skills=async()=>{
-  await page().locator('[data-ui=heroes]')[desktop?'click':'tap']();await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
+  await (await revealNativeAction(page(),'[data-ui=heroes]',{mouse:desktop}))[desktop?'click':'tap']();await wait(()=>goonkMobileState.mode==='hero'&&goonkMobileState.heroWindow);
   const result=(await state()).heroWindow.primarySkills;await command(0);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);return result;
  };
  if(process.env.MONTHLY_OLD_SAVE){

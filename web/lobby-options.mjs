@@ -1,3 +1,4 @@
+import {getLanguage} from './i18n.mjs';
 import {renderMarkup,setClickHandler} from './ui/material-components.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,'');
 export function createLobbyOptions({menu,getState,command,onChange}){
@@ -52,12 +53,17 @@ export function createLobbyOptions({menu,getState,command,onChange}){
  button.setAttribute('aria-busy',String(!!request));
  for(const input of form.querySelectorAll('select,input'))input.disabled=!!request;
 
- const towns=menu.querySelector('.custom-player-towns'),key=JSON.stringify(state.players||[]);
+ const towns=menu.querySelector('.custom-player-towns'),key=JSON.stringify([state.players||[],getLanguage()]);
  const playerPanel=towns.closest('.lobby-players');
  playerPanel.hidden=!(state.players?.length);
  const count=playerPanel.querySelector('[data-scenario-player-count]');
  if(count.textContent!==String(state.players?.length||0))count.textContent=String(state.players?.length||0);
- if(towns._key!==key){towns._key=key;renderMarkup(towns,(state.players||[]).map(p=>`<label><span class="lobby-player-label"><i class="lobby-player-colour" data-player-colour="${Number(p.color)}" aria-hidden="true"></i>${esc(p.name)}</span><select data-player-castle="${p.color}"><option value=-1>Random castle</option>${(p.factions||[]).map(f=>`<option value="${f.id}" ${f.id===p.faction?'selected':''}>${esc(f.name)}</option>`).join('')}</select></label>`).join(''));towns.querySelectorAll('select').forEach(select=>select.onchange=()=>command(57,Number(select.dataset.playerCastle),Number(select.value)));}
- for(const select of towns.querySelectorAll('select'))select.disabled=!!request||changingScenario;
+ if(towns._key!==key){
+  towns._key=key;const fr=getLanguage()==='fr';
+  renderMarkup(towns,(state.players||[]).map(p=>`<label><span class="lobby-player-label"><i class="lobby-player-colour" data-player-colour="${Number(p.color)}" aria-hidden="true"></i>${esc(p.name)}</span><select data-player-castle="${p.color}"><option value=-1>Random castle</option>${(p.factions||[]).map(f=>`<option value="${f.id}" ${f.id===p.faction?'selected':''}>${esc(f.name)}</option>`).join('')}</select></label><label>${fr?'Revenus de':'Income for'} ${esc(p.name)}<select data-player-income="${Number(p.color)}" aria-label="${fr?'Revenus de':'Income for'} ${esc(p.name)}">${[...new Set([100,85,70,p.incomePercent??100])].map(value=>`<option value="${value}" ${value===(p.incomePercent??100)?'selected':''}>${value} %</option>`).join('')}</select></label>`).join(''));
+  towns.querySelectorAll('[data-player-castle]').forEach(select=>select.onchange=()=>command(57,Number(select.dataset.playerCastle),Number(select.value)));
+  towns.querySelectorAll('[data-player-income]').forEach(select=>select.onchange=()=>command(1210,Number(select.dataset.playerIncome),Number(select.value)));
+ }
+ for(const select of towns.querySelectorAll('select'))select.disabled=!!request||changingScenario||!state.lobbyReady;
 }
 };}

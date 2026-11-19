@@ -11,17 +11,17 @@
     "lines": "204-223,584-607"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
     "web/dialog-presentation.mjs": "726ed41ef2b89feeb7042990541ec77b54ab6043d93fff67ae56f67027deef22",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "a91fdebaf0e2c0118f5f691087b4eb3114bd96955fe47f15c272c3c33b4ec539",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "bad6f185818f1ef3cd77b3db822a2cdc4bf1df0693d6c5a1887e566877d7dc42",
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "94abf487d37a3e77120d900adc5ca35b753ac3d9458e7b5558582acd01ef4136",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56"
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -357,5 +357,16 @@
       "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }

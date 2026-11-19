@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraIncomeRuntime.h"
 #include "../era/EraDwellingArtifactMimic.h"
 #include "../era/EraMithrilModel.h"
 #include "../era/EraMapRulesModel.h"
@@ -170,18 +171,28 @@ std::vector<CreatureID> CGMine::providedCreatures() const
 	return {};
 }
 
-ResourceSet CGMine::dailyIncome() const
+ResourceSet CGMine::dailyIncomeBeforeHandicap() const
 {
 	ResourceSet result;
 
 	for (GameResID k : LIBRARY->resourceTypeHandler->getAllObjects())
 		result[k] += valOfBonuses(BonusType::GENERATE_RESOURCE, BonusSubtypeID(k));
 
-	result[producedResource] += producedQuantity;
-	if(era_compat::mithril::mineActive(*cb,id))result[producedResource]*=2;
+	result[producedResource] += producedQuantity * (era_compat::mithril::mineActive(*cb,id) ? 2 : 1);
 
+	return result;
+}
+
+ResourceSet CGMine::dailyIncomeOutsideHandicap() const
+{
+	return {};
+}
+
+ResourceSet CGMine::dailyIncome() const
+{
+	auto result = dailyIncomeBeforeHandicap();
 	const auto & playerSettings = cb->getPlayerSettings(getOwner());
-	result.applyHandicap(playerSettings->handicap.percentIncome);
+	era_compat::applyIncomeHandicap(result, playerSettings->handicap.percentIncome);
 
 	return result;
 }

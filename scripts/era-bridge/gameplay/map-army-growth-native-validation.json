@@ -13,15 +13,15 @@
     "heroConstantSha256": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
   },
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
     "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
     "scripts/era-bridge/gameplay/map-rules.json": "f30b9949e5878f9aa3320faf51b449dfcc007db8ce1003b892986b7c3f673064",
     "tests/era-map-army-growth-native.test.mjs": "30a390c57f31cc827a338c3a01ff83ba3a48b74bce87b449a3259d0921271dca",
     "tests/native/EraMapArmyGrowthRules.test.cpp": "1128fe385e0c5e9244f431b54156bbb146be25ebc22722f7732b558038d7c40c",
     "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
     "work/browser-tests/wog-map-army-growth-cases.mjs": "94ecd73ee5a62d4e912833ab03f0aeec76d515bbb6969beaa72c79b906b4461b",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
     "work/browser-tests/wog-mithril-options-cases.mjs": "2f04d0e99f5eed70bab70378331a898d88e7f806079e8472ff8429c0774c7383",
     "work/browser-tests/wog-options-layout-e2e.mjs": "b79d0087f35c98ea60b1d0a5c0eb0eabb3d7444db2b3939874dc46f7dff464ce",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowthRules.h": "e09515a3fb5c8a0910d6d36dea88fccef782004d7bc021b0ea74f2664b30d411",
@@ -1250,5 +1250,15 @@
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }

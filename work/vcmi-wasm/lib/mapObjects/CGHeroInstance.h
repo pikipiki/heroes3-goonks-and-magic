@@ -165,6 +165,8 @@ public:
 	bool needsLastStack()const override;
 
 	ResourceSet dailyIncome() const override;
+	ResourceSet dailyIncomeBeforeHandicap() const override;
+	ResourceSet dailyIncomeOutsideHandicap() const override;
 	std::vector<CreatureID> providedCreatures() const override;
 	const IOwnableObject * asOwnable() const final;
 

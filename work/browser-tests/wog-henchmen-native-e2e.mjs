@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {chromium} from 'playwright-core';
 import {silenceTestAudio} from './silent-audio.mjs';
 import {readCompletedNativeSave} from './native-save-completed.mjs';
-import {revealNativeAction} from './native-ui-actions.mjs';
+import {revealNativeAction,selectHeroTab} from './native-ui-actions.mjs';
 import {readJsonc} from '../../scripts/era-bridge/objects/production-resolvers.mjs';
 
 const origin=process.env.GOONK_TEST_ORIGIN||'http://127.0.0.1:8797';
@@ -465,7 +465,7 @@ try{
  if(process.env.CASES==='module-save'){
   for(const enabled of [true,false]){
    await boot({enabled});let hero=await sheet();assert.equal(!!hero.henchman,enabled);
-   if(enabled){await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-slot="0"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);}
+   if(enabled){await selectHeroTab(page,'henchman');await page.locator('[data-henchman-slot="0"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit);}
    await command(63);await wait(()=>goonkMobileState.mode==='map');
    const save=await readCompletedNativeSave(page,command,{tag:enabled?931:932});await page.close();
    await boot({save:[...save],enabled:!enabled});hero=await sheet();assert.equal(!!hero.henchman,enabled);
@@ -474,7 +474,7 @@ try{
   }
   if(process.env.HENCH_LEGACY_ORIGIN){
    await boot({enabled:true,originURL:process.env.HENCH_LEGACY_ORIGIN});await sheet();
-   await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-slot="0"]').tap();
+   await selectHeroTab(page,'henchman');await page.locator('[data-henchman-slot="0"]').tap();
    await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:peasant');
    await command(63);await wait(()=>goonkMobileState.mode==='map');
    const save=await readCompletedNativeSave(page,command,{tag:933});await page.close();
@@ -561,7 +561,7 @@ try{
   let hero=await sheet();assert(!hero.henchman.alive);assert(!hero.henchman.canEquipBanner);
   await command(62,19);await wait(()=>goonkMobileState.heroWindow?.picked);
   hero=(await state()).heroWindow;assert(hero.henchman.canEquipHeldBanner);
-  await page.locator('[data-hero-tab=henchman]').tap();
+  await selectHeroTab(page,'henchman');
   assert(await page.locator('[data-henchman-action="3"]').isDisabled());
   await page.locator('[data-henchman-action="6"]').tap();
   await wait(()=>!goonkMobileState.heroWindow.picked&&goonkMobileState.heroWindow.henchman.bannerStyle===0);
@@ -616,7 +616,7 @@ try{
  }
  if(process.env.CASES==='banners'){
   await boot({bannerInventory:true});let hero=await sheet();
-  await page.locator('[data-hero-tab=henchman]').tap();
+  await selectHeroTab(page,'henchman');
   await page.locator('[data-henchman-action="0"][data-henchman-slot="0"]').tap();
   await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:peasant');
   hero=(await state()).heroWindow;
@@ -667,7 +667,7 @@ try{
   await page.close();
   await boot({settings:{bannerFree:true}});hero=await sheet();
   const freeInitialInventory=await inventory();
-  await page.locator('[data-hero-tab=henchman]').tap();
+  await selectHeroTab(page,'henchman');
   await page.locator('[data-henchman-action="0"][data-henchman-slot="0"]').tap();
   await wait(()=>goonkMobileState.heroWindow.henchman.unit);
   assert.equal((await state()).heroWindow.henchman.bannerStyle,0);
@@ -685,7 +685,7 @@ try{
  if(!process.env.CASES||process.env.CASES==='core'){
  await boot();
  let hero=await sheet();assert(hero.henchman&&!hero.henchman.unit);
- await page.locator('[data-hero-tab=henchman]').tap();
+ await selectHeroTab(page,'henchman');
  await page.locator('[data-henchman-slot="0"]').tap();
  await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:peasant');
  hero=(await state()).heroWindow;assert.equal(hero.henchman.level,1);assert.equal(hero.henchman.unit.health,51);
@@ -714,7 +714,7 @@ try{
  await resolve();hero=await sheet();
  assert(hero.henchman.alive&&hero.henchman.experience>=6);
  report.scenarios.push('independent-battle-actor-and-earned-experience');
- await page.locator('[data-hero-tab=henchman]').tap();
+ await selectHeroTab(page,'henchman');
  const previousExperience=hero.henchman.experience;
  await page.locator('[data-henchman-slot="1"]').tap();
  await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
@@ -728,7 +728,7 @@ try{
  report.scenarios.push('native-save-reload');await page.close();
  await boot({dead:true,inTown:true});hero=await sheet();
  assert(hero.henchman.unit&&!hero.henchman.alive&&hero.henchman.canResurrect);
- await page.locator('[data-hero-tab=henchman]').tap();
+ await selectHeroTab(page,'henchman');
  const beforeRevival=hero.henchman.experience;
  const goldBefore=(await state()).resources[6],revivalCost=hero.henchman.resurrectionCost;
  await page.locator('[data-henchman-action="2"]').tap();
@@ -751,7 +751,7 @@ try{
   report.legacyEngineSha256=sha(path.join(process.env.HENCHMAN_LEGACY_ENGINE_DIR||'work/downloads/henchmen-native-engine','vcmiclient.wasm'));
   assert.notEqual(report.legacyEngineSha256,report.engineSha256);
   await boot({originURL:process.env.HENCHMAN_LEGACY_ORIGIN});await sheet();
-  await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-slot="1"]').tap();
+  await selectHeroTab(page,'henchman');await page.locator('[data-henchman-slot="1"]').tap();
   await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
   const oldCompanion=(await state()).heroWindow.henchman;
   await command(63);await wait(()=>goonkMobileState.mode==='map');
@@ -768,7 +768,7 @@ try{
  await boot({santa:true,stackExperience:1000000,settings:{moreSantaGuards:false,altExpPerLv:false,battleExpLossPct:50,returnToArmy:false,stackExpEnabled:false}});
  let hero=await sheet();const savedLevel=hero.henchman.level;
  assert(savedLevel>1);assert.equal(hero.henchman.rank,0);assert.equal(hero.henchman.returnToArmy,false);
- await page.locator('[data-hero-tab=henchman]').tap();assert.match(await page.locator('.henchman-sheet').innerText(),/50\s*%/);
+ await selectHeroTab(page,'henchman');assert.match(await page.locator('.henchman-sheet').innerText(),/50\s*%/);
  await command(63);await wait(()=>goonkMobileState.mode==='map');
  const save=[...await readCompletedNativeSave(page,command,{tag:814})];await page.close();
  await boot({save,settings:{moreSantaGuards:true,altExpPerLv:true,battleExpLossPct:0,returnToArmy:true,stackExpEnabled:true}});
@@ -779,7 +779,7 @@ try{
  assert((await state()).battleUnits.filter(unit=>unit.key==='core:gremlin').every(unit=>unit.count===1));
  report.scenarios.push('santa-guard-enhancement-can-be-disabled');
  await resolve();hero=await sheet();const experience=hero.henchman.experience;
- assert.equal(hero.henchman.rank,0);await page.locator('[data-hero-tab=henchman]').tap();
+ assert.equal(hero.henchman.rank,0);await selectHeroTab(page,'henchman');
  await page.locator('[data-henchman-slot="1"]').tap();await wait(()=>goonkMobileState.heroWindow?.henchman?.unit?.key==='core:archangel');
  hero=(await state()).heroWindow;
  assert.equal(hero.henchman.experience,experience-Math.trunc(experience*50/100));
@@ -787,7 +787,7 @@ try{
  report.scenarios.push('replacement-loss-and-no-return-options');await page.close();
  await boot({dead:true,settings:{reviveAnywhere:true}});hero=await sheet();assert(hero.henchman.canResurrect);
  const gold=(await state()).resources[6],cost=hero.henchman.resurrectionCost;
- await page.locator('[data-hero-tab=henchman]').tap();await page.locator('[data-henchman-action="2"]').tap();
+ await selectHeroTab(page,'henchman');await page.locator('[data-henchman-action="2"]').tap();
  await wait(()=>goonkMobileState.heroWindow?.henchman?.alive);assert.equal((await state()).resources[6],gold-cost);
  report.scenarios.push('revive-anywhere-option-pays-outside-town');await page.close();
  await boot({dead:true,settings:{reviveAnywhere:false}});hero=await sheet();assert(!hero.henchman.canResurrect);

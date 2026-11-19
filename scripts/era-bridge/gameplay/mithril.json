@@ -28,7 +28,7 @@
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
     "Source UN:P setters remain unadmitted; source149/170/171 reads and independent native choices have separate bounded validations.",
-    "Aggregate owner-handicap rounding and complete income-hook scope parity require a native comparison and port.",
+    "Complete income-hook scope parity, resource-week listeners and cross-profile ordering remain under audit; aggregate handicap rounding and raw ERM grants have separate native validation.",
     "Original low-level object-description hooks and complete cross-profile lifecycle integration remain under audit.",
     "Complete WoG option catalogue and full gameplay-profile activation."
   ],
@@ -50,5 +50,6 @@
   "informationValidation": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
   "siteTileValidation": "scripts/era-bridge/gameplay/mithril-site-tiles-native-validation.json",
   "siteTileReference": "tests/fixtures/era-gameplay/mithril-site-tiles-reference.json",
-  "incomeOrderReference": "tests/fixtures/era-gameplay/mithril-income-order-reference.json"
+  "incomeOrderReference": "tests/fixtures/era-gameplay/mithril-income-order-reference.json",
+  "incomeValidation": "scripts/era-bridge/gameplay/mithril-income-native-validation.json"
 }

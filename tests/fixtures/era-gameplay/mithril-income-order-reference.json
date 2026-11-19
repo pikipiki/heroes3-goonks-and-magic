@@ -402,8 +402,15 @@
     "scope": "Only referenced mine-income wrappers, native income paths, their numeric conversion/data and the two supplied listeners. No global decompilation; no tracked file or container changes."
   },
   "nativeComparison": {
-    "evidenceKind": "Source inspection and arithmetic inference, not yet a native handicap scenario.",
-    "remaining": "VCMI currently applies owner income handicap separately to mine contributions; ERA aggregates modified mine income with other income before applying the handicap. Aggregate-rounding equivalence remains to port.",
+    "evidenceKind": "Native WebAssembly scenarios, paired old284/current engines; static original oracle remains separately bounded.",
+    "validation": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "ported": [
+      "Aggregate regular income before owner handicap",
+      "Truncate toward zero",
+      "Mithril doubles mine production, excluding independent bonuses",
+      "Raw Golden Goose and AI mithril grants follow regular modifiers"
+    ],
+    "remaining": "Complete original resource-week listeners, native AI formula equivalence and dynamic income-hook ordering are not admitted. Native AI weekly bonuses remain a VCMI extension.",
     "example": {
       "improvedMineIncomes": [
         2,
@@ -411,7 +418,10 @@
       ],
       "incomePercent": 85,
       "aggregateResult": 3,
-      "separatelyRoundedResult": 2
+      "oldNativePerMineCeilResult": 4,
+      "oldNativeTownGoldControl": 425,
+      "townGoldBeforeHandicap": 500,
+      "oldVersion": "0.4.284"
     }
   }
 }

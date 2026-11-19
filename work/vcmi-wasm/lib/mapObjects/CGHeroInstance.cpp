@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraIncomeRuntime.h"
 #include "../era/EraCampaignExperienceWord.h"
 #include "../era/EraDwellingArtifactMimic.h"
 #include "../era/EraGooseReflectionRuntime.h"
@@ -1826,7 +1827,7 @@ bool CGHeroInstance::isCampaignGem() const
 	return si && si->campState &&si->campState->getGemSorceressID() == getHeroTypeID();
 }
 
-ResourceSet CGHeroInstance::dailyIncome() const
+ResourceSet CGHeroInstance::dailyIncomeBeforeHandicap() const
 {
 	ResourceSet income;
 
@@ -1837,10 +1838,22 @@ ResourceSet CGHeroInstance::dailyIncome() const
     const GameResID gold(GameResID::GOLD);
     income[gold]=era_compat::sourceGooseGoldValue(static_cast<int64_t>(income[gold])-goose.nativeComponentGold);
 
+	return income;
+}
+
+ResourceSet CGHeroInstance::dailyIncomeOutsideHandicap() const
+{
+	ResourceSet income;
+	income[GameResID::GOLD] = era_compat::sourceGooseGoldValue(era_compat::sourceGooseIncome(*this).sourceRawGold);
+	return income;
+}
+
+ResourceSet CGHeroInstance::dailyIncome() const
+{
+	auto income = dailyIncomeBeforeHandicap();
 	const auto & playerSettings = cb->getPlayerSettings(getOwner());
-	income.applyHandicap(playerSettings->handicap.percentIncome);
-    // Source OW:R is a raw resource grant, not handicap-scaled daily income.
-    income[gold]=era_compat::sourceGooseGoldValue(static_cast<int64_t>(income[gold])+goose.sourceRawGold);
+	era_compat::applyIncomeHandicap(income, playerSettings->handicap.percentIncome);
+	income[GameResID::GOLD] = era_compat::sourceGooseGoldValue(static_cast<int64_t>(income[GameResID::GOLD]) + dailyIncomeOutsideHandicap()[GameResID::GOLD]);
 	return income;
 }
 

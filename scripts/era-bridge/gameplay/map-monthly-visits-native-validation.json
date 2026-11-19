@@ -7,7 +7,7 @@
   "sourceBaseCommit": "7e7633ea31754d40959fa16eceb2ac69b747164f",
   "engineSha256": "db2b0b7d3b5e10a2051d668fe067c12a1948518b9f39ff9ab4294f131f4bed5a",
   "sourceBindings": {
-    "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
     "scripts/era-bridge/campaigns/parser.mjs": "dff91a130a24724dd74dd5963b6bf485c1a6a7fbb5915a2c6c027871ecdda790",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
@@ -22,8 +22,8 @@
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
     "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
     "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
-    "work/browser-tests/wog-map-monthly-visits-cases.mjs": "13514ff26f1f416aef3706d32de34c1190528982d4a119506b6f6f2e416c95ff",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
+    "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
     "tests/fixtures/era-gameplay/map-monthly-visits-reference.json": "270b82d4388d72f3fb75d3879b7715892b1a1fe3265fde663935961e9c77e17f"
   },
   "nativeBuild": {
@@ -574,21 +574,21 @@
     "Complete gameplay packs remain disabled."
   ],
   "sourceCompatibility": {
-    "scope": "Mine PO:N information and neutral-mine income guard in MobileBridge. Both active/inactive monthly calendars, day28/29 saves and absence of reset replay revalidated on the current engine. Earlier compatibility reports retained in history.",
+    "scope": "MobileBridge lobby handicap command and raw mine information. Both monthly calendars, day28/29 saves and no reset replay verified on the current engine.",
     "sourceBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f"
     },
     "nativeBuild": {
       "command": "ninja -j32 html5",
       "exitCode": 0,
-      "logSha256": "a88fef6914162b6a58923caabea1c5a2b7045771c57e385871832dea1c176817"
+      "logSha256": "175362a9f2b4d01707973a1f1b02cb49afa6a7e370471efca149fedf3f4614dc"
     },
-    "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+    "engineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3",
     "report": {
       "passed": true,
       "scope": "mithril-sites",
       "completeRules": false,
-      "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+      "engineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3",
       "scenarios": [
         {
           "configured": false,
@@ -660,7 +660,7 @@
         }
       ],
       "errors": [],
-      "rawReportSha256": "40520b496580bb32802efc04094c7d60d4205319b42c4b49d7765b90bb1dbd7f",
+      "rawReportSha256": "fae0139750dae251a1326510e030b72c7a26ad5522585bdc0ec3be9e8e0c7202",
       "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
     }
   },
@@ -1064,6 +1064,97 @@
         "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
       },
       "rawReportSha256": "f3e2bae6f5db51f934d2f430022d989fa0f33b0987f8384b7208e6d3fe2edf1c"
+    },
+    {
+      "scope": "Mine PO:N information and neutral-mine income guard in MobileBridge. Both active/inactive monthly calendars, day28/29 saves and absence of reset replay revalidated on the current engine. Earlier compatibility reports retained in history.",
+      "sourceBindings": {
+        "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0"
+      },
+      "nativeBuild": {
+        "command": "ninja -j32 html5",
+        "exitCode": 0,
+        "logSha256": "a88fef6914162b6a58923caabea1c5a2b7045771c57e385871832dea1c176817"
+      },
+      "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+      "report": {
+        "passed": true,
+        "scope": "mithril-sites",
+        "completeRules": false,
+        "engineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e",
+        "scenarios": [
+          {
+            "configured": false,
+            "choice": 1,
+            "active": true,
+            "initial": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "first": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "second": [
+              12,
+              12,
+              10,
+              10
+            ],
+            "day28NoReset": true,
+            "day29Reset": true,
+            "day30NoReset": true,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "noResetReplay": true,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          },
+          {
+            "configured": true,
+            "choice": 0,
+            "active": false,
+            "initial": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "first": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "second": [
+              11,
+              11,
+              10,
+              10
+            ],
+            "day28NoReset": true,
+            "day29Reset": false,
+            "day30NoReset": true,
+            "nativeSaveReload": true,
+            "reversedGlobalDefault": true,
+            "noResetReplay": true,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "input": "touch"
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "40520b496580bb32802efc04094c7d60d4205319b42c4b49d7765b90bb1dbd7f",
+        "programFileSha256": "f6e95d7f692ed0dc115904636135cc8f724665997735da518c61682a46aa3d4a"
+      }
     }
   ],
   "liveCreatureLevelsRevalidation": {
@@ -1135,5 +1226,15 @@
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "work/browser-tests/wog-map-monthly-visits-cases.mjs": "13514ff26f1f416aef3706d32de34c1190528982d4a119506b6f6f2e416c95ff",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }

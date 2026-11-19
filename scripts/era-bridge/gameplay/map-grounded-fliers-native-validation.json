@@ -746,9 +746,9 @@
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "bc301dbc34694cd09adfbdf388b93c1c7a6954709d89821751e37144241d11b0",
     "work/vcmi-wasm/lib/era/EraCampaignChanges.h": "9e2e9622f04caa6d97f5acf0bc547047b2a05273bce7b1cca027ff0f7afca4e3",
     "web/ui/components.css": "ccee848991f5a9ae51d2683dd512cf42773f2d9e4ef23cf0df785704011be7d7",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
     "work/browser-tests/wog-options-components-e2e.mjs": "af4a70cf97c02c8f07b0b0323bbc5c965911070f11e94be833b18eef12d4a08b",
-    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
     "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
     "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
@@ -758,7 +758,7 @@
     "tests/fixtures/era-gameplay/map-grounded-fliers-reference.json": "ee354297e5d0bc380cd56501379f17a04dc4dd4580339ecbb74a5da41d9bf475",
     "work/vcmi-wasm/lib/bonuses/IBonusBearer.cpp": "b18ac4a8a3a478e0a4a8b773b4068b05d9c4e3c75c8a917d2e398a113331a99e",
     "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "f9b67803593c2b7d2781102459bb848e0bdf9b2e121e2b9ae350a677e5045196",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
     "mod/tum-era/content/config/wog-map-rules.json": "e54d695f664bba4e44fc1a3f244c1df3d54026f319facd82cb403b651c624670",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
     "scripts/era-bridge/gameplay/map-rules.json": "f30b9949e5878f9aa3320faf51b449dfcc007db8ce1003b892986b7c3f673064",
@@ -1357,5 +1357,15 @@
       "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }

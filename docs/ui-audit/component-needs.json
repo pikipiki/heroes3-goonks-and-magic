@@ -1292,7 +1292,7 @@
         "players",
         "choice"
       ],
-      "sourceSHA256": "3507219a0161d854925c31790be79c3592d5057f81b2cc2dfdd8e0bd1ed99176",
+      "sourceSHA256": "a2ac68d3a8cac80268890f934a63efacaeba913a9fb186cee7799471649d2d69",
       "evidence": [
         {
           "line": 16,
@@ -1406,7 +1406,7 @@
         "details",
         "transfer"
       ],
-      "sourceSHA256": "51647e925e4c821aae9b7228b787f9b541dab21e30a65991b488946e05a4d74c",
+      "sourceSHA256": "070c00bd5f5d10619d0fb72f28835abbc45f694d1885f99d93b9cdb3786b1018",
       "evidence": [
         {
           "line": 10,
@@ -1426,7 +1426,7 @@
         },
         {
           "line": 39,
-          "excerpt": "function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18);return `<button class=\"hero-ar"
+          "excerpt": "function slotMarkup(a){const picked=state.heroWindow?.picked;const label=tab==='worn'?equipmentSlotNames[a.slot]||'Equipment':'Backpack '+(a.slot-18),caption=tab==='worn'&&a.slot=="
         },
         {
           "line": 76,
@@ -1993,7 +1993,7 @@
         "feedback",
         "accordion"
       ],
-      "sourceSHA256": "167a22dcc038b3f9640d17ff2cf9a86c4c336540dae61f800ca3890b4b1d994f",
+      "sourceSHA256": "a15fdf22d5ad74b550769602529dbc40ba4e7727ed8cb4e702c7cf4051112e80",
       "evidence": [
         {
           "line": 6,
@@ -2057,7 +2057,7 @@
         "skills",
         "result"
       ],
-      "sourceSHA256": "dd17309e8ea78a74eb89219557ee8ae2f6ee7831f825c5c322827f4700efeede",
+      "sourceSHA256": "b35b55eac9645931d72ab494d00394e1e6d9937bd897a518c12dd71c40922387",
       "evidence": [
         {
           "line": 13,
@@ -2089,7 +2089,7 @@
         },
         {
           "line": 67,
-          "excerpt": "if(selected?.description){const description=document.createElement('p');description.className='dialog-choice-description';description.textContent=text(selected.description);content"
+          "excerpt": "if(selected?.description){const description=document.createElement('p');description.className='dialog-choice-description';description.id='dialog-choice-description';description.set"
         }
       ],
       "review": "source-reviewed"
@@ -2164,7 +2164,7 @@
         "card",
         "feedback"
       ],
-      "sourceSHA256": "59aec629778da1f8c7718342b15dd381c1f929981d83f74bedc506c68a1cd2aa",
+      "sourceSHA256": "6032b628544e78b6bd5493a516832bd20e25b0b037654096bc3191b57af8a2c3",
       "evidence": [
         {
           "line": 5,
@@ -2216,39 +2216,39 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "6d0ffc546daa0d7e9a68ddb63eda84a9f06117a0910d4913ed99e030de43bd67",
+      "sourceSHA256": "2a883f4ca76e0bed3a6bbc178e8920d752e52f22ff4fc8900cf6da3aaa94aa0c",
       "evidence": [
         {
-          "line": 17,
+          "line": 18,
           "excerpt": "export function createMobileSpellbook({root,command}){"
         },
         {
-          "line": 19,
+          "line": 20,
           "excerpt": "const panel=document.createElement('section');panel.className='mobile-spellbook';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Spellbook');root.quer"
         },
         {
-          "line": 23,
+          "line": 25,
           "excerpt": "panel.addEventListener('error',event=>{const img=event.target;if(!img.matches?.('.spell-icon'))return;const spell=book.spells?.find(s=>s.id===Number(img.dataset.icon));const origin"
         },
         {
-          "line": 53,
+          "line": 58,
           "excerpt": "<button data-close-book aria-label=\"Close spellbook\">✕</button>"
         },
         {
-          "line": 56,
+          "line": 61,
           "excerpt": "<button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy=\"true\"':''} title=\"${esc(previous?previous.name:'No spell used yet')}\">"
         },
         {
-          "line": 61,
+          "line": 66,
           "excerpt": "${book.inCombat===false?`<nav class=\"spell-contexts\" aria-label=\"Spell types\"><button data-spell-context=\"0\" aria-pressed=\"${!book.combatSpells}\">Adventure spells</button><button d"
         },
         {
-          "line": 62,
-          "excerpt": "<nav class=\"spell-schools\" aria-label=\"Spell categories\">${schools.map(([symbol,name],i)=>`<button data-school=\"${i}\" aria-pressed=\"${spellSchoolIds[i]===book.school}\"><span aria-h"
+          "line": 67,
+          "excerpt": "<label class=\"spell-school-picker\"><select data-school-select aria-label=\"${getLanguage()==='fr'?'École de magie':'Magic school'}\">${schools.map(([,name],index)=>`<option value=\"${"
         },
         {
-          "line": 63,
-          "excerpt": "<label class=\"spell-school-picker\"><select data-school-select aria-label=\"${getLanguage()==='fr'?'École de magie':'Magic school'}\">${schools.map(([,name],index)=>`<option value=\"${"
+          "line": 70,
+          "excerpt": "${spells.map(spell=>`<button class=\"spell-row${spell.enabled?'':' is-unavailable'}\" data-spell=\"${spell.id}\" aria-pressed=\"${spell.id===selected}\">"
         }
       ],
       "review": "source-reviewed"
@@ -2862,7 +2862,7 @@
         "calendar",
         "resources"
       ],
-      "sourceSHA256": "35c1b72ac8759e831955ba202b8aadd95dd44c7637fc1f9f31a05dda4f20eb4b",
+      "sourceSHA256": "37ae17a63561e0ab084696a3e630cbe15f760c26d86021202f9d0ab6a2ee8cdf",
       "evidence": [
         {
           "line": 4,
@@ -2961,18 +2961,18 @@
         "choice",
         "feedback"
       ],
-      "sourceSHA256": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
+      "sourceSHA256": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
       "evidence": [
         {
-          "line": 31,
+          "line": 32,
           "excerpt": "export function createWogOptions({menu, command, onChange}) {"
         },
         {
-          "line": 40,
+          "line": 41,
           "excerpt": "form = document.createElement('details');"
         },
         {
-          "line": 45,
+          "line": 46,
           "excerpt": "const field = document.createElement('fieldset');"
         }
       ],
@@ -2996,19 +2996,19 @@
         "choice",
         "select"
       ],
-      "sourceSHA256": "6ae32adacc41eec4e9f77d1b5fb93ba20da5beaadb8824829c46a7f110f79893",
+      "sourceSHA256": "2a41ab3365f6501a7ee4e8767720422fc2c19ba3105caccae2c71597c25f3568",
       "evidence": [
         {
-          "line": 3,
+          "line": 4,
           "excerpt": "export function createLobbyOptions({menu,getState,command,onChange}){"
         },
         {
-          "line": 48,
+          "line": 49,
           "excerpt": "return{observe,get pending(){return !!request;},get error(){return error;},update(state,changingScenario=false){if(state.mode!=='lobby'){form=null;return;}if(!form?.isConnected){fo"
         },
         {
-          "line": 60,
-          "excerpt": "if(towns._key!==key){towns._key=key;renderMarkup(towns,(state.players||[]).map(p=>`<label><span class=\"lobby-player-label\"><i class=\"lobby-player-colour\" data-player-colour=\"${Numb"
+          "line": 63,
+          "excerpt": "renderMarkup(towns,(state.players||[]).map(p=>`<label><span class=\"lobby-player-label\"><i class=\"lobby-player-colour\" data-player-colour=\"${Number(p.color)}\" aria-hidden=\"true\"></i"
         }
       ],
       "review": "source-reviewed"

@@ -40,13 +40,13 @@
     "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "d4e30115bbbddd1e4a9d838f3d8263d3e633dc396863c1cffa9a04918ed53e8f",
     "tests/native/EraMithrilRules.test.cpp": "78f53f1a5cc22eacf2dbc20a7c49cd6649d179834c3a1fbe85d3313e2784e6f1",
     "tests/native/EraWogOptionsSerialization.test.cpp": "6cd298637d11de76766bee0d7243982862ee84d6658f504e00ea989cb9f957b5",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
     "work/browser-tests/wog-map-grounded-fliers-cases.mjs": "f9b67803593c2b7d2781102459bb848e0bdf9b2e121e2b9ae350a677e5045196",
     "work/browser-tests/wog-mithril-dwelling-levels-cases.mjs": "bd2ba6c620a9e7b2e995d673d78431dc660181a0553563c4b1b31a9059d926f9",
     "tests/era-mithril-dwelling-levels.test.mjs": "22037b2d528171aa4ae8cd04b2023dc2cf3a39505fb7b247971a4421a8f02d35",
     "tests/fixtures/era-gameplay/mithril-dwelling-levels-reference.json": "aeb65486da5a06fa4d7ea4b5a373d7a507f2252fbdbb10bda9f355f587f76012",
-    "scripts/era-bridge/gameplay/mithril.json": "99ca1737cef33635a17f07157bef8c0d0104f546adcba737f7af793771f70905",
-    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6"
+    "scripts/era-bridge/gameplay/mithril.json": "a5471a115a6c8a16a96e7c4b5996c47d076ed9cba3e1570171e2d3508fdc7f08",
+    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -890,5 +890,15 @@
       "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+      "scripts/era-bridge/gameplay/mithril.json": "99ca1737cef33635a17f07157bef8c0d0104f546adcba737f7af793771f70905",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }

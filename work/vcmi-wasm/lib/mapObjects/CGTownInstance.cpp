@@ -9,6 +9,7 @@
  */
 
 #include "StdInc.h"
+#include "../era/EraIncomeRuntime.h"
 #include "CGTownInstance.h"
 #include "../era/EraCampaignAdmission.h"
 #include "ObjectTemplate.h"
@@ -247,7 +248,7 @@ int CGTownInstance::getDwellingBonus(const std::vector<CreatureID>& creatureIds,
 	return totalBonus;
 }
 
-TResources CGTownInstance::dailyIncome() const
+TResources CGTownInstance::dailyIncomeBeforeHandicap() const
 {
 	ResourceSet ret;
 
@@ -271,11 +272,22 @@ TResources CGTownInstance::dailyIncome() const
 		}
 	}
 
+	return ret;
+}
+
+ResourceSet CGTownInstance::dailyIncomeOutsideHandicap() const
+{
+	return {};
+}
+
+TResources CGTownInstance::dailyIncome() const
+{
+	auto ret = dailyIncomeBeforeHandicap();
 	if (!getOwner().isValidPlayer())
 		return ret;
 
 	const auto & playerSettings = cb->getPlayerSettings(getOwner());
-	ret.applyHandicap(playerSettings->handicap.percentIncome);
+	era_compat::applyIncomeHandicap(ret, playerSettings->handicap.percentIncome);
 	return ret;
 }
 

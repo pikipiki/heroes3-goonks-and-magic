@@ -178,6 +178,8 @@ public:
 
 	ResourceSet getBuildingCost(const BuildingID & buildingID) const;
 	ResourceSet dailyIncome() const override;
+	ResourceSet dailyIncomeBeforeHandicap() const override;
+	ResourceSet dailyIncomeOutsideHandicap() const override;
 	std::vector<CreatureID> providedCreatures() const override;
 
 	int spellsAtLevel(int level, bool checkGuild) const; //levels are counted from 1 (1 - 5)

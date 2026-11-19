@@ -1452,7 +1452,7 @@ void publishMobileState(){
    }
   }
  }
- if(n["mode"].String()=="lobby"&&GAME->server().mi&&GAME->server().si){auto & server=GAME->server();for(const auto & player:server.si->playerInfos){JsonNode row;row["color"].Integer()=player.first.getNum();row["name"].String()=player.second.name;row["faction"].Integer()=player.second.castle.getNum();for(auto id:server.getPlayerInfo(player.first).allowedFactions){auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();item["key"].String()=faction->getJsonKey();row["factions"].Vector().push_back(item);}n["players"].Vector().push_back(row);}}
+ if(n["mode"].String()=="lobby"&&GAME->server().mi&&GAME->server().si){auto & server=GAME->server();for(const auto & player:server.si->playerInfos){JsonNode row;row["color"].Integer()=player.first.getNum();row["name"].String()=player.second.name;row["faction"].Integer()=player.second.castle.getNum();row["incomePercent"].Integer()=player.second.handicap.percentIncome;for(auto id:server.getPlayerInfo(player.first).allowedFactions){auto faction=id.toFaction();JsonNode item;item["id"].Integer()=id.getNum();item["name"].String()=faction->getNameTranslated();item["key"].String()=faction->getJsonKey();row["factions"].Vector().push_back(item);}n["players"].Vector().push_back(row);}}
  if(auto selection=ENGINE->windows().topWindow<CBonusSelection>()){
   const auto campaign=selection->getCampaign();auto & data=n["campaignScenario"];
   data["name"].String()=campaign->getNameTranslated();data["description"].String()=campaign->getDescriptionTranslated();data["selected"].Integer()=GAME->server().campaignMap.getNum();data["bonus"].Integer()=GAME->server().campaignBonus;data["difficulty"].Integer()=GAME->server().si->difficulty;data["chooseDifficulty"].Bool()=campaign->playerSelectedDifficulty();
@@ -1586,7 +1586,10 @@ void publishMobileState(){
      if(const auto * mine=dynamic_cast<const CGMine *>(object.get()))
      {
       if(mine->getOwner().isValidPlayer())
-       row["dailyIncome"].Integer()=mine->dailyIncome()[mine->producedResource];
+      {
+       row["dailyIncome"].Integer()=mine->dailyIncomeBeforeHandicap()[mine->producedResource];
+       row["incomePercent"].Integer()=p->cb->getPlayerSettings(mine->getOwner())->handicap.percentIncome;
+      }
       row["resource"].String()=LIBRARY->resourceTypeHandler->getById(mine->producedResource)->getNameTranslated();
      }
      if(!offer.upgrades.empty()&&offer.upgrades.front().hasValue())row["upgrade"].String()=offer.upgrades.front().toCreature()->getNamePluralTranslated();
@@ -2329,6 +2332,20 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   if(action==49){const auto activeBattle=CPlayerInterface::battleInt;if(activeBattle&&(!activeBattle->curInt||activeBattle->curInt->isAutoFightOn||activeBattle->curInt->autofightingAI))return;spell->mobileSelectSpell(a);lastPublished=0;return;}
   if(action==50){if(a<0)spell->fLcornerb();else spell->fRcornerb();lastPublished=0;return;}
   if(action==51){const std::array<SpellSchool,5> schools={SpellSchool::ANY,SpellSchool::AIR,SpellSchool::EARTH,SpellSchool::FIRE,SpellSchool::WATER};if(a>=0&&a<5)spell->selectSchool(schools[a]);lastPublished=0;return;}
+ }
+ if(action==1210 && GAME && GAME->server().getState()==EClientState::LOBBY)
+ {
+  auto & server=GAME->server();
+  const PlayerColor color(a);
+  if(server.si && server.mi && server.isHost() && !server.inLobbyRoom()
+   && server.screenType==ESelectionScreen::newGame && server.si->playerInfos.count(color)
+   && (b==100 || b==85 || b==70))
+  {
+   auto handicap=server.si->playerInfos.at(color).handicap;
+   handicap.percentIncome=b;
+   server.setPlayerHandicap(color,handicap);
+  }
+  lastPublished=0;return;
  }
  if(action==57&&GAME&&GAME->server().getState()==EClientState::LOBBY){auto & server=GAME->server();PlayerColor color(a);if(server.si->playerInfos.count(color)&&(b==-1||server.getPlayerInfo(color).allowedFactions.count(FactionID(b))))server.setPlayerOption(LobbyChangePlayerOption::TOWN_ID,b,color);lastPublished=0;return;}
  if((action==20||action==23||action==47)&&GAME&&(ENGINE->windows().topWindow<CSimpleJoinScreen>()||ENGINE->windows().topWindow<CLobbyScreen>()||ENGINE->windows().topWindow<CBonusSelection>()||ENGINE->windows().topWindow<CInfoWindow>()||GAME->server().getState()==EClientState::CONNECTING))return;

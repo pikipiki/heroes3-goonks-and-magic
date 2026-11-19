@@ -9,6 +9,8 @@
 */
 #pragma once
 
+#include "../ResourceSet.h"
+
 VCMI_LIB_NAMESPACE_BEGIN
 
 class ResourceSet;
@@ -20,6 +22,12 @@ public:
 	/// Fixed daily income of this object
 	/// May not include random or periodical (e.g. weekly) income sources
 	virtual ResourceSet dailyIncome() const = 0;
+
+	/// Regular income is summed before owner handicap and native AI bonuses.
+	/// Implementations with pre-scaled income override the first method; raw
+	/// ERM grants override the second to bypass both regular modifiers.
+	virtual ResourceSet dailyIncomeBeforeHandicap() const { return dailyIncome(); }
+	virtual ResourceSet dailyIncomeOutsideHandicap() const { return {}; }
 
 	/// List of creatures that are provided by this building
 	/// For use in town dwellings growth bonus and for portal of summoning

@@ -55,9 +55,18 @@ une instruction initiale : le contrôle natif donne1000pièces d'or contre500
 avec l'ancien adaptateur. Les compétences et le paiement d'une leçon terminée
 survivent au rechargement.
 
-Le calcul du revenu sous handicap reste à rapprocher : ERA applique la
-réduction au total agrégé ; le moteur natif arrondit encore certaines
-contributions séparément. Ce point empêche de déclarer le mithril complet.
+Les revenus ordinaires des mines, villes et héros sont désormais agrégés
+avant le handicap, avec troncature vers zéro. Deux mines améliorées produisent
+ainsi 3 gemmes à 85 %, contre 4 avec l'ancien moteur, et 2 à 70 %. Le bonus mithril
+porte sur la production propre de la mine. Les versements ERM de l'Oie d'or et
+la compensation mithril de l'IA restent bruts après les modificateurs ordinaires.
+Les contrôles natifs couvrent les sauvegardes après versement, leur absence de
+rejeu, le jour suivant, les profils de revenus 100/85/70 %, et les commandes
+sans clavier sur mobile et ordinateur. Le choix par joueur se trouve dans le
+lobby ; les mines affichent leur production avant handicap.
+Référence : `scripts/era-bridge/gameplay/mithril-income-native-validation.json`.
+Les hooks de revenu complets, les semaines de ressources et les interactions
+entre profils restent à rapprocher ; le mithril complet n'est pas encore admis.
 
 Les profils cibles sont WoG, ERA Scripts, Advanced Classes et Reborn. Ils sont
 définis séparément dans `scripts/era-bridge/gameplay/profiles.mjs`. Le contrôle

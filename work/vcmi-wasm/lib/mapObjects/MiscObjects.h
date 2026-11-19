@@ -192,6 +192,8 @@ public:
 
 	const IOwnableObject * asOwnable() const final;
 	ResourceSet dailyIncome() const override;
+	ResourceSet dailyIncomeBeforeHandicap() const override;
+	ResourceSet dailyIncomeOutsideHandicap() const override;
 	std::vector<CreatureID> providedCreatures() const override;
 
 protected:

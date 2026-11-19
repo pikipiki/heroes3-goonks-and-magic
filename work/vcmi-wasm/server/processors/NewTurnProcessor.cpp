@@ -8,6 +8,7 @@
  *
  */
 #include "StdInc.h"
+#include "../../lib/era/EraIncomeRuntime.h"
 #include "../../lib/era/EraMithrilModel.h"
 #include "../era/EraHenchmanRuntime.h"
 #include "../era/EraMapRulesRuntime.h"
@@ -370,17 +371,13 @@ ResourceSet NewTurnProcessor::generatePlayerIncome(PlayerColor playerID, bool ne
 			income[EGameResID::CRYSTAL] += 3;
 	}
 
-	TResources incomeHandicapped = income;
-	incomeHandicapped.applyHandicap(playerSettings->handicap.percentIncome);
-
-	for (const auto * obj :	state.getOwnedObjects())
-		incomeHandicapped += obj->asOwnable()->dailyIncome();
-	if(!state.isHuman()&&era_compat::mithril::enabled(gameHandler->gameInfo()))
+	ResourceSet unscaledIncome;
+	for (const auto * obj : state.getOwnedObjects())
 	{
-		const auto currency=era_compat::mithril::resource();
-		if(currency!=GameResID::NONE)
-			incomeHandicapped[GameResID::GOLD]+=(state.resources[currency]+incomeHandicapped[currency])*100;
+		income += obj->asOwnable()->dailyIncomeBeforeHandicap();
+		unscaledIncome += obj->asOwnable()->dailyIncomeOutsideHandicap();
 	}
+	TResources incomeHandicapped = income;
 
 	if (!state.isHuman())
 	{
@@ -403,6 +400,17 @@ ResourceSet NewTurnProcessor::generatePlayerIncome(PlayerColor playerID, bool ne
 			int64_t totalIncomeToday = std::min(GameConstants::PLAYER_RESOURCES_CAP, incomeHandicapped[i] + dailyBonusToday);
 			incomeHandicapped[i] = totalIncomeToday;
 		}
+	}
+
+	// ERA rounds once per resource, after summing mines and other regular income.
+	era_compat::applyIncomeHandicap(incomeHandicapped, playerSettings->handicap.percentIncome);
+	incomeHandicapped += unscaledIncome;
+	// Source OW:R compensation is a raw grant, after ordinary income modifiers.
+	if(!state.isHuman() && era_compat::mithril::enabled(gameHandler->gameInfo()))
+	{
+		const auto currency = era_compat::mithril::resource();
+		if(currency != GameResID::NONE)
+			incomeHandicapped[GameResID::GOLD] += (state.resources[currency] + incomeHandicapped[currency]) * 100;
 	}
 
 	return incomeHandicapped;

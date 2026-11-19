@@ -18,15 +18,15 @@
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
     "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "bc301dbc34694cd09adfbdf388b93c1c7a6954709d89821751e37144241d11b0",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636",
     "tests/native/EraMapFortlessRules.test.cpp": "bb89011115365288ca289d8b71b67cc635d489c30c019ba31771a90268dbc17e",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "8409a36bbf3daa47d5b4ad4b68055473c69de80cb2d785f7a4f89187b881dc76",
     "work/browser-tests/wog-map-fortless-cases.mjs": "78639617fe6b4582424834e3be045c86547641e4094138be7c85d897fa05070f",
     "tests/fixtures/era-gameplay/map-fortless-reference.json": "f7d3ecab64b7db682e9a29bc6cb92e17dbb948c3f0d21d4c37cd33e9c63a4156",
     "scripts/era-bridge/gameplay/map-rules.json": "f30b9949e5878f9aa3320faf51b449dfcc007db8ce1003b892986b7c3f673064",
-    "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+    "docs/era-gameplay-port.md": "70739ce01e4e779b4cfae981655bd0b16480390b59c25bf9658511eee0af0913",
     "tests/era-map-fortless.test.mjs": "36c986217460602ee1f9226ecfbcd0dfcb46a46def2dd430e1b509d02ca2dabb",
-    "docs/era-compatibility.md": "9a627cbf8a066f0421cb331f5a4a5c7991e20f686209db6693798c39e6cb3315"
+    "docs/era-compatibility.md": "a3c3923d497cabbac140b82b478fdf83225bb3fd07a841f9828b09df502e408c"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1820,5 +1820,16 @@
       "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
+  },
+  "aggregateIncomeRevalidation": {
+    "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
+    "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "3417f97b5f6367b231e736919a012e1ca783363b0b5c33cf7dc5216e73cc24a6",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e8d1f8743d5dc321b286ea6dbec2a5242b3e2fe06bbf904ba4a01a8f436a714c",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56",
+      "docs/era-compatibility.md": "9a627cbf8a066f0421cb331f5a4a5c7991e20f686209db6693798c39e6cb3315"
+    },
+    "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   }
 }
