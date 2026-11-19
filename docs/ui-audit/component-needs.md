@@ -13,7 +13,7 @@ Les effets de relief ajoutés aux icônes ont été abandonnés à la demande du
 - `compose` : composition réutilisable à extraire des écrans existants, en conservant leurs données et commandes.
 - `engine` : rendu/interactions spécifiques au jeu à préserver ; MUI habille leurs commandes, pas les pixels de la scène.
 
-## Bibliothèque à compléter
+## Bibliothèque de composants
 
 | Composant | Statut | Écrans utilisateurs | Réutilisation / besoin |
 | --- | --- | ---: | --- |
@@ -24,7 +24,7 @@ Les effets de relief ajoutés aux icônes ont été abandonnés à la demande du
 | Sélecteurs et menus | mui | 13 | Select, Menu, MenuItem |
 | Cases et boutons radio | mui | 6 | Checkbox, RadioGroup |
 | Onglets | mui | 6 | Tabs, Tab |
-| Accordéons | available | 3 | HeroesAccordion |
+| Accordéons | available | 4 | HeroesAccordion |
 | Messages et progression | mui | 29 | Alert, CircularProgress, LinearProgress |
 | Confirmation | available | 16 | ConfirmDialog |
 | Quantité et curseur | available | 4 | QuantityControl |
@@ -35,33 +35,33 @@ Les effets de relief ajoutés aux icônes ont été abandonnés à la demande du
 | Emplacement de troupe | available | 1 | ArmySlot |
 | Tableau accessible | available | 2 | HeroesDataTable |
 | Stock, prix et total | available | 5 | PurchaseSummary |
-| Bandeau du royaume | compose | 4 | Ressources, recrues et date stables ; respect de la modalité |
-| Recherche et filtres | compose | 6 | Recherche, compteur, filtres repliables, vide et réinitialisation |
-| Carte et aperçu du scénario | compose | 6 | Vraie minicarte, taille, joueurs, factions et sélection |
-| Configuration des joueurs | compose | 7 | Couleur, équipe, faction, humain/IA, état prêt ; jusqu’à huit joueurs |
-| Identité du héros | compose | 7 | Portrait, nom complet, classe, niveau, mana, expérience et spécialité |
-| Grille des armées | compose | 3 | Sept emplacements, case Tout améliorer, fusion, vide et sélection |
-| Inventaire d’artefacts | compose | 5 | Emplacements compatibles, équipé/sac, objets verrouillés et sélection |
-| Échange et scission | compose | 3 | Deux armées/inventaires, destination, quantité, tout transférer et confirmation |
-| Fiche de créature | compose | 10 | Illustration, statistiques, description et capacités natives complètes |
-| Choix des évolutions | compose | 3 | Une à quatre évolutions, nom entier, sélection stable et grille sans trou |
-| Liste de recrutement | compose | 4 | Familles, deux rangées en portrait, indisponibilité et stock partagé |
-| Projet de construction | compose | 3 | Image, nom, sous-titre, prérequis, coût et raison d’indisponibilité |
-| Recrutement d’un héros | compose | 1 | Identité, aperçu des compétences/équipement/grimoire, prix et recrutement |
-| Choix et détail d’un sort | compose | 3 | Écoles, coût, description, cible, indisponibilité et réutilisation |
-| Arbre de compétences | compose | 4 | Nœuds, liens, niveaux, prérequis et état sélectionnable |
-| Devis d’amélioration | compose | 4 | Avant/après, évolution maximale, coût global et motif de refus localisé |
-| Échange de ressources | compose | 1 | Donner/recevoir, taux, quantité, total et ressources insuffisantes |
-| Classement et renseignements | compose | 3 | Huit joueurs, rangs ex æquo, informations inconnues, détail par joueur |
-| Commandes et inspection de combat | compose | 3 | Créature active, statistiques, états, initiative et actions disponibles |
-| Résultat de combat | compose | 4 | Victoire/défaite, expérience, pertes d’une unité ou plus et score |
-| Sauvegardes et reprise | compose | 3 | Liste, métadonnées, import/export, reprendre, supprimer et état vide |
-| Occupation du stockage | compose | 6 | Occupation, téléchargement, disponibilité hors ligne et réparation |
-| Option de règle avec aide | compose | 4 | Libellé localisé, choix, explication et dépendances |
-| Code et copie | compose | 4 | Code lisible, copie, succès/échec et solution de repli |
-| Formulaire de dialogue natif | compose | 2 | Récompense obligatoire, choix multiple, nombre, texte et validation |
-| Illustration et vidéo | compose | 2 | Média réel, légende, lecture/pause, chargement, erreur et sortie |
-| Résumé des conséquences | compose | 1 | Pertes, coûts, ressources récupérées, évacuation et confirmation explicite |
+| Bandeau du royaume | available | 4 | KingdomChrome |
+| Recherche et filtres | available | 6 | SearchFilterBar |
+| Carte et aperçu du scénario | available | 6 | ScenarioCard |
+| Configuration des joueurs | available | 7 | PlayerSetup |
+| Identité du héros | available | 7 | HeroIdentityCard |
+| Grille des armées | available | 3 | ArmyGrid |
+| Inventaire d’artefacts | available | 5 | InventoryGrid |
+| Échange et scission | available | 3 | TransferPanel |
+| Fiche de créature | available | 10 | CreatureDetails |
+| Choix des évolutions | available | 3 | EvolutionPicker |
+| Liste de recrutement | available | 4 | RecruitmentRoster |
+| Projet de construction | available | 3 | BuildingProject |
+| Recrutement d’un héros | available | 1 | HeroHireCard |
+| Choix et détail d’un sort | available | 3 | SpellPicker |
+| Arbre de compétences | available | 4 | SkillTree |
+| Devis d’amélioration | available | 4 | UpgradeQuote |
+| Échange de ressources | available | 1 | MarketTradePanel |
+| Classement et renseignements | available | 3 | KingdomRanking |
+| Commandes et inspection de combat | available | 3 | BattleHUD |
+| Résultat de combat | available | 4 | BattleResult |
+| Sauvegardes et reprise | available | 3 | SaveRecoveryPanel |
+| Occupation du stockage | available | 6 | StorageUsage |
+| Option de règle avec aide | available | 4 | RuleOptionRow |
+| Code et copie | available | 4 | CopyCodeField |
+| Formulaire de dialogue natif | available | 2 | NativeDialogForm |
+| Illustration et vidéo | available | 2 | MediaViewer |
+| Résumé des conséquences | available | 1 | ConsequenceSummary |
 | Scène et zones interactives | engine | 7 | Conserver le canvas et ses coordonnées ; ne pas peindre les bâtiments en MUI |
 | Animation de créature | engine | 4 | Réutiliser le lecteur natif, son cadrage et son ordonnanceur |
 | Trajet et cibles tactiques | engine | 4 | Cases accessibles, trajectoire, tir, cibles des sorts et confirmation |
@@ -89,7 +89,7 @@ Les effets de relief ajoutés aux icônes ont été abandonnés à la demande du
 | [troop-actions](../../web/troop-actions.mjs) | 3 | Structure adaptative, Fiche de créature, Carte de sélection, Confirmation, Messages et progression |
 | [troop-deployment](../../web/troop-deployment.mjs) | 2 | Structure adaptative, Quantité et curseur, Sélecteurs et menus, Carte de sélection, Confirmation, Messages et progression |
 | [troop-equipment](../../web/troop-equipment.mjs) | 3 | Structure adaptative, Fiche de créature, Inventaire d’artefacts, Caractéristiques, Sélecteurs et menus, Confirmation |
-| [mithril-enhancements](../../web/mithril-enhancements.mjs) | 1 | Structure adaptative, Devis d’amélioration, Carte de sélection, Ressources et coûts, Sélecteurs et menus, Messages et progression |
+| [mithril-enhancements](../../web/mithril-enhancements.mjs) | 1 | Structure adaptative, Devis d’amélioration, Carte de sélection, Ressources et coûts, Sélecteurs et menus, Messages et progression, Accordéons |
 | [dialog-presentation](../../web/dialog-presentation.mjs) | 6 | Structure adaptative, Formulaire de dialogue natif, Confirmation, Carte de sélection, Ressources et coûts, Identité du héros, Arbre de compétences, Résultat de combat |
 | [progression-choices](../../web/progression-choices.mjs) | 3 | Structure adaptative, Carte de sélection, Choix des évolutions, Inventaire d’artefacts, Ressources et coûts, Sélecteurs et menus, Confirmation |
 | [commander-tree](../../web/commander-tree.mjs) | 3 | Arbre de compétences, Caractéristiques, Carte de sélection, Messages et progression |

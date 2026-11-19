@@ -70,7 +70,7 @@ export const screenNeeds={
  'troop-actions':['Créatures',['screen','details','card','confirm','feedback']],
  'troop-deployment':['Créatures',['screen','quantity','select','card','confirm','feedback']],
  'troop-equipment':['Créatures',['screen','details','inventory','stats','select','confirm']],
- 'mithril-enhancements':['Économie',['screen','upgrade','card','resources','select','feedback']],
+ 'mithril-enhancements':['Économie',['screen','upgrade','card','resources','select','feedback','accordion']],
  'dialog-presentation':['Navigation',['screen','dynamic','confirm','card','resources','hero','skills','result']],
  'progression-choices':['Créatures',['screen','card','evolution-grid','inventory','resources','select','confirm']],
  'commander-tree':['Héros',['skills','stats','card','feedback']],

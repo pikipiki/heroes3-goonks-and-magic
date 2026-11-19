@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {execFileSync,spawnSync} from 'node:child_process';
-import {requiresUiLibrary,importsUiLibrary,violations} from '../scripts/check-ui-components.mjs';
+import {requiresUiLibrary,importsUiLibrary,violations,muiOnlyViolations} from '../scripts/check-ui-components.mjs';
 const markup="const panel=document.createElement('section');panel.innerHTML='<header>Title</header><button>OK</button>';";
 test('UI guard covers new screens and leaves logic and library internals alone',()=>{
  assert.deepEqual(violations(['outputs/large-catalogue.json','game-data/binary.bin'],()=>{throw Error('Unrelated data must never be read');}),[]);
@@ -13,8 +13,16 @@ test('UI guard covers new screens and leaves logic and library internals alone',
  assert(requiresUiLibrary('src/screens/Army.tsx','export const Army=()=> <section><Button>Recruit</Button></section>;'));
  assert(importsUiLibrary("import {Button} from '../ui/components.mjs';"));
  assert(importsUiLibrary("import {ScreenShell} from '../ui/heroes-kit.mjs';"));
+ assert(importsUiLibrary("import {ArmyGrid} from '../ui/game-components.mjs';"));
  assert(importsUiLibrary("import {renderMarkup} from './ui/material-components.mjs';"));
  assert(!requiresUiLibrary('src/ui/Army.tsx','export const Army=()=> <Button>Recruit</Button>;'));
+});
+test('game compositions render through MUI, including content surfaces',()=>{
+ const file='src/ui/game/army.jsx';
+ assert.deepEqual(muiOnlyViolations([file],()=>'<button>Upgrade</button>'),[file]);
+ assert.deepEqual(muiOnlyViolations([file],()=>"h('div',null,'Army')"),[file]);
+ assert.deepEqual(muiOnlyViolations([file],()=>'<Box component="button">Upgrade</Box>'),[file]);
+ assert.deepEqual(muiOnlyViolations([file],()=>'<Box component="section"><Button>Upgrade</Button></Box>'),[]);
 });
 test('pre-commit reads the index, rejects copied UI, and installer is idempotent',()=>{
  const cwd=fs.mkdtempSync(path.join(os.tmpdir(),'goonk-ui-hook-')),git=(...args)=>execFileSync('git',args,{cwd,stdio:'pipe'});
