@@ -802,7 +802,7 @@
     },
     "buildWeb": {
       "exitCode": 0,
-      "logSha256": "15b4b9c03f56109fd13e20ed705d9249b553b15f938209e060cfffda3595e46e"
+      "logSha256": "e599723ca4d0e03aa1e2a14f980731af371dc569c910775edfb9bfa743724822"
     },
     "verifyWeb": {
       "exitCode": 0,
@@ -818,14 +818,14 @@
     "Explicit battle replay and live-army saves are not established by these native tests."
   ],
   "uiRebuild": {
-    "scope": "Generated MUI runtime rebuilt from the already committed theme sources; no new product UI source change. Final native smoke tests and stability controls use this generated runtime.",
+    "scope": "Generated runtime from merged construction UI commit d3733a98. Current smoke tests and stability controls use the merged source; previous runtime evidence retained.",
     "compiledRuntime": {
-      "sha256": "3761d703cd0534e64011e4f69033cf5a5cb0bc019c20021bef3b87d2d587bd0f",
-      "bytes": 545696,
+      "sha256": "93505c7038dce086826a4203dba5ab3902b9ef736580e40b647c01b4069d61b0",
+      "bytes": 576791,
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
+      "src/ui/theme.mjs": "f3ce9b15e63ad7a66fe8b884a55c74c8dbb94868ba7f0b999d4d6c94655d4ab3",
       "scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478"
     },
     "stability": {
@@ -884,6 +884,107 @@
         "errors": [],
         "rawReportSha256": "838931bebaa385ad22f217d3fa969ac1bd573670d993a54096306d760ef391c9"
       }
+    },
+    "beforeConstructionMerge": {
+      "compiledRuntime": {
+        "sha256": "3761d703cd0534e64011e4f69033cf5a5cb0bc019c20021bef3b87d2d587bd0f",
+        "bytes": 545696,
+        "tracked": false
+      },
+      "sourceBindings": {
+        "src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
+        "scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478"
+      },
+      "stability": {
+        "passed": true,
+        "caseCount": 48,
+        "inputCount": 31,
+        "reportSha256": "243caa1ad13a64dbedaa6149366bb6775575e925e00d7143d4da14d25b9fb1ca",
+        "logSha256": "7ebf9e05d5cd770ce3ac7e9156b033347f20243da04f515b2fa73b345d451ad7"
+      },
+      "nativeReports": {
+        "portrait": {
+          "passed": true,
+          "scope": "native-core-only",
+          "completeRules": false,
+          "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+          "scenarios": [
+            {
+              "temporaryArmy": true,
+              "mapEventCreated": false,
+              "creationAndReleasePackets": 2,
+              "companionPrompt": false,
+              "progressionKinds": [],
+              "progressedHero": null,
+              "preBattleSaveReload": true,
+              "postBattleSaveReload": true,
+              "nativeTownVisitResumed": true,
+              "defeatedHeroSkipsNativeVisit": false,
+              "legacyInput": null,
+              "desktop": false
+            }
+          ],
+          "errors": [],
+          "rawReportSha256": "110ab2d22d71c633b05f5fa532830b327055a76c5b2d33086a187c86d2e73fbb"
+        },
+        "desktop": {
+          "passed": true,
+          "scope": "native-core-only",
+          "completeRules": false,
+          "engineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2",
+          "scenarios": [
+            {
+              "temporaryArmy": true,
+              "mapEventCreated": false,
+              "creationAndReleasePackets": 2,
+              "companionPrompt": false,
+              "progressionKinds": [],
+              "progressedHero": null,
+              "preBattleSaveReload": true,
+              "postBattleSaveReload": true,
+              "nativeTownVisitResumed": true,
+              "defeatedHeroSkipsNativeVisit": false,
+              "legacyInput": 938,
+              "desktop": true
+            }
+          ],
+          "errors": [],
+          "rawReportSha256": "838931bebaa385ad22f217d3fa969ac1bd573670d993a54096306d760ef391c9"
+        }
+      }
+    }
+  },
+  "constructionMerge": {
+    "upstreamCommit": "d3733a98",
+    "engineUnchanged": true,
+    "sourceBindings": {
+      "src/ui/runtime.mjs": "b3203a7f03e3c107328cadbee0645a5640abcdf4c272b9ce356b7088388fb7ab",
+      "src/ui/theme.mjs": "f3ce9b15e63ad7a66fe8b884a55c74c8dbb94868ba7f0b999d4d6c94655d4ab3",
+      "web/town-building-menu.mjs": "17def3c27dd4342fed77dd06bda477a7c61bcc0f9d97d27dd00633087277b3d7",
+      "web/ui/action-dock.mjs": "0d4958b41349cd44a2d8f41e7771f26d3b7a750266257ecefe0aa2a2e19849dc",
+      "web/ui/construction-layout.css": "f3888af09f4fe228991ba472d001946fde2e59940e43eff1f438f0785065991e",
+      "web/ui/controls.mjs": "ee1e0f18e58ec73f56ae9eaa9e2e0f95c160a10cdda8af4d079ae7e849b1f490",
+      "web/ui/material-components.css": "0d12105f14859b3d9ccd7e0ee3c464a9b37ef91e9fcb3239ae86205b2b701ac2",
+      "web/ui/surfaces.css": "85209d269f81cf00e7ebba9416ae9a5321c48f81cdcdaded4ed1240ee670b875",
+      "work/browser-tests/construction-catalogue.mjs": "caaf589da61326a9e632cfc1418118ec048da427bb5fc3fce7390ecceb344248",
+      "work/browser-tests/construction-flow-e2e.mjs": "6c90ff0343b13cff010028fc8a81733168dc0cc24caf705e3ca52ec7dfec42c0"
+    },
+    "mockConstructionFlow": {
+      "passed": true,
+      "browsers": [
+        "chromium",
+        "webkit"
+      ],
+      "factions": 10,
+      "projectSteps": 26,
+      "logSha256": "f8995ef14806e8b745c75b00464cac65235dd99eb4c542a0e99def3d1e352209"
+    },
+    "node": {
+      "tests": 979,
+      "passed": 923,
+      "skipped": 56,
+      "failed": 0,
+      "logSha256": "a524ecda25f3660336bf124eb817de64cd26f69e349402b41f2e5b42083fef46"
     }
   }
 }

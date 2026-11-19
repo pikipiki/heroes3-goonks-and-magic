@@ -7,6 +7,7 @@ const tabSelector='[data-hero-tab],[data-school],[data-building-tab],[data-guild
 const tabGroups=new WeakSet(),fields=new WeakMap();
 export function useChoiceTile(button){button.classList.add('ui-choice-tile');return button;}
 export function useTabs(container,selector=tabSelector){
+ if(container.closest('.MuiTabs-root'))return;
  const buttons=[...container.querySelectorAll(selector)];if(!buttons.length)return;
  container.classList.add('ui-tabs');const mixed=[...container.children].some(child=>child.tagName==='BUTTON'&&!child.matches(selector));container.setAttribute('role',mixed?'toolbar':'tablist');
  for(const button of buttons){button.classList.add('ui-tab');button.setAttribute('role',mixed?'button':'tab');const selected=button.getAttribute('aria-pressed')==='true';if(mixed)button.removeAttribute('aria-selected');else button.setAttribute('aria-selected',String(selected));button.tabIndex=selected?0:-1;}
@@ -20,7 +21,7 @@ export function useScreenControls(root){
  for(const input of root.querySelectorAll('input,textarea')){if(input.matches('[type=hidden],[data-mui-field],[aria-hidden=true]')||input.closest('.MuiInputBase-root'))continue;if(input.matches('[type=checkbox],[type=radio]')){input.classList.add('ui-check-input');input.closest('label')?.classList.add('ui-check-field');}else if(input.type==='range')input.classList.add('ui-slider');else input.classList.add(input.closest('.hall-quantity,.market-stepper,.deployment-quantity-tools,.amount-row,.army-transfer-tools,.exchange-quantity,.mobile-recruit-amount')?'ui-compact-input':'ui-text-field');}
  for(const summary of root.querySelectorAll('summary'))summary.classList.add('ui-disclosure');
  for(const button of root.querySelectorAll('button')){
-  if(button.classList.contains('MuiAccordionSummary-root'))continue;
+  if(button.matches('.MuiAccordionSummary-root,.MuiTab-root,.MuiStepButton-root'))continue;
   if(button.classList.contains('ui-icon-button')||button.closest('.ui-popup'))continue;
   const label=button.hasAttribute('data-hero-cancel')?uiText('Cancel','Annuler'):button.hasAttribute('data-hero-move')?uiText('Move','Déplacer'):null;if(label&&button.textContent!==label)button.textContent=label;
   if(button.matches('.army-upgrade-all')){button.classList.add('ui-action-tile');useChoiceTile(button);}

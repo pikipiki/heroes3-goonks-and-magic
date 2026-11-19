@@ -1,0 +1,110 @@
+/* Construction is one responsive composition: navigation, readable content,
+   dependency steps and one command dock. It never constrains other sheets. */
+@layer ui-composition {
+ #mobile-app[data-sheet=build]>.mobile-sheet{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:56px auto minmax(0,1fr) auto!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;box-sizing:border-box!important;padding:8px!important;gap:8px!important;overflow:hidden!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet[hidden]{display:none!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet>.sheet-head{grid-area:1/1!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;align-self:start!important;gap:8px!important;padding:4px 8px!important;width:100%!important;height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important;overflow:visible!important}
+ #mobile-app[data-sheet=build] .sheet-head h2{flex:1!important;min-width:0!important;width:auto!important;margin:0!important;font:var(--ui-font-title-compact)!important}
+ #mobile-app[data-sheet=build] .sheet-head>[data-ui=close-sheet]{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;flex:0 0 48px!important;padding:0!important;margin:0!important}
+ #mobile-app[data-sheet=build] .sheet-body,#mobile-app[data-sheet=build] .building-menu,#mobile-app[data-sheet=build] .building-content{display:contents!important;padding:0!important;margin:0!important;max-height:none!important}
+ #mobile-app[data-sheet=build] :is(.building-list,.building-detail,.building-side-info){min-height:0!important;min-width:0!important;box-sizing:border-box!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
+ #mobile-app[data-sheet=build] .building-list{grid-area:3/1!important;padding:4px!important}
+ #mobile-app[data-sheet=build] .building-group{gap:8px!important;margin-bottom:8px!important}
+ #mobile-app[data-sheet=build] .building-group h3{font:var(--ui-font-label)!important;margin:0 0 4px!important}
+ #mobile-app[data-sheet=build] .building-controls{grid-area:2/1!important;display:grid!important;grid-template-columns:minmax(0,1fr) 56px!important;gap:8px!important;min-width:0!important;min-height:0!important;align-content:start!important}
+ #mobile-app[data-sheet=build] .building-tabs{grid-column:1/-1!important;width:100%!important;min-width:0!important;min-height:48px!important;height:48px!important;padding:0!important;margin:0!important}
+ #mobile-app[data-sheet=build] .building-tabs .MuiTabs-list{gap:4px!important}
+ #mobile-app[data-sheet=build] .building-tabs .MuiTab-root{height:48px!important;min-width:0!important;flex:1 1 0!important;max-width:none!important;box-sizing:border-box!important}
+ #mobile-app[data-sheet=build] .building-control-label{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+ #mobile-app[data-sheet=build] .building-category-filter{width:100%!important;min-width:0!important;margin:0!important;height:48px!important}
+ #mobile-app[data-sheet=build] .building-category-filter:last-child{grid-column:1/-1!important}
+ #mobile-app[data-sheet=build] .building-category-filter .material-select-host{display:block!important;width:100%!important;height:48px!important}
+ #mobile-app[data-sheet=build] .building-category-filter .material-select-trigger{min-height:48px!important;height:48px!important;font:var(--ui-font-body-small)!important}
+ #mobile-app[data-sheet=build] .building-category-filter .MuiSelect-select{padding:12px 28px 12px 12px!important;text-overflow:clip!important;white-space:normal!important;min-width:0!important}
+ #mobile-app[data-sheet=build] [data-building-grail]{height:48px!important;min-height:48px!important;min-width:48px!important;padding:4px!important;font:var(--ui-font-body-small)!important}
+ #mobile-app[data-sheet=build] .building-detail{grid-area:3/1!important;display:grid!important;grid-template-columns:minmax(64px,30%) minmax(0,1fr)!important;gap:8px!important;align-items:start!important;align-content:start!important;padding:8px!important;border:1px solid var(--ui-outline)!important;border-radius:0!important;box-shadow:none!important}
+ #mobile-app[data-sheet=build] .building-detail>div{min-width:0!important;display:grid!important;gap:8px!important;align-content:start!important}
+ #mobile-app[data-sheet=build] .building-detail .building-card-image{height:clamp(88px,24cqh,144px)!important;width:100%!important;max-width:100%!important;object-fit:contain!important;align-self:start!important}
+ #mobile-app[data-sheet=build] .building-detail h3{font:var(--ui-font-title-compact)!important;margin:0!important}
+ #mobile-app[data-sheet=build] .building-detail :is(p,h4,li){font:var(--ui-font-body)!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;max-width:100%!important;margin:0!important}
+ #mobile-app[data-sheet=build] .building-benefit{min-width:0!important;border:0!important;border-top:1px solid var(--ui-outline)!important;padding:8px 0 0!important;background:transparent!important;gap:8px!important}
+ #mobile-app[data-sheet=build] .building-benefit-creature{display:grid!important;grid-template-columns:52px minmax(0,1fr)!important;gap:8px!important;min-width:0!important}
+ #mobile-app[data-sheet=build] .building-benefit-creature>div{min-width:0!important}
+ #mobile-app[data-sheet=build] .building-benefit-creature :is(img,canvas){max-width:52px!important;max-height:64px!important;object-fit:contain!important}
+ #mobile-app[data-sheet=build] .building-prerequisite{padding:8px!important;min-width:0!important;font:var(--ui-font-body-small)!important}
+ #mobile-app[data-sheet=build] .building-project{grid-area:2/1!important;display:flex!important;flex-direction:column!important;gap:8px!important;font:var(--ui-font-body-small)!important;min-width:0!important;min-height:0!important;max-height:min(28cqh,200px)!important;box-sizing:border-box!important;padding:8px!important;border:1px solid var(--ui-outline)!important;overflow:hidden!important;border-radius:0!important;box-shadow:none!important}
+ #mobile-app[data-sheet=build] .building-project-head{display:grid!important;gap:0!important;flex:none!important;min-width:0!important}
+ #mobile-app[data-sheet=build] .building-project-head :is(small,span){font:var(--ui-font-body-small)!important;margin:0!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important}
+ #mobile-app[data-sheet=build] .building-project :is([data-ui-stepper],ol){flex:1 1 auto!important;min-height:0!important;min-width:0!important;overflow-y:auto!important;touch-action:pan-y!important;display:block!important;margin:0!important;padding:0!important;list-style:none!important}
+ #mobile-app[data-sheet=build] .building-project.MuiAccordion-root{padding:0!important}
+ #mobile-app[data-sheet=build] .building-project .MuiAccordion-heading{flex:none!important;min-width:0!important}
+ #mobile-app[data-sheet=build] .building-project .MuiCollapse-root{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important}
+ #mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapper,#mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapperInner{height:100%!important;min-height:0!important}
+ #mobile-app[data-sheet=build] .building-project .MuiAccordionDetails-root{display:flex!important;flex-direction:column!important;height:100%!important;min-height:0!important;box-sizing:border-box!important;padding:4px!important}
+ #mobile-app[data-sheet=build] .building-project .MuiStepButton-root{border:1px solid transparent!important}
+ #mobile-app[data-sheet=build] .building-project .MuiStepButton-root[aria-current=step]{border-color:var(--ui-primary)!important;background:var(--ui-secondary-container)!important}
+ #mobile-app[data-sheet=build] .building-project .MuiStepLabel-labelContainer{min-width:0!important}
+ #mobile-app[data-sheet=build] .building-side-info{grid-area:2/1!important;padding:8px!important;border:1px solid var(--ui-outline)!important;font:var(--ui-font-body-small)!important;border-radius:0!important;box-shadow:none!important}
+ #mobile-app[data-sheet=build] .building-side-info :is(p,small){font:var(--ui-font-body-small)!important;margin:0!important}
+ #mobile-app[data-sheet=build] .building-price{display:grid!important;gap:4px!important;margin-top:8px!important}
+ #mobile-app[data-sheet=build] .building-cost{font:var(--ui-font-resource)!important;font-variant-numeric:tabular-nums!important;gap:4px 8px!important}
+ #mobile-app[data-sheet=build] .building-cost img{width:18px!important;height:18px!important;object-fit:contain!important}
+ #mobile-app[data-sheet=build] .building-dock-cost{display:none!important}
+ #mobile-app[data-sheet=build] .building-actions{grid-area:4/1!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;margin:0!important;padding:0!important;border:0!important;min-height:0!important}
+ #mobile-app[data-sheet=build] .building-actions>button{min-width:0!important;min-height:48px!important;width:100%!important;margin:0!important;padding:8px!important;font:var(--ui-font-label)!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet>.ui-action-dock:not(.building-actions){grid-area:5/1!important;display:block!important;min-width:0!important;min-height:48px!important;margin:0!important;padding:0!important;border:0!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet>.ui-action-dock:not(.building-actions) [data-ui=sheet-back]{width:100%!important;min-height:48px!important;margin:0!important;font:var(--ui-font-label)!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet[data-building-back=false]>.ui-action-dock:not(.building-actions){display:none!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-side-info{grid-area:4/1!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-actions{grid-area:5/1!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]>.ui-action-dock:not(.building-actions){grid-area:6/1!important}
+ #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]{grid-template-rows:56px auto minmax(0,1fr) auto auto!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-sheet=build]>.mobile-sheet,#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]{grid-template-columns:minmax(0,1fr) clamp(184px,28cqw,220px)!important;grid-template-rows:56px minmax(0,1fr) auto!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet>.sheet-head{grid-area:1/2!important}
+  #mobile-app[data-sheet=build] .building-list,#mobile-app[data-sheet=build] .building-detail{grid-area:1/1/-1/2!important}
+  #mobile-app[data-sheet=build] .building-controls,#mobile-app[data-sheet=build] .building-side-info,#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-side-info{grid-area:2/2!important;align-self:stretch!important}
+  #mobile-app[data-sheet=build] .building-actions,#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-actions{grid-area:3/2!important;grid-template-columns:minmax(0,1fr)!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet>.ui-action-dock:not(.building-actions),#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]>.ui-action-dock:not(.building-actions){grid-area:4/2!important}
+  #mobile-app[data-sheet=build] .building-price>small{display:none!important}
+  #mobile-app[data-sheet=build] .building-detail :is(p,h4,li){font:var(--ui-font-body-small)!important}
+  #mobile-app[data-sheet=build] .building-actions>button{font:var(--ui-font-body-small)!important}
+  #mobile-app[data-sheet=build] .building-project{grid-area:1/1/3/2!important;max-height:none!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-detail{grid-area:3/1/-1/2!important}
+ }
+ @container goonk-viewport (orientation:landscape) and (max-width:639px){
+  #mobile-app[data-sheet=build] .building-content{grid-area:1/1/-1/2!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr)!important;gap:8px!important;min-height:0!important;min-width:0!important}
+  #mobile-app[data-sheet=build] .building-project{grid-area:1/1!important;max-height:min(40cqh,144px)!important;align-self:start!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-detail{grid-area:2/1!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=false] .building-content{grid-template-rows:minmax(0,1fr)!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=false] .building-detail{grid-area:1/1!important}
+ }
+ @container goonk-viewport (orientation:landscape) and (min-width:640px){
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]{grid-template-columns:clamp(136px,22cqw,176px) minmax(0,1fr) clamp(184px,28cqw,220px)!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]>.sheet-head{grid-area:1/3!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-project{grid-area:1/1/-1/2!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-detail{grid-area:1/2/-1/3!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-side-info{grid-area:2/3!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true] .building-actions{grid-area:3/3!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]>.ui-action-dock:not(.building-actions){grid-area:4/3!important}
+ }
+}
+
+@layer ui-composition {#mobile-app[data-sheet=build]>.mobile-sheet>.ui-action-dock:not(.building-actions){display:none!important}}
+
+/* Portrait has exactly one vertical content scroller and a fixed action dock. */
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app[data-sheet=build]>.mobile-sheet,#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:56px minmax(0,1fr) auto!important}
+  #mobile-app[data-sheet=build] .sheet-body{grid-area:2/1!important;display:block!important;min-height:0!important;min-width:0!important;padding:0!important;overflow-y:auto!important;overflow-x:hidden!important;touch-action:pan-y!important;overscroll-behavior:contain!important}
+  #mobile-app[data-sheet=build] .building-menu{display:flex!important;flex-direction:column!important;gap:12px!important;min-width:0!important;height:auto!important}
+  #mobile-app[data-sheet=build] .building-content{display:contents!important}
+  #mobile-app[data-sheet=build] :is(.building-list,.building-detail,.building-project,.building-side-info){grid-area:auto!important;flex:none!important;max-height:none!important;min-height:0!important;height:auto!important;overflow:visible!important}
+  #mobile-app[data-sheet=build] .building-project .MuiCollapse-root{flex:none!important}
+  #mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapper,#mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapperInner,#mobile-app[data-sheet=build] .building-project .MuiAccordionDetails-root{height:auto!important}
+  #mobile-app[data-sheet=build] .building-project [data-ui-stepper]{overflow:visible!important;max-height:none!important;height:auto!important;flex:none!important}
+  #mobile-app[data-sheet=build]>.mobile-sheet>.building-actions,#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]>.building-actions{grid-area:3/1!important;grid-template-columns:minmax(0,1fr)!important}
+  #mobile-app[data-sheet=build] .building-dock-cost{grid-column:1/-1!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;min-height:20px!important}
+  #mobile-app[data-sheet=build] .building-side-info[data-dock-cost=true] .building-price{display:none!important}
+ }
+}

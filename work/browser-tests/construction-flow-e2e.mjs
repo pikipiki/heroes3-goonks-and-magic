@@ -1,0 +1,42 @@
+import {chromium,webkit} from 'playwright-core';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {constructionCatalogue,factions} from './construction-catalogue.mjs';
+for(const [name,engine] of Object.entries({chromium,webkit})){
+ const browser=await engine.launch({headless:true});try{
+ const page=await browser.newPage({hasTouch:true});const errors=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.route('**/web/**',route=>{const file=path.resolve('web',new URL(route.request().url()).pathname.split('/web/')[1]);return fs.existsSync(file)?route.fulfill({path:file}):route.abort();});
+ await page.route('**/construction-test',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/mobile.css><link rel=stylesheet href=/web/h3-theme.css><link rel=stylesheet href=/web/mobile-upgrade.css><style>html,body{margin:0;width:100%;height:100%;overflow:hidden}#mobile-app{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;container:goonk-viewport / size!important;display:block!important}#mobile-app .mobile-sheet{position:absolute!important}</style><div id=mobile-app data-active=true data-sheet=build><section class=mobile-sheet><header class=sheet-head><h2>Bâtiments</h2><button data-ui=close-sheet>×</button></header><div class=sheet-body></div><footer class=sheet-footer><button data-ui=sheet-back>Retour</button></footer></section></div><script type=module>import{createTownBuildingMenu}from'/web/town-building-menu.mjs';import{renderMarkup,useActionDock}from'/web/ui/material-components.mjs';window.calls=[];window.model={mode:'town',buildings:[]};const body=document.querySelector('.sheet-body'),backButton=document.querySelector('[data-ui=sheet-back]');useActionDock(backButton.parentElement);window.controller=createTownBuildingMenu({body,getState:()=>model,asset:()=>'',backButton,canOpen:()=>true,openSheet:()=>{},closeSheet:()=>calls.push(['close']),command:(...args)=>calls.push(args),notify:()=>{}});window.ready=true;</script>`}));
+ await page.goto('http://127.0.0.1:8782/construction-test');await page.waitForFunction(()=>window.ready);
+ async function load(faction,language='fr'){
+  const catalogue=constructionCatalogue(faction,language),target=catalogue.routes.sort((a,b)=>b.steps.length-a.steps.length)[0];
+  await page.evaluate(async({catalogue,target,language})=>{controller.cancel(true);(await import('/web/i18n.mjs')).setLanguage(language);window.model={mode:'fort',turn:true,townFaction:catalogue.faction,townName:'Test',armyTownId:1,resources:[999,999,999,999,999,999,999999],buildings:catalogue.buildings};window.targetId=model.buildings.find(b=>b.key.endsWith(':'+target.key)).id;window.calls=[];await controller.open({id:targetId,name:target.name});}, {catalogue,target,language});
+  return target;
+ }
+ const sizes=[{width:320,height:568},{width:360,height:659},{width:430,height:932},{width:568,height:280},{width:716,height:279},{width:844,height:390}];
+ for(const language of ['fr','en'])for(const size of sizes){
+  await page.setViewportSize(size);const target=await load('fortress',language);
+  const summary=page.locator('.building-project [data-ui-accordion-summary]');if(await summary.getAttribute('aria-expanded')!=='true')await summary.click();await page.locator('.building-project .MuiCollapse-entered').waitFor();
+  assert.equal(await page.locator('.MuiStepper-root .MuiStep-root').count(),target.steps.length,'All 26 real dependency steps retained');
+  assert.equal(await page.locator('.building-project details').count(),0);
+  const result=await page.evaluate(()=>{const sheet=document.querySelector('.mobile-sheet'),rect=sheet.getBoundingClientRect(),dock=sheet.querySelector(':scope>.building-actions');return{scrollers:[...sheet.querySelectorAll('*')].filter(n=>{const s=getComputedStyle(n);return n.clientHeight>0&&n.scrollHeight>n.clientHeight+2&&/auto|scroll/.test(s.overflowY)}).map(n=>n.className),dock:!!dock,plain:dock.dataset.uiSurface,bg:getComputedStyle(dock).backgroundImage,bounds:[...sheet.querySelectorAll('.sheet-head,.building-detail,.building-project,.building-side-info,.building-actions')].filter(n=>n.offsetWidth).map(n=>{const b=n.getBoundingClientRect();return{class:n.className,x:b.x,y:b.y,right:b.right,bottom:b.bottom}}),rect:{x:rect.x,y:rect.y,right:rect.right,bottom:rect.bottom},outer:document.documentElement.scrollHeight>innerHeight+2};});
+  assert(result.dock&&result.plain==='plain'&&result.bg==='none');assert.equal(result.outer,false);
+  if(size.height>size.width){assert.deepEqual(result.scrollers,['sheet-body'],'Only one portrait content scroller');}
+  else {for(let i=0;i<result.bounds.length;i++)for(let j=i+1;j<result.bounds.length;j++){const a=result.bounds[i],b=result.bounds[j];assert(!(a.x<b.right-1&&b.x<a.right-1&&a.y<b.bottom-1&&b.y<a.bottom-1),JSON.stringify({size,a,b}));}for(const bounds of result.bounds)assert(bounds.x>=result.rect.x-1&&bounds.y>=result.rect.y-1&&bounds.right<=result.rect.right+1&&bounds.bottom<=result.rect.bottom+1,JSON.stringify({name,size,bounds,result}));}
+  if(language==='fr'&&[360,716].includes(size.width))await page.screenshot({path:'/tmp/construction-'+name+'-'+size.width+'.png'});
+  // Steps inspect the prerequisite without building or spending resources.
+  await page.locator('[data-building-project-step]').first().click();assert.equal(await page.locator('[data-building-action]').count(),1);assert.equal(await page.locator('[data-building-return]').count(),0);
+  assert.deepEqual(await page.evaluate(()=>calls),[]);
+ }
+ for(const faction of factions)for(const size of [{width:360,height:659},{width:716,height:279}]){await page.setViewportSize(size);await load(faction);assert(await page.locator('.building-detail h3').textContent());}
+ // Start from the list: real MUI navigation and selection retain native commands.
+ await page.evaluate(async()=>{controller.cancel(true);model.mode='town';await controller.open();});assert.equal(await page.locator('.MuiTabs-root').count(),1);assert.equal(await page.locator('.MuiTab-root').count(),2);await page.locator('[data-building-tab=built]').click();await page.locator('[data-building-tab=unbuilt]').click();assert(await page.locator('[data-building-category]').count());
+ await page.locator('[data-building-id]').filter({hasText:'Creuset solaire'}).click();await page.locator('.building-project [data-ui-accordion-summary]').click();await page.locator('[data-building-project-step]').first().click();assert.equal(await page.locator('[data-building-action]').count(),1,'List selection initializes a clickable project');
+ await load('fortress');await page.locator('.building-project [data-ui-accordion-summary]').click();await page.locator('[data-building-project-step]').first().click();
+ await page.evaluate(()=>{const first=model.buildings.find(b=>b.id===Number(document.querySelector('[data-building-project-step][aria-current=step]').dataset.buildingProjectStep));window.firstId=first.id;first.allowed=true;first.state=7;controller.update(model);});
+ const action=page.locator('[data-building-action]');await action.click();assert.deepEqual(await page.evaluate(()=>calls),[[8,await page.evaluate(()=>firstId)]],'One build command, no duplicate event bridge');assert(await action.isDisabled());
+ await page.evaluate(()=>{model.buildings.find(b=>b.id===firstId).built=true;model.buildings.find(b=>b.id===firstId).allowed=false;for(const b of model.buildings)b.missingPrerequisites=b.missingPrerequisites.filter(id=>id!==firstId);controller.update(model);});assert(await page.locator('[data-building-prerequisite]').count(),'After acknowledgement return to goal and next prerequisite');
+ assert.deepEqual(errors,[]);console.log('PASS',name,'26-step real construction chain, ten factions, FR/EN, single portrait scroll, landscape bounds, MUI navigation and command acknowledgement');
+ }finally{await browser.close();}
+}

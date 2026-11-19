@@ -29,3 +29,8 @@
   .session-recovery[data-ui-app]{width:calc(100vw - 32px)!important}
  }
 }
+
+/* Plain command surface: shared by fixed bottom docks and side rails. */
+@layer ui-composition {
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock[data-ui-surface=plain]{background:var(--ui-surface-container,#241a10)!important;background-image:none!important;box-shadow:none!important;border:0!important;padding:8px!important}
+}
