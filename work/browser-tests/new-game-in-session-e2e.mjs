@@ -66,7 +66,7 @@ try {
  await setting('mobile-faction-select').locator('button').tap();
  await picker.locator('[data-picker-back]').tap();
  assert(await picker.isHidden());
- await setting('mobile-difficulty').locator('[data-tile-value="2"]').tap();
+ await setting('mobile-difficulty').locator('label:has([data-setup-choice][value="2"])').tap();
  await wait(() => goonkMobileState.difficulty === 2);
 
  const selectedMap = await page.evaluate(() => goonkMobileState.selectedMap);
@@ -81,7 +81,7 @@ try {
  const randomMap = page.locator('.custom-game-options');
  if (await randomMap.getAttribute('open') === null) await randomMap.locator('summary').tap();
  await setting('players').locator('[data-counter="1"]').tap();
- await setting('size').locator('[data-tile-value="72"]').tap();
+ await setting('size').locator('label:has([data-setup-choice][value="72"])').tap();
  await page.locator('[data-custom-underground]').check();
  await page.locator('[data-custom-generate]').tap();
  await wait(() => goonkMobileState.customMap && goonkMobileState.customMapOptions?.players === 3 && goonkMobileState.customMapOptions?.size === 72 && goonkMobileState.customMapOptions?.levels === 2);

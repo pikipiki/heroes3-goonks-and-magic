@@ -981,7 +981,7 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "b6d38fb4f3fbf0e229c1ffb209347eb7b9e8ad472262f5efcde6baf429f0c6ad",
+      "sourceSHA256": "265bc0c69ad82f1c8191713d6c723f9a88b5fcafe666d982256ecca1de5185e3",
       "evidence": [
         {
           "line": 69,
@@ -1292,7 +1292,7 @@
         "players",
         "choice"
       ],
-      "sourceSHA256": "a2ac68d3a8cac80268890f934a63efacaeba913a9fb186cee7799471649d2d69",
+      "sourceSHA256": "4f639c78ee71f11ce4f45ef89a04f4e8a2dac2ff6cd92f9ca0fe607d7a6c8001",
       "evidence": [
         {
           "line": 16,
@@ -1311,19 +1311,19 @@
           "excerpt": "const illustration=document.createElement('div');"
         },
         {
-          "line": 91,
+          "line": 97,
           "excerpt": "if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','lobby-picker-tit"
         },
         {
-          "line": 106,
+          "line": 112,
           "excerpt": "return `<button type=\"button\" data-choice-value=\"${esc(o.value)}\" aria-pressed=\"${o.value===s.value}\" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src=\"./web/h3-the"
         },
         {
-          "line": 123,
+          "line": 129,
           "excerpt": "for(const s of menu.querySelectorAll('select:not(.lobby-picker select)')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1"
         },
         {
-          "line": 128,
+          "line": 134,
           "excerpt": "renderMarkup(c,'<h3></h3><button type=\"button\" class=\"lobby-choice-card\" aria-haspopup=\"dialog\"><img class=\"lobby-map-emblem\" src=\"./web/h3-theme/adventure-map.svg\" alt=\"\"><span><s"
         }
       ],
@@ -1532,15 +1532,11 @@
         "resources",
         "actions"
       ],
-      "sourceSHA256": "0cfc03be664fd4e51f7bf93c510377b45abf8628501f09d45ba6eb31b2b50701",
+      "sourceSHA256": "494515486137076181abf5b98ba0d07f2ad146e595e206e701b6c1970d379e9e",
       "evidence": [
         {
           "line": 17,
           "excerpt": "export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){"
-        },
-        {
-          "line": 18,
-          "excerpt": "const panel=document.createElement('section');panel.className='creature-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Creature overvie"
         },
         {
           "line": 41,
@@ -1548,23 +1544,15 @@
         },
         {
           "line": 50,
-          "excerpt": "panel.insertAdjacentHTML('beforeend',`<div class=\"featured-creature\"><div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" aria-label=\"Animated ${esc(unit?.name)}"
-        },
-        {
-          "line": 52,
-          "excerpt": "const variants=document.createElement('div');variants.className='recruit-variants';"
+          "excerpt": "const featured=createUIElement('div');featured.classList.add('featured-creature');renderMarkup(featured,`<div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" ari"
         },
         {
           "line": 57,
           "excerpt": "renderMarkup(variants,choices.map(({u,index})=>`<button data-variant=\"${index}\" aria-pressed=\"${u.id===unit?.id}\">${creaturePortrait(u)}<span class=\"variant-name\">${esc(u.name)}</s"
         },
         {
-          "line": 58,
-          "excerpt": "const visual=document.createElement('div');visual.className='recruit-visual';visual.append(panel.querySelector('.creature-stage'),variants);"
-        },
-        {
-          "line": 59,
-          "excerpt": "const controls=document.createElement('section');controls.className='recruit-controls';controls.append(amount);"
+          "line": 65,
+          "excerpt": "else if(upgrades.length){const upgradePanel=createUIElement('section');upgradePanel.classList.add('creature-upgrades');upgradePanel.setAttribute('aria-label','Creature upgrades');r"
         }
       ],
       "review": "source-reviewed"
@@ -1638,7 +1626,7 @@
         "hero",
         "feedback"
       ],
-      "sourceSHA256": "2117cdf6df1ac35376c8ac2d9f66bcd306ec8c1882138dd4f39dc57286bb1a76",
+      "sourceSHA256": "6ddada8d4e46649bde1a623118c38ba560e34addba10cf6dc9126c5ab4a4ab0e",
       "evidence": [
         {
           "line": 9,
@@ -1649,7 +1637,11 @@
           "excerpt": "export function createThievesGuildView(panel){"
         },
         {
-          "line": 33,
+          "line": 44,
+          "excerpt": "const playerField=(compare=false)=>`<label class=\"guild-player-field\"><span class=\"guild-field-label\">${compare?t('Compare with','Comparer avec'):t('Kingdom to inspect','Royaume à "
+        },
+        {
+          "line": 48,
           "excerpt": "renderMarkup(panel,screenHeaderMarkup({title:t('Thieves’ Guild','Guilde des voleurs'),closeAttributes:'data-service-back',closeLabel:t('Close','Fermer')})+`<nav class=\"guild-view-t"
         }
       ],
@@ -1680,39 +1672,39 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "fb19cb6bb630411c03a5198809211158bd27c4f1a5d96fbd7b1baf91cf3fa6f5",
+      "sourceSHA256": "dd2ccade08ae7aac36480a3b54c66290422c09bd0cf2987238ac8ebfb401f1b7",
       "evidence": [
         {
-          "line": 61,
+          "line": 66,
           "excerpt": "export function nextBuildingPrerequisite(state, building) {"
         },
         {
-          "line": 65,
+          "line": 70,
           "excerpt": "export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {"
         },
         {
-          "line": 146,
+          "line": 91,
+          "excerpt": "<ol data-ui-stepper aria-label=\"${tr('Construction steps','Étapes de construction')}\">${steps.map(item=>`<li ${item.id===building?.id?'aria-current=\"step\"':''} ${item.built?'data-b"
+        },
+        {
+          "line": 152,
           "excerpt": "return `<button type=\"button\" class=\"building-tile\" data-building-id=\"${building.id}\">${picture(state, building)}"
         },
         {
-          "line": 167,
-          "excerpt": "<button type=\"button\" data-building-tab=\"built\" aria-pressed=\"${tab === 'built'}\">${count('Construits', builtCount)}</button>"
+          "line": 174,
+          "excerpt": "<button type=\"button\" id=\"building-tab-unbuilt\" aria-controls=\"construction-building-list\" data-building-tab=\"unbuilt\" aria-pressed=\"${tab==='unbuilt'}\">${count(tr('To build','À co"
         },
         {
-          "line": 168,
-          "excerpt": "<button type=\"button\" data-building-tab=\"unbuilt\" aria-pressed=\"${tab === 'unbuilt'}\">${count('À construire', buildings.length - builtCount)}</button>"
+          "line": 175,
+          "excerpt": "<button type=\"button\" id=\"building-tab-built\" aria-controls=\"construction-building-list\" data-building-tab=\"built\" aria-pressed=\"${tab==='built'}\">${count(tr('Built','Construits'),"
         },
         {
-          "line": 169,
-          "excerpt": "${grail ? '<button type=\"button\" data-building-grail>Graal</button>' : ''}"
+          "line": 177,
+          "excerpt": "<label class=\"building-category-filter\"><span class=\"building-control-label\">${tr('Category','Catégorie')}</span><select data-building-category aria-label=\"${tr('Building category'"
         },
         {
-          "line": 171,
-          "excerpt": "${filters.map(name => `<button type=\"button\" data-building-filter=\"${name}\" aria-pressed=\"${name === filter}\">${name || 'Tous'}</button>`).join('')}"
-        },
-        {
-          "line": 186,
-          "excerpt": "<button type=\"button\" class=\"primary\" data-building-prerequisite=\"${prerequisite.id}\">"
+          "line": 178,
+          "excerpt": "${grail?'<button type=\"button\" data-building-grail>Graal</button>':''}"
         }
       ],
       "review": "source-reviewed"
@@ -2057,7 +2049,7 @@
         "skills",
         "result"
       ],
-      "sourceSHA256": "b35b55eac9645931d72ab494d00394e1e6d9937bd897a518c12dd71c40922387",
+      "sourceSHA256": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
       "evidence": [
         {
           "line": 13,
@@ -2068,27 +2060,27 @@
           "excerpt": "const panel=document.createElement('section');panel.className='dialog-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presen"
         },
         {
-          "line": 58,
+          "line": 59,
           "excerpt": "const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map"
         },
         {
-          "line": 61,
+          "line": 62,
           "excerpt": "const content=document.createElement('div');content.className='dialog-copy';"
         },
         {
-          "line": 62,
+          "line": 63,
           "excerpt": "if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image."
         },
         {
-          "line": 64,
+          "line": 65,
           "excerpt": "for(const line of lines){const p=document.createElement('p');p.textContent=line;content.append(p);}"
         },
         {
-          "line": 65,
+          "line": 66,
           "excerpt": "if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit."
         },
         {
-          "line": 67,
+          "line": 68,
           "excerpt": "if(selected?.description){const description=document.createElement('p');description.className='dialog-choice-description';description.id='dialog-choice-description';description.set"
         }
       ],
@@ -2400,7 +2392,7 @@
         "details",
         "feedback"
       ],
-      "sourceSHA256": "1758c49e327ae84377b271187662a65315e860e6394521558452692d173aedf5",
+      "sourceSHA256": "a85e649e7537c53482b4683233160d75e7394dfc6b7cecfb3fc1f4477ce71504",
       "evidence": [
         {
           "line": 10,
@@ -2907,7 +2899,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "3c50fe1295309837a7181ce16368d507b5e6a11ebfeb186ea29333aa3477eef2",
+      "sourceSHA256": "a6537c622aa28d96c610a7df39ad6c6eb7a092a2463056956ce033a8ed4b6545",
       "evidence": [
         {
           "line": 19,
@@ -2961,18 +2953,14 @@
         "choice",
         "feedback"
       ],
-      "sourceSHA256": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
+      "sourceSHA256": "4f9bd044ff913e05d1ee0ac5e0d79bf889aac57541452805f9caed91168fc635",
       "evidence": [
         {
-          "line": 32,
+          "line": 40,
           "excerpt": "export function createWogOptions({menu, command, onChange}) {"
         },
         {
-          "line": 41,
-          "excerpt": "form = document.createElement('details');"
-        },
-        {
-          "line": 46,
+          "line": 53,
           "excerpt": "const field = document.createElement('fieldset');"
         }
       ],
@@ -2996,7 +2984,7 @@
         "choice",
         "select"
       ],
-      "sourceSHA256": "2a41ab3365f6501a7ee4e8767720422fc2c19ba3105caccae2c71597c25f3568",
+      "sourceSHA256": "8ad987533b19b0831d51088bc9e915920b6c0e3ccb0c3a1034fabbc8b8dc86da",
       "evidence": [
         {
           "line": 4,
@@ -3009,6 +2997,10 @@
         {
           "line": 63,
           "excerpt": "renderMarkup(towns,(state.players||[]).map(p=>`<label><span class=\"lobby-player-label\"><i class=\"lobby-player-colour\" data-player-colour=\"${Number(p.color)}\" aria-hidden=\"true\"></i"
+        },
+        {
+          "line": 77,
+          "excerpt": "if(![...income.options].some(option=>option.value===value)){const option=document.createElement('option');option.value=value;option.textContent=value+' %';income.append(option);}"
         }
       ],
       "review": "source-reviewed"
@@ -3032,7 +3024,7 @@
         "accordion",
         "feedback"
       ],
-      "sourceSHA256": "05c052a61ae17251b31e696ba7b509ff345866ab16ba8300f623c0ad8cc41fc1",
+      "sourceSHA256": "43fa30d9d512fb81840bac8b246b409dd5ddd99d584d3f86bf599583b34ae1bd",
       "evidence": [
         {
           "line": 7,

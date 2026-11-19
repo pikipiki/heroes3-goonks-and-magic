@@ -1,4 +1,4 @@
-import React,{createElement as h,useState,useRef,useCallback} from 'react';
+import React,{createElement as h,useState,useRef,useCallback,useLayoutEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {ThemeProvider} from '@mui/material/styles';
@@ -13,8 +13,15 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 import Checkbox from '@mui/material/Checkbox';
 import Tabs from '@mui/material/Tabs';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Tab from '@mui/material/Tab';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -77,8 +84,10 @@ function NativeProgress({input}){
 }
 // Shared navigation primitives retain native game click commands.
 function NativeTabs({props,items}){
- const [value,setValue]=useState(Math.max(0,items.findIndex(item=>item.getAttribute('aria-pressed')==='true')));
- return h(Tabs,{...props,component:'nav',value,variant:'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
+ const landscape=useMediaQuery('(orientation: landscape)'),vertical=props['data-ui-tabs-landscape']!==undefined&&landscape;
+ const selected=Math.max(0,items.findIndex(item=>item.getAttribute('aria-pressed')==='true'));
+ const [value,setValue]=useState(selected);useLayoutEffect(()=>setValue(selected),[selected]);
+ return h(Tabs,{...props,component:'nav',value,orientation:vertical?'vertical':'horizontal',variant:vertical?'standard':'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
 }
 function NativeStepper({props,items}){
  const active=items.findIndex(item=>item.getAttribute('aria-current')==='step');
@@ -99,11 +108,17 @@ function NativeAccordion({props,summary,content}){
   h(AccordionDetails,{'data-ui-accordion-content':''},...content.map(element)));
 }
 function element(node,index){if(node.nodeType===3)return node.textContent;if(node.nodeType!==1)return null;const props=propsFor(node);props.key=props.id||Object.entries(props).find(([key])=>key.startsWith('data-')&&!key.startsWith('data-ui-'))?.join(':')||index;
+ if(node.hasAttribute('data-ui-radio-group'))return h(RadioGroup,{...props,component:node.localName},...[...node.childNodes].map(element));
+ if(node.tagName==='TABLE')return h(Table,{...props,size:'small'},...[...node.childNodes].map(element));
+ if(node.tagName==='THEAD')return h(TableHead,props,...[...node.childNodes].map(element));
+ if(node.tagName==='TBODY')return h(TableBody,props,...[...node.childNodes].map(element));
+ if(node.tagName==='TR')return h(TableRow,props,...[...node.childNodes].map(element));
+ if(['TD','TH'].includes(node.tagName))return h(TableCell,{...props,component:node.localName},...[...node.childNodes].map(element));
  if(node.hasAttribute('data-ui-tabs'))return h(NativeTabs,{key:props.key,props,items:[...node.children].filter(child=>child.tagName==='BUTTON')});
  if(node.hasAttribute('data-ui-stepper'))return h(NativeStepper,{key:props.key,props,items:[...node.children]});
  if(node.tagName==='DETAILS'){const summary=node.querySelector(':scope>summary');return h(NativeAccordion,{key:props.key,props,summary,content:[...node.childNodes].filter(child=>child!==summary)});}
  const choice=node.tagName==='LABEL'&&node.querySelector(':scope>input[type=radio],:scope>input[type=checkbox]');if(choice)return h(ChoiceField,{key:props.key,input:propsFor(choice),labelProps:props,label:[...node.childNodes].filter(child=>child!==choice).map(element)});
- const children=[...node.childNodes].map(element);if(node.tagName==='BUTTON'){const initiallyDisabled=Boolean(props.disabled);delete props.disabled;props.ref=button=>{if(button){button.disabled=initiallyDisabled;button.classList.toggle('Mui-disabled',initiallyDisabled);}};const endTurn=node.dataset.ui==='endturn'&&matchMedia('(orientation:landscape) and (max-height:400px)').matches;if(endTurn){props['aria-label']=node.textContent.replace(/^☀\s*/,'');props.title=props['aria-label'];}const icon=endTurn||/^[✕×✖−+☰]$/u.test(node.textContent.trim())&&!!node.getAttribute('aria-label');props['data-mui-component']=icon?'IconButton':'Button';props.variant=node.classList.contains('primary')||node.dataset.uiVariant==='filled'?'contained':'outlined';if(icon)delete props.variant;const control=h(icon?IconButton:Button,props,...(endTurn?[h(Box,{component:'span','aria-hidden':true},'☀')]:children));return node.matches('[data-exchange-slot]')?h(Tooltip,{key:props.key,title:props['aria-label']||node.textContent.trim(),describeChild:true},control):control;}
+ const children=[...node.childNodes].map(element);if(node.tagName==='BUTTON'){const initiallyDisabled=Boolean(props.disabled);delete props.disabled;props.ref=button=>{if(button){button.disabled=initiallyDisabled;button.classList.toggle('Mui-disabled',initiallyDisabled);}};const endTurn=node.dataset.ui==='endturn'&&matchMedia('(orientation:landscape) and (max-height:400px)').matches;if(endTurn){props['aria-label']=node.textContent.replace(/^☀\s*/,'');props.title=props['aria-label'];}const icon=endTurn||/^[✕×✖−+☰▶■]$/u.test(node.textContent.trim())&&!!node.getAttribute('aria-label');props['data-mui-component']=icon?'IconButton':'Button';props.variant=node.classList.contains('primary')||node.dataset.uiVariant==='filled'?'contained':'outlined';if(icon)delete props.variant;const control=h(icon?IconButton:Button,props,...(endTurn?[h(Box,{component:'span','aria-hidden':true},'☀')]:children));return node.matches('[data-exchange-slot]')?h(Tooltip,{key:props.key,title:props['aria-label']||node.textContent.trim(),describeChild:true},control):control;}
  if(node.matches('.map-movement-settings,.battle-view-setting'))return h(Stack,{...props,component:node.localName,spacing:1,useFlexGap:true,className:((props.className||'')+' ui-form-section')},...children);
  if(node.tagName==='HEADER')return h(Toolbar,{...props,component:'header',disableGutters:true,variant:'dense'},...children);
  if(node.tagName==='FOOTER')return h(Stack,{...props,component:'footer',direction:'row',spacing:1,useFlexGap:true},...children);
@@ -145,7 +160,13 @@ export function createMaterialElement(tag='div'){
  flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(component,{...(component===Box?{component:tag}:{}),...(tag==='button'?{type:'button',variant:'outlined','data-mui-component':'Button'}:{})}))));
  const node=host.firstElementChild;
  for(const [type,handler,options]of listeners)node.addEventListener(type,handler,options);
- if(tag==='button'){const classes=[...node.classList].join(' ');Object.defineProperty(node,'className',{configurable:true,get:()=>node.getAttribute('class')||'',set:value=>node.setAttribute('class',[classes,String(value)].join(' '))});}
+ if(tag==='button'){Object.defineProperty(node,'className',{configurable:true,get:()=>node.getAttribute('class')||'',set:value=>{
+  const custom=[...new Set(String(value).split(/\s+/).filter(name=>name&&!name.startsWith('Mui')&&!name.startsWith('css-')))];
+  const props=propsFor(node);props.className=custom.join(' ');props.variant='outlined';
+  // Store adapter classes as actual MUI props. Ripple/focus renders then keep
+  // the overflow trigger marker instead of overwriting imperative DOM classes.
+  flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Button,props))));
+ }});}
  isolated.set(node,{host,react,connected:false});
  if(!isolatedObserver){isolatedObserver=new MutationObserver(()=>{for(const [node,record]of isolated){if(node.isConnected)record.connected=true;else if(record.connected){record.host.append(node);record.react.unmount();isolated.delete(node);}}});isolatedObserver.observe(document.body,{childList:true,subtree:true});}
  return node;

@@ -52,11 +52,16 @@ Utiliser `renderMarkup` pour rafraîchir une fabrique. Lorsqu’une galerie nati
 | Besoin | Adaptateur partagé |
 | --- | --- |
 | Rendu d’une fabrique existante | `renderMarkup` : rend de vrais `Button`, `IconButton`, `Toolbar`, `Typography`, `Paper`, `Stack` MUI et les champs reconnus, avant la pose des commandes |
-| Écran et actions | `screenHeaderMarkup`, `actionDockMarkup`, `useScreenComponents`, `useActionDock` |
+| Écran et actions | `screenHeaderMarkup`, `actionDockMarkup`, `useScreenComponents`, `useActionDock` ; `{surface: 'plain'}` donne un fond sombre uni sans texture au bandeau de commandes |
+| Navigation et dépendances | `renderMarkup` avec `data-ui-tabs` pour les vrais `Tabs` / `Tab` MUI, et `data-ui-stepper` pour `Stepper` / `StepButton` MUI ; les commandes natives restent déléguées |
 | Menus | `createPopupMenu` : `Menu` MUI, mêmes boutons de commande |
 | Sélecteurs | `createMaterialSelects` : `Select` / `MenuItem` MUI, champ natif conservé comme pont de commande |
 | Gestionnaire impératif existant | `setClickHandler` / `bindPress` ; éviter `.onclick`, que React peut réaffecter |
 | Choix natifs WoG dans un groupe nommé | `radioChoicesMarkup` dans un `fieldset` avec sa légende ; pont natif conservé |
+| Contexte d’achat | `usePurchaseContext` : ressources préchargées visibles, sans bouton à ouvrir ; le bandeau de modale réserve titre/fermeture puis ressources |
+| Fiche et recrutement de créature | `useCreatureOverview` : mêmes zones animation, statistiques et description, avec variante achat ou consultation |
+| Commandes de combat | `useBattleControls` : commandes principales et menu MUI des actions secondaires, mêmes gestionnaires natifs |
+| Comparaison de royaumes | `useRadarChart` : `RadarChart` MUI X chargé uniquement à l’ouverture, deux séries maximum, rangs explicitement normalisés et valeurs inconnues exclues |
 | Coût et caractéristiques | `resourceCostMarkup`, `statGridMarkup` |
 
 Les champs de formulaire natifs dont le protocole reste impératif, les zones tactiles superposées au canvas et l’amorçage avant le chargement de React sont des adaptations particulières. Ils utilisent les tokens générés et restent dans l’audit de tailles, contrastes, défilement et appuis. Ne jamais annoncer qu’un champ natif est un composant MUI.
@@ -96,3 +101,5 @@ Le thème et le catalogue partagent `src/ui/control-finish.mjs`. Les classes et 
 Les contrats de modale déclarent `modal: true` ; un contenu alternatif déclare aussi `modalContent` pour rester dans la zone de lecture à gauche en paysage. Le titre et la croix appartiennent alors à la colonne de droite commune. Si la croix délègue à un bouton natif Retour, ce bouton reste attaché pour sa commande mais est masqué : une seule sortie visible. Les titres des cartes utilisent `ui-card-title`, relié au rôle compact du thème (`typography.h3` / `--ui-font-title-compact`), sans taille propre à un intitulé.
 
 `useHeroSummary` compose la carte d’identité et les caractéristiques du héros. En paysage, il expose l’onglet courant et la fermeture dans le bandeau commun, et le commandant dans la carte d’identité. Les actions de ces contrôles MUI délèguent aux contrôles natifs actuels, sans déplacer leurs gestionnaires. `hero-layout.css` porte la géométrie de l’inventaire : silhouette et cases partagent le même cadre, les libellés réservent leur hauteur avant les images, et les descriptions sélectionnées défilent dans l’espace restant.
+
+Les choix exclusifs de préparation (difficulté, taille et revenu) utilisent `RadioGroup`/`Radio` MUI, avec groupes et champs conservés pendant l’acquittement natif. Les filtres de construction conservent également leurs nœuds : seul le résultat change, dans un défilement distinct des filtres fixes. Les composants de fenêtre respectent toujours l’attribut `hidden`, même si un habillage déclare `display:grid`.

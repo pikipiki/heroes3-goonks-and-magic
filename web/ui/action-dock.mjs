@@ -12,7 +12,7 @@ export function useActionDock(dock,{overflow=true,limit=3,keepButtons,moreLabel,
  // A native refresh may replace the dock children while preserving its root.
  if(record?.more&&!dock.contains(record.more)){record.menu?.dispose();records.delete(dock);record=null;}
  if(!record){record={buttons:[],more:null,menu:null};records.set(dock,record);}
- const found=[...dock.children].filter(node=>node.tagName==='BUTTON'&&!node.classList.contains('ui-overflow-trigger'));
+ const found=[...dock.children].filter(node=>node.tagName==='BUTTON'&&node!==record.more&&!node.classList.contains('ui-overflow-trigger'));
  for(const button of found)if(!record.buttons.includes(button))record.buttons.push(button);
  record.buttons=record.buttons.filter(button=>dock.contains(button));
  for(const button of record.buttons)decorateButton(button);

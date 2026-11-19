@@ -1,0 +1,35 @@
+@layer ui-composition {
+ #mobile-app .ui-creature-overview .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 24px)!important;min-width:0!important;margin-inline:12px!important;box-sizing:border-box!important}
+ #mobile-app .ui-purchase-resources{display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;align-items:center!important;gap:0!important;min-width:0!important;width:100%!important;box-sizing:border-box!important}
+ #mobile-app .ui-purchase-resources .mobile-resource{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:2px!important;min-width:0!important;height:12px!important;min-height:12px!important;font:var(--ui-font-resource)!important;white-space:nowrap!important}
+ #mobile-app .ui-purchase-resources [data-resource=gold]{grid-column:span 2!important}
+ #mobile-app .ui-purchase-resources .resource-quantity{font:var(--ui-font-resource)!important;line-height:12px!important;white-space:nowrap!important}
+ #mobile-app .ui-purchase-resources img{width:12px!important;height:12px!important;object-fit:contain!important}
+ #mobile-app .ui-purchase-header{display:grid!important;grid-template-columns:minmax(0,1fr) 48px!important;grid-template-rows:48px 36px!important;height:88px!important;min-height:88px!important;max-height:88px!important;gap:0 8px!important;padding:0 4px!important}
+ #mobile-app .ui-purchase-header>:is(h2,.ui-heading){grid-area:1/1!important;align-self:center!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important}
+ #mobile-app .ui-purchase-header h2{font:var(--ui-font-title-compact)!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important}
+ #mobile-app .ui-purchase-header>button{grid-area:1/2!important}
+ #mobile-app .ui-purchase-header>.ui-purchase-resources{grid-area:2/1/3/-1!important}
+ #mobile-app>.mobile-sheet:has(>.ui-purchase-header){--ui-screen-head-height:88px;padding:4px!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-ui-purchase=true]>.mobile-top{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:48px!important;gap:4px!important;padding:4px!important;height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top>#game-menu-toggle{grid-area:1/1!important;width:48px!important;height:48px!important;padding:0!important;margin:0!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.mobile-calendar,.ui-kingdom-trigger){display:none!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top>.mobile-resources:not([hidden]),#mobile-app .ui-purchase-header>.ui-purchase-resources{grid-area:1/2!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:12px!important;align-content:center!important;gap:0 2px!important;width:100%!important;min-width:0!important;padding:0!important}
+  #mobile-app .ui-purchase-header>.ui-purchase-resources{grid-area:2/1/3/-1!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top .mobile-resource{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:2px!important;min-width:0!important;height:12px!important;min-height:12px!important;font:var(--ui-font-resource)!important;white-space:nowrap!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top .mobile-resource[data-resource=gold]{grid-column:span 2!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top .mobile-resource img{width:12px!important;height:12px!important;object-fit:contain!important}
+  #mobile-app[data-ui-purchase=true]>.mobile-top .resource-quantity{font:var(--ui-font-resource)!important;line-height:12px!important;white-space:nowrap!important}
+  #mobile-app .ui-creature-overview .mobile-recruit-amount{grid-template-columns:72px minmax(0,1fr)!important}
+  #mobile-app .ui-creature-overview .mobile-recruit-amount label{width:100%!important;min-width:0!important;max-width:none!important}
+  #mobile-app .ui-creature-overview .mobile-recruit-amount .MuiInputBase-root{width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+  #mobile-app .ui-creature-overview .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 48px)!important;margin-inline:24px!important}
+  #mobile-app .recruitment-view .recruitment-sidebar{padding-top:60px!important;padding-bottom:56px!important;gap:4px!important}
+  #mobile-app .recruitment-view .recruit-context{overflow:visible!important}
+  #mobile-app .recruitment-view .creature-view-head{--ui-header-min:32px;min-height:32px!important;height:auto!important;padding:0!important}
+  #mobile-app .recruitment-view .creature-view-head h2{min-height:32px!important;height:auto!important;line-height:20px!important}
+  #mobile-app .recruitment-view .recruit-economy{width:100%!important;min-width:0!important}
+  #mobile-app .recruitment-view .featured-price{overflow:visible!important;white-space:normal!important}
+ }
+}

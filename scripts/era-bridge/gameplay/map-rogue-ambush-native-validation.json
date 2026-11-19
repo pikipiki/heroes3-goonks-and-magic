@@ -13,8 +13,8 @@
     "mod/tum-era/content/config/wog-map-rules.json": "0b8a2df4397f3c05d56c466018d0035084a403f84b96213811cbbf321604ca69",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
-    "package-lock.json": "dd8a9fbec46164b46ac3991108119e9149cc5faa057be4e350a604e8c7c87196",
-    "package.json": "d1d89e07131213232038acafb76293800cbae32e5194a97f4f03252e68b0190b",
+    "package-lock.json": "e4bef4f6593bae07f3a3bc48880fd882308bafd0a08da8b344da66f0891f59d3",
+    "package.json": "7d6435d5d0f3da1e8190a34a6330bacef9404d931769a1f2b27d7faf2988ec10",
     "scripts/era-bridge/gameplay/map-rules.json": "14c423d4c07a9e3ffbb9dc309a07c549e948d5ae4cee5d4cca7aaf6fe747dee0",
     "scripts/prepare-web.mjs": "9ce1ba593d0b95cfa3108b98e34503fc0196376c5619eebf874b53902694df7a",
     "tests/era-map-darkness.test.mjs": "61b2412ef2281826ad17612fc0e0df8f6ab2371d496ab1caf4f7016eb92fd285",
@@ -53,7 +53,38 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "e9a2aa4b12e90a864b376ac7dc2120ff68f59d69ee5d566f0b6a3716788c98ae",
     "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a",
     "tests/era-rogue-ambush-native.test.mjs": "d0e6a137c0a477df3f74102a0954330c718710d42632027eb1a4f0f34e241e77",
-    "tests/era-creature-prices.test.mjs": "26184eb1cdd291917a2891be7f3d8a6baf0169e2d6a5cbdcff6234d672dea4c2"
+    "tests/era-creature-prices.test.mjs": "26184eb1cdd291917a2891be7f3d8a6baf0169e2d6a5cbdcff6234d672dea4c2",
+    "src/ui/components.mjs": "78d5f43df0e8296f8101ee1fd7fd6a15153822b514080f90e3ac1ac2f67798fe",
+    "src/ui/radar-runtime.mjs": "47bf73dd0e5685edce635822854d050e49b8347e0aee72a70ea5c1ab1c4e69c1",
+    "src/ui/runtime.mjs": "c1b3cee9db90ea2d893b172a96431f827da22eeeff8b9d1798e8be10432a09c8",
+    "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+    "web/creature-presentation.mjs": "494515486137076181abf5b98ba0d07f2ad146e595e206e701b6c1970d379e9e",
+    "web/lobby-choices.css": "114e8ace0a99de748fd5d0b1604b1ad1ee3887c2f5b646467ab1fb9a1332cfd2",
+    "web/lobby-choices.mjs": "4f639c78ee71f11ce4f45ef89a04f4e8a2dac2ff6cd92f9ca0fe607d7a6c8001",
+    "web/lobby-options.mjs": "8ad987533b19b0831d51088bc9e915920b6c0e3ccb0c3a1034fabbc8b8dc86da",
+    "web/mobile.mjs": "265bc0c69ad82f1c8191713d6c723f9a88b5fcafe666d982256ecca1de5185e3",
+    "web/recruitment-view.css": "9b96d0cd675965f8bd17fcc00c38826bc8ceb129159c9f4ba20bb0dc5574c081",
+    "web/thieves-guild-view.mjs": "6ddada8d4e46649bde1a623118c38ba560e34addba10cf6dc9126c5ab4a4ab0e",
+    "web/thieves-guild.css": "74bc562e321943c33f989ae2bea3e533a4c28059faa986f7b913dade7fad5533",
+    "web/town-building-menu.mjs": "dd2ccade08ae7aac36480a3b54c66290422c09bd0cf2987238ac8ebfb401f1b7",
+    "web/town-building-summary.mjs": "a1a7e85fabe05b6967397571744adcd85271c2016e925bea855d5d77f3e0c0bd",
+    "web/ui/action-dock.mjs": "a372506b7602b431747bc80d8c2163c3e5c87f34bae475aba7ff29f318ec7a35",
+    "web/ui/battle-controls.mjs": "adcaad16fd560f8d9baaf5f7a19b2ed5f8affebf5af6cbe81fdece37035469f9",
+    "web/ui/battle-layout.css": "71a66fa42088d30ccca0174afb1079ff1764b3bc35dd6955f47d968edddedd7f",
+    "web/ui/construction-layout.css": "97030f2a35f173d77a81af1a8ad3ddf8fb5bf623450188011408a1f741ddd489",
+    "web/ui/contracts.mjs": "ea42f5cba70a3b71b08212a51e2a7927f4f28e4c05fb882454aa35045afe06cb",
+    "web/ui/controls.mjs": "4009db489346891918b5c96bb432c4c039cf1dde6b340347a56307bac2b758f2",
+    "web/ui/creature-overview.css": "ab3a800bc6daa31949411d2b76d09060b6fc8014ebdd6083d21c50b587a72a67",
+    "web/ui/creature-overview.mjs": "6906f75ff38b81f97967dd6c218b2f61122d78090883d760a8420d321dd942f3",
+    "web/ui/kingdom-chrome.mjs": "0ec11062c748510e8898d68bb2bb69706cb509edf0f69f61f28fd5b358c04136",
+    "web/ui/material-components.css": "fe94f26ce187b1e9d32591e8e109d7b0aa2edbd2f2aa3ad6c39c884e74ffdc2f",
+    "web/ui/material-components.mjs": "17442835b30d46914d748996cb26a5608fca2b141a62162604a0732ec2719124",
+    "web/ui/primitives.mjs": "9ad876ae31a3a0f6c5e6287742bf1bbf855f45b5b79173c99781707a61217459",
+    "web/ui/purchase-context.css": "d65b8060bba734a8853797ecc9236f74bc1403f6bfce5dab351ce39724989d9c",
+    "web/ui/purchase-context.mjs": "0fc7e955e3e33c4190ae59c4269e87aed95a2c6435c0aee17fe07cc1853d6033",
+    "web/ui/radar-chart.mjs": "6eb2e0fe30730aede9fd3f4e0335b4bf97b7bc80c385381ff52cb0bbf3ecf9b9",
+    "web/ui/screen-layouts.css": "2c6f5fa56e46ebd139d1e9f8e6c7bef6ef7b23392fe94d7a172ec23aefd740cb",
+    "web/ui/screen.mjs": "950d41c1b8bbb5f5277d4c521786330ab19c01dbd9c6d92f4e0ef2af7ac53056"
   },
   "upstreamReference": "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json",
   "nativeBuild": {
@@ -1161,11 +1192,11 @@
   "checks": {
     "pendingPublicationChecks": false,
     "node": {
-      "tests": 981,
-      "passed": 925,
+      "tests": 983,
+      "passed": 927,
       "skipped": 56,
       "failed": 0,
-      "logSha256": "dc9a0a25d6ddf9497cd0319af311d12df4c8b8351e225194c1ab9dab157d9a21"
+      "logSha256": "f9f7cdb6c01cf14804641509c04c38e56a0f61bae2b856f61b8faec45981080f"
     },
     "prepareWeb": {
       "passed": true
@@ -1183,5 +1214,83 @@
       "logSha256": "b96a2807b2d0ec368db57fd05dd94b476994b4b6ff016123831b8fa49298aa69"
     },
     "archiveReopenedAndAllTenFilesCompared": true
+  },
+  "concurrentUi294Revalidation": {
+    "remoteCommit": "ce9c515e",
+    "scope": "Preserve remote shared MUI layouts and construction refinements. Native engine unchanged. Exact merged UI checks recorded in linked proof.",
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "previousBindings": {
+      "sourceBindings/package-lock.json": "dd8a9fbec46164b46ac3991108119e9149cc5faa057be4e350a604e8c7c87196",
+      "sourceBindings/package.json": "d1d89e07131213232038acafb76293800cbae32e5194a97f4f03252e68b0190b"
+    },
+    "checksPending": false,
+    "nativeReports": {
+      "land": {
+        "passed": true,
+        "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+        "rawReportSha256": "c7e4d207ca5ccce711df8ccc9eef9740c54c7f6e65f480254b78b11f5b077d8b",
+        "scenarioCount": 1
+      },
+      "water": {
+        "passed": true,
+        "engineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d",
+        "rawReportSha256": "3c0f1b73e7412ad0b77a9aef4a4dd09c860361f01a12b1c74c546a2f4abcc920",
+        "scenarioCount": 1
+      }
+    },
+    "uiChecks": [
+      {
+        "test": "compact-battle-controls",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-compact-battle-controls.log",
+        "logSha256": "44bdf8396718d9e2cc6eabcbdacfda74dd567f174bcb43e2b996ba9b246d7b9b"
+      },
+      {
+        "test": "purchase-resources",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-purchase-resources.log",
+        "logSha256": "5738816ecb3ea865a1e6d4f44c7c26af0520cd92d8c18304bc86a036dff8a0bc"
+      },
+      {
+        "test": "setup-choice-fields",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-setup-choice-fields.log",
+        "logSha256": "618d9262db6c13cd4da1a5ec4252cc31f0577eb3b767d882c97440c2ba79a159"
+      },
+      {
+        "test": "guild-radar",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-guild-radar.log",
+        "logSha256": "bad1e232263d6643e6dfb1b789e31ab4ecf3334369457dc0eea475185e80ed27"
+      },
+      {
+        "test": "creature-purchase-composition",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-creature-purchase-composition.log",
+        "logSha256": "524b15d828276ecfd201b9aae6745e00e505359b175d7c35a34797e51e0f6a7b"
+      },
+      {
+        "test": "construction-flow",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-construction-flow.log",
+        "logSha256": "f8995ef14806e8b745c75b00464cac65235dd99eb4c542a0e99def3d1e352209"
+      },
+      {
+        "test": "wog-options-stability",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-wog-options-stability.log",
+        "logSha256": "7ebf9e05d5cd770ce3ac7e9156b033347f20243da04f515b2fa73b345d451ad7"
+      },
+      {
+        "test": "wog-options-components",
+        "exitCode": 0,
+        "log": "work/downloads/rogues294-merged-ui-wog-options-components.log",
+        "logSha256": "d59a9079752c62c6f70aa53220983801c02a7050d1f92e00216873931b4a6f4d"
+      }
+    ],
+    "compiledRuntimes": {
+      "web/ui/mui-runtime.mjs": "8ef36ecfe29628a190447c376ec3f68ab68af7919998dc33273c83a781c7fb0c",
+      "web/ui/radar-runtime.mjs": "8707fe516e87c0eeed74b3cd3ef87bd369dc63634bf8c22565708ba565a9558b"
+    }
   }
 }

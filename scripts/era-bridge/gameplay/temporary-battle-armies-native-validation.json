@@ -10,8 +10,8 @@
   "sourceBaseCommit": "c449be89dcfda668edad13c72d453db9c79ffc56",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
-    "package-lock.json": "dd8a9fbec46164b46ac3991108119e9149cc5faa057be4e350a604e8c7c87196",
-    "package.json": "d1d89e07131213232038acafb76293800cbae32e5194a97f4f03252e68b0190b",
+    "package-lock.json": "e4bef4f6593bae07f3a3bc48880fd882308bafd0a08da8b344da66f0891f59d3",
+    "package.json": "7d6435d5d0f3da1e8190a34a6330bacef9404d931769a1f2b27d7faf2988ec10",
     "scripts/prepare-web.mjs": "9ce1ba593d0b95cfa3108b98e34503fc0196376c5619eebf874b53902694df7a",
     "tests/era-temporary-battle-armies.test.mjs": "ad5f36eb5d24b205573d849bcdda0709f262ea5168159b9682220054d00ae098",
     "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
@@ -825,8 +825,8 @@
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "f3ce9b15e63ad7a66fe8b884a55c74c8dbb94868ba7f0b999d4d6c94655d4ab3",
-      "scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478"
+      "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+      "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
     },
     "stability": {
       "passed": true,
@@ -892,8 +892,8 @@
         "tracked": false
       },
       "sourceBindings": {
-        "src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
-        "scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478"
+        "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+        "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
       },
       "stability": {
         "passed": true,
@@ -958,16 +958,16 @@
     "upstreamCommit": "d3733a98",
     "engineUnchanged": true,
     "sourceBindings": {
-      "src/ui/runtime.mjs": "b3203a7f03e3c107328cadbee0645a5640abcdf4c272b9ce356b7088388fb7ab",
-      "src/ui/theme.mjs": "f3ce9b15e63ad7a66fe8b884a55c74c8dbb94868ba7f0b999d4d6c94655d4ab3",
-      "web/town-building-menu.mjs": "17def3c27dd4342fed77dd06bda477a7c61bcc0f9d97d27dd00633087277b3d7",
-      "web/ui/action-dock.mjs": "0d4958b41349cd44a2d8f41e7771f26d3b7a750266257ecefe0aa2a2e19849dc",
-      "web/ui/construction-layout.css": "f3888af09f4fe228991ba472d001946fde2e59940e43eff1f438f0785065991e",
-      "web/ui/controls.mjs": "ee1e0f18e58ec73f56ae9eaa9e2e0f95c160a10cdda8af4d079ae7e849b1f490",
-      "web/ui/material-components.css": "0d12105f14859b3d9ccd7e0ee3c464a9b37ef91e9fcb3239ae86205b2b701ac2",
+      "src/ui/runtime.mjs": "c1b3cee9db90ea2d893b172a96431f827da22eeeff8b9d1798e8be10432a09c8",
+      "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+      "web/town-building-menu.mjs": "dd2ccade08ae7aac36480a3b54c66290422c09bd0cf2987238ac8ebfb401f1b7",
+      "web/ui/action-dock.mjs": "a372506b7602b431747bc80d8c2163c3e5c87f34bae475aba7ff29f318ec7a35",
+      "web/ui/construction-layout.css": "97030f2a35f173d77a81af1a8ad3ddf8fb5bf623450188011408a1f741ddd489",
+      "web/ui/controls.mjs": "4009db489346891918b5c96bb432c4c039cf1dde6b340347a56307bac2b758f2",
+      "web/ui/material-components.css": "fe94f26ce187b1e9d32591e8e109d7b0aa2edbd2f2aa3ad6c39c884e74ffdc2f",
       "web/ui/surfaces.css": "85209d269f81cf00e7ebba9416ae9a5321c48f81cdcdaded4ed1240ee670b875",
-      "work/browser-tests/construction-catalogue.mjs": "caaf589da61326a9e632cfc1418118ec048da427bb5fc3fce7390ecceb344248",
-      "work/browser-tests/construction-flow-e2e.mjs": "6c90ff0343b13cff010028fc8a81733168dc0cc24caf705e3ca52ec7dfec42c0"
+      "work/browser-tests/construction-catalogue.mjs": "3581fdd88e0cf7d8e902d4772d6c14f9b1699c7e886b38777b5d91ee78b16967",
+      "work/browser-tests/construction-flow-e2e.mjs": "b3917944b9a6b362f2f17782afa9dd9aa7ad00296b27dc35e07762102e414966"
     },
     "mockConstructionFlow": {
       "passed": true,
@@ -1006,5 +1006,25 @@
       "sourceBindings/work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "aab8f26eb75c988d6746b58c7d38a7c3f196cad499528caf5f09ce6b7c518115"
     },
     "currentEngineSha256": "c7cbb427abcc639a704f0bb379c1681383a65c92a879c682abe42babda8df33d"
+  },
+  "concurrentUi294Revalidation": {
+    "remoteCommit": "ce9c515e",
+    "scope": "Preserve remote shared MUI layouts and construction refinements. Native engine unchanged. Exact merged UI checks recorded in linked proof.",
+    "proof": "scripts/era-bridge/gameplay/map-rogue-ambush-native-validation.json",
+    "previousBindings": {
+      "sourceBindings/package-lock.json": "dd8a9fbec46164b46ac3991108119e9149cc5faa057be4e350a604e8c7c87196",
+      "sourceBindings/package.json": "d1d89e07131213232038acafb76293800cbae32e5194a97f4f03252e68b0190b",
+      "uiRebuild/beforeConstructionMerge/sourceBindings/src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
+      "uiRebuild/beforeConstructionMerge/sourceBindings/scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478",
+      "constructionMerge/sourceBindings/src/ui/runtime.mjs": "b3203a7f03e3c107328cadbee0645a5640abcdf4c272b9ce356b7088388fb7ab",
+      "constructionMerge/sourceBindings/src/ui/theme.mjs": "f3ce9b15e63ad7a66fe8b884a55c74c8dbb94868ba7f0b999d4d6c94655d4ab3",
+      "constructionMerge/sourceBindings/web/town-building-menu.mjs": "17def3c27dd4342fed77dd06bda477a7c61bcc0f9d97d27dd00633087277b3d7",
+      "constructionMerge/sourceBindings/web/ui/action-dock.mjs": "0d4958b41349cd44a2d8f41e7771f26d3b7a750266257ecefe0aa2a2e19849dc",
+      "constructionMerge/sourceBindings/web/ui/construction-layout.css": "f3888af09f4fe228991ba472d001946fde2e59940e43eff1f438f0785065991e",
+      "constructionMerge/sourceBindings/web/ui/controls.mjs": "ee1e0f18e58ec73f56ae9eaa9e2e0f95c160a10cdda8af4d079ae7e849b1f490",
+      "constructionMerge/sourceBindings/web/ui/material-components.css": "0d12105f14859b3d9ccd7e0ee3c464a9b37ef91e9fcb3239ae86205b2b701ac2",
+      "constructionMerge/sourceBindings/work/browser-tests/construction-catalogue.mjs": "caaf589da61326a9e632cfc1418118ec048da427bb5fc3fce7390ecceb344248",
+      "constructionMerge/sourceBindings/work/browser-tests/construction-flow-e2e.mjs": "6c90ff0343b13cff010028fc8a81733168dc0cc24caf705e3ca52ec7dfec42c0"
+    }
   }
 }
