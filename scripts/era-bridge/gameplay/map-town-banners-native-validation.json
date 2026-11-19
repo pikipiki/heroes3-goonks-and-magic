@@ -7,7 +7,7 @@
   "originalRuntimeObserved": false,
   "scope": "Bounded native source77 rule239: original town entrances and candidate order, frozen239/234, hidden/active typed guardians, difficulty table, original fortnight schedule and save migration. No complete ERA profile or original runtime equivalence.",
   "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
-  "sourceBaseCommit": "8ca46d1b7d6bc098233773eda0be4f35d208bc16",
+  "sourceBaseCommit": "c630fa241c0a02cf576179dfbc8044a14342681f",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
     "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
@@ -16,7 +16,7 @@
     "scripts/era-bridge/gameplay/map-rules.json": "61df54e2d12c54aecf46ae9210b1dd4e4efb8b3e6a1f16b3d7111ab477702fdd",
     "scripts/prepare-web.mjs": "693d7a286afa0d522006e56379f30475299d116cd6dc81b330bfc15d4638a72e",
     "src/ui/runtime.mjs": "9bcaab07c184ece8e49c2550aabf46f0c7a57fa923a231ab1e7f17fefa64828f",
-    "src/ui/theme.mjs": "da81607ae2059fc4be365b30c572c6fbd54fafc28b99c4088cf1745c7b05460c",
+    "src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
     "tests/era-creature-prices.test.mjs": "4abe50392f8ffeb61fbd66e6d706f1c5112ec61bcbcc6d723e08c5ad14a38188",
     "tests/era-map-darkness.test.mjs": "8b5e10ab64f946013e587b5acc1a03da4b56256d36069330f04b599fa76c299f",
     "tests/era-map-double-artifacts.test.mjs": "039da5934ca956bd2d4e23c57be9aa91e64a45389ababb51d77fce5a1afa5e87",
@@ -26,11 +26,17 @@
     "tests/era-town-banners.test.mjs": "3e124ce047e71869f7a2314d87ba55e7673f89dccb2db859f7815c76c0143515",
     "tests/fixtures/era-gameplay/map-town-banners-reference.json": "edfaa5e1dfd975924d976b3db130ca07e583ff625b148f6513ebdbbb5c278154",
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
+    "web/game-menu.css": "b19bf4c4a3626f24c47b5a9c3ba08c959173bfd3fb575f8d2885159d53a7bc68",
     "web/hosted-turn-notifications.mjs": "a6537c622aa28d96c610a7df39ad6c6eb7a092a2463056956ce033a8ed4b6545",
+    "web/lobby-choices.css": "331f4d766f826ec4e7b14bc7eb36f6057b385d85acc403d6f4dc48fa40f801d1",
     "web/lobby-choices.mjs": "0b734275c5b308bf57bebf309ba9fb578adf02d152cb3161fbba1c9778a27c87",
     "web/lobby-options.mjs": "21c305782d29c35cde91b11df24f1a97be3be690e616a0bdda05719368f52ed0",
+    "web/lobby.css": "bb3b0853c711433c97b9412820477c724aa6bd1373648d2d94ff16c78bc9d689",
+    "web/mobile-tavern.css": "911e3349ca1ac498e255bba47f67c5880d2b0b5fe396113b524ba3bd0ea9d06e",
     "web/mobile-tavern.mjs": "a85e649e7537c53482b4683233160d75e7394dfc6b7cecfb3fc1f4477ce71504",
+    "web/mobile.css": "52d7619afc181befc0cf2f797d704d79bd25063000c225e226ed8aac5e468889",
     "web/mobile.mjs": "2ea48d7fd68519e7a3793745669a61666a143df561ea21d88d6b0a3f24454432",
+    "web/progression.css": "2579d3f1cff499fd59202d504d692b60afeb392bfd61d68e647f6939c8a1191b",
     "web/scenario-filters.mjs": "43fa30d9d512fb81840bac8b246b409dd5ddd99d584d3f86bf599583b34ae1bd",
     "web/ui/accordion.mjs": "04839a96b177c29a53343634be130d8a255dccf8fa3c852b84b0a60c6b23154d",
     "web/ui/components.css": "62a22e85bc8ab8a712a4557538103c15587be07a21fd41fa59ec22c2adbd074d",
@@ -43,7 +49,7 @@
     "work/browser-tests/lobby-visual-e2e.mjs": "1b439adfcee3d7f7e33c2117cf0dd16d5c1a85bf66683a9277c60833e50fcbd0",
     "work/browser-tests/native-save-json-proof.mjs": "9af43a86a9917fa29f7d68190bcd2e7026c861d9208fa40d543a01c4022601a5",
     "work/browser-tests/native-ui-actions.mjs": "05f74526152055abeb7443082e0fb118370d7f9811afc5c805cfe6b7693d836a",
-    "work/browser-tests/setup-accordions-e2e.mjs": "c260fb104326ae846048b91f8cfddd207b27d5154da1f55b75f404ec39432079",
+    "work/browser-tests/setup-accordions-e2e.mjs": "6a55d2b396efaf6c9aec49e0e3d7d00f5df3a5cb4fa56e20561d433bab48b7e7",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
     "work/browser-tests/wog-map-level-artifact-cases.mjs": "a58f4a0941334d07259b9d6eeb998a145b2d9fbfcab9592fe0ae27b2dcf6c9bf",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "d770e44e1784eae9a99010308c65941b5ddc3c3143967d665a9ed20dc8a290ed",
@@ -2633,7 +2639,7 @@
       "work/browser-tests/wog-options-components-e2e.mjs": "8af6981da9d84397eead91fcb6b78c21b205e6c96bfd605ecdcfc80a4547e816",
       "work/browser-tests/wog-options-stability-e2e.mjs": "125051c7a2d0f65aa4880dc74089816aa49577d91bc96336b3bdffe227fb881c",
       "src/ui/runtime.mjs": "9bcaab07c184ece8e49c2550aabf46f0c7a57fa923a231ab1e7f17fefa64828f",
-      "src/ui/theme.mjs": "da81607ae2059fc4be365b30c572c6fbd54fafc28b99c4088cf1745c7b05460c",
+      "src/ui/theme.mjs": "1f4264b795ef42bfadb7f31b3872de5f31fddd51d9806ffb1640fda179b34a5d",
       "web/ui/accordion.mjs": "04839a96b177c29a53343634be130d8a255dccf8fa3c852b84b0a60c6b23154d",
       "web/ui/material-components.mjs": "6588c411abae23d0c727ca139e33f09db634ff11240a3da5e75f642c81a47de5",
       "work/browser-tests/native-ui-actions.mjs": "05f74526152055abeb7443082e0fb118370d7f9811afc5c805cfe6b7693d836a"
@@ -2787,6 +2793,7 @@
       ],
       "passed": true,
       "logSha256": "75afec4efb04b3e15e6da39c972be9d352196dd7ee241f3efc77fe374d9075ef"
-    }
+    },
+    "spacingIntegration": "Retained the subsequent accordion spacing styles; lobby panel bodies preserve their zero-padding override."
   }
 }
