@@ -15,7 +15,7 @@
     "tests/native/EraCampaignRuntime.test.cpp": "3c2dc4a297358e223afaeb3bbf9796a0c7d07fb21617d4cb2320c9a836353845",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6",
     "work/browser-tests/wog-advanced-class-points-cases.mjs": "49123b5a4446b89ea605cda7f3f0b7246b4cdeddddb78e187b0f2fc3834426b7",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
     "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
@@ -515,5 +515,13 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }

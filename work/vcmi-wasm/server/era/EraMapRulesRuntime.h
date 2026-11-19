@@ -1,5 +1,6 @@
 #pragma once
 #include "../CGameHandler.h"
+#include "EraMithrilMineTiles.h"
 #include "../../lib/era/EraWogOptions.h"
 #include "../../lib/era/EraMapArmyGrowth.h"
 #include "../../lib/era/EraMapCreatureRules.h"
@@ -107,22 +108,19 @@ inline void changeWeeklyMines(CGameHandler & gh)
 {
     const auto & cb=gh.gameInfo();const int day=cb.getDate(Date::DAY);
     if(!weeklyMines(cb)||day<=1||(day-1)%7)return;
-    auto enhancements=mithril::state(cb);bool protectionUsed=false;
+    mithril::initializeMineMarkers(gh);
+    EraGameplayChange tiles;tiles.system="tileProperties";
+    tiles.state=tile_properties::state(gh.gameState());bool protectionUsed=false;
     for(const auto * mine:cb.gameState().getMap().getObjects<CGMine>())
     {
         if(mine->ID!=Obj::MINE)continue;
-        auto & saved=enhancements["objects"][std::to_string(mine->id.getNum())];
-        if(mithril::enabled(cb)&&saved["mineProtected"].Bool())
+        if(mithril::enabled(cb)&&tile_properties::number(gh.gameState(),mine->visitablePos())!=0)
         {
-            saved["mineProtected"].Bool()=false;protectionUsed=true;continue;
+            tile_properties::setNumber(tiles.state,mine->visitablePos(),0);protectionUsed=true;continue;
         }
         gh.setObjPropertyID(mine->id,ObjProperty::ERA_MINE_RESOURCE,NumericID(gh.getRandomGenerator().nextInt(0,6)));
     }
-    if(protectionUsed)
-    {
-        enhancements["revision"].Integer()+=1;
-        EraGameplayChange packet;packet.system="mithril";packet.state=std::move(enhancements);gh.sendAndApply(packet);
-    }
+    if(protectionUsed)gh.sendAndApply(tiles);
 }
 inline void placeDailyPlains(CGameHandler & gh,PlayerColor player)
 {
@@ -237,5 +235,5 @@ inline void invertCreatureSpeeds(CGameHandler & gh)
     EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)
-{buildTownGrails(gh);changeWeeklyMines(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
+{buildTownGrails(gh);mithril::decrementMineMarkers(gh);changeWeeklyMines(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
 }

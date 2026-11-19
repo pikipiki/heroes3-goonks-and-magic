@@ -6,12 +6,12 @@
   "engineSha256": "7c967d2412448188759054dfef155579c550d5552448fd9f530dc95182ca3b3c",
   "parentEngineSha256": "598e602c1a6a0d34e6959ecefabb31cab3cb8fdb37fc112a4de21b52014c7103",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
+    "docs/era-gameplay-port.md": "0bc95ca43390186f8037ced857cc7c447ec87007a82600937f4f5db58eac5905",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
     "work/browser-tests/wog-henchmen-town-resurrection-cases.mjs": "eab56d4e0bdeafbd38eeadde14517afdfff08acb6c0a7db7dfc0da5b7d28bc46",
     "work/vcmi-wasm/server/CGameHandler.cpp": "776a9d0ace6e869c4a3feb05370507e0afecf864fa62405ccc673043737b3aad",
     "work/vcmi-wasm/server/CGameHandler.h": "0d5282e086e2827e4896db483208ad1479273c20aacc9464cb1895322c5f7b78",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6",
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.h": "98596a76b219b3af60170118fb08942f9095ecff121ab7cfeb0dc2538d7ad67b"
   },
   "nativeBuild": {
@@ -336,5 +336,14 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }

@@ -10,15 +10,15 @@
     "work/vcmi-wasm/lib/era/EraTileNumberRules.h": "79053fd607147d192ce5a1e2ba06ea41889a55086ce687992699b3f188e043ee",
     "work/vcmi-wasm/lib/era/EraTileProperties.h": "50e31d4d3a1ea033231478f53667b1c79cbc5853d26cd7835883c417c79a35c3",
     "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
     "work/browser-tests/wog-era-tile-properties-cases.mjs": "1b3a76ffcb770eba75cc14bd525fff705a94be860c950401502a2f0079aa2b81",
     "tests/native/EraTileNumberRules.test.cpp": "5b14ab4b6a5e908cdf4f667e7fdff4a17fd97c35e7bb3643bdbcfd1689bfdf2f",
     "tests/era-tile-number-rules-native.test.mjs": "cf6b666e8fbb041e0d8488a9bea36d6ade1b6c865637a7f8580d9f4aaefc8b64",
     "tests/era-tile-properties.test.mjs": "f0cfe93733cfa128e0dc06d8d427b08cf967675e028d47bd158c524f71a1c9df",
     "tests/fixtures/era-gameplay/tile-number-reference.json": "0833ade475618f9ffa7cca3ed4e36b061be498aaf661e2a3d6bf2d7a3dec6c60",
-    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84"
+    "docs/era-gameplay-port.md": "0bc95ca43390186f8037ced857cc7c447ec87007a82600937f4f5db58eac5905"
   },
   "programSha256": "40444b7ec71ede2303bec0df2a65ca5314232858fb268e386406ac3c68e82832",
   "programFileSha256": "fbb817e10fd9a88266552d40d61ed960c06a1a37c681a50539aa9b6cc2cd7785",
@@ -334,5 +334,15 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }

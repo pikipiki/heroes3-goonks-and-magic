@@ -16,7 +16,7 @@
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
     "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
     "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9",
+    "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6",
     "scripts/era-bridge/campaigns/native-compiler.mjs": "c9f2498bdf10d9baa2cc65db376926941281634532aedc4283323ff2135db065",
     "work/browser-tests/wog-advanced-core-cases.mjs": "ee5ecccc588af7c572df6486568ea8d4a5fa6b3ae9ffadf85da9a1b934ec0ace",
     "work/browser-tests/wog-advanced-class-skill-levels-fixture.mjs": "634da26dc1e56af0a3528dd817fd42ed4fd9fd9c6b225a481427fd86dcfe23cf",
@@ -820,5 +820,13 @@
       "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }

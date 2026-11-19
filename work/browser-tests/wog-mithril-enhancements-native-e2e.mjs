@@ -31,7 +31,7 @@ const wait=(fn,arg,timeout=90000)=>page.waitForFunction(fn,arg,{timeout});
 const state=()=>page.evaluate(()=>goonkMobileState);
 const command=(...values)=>page.evaluate(values=>Module._vcmiMobileCommand(...values,...Array(6-values.length).fill(0)),values);
 
-function fixture({fortlessFixture=false,replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
+function fixture({mineTilesFixture=false,fortlessFixture=false,replacementFixture=null,dwellingLevelFixture=false,extraDwellingFixture=false,monthlyFixture=false,grailFixture=null,sourceOptions=false,reroll=null,siege=false,changingMine=false,plainsFight=false,plainsBlock='',universityTwo=false,capitolFixture=false,bluePlainsOwner=false,capitolCapture=false,movementWater=false,creatureRuleFixture=false,ruleActor="core:goblin",ruleAiFight=false,rngIsolation=false,universityAi=false,heroOnMine=false}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -66,6 +66,7 @@ if opts['rngIsolation']:
 site('mithrilGold','mine','goldMine',12,11,'red')
 site('mithrilOre','mine','orePit',13,11,'red')
 site('mithrilEnemy','mine','goldMine',14,11,'blue')
+if opts['mineTilesFixture']:site('mithrilNeutral','mine','goldMine',15,11)
 site('mithrilDwelling','creatureGeneratorCommon','guardhouse',12,12,'red')
 if opts['reroll'] in ['shrine','rng']:
  site('mithrilShrine','shrineOfMagicLevel1','shrineOfMagicLevel1',10,11)
@@ -214,6 +215,8 @@ if opts['sourceOptions']:
   {'name':'private mithril option source','firstOccurrence':499,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['ZVSE private native mithril option query'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}},
   {'name':'private mithril option next day','firstOccurrence':1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['2'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}}
  ])
+if opts['mineTilesFixture']:
+ for day in range(3,16):header.setdefault('events',[]).append({'name':'mine tile day '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['replacementFixture'] and opts['replacementFixture'].get('observeReady'):
  header.setdefault('events',[]).append({'name':'inspect initial source170 counters','firstOccurrence':0,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':['1'],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['universityAi']:header['allowedArtifacts']={'anyOf':['core:speculum']}
@@ -228,7 +231,7 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
+`,JSON.stringify({mineTilesFixture,fortlessFixture,replacementFixture,dwellingLevelFixture,extraDwellingFixture,monthlyFixture,grailFixture,sourceOptions,reroll,siege,changingMine,plainsFight,plainsBlock,universityTwo,capitolFixture,bluePlainsOwner,capitolCapture,movementWater,creatureRuleFixture,ruleActor,ruleAiFight,rngIsolation,universityAi,heroOnMine})]);
 }
 
 async function boot({fortlessChoice=null,preserveAiFortsChoice=null,fortlessConfigured=false,preserveAiFortsConfigured=false,displayMithrilChoice=null,resourceMithrilChoice=null,nativeSeed=0,weeklyMithrilChoice=null,invertedSpeedsChoice=null,invertedSpeedsConfigured=false,groundedFliersChoice=null,groundedFliersConfigured=false,extraDwellingChoice=null,extraDwellingsConfigured=false,neutralTown=false,monthlyChoice=null,monthlyConfigured=false,grailChoice=null,grailsConfigured=false,save,scriptProgram,expectedDialog,viewport,wogChoice=null,enabled=true,henchmen=false,funds=100,preserveRewards=false,weeklyMines=false,dailyPlains=false,multipleCapitols=false,doubleMovement=false,allDoubleAttack=false,allBreath=false,goldFunds=null,aiFunds=null,...options}={}){
@@ -463,7 +466,10 @@ async function recruitmentStock(){
  return stock;
 }
 try{
- if(process.env.CASES?.startsWith('fortless')){
+ if(process.env.CASES?.startsWith('mine-tiles')){
+  const {runMineTiles}=await import('./wog-mithril-mine-tiles-cases.mjs');
+  await runMineTiles({boot,panel,buy,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
+ }else if(process.env.CASES?.startsWith('fortless')){
   const {runFortlessTowns}=await import('./wog-map-fortless-cases.mjs');
   await runFortlessTowns({boot,state,command,wait,page:()=>page,output,report,readCompletedNativeSave});
  }

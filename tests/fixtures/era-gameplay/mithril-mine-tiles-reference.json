@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "upstream": {
+    "repository": "https://github.com/ERA-Projects/era-project-eng",
+    "commit": "233993be3eea4646b5c9f351e74f0bb51101adf6",
+    "scripts": {
+      "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm": "4f03a484a5b64367917bfb671ce314b5a2ed23269afdfa4bca2997bd94b4cb0b",
+      "Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63"
+    }
+  },
+  "contract": {
+    "purchaseMarker": 7,
+    "anyNonzeroMarkerBlocksRepurchase": true,
+    "ordinaryIncomeDoubledOnNonzeroMarker": true,
+    "dailyDecrementWhenSource36EnabledAnd122Disabled": true,
+    "dailyDecrementAllMineOwners": true,
+    "weeklyProtectionWhenSource36Enabled": true,
+    "weeklyConsumesAnyNonzeroMarker": true,
+    "weeklyConsumptionSkipsResourceDraw": true,
+    "disabledSource36RetainsMarker": true,
+    "sharedWithSourcePON": true
+  },
+  "nativeCompatibility": {
+    "legacyMineUntilImportedAsRemainingPeriods": true,
+    "legacyMineProtectedImportedAs7": true,
+    "existingNonzeroSharedMarksTakePrecedence": true,
+    "migrationOncePerMap": true,
+    "explicitZeroAfterMigrationCannotResurrectLegacyFields": true,
+    "newSaveVersion": 930,
+    "originalEraRuntimeValidated": false
+  },
+  "sourceRegions": [
+    {
+      "file": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "firstLine": 371,
+      "lastLine": 409,
+      "text": "!?FU(WOG_36_UpgradeMine);\n!!PO4:N?(modCounter:y);\n!!FU&(modCounter):E; // exit if modified\n\n!!VR(x:y):Sv4;\n!!VR(y:y):Sv5;\n!!VR(z:y):Sv6;\n\n!!MN(x)/(y)/(z):O?(mineOwner:y) R?(resType:y); [Do not use v vars for MN:R! It produces erm error if currrently selecting a town (instead of a hero) for some reason]\n\n!#VA(owners[2]:y);\n!!OW:Ri^timerOwner^/(RES_MITHRIL)/?(number:y) T(mineOwner)/?(owners[0]) Ti^timerOwner^/?(owners[1]);\n\n!!FU|(mineOwner:y)<=(NO_OWNER)/(owners[0])<>(owners[1]):E;\n\n!!if&i^wog_101_map_rule_11_isEnabled^;  [check for \"Mines change Resource every week\" rule]\n  !#VA(upgCosts[7]:y);\n  !!VR(upgCosts[0]):C1/3/1/3/3/3/5;\n  !!VR(cost:y):S(upgCosts[resType]);\n!!el;\n  !!VR(cost):S(resType) -5 F0/1 *3 +4; [Set base Cost & Set More Cost for Gold Mine]\n!!en;\n\n!!if&(number)>=(cost);\n  !!if&i^wog_101_map_rule_11_isEnabled^;\n    !!VRi:S-1;\n  !!el;\n    !!VRi:S(resType);\n  !!en;\n  !!FU(WOG_GetMineName):P(resType:y)/?(mineName:z);\n\n  !!SN:T^wog.36.mine.%i^/?(msg:z)/^mineName^/(mineName)/^cost^/(cost)/^number^/(number);\n\n  !!CM:R0;\n  !!IF:Q1/(RES_MITHRIL)/(cost)/2/(msg:z);\n  !!if&1;\n    !!OW:R(CURRENT_PLAYER)/(RES_MITHRIL)/d-(cost); [take mithril]\n    !!PO(x)/(y)/(z):N7;                 [set as upgraded or protected - assigned with Map Rules for mines protection]\n  !!en;\n",
+      "textSha256": "578194254ec3003ca3689a0e8605a9e1a18b39642ad616b21f068d8acdf988ee"
+    },
+    {
+      "file": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "firstLine": 412,
+      "lastLine": 419,
+      "text": "!?FU(WOG_OnCalculateMineIncome_Quit)&i^wog_36_enabled^/i^wog_101_map_rule_11_isEnabled^=0;\n!#VA(x:x) (y:x) (z:x) (baseIncome:x) (newIncome:x);\n!!PO(x)/(y)/(z):N?n;                                                                      [get po value if upgraded]\n!!if&n;\n  !!VR(newIncome):Sd<<1;                                                                  [twice income for this mine]\n!!en;\n\n*** Mine produce Extra, AI gets gold & Replace resource piles and campfires with Mithril ***\n",
+      "textSha256": "a1d84fe8510253f902d572b06b0b99d7017c4f399e9bbe6033ec606c0f13ab11"
+    },
+    {
+      "file": "Mods/WoG Scripts/Data/s/42 wog - mithril enhancements.erm",
+      "firstLine": 434,
+      "lastLine": 454,
+      "text": "  !!en;\n\n  ; Decrease the counters on mines if weekly mine change is not enabled (for this rule it will be reset on Monday)\n  !!if&i^timerOnce^/i^wog_101_map_rule_11_isEnabled^=(FALSE);\n    !!VR(x:y):S-1;\n\n    ; loop through all the mines\n    !!re i;\n      !!UN:U(OBJ_MINE)/(ANY_OBJ)/-1/(x)/(y:y)/(z:y);\n      !!br&(x)<0;\n\n      !!PO(x)/(y)/(z):N?(counter:y);\n\n      !!if&(counter);\n        !!VR(counter):-1 F0/(INT_MAX);\n        !!PO(x)/(y)/(z):N(counter);\n      !!en;\n    !!en;\n  !!en;\n!!en;\n\n",
+      "textSha256": "0b3ab93526af835b3fcfbbbc6ebc8ce7f5cb5eb95a5880e942621657fcae5c19"
+    },
+    {
+      "file": "Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+      "firstLine": 542,
+      "lastLine": 564,
+      "text": "    !!re j/0/9;\n      !!HEi:Vj/0; [set hero to have not visited all objects of this type]\n    !!en;\n  !!en;\n** end of function\n\n** function to change a mine's produced resource\n\n!?FU(WOG_101_ChangeMineProductions);\n  !!UN:U(OBJ_MINE)/(ANY_OBJ)/?(minesQty:y); [count mines: y1]\n  !!VRv2:S-1;                               [reset coordinate index]\n  !!re i/0/(minesQty)/1/-1;\n    !!UN:U(OBJ_MINE)/(ANY_OBJ)/-1/2;        [get mine location into v600-v602]\n    !!if&i^wog_36_enabled^;                 [if mithril enhancements are enabled]\n      !!PO2:N?(isProtected:y);\n      !!if&(isProtected);\n        !!PO2:N0;                           [reset protection and go to next mine]\n        !!co;\n      !!en;\n    !!en;\n    !!VRr:R0/(RES_FIRST)/(RES_LAST_SOD);    [random 0-6] tested in MP - went work but if any issue then change func to pass rand seed as arg]\n    !!MN2:Rr/1;                             [set random resource produced]\n  !!en;\n",
+      "textSha256": "c029054d4ff20f951ba878c93459d3bb08bdd70639f2ac6fbb692588051ff00c"
+    }
+  ]
+}

@@ -12,7 +12,7 @@
     "work/vcmi-wasm/lib/era/EraDeflectionRuntime.h": "0f519f9b99ebfbb2ca124bd8a6ee85ad15ba54362afcc456426999416bcf1367",
     "work/vcmi-wasm/lib/networkPacks/HenchmanPacks.h": "51e1e7a400689590dfb476d1fe42a7dd5568e91c1f1e2faf88b8f869eeeec808",
     "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0",
     "work/vcmi-wasm/lib/battle/BattleInfo.cpp": "604c3430e23e05b7cb7f5986319fddd4d7192e4a4818e5470e3390c94e05bf1d",
     "work/vcmi-wasm/lib/CStack.cpp": "0d588aa9cc811e9506603befdddaad9d96af760ac3abf8272d4f62c5bdd591b1",
     "web/henchman-sheet.mjs": "e2baadf65fe89f054c54da9f6e94caa2388d7b0f87c0c7db972bf3e4d3843735",
@@ -305,5 +305,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }

@@ -8,24 +8,24 @@
   "engineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801",
   "servedEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801",
   "sourceBindings": {
-    "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "e0d492a7c74e329322e51f60a8152ddfe10a608b9b70f09423103a5eca3186c3",
     "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3",
-    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
+    "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "2ba92e307d5710dcdc617dec698ef3529c5d5435b9d807a8ebf29d926911f731",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "851d76153fb63b85917725927bd75cf316fb22d947c422a52dbf42893214cb66",
-    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
+    "work/vcmi-wasm/lib/era/EraMithrilModel.h": "fe0c6c6bcaa57016d86ea7f29e51284c82031169ff2c610d6250d6ee31e5a6f1",
     "work/vcmi-wasm/lib/era/EraWogOptions.h": "3f0c91279e2fad34ad9327f92b1de2f220fdc7fdf4513e1ec1060866e5a35d4a",
     "work/vcmi-wasm/lib/mapObjects/CRewardableObject.cpp": "bb7fef53b631e02e061203a89029eab2a507fba3e4fade9527f8dd3f7d7dab1b",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "90e9561320cb232c56e6e2214c2db0553b3bebbe3511755ac4b1af10e92c7063",
     "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
     "work/vcmi-wasm/server/era/EraMithrilRandomSeed.h": "967a341bb14decb9860832bd7bbca3681071d8e338e664386930eb0d4a34dc17",
-    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b",
+    "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded",
     "work/vcmi-wasm/lib/era/EraMithrilWeeklyRules.h": "253bea5d86f5df4c11611e252fd78dd77abace7c26b4971cfb4b641d54249d9c",
     "work/vcmi-wasm/server/era/EraMithrilWeeklySites.h": "db934ac62509ddcd3034fe4689e96ca2720c069c2c1d80c58fad0c0cf1e15f6c",
     "tests/native/EraMithrilWeeklyRules.test.cpp": "757ae27ba585dd6b217d31eda44bd8c938f343ff85699117f97aaca2e0f215f4",
     "tests/era-mithril-weekly.test.mjs": "5d2d89f66c125cdba6ba84fa5a3bc9c4ba55da6ac7f92e3b06ef26d14944c40d",
     "tests/fixtures/era-gameplay/mithril-weekly-reference.json": "b2f055835565a153e0e2e55b48ddd77c1c9e671df66f46cfa19653a6cde9817f",
     "work/browser-tests/wog-mithril-weekly-cases.mjs": "4814ce1293071883d7dc0b24505fb76bf8294e6ea677e53e9f347169395daf25",
-    "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84"
+    "docs/era-gameplay-port.md": "0bc95ca43390186f8037ced857cc7c447ec87007a82600937f4f5db58eac5905"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",
@@ -1285,5 +1285,18 @@
       "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "1a7c3316479f754b58bf3aec35d035f1e5ec845cc033b4a99779af1b2ef27a84",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "ff998c55126cd527a412cee52fecaa6502e89a7117c90583bc5b3e0b5cbc7a42",
+      "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
+      "work/vcmi-wasm/lib/era/EraMithrilModel.h": "05ac265d1e97a916ca0f3e70e9fb92ee35fe96fdce591ca0616b4c7dde630f1d",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "86d6cd9cd3a34b31ff951cad7c13cc54f240a9ef5249d53da650a6b6eaefa0cf",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }

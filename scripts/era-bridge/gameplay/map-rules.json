@@ -55,5 +55,6 @@
     ]
   },
   "doubleArtifactsValidation": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
-  "doubleArtifactsReference": "tests/fixtures/era-gameplay/map-double-artifacts-reference.json"
+  "doubleArtifactsReference": "tests/fixtures/era-gameplay/map-double-artifacts-reference.json",
+  "mineProtectionValidation": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json"
 }

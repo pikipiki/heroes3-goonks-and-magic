@@ -1,6 +1,7 @@
 #pragma once
 #include "../CGameHandler.h"
 #include "EraMithrilRandomSeed.h"
+#include "EraMithrilMineTiles.h"
 #include "../../lib/era/EraMithrilModel.h"
 #include "../../lib/era/EraMithrilReroll.h"
 #include "../../lib/era/EraMithrilRandomRules.h"
@@ -16,6 +17,7 @@ namespace era_compat::mithril
 {
 inline bool action(CGameHandler & gh,const MithrilAction & request)
 {
+    initializeMineMarkers(gh);
     const auto & cb=gh.gameInfo();
     if(!enabled(cb)||request.revision!=revision(cb))return false;
     const auto * object=cb.getObj(request.object);
@@ -31,8 +33,9 @@ inline bool action(CGameHandler & gh,const MithrilAction & request)
     std::vector<int3> preview;
     if(proposed.kind==MINE)
     {
-        if(map_rules::weeklyMines(cb))target["mineProtected"].Bool()=true;
-        else target["mineUntil"].Integer()=cb.getDate(Date::DAY)+7;
+        EraGameplayChange tiles;tiles.system="tileProperties";
+        tiles.state=tile_properties::state(gh.gameState());
+        tile_properties::setNumber(tiles.state,object->visitablePos(),7);gh.sendAndApply(tiles);
     }
     else if(proposed.kind==MILL)target["mill"].Bool()=true;
     else if(proposed.kind==UNIVERSITY)target["university"].Bool()=true;

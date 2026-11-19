@@ -100,7 +100,7 @@ export async function runDoubleArtifacts({boot,sheet,state,command,wait,approach
    await read(`DART RESTORED 1/15/${row.before.join('/')}`);await ack();await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
   }
   const expected=`DART POST ${afterMarker}/${row.after.join('/')}`;assert.equal(await pick(),expected);
-  const pending=await save();assert.equal(pending.readInt32LE(4),929);fs.writeFileSync(path.join(output,row.name+'-pending.vsgm1'),pending);
+  const pending=await save();assert.equal(pending.readInt32LE(4),Number(process.env.GOONK_EXPECTED_SAVE_VERSION||929));fs.writeFileSync(path.join(output,row.name+'-pending.vsgm1'),pending);
   await page().close();await boot({...options,doubleArtifactsConfigured:!row.configured,save:[...pending],expectedDialog:'source-campaign'});await read(expected);await ack();
   await read(`DART RESTORED ${Number(active)}/${afterMarker}/${row.after.join('/')}`);await ack();await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
   const hero=await sheet();assert.equal(hero.name,'Orrin');

@@ -1,5 +1,7 @@
 #pragma once
 #include "EraMithrilRules.h"
+#include "EraMithrilMineRules.h"
+#include "EraTileProperties.h"
 #include "EraMithrilDisplayRules.h"
 #include "EraCampaignCreatureAttributes.h"
 #include "EraWogOptions.h"
@@ -80,10 +82,20 @@ inline GameResID resource()
         if(object&&object->getJsonKey()=="mithril"&&object->getModScope()=="wake-of-gods.mithril")return object->getId();
     return GameResID::NONE;
 }
+inline int mineMarker(const IGameInfoCallback & cb,ObjectInstanceID id)
+{
+    const auto * object=cb.getObj(id);
+    if(!object||object->ID!=Obj::MINE)return 0;
+    const int marker=tile_properties::number(cb.gameState(),object->visitablePos());
+    if(marker||tile_properties::state(cb.gameState())["mithrilMineVersion"].Integer()>=1)return marker;
+    const auto & saved=entry(cb,id);
+    return era_bridge::mithril::legacyMineMarker(map_rules::weeklyMines(cb),saved["mineProtected"].Bool(),
+        cb.getDate(Date::DAY),saved["mineUntil"].Integer());
+}
 inline bool mineActive(const IGameInfoCallback & cb,ObjectInstanceID object)
-{return enabled(cb)&&!map_rules::weeklyMines(cb)&&era_bridge::mithril::mineActive(cb.getDate(Date::DAY),entry(cb,object)["mineUntil"].Integer());}
+{return enabled(cb)&&!map_rules::weeklyMines(cb)&&mineMarker(cb,object)!=0;}
 inline bool mineProtected(const IGameInfoCallback & cb,ObjectInstanceID object)
-{return enabled(cb)&&map_rules::weeklyMines(cb)&&entry(cb,object)["mineProtected"].Bool();}
+{return enabled(cb)&&map_rules::weeklyMines(cb)&&mineMarker(cb,object)!=0;}
 inline bool millActive(const IGameInfoCallback & cb,ObjectInstanceID object)
 {return enabled(cb)&&entry(cb,object)["mill"].Bool();}
 inline bool universityActive(const IGameInfoCallback & cb,ObjectInstanceID object)

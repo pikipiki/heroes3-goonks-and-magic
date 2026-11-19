@@ -27,9 +27,9 @@
   "randomValidation": "outputs/era-gameplay/mithril-native-random.json",
   "randomReference": "tests/fixtures/era-gameplay/mithril-random-reference.json",
   "remaining": [
-    "Source UN:P setters and options 149/170/171 integration.",
-    "Complete WoG option catalogue and full gameplay-profile activation.",
-    "Exact PO2, option171 and weekly mill/garden scheduling, including the timing of upgraded mill rewards."
+    "Source UN:P setters remain unadmitted; source149/170/171 reads and independent native choices have separate bounded validations.",
+    "Shared PO:N integration for upgraded windmills/waterwheels and universities, and complete corresponding source event lifecycles.",
+    "Complete WoG option catalogue and full gameplay-profile activation."
   ],
   "dailyPlainsValidation": "outputs/era-gameplay/map-rules-native-daily-plains.json",
   "universityValidation": "outputs/era-gameplay/mithril-native-university.json",
@@ -41,5 +41,10 @@
   "touchValidation": "outputs/era-gameplay/mithril-native-touch.json",
   "perGameOptionValidation": "scripts/era-bridge/gameplay/mithril-options-native-validation.json",
   "sourceOptionReadValidation": "scripts/era-bridge/gameplay/mithril-source-option-native-validation.json",
-  "dwellingSourceLevelsValidation": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json"
+  "dwellingSourceLevelsValidation": "scripts/era-bridge/gameplay/mithril-dwelling-levels-native-validation.json",
+  "mineTileValidation": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+  "mineTileReference": "tests/fixtures/era-gameplay/mithril-mine-tiles-reference.json",
+  "weeklySiteValidation": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
+  "resourceReplacementValidation": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
+  "informationValidation": "scripts/era-bridge/gameplay/mithril-display-native-validation.json"
 }

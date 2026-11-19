@@ -1581,11 +1581,12 @@ void publishMobileState(){
      row["cost"].Integer()=offer.cost;row["available"].Bool()=p->makingTurn&&offer.available()&&amount>=offer.cost;
      row["active"].Bool()=activeMine||protectedMine||activeMill||activeUniversity;
      row["protection"].Bool()=object->ID==Obj::MINE&&era_compat::map_rules::weeklyMines(*p->cb);
-     row["days"].Integer()=protectedMine?7-(p->cb->getDate(Date::DAY)-1)%7:activeMine?era_bridge::mithril::daysRemaining(p->cb->getDate(Date::DAY),era_compat::mithril::entry(*p->cb,object->id)["mineUntil"].Integer()):0;
+     row["days"].Integer()=protectedMine?7-(p->cb->getDate(Date::DAY)-1)%7:activeMine?era_compat::mithril::mineMarker(*p->cb,object->id):0;
      row["x"].Integer()=object->visitablePos().x;row["y"].Integer()=object->visitablePos().y;
      if(const auto * mine=dynamic_cast<const CGMine *>(object.get()))
      {
-      row["dailyIncome"].Integer()=mine->dailyIncome()[mine->producedResource];
+      if(mine->getOwner().isValidPlayer())
+       row["dailyIncome"].Integer()=mine->dailyIncome()[mine->producedResource];
       row["resource"].String()=LIBRARY->resourceTypeHandler->getById(mine->producedResource)->getNameTranslated();
      }
      if(!offer.upgrades.empty()&&offer.upgrades.front().hasValue())row["upgrade"].String()=offer.upgrades.front().toCreature()->getNamePluralTranslated();

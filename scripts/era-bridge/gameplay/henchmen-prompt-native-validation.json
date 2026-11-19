@@ -14,7 +14,7 @@
     "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "4d57d85ca0f9b48e793a969326a52dee7de947439d330c5009c1a864f67aa79e",
     "work/vcmi-wasm/server/battles/BattleProcessor.cpp": "aab42bb560a9f179807d9ea9bc6adde7721f168b993d164c1498fca98733c036",
     "work/vcmi-wasm/server/battles/BattleProcessor.h": "5a6c7608997cee6907fa0348d458748b4dab9aa62cb34e9c829bbb4721bc4beb",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0",
     "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
@@ -180,5 +180,13 @@
       "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
+  },
+  "mithrilMineTilesRevalidation": {
+    "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
+    "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
+    "previousBindings": {
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261"
+    },
+    "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   }
 }
