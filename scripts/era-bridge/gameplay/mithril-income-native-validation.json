@@ -8,8 +8,8 @@
   "engineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3",
   "sourceBaseCommit": "2a4860cf471738212e09b7a4bc28808d7fcfe207",
   "sourceBindings": {
-    "docs/era-compatibility.md": "7787877a248f2bd8b3753fd3e8d101d0d06bb0a625d534c5b2d4e1e0bc6ebf99",
-    "docs/era-gameplay-port.md": "29d6af16abc37b345449d97d8af6373b02f88629e4c0a67e36ed8243cb66278a",
+    "docs/era-compatibility.md": "259626f43a3c68202e11cf71ea38542c2a2a686c742954642d06e67655ca5c51",
+    "docs/era-gameplay-port.md": "4f08e69fd4d26370f6aeaa91986f60e20ca2b2426ad20428c1e05a9271a31f30",
     "scripts/era-bridge/gameplay/mithril.json": "a5471a115a6c8a16a96e7c4b5996c47d076ed9cba3e1570171e2d3508fdc7f08",
     "tests/era-income-rules-native.test.mjs": "967bb5fafb900c234783d83f4189d2cd42f279e7065f81205c29e4aa43a94b3c",
     "tests/era-mithril-income.test.mjs": "cb3eaaff5812f47a589a83fff438e16efea108bdbc6cb6dafe983b5e964ea9f6",
@@ -21,7 +21,7 @@
     "work/browser-tests/lobby-income-e2e.mjs": "d58b705d1e1a6bc59af77b5f288679a5873f987a935b47a200b38dcfce1b9a25",
     "work/browser-tests/lobby-visual-e2e.mjs": "53032207292e587c65adea9c19e67c99e883232421a5a3e20098b8714965b8cf",
     "work/browser-tests/native-ui-actions.mjs": "05c9ac326f0ecd83e1ae9ec8db1fb327cd02ef2d7933cf665338d66d8acaf19b",
-    "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
+    "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
     "work/browser-tests/wog-income-ai-cases.mjs": "03ad16bed359d8a07ca4b36d96d02c924b7ae9dd2aebdcab447f27251da3b16c",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
@@ -1184,5 +1184,15 @@
       "docs/era-compatibility.md": "f98dbbe651e73787c8454b1c7c58bc7b5c5f631785bd10729b49dc64ad7915bc"
     },
     "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
+  },
+  "eighthUpgradesRevalidation": {
+    "scope": "Historical reports retained; current original-hero conversions, signed XP consumers, migration and selected Advanced Classes, companions, growth, Mithril and price regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/map-eighth-upgrades-native-validation.json",
+    "previousBindings": {
+      "docs/era-gameplay-port.md": "29d6af16abc37b345449d97d8af6373b02f88629e4c0a67e36ed8243cb66278a",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
+      "docs/era-compatibility.md": "7787877a248f2bd8b3753fd3e8d101d0d06bb0a625d534c5b2d4e1e0bc6ebf99"
+    },
+    "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
   }
 }

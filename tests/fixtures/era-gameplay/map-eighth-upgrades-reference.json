@@ -1,0 +1,1633 @@
+{
+  "schema": 1,
+  "source": {
+    "sha256": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "file": "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm",
+    "sections": [
+      {
+        "start": 88,
+        "text": "!?FU(OnEveryDay)&i^timerDay^>1;\n\n  !!FU(WOG_101_SetMonstersHalfPrice)&i^wog_101_map_rule_2_isEnabled^:P D;\n  !!FU(WOG_101_PlaceMagicPlains)&i^wog_101_map_rule_3_isEnabled^:Pi^timerOwner^ Di^timerOwner^;\n\n  !!FU(WOG_101_HideMapInitPlayer):P(CURRENT_PLAYER) D(CURRENT_PLAYER);\n\n  !!if&i^timerOnce^;\n    !!FU(WOG_101_UpgradeTo8thLvl)&i^wog_101_map_rule_14_isEnabled^:P D;       \n    !!FU(WOG_101_IncreaseArmies)&i^timerOnce^/i^wog_101_map_rule_5_isEnabled^:P D;                     [build grails in towns]\n\n    !!if&i^timerWeekDay^=1;\n      !!FU(WOG_101_ClearHeroVisistedObjects)&i^timerMonthDay^=1/i^wog_101_map_rule_12_isEnabled^:P D;\n      !!FU(WOG_101_UpdateWarlordsBannerGuard)&i^wog_101_map_rule_20_isEnabled^:P D;\n      !!FU(WOG_101_ChangeMineProductions)&i^wog_101_map_rule_11_isEnabled^:P D;\n    !!en;\n  !!en;\n"
+      },
+      {
+        "start": 844,
+        "text": "!?FU(WOG_101_UpgradeTo8thLvl);\n  !#VA(monsToUpgrade[9]:y);\n  !#VA(monsIntoUpgrade[9]:y);\n  !!VR(monsToUpgrade[0]):C13/27/41/55/69/83/97/111/131;\n  !!VR(monsIntoUpgrade[0]):C150/151/152/153/154/155/156/157/158;\n  !!re i/0/(HERO_LAST_WOG);\n    !!HEi:Z?(hero:y);\n    !!VR(army:y):S(hero) +145;                                                [add army offset to pass armyptr]\n    !!re j/0/(monsToUpgrade[SIZE])/1/-1;\n      !!SN:E4500112/(CALLCONV_THISCALL)/(army:y)/(monsToUpgrade[j]);          [if this army has any mon of type]\n      !!if&v1;\n        !!HEi:C1/(monsToUpgrade[j])/(monsIntoUpgrade[j])/d/d/1;\n      !!en;\n    !!en;\n  !!en;\n"
+      }
+    ]
+  },
+  "timer": {
+    "sha256": "9cecab0bf658ad807b27cb9f783c220183dde8f580adb61e72044d6692de530f",
+    "file": "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - stdlib.erm",
+    "start": 217,
+    "text": "; Extended OnEveryDay trigger. The following global variables are automatically set:\n; - i^timerDay^:        1..+inf\n; - i^timerWeekDay^:    1..7\n; - i^timerMonthDay^:   1..28\n; - i^timerWeek^:       1..+inf\n; - i^timerMonthWeek^:  1..4\n; - i^timerMonth^:      1..+inf\n; - i^timerOnce^:       0..1\n; - i^timerOwner^:      0..7\n; - i^timerIsAi^:       0..1\n; - i^timerIsHuman^:    0..1\n!?FU(OnEveryDay);\n!#VA(day:x) (weekDay:x) (once:x) (owner:x) (isAi:x);\n\n!!OW:C?(owner) I(owner)/?(isAi);\n!!VR(day):Sc;\n!!VR(weekDay):S(day) -1 %7 +1;\n\n!!VR(lastTimerDay:y):Si^era_everyDayTimerLastDay^;\n!!VRi^era_everyDayTimerLastDay^:S(day);\n!!VR(once):S(FALSE);\n!!VR(once)&(lastTimerDay)<>(day):S(TRUE);\n\n!!VRi^timerDay^:S(day);\n!!VRi^timerWeekDay^:S(weekDay);\n!!VRi^timerMonthDay^:S(day) -1 %(DAYS_IN_MONTH) +1;\n!!VRi^timerWeek^:S(day) -1 :(DAYS_IN_WEEK) +1;\n!!VRi^timerMonthWeek^:S(day) -1 %(DAYS_IN_MONTH) :(DAYS_IN_WEEK) +1;\n!!VRi^timerMonth^:S(day) -1 :(DAYS_IN_MONTH) +1;\n!!VRi^timerOnce^:S(once);"
+  },
+  "originalRuntimeObserved": false,
+  "reaEvidence": false,
+  "staticReports": {
+    "era-hero-army-transform-oracle": {
+      "sha256": "f1e8e3ffed1a81c9c070b4e1a14f26cef79e139939e7fd46d8fcf9c8095721d1",
+      "report": {
+        "schema": 1,
+        "evidenceKind": "Ordinary targeted static PE disassembly and supplied Pascal/ERM source reads. No REA Evidence or runtime validation.",
+        "targets": {
+          "h3era.exeSha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+          "era.dllSha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+          "preferredImageBase": "0x400000"
+        },
+        "sourceSha256": {
+          "work/downloads/era-kernel-source/Erm.pas": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+          "work/downloads/era-kernel-source/Heroes.pas": "d988b94538b9507e8580de2666e1b4a931498c52c25a418f1847e3e2dca0e6b5",
+          "work/era-gameplay-reference/Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+          "work/era-gameplay-reference/Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm": "0e27c8267c4c4054b805e53d93b5ece7b97971555d75f3b01c8da2c4850c378b"
+        },
+        "sourceCrossChecks": {
+          "Erm.pas": {
+            "parseBareD": [
+              5079,
+              5094,
+              5095
+            ],
+            "applyAddModifier": [
+              5431,
+              5433
+            ],
+            "crExpoFunctionDeclarations": [
+              810,
+              811,
+              812,
+              813
+            ],
+            "HE_C0Hook": [
+              6519,
+              6601,
+              9399,
+              9400
+            ],
+            "scope": "The supplied ERA hook at7442ac replaces mode0 only. It does not intercept the distinct mode1 branch at744492."
+          },
+          "source77": {
+            "rule125": [
+              844,
+              858
+            ],
+            "calledAfterDay1": [
+              88,
+              95,
+              96
+            ],
+            "sourceTypes": [
+              13,
+              27,
+              41,
+              55,
+              69,
+              83,
+              97,
+              111,
+              131
+            ],
+            "targetTypes": [
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158
+            ]
+          },
+          "constants": {
+            "HERO_LAST_WOG": 155,
+            "line": 372
+          }
+        },
+        "contract": {
+          "syntax": "HE hero:C1/sourceType/targetType/d/d/1",
+          "arguments": [
+            {
+              "position": 1,
+              "meaning": "Mode1: every matching creature stack in normal army."
+            },
+            {
+              "position": 2,
+              "meaning": "Source creature type filter."
+            },
+            {
+              "position": 3,
+              "meaning": "Target creature type; set via generic ZvsApply."
+            },
+            {
+              "position": 4,
+              "meaning": "Stack count modifier; bare d is ADD0, retaining count."
+            },
+            {
+              "position": 5,
+              "meaning": "Experience modifier operand; read GetExp from existing hero/slot record, apply bare d=ADD0, retaining the value read. This parameter is present, so XP recalculation runs."
+            },
+            {
+              "position": 6,
+              "meaning": "Experience update mode1, passed to CrExpoSet_Modify; selects weighted-average branch71968f."
+            }
+          ],
+          "slotTraversal": "Ascending0..6 inclusive. Every original-type slot is converted in place. Duplicate target slots remain separate; no merging, compaction or reorder occurs in the identified branch.",
+          "heroScope": "Numeric hero IDs0..155 yield pointers into the fixed complete hero array. No owner, presence-on-map or coordinates condition in numeric selection or mode1. Thus unplaced/unowned hero structures are not excluded by these paths.",
+          "precheck": "Source125 runs thiscall44aa90 on hero+145 and sourceType. It sums matching quantities with32-bit addition and proceeds if result is nonzero. A pathological wrapped sum0 would skip that creature type.",
+          "stackExperience": "Read uses existing slot XP record and caps to old creature cap. Mode1 then recalculates signed32 weighted XP, updates same slot record creature type/count, and validates/caps to new creature cap. No deliberate percentage upgrade penalty in this identified mode1 branch.",
+          "ordinaryPreservationCondition": "With unchanged positive count, no signed32 product overflow, valid record and new cap>=old XP, per-creature XP is retained. Resulting rank can differ because target thresholds are different.",
+          "overflowBoundary": "For unchanged count N and bare-d supplied XP equal to stored XP E, mode1 reduces to truncTowardZero(wrap32(E*N)/N) before new cap. This can lose XP or become negative for large products. The identified cap helper clamps only above max, not below0.",
+          "noExperienceRecord": "GetExp returns0 when missing/count0. The Modify path can create/update a record with supplied XP0; arbitrary failure/capacity cases were not dynamically exercised."
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE numeric hero selector",
+            "preferredVa": "0x743a17",
+            "endExclusiveVa": "0x743aaa",
+            "rva": "0x343a17",
+            "fileOffset": "0x2dea17",
+            "size": 147,
+            "sha256": "4b9f4fad7c38deaf3d8ba0b7e6ea349e9079c1b0f9bcbc2ba854f1dfcef09e36",
+            "observation": "Numeric non-special hero ID calls71168d and only checks for nonnull pointer before subcommand dispatch."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "ZvsGetHero fixed hero array",
+            "preferredVa": "0x71168d",
+            "endExclusiveVa": "0x7116f0",
+            "rva": "0x31168d",
+            "fileOffset": "0x2ac68d",
+            "size": 99,
+            "sha256": "1a0abb583239330cc44b491d5b4b26f1305fe56ad5e01a09d0fbae2891f3eea4",
+            "observation": "Accepts0..155; returns *(699538)+21620+heroId*492; no owner or placed-coordinate check."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:C common setup and optional sixth operand",
+            "preferredVa": "0x7441e6",
+            "endExclusiveVa": "0x74429b",
+            "rva": "0x3441e6",
+            "fileOffset": "0x2df1e6",
+            "size": 181,
+            "sha256": "c40af8861c6b188d93bc161359eebe6db02f278b14d49968df7ffb5aa86e5443",
+            "observation": "Minimum4 args, separate14-argument form; initializes exp0/modifier0 then applies arg6 into modifier when present; mode0 branches toward7442ac, mode1 toward744492."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:C1 all matching army slots",
+            "preferredVa": "0x744492",
+            "endExclusiveVa": "0x74464d",
+            "rva": "0x344492",
+            "fileOffset": "0x2df492",
+            "size": 443,
+            "sha256": "206c76777985957ce8846a4b501610cf5febee0faa4ba26cd089e97c123622eb",
+            "observation": "Slots0..6 in ascending order; match old creature, apply args3/4 to type/count, clear type on count0, optional GetExp and arg5, call Modify operation5 with modifier arg6. No slot merge/reorder or owner/placement condition."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "GetExp reads record and caps old XP",
+            "preferredVa": "0x718ccd",
+            "endExclusiveVa": "0x718d34",
+            "rva": "0x318ccd",
+            "fileOffset": "0x2b3ccd",
+            "size": 103,
+            "sha256": "d14ccef4c67dc142cc18de9c1c26fee0937a077f3ace3603700ad7798226b8ed",
+            "observation": "Find record by itemType1 and heroId+(slot<<16); if missing or count0 return0; cap with7176a1 then return first signed32 field."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP cap helper",
+            "preferredVa": "0x7176a1",
+            "endExclusiveVa": "0x7176ee",
+            "rva": "0x3176a1",
+            "fileOffset": "0x2b26a1",
+            "size": 77,
+            "sha256": "a445392efdb45524ed824aa70f0a78db9ff9271342aeb7564f85839a4432d623",
+            "observation": "If stored XP exceeds727860(record), replace with cap; no lower/nonnegative clamp in this helper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP cap table calculation",
+            "preferredVa": "0x727860",
+            "endExclusiveVa": "0x7278ab",
+            "rva": "0x327860",
+            "fileOffset": "0x2c2860",
+            "size": 75,
+            "sha256": "4a129f43a757f187ffff3f5289e793672a9e21a03ad8191bfc752a5a5a0d1f8a",
+            "observation": "Decode record creature id; sum per-creature table fields+8 and+12, corresponding to source R10 and R11-extra cap."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Modify operation5 existing record",
+            "preferredVa": "0x719260",
+            "endExclusiveVa": "0x71934a",
+            "rva": "0x319260",
+            "fileOffset": "0x2b4260",
+            "size": 234,
+            "sha256": "96e0a40715a19012b23e9299f732d945b9657bafd1ea1bde4fb73461f5e98691",
+            "observation": "Find item record; helper71960b receives old record XP/count/type, passed XP, modifier and target type/new count; then update type/count in the same record and validate."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP modifier dispatch",
+            "preferredVa": "0x71960b",
+            "endExclusiveVa": "0x719641",
+            "rva": "0x31960b",
+            "fileOffset": "0x2b460b",
+            "size": 54,
+            "sha256": "c14e42721c5478316cf2020cd21ac1c165ac4a37ea27b0163ffb9e8b9908b8f0",
+            "observation": "Dispatch modifier0..14 through719885; modifier1 table entry points71968f."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP modifier1 weighted average",
+            "preferredVa": "0x71968f",
+            "endExclusiveVa": "0x7196c8",
+            "rva": "0x31968f",
+            "fileOffset": "0x2b468f",
+            "size": 57,
+            "sha256": "f8b0c4a62487f8f3e3310f6ba7eb7b98ba27d68822e964e338f287439b6eee7f",
+            "observation": "Zero new count sets XP0; otherwise wrap32(oldXP*oldRecordCount + suppliedXP*(newCount-oldRecordCount)), signed divide by newCount. It does not branch on old-vs-new creature type."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP modifier1 table entry",
+            "preferredVa": "0x719889",
+            "endExclusiveVa": "0x71988d",
+            "rva": "0x319889",
+            "fileOffset": "0x2b4889",
+            "size": 4,
+            "sha256": "461fb86b1d5b95fb419cdc4c7b372bdd4928f012a3d7abe64d2f1183bc3fc74d",
+            "observation": "Points to71968f."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Updated XP record validation",
+            "preferredVa": "0x7184e5",
+            "endExclusiveVa": "0x718579",
+            "rva": "0x3184e5",
+            "fileOffset": "0x2b34e5",
+            "size": 148,
+            "sha256": "1c97e557c56386c7270c0b2f22e5ccaf9179e28731584387bd7aa33737117988",
+            "observation": "Valid positive-count record is capped via7176a1 after record creature type is changed; invalid record cleared."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Source125 army precheck",
+            "preferredVa": "0x44aa90",
+            "endExclusiveVa": "0x44aaae",
+            "rva": "0x4aa90",
+            "fileOffset": "0x4aa90",
+            "size": 30,
+            "sha256": "e2fbbfa323a3f23852f2b94083bb3d435b77c6c4c502c95ec002e5756987835b",
+            "observation": "Thiscall on seven-slot army: signed32 sum of quantities of the requested creature type; no map/ownership lookup."
+          }
+        ],
+        "derivedExamples": [
+          {
+            "xpReadAndSupplied": 0,
+            "unchangedCount": 1,
+            "wrappedProduct": 0,
+            "derivedBeforeNewCreatureCap": 0,
+            "kind": "static instruction/source arithmetic replay, not an executed original observation"
+          },
+          {
+            "xpReadAndSupplied": 1000,
+            "unchangedCount": 20,
+            "wrappedProduct": 20000,
+            "derivedBeforeNewCreatureCap": 1000,
+            "kind": "static instruction/source arithmetic replay, not an executed original observation"
+          },
+          {
+            "xpReadAndSupplied": 134750,
+            "unchangedCount": 10000,
+            "wrappedProduct": 1347500000,
+            "derivedBeforeNewCreatureCap": 134750,
+            "kind": "static instruction/source arithmetic replay, not an executed original observation"
+          },
+          {
+            "xpReadAndSupplied": 100000,
+            "unchangedCount": 30000,
+            "wrappedProduct": -1294967296,
+            "derivedBeforeNewCreatureCap": -43165,
+            "kind": "static instruction/source arithmetic replay, not an executed original observation"
+          },
+          {
+            "xpReadAndSupplied": 100000,
+            "unchangedCount": 50000,
+            "wrappedProduct": 705032704,
+            "derivedBeforeNewCreatureCap": 14100,
+            "kind": "static instruction/source arithmetic replay, not an executed original observation"
+          },
+          {
+            "xpReadAndSupplied": 134750,
+            "unchangedCount": 20000,
+            "wrappedProduct": -1599967296,
+            "derivedBeforeNewCreatureCap": -79998,
+            "kind": "static instruction/source arithmetic replay, not an executed original observation"
+          }
+        ],
+        "boundedHookInventory": {
+          "scope": "ERA DLL plus two explicit Advanced Classes/TUM EraPlugins trees including nested .bin patches. Every byte-aligned little-endian u32 in744492..744651 and71960b..7198c0 scanned; no literals found. Not a proof against computed/runtime hooks.",
+          "files": [
+            {
+              "file": "work/era-gameplay-reference/era.dll",
+              "bytes": 781824,
+              "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
+              "literalHits": []
+            },
+            {
+              "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/Combat_BallisticsIncreasesShootingRange.dll",
+              "bytes": 87552,
+              "sha256": "f980c930e4b3db043a61484311e1d71dc0cd221e22823d90bff74ab6a0837656",
+              "literalHits": []
+            },
+            {
+              "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/Combat_LeadershipDecreasesFactionsNum.dll",
+              "bytes": 87552,
+              "sha256": "75383ccc0a060ea67b59d3c6e469bd06b252a59d848ff08368cd28b3328b9476",
+              "literalHits": []
+            },
+            {
+              "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/NewSpells.dll",
+              "bytes": 8704,
+              "sha256": "6c5c85fd0afc7a2a7b52cb87661b4ce786cb6d08254fa3ea7b79c33db863f5ce",
+              "literalHits": []
+            },
+            {
+              "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/heroesStartingParameters.era",
+              "bytes": 106496,
+              "sha256": "e7a3831b50def173bcfebfb1ff0f9ad3d4672bf3b2b2ec5c8433eab37d27da7f",
+              "literalHits": []
+            },
+            {
+              "file": "work/era-gameplay-reference/Mods/Advanced Classes Mod/EraPlugins/remove theoretical battle ai vs ai.dll",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/AfterWoG/accumulate_8lv_creatures.bin",
+              "bytes": 14,
+              "sha256": "3a3f255b4bfd66f041fbb563c947cbdd4f544cea4f8e7b70b04fdd2e95cdb4a7",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/AfterWoG/accumulate_santagremlins_creatures.bin",
+              "bytes": 18,
+              "sha256": "e5fe49d09d0035b649d6846b5a6cbcc501f18fa89dec5e582136f33a0d45bf82",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/BattleAIvsAIFix.dll",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/Battle_AI.dll",
+              "bytes": 8704,
+              "sha256": "87e2d9a5d3811a4e30065035a2a0102191a0b853d575d5307e7847fcf9c700e4",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/BeforeWoG/amethyst_fix2_mop.bin",
+              "bytes": 606,
+              "sha256": "b1a6da439321f09625a1ed9b9b6bd48fe39df6df780f55a3622b584e8e48bc86",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/BeforeWoG/crexpfix.bin",
+              "bytes": 606,
+              "sha256": "b1a6da439321f09625a1ed9b9b6bd48fe39df6df780f55a3622b584e8e48bc86",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/Dwellings.dll",
+              "bytes": 5632,
+              "sha256": "2ee3ff4913be93ddcab4d261adbe76ae54e7407fe28ba077383727c7b6f96acf",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/H3FasterAI.dll",
+              "bytes": 73728,
+              "sha256": "a1bae947acd780da09c07459acbae3522c9031ccf4d576517ae965743c90e133",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/Heropedia.era",
+              "bytes": 120832,
+              "sha256": "d4c8415c42f39eaa77c8dfc0255823bf1f656d8fd3b5027dc6759e10181d5c76",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/InstantAnim.dll",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/amethyst2_4.dll",
+              "bytes": 329216,
+              "sha256": "82bd8174c92aa18c13b865d0a179865aa667c0d40e075760dfccb2984fe19180",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/emerald3_3.era",
+              "bytes": 351744,
+              "sha256": "3102fc09554a07619a19462f420c821cdf20b32d846ec8b4802c0f4415b60911",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/more_anims.era",
+              "bytes": 95232,
+              "sha256": "29b8c944d01a947a91fb8656ab0b9d59e339001186113ab822f8413b474e5791",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/new_advmap_objects.era",
+              "bytes": 12288,
+              "sha256": "ba9f20507cff95b140680d386541c4947d1ff45bf0933d6c7214eb7656f5c469",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/new_towns.era",
+              "bytes": 592384,
+              "sha256": "4f5b3fbba77a018b3373f1ee5cfe89f20016f6f7e38b4155e7cca98add3c1b17",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/patcher.dll",
+              "bytes": 203264,
+              "sha256": "0ef8bf50be68b57663a84f403b9d9bac38f4a665ec30b51511432e6adb2f42da",
+              "literalHits": []
+            },
+            {
+              "file": "../Third-Upgrade-Mod-Full/EraPlugins/remove theoretical battle ai vs ai.dll",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "literalHits": []
+            }
+          ]
+        },
+        "limits": [
+          "No original game, DLL, plugin, container or runtime was executed or modified. These are static contracts, not whole-game parity.",
+          "Final plugin load order, computed patch addresses, scanners, arbitrary external mods, runtime ERM writes and cached state effects remain unvalidated.",
+          "The source125 types/hero IDs are bounded and established; arbitrary HE:C modes, invalid IDs, negative counts, GET/check combinations, floating operands and all experience modifiers are outside this report.",
+          "XP observations are derived from on-disk instructions with ordinary integer arithmetic, not golden executed outputs. Compiler/patch changes to arithmetic or caps would require new evidence.",
+          "Native army transaction callbacks, equipment transfer, loss/retreat pooling, multiplayer replication, level/rank recomputation and save/reload require separate engine validation.",
+          "The source upgrade passes all hero structures; a port limited to currently placed heroes would miss the identified unowned/unplaced scope.",
+          "No tracked source files or published data were changed. Reports are under ignored work/downloads only."
+        ]
+      }
+    },
+    "era-stack-xp-transform-caps": {
+      "sha256": "012d3bd6151642c84b291f201fde5dcab41df676ad2ce9bcd217848bf4db7a7c",
+      "report": {
+        "schema": 1,
+        "question": "Exact signed read/cap/update contract of HE:C1/source/target/d/d/1 for source125",
+        "evidenceKind": "Ordinary bounded offline static PE/Pascal inspection. Prior ordinary static report reused; no REA Evidence, execution or Windows runtime.",
+        "artifacts": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          }
+        ],
+        "priorReport": {
+          "file": "work/downloads/era-hero-army-transform-oracle/report.json",
+          "sha256": "f1e8e3ffed1a81c9c070b4e1a14f26cef79e139939e7fd46d8fcf9c8095721d1",
+          "reusedRegions": [
+            "HE:C1 all matching army slots",
+            "GetExp reads record and caps old XP",
+            "XP cap helper",
+            "XP cap table calculation",
+            "Modify operation5 existing record",
+            "XP modifier1 weighted average",
+            "Updated XP record validation"
+          ],
+          "hookInventory": "Reuse bounded literal inventory, not proof of absence of computed/later hooks."
+        },
+        "sources": [
+          {
+            "file": "work/downloads/era-kernel-source/Erm.pas",
+            "sha256": "5206ee771538110a2361bb61244f0c8df0517c7bbdc91cd36ec204c3f483c941",
+            "startLine": 810,
+            "endLine": 813,
+            "rangeSha256": "60d90e36db6992a37dd0389481843d7413d496394a2a8acda4ea7472689239a2",
+            "observation": "Pascal declarations identifyGetExp andModify signature/addresses."
+          }
+        ],
+        "observations": [
+          {
+            "id": "O1",
+            "support": [
+              "HE:C1 all matching army slots",
+              "GetExp reads record and caps old XP"
+            ],
+            "finding": "Army type/count generic writes occur before GetExp. XP lookup uses hero+slot key; its separate record still carries old creature type/count, so old cap applies even though army type is already target. Bare d adds0 to returned XP."
+          },
+          {
+            "id": "O2",
+            "support": [
+              "GetExp reads record and caps old XP",
+              "XP cap helper"
+            ],
+            "finding": "GetExp returns0 for absent record or recordcount exactly0. Otherwise caphelper compares signed XP>signedcap, replacing in place only ifgreater, then returns raw signed32XP. Negative count isnot GetExp missing/zero test. Thereis no lower clamp."
+          },
+          {
+            "id": "O3",
+            "support": [
+              "XP cap table calculation",
+              "Cap table selector"
+            ],
+            "finding": "Recordcreaturetype=(u32(metadata)>>5)&255. Cap=wrap32(int32(row+8)+int32(row+12)); for this packedtype row=85eb50+20*type. Caphelper uses signed comparison. R10 plus R11extra terminology is reused from prior report; actual per-game row contents are not reconstructed here."
+          },
+          {
+            "id": "O4",
+            "support": [
+              "Modify operation5 existing record",
+              "XP modifier1 weighted average"
+            ],
+            "finding": "Existing record mode1: Q=0 ifnewcount0, else IDIVsigned(wrap32(recordXP*recordCount + suppliedXP*wrap32(newCount-recordCount)),newCount). All product/add/sub steps keep low32; CDQ signextends numerator. No branch on old versusnew type; no upgrade XP penalty multiplier."
+          },
+          {
+            "id": "O5",
+            "support": [
+              "Modify operation5 existing record",
+              "Updated XP record validation",
+              "Experience record initialization"
+            ],
+            "finding": "Then update recordtype to low8bits target and count to signed32newcount. Validation requires activebit,itemtype!=0,count>0; invalidrecord reset. Validrecord applies same upper-only cap now using NEW creaturetype. XP stored signed32 at+0; negativeXP is not invalidation criterion."
+          },
+          {
+            "id": "O6",
+            "support": [
+              "Modify missing-record branch",
+              "Experience record allocator",
+              "Experience record reset",
+              "Experience record initialization"
+            ],
+            "finding": "Missing record: GetExp0; allocate firstinactive of10000records. Initialization writes targettype/newcount/key andXP0, then mode1/validation. Bare d therefore produces0 before new cap; with negative newcap, upper-only signedclamp can change0 to thatnegativecap."
+          },
+          {
+            "id": "O7",
+            "support": [
+              "Modify missing-record branch",
+              "Capacity error message",
+              "Modify normal return",
+              "HE:C1 all matching army slots"
+            ],
+            "finding": "Allocation failure calls71248a with message,15,0x2b6, then returns0 iferrorhandler returns. HE:C1 doesnot examine ModifyEAX; army type/count writes have alreadyoccurred. No rollback appears in selected caller. Errorhandler termination/reentrancy isnot established."
+          }
+        ],
+        "implementableContract": {
+          "scope": "Exactsource125form, validhero/slot andsource/target IDs, bare d count/XP, modifier1. Explicit wrap32 required; do not use unsigned XP or silently clampnegativeXP.",
+          "steps": [
+            "If old XP record missing or recordcount0, suppliedE=0. Otherwise calculate oldCap from OLD RECORD creaturetype; recordXP=min_signed(recordXP,oldCap); suppliedE=recordXP.",
+            "Retain unchanged signed army countN. Existing record arithmetic with bare d simplifies modulo32 toP=wrap32(suppliedE*N), regardlessofrecordCount, including itszero case. If N==0, Q=0; otherwise Q=truncTowardZero_signed(P/N).",
+            "Native IDIV raises divide error forP=INT32_MIN,N=-1. Do not use C++ signedoverflow or INT_MIN/-1 division UB. ForpositiveN>=1 no quotient overflow ispossible.",
+            "Write target low8bits and signedcountN in XP record; ifN<=0 clearXP record. IfN>0 andrecordvalid, storedXP=min_signed(Q,newCap). No max(0,...) floor.",
+            "For missingrecord with allocationavailable, initializeXP0,targettype,countN thenvalidate; normallyXP0, unless signednewCap<0. Nativecapacityfailure reports error after armyconversion; exacthost error policy remainsoutside evidence."
+          ],
+          "formulaForPresentValidPositiveCount": "E0=min_signed(rawOldXP,wrap32(oldR10+oldR11extra)); P=wrap32(E0*N); Q=truncTowardZero_signed(P/N); finalXP=min_signed(Q,wrap32(newR10+newR11extra)). N>0.",
+          "storage": "record16bytes:XP+0 int32,count+4 int32,metadata+8,key+12. No64bitXP accumulator; onlyIDIVtemporarily uses signed EDX:EAX signextension of32bit numerator."
+        },
+        "derivedExamples": {
+          "kind": "Instruction arithmetic replay only, no gameexecution. Cap numbers are chosen examples, not extracted defaulttables.",
+          "cases": [
+            {
+              "rawRecordXP": 1000,
+              "count": 20,
+              "oldCap": 500,
+              "newCap": 900,
+              "xpRead": 500,
+              "wrappedProduct": 10000,
+              "quotientBeforeNewCap": 500,
+              "recordAfterValidation": 500
+            },
+            {
+              "rawRecordXP": 1000,
+              "count": 20,
+              "oldCap": 900,
+              "newCap": 500,
+              "xpRead": 900,
+              "wrappedProduct": 18000,
+              "quotientBeforeNewCap": 900,
+              "recordAfterValidation": 500
+            },
+            {
+              "rawRecordXP": -50,
+              "count": 20,
+              "oldCap": 500,
+              "newCap": 900,
+              "xpRead": -50,
+              "wrappedProduct": -1000,
+              "quotientBeforeNewCap": -50,
+              "recordAfterValidation": -50
+            },
+            {
+              "rawRecordXP": 100000,
+              "count": 30000,
+              "oldCap": 200000,
+              "newCap": 200000,
+              "xpRead": 100000,
+              "wrappedProduct": -1294967296,
+              "quotientBeforeNewCap": -43165,
+              "recordAfterValidation": -43165
+            },
+            {
+              "rawRecordXP": -100000,
+              "count": 30000,
+              "oldCap": 200000,
+              "newCap": 200000,
+              "xpRead": -100000,
+              "wrappedProduct": 1294967296,
+              "quotientBeforeNewCap": 43165,
+              "recordAfterValidation": 43165
+            },
+            {
+              "rawRecordXP": 7,
+              "count": 0,
+              "oldCap": 500,
+              "newCap": 900,
+              "xpRead": 7,
+              "wrappedProduct": 0,
+              "quotientBeforeNewCap": 0,
+              "recordAfterValidation": "cleared"
+            },
+            {
+              "rawRecordXP": 7,
+              "count": -3,
+              "oldCap": 500,
+              "newCap": 900,
+              "xpRead": 7,
+              "wrappedProduct": -21,
+              "quotientBeforeNewCap": 7,
+              "recordAfterValidation": "cleared"
+            },
+            {
+              "rawRecordXP": 0,
+              "count": 5,
+              "oldCap": 500,
+              "newCap": -20,
+              "xpRead": 0,
+              "wrappedProduct": 0,
+              "quotientBeforeNewCap": 0,
+              "recordAfterValidation": -20
+            },
+            {
+              "rawRecordXP": -2147483648,
+              "count": -1,
+              "oldCap": 2147483647,
+              "newCap": 2147483647,
+              "xpRead": -2147483648,
+              "wrappedProduct": -2147483648,
+              "result": "native IDIV quotient overflow (#DE), before update/validation completes"
+            }
+          ]
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HE:C1 all matching army slots",
+            "preferredVa": "0x744492",
+            "endExclusiveVa": "0x74464d",
+            "rva": "0x344492",
+            "fileOffset": "0x2df492",
+            "size": 443,
+            "sha256": "206c76777985957ce8846a4b501610cf5febee0faa4ba26cd089e97c123622eb",
+            "observation": "Slots0..6 in ascending order; match old creature, apply args3/4 to type/count, clear type on count0, optional GetExp and arg5, call Modify operation5 with modifier arg6. No slot merge/reorder or owner/placement condition."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "GetExp reads record and caps old XP",
+            "preferredVa": "0x718ccd",
+            "endExclusiveVa": "0x718d34",
+            "rva": "0x318ccd",
+            "fileOffset": "0x2b3ccd",
+            "size": 103,
+            "sha256": "d14ccef4c67dc142cc18de9c1c26fee0937a077f3ace3603700ad7798226b8ed",
+            "observation": "Find record by itemType1 and heroId+(slot<<16); if missing or count0 return0; cap with7176a1 then return first signed32 field."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP cap helper",
+            "preferredVa": "0x7176a1",
+            "endExclusiveVa": "0x7176ee",
+            "rva": "0x3176a1",
+            "fileOffset": "0x2b26a1",
+            "size": 77,
+            "sha256": "a445392efdb45524ed824aa70f0a78db9ff9271342aeb7564f85839a4432d623",
+            "observation": "If stored XP exceeds727860(record), replace with cap; no lower/nonnegative clamp in this helper."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP cap table calculation",
+            "preferredVa": "0x727860",
+            "endExclusiveVa": "0x7278ab",
+            "rva": "0x327860",
+            "fileOffset": "0x2c2860",
+            "size": 75,
+            "sha256": "4a129f43a757f187ffff3f5289e793672a9e21a03ad8191bfc752a5a5a0d1f8a",
+            "observation": "Decode record creature id; sum per-creature table fields+8 and+12, corresponding to source R10 and R11-extra cap."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Modify operation5 existing record",
+            "preferredVa": "0x719260",
+            "endExclusiveVa": "0x71934a",
+            "rva": "0x319260",
+            "fileOffset": "0x2b4260",
+            "size": 234,
+            "sha256": "96e0a40715a19012b23e9299f732d945b9657bafd1ea1bde4fb73461f5e98691",
+            "observation": "Find item record; helper71960b receives old record XP/count/type, passed XP, modifier and target type/new count; then update type/count in the same record and validate."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "XP modifier1 weighted average",
+            "preferredVa": "0x71968f",
+            "endExclusiveVa": "0x7196c8",
+            "rva": "0x31968f",
+            "fileOffset": "0x2b468f",
+            "size": 57,
+            "sha256": "f8b0c4a62487f8f3e3310f6ba7eb7b98ba27d68822e964e338f287439b6eee7f",
+            "observation": "Zero new count sets XP0; otherwise wrap32(oldXP*oldRecordCount + suppliedXP*(newCount-oldRecordCount)), signed divide by newCount. It does not branch on old-vs-new creature type."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Updated XP record validation",
+            "preferredVa": "0x7184e5",
+            "endExclusiveVa": "0x718579",
+            "rva": "0x3184e5",
+            "fileOffset": "0x2b34e5",
+            "size": 148,
+            "sha256": "1c97e557c56386c7270c0b2f22e5ccaf9179e28731584387bd7aa33737117988",
+            "observation": "Valid positive-count record is capped via7176a1 after record creature type is changed; invalid record cleared."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Record type/count reconciliation",
+            "preferredVa": "0x7183bf",
+            "endExclusiveVa": "0x7184e5",
+            "rva": "0x3183bf",
+            "fileOffset": 2831295,
+            "size": 294,
+            "sha256": "c81726095c8a0be8f421d9f8cba4e397b5d59517bd123cb7557d7618068525ad",
+            "observation": "Same type: no lower XP clamp. Count0 writesXP0; reduced/equal count retainsXP; increased count rescales wrap32(XP*oldcount)/newcount using signedIDIV. Ordinary different type resetsXP0; specialtype194 path preserves it."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HComb signed weighted merge",
+            "preferredVa": "0x719a95",
+            "endExclusiveVa": "0x719cbc",
+            "rva": "0x319a95",
+            "fileOffset": 2837141,
+            "size": 551,
+            "sha256": "203f4ec7ca985184bad1475d034e3bf0712ce7d8f507d2a19212ff1e99844915",
+            "observation": "Named by its capacityerror. Reconcile andupper-cap inputs, compute low32 weightedproducts andsum, signedCDQ/IDIV bysumcounts, initialize resultingrecord withsignedXP, clearoldrecords. No XP<0 rejection or floor0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "HSwap signed record transport",
+            "preferredVa": "0x7198c1",
+            "endExclusiveVa": "0x719a95",
+            "rva": "0x3198c1",
+            "fileOffset": 2836673,
+            "size": 468,
+            "sha256": "b234b9206febb669d21c7842eddc1209287a9a6b0e699cf701148364fee6f7d6",
+            "observation": "Reconcile records,type/itemkey changes, uppercap then low32 XP*count/CDQ/IDIV signed. No negativeXP exception orlowerclamp. Exact UI gesturedispatch notadmitted."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Bounded merge swap caller witness",
+            "preferredVa": "0x758c7a",
+            "endExclusiveVa": "0x758d00",
+            "rva": "0x358c7a",
+            "fileOffset": 3095674,
+            "size": 134,
+            "sha256": "5ba947032d4f26d989133e9e2dba93215e764b17f37b2bd01409e84040c189ec",
+            "observation": "Compare source/destination creatureIDs; equal callsHComb719a95, unequal callsHSwap7198c1. Higherlevelhookregistration andall splitgestures not traced."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Cap table selector",
+            "preferredVa": "0x7278b0",
+            "endExclusiveVa": "0x7278fe",
+            "rva": "0x3278b0",
+            "fileOffset": 2894000,
+            "size": 78,
+            "sha256": "9c234e60dcc87c6d4ae44b560c89ef289e7c9ee065bc301fd43079258d76fccd",
+            "observation": "For packed creature IDs0..255, row=85eb50+20*type. Special generic selector acceptsnegative−1..−42 and1000 elsewhere; packed record path cannot produce those selectors."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Modify missing-record branch",
+            "preferredVa": "0x71934a",
+            "endExclusiveVa": "0x7193c8",
+            "rva": "0x31934a",
+            "fileOffset": 2835274,
+            "size": 126,
+            "sha256": "1e986cc7c36b97002d01e96c884832b7477dc227dfe83afa26f87159dc76b131",
+            "observation": "Allocate718a66, report capacity error ifnull. Clear16bytes; initialize target type/new count/key with XP0; mode1 then validates. No return-value check by HE:C1 caller."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Experience record allocator",
+            "preferredVa": "0x718a66",
+            "endExclusiveVa": "0x718ad0",
+            "rva": "0x318a66",
+            "fileOffset": 2832998,
+            "size": 106,
+            "sha256": "becfaeb97f70d8dc8738aad0bd195b6c383e7a5113405de4e502846e3f926c0d",
+            "observation": "First inactive record among10000, stride16, base860550; activebit at+8bit0. Returnnull ifnone."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Experience record reset",
+            "preferredVa": "0x718377",
+            "endExclusiveVa": "0x7183bf",
+            "rva": "0x318377",
+            "fileOffset": 2831223,
+            "size": 72,
+            "sha256": "a971802e96117ec7762320d27ac8709f68a35440228962636f05e106b32f6c87",
+            "observation": "Clear16bytes via710f23 then clearactivebit. Called when newcount<=0 in validation."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Experience record initialization",
+            "preferredVa": "0x717fe4",
+            "endExclusiveVa": "0x718066",
+            "rva": "0x317fe4",
+            "fileOffset": 2830308,
+            "size": 130,
+            "sha256": "762f63fdee9f3ff0c016419dae16113659f6098711bfbe8c420dfa4ee96c2859",
+            "observation": "Writes XP signed32at+0,countsigned32at+4,keyat+12,itemtypebits1..4 andcreaturetypebits5..12 at+8. No narrower XP field or nonnegative XP mask."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Modify normal return",
+            "preferredVa": "0x7195fd",
+            "endExclusiveVa": "0x71960b",
+            "rva": "0x3195fd",
+            "fileOffset": 2835965,
+            "size": 14,
+            "sha256": "b69ecf7f333c4e67ddde797e4e795a67d48889ace3ca2aabfda0a1e85e205a34",
+            "observation": "Normal completion returns0. Allocation failure alsoreturns0 after errorcall; resultdoesnot distinguish success toHE:C1."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Modifier dispatcher",
+            "preferredVa": "0x71960b",
+            "endExclusiveVa": "0x719641",
+            "rva": "0x31960b",
+            "fileOffset": 2835979,
+            "size": 54,
+            "sha256": "c14e42721c5478316cf2020cd21ac1c165ac4a37ea27b0163ffb9e8b9908b8f0",
+            "observation": "Mode1dispatch toweightedaveragevia719889; othermodesnotadmitted."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "Capacity error message",
+            "preferredVa": "0x791d88",
+            "endExclusiveVa": "0x791db9",
+            "rva": "0x391d88",
+            "fileOffset": 3329416,
+            "size": 49,
+            "sha256": "6c3ef183a1cd3f8d50d8bae4ce9eca7137b64919ae47d4243706f11758f9fa85",
+            "observation": "Literal passed to error handler71248a with arguments15 and0x2b6; message names no room in experience story."
+          }
+        ],
+        "unknowns": [
+          "No runtime/REA validation, final processpatch state or pluginloadorder observed. Prior bounded literal search doesnot excludecomputed hooks or externalplugins.",
+          "Effective default/custom rank10 andextra-cap rowvalues, table initialization/persistence and plugin relocation areoutside this report. Consumer fields/row address areestablished on disk.",
+          "GetExp/validation model assumes matching ordinary itemrecord andvalidsource125type. Packedtype255, invalidheroIDs, malformedmetadata andotherHE:Cmodifiers not admitted.",
+          "Allocator anderror branch proved statically; actualerror dialog behavior, abort/recovery policy andsave/replication not executed.",
+          "Initialization helper remainder handles location/key activation; valid hero/slot behavior reused fromprior report, not everyitemtype reconstructed.",
+          "Native signed nonpositive counts are pathological; only selected arithmetic/clear behavior established. No claim all prior/later army consumers tolerate them."
+        ],
+        "transferFollowup": {
+          "question": "Does negative XP survive ordinary merge/split record arithmetic?",
+          "conclusion": "Existing C1 regions prove signed storage and upper-only caps, but do not themselves establish transfer dispatch. AddedHComb/HSwap and reconciliation regions establish that these consumers accept signed negative XP without normalization/rejection purely for its sign. Full split UI path is not proved.",
+          "observations": [
+            "HComb reconciles input creature types/counts, upper-caps XP, accumulates wrap32(E1*N1+E2*N2), signed-divides bywrap32(N1+N2), then writes signedresult. Missinginput contributes0. No max(0,XP) ornegative guard.",
+            "7183bf resetsXP to0 for an ordinary creaturetype mismatch or requestedcount0. For matchingtype, decreasing/equal count retainsXP; increasing count rescales signedXP with low32 product and signeddivision. These resets depend on type/count, not negative XP.",
+            "HSwap also upper-caps and signed-divides low32products when transporting records. NegativeXP alone doesnot cause an error branch. Pathological zero/negative denominators or quotient overflow remain separate hazards."
+          ],
+          "derivedMergeExamples": [
+            {
+              "E1": -50,
+              "N1": 10,
+              "E2": 100,
+              "N2": 10,
+              "mergedXP": 25
+            },
+            {
+              "E1": -50,
+              "N1": 10,
+              "E2": -100,
+              "N2": 10,
+              "mergedXP": -75
+            }
+          ],
+          "limits": "Only identified consumers and one equal/differenttype caller witness. No complete original splitgesture, detourinstallation, all externalplugins, or VCMI int64-total transfer policy proven. RejectingnegativeXP is unsupported by these paths; matching their wrap/round behavior requires separate implementation."
+        },
+        "filesModified": "Ignoredreportdirectoryonly; no trackedfile, prototype or container changed."
+      }
+    },
+    "era-negative-stack-xp-rewards": {
+      "sha256": "a40e42b8658cfc2c4117c0c1118076e11b0d6eee6297c0610a6fec8a25838267",
+      "report": {
+        "scope": "Bounded ordinary static PE/Pascal analysis of negative stack experience at the reward route named post-battle by ERA source. Not original-runtime validation; not REA Evidence. No binaries executed or modified, no tracked files or containers modified.",
+        "sourceCommit": "8c2fd47b22b1e67c980f42583a525d36fc318364",
+        "artifacts": [
+          {
+            "path": "work/era-gameplay-reference/h3era.exe",
+            "size": 3801088,
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "path": "work/era-gameplay-reference/era.dll",
+            "size": 781824,
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          },
+          {
+            "path": "work/downloads/era-kernel-source/Tweaks.pas",
+            "size": 98819,
+            "sha256": "1f46a1bc5b3392a7598792c5a832916927d8d996e3b3b0d8ac61da085bf2391d"
+          },
+          {
+            "path": "work/downloads/era-hero-army-transform-oracle/report.json",
+            "size": 19354,
+            "sha256": "f1e8e3ffed1a81c9c070b4e1a14f26cef79e139939e7fd46d8fcf9c8095721d1"
+          },
+          {
+            "path": "work/downloads/era-initial-instructions-day-order-oracle/report.json",
+            "size": 15937,
+            "sha256": "7e18158a6659133290d9fb94af56f71abbd67d4bf073a1156922f768e059cf58"
+          }
+        ],
+        "sourceReferences": [
+          {
+            "path": "work/downloads/era-kernel-source/Tweaks.pas",
+            "lines": [
+              1532,
+              1538,
+              1539,
+              1540,
+              1542,
+              1543,
+              1546,
+              1548,
+              1549,
+              1552,
+              1554,
+              1555,
+              2692,
+              2693
+            ],
+            "meaning": "Hook_PostBattle_OnAddCreaturesExp source and installation."
+          }
+        ],
+        "conclusion": {
+          "status": "Negative-old-XP update and normal finite reward arithmetic answered statically; runtime/plugin configuration unobserved.",
+          "answer": "The provided ERA DLL repairs negative old per-creature XP at reward addition: use0 as old baseline, negative gain=>INT_MAX, saturate signed addition overflow toINT_MAX, then apply the original creature upper XP cap. It does not carry negative debt into the new balance. HOWEVER mode2 distribution computes weights from raw oldXP before this repair, so negativeXP can affect reward allocation, including producing a negative gain that is promoted toINT_MAX by the ERA hook. Repair occurs only when the eligible update path reaches719225; reads/transforms alone retain negativeXP."
+        },
+        "rewardRoute": [
+          "WoG declared hook4da9b6 invokes76b41c after reading hero+51 intoEDI. Callback passes hero,currentHeroXP,cachedPriorHeroXP to718da9 when gate2861e14!=0, then updates cache.",
+          "718da9 checks globals803288!=0,2772730!=0,2772748==0, hero!=null and helper711828(owner)==0. Owner-exclusion meaning not re-audited here.",
+          "First pass0..6 builds distribution weights for count!=0 and type!=-1. Second pass removes empty records, finds/creates present records, synchronizes type/count, computes award and updates.",
+          "For existing record, type/count synchronization can reset or dilute oldXP before the final baseline read. A matching transformed type with unchanged/decreased count preserves oldXP; increase may create another signed overflow quotient.",
+          "ERA hook719225 repairs baseline and addition, resumes71922d; original7176a1 then upper-caps record. This callback is attached to a hero-XP routine, so the static route is not proven exclusive to battle rewards; source name alone does not establish exclusivity."
+        ],
+        "arithmetic": {
+          "notation": "N=present stack count; T=int32 field loaded from absolute7d0c94+type*0x74 (level-like, not independently named here); Q=creature-table float field0; E=GetExp(itemtype1,heroId+(slot<<16)); D=currentHeroXP-cachedPriorHeroXP evaluated in x87; P=signed global793828; M=signed global2772734. int32 arithmetic wraps unless explicitly saturated. Stored weights and running total round to float32; transient arithmetic x87. C(x)=ordinary finite float-to-int truncation toward0, low32 return consumed.",
+          "weights": {
+            "M0_or_other": "W=Q; S starts0 and receives no additions, so fallback denominator1. Note gain branch is M==0 versus all nonzero; unknown M values use this weight but nonzero gain formula.",
+            "M1": "W=float32(Q * float32(N * wrap32(7-T)) + float32(0.9)); running S=float32(S+W). N first loaded x87, 7-T uses signed int32 SUB.",
+            "M2": "W=float32(Q * float32(float32(N) * wrap32(wrap32(100*wrap32(T+1)) + E + 10)) / float32(100) + float32(0.9)); S=float32(S+W). No lower clamp on E or W.",
+            "M3": "W=float32(Q * float32(N)); S=float32(S+W).",
+            "denominator": "Only if S==0 replace S with1. FCOMP0; FNSTSW; TEST AH,0x44; JP skips replacement for both greater and less (test result0); equality tests0x40 and replaces. A negative S is retained. Unordered comparison also skips replacement; downstream NaN not characterized."
+          },
+          "rawAward": {
+            "M0": "A=C(float(wrap32(C(D)*P))*W/S/100 + float32(0.0001)). Here IMUL truncates product to32 bits BEFORE float weighting.",
+            "M_nonzero": "A=C(D*P*float32(1.0)*W/S/N/100 + float32(0.0001)). Here multiplication uses x87, not the M0 IMUL32 path."
+          },
+          "perAwardCap": "L=max(1,truncTowardZero(wrap32(R10*capPercent)/100)); A=minSigned(A,L). capPercent is creature-table+16, R10 table+8. Negative A is not lower-clamped by this helper.",
+          "subtypeMultiplier": "When helper7279c0(record)!=0 and subtype((flags>>18)&15)==5, A=C(A*double1.5), AFTER per-award cap.",
+          "eraUpdate": "Afix=(A<0 ? INT_MAX : A); B=maxSigned(0, currentRecordXP); sum=wrap32(B+Afix); Final=(sum<0 ? INT_MAX : sum); writeFinal; then original signed upper cap Final=minSigned(Final,wrap32(R10+extra)). Under normal nonnegative maximum this guarantees nonnegative finalXP. Pathological negative maximum can still yield negative because original cap is upper-only.",
+          "withoutEraHook": "The on-disk EXE original719225 simply uses wrap32(currentRecordXP+A), then upper cap; this is a different contract from the paired era.dll and must not be substituted for it."
+        },
+        "derivedExamplesNotExecuted": [
+          {
+            "oldXP": -43165,
+            "computedAwardAfterPerAwardCapAndSubtype": 250,
+            "ordinaryPositiveMaximum": 134750,
+            "result": 250,
+            "reason": "Old debt discarded at ERA addition, then ordinary upper cap."
+          },
+          {
+            "oldXP": -43165,
+            "computedAwardAfterPerAwardCapAndSubtype": 0,
+            "ordinaryPositiveMaximum": 134750,
+            "result": 0
+          },
+          {
+            "oldXP": -43165,
+            "computedAwardAfterPerAwardCapAndSubtype": -250,
+            "ordinaryPositiveMaximum": 134750,
+            "result": 134750,
+            "reason": "Negative gain mapped toINT_MAX before normal upper cap. Gain may be negative from mode2 weights; this example supplies award and does not claim it was observed in a battle."
+          },
+          {
+            "oldXP": 2147483640,
+            "computedAwardAfterPerAwardCapAndSubtype": 100,
+            "ordinaryPositiveMaximum": 2147483647,
+            "result": 2147483647,
+            "reason": "Signed overflow detected after adding two nonnegative operands."
+          }
+        ],
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "declared hero experience hook",
+            "preferredVa": "0x7897dc",
+            "endExclusiveVa": "0x7897e8",
+            "rva": "0x3897dc",
+            "fileOffset": "0x3247dc",
+            "size": 12,
+            "sha256": "a235169c3b19c250913991b00c32dba4f835622e4db6ccc53949ff61093c2b36",
+            "observation": "Table row: native site4da9b6, auxiliary0, callback76b41c. Hook relocation installation established by prior day-order report; final process bytes unobserved."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "native hero experience entry",
+            "preferredVa": "0x4da990",
+            "endExclusiveVa": "0x4da9bb",
+            "rva": "0xda990",
+            "fileOffset": "0xda990",
+            "size": 43,
+            "sha256": "77f2e08efbc53b995af702a86c15207f254b01043b5676def671708b018534cc",
+            "observation": "Hero object ECX copied EBX; hero experience field+51 read into EDI before hook site4da9b6."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "reward caller and previous experience cache",
+            "preferredVa": "0x76b41c",
+            "endExclusiveVa": "0x76b4ae",
+            "rva": "0x36b41c",
+            "fileOffset": "0x30641c",
+            "size": 146,
+            "sha256": "e956e1b88285d7885933cd8b5ef1aa30b3ca620e3bbe920283ea24186ae76883",
+            "observation": "Callback saves EDI=current hero XP and EBX=hero; if global2861e14 nonzero, calls718da9(hero,currentXP,cache[heroId]); afterward stores currentXP in cache."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "reward eligibility and weights",
+            "preferredVa": "0x718da9",
+            "endExclusiveVa": "0x71900f",
+            "rva": "0x318da9",
+            "fileOffset": "0x2b3da9",
+            "size": 614,
+            "sha256": "09e4ad7ae4aae0f12fd81d05277f2a9952329d9ef944b0398da5f173d55c20ce",
+            "observation": "Enabled gates; nonnull hero and owner exclusion helper711828; scan7 slots with count!=0/type!=-1; signed/raw old per-creature XP used only in weighting mode2; single-precision stored weights and running sum."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "record lookup and synchronization",
+            "preferredVa": "0x71900f",
+            "endExclusiveVa": "0x719150",
+            "rva": "0x31900f",
+            "fileOffset": "0x2b400f",
+            "size": 321,
+            "sha256": "76376cea36d873892579dd52346761bcedd9f231abd9394400da480889877a37",
+            "observation": "Second7-slot pass; empty entries erase records; present slots find/create record by itemtype1 and heroId+(slot<<16), synchronize type/count via7183bf."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "count/type synchronization",
+            "preferredVa": "0x7183bf",
+            "endExclusiveVa": "0x7184e5",
+            "rva": "0x3183bf",
+            "fileOffset": "0x2b33bf",
+            "size": 294,
+            "sha256": "c81726095c8a0be8f421d9f8cba4e397b5d59517bd123cb7557d7618068525ad",
+            "observation": "Type mismatch zeros XP. Count decrease preserves per-unitXP; count increase computes signed trunc32(wrap32(oldXP*oldCount)/newCount); zeros count resetXP."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "reward arithmetic and addition",
+            "preferredVa": "0x719150",
+            "endExclusiveVa": "0x719254",
+            "rva": "0x319150",
+            "fileOffset": "0x2b4150",
+            "size": 260,
+            "sha256": "1087ffda7cf24ec542b68a770cf0e981e058a8ca0ca2e35a6f4810fc0ea00a72",
+            "observation": "Compute gain via x87 and truncation helper, limit per-gain helper727c20, apply1.5 multiplier for eligible record subtype5, original ADD at719225, final upper-cap7176a1."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "growth coefficient",
+            "preferredVa": "0x727c00",
+            "endExclusiveVa": "0x727c13",
+            "rva": "0x327c00",
+            "fileOffset": "0x2c2c00",
+            "size": 19,
+            "sha256": "6c7f4d2fc5db899784ca49ba2504d3032f10f15633517f647e843b8858546442",
+            "observation": "Returns float field0 from creature experience table7278b0."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "per-award limit",
+            "preferredVa": "0x727c20",
+            "endExclusiveVa": "0x727ce6",
+            "rva": "0x327c20",
+            "fileOffset": "0x2c2c20",
+            "size": 198,
+            "sha256": "119ee65112d2d4758125698b0bc2fc90f3e9a1c584caf8f3257d7e70f9228c71",
+            "observation": "Limit=max(1,truncTowardZero(wrap32(R10*percent)/100)); signed min(candidate,limit), no lower clamp."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "record subtype",
+            "preferredVa": "0x727be0",
+            "endExclusiveVa": "0x727bf7",
+            "rva": "0x327be0",
+            "fileOffset": "0x2c2be0",
+            "size": 23,
+            "sha256": "030449850600c7a3183f3e65e1578e5bdd089fcc9b2646134c7c8c5eefdafa1f",
+            "observation": "Subtype=(packedFlags>>18)&15."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "float conversion",
+            "preferredVa": "0x77cf50",
+            "endExclusiveVa": "0x77cfc8",
+            "rva": "0x37cf50",
+            "fileOffset": "0x317f50",
+            "size": 120,
+            "sha256": "40aa13b8520c50a663b91fef5fc9c26a531b60d2810766639a60b9f6be70370a",
+            "observation": "x87 FISTP int64 plus sign/fraction correction implements truncation toward zero for ordinary finite in-range values; callers use low32 EAX. Extreme/NaN/FP-environment behavior not fully characterized."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "upper cap",
+            "preferredVa": "0x7176a1",
+            "endExclusiveVa": "0x7176ee",
+            "rva": "0x3176a1",
+            "fileOffset": "0x2b26a1",
+            "size": 77,
+            "sha256": "a445392efdb45524ed824aa70f0a78db9ff9271342aeb7564f85839a4432d623",
+            "observation": "Clamp record XP only when signedXP>maximum returned727860; no lower clamp."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "maximum XP and table lookup",
+            "preferredVa": "0x727860",
+            "endExclusiveVa": "0x7278fe",
+            "rva": "0x327860",
+            "fileOffset": "0x2c2860",
+            "size": 158,
+            "sha256": "0dc9c86d877147efb98d6b7db4798108f855f262324ea2c8f2eb340ba1c2119f",
+            "observation": "Maximum is int32 sum table+8(R10) and+12(extra); table selected by packed creature ID."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "reward constants",
+            "preferredVa": "0x785118",
+            "endExclusiveVa": "0x785130",
+            "rva": "0x385118",
+            "fileOffset": "0x320118",
+            "size": 24,
+            "sha256": "5e5fd0b972c6a11f8d56ce89b3f6d4774419bb59beb6da83f0185a764b46b8f0",
+            "observation": "double1.5; float1; float approximately0.0001; float100; float approximately0.9."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "ERA repaired addition",
+            "preferredVa": "0x4727d4",
+            "endExclusiveVa": "0x472817",
+            "rva": "0x727d4",
+            "fileOffset": "0x71bd4",
+            "size": 67,
+            "sha256": "48c01afbd0d1356d184b7b4c36a0536b05700b34fa8a7864e2e7fe089db98bf3",
+            "observation": "Read gain at callerEBP-12; negative=>INT_MAX. Read saved oldEAX; negative=>0. Add; negative result=>INT_MAX. Store at record pointer callerEBP-8. Resume71922d, skip original ADD/write."
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "name": "ERA hook registration",
+            "preferredVa": "0x47584e",
+            "endExclusiveVa": "0x475863",
+            "rva": "0x7584e",
+            "fileOffset": "0x74c4e",
+            "size": 21,
+            "sha256": "6b1a2720379ccdc53eaed56c672a90c6330f2a2b0d8dcbf930162094c85672e5",
+            "observation": "ApiJack.Hook target719225 callback4727d4; corroborates Tweaks.pas2692-2693."
+          }
+        ],
+        "limits": [
+          "The provided DLL matches the critical source hook and registration statically, but final process patch bytes, initialization success, option values and plugin load order were not observed.",
+          "No external gameplay/graphics/Amethyst plugins were re-audited in this pass; they may replace table layouts, experience paths or patch sites. Do not generalize this report to uninspected plugins.",
+          "This is not proof that every battle, retreat, surrender, auto-combat or network outcome reaches this path. Exact battle producer and hero-XP call sites upstream of4da990 were not exhaustively enumerated.",
+          "P, M, cap/table fields and the prior-heroXP cache are mutable globals; concrete runtime values and timing were not observed. Level-like fieldT is located by offset but was not re-proven semantically.",
+          "Floating results may depend on x87 precision/control settings. Ordinary finite in-range conversion is characterized; NaN, infinity, int64-out-of-range conversion and altered FP environment remain unknown.",
+          "Count synchronization helper717b70 and eligibility helper711828 were not fully re-audited; bounded formulas explicitly distinguish pre-weight oldXP from baseline read at addition.",
+          "The old HE:C transform signed-overflow result remains valid before rewards. Do not globally clamp stackXP on read/load/transform merely because this reward path clamps its addition baseline."
+        ]
+      }
+    },
+    "era-negative-stack-xp-paid-upgrades": {
+      "sha256": "0a145b38d2bf1a798cdaf8b85880f1e148300869d7a5250925a7520efb1c9cee",
+      "report": {
+        "schema": 1,
+        "question": "Signed negative stack XP on original paid town creature upgrades / CrExpoUpg consumer",
+        "method": "Ordinary bounded offline PE analysis, reusing prior static reports. REA previouslydiagnosedunavailable; noinstallationorWindowsruntime. NoREA Evidencerecord.",
+        "artifacts": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "sha256": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181"
+          },
+          {
+            "file": "work/era-gameplay-reference/era.dll",
+            "sha256": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451"
+          }
+        ],
+        "priorReports": [
+          {
+            "file": "work/downloads/era-stack-xp-transform-caps/report.json",
+            "sha256": "012d3bd6151642c84b291f201fde5dcab41df676ad2ce9bcd217848bf4db7a7c"
+          },
+          {
+            "file": "work/downloads/era-creature-upgrade-cost-consumers/report.json",
+            "sha256": "256e389273b1cc9f0bbfff38239b0b8c63f030792029400aa630ae496a933c71"
+          }
+        ],
+        "observations": [
+          {
+            "id": "O1",
+            "regions": [
+              "town_paid_upgrade_tail",
+              "town_upgrade_call_patch_row",
+              "town_upgrade_payload_copy_row",
+              "town_upgrade_payload",
+              "payload_copy_walker",
+              "call_target_walker",
+              "town_upgrade_wrapper"
+            ],
+            "finding": "DeclaredWoGbootstrap replacesfinal townarmytypewritewithcall766798afterpayment. Wrapper runsXP handler7665c0 BEFOREfinalarmytypewrite. Staticpatch installation recipe, notobservedruntime."
+          },
+          {
+            "id": "O2",
+            "regions": [
+              "upgrade_XP_record_lookup"
+            ],
+            "finding": "Existingrecordlookupbyarmyaddress/slot supportsheroarmythen towngarrison. Missingrecordorrecordtype mismatchwitholdarmytype skips XPupdate; wrapperstillwritesnewarmytype. NoallocationofXP record."
+          },
+          {
+            "id": "O3",
+            "regions": [
+              "upgrade_XP_change_and_multiply",
+              "count_and_type_reconciliation",
+              "current_hero_stack_count"
+            ],
+            "finding": "Recordtype becomes targetlow8bits first. Reconcile(-1,-1) preservesit and alignsrecordcount withactualcurrentcount. Withordinary matchingpositivecount, signedXP retained unchangedatthisstage."
+          },
+          {
+            "id": "O4",
+            "regions": [
+              "upgrade_XP_change_and_multiply",
+              "upgrade_coefficient_accessor",
+              "floating_signed_conversion"
+            ],
+            "finding": "Load float32upgradecoefficient usingOLDarmycreaturetype; multiply signed32recordXP withFIMUL, convert tointegerwith77cf50 andstoreEAXraw32. NegativeXPisvalidinput; noXP<0guard,floor0orunsignedconversion."
+          },
+          {
+            "id": "O5",
+            "regions": [
+              "upgrade_XP_change_and_multiply",
+              "upgrade_XP_record_lookup"
+            ],
+            "finding": "No7176a1 caphelperor7184e5 validation inthis consumer. ItdoesnotcapoldXPbeforenormallyscaling,nornewXP immediatelyaftertypechange. PriorGetExp/validation appliesupper-only cap ofthen-currenttype onsubsequentread/validation."
+          },
+          {
+            "id": "O6",
+            "regions": [
+              "modifier_file_loader",
+              "level_upgrade_coefficient_column",
+              "creature_upgrade_coefficient_column",
+              "level_fallback_into_creature_rows",
+              "upgrade_coefficient_accessor"
+            ],
+            "finding": "Coefficientiscurrentfloat32row+4 ofCREXPMODmodifierrecord, notfixed.75. CREXPMOD.TXTcolumn2 feedscreature-specificornegativelevelrows; fallbackwhencreaturerowR10==0copieslevelvalue. Per-gameeffective.75notestablishedwithoutactualdata/runtime."
+          }
+        ],
+        "implementableOrdinaryContract": {
+          "preconditions": "Declaredbootstrapactive, recordpresentandmatchesoldcreature, ordinaryvalidstackcountmatchingrecordcount, finitecoefficient/productwithrepresentableconversion.",
+          "immediateFormula": "record.creature=target&255; record.XP=low32(truncTowardZero(float32Coefficient[oldType] * signed32XP)); army.type=target. Thereisnoimmediateold/newcap.",
+          "subsequentRead": "GetExp(record) compares signedXP with capofNEWtype=wrap32(row+8+row+12); replacesonlyifXP>cap. NegativeXP remainsifbelowcap.",
+          "countMismatch": "7183bf reconciliation canresetXPforcount0ordiluteifactualcountgrew. ItsnegativeXP handlingisalreadyestablishedbypriorreport; do notassumeordinaryformulaifcounts differ.",
+          "absentRecord": "LeaveXP recordabsent, stillcompletetypechange. NoXPallocationjustbecauseupgradeoccurs.",
+          "nativeUInt64Comparison": "AcceptingsignednegativeXP isrequiredbyidentifiedconsumer. Anunsigned API isnotjustifiedbythispath; noVCMIimplementationreview/changeperformedhere."
+        },
+        "derivedExamples": {
+          "kind": "Staticarithmeticexamples usingchosen coefficient.75, notextracteddefaultorexecutedgameoutputs.",
+          "cases": [
+            {
+              "beforeXP": -1,
+              "coefficient": 0.75,
+              "immediateXP": 0
+            },
+            {
+              "beforeXP": -2,
+              "coefficient": 0.75,
+              "immediateXP": -1
+            },
+            {
+              "beforeXP": -5,
+              "coefficient": 0.75,
+              "immediateXP": -3
+            },
+            {
+              "beforeXP": -43165,
+              "coefficient": 0.75,
+              "immediateXP": -32373
+            },
+            {
+              "beforeXP": 5,
+              "coefficient": 0.75,
+              "immediateXP": 3
+            },
+            {
+              "beforeXP": 1000,
+              "coefficient": 0.75,
+              "oldCap": 500,
+              "newCap": 600,
+              "immediateXP": 750,
+              "nextGetExpXP": 600,
+              "explanation": "Nooldcapinsideconsumer;newcaponlyonlaterread. Chosencapvalues."
+            }
+          ]
+        },
+        "regions": [
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_paid_upgrade_tail",
+            "preferredVa": "0x4c6b9f",
+            "endExclusiveVa": "0x4c6bdc",
+            "rva": "0xc6b9f",
+            "fileOffset": 813983,
+            "size": 61,
+            "sha256": "373cd65377dd0f9ac4b0e499cdb766cd225ca3728a4cc766af5a2a4baad6e936",
+            "observation": "Common54eb50cost call, debitsevenresources, finalarmy type write at4c6bd9. Patchslot4c6bd6 lies AFTERresource subtraction."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_upgrade_call_patch_row",
+            "preferredVa": "0x789c08",
+            "endExclusiveVa": "0x789c14",
+            "rva": "0x389c08",
+            "fileOffset": 3296264,
+            "size": 12,
+            "sha256": "ba69149362424e0aa00a3464cbdb6dc5103f06272ae505d675dc29c3745622ee",
+            "observation": "Callpatch record{4c6bd6,0,766798}."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_upgrade_payload_copy_row",
+            "preferredVa": "0x78c374",
+            "endExclusiveVa": "0x78c380",
+            "rva": "0x38c374",
+            "fileOffset": 3306356,
+            "size": 12,
+            "sha256": "57b37d642fcdfbfbf96565890e00ecef5e995ddff234f414d8f3e62ce954d379",
+            "observation": "Copyrecord{source78bd58,dest4c6bd3,length9}."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_upgrade_payload",
+            "preferredVa": "0x78bd58",
+            "endExclusiveVa": "0x78bd61",
+            "rva": "0x38bd58",
+            "fileOffset": 3304792,
+            "size": 9,
+            "sha256": "16a63dcbdae4f5fbeffdfd21d6a895965522bec251ad6cc4219b5af29c873029",
+            "observation": "Nine-byte payload:lea eax,[ebp+8];callplaceholder;nop. EAXpointsatarmyargument followedbyslotargument."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "payload_copy_walker",
+            "preferredVa": "0x7012bc",
+            "endExclusiveVa": "0x701354",
+            "rva": "0x3012bc",
+            "fileOffset": 2736828,
+            "size": 152,
+            "sha256": "7e34345c9b1372ce73a6b6be380d1913c88961cf35b7fc978e2fee4651453079",
+            "observation": "Copies source,destination,length records from78bf00 with12byte stride; installsaforementionedreplacementpayload."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "call_target_walker",
+            "preferredVa": "0x701354",
+            "endExclusiveVa": "0x7013ba",
+            "rva": "0x301354",
+            "fileOffset": 2736980,
+            "size": 102,
+            "sha256": "ffa3fd6582ab4e73e395f6e201250cf15510768dfbd38c8584dbc0d77905c4c6",
+            "observation": "For target!=0 rows in788fd8 with12byte stride, writes displacementtarget-site-5 atsite+1. Installs766798intopaid-upgradecallsite."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "town_upgrade_wrapper",
+            "preferredVa": "0x766798",
+            "endExclusiveVa": "0x7667bd",
+            "rva": "0x366798",
+            "fileOffset": 3151768,
+            "size": 37,
+            "sha256": "a4261b7f390c4a3e3a036066193e2d9560060f79ab0d2ce28b2c096c99ad7bef",
+            "observation": "Save newtypeEBXandargumentpairEAX;pushad,call7665c0,popad;restorearmy/slotfromargumentpair;write newtype;return."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "upgrade_XP_record_lookup",
+            "preferredVa": "0x7665c0",
+            "endExclusiveVa": "0x76673f",
+            "rva": "0x3665c0",
+            "fileOffset": 3151296,
+            "size": 383,
+            "sha256": "b29ad6c306b5e530065a81468bc8ae2d8eb6112393f3425fd2f13b9fc89dc484",
+            "observation": "Find recordmatchingheroarmy+91andkeyheroId+(slot<<16),elsechecktowngarrisonarray. Missingrecordreturnswithoutcreation. RequirepackedrecordtypeequalscurrentOLDarmytype."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "upgrade_XP_change_and_multiply",
+            "preferredVa": "0x76673f",
+            "endExclusiveVa": "0x766798",
+            "rva": "0x36673f",
+            "fileOffset": 3151679,
+            "size": 89,
+            "sha256": "63666a9cd4b695d19d8b2fb8d86317dcaf596c1ac45f6cfbf6769c0bc4c4ed55",
+            "observation": "Writepackedtargettypefirst, reconcilecountwith7183bf(-1,-1), load coefficient727e00usingstillOLDarmytype, FIMULsignedrecordXP, convert77cf50,storeEAXraw32. No caphelper/validation call beforeorafter inthisroute."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "current_hero_stack_count",
+            "preferredVa": "0x717c2d",
+            "endExclusiveVa": "0x717c61",
+            "rva": "0x317c2d",
+            "fileOffset": 2829357,
+            "size": 52,
+            "sha256": "a01e70a548aa76817fb6a7af47b69e100a8157ddf179cae6e28057933b1d4145",
+            "observation": "717b70(record,-2) returns signedcurrentheroarmycount viarecordslot; noXP/typecomparisononthisselectedreadbranch."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "count_and_type_reconciliation",
+            "preferredVa": "0x7183bf",
+            "endExclusiveVa": "0x7184e5",
+            "rva": "0x3183bf",
+            "fileOffset": 2831295,
+            "size": 294,
+            "sha256": "c81726095c8a0be8f421d9f8cba4e397b5d59517bd123cb7557d7618068525ad",
+            "observation": "Args(-1,-1) preserve typeandreadcurrentcount. Ordinaryunchangedpositivecount retainsXP. Count0writesXP0; increasedcount dilutesusing signed32product/IDIV. No lowerXPclamp."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "upgrade_coefficient_accessor",
+            "preferredVa": "0x727e00",
+            "endExclusiveVa": "0x727e14",
+            "rva": "0x327e00",
+            "fileOffset": 2895360,
+            "size": 20,
+            "sha256": "1919208e0733e9da2e3d71e3a2df5ff3600dbea75d5b77b297f859cd5c15a8fc",
+            "observation": "7278b0(oldcreatureID) returns20bytemodifierrow; FLDfloat32atrow+4. No constant.75oruintconversion."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "coefficient_row_selector",
+            "preferredVa": "0x7278b0",
+            "endExclusiveVa": "0x7278fe",
+            "rva": "0x3278b0",
+            "fileOffset": 2894000,
+            "size": 78,
+            "sha256": "9c234e60dcc87c6d4ae44b560c89ef289e7c9ee065bc301fd43079258d76fccd",
+            "observation": "Packedordinarytype0..255 row=85eb50+20*type."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "floating_signed_conversion",
+            "preferredVa": "0x77cf50",
+            "endExclusiveVa": "0x77cfc5",
+            "rva": "0x37cf50",
+            "fileOffset": 3243856,
+            "size": 117,
+            "sha256": "5333b186c02836974c6f792303aeb2c00d856316b93ccbbe65f51def6ae661b4",
+            "observation": "FISTPqword usingcurrentcontrolword, reconstructresidualandadjustintegeraccordingtofloatsign; finiteordinaryresults implementtruncationtowardzero. Returnlow32EAX(high32EDXignoredbycaller). Not617f94."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "modifier_file_loader",
+            "preferredVa": "0x71a720",
+            "endExclusiveVa": "0x71a79d",
+            "rva": "0x31a720",
+            "fileOffset": 2840352,
+            "size": 125,
+            "sha256": "e931a6eb6de660e8aab729ed8bb6141284170ecc681e5aaa99c52db058ee5a35",
+            "observation": "Clearscreaturemodifiertable, opensCREXPMOD.TXT(791ee8), iteratesrows, parsecolumn0intID."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "level_upgrade_coefficient_column",
+            "preferredVa": "0x71a7a3",
+            "endExclusiveVa": "0x71a80e",
+            "rva": "0x31a7a3",
+            "fileOffset": 2840483,
+            "size": 107,
+            "sha256": "af5b29a024718df87c999813dfdd710fedbcae19f155ad01ed597b1b6f06fc12",
+            "observation": "NegativeIDs−1..−8definelevelindex−id−1; parsecolumn2asfloat, storeat841904+8*level."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "creature_upgrade_coefficient_column",
+            "preferredVa": "0x71a8df",
+            "endExclusiveVa": "0x71a90d",
+            "rva": "0x31a8df",
+            "fileOffset": 2840799,
+            "size": 46,
+            "sha256": "6c585e81e479d6b53054597c3fd34970c75fbe80dcaafcf4b1da1954dafec58d",
+            "observation": "Creature-specificrow parsescolumn2asfloat32, stores85eb54+20*creatureID."
+          },
+          {
+            "file": "work/era-gameplay-reference/h3era.exe",
+            "name": "level_fallback_into_creature_rows",
+            "preferredVa": "0x71a9d7",
+            "endExclusiveVa": "0x71aa55",
+            "rva": "0x31a9d7",
+            "fileOffset": 2841047,
+            "size": 126,
+            "sha256": "e8678773584d22944419990029b058ef6f83817bd44fe9b58180ccd276f24b11",
+            "observation": "ForrowswithR10field+8==0, derivecreaturelevel(clamped0..7, IDs>=197level7), copycoefficientfrom841904+8*level torow+4."
+          }
+        ],
+        "unknowns": [
+          "NoexecutionorREA/nativeEvidence; staticbootstrappatchrecipeandconsumerlogic only. Arbitrarycomputedhooks, pluginloadorderandlaterpatchesnotvalidated.",
+          "CREXPMOD.TXTnotfoundasdirectloosefileinselectedERA/TUMtrees. Archivesnotextracted; actualprofilecoefficientandheaders/default.75notclaimed. Loadercolumnandfallbackrelationshiparepositivecodewitnesses.",
+          "CrExpoUpg isa semanticconsumernamefromtask; function7665c0isidentifiedbyconcreteroute,notanexportedsymbol.",
+          "Roundingcontractrestrictedtofiniteordinaryrepresentablevalues. 77cf50canexhibitCPU/FPUedgebehaviorforNaN,infinity,maskedexceptionsorlargeout-of-rangeconversions; noportableoverflowpolicyadmitted.",
+          "Towngarrisonbranchisobserved, butthisreportfocusesheroarmynegativeXP; allvalidgarrisonkeysandotherupgradeobjects/pluginsnotreconstructed.",
+          "Earlierdialog/tooltipXPreadsmayalreadyhaveappliedoldcapbeforeentry; thoseprecedingreadsarenottraced. NoeventualglobalXPrefreshcycleorsave/replicationproved. LaterGetExpcapderivedfrompriorreport; noassertiononexacttimeofnextread.",
+          "EarlierPascalnegativekeywordsearchreturnednospecificCrExpoUpgdefinition. Namesand.75donotprovethiscontract; targetedPEinstructionsdo."
+        ],
+        "filesModified": "Ignoredreportdirectoryonly; no trackedsource,prototype,foreigndirtyfileorcontainerchanged."
+      }
+    }
+  },
+  "contract": {
+    "rule": 125,
+    "firstDay": 2,
+    "oncePerGlobalDay": true,
+    "beforeRule116": true,
+    "heroIds": [
+      0,
+      155
+    ],
+    "includeAiAndUnplacedHeroes": true,
+    "sourceTypes": [
+      13,
+      27,
+      41,
+      55,
+      69,
+      83,
+      97,
+      111,
+      131
+    ],
+    "targetTypes": [
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158
+    ],
+    "mergeSlots": false,
+    "retainQuantity": true,
+    "weightedProduct": "signed32 wrapping multiplication, signed truncation toward zero",
+    "clampOldAndNewExperienceAboveOnly": true,
+    "negativeExperienceRetained": true,
+    "wrappedPrecheckZeroSkipsType": true,
+    "battleMode0NegativeOldRepairedEvenForZeroAward": true,
+    "genericHeC1SixArgumentsAdmitted": false,
+    "nativeExtensions": [
+      "Native experience is stored per stack, without the original global quota of10000 records.",
+      "Only the existing admitted battle distribution mode0 is consumed; other modes and the conditional post-cap bonus remain separate contracts."
+    ],
+    "paidUpgradeNegativeExperience": "Multiply by old-type float32 upgrade coefficient, truncate toward zero, retain signed result; no immediate cap in the identified consumer."
+  }
+}

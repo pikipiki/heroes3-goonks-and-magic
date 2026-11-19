@@ -131,6 +131,8 @@ public:
     // Replicated exact per-unit state; not a battle reward and therefore not
     // subject to the per-battle XP gain cap.
     void restoreExperience(int64_t value);
+    // Original script transformations may preserve a signed per-unit record.
+    void restoreSourceExperience(int32_t average);
 
 	bool valid(bool allowUnrandomized) const;
 	ArtPlacementMap putArtifact(const ArtifactPosition & pos, const CArtifactInstance * art) override; //from CArtifactSet

@@ -102,8 +102,11 @@ enum class ESerializationVersion : int32_t
 	GOONK_ERA_CREATURE_COST_ALIAS, // original MA:C7 / MA:F fight-value queries
 	GOONK_WOG_HALF_PRICES, // map-local creature prices and twenty-six choices
 
+	GOONK_WOG_EIGHTH_UPGRADES, // exact source125 transformations and twenty-seven choices
+
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
-	CURRENT = GOONK_WOG_HALF_PRICES,
+
+	CURRENT = GOONK_WOG_EIGHTH_UPGRADES,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

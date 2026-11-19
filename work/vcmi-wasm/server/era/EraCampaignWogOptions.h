@@ -18,7 +18,7 @@ inline std::optional<int> read(const IGameInfoCallback & callback,int option)
     if(option==171)return mithril::weeklyEnabled(callback)?1:0;
     if(option==170)return mithril::resourceReplacementEnabled(callback)?1:0;
     if(option==149)return mithril::displaySourceOption(callback)?1:0;
-    if(option==113||option==119||option==131||option==144)
+    if(option==125||option==113||option==119||option==131||option==144)
     {
         const auto & saved=map_rules::state(callback);
         const auto code=std::to_string(option);
@@ -28,7 +28,7 @@ inline std::optional<int> read(const IGameInfoCallback & callback,int option)
         const auto path=JsonPath::builtin("config/wog-map-rules");
         const JsonNode configured=CResourceHandler::get()->existsResource(path)?JsonNode(path)["mapRules"]:JsonNode();
         const bool inherited=option==144?configured["sourceOptions"][code].Bool():configured[code].Bool();
-        const auto setting=option==113?era_bridge::WogOption::HalfCreaturePrices:option==119?era_bridge::WogOption::DoubleArtifacts:
+        const auto setting=option==125?era_bridge::WogOption::AutomaticEighthUpgrades:option==113?era_bridge::WogOption::HalfCreaturePrices:option==119?era_bridge::WogOption::DoubleArtifacts:
             option==131?era_bridge::WogOption::TownsWithoutForts:era_bridge::WogOption::PreserveAiForts;
         return era_bridge::wogOptionEnabled(callback,setting,inherited)?1:0;
     }

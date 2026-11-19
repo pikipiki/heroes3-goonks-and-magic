@@ -28,6 +28,7 @@ const rules = [
   ['Preserve AI fortifications', 'Préserver les fortifications de l’IA', 'Keep AI towns fortified when starting without forts. Neutral towns still lose their fortifications.', 'Conserver les fortifications des villes de l’IA avec la règle précédente. Les villes neutres les perdent.'],
   ['Double artifact pickups', 'Double ramassage d’artefacts', 'Find a second copy of artifacts present at the start when you do not already own one.', 'Trouver un second exemplaire des artefacts présents au départ si vous n’en possédez pas déjà un.'],
   ['Half-price creatures on Sundays', 'Créatures à moitié prix le dimanche', 'From day two, gold prices are halved on human Sundays and every AI turn. War machines keep their price.', 'À partir du deuxième jour, les prix en or sont divisés par deux le dimanche des joueurs humains et à chaque tour de l’IA. Les machines de guerre conservent leur prix.'],
+  ['Automatic level-eight upgrades', 'Évolution automatique au niveau huit', 'From day two, original heroes automatically convert their improved level-seven creatures to the corresponding level-eight creatures.', 'À partir du deuxième jour, les héros d’origine transforment automatiquement leurs créatures de niveau sept améliorées en créatures de niveau huit correspondantes.'],
 ];
 
 export function createWogOptions({menu, command, onChange}) {

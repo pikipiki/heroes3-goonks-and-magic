@@ -49,7 +49,8 @@ struct DLL_LINKAGE ExtraOptionsInfo
 			{
 				// Length-prefixed choices let the catalogue grow without changing
 				// the byte boundaries of every earlier choice count.
-				const auto supported=h.hasFeature(Handler::Version::GOONK_WOG_HALF_PRICES)?era_bridge::wogOptionCount:
+				const auto supported=h.hasFeature(Handler::Version::GOONK_WOG_EIGHTH_UPGRADES)?era_bridge::wogOptionCount:
+					h.hasFeature(Handler::Version::GOONK_WOG_HALF_PRICES)?era_bridge::wogHalfPricesOptionCount:
 					h.hasFeature(Handler::Version::GOONK_WOG_DOUBLE_ARTIFACTS)?era_bridge::wogDoubleArtifactsOptionCount:
 					h.hasFeature(Handler::Version::GOONK_WOG_FORTLESS_TOWNS)?era_bridge::wogFortlessOptionCount:
 					h.hasFeature(Handler::Version::GOONK_MITHRIL_DISPLAY)?era_bridge::wogDisplayMithrilOptionCount:

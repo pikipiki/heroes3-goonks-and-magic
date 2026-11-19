@@ -31,7 +31,7 @@ function townVisitProgram(){
  program.sha256=createHash('sha256').update(JSON.stringify(program)).digest('hex');return program;
 }
 
-function fixture({retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
+function fixture({eighthUpgradeFixture=null,retreatFixture=false,growthFixture=false,heroLevelLimit=0,dead=false,inTown=false,enemyHero=false,santa=false,stackExperience=0,bannerInventory=false,henchmanType=null,henchmanBanner=-1,enemyCount=1,archangels=5,enemyType='core:peasant',bless=false,blockFixture=false,reserveHero=false,fullArmy=false,soloArmy=false,twoGuards=false,aiTown=false,foreignTown=false,scriptTown=false,scriptAI=false,aiNoActor=null,tilePropertiesFixture=false,artifactFixture=null}={}){
  return execFileSync('python3',['-c',String.raw`
 import zipfile,json,io,sys,importlib.util
 opts=json.loads(sys.argv[1])
@@ -108,6 +108,16 @@ if opts['growthFixture']:
  training.update({'instanceName':'growthTrainingHero','x':10,'y':11})
  training['options'].update({'type':'core:edric','army':[{'type':'core:peasant','amount':6500}],'artifacts':{},'spellBook':[],'secondarySkills':{}})
  objects.append(training)
+if opts['eighthUpgradeFixture']:
+ f=opts['eighthUpgradeFixture']
+ hero=next(o for o in objects if o['instanceName']=='goonkHero')
+ hero['options']['army']=f['army']
+ for o in objects:
+  if o['instanceName']=='enemyHenchmanHero':
+   o.update({'x':30,'y':30});o['options'].update({'army':[{'type':'core:archangel','amount':50}],'patrolRadius':0})
+ if f.get('battle'):
+  for name,x,count in [('eighthTrainingGuard',10,1000000),('eighthRepairGuard',12,f.get('repairCount',100))]:
+   objects.append({'type':'core:monster','subtype':'core:peasant','instanceName':name,'x':x,'y':11,'l':0,'template':{'animation':'AVWpeas.def','mask':['A'],'visitableFrom':['+++','+-+','+++']},'options':{'amount':count,'character':'savage','neverFlees':True}})
 if opts['artifactFixture']:
  f=opts['artifactFixture'];objects=[o for o in objects if o['instanceName']!='henchmenTrainingGuard']
  h=next(o for o in objects if o['instanceName']=='goonkHero');h['options']['type']='core:orrin'
@@ -140,6 +150,9 @@ if opts['scriptTown'] or opts['scriptAI']:
 if opts['growthFixture']:
  header['heroLevelLimit']=1
  for day in [2,3]:header['events'].append({'name':'private growth pool witness '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
+if opts['eighthUpgradeFixture']:
+ header['heroLevelLimit']=1
+ for day in [2,3]:header['events'].append({'name':'private eighth upgrade day '+str(day),'firstOccurrence':day-1,'nextOccurrence':0,'humanAffected':1,'computerAffected':0,'players':['red'],'message':{'exactStrings':[str(day)],'localStrings':None,'message':[0],'numbers':None,'stringsTextID':None}})
 if opts['artifactFixture']:
  header['players']['red']['mainHero']='goonkHero'
  header['players']['red']['heroes']={'goonkHero':{'type':'core:orrin'}}
@@ -161,10 +174,10 @@ out=io.BytesIO()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as archive:
  for name,data in entries.items():archive.writestr(name,data)
 sys.stdout.buffer.write(out.getvalue())
-`,JSON.stringify({retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
+`,JSON.stringify({eighthUpgradeFixture,retreatFixture,growthFixture,heroLevelLimit,dead,inTown,enemyHero,santa,stackExperience,bannerInventory,henchmanType,henchmanBanner,enemyCount,archangels,enemyType,bless,blockFixture,reserveHero,fullArmy,soloArmy,twoGuards,aiTown,foreignTown,scriptTown,scriptAI,aiNoActor,tilePropertiesFixture,artifactFixture})]);
 }
 
-async function boot({save,viewport,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
+async function boot({save,viewport,eighthUpgradeChoice=null,eighthUpgradeConfigured=false,growthChoice=null,growthConfigured=false,doubleArtifactChoice=null,doubleArtifactsConfigured=false,artifactLanguage=null,enabled=true,originURL=origin,settings,difficulty,poor=false,expectedDialog,scriptProgram,...options}={}){
  const classic=['classic','classic-context'].includes(process.env.CASES);
  const desktop=['prompt-desktop','town-resurrection-desktop','classic-context'].includes(process.env.CASES)||process.env.GROWTH_DESKTOP==='1';
  // The packaged site's policy whitelists production domains, not localhost.
@@ -177,7 +190,8 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,doub
  const cleanManifest=process.env.GOONK_CLEAN_MANIFEST==='1'?JSON.parse(execFileSync('git',['show','HEAD:mod/tum-era/mod.json'],{encoding:'utf8'})):null;
  const growthDifficulty=growthChoice===null?null:readJsonc('work/vcmi-wasm/config/difficulty.json');
  if(growthDifficulty)for(const rule of Object.values(growthDifficulty.ai))if(rule.resources)for(const key of Object.keys(rule.resources))rule.resources[key]=0;
- await page.addInitScript(({enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
+ if(growthDifficulty&&options.eighthUpgradeFixture?.paid)for(const rule of Object.values(growthDifficulty.human))if(rule.resources)rule.resources.gold=1000000;
+ await page.addInitScript(({eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture,blockActor,forcedBlock,poor,scriptProgram,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap})=>{
   sessionStorage.setItem('heroes-goonk.storage-failed','true');
   let module;
   Object.defineProperty(window,'Module',{configurable:true,get:()=>module,set:value=>{
@@ -210,6 +224,19 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,doub
      const name='config/growth-private-heroes.json';manifest.heroes=[...(manifest.heroes||[]),name];
      value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({'core:valeska':{army:[{creature:'core:peasant',min:100,max:100}]}}));
      value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json',JSON.stringify({mapRules:{116:growthConfigured}}));
+    }
+    if(eighthUpgradeFixture?.paid){
+     const artifact='config/eighth-private-upgrade-artifact.json';manifest.artifacts=[...(manifest.artifacts||[]),artifact];
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+artifact,JSON.stringify({'core:spellBook':{bonuses:[{type:'SPECIAL_UPGRADE',subtype:'wake-of-gods.level8units:supremeArchangel',addInfo:'tum-era:cherub'}]}}));
+     const creature='config/eighth-private-upgrade-price.json';manifest.creatures=[...(manifest.creatures||[]),creature];
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+creature,JSON.stringify({'tum-era:cherub':{cost:{wood:0,mercury:0,ore:0,sulfur:0,crystal:0,gems:4,gold:7501,'wake-of-gods.mithril:mithril':0}}}));
+    }
+    if(eighthUpgradeFixture){
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/config/wog-map-rules.json',JSON.stringify({mapRules:{116:false,125:eighthUpgradeConfigured}}));
+     const name='config/eighth-private-heroes.json';manifest.heroes=[...(manifest.heroes||[]),name];
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+name,JSON.stringify({'core:valeska':{army:[{creature:'core:goldDragon',min:100,max:100}]}}));
+     const creatures='config/eighth-private-creatures.json';manifest.creatures=[...(manifest.creatures||[]),creatures];
+     value.FS.writeFile('/home/web_user/.local/share/vcmi/Mods/tum-era/content/'+creatures,JSON.stringify({'core:peasant':{hitPoints:1,attack:0,defense:0,speed:1,damage:{min:0,max:0}}}));
     }
     if(scriptProgram){
      const directory='/home/web_user/.local/share/vcmi/Mods/wake-of-gods/Mods/mapSupport/Content/config/era-campaigns/';
@@ -248,7 +275,7 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,doub
     try{return callMain.apply(value,args);}catch(error){window.goonkEngineStartupError=String(error)+' root='+JSON.stringify(value.FS.readdir('/'))+' cwd='+value.FS.cwd();throw error;}
    }});
   }});
- },{enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
+ },{eighthUpgradeFixture:options.eighthUpgradeFixture,eighthUpgradeConfigured,enabled,settings,blockFixture:!!options.blockFixture,blockActor:options.henchmanType,forcedBlock:!!options.forcedBlock,poor,growthChoice,growthConfigured,growthDifficulty,cleanManifest,doubleArtifactChoice,doubleArtifactsConfigured,artifactLanguage,artifactBackpackCap:options.artifactFixture?.backpackCap,scriptProgram:scriptProgram||(options.scriptTown?townVisitProgram():null)});
  await page.goto(originURL+'/game.html?mobile='+(classic?'0':'1'));
  await wait(()=>{const classic=location.search.includes('mobile=0');if(classic)window.Module?._vcmiMobileEnable?.(2);return window.goonkEngineStartupError||(window.goonkMobileState?.mode==='menu'&&(classic||goonkSessionRecovery?.phase==='done'));},null,240000).catch(async error=>{console.error(await page.evaluate(()=>{let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch(e){log=String(e);}return{startup:String(window.goonkEngineStartupError),log};}));throw error;});
  const startup=await page.evaluate(()=>{if(!window.goonkEngineStartupError)return null;let log='';try{log=Module.FS.readFile('/home/web_user/.cache/vcmi/VCMI_Client_log.txt',{encoding:'utf8'});}catch{}return {error:String(goonkEngineStartupError),log};});
@@ -276,8 +303,12 @@ async function boot({save,viewport,growthChoice=null,growthConfigured=false,doub
    await wait(value=>goonkMobileState.wogOptions[13]===value,growthChoice);
    await command(109,1,1);await wait(()=>goonkMobileState.wogOptions[1]===1);
   }
+  if(eighthUpgradeChoice!==null){
+   const form=page.locator('.wog-options');if(await form.getAttribute('open')===null)await form.locator('summary')[desktop?'click':'tap']();
+   const choice=form.locator(`input[data-wog-option="26"][value="${eighthUpgradeChoice}"]`).locator('..');await choice.scrollIntoViewIfNeeded();await choice[desktop?'click':'tap']();await wait(value=>goonkMobileState.wogOptions[26]===value,eighthUpgradeChoice);
+  }
   if(doubleArtifactChoice!==null){
-   assert.equal((await state()).wogOptions.length,25);
+   assert((await state()).wogOptions.length>=25);
    const input=page.locator(`input[data-wog-option="24"][value="${doubleArtifactChoice}"]`);
    await page.locator('.wog-options summary')[desktop?'click':'tap']();await input.locator('..').scrollIntoViewIfNeeded();await input.locator('..')[desktop?'click':'tap']();
    await wait(value=>goonkMobileState.wogOptions[24]===value,doubleArtifactChoice);
@@ -333,6 +364,10 @@ async function resolve(){
 }
 
 try{
+ if(process.env.CASES==='eighth-upgrades'){
+  const {runEighthUpgrades}=await import('./wog-map-eighth-upgrades-cases.mjs');
+  await runEighthUpgrades({boot,sheet,state,command,wait,approachEnemy,resolve,page:()=>page,report,output,readCompletedNativeSave});
+ }
  if(process.env.CASES==='double-artifacts'){
   const {runDoubleArtifacts}=await import('./wog-map-double-artifacts-cases.mjs');
   await runDoubleArtifacts({boot,sheet,state,command,wait,approachEnemy,resolve,page:()=>page,report,output,save:()=>readCompletedNativeSave(page,command,{tag:961})});

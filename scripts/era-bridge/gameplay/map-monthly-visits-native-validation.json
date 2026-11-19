@@ -12,16 +12,16 @@
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisitRules.h": "97211f101fef95d8261980e28870e0e67ffa4dd647900d91656543d837a30403",
     "work/vcmi-wasm/lib/era/EraMapMonthlyVisits.h": "95e4a7d44fad9f322370a4d1b9be590ae7b6116d0fdc726d780d357be2ad9a24",
     "work/vcmi-wasm/lib/era/EraMapArmyGrowth.h": "7b5a35f0816f10cd5a52347b9e46f71a93f6c1e95301dfda323b79b592597b13",
-    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "77b35c7e7d32dde12b3f08353f27baef146ba42130219a7112df40b19db96ca9",
-    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6bf4b682e62d6b2352b3b5f1d4089e83906af87c9fe0a972b6983abf737e3a84",
-    "work/vcmi-wasm/lib/era/EraWogOptions.h": "2c5718cdf676f7932f0c4052093bebd0e756368618b420b750d599fb1761e561",
-    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "357a28b2170cf23fb493d6df3fb8dd44d9def975cee0ad1b5b2fe8d1cae155b4",
-    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "db05f84dcd7c284191ee9863f5878a6b76cd67e3af5d3b2f84d73d1e075b7e2f",
+    "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "72d417ee195cc2099c8917ca1cfe376d2967be81a6e1084f27193dab96a315cb",
+    "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "b0624c9968224edd1264f1aa55c7d5dfb9794b34bab4530836ebb01303f922d0",
+    "work/vcmi-wasm/lib/era/EraWogOptions.h": "9efe2d5ac7daac83f1212c180b36dbed8de6233cb7883799703676baa7e2058f",
+    "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "931230077d10d210943e0081614af19540e67ba43a7160da172420e64497b1f4",
+    "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "2a4e57b57ecc9d09064d256488e52a96b0d0b27aa7c20ebe0d99edfea004dde9",
     "work/vcmi-wasm/config/objects/rewardableOncePerHero.json": "1881306421f012d19ebf1f1a5374e5e12e648590c346d51e4f03c4bc2b534768",
-    "tests/native/EraWogOptionsSerialization.test.cpp": "2d3c08d5df3299d62df07c6a8b26c1243f2f4a367286b2b108bec16266a2d953",
+    "tests/native/EraWogOptionsSerialization.test.cpp": "02deea0b5991e3fb258a10996591d6d3ce7687b7f69aeb118122ad78d13b497e",
     "tests/native/EraMapMonthlyVisitRules.test.cpp": "1e27c2fa086a74346023ded5e662d60b06a6a64fe9738383bb7d6e6fea87b7fd",
-    "web/wog-options.mjs": "a9fd92bf93354c0aabd3afd4c48e06725f7424bf2bab08f894073917d2a6c843",
-    "mod/tum-era/content/config/wog-map-rules.json": "f2f7715051be6676fec91ad6b44ffa1c6e2c2c433c2e66355f19b2be3963349b",
+    "web/wog-options.mjs": "6b11665d49e155e636d5c7cd815e3ca891fa72dd63cd5493c9750fa457c13a0f",
+    "mod/tum-era/content/config/wog-map-rules.json": "affc9e92566f857095e9087acbe112defa4f888c6709ccac1bcb8ef8c7590f44",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/browser-tests/wog-map-monthly-visits-cases.mjs": "330ae184f3da99da5e7b116e83aef308ad4f746bcfe4d3043e85357a62452ee1",
     "tests/fixtures/era-gameplay/map-monthly-visits-reference.json": "270b82d4388d72f3fb75d3879b7715892b1a1fe3265fde663935961e9c77e17f"
@@ -1352,5 +1352,20 @@
       "web/wog-options.mjs": "684b7b85650ad55578abd74a7e1f93f62e1933a07e065812ebb5d97f014e9fe3"
     },
     "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
+  },
+  "eighthUpgradesRevalidation": {
+    "scope": "Historical reports retained; current original-hero conversions, signed XP consumers, migration and selected Advanced Classes, companions, growth, Mithril and price regressions are independently validated.",
+    "proof": "scripts/era-bridge/gameplay/map-eighth-upgrades-native-validation.json",
+    "previousBindings": {
+      "mod/tum-era/content/config/wog-map-rules.json": "f2f7715051be6676fec91ad6b44ffa1c6e2c2c433c2e66355f19b2be3963349b",
+      "tests/native/EraWogOptionsSerialization.test.cpp": "2d3c08d5df3299d62df07c6a8b26c1243f2f4a367286b2b108bec16266a2d953",
+      "web/wog-options.mjs": "a9fd92bf93354c0aabd3afd4c48e06725f7424bf2bab08f894073917d2a6c843",
+      "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "357a28b2170cf23fb493d6df3fb8dd44d9def975cee0ad1b5b2fe8d1cae155b4",
+      "work/vcmi-wasm/lib/era/EraMapCreatureRules.h": "77b35c7e7d32dde12b3f08353f27baef146ba42130219a7112df40b19db96ca9",
+      "work/vcmi-wasm/lib/era/EraWogOptions.h": "2c5718cdf676f7932f0c4052093bebd0e756368618b420b750d599fb1761e561",
+      "work/vcmi-wasm/lib/serializer/ESerializationVersion.h": "db05f84dcd7c284191ee9863f5878a6b76cd67e3af5d3b2f84d73d1e075b7e2f",
+      "work/vcmi-wasm/server/era/EraMapRulesRuntime.h": "6bf4b682e62d6b2352b3b5f1d4089e83906af87c9fe0a972b6983abf737e3a84"
+    },
+    "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
   }
 }

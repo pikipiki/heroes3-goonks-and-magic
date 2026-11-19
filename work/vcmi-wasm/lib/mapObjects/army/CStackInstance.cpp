@@ -11,6 +11,7 @@
 #include "../../era/EraCreaturePrices.h"
 #include "CStackInstance.h"
 #include "../../era/EraExperienceProgression.h"
+#include "../../era/EraSourceStackExperienceRules.h"
 
 #include "CArmedInstance.h"
 
@@ -95,6 +96,12 @@ void CStackInstance::restoreExperience(int64_t value)
     totalExperience=std::clamp<int64_t>(value,0,getMaxExperiencePerUnit()*getCount());
 }
 
+void CStackInstance::restoreSourceExperience(int32_t average)
+{
+    totalExperience=std::min<int64_t>(average,getMaxExperiencePerUnit())*getCount();
+    nodeHasChanged();
+}
+
 void CStackInstance::giveAverageStackExperience(TExpType desiredAmountPerUnit)
 {
 	if(!canGainExperience())
@@ -105,11 +112,15 @@ void CStackInstance::giveAverageStackExperience(TExpType desiredAmountPerUnit)
         const auto count = getCount();
         if(count <= 0)
             return;
-        const auto average = getAverageExperience();
-        if(average < 0 || desiredAmountPerUnit < 0)
+        const auto previous = getAverageExperience();
+        if(desiredAmountPerUnit < 0)
             throw std::runtime_error("ERA experience: negative experience gain is unsupported");
+        // ERA's post-battle addition hook repairs an old negative record even
+        // when the admitted mode0 award is zero. Its battle cap is independent
+        // of that old record, so the existing positive gain calculation applies.
+        const auto average = std::max<TExpType>(0, previous);
         const auto gained = era->gain(average, desiredAmountPerUnit);
-        if(gained)
+        if(gained || previous < 0)
             totalExperience = era->total(average + gained, count);
         return;
     }
@@ -134,7 +145,12 @@ void CStackInstance::giveTotalStackExperience(TExpType experienceToGive)
         if(count <= 0)
             return;
         if(totalExperience < 0 || experienceToGive < 0)
-            throw std::runtime_error("ERA experience: negative total transfer is unsupported");
+        {
+            const auto average=era_bridge::stack_experience::merge(totalExperience,
+                experienceToGive,count,static_cast<int32_t>(era->maximum()));
+            restoreSourceExperience(average);
+            return;
+        }
         const auto limit = era->total(era->maximum(), count);
         const auto current = std::min<uint64_t>(totalExperience, limit);
         const auto combined = current + std::min<uint64_t>(experienceToGive, limit - current);
@@ -230,7 +246,17 @@ void CStackInstance::setType(const CCreature * c, bool preserveExperience)
             const auto * oldEra = era_compat::ExperienceProgressions::get().find(getCreature()->getJsonKey());
             const auto * newEra = c ? era_compat::ExperienceProgressions::get().find(c->getJsonKey()) : nullptr;
             if(const auto * era = oldEra ? oldEra : newEra)
-                totalExperience = era->total(era->retainOnUpgrade(getAverageExperience()), getCount());
+            {
+                const auto average=getAverageExperience();
+                if(average<0)
+                {
+                    if(average<std::numeric_limits<int32_t>::min())
+                        throw std::runtime_error("Signed upgrade experience outside source words");
+                    const auto retained=era_bridge::stack_experience::retainedUpgradeExperience(average,era->upgradeMultiplier);
+                    totalExperience=static_cast<int64_t>(retained)*getCount();
+                }
+                else totalExperience = era->total(era->retainOnUpgrade(average), getCount());
+            }
             else
                 totalExperience = totalExperience * LIBRARY->creh->expAfterUpgrade / 100;
         }

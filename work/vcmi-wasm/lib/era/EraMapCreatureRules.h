@@ -1,6 +1,7 @@
 #pragma once
 #include "EraSourceCreatureLevels.h"
 #include "EraMapArmyGrowth.h"
+#include "EraMapEighthUpgrades.h"
 #include "EraMapMonthlyVisits.h"
 #include "EraMapFortlessTowns.h"
 #include "EraCampaignCreatureAttributes.h"
@@ -67,6 +68,7 @@ inline void applyGroundedFliers(CGameState & gs,const JsonNode & next,const Json
 inline void applyCreatureRules(CGameState & gs,const JsonNode & next)
 {
     applyInitialFortifications(gs,next);
+    applyEighthUpgrades(gs,next);
     applyArmyGrowth(gs,next);
     applyMonthlyVisits(gs,next);
     const auto & previous=gs.getMap().eraGameplayState["mapRules"];

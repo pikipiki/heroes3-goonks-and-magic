@@ -40,6 +40,7 @@ inline void initializeSettings(CGameHandler & gh,bool firstTurn)
     choice("111",era_bridge::WogOption::GroundedFliers);
     choice("112",era_bridge::WogOption::InvertedCreatureSpeeds);
     choice("113",era_bridge::WogOption::HalfCreaturePrices);
+    choice("125",era_bridge::WogOption::AutomaticEighthUpgrades);
     choice("114",era_bridge::WogOption::DailyMagicPlains);
     choice("115",era_bridge::WogOption::AllDoubleAttack);
     choice("121",era_bridge::WogOption::DoubleMovement);
@@ -142,6 +143,39 @@ inline void placeDailyPlains(CGameHandler & gh,PlayerColor player)
         plains->setAnchorPos(position);gh.newObject(plains,hero->getOwner());
     }
 }
+inline void upgradeHeroArmiesToEighth(CGameHandler & gh)
+{
+    const auto & saved=state(gh.gameInfo());const auto day=gh.gameInfo().getDate(Date::DAY);
+    if(!saved["rules"]["125"].Bool()||day<=1||saved["eighthUpgradeDay"].Integer()>=day)return;
+    std::map<int,CreatureID> targets;
+    LIBRARY->creatures()->forEach([&](const Creature * creature,bool &)
+    {
+        const auto source=era_bridge::sourceCreatureIdForLevel(creature->getJsonKey());
+        if(source&&*source>=150&&*source<=158)targets.emplace(*source,creature->getId());
+    });
+    EraGameplayChange packet;packet.system="mapRules";packet.state=saved;
+    packet.state["eighthUpgradeDay"].Integer()=day;
+    packet.state["eighthUpgrades"].Vector().clear();
+    const auto heroes=sourceArmyHeroes(gh.gameState().getMap());
+    for(int id=0;id<156;++id)
+        if(const auto * hero=heroes[id])
+            for(int slot=0;slot<7;++slot)
+                if(const auto * stack=hero->getStackPtr(SlotID(slot)))
+                {
+                    const auto source=era_bridge::sourceCreatureIdForLevel(stack->getType()->getJsonKey());
+                    const auto target=source?era_bridge::map_rules::eighthUpgradeTarget(*source):std::nullopt;
+                    if(!target||!eighthUpgradeHasQuantity(*hero,*source))continue;
+                    const auto native=targets.find(*target);
+                    if(native==targets.end())throw std::runtime_error("Unbound WoG eighth upgrade target");
+                    JsonNode row;row["hero"].Integer()=id;row["slot"].Integer()=slot;
+                    row["before"].Integer()=stack->getCreatureID().getNum();row["count"].Integer()=stack->getCount();
+                    row["target"].Integer()=native->second.getNum();
+                    row["experienceBefore"].Integer()=stack->getAverageExperience();
+                    row["experience"].Integer()=eighthUpgradeExperience(*stack,*native->second.toCreature());
+                    packet.state["eighthUpgrades"].Vector().push_back(std::move(row));
+                }
+    gh.sendAndApply(packet);
+}
 inline void growHeroArmies(CGameHandler & gh)
 {
     const auto & saved=state(gh.gameInfo());const auto day=gh.gameInfo().getDate(Date::DAY);
@@ -236,5 +270,5 @@ inline void invertCreatureSpeeds(CGameHandler & gh)
     EraGameplayChange packet;packet.system="mapRules";packet.state=std::move(saved);gh.sendAndApply(packet);
 }
 inline void onNewDay(CGameHandler & gh)
-{buildTownGrails(gh);mithril::decrementMineMarkers(gh);changeWeeklyMines(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
+{buildTownGrails(gh);mithril::decrementMineMarkers(gh);changeWeeklyMines(gh);upgradeHeroArmiesToEighth(gh);growHeroArmies(gh);resetMonthlyVisits(gh);}
 }

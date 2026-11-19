@@ -13,7 +13,7 @@ ${historical?'!!VRv8202:S0;':'!!UN:P113/?v8202;'}
 export async function runCreaturePrices({boot,state,command,wait,page,report,output,readCompletedNativeSave}){
  const mouse=process.env.CASES.endsWith('-desktop'),press=mouse?'click':'tap';
  const historical=process.env.PRICES_OLD_CONTROL==='1',legacy=process.env.PRICES_LEGACY_SAVE;
- const expectedVersion=historical?932:933;
+ const expectedVersion=historical?932:Number(process.env.GOONK_EXPECTED_SAVE_VERSION||933);
  const enabled=process.env.PRICES_DISABLED!=='1';
  const forced=process.env.PRICES_CHOICE===undefined?null:Number(process.env.PRICES_CHOICE);
  const fixture={fightValue:123456,gold:129,halfPrices:legacy?true:forced===null?enabled:!enabled,priceCalendar:true,purchase:process.env.PRICES_PURCHASE==='1'};
