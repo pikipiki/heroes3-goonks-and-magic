@@ -73,3 +73,8 @@
   #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-top>.mobile-title{grid-area:1/2!important;display:flex!important;align-items:center!important;white-space:normal!important;overflow:auto!important;text-overflow:clip!important;font:var(--ui-font-title-compact)!important;max-height:48px!important;min-width:0!important}
  }
 }
+
+/* Card headings use the shared compact title role, never a content-specific size. */
+@layer heroes-material {
+ :is(#mobile-app,[data-ui-app]) .ui-card-title{font:var(--ui-font-title-compact)!important;word-break:normal!important;overflow-wrap:normal!important}
+}

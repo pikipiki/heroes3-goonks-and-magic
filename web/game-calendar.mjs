@@ -18,7 +18,7 @@ export function createGameCalendar(root){
  const location=document.createElement('span');location.className='calendar-location';
  calendar.append(date,compactDate,next,cue,location);root.querySelector('.mobile-top').append(calendar);
  return (state,expanded=false)=>{
-  const value=gameDate(state.day),visible=!!value&&!['menu','load','lobby','campaign','connecting','hero','battle'].includes(state.mode)&&state.resources?.length>=7;
+  const value=gameDate(state.day),visible=!!value&&!['menu','load','lobby','campaign','connecting','battle'].includes(state.mode)&&state.resources?.length>=7;
   calendar.hidden=!visible;root.dataset.hasCalendar=String(visible);if(!visible)return;
   const english=getLanguage()==='en',daysLeft=7-value.weekday,englishDays=daysLeft===1?'1 day left':`${daysLeft} days left`,label=english?`Day ${value.weekday} · Week ${value.week} · Month ${value.month}`:`Jour ${value.weekday} · Semaine ${value.week} · Mois ${value.month}`,remaining=english?(value.weekday===7?'Last day of the week':`${englishDays} this week`):value.weekday===7?'Dernier jour de la semaine':`Encore ${daysLeft} j cette semaine`;
   const town=state.mode==='town'?state.townName||'':'';

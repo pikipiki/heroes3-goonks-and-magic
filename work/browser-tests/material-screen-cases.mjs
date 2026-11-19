@@ -4,6 +4,7 @@ const resources=[9999,9999,9999,9999,9999,9999,9999999,9999],base={turn:true,day
 const heroWindow={id:1,name:'Sylvia',owned:true,level:1,className:'Knight',mana:10,manaLimit:20,primarySkills:[2,2,1,1],commanderIcon:0,slots:Array.from({length:19},(_,slot)=>({slot}))};
 const families=Array.from({length:7},(_,level)=>({level,count:20,variants:Array.from({length:3},(_,rank)=>({...unit,id:level*3+rank,level,rank,built:rank<2,name:['Pikeman','Royal Pikeman','Ancestral Diamond Pikeman'][rank]}))}));
 const spells=[{id:15,name:'Magic Arrow',cost:5,level:1,enabled:true,target:'enemy',description:unit.description},{id:16,name:'Fire Shield',cost:12,level:4,enabled:true,target:'ally',description:unit.description}];
+const commanderState={mode:'dialog',dialogKind:'commander',dialogPresentation:{title:'Commander',unit:{...unit,name:'Hierophant'},choices:['Attack','Defense','Health','Damage','Speed','Magic'].map(label=>({label,inspectable:true,description:label+' — '+unit.description})),commanderTree:{masterRank:4,maxRank:5,skills:Array.from({length:6},(_,id)=>({id,rank:1})),abilities:[{id:6,requires:[0,1],name:'Flying',description:unit.description}]}}};
 export const screenCases=[
  ['home',{mode:'menu'}],['connecting',{mode:'connecting'}],
  ['setup',{mode:'lobby',lobbyReady:true,lobbyHumanCount:1,selectedMap:'The King and Queen',difficulty:1,selectedFaction:0,factions:[{id:0,key:'core:castle',name:'Castle'}],maps:[{index:0,name:'The King and Queen',width:144,height:144,players:2,castleChoice:true}],players:[],wogOptionsEditable:true,wogOptions:Array(17).fill(-1)}],
@@ -29,6 +30,8 @@ export const screenCases=[
  ['mage-guild',{mode:'mage-guild',mageGuild:{town:1,levels:5,built:3,spells}}],
  ['tavern',{mode:'dialog',dialogKind:'tavern',tavern:{cost:2500,canRecruit:true,thievesGuild:true,invite:true,rumor:'A rumor from the barkeep.'},tavernHeroes:{0:{id:31,name:'Melodia',className:'Druid',level:1},1:{id:32,name:'Ryland',className:'Ranger',level:1}}}],
  ['blacksmith',{mode:'dialog',dialogKind:'blacksmith',blacksmith:{unit:{name:'Ammo Cart'},cost:1000,canBuy:true}}],
+ ['commander',commanderState],
+ ['commander-tree',commanderState,'[data-commander-tree]'],
  ['message',{mode:'dialog',dialogKind:'message',dialogPresentation:{title:'Game message',lines:[unit.description],choices:[],cancel:true}}],
  ['reward',{mode:'dialog',dialogKind:'source-campaign',campaignPending:true,dialogPresentation:{queryId:70,title:'Choose your reward',lines:[unit.description],choices:[],cancel:true}}],
  ['battle-result',{mode:'dialog',dialogKind:'battle-result',battleResult:{won:true,description:'A glorious victory!',sides:[{name:'Sylvia',winner:true,losses:[{...unit,count:1}]},{name:'Enemy',winner:false,losses:[]}]}}],
