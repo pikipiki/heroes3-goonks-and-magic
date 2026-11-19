@@ -70,7 +70,7 @@ export function nextBuildingPrerequisite(state, building) {
 export function createTownBuildingMenu({body, getState, asset, backButton, canOpen, openSheet, closeSheet, command, notify}) {
   const images = new Map(), urls = new Map(), townProjects = new Map();
   let tab = 'unbuilt', filter = '', selected = null, lockedOpen = false, projectExpanded;
-  let commandDock;
+  let commandDock,panelEvents;
   let signature, listScroll = 0, pending, preloadedSignature = '', preloadedEntries = [], unlockRoute = null, project = null, construction, constructionTimer;
   function rememberProject(state, value) {
     project = value;
@@ -224,23 +224,26 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   function render(state) {
     const buildings = buildingCards(visibleBuildings(state.buildings));
     const building = (unlockRoute ? state.buildings : buildings)?.find(item => item.id === selected);
-    const panel = document.createElement('div');
+    const sheetBefore=body.closest('.mobile-sheet');
+    const panel = !building&&sheetBefore?.dataset.buildingView==='list'?body.querySelector('.building-menu')||document.createElement('div'):document.createElement('div');
     panel.className = 'building-menu';
+    panelEvents?.abort();panelEvents=new AbortController();const listen={signal:panelEvents.signal};
     const completedUnlock = unlockRoute && building?.id === unlockRoute.id && building.built
       ? `<p class="building-completed" role="status"><span>${tr('Creature unlocked','Créature débloquée')}</span> · ${escape(unlockRoute.name)}</p>` : '';
     renderMarkup(panel,building
       ? '<div class="building-content">'+projectHeader(state, building)+detail(state, building)+'</div>'+sideInfo(state,building,completedUnlock)
-      : list(state, buildings));
+      : list(state, buildings),{stable:!building});
     commandDock?.remove();commandDock=undefined;
     const sheet=body.closest('.mobile-sheet');
     if(sheet){sheet.dataset.buildingView=building?'detail':'list';sheet.dataset.buildingProject=String(!!panel.querySelector('.building-project'));sheet.dataset.buildingCompleted=String(!!completedUnlock);sheet.dataset.buildingBack=String(!!building&&!completedUnlock&&(!unlockRoute||project&&selected!==project.id));}
-    body.replaceChildren(panel);useScreenControls(panel);
+    if(body.firstElementChild!==panel)body.replaceChildren(panel);useScreenControls(panel);
     const commands=actionsFor(state,building);if(commands&&sheet){commandDock=document.createElement('footer');commandDock.className='building-actions';renderMarkup(commandDock,commands);sheet.append(commandDock);useActionDock(commandDock,{surface:'plain'});}
     if(!building&&document.activeElement===backButton)sheet?.querySelector('[data-ui=close-sheet]')?.focus({preventScroll:true});
-    panel.addEventListener('change',event=>{if(!event.target.matches('[data-building-category]'))return;filter=event.target.value;lockedOpen=false;queueMicrotask(()=>{if(!panel.isConnected)return;render(getState());const list=body.querySelector('.building-list');if(list)list.scrollTop=0;requestAnimationFrame(()=>body.querySelector('.building-category-filter [role=combobox]')?.focus({preventScroll:true}));});});
-    const goal=panel.querySelector('.building-project');goal?.addEventListener('toggle',()=>{projectExpanded=goal.open;});
+    panel.addEventListener('change',event=>{if(!event.target.matches('[data-building-category]'))return;filter=event.target.value;lockedOpen=false;queueMicrotask(()=>{if(!panel.isConnected)return;render(getState());const list=body.querySelector('.building-list');if(list)list.scrollTop=0;requestAnimationFrame(()=>body.querySelector('.building-category-filter [role=combobox]')?.focus({preventScroll:true}));});},listen);
+    const goal=panel.querySelector('.building-project');goal?.addEventListener('toggle',()=>{projectExpanded=goal.open;},listen);
     const locked = panel.querySelector('.building-locked');
-    locked?.addEventListener('toggle', () => { if (locked.isConnected) lockedOpen = locked.open; });
+    if(locked&&locked.open!==lockedOpen)locked.open=lockedOpen;
+    locked?.addEventListener('toggle', () => { if (locked.isConnected) lockedOpen = locked.open; },listen);
     const handleClick=event=>{
       const button = event.target.closest('button');
       if (!button || button.disabled) return;
@@ -293,7 +296,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
         }
       }
     };
-    panel.addEventListener('click',handleClick);commandDock?.addEventListener('click',handleClick);
+    panel.addEventListener('click',handleClick,listen);commandDock?.addEventListener('click',handleClick);
   }
   function selectProjectBuilding(state, id) {
     selected = id;
@@ -381,7 +384,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   }
   const viewport=body.closest('#mobile-app');if(viewport&&typeof ResizeObserver!=='undefined')new ResizeObserver(()=>{if(viewport.dataset.sheet==='build'&&!body.closest('.mobile-sheet')?.hidden)update(getState());}).observe(viewport);
   return {warm, open, update, back, artURL, cancel(resetProjects = false) {
-    pending = null;
+    pending = null;panelEvents?.abort();
     const sheet=body.closest('.mobile-sheet');if(sheet)for(const name of ['buildingView','buildingProject','buildingCompleted','buildingBack'])delete sheet.dataset[name];
     clearConstruction();
     commandDock?.remove();commandDock=undefined;

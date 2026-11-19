@@ -981,7 +981,7 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "2ea48d7fd68519e7a3793745669a61666a143df561ea21d88d6b0a3f24454432",
+      "sourceSHA256": "265bc0c69ad82f1c8191713d6c723f9a88b5fcafe666d982256ecca1de5185e3",
       "evidence": [
         {
           "line": 69,
@@ -1292,7 +1292,7 @@
         "players",
         "choice"
       ],
-      "sourceSHA256": "0b734275c5b308bf57bebf309ba9fb578adf02d152cb3161fbba1c9778a27c87",
+      "sourceSHA256": "4f639c78ee71f11ce4f45ef89a04f4e8a2dac2ff6cd92f9ca0fe607d7a6c8001",
       "evidence": [
         {
           "line": 16,
@@ -1311,19 +1311,19 @@
           "excerpt": "const illustration=document.createElement('div');"
         },
         {
-          "line": 91,
+          "line": 97,
           "excerpt": "if(!dialog?.isConnected){dialog=document.createElement('dialog');dialog.className='lobby-picker';useScreenComponents(dialog);dialog.setAttribute('aria-labelledby','lobby-picker-tit"
         },
         {
-          "line": 106,
+          "line": 112,
           "excerpt": "return `<button type=\"button\" data-choice-value=\"${esc(o.value)}\" aria-pressed=\"${o.value===s.value}\" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src=\"./web/h3-the"
         },
         {
-          "line": 123,
+          "line": 129,
           "excerpt": "for(const s of menu.querySelectorAll('select:not(.lobby-picker select)')){let c=controls.get(s);if(!c){c=document.createElement('section');c.className='lobby-setting';c.tabIndex=-1"
         },
         {
-          "line": 128,
+          "line": 134,
           "excerpt": "renderMarkup(c,'<h3></h3><button type=\"button\" class=\"lobby-choice-card\" aria-haspopup=\"dialog\"><img class=\"lobby-map-emblem\" src=\"./web/h3-theme/adventure-map.svg\" alt=\"\"><span><s"
         }
       ],
@@ -1532,15 +1532,11 @@
         "resources",
         "actions"
       ],
-      "sourceSHA256": "0cfc03be664fd4e51f7bf93c510377b45abf8628501f09d45ba6eb31b2b50701",
+      "sourceSHA256": "494515486137076181abf5b98ba0d07f2ad146e595e206e701b6c1970d379e9e",
       "evidence": [
         {
           "line": 17,
           "excerpt": "export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){"
-        },
-        {
-          "line": 18,
-          "excerpt": "const panel=document.createElement('section');panel.className='creature-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Creature overvie"
         },
         {
           "line": 41,
@@ -1548,23 +1544,15 @@
         },
         {
           "line": 50,
-          "excerpt": "panel.insertAdjacentHTML('beforeend',`<div class=\"featured-creature\"><div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" aria-label=\"Animated ${esc(unit?.name)}"
-        },
-        {
-          "line": 52,
-          "excerpt": "const variants=document.createElement('div');variants.className='recruit-variants';"
+          "excerpt": "const featured=createUIElement('div');featured.classList.add('featured-creature');renderMarkup(featured,`<div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" ari"
         },
         {
           "line": 57,
           "excerpt": "renderMarkup(variants,choices.map(({u,index})=>`<button data-variant=\"${index}\" aria-pressed=\"${u.id===unit?.id}\">${creaturePortrait(u)}<span class=\"variant-name\">${esc(u.name)}</s"
         },
         {
-          "line": 58,
-          "excerpt": "const visual=document.createElement('div');visual.className='recruit-visual';visual.append(panel.querySelector('.creature-stage'),variants);"
-        },
-        {
-          "line": 59,
-          "excerpt": "const controls=document.createElement('section');controls.className='recruit-controls';controls.append(amount);"
+          "line": 65,
+          "excerpt": "else if(upgrades.length){const upgradePanel=createUIElement('section');upgradePanel.classList.add('creature-upgrades');upgradePanel.setAttribute('aria-label','Creature upgrades');r"
         }
       ],
       "review": "source-reviewed"
@@ -1638,7 +1626,7 @@
         "hero",
         "feedback"
       ],
-      "sourceSHA256": "2117cdf6df1ac35376c8ac2d9f66bcd306ec8c1882138dd4f39dc57286bb1a76",
+      "sourceSHA256": "6ddada8d4e46649bde1a623118c38ba560e34addba10cf6dc9126c5ab4a4ab0e",
       "evidence": [
         {
           "line": 9,
@@ -1649,7 +1637,11 @@
           "excerpt": "export function createThievesGuildView(panel){"
         },
         {
-          "line": 33,
+          "line": 44,
+          "excerpt": "const playerField=(compare=false)=>`<label class=\"guild-player-field\"><span class=\"guild-field-label\">${compare?t('Compare with','Comparer avec'):t('Kingdom to inspect','Royaume à "
+        },
+        {
+          "line": 48,
           "excerpt": "renderMarkup(panel,screenHeaderMarkup({title:t('Thieves’ Guild','Guilde des voleurs'),closeAttributes:'data-service-back',closeLabel:t('Close','Fermer')})+`<nav class=\"guild-view-t"
         }
       ],
@@ -1680,7 +1672,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "7f6ccae1045174e7a8bdbe10c85155a3a48ad8ad69ee851b5cf40e796a7a2cfa",
+      "sourceSHA256": "dd2ccade08ae7aac36480a3b54c66290422c09bd0cf2987238ac8ebfb401f1b7",
       "evidence": [
         {
           "line": 66,
@@ -2992,7 +2984,7 @@
         "choice",
         "select"
       ],
-      "sourceSHA256": "21c305782d29c35cde91b11df24f1a97be3be690e616a0bdda05719368f52ed0",
+      "sourceSHA256": "8ad987533b19b0831d51088bc9e915920b6c0e3ccb0c3a1034fabbc8b8dc86da",
       "evidence": [
         {
           "line": 4,
@@ -3005,6 +2997,10 @@
         {
           "line": 63,
           "excerpt": "renderMarkup(towns,(state.players||[]).map(p=>`<label><span class=\"lobby-player-label\"><i class=\"lobby-player-colour\" data-player-colour=\"${Number(p.color)}\" aria-hidden=\"true\"></i"
+        },
+        {
+          "line": 77,
+          "excerpt": "if(![...income.options].some(option=>option.value===value)){const option=document.createElement('option');option.value=value;option.textContent=value+' %';income.append(option);}"
         }
       ],
       "review": "source-reviewed"

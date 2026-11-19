@@ -5,6 +5,7 @@ import {screenContract,screenSelector} from './contracts.mjs';
 import {decorateButton,uiText} from './primitives.mjs';
 import {useActionDock} from './action-dock.mjs';
 import {closeDetachedMenu} from './menu.mjs';
+import {usePurchaseContext} from './purchase-context.mjs';
 import {useHeroSummary} from './hero-summary.mjs';
 import {useModalBoundary} from './modal-boundary.mjs';
 const back=/^(?:[←↩↵↶⬅🔙]\s*)?(?:Back|Retour)$/iu;
@@ -28,7 +29,7 @@ export function applyScreenComponents(root){
  const header=find(root,contract.header);if(!header){useScreenControls(root);return;}
  if(contract.liftHeader&&header.parentElement!==root)root.prepend(header);
  if(contract.name==='hero')useHeroSummary(root,header);
- header.classList.add('ui-screen-header');
+ header.classList.add('ui-screen-header');header.classList.toggle('ui-rail-header',!!contract.railHeader);
  const buttons=[...header.querySelectorAll('button')];
  let close=buttons.find(button=>cross.test(button.textContent.trim())||button.dataset.uiHeaderClose==='true');
  const source=find(root,contract.close);
@@ -57,6 +58,7 @@ export function applyScreenComponents(root){
  for(const button of root.querySelectorAll('button'))if(back.test(button.textContent.trim())){const label=uiText('Back','Retour');if(button.textContent!==label)button.textContent=label;button.classList.add('back-button');}
  useScreenControls(root);
  const tabs=root.querySelector('.hero-bag-tabs');if(tabs){const compact=matchMedia('(orientation:landscape) and (max-height:420px), (orientation:portrait) and (max-height:740px)').matches;const selected=tabs.querySelector('[data-hero-tab][aria-pressed=true]');useActionDock(tabs,{overflow:compact,limit:1,keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-hero-commander')),moreLabel:(selected?.textContent.trim()||uiText('Inventory','Inventaire'))+' ▾'});tabs.classList.toggle('ui-compact-navigation',compact);if(!compact)tabs.classList.remove('ui-action-dock');}
+ const app=root.closest('#mobile-app');if(app)usePurchaseContext(app);
  managed.set(root,{header,dock});
 }
 export function refreshScreenComponents(scope=document.body){

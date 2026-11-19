@@ -1,4 +1,4 @@
-import {useScreenComponents,renderMarkup,setClickHandler} from './ui/material-components.mjs';
+import {useScreenComponents,renderMarkup,setClickHandler,radioChoicesMarkup} from './ui/material-components.mjs';
 import {showScenarioPreview} from './scenario-preview.mjs';
 import {getLanguage} from './i18n.mjs';
 import {factionArt, factionArtPaths} from './faction-art.mjs';
@@ -80,7 +80,13 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
  }
  const faction=s=>s.id==='mobile-faction-select'||s.hasAttribute('data-player-castle');
  const title=s=>s.id==='mobile-map-select'?(getState().mode==='load'?'Saved game':'Adventure map'):s.id==='mobile-faction-select'?'Your castle':s.id==='mobile-difficulty'?'Difficulty':s.closest('label')?.querySelector('.lobby-player-label')?.textContent||[...s.closest('label').childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
- function change(s,value){if(s.disabled||s.value===String(value))return;const counter=document.activeElement?.dataset.counter;s.value=String(value);s.dispatchEvent(new Event('change',{bubbles:true}));update(getState());const c=controls.get(s),focus=counter?c?.querySelector('[data-counter="'+counter+'"]'):c?.querySelector('[data-tile-value="'+CSS.escape(String(value))+'"]')||c?.querySelector('button');(focus&&!focus.disabled?focus:c)?.focus({preventScroll:true});}
+ function change(s,value){
+  if(s.disabled||s.value===String(value))return;
+  const counter=document.activeElement?.dataset.counter;
+  s.value=String(value);s.dispatchEvent(new Event('change',{bubbles:true}));update(getState());
+  const c=controls.get(s),focus=counter?c?.querySelector('[data-counter="'+counter+'"]'):c?.querySelector('[data-setup-choice][value="'+CSS.escape(String(value))+'"]')||c?.querySelector('button');
+  (focus&&!focus.disabled?focus:c)?.focus({preventScroll:true});
+ }
  function close(){dialog?.close();source=null;}
  async function open(s){
   if(s.disabled||pendingOpen?.select===s)return;
@@ -143,21 +149,38 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
    }
    const list=options(s);
    if(faction(s)){preloadFactionArt(s,list);updateFactionCard(c,s,list);continue;}
-   // A busy acknowledgement only changes availability. Rebuilding the cards
-   // above a scrolled option briefly shrinks the document and WebKit clamps
-   // its scroll position, even if the final heights are identical.
-   const key=JSON.stringify([list,s.value,s.dataset.updating,title(s)]);
-   if(c._key===key){
-    for(const button of c.querySelectorAll('[data-tile-value]'))button.disabled=s.disabled||!!list.find(option=>option.value===button.dataset.tileValue)?.disabled;
-    const index=list.findIndex(option=>option.value===s.value);
-    for(const button of c.querySelectorAll('[data-counter]'))button.disabled=s.disabled||(Number(button.dataset.counter)<0?index<=0:index>=list.length-1);
-    continue;
+   // Keep mounted controls through both optimistic selection and native ack.
+   // Only the option identities/text change the composition, never checked/busy.
+   const isRadio=s.id==='mobile-difficulty'||s.hasAttribute('data-custom-size')||s.hasAttribute('data-player-income');
+   const key=JSON.stringify(list.map(({value,label})=>[value,label]));
+   if(c._key!==key){
+    c._key=key;
+    const heading=`<h3>${esc(title(s))}</h3>`;
+    if(isRadio){
+     c.dataset.control='radios';
+     const choices=radioChoicesMarkup({name:'setup-'+c.dataset.setting,className:'lobby-choice-radios',choices:list.map(o=>({...o,checked:s.value===o.value,disabled:s.disabled||o.disabled,attributes:'data-setup-choice'}))});
+     renderMarkup(c,heading+choices.replace('<div ',`<div data-ui-radio-group aria-label="${esc(title(s))}" `)+(s.id==='mobile-difficulty'?'<p class="lobby-choice-help"></p>':''));
+     if(!c._choiceChange){c._choiceChange=event=>{const input=event.target.closest('[data-setup-choice]');if(input?.checked)change(s,input.value);};c.addEventListener('change',c._choiceChange);}
+    }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){
+     c.dataset.control='counter';
+     renderMarkup(c,heading+`<div class="lobby-counter"><button type="button" data-counter="-1" aria-label="Decrease ${esc(title(s))}">−</button><output aria-live="polite"><strong></strong><span>${s.hasAttribute('data-custom-humans')?'Human players':'New map players'}</span></output><button type="button" data-counter="1" aria-label="Increase ${esc(title(s))}">+</button></div>`);
+     c.querySelectorAll('[data-counter]').forEach(b=>setClickHandler(b,()=>{const current=options(s),i=current.findIndex(o=>o.value===s.value),next=current[i+Number(b.dataset.counter)];if(next)change(s,next.value);}));
+    }
    }
-   c._key=key;
-   const heading=`<h3>${esc(title(s))}</h3>`;
-   if(s.id==='mobile-difficulty'||s.hasAttribute('data-custom-size')||s.hasAttribute('data-player-income')){const isDifficulty=s.id==='mobile-difficulty';c.dataset.control='tiles';renderMarkup(c,heading+`<div class="lobby-choice-tiles" role="group" aria-label="${esc(title(s))}">${list.map((o,i)=>`<button type="button" data-tile-value="${esc(o.value)}" aria-pressed="${s.value===o.value}" ${s.disabled||o.disabled?'disabled':''}>${s.hasAttribute('data-player-income')?'':`<span class="lobby-tile-symbol" aria-hidden="true">${isDifficulty?'◆'.repeat(i+1):['S','M','L','XL'][i]}</span>`}<strong>${esc(o.label)}</strong></button>`).join('')}</div>`+(isDifficulty?`<p class="lobby-choice-help">${difficulty[Number(s.value)]||''}</p>`:''));c.querySelectorAll('[data-tile-value]').forEach(b=>setClickHandler(b,()=>change(s,b.dataset.tileValue)));
-   }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){c.dataset.control='counter';const index=list.findIndex(o=>o.value===s.value);renderMarkup(c,heading+`<div class="lobby-counter"><button type="button" data-counter="-1" aria-label="Decrease ${esc(title(s))}" ${s.disabled||index<=0?'disabled':''}>−</button><output aria-live="polite"><strong>${esc(s.value)}</strong><span>${s.hasAttribute('data-custom-humans')?'Human players':'New map players'}</span></output><button type="button" data-counter="1" aria-label="Increase ${esc(title(s))}" ${s.disabled||index>=list.length-1?'disabled':''}>+</button></div>`);c.querySelectorAll('[data-counter]').forEach(b=>setClickHandler(b,()=>{const i=list.findIndex(o=>o.value===s.value),next=list[i+Number(b.dataset.counter)];if(next)change(s,next.value);}));
+   const heading=c.querySelector('h3'),headingText=title(s);
+   if(heading&&heading._sourceText!==headingText){heading._sourceText=headingText;heading.textContent=headingText;}
+   const group=c.querySelector('[data-ui-radio-group]');
+   group?.setAttribute('aria-label',headingText);
+   for(const input of c.querySelectorAll('[data-setup-choice]')){
+    input.checked=s.value===input.value;
+    input.disabled=s.disabled||!!list.find(o=>o.value===input.value)?.disabled;
    }
+   const help=c.querySelector('.lobby-choice-help'),helpText=difficulty[Number(s.value)]||'';
+   if(help&&help._sourceText!==helpText){help._sourceText=helpText;help.textContent=helpText;}
+   const index=list.findIndex(o=>o.value===s.value);
+   for(const button of c.querySelectorAll('[data-counter]'))button.disabled=s.disabled||(Number(button.dataset.counter)<0?index<=0:index>=list.length-1);
+   const count=c.querySelector('output strong');
+   if(count&&count.textContent!==s.value)count.textContent=s.value;
   }
  }
  menu.addEventListener('change',()=>queueMicrotask(()=>update(getState())));

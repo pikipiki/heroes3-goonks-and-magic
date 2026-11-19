@@ -10,8 +10,8 @@
   "sourceBaseCommit": "c449be89dcfda668edad13c72d453db9c79ffc56",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
-    "package-lock.json": "0d0c5f6cd4b0488be30bddb8a5ff69621de2a7cf804e6067f28ffe787acacd38",
-    "package.json": "a3f8dac0ee03a42bd7a429d243f90b64e9f8f994a4fd5af6ae54aa9abe9be3f0",
+    "package-lock.json": "b6fdbccf44dcd84d5ad34190e9c346fe89c4e525b476e257e5631acd21ecc6ed",
+    "package.json": "0740e1fe2bcf8a1e90b9d182c11a3af16e043eedd040e6f9ad5771e444e8f3e5",
     "scripts/prepare-web.mjs": "2a7f4c4f3a477f219543f7139374330e39aa5d016530be72583374fbc607e27b",
     "tests/era-temporary-battle-armies.test.mjs": "ad5f36eb5d24b205573d849bcdda0709f262ea5168159b9682220054d00ae098",
     "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
@@ -825,8 +825,8 @@
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "f3ce9b15e63ad7a66fe8b884a55c74c8dbb94868ba7f0b999d4d6c94655d4ab3",
-      "scripts/build-ui.mjs": "9d10bc8d93ef26850dc3a71ede89f2543d1db02b2e38edcb36ec3979a6078478"
+      "src/ui/theme.mjs": "03dc643981b39f00f426f4007d9a3916d223c4640ea2e9247cd48b2c8e6f2e52",
+      "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
     },
     "stability": {
       "passed": true,

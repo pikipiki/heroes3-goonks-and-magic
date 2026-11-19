@@ -53,7 +53,7 @@ export function createLobbyOptions({menu,getState,command,onChange}){
  button.setAttribute('aria-busy',String(!!request));
  for(const input of form.querySelectorAll('select,input'))input.disabled=!!request;
 
- const towns=menu.querySelector('.custom-player-towns'),key=JSON.stringify([state.players||[],getLanguage()]);
+ const towns=menu.querySelector('.custom-player-towns'),key=JSON.stringify([(state.players||[]).map(({color,name,factions})=>({color,name,factions})),getLanguage()]);
  const playerPanel=towns.closest('.lobby-players');
  playerPanel.hidden=!(state.players?.length);
  const count=playerPanel.querySelector('[data-scenario-player-count]');
@@ -62,7 +62,21 @@ export function createLobbyOptions({menu,getState,command,onChange}){
   towns._key=key;const fr=getLanguage()==='fr';
   renderMarkup(towns,(state.players||[]).map(p=>`<label><span class="lobby-player-label"><i class="lobby-player-colour" data-player-colour="${Number(p.color)}" aria-hidden="true"></i>${esc(p.name)}</span><select data-player-castle="${p.color}"><option value=-1>Random castle</option>${(p.factions||[]).map(f=>`<option value="${f.id}" ${f.id===p.faction?'selected':''}>${esc(f.name)}</option>`).join('')}</select></label><label>${fr?'Revenus de':'Income for'} ${esc(p.name)}<select data-player-income="${Number(p.color)}" aria-label="${fr?'Revenus de':'Income for'} ${esc(p.name)}">${[...new Set([100,85,70,p.incomePercent??100])].map(value=>`<option value="${value}" ${value===(p.incomePercent??100)?'selected':''}>${value} %</option>`).join('')}</select></label>`).join(''));
   towns.querySelectorAll('[data-player-castle]').forEach(select=>select.onchange=()=>command(57,Number(select.dataset.playerCastle),Number(select.value)));
-  towns.querySelectorAll('[data-player-income]').forEach(select=>select.onchange=()=>command(1210,Number(select.dataset.playerIncome),Number(select.value)));
+  towns.querySelectorAll('[data-player-income]').forEach(select=>select.onchange=()=>{select._pendingIncome={previous:select._nativeIncome??select.value,value:select.value};command(1210,Number(select.dataset.playerIncome),Number(select.value));});
+ }
+ for(const player of state.players||[]){
+  const castle=towns.querySelector(`[data-player-castle="${Number(player.color)}"]`),income=towns.querySelector(`[data-player-income="${Number(player.color)}"]`);
+  if(castle)castle.value=String(player.faction);
+  if(income){
+   const native=String(player.incomePercent??100),pending=income._pendingIncome;
+   if(pending&&native!==pending.previous)income._pendingIncome=null;
+   income._nativeIncome=native;
+   const value=income._pendingIncome?.value??native;
+   // Retain the source select and its choice list during acknowledgement.
+   // An uncommon native percentage remains a valid choice after selecting another.
+   if(![...income.options].some(option=>option.value===value)){const option=document.createElement('option');option.value=value;option.textContent=value+' %';income.append(option);}
+   income.value=value;
+  }
  }
  for(const select of towns.querySelectorAll('select'))select.disabled=!!request||changingScenario||!state.lobbyReady;
 }

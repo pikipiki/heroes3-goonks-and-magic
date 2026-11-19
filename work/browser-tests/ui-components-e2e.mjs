@@ -20,7 +20,8 @@ for(const [kind,engine]of Object.entries({chromium,webkit})){
     panel.addEventListener('click',event=>{const button=event.target.closest('[data-command]');if(button&&!button.disabled)commands.push(button.dataset.command);});document.querySelector('#mobile-app').append(panel);ui.applyScreenComponents(panel);
    },language);
    const close=p.locator('.ui-screen-header .ui-icon-button'),confirm=p.locator('[data-command=confirm]'),back=p.locator('[data-command=back]'),more=p.locator('.ui-overflow-trigger');
-   for(const button of [close,confirm,back,more]){const r=await button.boundingBox();assert(r&&r.width>=48&&r.height>=48&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport.width+1&&r.y+r.height<=viewport.height+1,JSON.stringify({kind,language,viewport,r}));}
+   assert(await back.isHidden(),'Native back remains as command bridge; only the cross is exposed');
+   for(const button of [close,confirm,more]){const r=await button.boundingBox();assert(r&&r.width>=48&&r.height>=48&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport.width+1&&r.y+r.height<=viewport.height+1,JSON.stringify({kind,language,viewport,r}));}
    assert.equal(await p.locator('.ui-screen-header button').count(),1);assert.equal(await close.getAttribute('aria-label'),language==='fr'?'Fermer':'Close');
    const head=await p.locator('.ui-screen-header').boundingBox(),body=await p.locator('.ui-screen-content').boundingBox(),dock=await p.locator('.ui-action-dock').boundingBox();
    if(viewport.width>viewport.height)assert(head.x>=body.x+body.width-1&&dock.x>=body.x+body.width-1,'Title and actions share the right rail');else assert(head.y+head.height<=body.y+1&&body.y+body.height<=dock.y+1,'Portrait content stays between title and actions');

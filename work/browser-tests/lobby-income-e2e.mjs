@@ -19,11 +19,11 @@ for(const [kind,engine] of [['chromium',chromium],['webkit',webkit]]){
    window.incomeState={mode:'lobby',lobbyReady:true,lobbyHumanCount:1,selectedMap:'Income review',difficulty:1,selectedFaction:9,allowRandomFaction:false,factions,maps:[{index:0,name:'Income review',width:36,height:36,players:2,castleChoice:true}],players:[{color:0,name:'Alexandre le Conquérant',faction:9,factions,incomePercent:100},{color:1,name:'Ordinateur',faction:0,factions,incomePercent:85}]};
    window.sendIncome=()=>dispatchEvent(new CustomEvent('goonk-state',{detail:structuredClone(incomeState)}));sendIncome();
   });
-  const selector='[data-setting=income-0] [data-tile-value="70"]',control=page.locator(selector);
-  await control.waitFor();await control.scrollIntoViewIfNeeded();const box=await control.boundingBox();assert(box.width>=48&&box.height>=48);assert(box.x>=0&&box.x+box.width<=viewport.width+1);
+  const selector='[data-setting=income-0] [data-setup-choice][value="70"]',control=page.locator(selector),target=control.locator('xpath=ancestor::label[1]');
+  await control.waitFor();await target.scrollIntoViewIfNeeded();const box=await target.boundingBox();assert(box.width>=48&&box.height>=48);assert(box.x>=0&&box.x+box.width<=viewport.width+1);
   const name=await page.locator('[data-setting=income-0] h3').textContent();assert(name.includes(language==='fr'?'Revenus de':'Income for'));
   const before=await page.evaluate(()=>calls.filter(c=>c[0]===1210).length);
-  await control[mouse?'click':'tap']();
+  await target[mouse?'click':'tap']();
   assert.deepEqual(await page.evaluate(()=>calls.filter(c=>c[0]===1210).at(-1).slice(0,3)),[1210,0,70]);
   assert.equal(await page.evaluate(()=>calls.filter(c=>c[0]===1210).length),before+1);
   await page.evaluate(()=>{incomeState.players[0].incomePercent=70;sendIncome();});await page.waitForFunction(()=>document.querySelector('[data-player-income="0"]').value==='70');
@@ -32,7 +32,7 @@ for(const [kind,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.waitForFunction(()=>document.querySelector('[data-player-income="0"]').disabled);
   assert(await page.locator(selector).isDisabled());
   await page.evaluate(()=>{incomeState.lobbyReady=true;incomeState.players[0].incomePercent=50;sendIncome();});
-  await page.waitForFunction(()=>document.querySelector('[data-setting=income-0] [data-tile-value="50"]')?.getAttribute('aria-pressed')==='true');
+  await page.waitForFunction(()=>document.querySelector('[data-setting=income-0] [data-setup-choice][value="50"]')?.checked===true);
   await page.evaluate(()=>{incomeState.players=[];sendIncome();});
   await page.waitForFunction(()=>document.querySelector('.lobby-players')?.hidden&&!document.querySelector('[data-setting=income-0]'));
   assert.deepEqual(errors,[]);results.push({kind,language,viewport,input:mouse?'mouse':'touch',minimumTarget:48,oneCommandPerGesture:true,command:[1210,0,70]});await page.close();

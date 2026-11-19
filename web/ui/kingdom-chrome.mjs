@@ -1,10 +1,10 @@
+import {usePurchaseContext} from './purchase-context.mjs';
 import {useHeroSummary} from './hero-summary.mjs';
 import {createMaterialElement} from './mui-runtime.mjs';
 import {createPopupMenu} from './menu.mjs';
 import {decorateButton,uiText} from './primitives.mjs';
 const records=new WeakMap();
-// In short landscape the recruitment command rail needs its height for the
-// selected creature and transaction. Kingdom information remains one tap away.
+// Purchase context remains visible. Only ordinary map browsing may collapse it.
 export function useKingdomChrome(root){
  let record=records.get(root);
  if(!record){const header=root.querySelector('.mobile-top');if(!header)return;
@@ -13,10 +13,12 @@ export function useKingdomChrome(root){
   record={header,button,popup,compact:false};records.set(root,record);
   const observer=new ResizeObserver(()=>useKingdomChrome(root));observer.observe(root);
  }
- const {header,button,popup}=record,compact=!!root.querySelector('.mobile-resources:not([hidden])')&&root.dataset.mode!=='battle'&&root.clientWidth>root.clientHeight&&(root.clientHeight<400||root.dataset.mode==='fort');
+ const purchase=usePurchaseContext(root);
+ const {header,button,popup}=record,compact=!purchase&&!!root.querySelector('.mobile-resources:not([hidden])')&&root.dataset.mode!=='battle'&&root.clientWidth>root.clientHeight&&(root.clientHeight<400||root.dataset.mode==='fort');
  button.textContent=uiText('Resources','Ressources');button.setAttribute('aria-label',uiText('Resources and calendar','Ressources et calendrier'));
  header.classList.toggle('ui-compact-chrome',compact);button.hidden=!compact;
  if(compact!==record.compact){popup.close(false);record.compact=compact;}
  const hero=root.querySelector('.hero-equipment-page:not([hidden])');if(hero)useHeroSummary(hero,hero.querySelector('.hero-card-head'));
+ const chromeHeight=Math.ceil(header.getBoundingClientRect().height);if(chromeHeight&&root.style.getPropertyValue('--ui-kingdom-chrome-height')!==chromeHeight+'px')root.style.setProperty('--ui-kingdom-chrome-height',chromeHeight+'px');
  for(const node of [...header.querySelectorAll('.mobile-resources,.mobile-calendar')]){const parent=compact?popup.list:header;if(node.parentElement!==parent)parent.append(node);}
 }

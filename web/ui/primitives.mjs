@@ -13,7 +13,7 @@ export function screenHeaderMarkup({title,titleId='',subtitle='',closeAttributes
 export const actionDockMarkup=content=>`<footer class="ui-action-dock" data-ui-actions>${content}</footer>`;
 export const noticeMarkup=({message,tone='info'})=>`<p class="ui-notice" data-ui-tone="${escapeUI(tone)}" role="${tone==='error'?'alert':'status'}">${escapeUI(message)}</p>`;
 export function decorateButton(button,{icon=false,variant}={}){
- button.classList.add(icon?'ui-icon-button':'ui-button');
+ button.classList.add(icon?'ui-icon-button':'ui-button');button.className=button.className;
  if(!icon)button.dataset.uiVariant=variant||(/^(?:[←↩]\s*)?(?:Back|Retour|Cancel|Annuler)$/iu.test(button.textContent.trim())?'tonal':button.classList.contains('primary')?'filled':'tonal');
  return button;
 }

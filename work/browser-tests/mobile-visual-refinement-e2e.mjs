@@ -18,7 +18,7 @@ for(const kind of['chromium','webkit']){
   await p.setViewportSize({width,height});
   await send({mode:'menu'});await accessible('.mobile-menu>button');await p.screenshot({path:path.join(out,kind+'-home-'+width+'.png')});
   await send({mode:'lobby',lobbyReady:true,mapsLoading:false,selectedMap:'Twirl',maps:[{index:0,name:'Twirl',width:144,height:144,players:4,humanSeats:1,castleChoice:true}],difficulty:1,selectedFaction:0,factions:[{id:0,name:'Castle'}]});
-  await accessible('[data-ui=begin],.lobby-choice-card,.lobby-choice-tiles button');assert(await p.locator('.lobby-scroll').evaluate(e=>e.scrollWidth<=e.clientWidth+1),'No horizontal form overflow');await p.screenshot({path:path.join(out,kind+'-lobby-'+width+'.png')});
+  await accessible('[data-ui=begin],.lobby-choice-card,.lobby-choice-radios label');assert(await p.locator('.lobby-scroll').evaluate(e=>e.scrollWidth<=e.clientWidth+1),'No horizontal form overflow');await p.screenshot({path:path.join(out,kind+'-lobby-'+width+'.png')});
   await send({mode:'market',resources:[120,110,120,110,110,110,120999,100],marketQuotes:Array.from({length:8},(_,a)=>Array.from({length:8},(_,b)=>[a,b,1,2])).flat().filter(q=>q[0]!==q[1])});
   await p.locator('[data-side=give] [data-resource-id="6"]').tap();await p.locator('[data-side=receive] [data-resource-id="2"]').tap();await accessible('[data-market]');const trade=await p.locator('[data-market=trade]').boundingBox(),classic=await p.locator('[data-market=classic]').boundingBox();assert(classic.y>=trade.y+trade.height,'Marketplace view commands follow Exchange');await p.screenshot({path:path.join(out,kind+'-market-'+width+'.png')});
   await send({mode:'town',townName:'Stronghold',buildings});

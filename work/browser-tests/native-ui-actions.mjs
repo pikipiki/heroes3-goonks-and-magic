@@ -30,7 +30,7 @@ export async function selectHeroTab(page,tab,{mouse=false}={}){
 }
 
 export async function selectLobbyIncome(page,color,value,{mouse=false}={}){
- await page.locator(`[data-setting="income-${color}"] [data-tile-value="${value}"]`)[mouse?'click':'tap']();
+ await page.locator(`[data-setting="income-${color}"] label:has([data-setup-choice][value="${value}"])`)[mouse?'click':'tap']();
  await page.waitForFunction(({color,value})=>document.querySelector(`[data-player-income="${color}"]`)?.value===String(value),{color,value});
 }
 
